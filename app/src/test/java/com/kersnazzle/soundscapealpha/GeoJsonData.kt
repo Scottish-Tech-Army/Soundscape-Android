@@ -16,7 +16,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
  */
 object GeoJsonData
 {
-    val pointJson = "{\"coordinates\":[0.0, 0.0],\"type\":\"Point\"}"
+    val pointJson = "{\"coordinates\":[0.0,0.0],\"type\":\"Point\"}"
     val pointObject = Point().also {
         it.coordinates = LngLatAlt(0.0, 0.0, null)
     }
@@ -29,11 +29,12 @@ object GeoJsonData
         )
     }
 
-    val lineStringJson = "{\"coordinates\":[[0.0,0.0],[1.0,1.0],[0.0,1.0],\"type\":\"LineString\"}"
+    val lineStringJson = "{\"coordinates\":[[0.0,0.0],[1.0,1.0],[0.0,1.0]],\"type\":\"LineString\"}"
     val lineStringObject = LineString().also {
         it.coordinates = arrayListOf(
             LngLatAlt(0.0, 0.0),
-            LngLatAlt(1.0, 1.0)
+            LngLatAlt(1.0, 1.0),
+            LngLatAlt(0.0, 1.0)
         )
     }
 
