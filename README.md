@@ -1,0 +1,1 @@
+This is a proof of concept (POC) for a port of some of the features of the Soundscape iOS app to Android using Jetpack Compose and Kotlin.
