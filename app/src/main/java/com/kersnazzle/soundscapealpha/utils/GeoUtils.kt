@@ -14,7 +14,7 @@ import kotlin.math.tan
 const val DEGREES_TO_RADIANS = 2.0 * PI / 360.0
 const val RADIANS_TO_DEGREES = 1.0 / DEGREES_TO_RADIANS
 const val EARTH_RADIUS_METERS =
-    6378137.0 //  Soundscape uses 6378137.0 WGS 84 https://en.wikipedia.org/wiki/World_Geodetic_System
+    6378137.0 //  Original Soundscape uses 6378137.0 not 6371000.0
 
 /**
  * Gets Slippy Map Tile Name from X and Y GPS coordinates and Zoom (fixed at 16 for Soundscape)
