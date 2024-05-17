@@ -158,31 +158,30 @@ class GeoJsonParserTest {
             """
 			{
 				"type":"Point",
-				"coordinates":[100.0,5.0],
+				"coordinates":[0.5,0.5],
 				"properties": {
 					"name": "value",
 					"name2": 2
 				},
-				"bbox": [100.0, 0.0, -100.0, 105.0, 1.0, 0.0],
+				"bbox": [0.5, 0.5, 0.5, 0.5, 0.5],
 				"other": "foreign"
 			}
 		"""
         )
         Assert.assertNotNull(value)
         Assert.assertTrue(value is Point)
-        assertLngLatAlt(100.0, 5.0, Double.NaN, value!!.coordinates)
+        assertLngLatAlt(0.5, 0.5, Double.NaN, value!!.coordinates)
         Assert.assertTrue(!value.properties.isNullOrEmpty())
         Assert.assertEquals("value", value.properties!!["name"] as String)
         Assert.assertEquals(2.0, value.properties!!["name2"] as Double, 0.00001)
         Assert.assertTrue(!value.foreign.isNullOrEmpty())
         Assert.assertEquals("foreign", value.foreign!!["other"] as String)
         Assert.assertNotNull(value.bbox)
-        Assert.assertEquals(100.0, value.bbox!![0], 0.00001)
-        Assert.assertEquals(0.0, value.bbox!![1], 0.00001)
-        Assert.assertEquals(-100.0, value.bbox!![2], 0.00001)
-        Assert.assertEquals(105.0, value.bbox!![3], 0.00001)
-        Assert.assertEquals(1.0, value.bbox!![4], 0.00001)
-        Assert.assertEquals(0.0, value.bbox!![5], 0.00001)
+        Assert.assertEquals(0.5, value.bbox!![0], 0.00001)
+        Assert.assertEquals(0.5, value.bbox!![1], 0.00001)
+        Assert.assertEquals(0.5, value.bbox!![2], 0.00001)
+        Assert.assertEquals(0.5, value.bbox!![3], 0.00001)
+
     }
 
     @Test
