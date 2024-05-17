@@ -65,3 +65,26 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection: Fe
     }
     return roadsFeatureCollection
 }
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return a paths
+ * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
+ * paths from Feature Collection
+ * @param tileFeatureCollection
+ * valid Tile Feature Collection
+ * @return a FeatureCollection that contains only paths.
+ */
+fun getPathsFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
+    val pathsFeatureCollection = FeatureCollection()
+
+    for(feature in tileFeatureCollection) {
+        if (feature.foreign!!["feature_type"] == "highway")
+            when(feature.foreign!!["feature_value"]){
+                "footway" -> pathsFeatureCollection.addFeature(feature)
+                "path" -> pathsFeatureCollection.addFeature(feature)
+                "cycleway" -> pathsFeatureCollection.addFeature(feature)
+                "bridleway" -> pathsFeatureCollection.addFeature(feature)
+            }
+    }
+    return pathsFeatureCollection
+}

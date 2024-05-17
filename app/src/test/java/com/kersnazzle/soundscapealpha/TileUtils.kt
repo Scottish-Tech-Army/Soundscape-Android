@@ -2,6 +2,7 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
+import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.squareup.moshi.Moshi
@@ -27,5 +28,18 @@ class TileUtilsTest {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
         Assert.assertEquals(16, testRoadsCollectionFromTileFeatureCollection.features.size)
+    }
+
+    @Test
+    fun getPathsFeatureCollectionFromTileFeatureCollectionTest() {
+        // This is the tile from /16/32295/21787.json as it contains footway, cycleway
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPathsCollectionFromTileFeatureCollection =
+            getPathsFeatureCollection(featureCollectionTest!!)
+        for (feature in testPathsCollectionFromTileFeatureCollection){
+            Assert.assertEquals("highway", feature.foreign!!["feature_type"])
+        }
+        Assert.assertEquals(54, testPathsCollectionFromTileFeatureCollection.features.size)
     }
 }
