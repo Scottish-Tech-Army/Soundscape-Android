@@ -5,6 +5,8 @@ import kotlin.math.asin
 import kotlin.math.asinh
 import kotlin.math.cos
 import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToLong
 import kotlin.math.sin
@@ -55,6 +57,20 @@ fun distance(lat1: Double, long1: Double, lat2: Double, long2: Double): Double {
 fun mapSize(zoom: Int): Int {
     val base = 256
     return base shl (zoom)
+}
+
+/**
+ * Clips a value to the range [max, min]
+ * @param value
+ * Value to clip
+ * @param minimum
+ * Minimum value of range
+ * @param maximum
+ * Maximum value of range
+ * @return The Clipped value
+ */
+fun clip(value: Double, minimum: Double, maximum: Double): Double {
+    return min(max(value, minimum), maximum)
 }
 
 fun toRadians(degrees: Double): Double {
