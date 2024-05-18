@@ -2,13 +2,14 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.distance
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
+import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
-import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.groundResolution
 import com.kersnazzle.soundscapealpha.utils.mapSize
 import com.kersnazzle.soundscapealpha.utils.pixelXYToLatLon
@@ -108,6 +109,21 @@ class GeoUtilsTest {
         Assert.assertEquals(2.0, testBoundingBox2.northLatitude, 0.01)
     }
 
+    @Test
+    fun getBoundingBoxOfMultiPointsTest() {
+        val multiLineStringObject = MultiPoint().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(0.0, 0.0),
+                LngLatAlt(1.0, 1.0)
+            )
+        }
+        val testBoundingBox = getBoundingBoxOfMultiPoint(multiLineStringObject)
+        Assert.assertEquals(0.0, testBoundingBox.westLongitude, 0.01)
+        Assert.assertEquals(0.0, testBoundingBox.southLatitude, 0.01)
+        Assert.assertEquals(1.0, testBoundingBox.eastLongitude, 0.01)
+        Assert.assertEquals(1.0, testBoundingBox.northLatitude, 0.01)
+
+    }
 
 
 

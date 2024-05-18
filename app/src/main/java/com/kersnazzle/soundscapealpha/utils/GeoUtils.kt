@@ -2,6 +2,7 @@ package com.kersnazzle.soundscapealpha.utils
 
 import com.kersnazzle.soundscapealpha.dto.BoundingBox
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import kotlin.math.PI
 import kotlin.math.asin
@@ -222,7 +223,29 @@ fun getBoundingBoxOfLineString(lineString: LineString): BoundingBox {
     }
 
     return BoundingBox(westLon, southLat, eastLon, northLat)
+}   /**
+ * Given a MultiPoint object return the bounding box for it
+ * @param multiPoint
+ * MultiLineString object
+ * @return a Bounding Box for the MultiPoint object.
+ */
+fun getBoundingBoxOfMultiPoint(multiPoint: MultiPoint): BoundingBox {
+    var westLon = Int.MAX_VALUE.toDouble()
+    var southLat = Int.MAX_VALUE.toDouble()
+    var eastLon = Int.MIN_VALUE.toDouble()
+    var northLat = Int.MIN_VALUE.toDouble()
+
+    for (point in multiPoint.coordinates) {
+        westLon = min(westLon, point.longitude)
+        southLat = min(southLat, point.latitude)
+        eastLon = max(eastLon, point.longitude)
+        northLat = max(northLat, point.latitude)
+
+    }
+    return BoundingBox(westLon, southLat, eastLon, northLat)
 }
+
+
 
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
