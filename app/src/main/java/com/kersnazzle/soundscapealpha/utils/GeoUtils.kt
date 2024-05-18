@@ -1,7 +1,9 @@
 package com.kersnazzle.soundscapealpha.utils
 
 import com.kersnazzle.soundscapealpha.dto.BoundingBox
+import com.kersnazzle.soundscapealpha.dto.BoundingBoxCorners
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
@@ -319,6 +321,22 @@ fun getBoundingBoxOfMultiPolygon(multiPolygon: MultiPolygon): BoundingBox {
         }
     }
     return BoundingBox(westLon, southLat, eastLon, northLat)
+}
+
+/**
+ * Given a BoundingBox returns the coordinates for the corners
+ * @param boundingBox
+ * A BoundingBox object
+ * @return BoundingBoxCorners object (NW corner, SW corner, SE corner and NE corner)
+ */
+fun getBoundingBoxCorners(boundingBox: BoundingBox): BoundingBoxCorners {
+    val boundingBoxCorners = BoundingBoxCorners()
+    boundingBoxCorners.northWestCorner = LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude)
+    boundingBoxCorners.southWestCorner = LngLatAlt(boundingBox.westLongitude, boundingBox.southLatitude)
+    boundingBoxCorners.southEastCorner = LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude)
+    boundingBoxCorners.northEastCorner = LngLatAlt(boundingBox.eastLongitude, boundingBox.northLatitude)
+
+    return boundingBoxCorners
 }
 
 

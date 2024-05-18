@@ -8,6 +8,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.distance
+import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPoint
@@ -210,6 +211,29 @@ class GeoUtilsTest {
         Assert.assertEquals(2.0, boundingBoxOfMultiPolygon.eastLongitude, 0.000001)
         // max lat
         Assert.assertEquals(2.0, boundingBoxOfMultiPolygon.northLatitude, 0.000001)
+
+    }
+
+    @Test
+    fun getBoundingBoxCornersTest() {
+        val testLngLatAlt1 = LngLatAlt(0.0, 1.0)
+        val testLngLatAlt2 = LngLatAlt(1.0, 0.0)
+        val testLineString1 = LineString(testLngLatAlt1, testLngLatAlt2)
+        val testBoundingBox1 = getBoundingBoxOfLineString(testLineString1)
+
+        val testBoundingBoxCorners = getBoundingBoxCorners(testBoundingBox1)
+
+        Assert.assertEquals(0.0, testBoundingBoxCorners.northWestCorner.longitude, 0.1)
+        Assert.assertEquals(1.0, testBoundingBoxCorners.northWestCorner.latitude, 0.1)
+
+        Assert.assertEquals(0.0, testBoundingBoxCorners.southWestCorner.longitude, 0.1)
+        Assert.assertEquals(0.0, testBoundingBoxCorners.southWestCorner.latitude, 0.1)
+
+        Assert.assertEquals(1.0, testBoundingBoxCorners.southEastCorner.longitude, 0.1)
+        Assert.assertEquals(0.0, testBoundingBoxCorners.southEastCorner.latitude, 0.1)
+
+        Assert.assertEquals(1.0, testBoundingBoxCorners.northEastCorner.longitude, 0.1)
+        Assert.assertEquals(1.0, testBoundingBoxCorners.northEastCorner.latitude, 0.1)
 
     }
 
