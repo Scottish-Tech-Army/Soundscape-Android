@@ -1,5 +1,6 @@
 package com.kersnazzle.soundscapealpha.utils
 
+import com.kersnazzle.soundscapealpha.dto.VectorTile
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import kotlin.math.PI
 import kotlin.math.asinh
@@ -34,6 +35,46 @@ fun getXYTile(lat: Double, lon: Double, zoom: Int = 16): Pair<Int, Int> {
         ytile = (1 shl zoom) - 1
     }
     return Pair(xtile, ytile)
+}
+
+/** Given a radius and location it calculates the set of tiles (VectorTiles) that cover a
+ * circular region around the specified location.
+ * @param currentLatitude
+ * The center of the region to search
+ * @param currentLongitude
+ * The center of the region to search
+ * @param radius
+ * The radius of the region to get adjoining tiles in meters
+ * @return  A MutableList of VectorTiles covering the searched region
+ */
+fun getTilesForRegion(
+    currentLatitude: Double,
+    currentLongitude: Double,
+    radius: Double,
+    zoom: Int
+): MutableList<VectorTile> {
+
+    val (pixelX, pixelY) = getPixelXY(currentLatitude, currentLongitude, zoom)
+    val radiusPixels = radius / groundResolution(currentLatitude, zoom).toInt()
+
+    val startX = pixelX - radiusPixels
+    val startY = pixelY - radiusPixels
+    val endX = pixelX + radiusPixels
+    val endY = pixelY + radiusPixels
+
+    val (startTileX, startTileY) = getTileXY(startX.toInt(), startY.toInt())
+    val (endTileX, endTileY) = getTileXY(endX.toInt(), endY.toInt())
+
+    val tiles: MutableList<VectorTile> = mutableListOf()
+
+    for (y in startTileY..endTileY) {
+        for (x in startTileX..endTileX) {
+            val surroundingTile = VectorTile("", x, y, zoom)
+            surroundingTile.quadkey = getQuadKey(x, y, zoom)
+            tiles.add(surroundingTile)
+        }
+    }
+    return tiles
 }
 
 /**
