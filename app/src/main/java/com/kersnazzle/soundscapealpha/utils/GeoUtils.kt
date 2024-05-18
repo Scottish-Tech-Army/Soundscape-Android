@@ -1,6 +1,7 @@
 package com.kersnazzle.soundscapealpha.utils
 
 import com.kersnazzle.soundscapealpha.dto.BoundingBox
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import kotlin.math.PI
 import kotlin.math.asin
@@ -198,6 +199,29 @@ fun getBoundingBoxOfPoint(point: Point): BoundingBox {
     bbOfPoint.northLatitude = point.coordinates.latitude
 
     return bbOfPoint
+}
+
+/**
+ * Given a LineString object returns the bounding box for it
+ * @param lineString
+ * LineString object with multiple points
+ * @return a Bounding Box for the LineString.
+ */
+fun getBoundingBoxOfLineString(lineString: LineString): BoundingBox {
+
+    var westLon = Int.MAX_VALUE.toDouble()
+    var southLat = Int.MAX_VALUE.toDouble()
+    var eastLon = Int.MIN_VALUE.toDouble()
+    var northLat = Int.MIN_VALUE.toDouble()
+
+    for (point in lineString.coordinates) {
+        westLon = min(westLon, point.longitude)
+        southLat = min(southLat, point.latitude)
+        eastLon = max(eastLon, point.longitude)
+        northLat = max(northLat, point.latitude)
+    }
+
+    return BoundingBox(westLon, southLat, eastLon, northLat)
 }
 
 fun toRadians(degrees: Double): Double {

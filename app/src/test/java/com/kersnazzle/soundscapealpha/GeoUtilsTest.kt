@@ -1,7 +1,10 @@
 package com.kersnazzle.soundscapealpha
 
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.distance
+import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
@@ -76,5 +79,37 @@ class GeoUtilsTest {
         Assert.assertEquals(0.5, testBoundingBox.northLatitude, 0.1)
 
     }
+
+    @Test
+    fun getBoundingBoxOfLineStringTest() {
+        // simplest line string made of two coordinates (diagonal)
+        val testLngLatAlt1 = LngLatAlt(0.0, 1.0)
+        val testLngLatAlt2 = LngLatAlt(1.0, 0.0)
+        val testLineString1 = LineString(testLngLatAlt1, testLngLatAlt2)
+        val testBoundingBox1 = getBoundingBoxOfLineString(testLineString1)
+        Assert.assertEquals(0.0, testBoundingBox1.westLongitude, 0.01)
+        Assert.assertEquals(0.0, testBoundingBox1.southLatitude, 0.01)
+        Assert.assertEquals(1.0, testBoundingBox1.eastLongitude, 0.01)
+        Assert.assertEquals(1.0, testBoundingBox1.northLatitude, 0.01)
+
+        // three point line string
+        val testThreePointLineString1 = LngLatAlt(0.0, 1.0)
+        val testThreePointLineString2 = LngLatAlt(1.0, 0.0)
+        val testThreePointLineString3 = LngLatAlt(2.0, 2.0)
+        val testLineString2 = LineString(
+            testThreePointLineString1,
+            testThreePointLineString2,
+            testThreePointLineString3
+        )
+        val testBoundingBox2 = getBoundingBoxOfLineString(testLineString2)
+        Assert.assertEquals(0.0, testBoundingBox2.westLongitude, 0.01)
+        Assert.assertEquals(0.0, testBoundingBox2.southLatitude, 0.01)
+        Assert.assertEquals(2.0, testBoundingBox2.eastLongitude, 0.01)
+        Assert.assertEquals(2.0, testBoundingBox2.northLatitude, 0.01)
+    }
+
+
+
+
 
 }
