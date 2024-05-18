@@ -21,6 +21,7 @@ import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToLong
 import kotlin.math.sin
+import kotlin.math.sinh
 import kotlin.math.sqrt
 
 const val DEGREES_TO_RADIANS = 2.0 * PI / 360.0
@@ -526,6 +527,51 @@ fun getReferenceCoordinate(path: LineString, targetDistance: Double): LngLatAlt 
         }
     }
     return path.coordinates.last()
+}
+
+/**
+ * Calculates the Bounding Box coordinates for a Slippy Tile with a given zoom level
+ * @param x
+ * X of the slippy tile name
+ * @param y
+ * Y of the slippy tile name
+ * @param zoom
+ * zoom level of the slippy tile name
+ * @return a bounding box object that contains coordinates for West/South/East/North edges
+ * or min Lon / min Lat / max Lon / max Lat
+ */
+fun tileToBoundingBox(x: Int, y: Int, zoom: Double): BoundingBox {
+    val boundingBox = BoundingBox()
+    boundingBox.northLatitude = tileToLat(y, zoom)
+    boundingBox.southLatitude = tileToLat(y + 1, zoom)
+    boundingBox.westLongitude = tileToLon(x, zoom)
+    boundingBox.eastLongitude = tileToLon(x + 1, zoom)
+    return boundingBox
+}
+
+/**
+ * Converts the X of a Slippy Tile with a given zoom level into a latitude
+ * @param x
+ * X of the slippy tile name
+ * @param zoom
+ * Zoom level of the Slippy Tile
+ * @return a latitude coordinate.
+ */
+fun tileToLat(x: Int, zoom: Double): Double {
+    val n: Double = Math.PI - (2.0 * Math.PI * x) / 2.0.pow(zoom)
+    return Math.toDegrees(atan(sinh(n)))
+}
+
+/**
+ * Converts the Y of a Slippy Tile with a given zoom level into a longitude
+ * @param y
+ * Y of the slippy tile name
+ * @param zoom
+ * Zoom level of the Slippy Tile
+ * @return a longitude coordinate.
+ */
+fun tileToLon(y: Int, zoom: Double): Double {
+    return y / 2.0.pow(zoom) * 360.0 - 180
 }
 
 

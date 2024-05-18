@@ -1,5 +1,6 @@
 package com.kersnazzle.soundscapealpha
 
+import com.kersnazzle.soundscapealpha.dto.BoundingBox
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
@@ -28,6 +29,9 @@ import com.kersnazzle.soundscapealpha.utils.pixelXYToLatLon
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
+import kotlin.math.atan
+import kotlin.math.pow
+import kotlin.math.sinh
 
 class GeoUtilsTest {
 
@@ -256,6 +260,8 @@ class GeoUtilsTest {
         Assert.assertEquals(0.5, bbCenter1.latitude, 0.000001)
         Assert.assertEquals(0.5, bbCenter1.longitude, 0.000001)
     }
+
+
 
     @Test
     fun getPolygonFromBoundingBoxTest() {
