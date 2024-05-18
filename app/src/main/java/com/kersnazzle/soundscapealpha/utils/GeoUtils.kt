@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import kotlin.math.PI
 import kotlin.math.asin
 import kotlin.math.asinh
@@ -262,6 +263,29 @@ fun getBoundingBoxOfMultiLineString(multiLineString: MultiLineString): BoundingB
 
     for (lineString in multiLineString.coordinates) {
         for (point in lineString) {
+            westLon = min(westLon, point.longitude)
+            southLat = min(southLat, point.latitude)
+            eastLon = max(eastLon, point.longitude)
+            northLat = max(northLat, point.latitude)
+        }
+    }
+    return BoundingBox(westLon, southLat, eastLon, northLat)
+}
+
+/**
+ * Given a Polygon object returns the bounding box
+ * @param polygon
+ * Polygon object
+ * @return a Bounding Box for the Polygon.
+ */
+fun getBoundingBoxOfPolygon(polygon: Polygon): BoundingBox{
+    var westLon = Int.MAX_VALUE.toDouble()
+    var southLat = Int.MAX_VALUE.toDouble()
+    var eastLon = Int.MIN_VALUE.toDouble()
+    var northLat = Int.MIN_VALUE.toDouble()
+
+    for (geometry in polygon.coordinates) {
+        for (point in geometry) {
             westLon = min(westLon, point.longitude)
             southLat = min(southLat, point.latitude)
             eastLon = max(eastLon, point.longitude)
