@@ -17,6 +17,7 @@ import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPolygon
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
+import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.groundResolution
 import com.kersnazzle.soundscapealpha.utils.mapSize
@@ -250,5 +251,39 @@ class GeoUtilsTest {
 
         Assert.assertEquals(0.5, bbCenter1.latitude, 0.000001)
         Assert.assertEquals(0.5, bbCenter1.longitude, 0.000001)
+    }
+
+    @Test
+    fun getPolygonFromBoundingBoxTest() {
+        val polygonObject = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 1.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(1.0, 0.0),
+                    LngLatAlt(1.0, 1.0),
+                    LngLatAlt(0.0, 1.0)
+                )
+            )
+        }
+        val boundingBoxOfPolygon = getBoundingBoxOfPolygon(polygonObject)
+
+        val polygonOfBoundingBox = getPolygonOfBoundingBox(boundingBoxOfPolygon)
+        // Northwest corner
+        Assert.assertEquals(0.0, polygonOfBoundingBox.coordinates[0][0].longitude, 0.000001)
+        Assert.assertEquals(1.0, polygonOfBoundingBox.coordinates[0][0].latitude, 0.000001)
+        // Southwest corner
+        Assert.assertEquals(0.0, polygonOfBoundingBox.coordinates[0][1].longitude, 0.000001)
+        Assert.assertEquals(0.0, polygonOfBoundingBox.coordinates[0][1].latitude, 0.000001)
+        // Southeast corner
+        Assert.assertEquals(1.0, polygonOfBoundingBox.coordinates[0][2].longitude, 0.000001)
+        Assert.assertEquals(0.0, polygonOfBoundingBox.coordinates[0][2].latitude, 0.000001)
+        //Northeast corner
+        Assert.assertEquals(1.0, polygonOfBoundingBox.coordinates[0][3].longitude, 0.000001)
+        Assert.assertEquals(1.0, polygonOfBoundingBox.coordinates[0][3].latitude, 0.000001)
+        // Close polygon so Northwest corner again
+        Assert.assertEquals(0.0, polygonOfBoundingBox.coordinates[0][4].longitude, 0.000001)
+        Assert.assertEquals(1.0, polygonOfBoundingBox.coordinates[0][4].latitude, 0.000001)
+
     }
 }

@@ -358,6 +358,28 @@ fun getCenterOfBoundingBox(
     return LngLatAlt(e2, e1)
 }
 
+/**
+ * Given a BoundingBox returns a closed Polygon
+ * @param boundingBox
+ * A BoundingBox object
+ * @return a closed Polygon
+ */
+fun getPolygonOfBoundingBox(boundingBox: BoundingBox): Polygon{
+    val cornerCoordinates = getBoundingBoxCorners(boundingBox)
+    val polygonObject = Polygon().also {
+        it.coordinates = arrayListOf(
+            arrayListOf(
+                LngLatAlt(cornerCoordinates.northWestCorner.longitude, cornerCoordinates.northWestCorner.latitude ),
+                LngLatAlt(cornerCoordinates.southWestCorner.longitude, cornerCoordinates.southWestCorner.latitude),
+                LngLatAlt(cornerCoordinates.southEastCorner.longitude, cornerCoordinates.southEastCorner.latitude),
+                LngLatAlt(cornerCoordinates.northEastCorner.longitude, cornerCoordinates.northEastCorner.latitude),
+                LngLatAlt(cornerCoordinates.northWestCorner.longitude, cornerCoordinates.northWestCorner.latitude)
+            )
+        )
+    }
+    return polygonObject
+}
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }
