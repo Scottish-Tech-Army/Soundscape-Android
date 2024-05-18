@@ -43,7 +43,9 @@ fun getXYTile(lat: Double, lon: Double, zoom: Int = 16): Pair<Int, Int> {
  * valid Tile Feature Collection
  * @return a FeatureCollection that contains only roads.
  */
-fun getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+fun getRoadsFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
 
     val roadsFeatureCollection = FeatureCollection()
 
@@ -74,7 +76,9 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection: Fe
  * valid Tile Feature Collection
  * @return a FeatureCollection that contains only paths.
  */
-fun getPathsFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
+fun getPathsFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection{
     val pathsFeatureCollection = FeatureCollection()
 
     for(feature in tileFeatureCollection) {
@@ -87,4 +91,23 @@ fun getPathsFeatureCollection(tileFeatureCollection: FeatureCollection): Feature
             }
     }
     return pathsFeatureCollection
+}
+
+/**
+ * Parses out all the Intersections in a tile FeatureCollection using the "gd_intersection" feature_value
+ * @param tileFeatureCollection
+ * takes a FeatureCollection object
+ * @return a Feature collection object that only contains intersections
+ */
+fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val intersectionsFeatureCollection = FeatureCollection()
+    // split out the intersections into their own intersections FeatureCollection
+    for (feature in tileFeatureCollection) {
+        if (feature.foreign!!["feature_type"] == "highway" && feature.foreign!!["feature_value"] == "gd_intersection") {
+            intersectionsFeatureCollection.addFeature(feature)
+        }
+    }
+    return intersectionsFeatureCollection
 }

@@ -2,6 +2,7 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
+import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getXYTile
@@ -41,5 +42,20 @@ class TileUtilsTest {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
         Assert.assertEquals(54, testPathsCollectionFromTileFeatureCollection.features.size)
+    }
+
+    @Test
+    fun getIntersectionsFeatureCollectionFromTileFeatureCollectionTest() {
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
+            Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
+        }
+        Assert.assertEquals(10, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+
     }
 }
