@@ -46,6 +46,17 @@ fun distance(lat1: Double, long1: Double, lat2: Double, long2: Double): Double {
     return (EARTH_RADIUS_METERS * c).round(2)
 }
 
+/**
+ * The size of the map in pixels for the given zoom level assuming the base is 256 pixels
+ * @param zoom
+ * A zoom level (between 0 and 23)
+ * @return Side length of the map in pixels
+ */
+fun mapSize(zoom: Int): Int {
+    val base = 256
+    return base shl (zoom)
+}
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }

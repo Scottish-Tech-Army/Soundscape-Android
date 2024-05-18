@@ -2,6 +2,7 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.utils.distance
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import com.kersnazzle.soundscapealpha.utils.mapSize
 import org.junit.Assert
 import org.junit.Test
 
@@ -19,5 +20,11 @@ class GeoUtilsTest {
         )
         // could be 111194.93 depending on earth radius const used
         Assert.assertEquals(111319.49, testDistanceBetweenTwoPoints, 0.01)
+    }
+
+    @Test
+    fun getMapSizeTest() {
+        val testMapSize = mapSize(16)
+        Assert.assertEquals(16777216, testMapSize)
     }
 }
