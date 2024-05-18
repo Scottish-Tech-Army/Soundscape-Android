@@ -7,6 +7,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
+import com.kersnazzle.soundscapealpha.utils.bearingFromTwoPoints
 import com.kersnazzle.soundscapealpha.utils.distance
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
@@ -285,5 +286,25 @@ class GeoUtilsTest {
         Assert.assertEquals(0.0, polygonOfBoundingBox.coordinates[0][4].longitude, 0.000001)
         Assert.assertEquals(1.0, polygonOfBoundingBox.coordinates[0][4].latitude, 0.000001)
 
+    }
+
+    @Test
+    fun getBearingForTwoPointsSouthToNorthTest() {
+
+        val testBearingBetweenTwoPointsSouthToNorth = bearingFromTwoPoints(
+            0.0,
+            0.0,
+            1.0,
+            0.0
+        )
+        Assert.assertEquals(0.0, testBearingBetweenTwoPointsSouthToNorth, 0.1)
+
+        val testBearingBetweenTwoPointsNorthToSouth = bearingFromTwoPoints(
+            1.0,
+            0.0,
+            0.0,
+            0.0
+        )
+        Assert.assertEquals(180.0, testBearingBetweenTwoPointsNorthToSouth, 0.1)
     }
 }

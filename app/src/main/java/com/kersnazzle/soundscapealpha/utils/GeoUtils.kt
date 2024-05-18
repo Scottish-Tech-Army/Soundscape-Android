@@ -11,11 +11,10 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import kotlin.math.PI
 import kotlin.math.asin
-import kotlin.math.asinh
 import kotlin.math.atan
+import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.exp
-import kotlin.math.floor
 import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.min
@@ -23,7 +22,6 @@ import kotlin.math.pow
 import kotlin.math.roundToLong
 import kotlin.math.sin
 import kotlin.math.sqrt
-import kotlin.math.tan
 
 const val DEGREES_TO_RADIANS = 2.0 * PI / 360.0
 const val RADIANS_TO_DEGREES = 1.0 / DEGREES_TO_RADIANS
@@ -378,6 +376,28 @@ fun getPolygonOfBoundingBox(boundingBox: BoundingBox): Polygon{
         )
     }
     return polygonObject
+}
+
+/**
+ * Gives the heading from one point to another point.
+ * @param lat1
+ * @param lon2
+ * @param lat2
+ * @param lon2
+ * @return The heading in degrees clockwise from north.
+ */
+fun bearingFromTwoPoints(
+    lat1: Double,
+    lon1: Double,
+    lat2: Double,
+    lon2: Double
+): Double {
+    val latitude1 = toRadians(lat1)
+    val latitude2 = toRadians(lat2)
+    val longDiff = toRadians(lon2 - lon1)
+    val y = sin(longDiff) * cos(latitude2)
+    val x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longDiff)
+    return ((fromRadians(atan2(y, x)) + 360) % 360).round(1)
 }
 
 fun toRadians(degrees: Double): Double {
