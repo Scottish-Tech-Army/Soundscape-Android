@@ -17,6 +17,10 @@ const val DEGREES_TO_RADIANS = 2.0 * PI / 360.0
 const val RADIANS_TO_DEGREES = 1.0 / DEGREES_TO_RADIANS
 const val EARTH_RADIUS_METERS =
     6378137.0 //  Original Soundscape uses 6378137.0 not 6371000.0
+const val MIN_LATITUDE = -85.05112878
+const val MAX_LATITUDE = 85.05112878
+const val MIN_LONGITUDE: Double = -180.0002
+const val MAX_LONGITUDE: Double = 180.0002
 
 
 /**
@@ -67,10 +71,24 @@ fun mapSize(zoom: Int): Int {
  * Minimum value of range
  * @param maximum
  * Maximum value of range
- * @return The Clipped value
+ * @return The clipped value
  */
 fun clip(value: Double, minimum: Double, maximum: Double): Double {
     return min(max(value, minimum), maximum)
+}
+
+/** Determines the ground resolution (in meters per pixel) at a specified
+ * latitude and level of detail.
+ * @param latitude
+ * Latitude (in degrees) at which to measure the ground resolution.
+ * @param zoom
+ * Level of detail, from 1 (lowest detail) to 23 (highest detail).
+ * @return The ground resolution, in meters per pixel.
+ */
+fun groundResolution(latitude: Double, zoom: Int): Double {
+    val clippedLat = clip(latitude, MIN_LATITUDE, MAX_LATITUDE)
+
+    return cos(clippedLat * PI / 180.0) * 2 * PI * EARTH_RADIUS_METERS / mapSize(zoom)
 }
 
 fun toRadians(degrees: Double): Double {
