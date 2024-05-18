@@ -167,7 +167,6 @@ fun getPoiFeatureCollectionBySuperCategory(
     for (feature in poiFeatureCollection) {
         for (featureType in superCategoryList) {
             if (feature.foreign!!["feature_type"] == featureType || feature.foreign!!["feature_value"] == featureType) {
-                //println("found feature_type : ${feature.foreign!!["feature_type"]} feature_value ${feature.foreign!!["feature_value"]}")
                 superCategoryPoiFeatureCollection.addFeature(feature)
             }
         }
