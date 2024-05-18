@@ -482,6 +482,53 @@ fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double
     return LngLatAlt(Math.toDegrees(lon2), Math.toDegrees(lat2))
 }
 
+/**
+ * Calculates a coordinate on a LineString at a target distance from the first coordinate of the LineString.
+ * - note: If the target distance is greater than the LineString distance, the last LineString coordinate is returned.
+ * - note: If the target distance is between two coordinates on the LineString, a synthesized coordinate between the coordinates is returned.
+ * - note: If the target distance is smaller or equal to zero, the first LineString coordinate is returned.
+ * @param path
+ * The LineString that we want to generate a new coordinate for
+ * @param targetDistance
+ * The distance in meters that we want the coordinate to be on the LineString
+ * @return The coordinate as a LngLatAlt object
+ */
+fun getReferenceCoordinate(path: LineString, targetDistance: Double): LngLatAlt {
+
+    if (path.coordinates.size == 1 || targetDistance <= 0.0) return path.coordinates.first()
+
+    if (targetDistance == Double.MAX_VALUE) return path.coordinates.last()
+
+    var totalDistance = 0.0
+    // work our way along the linestring to check the distance
+    for (i in 0 until path.coordinates.lastIndex) {
+        val coord1 = path.coordinates[i]
+        val coord2 = path.coordinates[i + 1]
+
+        val coordDistance = distance(
+            coord1.latitude,
+            coord1.longitude,
+            coord2.latitude,
+            coord2.longitude
+        )
+        totalDistance += coordDistance
+
+        if (totalDistance == targetDistance) {
+            return coord2
+        }
+
+        if (totalDistance > targetDistance) {
+            // Target coordinate is between two coordinates so synthesize it
+            val prevTotalDistance = totalDistance - coordDistance
+            val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
+            val bearing = bearingFromTwoPoints(coord1.latitude, coord1.longitude, coord2.latitude, coord2.longitude)
+            return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
+        }
+    }
+    return path.coordinates.last()
+}
+
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }

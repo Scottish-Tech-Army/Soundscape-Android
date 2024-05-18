@@ -21,6 +21,7 @@ import com.kersnazzle.soundscapealpha.utils.getDestinationCoordinate
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
+import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.groundResolution
 import com.kersnazzle.soundscapealpha.utils.mapSize
 import com.kersnazzle.soundscapealpha.utils.pixelXYToLatLon
@@ -343,5 +344,25 @@ class GeoUtilsTest {
             111319.49)
         Assert.assertEquals(0.0, destinationCoordinateTest.longitude, 0.000001)
         Assert.assertEquals(1.0, destinationCoordinateTest.latitude, 0.000001)
+    }
+
+    @Test
+    fun getReferenceCoordinateTest(){
+        val lineStringObject = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(0.0, 0.0),
+                LngLatAlt(1.0, 0.0)
+            )
+        }
+        val distanceBetweenCoordinates = distance(0.0, 0.0, 0.0, 1.0)
+        Assert.assertEquals(111319.49,distanceBetweenCoordinates, 0.1)
+
+        val referenceCoordinateTest = getReferenceCoordinate(
+            lineStringObject,
+            distanceBetweenCoordinates/2
+        )
+        Assert.assertEquals(0.5, referenceCoordinateTest.longitude, 0.000001)
+        Assert.assertEquals(0.0, referenceCoordinateTest.latitude, 0.000001)
+
     }
 }
