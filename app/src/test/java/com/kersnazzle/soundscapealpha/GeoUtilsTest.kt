@@ -23,6 +23,7 @@ import com.kersnazzle.soundscapealpha.utils.getDestinationCoordinate
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
+import com.kersnazzle.soundscapealpha.utils.getQuadrants
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.groundResolution
 import com.kersnazzle.soundscapealpha.utils.mapSize
@@ -388,7 +389,42 @@ class GeoUtilsTest {
         // check it is closed
         Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][3].longitude, 0.01)
         Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][3].latitude, 0.01)
-
-
     }
+
+    @Test
+    fun getQuadrantsTest() {
+
+        val testQuadrant1 = getQuadrants(0.0)
+        Assert.assertEquals(315.0, testQuadrant1[0].left, 0.01)
+        Assert.assertEquals(45.0, testQuadrant1[0].right, 0.01)
+        Assert.assertEquals(45.0, testQuadrant1[1].left, 0.01)
+        Assert.assertEquals(135.0, testQuadrant1[1].right, 0.01)
+        Assert.assertEquals(135.0, testQuadrant1[2].left, 0.01)
+        Assert.assertEquals(225.0, testQuadrant1[2].right, 0.01)
+        Assert.assertEquals(225.0, testQuadrant1[3].left, 0.01)
+        Assert.assertEquals(315.0, testQuadrant1[3].right, 0.01)
+
+        val testQuadrant2 = getQuadrants(95.0)
+        Assert.assertEquals(320.0, testQuadrant2[0].left, 0.01)
+        Assert.assertEquals(50.0, testQuadrant2[0].right, 0.01)
+        Assert.assertEquals(50.0, testQuadrant2[1].left, 0.01)
+        Assert.assertEquals(140.0, testQuadrant2[1].right, 0.01)
+        Assert.assertEquals(140.0, testQuadrant2[2].left, 0.01)
+        Assert.assertEquals(230.0, testQuadrant2[2].right, 0.01)
+        Assert.assertEquals(230.0, testQuadrant2[3].left, 0.01)
+        Assert.assertEquals(320.0, testQuadrant2[3].right, 0.01)
+
+        val testQuadrant3 = getQuadrants(230.0)
+        Assert.assertEquals(275.0, testQuadrant3[0].left, 0.01)
+        Assert.assertEquals(5.0, testQuadrant3[0].right, 0.01)
+        Assert.assertEquals(5.0, testQuadrant3[1].left, 0.01)
+        Assert.assertEquals(95.0, testQuadrant3[1].right, 0.01)
+        Assert.assertEquals(95.0, testQuadrant3[2].left, 0.01)
+        Assert.assertEquals(185.0, testQuadrant3[2].right, 0.01)
+        Assert.assertEquals(185.0, testQuadrant3[3].left, 0.01)
+        Assert.assertEquals(275.0, testQuadrant3[3].right, 0.01)
+    }
+
+
+
 }
