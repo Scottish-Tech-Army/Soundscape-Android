@@ -8,6 +8,7 @@ import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.squareup.moshi.Moshi
 import org.junit.Assert
@@ -183,5 +184,29 @@ class TileUtilsTest {
             getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
         Assert.assertEquals(11, testSuperCategoryPoiCollection.features.size)
 
+    }
+
+    @Test
+    fun getTilesForRadius100Test() {
+        // The Lat/Lon is the center of the tile with 100m radius so should only return 1 tile
+        val testGetTilesForRadius =
+            getTilesForRegion(51.43860066718254, -2.69439697265625, 100.0, 16)
+        Assert.assertEquals(1, testGetTilesForRadius.size)
+    }
+
+    @Test
+    fun getTilesForRadius200Test() {
+        // The Lat/Lon is the center of the tile with 200m radius so should return 9 tiles
+        val testGetTilesForRadius =
+            getTilesForRegion(51.43860066718254, -2.69439697265625, 200.0, 16)
+        Assert.assertEquals(9, testGetTilesForRadius.size)
+    }
+
+    @Test
+    fun getTilesForRadius500Test() {
+        // The Lat/Lon is the center of the tile with 500m radius so should return 25 tiles
+        val testGetTilesForRadius =
+            getTilesForRegion(51.43860066718254, -2.69439697265625, 500.0, 16)
+        Assert.assertEquals(25, testGetTilesForRadius.size)
     }
 }
