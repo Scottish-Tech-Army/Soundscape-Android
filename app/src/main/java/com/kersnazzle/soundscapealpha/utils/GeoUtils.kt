@@ -599,6 +599,68 @@ fun createTriangleFOV(left: LngLatAlt, location: LngLatAlt, right: LngLatAlt): P
     return polygonTriangleFOV
 }
 
+/**
+ * Converts a circle to a polygon "circle".
+ * @param segments
+ * number of segments the polygon should have. The higher this
+ * number, the better an approximation the polygon is for the
+ * circle.
+ * @param centerLat
+ * latitude of the center of the circle
+ * @param centerLon
+ * longitude of the center of the circle
+ * @param radius
+ * radius of the circle
+ * @return a Polygon object
+ */
+fun circleToPolygon(segments: Int, centerLat: Double, centerLon: Double, radius: Double): Polygon {
+
+    val points = mutableListOf<LngLatAlt>()
+    val relativeLatitude = radius / EARTH_RADIUS_METERS * 180 / PI
+    val relativeLongitude = relativeLatitude / cos(toRadians(centerLat)) % 90
+
+    for (i in 0 until segments) {
+        var theta = 2.0 * PI * i.toDouble() / segments
+
+        theta += 0.001
+        if (theta >= 2 * PI) {
+            theta -= 2 * PI
+        }
+
+        var latOnCircle = centerLat + relativeLatitude * sin(theta)
+        var lonOnCircle = centerLon + relativeLongitude * cos(theta)
+        if (lonOnCircle > 180) {
+            lonOnCircle = -180 + (lonOnCircle - 180)
+        } else if (lonOnCircle < -180) {
+            lonOnCircle = 180 - (lonOnCircle + 180)
+        }
+
+        if (latOnCircle > 90) {
+            latOnCircle = 90 - (latOnCircle - 90)
+        } else if (latOnCircle < -90) {
+            latOnCircle = -90 - (latOnCircle + 90)
+        }
+
+        points.add(LngLatAlt(lonOnCircle, latOnCircle))
+    }
+    // should end with same point as the origin
+    points.add(LngLatAlt(points[0].longitude, points[0].latitude))
+
+    val tempCirclePoints = arrayListOf(LngLatAlt())
+    for(point in points){
+        tempCirclePoints.add(point)
+    }
+    tempCirclePoints.removeAt(0)
+
+    val polygonObject = Polygon().also {
+        it.coordinates = arrayListOf(
+            tempCirclePoints
+        )
+    }
+
+    return polygonObject
+}
+
 
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
