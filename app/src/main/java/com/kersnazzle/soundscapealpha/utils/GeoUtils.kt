@@ -339,7 +339,24 @@ fun getBoundingBoxCorners(boundingBox: BoundingBox): BoundingBoxCorners {
     return boundingBoxCorners
 }
 
+/**
+ * Gives the coordinates for the center of a bounding box
+ * @param bbCorners
+ * The corners of the bounding box
+ * @return the lon lat of the center as LngLatAlt
+ */
+fun getCenterOfBoundingBox(
+    bbCorners: BoundingBoxCorners
+): LngLatAlt {
+    val maxLat = maxOf(bbCorners.northWestCorner.latitude, bbCorners.southWestCorner.latitude, bbCorners.southEastCorner.latitude, bbCorners.northEastCorner.latitude)
+    val minLat = minOf(bbCorners.northWestCorner.latitude, bbCorners.southWestCorner.latitude, bbCorners.southEastCorner.latitude, bbCorners.northEastCorner.latitude)
+    val maxLon = maxOf(bbCorners.northWestCorner.longitude, bbCorners.southWestCorner.longitude, bbCorners.southEastCorner.longitude, bbCorners.northEastCorner.longitude)
+    val minLon = minOf(bbCorners.northWestCorner.longitude, bbCorners.southWestCorner.longitude, bbCorners.southEastCorner.longitude, bbCorners.northEastCorner.longitude)
+    val e1 = (minLat + maxLat) / 2
+    val e2 = (maxLon + minLon) / 2
 
+    return LngLatAlt(e2, e1)
+}
 
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS

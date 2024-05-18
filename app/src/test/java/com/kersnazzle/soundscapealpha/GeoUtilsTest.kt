@@ -15,6 +15,7 @@ import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPolygon
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPolygon
+import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.groundResolution
@@ -237,7 +238,17 @@ class GeoUtilsTest {
 
     }
 
+    @Test
+    fun getCenterOfBoundingBoxTest() {
+        val testLngLatAlt1 = LngLatAlt(0.0, 1.0)
+        val testLngLatAlt2 = LngLatAlt(1.0, 0.0)
+        val testLineString1 = LineString(testLngLatAlt1, testLngLatAlt2)
+        val testBoundingBox1 = getBoundingBoxOfLineString(testLineString1)
+        val testBoundingBoxCorners1 = getBoundingBoxCorners(testBoundingBox1)
 
+        val bbCenter1 = getCenterOfBoundingBox(testBoundingBoxCorners1)
 
-
+        Assert.assertEquals(0.5, bbCenter1.latitude, 0.000001)
+        Assert.assertEquals(0.5, bbCenter1.longitude, 0.000001)
+    }
 }
