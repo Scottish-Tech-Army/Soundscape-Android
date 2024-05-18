@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getXYTile
@@ -85,6 +86,102 @@ class TileUtilsTest {
         //There are 16 roads, 10 intersections, 0 entrances and 149 Features in total
         // so there should be 123 POI Features in the POI Feature Collection
         Assert.assertEquals(123, testPoiCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionBySuperCategoryMobilityTest() {
+        // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // select "mobility" super category
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
+        Assert.assertEquals(15, testSuperCategoryPoiCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionBySuperCategoryObjectTest() {
+        // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // select "object" super category
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
+        Assert.assertEquals(28, testSuperCategoryPoiCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionBySuperCategoryInformationTest() {
+        // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // select "information" super category
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("information", testPoiCollection)
+        Assert.assertEquals(1, testSuperCategoryPoiCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionBySuperCategoryPlaceTest() {
+        // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // select "place" super category
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
+        Assert.assertEquals(239, testSuperCategoryPoiCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionBySuperCategoryLandmarkTest() {
+        // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // select "landmark" super category
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
+        Assert.assertEquals(16, testSuperCategoryPoiCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionBySuperCategorySafetyTest() {
+        // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // select "safety" super category
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
+        Assert.assertEquals(11, testSuperCategoryPoiCollection.features.size)
 
     }
 }
