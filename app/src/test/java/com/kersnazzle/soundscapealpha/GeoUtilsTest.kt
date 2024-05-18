@@ -1,5 +1,6 @@
 package com.kersnazzle.soundscapealpha
 
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
@@ -8,6 +9,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.bearingFromTwoPoints
+import com.kersnazzle.soundscapealpha.utils.createTriangleFOV
 import com.kersnazzle.soundscapealpha.utils.distance
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
@@ -366,6 +368,27 @@ class GeoUtilsTest {
         )
         Assert.assertEquals(0.5, referenceCoordinateTest.longitude, 0.000001)
         Assert.assertEquals(0.0, referenceCoordinateTest.latitude, 0.000001)
+    }
+
+    @Test
+    fun createTriangleFOVTest(){
+
+        val polygonTriangleFOV = createTriangleFOV(
+            LngLatAlt(0.0, 1.0),
+            LngLatAlt(0.5, 0.0),
+            LngLatAlt(1.0, 1.0)
+        )
+
+        Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][0].longitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][0].latitude, 0.01)
+        Assert.assertEquals(0.5, polygonTriangleFOV.coordinates[0][1].longitude, 0.01)
+        Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][1].latitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][2].longitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][2].latitude, 0.01)
+        // check it is closed
+        Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][3].longitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][3].latitude, 0.01)
+
 
     }
 }
