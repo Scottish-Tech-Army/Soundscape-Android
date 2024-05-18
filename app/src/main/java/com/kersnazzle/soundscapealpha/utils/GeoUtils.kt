@@ -574,6 +574,31 @@ fun tileToLon(y: Int, zoom: Double): Double {
     return y / 2.0.pow(zoom) * 360.0 - 180
 }
 
+/**
+ * Return a triangle that is used as a "field of view".
+ * @param left
+ * The left most point from the starting point
+ * @param location
+ * the starting location of the triangle
+ * @param right
+ * The right most point from the starting point
+ * @return A triangle that is a Polygon object
+ */
+fun createTriangleFOV(left: LngLatAlt, location: LngLatAlt, right: LngLatAlt): Polygon {
+    val polygonTriangleFOV = Polygon().also {
+        it.coordinates = arrayListOf(
+            arrayListOf(
+                left,
+                location,
+                right,
+                // Close the polygon
+                left
+            )
+        )
+    }
+    return polygonTriangleFOV
+}
+
 
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
