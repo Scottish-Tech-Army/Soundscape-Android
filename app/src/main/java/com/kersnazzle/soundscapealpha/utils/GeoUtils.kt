@@ -100,6 +100,35 @@ fun groundResolution(latitude: Double, zoom: Int): Double {
  */
 fun getTileXY(pixelX: Int, pixelY: Int) = Pair(pixelX / 256, pixelY / 256)
 
+/**
+ * Generates a quad key string from the tile X, Y coordinates and zoom level provided
+ * Here's the Microsoft info: https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system
+ * @param tileX
+ * X coordinate of a tile
+ * @param tileY
+ * Y coordinate of the tile
+ * @param zoomLevel
+ * Zoom level of the tile
+ * @return A quad key String
+ */
+fun getQuadKey(tileX: Int, tileY: Int, zoomLevel: Int): String {
+
+    var quadKey = ""
+
+    for (level in zoomLevel downTo 1) {
+        var digit = 0
+        val mask = 1 shl (level - 1)
+        if (tileX and mask != 0) {
+            digit += 1
+        }
+        if (tileY and mask != 0) {
+            digit += 2
+        }
+        quadKey += digit.toString()
+    }
+    return quadKey
+}
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }
