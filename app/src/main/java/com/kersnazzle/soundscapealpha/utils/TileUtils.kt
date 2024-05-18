@@ -225,7 +225,7 @@ fun getPoiFeatureCollectionBySuperCategory(
 
 /**
  * There's a bug in the backend API where the GeoJSON can contain data that isn't part of the tile
- * for example the 16/32277/21812.json contains multipolygons for the University of Law,
+ * for example the 16/32277/21812.json contains MultiPolygons for the University of Law,
  * University of Bristol, and Monarchs Way walking route. This strips out Features that someone has
  * wrapped giant polygons around in the original OSM data. Need to see if there is a fix for this on the backend...
  * @param tileX
