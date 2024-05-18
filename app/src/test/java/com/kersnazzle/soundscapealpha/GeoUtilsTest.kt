@@ -23,6 +23,7 @@ import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.groundResolution
 import com.kersnazzle.soundscapealpha.utils.mapSize
 import com.kersnazzle.soundscapealpha.utils.pixelXYToLatLon
+import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
 
@@ -306,5 +307,29 @@ class GeoUtilsTest {
             0.0
         )
         Assert.assertEquals(180.0, testBearingBetweenTwoPointsNorthToSouth, 0.1)
+    }
+
+    @Test
+    fun polygonContainsCoordinatesTest() {
+
+        val polygonObject = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 1.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(1.0, 0.0),
+                    LngLatAlt(1.0, 1.0),
+                    LngLatAlt(0.0, 1.0)
+                )
+            )
+        }
+
+        val testPolygon1 =
+            polygonContainsCoordinates(LngLatAlt(0.5, 0.5), polygonObject)
+        Assert.assertEquals(true, testPolygon1)
+        val testPolygon2 =
+            polygonContainsCoordinates(LngLatAlt(2.0, 2.0), polygonObject)
+        Assert.assertEquals(false, testPolygon2)
+
     }
 }

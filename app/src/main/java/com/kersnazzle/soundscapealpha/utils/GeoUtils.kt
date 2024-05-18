@@ -400,6 +400,58 @@ fun bearingFromTwoPoints(
     return ((fromRadians(atan2(y, x)) + 360) % 360).round(1)
 }
 
+/**
+ * Determine if a coordinate is contained within a polygon
+ * @param lngLatAlt
+ * Coordinates
+ * @param polygon
+ * the GeoJSON Polygon to test
+ * @return If coordinate is in polygon
+ */
+fun polygonContainsCoordinates(lngLatAlt: LngLatAlt, polygon: Polygon): Boolean {
+
+    var intersections = 0
+    for (coordinate in polygon.coordinates) {
+        for (i in 1 until coordinate.size) {
+            val v1 = coordinate[i - 1]
+            val v2 = coordinate[i]
+
+            if (lngLatAlt == v2) {
+                return true
+            }
+
+            if (v1.latitude == v2.latitude
+                && v1.latitude == lngLatAlt.latitude
+                && lngLatAlt.longitude > (if (v1.longitude > v2.longitude) v2.longitude else v1.longitude)
+                && lngLatAlt.longitude < if (v1.longitude < v2.longitude) v2.longitude else v1.longitude
+            ) {
+                // Is horizontal polygon boundary
+                return true
+            }
+
+            if (lngLatAlt.latitude > (if (v1.latitude < v2.latitude) v1.latitude else v2.latitude)
+                && lngLatAlt.latitude <= (if (v1.latitude < v2.latitude) v2.latitude else v1.latitude)
+                && lngLatAlt.longitude <= (if (v1.longitude < v2.longitude) v2.longitude else v1.longitude)
+
+            ) {
+                val intersection =
+                    (lngLatAlt.latitude - v1.latitude) * (v2.longitude - v1.longitude) / (v2.latitude - v1.latitude) + v1.longitude
+
+                if (intersection == lngLatAlt.longitude) {
+                    // Is other boundary
+                    return true
+                }
+
+                if (v1.longitude == v2.longitude || lngLatAlt.longitude <= intersection) {
+                    intersections++
+                }
+            }
+        }
+    }
+
+    return intersections % 2 != 0
+}
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }
