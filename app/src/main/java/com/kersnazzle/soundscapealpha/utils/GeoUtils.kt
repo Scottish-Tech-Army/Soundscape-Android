@@ -5,6 +5,7 @@ import kotlin.math.asin
 import kotlin.math.asinh
 import kotlin.math.cos
 import kotlin.math.floor
+import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -127,6 +128,33 @@ fun getQuadKey(tileX: Int, tileY: Int, zoomLevel: Int): String {
         quadKey += digit.toString()
     }
     return quadKey
+}
+
+/**
+ * Calculates the pixel coordinate of the provided latitude and longitude location at the given zoom level
+ * @param latitude
+ * current Latitude value
+ * @param longitude
+ * current Longitude value
+ * @param zoom
+ * Zoom level
+ * @return Pixel coordinate as a Pair (x,y)
+ */
+fun getPixelXY(latitude: Double, longitude: Double, zoom: Int): Pair<Double, Double> {
+
+    val lat = clip(latitude, MIN_LATITUDE, MAX_LATITUDE)
+    val lon = clip(longitude, MIN_LONGITUDE, MAX_LONGITUDE)
+
+    val sinLat = sin(lat * PI / 180)
+    val x = (lon + 180) / 360
+    val y = 0.5 - ln((1 + sinLat) / (1 - sinLat)) / (PI * 4)
+
+    val size = mapSize(zoom).toDouble()
+
+    val pixelX = clip(x * size + 0.5, 0.0, size - 1)
+    val pixelY = clip(y * size + 0.5, 0.0, size - 1)
+
+    return Pair(pixelX, pixelY)
 }
 
 fun toRadians(degrees: Double): Double {
