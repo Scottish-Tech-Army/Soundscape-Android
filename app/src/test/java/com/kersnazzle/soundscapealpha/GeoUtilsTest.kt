@@ -1,6 +1,8 @@
 package com.kersnazzle.soundscapealpha
 
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.distance
+import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.getXYTile
@@ -61,6 +63,18 @@ class GeoUtilsTest {
         val testPixelXY = pixelXYToLatLon(8263101.176323555, 5584120.917661605, 16)
         Assert.assertEquals(51.43699, testPixelXY.first, 0.00001)
         Assert.assertEquals(-2.693095, testPixelXY.second, 0.0001)
+    }
+
+    @Test
+    fun getBoundingBoxOfPointTest() {
+        val testPoint = Point(0.5, 0.5)
+        // testing min lon, min lat, max lon, max lat
+        val testBoundingBox = getBoundingBoxOfPoint(testPoint)
+        Assert.assertEquals(0.5, testBoundingBox.westLongitude, 0.1)
+        Assert.assertEquals(0.5, testBoundingBox.southLatitude, 0.1)
+        Assert.assertEquals(0.5, testBoundingBox.eastLongitude, 0.1)
+        Assert.assertEquals(0.5, testBoundingBox.northLatitude, 0.1)
+
     }
 
 }

@@ -1,5 +1,7 @@
 package com.kersnazzle.soundscapealpha.utils
 
+import com.kersnazzle.soundscapealpha.dto.BoundingBox
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import kotlin.math.PI
 import kotlin.math.asin
 import kotlin.math.asinh
@@ -179,6 +181,23 @@ fun pixelXYToLatLon(pixelX: Double, pixelY: Double, zoom: Int): Pair<Double, Dou
 
     return Pair(latitude, longitude)
 
+}
+
+/**
+ * Given a Point object returns the bounding box for it
+ * @param point
+ * Point object
+ * @return a Bounding Box for the Point.
+ */
+fun getBoundingBoxOfPoint(point: Point): BoundingBox {
+    val bbOfPoint = BoundingBox()
+
+    bbOfPoint.westLongitude = point.coordinates.longitude
+    bbOfPoint.southLatitude = point.coordinates.latitude
+    bbOfPoint.eastLongitude = point.coordinates.longitude
+    bbOfPoint.northLatitude = point.coordinates.latitude
+
+    return bbOfPoint
 }
 
 fun toRadians(degrees: Double): Double {
