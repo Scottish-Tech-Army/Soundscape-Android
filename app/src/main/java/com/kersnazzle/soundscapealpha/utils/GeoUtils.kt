@@ -91,6 +91,15 @@ fun groundResolution(latitude: Double, zoom: Int): Double {
     return cos(clippedLat * PI / 180.0) * 2 * PI * EARTH_RADIUS_METERS / mapSize(zoom)
 }
 
+/** Calculates the coordinates of the Tile containing the provided pixel coordinates
+ * @param pixelX
+ * X coordinate of the pixel
+ * @param pixelY
+ * Y coordinate of the pixel
+ * @return Tile coordinate as a Pair(x, y)
+ */
+fun getTileXY(pixelX: Int, pixelY: Int) = Pair(pixelX / 256, pixelY / 256)
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }
