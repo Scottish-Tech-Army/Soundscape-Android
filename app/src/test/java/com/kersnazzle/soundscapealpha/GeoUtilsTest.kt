@@ -17,6 +17,7 @@ import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPolygon
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPolygon
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
+import com.kersnazzle.soundscapealpha.utils.getDestinationCoordinate
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
@@ -331,5 +332,16 @@ class GeoUtilsTest {
             polygonContainsCoordinates(LngLatAlt(2.0, 2.0), polygonObject)
         Assert.assertEquals(false, testPolygon2)
 
+    }
+
+    @Test
+    fun getDestinationCoordinateTest(){
+
+        val destinationCoordinateTest = getDestinationCoordinate(
+            LngLatAlt(0.0, 0.0),
+            0.0,
+            111319.49)
+        Assert.assertEquals(0.0, destinationCoordinateTest.longitude, 0.000001)
+        Assert.assertEquals(1.0, destinationCoordinateTest.latitude, 0.000001)
     }
 }

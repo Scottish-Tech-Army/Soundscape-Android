@@ -452,6 +452,36 @@ fun polygonContainsCoordinates(lngLatAlt: LngLatAlt, polygon: Polygon): Boolean 
     return intersections % 2 != 0
 }
 
+/**
+ * Return a destination coordinate based on a starting point, bearing and distance.
+ * @param start
+ * Starting coordinate
+ * @param bearing
+ * Bearing to the destination point in degrees
+ * @param distance
+ * Distance to the destination point in meters
+ * @return The destination coordinate as LngLatAlt object
+ */
+fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double): LngLatAlt {
+    val lat1 = Math.toRadians(start.latitude)
+    val lon1 = Math.toRadians(start.longitude)
+
+    val d = distance / EARTH_RADIUS_METERS // Distance in radians
+
+    val bearingRadians = toRadians(bearing)
+
+    val lat2 = asin(
+        sin(lat1) * cos(d) +
+                cos(lat1) * sin(d) * cos(bearingRadians)
+    )
+    val lon2 = lon1 + atan2(
+        sin(bearingRadians) * sin(d) * cos(lat1),
+        cos(d) - sin(lat1) * sin(lat2)
+    )
+
+    return LngLatAlt(Math.toDegrees(lon2), Math.toDegrees(lat2))
+}
+
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }
