@@ -5,11 +5,13 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.distance
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
+import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPolygon
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.groundResolution
@@ -146,6 +148,31 @@ class GeoUtilsTest {
         Assert.assertEquals(0.0, boundingBoxOfMultiLineString.southLatitude, 0.01)
         Assert.assertEquals(1.0, boundingBoxOfMultiLineString.eastLongitude, 0.01)
         Assert.assertEquals(1.0, boundingBoxOfMultiLineString.northLatitude, 0.01)
+    }
+
+    @Test
+    fun getBoundingBoxOfPolygonTest() {
+        val polygonObject = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 1.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(1.0, 0.0),
+                    LngLatAlt(1.0, 1.0),
+                    LngLatAlt(0.0, 1.0)
+                )
+            )
+        }
+        val boundingBoxOfPolygon = getBoundingBoxOfPolygon(polygonObject)
+        // min lon
+        Assert.assertEquals(0.0, boundingBoxOfPolygon.westLongitude, 0.000001)
+        //min lat
+        Assert.assertEquals(0.0, boundingBoxOfPolygon.southLatitude, 0.000001)
+        // max lon
+        Assert.assertEquals(1.0, boundingBoxOfPolygon.eastLongitude, 0.00001)
+        // max lat
+        Assert.assertEquals(1.0, boundingBoxOfPolygon.northLatitude, 0.000001)
+
     }
 
 
