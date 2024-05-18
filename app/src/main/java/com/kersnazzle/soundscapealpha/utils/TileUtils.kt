@@ -111,3 +111,21 @@ fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
     }
     return intersectionsFeatureCollection
 }
+
+/**
+ * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type
+ * @param tileFeatureCollection
+ * takes a FeatureCollection object
+ * @return a feature collection object that only contains entrances
+ */
+fun getEntrancesFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val entrancesFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        if (feature.foreign!!["feature_type"] == "gd_entrance_list") {
+            entrancesFeatureCollection.addFeature(feature)
+        }
+    }
+    return entrancesFeatureCollection
+}
