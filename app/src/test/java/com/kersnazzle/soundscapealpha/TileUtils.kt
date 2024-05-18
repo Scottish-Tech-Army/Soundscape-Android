@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.squareup.moshi.Moshi
@@ -70,6 +71,20 @@ class TileUtilsTest {
             Assert.assertEquals("gd_entrance_list", feature.foreign!!["feature_type"])
         }
         Assert.assertEquals(1, testEntrancesCollectionFromTileFeatureCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiFeatureCollectionFromTileFeatureCollectionTest() {
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testPoiCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        //There are 16 roads, 10 intersections, 0 entrances and 149 Features in total
+        // so there should be 123 POI Features in the POI Feature Collection
+        Assert.assertEquals(123, testPoiCollection.features.size)
 
     }
 }

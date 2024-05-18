@@ -129,3 +129,21 @@ fun getEntrancesFeatureCollectionFromTileFeatureCollection(
     }
     return entrancesFeatureCollection
 }
+
+/**
+ * Parses out all the Points of Interest (POI) in a tile FeatureCollection
+ * @param tileFeatureCollection
+ * takes a FeatureCollection object
+ * @return a Feature collection object that only contains POI
+ */
+fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val poiFeaturesCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        if (feature.foreign!!["feature_type"] != "highway" && feature.foreign!!["feature_type"] != "gd_entrance_list") {
+            poiFeaturesCollection.addFeature(feature)
+        }
+    }
+    return poiFeaturesCollection
+}
