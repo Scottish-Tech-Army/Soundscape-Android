@@ -1,10 +1,12 @@
 package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.utils.distance
+import com.kersnazzle.soundscapealpha.utils.getPixelXY
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.groundResolution
 import com.kersnazzle.soundscapealpha.utils.mapSize
+import com.kersnazzle.soundscapealpha.utils.pixelXYToLatLon
 import org.junit.Assert
 import org.junit.Test
 
@@ -46,4 +48,19 @@ class GeoUtilsTest {
         val testQuadKey3 = getQuadKey(32277, 21812, 16)
         Assert.assertEquals("0313131200230301", testQuadKey3)
     }
+
+    @Test
+    fun getPixelXYTest() {
+        val testGetPixelXY = getPixelXY(51.43699, -2.693095, 16)
+        Assert.assertEquals(8263101.176323555, testGetPixelXY.first, 0.0000001)
+        Assert.assertEquals(5584120.917661605, testGetPixelXY.second, 0.0000001)
+    }
+
+    @Test
+    fun pixelXYToLatLonTest() {
+        val testPixelXY = pixelXYToLatLon(8263101.176323555, 5584120.917661605, 16)
+        Assert.assertEquals(51.43699, testPixelXY.first, 0.00001)
+        Assert.assertEquals(-2.693095, testPixelXY.second, 0.0001)
+    }
+
 }

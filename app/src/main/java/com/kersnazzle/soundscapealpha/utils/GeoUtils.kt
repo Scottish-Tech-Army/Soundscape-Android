@@ -3,7 +3,9 @@ package com.kersnazzle.soundscapealpha.utils
 import kotlin.math.PI
 import kotlin.math.asin
 import kotlin.math.asinh
+import kotlin.math.atan
 import kotlin.math.cos
+import kotlin.math.exp
 import kotlin.math.floor
 import kotlin.math.ln
 import kotlin.math.max
@@ -155,6 +157,28 @@ fun getPixelXY(latitude: Double, longitude: Double, zoom: Int): Pair<Double, Dou
     val pixelY = clip(y * size + 0.5, 0.0, size - 1)
 
     return Pair(pixelX, pixelY)
+}
+
+/**
+ * Calculates the lat and lon coordinates given a pixelX, pixelY and zoom
+ * @param pixelX
+ * pixelX of the tile
+ * @param pixelY
+ * pixelY of the tile
+ * @param zoom
+ * zoom level of the tile
+ * @return Lat lon coordinates as a Pair(x, y)
+ */
+fun pixelXYToLatLon(pixelX: Double, pixelY: Double, zoom: Int): Pair<Double, Double> {
+
+    val mapSize = mapSize(zoom)
+    val x = (clip(pixelX, 0.0, mapSize.toDouble() - 1) / mapSize) - 0.5
+    val y = 0.5 - (clip(pixelY, 0.0, mapSize.toDouble() - 1) / mapSize)
+    val latitude = 90 - 360 * atan(exp(-y * 2 * Math.PI)) / Math.PI
+    val longitude = 360 * x
+
+    return Pair(latitude, longitude)
+
 }
 
 fun toRadians(degrees: Double): Double {
