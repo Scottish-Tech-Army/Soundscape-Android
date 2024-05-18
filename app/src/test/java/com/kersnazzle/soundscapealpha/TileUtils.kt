@@ -209,4 +209,5 @@ class TileUtilsTest {
             getTilesForRegion(51.43860066718254, -2.69439697265625, 500.0, 16)
         Assert.assertEquals(25, testGetTilesForRadius.size)
     }
+
 }
