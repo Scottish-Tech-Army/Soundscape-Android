@@ -4,6 +4,7 @@ import com.kersnazzle.soundscapealpha.dto.BoundingBox
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import kotlin.math.PI
@@ -290,6 +291,31 @@ fun getBoundingBoxOfPolygon(polygon: Polygon): BoundingBox{
             southLat = min(southLat, point.latitude)
             eastLon = max(eastLon, point.longitude)
             northLat = max(northLat, point.latitude)
+        }
+    }
+    return BoundingBox(westLon, southLat, eastLon, northLat)
+}
+
+/**
+ * Given a MultiPolygon object returns the bounding box for it
+ * @param multiPolygon
+ * MultiPolygon object with multiple polygons
+ * @return a Bounding Box for the MultiPolygon.
+ */
+fun getBoundingBoxOfMultiPolygon(multiPolygon: MultiPolygon): BoundingBox {
+    var westLon = Int.MAX_VALUE.toDouble()
+    var southLat = Int.MAX_VALUE.toDouble()
+    var eastLon = Int.MIN_VALUE.toDouble()
+    var northLat = Int.MIN_VALUE.toDouble()
+
+    for (polygon in multiPolygon.coordinates) {
+        for (linearRing in polygon) {
+            for (point in linearRing) {
+                westLon = min(westLon, point.longitude)
+                southLat = min(southLat, point.latitude)
+                eastLon = max(eastLon, point.longitude)
+                northLat = max(northLat, point.latitude)
+            }
         }
     }
     return BoundingBox(westLon, southLat, eastLon, northLat)

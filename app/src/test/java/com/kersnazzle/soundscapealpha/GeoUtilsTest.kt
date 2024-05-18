@@ -4,12 +4,14 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.distance
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiLineString
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPoint
+import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfMultiPolygon
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPoint
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxOfPolygon
 import com.kersnazzle.soundscapealpha.utils.getPixelXY
@@ -172,6 +174,42 @@ class GeoUtilsTest {
         Assert.assertEquals(1.0, boundingBoxOfPolygon.eastLongitude, 0.00001)
         // max lat
         Assert.assertEquals(1.0, boundingBoxOfPolygon.northLatitude, 0.000001)
+
+    }
+
+    @Test
+    fun getBoundingBoxOfMultiPolygonTest() {
+        val multiPolygonObject = MultiPolygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    arrayListOf(
+                        LngLatAlt(0.0, 1.0),
+                        LngLatAlt(0.0, 0.0),
+                        LngLatAlt(1.0, 0.0),
+                        LngLatAlt(1.0, 1.0),
+                        LngLatAlt(0.0, 1.0)
+                    )
+                ),
+                arrayListOf(
+                    arrayListOf(
+                        LngLatAlt(0.0, 2.0),
+                        LngLatAlt(0.0, 0.0),
+                        LngLatAlt(2.0, 0.0),
+                        LngLatAlt(2.0, 2.0),
+                        LngLatAlt(0.0, 2.0)
+                    )
+                )
+            )
+        }
+        val boundingBoxOfMultiPolygon = getBoundingBoxOfMultiPolygon(multiPolygonObject)
+        // min lon
+        Assert.assertEquals(0.0, boundingBoxOfMultiPolygon.westLongitude, 0.000001)
+        //min lat
+        Assert.assertEquals(0.0, boundingBoxOfMultiPolygon.southLatitude, 0.000001)
+        //max lon
+        Assert.assertEquals(2.0, boundingBoxOfMultiPolygon.eastLongitude, 0.000001)
+        // max lat
+        Assert.assertEquals(2.0, boundingBoxOfMultiPolygon.northLatitude, 0.000001)
 
     }
 
