@@ -143,7 +143,8 @@ class VisuallyCheckOutput {
             16.0,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
-        // get the roads Feature Collection
+        // get the roads Feature Collection.
+        // Crossings are counted as roads by original Soundscape
         val testRoadsCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
             moshi.adapter(FeatureCollection::class.java)
                 .fromJson(cleanTileFeatureCollection)!!
