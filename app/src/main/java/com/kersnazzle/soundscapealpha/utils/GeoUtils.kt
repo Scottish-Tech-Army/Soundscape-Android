@@ -718,9 +718,6 @@ fun getQuadrants(heading: Double): List<Quadrant> {
     )
 }
 
-
-
-
 fun toRadians(degrees: Double): Double {
     return degrees * DEGREES_TO_RADIANS
 }
