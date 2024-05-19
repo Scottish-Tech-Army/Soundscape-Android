@@ -9,6 +9,7 @@ import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
@@ -204,6 +205,31 @@ class VisuallyCheckOutput {
         val poi = moshi.adapter(FeatureCollection::class.java).toJson(testPoiCollection)
         // copy and paste into GeoJSON.io
         println(poi)
+    }
+
+    @Test
+    fun pathsFeatureCollection(){
+        // The tile that I've been using above doesn't have any paths mapped in it
+        // so I'm swapping to a different tile.
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        // Get the data for the entire tile
+        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        // clean it
+        val cleanTileFeatureCollection = cleanTileGeoJSON(
+            32295,
+            21787,
+            16.0,
+            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
+        )
+        // get the paths Feature Collection.
+        val testPathCollection = getPathsFeatureCollection(
+            moshi.adapter(FeatureCollection::class.java)
+                .fromJson(cleanTileFeatureCollection)!!
+        )
+        val paths = moshi.adapter(FeatureCollection::class.java).toJson(testPathCollection)
+        // copy and paste into GeoJSON.io
+        println(paths)
     }
 
 
