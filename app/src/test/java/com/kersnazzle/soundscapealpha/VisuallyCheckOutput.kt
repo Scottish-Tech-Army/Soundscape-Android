@@ -4,9 +4,11 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
+import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
+import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
@@ -53,5 +55,55 @@ class VisuallyCheckOutput {
         val youAreHere = moshi.adapter(FeatureCollection::class.java).toJson(newFeatureCollection)
         // copy and paste into GeoJSON.io
         println(youAreHere)
+    }
+
+    @Test
+    fun grid3x3Test(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        // convert coordinates to tile
+        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16.0)
+        val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
+        val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
+
+        val surroundingTiles = getTilesForRegion(
+            tileBoundingBoxCenter.latitude, tileBoundingBoxCenter.longitude, 200.0, 16 )
+
+        val newFeatureCollection = FeatureCollection()
+        // Create a bounding box/Polygon for each tile in the grid
+        for(tile in surroundingTiles){
+            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16.0)
+            val polygonBoundingBox = getPolygonOfBoundingBox(surroundingTileBoundingBox)
+            val boundingBoxFeature = Feature().also {
+                val ars3: HashMap<String, Any?> = HashMap()
+                ars3 += Pair("Tile X", tile.tileX)
+                ars3 += Pair("Tile Y", tile.tileY)
+                ars3 += Pair("quadKey", tile.quadkey)
+                it.properties = ars3
+                it.type = "Feature"
+            }
+            boundingBoxFeature.geometry = polygonBoundingBox
+            newFeatureCollection.addFeature(boundingBoxFeature)
+        }
+        // Display the circle we are using for the grid radius
+        val circlePolygon = circleToPolygon(
+            30,
+            tileBoundingBoxCenter.latitude,
+            tileBoundingBoxCenter.longitude,
+            200.0
+        )
+        val circlePolygonFeature = Feature().also {
+            val ars3: HashMap<String, Any?> = HashMap()
+            ars3 += Pair("Shape", "circle")
+            ars3 += Pair("Radius", 200)
+            it.properties = ars3
+            it.type = "Feature"
+        }
+        circlePolygonFeature.geometry = circlePolygon
+        newFeatureCollection.addFeature(circlePolygonFeature)
+
+        val grid3x3String = moshi.adapter(FeatureCollection::class.java).toJson(newFeatureCollection)
+        // copy and paste into GeoJSON.io
+        println(grid3x3String)
     }
 }
