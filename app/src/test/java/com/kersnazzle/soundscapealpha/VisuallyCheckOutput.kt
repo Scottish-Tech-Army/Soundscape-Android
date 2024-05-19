@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.circleToPolygon
+import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
@@ -106,4 +107,25 @@ class VisuallyCheckOutput {
         // copy and paste into GeoJSON.io
         println(grid3x3String)
     }
+
+    @Test
+    fun entireTileFeatureCollection(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        // convert coordinates to tile
+        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        // Get the data for the entire tile
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        // clean it
+        val cleanTileFeatureCollection = cleanTileGeoJSON(
+            tileXY.first,
+            tileXY.second,
+            16.0,
+            moshi.adapter(FeatureCollection::class.java).toJson(featureCollectionTest)
+        )
+        // copy and paste into GeoJSON.io
+        println(cleanTileFeatureCollection)
+    }
+
+
 }
