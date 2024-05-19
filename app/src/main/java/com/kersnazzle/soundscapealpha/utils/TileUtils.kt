@@ -428,6 +428,103 @@ fun getIntersectionsFOVFeatureCollection(
 }
 
 /**
+ * Return a roads feature collection that is contained in the "field of view".
+ * @param location
+ * location where the device is
+ * @param heading
+ * direction the device is pointing
+ * @param distance
+ * Distance to the destination points ("left" point and "right" point) in meters
+ * @return The road features that are contained in the FOV triangle
+ */
+fun getFOVRoadsFeatureCollection(
+    location: LngLatAlt,
+    heading: Double,
+    distance: Double,
+    roadsFeatureCollection: FeatureCollection
+): FeatureCollection {
+    // Direction the device is pointing
+    val quadrants = getQuadrants(heading)
+    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
+    var quadrantIndex = 0
+    for (quadrant in quadrants) {
+        val containsHeading = quadrant.contains(heading)
+        if (containsHeading) {
+            break
+        } else {
+            quadrantIndex++
+        }
+    }
+    // Get the coordinate for the "Left" of the FOV
+    val destinationCoordinateLeft = getDestinationCoordinate(
+        LngLatAlt(location.longitude, location.latitude),
+        quadrants[quadrantIndex].left,
+        distance
+    )
+
+    //Get the coordinate for the "Right" of the FOV
+    val destinationCoordinateRight = getDestinationCoordinate(
+        LngLatAlt(location.longitude, location.latitude),
+        quadrants[quadrantIndex].right,
+        distance
+    )
+
+    // We can now construct our FOV polygon (triangle)
+    val polygonTriangleFOV = createTriangleFOV(
+        destinationCoordinateLeft,
+        location,
+        destinationCoordinateRight
+    )
+
+    // only the road Features that are in the FOV triangle are returned
+    return getRoadsFOVFeatureCollection(roadsFeatureCollection, polygonTriangleFOV)
+}
+
+/**
+ * Return a Feature Collection that contains the roads in the "field of view" triangle.
+ * @param roadsFeatureCollection
+ * The roads feature collection for a tile
+ * @param polygonTriangleFOV
+ * The triangle that is being tested to see what roads it contains
+ * @return A Feature Collection that contains the roads in the FOV triangle
+ */
+fun getRoadsFOVFeatureCollection(
+    roadsFeatureCollection: FeatureCollection,
+    polygonTriangleFOV: Polygon ): FeatureCollection {
+
+    // Are any of the points from the roadsFeatureCollection contained in the polygonTriangleFOV
+    val roadsFOVFeatureCollection = FeatureCollection()
+    for (feature in roadsFeatureCollection) {
+        when(feature.geometry.type) {
+            "LineString" -> {
+                for (coordinate in (feature.geometry as LineString).coordinates) {
+                    val containsCoordinate =
+                        polygonContainsCoordinates(coordinate, polygonTriangleFOV)
+                    if (containsCoordinate) {
+                        roadsFOVFeatureCollection.addFeature(feature)
+                        break
+                    }
+                }
+            }
+            "Point" -> {
+                val testPoint = LngLatAlt(
+                    (feature.geometry as Point).coordinates.longitude,
+                    (feature.geometry as Point).coordinates.latitude,
+
+                    )
+                val containsCoordinate =
+                    polygonContainsCoordinates(testPoint, polygonTriangleFOV)
+                if (containsCoordinate) {
+                    roadsFOVFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+    }
+    // only the road Features that are in the FOV triangle are returned
+    return roadsFOVFeatureCollection
+}
+
+/**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape
  * @param category
