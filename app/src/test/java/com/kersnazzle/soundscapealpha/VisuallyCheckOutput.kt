@@ -7,8 +7,10 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
+import com.kersnazzle.soundscapealpha.utils.createTriangleFOV
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
+import com.kersnazzle.soundscapealpha.utils.getDestinationCoordinate
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
@@ -16,6 +18,7 @@ import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
+import com.kersnazzle.soundscapealpha.utils.getQuadrants
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
@@ -312,6 +315,9 @@ class VisuallyCheckOutput {
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest!!
             )
+        // ********* This is the only line that is useful. The rest of it is
+        // ********* outputting the triangle that represents the FoV
+        //
         // Create a FOV triangle to pick up the intersections and identify the intersection
         // in the FOV
         val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
@@ -320,12 +326,53 @@ class VisuallyCheckOutput {
             fovDistance,
             testIntersectionsCollectionFromTileFeatureCollection
         )
+        // *************************************************************
+
+        // Direction the device is pointing
+        val quadrants = getQuadrants(deviceHeading)
+        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
+        var quadrantIndex = 0
+        for (quadrant in quadrants) {
+            val containsHeading = quadrant.contains(deviceHeading)
+            if (containsHeading) {
+                break
+            } else {
+                quadrantIndex++
+            }
+        }
+        // Get the coordinate for the "Left" of the FOV
+        val destinationCoordinateLeft = getDestinationCoordinate(
+            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+            quadrants[quadrantIndex].left,
+            fovDistance
+        )
+
+        //Get the coordinate for the "Right" of the FOV
+        val destinationCoordinateRight = getDestinationCoordinate(
+            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+            quadrants[quadrantIndex].right,
+            fovDistance
+        )
+
+        // We can now construct our FOV polygon (triangle)
+        val polygonTriangleFOV = createTriangleFOV(
+            destinationCoordinateLeft,
+            currentLocation,
+            destinationCoordinateRight
+        )
+
+        val featureFOVTriangle = Feature().also {
+            val ars3: HashMap<String, Any?> = HashMap()
+            ars3 += Pair("FoV", "45 degrees 35 meters")
+            it.properties = ars3
+        }
+        featureFOVTriangle.geometry = polygonTriangleFOV
+
+        fovIntersectionsFeatureCollection.addFeature(featureFOVTriangle)
 
         val fovIntersections = moshi.adapter(FeatureCollection::class.java).toJson(fovIntersectionsFeatureCollection)
         // copy and paste into GeoJSON.io
         println(fovIntersections)
-
-
     }
 
 
