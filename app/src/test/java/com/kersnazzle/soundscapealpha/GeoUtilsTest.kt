@@ -261,8 +261,6 @@ class GeoUtilsTest {
         Assert.assertEquals(0.5, bbCenter1.longitude, 0.000001)
     }
 
-
-
     @Test
     fun getPolygonFromBoundingBoxTest() {
         val polygonObject = Polygon().also {

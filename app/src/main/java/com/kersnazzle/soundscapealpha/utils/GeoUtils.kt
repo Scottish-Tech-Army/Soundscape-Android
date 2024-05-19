@@ -657,9 +657,10 @@ fun circleToPolygon(segments: Int, centerLat: Double, centerLon: Double, radius:
             tempCirclePoints
         )
     }
-
     return polygonObject
-}    /**
+}
+
+/**
  * Calculates the bounds of the quadrants that should be used for filtering POIs
  * These quadrants are rotated from the standard cardinal direction
  * quadrants (north: [315.0, 45.0), east: [45.0, 135.0), etc.) such that the provided
