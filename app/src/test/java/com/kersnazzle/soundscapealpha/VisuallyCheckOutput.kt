@@ -8,6 +8,7 @@ import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
+import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
@@ -232,5 +233,28 @@ class VisuallyCheckOutput {
         println(paths)
     }
 
-
+    @Test
+    fun entrancesFeatureCollection(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        // Get the data for the entire tile
+        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        // clean it
+        val cleanTileFeatureCollection = cleanTileGeoJSON(
+            32295,
+            21787,
+            16.0,
+            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
+        )
+        // get the entrances Feature Collection.
+        // Entrances are weird as it is a single Feature made up of MultiPoints and osm_ids
+        // I'm assuming osm_ids correlate to the polygon which has the entrance but haven't checked this yet
+        val testEntrancesCollection = getEntrancesFeatureCollectionFromTileFeatureCollection(
+            moshi.adapter(FeatureCollection::class.java)
+                .fromJson(cleanTileFeatureCollection)!!
+        )
+        val entrances = moshi.adapter(FeatureCollection::class.java).toJson(testEntrancesCollection)
+        // copy and paste into GeoJSON.io
+        println(entrances)
+    }
 }
