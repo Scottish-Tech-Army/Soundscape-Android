@@ -4,6 +4,7 @@ import com.kersnazzle.soundscapealpha.dto.VectorTile
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPoint
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiPolygon
@@ -334,6 +335,96 @@ fun cleanTileGeoJSON(tileX: Int, tileY: Int, zoom: Double, geoJSONTile: String):
         }
     }
     return moshi.adapter(FeatureCollection::class.java).toJson(cleanTileFeatureCollection)
+}
+
+/**
+ * Return a Feature Collection that contains the Intersections in the "field of view" triangle.
+ * @param location
+ * location of the device
+ * @param heading
+ * direction the device is pointing
+ * @param distance
+ * distance to extend the "field of view"
+ * @param intersectionsFeatureCollection
+ * The intersections feature collection that we want to filter
+ * @return A Feature Collection that contains the Intersections in the FOV triangle which is 90
+ * degrees from the heading of the device
+ */
+fun getFovIntersectionFeatureCollection(
+    location: LngLatAlt,
+    heading: Double,
+    distance: Double,
+    intersectionsFeatureCollection: FeatureCollection
+): FeatureCollection {
+    // Direction the device is pointing
+    val quadrants = getQuadrants(heading)
+    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
+    var quadrantIndex = 0
+    for (quadrant in quadrants) {
+        val containsHeading = quadrant.contains(heading)
+        if (containsHeading) {
+            break
+        } else {
+            quadrantIndex++
+        }
+    }
+    // Get the coordinate for the "Left" of the FOV
+    val destinationCoordinateLeft = getDestinationCoordinate(
+        LngLatAlt(location.longitude, location.latitude),
+        quadrants[quadrantIndex].left,
+        distance
+    )
+
+    //Get the coordinate for the "Right" of the FOV
+    val destinationCoordinateRight = getDestinationCoordinate(
+        LngLatAlt(location.longitude, location.latitude),
+        quadrants[quadrantIndex].right,
+        distance
+    )
+
+    // We can now construct our FOV polygon (triangle)
+    val polygonTriangleFOV = createTriangleFOV(
+        destinationCoordinateLeft,
+        location,
+        destinationCoordinateRight
+    )
+
+    // only the intersections Features that are in the FOV triangle are returned
+    return getIntersectionsFOVFeatureCollection(intersectionsFeatureCollection, polygonTriangleFOV)
+}
+
+/**
+ * Return a Feature Collection that contains the intersections in the "field of view" triangle.
+ * @param intersectionsFeatureCollection
+ * The intersections feature collection for a tile
+ * @param polygonTriangleFOV
+ * The triangle or any other shape you feel like that is being tested to see what intersections it contains
+ * @return A Feature Collection that contains the intersections in the FOV triangle
+ */
+fun getIntersectionsFOVFeatureCollection(
+    intersectionsFeatureCollection: FeatureCollection,
+    polygonTriangleFOV: Polygon): FeatureCollection {
+    // Are any of the points from the intersectionsFeatureCollection contained in the polygonTriangleFOV
+    val intersectionsFOVFeatureCollection = FeatureCollection()
+
+    for (feature in intersectionsFeatureCollection) {
+        when(feature.geometry.type) {
+            "Point" -> {
+                val testPoint = LngLatAlt(
+                    (feature.geometry as Point).coordinates.longitude,
+                    (feature.geometry as Point).coordinates.latitude,
+
+                    )
+                val containsCoordinate =
+                    polygonContainsCoordinates(testPoint, polygonTriangleFOV)
+                if (containsCoordinate) {
+                    intersectionsFOVFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+    }
+    // only the intersections Features that are in the FOV triangle are returned
+    return intersectionsFOVFeatureCollection
 }
 
 /**

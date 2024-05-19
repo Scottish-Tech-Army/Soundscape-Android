@@ -3,14 +3,17 @@ package com.kersnazzle.soundscapealpha
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
@@ -257,4 +260,73 @@ class VisuallyCheckOutput {
         // copy and paste into GeoJSON.io
         println(entrances)
     }
+
+    @Test
+    fun poiSuperCategory(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        // Get the data for the entire tile
+        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        // clean it
+        val cleanTileFeatureCollection = cleanTileGeoJSON(
+            32295,
+            21787,
+            16.0,
+            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
+        )
+        // get the poi Feature Collection.
+        val testPoiCollection = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+            moshi.adapter(FeatureCollection::class.java)
+                .fromJson(cleanTileFeatureCollection)!!
+        )
+        // select super category
+        //"information", "object", "place", "landmark", "mobility", "safety"
+        val testSuperCategoryPoiCollection =
+            getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
+        val superCategory = moshi.adapter(FeatureCollection::class.java).toJson(testSuperCategoryPoiCollection)
+        // copy and paste into GeoJSON.io
+        println(superCategory)
+    }
+
+    @Test
+    fun intersectionsFieldOfView(){
+        // Above I've just been filtering the entire tile into broad categories: roads, intersections, etc.
+        // Now going to filter the tile by:
+        // (1) where the device is located
+        // (2) the direction the device is pointing,
+        // (3) the distance that the "field of view" extends out.
+        // Initially a right angle triangle but Soundscape is a bit more sophisticated which I'll get to
+        // (4) whatever we are interested in -> roads, intersections, etc.
+
+        // Fake device location and pretend the device is pointing East.
+        // -2.6577997643930757, 51.43041390383118
+        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the intersections and identify the intersection
+        // in the FOV
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+
+        val fovIntersections = moshi.adapter(FeatureCollection::class.java).toJson(fovIntersectionsFeatureCollection)
+        // copy and paste into GeoJSON.io
+        println(fovIntersections)
+
+
+    }
+
+
 }
