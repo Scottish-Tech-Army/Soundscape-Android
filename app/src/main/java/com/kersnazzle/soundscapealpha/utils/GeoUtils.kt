@@ -464,8 +464,8 @@ fun polygonContainsCoordinates(lngLatAlt: LngLatAlt, polygon: Polygon): Boolean 
  * @return The destination coordinate as LngLatAlt object
  */
 fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double): LngLatAlt {
-    val lat1 = Math.toRadians(start.latitude)
-    val lon1 = Math.toRadians(start.longitude)
+    val lat1 = toRadians(start.latitude)
+    val lon1 = toRadians(start.longitude)
 
     val d = distance / EARTH_RADIUS_METERS // Distance in radians
 
@@ -480,7 +480,7 @@ fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double
         cos(d) - sin(lat1) * sin(lat2)
     )
 
-    return LngLatAlt(Math.toDegrees(lon2), Math.toDegrees(lat2))
+    return LngLatAlt(fromRadians(lon2), fromRadians(lat2))
 }
 
 /**
