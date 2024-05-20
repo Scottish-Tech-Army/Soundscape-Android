@@ -761,6 +761,7 @@ fun getNearestRoad(
 }
 
 /**
+ * Distance to a LineString from current location.
  * @param pointCoordinates
  * LngLatAlt of current location
  * @param lineStringCoordinates
