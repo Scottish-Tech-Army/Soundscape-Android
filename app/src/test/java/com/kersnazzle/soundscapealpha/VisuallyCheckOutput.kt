@@ -15,7 +15,7 @@ import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTil
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
@@ -231,7 +231,7 @@ class VisuallyCheckOutput {
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the paths Feature Collection.
-        val testPathCollection = getPathsFeatureCollection(
+        val testPathCollection = getPathsFeatureCollectionFromTileFeatureCollection(
             moshi.adapter(FeatureCollection::class.java)
                 .fromJson(cleanTileFeatureCollection)!!
         )

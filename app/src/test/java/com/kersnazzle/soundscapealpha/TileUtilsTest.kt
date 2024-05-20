@@ -4,7 +4,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
@@ -41,7 +41,7 @@ class TileUtilsTest {
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
         val testPathsCollectionFromTileFeatureCollection =
-            getPathsFeatureCollection(featureCollectionTest!!)
+            getPathsFeatureCollectionFromTileFeatureCollection(featureCollectionTest!!)
         for (feature in testPathsCollectionFromTileFeatureCollection){
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }

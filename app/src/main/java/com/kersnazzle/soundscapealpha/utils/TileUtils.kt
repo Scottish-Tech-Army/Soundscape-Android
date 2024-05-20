@@ -126,7 +126,7 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
  * valid Tile Feature Collection
  * @return a FeatureCollection that contains only paths.
  */
-fun getPathsFeatureCollection(
+fun getPathsFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
 ): FeatureCollection{
     val pathsFeatureCollection = FeatureCollection()
