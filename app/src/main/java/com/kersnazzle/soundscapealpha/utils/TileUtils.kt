@@ -16,6 +16,8 @@ import kotlin.math.asinh
 import kotlin.math.floor
 import kotlin.math.tan
 
+//TODO getFovIntersectionFeatureCollection, getFovRoadsFeatureCollection and getFovPoiFeatureCollection can be rolled into one as just repeating the same thing
+
 /**
  * Gets Slippy Map Tile Name from X and Y GPS coordinates and Zoom (fixed at 16 for Soundscape)
  * @param lat
