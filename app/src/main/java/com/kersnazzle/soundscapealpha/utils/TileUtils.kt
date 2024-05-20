@@ -525,6 +525,99 @@ fun getRoadsFovFeatureCollection(
 }
 
 /**
+ * Return a Feature Collection that contains the Points Of Interest in the "field of view" triangle.
+ * @param poiFeatureCollection
+ * The poi feature collection for a tile
+ * @param polygonTriangleFOV
+ * The triangle that is being tested to see what roads it contains
+ * @return A Feature Collection that contains the Points of Interest in the FOV triangle
+ */
+fun getPoiFovFeatureCollection(
+    poiFeatureCollection: FeatureCollection,
+    polygonTriangleFOV: Polygon): FeatureCollection {
+
+    // Are any of the points from the poiFeatureCollection contained in the polygonTriangleFOV
+    val poiFOVFeatureCollection = FeatureCollection()
+    for (feature in poiFeatureCollection) {
+        when(feature.geometry.type) {
+            "LineString" -> {
+                for (coordinate in (feature.geometry as LineString).coordinates) {
+                    val containsCoordinate =
+                        polygonContainsCoordinates(coordinate, polygonTriangleFOV)
+                    if (containsCoordinate) {
+                        poiFOVFeatureCollection.addFeature(feature)
+                        break
+                    }
+                }
+            }
+            "MultiLineString" -> {
+                for (lineString in (feature.geometry as MultiLineString).coordinates) {
+                    for (coordinate in lineString) {
+                        val testPoint = polygonContainsCoordinates(coordinate, polygonTriangleFOV)
+                        if (testPoint) {
+                            poiFOVFeatureCollection.addFeature(feature)
+                            break
+                        }
+                    }
+                }
+            }
+            "Polygon" -> {
+                for (geometry in (feature.geometry as Polygon).coordinates) {
+                    for (point in geometry) {
+                        val containsCoordinate =
+                            polygonContainsCoordinates(point, polygonTriangleFOV)
+                        if (containsCoordinate) {
+                            poiFOVFeatureCollection.addFeature(feature)
+                            break
+                        }
+                    }
+                }
+            }
+            "MultiPolygon" -> {
+                for (polygon in (feature.geometry as MultiPolygon).coordinates) {
+                    for (linearRing in polygon) {
+                        for (coordinate in linearRing) {
+                            val containsCoordinate = polygonContainsCoordinates(coordinate, polygonTriangleFOV)
+                            if (containsCoordinate) {
+                                poiFOVFeatureCollection.addFeature(feature)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            "Point" -> {
+                val testPoint = LngLatAlt(
+                    (feature.geometry as Point).coordinates.longitude,
+                    (feature.geometry as Point).coordinates.latitude
+                    )
+                val containsCoordinate =
+                    polygonContainsCoordinates(testPoint, polygonTriangleFOV)
+                if (containsCoordinate) {
+                    poiFOVFeatureCollection.addFeature(feature)
+                }
+            }
+            "MultiPoint" -> {
+                for (point in (feature.geometry as MultiPoint).coordinates) {
+                    val containsCoordinate =
+                        polygonContainsCoordinates(point, polygonTriangleFOV)
+                    if (containsCoordinate){
+                        poiFOVFeatureCollection.addFeature(feature)
+                        // at least one of the points is in the tile so add the entire
+                        // MultiPoint Feature and break
+                        break
+                    }
+                }
+            }
+        }
+    }
+    // only the poi Features that are in the FOV triangle are returned
+    return poiFOVFeatureCollection
+}
+
+
+
+/**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape
  * @param category
