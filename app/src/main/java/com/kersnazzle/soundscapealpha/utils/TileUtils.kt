@@ -529,7 +529,7 @@ fun getRoadsFovFeatureCollection(
  * @param poiFeatureCollection
  * The poi feature collection for a tile
  * @param polygonTriangleFOV
- * The triangle that is being tested to see what roads it contains
+ * The triangle that is being tested to see what poi it contains
  * @return A Feature Collection that contains the Points of Interest in the FOV triangle
  */
 fun getPoiFovFeatureCollection(
