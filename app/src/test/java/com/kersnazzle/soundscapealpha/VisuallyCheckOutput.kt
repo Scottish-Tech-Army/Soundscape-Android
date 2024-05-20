@@ -13,6 +13,7 @@ import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getDestinationCoordinate
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
@@ -318,8 +319,8 @@ class VisuallyCheckOutput {
         // ********* This is the only line that is useful. The rest of it is
         // ********* outputting the triangle that represents the FoV
         //
-        // Create a FOV triangle to pick up the intersections and identify the intersection
-        // in the FOV
+        // Create a FOV triangle to pick up the intersection (this intersection is a transition from
+        // Weston Road to Long Ashton Road)
         val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
             currentLocation,
             deviceHeading,
@@ -373,6 +374,91 @@ class VisuallyCheckOutput {
         val fovIntersections = moshi.adapter(FeatureCollection::class.java).toJson(fovIntersectionsFeatureCollection)
         // copy and paste into GeoJSON.io
         println(fovIntersections)
+    }
+
+    @Test
+    fun roadsFieldOfView(){
+        // Above I've just been filtering the entire tile into broad categories: roads, intersections, etc.
+        // Now going to filter the tile by:
+        // (1) where the device is located
+        // (2) the direction the device is pointing,
+        // (3) the distance that the "field of view" extends out.
+        // Initially a right angle triangle but Soundscape is a bit more sophisticated which I'll get to
+        // (4) whatever we are interested in -> roads, intersections, etc.
+
+        // Fake device location and pretend the device is pointing East.
+        // -2.6577997643930757, 51.43041390383118
+        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the intersections from the tile
+        val testRoadsCollectionFromTileFeatureCollection =
+            getRoadsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // ********* This is the only line that is useful. The rest of it is
+        // ********* outputting the triangle that represents the FoV
+        //
+        // Create a FOV triangle to pick up the roads in the FoV roads.
+        // In this case Weston Road and Long Ashton Road
+        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testRoadsCollectionFromTileFeatureCollection
+        )
+        // *************************************************************
+
+        // Direction the device is pointing
+        val quadrants = getQuadrants(deviceHeading)
+        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
+        var quadrantIndex = 0
+        for (quadrant in quadrants) {
+            val containsHeading = quadrant.contains(deviceHeading)
+            if (containsHeading) {
+                break
+            } else {
+                quadrantIndex++
+            }
+        }
+        // Get the coordinate for the "Left" of the FOV
+        val destinationCoordinateLeft = getDestinationCoordinate(
+            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+            quadrants[quadrantIndex].left,
+            fovDistance
+        )
+
+        //Get the coordinate for the "Right" of the FOV
+        val destinationCoordinateRight = getDestinationCoordinate(
+            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+            quadrants[quadrantIndex].right,
+            fovDistance
+        )
+
+        // We can now construct our FOV polygon (triangle)
+        val polygonTriangleFOV = createTriangleFOV(
+            destinationCoordinateLeft,
+            currentLocation,
+            destinationCoordinateRight
+        )
+
+        val featureFOVTriangle = Feature().also {
+            val ars3: HashMap<String, Any?> = HashMap()
+            ars3 += Pair("FoV", "45 degrees 35 meters")
+            it.properties = ars3
+        }
+        featureFOVTriangle.geometry = polygonTriangleFOV
+
+        fovRoadsFeatureCollection.addFeature(featureFOVTriangle)
+
+        val fovIntersections = moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
+        // copy and paste into GeoJSON.io
+        println(fovIntersections)
+
     }
 
 

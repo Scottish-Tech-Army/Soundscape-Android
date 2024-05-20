@@ -437,7 +437,7 @@ fun getIntersectionsFOVFeatureCollection(
  * Distance to the destination points ("left" point and "right" point) in meters
  * @return The road features that are contained in the FOV triangle
  */
-fun getFOVRoadsFeatureCollection(
+fun getFovRoadsFeatureCollection(
     location: LngLatAlt,
     heading: Double,
     distance: Double,
@@ -477,7 +477,7 @@ fun getFOVRoadsFeatureCollection(
     )
 
     // only the road Features that are in the FOV triangle are returned
-    return getRoadsFOVFeatureCollection(roadsFeatureCollection, polygonTriangleFOV)
+    return getRoadsFovFeatureCollection(roadsFeatureCollection, polygonTriangleFOV)
 }
 
 /**
@@ -488,7 +488,7 @@ fun getFOVRoadsFeatureCollection(
  * The triangle that is being tested to see what roads it contains
  * @return A Feature Collection that contains the roads in the FOV triangle
  */
-fun getRoadsFOVFeatureCollection(
+fun getRoadsFovFeatureCollection(
     roadsFeatureCollection: FeatureCollection,
     polygonTriangleFOV: Polygon ): FeatureCollection {
 
