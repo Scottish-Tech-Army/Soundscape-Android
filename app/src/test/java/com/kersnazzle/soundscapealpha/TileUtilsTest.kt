@@ -9,6 +9,7 @@ import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getNearestIntersection
+import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
@@ -302,6 +303,37 @@ class TileUtilsTest {
         val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
         // Should only be the nearest intersection in this Feature Collection
         Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
+    }
+
+    @Test
+    fun getNearestRoadTest(){
+        // Fake device location and pretend the device is pointing East.
+        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the roads from the tile
+        val testRoadsCollectionFromTileFeatureCollection =
+            getRoadsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the roads
+        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testRoadsCollectionFromTileFeatureCollection
+        )
+        // This should pick up three roads in the FoV
+        Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
+        val nearestRoadFeatureCollection = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        // Should only be the nearest road in this Feature Collection
+        Assert.assertEquals(1, nearestRoadFeatureCollection.features.size)
+        // The nearest road to the current location should be Weston Road
+        Assert.assertEquals("Weston Road", nearestRoadFeatureCollection.features[0].properties!!["name"])
     }
 
     @Test

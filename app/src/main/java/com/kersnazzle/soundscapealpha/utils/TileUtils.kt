@@ -15,6 +15,8 @@ import com.squareup.moshi.Moshi
 import kotlin.math.PI
 import kotlin.math.asinh
 import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.tan
 
 //TODO getFovIntersectionFeatureCollection, getFovRoadsFeatureCollection and getFovPoiFeatureCollection can be rolled into one as just repeating the same thing
@@ -709,6 +711,150 @@ fun getNearestIntersection(
     //  perhaps we could insert the distance to the intersection as a property/foreign member of the Feature?
     return nearestIntersectionFeatureCollection.addFeature(nearestIntersection)
 }
+
+
+/**
+ * Get nearest road from roads Feature Collection.
+ * WARNING: It doesn't care which direction the road is.
+ * Roads can contain crossings which are Points not LineStrings
+ * @param currentLocation
+ * Location of device
+ * @param roadFeatureCollection
+ * The intersection feature collection that contains the intersections we want to test
+ * @return A Feature Collection that contains the nearest road
+ */
+fun getNearestRoad(
+    currentLocation: LngLatAlt,
+    roadFeatureCollection: FeatureCollection
+): FeatureCollection {
+
+    var maxDistanceToRoad = Int.MAX_VALUE.toDouble()
+    var nearestRoad = Feature()
+
+    for (feature in roadFeatureCollection) {
+        if (feature.geometry.type == "LineString") {
+            val distanceToRoad = distanceToLineString(
+                LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+                (feature.geometry as LineString)
+            )
+            if (distanceToRoad < maxDistanceToRoad) {
+                nearestRoad = feature
+                maxDistanceToRoad = distanceToRoad
+            }
+        } else {
+            val distanceToRoad = distance(
+                currentLocation.latitude,
+                currentLocation.longitude,
+                (feature.geometry as Point).coordinates.latitude,
+                (feature.geometry as Point).coordinates.longitude
+            )
+            if (distanceToRoad < maxDistanceToRoad) {
+                nearestRoad = feature
+                maxDistanceToRoad = distanceToRoad
+            }
+        }
+    }
+    val nearestRoadFeatureCollection = FeatureCollection()
+    // TODO As the distance to the road has already been calculated
+    //  perhaps we could insert the distance to the road as a property/foreign member of the Feature?
+    return nearestRoadFeatureCollection.addFeature(nearestRoad)
+}
+
+/**
+ * @param pointCoordinates
+ * LngLatAlt of current location
+ * @param lineStringCoordinates
+ * LineString that we are working out the distance from
+ * @return The distance of the point to the LineString
+ */
+fun distanceToLineString(
+    pointCoordinates: LngLatAlt,
+    lineStringCoordinates: LineString
+): Double {
+
+    var minDistance = Double.MAX_VALUE
+    var last = lineStringCoordinates.coordinates[0]
+    for (i in 1 until lineStringCoordinates.coordinates.size) {
+        val current = lineStringCoordinates.coordinates[i]
+        val distance = distance(last, current, pointCoordinates)
+        minDistance = min(minDistance, distance)
+        last = current
+    }
+    return minDistance
+}
+
+/**
+ * Calculate distance of a point p to a line defined by two other points l1 and l2.
+ * @param l1
+ * point 1 on the line
+ * @param l2
+ * point 2 on the line
+ * @param p
+ * current location point
+ * @return the distance of the point to the line
+ */
+fun distance(l1: LngLatAlt, l2: LngLatAlt, p: LngLatAlt): Double {
+    return distance(l1.latitude, l1.longitude, l2.latitude, l2.longitude, p.latitude, p.longitude)
+}
+
+/**
+ * Calculate distance of a point (pLat,pLon) to a line defined by two other points (lat1,lon1) and (lat2,lon2)
+ * @param x1 double
+ * @param y1 double
+ * @param x2 double
+ * @param y2 double
+ * @param x double
+ * @param y double
+ * @return the distance of the point to the line
+ */
+fun distance(x1: Double, y1: Double, x2: Double, y2: Double, x: Double, y: Double): Double {
+    val xx: Double
+    val yy: Double
+    when {
+        y1 == y2 -> {
+            // horizontal line
+            xx = x
+            yy = y1
+        }
+        x1 == x2 -> {
+            // vertical line
+            xx = x1
+            yy = y
+        }
+        else -> {
+            // y=s*x  +c
+            val s = (y2 - y1) / (x2 - x1)
+            val c = y1 - s * x1
+
+            // y=ps*x + pc
+            val ps = -1 / s
+            val pc = y - ps * x
+
+            // solve    ps*x +pc = s*x + c
+            //          (ps-s) *x = c -pc
+            //          x= (c-pc)/(ps-s)
+            xx = (c - pc) / (ps - s)
+            yy = s * xx + c
+        }
+    }
+    return if (onSegment(xx, yy, x1, y1, x2, y2)) {
+        distance(x, y, xx, yy)
+    } else {
+        min(distance(x, y, x1, y1), distance(x, y, x2, y2))
+    }
+}
+
+fun onSegment(x: Double, y: Double, x1: Double, y1: Double, x2: Double, y2: Double): Boolean {
+    val minx = min(x1, x2)
+    val maxx = max(x1, x2)
+
+    val miny = min(y1, y2)
+    val maxy = max(y1, y2)
+
+    return x in minx..maxx && y >= miny && y <= maxy
+}
+
+
 
 /**
  * Given a super category string returns a mutable list of things in the super category.
