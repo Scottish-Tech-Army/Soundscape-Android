@@ -1,6 +1,7 @@
 package com.kersnazzle.soundscapealpha.utils
 
 import com.kersnazzle.soundscapealpha.dto.VectorTile
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
@@ -673,7 +674,41 @@ fun getPoiFovFeatureCollection(
     return poiFOVFeatureCollection
 }
 
+/**
+ * Get nearest intersection from intersections Feature Collection.
+ * WARNING: This is just a "straight line" haversine distance to an intersection it doesn't
+ * care which direction the intersection is.
+ * @param currentLocation
+ * Location of device
+ * @param intersectionFeatureCollection
+ * The intersection feature collection that contains the intersections we want to test
+ * @return A Feature Collection that contains the nearest intersection
+ */
+fun getNearestIntersection(
+    currentLocation: LngLatAlt,
+    intersectionFeatureCollection: FeatureCollection
+): FeatureCollection{
 
+    var maxDistanceToIntersection = Int.MAX_VALUE.toDouble()
+    var nearestIntersection = Feature()
+
+    for (feature in intersectionFeatureCollection) {
+        val distanceToIntersection = distance(
+            currentLocation.latitude,
+            currentLocation.longitude,
+            (feature.geometry as Point).coordinates.latitude,
+            (feature.geometry as Point).coordinates.longitude
+        )
+        if (distanceToIntersection < maxDistanceToIntersection){
+            nearestIntersection = feature
+            maxDistanceToIntersection = distanceToIntersection
+        }
+    }
+    val nearestIntersectionFeatureCollection = FeatureCollection()
+    // TODO As the distance to the intersection has already been calculated
+    //  perhaps we could insert the distance to the intersection as a property/foreign member of the Feature?
+    return nearestIntersectionFeatureCollection.addFeature(nearestIntersection)
+}
 
 /**
  * Given a super category string returns a mutable list of things in the super category.

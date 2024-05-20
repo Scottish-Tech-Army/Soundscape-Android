@@ -8,6 +8,7 @@ import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getNearestIntersection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
@@ -272,6 +273,35 @@ class TileUtilsTest {
         // there doesn't appear to be any properties other than they are buildings
         Assert.assertEquals(2, fovPoiFeatureCollection.features.size)
 
+    }
+
+    @Test
+    fun getNearestIntersectionTest(){
+        // Fake device location and pretend the device is pointing East.
+        // I've moved the device location so the FoV picks up a couple of intersections
+        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the intersections
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+        Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
+        val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
+        // Should only be the nearest intersection in this Feature Collection
+        Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
     }
 
     @Test
