@@ -435,6 +435,8 @@ fun getIntersectionsFOVFeatureCollection(
  * direction the device is pointing
  * @param distance
  * Distance to the destination points ("left" point and "right" point) in meters
+ * @param roadsFeatureCollection
+ * Feature Collection that contains the roads to check
  * @return The road features that are contained in the FOV triangle
  */
 fun getFovRoadsFeatureCollection(
@@ -522,6 +524,61 @@ fun getRoadsFovFeatureCollection(
     }
     // only the road Features that are in the FOV triangle are returned
     return roadsFOVFeatureCollection
+}
+
+/**
+ * Return a poi feature collection that is contained in the "field of view".
+ * @param location
+ * location where the device is
+ * @param heading
+ * direction the device is pointing
+ * @param distance
+ * Distance to the destination points ("left" point and "right" point) in meters
+ * @param poiFeatureCollection
+ * Points Of Interest Feature Collection to check
+ * @return The poi features that are contained in the FOV triangle
+ */
+fun getFovPoiFeatureCollection(
+    location: LngLatAlt,
+    heading: Double,
+    distance: Double,
+    poiFeatureCollection: FeatureCollection): FeatureCollection{
+    // Direction the device is pointing
+    val quadrants = getQuadrants(heading)
+    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
+    var quadrantIndex = 0
+    for (quadrant in quadrants) {
+        val containsHeading = quadrant.contains(heading)
+        if (containsHeading) {
+            break
+        } else {
+            quadrantIndex++
+        }
+    }
+    // Get the coordinate for the "Left" of the FOV
+    val destinationCoordinateLeft = getDestinationCoordinate(
+        LngLatAlt(location.longitude, location.latitude),
+        quadrants[quadrantIndex].left,
+        distance
+    )
+
+    //Get the coordinate for the "Right" of the FOV
+    val destinationCoordinateRight = getDestinationCoordinate(
+        LngLatAlt(location.longitude, location.latitude),
+        quadrants[quadrantIndex].right,
+        distance
+    )
+
+    // We can now construct our FOV polygon (triangle)
+    val polygonTriangleFOV = createTriangleFOV(
+        destinationCoordinateLeft,
+        location,
+        destinationCoordinateRight
+    )
+
+    // only the road Features that are in the FOV triangle are returned
+    return getPoiFovFeatureCollection(poiFeatureCollection, polygonTriangleFOV)
+
 }
 
 /**
