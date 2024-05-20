@@ -728,6 +728,9 @@ fun getNearestRoad(
     roadFeatureCollection: FeatureCollection
 ): FeatureCollection {
 
+    //TODO I have no idea if roads can also be represented with MultiLineStrings.
+    // In which case this will fail. Need to have a look at some tiles with motorways/dual carriageways
+
     var maxDistanceToRoad = Int.MAX_VALUE.toDouble()
     var nearestRoad = Feature()
 
