@@ -31,7 +31,11 @@ import kotlin.math.tan
  * the zoom level.
  * @return a Pair(xtile, ytile)
  */
-fun getXYTile(lat: Double, lon: Double, zoom: Int = 16): Pair<Int, Int> {
+fun getXYTile(
+    lat: Double,
+    lon: Double,
+    zoom: Int = 16
+): Pair<Int, Int> {
     val latRad = toRadians(lat)
     var xtile = floor((lon + 180) / 360 * (1 shl zoom)).toInt()
     var ytile = floor((1.0 - asinh(tan(latRad)) / PI) / 2 * (1 shl zoom)).toInt()
@@ -244,7 +248,12 @@ fun getPoiFeatureCollectionBySuperCategory(
  * String that represents the tile
  * @return String representing the cleaned tile
  */
-fun cleanTileGeoJSON(tileX: Int, tileY: Int, zoom: Double, geoJSONTile: String): String {
+fun cleanTileGeoJSON(
+    tileX: Int,
+    tileY: Int,
+    zoom: Double,
+    geoJSONTile: String
+): String {
     // create a feature collection from the string
     val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
     val tileFeatureCollection: FeatureCollection? =
@@ -408,7 +417,8 @@ fun getFovIntersectionFeatureCollection(
  */
 fun getIntersectionsFOVFeatureCollection(
     intersectionsFeatureCollection: FeatureCollection,
-    polygonTriangleFOV: Polygon): FeatureCollection {
+    polygonTriangleFOV: Polygon
+): FeatureCollection {
     // Are any of the points from the intersectionsFeatureCollection contained in the polygonTriangleFOV
     val intersectionsFOVFeatureCollection = FeatureCollection()
 
