@@ -577,7 +577,8 @@ fun getPoiFovFeatureCollection(
                 for (polygon in (feature.geometry as MultiPolygon).coordinates) {
                     for (linearRing in polygon) {
                         for (coordinate in linearRing) {
-                            val containsCoordinate = polygonContainsCoordinates(coordinate, polygonTriangleFOV)
+                            val containsCoordinate =
+                                polygonContainsCoordinates(coordinate, polygonTriangleFOV)
                             if (containsCoordinate) {
                                 poiFOVFeatureCollection.addFeature(feature)
                                 break
@@ -603,8 +604,6 @@ fun getPoiFovFeatureCollection(
                         polygonContainsCoordinates(point, polygonTriangleFOV)
                     if (containsCoordinate){
                         poiFOVFeatureCollection.addFeature(feature)
-                        // at least one of the points is in the tile so add the entire
-                        // MultiPoint Feature and break
                         break
                     }
                 }
