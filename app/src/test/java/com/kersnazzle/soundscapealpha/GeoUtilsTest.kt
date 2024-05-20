@@ -1,6 +1,5 @@
 package com.kersnazzle.soundscapealpha
 
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.MultiLineString
