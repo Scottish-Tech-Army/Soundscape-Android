@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
@@ -241,6 +242,35 @@ class TileUtilsTest {
         )
         // Should contain two roads - Weston Road and Long Ashton Road
         Assert.assertEquals(2, fovRoadsFeatureCollection.features.size)
+
+    }
+
+    @Test
+    fun getPoiInFovTest(){
+        // Fake device location and pretend the device is pointing East.
+        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the poi from the tile
+        val testPoiCollectionFromTileFeatureCollection =
+            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the Points of interest in the FoV
+        val fovPoiFeatureCollection = getFovPoiFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testPoiCollectionFromTileFeatureCollection
+        )
+        // Should contain two buildings
+        // unfortunately I seem to have chosen the two dullest buildings for my FoV as
+        // there doesn't appear to be any properties other than they are buildings
+        Assert.assertEquals(2, fovPoiFeatureCollection.features.size)
 
     }
 
