@@ -455,9 +455,9 @@ class VisuallyCheckOutput {
 
         fovRoadsFeatureCollection.addFeature(featureFOVTriangle)
 
-        val fovIntersections = moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
+        val fovRoads = moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
         // copy and paste into GeoJSON.io
-        println(fovIntersections)
+        println(fovRoads)
 
     }
 
