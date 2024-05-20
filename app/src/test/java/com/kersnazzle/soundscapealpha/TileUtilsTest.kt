@@ -219,14 +219,14 @@ class TileUtilsTest {
     @Test
     fun getRoadsInFovTest(){
         // Fake device location and pretend the device is pointing East.
-         val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
+        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
         val deviceHeading = 90.0
         val fovDistance = 50.0
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the intersections from the tile
+        // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest!!

@@ -395,7 +395,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the intersections from the tile
+        // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest!!
