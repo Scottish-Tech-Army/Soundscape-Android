@@ -2,7 +2,9 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
@@ -184,6 +186,33 @@ class TileUtilsTest {
             getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
         Assert.assertEquals(11, testSuperCategoryPoiCollection.features.size)
 
+    }
+
+    @Test
+    fun getIntersectionInFovTest(){
+        // Fake device location and pretend the device is pointing East.
+        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the intersection (this intersection is a transition from
+        // Weston Road to Long Ashton Road)
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+        // Should only be one intersection in this FoV
+        Assert.assertEquals(1, fovIntersectionsFeatureCollection.features.size)
     }
 
     @Test
