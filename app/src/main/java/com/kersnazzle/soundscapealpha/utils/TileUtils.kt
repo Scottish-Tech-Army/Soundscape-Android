@@ -15,8 +15,6 @@ import com.squareup.moshi.Moshi
 import kotlin.math.PI
 import kotlin.math.asinh
 import kotlin.math.floor
-import kotlin.math.max
-import kotlin.math.min
 import kotlin.math.tan
 
 //TODO getFovIntersectionFeatureCollection, getFovRoadsFeatureCollection and getFovPoiFeatureCollection can be rolled into one as just repeating the same thing
