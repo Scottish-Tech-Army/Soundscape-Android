@@ -764,6 +764,212 @@ fun getNearestRoad(
 }
 
 /**
+ * Get nearest Point Of Interest from poi Feature Collection.
+ * WARNING: It doesn't care which direction the poi is and this is using bounding boxes
+ * to calculate the distance which aren't that accurate depending on the shape and the size of the Poi.
+ * Point - good accuracy. Giant, weirdly shaped polygon - bad accuracy.
+ * @param currentLocation
+ * Location of device
+ * @param poiFeatureCollection
+ * The poi feature collection.
+ * @return A Feature Collection that contains the nearest poi.
+ */
+fun getNearestPoi(
+    currentLocation: LngLatAlt,
+    poiFeatureCollection: FeatureCollection
+): FeatureCollection {
+    val poiWithBoundingBoxAndDistance = addBoundingBoxAndDistanceToFeatureCollection(
+        currentLocation.latitude,
+        currentLocation.longitude,
+        poiFeatureCollection
+    )
+    var maxDistanceToPoi = Int.MAX_VALUE.toDouble()
+    var nearestPoi = Feature()
+    for (feature in poiWithBoundingBoxAndDistance){
+        if (feature.foreign!!["distance_to"].toString().toDouble() < maxDistanceToPoi){
+            nearestPoi = feature
+            maxDistanceToPoi = feature.foreign!!["distance_to"].toString().toDouble()
+        }
+    }
+    val nearestPoiFeatureCollection = FeatureCollection()
+    // I've inserted the distance_to as a foreign member. Not sure if this is a good idea or not
+    return nearestPoiFeatureCollection.addFeature(nearestPoi)
+
+}
+
+/**
+ * Given a Feature Collection and location this will add bounding boxes to each feature,
+ * calculate the distance to the center of the bounding box from the current location and return
+ * a Feature Collection that contains the bounding box and distance_to data for each Feature.
+ * @param currentLat
+ * Current latitude as Double.
+ * @param currentLon
+ * Current longitude as Double.
+ * @param featureCollection
+ * @return a Feature Collection with bounding boxes added for each Feature and the "distance_to" as
+ * a foreign member in meters
+ */
+fun addBoundingBoxAndDistanceToFeatureCollection(
+    currentLat: Double,
+    currentLon: Double,
+    featureCollection: FeatureCollection
+): FeatureCollection {
+    // Adding bounding box to each Feature so we can then calculate distance_to
+    // TODO It is a quick but crude measure of the center explore more accurate algorithms
+    for (feature in featureCollection) {
+        when (feature.geometry.type) {
+            "Point" -> {
+                val bbPoint = getBoundingBoxOfPoint(feature.geometry as Point)
+                val bbPointCorners = getBoundingBoxCorners(bbPoint)
+                val centerOfBBPoint = getCenterOfBoundingBox(bbPointCorners)
+                // Distance from current location lat/lon to center of bb for Feature
+                val distanceToFeaturePoint = distance(
+                    currentLat,
+                    currentLon,
+                    centerOfBBPoint.latitude,
+                    centerOfBBPoint.longitude
+                )
+                // Add the bounding box for the feature
+                feature.bbox = mutableListOf(
+                    bbPoint.westLongitude,
+                    bbPoint.southLatitude,
+                    bbPoint.eastLongitude,
+                    bbPoint.northLatitude
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeaturePoint)
+
+            }
+
+            "MultiPoint" -> {
+                val bbMultiPoint =
+                    getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
+                val bbMultiPointCorners = getBoundingBoxCorners(bbMultiPoint)
+                val centerOfBBMultiPoint =
+                    getCenterOfBoundingBox(bbMultiPointCorners)
+                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                val distanceToFeatureMultiPoint = distance(
+                    currentLat,
+                    currentLon,
+                    centerOfBBMultiPoint.latitude,
+                    centerOfBBMultiPoint.longitude
+                )
+                // Add the bounding box for the feature
+                feature.bbox = mutableListOf(
+                    bbMultiPoint.westLongitude,
+                    bbMultiPoint.southLatitude,
+                    bbMultiPoint.eastLongitude,
+                    bbMultiPoint.northLatitude
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeatureMultiPoint)
+            }
+
+            "LineString" -> {
+                val bbLineString =
+                    getBoundingBoxOfLineString(feature.geometry as LineString)
+                val bbLineStringCorners = getBoundingBoxCorners(bbLineString)
+                val centerOfBBLineString =
+                    getCenterOfBoundingBox(bbLineStringCorners)
+                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                val distanceToFeatureLineString = distance(
+                    currentLat,
+                    currentLon,
+                    centerOfBBLineString.latitude,
+                    centerOfBBLineString.longitude
+                )
+                // Add the bounding box for the feature
+                feature.bbox = mutableListOf(
+                    bbLineString.westLongitude,
+                    bbLineString.southLatitude,
+                    bbLineString.eastLongitude,
+                    bbLineString.northLatitude
+                )
+                // insert a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeatureLineString)
+            }
+
+            "MultiLineString" -> {
+                val bbMultiLineString =
+                    getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
+                val bbMultiLineStringCorners =
+                    getBoundingBoxCorners(bbMultiLineString)
+                val centerOfBBMultiLineString =
+                    getCenterOfBoundingBox(bbMultiLineStringCorners)
+                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                val distanceToFeatureMultiLineString = distance(
+                    currentLat,
+                    currentLon,
+                    centerOfBBMultiLineString.latitude,
+                    centerOfBBMultiLineString.longitude
+                )
+                // Add the bounding box for the feature
+                feature.bbox = mutableListOf(
+                    bbMultiLineString.westLongitude,
+                    bbMultiLineString.southLatitude,
+                    bbMultiLineString.eastLongitude,
+                    bbMultiLineString.northLatitude
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeatureMultiLineString)
+            }
+
+            "Polygon" -> {
+                val bbPolygon =
+                    getBoundingBoxOfPolygon(feature.geometry as Polygon)
+                val bbPolygonCorners = getBoundingBoxCorners(bbPolygon)
+                val centerOfBBPolygon =
+                    getCenterOfBoundingBox(bbPolygonCorners)
+                // Distance from current location lat/lon to center of bb for Feature
+                val distanceToFeaturePolygon = distance(
+                    currentLat,
+                    currentLon,
+                    centerOfBBPolygon.latitude,
+                    centerOfBBPolygon.longitude
+                )
+                // Add the bounding box for the feature
+                feature.bbox = mutableListOf(
+                    bbPolygon.westLongitude,
+                    bbPolygon.southLatitude,
+                    bbPolygon.eastLongitude,
+                    bbPolygon.northLatitude
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeaturePolygon)
+            }
+
+            "MultiPolygon" -> {
+                val bbMultiPolygon =
+                    getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
+                val bbMultiPolygonCorners =
+                    getBoundingBoxCorners(bbMultiPolygon)
+                val centerOfBBMultiPolygon =
+                    getCenterOfBoundingBox(bbMultiPolygonCorners)
+                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                val distanceToFeatureMultiPolygon = distance(
+                    currentLat,
+                    currentLon,
+                    centerOfBBMultiPolygon.latitude,
+                    centerOfBBMultiPolygon.longitude
+                )
+                // Add the bounding box for the feature
+                feature.bbox = mutableListOf(
+                    bbMultiPolygon.westLongitude,
+                    bbMultiPolygon.southLatitude,
+                    bbMultiPolygon.eastLongitude,
+                    bbMultiPolygon.northLatitude
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeatureMultiPolygon)
+            }
+
+            else -> println("Unknown type ${feature.geometry.type}")
+        }
+    }
+    return featureCollection
+}
+
+/**
  * Distance to a LineString from current location.
  * @param pointCoordinates
  * LngLatAlt of current location
