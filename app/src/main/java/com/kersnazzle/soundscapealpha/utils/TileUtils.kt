@@ -987,8 +987,7 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
  * Direction the device is pointing in degrees
  * @param distance
  * Length of left and right side of triangle in meters.
- * @return a Feature Collection with bounding boxes added for each Feature and
- * the "distance_to" from the current location as a foreign member in meters.
+ * @return a Feature Collection containing triangles for the relative directions.
  */
 fun getCombinedDirectionPolygons(
     location: LngLatAlt,
