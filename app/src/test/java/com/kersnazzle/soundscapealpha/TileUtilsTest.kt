@@ -3,6 +3,8 @@ package com.kersnazzle.soundscapealpha
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
+import com.kersnazzle.soundscapealpha.utils.getCombinedDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
@@ -17,6 +19,7 @@ import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
@@ -389,6 +392,88 @@ class TileUtilsTest {
         val testGetTilesForRadius =
             getTilesForRegion(51.43860066718254, -2.69439697265625, 500.0, 16)
         Assert.assertEquals(25, testGetTilesForRadius.size)
+    }
+
+    @Test
+    fun getRelativeDirectionsTest(){
+
+        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 0.0
+        val distance = 50.0
+
+        val combinedDirectionPolygons  = getCombinedDirectionPolygons(location, deviceHeading, distance)
+
+        // Location to test relative directions. Placed in "Ahead" triangle
+        val testBeaconAhead = LngLatAlt(-2.6572829456840736,51.4307659303868)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere1 = polygonContainsCoordinates(testBeaconAhead, (feature.geometry as Polygon))
+            if (iAmHere1){
+                Assert.assertEquals("Ahead", feature.properties!!["Direction"])
+            }
+        }
+
+        // Location to test relative directions. Placed in "Ahead Right" triangle
+        val testBeaconAheadRight = LngLatAlt(-2.656996677668559,51.43067289460916)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere2 = polygonContainsCoordinates(testBeaconAheadRight, (feature.geometry as Polygon))
+            if (iAmHere2){
+                Assert.assertEquals("Ahead Right", feature.properties!!["Direction"])
+            }
+        }
+
+        // Location to test relative directions. Placed in "Right" triangle
+        val testBeaconRight = LngLatAlt(-2.656649501563379, 51.430464038091515)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere3 = polygonContainsCoordinates(testBeaconRight, (feature.geometry as Polygon))
+            if (iAmHere3){
+                Assert.assertEquals("Right", feature.properties!!["Direction"])
+            }
+        }
+
+        // Location to test relative directions. Placed in "Behind Right" triangle
+        val testBeaconBehindRight = LngLatAlt(-2.6570667219705797,51.43031404054909)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere4 = polygonContainsCoordinates(testBeaconBehindRight, (feature.geometry as Polygon))
+            if (iAmHere4){
+                Assert.assertEquals("Behind Right", feature.properties!!["Direction"])
+            }
+        }
+
+        // Location to test relative directions. Placed in "Behind" triangle
+        val testBeaconBehind = LngLatAlt(-2.6572890364938644,51.430274167701896)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere5 = polygonContainsCoordinates(testBeaconBehind, (feature.geometry as Polygon))
+            if (iAmHere5){
+                Assert.assertEquals("Behind", feature.properties!!["Direction"])
+            }
+        }
+
+        // Location to test relative directions. Placed in "Behind Left" triangle
+        val testBeaconBehindLeft = LngLatAlt(-2.657806755246213,51.430285559947464)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere6 = polygonContainsCoordinates(testBeaconBehindLeft, (feature.geometry as Polygon))
+            if (iAmHere6){
+                Assert.assertEquals("Behind Left", feature.properties!!["Direction"])
+            }
+        }
+        // Location to test relative directions. Placed in "Left" triangle
+        val testBeaconLeft = LngLatAlt(-2.6579194352108857,51.43053239123893)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere7 = polygonContainsCoordinates(testBeaconLeft, (feature.geometry as Polygon))
+            if (iAmHere7){
+                Assert.assertEquals("Left", feature.properties!!["Direction"])
+            }
+        }
+        // Location to test relative directions. Placed in "Ahead Left" triangle
+        val testBeaconAheadLeft = LngLatAlt(-2.657566168297052,51.430682388064525)
+        for (feature in combinedDirectionPolygons){
+            val iAmHere8 = polygonContainsCoordinates(testBeaconAheadLeft, (feature.geometry as Polygon))
+            if (iAmHere8){
+                Assert.assertEquals("Ahead Left", feature.properties!!["Direction"])
+            }
+        }
+
+
     }
 
 }

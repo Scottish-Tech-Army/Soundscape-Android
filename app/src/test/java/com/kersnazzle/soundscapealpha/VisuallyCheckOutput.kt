@@ -555,27 +555,17 @@ class VisuallyCheckOutput {
     // Trying to understand how relative headings "ahead", "ahead left", etc. work
     // Displaying Soundscape COMBINED Direction types with this
     @Test
-    fun relativeDirectionsPolygonsTest(){
-
+    fun relativeDirectionsPolygons(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
         val deviceHeading = 0.0
         val distance = 50.0
 
-        // Location to test relative directions. Placed in "Behind Right" triangle
-        val testBeacon = LngLatAlt(-2.6570667219705797,51.43031404054909)
-
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val combinedDirectionPolygons  = getCombinedDirectionPolygons(location, deviceHeading, distance)
 
-        var iAmHere : Boolean
-        for (feature in combinedDirectionPolygons){
-            iAmHere = polygonContainsCoordinates(testBeacon, (feature.geometry as Polygon))
-            if (iAmHere){
-                Assert.assertEquals("Behind Right", feature.properties!!["Direction"])
-            }
-        }
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(combinedDirectionPolygons)
+
         println(relativeDirectionTrianglesString)
 
     }
