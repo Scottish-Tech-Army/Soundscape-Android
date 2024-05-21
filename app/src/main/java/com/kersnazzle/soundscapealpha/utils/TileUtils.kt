@@ -53,7 +53,8 @@ fun getXYTile(
     return Pair(xtile, ytile)
 }
 
-/** Given a radius and location it calculates the set of tiles (VectorTiles) that cover a
+/**
+ * Given a radius and location it calculates the set of tiles (VectorTiles) that cover a
  * circular region around the specified location.
  * @param currentLatitude
  * The center of the region to search.
@@ -67,7 +68,7 @@ fun getTilesForRegion(
     currentLatitude: Double,
     currentLongitude: Double,
     radius: Double,
-    zoom: Int
+    zoom: Int = 16
 ): MutableList<VectorTile> {
 
     val (pixelX, pixelY) = getPixelXY(currentLatitude, currentLongitude, zoom)
