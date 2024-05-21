@@ -20,14 +20,14 @@ import kotlin.math.tan
 //TODO getFovIntersectionFeatureCollection, getFovRoadsFeatureCollection and getFovPoiFeatureCollection can be rolled into one as just repeating the same thing
 
 /**
- * Gets Slippy Map Tile Name from X and Y GPS coordinates and Zoom (fixed at 16 for Soundscape)
+ * Gets Slippy Map Tile Name from X and Y GPS coordinates and Zoom (fixed at 16 for Soundscape).
  * @param lat
- * latitude in decimal degrees
+ * Latitude in decimal degrees.
  * @param lon
- * longitude in decimal degrees
+ * Longitude in decimal degrees.
  * @param zoom
- * the zoom level.
- * @return a Pair(xtile, ytile)
+ * The zoom level.
+ * @return a Pair(xtile, ytile).
  */
 fun getXYTile(
     lat: Double,
@@ -97,8 +97,8 @@ fun getTilesForRegion(
  * Given a valid Tile features collection this will parse the collection and return a roads
  * feature collection. Uses the "highway" feature_type to extract roads from GeoJSON.
  * @param tileFeatureCollection
- * valid Tile Feature Collection
- * @return a FeatureCollection that contains only roads.
+ * A Tile Feature Collection
+ * @return A FeatureCollection that contains only roads.
  */
 fun getRoadsFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -128,9 +128,9 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
 /**
  * Given a valid Tile feature collection this will parse the collection and return a paths
  * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
- * paths from Feature Collection
+ * Paths from Feature Collection.
  * @param tileFeatureCollection
- * valid Tile Feature Collection
+ * A Feature Collection object
  * @return a FeatureCollection that contains only paths.
  */
 fun getPathsFeatureCollectionFromTileFeatureCollection(
@@ -151,10 +151,10 @@ fun getPathsFeatureCollectionFromTileFeatureCollection(
 }
 
 /**
- * Parses out all the Intersections in a tile FeatureCollection using the "gd_intersection" feature_value
+ * Parses out all the Intersections in a tile FeatureCollection using the "gd_intersection" feature_value.
  * @param tileFeatureCollection
- * takes a FeatureCollection object
- * @return a Feature collection object that only contains intersections
+ * A FeatureCollection object.
+ * @return a Feature collection object that only contains intersections.
  */
 fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -170,10 +170,10 @@ fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
 }
 
 /**
- * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type
+ * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
- * takes a FeatureCollection object
- * @return a feature collection object that only contains entrances
+ * A FeatureCollection object.
+ * @return a feature collection object that only contains entrances.
  */
 fun getEntrancesFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -188,10 +188,10 @@ fun getEntrancesFeatureCollectionFromTileFeatureCollection(
 }
 
 /**
- * Parses out all the Points of Interest (POI) in a tile FeatureCollection
+ * Parses out all the Points of Interest (POI) in a tile FeatureCollection.
  * @param tileFeatureCollection
- * takes a FeatureCollection object
- * @return a Feature collection object that only contains POI
+ * A FeatureCollection object.
+ * @return a Feature collection object that only contains POI.
  */
 fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -210,8 +210,8 @@ fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
  * @param superCategory
  * String for super category. Options are "information", "object", "place", "landmark", "mobility", "safety"
  * @param poiFeatureCollection
- * POI Feature Collection for a tile
- * @return a Feature Collection containing only the Features from the super category
+ * POI Feature Collection for a tile.
+ * @return a Feature Collection containing only the Features from the super category.
  */
 fun getPoiFeatureCollectionBySuperCategory(
     superCategory: String,
@@ -237,14 +237,14 @@ fun getPoiFeatureCollectionBySuperCategory(
  * University of Bristol, and Monarchs Way walking route. This strips out Features that someone has
  * wrapped giant polygons around in the original OSM data. Need to see if there is a fix for this on the backend...
  * @param tileX
- * Slippy tile X
+ * Slippy tile X.
  * @param tileY
- * Slippy tile Y
+ * Slippy tile Y.
  * @param zoom
  * Zoom level should be 16.0
  * @param geoJSONTile
- * String that represents the tile
- * @return String representing the cleaned tile
+ * String that represents the tile.
+ * @return String representing the cleaned tile.
  */
 fun cleanTileGeoJSON(
     tileX: Int,
@@ -352,15 +352,14 @@ fun cleanTileGeoJSON(
 /**
  * Return a Feature Collection that contains the Intersections in the "field of view" triangle.
  * @param location
- * location of the device
+ * Location of the device.
  * @param heading
- * direction the device is pointing
+ * Direction the device is pointing.
  * @param distance
- * distance to extend the "field of view"
+ * Distance to extend the "field of view"
  * @param intersectionsFeatureCollection
- * The intersections feature collection that we want to filter
- * @return A Feature Collection that contains the Intersections in the FOV triangle which is 90
- * degrees from the heading of the device
+ * The intersections feature collection that we want to filter.
+ * @return A Feature Collection that contains the Intersections in the FOV triangle.
  */
 fun getFovIntersectionFeatureCollection(
     location: LngLatAlt,
@@ -408,10 +407,10 @@ fun getFovIntersectionFeatureCollection(
 /**
  * Return a Feature Collection that contains the intersections in the "field of view" triangle.
  * @param intersectionsFeatureCollection
- * The intersections feature collection for a tile
+ * The intersections feature collection for a tile.
  * @param polygonTriangleFOV
- * The triangle or any other shape you feel like that is being tested to see what intersections it contains
- * @return A Feature Collection that contains the intersections in the FOV triangle
+ * The triangle to see what intersections it contains.
+ * @return A Feature Collection that contains the intersections in the FOV triangle.
  */
 fun getIntersectionsFOVFeatureCollection(
     intersectionsFeatureCollection: FeatureCollection,
@@ -443,14 +442,14 @@ fun getIntersectionsFOVFeatureCollection(
 /**
  * Return a roads feature collection that is contained in the "field of view".
  * @param location
- * location where the device is
+ * Location where the device is.
  * @param heading
- * direction the device is pointing
+ * Direction the device is pointing.
  * @param distance
- * Distance to the destination points ("left" point and "right" point) in meters
+ * Distance to the destination points ("left" point and "right" point) in meters.
  * @param roadsFeatureCollection
- * Feature Collection that contains the roads to check
- * @return The road features that are contained in the FOV triangle
+ * Feature Collection that contains the roads to check.
+ * @return The road features that are contained in the FOV triangle.
  */
 fun getFovRoadsFeatureCollection(
     location: LngLatAlt,
@@ -498,10 +497,10 @@ fun getFovRoadsFeatureCollection(
 /**
  * Return a Feature Collection that contains the roads in the "field of view" triangle.
  * @param roadsFeatureCollection
- * The roads feature collection for a tile
+ * The roads feature collection for a tile.
  * @param polygonTriangleFOV
- * The triangle that is being tested to see what roads it contains
- * @return A Feature Collection that contains the roads in the FOV triangle
+ * The triangle that is being tested to see what roads it contains.
+ * @return A Feature Collection that contains the roads in the FOV triangle.
  */
 fun getRoadsFovFeatureCollection(
     roadsFeatureCollection: FeatureCollection,
@@ -542,14 +541,14 @@ fun getRoadsFovFeatureCollection(
 /**
  * Return a poi feature collection that is contained in the "field of view".
  * @param location
- * location where the device is
+ * Location where the device is.
  * @param heading
- * direction the device is pointing
+ * Direction the device is pointing.
  * @param distance
- * Distance to the destination points ("left" point and "right" point) in meters
+ * Distance to the destination points ("left" point and "right" point) in meters.
  * @param poiFeatureCollection
- * Points Of Interest Feature Collection to check
- * @return The poi features that are contained in the FOV triangle
+ * Points Of Interest Feature Collection to check.
+ * @return The poi features that are contained in the FOV triangle.
  */
 fun getFovPoiFeatureCollection(
     location: LngLatAlt,
@@ -597,10 +596,10 @@ fun getFovPoiFeatureCollection(
 /**
  * Return a Feature Collection that contains the Points Of Interest in the "field of view" triangle.
  * @param poiFeatureCollection
- * The poi feature collection for a tile
+ * The poi feature collection for a tile.
  * @param polygonTriangleFOV
- * The triangle that is being tested to see what poi it contains
- * @return A Feature Collection that contains the Points of Interest in the FOV triangle
+ * The triangle that is being tested to see what poi it contains.
+ * @return A Feature Collection that contains the Points of Interest in the FOV triangle.
  */
 fun getPoiFovFeatureCollection(
     poiFeatureCollection: FeatureCollection,
@@ -689,10 +688,10 @@ fun getPoiFovFeatureCollection(
  * WARNING: This is just a "straight line" haversine distance to an intersection it doesn't
  * care which direction the intersection is.
  * @param currentLocation
- * Location of device
+ * Location of device.
  * @param intersectionFeatureCollection
- * The intersection feature collection that contains the intersections we want to test
- * @return A Feature Collection that contains the nearest intersection
+ * The intersection feature collection that contains the intersections we want to test.
+ * @return A Feature Collection that contains the nearest intersection.
  */
 fun getNearestIntersection(
     currentLocation: LngLatAlt,
@@ -724,12 +723,12 @@ fun getNearestIntersection(
 /**
  * Get nearest road from roads Feature Collection.
  * WARNING: It doesn't care which direction the road is.
- * Roads can contain crossings which are Points not LineStrings
+ * Roads can contain crossings which are Points not LineStrings.
  * @param currentLocation
- * Location of device
+ * Location of device.
  * @param roadFeatureCollection
- * The intersection feature collection that contains the intersections we want to test
- * @return A Feature Collection that contains the nearest road
+ * The intersection feature collection that contains the intersections we want to test.
+ * @return A Feature Collection that contains the nearest road.
  */
 fun getNearestRoad(
     currentLocation: LngLatAlt,
@@ -777,7 +776,7 @@ fun getNearestRoad(
  * to calculate the distance which aren't that accurate depending on the shape and the size of the Poi.
  * Point - good accuracy. Giant, weirdly shaped polygon - bad accuracy.
  * @param currentLocation
- * Location of device
+ * Location of device.
  * @param poiFeatureCollection
  * The poi feature collection.
  * @return A Feature Collection that contains the nearest poi.
@@ -815,7 +814,7 @@ fun getNearestPoi(
  * Current longitude as Double.
  * @param featureCollection
  * @return a Feature Collection with bounding boxes added for each Feature and the "distance_to" as
- * a foreign member in meters
+ * a foreign member in meters.
  */
 fun addBoundingBoxAndDistanceToFeatureCollection(
     currentLat: Double,
@@ -855,7 +854,7 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
                 val bbMultiPointCorners = getBoundingBoxCorners(bbMultiPoint)
                 val centerOfBBMultiPoint =
                     getCenterOfBoundingBox(bbMultiPointCorners)
-                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                // Distance from current location lat/lon to center of bb for Feature
                 val distanceToFeatureMultiPoint = distance(
                     currentLat,
                     currentLon,
@@ -879,7 +878,7 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
                 val bbLineStringCorners = getBoundingBoxCorners(bbLineString)
                 val centerOfBBLineString =
                     getCenterOfBoundingBox(bbLineStringCorners)
-                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                // Distance from current location lat/lon to center of bb for Feature
                 val distanceToFeatureLineString = distance(
                     currentLat,
                     currentLon,
@@ -904,7 +903,7 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
                     getBoundingBoxCorners(bbMultiLineString)
                 val centerOfBBMultiLineString =
                     getCenterOfBoundingBox(bbMultiLineStringCorners)
-                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                // Distance from current location lat/lon to center of bb for Feature
                 val distanceToFeatureMultiLineString = distance(
                     currentLat,
                     currentLon,
@@ -953,7 +952,7 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
                     getBoundingBoxCorners(bbMultiPolygon)
                 val centerOfBBMultiPolygon =
                     getCenterOfBoundingBox(bbMultiPolygonCorners)
-                // Distance from current location lat/lon (faked as center of tile) to center of bb for Feature
+                // Distance from current location lat/lon to center of bb for Feature
                 val distanceToFeatureMultiPolygon = distance(
                     currentLat,
                     currentLon,
@@ -979,10 +978,10 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
 
 /**
  * Given a super category string returns a mutable list of things in the super category.
- * Categories taken from original Soundscape
+ * Categories taken from original Soundscape.
  * @param category
  * String for super category. Options are "information", "object", "place", "landmark", "mobility", "safety"
- * @return a mutable list of things in the super category
+ * @return a mutable list of things in the super category.
  */
 fun getSuperCategoryElements(category: String): MutableList<String> {
     return when (category) {
