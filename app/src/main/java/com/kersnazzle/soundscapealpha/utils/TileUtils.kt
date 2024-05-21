@@ -692,7 +692,7 @@ fun getPoiFovFeatureCollection(
  * Location of device.
  * @param intersectionFeatureCollection
  * The intersection feature collection that contains the intersections we want to test.
- * @return A Feature Collection that contains the nearest intersection.
+ * * @return A Feature Collection that contains the nearest intersection.
  */
 fun getNearestIntersection(
     currentLocation: LngLatAlt,
@@ -718,6 +718,37 @@ fun getNearestIntersection(
     // TODO As the distance to the intersection has already been calculated
     //  perhaps we could insert the distance to the intersection as a property/foreign member of the Feature?
     return nearestIntersectionFeatureCollection.addFeature(nearestIntersection)
+}
+
+/**
+ * Get the road names/ref/road type that make up the intersection. Intersection objects only
+ * contain "osm_ids" so we need to hook the osm_ids up with the information from the roads
+ * feature collection
+ * @param intersectionFeatureCollection
+ * Feature collection that contains a single intersection
+ * @param roadsFeatureCollection
+ * A roads feature collection.
+ * @return A Feature Collection that contains the roads that make up the nearest intersection.
+ */
+fun getIntersectionRoadNames(
+    intersectionFeatureCollection: FeatureCollection,
+    roadsFeatureCollection: FeatureCollection
+): FeatureCollection{
+
+    val intersectionRoads = FeatureCollection()
+
+    for(intersectionFeature in intersectionFeatureCollection){
+        val testOsmId = intersectionFeature.foreign!!["osm_ids"] as ArrayList<Double?>
+        for (item in testOsmId){
+            for(roadFeature in roadsFeatureCollection){
+                if((roadFeature.foreign!!["osm_ids"] as ArrayList<Double?>)[0] == item){
+                    intersectionRoads.addFeature(roadFeature)
+                }
+            }
+        }
+    }
+    return intersectionRoads
+
 }
 
 

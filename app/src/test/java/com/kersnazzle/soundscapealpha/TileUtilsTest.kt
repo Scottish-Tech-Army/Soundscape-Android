@@ -9,6 +9,7 @@ import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTil
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getIntersectionRoadNames
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getNearestIntersection
 import com.kersnazzle.soundscapealpha.utils.getNearestPoi
@@ -473,6 +474,59 @@ class TileUtilsTest {
             }
         }
 
+
+    }
+
+    @Test
+    fun getIntersectionRoadNamesTest(){
+        // Fake device location and pretend the device is pointing East.
+        // I've moved the device location so the FoV picks up a couple of intersections
+        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the roads from the tile
+        val testRoadsCollectionFromTileFeatureCollection =
+            getRoadsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // create a FVO triangle to pick up the roads
+        val  fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testRoadsCollectionFromTileFeatureCollection
+        )
+        // Create a FOV triangle to pick up the intersections
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+        // we will pick up three roads in our FoV so we need to identify which of the
+        // roads makes up the nearest intersection
+        Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
+        Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
+
+        val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
+        Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
+
+        // get the roads that make up the intersection based on the osm_ids
+        val nearestIntersectionRoadNames = getIntersectionRoadNames(
+            nearestIntersectionFeatureCollection,
+            fovRoadsFeatureCollection
+        )
+        Assert.assertEquals("Long Ashton Road", nearestIntersectionRoadNames.features[1].properties!!["name"])
+        Assert.assertEquals("Weston Road", nearestIntersectionRoadNames.features[0].properties!!["name"])
 
     }
 
