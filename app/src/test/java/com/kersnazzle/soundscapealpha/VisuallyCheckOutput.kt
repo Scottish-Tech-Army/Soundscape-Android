@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.Quadrant
 import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
@@ -26,8 +27,10 @@ import com.kersnazzle.soundscapealpha.utils.getQuadrants
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.kersnazzle.soundscapealpha.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
+import org.junit.Assert
 import org.junit.Test
 
 // Functions to output GeoJSON strings that can be put into the very useful Geojson.io
@@ -558,9 +561,19 @@ class VisuallyCheckOutput {
         val deviceHeading = 0.0
         val distance = 50.0
 
+        // Location to test relative directions. Placed in "Behind Right" triangle
+        val testBeacon = LngLatAlt(-2.6570667219705797,51.43031404054909)
+
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val combinedDirectionPolygons  = getCombinedDirectionPolygons(location, deviceHeading, distance)
 
+        var iAmHere : Boolean
+        for (feature in combinedDirectionPolygons){
+            iAmHere = polygonContainsCoordinates(testBeacon, (feature.geometry as Polygon))
+            if (iAmHere){
+                Assert.assertEquals("Behind Right", feature.properties!!["Direction"])
+            }
+        }
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(combinedDirectionPolygons)
         println(relativeDirectionTrianglesString)
