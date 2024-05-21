@@ -56,9 +56,9 @@ fun getXYTile(
 /** Given a radius and location it calculates the set of tiles (VectorTiles) that cover a
  * circular region around the specified location.
  * @param currentLatitude
- * The center of the region to search
+ * The center of the region to search.
  * @param currentLongitude
- * The center of the region to search
+ * The center of the region to search.
  * @param radius
  * The radius of the region to get adjoining tiles in meters
  * @return  A MutableList of VectorTiles covering the searched region
@@ -94,11 +94,11 @@ fun getTilesForRegion(
 }
 
 /**
- * Given a valid Tile features collection this will parse the collection and return a roads
+ * Given a valid Tile feature collection this will parse the collection and return a roads
  * feature collection. Uses the "highway" feature_type to extract roads from GeoJSON.
  * @param tileFeatureCollection
- * A Tile Feature Collection
- * @return A FeatureCollection that contains only roads.
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only roads.
  */
 fun getRoadsFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -130,8 +130,8 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
  * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
  * Paths from Feature Collection.
  * @param tileFeatureCollection
- * A Feature Collection object
- * @return a FeatureCollection that contains only paths.
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only paths.
  */
 fun getPathsFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -173,7 +173,7 @@ fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
  * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
  * A FeatureCollection object.
- * @return a feature collection object that only contains entrances.
+ * @return a feature collection object that contains only entrances.
  */
 fun getEntrancesFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -191,7 +191,7 @@ fun getEntrancesFeatureCollectionFromTileFeatureCollection(
  * Parses out all the Points of Interest (POI) in a tile FeatureCollection.
  * @param tileFeatureCollection
  * A FeatureCollection object.
- * @return a Feature collection object that only contains POI.
+ * @return a Feature collection object that contains only POI.
  */
 fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
     tileFeatureCollection: FeatureCollection
@@ -211,7 +211,7 @@ fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
  * String for super category. Options are "information", "object", "place", "landmark", "mobility", "safety"
  * @param poiFeatureCollection
  * POI Feature Collection for a tile.
- * @return a Feature Collection containing only the Features from the super category.
+ * @return a Feature Collection object containing only the Features from the super category.
  */
 fun getPoiFeatureCollectionBySuperCategory(
     superCategory: String,
@@ -813,8 +813,8 @@ fun getNearestPoi(
  * @param currentLon
  * Current longitude as Double.
  * @param featureCollection
- * @return a Feature Collection with bounding boxes added for each Feature and the "distance_to" as
- * a foreign member in meters.
+ * @return a Feature Collection with bounding boxes added for each Feature and
+ * the "distance_to" from the current location as a foreign member in meters.
  */
 fun addBoundingBoxAndDistanceToFeatureCollection(
     currentLat: Double,
