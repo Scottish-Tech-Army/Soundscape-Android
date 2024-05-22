@@ -1239,23 +1239,22 @@ fun getLeftRightDirectionPolygons(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
-
-
     // Take the original 45 degree "ahead" and give it a bias for left and right (ahead is 330 to 30 degrees)
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
-
-
+    // Behind
     val triangle3Left = (triangle1DirectionsQuad.left + 195.0) % 360.0
     val triangle3Right = (triangle1DirectionsQuad.right + 165.0) % 360.0
     val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
 
+    // Left
     val triangle4Left = (triangle1DirectionsQuad.left + 255.0) % 360.0
     val triangle4Right = (triangle1DirectionsQuad.right + 285.0) % 360.0
     degreesList.add(Pair(triangle4Left, triangle4Right))
+    // Ahead
     val triangle1Left = (triangle1DirectionsQuad.left + 15.0) % 360.0
     val triangle1Right = (triangle1DirectionsQuad.right - 15.0) % 360
     degreesList.add(Pair(triangle1Left, triangle1Right))
-
+    // Right
     val triangle2Left = (triangle1DirectionsQuad.left + 75.0) % 360.0
     val triangle2Right = (triangle1DirectionsQuad.right + 105.0) % 360.0
     degreesList.add(Pair(triangle2Left, triangle2Right))
@@ -1289,7 +1288,19 @@ fun getLeftRightDirectionPolygons(
 
 }
 
-
+/**
+ * A wrapper around:
+ * getCombinedDirectionPolygons, getIndividualDirectionPolygons, getAheadBehindDirectionPolygons, getLeftRightDirectionPolygons
+ * @param location
+ * LngLatAlt object
+ * @param deviceHeading
+ * Direction the device is pointing in degrees
+ * @param distance
+ * Length of left and right side of triangle in meters.
+ * @param relativeDirectionType
+ * Enum for the function you want to use
+ * @return a Feature Collection containing triangles for the relative directions.
+ */
 fun getRelativeDirectionsPolygons(
     location: LngLatAlt,
     deviceHeading: Double,
