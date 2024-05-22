@@ -21,6 +21,7 @@ import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIndividualDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getLeftRightDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
@@ -602,6 +603,23 @@ class VisuallyCheckOutput {
 
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(aheadBehindRelativeDirections)
+
+        println(relativeDirectionTrianglesString)
+
+    }
+
+    //Displaying Soundscape LEFT_RIGHT Direction types
+    @Test
+    fun relativeDirectionsLeftRight(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 0.0
+        val distance = 50.0
+
+        val leftRightRelativeDirections = getLeftRightDirectionPolygons(location, deviceHeading, distance)
+
+        val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
+            .toJson(leftRightRelativeDirections)
 
         println(relativeDirectionTrianglesString)
 
