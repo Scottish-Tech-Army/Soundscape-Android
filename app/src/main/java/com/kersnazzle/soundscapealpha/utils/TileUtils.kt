@@ -1695,6 +1695,31 @@ fun getLeftRightDirectionPolygons(
 
 }
 
+
+
+fun getRelativeDirectionsPolygons(
+    location: LngLatAlt,
+    deviceHeading: Double,
+    distance: Double = 50.0,
+    relativeDirectionType: RelativeDirections
+): FeatureCollection {
+
+    when(relativeDirectionType){
+        RelativeDirections.COMBINED -> {
+            return getCombinedDirectionPolygons(location, deviceHeading, distance)
+        }
+        RelativeDirections.INDIVIDUAL -> {
+            return getIndividualDirectionPolygons(location, deviceHeading, distance)
+        }
+        RelativeDirections.AHEAD_BEHIND -> {
+            return getAheadBehindDirectionPolygons(location, deviceHeading, distance)
+        }
+        RelativeDirections.LEFT_RIGHT -> {
+            return getLeftRightDirectionPolygons(location, deviceHeading, distance)
+        }
+    }
+}
+
 /**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
