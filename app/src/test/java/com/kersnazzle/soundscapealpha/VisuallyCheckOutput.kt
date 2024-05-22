@@ -10,6 +10,7 @@ import com.kersnazzle.soundscapealpha.utils.Quadrant
 import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.createTriangleFOV
+import com.kersnazzle.soundscapealpha.utils.getAheadBehindDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getBoundingBoxCorners
 import com.kersnazzle.soundscapealpha.utils.getCenterOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getCombinedDirectionPolygons
@@ -586,6 +587,27 @@ class VisuallyCheckOutput {
 
         println(relativeDirectionTrianglesString)
     }
+
+    //Displaying Soundscape AHEAD_BEHIND Direction types
+    @Test
+    fun relativeDirectionsAheadBehind(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 25.0
+        val distance = 50.0
+
+        // Issue here is because of the bias towards "ahead" and "behind" you end up with a wide but shallow field of view
+        // Probably better to do some trig to provide the distance to keep the depth of the field of view constant?
+        val aheadBehindRelativeDirections = getAheadBehindDirectionPolygons(location, deviceHeading, distance)
+
+        val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
+            .toJson(aheadBehindRelativeDirections)
+
+        println(relativeDirectionTrianglesString)
+
+    }
+
+
 
 
 }

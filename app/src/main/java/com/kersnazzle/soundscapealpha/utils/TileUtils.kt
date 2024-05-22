@@ -1423,6 +1423,143 @@ fun getIndividualDirectionPolygons(
 }
 
 /**
+ * Given a location, device heading and distance this will create a feature collection of triangles
+ * that represent relative directions for the given heading. The triangles represent "ahead", "right",
+ * "behind", "left". This represents original Soundscapes AHEAD_BEHIND direction type.
+ * @param location
+ * LngLatAlt object
+ * @param deviceHeading
+ * Direction the device is pointing in degrees
+ * @param distance
+ * Length of left and right side of triangle in meters.
+ * @return a Feature Collection containing triangles for the relative directions.
+ */
+fun getAheadBehindDirectionPolygons(
+    location: LngLatAlt,
+    deviceHeading: Double,
+    distance: Double = 50.0
+): FeatureCollection {
+
+    val newFeatureCollection = FeatureCollection()
+    // Take the original 45 degree "ahead" and give it a bias for ahead (285 to 75 degrees)
+    val triangle1DirectionsQuad = Quadrant(deviceHeading)
+    val triangle1Left = (triangle1DirectionsQuad.left - 30.0) % 360.0
+    val triangle1Right = (triangle1DirectionsQuad.right + 30.0) % 360
+
+    // creating triangle to visualise what is going on
+    val ahead1 = getDestinationCoordinate(
+        location,
+        triangle1Left,
+        distance
+    )
+    val ahead2 = getDestinationCoordinate(
+        location,
+        triangle1Right,
+        distance
+    )
+    val aheadTriangle = createTriangleFOV(
+        ahead1,
+        location,
+        ahead2
+    )
+
+    val featureAheadTriangle = Feature().also {
+        val ars3: HashMap<String, Any?> = HashMap()
+        ars3 += Pair("Direction", "Ahead")
+        it.properties = ars3
+    }
+    featureAheadTriangle.geometry = aheadTriangle
+    newFeatureCollection.addFeature(featureAheadTriangle)
+
+    val triangle2Left = (triangle1DirectionsQuad.left + 120.0) % 360.0
+    val triangle2Right = (triangle1DirectionsQuad.right + 60.0) % 360.0
+
+    // creating triangle to visualise what is going on
+    val right1 = getDestinationCoordinate(
+        location,
+        triangle2Left,
+        distance
+    )
+    val right2 = getDestinationCoordinate(
+        location,
+        triangle2Right,
+        distance
+    )
+    val rightTriangle = createTriangleFOV(
+        right1,
+        location,
+        right2
+    )
+
+    val featureRightTriangle = Feature().also {
+        val ars3: HashMap<String, Any?> = HashMap()
+        ars3 += Pair("Direction", "Right")
+        it.properties = ars3
+    }
+    featureRightTriangle.geometry = rightTriangle
+    newFeatureCollection.addFeature(featureRightTriangle)
+
+    val triangle3Left = (triangle1DirectionsQuad.left + 150.0) % 360.0
+    val triangle3Right = (triangle1DirectionsQuad.right + 210.0) % 360.0
+
+    // creating triangle to visualise what is going on
+    val behind1 = getDestinationCoordinate(
+        location,
+        triangle3Left,
+        distance
+    )
+    val behind2 = getDestinationCoordinate(
+        location,
+        triangle3Right,
+        distance
+    )
+    val behindTriangle = createTriangleFOV(
+        behind1,
+        location,
+        behind2
+    )
+
+    val featureBehindTriangle = Feature().also {
+        val ars3: HashMap<String, Any?> = HashMap()
+        ars3 += Pair("Direction", "Behind")
+        it.properties = ars3
+    }
+    featureBehindTriangle.geometry = behindTriangle
+    newFeatureCollection.addFeature(featureBehindTriangle)
+
+    val triangle4Left = (triangle1DirectionsQuad.left + 300.0) % 360.0
+    val triangle4Right = (triangle1DirectionsQuad.right + 240.0) % 360.0
+
+    // creating triangle to visualise what is going on
+    val left1 = getDestinationCoordinate(
+        location,
+        triangle4Left,
+        distance
+    )
+    val left2 = getDestinationCoordinate(
+        location,
+        triangle4Right,
+        distance
+    )
+    val leftTriangle = createTriangleFOV(
+        left1,
+        location,
+        left2
+    )
+
+    val featureLeftTriangle = Feature().also {
+        val ars3: HashMap<String, Any?> = HashMap()
+        ars3 += Pair("Direction", "Left")
+        it.properties = ars3
+    }
+    featureLeftTriangle.geometry = leftTriangle
+    newFeatureCollection.addFeature(featureLeftTriangle)
+    return newFeatureCollection
+
+
+}
+
+/**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
  * @param category
