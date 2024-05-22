@@ -1121,119 +1121,50 @@ fun getIndividualDirectionPolygons(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
+    // TODO put this into a resource string
+    val relativeDirections = mutableListOf(
+        "Ahead", "Right", "Behind", "Left"
+    )
+
     // Take the original 45 degree "ahead"
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
     val triangle1Left = triangle1DirectionsQuad.left
     val triangle1Right = triangle1DirectionsQuad.right
-
-    // creating triangle to visualise what is going on
-    val ahead1 = getDestinationCoordinate(
-        location,
-        triangle1Left,
-        distance
-    )
-    val ahead2 = getDestinationCoordinate(
-        location,
-        triangle1Right,
-        distance
-    )
-    val aheadTriangle = createTriangleFOV(
-        ahead1,
-        location,
-        ahead2
-    )
-
-    val featureAheadTriangle = Feature().also {
-        val ars3: HashMap<String, Any?> = HashMap()
-        ars3 += Pair("Direction", "Ahead")
-        it.properties = ars3
-    }
-    featureAheadTriangle.geometry = aheadTriangle
-    newFeatureCollection.addFeature(featureAheadTriangle)
-
+    val degreesList = mutableListOf(Pair(triangle1Left, triangle1Right))
     val triangle2Left = (triangle1DirectionsQuad.left + 90.0) % 360.0
     val triangle2Right = (triangle1DirectionsQuad.right + 90.0) % 360.0
-
-    // creating triangle to visualise what is going on
-    val right1 = getDestinationCoordinate(
-        location,
-        triangle2Left,
-        distance
-    )
-    val right2 = getDestinationCoordinate(
-        location,
-        triangle2Right,
-        distance
-    )
-    val rightTriangle = createTriangleFOV(
-        right1,
-        location,
-        right2
-    )
-
-    val featureRightTriangle = Feature().also {
-        val ars3: HashMap<String, Any?> = HashMap()
-        ars3 += Pair("Direction", "Right")
-        it.properties = ars3
-    }
-    featureRightTriangle.geometry = rightTriangle
-    newFeatureCollection.addFeature(featureRightTriangle)
-
+    degreesList.add(Pair(triangle2Left, triangle2Right))
     val triangle3Left = (triangle1DirectionsQuad.left + 180.0) % 360.0
     val triangle3Right = (triangle1DirectionsQuad.right + 180.0) % 360.0
-
-    // creating triangle to visualise what is going on
-    val behind1 = getDestinationCoordinate(
-        location,
-        triangle3Left,
-        distance
-    )
-    val behind2 = getDestinationCoordinate(
-        location,
-        triangle3Right,
-        distance
-    )
-    val behindTriangle = createTriangleFOV(
-        behind1,
-        location,
-        behind2
-    )
-
-    val featureBehindTriangle = Feature().also {
-        val ars3: HashMap<String, Any?> = HashMap()
-        ars3 += Pair("Direction", "Behind")
-        it.properties = ars3
-    }
-    featureBehindTriangle.geometry = behindTriangle
-    newFeatureCollection.addFeature(featureBehindTriangle)
-
+    degreesList.add(Pair(triangle3Left, triangle3Right))
     val triangle4Left = (triangle1DirectionsQuad.left + 270.0) % 360.0
     val triangle4Right = (triangle1DirectionsQuad.right + 270.0) % 360.0
+    degreesList.add(Pair(triangle4Left, triangle4Right))
 
-    // creating triangle to visualise what is going on
-    val left1 = getDestinationCoordinate(
-        location,
-        triangle4Left,
-        distance
-    )
-    val left2 = getDestinationCoordinate(
-        location,
-        triangle4Right,
-        distance
-    )
-    val leftTriangle = createTriangleFOV(
-        left1,
-        location,
-        left2
-    )
-
-    val featureLeftTriangle = Feature().also {
-        val ars3: HashMap<String, Any?> = HashMap()
-        ars3 += Pair("Direction", "Left")
-        it.properties = ars3
+    for ((count, degreePair) in degreesList.withIndex()) {
+        val ahead1 = getDestinationCoordinate(
+            location,
+            degreePair.first,
+            distance
+        )
+        val ahead2 = getDestinationCoordinate(
+            location,
+            degreePair.second,
+            distance
+        )
+        val aheadTriangle = createTriangleFOV(
+            ahead1,
+            location,
+            ahead2
+        )
+        val featureAheadTriangle = Feature().also {
+            val ars3: HashMap<String, Any?> = HashMap()
+            ars3 += Pair("Direction", relativeDirections[count])
+            it.properties = ars3
+        }
+        featureAheadTriangle.geometry = aheadTriangle
+        newFeatureCollection.addFeature(featureAheadTriangle)
     }
-    featureLeftTriangle.geometry = leftTriangle
-    newFeatureCollection.addFeature(featureLeftTriangle)
     return newFeatureCollection
 
 }
