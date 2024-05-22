@@ -1187,11 +1187,6 @@ fun getAheadBehindDirectionPolygons(
     distance: Double = 50.0
 ): FeatureCollection {
 
-    val newFeatureCollection = FeatureCollection()
-    // TODO put this into a resource string
-    val relativeDirections = mutableListOf(
-        "Ahead", "Right", "Behind", "Left"
-    )
     // Take the original 45 degree "ahead" and give it a bias for ahead (285 to 75 degrees)
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
     val triangle1Left = (triangle1DirectionsQuad.left - 30.0) % 360.0
@@ -1207,6 +1202,19 @@ fun getAheadBehindDirectionPolygons(
     val triangle4Right = (triangle1DirectionsQuad.right + 240.0) % 360.0
     degreesList.add(Pair(triangle4Left, triangle4Right))
 
+    return makeTriangles(degreesList, location, distance)
+}
+
+fun makeTriangles(
+    degreesList: MutableList<Pair<Double, Double>>,
+    location: LngLatAlt,
+    distance: Double,
+): FeatureCollection{
+    // TODO put this into a resource string
+    val relativeDirections = mutableListOf(
+        "Ahead", "Right", "Behind", "Left"
+    )
+    val newFeatureCollection = FeatureCollection()
     for ((count, degreePair) in degreesList.withIndex()) {
         val ahead1 = getDestinationCoordinate(
             location,
@@ -1232,7 +1240,6 @@ fun getAheadBehindDirectionPolygons(
         newFeatureCollection.addFeature(featureAheadTriangle)
     }
     return newFeatureCollection
-
 }
 
 
