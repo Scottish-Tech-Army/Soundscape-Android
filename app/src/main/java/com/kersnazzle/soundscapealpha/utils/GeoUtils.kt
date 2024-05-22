@@ -743,6 +743,27 @@ fun distanceToLineString(
 }
 
 /**
+ * Distance to an intersection from current location.
+ * @param location
+ * LngLatAlt of current location
+ * @param intersection
+ * Coordinates for intersection that we want to know the distance to as Point
+ * @return The distance of the current location to the intersection in meters.
+ */
+fun distanceToIntersection(
+    location: LngLatAlt,
+    intersection: Point
+): Double {
+    return distance(
+        location.latitude,
+        location.longitude,
+        intersection.coordinates.latitude,
+        intersection.coordinates.longitude
+    )
+
+}
+
+/**
  * Calculate distance of a point p to a line defined by two other points l1 and l2.
  * @param l1
  * point 1 on the line

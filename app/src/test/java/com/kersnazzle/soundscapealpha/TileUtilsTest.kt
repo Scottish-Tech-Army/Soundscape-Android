@@ -3,7 +3,9 @@ package com.kersnazzle.soundscapealpha
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
+import com.kersnazzle.soundscapealpha.utils.distanceToIntersection
 import com.kersnazzle.soundscapealpha.utils.getCombinedDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
@@ -520,6 +522,12 @@ class TileUtilsTest {
         val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
         Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
 
+        // how far away is the intersection?
+        val distanceToNearestIntersection = distanceToIntersection(currentLocation,
+            nearestIntersectionFeatureCollection.features[0].geometry as Point
+        )
+        Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
+
         // get the roads that make up the intersection based on the osm_ids
         val nearestIntersectionRoadNames = getIntersectionRoadNames(
             nearestIntersectionFeatureCollection,
@@ -527,6 +535,10 @@ class TileUtilsTest {
         )
         Assert.assertEquals("Long Ashton Road", nearestIntersectionRoadNames.features[1].properties!!["name"])
         Assert.assertEquals("Weston Road", nearestIntersectionRoadNames.features[0].properties!!["name"])
+    // TODO Up to this point we can determine the nearest intersection depending on our
+    //  device direction and return the roads that make up the intersection.
+    //  What we can't yet do is say anything about the directions of the roads that make up the intersection.
+    //  There are a lot of different types of intersections
 
     }
 
