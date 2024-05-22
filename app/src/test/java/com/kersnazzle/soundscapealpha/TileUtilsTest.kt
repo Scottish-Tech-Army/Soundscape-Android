@@ -5,6 +5,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
+import com.kersnazzle.soundscapealpha.utils.Direction
 import com.kersnazzle.soundscapealpha.utils.distanceToIntersection
 import com.kersnazzle.soundscapealpha.utils.getCombinedDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
@@ -411,7 +412,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere1 = polygonContainsCoordinates(testBeaconAhead, (feature.geometry as Polygon))
             if (iAmHere1){
-                Assert.assertEquals("Ahead", feature.properties!!["Direction"])
+                Assert.assertEquals(4, feature.properties!!["Direction"])
             }
         }
 
@@ -420,7 +421,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere2 = polygonContainsCoordinates(testBeaconAheadRight, (feature.geometry as Polygon))
             if (iAmHere2){
-                Assert.assertEquals("Ahead Right", feature.properties!!["Direction"])
+                Assert.assertEquals(5, feature.properties!!["Direction"])
             }
         }
 
@@ -429,7 +430,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere3 = polygonContainsCoordinates(testBeaconRight, (feature.geometry as Polygon))
             if (iAmHere3){
-                Assert.assertEquals("Right", feature.properties!!["Direction"])
+                Assert.assertEquals(6, feature.properties!!["Direction"])
             }
         }
 
@@ -438,7 +439,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere4 = polygonContainsCoordinates(testBeaconBehindRight, (feature.geometry as Polygon))
             if (iAmHere4){
-                Assert.assertEquals("Behind Right", feature.properties!!["Direction"])
+                Assert.assertEquals(7, feature.properties!!["Direction"])
             }
         }
 
@@ -447,7 +448,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere5 = polygonContainsCoordinates(testBeaconBehind, (feature.geometry as Polygon))
             if (iAmHere5){
-                Assert.assertEquals("Behind", feature.properties!!["Direction"])
+                Assert.assertEquals(0, feature.properties!!["Direction"])
             }
         }
 
@@ -456,7 +457,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere6 = polygonContainsCoordinates(testBeaconBehindLeft, (feature.geometry as Polygon))
             if (iAmHere6){
-                Assert.assertEquals("Behind Left", feature.properties!!["Direction"])
+                Assert.assertEquals(1, feature.properties!!["Direction"])
             }
         }
         // Location to test relative directions. Placed in "Left" triangle
@@ -464,7 +465,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere7 = polygonContainsCoordinates(testBeaconLeft, (feature.geometry as Polygon))
             if (iAmHere7){
-                Assert.assertEquals("Left", feature.properties!!["Direction"])
+                Assert.assertEquals(2, feature.properties!!["Direction"])
             }
         }
         // Location to test relative directions. Placed in "Ahead Left" triangle
@@ -472,7 +473,7 @@ class TileUtilsTest {
         for (feature in combinedDirectionPolygons){
             val iAmHere8 = polygonContainsCoordinates(testBeaconAheadLeft, (feature.geometry as Polygon))
             if (iAmHere8){
-                Assert.assertEquals("Ahead Left", feature.properties!!["Direction"])
+                Assert.assertEquals(3, feature.properties!!["Direction"])
             }
         }
 

@@ -1027,52 +1027,55 @@ fun getCombinedDirectionPolygons(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
-    // TODO put this into a resource string
-    val relativeDirections = mutableListOf(
-        "Ahead", "Ahead Right", "Right", "Behind Right", "Behind", "Behind Left", "Left", "Ahead Left"
-    )
 
-    // Take the original 45 degree "ahead"/quadrant triangle and cutting it down
-    // to a 30 degree "ahead" triangle
     val triangleDirectionsQuad = Quadrant(deviceHeading)
-    val triangle1Left = (triangleDirectionsQuad.left + 30.0) % 360.0
-    val triangle1Right = (triangleDirectionsQuad.right - 30.0) % 360.0
-    val degreesList = mutableListOf(Pair(triangle1Left, triangle1Right))
-    // Take the original 45 degree "ahead"/quadrant triangle and making
-    // it a 60 degree "ahead right" triangle
-    val triangle2Left = (triangleDirectionsQuad.left + 60.0) % 360.0
-    val triangle2Right = (triangleDirectionsQuad.right + 30.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
-    // Take the original 45 degree "ahead"/quadrant triangle and making
-    // it a 30 degree "right" triangle
-    val triangle3Left = (triangleDirectionsQuad.left + 120.0) % 360.0
-    val triangle3Right = (triangleDirectionsQuad.right + 60.0) % 360.0
-    degreesList.add(Pair(triangle3Left, triangle3Right))
-    // Take the  original 45 degree "ahead"/quadrant triangle and making
-    // it a 60 degree "behind right" triangle
-    val triangle4Left = (triangleDirectionsQuad.left + 150.0) % 360.0
-    val triangle4Right = (triangleDirectionsQuad.right + 120.0) % 360.0
-    degreesList.add(Pair(triangle4Left, triangle4Right))
     // Take the  original 45 degree "ahead"/quadrant triangle and making
     // it a 30 degree "behind" triangle
     val triangle5Left = (triangleDirectionsQuad.left + 210.0) % 360.0
     val triangle5Right = (triangleDirectionsQuad.right + 150.0) % 360.0
-    degreesList.add(Pair(triangle5Left, triangle5Right))
+    val degreesList = mutableListOf(Pair(triangle5Left, triangle5Right))
+
     // Take the  original 45 degree "ahead"/quadrant triangle and making
     // it a 30 degree "behind left" triangle
     val triangle6Left = (triangleDirectionsQuad.left + 240.0) % 360.0
     val triangle6Right = (triangleDirectionsQuad.right + 210.0) % 360.0
     degreesList.add(Pair(triangle6Left, triangle6Right))
+
     // Take the original 45 degree "ahead"/quadrant triangle and making
     // it a 30 degree "left" triangle
     val triangle7Left = (triangleDirectionsQuad.left + 300.0) % 360.0
     val triangle7Right = (triangleDirectionsQuad.right + 240.0) % 360.0
     degreesList.add(Pair(triangle7Left, triangle7Right))
+
     // Take the original 45 degree "ahead"/quadrant triangle and making
     // it a 60 degree "ahead left" triangle
     val triangle8Left = (triangleDirectionsQuad.left - 30.0) % 360.0
     val triangle8Right = (triangleDirectionsQuad.right - 60.0) % 360.0
     degreesList.add(Pair(triangle8Left, triangle8Right))
+
+    // Take the original 45 degree "ahead"/quadrant triangle and cutting it down
+    // to a 30 degree "ahead" triangle
+    val triangle1Left = (triangleDirectionsQuad.left + 30.0) % 360.0
+    val triangle1Right = (triangleDirectionsQuad.right - 30.0) % 360.0
+    degreesList.add(Pair(triangle1Left, triangle1Right))
+
+    // Take the original 45 degree "ahead"/quadrant triangle and making
+    // it a 60 degree "ahead right" triangle
+    val triangle2Left = (triangleDirectionsQuad.left + 60.0) % 360.0
+    val triangle2Right = (triangleDirectionsQuad.right + 30.0) % 360.0
+    degreesList.add(Pair(triangle2Left, triangle2Right))
+
+    // Take the original 45 degree "ahead"/quadrant triangle and making
+    // it a 30 degree "right" triangle
+    val triangle3Left = (triangleDirectionsQuad.left + 120.0) % 360.0
+    val triangle3Right = (triangleDirectionsQuad.right + 60.0) % 360.0
+    degreesList.add(Pair(triangle3Left, triangle3Right))
+
+    // Take the  original 45 degree "ahead"/quadrant triangle and making
+    // it a 60 degree "behind right" triangle
+    val triangle4Left = (triangleDirectionsQuad.left + 150.0) % 360.0
+    val triangle4Right = (triangleDirectionsQuad.right + 120.0) % 360.0
+    degreesList.add(Pair(triangle4Left, triangle4Right))
 
     for ((count, degreePair) in degreesList.withIndex()) {
         val ahead1 = getDestinationCoordinate(
@@ -1092,7 +1095,7 @@ fun getCombinedDirectionPolygons(
         )
         val featureAheadTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", relativeDirections[count])
+            ars3 += Pair("Direction", count)
             it.properties = ars3
         }
         featureAheadTriangle.geometry = aheadTriangle
@@ -1122,18 +1125,20 @@ fun getIndividualDirectionPolygons(
 
     // Take the original 45 degree "ahead"
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
-    val triangle1Left = triangle1DirectionsQuad.left
-    val triangle1Right = triangle1DirectionsQuad.right
-    val degreesList = mutableListOf(Pair(triangle1Left, triangle1Right))
-    val triangle2Left = (triangle1DirectionsQuad.left + 90.0) % 360.0
-    val triangle2Right = (triangle1DirectionsQuad.right + 90.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
+    // I got the ordering wrong with this originally as Soundscape works clockwise starting from behind, left, ahead, right
+    // so my triangle numbering looks weird
     val triangle3Left = (triangle1DirectionsQuad.left + 180.0) % 360.0
     val triangle3Right = (triangle1DirectionsQuad.right + 180.0) % 360.0
-    degreesList.add(Pair(triangle3Left, triangle3Right))
+    val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
     val triangle4Left = (triangle1DirectionsQuad.left + 270.0) % 360.0
     val triangle4Right = (triangle1DirectionsQuad.right + 270.0) % 360.0
     degreesList.add(Pair(triangle4Left, triangle4Right))
+    val triangle1Left = triangle1DirectionsQuad.left
+    val triangle1Right = triangle1DirectionsQuad.right
+    degreesList.add(Pair(triangle1Left, triangle1Right))
+    val triangle2Left = (triangle1DirectionsQuad.left + 90.0) % 360.0
+    val triangle2Right = (triangle1DirectionsQuad.right + 90.0) % 360.0
+    degreesList.add(Pair(triangle2Left, triangle2Right))
 
     return makeTriangles(degreesList, location, distance)
 
@@ -1159,18 +1164,23 @@ fun getAheadBehindDirectionPolygons(
 
     // Take the original 45 degree "ahead" and give it a bias for ahead (285 to 75 degrees)
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
-    val triangle1Left = (triangle1DirectionsQuad.left - 30.0) % 360.0
-    val triangle1Right = (triangle1DirectionsQuad.right + 30.0) % 360
-    val degreesList = mutableListOf(Pair(triangle1Left, triangle1Right))
-    val triangle2Left = (triangle1DirectionsQuad.left + 120.0) % 360.0
-    val triangle2Right = (triangle1DirectionsQuad.right + 60.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
+    // I got the ordering wrong with this originally as Soundscape works clockwise from behind, left, ahead, right
+    // so my triangle numbering looks weird
     val triangle3Left = (triangle1DirectionsQuad.left + 150.0) % 360.0
     val triangle3Right = (triangle1DirectionsQuad.right + 210.0) % 360.0
-    degreesList.add(Pair(triangle3Left, triangle3Right))
+    val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
+
     val triangle4Left = (triangle1DirectionsQuad.left + 300.0) % 360.0
     val triangle4Right = (triangle1DirectionsQuad.right + 240.0) % 360.0
     degreesList.add(Pair(triangle4Left, triangle4Right))
+
+    val triangle1Left = (triangle1DirectionsQuad.left - 30.0) % 360.0
+    val triangle1Right = (triangle1DirectionsQuad.right + 30.0) % 360
+    degreesList.add(Pair(triangle1Left, triangle1Right))
+
+    val triangle2Left = (triangle1DirectionsQuad.left + 120.0) % 360.0
+    val triangle2Right = (triangle1DirectionsQuad.right + 60.0) % 360.0
+    degreesList.add(Pair(triangle2Left, triangle2Right))
 
     return makeTriangles(degreesList, location, distance)
 }
@@ -1180,10 +1190,7 @@ fun makeTriangles(
     location: LngLatAlt,
     distance: Double,
 ): FeatureCollection{
-    // TODO put this into a resource string
-    val relativeDirections = mutableListOf(
-        "Ahead", "Right", "Behind", "Left"
-    )
+
     val newFeatureCollection = FeatureCollection()
     for ((count, degreePair) in degreesList.withIndex()) {
         val ahead1 = getDestinationCoordinate(
@@ -1203,7 +1210,7 @@ fun makeTriangles(
         )
         val featureAheadTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", relativeDirections[count])
+            ars3 += Pair("Direction", count)
             it.properties = ars3
         }
         featureAheadTriangle.geometry = aheadTriangle
@@ -1232,24 +1239,26 @@ fun getLeftRightDirectionPolygons(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
-    // TODO put this into a resource string
-    val relativeDirections = mutableListOf(
-        "Ahead", "Right", "Behind", "Left"
-    )
+
+
     // Take the original 45 degree "ahead" and give it a bias for left and right (ahead is 330 to 30 degrees)
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
-    val triangle1Left = (triangle1DirectionsQuad.left + 15.0) % 360.0
-    val triangle1Right = (triangle1DirectionsQuad.right - 15.0) % 360
-    val degreesList = mutableListOf(Pair(triangle1Left, triangle1Right))
-    val triangle2Left = (triangle1DirectionsQuad.left + 75.0) % 360.0
-    val triangle2Right = (triangle1DirectionsQuad.right + 105.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
+
+
     val triangle3Left = (triangle1DirectionsQuad.left + 195.0) % 360.0
     val triangle3Right = (triangle1DirectionsQuad.right + 165.0) % 360.0
-    degreesList.add(Pair(triangle3Left, triangle3Right))
+    val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
+
     val triangle4Left = (triangle1DirectionsQuad.left + 255.0) % 360.0
     val triangle4Right = (triangle1DirectionsQuad.right + 285.0) % 360.0
     degreesList.add(Pair(triangle4Left, triangle4Right))
+    val triangle1Left = (triangle1DirectionsQuad.left + 15.0) % 360.0
+    val triangle1Right = (triangle1DirectionsQuad.right - 15.0) % 360
+    degreesList.add(Pair(triangle1Left, triangle1Right))
+
+    val triangle2Left = (triangle1DirectionsQuad.left + 75.0) % 360.0
+    val triangle2Right = (triangle1DirectionsQuad.right + 105.0) % 360.0
+    degreesList.add(Pair(triangle2Left, triangle2Right))
 
     for ((count, degreePair) in degreesList.withIndex()) {
         val ahead1 = getDestinationCoordinate(
@@ -1269,7 +1278,7 @@ fun getLeftRightDirectionPolygons(
         )
         val featureAheadTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", relativeDirections[count])
+            ars3 += Pair("Direction", count)
             it.properties = ars3
         }
         featureAheadTriangle.geometry = aheadTriangle
