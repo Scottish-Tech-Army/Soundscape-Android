@@ -1281,7 +1281,6 @@ fun getLeftRightDirectionPolygons(
 }
 
 
-
 fun getRelativeDirectionsPolygons(
     location: LngLatAlt,
     deviceHeading: Double,
@@ -1289,19 +1288,11 @@ fun getRelativeDirectionsPolygons(
     relativeDirectionType: RelativeDirections
 ): FeatureCollection {
 
-    when(relativeDirectionType){
-        RelativeDirections.COMBINED -> {
-            return getCombinedDirectionPolygons(location, deviceHeading, distance)
-        }
-        RelativeDirections.INDIVIDUAL -> {
-            return getIndividualDirectionPolygons(location, deviceHeading, distance)
-        }
-        RelativeDirections.AHEAD_BEHIND -> {
-            return getAheadBehindDirectionPolygons(location, deviceHeading, distance)
-        }
-        RelativeDirections.LEFT_RIGHT -> {
-            return getLeftRightDirectionPolygons(location, deviceHeading, distance)
-        }
+    return when(relativeDirectionType){
+        RelativeDirections.COMBINED -> getCombinedDirectionPolygons(location, deviceHeading, distance)
+        RelativeDirections.INDIVIDUAL -> getIndividualDirectionPolygons(location, deviceHeading, distance)
+        RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionPolygons(location, deviceHeading, distance)
+        RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionPolygons(location, deviceHeading, distance)
     }
 }
 
