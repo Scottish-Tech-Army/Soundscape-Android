@@ -500,7 +500,7 @@ class TileUtilsTest {
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest!!
             )
-        // create a FVO triangle to pick up the roads
+        // create a FOV triangle to pick up the roads
         val  fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
             currentLocation,
             deviceHeading,

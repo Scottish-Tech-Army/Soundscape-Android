@@ -18,6 +18,7 @@ import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTil
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getIndividualDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCategory
@@ -555,7 +556,7 @@ class VisuallyCheckOutput {
     // Trying to understand how relative headings "ahead", "ahead left", etc. work
     // Displaying Soundscape COMBINED Direction types with this
     @Test
-    fun relativeDirectionsPolygons(){
+    fun relativeDirectionsCombined(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
         val deviceHeading = 0.0
@@ -568,6 +569,22 @@ class VisuallyCheckOutput {
 
         println(relativeDirectionTrianglesString)
 
+    }
+
+    //Displaying Soundscape INDIVIDUAL Direction types
+    @Test
+    fun relativeDirectionsIndividual(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 25.0
+        val distance = 50.0
+
+        val individualRelativeDirections = getIndividualDirectionPolygons(location, deviceHeading, distance)
+
+        val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
+            .toJson(individualRelativeDirections)
+
+        println(relativeDirectionTrianglesString)
     }
 
 
