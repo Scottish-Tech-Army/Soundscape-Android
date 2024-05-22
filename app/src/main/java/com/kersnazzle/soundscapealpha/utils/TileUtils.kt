@@ -1027,6 +1027,10 @@ fun getCombinedDirectionPolygons(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
+    // TODO put this into a resource string
+    val relativeDirections = mutableListOf(
+        "Ahead", "Ahead Right", "Right", "Behind Right", "Behind", "Behind Left", "Left", "Ahead Left"
+    )
 
     // Take the original 45 degree "ahead"/quadrant triangle and cutting it down
     // to a 30 degree "ahead" triangle
@@ -1088,7 +1092,7 @@ fun getCombinedDirectionPolygons(
         )
         val featureAheadTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", count)
+            ars3 += Pair("Direction", relativeDirections[count])
             it.properties = ars3
         }
         featureAheadTriangle.geometry = aheadTriangle
