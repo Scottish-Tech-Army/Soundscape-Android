@@ -496,11 +496,13 @@ fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double
  * The distance in meters that we want the coordinate to be on the LineString.
  * @return The new coordinate as a LngLatAlt object.
  */
-fun getReferenceCoordinate(path: LineString, targetDistance: Double): LngLatAlt {
+fun getReferenceCoordinate(path: LineString, targetDistance: Double, reversePath: Boolean): LngLatAlt {
 
     if (path.coordinates.size == 1 || targetDistance <= 0.0) return path.coordinates.first()
 
     if (targetDistance == Double.MAX_VALUE) return path.coordinates.last()
+
+    if (reversePath) path.coordinates.reverse()
 
     var totalDistance = 0.0
     // work our way along the linestring to check the distance

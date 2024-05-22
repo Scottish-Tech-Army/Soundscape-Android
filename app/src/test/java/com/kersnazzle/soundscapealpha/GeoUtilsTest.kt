@@ -362,7 +362,8 @@ class GeoUtilsTest {
 
         val referenceCoordinateTest = getReferenceCoordinate(
             lineStringObject,
-            distanceBetweenCoordinates/2
+            distanceBetweenCoordinates/2,
+            false
         )
         Assert.assertEquals(0.5, referenceCoordinateTest.longitude, 0.000001)
         Assert.assertEquals(0.0, referenceCoordinateTest.latitude, 0.000001)
