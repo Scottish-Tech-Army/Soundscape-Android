@@ -7,6 +7,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.Quadrant
+import com.kersnazzle.soundscapealpha.utils.RelativeDirections
 import com.kersnazzle.soundscapealpha.utils.circleToPolygon
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.createTriangleFOV
@@ -27,6 +28,7 @@ import com.kersnazzle.soundscapealpha.utils.getPoiFeatureCollectionBySuperCatego
 import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPolygonOfBoundingBox
 import com.kersnazzle.soundscapealpha.utils.getQuadrants
+import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
@@ -622,10 +624,23 @@ class VisuallyCheckOutput {
             .toJson(leftRightRelativeDirections)
 
         println(relativeDirectionTrianglesString)
-
     }
 
+    @Test
+    fun relativeDirectionsAll(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 0.0
+        val distance = 50.0
 
+        // A wrapper around the individual functions
+        val relativeDirections = getRelativeDirectionsPolygons(
+            location, deviceHeading, distance, RelativeDirections.COMBINED
+        )
+        val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
+            .toJson(relativeDirections)
 
+        println(relativeDirectionTrianglesString)
 
+    }
 }
