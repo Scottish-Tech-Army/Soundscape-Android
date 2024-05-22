@@ -1120,12 +1120,6 @@ fun getIndividualDirectionPolygons(
     distance: Double = 50.0
 ): FeatureCollection {
 
-    val newFeatureCollection = FeatureCollection()
-    // TODO put this into a resource string
-    val relativeDirections = mutableListOf(
-        "Ahead", "Right", "Behind", "Left"
-    )
-
     // Take the original 45 degree "ahead"
     val triangle1DirectionsQuad = Quadrant(deviceHeading)
     val triangle1Left = triangle1DirectionsQuad.left
@@ -1141,31 +1135,7 @@ fun getIndividualDirectionPolygons(
     val triangle4Right = (triangle1DirectionsQuad.right + 270.0) % 360.0
     degreesList.add(Pair(triangle4Left, triangle4Right))
 
-    for ((count, degreePair) in degreesList.withIndex()) {
-        val ahead1 = getDestinationCoordinate(
-            location,
-            degreePair.first,
-            distance
-        )
-        val ahead2 = getDestinationCoordinate(
-            location,
-            degreePair.second,
-            distance
-        )
-        val aheadTriangle = createTriangleFOV(
-            ahead1,
-            location,
-            ahead2
-        )
-        val featureAheadTriangle = Feature().also {
-            val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", relativeDirections[count])
-            it.properties = ars3
-        }
-        featureAheadTriangle.geometry = aheadTriangle
-        newFeatureCollection.addFeature(featureAheadTriangle)
-    }
-    return newFeatureCollection
+    return makeTriangles(degreesList, location, distance)
 
 }
 
