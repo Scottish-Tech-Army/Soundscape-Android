@@ -1240,15 +1240,16 @@ fun makeTriangles(
  * The road as a Feature
  * @return A RoadDirectionAtIntersection
  */
-fun directionAtIntersection(intersection: Feature, road: Feature): RoadDirectionAtIntersection {
+fun getDirectionAtIntersection(intersection: Feature, road: Feature): RoadDirectionAtIntersection {
     val roadCoordinates = (road.geometry as LineString).coordinates
     val intersectionCoordinate = (intersection.geometry as Point).coordinates
+    val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
 
     return if (intersectionCoordinate.longitude == roadCoordinates.first().longitude && intersectionCoordinate.latitude == roadCoordinates.first().latitude) {
         RoadDirectionAtIntersection.LEADING
     } else if (intersectionCoordinate.longitude == roadCoordinates.last().longitude && intersectionCoordinate.latitude == roadCoordinates.last().latitude) {
         RoadDirectionAtIntersection.TRAILING
-    } else if (roadCoordinates.contains(intersectionCoordinate)) {
+    } else if (coordinateFound) {
         RoadDirectionAtIntersection.LEADING_AND_TRAILING
     } else {
         RoadDirectionAtIntersection.NONE

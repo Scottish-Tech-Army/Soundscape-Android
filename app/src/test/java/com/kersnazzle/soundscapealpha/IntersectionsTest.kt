@@ -7,11 +7,13 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.RelativeDirections
+import com.kersnazzle.soundscapealpha.utils.getDirectionAtIntersection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionRoadNames
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getNearestIntersection
+import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
@@ -204,26 +206,51 @@ class IntersectionsTest {
         val testNearestIntersection = getNearestIntersection(currentLocation,fovIntersectionsFeatureCollection)
         val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
         // what relative direction(s) are the road(s) that make up the nearest intersection?
+        // what road are we nearest to?
+        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        // what is the road direction type in relation to the nearest intersection and nearest road
+
 
         // first create a relative direction polygon and put it on the intersection node with the same
         // heading as the device
         val intersectionLocation = testNearestIntersection.features[0].geometry as Point
-        val relativeDirections = getRelativeDirectionsPolygons(
+        val relativeDirectionsAtIntersection = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
             deviceHeading,
             fovDistance,
             RelativeDirections.COMBINED
         )
+        val relativeDirectionsAtCurrentLocation = getRelativeDirectionsPolygons(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            RelativeDirections.COMBINED
+        )
+        // where's the intersection relative to our current location - direction 4 - ahead
+        for(direction in relativeDirectionsAtCurrentLocation ) {
+            val intersectionHere = polygonContainsCoordinates(
+                LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+                (direction.geometry as Polygon)
+            )
+            if (intersectionHere){
+                println("Intersection direction: ${direction.properties!!["Direction"]}")
+            }
+        }
 
-        // this should be clockwise from 6 o'clock
-        // so the first road will be the road we are on (direction 0) - Weston Road
-        // the second road which makes up the intersection is ahead left (direction 3) etc. Long Ashton Road
-        for (direction in relativeDirections){
+        // The relative directions begin at 6 o'clock and are clockwise
+        // the road we are on should have a relative direction of 0
+        // (relative direction 0 at the intersection) - Weston Road
+        // the other road which makes up the intersection is ahead left
+        // (relative direction 3 at the intersection) - Long Ashton Road
+        for (direction in relativeDirectionsAtIntersection){
             for (road in testIntersectionRoadNames) {
                 val testReferenceCoordinateForward = getReferenceCoordinate(
                     road.geometry as LineString, 25.0, false)
                 val iAmHere1 = polygonContainsCoordinates(
                     testReferenceCoordinateForward, (direction.geometry as Polygon))
+                // LineString Coordinates don't have a set "first" and "last" so the
+                // reference coordinate we created above could be at the other "end" of the road
+                // TODO change getReferenceCoordinate to accept the intersection coordinate so we know the "first"
                 if (iAmHere1){
                     println("Road name: ${road.properties!!["name"]}")
                     println("Road direction: ${direction.properties!!["Direction"]}")
@@ -477,7 +504,7 @@ class IntersectionsTest {
      }
 
      @Test
-     fun intersectionSideRoadLeft(){
+     fun intersectionsSideRoadLeft(){
          // Fake device location and pretend the device is pointing South West and we are located on:
          // Long Ashton Road
          val currentLocation = LngLatAlt(-2.656530323429564,51.43065207103919)
@@ -585,7 +612,7 @@ class IntersectionsTest {
                  featureCollectionTest!!
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
-         // a T junction standing on St Martins and the main road is Long Ashton)
+         // a T junction with the device on St Martins and the main road is Long Ashton)
          val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
              currentLocation,
              deviceHeading,
@@ -607,8 +634,17 @@ class IntersectionsTest {
          )
 
          // this should be clockwise from 6 o'clock
-         // so the first road will be the road we are on (direction 0) - St Martins
+         // the road we are on  will be (direction 0) - St Martins
          // the second road which makes up the intersection is left and right (direction 2 and direction 6) - Long Ashton Road
+         // However our getReferenceCoordinate function only works with the ends of LineStrings so what to do?
+         // Check the type of road: leading, trailing or leading_and_trailing. If the road is leading_and_trailing - DONE
+         // split the LineString into two, insert a ref coordinate into both and work out the directions for the two LineStrings
+
+         for (road in testIntersectionRoadNames){
+             val testRoadDirectionAtIntersection = getDirectionAtIntersection(testNearestIntersection.features[0], road)
+             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
+         }
+
          for (direction in relativeDirections){
              for (road in testIntersectionRoadNames) {
                  val testReferenceCoordinateForward = getReferenceCoordinate(
