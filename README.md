@@ -51,10 +51,10 @@ For example we might want to put bounding boxes around all the Points Of Interes
 ![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%205.png)
 
 Things we might like to be able to do (this isn't exhaustive):
-Get Slippy Tile Name from coordinates - DONE
-Convert a Slippy Tile name to a bounding box - DONE
-Generate a Quad Key - DONE
-Is a point in a bounding box - DONE
+Get Slippy Tile Name from coordinates - DONE.
+Convert a Slippy Tile name to a bounding box - DONE.
+Generate a Quad Key - DONE.
+Is a point in a bounding box - DONE.
 Distance between two points - DONE
 Heading from one point to another - DONE
 Create a point along a LineString- DONE
