@@ -50,27 +50,8 @@ For example we might want to put bounding boxes around all the Points Of Interes
 
 ![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%205.png)
 
-Things we might like to be able to do (this isn't exhaustive):
-Get Slippy Tile Name from coordinates - DONE.
-Convert a Slippy Tile name to a bounding box - DONE.
-Generate a Quad Key - DONE.
-Is a point in a bounding box - DONE.
-Distance between two points - DONE
-Heading from one point to another - DONE
-Create a point along a LineString- DONE
-Distance from a point to a LineString - DONE
-Centroid of a polygon using Bounding Boxes - DONE
 
-North/South/East/West and relative directions Ahead, Ahead Right, Ahead Left, Right, Left, Behind Left, Behind, Behind Right - DONE
-
-Check the categories ("feature_type" and "feature_value" which are Foreign Members) of the **Feature(s)** which may be interesting
-iOS version uses super categories - DONE
-Split the data into a **Roads** feature collection, **Intersections** feature collection, **Paths** feature collection, **Entrances** feature collection, **Paths** feature collection and a **Points Of Interest** feature collection - DONE
-Split the **POI** Feature Collection into super categories: 
-*"information", "object", "place", "landmark", "mobility", "safety" - DONE*
-How far ahead/around do we check? DONE - Soundscape uses a variety of "fields of view", 
-Dealing with intersections (this is just horrible!) - PARTIAL (current work in progress).
-
+**Intersections**
  
 Here’s a picture of the simplest intersection where one road transitions into another road (Weston Road into Long Ashton Road) The triangle is the “field of view” where a device is on Weston Road and pointing towards Long Ashton Road so we can detect when the **Intersection** is in the “field of view”/triangle. The middle marker is the **Intersection**/transition between the two roads. As the triangle represents a FOV at a point in time an example callout might be “You are walking along Weston Road”
 
