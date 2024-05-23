@@ -687,7 +687,7 @@ class VisuallyCheckOutput {
         )
         val testNearestIntersection = getNearestIntersection(currentLocation,fovIntersectionsFeatureCollection)
         val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
-        // what realtive direction(s) are the road(s) that make up the nearest intersection?
+        // what relative direction(s) are the road(s) that make up the nearest intersection?
 
         // first create a relative direction polygon and put it on the intersection node with the same
         // heading as the device
@@ -700,13 +700,14 @@ class VisuallyCheckOutput {
         )
 
         // this should be clockwise from 6 o'clock
-        // so the first will be the road we are on (direction 0) and then behind left (direction 1)
-        // left (direction 2) ahead left (direction 3) etc.
+        // so the first will be the road we are on (direction 0)
+        // the second road which makes up the intersection is ahead left (direction 3) etc.
         for (direction in relativeDirections){
             for (road in testIntersectionRoadNames) {
                 val testReferenceCoordinateForward = getReferenceCoordinate(
                     road.geometry as LineString, 25.0, false)
-                val iAmHere1 = polygonContainsCoordinates(testReferenceCoordinateForward, (direction.geometry as Polygon))
+                val iAmHere1 = polygonContainsCoordinates(
+                    testReferenceCoordinateForward, (direction.geometry as Polygon))
                 if (iAmHere1){
                     println("Road name: ${road.properties!!["name"]}")
                     println("Road direction: ${direction.properties!!["Direction"]}")

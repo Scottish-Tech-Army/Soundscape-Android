@@ -494,15 +494,17 @@ fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double
  * The LineString that we want to generate a new coordinate for.
  * @param targetDistance
  * The distance in meters that we want the coordinate to be on the LineString.
+ * @param reverseLineString
+ * Reverse the sort order of the LineString coordinates so "first" is "last"
  * @return The new coordinate as a LngLatAlt object.
  */
-fun getReferenceCoordinate(path: LineString, targetDistance: Double, reversePath: Boolean): LngLatAlt {
+fun getReferenceCoordinate(path: LineString, targetDistance: Double, reverseLineString: Boolean): LngLatAlt {
 
     if (path.coordinates.size == 1 || targetDistance <= 0.0) return path.coordinates.first()
 
     if (targetDistance == Double.MAX_VALUE) return path.coordinates.last()
 
-    if (reversePath) path.coordinates.reverse()
+    if (reverseLineString) path.coordinates.reverse()
 
     var totalDistance = 0.0
     // work our way along the linestring to check the distance
