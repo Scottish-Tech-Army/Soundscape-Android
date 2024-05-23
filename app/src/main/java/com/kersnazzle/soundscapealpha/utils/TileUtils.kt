@@ -113,13 +113,18 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
     // "footway", "path", "cycleway", "bridleway"
     // gd_intersection are a special case and get their own Intersections Feature Collection
 
+    // TODO temporarily excluding "bus_stop" and "crossing" at the moment to make testing of intersections and roads easier.
+    //  The FoV picks up a bus_stop and crossing as a "road". Maybe put bus_stop and crossing into their own feature collection?
+
     for (feature in tileFeatureCollection) {
         if (feature.foreign!!["feature_type"] == "highway"
             && feature.foreign!!["feature_value"] != "gd_intersection"
             && feature.foreign!!["feature_value"] != "footway"
             && feature.foreign!!["feature_value"] != "path"
             && feature.foreign!!["feature_value"] != "cycleway"
-            && feature.foreign!!["feature_value"] != "bridleway") {
+            && feature.foreign!!["feature_value"] != "bridleway"
+            && feature.foreign!!["feature_value"] != "bus_stop"
+            && feature.foreign!!["feature_value"] != "crossing") {
             roadsFeatureCollection.addFeature(feature)
         }
     }
