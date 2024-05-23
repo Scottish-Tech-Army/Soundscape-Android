@@ -1239,7 +1239,6 @@ fun makeTriangles(
  * @param road
  * The road as a Feature
  * @return A RoadDirectionAtIntersection
- *
  */
 fun directionAtIntersection(intersection: Feature, road: Feature): RoadDirectionAtIntersection {
     val roadCoordinates = (road.geometry as LineString).coordinates
