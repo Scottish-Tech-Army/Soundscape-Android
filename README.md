@@ -96,19 +96,19 @@ Long Ashton Road ahead to the left”:
 
 ![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%209.png)
 
-Above is an image generated from Kotlin code of one of the types of Field of View (”combined”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. 
+Above is an image of one of the types of Field of View (”combined”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. 
 
 ![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2010.png)
 
-Above is an image generated from Kotlin code of one of the types of Field of View (”Individual”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” with 90 degree triangles.
+Above is an image of one of the types of Field of View (”Individual”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” with 90 degree triangles.
 
 ![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2011.png)
 
-Above is an image generated from Kotlin code of one of the types of Field of View (”ahead_behind”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” however it has a bias towards “ahead” and “behind”
+Above is an image generated of one of the types of Field of View (”ahead_behind”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” however it has a bias towards “ahead” and “behind”
 
 ![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2012.png)
 
-Above is an image generated from Kotlin code of one of the types of Field of View (”right_left”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” however it has a bias towards left” and “right”
+Above is an image of one of the types of Field of View (”right_left”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” however it has a bias towards left” and “right”
 
 
 **3D Audio and headphones**
