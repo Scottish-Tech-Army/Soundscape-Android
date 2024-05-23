@@ -152,7 +152,7 @@ class IntersectionsTest {
 
         // this should be clockwise from 6 o'clock
         // so the first road will be the road we are on (direction 0) - Belgrave PLace
-        // the second road which makes up the intersection is right (direction 7) etc. Codrington Place
+        // the second road which makes up the intersection is right (direction 6) etc. Codrington Place
         for (direction in relativeDirections){
             for (road in testIntersectionRoadNames) {
                 val testReferenceCoordinateForward = getReferenceCoordinate(
@@ -175,8 +175,7 @@ class IntersectionsTest {
                 }
             }
         }
-
-
-
     }
+
+
 }
