@@ -1185,6 +1185,7 @@ fun getAheadBehindDirectionPolygons(
     return makeTriangles(degreesList, location, distance)
 }
 
+
 fun makeTriangles(
     degreesList: MutableList<Pair<Double, Double>>,
     location: LngLatAlt,
@@ -1217,6 +1218,42 @@ fun makeTriangles(
         newFeatureCollection.addFeature(featureAheadTriangle)
     }
     return newFeatureCollection
+}
+
+/**
+ * Returns a road direction type in relation to the intersection:
+ * The road is leading up to an intersection - LEADING
+ *        →
+ * --------------⦿
+ * The road starts from an intersection - TRAILING
+ *        →
+ * ⦿--------------
+ * The road is leading up to and continues on from an intersection - LEADING_AND_TRAILING
+ *    →       →
+ * -------⦿-------
+ * The road is not part of the intersection - NONE
+ *        ⦿
+ * --------------
+ * @param intersection
+ * The intersection as a Feature
+ * @param road
+ * The road as a Feature
+ * @return A RoadDirectionAtIntersection
+ *
+ */
+fun directionAtIntersection(intersection: Feature, road: Feature): RoadDirectionAtIntersection {
+    val roadCoordinates = (road.geometry as LineString).coordinates
+    val intersectionCoordinate = (intersection.geometry as Point).coordinates
+
+    return if (intersectionCoordinate.longitude == roadCoordinates.first().longitude && intersectionCoordinate.latitude == roadCoordinates.first().latitude) {
+        RoadDirectionAtIntersection.LEADING
+    } else if (intersectionCoordinate.longitude == roadCoordinates.last().longitude && intersectionCoordinate.latitude == roadCoordinates.last().latitude) {
+        RoadDirectionAtIntersection.TRAILING
+    } else if (roadCoordinates.contains(intersectionCoordinate)) {
+        RoadDirectionAtIntersection.LEADING_AND_TRAILING
+    } else {
+        RoadDirectionAtIntersection.NONE
+    }
 }
 
 
