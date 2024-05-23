@@ -94,6 +94,10 @@ import org.junit.Test
 //           | A |
 //           | ↓ |
 
+ // Long Ashton Road and St Martins same as above but location and direction changed
+// https://geojson.io/#map=18.37/51.430741/-2.656311
+//
+
 //  T1
 //  ___________________
 //  ← B             B →
