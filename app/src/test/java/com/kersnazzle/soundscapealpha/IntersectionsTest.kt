@@ -22,6 +22,141 @@ import org.junit.Test
  /**
  * These aren't really tests at this point just figuring our how to handle various intersection types.
  */
+
+ //--------------------//
+ // Intersection Types - from original Soundscape//
+ //--------------------//
+
+//  Road Switch
+//
+//  | ↑ |
+//  | B |
+//  |   |
+//  | ↑ |
+//  | * |
+//  |   |
+//  | A |
+//  | ↓ |
+
+ // Weston Road to Long Ashton Road
+ // https://geojson.io/#map=17.37/51.430494/-2.657463
+
+//  Turn Right
+//   _____________
+//  |          B →
+//  | ↑  _________
+//  | * |
+//  |   |
+//  | A |
+//  | ↓ |
+
+ // Belgrave Place to Codrington Place
+ //https://geojson.io/#map=19.64/51.4579382/-2.6157338
+
+//  Turn Left
+//  _____________
+//  ← B          |
+//  _________  ↑ |
+//           | * |
+//           |   |
+//           | A |
+//           | ↓ |
+
+ // same again just depends what road you are standing on
+ // Codrington Place to Belgrave Place
+ //https://geojson.io/#map=19.64/51.4579382/-2.6157338
+
+//  Side Road Right
+//
+//  | ↑ |
+//  | A |
+//  |   |_________
+//  |          B →
+//  | ↑  _________
+//  | * |
+//  |   |
+//  | A |
+//  | ↓ |
+//
+// Example: (51.457252, -0.970259) Side Road intersection with roads:
+// Blagrave Street and Valpy Street.
+
+//  Side Road Left
+//
+//           | ↑ |
+//           | A |
+//  _________|   |
+//  ← B          |
+//  _________  ↑ |
+//           | * |
+//           |   |
+//           | A |
+//           | ↓ |
+
+//  T1
+//  ___________________
+//  ← B             B →
+//  _______     _______
+//         | ↑ |
+//         | * |
+//         |   |
+//         | A |
+//         | ↓ |
+//
+// Example: (51.455014, -0.982331) T intersection with roads:
+// Russell Street and Oxford Street.
+//
+// Example: (51.455674, -0.973149) [Issue] T intersection with only (right) road.
+// Broad Street and Chain Street.
+
+//  T2
+//  ___________________
+//  ← B             C →
+//  _______     _______
+//         | ↑ |
+//         | * |
+//         |   |
+//         | A |
+//         | ↓ |
+
+//  Cross1
+//         | ↑ |
+//         | A |
+//  _______|   |_______
+//  ← B             B →
+//  _______     _______
+//         | ↑ |
+//         | * |
+//         |   |
+//         | A |
+//         | ↓ |
+
+//  Cross2
+//         | ↑ |
+//         | A |
+//  _______|   |_______
+//  ← B             C →
+//  _______     _______
+//         | ↑ |
+//         | * |
+//         |   |
+//         | A |
+//         | ↓ |
+
+//  Multi
+//         | ↑ |
+//         | D |
+//  _______|   |_______
+//  ← B             C →
+//  _______     _______
+//         | ↑ |
+//         | * |
+//         |   |
+//         | A |
+//         | ↓ |
+//
+// Example: (51.455464, -0.975333) Multi (cross) intersection with roads:
+// Oxford Road, West Street, Broad Street and St Mary's Butts.
 class IntersectionsTest {
     @Test
     fun intersectionsStraightAheadType(){
@@ -103,7 +238,8 @@ class IntersectionsTest {
 
     @Test
     fun intersectionsRightTurn(){
-        // Fake device location and pretend the device is pointing South West and we are located on Belgrave PLace
+        // Fake device location and pretend the device is pointing South West and we are located on:
+        // Belgrave Place
         val currentLocation = LngLatAlt(-2.615585745757045,51.457957257918395)
         val deviceHeading = 225.0 // South West
         val fovDistance = 50.0
@@ -179,7 +315,8 @@ class IntersectionsTest {
 
      @Test
      fun intersectionsLeftTurn(){
-         // Fake device location and pretend the device is pointing South East and we are standing on Codrington Place
+         // Fake device location and pretend the device is pointing South East and we are standing on:
+         // Codrington Place
          val currentLocation = LngLatAlt(-2.6159411752634583, 51.45799104056931)
          val deviceHeading = 135.0 // South East
          val fovDistance = 50.0
