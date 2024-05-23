@@ -477,7 +477,6 @@ class TileUtilsTest {
             }
         }
 
-
     }
 
     @Test
@@ -536,11 +535,6 @@ class TileUtilsTest {
         )
         Assert.assertEquals("Long Ashton Road", nearestIntersectionRoadNames.features[1].properties!!["name"])
         Assert.assertEquals("Weston Road", nearestIntersectionRoadNames.features[0].properties!!["name"])
-    // TODO Up to this point we can determine the nearest intersection and distance to it depending on our
-    //  device direction and location and return the roads that make up the intersection.
-    //  What we can't yet do is say anything about the directions/relative directions of the roads that make up the intersection.
-    //  There are a lot of different types of intersections... roundabouts?? so this is going to be painful!
-
     }
 
 }

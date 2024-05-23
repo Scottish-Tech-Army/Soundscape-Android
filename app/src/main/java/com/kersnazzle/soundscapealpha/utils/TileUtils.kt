@@ -1185,7 +1185,17 @@ fun getAheadBehindDirectionPolygons(
     return makeTriangles(degreesList, location, distance)
 }
 
-
+/**
+* Given a list of Pairs() of degrees which represent left and right for a FoV triangle, a location
+ * and a distance it wil generate lots of triangles
+* @param degreesList
+* A MutableList<Pair<Double, Double>> of degrees to construct triangles
+* @param location
+* location to radiate triangles from
+* @param distance
+* Length of left and right side of triangle in meters.
+* @return a Feature Collection containing triangles for the relative directions.
+*/
 fun makeTriangles(
     degreesList: MutableList<Pair<Double, Double>>,
     location: LngLatAlt,
