@@ -21,7 +21,7 @@ A **Feature** can be composed of
 In addition there are **Foreign Members** which original Soundscape makes use of
 
 To do anything useful we need to deserialize the GeoJSON into Kotlin objects. I've used this GeoJSON parser from here:
-([https://geojson.org/](https://github.com/scruffyfox/Android-GeoGson))
+([https://github.com/scruffyfox/Android-GeoGson](https://github.com/scruffyfox/Android-GeoGson))
 
 Here’s a picture of a GeoJSON tile FeatureCollection overlayed on a map (there is a lot more information in the underlying GeoJSON data such as speed limits on roads, addresses for houses, etc. that the map won’t display) The markers are intersections and some crossings:
 
