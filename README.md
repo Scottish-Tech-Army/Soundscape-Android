@@ -14,10 +14,15 @@ We need to convert the GPS coordinates into the X/Y format and make our request 
 **Deserializing our Tile data**
 We've got our tile which is a string in the **GeoJSON** ([https://geojson.org/](https://geojson.org/)) format.
 At a high level our string consists of:
+
 A **FeatureCollection** which contains
+
 A set of **Features** and
-A **Feature** can be composed of
+
+A **Feature** can be composed of:
+
 **Point**, **LineString**, **Polygon**, **MultiPoint**, **MultiLineString**, **MultiPolygon** and **GeometryCollection**
+
 In addition there are **Foreign Members** which original Soundscape makes use of
 
 To do anything useful we need to deserialize the GeoJSON into Kotlin objects. I've used this GeoJSON parser from here:
