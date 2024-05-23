@@ -23,9 +23,9 @@ import org.junit.Test
  * These aren't really tests at this point just figuring our how to handle various intersection types.
  */
 
- //--------------------//
- // Intersection Types - from original Soundscape//
- //--------------------//
+ //-----------------------------------------------//
+ // Intersection Types - from original Soundscape //
+ //----------------------------------------------//
 
 //  Road Switch
 //
