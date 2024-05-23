@@ -584,7 +584,7 @@ class VisuallyCheckOutput {
     fun relativeDirectionsIndividual(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 25.0
+        val deviceHeading = 90.0
         val distance = 50.0
 
         val individualRelativeDirections = getIndividualDirectionPolygons(location, deviceHeading, distance)
@@ -600,7 +600,7 @@ class VisuallyCheckOutput {
     fun relativeDirectionsAheadBehind(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 25.0
+        val deviceHeading = 90.0
         val distance = 50.0
 
         // Issue here is because of the bias towards "ahead" and "behind" you end up with a wide but shallow field of view
@@ -619,7 +619,7 @@ class VisuallyCheckOutput {
     fun relativeDirectionsLeftRight(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 0.0
+        val deviceHeading = 90.0
         val distance = 50.0
 
         val leftRightRelativeDirections = getLeftRightDirectionPolygons(location, deviceHeading, distance)
@@ -634,7 +634,7 @@ class VisuallyCheckOutput {
     fun relativeDirectionsAll(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 0.0
+        val deviceHeading = 90.0
         val distance = 50.0
 
         // A wrapper around the individual functions
@@ -700,8 +700,8 @@ class VisuallyCheckOutput {
         )
 
         // this should be clockwise from 6 o'clock
-        // so the first will be the road we are on (direction 0)
-        // the second road which makes up the intersection is ahead left (direction 3) etc.
+        // so the first road will be the road we are on (direction 0) - Weston Road
+        // the second road which makes up the intersection is ahead left (direction 3) etc. Long Ashton Road
         for (direction in relativeDirections){
             for (road in testIntersectionRoadNames) {
                 val testReferenceCoordinateForward = getReferenceCoordinate(
