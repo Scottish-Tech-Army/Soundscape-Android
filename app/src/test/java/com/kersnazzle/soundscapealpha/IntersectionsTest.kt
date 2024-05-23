@@ -86,15 +86,16 @@ class IntersectionsTest {
                 if (iAmHere1){
                     println("Road name: ${road.properties!!["name"]}")
                     println("Road direction: ${direction.properties!!["Direction"]}")
-                }
-                // reverse the LineString, create the ref coordinate and test it again
-                val testReferenceCoordinateReverse = getReferenceCoordinate(
-                    road.geometry as LineString, 25.0, true
-                )
-                val iAmHere2 = polygonContainsCoordinates(testReferenceCoordinateReverse, (direction.geometry as Polygon))
-                if (iAmHere2){
-                    println("Road name: ${road.properties!!["name"]}")
-                    println("Road direction: ${direction.properties!!["Direction"]}")
+                } else {
+                    // reverse the LineString, create the ref coordinate and test it again
+                    val testReferenceCoordinateReverse = getReferenceCoordinate(
+                        road.geometry as LineString, 25.0, true
+                    )
+                    val iAmHere2 = polygonContainsCoordinates(testReferenceCoordinateReverse, (direction.geometry as Polygon))
+                    if (iAmHere2){
+                        println("Road name: ${road.properties!!["name"]}")
+                        println("Road direction: ${direction.properties!!["Direction"]}")
+                    }
                 }
             }
         }
@@ -102,6 +103,80 @@ class IntersectionsTest {
 
     @Test
     fun intersectionsRightTurn(){
+        // Fake device location and pretend the device is pointing East.
+        val currentLocation = LngLatAlt(-2.615585745757045,51.457957257918395)
+        val deviceHeading = 225.0 // South West
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionRightAndLeftTurn.intersectionRightAndLeftTurn)
+        // Get the roads from the tile
+        val testRoadsCollectionFromTileFeatureCollection =
+            getRoadsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // create FOV to pickup the roads
+        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testRoadsCollectionFromTileFeatureCollection
+        )
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the intersection (this intersection is
+        // a right turn transition from Belgrave Place to Codrington Place)
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+        val testNearestIntersection = getNearestIntersection(currentLocation,fovIntersectionsFeatureCollection)
+        val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
+        // what relative direction(s) are the road(s) that make up the nearest intersection?
+
+        // first create a relative direction polygon and put it on the intersection node with the same
+        // heading as the device
+        val intersectionLocation = testNearestIntersection.features[0].geometry as Point
+        val relativeDirections = getRelativeDirectionsPolygons(
+            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+            deviceHeading,
+            fovDistance,
+            RelativeDirections.COMBINED
+        )
+
+        // this should be clockwise from 6 o'clock
+        // so the first road will be the road we are on (direction 0) - Belgrave PLace
+        // the second road which makes up the intersection is right (direction 7) etc. Codrington Place
+        for (direction in relativeDirections){
+            for (road in testIntersectionRoadNames) {
+                val testReferenceCoordinateForward = getReferenceCoordinate(
+                    road.geometry as LineString, 25.0, false)
+                val iAmHere1 = polygonContainsCoordinates(
+                    testReferenceCoordinateForward, (direction.geometry as Polygon))
+                if (iAmHere1){
+                    println("Road name: ${road.properties!!["name"]}")
+                    println("Road direction: ${direction.properties!!["Direction"]}")
+                } else {
+                    // reverse the LineString, create the ref coordinate and test it again
+                    val testReferenceCoordinateReverse = getReferenceCoordinate(
+                        road.geometry as LineString, 25.0, true
+                    )
+                    val iAmHere2 = polygonContainsCoordinates(testReferenceCoordinateReverse, (direction.geometry as Polygon))
+                    if (iAmHere2){
+                        println("Road name: ${road.properties!!["name"]}")
+                        println("Road direction: ${direction.properties!!["Direction"]}")
+                    }
+                }
+            }
+        }
+
+
 
     }
 }
