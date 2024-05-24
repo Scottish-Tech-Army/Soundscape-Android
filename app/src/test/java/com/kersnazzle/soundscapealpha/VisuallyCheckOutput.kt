@@ -648,29 +648,5 @@ class VisuallyCheckOutput {
 
     }
 
-    @Test
-    fun deleteMe(){
 
-        val currentLocation = LngLatAlt(-2.6558203455445266,51.43089545191313)
-        val deviceHeading = 225.0
-        val fovDistance = 50.0
-
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
-
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
-        )
-
-        println(fovRoadsFeatureCollection.features.size)
-
-    }
 }

@@ -46,7 +46,9 @@ class TileUtilsTest {
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
-        Assert.assertEquals(16, testRoadsCollectionFromTileFeatureCollection.features.size)
+        // I excluded bus_stop and crossing in the getRoadsFeatureCollectionFromTileFeatureCollection so...
+        //Assert.assertEquals(16, testRoadsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(14, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
