@@ -20,6 +20,7 @@ import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
+import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
 import com.squareup.moshi.Moshi
 import org.junit.Test
 
@@ -628,101 +629,56 @@ class IntersectionsTest {
          // first create a relative direction polygon and put it on the intersection node with the same
          // heading as the device
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
-         val relativeDirections = getRelativeDirectionsPolygons(
+         val interSectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
              deviceHeading,
              fovDistance,
              RelativeDirections.COMBINED
          )
 
-         // this should be clockwise from 6 o'clock
-         // the road we are on  will be (direction 0) - St Martins
          // the second road which makes up the intersection is left and right (direction 2 and direction 6) - Long Ashton Road
          // However our getReferenceCoordinate function only works with the ends of LineStrings so what to do?
          // Check the type of road: leading, trailing or leading_and_trailing. If the road is leading_and_trailing - DONE
          // split the LineString coordinates into two based on intersection coordinate, - DONE
-         // create two new LineStrings but with the same properties, foreign members, etc
-         // insert a ref coordinate into both and work out the directions for the two LineStrings
+         // create two new LineStrings. DONE
+         // insert a ref coordinate into both and work out the directions for the two LineStrings - DONE
+         // so we should be able to return Long Ashton Road "Left" and Long Ashton Road "Right" DONE
 
          for (road in testIntersectionRoadNames){
              val testRoadDirectionAtIntersection = getDirectionAtIntersection(testNearestIntersection.features[0], road)
              println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
              if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-
+                 // split the road into two
                  val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 println("${roadCoordinatesSplitIntoTwo.features.size}")
-
-             }
-
-         }
-
-         for (direction in relativeDirections){
-             for (road in testIntersectionRoadNames) {
-                 val testReferenceCoordinateForward = getReferenceCoordinate(
-                     road.geometry as LineString, 25.0, false)
-                 val iAmHere1 = polygonContainsCoordinates(
-                     testReferenceCoordinateForward, (direction.geometry as Polygon))
-                 if (iAmHere1){
-                     println("Road name: ${road.properties!!["name"]}")
-                     println("Road direction: ${direction.properties!!["Direction"]}")
-                 } else {
-                     // reverse the LineString, create the ref coordinate and test it again
-                     val testReferenceCoordinateReverse = getReferenceCoordinate(
-                         road.geometry as LineString, 25.0, true
-                     )
-                     val iAmHere2 = polygonContainsCoordinates(
-                         testReferenceCoordinateReverse, (direction.geometry as Polygon))
-                     if (iAmHere2){
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
+                 // for each split road work out the relative direction from the intersection
+                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
+                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
+                         splitRoad.geometry as LineString, 25.0, false)
+                     // test if the reference coordinate we've created is in any of the relative direction triangles
+                     for(direction in interSectionRelativeDirections){
+                         val iAmHere1 = polygonContainsCoordinates(
+                             testReferenceCoordinateForRoad, (direction.geometry as Polygon))
+                         if (iAmHere1){
+                             println("Road name: ${splitRoad.properties!!["name"]}")
+                             println("Road direction: ${direction.properties!!["Direction"]}")
+                         } else {
+                             // reverse the LineString, create the ref coordinate and test it again
+                             val testReferenceCoordinateReverse = getReferenceCoordinate(
+                                 splitRoad.geometry as LineString, 25.0, true
+                             )
+                             val iAmHere2 = polygonContainsCoordinates(
+                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
+                             )
+                             if (iAmHere2) {
+                                 println("Road name: ${splitRoad.properties!!["name"]}")
+                                 println("Road direction: ${direction.properties!!["Direction"]}")
+                             }
+                         }
                      }
                  }
              }
          }
-
      }
 
-     fun splitRoadByIntersection(
-         intersection: Feature,
-         road: Feature
-     ): FeatureCollection {
-         val roadCoordinates = (road.geometry as LineString).coordinates
-         val intersectionCoordinate = (intersection.geometry as Point).coordinates
 
-         val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
-         if (!coordinateFound) {
-             // Intersection not found, return empty
-             return FeatureCollection()
-         }
-
-         val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
-         // Split the list into two parts based on the intersection index. Include
-         // the intersection as the end of one "road" and the start of the other "road"
-         val part1 = roadCoordinates.subList(0, indexOfIntersection)
-         val part2 = roadCoordinates.subList(indexOfIntersection, roadCoordinates.size)
-
-         // create the two "roads"
-         val roadLineString1 = LineString(*part1.toTypedArray())
-         val roadLineString2 = LineString(*part2.toTypedArray())
-         // Create a new FeatureCollection and add Feature for each and tag them
-         val newFeatureCollection = FeatureCollection()
-
-         val featureRoad1 = Feature().also {
-             val ars3: HashMap<String, Any?> = HashMap()
-             ars3 += Pair("name_of_road", "road1")
-             it.properties = ars3
-         }
-         featureRoad1.geometry = roadLineString1
-         newFeatureCollection.addFeature(featureRoad1)
-
-         val featureRoad2 = Feature().also {
-             val ars3: HashMap<String, Any?> = HashMap()
-             ars3 += Pair("name_of_road", "road2")
-             it.properties = ars3
-         }
-         featureRoad2.geometry = roadLineString2
-         newFeatureCollection.addFeature(featureRoad2)
-
-         return newFeatureCollection
-     }
 }

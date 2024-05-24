@@ -1341,6 +1341,59 @@ fun getLeftRightDirectionPolygons(
 
 }
 
+
+/**
+ * Given an intersection Feature and a road Feature will split the road into two based on the
+ * coordinate of the intersection.
+ * @param intersection
+ * intersection Feature that is used to split the road using the intersection coordinates.
+ * @param road
+ * The road that is being split into two
+ * @return a Feature Collection containing two roads. One road will contain the intersection
+ * coordinates at the "end" and the second road will contain the intersection coordinates at the "start"
+ */
+fun splitRoadByIntersection(
+    intersection: Feature,
+    road: Feature
+): FeatureCollection {
+    val roadCoordinates = (road.geometry as LineString).coordinates
+    val intersectionCoordinate = (intersection.geometry as Point).coordinates
+
+    val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
+    if (!coordinateFound) {
+        // Intersection not found, return empty
+        return FeatureCollection()
+    }
+
+    val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
+    // Split the list into two parts based on the intersection index. Include
+    // the intersection as the end of one "road" and the start of the other "road"
+    val part1 = roadCoordinates.subList(0, indexOfIntersection + 1)
+    val part2 = roadCoordinates.subList(indexOfIntersection, roadCoordinates.size)
+
+    // create the two "roads"
+    val roadLineString1 = LineString(*part1.toTypedArray())
+    val roadLineString2 = LineString(*part2.toTypedArray())
+    // Create a new FeatureCollection and add Feature for each
+    val newFeatureCollection = FeatureCollection()
+
+    val featureRoad1 = Feature().also {
+        it.properties = road.properties
+        it.foreign = road.foreign
+    }
+    featureRoad1.geometry = roadLineString1
+    newFeatureCollection.addFeature(featureRoad1)
+
+    val featureRoad2 = Feature().also {
+        it.properties = road.properties
+        it.foreign = road.foreign
+    }
+    featureRoad2.geometry = roadLineString2
+    newFeatureCollection.addFeature(featureRoad2)
+
+    return newFeatureCollection
+}
+
 /**
  * A wrapper around:
  * getCombinedDirectionPolygons, getIndividualDirectionPolygons, getAheadBehindDirectionPolygons, getLeftRightDirectionPolygons
