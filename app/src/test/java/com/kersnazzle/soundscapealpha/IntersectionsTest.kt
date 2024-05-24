@@ -643,6 +643,7 @@ class IntersectionsTest {
          // create two new LineStrings. DONE
          // insert a ref coordinate into both and work out the directions for the two LineStrings - DONE
          // so we should be able to return Long Ashton Road "Left" and Long Ashton Road "Right" DONE
+         // TODO Have a think about the below as it is making me sad looking at it!
 
          for (road in testIntersectionRoadNames){
              val testRoadDirectionAtIntersection = getDirectionAtIntersection(testNearestIntersection.features[0], road)
