@@ -722,7 +722,48 @@ class IntersectionsTest {
              currentLocation,fovIntersectionsFeatureCollection)
          val testIntersectionRoadNames = getIntersectionRoadNames(
              testNearestIntersection, fovRoadsFeatureCollection)
-         println("${testIntersectionRoadNames.features.size}")
+         // first create a relative direction polygon and put it on the intersection node with the same
+         // heading as the device
+         val intersectionLocation = testNearestIntersection.features[0].geometry as Point
+         val interSectionRelativeDirections = getRelativeDirectionsPolygons(
+             LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+             deviceHeading,
+             fovDistance,
+             RelativeDirections.COMBINED
+         )
+
+         for (road in testIntersectionRoadNames) {
+             val testRoadDirectionAtIntersection =
+                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
+             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
+             if (testRoadDirectionAtIntersection != RoadDirectionAtIntersection.LEADING_AND_TRAILING){
+                 for (direction in interSectionRelativeDirections){
+                         val testReferenceCoordinateForward = getReferenceCoordinate(
+                             road.geometry as LineString, 25.0, false)
+                         val iAmHere1 = polygonContainsCoordinates(
+                             testReferenceCoordinateForward, (direction.geometry as Polygon))
+                         if (iAmHere1){
+                             println("Road name: ${road.properties!!["name"]}")
+                             println("Road direction: ${direction.properties!!["Direction"]}")
+                         } else {
+                             // reverse the LineString, create the ref coordinate and test it again
+                             val testReferenceCoordinateReverse = getReferenceCoordinate(
+                                 road.geometry as LineString, 25.0, true
+                             )
+                             val iAmHere2 = polygonContainsCoordinates(testReferenceCoordinateReverse, (direction.geometry as Polygon))
+                             if (iAmHere2){
+                                 println("Road name: ${road.properties!!["name"]}")
+                                 println("Road direction: ${direction.properties!!["Direction"]}")
+                             }
+                         }
+                 }
+
+             }
+         }
+
+
+
+
 
      }
 
