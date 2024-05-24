@@ -19,6 +19,7 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
 import com.squareup.moshi.Moshi
@@ -114,7 +115,7 @@ import org.junit.Test
 //         | A |
 //         | ↓ |
 
-// Standing on St Martins device pointing towards Long Ashton Road
+// Standing on St Martins with device pointing towards Long Ashton Road
 
 
 // Example: (51.455674, -0.973149) [Issue] T intersection with only (right) road.
@@ -679,6 +680,50 @@ class IntersectionsTest {
                  }
              }
          }
+     }
+
+     @Test
+     fun intersectionsT2Test(){
+         // Fake device location and pretend the device is pointing South West and we are located on:
+         // Goodeve Road  The Left is Seawalls Road and Right is Knoll Hill
+         val currentLocation = LngLatAlt(-2.637514213827643, 51.472589063821175)
+         val deviceHeading = 225.0 // South West
+         val fovDistance = 50.0
+
+         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+             .fromJson(GeoJsonIntersectionT2.intersectionT2FeatureCollection)
+         // Get the roads from the tile
+         val testRoadsCollectionFromTileFeatureCollection =
+             getRoadsFeatureCollectionFromTileFeatureCollection(
+                 featureCollectionTest!!
+             )
+         // create FOV to pickup the roads
+         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+             currentLocation,
+             deviceHeading,
+             fovDistance,
+             testRoadsCollectionFromTileFeatureCollection
+         )
+         // Get the intersections from the tile
+         val testIntersectionsCollectionFromTileFeatureCollection =
+             getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                 featureCollectionTest!!
+             )
+         // Create a FOV triangle to pick up the intersection (this intersection is
+         // a T junction with the device on St Martins and the main road is Long Ashton)
+         val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+             currentLocation,
+             deviceHeading,
+             fovDistance,
+             testIntersectionsCollectionFromTileFeatureCollection
+         )
+         val testNearestIntersection = getNearestIntersection(
+             currentLocation,fovIntersectionsFeatureCollection)
+         val testIntersectionRoadNames = getIntersectionRoadNames(
+             testNearestIntersection, fovRoadsFeatureCollection)
+         println("${testIntersectionRoadNames.features.size}")
+
      }
 
 
