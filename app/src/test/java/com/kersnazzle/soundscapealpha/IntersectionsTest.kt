@@ -116,10 +116,7 @@ import org.junit.Test
 //         | ↓ |
 
 // Standing on St Martins with device pointing towards Long Ashton Road
-
-
-// Example: (51.455674, -0.973149) [Issue] T intersection with only (right) road.
-// Broad Street and Chain Street.
+ // https://geojson.io/#map=18.37/51.430741/-2.656311
 
 //  T2
 //  ___________________
@@ -130,6 +127,9 @@ import org.junit.Test
 //         |   |
 //         | A |
 //         | ↓ |
+
+ // standing on Goodeve Road with device pointing towards SeaWalls Road (Left) and Knoll Hill (Right)
+ // https://geojson.io/#map=17.99/51.472469/-2.637757
 
 //  Cross1
 //         | ↑ |
