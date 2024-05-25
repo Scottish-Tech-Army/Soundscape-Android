@@ -98,6 +98,44 @@ Above is an image generated of one of the types of Field of View (”ahead_behin
 
 Above is an image of one of the types of Field of View (”right_left”) that Soundscape uses. The red triangle is the relative direction “ahead” but the real device heading is East or 90.0 degrees. You can see that it is a simpler “ahead”, “right”, “behind” and “left” however it has a bias towards "left” and “right”
 
+**Types of Simple Intersections**
+
+Below are a list of simple intersection images that we want to be able to detect (we can currently detect all of them)
+
+Simple **right turn** if you are standing where the marker is from one road (Belgrave Place) into another road (Codrington Place)
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2013.png)
+
+Simple **left turn** if you are standing where the marker is from one road (Codrington Place) into another road (Belgrave Place)
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2014.png)
+
+Simple **side road right** if you are standing at the marker on Long Ashton Road and St Martins is on your right.
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2015.png)
+
+Simple **side road lef**t if you are standing at the marker on Long Ashton Road and St Martins is on your left.
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2016.png)
+
+Simple **T junction type 1** if you are standing at the marker on St Martins and Left and Right is Long Ashton Road
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2017.png)
+
+Simple **T junction type 2** if you are standing at the marker on Goodeve Road and Left is Seawalls Road and Right is Knoll Hill
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2018.png)
+
+Simple **crossroads type 1** if you are standing at the marker on Grange Road then left is Manilla Road, Ahead is Grange Road and Right is Manilla Road.
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2019.png)
+
+Simple **crossroads type 2** if you are standing at the marker on Lansdown Road then left is Manilla Road, Ahead is Lansdown Road and Right is Vyvyan Road.
+
+![Untitled](Android%20Development%20e8357d834ca14e1bb6ecd0a70a501c2d/Untitled%2020.png)
+
+Simple crossroads type 3 … TODO
+
 
 **3D Audio and headphones**
 Core feature of Soundscape is the 3D audio part.
