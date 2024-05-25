@@ -711,13 +711,15 @@ class IntersectionsTest {
                  featureCollectionTest!!
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
-         // a T junction with the device on St Martins and the main road is Long Ashton)
+         // a T junction and we are located on Goodeve Road.
+         // The Left is Seawalls Road and Right is Knoll Hill
          val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
              currentLocation,
              deviceHeading,
              fovDistance,
              testIntersectionsCollectionFromTileFeatureCollection
          )
+         // get the nearest intersection in the FoV and the roads that make up the intersection
          val testNearestIntersection = getNearestIntersection(
              currentLocation,fovIntersectionsFeatureCollection)
          val testIntersectionRoadNames = getIntersectionRoadNames(
