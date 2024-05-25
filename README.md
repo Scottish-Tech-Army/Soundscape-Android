@@ -50,6 +50,7 @@ Original Soundscape appears to use Swift Realm to do this and there is an Androi
 
 
 **Doing something useful with the Tile data**
+
 If we've got our Tile data in Kotlin objects then we can use standard GIS techniques to query the contents of the GeoJSON FeatureCollection.
 For example we might want to put bounding boxes around all the Points Of Interest so we can calculate how far way they are. Here’s a picture of bounding boxes around all the buildings (which looks a bit like a Mondrian painting if you squint):
 
