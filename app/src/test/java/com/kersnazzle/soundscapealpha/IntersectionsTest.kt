@@ -1,6 +1,5 @@
 package com.kersnazzle.soundscapealpha
 
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
@@ -19,7 +18,6 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
 import com.squareup.moshi.Moshi
@@ -157,6 +155,9 @@ import org.junit.Test
 //         |   |
 //         | A |
 //         | ↓ |
+
+ // Standing on Lansdown Road which continues on ahead. Left is Manilla Road and Right is Vyvyan Road
+// https://geojson.io/#map=18.99/51.4571879/-2.6178348/-31.2/14
 
 //  Multi
 //         | ↑ |
@@ -860,5 +861,14 @@ class IntersectionsTest {
 
 
 
+     }
+
+     @Test
+     fun intersectionCross2Test(){
+         // Fake device location and pretend the device is pointing North West and we are located on:
+         // Lansdown Road  The Left is Manilla Road and Right is Vyvyan Road
+         val currentLocation = LngLatAlt(-2.6176822011131833, 51.457104175295484)
+         val deviceHeading = 320.0 // North West
+         val fovDistance = 50.0
      }
 }
