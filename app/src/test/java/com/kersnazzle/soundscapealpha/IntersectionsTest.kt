@@ -858,9 +858,6 @@ class IntersectionsTest {
                  }
              }
          }
-
-
-
      }
 
      @Test
