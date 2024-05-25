@@ -12,6 +12,7 @@ We need to convert the GPS coordinates into the X/Y format and make our request 
 
 
 **Deserializing our Tile data**
+
 We've got our tile which is a string in the **GeoJSON** ([https://geojson.org/](https://geojson.org/)) format.
 At a high level our string consists of:
 
