@@ -865,6 +865,10 @@ class IntersectionsTest {
 
      @Test
      fun intersectionCross2Test(){
+         // NOTE: This is a strange crossroads because it is actually made up of four different LineStrings
+         // 2 x Lansdown Road LineStrings (would expect it to be made out of one)
+         // and 1 Linestring  Manilla Road and 1 LineString Vyvyan Road
+
          // Fake device location and pretend the device is pointing North West and we are located on:
          // Lansdown Road and it continues on straight ahead.  The Left is Manilla Road and Right is Vyvyan Road
          val currentLocation = LngLatAlt(-2.6176822011131833, 51.457104175295484)
