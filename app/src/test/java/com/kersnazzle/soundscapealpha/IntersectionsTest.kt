@@ -143,6 +143,9 @@ import org.junit.Test
 //         | A |
 //         | ↓ |
 
+ // Standing on Grange Road which continues on ahead and the left and right are Manilla Road
+// https://geojson.io/#map=18.99/51.4569979/-2.6185285
+
 //  Cross2
 //         | ↑ |
 //         | A |
@@ -762,12 +765,22 @@ class IntersectionsTest {
 
              }
          }
+     }
 
+     @Test
+     fun intersectionsCross1Test(){
+         //
+         // Fake device location and pretend the device is pointing North West and we are located on:
+         // Grange Road  The Left and Right for the crossroad is Manilla Road and ahead is Grange Road
+         val currentLocation = LngLatAlt(-2.61850147329568, 51.456953686378085)
+         val deviceHeading = 315 // North West
+         val fovDistance = 50.0
 
+         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+             .fromJson(GeoJsonIntersectionCross1.intersectionCross1FeatureCollection)
 
 
 
      }
-
-
 }
