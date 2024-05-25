@@ -44,7 +44,7 @@ import org.junit.Test
 //  | ↓ |
 
  // Weston Road to Long Ashton Road
- // https://geojson.io/#map=17.37/51.430494/-2.657463
+ // https://geojson.io/#map=17/51.430494/-2.657463
 
 //  Turn Right
 //   _____________
@@ -56,7 +56,7 @@ import org.junit.Test
 //  | ↓ |
 
  // Belgrave Place to Codrington Place
- //https://geojson.io/#map=19.64/51.4579382/-2.6157338
+//https://geojson.io/#map=19/51.4579043/-2.6156923
 
 //  Turn Left
 //  _____________
@@ -69,7 +69,7 @@ import org.junit.Test
 
  // same again just depends what road you are standing on
  // Codrington Place to Belgrave Place
- //https://geojson.io/#map=19.64/51.4579382/-2.6157338
+ //https://geojson.io/#map=19/51.4579382/-2.6157338
 
 //  Side Road Right
 //
@@ -84,7 +84,7 @@ import org.junit.Test
 //  | ↓ |
 //
  // Long Ashton Road and St Martins
-// https://geojson.io/#map=18.37/51.430741/-2.656311
+// https://geojson.io/#map=18/51.430741/-2.656311
 //
 
 //  Side Road Left
@@ -100,7 +100,7 @@ import org.junit.Test
 //           | ↓ |
 
  // Long Ashton Road and St Martins same as above but location and device direction changed
-// https://geojson.io/#map=18.37/51.430741/-2.656311
+// https://geojson.io/#map=18/51.430741/-2.656311
 //
 
 //  T1
@@ -114,7 +114,7 @@ import org.junit.Test
 //         | ↓ |
 
 // Standing on St Martins with device pointing towards Long Ashton Road
- // https://geojson.io/#map=18.37/51.430741/-2.656311
+ // https://geojson.io/#map=18/51.430741/-2.656311
 
 //  T2
 //  ___________________
@@ -127,7 +127,7 @@ import org.junit.Test
 //         | ↓ |
 
  // standing on Goodeve Road with device pointing towards SeaWalls Road (Left) and Knoll Hill (Right)
- // https://geojson.io/#map=17.99/51.472469/-2.637757
+ // https://geojson.io/#map=18/51.472469/-2.637757
 
 //  Cross1
 //         | ↑ |
@@ -142,7 +142,7 @@ import org.junit.Test
 //         | ↓ |
 
  // Standing on Grange Road which continues on ahead and the left and right are Manilla Road
-// https://geojson.io/#map=18.99/51.4569979/-2.6185285
+// https://geojson.io/#map=18/51.4569979/-2.6185285
 
 //  Cross2
 //         | ↑ |
@@ -157,7 +157,7 @@ import org.junit.Test
 //         | ↓ |
 
  // Standing on Lansdown Road which continues on ahead. Left is Manilla Road and Right is Vyvyan Road
-// https://geojson.io/#map=18.99/51.4571879/-2.6178348/-31.2/14
+// https://geojson.io/#map=18/51.4571879/-2.6178348/-31.2/14
 
 //  Multi
 //         | ↑ |
@@ -979,5 +979,10 @@ class IntersectionsTest {
              }
 
          }
+     }
+
+     @Test
+     fun intersectionsCross3Test(){
+
      }
 }
