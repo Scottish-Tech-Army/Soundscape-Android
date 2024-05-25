@@ -25,8 +25,11 @@ import org.junit.Test
 
  /**
  * These aren't really tests. At this point just figuring our how to handle various
-  * simple intersection types.
+ * simple intersection types.
  */
+
+ // TODO Calculate the bearing of the road that we are currently on in relation to the intersection
+ //  and use that rather than device bearing for the relative directions.
 
  //-----------------------------------------------//
  // Intersection Types - from original Soundscape //
