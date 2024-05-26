@@ -1395,6 +1395,48 @@ fun splitRoadByIntersection(
 }
 
 /**
+ * Given an intersection FeatureCollection and a road FeatureCollection will return the bearing of the road
+ * to the intersection
+ * @param intersection
+ * intersection FeatureCollection that contains a single intersection.
+ * @param road
+ * road FeatureCollection that contains a single road
+ * @return the bearing from the road to the intersection
+ */
+fun getRoadBearingToIntersection(
+    intersection: FeatureCollection,
+    road: FeatureCollection
+): Double {
+
+    val roadCoordinates = (road.features[0].geometry as LineString).coordinates
+    val intersectionCoordinate = (intersection.features[0].geometry as Point).coordinates
+
+    val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
+
+    val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
+        getReferenceCoordinate(
+            road.features[0].geometry as LineString,
+            3.0,
+            false
+        )
+    } else {
+        getReferenceCoordinate(
+            road.features[0].geometry as LineString,
+            3.0,
+            true
+        )
+    }
+
+    //  bearing from synthetic coordinate on road to intersection
+    return bearingFromTwoPoints(
+        testReferenceCoordinate.latitude,
+        testReferenceCoordinate.longitude,
+        intersectionCoordinate.latitude,
+        intersectionCoordinate.longitude
+    )
+}
+
+/**
  * A wrapper around:
  * getCombinedDirectionPolygons, getIndividualDirectionPolygons, getAheadBehindDirectionPolygons, getLeftRightDirectionPolygons
  * @param location

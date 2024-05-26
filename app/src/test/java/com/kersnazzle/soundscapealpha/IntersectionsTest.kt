@@ -18,6 +18,7 @@ import com.kersnazzle.soundscapealpha.utils.getNearestIntersection
 import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
+import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
@@ -1108,36 +1109,5 @@ class IntersectionsTest {
      }
 
 
-     fun getRoadBearingToIntersection(
-         intersection: FeatureCollection,
-         road: FeatureCollection
-     ): Double {
 
-         val roadCoordinates = (road.features[0].geometry as LineString).coordinates
-         val intersectionCoordinate = (intersection.features[0].geometry as Point).coordinates
-
-         val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
-
-         val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
-             getReferenceCoordinate(
-                 road.features[0].geometry as LineString,
-                 3.0,
-                 false
-             )
-         } else {
-             getReferenceCoordinate(
-                 road.features[0].geometry as LineString,
-                 3.0,
-                 true
-             )
-         }
-
-         //  bearing from synthetic coordinate on road to intersection
-         return bearingFromTwoPoints(
-             testReferenceCoordinate.latitude,
-             testReferenceCoordinate.longitude,
-             intersectionCoordinate.latitude,
-             intersectionCoordinate.longitude
-         )
-     }
 }
