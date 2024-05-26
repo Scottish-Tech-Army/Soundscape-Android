@@ -518,7 +518,7 @@ class IntersectionsTest {
 
      @Test
      fun intersectionsSideRoadLeft(){
-         // Fake device location and pretend the device is pointing South West and we are located on:
+         // Fake device location and pretend the device is pointing North East and we are located on:
          // Long Ashton Road
          val currentLocation = LngLatAlt(-2.656530323429564,51.43065207103919)
          val deviceHeading = 50.0 // North East
@@ -553,6 +553,11 @@ class IntersectionsTest {
              testIntersectionsCollectionFromTileFeatureCollection
          )
          val testNearestIntersection = getNearestIntersection(currentLocation,fovIntersectionsFeatureCollection)
+
+         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+
+         val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad)
+
          val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
          // what relative direction(s) are the road(s) that make up the nearest intersection?
 
@@ -561,7 +566,7 @@ class IntersectionsTest {
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val relativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
-             deviceHeading,
+             testNearestRoadBearing,
              fovDistance,
              RelativeDirections.COMBINED
          )
