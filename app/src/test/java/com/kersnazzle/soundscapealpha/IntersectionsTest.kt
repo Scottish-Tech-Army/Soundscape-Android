@@ -18,6 +18,7 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
 import com.squareup.moshi.Moshi
@@ -162,7 +163,7 @@ import org.junit.Test
  // Standing on Lansdown Road which continues on ahead. Left is Manilla Road and Right is Vyvyan Road
 // https://geojson.io/#map=18/51.4571879/-2.6178348/-31.2/14
 
-//  Multi
+//  Cross3
 //         | ↑ |
 //         | D |
 //  _______|   |_______
@@ -174,8 +175,8 @@ import org.junit.Test
 //         | A |
 //         | ↓ |
 //
-// Example: (51.455464, -0.975333) Multi (cross) intersection with roads:
-// Oxford Road, West Street, Broad Street and St Mary's Butts.
+// Example: Standing on St Mary's Butts with Oxford Road on Left, West Street Ahead and Broad Street on Right
+// https://geojson.io/#map=18/51.455426/-0.975279/-25.6
 class IntersectionsTest {
     @Test
     fun intersectionsStraightAheadType(){
@@ -986,6 +987,18 @@ class IntersectionsTest {
 
      @Test
      fun intersectionsCross3Test(){
+         // Fake device location and pretend the device is pointing North West and we are located on:
+         // St Mary's Butts with Oxford Road on Left, West Street Ahead and Broad Street on Right
+         val currentLocation = LngLatAlt(-0.9751477163436277,51.4552511845545)
+         val deviceHeading = 320.0 // North West
+         val fovDistance = 50.0
+
+         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+             .fromJson(GeoJsonIntersectionCross3.intersectionCross3FeatureCollection)
+
+
+
 
      }
 }
