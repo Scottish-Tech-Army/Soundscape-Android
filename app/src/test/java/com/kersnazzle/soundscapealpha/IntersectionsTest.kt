@@ -633,6 +633,11 @@ class IntersectionsTest {
              testIntersectionsCollectionFromTileFeatureCollection
          )
          val testNearestIntersection = getNearestIntersection(currentLocation,fovIntersectionsFeatureCollection)
+
+         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+
+         val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad)
+
          val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
          // what relative direction(s) are the road(s) that make up the nearest intersection?
 
@@ -641,7 +646,7 @@ class IntersectionsTest {
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
-             deviceHeading,
+             testNearestRoadBearing,
              fovDistance,
              RelativeDirections.COMBINED
          )
