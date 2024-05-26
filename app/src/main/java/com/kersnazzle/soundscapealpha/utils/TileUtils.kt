@@ -13,6 +13,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.squareup.moshi.Moshi
 import kotlin.math.PI
+import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.floor
 import kotlin.math.tan
@@ -1405,11 +1406,50 @@ fun splitRoadByIntersection(
  */
 fun getRoadBearingToIntersection(
     intersection: FeatureCollection,
-    road: FeatureCollection
+    road: FeatureCollection,
+    deviceHeading: Double
 ): Double {
 
     val roadCoordinates = (road.features[0].geometry as LineString).coordinates
     val intersectionCoordinate = (intersection.features[0].geometry as Point).coordinates
+
+    // if the intersection location doesn't match the start/finish location of the road
+    // then we are dealing with a LEADING_AND_TRAILING road. We need to split the road into two
+    // where the intersection coordinate is on the road
+    if (roadCoordinates.first() != intersectionCoordinate && roadCoordinates.last() != intersectionCoordinate){
+        val splitRoads = splitRoadByIntersection(intersection.features[0], road.features[0])
+        // we've got two split roads but which one do we want the bearing for?
+        // get the bearing for both
+
+        var bearingArray: MutableList<Double> = mutableListOf()
+
+        for(road in splitRoads){
+            val indexOfIntersection = (road.geometry as LineString).coordinates.indexOfFirst { it == intersectionCoordinate }
+            val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
+                getReferenceCoordinate(
+                    road.geometry as LineString,
+                    3.0,
+                    false
+                )
+            } else {
+                getReferenceCoordinate(
+                    road.geometry as LineString,
+                    3.0,
+                    true
+                )
+            }
+            val bearing = bearingFromTwoPoints(
+                testReferenceCoordinate.latitude,
+                testReferenceCoordinate.longitude,
+                intersectionCoordinate.latitude,
+                intersectionCoordinate.longitude
+            )
+            bearingArray.add(bearing)
+        }
+        return findClosestDirection(deviceHeading, bearingArray[0], bearingArray[1])
+
+
+    }
 
     val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
 
@@ -1434,6 +1474,17 @@ fun getRoadBearingToIntersection(
         intersectionCoordinate.latitude,
         intersectionCoordinate.longitude
     )
+}
+
+fun findClosestDirection(reference: Double, option1: Double, option2: Double): Double {
+    val distance1 = abs(reference - option1)
+    val distance2 = abs(reference - option2)
+
+    // Handle cases where directions wrap around the circle (0 to 360 degrees)
+    val adjustedDistance1 = Math.min(distance1, 360 - distance1)
+    val adjustedDistance2 = Math.min(distance2, 360 - distance2)
+
+    return if (adjustedDistance1 < adjustedDistance2) option1 else option2
 }
 
 /**
