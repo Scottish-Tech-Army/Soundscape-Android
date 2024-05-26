@@ -8,6 +8,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.RelativeDirections
 import com.kersnazzle.soundscapealpha.utils.RoadDirectionAtIntersection
+import com.kersnazzle.soundscapealpha.utils.bearingFromTwoPoints
 import com.kersnazzle.soundscapealpha.utils.getDirectionAtIntersection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
@@ -18,7 +19,6 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
 import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
 import com.squareup.moshi.Moshi
@@ -1016,8 +1016,8 @@ class IntersectionsTest {
              )
          // Create a FOV triangle to pick up the intersection. This intersection is
          // a crossroad type 3 and we are located on St Mary's Butts (direction 0)
-         // Oxford Road is Left (direction 3) West Street is ahead (direction 4)
-         // and Broad Street is Behind Right (direction 7)
+         // Oxford Road is Left (direction 2) West Street is ahead (direction 4)
+         // and Broad Street is Right (direction 6)
          val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
              currentLocation,
              deviceHeading,
@@ -1029,14 +1029,18 @@ class IntersectionsTest {
          val testNearestIntersection = getNearestIntersection(
              currentLocation,fovIntersectionsFeatureCollection)
 
+         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+
+         val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad)
+
          val testIntersectionRoadNames = getIntersectionRoadNames(
              testNearestIntersection, fovRoadsFeatureCollection)
          // first create a relative direction polygon and put it on the intersection node with the same
-         // heading as the device
+         // heading as the road we are currently nearest to
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
-             deviceHeading,
+             testNearestRoadBearing,
              fovDistance,
              RelativeDirections.COMBINED
          )
@@ -1078,7 +1082,7 @@ class IntersectionsTest {
              else{
                  for (direction in intersectionRelativeDirections){
                      val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 1.0, false)
+                         road.geometry as LineString, 3.0, false)
                      val iAmHere1 = polygonContainsCoordinates(
                          testReferenceCoordinateForward, (direction.geometry as Polygon))
                      if (iAmHere1){
@@ -1087,7 +1091,7 @@ class IntersectionsTest {
                      } else {
                          // reverse the LineString, create the ref coordinate and test it again
                          val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 1.0, true
+                             road.geometry as LineString, 3.0, true
                          )
                          val iAmHere2 = polygonContainsCoordinates(
                              testReferenceCoordinateReverse,
@@ -1100,11 +1104,40 @@ class IntersectionsTest {
                      }
                  }
              }
+         }
+     }
 
+
+     fun getRoadBearingToIntersection(
+         intersection: FeatureCollection,
+         road: FeatureCollection
+     ): Double {
+
+         val roadCoordinates = (road.features[0].geometry as LineString).coordinates
+         val intersectionCoordinate = (intersection.features[0].geometry as Point).coordinates
+
+         val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
+
+         val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
+             getReferenceCoordinate(
+                 road.features[0].geometry as LineString,
+                 3.0,
+                 false
+             )
+         } else {
+             getReferenceCoordinate(
+                 road.features[0].geometry as LineString,
+                 3.0,
+                 true
+             )
          }
 
-
-
-
+         //  bearing from synthetic coordinate on road to intersection
+         return bearingFromTwoPoints(
+             testReferenceCoordinate.latitude,
+             testReferenceCoordinate.longitude,
+             intersectionCoordinate.latitude,
+             intersectionCoordinate.longitude
+         )
      }
 }
