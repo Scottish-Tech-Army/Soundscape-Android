@@ -721,7 +721,7 @@ class IntersectionsTest {
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
          // a T junction and we are located on Goodeve Road.
-         // The Left is Seawalls Road and Right is Knoll Hill
+         // The Left is Seawalls Road (direction 2) and Right is Knoll Hill (direction 6)
          val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
              currentLocation,
              deviceHeading,
@@ -731,6 +731,11 @@ class IntersectionsTest {
          // get the nearest intersection in the FoV and the roads that make up the intersection
          val testNearestIntersection = getNearestIntersection(
              currentLocation,fovIntersectionsFeatureCollection)
+
+         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+
+         val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad)
+
          val testIntersectionRoadNames = getIntersectionRoadNames(
              testNearestIntersection, fovRoadsFeatureCollection)
          // first create a relative direction polygon and put it on the intersection node with the same
@@ -738,7 +743,7 @@ class IntersectionsTest {
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
-             deviceHeading,
+             testNearestRoadBearing,
              fovDistance,
              RelativeDirections.COMBINED
          )
