@@ -297,10 +297,6 @@ class IntersectionsTest {
                 }
             }
         }
-
-
-
-
     }
 
     @Test
@@ -547,7 +543,6 @@ class IntersectionsTest {
                  }
              }
          }
-
      }
 
      @Test
@@ -791,7 +786,6 @@ class IntersectionsTest {
                  }
              }
          }
-
      }
 
      @Test
@@ -922,8 +916,6 @@ class IntersectionsTest {
                  }
              }
          }
-
-
      }
 
      @Test
@@ -1396,7 +1388,4 @@ class IntersectionsTest {
              }
          }
      }
-
-
-
 }
