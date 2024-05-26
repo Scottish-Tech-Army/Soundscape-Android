@@ -8,7 +8,6 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.RelativeDirections
 import com.kersnazzle.soundscapealpha.utils.RoadDirectionAtIntersection
-import com.kersnazzle.soundscapealpha.utils.bearingFromTwoPoints
 import com.kersnazzle.soundscapealpha.utils.getDirectionAtIntersection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
@@ -29,9 +28,6 @@ import org.junit.Test
  * These aren't really tests. At this point just figuring our how to handle various
  * simple intersection types.
  */
-
- // TODO Calculate the bearing of the road that we are currently on in relation to the intersection
- //  and use that rather than device bearing for the relative directions.
 
  //-----------------------------------------------//
  // Intersection Types - from original Soundscape //
@@ -206,7 +202,7 @@ class IntersectionsTest {
         // Get the intersections from the tile
         val testIntersectionsCollectionFromTileFeatureCollection =
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
@@ -333,7 +329,7 @@ class IntersectionsTest {
         // Get the intersections from the tile
         val testIntersectionsCollectionFromTileFeatureCollection =
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // Create a FOV triangle to pick up the intersection (this intersection is
         // a right turn transition from Belgrave Place to Codrington Place)
@@ -456,7 +452,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
          // a left turn transition from Codrington Place to Belgrave Place to)
@@ -581,7 +577,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
          // a side road right from Long Ashton Road to St Martins)
@@ -702,7 +698,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
          // a side road Left from Long Ashton Road to St Martins)
@@ -825,7 +821,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
          // a T junction with the device on St Martins and the main road is Long Ashton)
@@ -956,7 +952,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection (this intersection is
          // a T junction and we are located on Goodeve Road.
@@ -1081,7 +1077,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection. This intersection is
          // a crossroads and we are located on Grange Road (direction 0) which continues on ahead (direction 4)
@@ -1181,7 +1177,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection. This intersection is
          // a crossroads and we are located on Grange Road (direction 0) which continues on ahead (direction 4)
@@ -1306,7 +1302,7 @@ class IntersectionsTest {
          // Get the intersections from the tile
          val testIntersectionsCollectionFromTileFeatureCollection =
              getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                 featureCollectionTest!!
+                 featureCollectionTest
              )
          // Create a FOV triangle to pick up the intersection. This intersection is
          // a crossroad type 3 and we are located on St Mary's Butts (direction 0)
