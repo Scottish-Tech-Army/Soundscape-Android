@@ -30,21 +30,6 @@ import org.junit.Test
 
 
 
-
-
-//  Turn Left
-//  _____________
-//  ← B          |
-//  _________  ↑ |
-//           | * |
-//           |   |
-//           | A |
-//           | ↓ |
-
- // same again just depends what road you are standing on
- // Codrington Place to Belgrave Place
- //https://geojson.io/#map=19/51.4579382/-2.6157338
-
 //  Side Road Right
 //
 //  | ↑ |
@@ -250,7 +235,7 @@ class IntersectionsTest {
         //https://geojson.io/#map=19/51.4579043/-2.6156923
 
         // Fake device location and pretend the device is pointing South West and we are located on:
-        // Belgrave Place
+        // Belgrave Place (A)
         val currentLocation = LngLatAlt(-2.615585745757045,51.457957257918395)
         val deviceHeading = 225.0 // South West
         val fovDistance = 50.0
@@ -324,6 +309,18 @@ class IntersectionsTest {
 
      @Test
      fun intersectionsLeftTurn(){
+         //  Turn Left
+        //  _____________
+        //  ← B          |
+        //  _________  ↑ |
+        //           | * |
+        //           |   |
+        //           | A |
+        //           | ↓ |
+
+         // same again just depends what road you are standing on
+         // Codrington Place (A) to Belgrave Place (B)
+         //https://geojson.io/#map=19/51.4579382/-2.6157338
          // Fake device location and pretend the device is pointing South East and we are standing on:
          // Codrington Place
          val currentLocation = LngLatAlt(-2.6159411752634583, 51.45799104056931)
@@ -387,7 +384,14 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         // should be two roads that make up the intersection
+         Assert.assertEquals(2, blah.features.size )
+         // they are Codrington Place and Belgrave Place and should be behind (0) and left (2)
+         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Codrington Place", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Belgrave Place", blah.features[1].properties?.get("name") ?: "No idea")
+         
      }
 
      @Test
