@@ -29,23 +29,6 @@ import org.junit.Test
  //----------------------------------------------//
 
 
-
-//  Side Road Right
-//
-//  | ↑ |
-//  | A |
-//  |   |_________
-//  |          B →
-//  | ↑  _________
-//  | * |
-//  |   |
-//  | A |
-//  | ↓ |
-//
- // Long Ashton Road and St Martins
-// https://geojson.io/#map=18/51.430741/-2.656311
-//
-
 //  Side Road Left
 //
 //           | ↑ |
@@ -391,11 +374,26 @@ class IntersectionsTest {
          Assert.assertEquals("Codrington Place", blah.features[0].properties?.get("name") ?: "No idea")
          Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
          Assert.assertEquals("Belgrave Place", blah.features[1].properties?.get("name") ?: "No idea")
-         
+
      }
 
      @Test
      fun intersectionsSideRoadRight(){
+         //  Side Road Right
+        //
+        //  | ↑ |
+        //  | A |
+        //  |   |_________
+        //  |          B →
+        //  | ↑  _________
+        //  | * |
+        //  |   |
+        //  | A |
+        //  | ↓ |
+        //
+        // Long Ashton Road (A) and St Martins (B)
+        // https://geojson.io/#map=18/51.430741/-2.656311
+        //
 
          // Fake device location and pretend the device is pointing South West and we are located on:
          // Long Ashton Road
@@ -454,6 +452,7 @@ class IntersectionsTest {
          // so the first road will be the road we are on but it continues on from
          // the intersection so (direction 4) - Long Ashton Road
          // the second road which makes up the intersection is right (direction 6) - St Martins
+
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
@@ -462,7 +461,22 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         // should be three roads that make up the intersection:
+         // The road that lead up to the intersection Long Ashton Road
+         // The road that continues on from the intersection Long Ashton Road
+         // The road that is the right turn St Martins
+         Assert.assertEquals(3, blah.features.size )
+         // they are Long Ashton Road Place and St Martins and should be behind (0) and left (2)
+         Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
+         // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
+         // with the intersection having three roads: leading to it, trailing and the right turn
+         // TODO look at tidying up the logic so we only get two roads back
+         Assert.assertEquals(4, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", blah.features[2].properties?.get("name") ?: "No idea")
+
      }
 
      @Test
