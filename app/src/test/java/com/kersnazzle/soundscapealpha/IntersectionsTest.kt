@@ -29,78 +29,6 @@ import org.junit.Test
  //----------------------------------------------//
 
 
-
-
-//  T1
-//  ___________________
-//  ← B             B →
-//  _______     _______
-//         | ↑ |
-//         | * |
-//         |   |
-//         | A |
-//         | ↓ |
-
-// Standing on St Martins with device pointing towards Long Ashton Road
- // https://geojson.io/#map=18/51.430741/-2.656311
-
-//  T2
-//  ___________________
-//  ← B             C →
-//  _______     _______
-//         | ↑ |
-//         | * |
-//         |   |
-//         | A |
-//         | ↓ |
-
- // standing on Goodeve Road with device pointing towards SeaWalls Road (Left) and Knoll Hill (Right)
- // https://geojson.io/#map=18/51.472469/-2.637757
-
-//  Cross1
-//         | ↑ |
-//         | A |
-//  _______|   |_______
-//  ← B             B →
-//  _______     _______
-//         | ↑ |
-//         | * |
-//         |   |
-//         | A |
-//         | ↓ |
-
- // Standing on Grange Road which continues on ahead and the left and right are Manilla Road
-// https://geojson.io/#map=18/51.4569979/-2.6185285
-
-//  Cross2
-//         | ↑ |
-//         | A |
-//  _______|   |_______
-//  ← B             C →
-//  _______     _______
-//         | ↑ |
-//         | * |
-//         |   |
-//         | A |
-//         | ↓ |
-
- // Standing on Lansdown Road which continues on ahead. Left is Manilla Road and Right is Vyvyan Road
-// https://geojson.io/#map=18/51.4571879/-2.6178348/-31.2/14
-
-//  Cross3
-//         | ↑ |
-//         | D |
-//  _______|   |_______
-//  ← B             C →
-//  _______     _______
-//         | ↑ |
-//         | * |
-//         |   |
-//         | A |
-//         | ↓ |
-//
-// Example: Standing on St Mary's Butts with Oxford Road on Left, West Street Ahead and Broad Street on Right
-// https://geojson.io/#map=18/51.455426/-0.975279/-25.6
 class IntersectionsTest {
     @Test
     fun intersectionsStraightAheadType(){
@@ -455,7 +383,7 @@ class IntersectionsTest {
          // they are Long Ashton Road Place should be ahead (4) and St Martins and right (6)
          Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
          Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
          Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
          // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
          // with the intersection having three roads: leading to it, trailing and the right turn
@@ -555,7 +483,7 @@ class IntersectionsTest {
          // they are Long Ashton Road Place and St Martins and should be behind (0) and left (2)
          Assert.assertEquals(2, blah.features[0].properties?.get("Direction") ?: "No idea")
          Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
          Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
          // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
          // with the intersection having three roads: leading to it, trailing and the right turn
@@ -567,6 +495,19 @@ class IntersectionsTest {
 
      @Test
      fun intersectionsT1Test(){
+        //  T1
+        //  ___________________
+        //  ← B             B →
+        //  _______     _______
+        //         | ↑ |
+        //         | * |
+        //         |   |
+        //         | A |
+        //         | ↓ |
+
+        // Standing on St Martins (A) with device pointing towards Long Ashton Road (B)
+        // https://geojson.io/#map=18/51.430741/-2.656311
+
 
          // Fake device location and pretend the device is pointing South West and we are located on:
          // St Martins
@@ -637,11 +578,38 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         // should be three roads that make up the intersection:
+         // The road that lead up to the intersection St Martins
+         // The road that is the T intersection Long Ashton Road
+
+         Assert.assertEquals(3, blah.features.size )
+         // they are Long Ashton Road and St Martins and should be behind (0) and left (2) and right (6)
+         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
+         // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
+         // with the intersection having three roads:
+         // TODO look at tidying up the logic so we only get two roads back
+         Assert.assertEquals(6, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", blah.features[2].properties?.get("name") ?: "No idea")
      }
 
      @Test
      fun intersectionsT2Test(){
+        //  T2
+        //  ___________________
+        //  ← B             C →
+        //  _______     _______
+        //         | ↑ |
+        //         | * |
+        //         |   |
+        //         | A |
+        //         | ↓ |
+
+         // standing on Goodeve Road with device pointing towards SeaWalls Road (Left) and Knoll Hill (Right)
+         // https://geojson.io/#map=18/51.472469/-2.637757
+
          // Fake device location and pretend the device is pointing South West and we are located on:
          // Goodeve Road  The Left is Seawalls Road and Right is Knoll Hill
          val currentLocation = LngLatAlt(-2.637514213827643, 51.472589063821175)
@@ -705,11 +673,32 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         Assert.assertEquals(3, blah.features.size )
+         // Goodeve Road (0) Seawalls Road (2) and Knoll Hill (6)
+         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Goodeve Road", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Seawalls Road", blah.features[1].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(6, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Knoll Hill", blah.features[2].properties?.get("name") ?: "No idea")
      }
 
      @Test
      fun intersectionsCross1Test(){
+        //  Cross1
+        //         | ↑ |
+        //         | A |
+        //  _______|   |_______
+        //  ← B             B →
+        //  _______     _______
+        //         | ↑ |
+        //         | * |
+        //         |   |
+        //         | A |
+        //         | ↓ |
+
+        // Standing on Grange Road which continues on ahead and the left and right are Manilla Road
+        // https://geojson.io/#map=18/51.4569979/-2.6185285
 
          // Fake device location and pretend the device is pointing North West and we are located on:
          // Grange Road  The Left and Right for the crossroad is Manilla Road and ahead is Grange Road
@@ -776,12 +765,36 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         Assert.assertEquals(4, blah.features.size )
+         // Grange Road (0) and (4) Manilla Road Road (2) and (6)
+         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Grange Road", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Grange Road", blah.features[1].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(2, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Manilla Road", blah.features[2].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(6, blah.features[3].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Manilla Road", blah.features[3].properties?.get("name") ?: "No idea")
+
      }
 
      @Test
      fun intersectionCross2Test(){
-         // NOTE: This is a strange crossroads because it is actually made up of four different LineStrings
+        //  Cross2
+        //         | ↑ |
+        //         | A |
+        //  _______|   |_______
+        //  ← B             C →
+        //  _______     _______
+        //         | ↑ |
+        //         | * |
+        //         |   |
+        //         | A |
+        //         | ↓ |
+
+        // Standing on Lansdown Road which continues on ahead. Left is Manilla Road and Right is Vyvyan Road
+        // https://geojson.io/#map=18/51.4571879/-2.6178348/-31.2/14
+        // NOTE: This is a strange crossroads because it is actually made up of four different LineStrings
          // 2 x Lansdown Road LineStrings (would expect it to be made out of one)
          // and 1 Linestring  Manilla Road and 1 LineString Vyvyan Road
 
@@ -850,13 +863,35 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         // Lansdown Road (0) and (4) Manilla Road (2) and Vyvyan Road(6)
+         Assert.assertEquals(2, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Manilla Road", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Lansdown Road", blah.features[1].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(6, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Vyvyan Road", blah.features[2].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(4, blah.features[3].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Lansdown Road", blah.features[3].properties?.get("name") ?: "No idea")
      }
 
      @Test
      fun intersectionsCross3Test(){
-         // Fake device location and pretend the device is pointing North West and we are located on:
-         //  Standing on St Mary's Butts with Oxford Road on Left, West Street Ahead and Broad Street on Right
+         //  Cross3
+        //         | ↑ |
+        //         | D |
+        //  _______|   |_______
+        //  ← B             C →
+        //  _______     _______
+        //         | ↑ |
+        //         | * |
+        //         |   |
+        //         | A |
+        //         | ↓ |
+        //
+        // Example: Standing on St Mary's Butts with Oxford Road on Left, West Street Ahead and Broad Street on Right
+        // https://geojson.io/#map=18/51.455426/-0.975279/-25.6
+        // Fake device location and pretend the device is pointing North West and we are located on:
+        //  Standing on St Mary's Butts with Oxford Road on Left, West Street Ahead and Broad Street on Right
          val currentLocation = LngLatAlt(-0.9752549546655587, 51.4553843453491)
          val deviceHeading = 320.0 // North West
          val fovDistance = 50.0
@@ -922,7 +957,16 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         // St Mary's Butts (0)  Oxford Road (2), West Street (4) and Broad Street (6)
+         // Lansdown Road (0) and (4) Manilla Road (2) and Vyvyan Road(6)
+         Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Broad Street", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("St Mary's Butts", blah.features[1].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(2, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Oxford Road", blah.features[2].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(4, blah.features[3].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("West Street", blah.features[3].properties?.get("name") ?: "No idea")
 
 
      }

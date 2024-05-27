@@ -1502,7 +1502,7 @@ fun getIntersectionRoadNamesRelativeDirections(
         //println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
         if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
             // split the road into two
-            val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
+            var roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
                 nearestIntersection.features[0],
                 road
             )
@@ -1517,7 +1517,8 @@ fun getIntersectionRoadNamesRelativeDirections(
                     if (iAmHere1){
                         // at this point we need to take the road and direction and merge their properties
                         // and create a new Feature and add it to the FeatureCollection
-                        newFeatureCollection.addFeature(mergeRoadAndDirectionFeatures(splitRoad, direction))
+                        val newFeature = mergeRoadAndDirectionFeatures(splitRoad, direction)
+                        newFeatureCollection.addFeature(newFeature)
                         //println("Road name: ${splitRoad.properties!!["name"]}")
                         //println("Road direction: ${direction.properties!!["Direction"]}")
                     } else {
@@ -1529,7 +1530,8 @@ fun getIntersectionRoadNamesRelativeDirections(
                             testReferenceCoordinateReverse, (direction.geometry as Polygon)
                         )
                         if (iAmHere2) {
-                            newFeatureCollection.addFeature(mergeRoadAndDirectionFeatures(splitRoad, direction))
+                            val newFeature = mergeRoadAndDirectionFeatures(splitRoad, direction)
+                            newFeatureCollection.addFeature(newFeature)
                             //println("Road name: ${splitRoad.properties!!["name"]}")
                             //println("Road direction: ${direction.properties!!["Direction"]}")
                         }
@@ -1544,7 +1546,8 @@ fun getIntersectionRoadNamesRelativeDirections(
                 val iAmHere1 = polygonContainsCoordinates(
                     testReferenceCoordinateForward, (direction.geometry as Polygon))
                 if (iAmHere1){
-                    newFeatureCollection.addFeature(mergeRoadAndDirectionFeatures(road, direction))
+                    val newFeature = mergeRoadAndDirectionFeatures(road, direction)
+                    newFeatureCollection.addFeature(newFeature)
                     //println("Road name: ${road.properties!!["name"]}")
                     //println("Road direction: ${direction.properties!!["Direction"]}")
                 } else {
@@ -1557,7 +1560,8 @@ fun getIntersectionRoadNamesRelativeDirections(
                         (direction.geometry as Polygon)
                     )
                     if (iAmHere2) {
-                        newFeatureCollection.addFeature(mergeRoadAndDirectionFeatures(road, direction))
+                        val newFeature = mergeRoadAndDirectionFeatures(road, direction)
+                        newFeatureCollection.addFeature(newFeature)
                         //println("Road name: ${road.properties!!["name"]}")
                         //println("Road direction: ${direction.properties!!["Direction"]}")
                     }
@@ -1572,16 +1576,20 @@ fun mergeRoadAndDirectionFeatures(
     road: Feature,
     direction: Feature
 ): Feature {
-    var newFeature = Feature()
+    val newFeature = Feature()
 
     // Here we want to:
     // Create a new Feature
     // take the road Feature and its properties and add it to the new Feature
     // add the "Direction" property from the direction Feature and add it to the new Feature
+    newFeature.geometry = road.geometry
+    road.properties?.clone().also { newFeature.properties = it as java.util.HashMap<String, Any?>? }
+    newFeature.foreign = road.foreign
+    newFeature.type = road.type
+    newFeature.bbox = road.bbox
+    val fineBeLikeThat = direction.properties?.get("Direction")
 
-    newFeature = road
-
-    newFeature.properties?.set("Direction", direction.properties?.get("Direction"))
+    newFeature.properties?.put("Direction", fineBeLikeThat)
 
     return newFeature
 }
