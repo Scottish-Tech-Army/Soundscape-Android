@@ -2,25 +2,19 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.RelativeDirections
-import com.kersnazzle.soundscapealpha.utils.RoadDirectionAtIntersection
-import com.kersnazzle.soundscapealpha.utils.getDirectionAtIntersection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovRoadsFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionRoadNames
+import com.kersnazzle.soundscapealpha.utils.getIntersectionRoadNamesRelativeDirections
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getNearestIntersection
 import com.kersnazzle.soundscapealpha.utils.getNearestRoad
-import com.kersnazzle.soundscapealpha.utils.getReferenceCoordinate
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.polygonContainsCoordinates
-import com.kersnazzle.soundscapealpha.utils.splitRoadByIntersection
 import com.squareup.moshi.Moshi
 import org.junit.Test
 
@@ -233,70 +227,16 @@ class IntersectionsTest {
         )
 
         // where's the intersection relative to our current location - direction 4 - ahead
-        for (road in testIntersectionRoadNames) {
-            val testRoadDirectionAtIntersection =
-                getDirectionAtIntersection(testNearestIntersection.features[0], road)
-            println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-            if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                // split the road into two
-                val roadCoordinatesSplitIntoTwo =
-                    splitRoadByIntersection(testNearestIntersection.features[0], road)
-                // for each split road work out the relative direction from the intersection
-                for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                    val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                        splitRoad.geometry as LineString, 25.0, false
-                    )
-                    // test if the reference coordinate we've created is in any of the relative direction triangles
-                    for (direction in intersectionRelativeDirections) {
-                        val iAmHere1 = polygonContainsCoordinates(
-                            testReferenceCoordinateForRoad, (direction.geometry as Polygon)
-                        )
-                        if (iAmHere1) {
-                            println("Road name: ${splitRoad.properties!!["name"]}")
-                            println("Road direction: ${direction.properties!!["Direction"]}")
-                        } else {
-                            // reverse the LineString, create the ref coordinate and test it again
-                            val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                splitRoad.geometry as LineString, 25.0, true
-                            )
-                            val iAmHere2 = polygonContainsCoordinates(
-                                testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                            )
-                            if (iAmHere2) {
-                                println("Road name: ${splitRoad.properties!!["name"]}")
-                                println("Road direction: ${direction.properties!!["Direction"]}")
-                            }
-                        }
-                    }
-                }
-            } else {
-                for (direction in intersectionRelativeDirections) {
-                    val testReferenceCoordinateForward = getReferenceCoordinate(
-                        road.geometry as LineString, 3.0, false
-                    )
-                    val iAmHere1 = polygonContainsCoordinates(
-                        testReferenceCoordinateForward, (direction.geometry as Polygon)
-                    )
-                    if (iAmHere1) {
-                        println("Road name: ${road.properties!!["name"]}")
-                        println("Road direction: ${direction.properties!!["Direction"]}")
-                    } else {
-                        // reverse the LineString, create the ref coordinate and test it again
-                        val testReferenceCoordinateReverse = getReferenceCoordinate(
-                            road.geometry as LineString, 3.0, true
-                        )
-                        val iAmHere2 = polygonContainsCoordinates(
-                            testReferenceCoordinateReverse,
-                            (direction.geometry as Polygon)
-                        )
-                        if (iAmHere2) {
-                            println("Road name: ${road.properties!!["name"]}")
-                            println("Road direction: ${direction.properties!!["Direction"]}")
-                        }
-                    }
-                }
-            }
-        }
+
+        // pass the roads that make up the intersection, the intersection and the relative directions polygons
+        // this should give us a feature collection with the roads and their relative direction
+        // inserted as a "Direction" property for each Road feature that makes up the intersection
+        val blah = getIntersectionRoadNamesRelativeDirections(
+            testIntersectionRoadNames,
+            testNearestIntersection,
+            intersectionRelativeDirections)
+
+        println("${blah.features.size}")
     }
 
     @Test
@@ -356,70 +296,16 @@ class IntersectionsTest {
         // this should be clockwise from 6 o'clock
         // so the first road will be the road we are on (direction 0) - Belgrave PLace
         // the second road which makes up the intersection is right (direction 6) etc. Codrington Place
-        for (road in testIntersectionRoadNames) {
-            val testRoadDirectionAtIntersection =
-                getDirectionAtIntersection(testNearestIntersection.features[0], road)
-            println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-            if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                // split the road into two
-                val roadCoordinatesSplitIntoTwo =
-                    splitRoadByIntersection(testNearestIntersection.features[0], road)
-                // for each split road work out the relative direction from the intersection
-                for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                    val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                        splitRoad.geometry as LineString, 25.0, false
-                    )
-                    // test if the reference coordinate we've created is in any of the relative direction triangles
-                    for (direction in intersectionRelativeDirections) {
-                        val iAmHere1 = polygonContainsCoordinates(
-                            testReferenceCoordinateForRoad, (direction.geometry as Polygon)
-                        )
-                        if (iAmHere1) {
-                            println("Road name: ${splitRoad.properties!!["name"]}")
-                            println("Road direction: ${direction.properties!!["Direction"]}")
-                        } else {
-                            // reverse the LineString, create the ref coordinate and test it again
-                            val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                splitRoad.geometry as LineString, 25.0, true
-                            )
-                            val iAmHere2 = polygonContainsCoordinates(
-                                testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                            )
-                            if (iAmHere2) {
-                                println("Road name: ${splitRoad.properties!!["name"]}")
-                                println("Road direction: ${direction.properties!!["Direction"]}")
-                            }
-                        }
-                    }
-                }
-            } else {
-                for (direction in intersectionRelativeDirections) {
-                    val testReferenceCoordinateForward = getReferenceCoordinate(
-                        road.geometry as LineString, 3.0, false
-                    )
-                    val iAmHere1 = polygonContainsCoordinates(
-                        testReferenceCoordinateForward, (direction.geometry as Polygon)
-                    )
-                    if (iAmHere1) {
-                        println("Road name: ${road.properties!!["name"]}")
-                        println("Road direction: ${direction.properties!!["Direction"]}")
-                    } else {
-                        // reverse the LineString, create the ref coordinate and test it again
-                        val testReferenceCoordinateReverse = getReferenceCoordinate(
-                            road.geometry as LineString, 3.0, true
-                        )
-                        val iAmHere2 = polygonContainsCoordinates(
-                            testReferenceCoordinateReverse,
-                            (direction.geometry as Polygon)
-                        )
-                        if (iAmHere2) {
-                            println("Road name: ${road.properties!!["name"]}")
-                            println("Road direction: ${direction.properties!!["Direction"]}")
-                        }
-                    }
-                }
-            }
-        }
+
+        // pass the roads that make up the intersection, the intersection and the relative directions polygons
+        // this should give us a feature collection with the roads and their relative direction
+        // inserted as a "Direction" property for each Road feature that makes up the intersection
+        val blah = getIntersectionRoadNamesRelativeDirections(
+            testIntersectionRoadNames,
+            testNearestIntersection,
+            intersectionRelativeDirections)
+
+        println("${blah.features.size}")
     }
 
      @Test
@@ -479,70 +365,15 @@ class IntersectionsTest {
          // this should be clockwise from 6 o'clock
          // so the first road will be the road we are on (direction 0) - Codrington Place
          // the second road which makes up the intersection is left (direction 2) etc. Belgrave Place
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo =
-                     splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false
-                     )
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for (direction in intersectionRelativeDirections) {
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon)
-                         )
-                         if (iAmHere1) {
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             } else {
-                 for (direction in intersectionRelativeDirections) {
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false
-                     )
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon)
-                     )
-                     if (iAmHere1) {
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -605,66 +436,15 @@ class IntersectionsTest {
          // so the first road will be the road we are on but it continues on from
          // the intersection so (direction 4) - Long Ashton Road
          // the second road which makes up the intersection is right (direction 6) - St Martins
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false)
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for(direction in intersectionRelativeDirections){
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon))
-                         if (iAmHere1){
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             }
-             else{
-                 for (direction in intersectionRelativeDirections){
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false)
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon))
-                     if (iAmHere1){
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -726,66 +506,15 @@ class IntersectionsTest {
          // so the first road will be the road we are on but it continues on from
          // the intersection so (direction 4) - Long Ashton Road
          // the second road which makes up the intersection is left (direction 2) - St Martins
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false)
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for(direction in intersectionRelativeDirections){
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon))
-                         if (iAmHere1){
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             }
-             else{
-                 for (direction in intersectionRelativeDirections){
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false)
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon))
-                     if (iAmHere1){
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -851,71 +580,16 @@ class IntersectionsTest {
          // create two new LineStrings. DONE
          // insert a ref coordinate into both and work out the directions for the two LineStrings - DONE
          // so we should be able to return Long Ashton Road "Left" and Long Ashton Road "Right" DONE
-         // TODO Have a think about the below as it is making me sad looking at it!
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo =
-                     splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false
-                     )
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for (direction in intersectionRelativeDirections) {
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon)
-                         )
-                         if (iAmHere1) {
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             } else {
-                 for (direction in intersectionRelativeDirections) {
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false
-                     )
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon)
-                     )
-                     if (iAmHere1) {
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -975,70 +649,15 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo =
-                     splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false
-                     )
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for (direction in intersectionRelativeDirections) {
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon)
-                         )
-                         if (iAmHere1) {
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             } else {
-                 for (direction in intersectionRelativeDirections) {
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false
-                     )
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon)
-                     )
-                     if (iAmHere1) {
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -1101,41 +720,15 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false)
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for(direction in intersectionRelativeDirections){
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon))
-                         if (iAmHere1){
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -1201,70 +794,15 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo =
-                     splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false
-                     )
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for (direction in intersectionRelativeDirections) {
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon)
-                         )
-                         if (iAmHere1) {
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             } else {
-                 for (direction in intersectionRelativeDirections) {
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false
-                     )
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon)
-                     )
-                     if (iAmHere1) {
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
      }
 
      @Test
@@ -1320,6 +858,7 @@ class IntersectionsTest {
          // first create a relative direction polygon and put it on the intersection node with the same
          // heading as the road we are currently nearest to
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
+
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
              testNearestRoadBearing,
@@ -1327,65 +866,18 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         for (road in testIntersectionRoadNames) {
-             val testRoadDirectionAtIntersection =
-                 getDirectionAtIntersection(testNearestIntersection.features[0], road)
-             println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-             if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
-                 // split the road into two
-                 val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(testNearestIntersection.features[0], road)
-                 // for each split road work out the relative direction from the intersection
-                 for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                     val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                         splitRoad.geometry as LineString, 25.0, false)
-                     // test if the reference coordinate we've created is in any of the relative direction triangles
-                     for(direction in intersectionRelativeDirections){
-                         val iAmHere1 = polygonContainsCoordinates(
-                             testReferenceCoordinateForRoad, (direction.geometry as Polygon))
-                         if (iAmHere1){
-                             println("Road name: ${splitRoad.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         } else {
-                             // reverse the LineString, create the ref coordinate and test it again
-                             val testReferenceCoordinateReverse = getReferenceCoordinate(
-                                 splitRoad.geometry as LineString, 25.0, true
-                             )
-                             val iAmHere2 = polygonContainsCoordinates(
-                                 testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                             )
-                             if (iAmHere2) {
-                                 println("Road name: ${splitRoad.properties!!["name"]}")
-                                 println("Road direction: ${direction.properties!!["Direction"]}")
-                             }
-                         }
-                     }
-                 }
-             }
-             else{
-                 for (direction in intersectionRelativeDirections){
-                     val testReferenceCoordinateForward = getReferenceCoordinate(
-                         road.geometry as LineString, 3.0, false)
-                     val iAmHere1 = polygonContainsCoordinates(
-                         testReferenceCoordinateForward, (direction.geometry as Polygon))
-                     if (iAmHere1){
-                         println("Road name: ${road.properties!!["name"]}")
-                         println("Road direction: ${direction.properties!!["Direction"]}")
-                     } else {
-                         // reverse the LineString, create the ref coordinate and test it again
-                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                             road.geometry as LineString, 3.0, true
-                         )
-                         val iAmHere2 = polygonContainsCoordinates(
-                             testReferenceCoordinateReverse,
-                             (direction.geometry as Polygon)
-                         )
-                         if (iAmHere2) {
-                             println("Road name: ${road.properties!!["name"]}")
-                             println("Road direction: ${direction.properties!!["Direction"]}")
-                         }
-                     }
-                 }
-             }
-         }
+         // pass the roads that make up the intersection, the intersection and the relative directions polygons
+         // this should give us a feature collection with the roads and their relative direction
+         // inserted as a "Direction" property for each Road feature that makes up the intersection
+         val blah = getIntersectionRoadNamesRelativeDirections(
+             testIntersectionRoadNames,
+             testNearestIntersection,
+             intersectionRelativeDirections)
+
+         println("${blah.features.size}")
+
+
      }
+
+
 }
