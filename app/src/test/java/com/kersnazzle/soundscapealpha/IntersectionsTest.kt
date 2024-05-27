@@ -16,6 +16,7 @@ import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.squareup.moshi.Moshi
+import org.junit.Assert
 import org.junit.Test
 
  /**
@@ -27,19 +28,7 @@ import org.junit.Test
  // Intersection Types - from original Soundscape //
  //----------------------------------------------//
 
-//  Road Switch
-//
-//  | ↑ |
-//  | B |
-//  |   |
-//  | ↑ |
-//  | * |
-//  |   |
-//  | A |
-//  | ↓ |
 
- // Weston Road to Long Ashton Road
- // https://geojson.io/#map=17/51.430494/-2.657463
 
 //  Turn Right
 //   _____________
@@ -171,12 +160,25 @@ import org.junit.Test
 class IntersectionsTest {
     @Test
     fun intersectionsStraightAheadType(){
+        //  Road Switch
+        //
+        //  | ↑ |
+        //  | B |
+        //  |   |
+        //  | ↑ |
+        //  | * |
+        //  |   |
+        //  | A |
+        //  | ↓ |
+
+        // Weston Road to Long Ashton Road
+        // https://geojson.io/#map=17/51.430494/-2.657463
+
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
         val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
         val deviceHeading = 90.0
         val fovDistance = 50.0
-
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -215,7 +217,6 @@ class IntersectionsTest {
         val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, deviceHeading)
         // what is the road direction type in relation to the nearest intersection and nearest road
 
-
         // first create a relative direction polygon and put it on the intersection node with the same
         // heading as the device
         val intersectionLocation = testNearestIntersection.features[0].geometry as Point
@@ -226,8 +227,6 @@ class IntersectionsTest {
             RelativeDirections.COMBINED
         )
 
-        // where's the intersection relative to our current location - direction 4 - ahead
-
         // pass the roads that make up the intersection, the intersection and the relative directions polygons
         // this should give us a feature collection with the roads and their relative direction
         // inserted as a "Direction" property for each Road feature that makes up the intersection
@@ -236,7 +235,14 @@ class IntersectionsTest {
             testNearestIntersection,
             intersectionRelativeDirections)
 
-        println("${blah.features.size}")
+        // should be two roads that make up the intersection
+        Assert.assertEquals(2, blah.features.size )
+        // they are Weston Road and Long Ashton Road and should be behind (0) and the other ahead (4)
+        Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
+        Assert.assertEquals("Weston Road", blah.features[0].properties?.get("name") ?: "No idea")
+        Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
+        Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
+
     }
 
     @Test
