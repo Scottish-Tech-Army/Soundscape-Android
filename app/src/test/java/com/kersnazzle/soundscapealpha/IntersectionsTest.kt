@@ -30,17 +30,7 @@ import org.junit.Test
 
 
 
-//  Turn Right
-//   _____________
-//  |          B →
-//  | ↑  _________
-//  | * |
-//  |   |
-//  | A |
-//  | ↓ |
 
- // Belgrave Place to Codrington Place
-//https://geojson.io/#map=19/51.4579043/-2.6156923
 
 //  Turn Left
 //  _____________
@@ -171,7 +161,7 @@ class IntersectionsTest {
         //  | A |
         //  | ↓ |
 
-        // Weston Road to Long Ashton Road
+        // Weston Road (A) to Long Ashton Road (B)
         // https://geojson.io/#map=17/51.430494/-2.657463
 
         // Fake device location and pretend the device is pointing East.
@@ -247,6 +237,18 @@ class IntersectionsTest {
 
     @Test
     fun intersectionsRightTurn(){
+        //  Turn Right
+        //   _____________
+        //  |          B →
+        //  | ↑  _________
+        //  | * |
+        //  |   |
+        //  | A |
+        //  | ↓ |
+
+        // Belgrave Place (A) to Codrington Place (B)
+        //https://geojson.io/#map=19/51.4579043/-2.6156923
+
         // Fake device location and pretend the device is pointing South West and we are located on:
         // Belgrave Place
         val currentLocation = LngLatAlt(-2.615585745757045,51.457957257918395)
@@ -311,7 +313,13 @@ class IntersectionsTest {
             testNearestIntersection,
             intersectionRelativeDirections)
 
-        println("${blah.features.size}")
+        // should be two roads that make up the intersection
+        Assert.assertEquals(2, blah.features.size )
+        // they are Belgrave Place and Codrington Place and should be behind (0) and right (6)
+        Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
+        Assert.assertEquals("Codrington Place", blah.features[0].properties?.get("name") ?: "No idea")
+        Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
+        Assert.assertEquals("Belgrave Place", blah.features[1].properties?.get("name") ?: "No idea")
     }
 
      @Test
