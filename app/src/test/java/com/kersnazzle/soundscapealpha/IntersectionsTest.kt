@@ -29,21 +29,7 @@ import org.junit.Test
  //----------------------------------------------//
 
 
-//  Side Road Left
-//
-//           | ↑ |
-//           | A |
-//  _________|   |
-//  ← B          |
-//  _________  ↑ |
-//           | * |
-//           |   |
-//           | A |
-//           | ↓ |
 
- // Long Ashton Road and St Martins same as above but location and device direction changed
-// https://geojson.io/#map=18/51.430741/-2.656311
-//
 
 //  T1
 //  ___________________
@@ -466,7 +452,7 @@ class IntersectionsTest {
          // The road that continues on from the intersection Long Ashton Road
          // The road that is the right turn St Martins
          Assert.assertEquals(3, blah.features.size )
-         // they are Long Ashton Road Place and St Martins and should be behind (0) and left (2)
+         // they are Long Ashton Road Place should be ahead (4) and St Martins and right (6)
          Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
          Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
          Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
@@ -481,8 +467,23 @@ class IntersectionsTest {
 
      @Test
      fun intersectionsSideRoadLeft(){
+        //  Side Road Left
+        //
+        //           | ↑ |
+        //           | A |
+        //  _________|   |
+        //  ← B          |
+        //  _________  ↑ |
+        //           | * |
+        //           |   |
+        //           | A |
+        //           | ↓ |
+
+        // Long Ashton Road (A) and St Martins (B) same as above but location and device direction changed
+        // https://geojson.io/#map=18/51.430741/-2.656311
+        //
          // Fake device location and pretend the device is pointing North East and we are located on:
-         // Long Ashton Road
+         // Long Ashton Road (A)
          val currentLocation = LngLatAlt(-2.656530323429564,51.43065207103919)
          val deviceHeading = 50.0 // North East
          val fovDistance = 50.0
@@ -537,7 +538,7 @@ class IntersectionsTest {
          // this should be clockwise from 6 o'clock
          // so the first road will be the road we are on but it continues on from
          // the intersection so (direction 4) - Long Ashton Road
-         // the second road which makes up the intersection is left (direction 2) - St Martins
+         // the second road which makes up the intersection is left (direction 4) - St Martins
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
@@ -546,7 +547,22 @@ class IntersectionsTest {
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         println("${blah.features.size}")
+         // should be three roads that make up the intersection:
+         // The road that lead up to the intersection Long Ashton Road
+         // The road that continues on from the intersection Long Ashton Road
+         // The road that is the left turn St Martins
+         Assert.assertEquals(3, blah.features.size )
+         // they are Long Ashton Road Place and St Martins and should be behind (0) and left (2)
+         Assert.assertEquals(2, blah.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
+         // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
+         // with the intersection having three roads: leading to it, trailing and the right turn
+         // TODO look at tidying up the logic so we only get two roads back
+         Assert.assertEquals(0, blah.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", blah.features[2].properties?.get("name") ?: "No idea")
+
      }
 
      @Test
