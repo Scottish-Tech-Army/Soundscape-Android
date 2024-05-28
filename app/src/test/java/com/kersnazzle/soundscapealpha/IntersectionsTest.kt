@@ -1,5 +1,7 @@
 package com.kersnazzle.soundscapealpha
 
+import com.kersnazzle.soundscapealpha.dto.IntersectionRelativeDirections
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
@@ -15,18 +17,15 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.sortFeatureCollectionByDirectionProperty
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 
- /**
- * These aren't really tests. At this point just figuring our how to handle various
- * simple intersection types.
- */
 
- //-----------------------------------------------//
- // Intersection Types - from original Soundscape //
- //----------------------------------------------//
+ //------------------------------------------------------//
+ // Simple Intersection Types - from original Soundscape //
+ //------------------------------------------------------//
 
 
 class IntersectionsTest {
@@ -90,7 +89,7 @@ class IntersectionsTest {
         // what is the road direction type in relation to the nearest intersection and nearest road
 
         // first create a relative direction polygon and put it on the intersection node with the same
-        // heading as the device
+        // heading as the nearest road
         val intersectionLocation = testNearestIntersection.features[0].geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -102,18 +101,18 @@ class IntersectionsTest {
         // pass the roads that make up the intersection, the intersection and the relative directions polygons
         // this should give us a feature collection with the roads and their relative direction
         // inserted as a "Direction" property for each Road feature that makes up the intersection
-        val blah = getIntersectionRoadNamesRelativeDirections(
+        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
             testIntersectionRoadNames,
             testNearestIntersection,
             intersectionRelativeDirections)
 
         // should be two roads that make up the intersection
-        Assert.assertEquals(2, blah.features.size )
+        Assert.assertEquals(2, roadRelativeDirections.features.size )
         // they are Weston Road and Long Ashton Road and should be behind (0) and the other ahead (4)
-        Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
-        Assert.assertEquals("Weston Road", blah.features[0].properties?.get("name") ?: "No idea")
-        Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
-        Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
+        Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+        Assert.assertEquals("Weston Road", roadRelativeDirections.features[0].properties!!["name"])
+        Assert.assertEquals(4, roadRelativeDirections.features[1].properties!!["Direction"])
+        Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[1].properties!!["name"])
 
     }
 
@@ -190,23 +189,24 @@ class IntersectionsTest {
         // pass the roads that make up the intersection, the intersection and the relative directions polygons
         // this should give us a feature collection with the roads and their relative direction
         // inserted as a "Direction" property for each Road feature that makes up the intersection
-        val blah = getIntersectionRoadNamesRelativeDirections(
+        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
             testIntersectionRoadNames,
             testNearestIntersection,
             intersectionRelativeDirections)
 
         // should be two roads that make up the intersection
-        Assert.assertEquals(2, blah.features.size )
+        Assert.assertEquals(2, roadRelativeDirections.features.size )
         // they are Belgrave Place and Codrington Place and should be behind (0) and right (6)
-        Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
-        Assert.assertEquals("Codrington Place", blah.features[0].properties?.get("name") ?: "No idea")
-        Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
-        Assert.assertEquals("Belgrave Place", blah.features[1].properties?.get("name") ?: "No idea")
+        Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+        Assert.assertEquals("Belgrave Place", roadRelativeDirections.features[0].properties!!["name"])
+        Assert.assertEquals(6, roadRelativeDirections.features[1].properties!!["Direction"])
+        Assert.assertEquals("Codrington Place", roadRelativeDirections.features[1].properties!!["name"])
+
     }
 
      @Test
      fun intersectionsLeftTurn(){
-         //  Turn Left
+        //  Turn Left
         //  _____________
         //  ← B          |
         //  _________  ↑ |
@@ -276,24 +276,24 @@ class IntersectionsTest {
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
          // should be two roads that make up the intersection
-         Assert.assertEquals(2, blah.features.size )
+         Assert.assertEquals(2, roadRelativeDirections.features.size )
          // they are Codrington Place and Belgrave Place and should be behind (0) and left (2)
-         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Codrington Place", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Belgrave Place", blah.features[1].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("Codrington Place", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("Belgrave Place", roadRelativeDirections.features[1].properties!!["name"])
 
      }
 
      @Test
      fun intersectionsSideRoadRight(){
-         //  Side Road Right
+        //  Side Road Right
         //
         //  | ↑ |
         //  | A |
@@ -347,13 +347,12 @@ class IntersectionsTest {
 
          val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
 
-
          val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, deviceHeading)
 
          val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
 
          // first create a relative direction polygon and put it on the intersection node with the same
-         // heading as the device
+         // heading as the road we are on
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -362,34 +361,26 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         // this should be clockwise from 6 o'clock
-         // so the first road will be the road we are on but it continues on from
-         // the intersection so (direction 4) - Long Ashton Road
-         // the second road which makes up the intersection is right (direction 6) - St Martins
-
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         // should be three roads that make up the intersection:
-         // The road that lead up to the intersection Long Ashton Road
-         // The road that continues on from the intersection Long Ashton Road
-         // The road that is the right turn St Martins
-         Assert.assertEquals(3, blah.features.size )
-         // they are Long Ashton Road Place should be ahead (4) and St Martins and right (6)
-         Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
-         // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
-         // with the intersection having three roads: leading to it, trailing and the right turn
-         // TODO look at tidying up the logic so we only get two roads back
-         Assert.assertEquals(4, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Long Ashton Road", blah.features[2].properties?.get("name") ?: "No idea")
+         // There should now be three roads that make up the intersection:
+         // The road that leads up to the intersection Long Ashton Road (0)
+         // The road that continues on from the intersection Long Ashton Road (4)
+         // The road that is the right turn St Martins (6)
+         Assert.assertEquals(3, roadRelativeDirections.features.size )
+
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(4, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[1].properties!!["name"])
+         Assert.assertEquals(6, roadRelativeDirections.features[2].properties!!["Direction"])
+         Assert.assertEquals("St Martins", roadRelativeDirections.features[2].properties!!["name"])
 
      }
 
@@ -451,7 +442,6 @@ class IntersectionsTest {
          val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, deviceHeading)
 
          val testIntersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
-         // what relative direction(s) are the road(s) that make up the nearest intersection?
 
          // first create a relative direction polygon and put it on the intersection node with the same
          // heading as the device
@@ -463,33 +453,29 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         // this should be clockwise from 6 o'clock
-         // so the first road will be the road we are on but it continues on from
-         // the intersection so (direction 4) - Long Ashton Road
+         // The directions will be clockwise from 6 o'clock
+         // The first road will be the road we are on but it continues on from
+         // the intersection so (direction 0) - Long Ashton Road
          // the second road which makes up the intersection is left (direction 4) - St Martins
-         // pass the roads that make up the intersection, the intersection and the relative directions polygons
-         // this should give us a feature collection with the roads and their relative direction
+         // the third road Long Ashton Road again which continues on from the intersection  ahead (4)
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
          // should be three roads that make up the intersection:
-         // The road that lead up to the intersection Long Ashton Road
-         // The road that continues on from the intersection Long Ashton Road
-         // The road that is the left turn St Martins
-         Assert.assertEquals(3, blah.features.size )
-         // they are Long Ashton Road Place and St Martins and should be behind (0) and left (2)
-         Assert.assertEquals(2, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
-         // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
-         // with the intersection having three roads: leading to it, trailing and the right turn
-         // TODO look at tidying up the logic so we only get two roads back
-         Assert.assertEquals(0, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Long Ashton Road", blah.features[2].properties?.get("name") ?: "No idea")
+         // The road that lead up to the intersection Long Ashton Road (0)
+         // The road that is the left turn St Martins (2)
+         // The road that continues on from the intersection Long Ashton Road (4)
+         Assert.assertEquals(3, roadRelativeDirections.features.size)
+
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("St Martins", roadRelativeDirections.features[1].properties!!["name"])
+         Assert.assertEquals(4, roadRelativeDirections.features[2].properties!!["Direction"])
+         Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[2].properties!!["name"])
 
      }
 
@@ -553,7 +539,7 @@ class IntersectionsTest {
          // what relative direction(s) are the road(s) that make up the nearest intersection?
 
          // first create a relative direction polygon and put it on the intersection node with the same
-         // heading as the device
+         // heading as the nearest road
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -562,37 +548,26 @@ class IntersectionsTest {
              RelativeDirections.COMBINED
          )
 
-         // the second road which makes up the intersection is left and right (direction 2 and direction 6) - Long Ashton Road
-         // However our getReferenceCoordinate function only works with the ends of LineStrings so what to do?
-         // Check the type of road: leading, trailing or leading_and_trailing. If the road is leading_and_trailing - DONE
-         // split the LineString coordinates into two based on intersection coordinate, - DONE
-         // create two new LineStrings. DONE
-         // insert a ref coordinate into both and work out the directions for the two LineStrings - DONE
-         // so we should be able to return Long Ashton Road "Left" and Long Ashton Road "Right" DONE
-
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
          // should be three roads that make up the intersection:
-         // The road that lead up to the intersection St Martins
-         // The road that is the T intersection Long Ashton Road
+         // The road that leads up to the intersection St Martins (0)
+         // The road that is the T intersection Long Ashton Road left (2) and right (6)
 
-         Assert.assertEquals(3, blah.features.size )
-         // they are Long Ashton Road and St Martins and should be behind (0) and left (2) and right (6)
-         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("St Martins", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Long Ashton Road", blah.features[1].properties?.get("name") ?: "No idea")
-         // We've had to split Long Ashton Road into two parts to get the relative direction so we end up
-         // with the intersection having three roads:
-         // TODO look at tidying up the logic so we only get two roads back
-         Assert.assertEquals(6, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Long Ashton Road", blah.features[2].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(3, roadRelativeDirections.features.size )
+
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("St Martins", roadRelativeDirections.features[0].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[1].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(6, roadRelativeDirections.features[2].properties?.get("Direction") ?: "No idea")
+         Assert.assertEquals("Long Ashton Road", roadRelativeDirections.features[2].properties?.get("name") ?: "No idea")
      }
 
      @Test
@@ -656,7 +631,7 @@ class IntersectionsTest {
          val testIntersectionRoadNames = getIntersectionRoadNames(
              testNearestIntersection, fovRoadsFeatureCollection)
          // first create a relative direction polygon and put it on the intersection node with the same
-         // heading as the device
+         // heading as the road we are on
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -668,19 +643,19 @@ class IntersectionsTest {
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         Assert.assertEquals(3, blah.features.size )
+         Assert.assertEquals(3, roadRelativeDirections.features.size )
          // Goodeve Road (0) Seawalls Road (2) and Knoll Hill (6)
-         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Goodeve Road", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(2, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Seawalls Road", blah.features[1].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(6, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Knoll Hill", blah.features[2].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("Goodeve Road", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("Seawalls Road", roadRelativeDirections.features[1].properties!!["name"])
+         Assert.assertEquals(6, roadRelativeDirections.features[2].properties!!["Direction"])
+         Assert.assertEquals("Knoll Hill", roadRelativeDirections.features[2].properties!!["name"])
      }
 
      @Test
@@ -748,7 +723,7 @@ class IntersectionsTest {
          val testIntersectionRoadNames = getIntersectionRoadNames(
              testNearestIntersection, fovRoadsFeatureCollection)
          // first create a relative direction polygon and put it on the intersection node with the same
-         // heading as the device
+         // heading as the road we are on
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -760,21 +735,21 @@ class IntersectionsTest {
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
-         Assert.assertEquals(4, blah.features.size )
+         Assert.assertEquals(4, roadRelativeDirections.features.size )
          // Grange Road (0) and (4) Manilla Road Road (2) and (6)
-         Assert.assertEquals(0, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Grange Road", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(4, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Grange Road", blah.features[1].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(2, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Manilla Road", blah.features[2].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(6, blah.features[3].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Manilla Road", blah.features[3].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("Grange Road", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("Manilla Road", roadRelativeDirections.features[1].properties!!["name"])
+         Assert.assertEquals(4, roadRelativeDirections.features[2].properties!!["Direction"])
+         Assert.assertEquals("Grange Road", roadRelativeDirections.features[2].properties!!["name"])
+         Assert.assertEquals(6, roadRelativeDirections.features[3].properties!!["Direction"])
+         Assert.assertEquals("Manilla Road", roadRelativeDirections.features[3].properties!!["name"])
 
      }
 
@@ -846,7 +821,7 @@ class IntersectionsTest {
          val testIntersectionRoadNames = getIntersectionRoadNames(
              testNearestIntersection, fovRoadsFeatureCollection)
          // first create a relative direction polygon and put it on the intersection node with the same
-         // heading as the device
+         // heading as the road we are on
          val intersectionLocation = testNearestIntersection.features[0].geometry as Point
          val intersectionRelativeDirections = getRelativeDirectionsPolygons(
              LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -858,25 +833,26 @@ class IntersectionsTest {
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
          // Lansdown Road (0) and (4) Manilla Road (2) and Vyvyan Road(6)
-         Assert.assertEquals(2, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Manilla Road", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Lansdown Road", blah.features[1].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(6, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Vyvyan Road", blah.features[2].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(4, blah.features[3].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Lansdown Road", blah.features[3].properties?.get("name") ?: "No idea")
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("Lansdown Road", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("Manilla Road", roadRelativeDirections.features[1].properties!!["name"])
+         Assert.assertEquals(4, roadRelativeDirections.features[2].properties!!["Direction"])
+         Assert.assertEquals("Lansdown Road", roadRelativeDirections.features[2].properties!!["name"])
+         Assert.assertEquals(6, roadRelativeDirections.features[3].properties!!["Direction"])
+         Assert.assertEquals("Vyvyan Road", roadRelativeDirections.features[3].properties!!["name"])
+
      }
 
      @Test
      fun intersectionsCross3Test(){
-         //  Cross3
+        //  Cross3
         //         | ↑ |
         //         | D |
         //  _______|   |_______
@@ -952,24 +928,20 @@ class IntersectionsTest {
          // pass the roads that make up the intersection, the intersection and the relative directions polygons
          // this should give us a feature collection with the roads and their relative direction
          // inserted as a "Direction" property for each Road feature that makes up the intersection
-         val blah = getIntersectionRoadNamesRelativeDirections(
+         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
 
          // St Mary's Butts (0)  Oxford Road (2), West Street (4) and Broad Street (6)
-         // Lansdown Road (0) and (4) Manilla Road (2) and Vyvyan Road(6)
-         Assert.assertEquals(6, blah.features[0].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Broad Street", blah.features[0].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(0, blah.features[1].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("St Mary's Butts", blah.features[1].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(2, blah.features[2].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("Oxford Road", blah.features[2].properties?.get("name") ?: "No idea")
-         Assert.assertEquals(4, blah.features[3].properties?.get("Direction") ?: "No idea")
-         Assert.assertEquals("West Street", blah.features[3].properties?.get("name") ?: "No idea")
-
+         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+         Assert.assertEquals("St Mary's Butts", roadRelativeDirections.features[0].properties!!["name"])
+         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+         Assert.assertEquals("Oxford Road", roadRelativeDirections.features[1].properties!!["name"])
+         Assert.assertEquals(4, roadRelativeDirections.features[2].properties!!["Direction"])
+         Assert.assertEquals("West Street", roadRelativeDirections.features[2].properties!!["name"])
+         Assert.assertEquals(6, roadRelativeDirections.features[3].properties!!["Direction"])
+         Assert.assertEquals("Broad Street", roadRelativeDirections.features[3].properties!!["name"])
 
      }
-
-
 }

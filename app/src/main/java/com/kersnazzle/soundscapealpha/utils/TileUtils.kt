@@ -1,5 +1,6 @@
 package com.kersnazzle.soundscapealpha.utils
 
+import com.kersnazzle.soundscapealpha.dto.IntersectionRelativeDirections
 import com.kersnazzle.soundscapealpha.dto.VectorTile
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
@@ -1488,13 +1489,15 @@ fun getRoadBearingToIntersection(
  * Given an intersection Road names FeatureCollection, a nearest Intersection FeatureCollection
  * and an intersectionRelativeDirections FeatureCollection. This will return a feature collection of the roads
  * that make up the intersection tagged with their relative directions.
+ * 0 = Behind, 1 = Behind Left, 2 = Left, 3 = Ahead Left,
+ * 4 = Ahead, 5 = Ahead Right, 6 = Right, 7 = Behind Right
  * @param intersectionRoadNames
  * Roads FeatureCollection that contains the roads that make up the intersection.
  * @param nearestIntersection
  * Intersection FeatureCollection that contains a single intersection
  * @param intersectionRelativeDirections
  * Feature collection that consists of relative direction polygons that we are using to determine relative direction
- * @return A feature collection that contains the roads that make up the intersection tagged with their relative direction
+ * @return A feature collection sorted by "Direction" that contains the roads that make up the intersection tagged with their relative direction
  */
 fun getIntersectionRoadNamesRelativeDirections(
     intersectionRoadNames: FeatureCollection,
@@ -1576,6 +1579,33 @@ fun getIntersectionRoadNamesRelativeDirections(
                 }
             }
         }
+    }
+
+    return sortFeatureCollectionByDirectionProperty(newFeatureCollection)
+}
+
+fun sortFeatureCollectionByDirectionProperty(
+    featureCollectionWithDirection: FeatureCollection
+): FeatureCollection {
+    val newFeatureCollection = FeatureCollection()
+    val intersectionRelativeDirections: MutableList<IntersectionRelativeDirections> = arrayListOf()
+
+    for (feature in featureCollectionWithDirection){
+        val newFeature = Feature()
+        feature.properties?.clone().also { newFeature.properties = it as java.util.HashMap<String, Any?>? }
+        val fineBeLikeThat = feature.properties?.get("Direction").toString().toInt()
+
+        intersectionRelativeDirections.add(
+            IntersectionRelativeDirections(
+                fineBeLikeThat,
+                newFeature
+            )
+        )
+    }
+    intersectionRelativeDirections.sortBy { d -> d.direction }
+
+    for (item in intersectionRelativeDirections){
+        newFeatureCollection.addFeature(item.feature)
     }
     return newFeatureCollection
 }
