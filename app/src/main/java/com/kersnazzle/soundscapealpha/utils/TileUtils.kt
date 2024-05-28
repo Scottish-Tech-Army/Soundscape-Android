@@ -1378,17 +1378,25 @@ fun splitRoadByIntersection(
     // Create a new FeatureCollection and add Feature for each
     val newFeatureCollection = FeatureCollection()
 
-    val featureRoad1 = Feature().also {
+    val featureRoad1 = Feature()
+    road.properties?.clone().also { featureRoad1.properties = it as java.util.HashMap<String, Any?>? }
+    road.foreign?.clone().also { featureRoad1.foreign = it as java.util.HashMap<String, Any?>? }
+
+/*    val featureRoad1 = Feature().also {
         it.properties = road.properties
         it.foreign = road.foreign
-    }
+    }*/
     featureRoad1.geometry = roadLineString1
     newFeatureCollection.addFeature(featureRoad1)
 
-    val featureRoad2 = Feature().also {
+    val featureRoad2 = Feature()
+    road.properties?.clone().also { featureRoad2.properties = it as java.util.HashMap<String, Any?>? }
+    road.foreign?.clone().also { featureRoad2.foreign = it as java.util.HashMap<String, Any?>? }
+
+/*    val featureRoad2 = Feature().also {
         it.properties = road.properties
         it.foreign = road.foreign
-    }
+    }*/
     featureRoad2.geometry = roadLineString2
     newFeatureCollection.addFeature(featureRoad2)
 
