@@ -1,7 +1,5 @@
 package com.kersnazzle.soundscapealpha
 
-import com.kersnazzle.soundscapealpha.dto.IntersectionRelativeDirections
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
@@ -17,7 +15,6 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.sortFeatureCollectionByDirectionProperty
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
