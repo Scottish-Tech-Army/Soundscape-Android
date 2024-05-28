@@ -945,7 +945,7 @@ class IntersectionsTest {
         // https://geojson.io/#map=18/37.339112/-122.038756
 
         val currentLocation = LngLatAlt(-122.03856292573965,37.33916628666543)
-        val deviceHeading = 320.0 // North West
+        val deviceHeading = 270.0
         val fovDistance = 50.0
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -987,6 +987,24 @@ class IntersectionsTest {
 
         val testIntersectionRoadNames = getIntersectionRoadNames(
             testNearestIntersection, fovRoadsFeatureCollection)
+
+        val intersectionLocation = testNearestIntersection.features[0].geometry as Point
+
+        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+            testNearestRoadBearing,
+            fovDistance,
+            RelativeDirections.COMBINED
+        )
+
+        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
+            testIntersectionRoadNames,
+            testNearestIntersection,
+            intersectionRelativeDirections)
+
+        // need to detect duplicates, drop one of the duplicates. check it is a circle(?)
+        Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+        Assert.assertEquals("Kodiak Court", roadRelativeDirections.features[0].properties!!["name"])
 
 
 
