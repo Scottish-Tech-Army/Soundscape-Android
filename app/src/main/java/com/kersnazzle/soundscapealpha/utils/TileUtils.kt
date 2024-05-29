@@ -1016,6 +1016,27 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
     return featureCollection
 }
 
+fun removeDuplicates(
+    intersectionToCheck: FeatureCollection
+): FeatureCollection {
+
+    val newFeatureCollection = FeatureCollection()
+
+    val osmIdsAtIntersection = intersectionToCheck.features[0].foreign!!["osm_ids"] as List<Double?>? // Allow null for osmIds
+    val uniqueOsmIds = osmIdsAtIntersection?.toSet() ?: emptySet() // Handle null case for osmIds
+    val cleanOsmIds: ArrayList<Double?> = ArrayList()
+    for (id in uniqueOsmIds) {
+        cleanOsmIds.add(id)
+    }
+
+    val intersectionClean = intersectionToCheck.features[0]
+    intersectionClean?.foreign?.set("osm_ids", cleanOsmIds)
+    newFeatureCollection.addFeature(intersectionClean)
+
+    return newFeatureCollection
+
+}
+
 /**
  * Given a location, device heading and distance this will create a feature collection of triangles
  * that represent relative directions for the given heading. The triangles represent "ahead", "ahead right", "right", "behind right"

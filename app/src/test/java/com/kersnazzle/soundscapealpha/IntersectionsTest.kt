@@ -15,7 +15,7 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getXYTile
+import com.kersnazzle.soundscapealpha.utils.removeDuplicates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
@@ -981,14 +981,17 @@ class IntersectionsTest {
         val testNearestIntersection = getNearestIntersection(
             currentLocation,fovIntersectionsFeatureCollection)
 
+        // This will remove the duplicate "osm_ids" from the intersection
+        val cleanNearestIntersection = removeDuplicates(testNearestIntersection)
+
         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
 
-        val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, deviceHeading)
+        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, deviceHeading)
 
         val testIntersectionRoadNames = getIntersectionRoadNames(
-            testNearestIntersection, fovRoadsFeatureCollection)
+            cleanNearestIntersection, fovRoadsFeatureCollection)
 
-        val intersectionLocation = testNearestIntersection.features[0].geometry as Point
+        val intersectionLocation = cleanNearestIntersection.features[0].geometry as Point
 
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -999,14 +1002,21 @@ class IntersectionsTest {
 
         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
             testIntersectionRoadNames,
-            testNearestIntersection,
+            cleanNearestIntersection,
             intersectionRelativeDirections)
 
-        // need to detect duplicates, drop one of the duplicates. check it is a circle(?)
+        // Removed the duplicate osm_ids so we should be good to go...or not
+        // TODO fix null road names should be "service road"
         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
         Assert.assertEquals("Kodiak Court", roadRelativeDirections.features[0].properties!!["name"])
+        Assert.assertEquals(3, roadRelativeDirections.features[1].properties!!["Direction"])
+        //Assert.assertEquals("Service Road", roadRelativeDirections.features[1].properties!!["name"])
+        Assert.assertEquals(5, roadRelativeDirections.features[2].properties!!["Direction"])
+        //Assert.assertEquals("Service Road", roadRelativeDirections.features[2].properties!!["name"])
 
 
 
     }
+
+
 }
