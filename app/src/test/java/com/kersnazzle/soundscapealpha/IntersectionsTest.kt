@@ -1006,13 +1006,13 @@ class IntersectionsTest {
             intersectionRelativeDirections)
 
         // Removed the duplicate osm_ids so we should be good to go...or not
-        // TODO fix null road names should be "service road"
+
         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
         Assert.assertEquals("Kodiak Court", roadRelativeDirections.features[0].properties!!["name"])
         Assert.assertEquals(3, roadRelativeDirections.features[1].properties!!["Direction"])
-        //Assert.assertEquals("Service Road", roadRelativeDirections.features[1].properties!!["name"])
+        Assert.assertEquals("service", roadRelativeDirections.features[1].properties!!["highway"])
         Assert.assertEquals(5, roadRelativeDirections.features[2].properties!!["Direction"])
-        //Assert.assertEquals("Service Road", roadRelativeDirections.features[2].properties!!["name"])
+        Assert.assertEquals("service", roadRelativeDirections.features[2].properties!!["highway"])
 
 
 
