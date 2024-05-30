@@ -2,6 +2,7 @@ package com.kersnazzle.soundscapealpha
 
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LineString
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.LngLatAlt
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.utils.RelativeDirections
@@ -991,6 +992,15 @@ class IntersectionsTest {
         val testIntersectionRoadNames = getIntersectionRoadNames(
             cleanNearestIntersection, fovRoadsFeatureCollection)
 
+        // are any of the roads that make up the intersection circular?
+        for(road in testIntersectionRoadNames){
+            if (lineStringIsCircular(road.geometry as LineString)){
+                println("Circular path")
+            }
+
+        }
+
+
         val intersectionLocation = cleanNearestIntersection.features[0].geometry as Point
 
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
@@ -1016,6 +1026,13 @@ class IntersectionsTest {
 
 
 
+    }
+
+    fun lineStringIsCircular(path: LineString): Boolean {
+        if (path.coordinates.size <= 2) return false
+        val first = path.coordinates.first()
+        val last = path.coordinates.last()
+        return first == last
     }
 
 
