@@ -16,7 +16,9 @@ class LocationService: Service() {
         fun getService(): LocationService = this@LocationService
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
-        TODO("Not yet implemented")
+    // client activities can obtain the binder and call the service methods
+    // start, stop
+    override fun onBind(intent: Intent?): IBinder {
+        return binder
     }
 }
