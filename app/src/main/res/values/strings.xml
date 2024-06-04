@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SoundscapeAlpha</string>
+    <string name="notification_text">We are running this location service in the foreground</string>
 </resources>
