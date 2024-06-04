@@ -16,6 +16,7 @@ import com.kersnazzle.soundscapealpha.utils.getNearestRoad
 import com.kersnazzle.soundscapealpha.utils.getRelativeDirectionsPolygons
 import com.kersnazzle.soundscapealpha.utils.getRoadBearingToIntersection
 import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.lineStringIsCircular
 import com.kersnazzle.soundscapealpha.utils.removeDuplicates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
@@ -1028,12 +1029,13 @@ class IntersectionsTest {
 
     }
 
-    fun lineStringIsCircular(path: LineString): Boolean {
-        if (path.coordinates.size <= 2) return false
-        val first = path.coordinates.first()
-        val last = path.coordinates.last()
-        return first == last
+    @Test
+    fun roundAbout1Test(){
+        //          -2.616756333445551,
+        //          51.47947050553003
     }
+
+
 
 
 }

@@ -664,6 +664,13 @@ fun circleToPolygon(segments: Int, centerLat: Double, centerLon: Double, radius:
     return polygonObject
 }
 
+fun lineStringIsCircular(path: LineString): Boolean {
+    if (path.coordinates.size <= 2) return false
+    val first = path.coordinates.first()
+    val last = path.coordinates.last()
+    return first == last
+}
+
 /**
  * Calculates the bounds of the quadrants that should be used for filtering POIs
  * These quadrants are rotated from the standard cardinal direction
