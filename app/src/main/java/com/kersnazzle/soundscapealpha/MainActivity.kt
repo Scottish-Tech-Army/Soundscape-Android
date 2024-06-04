@@ -1,5 +1,7 @@
 package com.kersnazzle.soundscapealpha
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,12 +11,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.ContextCompat
+import com.kersnazzle.soundscapealpha.services.LocationService
 import com.kersnazzle.soundscapealpha.ui.theme.SoundscapeAlphaTheme
 
 class MainActivity : ComponentActivity() {
+    private var locationService: LocationService? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         setContent {
             SoundscapeAlphaTheme {
                 // A surface container using the 'background' color from the theme
@@ -23,11 +34,26 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Android")
+                    bob()
                 }
             }
         }
     }
 }
+
+@Composable
+fun bob(){
+    val context = LocalContext.current
+    startLocationService(context)
+}
+
+private fun startLocationService(context: Context) {
+    val serviceIntent = Intent(context, LocationService::class.java)
+    ContextCompat.startForegroundService(context, serviceIntent)
+}
+
+
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

@@ -6,20 +6,25 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.os.Binder
-import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.kersnazzle.soundscapealpha.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asExecutor
 
 // Attempting to wrap the FusedLocation API in a foreground service
+// which is a bit more involved than I thought it would be
 class LocationService: Service() {
     // use FusedLocation API
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -49,10 +54,18 @@ class LocationService: Service() {
         return START_STICKY
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        Log.d("--- ${LocationService::class.simpleName}", "onCreate startLocationUpdates")
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        startLocationUpdates()
+    }
+
     private fun startForeground() {
-        Log.d("--- ${LocationService::class.simpleName}", "Start Foreground")
-        // Notify user that we are running a foreground service so they know we aren't
+        Log.d("--- ${LocationService::class.simpleName}", "Start Foreground Service")
+        // Notify user that we are running a location foreground service so they know we aren't
         // doing anything naughty other than spanking their battery
+
 
         ServiceCompat.startForeground(
             this,
@@ -65,6 +78,7 @@ class LocationService: Service() {
     private fun getNotification(): Notification {
         createServiceNotificationChannel()
 
+        Log.d("--- ${LocationService::class.simpleName}", "Send Notification to Channel")
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.notification_text))
@@ -76,6 +90,7 @@ class LocationService: Service() {
     }
 
     private fun createServiceNotificationChannel() {
+        Log.d("--- ${LocationService::class.simpleName}", "Create Service Notification Channel")
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channel = NotificationChannel(
             CHANNEL_ID,
@@ -85,11 +100,43 @@ class LocationService: Service() {
         notificationManager.createNotificationChannel(channel)
     }
 
+    private fun startLocationUpdates() {
+        Log.d("--- ${LocationService::class.simpleName}", "Start Location Updates")
+        val locationRequest: LocationRequest = LocationRequest.Builder(
+            Priority.PRIORITY_HIGH_ACCURACY, UPDATE_INTERVAL
+        )
+            .setMinUpdateIntervalMillis(MIN_UPDATE_INTERVAL)
+            .build()
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                Dispatchers.Default.asExecutor(),
+                locationCallback
+            )
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("--- ${LocationService::class.simpleName}", "Destroy Foreground Service")
+        // clean up after ourselves
+        stopSelf()
+    }
+
     companion object {
         // erm, not sure what this should be but not 0 apparently
         private const val NOTIFICATION_ID = 1000000
         private const val CHANNEL_ID = "channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "SoundscapeAlpha"
+        private const val UPDATE_INTERVAL: Long = 30000
+        private const val MIN_UPDATE_INTERVAL: Long = 15000
 
     }
 
