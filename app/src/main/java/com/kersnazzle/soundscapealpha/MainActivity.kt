@@ -133,7 +133,7 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Creates and starts the ExampleLocationForegroundService as a foreground service.
+     * Creates and starts thLocationService as a foreground service.
      *
      * It also tries to bind to the service to update the UI with location updates.
      */
@@ -156,7 +156,7 @@ class MainActivity : ComponentActivity() {
             // observe location updates from the service
             exampleService?.locationFlow?.map {
                 it?.let { location ->
-                    "${location.latitude}, ${location.longitude}"
+                    "Latitude: ${location.latitude}, Longitude: ${location.longitude}"
                 }
             }?.collectLatest {
                 displayableLocation = it

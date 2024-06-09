@@ -6,7 +6,7 @@
     <string name="foreground_service_sample_notification_title">Foreground Service</string>
     <string name="foreground_service_sample_notification_description">Sample app is running in the background.</string>
 
-    <string name="foreground_service_sample_description">This demonstrates how to use the foreground service on Android 14.\n\nIt will start a foreground service to fetch last known location and to observe any updates to the location.\n\nIt also shows how to bind to a service to update UI.</string>
+    <string name="foreground_service_sample_description">This demonstrates how to use the foreground service on Android.\n\nIt will start a foreground service to fetch last known location and to observe any updates to the location.\n\nIt also shows how to bind to a service to update UI.</string>
 
     <string name="foreground_service_sample_status_title">Foreground service status:</string>
     <string name="foreground_service_sample_status_running">RUNNING</string>

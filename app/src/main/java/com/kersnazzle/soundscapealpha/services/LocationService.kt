@@ -18,10 +18,12 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.Granularity
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.kersnazzle.soundscapealpha.R
 
 import kotlinx.coroutines.CoroutineScope
@@ -35,6 +37,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -145,10 +148,22 @@ class LocationService : Service() {
      */
     @SuppressLint("MissingPermission")
     private fun startLocationUpdates() {
-        fusedLocationClient.requestLocationUpdates(
+        /*fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(
                 LOCATION_UPDATES_INTERVAL_MS
             ).build(), locationCallback, Looper.getMainLooper()
+        )*/
+        fusedLocationClient.requestLocationUpdates(
+            LocationRequest.Builder(
+                Priority.PRIORITY_HIGH_ACCURACY,
+                TimeUnit.SECONDS.toMillis(1)
+            ).apply {
+                setMinUpdateDistanceMeters(1f)
+                setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
+                setWaitForAccurateLocation(true)
+            }.build(),
+            locationCallback,
+            Looper.getMainLooper(),
         )
     }
 
@@ -163,7 +178,7 @@ class LocationService : Service() {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@LocationService,
-                            "Foreground Service still running!",
+                            "Foreground Service still running.",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -205,9 +220,9 @@ class LocationService : Service() {
     }
 
     companion object {
-        private const val TAG = "LocationForegroundService"
-        // Check for GPS every second
-        private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
+        private const val TAG = "LocationService"
+        // Check for GPS every n seconds
+        private val LOCATION_UPDATES_INTERVAL_MS = 15.seconds.inWholeMilliseconds
         // Secondary "service" every 5 seconds
         private val TICKER_PERIOD_SECONDS = 5.seconds
 
