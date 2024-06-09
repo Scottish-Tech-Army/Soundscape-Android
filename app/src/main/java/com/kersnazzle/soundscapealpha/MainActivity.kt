@@ -1,10 +1,15 @@
 package com.kersnazzle.soundscapealpha
 
+
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,14 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
 import com.kersnazzle.soundscapealpha.services.LocationService
 import com.kersnazzle.soundscapealpha.ui.theme.SoundscapeAlphaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private var locationService: LocationService? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
 
         setContent {
@@ -34,26 +38,13 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Android")
-                    bob()
+
+
                 }
             }
         }
     }
 }
-
-@Composable
-fun bob(){
-    val context = LocalContext.current
-    startLocationService(context)
-}
-
-private fun startLocationService(context: Context) {
-    val serviceIntent = Intent(context, LocationService::class.java)
-    ContextCompat.startForegroundService(context, serviceIntent)
-}
-
-
-
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
