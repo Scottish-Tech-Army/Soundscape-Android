@@ -156,7 +156,7 @@ class LocationService : Service() {
         fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(
                 Priority.PRIORITY_HIGH_ACCURACY,
-                TimeUnit.SECONDS.toMillis(1)
+                LOCATION_UPDATES_INTERVAL_MS
             ).apply {
                 setMinUpdateDistanceMeters(1f)
                 setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
@@ -222,7 +222,7 @@ class LocationService : Service() {
     companion object {
         private const val TAG = "LocationService"
         // Check for GPS every n seconds
-        private val LOCATION_UPDATES_INTERVAL_MS = 15.seconds.inWholeMilliseconds
+        private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every 5 seconds
         private val TICKER_PERIOD_SECONDS = 5.seconds
 

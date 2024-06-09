@@ -156,7 +156,8 @@ class MainActivity : ComponentActivity() {
             // observe location updates from the service
             exampleService?.locationFlow?.map {
                 it?.let { location ->
-                    "Latitude: ${location.latitude}, Longitude: ${location.longitude}"
+                    "Latitude: ${location.latitude}, Longitude: ${location.longitude} Accuracy: ${location.accuracy}"
+
                 }
             }?.collectLatest {
                 displayableLocation = it
