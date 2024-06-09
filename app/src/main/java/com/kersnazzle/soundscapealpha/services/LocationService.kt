@@ -224,7 +224,7 @@ class LocationService : Service() {
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every 5 seconds
-        private val TICKER_PERIOD_SECONDS = 5.seconds
+        private val TICKER_PERIOD_SECONDS = 10.seconds
 
         private const val CHANNEL_ID = "LocationService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "SoundscapeAlpha_LocationService"
