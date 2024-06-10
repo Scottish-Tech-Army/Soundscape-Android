@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.location.Location
 
+
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -17,7 +18,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import com.google.android.gms.location.DeviceOrientation
+import com.google.android.gms.location.DeviceOrientationListener
+import com.google.android.gms.location.DeviceOrientationRequest
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.FusedOrientationProviderClient
 import com.google.android.gms.location.Granularity
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -37,6 +42,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -48,15 +54,28 @@ class LocationService : Service() {
     private val binder = LocalBinder()
 
     private val coroutineScope = CoroutineScope(Job())
-    // core service
+    // core GPS service
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
+
+    // core Orientation service - test
+    private lateinit var fusedOrientationProviderClient: FusedOrientationProviderClient
+    private lateinit var listener: DeviceOrientationListener
+
+
     // secondary service
     private var timerJob: Job? = null
 
     // Flow to return Location objects
     private val _locationFlow = MutableStateFlow<Location?>(null)
     var locationFlow: StateFlow<Location?> = _locationFlow
+
+    // Flow to return Orientation objects... not orientation objects so what are they?
+    // Doesn't seem to have an Orientation object like the FusedLocationProvider so will
+    // just pass the Azimuth (Double?) at the moment until I figure out what is going on
+    // DeviceOrientation apparently
+    private val _orientationFlow = MutableStateFlow<DeviceOrientation?>(null)
+    var orientationFlow: StateFlow<DeviceOrientation?> = _orientationFlow
 
     // Binder to allow local clients to Bind to our service
     // Need to check that this stops another naughty app hooking into our Location Service?
@@ -75,6 +94,9 @@ class LocationService : Service() {
         startAsForegroundService()
         startLocationUpdates()
 
+        // test
+        startOrientationUpdates()
+
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -86,6 +108,10 @@ class LocationService : Service() {
 
         // Set up the location updates using the FusedLocationProviderClient but doesn't start them
         setupLocationUpdates()
+
+        // Start the orientation updates using the FusedOrientationProviderClient - test
+        startOrientationUpdates()
+
         // Start secondary service
         startServiceRunningTicker()
     }
@@ -95,6 +121,9 @@ class LocationService : Service() {
         Log.d(TAG, "onDestroy")
 
         fusedLocationClient.removeLocationUpdates(locationCallback)
+
+        fusedOrientationProviderClient.removeOrientationUpdates(listener)
+
         timerJob?.cancel()
         coroutineScope.coroutineContext.cancelChildren()
 
@@ -140,6 +169,27 @@ class LocationService : Service() {
             }
         }
     }
+
+    private fun startOrientationUpdates(){
+
+        fusedOrientationProviderClient =
+            LocationServices.getFusedOrientationProviderClient(this)
+
+        listener =
+                DeviceOrientationListener { orientation: DeviceOrientation ->
+                    // Use the orientation object
+                    Log.d(TAG, "Device Orientation: ${orientation.headingDegrees} deg")
+                }
+        // OUTPUT_PERIOD_DEFAULT = 50Hz / 20ms
+        val request = DeviceOrientationRequest.Builder(DeviceOrientationRequest.OUTPUT_PERIOD_DEFAULT).build()
+        // Thought I could use a Looper here like for location but it seems to want an Executor instead
+        // Not clear on what the difference is...
+        val executor = Executors.newSingleThreadExecutor()
+        fusedOrientationProviderClient.requestOrientationUpdates(request, executor, listener)
+
+
+    }
+
 
     /**
      * Starts the location updates using the FusedLocationProviderClient.
@@ -223,7 +273,7 @@ class LocationService : Service() {
         private const val TAG = "LocationService"
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
-        // Secondary "service" every 5 seconds
+        // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 10.seconds
 
         private const val CHANNEL_ID = "LocationService_channel_01"
