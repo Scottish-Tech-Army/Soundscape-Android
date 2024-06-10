@@ -59,6 +59,7 @@ class LocationService : Service() {
     private lateinit var locationCallback: LocationCallback
 
     // core Orientation service - test
+
     private lateinit var fusedOrientationProviderClient: FusedOrientationProviderClient
     private lateinit var listener: DeviceOrientationListener
 
@@ -175,11 +176,16 @@ class LocationService : Service() {
         fusedOrientationProviderClient =
             LocationServices.getFusedOrientationProviderClient(this)
 
-        listener =
-                DeviceOrientationListener { orientation: DeviceOrientation ->
+        /*listener = DeviceOrientationListener { orientation: DeviceOrientation ->
                     // Use the orientation object
+
                     Log.d(TAG, "Device Orientation: ${orientation.headingDegrees} deg")
-                }
+                }*/
+        listener = DeviceOrientationListener { orientation ->
+            _orientationFlow.value = orientation  // Emit the DeviceOrientation object
+        }
+
+
         // OUTPUT_PERIOD_DEFAULT = 50Hz / 20ms
         val request = DeviceOrientationRequest.Builder(DeviceOrientationRequest.OUTPUT_PERIOD_DEFAULT).build()
         // Thought I could use a Looper here like for location but it seems to want an Executor instead

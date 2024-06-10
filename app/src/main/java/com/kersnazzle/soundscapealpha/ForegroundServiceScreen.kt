@@ -27,6 +27,7 @@ import com.kersnazzle.soundscapealpha.ui.theme.ForegroundServiceTheme
 internal fun ForegroundServiceScreen(
     serviceRunning: Boolean,
     currentLocation: String?,
+    currentOrientation: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -38,6 +39,7 @@ internal fun ForegroundServiceScreen(
             ForegroundServiceSampleScreenContent(
                 serviceRunning = serviceRunning,
                 currentLocation = currentLocation,
+                currentOrientation = currentOrientation,
                 onClick = onClick,
                 modifier = modifier
             )
@@ -49,6 +51,7 @@ internal fun ForegroundServiceScreen(
 private fun ForegroundServiceSampleScreenContent(
     serviceRunning: Boolean,
     currentLocation: String?,
+    currentOrientation: String?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -93,7 +96,7 @@ private fun ForegroundServiceSampleScreenContent(
                     .fillMaxWidth()
                     .weight(1f)
             ) {
-                LocationUpdate(visible = serviceRunning, location = currentLocation)
+                LocationUpdate(visible = serviceRunning, location = currentLocation, orientation = currentOrientation)
             }
         }
     }
@@ -158,6 +161,7 @@ private fun ServiceStatusRow(
 private fun LocationUpdate(
     visible: Boolean,
     location: String?,
+    orientation: String?
 ) {
     if (visible) {
         Spacer(modifier = Modifier.height(32.dp))
@@ -169,6 +173,10 @@ private fun LocationUpdate(
 
         Text(
             text = location
+                ?: stringResource(id = R.string.foreground_service_sample_last_location_fetching)
+        )
+        Text(
+            text = orientation
                 ?: stringResource(id = R.string.foreground_service_sample_last_location_fetching)
         )
     }

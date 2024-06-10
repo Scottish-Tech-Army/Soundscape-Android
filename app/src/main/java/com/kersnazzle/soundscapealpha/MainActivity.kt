@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
 
     private var serviceBoundState by mutableStateOf(false)
     private var displayableLocation by mutableStateOf<String?>(null)
+    private var displayableOrientation by mutableStateOf<String?>(null)
 
     // needed to communicate with the service.
     private val connection = object : ServiceConnection {
@@ -83,6 +84,7 @@ class MainActivity : ComponentActivity() {
             ForegroundServiceScreen(
                 serviceRunning = serviceBoundState,
                 currentLocation = displayableLocation,
+                currentOrientation = displayableOrientation,
                 onClick = ::onStartOrStopForegroundServiceClick
             )
         }
@@ -161,6 +163,16 @@ class MainActivity : ComponentActivity() {
                 }
             }?.collectLatest {
                 displayableLocation = it
+            }
+        }
+        lifecycleScope.launch {
+            exampleService?.orientationFlow?.map {
+                it?.let {
+                    orientation ->
+                    "Device orientation: ${orientation.headingDegrees}"
+                }
+            }?.collect {
+                displayableOrientation = it
             }
         }
     }
