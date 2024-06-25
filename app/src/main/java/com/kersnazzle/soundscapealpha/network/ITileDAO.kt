@@ -10,4 +10,10 @@ interface ITileDAO {
         @Path("x") x: Int,
         @Path("y") y: Int
     ): Call<String>
+
+    @GET("tiles/16/{x}/{y}.json")
+    fun getTileWithCache(
+        @Path("x") x: Int,
+        @Path("y") y: Int
+    ): Call<String>
 }

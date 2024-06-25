@@ -3,6 +3,7 @@ package com.kersnazzle.soundscapealpha
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
@@ -11,22 +12,38 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+
 import com.kersnazzle.soundscapealpha.services.LocationService
+import com.kersnazzle.soundscapealpha.utils.getXYTile
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    // GeoJSON Tile data direct from backend
+    val viewModel by viewModels<MainViewModel>()
+
+
+
     private var exampleService: LocationService? = null
 
     private var serviceBoundState by mutableStateOf(false)
     private var displayableLocation by mutableStateOf<String?>(null)
     private var displayableOrientation by mutableStateOf<String?>(null)
+    private var displayableTileString by mutableStateOf<String?>(null)
+
+    private var location by mutableStateOf<Location?>(null)
+    private var tileXY by mutableStateOf<Pair<Int, Int>?>(null)
+
+
 
     // needed to communicate with the service.
     private val connection = object : ServiceConnection {
@@ -85,6 +102,8 @@ class MainActivity : ComponentActivity() {
                 serviceRunning = serviceBoundState,
                 currentLocation = displayableLocation,
                 currentOrientation = displayableOrientation,
+                tileString = displayableTileString,
+                location = location,
                 onClick = ::onStartOrStopForegroundServiceClick
             )
         }
@@ -92,6 +111,10 @@ class MainActivity : ComponentActivity() {
         checkAndRequestNotificationPermission()
 
         tryToBindToServiceIfRunning()
+
+
+
+
     }
 
     override fun onDestroy() {
@@ -125,7 +148,8 @@ class MainActivity : ComponentActivity() {
             locationPermissionRequest.launch(
                 arrayOf(
                     android.Manifest.permission.ACCESS_FINE_LOCATION,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
+                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                    android.Manifest.permission.POST_NOTIFICATIONS
                 )
             )
         } else {
@@ -135,7 +159,7 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Creates and starts thLocationService as a foreground service.
+     * Creates and starts the LocationService as a foreground service.
      *
      * It also tries to bind to the service to update the UI with location updates.
      */
@@ -154,17 +178,18 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun onServiceConnected() {
+
         lifecycleScope.launch {
             // observe location updates from the service
             exampleService?.locationFlow?.map {
                 it?.let { location ->
                     "Latitude: ${location.latitude}, Longitude: ${location.longitude} Accuracy: ${location.accuracy}"
-
                 }
             }?.collectLatest {
                 displayableLocation = it
             }
         }
+
         lifecycleScope.launch {
             exampleService?.orientationFlow?.map {
                 it?.let {
@@ -175,6 +200,23 @@ class MainActivity : ComponentActivity() {
                 displayableOrientation = it
             }
         }
+
+        lifecycleScope.launch {
+            delay(10000)
+            val test = exampleService?.getTileString()
+
+            println(test)
+        }
+
+        lifecycleScope.launch {
+            delay(10000)
+            val test = exampleService?.getTileStringCaching(application)
+
+            println(test)
+        }
+
+
+
     }
 
     companion object {

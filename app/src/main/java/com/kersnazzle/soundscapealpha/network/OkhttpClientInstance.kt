@@ -10,24 +10,23 @@ import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
+import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
-// TODO I want to get to the Cache class which is described in this article:
+// TODO I want to get to the Cache class which is described in these articles:
 //  https://medium.com/@malikshahbaz213/fech-cache-api-data-in-android-kotlin-using-retrofit-91f83f36cde3
-object OkhttpClientInstance {
-    // trying to find a way to get around passing a context in the constructor
-    // as not allowed constructor with object class.
-    // Need context for the cacheDir and ConnectivityManager
-    private lateinit var application: Application
+// https://stackoverflow.com/questions/70711512/context-getapplicationcontext-on-a-null-object-when-using-okhttp-cache
+//https://proandroiddev.com/increase-performance-of-your-app-by-caching-api-calls-using-okhttp-1384a621c51f
+// https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
+class OkhttpClientInstance(val application: Application) {
 
-    fun init(application: Application){
-        this.application = application
-    }
+    private var retrofit : Retrofit? = null
 
     private val cacheSize = (5 * 1024 * 1024).toLong() //5MB cache size
     private val myCache = Cache(application.applicationContext.cacheDir, cacheSize)
 
-    val okHttpClient = OkHttpClient.Builder()
+    private val okHttpClient = OkHttpClient.Builder()
         .cache(myCache)
         .addInterceptor { chain ->
 
@@ -35,12 +34,6 @@ object OkhttpClientInstance {
         var request = chain.request()
 
         request = if (hasNetwork()){
-            /*
-            *  If there is Internet, get the cache that was stored 1 day ago.
-            *  If the cache is older than 1 day, then discard it,
-            *  and indicate an error in fetching the response.
-            *  The 'max-age' attribute is responsible for this behavior.
-            */
             val onlineCacheControl = CacheControl.Builder()
                 .maxAge(1, TimeUnit.DAYS)
                 .build()
@@ -50,13 +43,6 @@ object OkhttpClientInstance {
                 .removeHeader("Pragma")
                 .build()
         } else {
-            /*
-            *  If there is no Internet, get the cache that was stored 7 days ago.
-            *  If the cache is older than 7 days, then discard it,
-            *  and indicate an error in fetching the response.
-            *  The 'max-stale' attribute is responsible for this behavior.
-            *  The 'only-if-cached' attribute indicates to not retrieve new data; fetch the cache only instead.
-            */
             val offlineCacheControl = CacheControl.Builder()
                 .onlyIfCached()
                 .maxStale(7, TimeUnit.DAYS)
@@ -73,8 +59,20 @@ object OkhttpClientInstance {
     }
         .build()
 
-
-
+    val retrofitInstance : Retrofit?
+        get() {
+            // has this object been created yet?
+            if (retrofit == null) {
+                // create it
+                retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    // use it to output the string
+                    .addConverterFactory(ScalarsConverterFactory.create())
+                    .client(okHttpClient)
+                    .build()
+            }
+            return retrofit
+        }
 
     private fun hasNetwork(): Boolean {
         //val connectivityManager =
@@ -88,8 +86,13 @@ object OkhttpClientInstance {
             activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
             activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
             activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
             else -> false
         }
+    }
+
+    companion object {
+        private const val BASE_URL = "https://soundscape.scottishtecharmy.org"
     }
 
 }

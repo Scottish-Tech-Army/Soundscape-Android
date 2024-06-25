@@ -1,17 +1,21 @@
 [versions]
-agp = "8.3.1"
-kotlin = "1.9.0"
-coreKtx = "1.12.0"
+agp = "8.3.2"
+kotlin = "1.9.22"
+coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.7.0"
+junitVersion = "1.2.0"
+espressoCore = "3.6.0"
+lifecycleRuntimeKtx = "2.8.2"
 activityCompose = "1.9.0"
-composeBom = "2023.08.00"
-lifecycleService = "2.8.1"
+composeBom = "2024.06.00"
+lifecycleRuntimeKtxVersion = "2.8.0"
+lifecycleService = "2.8.2"
+lifecycleServiceVersion = "2.8.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx-v280 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
+androidx-lifecycle-service-v280 = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycleServiceVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
