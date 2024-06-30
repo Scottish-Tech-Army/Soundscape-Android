@@ -81,6 +81,9 @@ class LocationService : Service() {
     private val _orientationFlow = MutableStateFlow<DeviceOrientation?>(null)
     var orientationFlow: StateFlow<DeviceOrientation?> = _orientationFlow
 
+    // OkhttpClientInstance
+    private lateinit var okhttpClientInstance: OkhttpClientInstance
+
 
 
     // Binder to allow local clients to Bind to our service
@@ -109,7 +112,7 @@ class LocationService : Service() {
         super.onCreate()
         Log.d(TAG, "onCreate")
 
-        Toast.makeText(this, "Foreground Service created", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Foreground Service created", Toast.LENGTH_SHORT).show()
 
         // Set up the location updates using the FusedLocationProviderClient but doesn't start them
         setupLocationUpdates()
@@ -118,7 +121,7 @@ class LocationService : Service() {
         startOrientationUpdates()
 
         // Start secondary service
-        startServiceRunningTicker()
+        //startServiceRunningTicker()
     }
 
     override fun onDestroy() {
@@ -132,7 +135,7 @@ class LocationService : Service() {
         timerJob?.cancel()
         coroutineScope.coroutineContext.cancelChildren()
 
-        Toast.makeText(this, "Foreground Service destroyed", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Foreground Service destroyed", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -230,7 +233,7 @@ class LocationService : Service() {
     /**
      * Starts a ticker that shows a toast every [TICKER_PERIOD_SECONDS] seconds to indicate that the service is still running.
      */
-    private fun startServiceRunningTicker() {
+    /*private fun startServiceRunningTicker() {
         timerJob?.cancel()
         timerJob = coroutineScope.launch {
             tickerFlow()
@@ -244,9 +247,9 @@ class LocationService : Service() {
                     }
                 }
         }
-    }
+    }*/
 
-    private fun tickerFlow(
+   /* private fun tickerFlow(
         period: Duration = TICKER_PERIOD_SECONDS,
         initialDelay: Duration = TICKER_PERIOD_SECONDS
     ) = flow {
@@ -255,15 +258,15 @@ class LocationService : Service() {
             emit(Unit)
             delay(period)
         }
-    }
+    }*/
 
     private fun getNotification(): Notification {
         createServiceNotificationChannel()
 
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val builder = Notification.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.notification_text))
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.ic_launcher_background)
             .setOngoing(true)
 
         return builder.build()
@@ -300,8 +303,8 @@ class LocationService : Service() {
 
     suspend fun getTileStringCaching(application: Application): String? {
         val tileXY = _locationFlow.value?.let { getXYTile(it.latitude, _locationFlow.value!!.longitude) }
+        okhttpClientInstance = OkhttpClientInstance(application)
 
-        val okhttpClientInstance = OkhttpClientInstance(application)
         return withContext(Dispatchers.IO) {
 
             val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
@@ -313,9 +316,7 @@ class LocationService : Service() {
                         it1.first, tileXY.second, 16.0, it)
                 }.toString()
             }
-
         }
-
     }
 
     companion object {
@@ -323,10 +324,10 @@ class LocationService : Service() {
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every n seconds
-        private val TICKER_PERIOD_SECONDS = 10.seconds
+        private val TICKER_PERIOD_SECONDS = 30.seconds
 
         private const val CHANNEL_ID = "LocationService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "SoundscapeAlpha_LocationService"
-        private const val NOTIFICATION_ID = 1000000
+        private const val NOTIFICATION_ID = 100000
     }
 }

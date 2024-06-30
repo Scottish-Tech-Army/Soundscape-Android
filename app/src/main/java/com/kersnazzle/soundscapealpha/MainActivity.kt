@@ -13,6 +13,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -28,10 +29,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    // GeoJSON Tile data direct from backend
-    val viewModel by viewModels<MainViewModel>()
-
-
 
     private var exampleService: LocationService? = null
 
@@ -41,7 +38,7 @@ class MainActivity : ComponentActivity() {
     private var displayableTileString by mutableStateOf<String?>(null)
 
     private var location by mutableStateOf<Location?>(null)
-    private var tileXY by mutableStateOf<Pair<Int, Int>?>(null)
+    //private var tileXY by mutableStateOf<Pair<Int, Int>?>(null)
 
 
 
@@ -141,6 +138,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 
     private fun onStartOrStopForegroundServiceClick() {
         if (exampleService == null) {
