@@ -30,11 +30,13 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.kersnazzle.soundscapealpha.R
+import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import io.realm.kotlin.Realm
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -83,6 +85,9 @@ class LocationService : Service() {
     // OkhttpClientInstance
     private lateinit var okhttpClientInstance: OkhttpClientInstance
 
+    // Realm
+    private lateinit var realm: Realm
+
 
 
     // Binder to allow local clients to Bind to our service
@@ -118,6 +123,10 @@ class LocationService : Service() {
 
         // Start the orientation updates using the FusedOrientationProviderClient - test
         startOrientationUpdates()
+
+        // create new RealmDB or open existing
+        startRealm()
+
 
         // Start secondary service
         //startServiceRunningTicker()
@@ -305,6 +314,11 @@ class LocationService : Service() {
             }
         }
     }
+
+    private fun startRealm(){
+        realm = RealmConfiguration.getInstance()
+    }
+
 
     companion object {
         private const val TAG = "LocationService"
