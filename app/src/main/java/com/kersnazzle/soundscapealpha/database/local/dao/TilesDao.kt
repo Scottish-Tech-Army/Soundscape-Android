@@ -27,10 +27,13 @@ class TilesDao(val realm: Realm) {
         // find the first tile as quad key is unique and used for primary key
         val findTile = query<TileData>("quadKey == $0", tile?.quadKey ?: "0").first().find()
 
+        // this isn't optimal as I'm storing the whole tile string and the assorted Feature Collections
+        // that make up the string - roads, paths, blah
         findTile?.apply {
             created = RealmInstant.now()
             tileString = tile?.tileString ?: "-"
             roads = tile?.roads ?: "-"
+            paths = tile?.paths ?: "-"
             intersections = tile?.intersections ?: "-"
             entrances = tile?.entrances ?: "-"
             pois = tile?.pois ?: "-"
