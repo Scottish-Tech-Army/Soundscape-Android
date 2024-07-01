@@ -300,10 +300,10 @@ class LocationService : Service() {
         // generate the Quad Key for the current tile we are in
         val currentQuadKey = getQuadKey(tileXY!!.first, tileXY.second, 16)
         // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
-        // as we are using the Quad Key as the primary key
+        // or null as we are using the Quad Key as the primary key
         val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
         // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
-        //  if it doesn't exist already go get it from the network
+        //  if it doesn't exist already go get it from the network and insert into db
 
 
 
@@ -326,6 +326,13 @@ class LocationService : Service() {
 
     private fun startRealm(){
         realm = RealmConfiguration.getInstance()
+    }
+
+    fun deleteRealm(){
+        // need this to clean up my mess while I work on the db schema, etc.
+        var config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
+        // Delete the realm
+        Realm.deleteRealm(config)
     }
 
 
