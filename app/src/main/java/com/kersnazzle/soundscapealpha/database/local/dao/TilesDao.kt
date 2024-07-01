@@ -17,7 +17,7 @@ class TilesDao(val realm: Realm) {
     // fetch all objects of a type as a flow, asynchronously
     fun getAllTiles(): Flow<ResultsChange<TileData>> = realm.query<TileData>().asFlow()
 
-    suspend fun deleteTiles(quadkey: String) = realm.write {
+    suspend fun deleteTile(quadkey: String) = realm.write {
 
         val findTile = query<TileData>("quadKey == $0", quadkey).find()
         delete(findTile)

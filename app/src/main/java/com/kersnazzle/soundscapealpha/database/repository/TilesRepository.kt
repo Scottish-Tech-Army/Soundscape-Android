@@ -16,7 +16,7 @@ class TilesRepository(val tilesDao: TilesDao) {
     fun getAllTiles(): Flow<ResultsChange<TileData>> = tilesDao.getAllTiles()
 
     suspend fun deleteTile(quadkey: String) = withContext(Dispatchers.IO) {
-        tilesDao.deleteTiles(quadkey)
+        tilesDao.deleteTile(quadkey)
     }
 
     suspend fun updateTile(tile: TileData) = withContext(Dispatchers.IO) {
