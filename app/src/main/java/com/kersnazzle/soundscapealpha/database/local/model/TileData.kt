@@ -10,6 +10,7 @@ class TileData() : RealmObject {
     var created : RealmInstant? = RealmInstant.now() // this timestamps it
     var tileString : String = ""
     var roads : String = "" // this is a test just to store the roads Feature Collection as string will look at how to store as embedded realm object
+    var paths : String = "" // same as above
     var intersections : String = "" // same as above
     var entrances : String = "" // same as above
     var pois : String = "" // same as above
