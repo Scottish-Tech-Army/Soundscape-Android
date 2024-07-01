@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 
 class TilesDao(val realm: Realm) {
 
-    suspend fun insertTile(tiles: TileData) = realm.write {
-        copyToRealm(tiles, updatePolicy = UpdatePolicy.ALL)
+    suspend fun insertTile(tile: TileData) = realm.write {
+        copyToRealm(tile, updatePolicy = UpdatePolicy.ALL)
     }
 
     // fetch all objects of a type as a flow, asynchronously
