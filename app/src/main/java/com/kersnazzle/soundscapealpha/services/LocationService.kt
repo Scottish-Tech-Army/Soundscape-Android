@@ -31,11 +31,14 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.kersnazzle.soundscapealpha.R
 import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
+import com.kersnazzle.soundscapealpha.database.local.model.TileData
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
+import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import io.realm.kotlin.ext.query
 import io.realm.kotlin.Realm
 
 import kotlinx.coroutines.CoroutineScope
@@ -57,7 +60,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * Simple foreground service that shows a notification to the user and provides location updates.
+ * Foreground service that provides location updates, device orientation updates, requests tiles, data persistence with realmDB.
  */
 class LocationService : Service() {
     private val binder = LocalBinder()
@@ -294,10 +297,14 @@ class LocationService : Service() {
 
     suspend fun getTileStringCaching(application: Application): String? {
         val tileXY = _locationFlow.value?.let { getXYTile(it.latitude, _locationFlow.value!!.longitude) }
+        // generate the Quad Key for the current tile we are in
+        val currentQuadKey = getQuadKey(tileXY!!.first, tileXY.second, 16)
+        // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
+        // as we are using the Quad Key as the primary key
+        val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
 
-        //TODO: Once we know what our tile is we need to check the DB (which does not exist yet!)
-        // for the existence of the tile. If we have it already and the tile has been
-        // updated recently (how long??) return the db version of the tile otherwise go and get it from the backend/cache
+
+
 
         okhttpClientInstance = OkhttpClientInstance(application)
 
