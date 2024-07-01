@@ -33,7 +33,6 @@ import com.kersnazzle.soundscapealpha.R
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 
-import com.kersnazzle.soundscapealpha.network.RetrofitClientInstance
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 
@@ -282,27 +281,15 @@ class LocationService : Service() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    // testing out basic network connection with Retrofit and cleaning the tile
-    suspend fun getTileString(): String? {
 
-        val tileXY = _locationFlow.value?.let { getXYTile(it.latitude, _locationFlow.value!!.longitude) }
-
-        return withContext(Dispatchers.IO) {
-            val service = RetrofitClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-
-            val tile = async { tileXY?.let { service?.getTile(it.first, tileXY.second) } }
-            val result = tile.await()?.awaitResponse()?.body()
-            return@withContext result?.let<String, String> {
-                tileXY?.let { it1 ->
-                    cleanTileGeoJSON(
-                        it1.first, tileXY.second, 16.0, it)
-                }.toString()
-            }
-        }
-    }
 
     suspend fun getTileStringCaching(application: Application): String? {
         val tileXY = _locationFlow.value?.let { getXYTile(it.latitude, _locationFlow.value!!.longitude) }
+
+        //TODO: Once we know what our tile is we need to check the DB (which does not exist yet!)
+        // for the existence of the tile. If we have it already and the tile has been
+        // updated recently (how long??) return the db version of the tile otherwise go and get it from the backend/cache
+
         okhttpClientInstance = OkhttpClientInstance(application)
 
         return withContext(Dispatchers.IO) {

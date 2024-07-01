@@ -199,12 +199,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        lifecycleScope.launch {
-            delay(10000)
-            val test = exampleService?.getTileString()
-
-            println(test)
-        }
 
         lifecycleScope.launch {
             delay(10000)
