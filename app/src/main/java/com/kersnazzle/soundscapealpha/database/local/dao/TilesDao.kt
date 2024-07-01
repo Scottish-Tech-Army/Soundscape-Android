@@ -5,6 +5,7 @@ import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.notifications.ResultsChange
+import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.flow.Flow
 
@@ -16,6 +17,10 @@ class TilesDao(val realm: Realm) {
 
     // fetch all objects of a type as a flow, asynchronously
     fun getAllTiles(): Flow<ResultsChange<TileData>> = realm.query<TileData>().asFlow()
+
+    fun getTile(quadkey: String): RealmResults<TileData> {
+        return realm.query<TileData>("quadKey == $0", quadkey).find()
+    }
 
     suspend fun deleteTile(quadkey: String) = realm.write {
 
