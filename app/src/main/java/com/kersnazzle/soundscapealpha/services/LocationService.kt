@@ -31,7 +31,9 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.kersnazzle.soundscapealpha.R
 import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
+import com.kersnazzle.soundscapealpha.database.local.dao.TilesDao
 import com.kersnazzle.soundscapealpha.database.local.model.TileData
+import com.kersnazzle.soundscapealpha.database.repository.TilesRepository
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 
@@ -301,7 +303,11 @@ class LocationService : Service() {
         val currentQuadKey = getQuadKey(tileXY!!.first, tileXY.second, 16)
         // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
         // or null as we are using the Quad Key as the primary key
-        val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
+
+        val tilesDao = TilesDao(realm)
+        val tilesRepository = TilesRepository(tilesDao)
+        val frozenResult = tilesRepository.getTile(currentQuadKey)
+
         // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
         //  if it doesn't exist already go get it from the network and insert into db
 
