@@ -7,7 +7,7 @@ import io.realm.kotlin.types.annotations.PrimaryKey
 class TileData() : RealmObject {
     @PrimaryKey
     var quadKey : String = ""
-    var created : RealmInstant? = RealmInstant.now() // this timestamps it
+    var lastUpdated : RealmInstant? = RealmInstant.now() // this timestamps it
     var tileString : String = ""
     var roads : String = "" // this is a test just to store the roads Feature Collection as string will look at how to store as embedded realm object
     var paths : String = "" // same as above
@@ -33,7 +33,7 @@ class TileData() : RealmObject {
 
     override fun hashCode(): Int {
         var result = quadKey.hashCode()
-        result = 31 * result + created.hashCode()
+        result = 31 * result + lastUpdated.hashCode()
         return result
     }
 }

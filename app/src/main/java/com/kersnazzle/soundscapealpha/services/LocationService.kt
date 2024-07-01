@@ -315,6 +315,7 @@ class LocationService : Service() {
             val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
             val tile = async { tileXY?.let { service?.getTileWithCache(it.first, tileXY.second) } }
             val result = tile.await()?.awaitResponse()?.body()
+            // TODO change this to clean the tile, perform an insert into db using the clean tile, and return clean tile string from db
             return@withContext result?.let<String, String> {
                 tileXY?.let { it1 ->
                     cleanTileGeoJSON(

@@ -30,7 +30,7 @@ class TilesDao(val realm: Realm) {
         // this isn't optimal as I'm storing the whole tile string and the assorted Feature Collections
         // that make up the string - roads, paths, blah
         findTile?.apply {
-            created = RealmInstant.now()
+            lastUpdated = RealmInstant.now()
             tileString = tile?.tileString ?: "-"
             roads = tile?.roads ?: "-"
             paths = tile?.paths ?: "-"
