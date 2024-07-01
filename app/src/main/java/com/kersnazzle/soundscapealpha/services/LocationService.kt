@@ -302,6 +302,8 @@ class LocationService : Service() {
         // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
         // as we are using the Quad Key as the primary key
         val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
+        // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
+        //  if it doesn't exist already go get it from the network
 
 
 
