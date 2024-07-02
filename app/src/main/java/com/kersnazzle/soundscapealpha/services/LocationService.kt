@@ -311,9 +311,6 @@ class LocationService : Service() {
         // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
         //  if it doesn't exist already go get it from the network and insert into db
 
-
-
-
         okhttpClientInstance = OkhttpClientInstance(application)
 
         return withContext(Dispatchers.IO) {
