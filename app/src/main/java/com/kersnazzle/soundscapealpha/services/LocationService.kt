@@ -288,7 +288,7 @@ class LocationService : Service() {
         val builder = Notification.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.notification_text))
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.nearby_markers_24px)
             .setOngoing(true)
 
         return builder.build()
