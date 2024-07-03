@@ -344,7 +344,8 @@ class LocationService : Service() {
                         tileFeatureCollection!!
                     )
                     val roadsString = moshi.adapter(FeatureCollection::class.java).toJson(
-                        roadsFeatureCollection)
+                        roadsFeatureCollection
+                    )
                     tileData.roads = roadsString
 
                     val pathsFeatureCollection = getPathsFeatureCollectionFromTileFeatureCollection(
@@ -356,7 +357,8 @@ class LocationService : Service() {
                     tileData.paths = pathsString
 
                     val intersectionsFeatureCollection =  getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                        tileFeatureCollection!!)
+                        tileFeatureCollection!!
+                    )
                     val intersectionsString = moshi.adapter(FeatureCollection::class.java).toJson(
                         intersectionsFeatureCollection
                     )
