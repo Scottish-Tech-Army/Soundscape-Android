@@ -115,9 +115,6 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
     // "footway", "path", "cycleway", "bridleway"
     // gd_intersection are a special case and get their own Intersections Feature Collection
 
-    // TODO temporarily excluding "bus_stop" and "crossing" at the moment to make testing of intersections and roads easier.
-    //  The FoV picks up a bus_stop and crossing as a "road" from the roadsFeatureCollection.
-    //  Maybe put bus_stop and crossing into their own feature collections?
 
     for (feature in tileFeatureCollection) {
         if (feature.foreign!!["feature_type"] == "highway"
@@ -132,6 +129,42 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
         }
     }
     return roadsFeatureCollection
+}
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return a bus stops
+ * feature collection. Uses the "bus_stop" feature_value to extract bus stops from GeoJSON.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only bus stops.
+ */
+fun getBusStopsFeatureCollectionFromTileFeatureCollection(
+    tileFeatureCollection: FeatureCollection
+): FeatureCollection{
+    val busStopFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        if (feature.foreign!!["feature_type"] == "highway" && feature.foreign!!["feature_value"] == "bus_stop"){
+            busStopFeatureCollection.addFeature(feature)
+        }
+    }
+    return busStopFeatureCollection
+}
+
+/**
+ * Given a valid Tile feature collection this will parse the collection and return a crossing
+ * feature collection. Uses the "crossing" feature_value to extract crossings from GeoJSON.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only crossings.
+ */
+fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
+    val crossingsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        if (feature.foreign!!["feature_type"] == "highway" && feature.foreign!!["feature_value"] == "crossing"){
+            crossingsFeatureCollection.addFeature(feature)
+        }
+    }
+    return crossingsFeatureCollection
 }
 
 /**
