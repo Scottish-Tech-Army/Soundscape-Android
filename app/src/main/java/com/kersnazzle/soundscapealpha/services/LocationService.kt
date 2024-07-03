@@ -9,14 +9,10 @@ import android.app.NotificationManager
 import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.location.Location
-
-
 import android.os.Binder
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
-import android.widget.Toast
-import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import com.google.android.gms.location.DeviceOrientation
 import com.google.android.gms.location.DeviceOrientationListener
@@ -34,43 +30,23 @@ import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
 import com.kersnazzle.soundscapealpha.database.local.dao.TilesDao
 import com.kersnazzle.soundscapealpha.database.local.model.TileData
 import com.kersnazzle.soundscapealpha.database.repository.TilesRepository
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
-import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
-
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
-import com.kersnazzle.soundscapealpha.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getCrossingsFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
-import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
-import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.processTileString
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.adapter
-import io.realm.kotlin.ext.query
 import io.realm.kotlin.Realm
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.awaitResponse
-import retrofit2.create
 import java.util.concurrent.Executors
-import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -364,7 +340,7 @@ class LocationService : Service() {
 
     fun deleteRealm(){
         // need this to clean up my mess while I work on the db schema, etc.
-        var config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
+        val config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
         // Delete the realm
         Realm.deleteRealm(config)
     }
