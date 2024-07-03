@@ -303,29 +303,49 @@ class LocationService : Service() {
         val currentQuadKey = getQuadKey(tileXY!!.first, tileXY.second, 16)
         // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
         // or null as we are using the Quad Key as the primary key
+        // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
+        //  if it doesn't exist already go get it from the network and insert into db
 
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         val frozenResult = tilesRepository.getTile(currentQuadKey)
+        //Log.d(TAG, "$frozenResult")
+        // there isn't a tile matching the current location in the db so go and get it from the backend
+        if(frozenResult.size == 0){
+            okhttpClientInstance = OkhttpClientInstance(application)
 
-        // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
-        //  if it doesn't exist already go get it from the network and insert into db
+            return withContext(Dispatchers.IO) {
 
-        okhttpClientInstance = OkhttpClientInstance(application)
+                val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
+                val tile = async { tileXY?.let { service?.getTileWithCache(it.first, tileXY.second) } }
+                val result = tile.await()?.awaitResponse()?.body()
+                // clean the tile, perform an insert into db using the clean tile, and return clean tile string
+                val cleanedTile =
+                    result?.let { cleanTileGeoJSON(tileXY.first, tileXY.second, 16.0, it) }
 
-        return withContext(Dispatchers.IO) {
+                val tileData = TileData()
+                tileData.quadKey = currentQuadKey
+                if (cleanedTile != null) {
+                    tileData.tileString = cleanedTile
+                }
+                //TODO should I do the tile processing here? Split the string into roads, intersections, POIs, etc.
+                tilesRepository.insertTile(tileData)
+                // checking that I can retrieve it from the realm db
+                val tileDataTest = tilesRepository.getTile(currentQuadKey)
 
-            val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-            val tile = async { tileXY?.let { service?.getTileWithCache(it.first, tileXY.second) } }
-            val result = tile.await()?.awaitResponse()?.body()
-            // TODO change this to clean the tile, perform an insert into db using the clean tile, and return clean tile string from db
-            return@withContext result?.let<String, String> {
-                tileXY?.let { it1 ->
-                    cleanTileGeoJSON(
-                        it1.first, tileXY.second, 16.0, it)
-                }.toString()
+                return@withContext tileDataTest[0].tileString
+                }
+        }else{
+
+            return withContext(Dispatchers.IO){
+                // there should only ever be one matching tile so return the tileString
+                // checking that I can retrieve it from the realm db
+                val tileDataTest = tilesRepository.getTile(currentQuadKey)
+                return@withContext tileDataTest[0].tileString
             }
+
         }
+
     }
 
     private fun startRealm(){
