@@ -7,6 +7,7 @@ import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Point
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Polygon
 import com.kersnazzle.soundscapealpha.utils.Direction
 import com.kersnazzle.soundscapealpha.utils.distanceToIntersection
+import com.kersnazzle.soundscapealpha.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getCombinedDirectionPolygons
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
@@ -49,6 +50,18 @@ class TileUtilsTest {
         // I excluded bus_stop and crossing in the getRoadsFeatureCollectionFromTileFeatureCollection so...
         //Assert.assertEquals(16, testRoadsCollectionFromTileFeatureCollection.features.size)
         Assert.assertEquals(14, testRoadsCollectionFromTileFeatureCollection.features.size)
+    }
+
+    @Test
+    fun getBusStopsFeatureCollectionFromTileFeatureCollectionTest(){
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testBusStopFeatureCollectionFromTileFeatureCollection =
+            getBusStopsFeatureCollectionFromTileFeatureCollection(featureCollectionTest!!)
+        for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
+            Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
+        }
+        Assert.assertEquals(2, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
