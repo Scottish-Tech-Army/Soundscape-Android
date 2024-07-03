@@ -42,6 +42,8 @@ class TilesDao(val realm: Realm) {
             intersections = tile?.intersections ?: "-"
             entrances = tile?.entrances ?: "-"
             pois = tile?.pois ?: "-"
+            busStops = tile?.busStops ?: "-"
+            crossings = tile?.crossings ?: "-"
         }
     }
 

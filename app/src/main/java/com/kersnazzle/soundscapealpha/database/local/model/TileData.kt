@@ -14,6 +14,8 @@ class TileData() : RealmObject {
     var intersections : String = "" // same as above
     var entrances : String = "" // same as above
     var pois : String = "" // same as above
+    var busStops: String = ""
+    var crossings: String = ""
     //var pois : RealmList<GDASpatialDataResultEntity> = realmListOf()
     //var roads : RealmList<GDASpatialDataResultEntity> = realmListOf()
     //var paths : RealmList<GDASpatialDataResultEntity> = realmListOf()

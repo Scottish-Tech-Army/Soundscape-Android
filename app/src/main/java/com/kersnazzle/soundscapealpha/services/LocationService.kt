@@ -416,8 +416,7 @@ class LocationService : Service() {
         )
         tileData.pois = poisString
 
-        //TODO write getBusStopsFeatureCollectionFromTileFeatureCollection and
-        // getCrossingsFromTileFeatureCollection functions in TileUtils
+
 
         return  tileData
 
