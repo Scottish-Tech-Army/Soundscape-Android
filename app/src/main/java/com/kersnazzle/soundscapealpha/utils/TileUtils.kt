@@ -1,5 +1,6 @@
 package com.kersnazzle.soundscapealpha.utils
 
+import com.kersnazzle.soundscapealpha.database.local.model.TileData
 import com.kersnazzle.soundscapealpha.dto.IntersectionRelativeDirections
 import com.kersnazzle.soundscapealpha.dto.VectorTile
 import com.kersnazzle.soundscapealpha.geojsonparser.geojson.Feature
@@ -271,6 +272,78 @@ fun getPoiFeatureCollectionBySuperCategory(
         }
     }
     return superCategoryPoiFeatureCollection
+}
+
+fun processTileString(quadkey: String, tileString: String): TileData {
+    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+    val tileData = TileData()
+
+    tileData.quadKey = quadkey
+    tileData.tileString = tileString
+
+    val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
+        .fromJson(tileString)
+
+    val roadsFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection!!
+    )
+    val roadsString = moshi.adapter(FeatureCollection::class.java).toJson(
+        roadsFeatureCollection
+    )
+    tileData.roads = roadsString
+
+    val pathsFeatureCollection = getPathsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    val pathsString = moshi.adapter(FeatureCollection::class.java).toJson(
+        pathsFeatureCollection
+    )
+    tileData.paths = pathsString
+
+    val intersectionsFeatureCollection =  getIntersectionsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection!!
+    )
+    val intersectionsString = moshi.adapter(FeatureCollection::class.java).toJson(
+        intersectionsFeatureCollection
+    )
+    tileData.intersections = intersectionsString
+
+    val entrancesFeatureCollection = getEntrancesFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    val entrancesString = moshi.adapter(FeatureCollection::class.java).toJson(
+        entrancesFeatureCollection
+    )
+    tileData.entrances = entrancesString
+
+    val poisFeatureCollection = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    val poisString = moshi.adapter(FeatureCollection::class.java).toJson(
+        poisFeatureCollection
+    )
+    tileData.pois = poisString
+
+    val busStopsFeatureCollection = getBusStopsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    val busStopsString = moshi.adapter(FeatureCollection::class.java).toJson(
+        busStopsFeatureCollection
+    )
+    tileData.busStops = busStopsString
+
+    val crossingsFeatureCollection = getCrossingsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    val crossingsString = moshi.adapter(FeatureCollection::class.java).toJson(
+        crossingsFeatureCollection
+    )
+    tileData.crossings = crossingsString
+
+    //TODO move this into TileUtils
+
+    return  tileData
+
 }
 
 /**
