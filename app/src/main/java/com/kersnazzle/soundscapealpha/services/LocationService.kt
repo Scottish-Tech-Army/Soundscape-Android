@@ -34,12 +34,21 @@ import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
 import com.kersnazzle.soundscapealpha.database.local.dao.TilesDao
 import com.kersnazzle.soundscapealpha.database.local.model.TileData
 import com.kersnazzle.soundscapealpha.database.repository.TilesRepository
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.FeatureCollection
+import com.kersnazzle.soundscapealpha.geojsonparser.geojson.GeoMoshi
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
+import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
+import com.kersnazzle.soundscapealpha.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.adapter
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.Realm
 
@@ -302,14 +311,14 @@ class LocationService : Service() {
         // generate the Quad Key for the current tile we are in
         val currentQuadKey = getQuadKey(tileXY!!.first, tileXY.second, 16)
         // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
-        // or null as we are using the Quad Key as the primary key
+        // or zero as we are using the Quad Key as the primary key
         // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
         //  if it doesn't exist already go get it from the network and insert into db
 
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         val frozenResult = tilesRepository.getTile(currentQuadKey)
-        //Log.d(TAG, "$frozenResult")
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // there isn't a tile matching the current location in the db so go and get it from the backend
         if(frozenResult.size == 0){
             okhttpClientInstance = OkhttpClientInstance(application)
@@ -327,8 +336,51 @@ class LocationService : Service() {
                 tileData.quadKey = currentQuadKey
                 if (cleanedTile != null) {
                     tileData.tileString = cleanedTile
+                    //TODO Split the string into roads, paths, intersections, POIs, etc. and move into function
+                    val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
+                        .fromJson(cleanedTile)
+
+                    val roadsFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
+                        tileFeatureCollection!!
+                    )
+                    val roadsString = moshi.adapter(FeatureCollection::class.java).toJson(
+                        roadsFeatureCollection)
+                    tileData.roads = roadsString
+
+                    val pathsFeatureCollection = getPathsFeatureCollectionFromTileFeatureCollection(
+                        tileFeatureCollection
+                    )
+                    val pathsString = moshi.adapter(FeatureCollection::class.java).toJson(
+                        pathsFeatureCollection
+                    )
+                    tileData.paths = pathsString
+
+                    val intersectionsFeatureCollection =  getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                        tileFeatureCollection!!)
+                    val intersectionsString = moshi.adapter(FeatureCollection::class.java).toJson(
+                        intersectionsFeatureCollection
+                    )
+                    tileData.intersections = intersectionsString
+
+                    val entrancesFeatureCollection = getEntrancesFeatureCollectionFromTileFeatureCollection(
+                        tileFeatureCollection
+                    )
+                    val entrancesString = moshi.adapter(FeatureCollection::class.java).toJson(
+                        entrancesFeatureCollection
+                    )
+                    tileData.entrances = entrancesString
+
+                    val poisFeatureCollection = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+                        tileFeatureCollection
+                    )
+                    val poisString = moshi.adapter(FeatureCollection::class.java).toJson(
+                        poisFeatureCollection
+                    )
+                    tileData.pois = poisString
                 }
-                //TODO should I do the tile processing here? Split the string into roads, intersections, POIs, etc.
+
+
+
                 tilesRepository.insertTile(tileData)
                 // checking that I can retrieve it from the realm db
                 val tileDataTest = tilesRepository.getTile(currentQuadKey)
