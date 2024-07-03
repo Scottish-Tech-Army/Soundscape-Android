@@ -273,12 +273,20 @@ fun getPoiFeatureCollectionBySuperCategory(
     }
     return superCategoryPoiFeatureCollection
 }
+/**
+ * Parses out roads, paths, intersections, entrances, pois, bus stops and crossings from a tile string.
+ * @param quadKey
+ * quad key for the tile.
+ * @param tileString
+ * String for a tile.
+ * @return a TileData object with the string parsed into separate strings.
+ */
 
-fun processTileString(quadkey: String, tileString: String): TileData {
+fun processTileString(quadKey: String, tileString: String): TileData {
     val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
     val tileData = TileData()
 
-    tileData.quadKey = quadkey
+    tileData.quadKey = quadKey
     tileData.tileString = tileString
 
     val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
