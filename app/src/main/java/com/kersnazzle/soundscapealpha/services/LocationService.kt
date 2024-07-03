@@ -318,7 +318,7 @@ class LocationService : Service() {
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         val frozenResult = tilesRepository.getTile(currentQuadKey)
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+
         // there isn't a tile matching the current location in the db so go and get it from the backend
         if(frozenResult.size == 0){
             okhttpClientInstance = OkhttpClientInstance(application)
@@ -328,62 +328,15 @@ class LocationService : Service() {
                 val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
                 val tile = async { tileXY?.let { service?.getTileWithCache(it.first, tileXY.second) } }
                 val result = tile.await()?.awaitResponse()?.body()
-                // clean the tile, perform an insert into db using the clean tile, and return clean tile string
+                // clean the tile, process the string, perform an insert into db using the clean tile, and return clean tile string
                 val cleanedTile =
                     result?.let { cleanTileGeoJSON(tileXY.first, tileXY.second, 16.0, it) }
 
-                val tileData = TileData()
-                tileData.quadKey = currentQuadKey
                 if (cleanedTile != null) {
-                    tileData.tileString = cleanedTile
-                    //TODO Split the string into roads, paths, intersections, POIs, etc. and move into function
-                    val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
-                        .fromJson(cleanedTile)
-
-                    val roadsFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
-                        tileFeatureCollection!!
-                    )
-                    val roadsString = moshi.adapter(FeatureCollection::class.java).toJson(
-                        roadsFeatureCollection
-                    )
-                    tileData.roads = roadsString
-
-                    val pathsFeatureCollection = getPathsFeatureCollectionFromTileFeatureCollection(
-                        tileFeatureCollection
-                    )
-                    val pathsString = moshi.adapter(FeatureCollection::class.java).toJson(
-                        pathsFeatureCollection
-                    )
-                    tileData.paths = pathsString
-
-                    val intersectionsFeatureCollection =  getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                        tileFeatureCollection!!
-                    )
-                    val intersectionsString = moshi.adapter(FeatureCollection::class.java).toJson(
-                        intersectionsFeatureCollection
-                    )
-                    tileData.intersections = intersectionsString
-
-                    val entrancesFeatureCollection = getEntrancesFeatureCollectionFromTileFeatureCollection(
-                        tileFeatureCollection
-                    )
-                    val entrancesString = moshi.adapter(FeatureCollection::class.java).toJson(
-                        entrancesFeatureCollection
-                    )
-                    tileData.entrances = entrancesString
-
-                    val poisFeatureCollection = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                        tileFeatureCollection
-                    )
-                    val poisString = moshi.adapter(FeatureCollection::class.java).toJson(
-                        poisFeatureCollection
-                    )
-                    tileData.pois = poisString
+                    val tileData = processTileString(currentQuadKey, cleanedTile)
+                    tilesRepository.insertTile(tileData)
                 }
 
-
-
-                tilesRepository.insertTile(tileData)
                 // checking that I can retrieve it from the realm db
                 val tileDataTest = tilesRepository.getTile(currentQuadKey)
 
@@ -411,6 +364,60 @@ class LocationService : Service() {
         var config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
         // Delete the realm
         Realm.deleteRealm(config)
+    }
+
+    private fun processTileString(quadkey: String, tileString: String): TileData{
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val tileData = TileData()
+
+        tileData.quadKey = quadkey
+        tileData.tileString = tileString
+
+        val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(tileString)
+
+        val roadsFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
+            tileFeatureCollection!!
+        )
+        val roadsString = moshi.adapter(FeatureCollection::class.java).toJson(
+            roadsFeatureCollection
+        )
+        tileData.roads = roadsString
+
+        val pathsFeatureCollection = getPathsFeatureCollectionFromTileFeatureCollection(
+            tileFeatureCollection
+        )
+        val pathsString = moshi.adapter(FeatureCollection::class.java).toJson(
+            pathsFeatureCollection
+        )
+        tileData.paths = pathsString
+
+        val intersectionsFeatureCollection =  getIntersectionsFeatureCollectionFromTileFeatureCollection(
+            tileFeatureCollection!!
+        )
+        val intersectionsString = moshi.adapter(FeatureCollection::class.java).toJson(
+            intersectionsFeatureCollection
+        )
+        tileData.intersections = intersectionsString
+
+        val entrancesFeatureCollection = getEntrancesFeatureCollectionFromTileFeatureCollection(
+            tileFeatureCollection
+        )
+        val entrancesString = moshi.adapter(FeatureCollection::class.java).toJson(
+            entrancesFeatureCollection
+        )
+        tileData.entrances = entrancesString
+
+        val poisFeatureCollection = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+            tileFeatureCollection
+        )
+        val poisString = moshi.adapter(FeatureCollection::class.java).toJson(
+            poisFeatureCollection
+        )
+        tileData.pois = poisString
+
+        return  tileData
+
     }
 
 
