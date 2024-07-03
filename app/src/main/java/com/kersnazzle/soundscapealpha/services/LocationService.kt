@@ -40,6 +40,8 @@ import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
+import com.kersnazzle.soundscapealpha.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
+import com.kersnazzle.soundscapealpha.utils.getCrossingsFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getPathsFeatureCollectionFromTileFeatureCollection
@@ -416,7 +418,23 @@ class LocationService : Service() {
         )
         tileData.pois = poisString
 
+        val busStopsFeatureCollection = getBusStopsFeatureCollectionFromTileFeatureCollection(
+            tileFeatureCollection
+        )
+        val busStopsString = moshi.adapter(FeatureCollection::class.java).toJson(
+            busStopsFeatureCollection
+        )
+        tileData.busStops = busStopsString
 
+        val crossingsFeatureCollection = getCrossingsFromTileFeatureCollection(
+            tileFeatureCollection
+        )
+        val crossingsString = moshi.adapter(FeatureCollection::class.java).toJson(
+            crossingsFeatureCollection
+        )
+        tileData.crossings = crossingsString
+
+        //TODO move this into TileUtils
 
         return  tileData
 
