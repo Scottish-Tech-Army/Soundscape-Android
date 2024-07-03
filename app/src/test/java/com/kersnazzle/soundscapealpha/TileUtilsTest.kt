@@ -9,6 +9,7 @@ import com.kersnazzle.soundscapealpha.utils.Direction
 import com.kersnazzle.soundscapealpha.utils.distanceToIntersection
 import com.kersnazzle.soundscapealpha.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getCombinedDirectionPolygons
+import com.kersnazzle.soundscapealpha.utils.getCrossingsFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovIntersectionFeatureCollection
 import com.kersnazzle.soundscapealpha.utils.getFovPoiFeatureCollection
@@ -62,6 +63,18 @@ class TileUtilsTest {
             Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
         }
         Assert.assertEquals(2, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
+    }
+
+    @Test
+    fun getCrossingsFeatureCollectionFromTileFeatureCollectionTest(){
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testCrossingsFeatureCollection =
+            getCrossingsFromTileFeatureCollection(featureCollectionTest!!)
+        for (feature in testCrossingsFeatureCollection){
+            Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
+        }
+        Assert.assertEquals(2, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
