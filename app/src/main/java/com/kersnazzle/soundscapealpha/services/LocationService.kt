@@ -292,16 +292,13 @@ class LocationService : Service() {
         val currentQuadKey = getQuadKey(tileXY!!.first, tileXY.second, 16)
         // check the Realm db to see if the tile already exists using the Quad Key. There should only ever be one result
         // or zero as we are using the Quad Key as the primary key
-        // TODO check frozen result and if it already exists use that (need a TTL for the tile in the db?)
-        //  if it doesn't exist already go get it from the network and insert into db
 
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         val frozenResult = tilesRepository.getTile(currentQuadKey)
-
+        okhttpClientInstance = OkhttpClientInstance(application)
         // there isn't a tile matching the current location in the db so go and get it from the backend
         if(frozenResult.size == 0){
-            okhttpClientInstance = OkhttpClientInstance(application)
 
             return withContext(Dispatchers.IO) {
 
@@ -329,25 +326,47 @@ class LocationService : Service() {
             val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
             Log.d(TAG, "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}")
             // How often do we want to update the tile? 24 hours?
-            val timeToLive: Long =
-                lastUpdated.epochSeconds!!.plus((24 * 60 * 60)) // 24 hours in seconds added to last updated
-                if(timeToLive <= currentTimeStamp) {
-                    Log.d(TAG, "Tile does not need updating yet")
+            val timeToLive: Long = lastUpdated.epochSeconds.plus((24 * 60 * 60))
+
+                if(timeToLive >= currentTimeStamp) {
+                    Log.d(TAG, "Tile does not need updating yet get local copy")
+                    return withContext(Dispatchers.IO){
+                        // there should only ever be one matching tile so return the tileString
+                        val tileDataTest = tilesRepository.getTile(currentQuadKey)
+                        return@withContext tileDataTest[0].tileString
+                    }
                 } else {
                     Log.d(TAG, "Tile does need updating")
+                    return withContext(Dispatchers.IO) {
+
+                        val service =
+                            okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
+                        val tile = async {
+                            tileXY?.let {
+                                service?.getTileWithCache(
+                                    it.first,
+                                    tileXY.second
+                                )
+                            }
+                        }
+                        val result = tile.await()?.awaitResponse()?.body()
+                        // clean the tile, process the string, perform an update on db using the clean tile, and return clean tile string
+                        val cleanedTile =
+                            result?.let { cleanTileGeoJSON(tileXY.first, tileXY.second, 16.0, it) }
+
+                        if (cleanedTile != null) {
+                            val tileData = processTileString(currentQuadKey, cleanedTile)
+                            // update existing tile in db
+                            tilesRepository.updateTile(tileData)
+                        }
+
+                        // checking that I can retrieve updated tile from the realm db
+                        val tileDataTest = tilesRepository.getTile(currentQuadKey)
+
+                        return@withContext tileDataTest[0].tileString
+                    }
                 }
-
-
-
-            return withContext(Dispatchers.IO){
-                // there should only ever be one matching tile so return the tileString
-                // checking that I can retrieve it from the realm db
-                val tileDataTest = tilesRepository.getTile(currentQuadKey)
-                return@withContext tileDataTest[0].tileString
-            }
-
         }
-
     }
 
     private fun startRealm(){
