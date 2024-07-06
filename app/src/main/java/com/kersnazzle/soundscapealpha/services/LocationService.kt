@@ -37,6 +37,7 @@ import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.processTileString
 import io.realm.kotlin.Realm
+import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -322,6 +323,21 @@ class LocationService : Service() {
                 return@withContext tileDataTest[0].tileString
                 }
         }else{
+            // get the current time and then check against lastUpdated in frozenResult
+            val currentInstant: java.time.Instant = java.time.Instant.now()
+            val currentTimeStamp: Long = currentInstant.toEpochMilli() / 1000
+            val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
+            Log.d(TAG, "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}")
+            // How often do we want to update the tile? 24 hours?
+            val timeToLive: Long =
+                lastUpdated.epochSeconds!!.plus((24 * 60 * 60)) // 24 hours in seconds added to last updated
+                if(timeToLive <= currentTimeStamp) {
+                    Log.d(TAG, "Tile does not need updating yet")
+                } else {
+                    Log.d(TAG, "Tile does need updating")
+                }
+
+
 
             return withContext(Dispatchers.IO){
                 // there should only ever be one matching tile so return the tileString
@@ -351,6 +367,7 @@ class LocationService : Service() {
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 30.seconds
+
 
         private const val CHANNEL_ID = "LocationService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "SoundscapeAlpha_LocationService"
