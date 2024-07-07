@@ -326,7 +326,7 @@ class LocationService : Service() {
             val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
             Log.d(TAG, "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}")
             // How often do we want to update the tile? 24 hours?
-            val timeToLive: Long = lastUpdated.epochSeconds.plus((24 * 60 * 60))
+            val timeToLive: Long = lastUpdated.epochSeconds.plus(TTL_REFRESH_SECONDS)
 
                 if(timeToLive >= currentTimeStamp) {
                     Log.d(TAG, "Tile does not need updating yet get local copy")
@@ -386,6 +386,8 @@ class LocationService : Service() {
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 30.seconds
+        // TTL Tile refresh in local Realm DB
+        private const val TTL_REFRESH_SECONDS: Long = 24 * 60 * 60
 
 
         private const val CHANNEL_ID = "LocationService_channel_01"
