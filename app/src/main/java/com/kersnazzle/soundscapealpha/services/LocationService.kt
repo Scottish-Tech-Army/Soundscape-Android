@@ -30,10 +30,12 @@ import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
 import com.kersnazzle.soundscapealpha.database.local.dao.TilesDao
 import com.kersnazzle.soundscapealpha.database.local.model.TileData
 import com.kersnazzle.soundscapealpha.database.repository.TilesRepository
+import com.kersnazzle.soundscapealpha.dto.VectorTile
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
 import com.kersnazzle.soundscapealpha.utils.getQuadKey
+import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.processTileString
 import io.realm.kotlin.Realm
@@ -282,6 +284,76 @@ class LocationService : Service() {
             NotificationManager.IMPORTANCE_DEFAULT
         )
         notificationManager.createNotificationChannel(channel)
+    }
+
+    suspend fun getTileGrid(application: Application): MutableList<TileData>{
+        //TODO Original Soundscape appears to have a 3 x 3 grid of tiles with the current location being the central tile
+        val tileGridQuadKeys = getTilesForRegion(_locationFlow.value!!.latitude, _locationFlow.value!!.longitude, 200.0)
+        val tilesDao = TilesDao(realm)
+        val tilesRepository = TilesRepository(tilesDao)
+        okhttpClientInstance = OkhttpClientInstance(application)
+
+        val tileGrid: MutableList<TileData> = mutableListOf()
+
+        for(tile in tileGridQuadKeys){
+            Log.d(TAG, "Tile quad key: ${tile.quadkey}")
+            val frozenResult = tilesRepository.getTile(tile.quadkey)
+            // If Tile doesn't already exist in db go and get it, clean it, process it
+            // and insert into db and add to MutableList to return
+            if(frozenResult.size == 0){
+                withContext(Dispatchers.IO) {
+                    val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
+                    val tileReq = async { tile.tileX?.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
+                    val result = tileReq.await()?.awaitResponse()?.body()
+                    // clean the tile, process the string, perform an insert into db using the clean tile data
+                    val cleanedTile =
+                        result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
+
+                    if (cleanedTile != null) {
+                        val tileData = processTileString(tile.quadkey, cleanedTile)
+                        tilesRepository.insertTile(tileData)
+                        // add to mutableList
+                        tileGrid.add(tileData)
+                    }
+                }
+            }else{
+                // get the current time and then check against lastUpdated in frozenResult
+                val currentInstant: java.time.Instant = java.time.Instant.now()
+                val currentTimeStamp: Long = currentInstant.toEpochMilli() / 1000
+                val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
+                Log.d(TAG, "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}")
+                // How often do we want to update the tile? 24 hours?
+                val timeToLive: Long = lastUpdated.epochSeconds.plus(TTL_REFRESH_SECONDS)
+
+                if(timeToLive >= currentTimeStamp) {
+                    Log.d(TAG, "Tile does not need updating yet get local copy")
+                    // There should only ever be one tile with a unique quad key
+                    val tileDataTest = tilesRepository.getTile(tile.quadkey)
+                    // add to mutableList
+                    tileGrid.add(tileDataTest[0])
+
+                } else {
+                    Log.d(TAG, "Tile does need updating")
+                    withContext(Dispatchers.IO) {
+                        val service =
+                            okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
+                        val tileReq = async { tile.tileX?.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
+                        val result = tileReq.await()?.awaitResponse()?.body()
+                        // clean the tile, process the string, perform an update on db using the clean tile, and return clean tile string
+                        val cleanedTile = result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
+
+                        if (cleanedTile != null) {
+                            val tileData = processTileString(tile.quadkey, cleanedTile)
+                            // update existing tile in db
+                            tilesRepository.updateTile(tileData)
+                            // add to mutableList
+                            tileGrid.add(tileData)
+                        }
+                    }
+                }
+            }
+        }
+        return tileGrid
     }
 
 
