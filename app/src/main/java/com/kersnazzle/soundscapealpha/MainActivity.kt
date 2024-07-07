@@ -202,9 +202,9 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             delay(10000)
-            val test = exampleService?.getTileStringCaching(application)
+            val test = exampleService?.getTileGrid(application)
 
-            println(test)
+            println("Number of tiles in grid: ${test?.size}")
         }
 
 
