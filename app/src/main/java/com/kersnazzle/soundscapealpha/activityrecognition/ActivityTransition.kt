@@ -9,6 +9,11 @@ import kotlinx.coroutines.flow.StateFlow
 // This is from the documentation here:
 // https://developer.android.com/develop/sensors-and-location/location/transitions
 // https://developers.google.com/android/reference/com/google/android/gms/location/ActivityRecognitionClient
+/**
+* Class to detect if a device is entering/exiting a vehicle. We need this information
+ * so we can increase/decrease the frequency of GeoJSON tile requests. The tile requests will need
+ * to be more frequent if the device is moving quickly.
+*/
 class ActivityTransition {
     private val _transition = MutableStateFlow("UNKNOWN")
     val transition: StateFlow<String> = _transition
@@ -16,6 +21,10 @@ class ActivityTransition {
 
     // TODO Lots more but I've had enough of Google documentation for the day!
 
+
+    // TODO Remove the other DetectedActivity once I've figured out how to do this as I'm only
+    //  interested in the DetectedActivity.IN_VEHICLE
+    //  and the two ActivityTransitions: ACTIVITY_TRANSITION_ENTER and ACTIVITY_TRANSITION_EXIT
     private fun getTransitions() = listOf(
         ActivityTransition.Builder()
             .setActivityType(DetectedActivity.STILL)
