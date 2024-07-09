@@ -1,7 +1,10 @@
 package com.kersnazzle.soundscapealpha.activityrecognition
 
 import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import com.google.android.gms.location.ActivityTransition
+import com.google.android.gms.location.ActivityTransitionRequest
 import com.google.android.gms.location.DetectedActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,12 +17,21 @@ import kotlinx.coroutines.flow.StateFlow
  * so we can increase/decrease the frequency of GeoJSON tile requests. The tile requests will need
  * to be more frequent if the device is moving quickly.
 */
-class ActivityTransition {
+class ActivityTransition(val context: Context) {
     private val _transition = MutableStateFlow("UNKNOWN")
     val transition: StateFlow<String> = _transition
     private var pendingIntent: PendingIntent? = null
 
-    // TODO Lots more but I've had enough of Google documentation for the day!
+    fun startVehicleActivityTracking(){
+
+        pendingIntent = PendingIntent.getBroadcast(
+            context,
+            0,
+            Intent(context, ActivityTransitionReceiver::class.java),
+            PendingIntent.FLAG_MUTABLE)
+        val request = ActivityTransitionRequest(getTransitions())
+
+    }
 
 
     // TODO Remove the other DetectedActivity once I've figured out how to do this as I'm only
