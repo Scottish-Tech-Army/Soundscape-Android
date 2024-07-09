@@ -21,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 
-import com.kersnazzle.soundscapealpha.services.LocationService
+import com.kersnazzle.soundscapealpha.services.SoundscapeService
 import com.kersnazzle.soundscapealpha.utils.getXYTile
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private var exampleService: LocationService? = null
+    private var exampleService: SoundscapeService? = null
 
     private var serviceBoundState by mutableStateOf(false)
     private var displayableLocation by mutableStateOf<String?>(null)
@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
             // we've bound to ExampleLocationForegroundService, cast the IBinder and get ExampleLocationForegroundService instance.
             Log.d(TAG, "onServiceConnected")
 
-            val binder = service as LocationService.LocalBinder
+            val binder = service as SoundscapeService.LocalBinder
             exampleService = binder.getService()
             serviceBoundState = true
 
@@ -163,14 +163,14 @@ class MainActivity : ComponentActivity() {
      */
     private fun startForegroundService() {
         // start the service
-        startForegroundService(Intent(this, LocationService::class.java))
+        startForegroundService(Intent(this, SoundscapeService::class.java))
 
         // bind to the service to update UI
         tryToBindToServiceIfRunning()
     }
 
     private fun tryToBindToServiceIfRunning() {
-        Intent(this, LocationService::class.java).also { intent ->
+        Intent(this, SoundscapeService::class.java).also { intent ->
             bindService(intent, connection, 0)
         }
     }

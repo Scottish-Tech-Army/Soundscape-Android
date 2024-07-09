@@ -55,7 +55,7 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles, data persistence with realmDB.
  */
-class LocationService : Service() {
+class SoundscapeService : Service() {
     private val binder = LocalBinder()
 
     private val coroutineScope = CoroutineScope(Job())
@@ -88,7 +88,7 @@ class LocationService : Service() {
 
     // Binder to allow local clients to Bind to our service
     inner class LocalBinder : Binder() {
-        fun getService(): LocationService = this@LocationService
+        fun getService(): SoundscapeService = this@SoundscapeService
     }
 
     override fun onBind(intent: Intent?): IBinder {
@@ -253,16 +253,16 @@ class LocationService : Service() {
         }
     }*/
 
-   /* private fun tickerFlow(
-        period: Duration = TICKER_PERIOD_SECONDS,
-        initialDelay: Duration = TICKER_PERIOD_SECONDS
-    ) = flow {
-        delay(initialDelay)
-        while (true) {
-            emit(Unit)
-            delay(period)
-        }
-    }*/
+    /* private fun tickerFlow(
+         period: Duration = TICKER_PERIOD_SECONDS,
+         initialDelay: Duration = TICKER_PERIOD_SECONDS
+     ) = flow {
+         delay(initialDelay)
+         while (true) {
+             emit(Unit)
+             delay(period)
+         }
+     }*/
 
     private fun getNotification(): Notification {
         createServiceNotificationChannel()

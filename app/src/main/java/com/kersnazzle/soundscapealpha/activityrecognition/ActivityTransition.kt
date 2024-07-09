@@ -18,8 +18,10 @@ import kotlinx.coroutines.flow.StateFlow
  * to be more frequent if the device is moving quickly.
 */
 class ActivityTransition(val context: Context) {
+
     private val _transition = MutableStateFlow("UNKNOWN")
     val transition: StateFlow<String> = _transition
+
     private var pendingIntent: PendingIntent? = null
 
     fun startVehicleActivityTracking(){
@@ -28,8 +30,14 @@ class ActivityTransition(val context: Context) {
             context,
             0,
             Intent(context, ActivityTransitionReceiver::class.java),
-            PendingIntent.FLAG_MUTABLE)
+            // not sure if this should be FLAG_MUTABLE or FLAG_IMMUTABLE
+            PendingIntent.FLAG_MUTABLE
+        )
         val request = ActivityTransitionRequest(getTransitions())
+
+    }
+
+    fun stopVehicleActivityTracking(){
 
     }
 
