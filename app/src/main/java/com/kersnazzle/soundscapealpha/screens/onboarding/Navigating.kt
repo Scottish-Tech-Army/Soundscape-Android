@@ -15,6 +15,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowOutward
+import androidx.compose.material.icons.rounded.DirectionsRun
+import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Icon
@@ -82,7 +84,7 @@ fun Navigating(navController: NavHostController) {
                         .clip(RoundedCornerShape(5.dp))
                         .verticalScroll(rememberScrollState())
                         .fillMaxWidth()
-                        .height(130.dp)
+                        .height(200.dp)
                         .background(Color.Black.copy(alpha = 0.4f))
                 )
                 {
@@ -144,6 +146,26 @@ fun Navigating(navController: NavHostController) {
                             .fillMaxWidth(),
                     )
                     {
+                        Icon(
+                            Icons.Rounded.FitnessCenter,
+                            contentDescription = null,
+                            tint = Color.White
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Column {
+                            Text(
+                                // iOS has Motion and Fitness and Android has Activity Recognition but
+                                // I'm reusing the original translation strings
+                                text = stringResource(R.string.first_launch_permissions_motion),
+                                style = MaterialTheme.typography.titleMedium,
+                                textAlign = TextAlign.Center
+                            )
+                            Text(
+                                text = stringResource(R.string.first_launch_permissions_required),
+                                style = MaterialTheme.typography.bodySmall,
+                                textAlign = TextAlign.Center
+                            )
+                        }
 
                     }
                 }
