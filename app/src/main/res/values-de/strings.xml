@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Willkommen!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Willkommen bei Soundscape!</string>
+    <string name="first_launch_welcome_description">Sichere Navigation dank räumlichen Audioinformationen per Soundscape</string>
+    <string name="first_launch_welcome_button">Erste Schritte</string>
+    <string name="first_launch_soundscape_language">Soundscape-Sprache</string>
+    <string name="first_launch_soundscape_language_text">Wählen Sie die Sprache aus, die Soundscape verwenden soll. Sie können Ihre Auswahl jederzeit in den App-Einstellungen ändern.</string>
+    <string name="first_launch_headphones_title">Soundscape zuhören</string>
+    <string name="first_launch_headphones_message_1">Soundscape funktioniert hervorragend mit jedem Kopfhörer. Wenn Sie Kopfhörer verwenden möchten, dann nehmen Sie diese jetzt zur Hand.</string>
+    <string name="first_launch_headphones_message_2">Wenn Sie keine Kopfhörer haben oder sie lieber nicht benutzen möchten, ist das auch kein Problem! Soundscape funktioniert auch mit den Lautsprechern Ihres Telefons.</string>
+    <string name="first_launch_callouts_title">Hören Sie Ihre Umgebung</string>
+    <string name="first_launch_callouts_message">Soundscape hilft Ihnen dabei, sich bewusst zu machen, wo Sie sind und wohin Sie gehen, indem es Straßen, Kreuzungen und interessante Punkte ankündigt, wenn Sie sich ihnen nähern.</string>
+    <string name="first_launch_callouts_listen">Hören Sie sich ein Beispiel dafür an, was Soundscape Ihnen auf Ihrem nächsten Spaziergang sagen könnte</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Anhören</string>
+    <string name="first_launch_callouts_example_1">Café</string>
+    <string name="first_launch_callouts_example_3">Hauptstraße geht nach links</string>
+    <string name="first_launch_callouts_example_4">Hauptstraße geht nach rechts</string>
+    <string name="first_launch_permissions_title">Navigieren mit Soundscape</string>
+    <string name="first_launch_permissions_message">Wenn Sie mit Soundscape navigieren, werden Sie von einem Audiobeacon geführt. Dazu müssen Sie Soundscape die folgenden Berechtigungen erteilen:</string>
+    <string name="first_launch_permissions_location">Ortungsdienste mit genauem Standort</string>
+    <string name="first_launch_permissions_motion">Bewegung &amp; Fitness</string>
+    <string name="first_launch_permissions_required">Diese Berechtigung ist erforderlich.</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+    <string name="ui_continue">Weiter</string>
+
+</resources>

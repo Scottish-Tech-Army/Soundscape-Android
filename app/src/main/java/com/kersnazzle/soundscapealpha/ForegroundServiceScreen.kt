@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.kersnazzle.soundscapealpha.ui.theme.ForegroundServiceTheme
+import com.kersnazzle.soundscapealpha.ui.theme.SoundscapeTheme
 
 
 @Composable
@@ -38,7 +38,7 @@ internal fun ForegroundServiceScreen(
     modifier: Modifier = Modifier
 ) {
 
-    ForegroundServiceTheme {
+    SoundscapeTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -72,12 +72,6 @@ private fun ForegroundServiceSampleScreenContent(
             .fillMaxSize()
             .padding(32.dp)
     ) {
-        Text(
-            text = stringResource(id = R.string.foreground_service_sample_description),
-            textAlign = TextAlign.Center
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

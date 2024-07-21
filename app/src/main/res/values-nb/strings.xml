@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Velkommen!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Velkommen til Soundscape!</string>
+    <string name="first_launch_welcome_description">Naviger med selvtillit ved å bruke romlig lyd i Soundscape</string>
+    <string name="first_launch_welcome_button">Kom i gang</string>
+    <string name="first_launch_soundscape_language">Soundscape-språk</string>
+    <string name="first_launch_soundscape_language_text">Velg språket du vil at Soundscape skal bruke. Du kan alltids endre valget i appinnstillingene.</string>
+    <string name="first_launch_headphones_title">Lytt til Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape fungerer bra med et hvilket som helst par med hodetelefoner. Hvis du vil bruke hodetelefoner, kan du finne dem nå.</string>
+    <string name="first_launch_headphones_message_2">Hvis du ikke har hodetelefoner eller foretrekker ikke å bruke dem, er det greit. Soundscape fungerer med høyttalerne på telefonen.</string>
+    <string name="first_launch_callouts_title">Hør omgivelsene</string>
+    <string name="first_launch_callouts_message">Soundscape hjelper deg med å være bevisst på hvor du er og hvor du er på vei ved å lese opp veier, veikryss og interessepunkter når du nærmer deg dem.</string>
+    <string name="first_launch_callouts_listen">Lytt til et eksempel på hva Soundscape kan lese opp på neste tur</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Lytt</string>
+    <string name="first_launch_callouts_example_1">Kafé</string>
+    <string name="first_launch_callouts_example_3">Hovedgaten går til venstre</string>
+    <string name="first_launch_callouts_example_4">Hovedgaten går til høyre</string>
+    <string name="first_launch_permissions_title">Naviger med Soundscape</string>
+    <string name="first_launch_permissions_message">Når du navigerer med Soundscape, blir du veiledet av et lydsignal. For å gjøre dette må du gi Soundscape følgende tillatelser:</string>
+    <string name="first_launch_permissions_location">Stedstjenester med nøyaktig posisjon</string>
+    <string name="first_launch_permissions_motion">Bevegelse og mosjon</string>
+    <string name="first_launch_permissions_required">Denne tillatelsen er obligatorisk</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+
+
+    <string name="ui_continue">Fortsett</string>
+
+
+
+</resources>

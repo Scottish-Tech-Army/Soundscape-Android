@@ -1,12 +1,40 @@
 <resources>
-    <string name="app_name">SoundscapeAlpha</string>
-    <string name="notification_text">We are running this location service in the foreground</string>
+    <string name="app_name" translatable="false">SoundscapeAlpha</string>
 
+    <string name="first_launch_welcome_title">Welcome!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Welcome to Soundscape!</string>
+    <string name="first_launch_welcome_description">Navigate with confidence using Soundscape spatial audio</string>
+    <string name="first_launch_welcome_button">Get Started</string>
+    <string name="first_launch_soundscape_language">Soundscape Language</string>
+    <string name="first_launch_soundscape_language_text">Select the language you would like Soundscape to use. You can always change your selection in the app settings.</string>
+    <string name="first_launch_headphones_title">Listening to Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape works great with any pair of headphones. If you would like to use headphones, grab them now.</string>
+    <string name="first_launch_headphones_message_2">If you don\'t have headphones or would prefer not to use them, that\'s alright! Soundscape will work with the speakers on your phone.</string>
+    <string name="first_launch_callouts_title">Hear Your Surroundings</string>
+    <string name="first_launch_callouts_message">Soundscape helps you stay aware of where you are and where you\'re going by calling out roads, intersections and points of interest as you approach them.</string>
+    <string name="first_launch_callouts_listen">Listen to an example of what Soundscape might call out on your next walk</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Listen</string>
+    <string name="first_launch_callouts_example_1">Cafe</string>
+    <string name="first_launch_callouts_example_3">Main Street goes left</string>
+    <string name="first_launch_callouts_example_4">Main Street goes right</string>
+
+    <string name="first_launch_permissions_title">Navigating with Soundscape</string>
+    <string name="first_launch_permissions_message">When navigating with Soundscape you will be guided by an audio beacon. To do that, Soundscape needs you to enable the following permissions:</string>
+    <string name="first_launch_permissions_location">Location Services with Precise Location</string>
+    <string name="first_launch_permissions_motion">Motion &amp; Fitness</string>
+    <string name="first_launch_permissions_required">This permission is required</string>
+<!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+
+    <string name="ui_continue">Continue</string>
+
+    <string name="notification_text">We are running this location service in the foreground</string>
     <string name="foreground_service_sample_notification_channel_general_name">General notification</string>
     <string name="foreground_service_sample_notification_title">Foreground Service</string>
     <string name="foreground_service_sample_notification_description">Sample app is running in the background.</string>
 
-    <string name="foreground_service_sample_description">This demonstrates how to use the foreground service on Android.\n\nIt will start a foreground service to fetch last known location and to observe any updates to the location.\n\nIt also shows how to bind to a service to update UI.</string>
+
 
     <string name="foreground_service_sample_status_title">Foreground service status:</string>
     <string name="foreground_service_sample_status_running">RUNNING</string>

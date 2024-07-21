@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Welkom</string>
+    <string name="first_launch_welcome_title_accessibility_label">Welkom bij Soundscape!</string>
+    <string name="first_launch_welcome_description">Vol vertrouwen navigeren met de ruimtelijke audio van Soundscape</string>
+    <string name="first_launch_welcome_button">Aan de slag</string>
+    <string name="first_launch_soundscape_language">Taal in Soundscape</string>
+    <string name="first_launch_soundscape_language_text">Selecteer de taal waarin u Soundscape wilt gebruiken. U kunt uw keuze altijd wijzigen in de appinstellingen.</string>
+    <string name="first_launch_headphones_title">Luisteren naar Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape werkt geweldig met een koptelefoon. Als u een koptelefoon wilt gebruiken, zet die dan nu op.</string>
+    <string name="first_launch_headphones_message_2">Als u geen koptelefoon hebt of die niet wil gebruiken, geen probleem! Soundscape werkt ook met de speakers op uw telefoon.</string>
+    <string name="first_launch_callouts_title">Luisteren naar uw omgeving</string>
+    <string name="first_launch_callouts_message">Met Soundscape bent u zich steeds bewust van waar u bent en waarheen u loopt doordat straten, kruispunten en referentiepunten worden aangekondigd als u ze nadert.</string>
+    <string name="first_launch_callouts_listen">Luister naar een voorbeeld van wat Soundscape kan aankondigen op uw volgende wandeling</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Luisteren</string>
+    <string name="first_launch_callouts_example_1">Café</string>
+    <string name="first_launch_callouts_example_3">Hoofdstraat gaat naar links</string>
+    <string name="first_launch_callouts_example_4">Hoofdstraat gaat naar rechts</string>
+    <string name="first_launch_permissions_title">Navigeren met Soundscape</string>
+    <string name="first_launch_permissions_message">Wanneer u navigeert met Soundscape, wordt u begeleid door een audiobaken. Als u dat wilt gebruiken, moet u de volgende machtigingen in Soundscape inschakelen:</string>
+    <string name="first_launch_permissions_location">Locatievoorzieningen met exacte locatie</string>
+    <string name="first_launch_permissions_motion">Beweging &amp; Conditie</string>
+    <string name="first_launch_permissions_required">Deze toestemming is verplicht</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+
+    <string name="ui_continue">Doorgaan</string>
+
+
+</resources>

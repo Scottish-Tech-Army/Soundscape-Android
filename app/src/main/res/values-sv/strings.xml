@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Välkommen!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Välkommen till Soundscape!</string>
+    <string name="first_launch_welcome_description">Navigera säkert med rumsbestämt ljud i Soundscape</string>
+    <string name="first_launch_welcome_button">Kom i gång</string>
+    <string name="first_launch_soundscape_language">Soundscape-språk</string>
+    <string name="first_launch_soundscape_language_text">Välj vilket språk du vill ska användas i Soundscape. Du kan ändra det senare i appens inställningar.</string>
+    <string name="first_launch_headphones_title">Lyssna på Soundscape</string>
+    <string name="first_launch_headphones_message_1">Du kan använda valfria hörlurar tillsammans med Soundscape. Om du vill använda hörlurar tar du fram dem nu.</string>
+    <string name="first_launch_headphones_message_2">Om du inte har några hörlurar, eller inte vill använda dem, går det också bra! Soundscape fungerar tillsammans med högtalaren på telefonen.</string>
+    <string name="first_launch_callouts_title">Hör dina omgivningar</string>
+    <string name="first_launch_callouts_message">Med Soundscape vet du var du är och vart du är på väg genom att läsa upp vägar, vägkorsningar och intressepunkter medan du närmar dig dem.</string>
+    <string name="first_launch_callouts_listen">Lyssna på ett exempel på vad Soundscape kan läsa upp under din nästa promenad</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Lyssna</string>
+    <string name="first_launch_callouts_example_1">Kafé</string>
+    <string name="first_launch_callouts_example_3">Huvudgatan går åt vänster</string>
+    <string name="first_launch_callouts_example_4">Huvudgatan går åt höger</string>
+    <string name="first_launch_permissions_title">Navigera med Soundscape</string>
+    <string name="first_launch_permissions_message">När du navigerar med hjälp av Soundscape vägleds du av en ljudfyr. För att det ska fungera måste du aktivera följande behörigheter för Soundscape:</string>
+    <string name="first_launch_permissions_location">Platstjänster med Exakt platsinformation</string>
+    <string name="first_launch_permissions_motion">Rörelse och fitness</string>
+    <string name="first_launch_permissions_required">Den här behörigheten är obligatorisk</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+    <string name="ui_continue">Fortsätt</string>
+
+
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Καλώς ήρθατε!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Καλώς ήρθατε στο Soundscape!</string>
+    <string name="first_launch_welcome_description">Περιηγηθείτε με εμπιστοσύνη χρησιμοποιώντας τον χωρικό ήχο του Soundscape</string>
+    <string name="first_launch_welcome_button"> Γρήγορα αποτελέσματα</string>
+    <string name="first_launch_soundscape_language">Γλώσσα Soundscape</string>
+    <string name="first_launch_soundscape_language_text">Επιλέξτε τη γλώσσα που θέλετε να χρησιμοποιεί το Soundscape. Μπορείτε πάντα να αλλάξετε την επιλογή σας στις ρυθμίσεις της εφαρμογής.</string>
+    <string name="first_launch_headphones_title">Ακρόαση του Soundscape</string>
+    <string name="first_launch_headphones_message_1">Το Soundscape λειτουργεί τέλεια με οποιοδήποτε ζεύγος ακουστικών. Εάν θέλετε να χρησιμοποιήσετε ακουστικά, πάρτε τα τώρα.</string>
+    <string name="first_launch_headphones_message_2">Εάν δεν έχετε ακουστικά ή προτιμάτε να μη τα χρησιμοποιήσετε, δεν πειράζει! Το Soundscape θα λειτουργήσει με τα ηχεία του τηλεφώνου σας.</string>
+    <string name="first_launch_callouts_title">Ακούστε το περιβάλλον σας</string>
+    <string name="first_launch_callouts_message">Το Soundscape σάς βοηθά να έχετε αντίληψη του πού βρίσκεστε και πού πάτε λέγοντας τους δρόμους, τις διασταυρώσεις και τα σημεία ενδιαφέροντος καθώς τα προσεγγίζετε.</string>
+    <string name="first_launch_callouts_listen">Ακούστε ένα παράδειγμα του τι μπορεί να πει το Soundscape στην επόμενη βόλτα σας</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Ακρόαση</string>
+    <string name="first_launch_callouts_example_1">Καφέ</string>
+    <string name="first_launch_callouts_example_3">Ο κεντρικός δρόμος πάει αριστερά</string>
+    <string name="first_launch_callouts_example_4">Ο κεντρικός δρόμος πάει δεξιά</string>
+    <string name="first_launch_permissions_title">Περιήγηση με το Soundscape</string>
+    <string name="first_launch_permissions_message">Όταν περιηγείστε με το Soundscape θα σας καθοδηγεί έναν ηχητικό σήμα. Για να το κάνετε αυτό, το Soundscape χρειάζεται να ενεργοποιήσετε τις ακόλουθες άδειες:</string>
+    <string name="first_launch_permissions_location">Υπηρεσίες τοποθεσίας με ακριβή τοποθεσία</string>
+    <string name="first_launch_permissions_motion">Κίνηση και άθληση</string>
+    <string name="first_launch_permissions_required">Αυτή η άδεια απαιτείται</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+    <string name="ui_continue">Συνέχεια</string>
+
+</resources>

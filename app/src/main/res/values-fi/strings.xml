@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Tervetuloa!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Tervetuloa Soundscapeen!</string>
+    <string name="first_launch_welcome_description">Turvallinen suunnistaminen Soundscapen tilaäänen avulla</string>
+    <string name="first_launch_welcome_button">Aloita</string>
+    <string name="first_launch_soundscape_language">Soundscapen kieli</string>
+    <string name="first_launch_soundscape_language_text">Valitse kieli, jota haluat Soundscapen käyttävän. Voit aina muuttaa valintaasi sovelluksen asetuksista.</string>
+    <string name="first_launch_headphones_title">Soundscapen kuunteleminen</string>
+    <string name="first_launch_headphones_message_1">Soundscape toimii hyvin kaikkien kuulokkeiden kanssa. Jos haluat käyttää kuulokkeita, ota ne nyt käyttöön.</string>
+    <string name="first_launch_headphones_message_2">Kuulokkeiden käyttö ei ole pakollista. Soundscape toimii myös puhelimesi kaiuttimien kautta.</string>
+    <string name="first_launch_callouts_title">Kuuntele ympäristöä</string>
+    <string name="first_launch_callouts_message">Soundscape auttaa sinua pysymään tietoisena siitä, missä olet ja mihin olet menossa. Se mainitsee tiet, risteykset ja kiinnostavat kohteet kun lähestyt niitä.</string>
+    <string name="first_launch_callouts_listen">Kuuntele esimerkkiä siitä, mitä Soundscape voi ilmoittaa sinulle seuraavan kävelysi aikana</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Kuuntele</string>
+    <string name="first_launch_callouts_example_1">Kahvila</string>
+    <string name="first_launch_callouts_example_3">Pääkatu jatkuu vasemmalle</string>
+    <string name="first_launch_callouts_example_4">Pääkatu jatkuu oikealle</string>
+    <string name="first_launch_permissions_title">Soundscapen avulla suunnistaminen</string>
+    <string name="first_launch_permissions_message">Kun suunnistat Soundscapen avulla, sinua opastaa äänimajakka. Sinun on annettava seuraavat luvat Soundscapelle voidaksesi tätä varten:</string>
+    <string name="first_launch_permissions_location">Sijaintipalvelut tarkalla sijainnilla</string>
+    <string name="first_launch_permissions_motion">Liike ja Kuntoilu</string>
+    <string name="first_launch_permissions_required">Tämä käyttöoikeus vaaditaan.</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+
+    <string name="ui_continue">Jatka</string>
+
+
+</resources>

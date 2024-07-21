@@ -14,23 +14,38 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.kersnazzle.soundscapealpha.datastore.DataStoreManager
+import com.kersnazzle.soundscapealpha.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
+import com.kersnazzle.soundscapealpha.screens.navigation.SetUpNavGraph
 
 import com.kersnazzle.soundscapealpha.services.SoundscapeService
+import com.kersnazzle.soundscapealpha.ui.theme.SoundscapeTheme
 import com.kersnazzle.soundscapealpha.utils.getXYTile
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var dataStoreManager: DataStoreManager
 
-    private var exampleService: SoundscapeService? = null
+    private lateinit var navController: NavHostController
+
+    private var soundscapeService: SoundscapeService? = null
 
     private var serviceBoundState by mutableStateOf(false)
     private var displayableLocation by mutableStateOf<String?>(null)
@@ -50,7 +65,7 @@ class MainActivity : ComponentActivity() {
             Log.d(TAG, "onServiceConnected")
 
             val binder = service as SoundscapeService.LocalBinder
-            exampleService = binder.getService()
+            soundscapeService = binder.getService()
             serviceBoundState = true
 
             onServiceConnected()
@@ -61,7 +76,7 @@ class MainActivity : ComponentActivity() {
             Log.d(TAG, "onServiceDisconnected")
 
             serviceBoundState = false
-            exampleService = null
+            soundscapeService = null
         }
     }
 
@@ -94,15 +109,32 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        var isFirstLaunch: Boolean
+
+        runBlocking {
+            isFirstLaunch = dataStoreManager.getValue(
+                FIRST_LAUNCH,
+                defaultValue = true
+            )
+        }
+        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
+
         setContent {
-            ForegroundServiceScreen(
+            SoundscapeTheme {
+                navController = rememberNavController()
+                SetUpNavGraph(
+                    navController = navController,
+                    isFirstLaunch = isFirstLaunch
+                )
+            }
+           /* ForegroundServiceScreen(
                 serviceRunning = serviceBoundState,
                 currentLocation = displayableLocation,
                 currentOrientation = displayableOrientation,
                 tileString = displayableTileString,
                 location = location,
                 onClick = ::onStartOrStopForegroundServiceClick
-            )
+            )*/
         }
 
         checkAndRequestNotificationPermission()
@@ -141,7 +173,7 @@ class MainActivity : ComponentActivity() {
 
 
     private fun onStartOrStopForegroundServiceClick() {
-        if (exampleService == null) {
+        if (soundscapeService == null) {
             // service is not yet running, start it after permission check
             locationPermissionRequest.launch(
                 arrayOf(
@@ -152,7 +184,7 @@ class MainActivity : ComponentActivity() {
             )
         } else {
             // service is already running, stop it
-            exampleService?.stopForegroundService()
+            soundscapeService?.stopForegroundService()
         }
     }
 
@@ -179,7 +211,7 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             // observe location updates from the service
-            exampleService?.locationFlow?.map {
+            soundscapeService?.locationFlow?.map {
                 it?.let { location ->
                     "Latitude: ${location.latitude}, Longitude: ${location.longitude} Accuracy: ${location.accuracy}"
                 }
@@ -189,7 +221,7 @@ class MainActivity : ComponentActivity() {
         }
 
         lifecycleScope.launch {
-            exampleService?.orientationFlow?.map {
+            soundscapeService?.orientationFlow?.map {
                 it?.let {
                     orientation ->
                     "Device orientation: ${orientation.headingDegrees}"
@@ -202,7 +234,7 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             delay(10000)
-            val test = exampleService?.getTileGrid(application)
+            val test = soundscapeService?.getTileGrid(application)
 
             println("Number of tiles in grid: ${test?.size}")
         }

@@ -26,17 +26,15 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.kersnazzle.soundscapealpha.R
+import com.kersnazzle.soundscapealpha.activityrecognition.ActivityTransition
 import com.kersnazzle.soundscapealpha.database.local.RealmConfiguration
 import com.kersnazzle.soundscapealpha.database.local.dao.TilesDao
 import com.kersnazzle.soundscapealpha.database.local.model.TileData
 import com.kersnazzle.soundscapealpha.database.repository.TilesRepository
-import com.kersnazzle.soundscapealpha.dto.VectorTile
 import com.kersnazzle.soundscapealpha.network.ITileDAO
 import com.kersnazzle.soundscapealpha.network.OkhttpClientInstance
 import com.kersnazzle.soundscapealpha.utils.cleanTileGeoJSON
-import com.kersnazzle.soundscapealpha.utils.getQuadKey
 import com.kersnazzle.soundscapealpha.utils.getTilesForRegion
-import com.kersnazzle.soundscapealpha.utils.getXYTile
 import com.kersnazzle.soundscapealpha.utils.processTileString
 import io.realm.kotlin.Realm
 import io.realm.kotlin.types.RealmInstant
@@ -84,6 +82,9 @@ class SoundscapeService : Service() {
     // Realm
     private lateinit var realm: Realm
 
+    // Activity recognition
+    private lateinit var activityTransition: ActivityTransition
+
 
 
     // Binder to allow local clients to Bind to our service
@@ -105,6 +106,8 @@ class SoundscapeService : Service() {
         // test
         startOrientationUpdates()
 
+
+
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -123,6 +126,14 @@ class SoundscapeService : Service() {
         // create new RealmDB or open existing
         startRealm()
 
+        // Activity Recognition
+        // test
+        activityTransition = ActivityTransition(applicationContext)
+        activityTransition.startVehicleActivityTracking(
+            onSuccess = { },
+            onFailure = { },
+        )
+
 
         // Start secondary service
         //startServiceRunningTicker()
@@ -138,6 +149,8 @@ class SoundscapeService : Service() {
 
         timerJob?.cancel()
         coroutineScope.coroutineContext.cancelChildren()
+
+        activityTransition.stopVehicleActivityTracking()
 
         //Toast.makeText(this, "Foreground Service destroyed", Toast.LENGTH_SHORT).show()
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">ようこそ!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Soundscape へようこそ!</string>
+    <string name="first_launch_welcome_description">Soundscape の空間オーディオでお出かけも安心です</string>
+    <string name="first_launch_welcome_button">始める</string>
+    <string name="first_launch_soundscape_language">Soundscape の言語</string>
+    <string name="first_launch_soundscape_language_text">Soundscape で使用する言語を選択してください。言語は、アプリの設定でいつでも変更できます。</string>
+    <string name="first_launch_headphones_title">Soundscape の音声を聞く</string>
+    <string name="first_launch_headphones_message_1">Soundscape ではどのヘッドホンでも使用できます。ヘッドホンを使う場合はここでご用意ください。</string>
+    <string name="first_launch_headphones_message_2">ヘッドホンをお持ちでない場合や使いたくない場合も問題ありません。スマートフォンのスピーカーで Soundscape を利用できます。</string>
+    <string name="first_launch_callouts_title">周辺の情報を聞く</string>
+    <string name="first_launch_callouts_message">Soundscape では、道路、交差点、特定地点に向かって進むとコールアウトされるので、現在地と目的地を常に把握できます。</string>
+    <string name="first_launch_callouts_listen">実際に歩いてみた場合の Soundscape のコールアウトのサンプルを聞いてみましょう</string>
+    <string name="first_launch_callouts_listen_accessibility_label">聞く</string>
+    <string name="first_launch_callouts_example_1">喫茶店</string>
+    <string name="first_launch_callouts_example_3">大通りは左方向</string>
+    <string name="first_launch_callouts_example_4">大通りは右方向</string>
+    <string name="first_launch_permissions_title">移動中に Soundscape を使用</string>
+    <string name="first_launch_permissions_message">移動中に Soundscape を使用すると、音声ビーコンでガイドが聞こえます。この機能を使用するには、次の項目を許可する必要があります:</string>
+    <string name="first_launch_permissions_location">位置情報サービスと正確な位置情報</string>
+    <string name="first_launch_permissions_motion">モーションとフィットネス</string>
+    <string name="first_launch_permissions_required">この許可は必須です</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+
+
+    <string name="ui_continue">続行</string>
+
+
+</resources>

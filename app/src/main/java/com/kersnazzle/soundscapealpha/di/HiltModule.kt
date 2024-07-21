@@ -3,6 +3,7 @@ package com.kersnazzle.soundscapealpha.di
 import android.content.Context
 
 import com.google.android.gms.location.LocationServices
+import com.kersnazzle.soundscapealpha.datastore.DataStoreManager
 
 import dagger.Module
 import dagger.Provides
@@ -15,11 +16,12 @@ import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 
-@InstallIn(SingletonComponent::class)
 @Module
-object HiltModule {
+@InstallIn(SingletonComponent::class)
+class AppDataStoreManager {
     @Provides
-    fun provideFusedLocationProviderClient(@ApplicationContext context: Context) =
-        LocationServices.getFusedLocationProviderClient(context)
-
+    @Singleton
+    fun provideDataStoreManager(@ApplicationContext context: Context): DataStoreManager {
+        return DataStoreManager(context)
+    }
 }

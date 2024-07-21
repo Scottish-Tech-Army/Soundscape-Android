@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_launch_welcome_title">Salve!</string>
+    <string name="first_launch_welcome_title_accessibility_label">Benvenuti in Soundscape!</string>
+    <string name="first_launch_welcome_description">Spostati in sicurezza utilizzando l\'audio spaziale di Soundscape</string>
+    <string name="first_launch_welcome_button">Attività iniziali</string>
+    <string name="first_launch_soundscape_language">Lingua di Soundscape</string>
+    <string name="first_launch_soundscape_language_text">Seleziona la lingua che desideri utilizzare con Soundscape. Puoi sempre modificare la scelta nelle impostazioni dell\'app.</string>
+    <string name="first_launch_headphones_title">Ascolta Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape funziona alla grande con qualsiasi paio di auricolari. Se desideri utilizzarli, prendili ora.</string>
+    <string name="first_launch_headphones_message_2">Se non hai gli auricolari o preferisci non usarli non ha importanza, Soundscape funzionerà con gli altoparlanti del telefono.</string>
+    <string name="first_launch_callouts_title">Ascolta i tuoi dintorni</string>
+    <string name="first_launch_callouts_message">Soundscape ti aiuta a rimanere consapevole di dove ti trovi e dove stai andando notificando strade, incroci e punti di interesse mentre ti avvicini.</string>
+    <string name="first_launch_callouts_listen">Ascolta un esempio di ciò che Soundscape potrebbe notificarti alla prossima passeggiata</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Ascolta</string>
+    <string name="first_launch_callouts_example_1">Bar</string>
+    <string name="first_launch_callouts_example_3">La strada va verso sinistra</string>
+    <string name="first_launch_callouts_example_4">La strada va verso destra</string>
+    <string name="first_launch_permissions_title">Spostati con Soundscape</string>
+    <string name="first_launch_permissions_message">Quando ti sposti con Soundscape vieni guidato da un audiofaro. Per ascoltarlo, è necessario abilitare le seguenti autorizzazioni per Soundscape:</string>
+    <string name="first_launch_permissions_location">Servizi di localizzazione con posizione esatta</string>
+    <string name="first_launch_permissions_motion">Movimento e fitness</string>
+    <string name="first_launch_permissions_required">Questa autorizzazione è necessaria</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <string name="first_launch_permissions_notification">Notifications</string>
+
+
+
+    <string name="ui_continue">Continua</string>
+
+
+
+</resources>

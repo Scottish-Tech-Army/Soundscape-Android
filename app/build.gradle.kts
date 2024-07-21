@@ -22,6 +22,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        resourceConfigurations += listOf("da", "de", "el", "en", "es", "fi", "fr", "it", "ja", "nb", "nl", "pt", "sv")
     }
 
     buildTypes {
@@ -66,9 +68,12 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
     implementation("com.google.android.gms:play-services-location:21.2.0")
 
     implementation(libs.androidx.lifecycle.service)
+    implementation(libs.androidx.appcompat)
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
 
     testImplementation("junit:junit:4.13.2")
@@ -119,4 +124,8 @@ dependencies {
     // Realm for Kotlin
     implementation("io.realm.kotlin:library-base:1.13.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+
+    // Datastore for onboarding and settings
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
 }

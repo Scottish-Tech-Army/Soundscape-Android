@@ -35,7 +35,7 @@ class ActivityTransition(val context: Context) {
         onSuccess: () -> Unit = { },
         onFailure: (String) -> Unit = { }
     ){
-
+        Log.d(TAG,"startVehicleTracking function")
         pendingIntent = PendingIntent.getBroadcast(
             context,
             0,
@@ -44,7 +44,7 @@ class ActivityTransition(val context: Context) {
             PendingIntent.FLAG_MUTABLE
         )
         val request = ActivityTransitionRequest(getTransitions())
-
+        Log.d(TAG,"startVehicleTracking function - permission check")
         if (permissionGranted()) {
             pendingIntent?.let { trackingIntent ->
                 ActivityRecognition.getClient(context)
@@ -59,6 +59,7 @@ class ActivityTransition(val context: Context) {
                     }
             }
         }
+
 
     }
 
