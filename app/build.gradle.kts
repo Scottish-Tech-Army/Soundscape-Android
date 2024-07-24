@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kersnazzle.soundscapealpha"
+    namespace = "org.scottishtecharmy.soundscape"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kersnazzle.soundscapealpha"
+        applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 34
         versionCode = 1
