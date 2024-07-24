@@ -139,6 +139,8 @@ class MainActivity : AppCompatActivity() {
             )*/
         }
 
+        org.fmod.FMOD.init(applicationContext)
+
         checkAndRequestNotificationPermission()
 
         tryToBindToServiceIfRunning()
@@ -150,6 +152,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        org.fmod.FMOD.close()
         unbindService(connection)
     }
 

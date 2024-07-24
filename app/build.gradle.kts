@@ -23,6 +23,12 @@ android {
             useSupportLibrary = true
         }
 
+        externalNativeBuild {
+            cmake {
+                cppFlags += ""
+            }
+        }
+
         resourceConfigurations += listOf("da", "de", "el", "en", "es", "fi", "fr", "it", "ja", "nb", "nl", "pt", "sv")
     }
 
@@ -51,6 +57,12 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
         }
     }
 }
@@ -128,4 +140,7 @@ dependencies {
     // Datastore for onboarding and settings
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.datastore:datastore:1.0.0")
+
+    // Audio engine
+    implementation(files("libs/fmod.jar"))
 }

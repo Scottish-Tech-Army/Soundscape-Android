@@ -25,6 +25,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
@@ -46,6 +47,7 @@ import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
 import kotlin.time.Duration.Companion.seconds
@@ -67,6 +69,14 @@ class SoundscapeService : Service() {
 
     // secondary service
     private var timerJob: Job? = null
+
+    // Audio engine
+    private val audioEngine = NativeAudioEngine()
+    private var audioBeacon: Long = 0
+
+    // Flow to return beacon location
+    private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)
+    var beaconFlow: StateFlow<LngLatAlt?> = _beaconFlow
 
     // Flow to return Location objects
     private val _locationFlow = MutableStateFlow<Location?>(null)
@@ -137,11 +147,17 @@ class SoundscapeService : Service() {
 
         // Start secondary service
         //startServiceRunningTicker()
+
+        // Start audio engine
+        audioEngine.initialize(applicationContext)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy")
+
+        audioEngine.destroyBeacon(audioBeacon)
+        audioEngine.destroy()
 
         fusedLocationClient.removeLocationUpdates(locationCallback)
 
@@ -207,6 +223,14 @@ class SoundscapeService : Service() {
                 }*/
         listener = DeviceOrientationListener { orientation ->
             _orientationFlow.value = orientation  // Emit the DeviceOrientation object
+            val location = locationFlow.value
+            if(location != null) {
+                audioEngine.updateGeometry(
+                    location.latitude,
+                    location.longitude,
+                    orientation.headingDegrees.toDouble()
+                )
+            }
         }
 
 
@@ -378,6 +402,16 @@ class SoundscapeService : Service() {
         val config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
         // Delete the realm
         Realm.deleteRealm(config)
+    }
+
+    fun createBeacon(latitude: Double, longitude: Double) {
+        if(audioBeacon != 0L)
+        {
+            audioEngine.destroyBeacon(audioBeacon)
+        }
+        audioBeacon = audioEngine.createBeacon(latitude, longitude)
+        // Report any change in beacon back to application
+        _beaconFlow.value = LngLatAlt(longitude, latitude)
     }
 
     companion object {
