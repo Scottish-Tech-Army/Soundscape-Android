@@ -28,8 +28,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 31
         targetSdk = 34
-        versionCode = 24
-        versionName = "0.0.23"
+        versionCode = 25
+        versionName = "0.0.24"
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
         buildConfigField("String", "FMOD_LIB", "\"fmod\"")
