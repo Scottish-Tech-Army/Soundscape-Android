@@ -81,6 +81,9 @@ jobs:
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
+      - name: Run lint over the repo
+        run: ./gradlew lint
+
       # Setup release build keys
       - name: Decode Keystore
         env:
