@@ -1,0 +1,162 @@
+name: Tag and build release
+
+env:
+  # The name of the main module repository
+  main_project_module: app
+
+  # The name in the Play Store
+  playstore_name: Soundscape
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    environment: development
+    permissions:
+      contents: write
+
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract existing version code from build.gradle
+        id: current-version
+        run: |
+          # Get existing version code from build.gradle
+          version_code=$(grep "versionCode" app/build.gradle.kts | awk '{print $3}' | tr -d '\n')
+          version_name=$(grep "versionName =" app/build.gradle.kts | awk '{print $3}' | tr -d '\"\"')
+          major_version=$(echo $version_name |  awk -F \. {'print $1'})
+          minor_version=$(echo $version_name |  awk -F \. {'print $2'})
+          build_version=$(echo $version_name |  awk -F \. {'print $3'})
+
+          # Increment existing version code and build version by 1
+          version_code=$((version_code + 1))
+          build_version=$((build_version + 1))
+          
+          # The major and minor versions can be bumped manually by editing
+          # app/build.gradle.kts. When doing this, reset the build version
+          # to zero.
+
+          # Set output variables for later use
+          echo "VERSION_CODE=$version_code" >> $GITHUB_OUTPUT
+          echo "VERSION_NAME=$major_version.$minor_version.$build_version" >> $GITHUB_OUTPUT
+
+      - name: Increase version code and change version name
+        env:
+          VERSION_CODE: ${{ steps.current-version.outputs.VERSION_CODE }}
+          VERSION_NAME: ${{ steps.current-version.outputs.VERSION_NAME }}
+        run: |
+          # Update build.gradle with new version code and name
+          echo "$VERSION_CODE - $env.VERSION_NAME"
+          sed -i "s/versionCode = [0-9]\+/versionCode = $VERSION_CODE/g" app/build.gradle.kts
+          sed -i "s/versionName = \"[^\"]*\"/versionName = \"$VERSION_NAME\"/g" app/build.gradle.kts
+
+      - name: Bump version from "${{ steps.current-version.outputs.VERSION_NAME }}"
+        env:
+          VERSION_CODE: ${{ steps.current-version.outputs.VERSION_CODE }}
+          VERSION_NAME: ${{ steps.current-version.outputs.VERSION_NAME }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Bump version to ${{ env.VERSION_NAME }}, version code ${{ env.VERSION_CODE }}"
+          tagging_message: "soundscape-${{ env.VERSION_NAME }}"
+
+      # Set version
+      - name: Set 'git describe --tags' as version
+        id: get-version
+        run: echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      # Setup release build keys
+      - name: Decode Keystore
+        env:
+          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+
+        run: |
+          echo $ENCODED_STRING > keystore-b64.txt
+          base64 -d keystore-b64.txt > ${{ env.main_project_module }}/$SIGNING_KEY_STORE_PATH
+
+      # Run Tests Build
+      - name: Run gradle tests
+        run: ./gradlew test
+
+      # Run Build Project
+      - name: Build gradle project
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: |
+          ./gradlew build
+
+      # Create APK Debug
+      - name: Build apk debug project (APK)
+        run: |
+          ./gradlew assembleDebug
+
+      # Create APK Release
+      - name: Build apk release project (APK)
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: ./gradlew assemble
+
+      # Create Bundle AAB Release
+      # Noted for main module build [main_project_module]:bundleRelease
+      - name: Build app bundle release (AAB)
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: ./gradlew ${{ env.main_project_module }}:bundleRelease
+
+      # Upload Artifact Build
+      # Noted For Output [main_project_module]/build/outputs/apk/debug/
+      - name: Upload APK Debug
+        env:
+          VERSION: ${{ steps.get-version.outputs.VERSION }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.VERSION }} - debug APK
+          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+
+      # Noted For Output [main_project_module]/build/outputs/apk/release/
+      - name: Upload APK Release
+        uses: actions/upload-artifact@v4
+        env:
+          VERSION: ${{ steps.get-version.outputs.VERSION }}
+        with:
+          name: ${{ env.VERSION }} - release APK
+          path: |
+            ${{ env.main_project_module }}/build/outputs/apk/release/
+            ${{ env.main_project_module }}/build/outputs/mapping/release/
+
+      # Noted For Output [main_project_module]/build/outputs/bundle/release/
+      - name: Upload AAB (App Bundle) Release
+        env:
+          VERSION: ${{ steps.get-version.outputs.VERSION }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.VERSION }} - release AAB
+          path: |
+            ${{ env.main_project_module }}/build/outputs/bundle/release/
+            ${{ env.main_project_module }}/build/outputs/mapping/release/
