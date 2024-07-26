@@ -1,4 +1,5 @@
 #pragma once
+
 #include "AudioBeaconBuffer.h"
 
 namespace soundscape {
