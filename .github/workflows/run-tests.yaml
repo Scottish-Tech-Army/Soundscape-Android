@@ -25,14 +25,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Set version As Env Variable
-      - name: Set 'git describe --tags' as version
-        run: echo "version=$(git describe --tags)" >> $GITHUB_ENV
-
-      # Set Repository Name As Env Variable
-      - name: Set repository name as env variable
-        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
-
       - name: Set Up JDK
         uses: actions/setup-java@v4
         with:
@@ -46,25 +38,8 @@ jobs:
       - name: Run lint over the repo
         run: ./gradlew lint
 
-      # Setup release build keys
-      - name: Decode Keystore
-        env:
-          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
-          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-
-        run: |
-          echo $ENCODED_STRING > keystore-b64.txt
-          base64 -d keystore-b64.txt > ${{ env.main_project_module }}/$SIGNING_KEY_STORE_PATH
-
-      # Run tests
-      - name: Run gradle tests
+      - name: Run tests
         run: ./gradlew test
 
-      # Run build
-      - name: Build gradle project
-        env:
-          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-        run: ./gradlew build
+      - name: Build debug version
+        run: ./gradlew assembleDebug

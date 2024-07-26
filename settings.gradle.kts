@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SoundscapeAlpha"
+rootProject.name = "Soundscape"
 include(":app")
  
