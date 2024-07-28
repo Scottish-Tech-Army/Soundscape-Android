@@ -340,7 +340,7 @@ class SoundscapeService : Service() {
             if(frozenResult.size == 0){
                 withContext(Dispatchers.IO) {
                     val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-                    val tileReq = async { tile.tileX?.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
+                    val tileReq = async { tile.tileX.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
                     val result = tileReq.await()?.awaitResponse()?.body()
                     // clean the tile, process the string, perform an insert into db using the clean tile data
                     val cleanedTile =
@@ -374,7 +374,7 @@ class SoundscapeService : Service() {
                     withContext(Dispatchers.IO) {
                         val service =
                             okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-                        val tileReq = async { tile.tileX?.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
+                        val tileReq = async { tile.tileX.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
                         val result = tileReq.await()?.awaitResponse()?.body()
                         // clean the tile, process the string, perform an update on db using the clean tile, and return clean tile string
                         val cleanedTile = result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
