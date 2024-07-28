@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape
 
-import android.location.Location
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,8 +14,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,8 +28,6 @@ internal fun ForegroundServiceScreen(
     serviceRunning: Boolean,
     currentLocation: String?,
     currentOrientation: String?,
-    tileString: String?,
-    location: Location?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -47,7 +41,6 @@ internal fun ForegroundServiceScreen(
                 serviceRunning = serviceRunning,
                 currentLocation = currentLocation,
                 currentOrientation = currentOrientation,
-                location = location,
                 onClick = onClick,
                 modifier = modifier
             )
@@ -60,7 +53,6 @@ private fun ForegroundServiceSampleScreenContent(
     serviceRunning: Boolean,
     currentLocation: String?,
     currentOrientation: String?,
-    location: Location?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

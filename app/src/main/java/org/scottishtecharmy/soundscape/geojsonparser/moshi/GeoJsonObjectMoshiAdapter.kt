@@ -48,7 +48,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         }
         dataReader.endObject()
 
-        return types[type]?.fromJson(reader) as GeoJsonObject?
+        return types[type]?.fromJson(reader)
     }
 
     override fun toJson(writer: JsonWriter, value: GeoJsonObject?) {

@@ -8,24 +8,23 @@ import com.google.android.gms.location.ActivityTransition
 import com.google.android.gms.location.ActivityTransitionEvent
 import com.google.android.gms.location.ActivityTransitionResult
 import com.google.android.gms.location.DetectedActivity
-import org.scottishtecharmy.soundscape.services.SoundscapeService
 
 class ActivityTransitionReceiver: BroadcastReceiver() {
 
-    private lateinit var actionTransition: ActivityTransition
+    //private lateinit var actionTransition: ActivityTransition
     override fun onReceive(context: Context?, intent: Intent?) {
         Log.d(TAG, "onReceive")
         intent?.let { atIntent ->
             if (ActivityTransitionResult.hasResult(intent)) {
                 val result = ActivityTransitionResult.extractResult(atIntent)
                 if (result != null && context != null) {
-                    processTransitionResults(context, result.transitionEvents)
+                    processTransitionResults(result.transitionEvents)
                 }
             }
         }
     }
 
-    private fun processTransitionResults(context: Context, transitionEvents: List<ActivityTransitionEvent>) {
+    private fun processTransitionResults(transitionEvents: List<ActivityTransitionEvent>) {
         //if driving, start location service
         for (event in transitionEvents) {
             val uiTransition = mapActivityToString(event)
