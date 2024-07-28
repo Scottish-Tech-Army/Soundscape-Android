@@ -41,7 +41,7 @@ class LineStringJsonAdapter : JsonAdapter<LineString>() {
         }
         reader.endObject()
 
-        if (position == null || position.isEmpty()) {
+        if (position.isNullOrEmpty()) {
             throw JsonDataException("Required positions are missing at ${reader.path}")
         }
 
@@ -49,7 +49,7 @@ class LineStringJsonAdapter : JsonAdapter<LineString>() {
             throw JsonDataException("Required type is not a LineString at ${reader.path}")
         }
 
-        lineString.coordinates = position!!
+        lineString.coordinates = position
         return lineString
     }
 

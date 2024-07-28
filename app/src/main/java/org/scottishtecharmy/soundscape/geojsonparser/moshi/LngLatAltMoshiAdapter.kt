@@ -16,8 +16,7 @@ open class LngLatAltMoshiAdapter : JsonAdapter<LngLatAlt>() {
         node.longitude = reader.nextDouble()
         node.latitude = reader.nextDouble()
         node.altitude =
-            if (reader.peek() != JsonReader.Token.NULL && reader.hasNext()) reader.nextDouble()
-                ?: Double.NaN else null
+            if (reader.peek() != JsonReader.Token.NULL && reader.hasNext()) reader.nextDouble() else null
         reader.endArray()
 
         return node
