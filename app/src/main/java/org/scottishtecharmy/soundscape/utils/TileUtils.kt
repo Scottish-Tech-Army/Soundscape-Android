@@ -309,7 +309,7 @@ fun processTileString(quadKey: String, tileString: String): TileData {
     tileData.paths = pathsString
 
     val intersectionsFeatureCollection =  getIntersectionsFeatureCollectionFromTileFeatureCollection(
-        tileFeatureCollection!!
+        tileFeatureCollection
     )
     val intersectionsString = moshi.adapter(FeatureCollection::class.java).toJson(
         intersectionsFeatureCollection
@@ -347,8 +347,6 @@ fun processTileString(quadKey: String, tileString: String): TileData {
         crossingsFeatureCollection
     )
     tileData.crossings = crossingsString
-
-    //TODO move this into TileUtils
 
     return  tileData
 
@@ -855,23 +853,25 @@ fun getNearestIntersection(
 fun getIntersectionRoadNames(
     intersectionFeatureCollection: FeatureCollection,
     roadsFeatureCollection: FeatureCollection
-): FeatureCollection{
+): FeatureCollection {
 
     val intersectionRoads = FeatureCollection()
 
-    for(intersectionFeature in intersectionFeatureCollection){
-        val testOsmId = intersectionFeature.foreign!!["osm_ids"] as ArrayList<Double?>
-        for (item in testOsmId){
-            for(roadFeature in roadsFeatureCollection){
-                if((roadFeature.foreign!!["osm_ids"] as ArrayList<Double?>)[0] == item){
+    for (intersectionFeature in intersectionFeatureCollection) {
+        val osmIds = intersectionFeature.foreign?.get("osm_ids") as? List<*> ?: continue
+
+        for (item in osmIds) {
+            for (roadFeature in roadsFeatureCollection) {
+                val roadOsmIds = roadFeature.foreign?.get("osm_ids") as? List<*> ?: continue
+                if (roadOsmIds.firstOrNull() == item) {
                     intersectionRoads.addFeature(roadFeature)
                 }
             }
         }
     }
     return intersectionRoads
-
 }
+
 
 
 /**
@@ -1136,20 +1136,20 @@ fun removeDuplicates(
 
     val newFeatureCollection = FeatureCollection()
 
-    val osmIdsAtIntersection = intersectionToCheck.features[0].foreign!!["osm_ids"] as List<Double?>? // Allow null for osmIds
-    val uniqueOsmIds = osmIdsAtIntersection?.toSet() ?: emptySet() // Handle null case for osmIds
-    val cleanOsmIds: ArrayList<Double?> = ArrayList()
-    for (id in uniqueOsmIds) {
-        cleanOsmIds.add(id)
-    }
+    val osmIdsAtIntersection = intersectionToCheck.features[0].foreign?.get("osm_ids") as? List<*>
+        ?: // Handle case where osmIds is null
+        return newFeatureCollection // Or handle the error differently
+
+    val uniqueOsmIds = osmIdsAtIntersection.toSet()
+    val cleanOsmIds = uniqueOsmIds.toList() // Convert back to list for potential modification
 
     val intersectionClean = intersectionToCheck.features[0]
-    intersectionClean?.foreign?.set("osm_ids", cleanOsmIds)
+    intersectionClean.foreign?.set("osm_ids", cleanOsmIds)
     newFeatureCollection.addFeature(intersectionClean)
 
     return newFeatureCollection
-
 }
+
 
 /**
  * Given a location, device heading and distance this will create a feature collection of triangles
@@ -1503,41 +1503,36 @@ fun splitRoadByIntersection(
     }
 
     val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
-    // Split the list into two parts based on the intersection index. Include
-    // the intersection as the end of one "road" and the start of the other "road"
     val part1 = roadCoordinates.subList(0, indexOfIntersection + 1)
     val part2 = roadCoordinates.subList(indexOfIntersection, roadCoordinates.size)
 
-    // create the two "roads"
     val roadLineString1 = LineString(*part1.toTypedArray())
     val roadLineString2 = LineString(*part2.toTypedArray())
-    // Create a new FeatureCollection and add Feature for each
     val newFeatureCollection = FeatureCollection()
 
     val featureRoad1 = Feature()
-    road.properties?.clone().also { featureRoad1.properties = it as java.util.HashMap<String, Any?>? }
-    road.foreign?.clone().also { featureRoad1.foreign = it as java.util.HashMap<String, Any?>? }
+    @Suppress("unchecked_cast") // Suppress warning
+    val clonedProperties = road.properties?.clone() as? HashMap<String, Any?> // Safe cast and null check
+    featureRoad1.properties = clonedProperties
+    @Suppress("unchecked_cast") // Suppress warning
+    road.foreign?.clone().also { featureRoad1.foreign = it as? HashMap<String, Any?> } // Safe cast and null check
 
-/*    val featureRoad1 = Feature().also {
-        it.properties = road.properties
-        it.foreign = road.foreign
-    }*/
     featureRoad1.geometry = roadLineString1
     newFeatureCollection.addFeature(featureRoad1)
 
     val featureRoad2 = Feature()
-    road.properties?.clone().also { featureRoad2.properties = it as java.util.HashMap<String, Any?>? }
+    @Suppress("unchecked_cast") // Suppress warning
+    val clonedProperties2 = road.properties?.clone() as? HashMap<String, Any?> // Safe cast and null check
+    featureRoad2.properties = clonedProperties2
+    @Suppress("unchecked_cast") // Suppress warning
     road.foreign?.clone().also { featureRoad2.foreign = it as java.util.HashMap<String, Any?>? }
 
-/*    val featureRoad2 = Feature().also {
-        it.properties = road.properties
-        it.foreign = road.foreign
-    }*/
     featureRoad2.geometry = roadLineString2
     newFeatureCollection.addFeature(featureRoad2)
 
     return newFeatureCollection
 }
+
 
 /**
  * Given an intersection FeatureCollection and a road FeatureCollection will return the bearing of the road
@@ -1565,19 +1560,19 @@ fun getRoadBearingToIntersection(
         // we've got two split roads but which one do we want the bearing for?
         // get the bearing for both
 
-        var bearingArray: MutableList<Double> = mutableListOf()
+        val bearingArray: MutableList<Double> = mutableListOf()
 
-        for(road in splitRoads){
-            val indexOfIntersection = (road.geometry as LineString).coordinates.indexOfFirst { it == intersectionCoordinate }
+        for(splitRoad in splitRoads){
+            val indexOfIntersection = (splitRoad.geometry as LineString).coordinates.indexOfFirst { it == intersectionCoordinate }
             val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
                 getReferenceCoordinate(
-                    road.geometry as LineString,
+                    splitRoad.geometry as LineString,
                     3.0,
                     false
                 )
             } else {
                 getReferenceCoordinate(
-                    road.geometry as LineString,
+                    splitRoad.geometry as LineString,
                     3.0,
                     true
                 )
@@ -1648,7 +1643,7 @@ fun getIntersectionRoadNamesRelativeDirections(
         //println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
         if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
             // split the road into two
-            var roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
+            val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
                 nearestIntersection.features[0],
                 road
             )
@@ -1727,7 +1722,8 @@ fun sortFeatureCollectionByDirectionProperty(
 
     for (feature in featureCollectionWithDirection){
         val newFeature = Feature()
-        feature.properties?.clone().also { newFeature.properties = it as java.util.HashMap<String, Any?>? }
+        @Suppress("unchecked_cast") // Suppress warning
+        feature.properties?.clone().also { newFeature.properties = it as? HashMap<String, Any?>? }
         val fineBeLikeThat = feature.properties?.get("Direction").toString().toInt()
 
         intersectionRelativeDirections.add(
@@ -1756,7 +1752,8 @@ fun mergeRoadAndDirectionFeatures(
     // take the road Feature and its properties and add it to the new Feature
     // add the "Direction" property from the direction Feature and add it to the new Feature
     newFeature.geometry = road.geometry
-    road.properties?.clone().also { newFeature.properties = it as java.util.HashMap<String, Any?>? }
+    @Suppress("unchecked_cast") // Suppress warning
+    road.properties?.clone().also { newFeature.properties = it as? HashMap<String, Any?>? }
     newFeature.foreign = road.foreign
     newFeature.type = road.type
     newFeature.bbox = road.bbox
