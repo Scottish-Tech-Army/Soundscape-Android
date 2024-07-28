@@ -92,13 +92,32 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         }
     }
 
-    public fun readDefault(outObj: GeoJsonObject, paramIndex: Int, reader: JsonReader) {
+    fun readDefault(outObj: GeoJsonObject, paramIndex: Int, reader: JsonReader) {
         when (paramIndex) {
-            2 -> outObj.bbox = reader.readJsonValue() as List<Double>?
+            2 -> {
+                // Option (a)
+                // Get an unchecked cast warning for this which is weird as I thought it was checking it
+                // so try option (b)
+                // outObj.bbox = reader.readJsonValue() as? List<Double> ?: emptyList()
+
+                // Option (b)
+                val value = reader.readJsonValue()
+                if (value is List<*>) {
+                    @Suppress("unchecked_cast") // Suppress warning
+                    outObj.bbox = value as List<Double>
+                } else {
+                    // Handle case where value is not a List
+                    // (e.g., throw an exception or use a default value)
+                }
+            }
             3 -> {
+                // Get an unchecked cast warning for this which is weird as I thought it was checking it
+                // so try this which isn't the best idea apparently ...
+                @Suppress("unchecked_cast")
                 (reader.readJsonValue() as? Map<String, Any?>)?.let {
                     outObj.properties = HashMap(it)
                 }
+
             }
 
             -1 -> {
@@ -115,11 +134,11 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         }
     }
 
-    public fun writeDefault(inObj: GeoJsonObject, writer: JsonWriter) {
+    fun writeDefault(inObj: GeoJsonObject, writer: JsonWriter) {
         inObj.bbox?.let {
             writer.name("bbox")
             writer.beginArray()
-            it.forEach { coord -> writer.value(coord as Double) }
+            it.forEach { coord -> writer.value(coord)}
             writer.endArray()
         }
 
@@ -142,13 +161,13 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         writer.value(inObj.type)
     }
 
-    public fun writeUnknown(value: Any?, writer: JsonWriter) {
+    fun writeUnknown(value: Any?, writer: JsonWriter) {
         when (value) {
-            is String -> writer.value(value as String)
-            is Double -> writer.value(value as Double)
-            is Int -> writer.value(value as Int)
-            is Boolean -> writer.value(value as Boolean)
-            is Map<*, *> -> writeMap(value as Map<*, *>, writer)
+            is String -> writer.value(value)
+            is Double -> writer.value(value)
+            is Int -> writer.value(value)
+            is Boolean -> writer.value(value)
+            is Map<*, *> -> writeMap(value, writer)
             is Collection<*> -> {
                 writer.beginArray()
                 value.forEach { writeUnknown(it, writer) }
@@ -159,7 +178,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         }
     }
 
-    public fun writeMap(map: Map<*, *>, writer: JsonWriter) {
+    fun writeMap(map: Map<*, *>, writer: JsonWriter) {
         writer.beginObject()
         map.forEach { k, v ->
             writer.name(k as String)
