@@ -16,10 +16,9 @@ open class LngLatAlt(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
         if (other is LngLatAlt) {
-            val that = other as LngLatAlt
-            return longitude == that.longitude && latitude == that.latitude &&
-                    (altitude == null && that.altitude == null ||
-                            altitude != null && that.altitude != null && altitude == that.altitude)
+            return longitude == other.longitude && latitude == other.latitude &&
+                    (altitude == null && other.altitude == null ||
+                            altitude != null && other.altitude != null && altitude == other.altitude)
         }
         return false
     }
