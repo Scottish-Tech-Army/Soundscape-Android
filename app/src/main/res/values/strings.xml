@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">SoundscapeAlpha</string>
+    <string name="app_name" translatable="false">Soundscape</string>
 
     <string name="first_launch_welcome_title">Welcome!</string>
     <string name="first_launch_welcome_title_accessibility_label">Welcome to Soundscape!</string>
