@@ -14,8 +14,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowOutward
-import androidx.compose.material.icons.rounded.DirectionsRun
 import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Notifications
@@ -40,6 +38,7 @@ import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.navigation.Screens
+import org.scottishtecharmy.soundscape.screens.permissions.SoundscapePermissionCheck
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 
@@ -54,8 +53,8 @@ fun Navigating(navController: NavHostController) {
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
-            /*if (showCheck)
-                SoundscapePermissionCheck(continueOnboard)*/
+            if (showCheck)
+                SoundscapePermissionCheck(continueOnboard)
 
             Column(
                 modifier = Modifier
