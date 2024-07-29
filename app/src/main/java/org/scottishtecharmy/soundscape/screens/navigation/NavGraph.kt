@@ -48,13 +48,11 @@ fun SetUpNavGraph(
                 Navigating(navController = navController)
             }
             composable(Screens.AudioBeacons.route) {
-                AudioBeacons(navController = navController)
+                AudioBeacons()
             }
         }
         composable(Screens.Home.route) {
-            Home(
-                navController = navController
-            )
+            Home()
         }
 
     }
