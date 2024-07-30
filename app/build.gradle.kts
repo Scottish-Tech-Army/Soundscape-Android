@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     //id("org.jetbrains.kotlin.kapt")
     id("io.realm.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -160,4 +161,8 @@ dependencies {
 
     // Audio engine
     implementation(files("libs/fmod.jar"))
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-analytics")
 }

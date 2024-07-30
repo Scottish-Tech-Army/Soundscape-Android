@@ -13,14 +13,12 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     environment: development
     permissions:
       contents: write
 
     steps:
-
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -70,6 +68,15 @@ jobs:
       - name: Set 'git describe --tags' as version
         id: get-version
         run: echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
+
+      - name: Decode Google services
+        env:
+          ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
+          GOOGLE_SERVICES_PATH: ${{ secrets.GOOGLE_SERVICES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING > google-services-b64.txt
+          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -134,31 +141,67 @@ jobs:
       # Upload Artifact Build
       # Noted For Output [main_project_module]/build/outputs/apk/debug/
       - name: Upload APK Debug
-        env:
-          VERSION: ${{ steps.get-version.outputs.VERSION }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.VERSION }} - debug APK
+          name: debug-apk
           path: ${{ env.main_project_module }}/build/outputs/apk/debug/
 
       # Noted For Output [main_project_module]/build/outputs/apk/release/
       - name: Upload APK Release
         uses: actions/upload-artifact@v4
-        env:
-          VERSION: ${{ steps.get-version.outputs.VERSION }}
         with:
-          name: ${{ env.VERSION }} - release APK
+          name: release-apk
           path: |
             ${{ env.main_project_module }}/build/outputs/apk/release/
             ${{ env.main_project_module }}/build/outputs/mapping/release/
 
       # Noted For Output [main_project_module]/build/outputs/bundle/release/
       - name: Upload AAB (App Bundle) Release
-        env:
-          VERSION: ${{ steps.get-version.outputs.VERSION }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.VERSION }} - release AAB
+          name: release-aab
           path: |
             ${{ env.main_project_module }}/build/outputs/bundle/release/
             ${{ env.main_project_module }}/build/outputs/mapping/release/
+
+      # Generate android instrumentation tests APK
+      - name: Assemble Android Instrumentation Tests
+        run: ./gradlew assembleDebugAndroidTest
+      - name: Upload Android Test APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-androidTest
+          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+
+  firebase:
+    name: Run UI tests with Firebase Test Lab
+    needs: build
+    environment: development
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Download app APK
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-apk
+
+      - name: Download Android test APK
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-androidTest
+
+      - name: Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Set current project
+        run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
+
+      - name: Run Instrumentation Tests in Firebase Test Lab
+        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait

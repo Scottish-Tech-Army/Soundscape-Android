@@ -34,6 +34,15 @@ jobs:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '17'
 
+      - name: Decode Google services
+        env:
+          ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
+          GOOGLE_SERVICES_PATH: ${{ secrets.GOOGLE_SERVICES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING > google-services-b64.txt
+          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
+
       - name: Run lint over the repo
         run: ./gradlew lint
 
