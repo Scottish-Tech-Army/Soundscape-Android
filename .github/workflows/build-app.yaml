@@ -71,15 +71,14 @@ jobs:
         id: get-version
         run: echo "VERSION=$(git describe --tags)" >> $GITHUB_OUTPUT
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
       - name: Set Up JDK
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '17'
-          cache: 'gradle'
-
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
 
       - name: Run lint over the repo
         run: ./gradlew lint
