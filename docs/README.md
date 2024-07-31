@@ -8,6 +8,9 @@ It's very early days in the project. We've done various proof of concept, and th
 ## Get started
 The quickest way to get started building the app is to run Android Studio and select `File/New/Project from version control` from the menu. Select `Git` as the version control and paste in the HTTPS code link for this project from above. Click on Clone and the project will download, open and initialize ready to build.
 
+## CI
+See the document [here](actions.md) to learn about the GitHub actions used and how they are configured.
+
 ## Current documents
 * [Audio API](audio-API.md)
 * [Framework choices](framework.md)
