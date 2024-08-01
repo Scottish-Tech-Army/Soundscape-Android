@@ -190,6 +190,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             // service is already running, stop it
             soundscapeService?.stopForegroundService()
+            // And exit application
+            finishAndRemoveTask()
         }
     }
 
