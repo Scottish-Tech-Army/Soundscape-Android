@@ -80,6 +80,7 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
                     Log.e("TTS", "OnDone $utteranceId")
                 }
 
+                @Deprecated("Deprecated function, but needs overridden until it actually goes.")
                 override fun onError(utteranceId: String) {
                     // TODO: Need to test this path and handle it correctly
                     Log.e("TTS", "OnError $utteranceId")
