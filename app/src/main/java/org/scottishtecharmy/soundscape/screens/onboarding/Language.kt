@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,7 +25,6 @@ import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 
-// TODO setup locale translation files, etc.
 // https://android-developers.googleblog.com/2022/11/per-app-language-preferences-part-1.html
 @Composable
 fun Language(navController: NavHostController){
