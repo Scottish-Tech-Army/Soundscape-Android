@@ -208,4 +208,4 @@ jobs:
         run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
 
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=300s
+        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
