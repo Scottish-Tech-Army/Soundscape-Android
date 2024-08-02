@@ -6,6 +6,7 @@ import android.app.Service
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.location.Location
@@ -13,6 +14,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import com.google.android.gms.location.DeviceOrientation
 import com.google.android.gms.location.DeviceOrientationListener
@@ -47,6 +49,7 @@ import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
@@ -304,11 +307,19 @@ class SoundscapeService : Service() {
     private fun getNotification(): Notification {
         createServiceNotificationChannel()
 
-        val builder = Notification.Builder(this, CHANNEL_ID)
+        val notifyIntent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val notifyPendingIntent = PendingIntent.getActivity(
+            this, 0, notifyIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.notification_text))
             .setSmallIcon(R.drawable.nearby_markers_24px)
             .setOngoing(true)
+            .setContentIntent(notifyPendingIntent)
 
         return builder.build()
     }

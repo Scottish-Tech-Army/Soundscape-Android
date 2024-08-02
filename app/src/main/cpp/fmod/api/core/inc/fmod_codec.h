@@ -13,6 +13,8 @@
 #ifndef _FMOD_CODEC_H
 #define _FMOD_CODEC_H
 
+#include "fmod_common.h"
+
 /*
     Codec types
 */
