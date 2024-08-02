@@ -6,7 +6,7 @@ plugins {
     //id("org.jetbrains.kotlin.kapt")
     id("io.realm.kotlin")
     id("com.google.gms.google-services")
-}
+    id("com.google.firebase.crashlytics")}
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
@@ -164,5 +164,6 @@ dependencies {
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
 }
