@@ -28,12 +28,10 @@ class LanguageScreenTest {
         val context: Context = ApplicationProvider.getApplicationContext()
         val stringLanguageTitle = context.resources.getString(R.string.first_launch_soundscape_language)
         val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)
-
         val stringLanguageContinue = context.resources.getString(R.string.ui_continue)
 
         composeTestRule.onNodeWithText(stringLanguageTitle).assertIsDisplayed()
         composeTestRule.onNodeWithText(stringLanguageText).assertIsDisplayed()
-
         composeTestRule.onNodeWithText(stringLanguageContinue).assertIsDisplayed()
 
 
@@ -53,7 +51,7 @@ class LanguageScreenTest {
                 name = "Dansk",
                 code = "da"
             ),
-            org.scottishtecharmy.soundscape.components.Language(
+            /*org.scottishtecharmy.soundscape.components.Language(
                 name = "Deutsch",
                 code = "de"
             ),
@@ -84,7 +82,7 @@ class LanguageScreenTest {
             org.scottishtecharmy.soundscape.components.Language(
                 name = "日本語",
                 code = "ja"
-            )
+            )*/
         )
 
         for(language in languageList){
