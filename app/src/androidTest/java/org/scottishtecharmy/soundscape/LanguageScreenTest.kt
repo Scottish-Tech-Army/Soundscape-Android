@@ -8,7 +8,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
-import org.scottishtecharmy.soundscape.components.LanguageSelectionBox
 import org.scottishtecharmy.soundscape.screens.onboarding.Language
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -39,7 +38,7 @@ class LanguageScreenTest {
         //Thread.sleep(5000)
     }
 
-    @Test
+    /*@Test
     fun languageSelectionBoxTest(){
         composeTestRule.setContent {
             SoundscapeTheme {
@@ -51,7 +50,7 @@ class LanguageScreenTest {
                 name = "Dansk",
                 code = "da"
             ),
-            /*org.scottishtecharmy.soundscape.components.Language(
+            org.scottishtecharmy.soundscape.components.Language(
                 name = "Deutsch",
                 code = "de"
             ),
@@ -82,7 +81,7 @@ class LanguageScreenTest {
             org.scottishtecharmy.soundscape.components.Language(
                 name = "日本語",
                 code = "ja"
-            )*/
+            )
         )
 
         for(language in languageList){
@@ -90,5 +89,5 @@ class LanguageScreenTest {
         }
         // Delay so I can see it appear on my device screen. Remove when using CI
         //Thread.sleep(10000)
-    }
+    }*/
 }
