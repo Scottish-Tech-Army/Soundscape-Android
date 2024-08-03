@@ -32,6 +32,7 @@ class LanguageScreenTest {
 
         composeTestRule.onNodeWithText(stringLanguageTitle).assertIsDisplayed()
         composeTestRule.onNodeWithText(stringLanguageText).assertIsDisplayed()
+        Thread.sleep(5000)
         composeTestRule.onNodeWithText(stringLanguageContinue).assertIsDisplayed()
 
 
