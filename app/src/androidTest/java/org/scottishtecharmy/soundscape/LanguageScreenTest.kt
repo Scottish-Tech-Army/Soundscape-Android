@@ -19,7 +19,7 @@ class LanguageScreenTest {
 
     @Test
     fun languageScreenTest(){
-        Thread.sleep(20000)
+        //Thread.sleep(20000)
         composeTestRule.setContent {
             SoundscapeTheme {
                 Language(navController = rememberNavController())
