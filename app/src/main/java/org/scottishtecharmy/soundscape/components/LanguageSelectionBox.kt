@@ -32,7 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
@@ -41,7 +40,7 @@ data class Language(
     val name: String,
     val code: String
 )
-// TODO setup locale translation files, etc.
+
 // https://android-developers.googleblog.com/2022/11/per-app-language-preferences-part-1.html
 @Composable
 fun LanguageSelectionBoxItem(language: Language){
