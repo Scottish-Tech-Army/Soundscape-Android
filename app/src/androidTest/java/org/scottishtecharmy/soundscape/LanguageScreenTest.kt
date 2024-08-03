@@ -27,11 +27,11 @@ class LanguageScreenTest {
         }
         val context: Context = ApplicationProvider.getApplicationContext()
         val stringLanguageTitle = context.resources.getString(R.string.first_launch_soundscape_language)
-        //val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)
+        val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)
         //val stringLanguageContinue = context.resources.getString(R.string.ui_continue)
 
         composeTestRule.onNodeWithText(stringLanguageTitle).assertIsDisplayed()
-        //composeTestRule.onNodeWithText(stringLanguageText).assertIsDisplayed()
+        composeTestRule.onNodeWithText(stringLanguageText).assertIsDisplayed()
         //composeTestRule.onNodeWithText(stringLanguageContinue).assertIsDisplayed()
 
 
