@@ -47,7 +47,7 @@ fun LanguageSelectionBoxItem(language: Language){
 
     Row(
         modifier = Modifier
-            .padding(horizontal = 10.dp, vertical = 10.dp)
+            .padding(horizontal = 10.dp, vertical = 17.dp)
             .fillMaxWidth()
             .clickable (
                 onClick = {
