@@ -5,7 +5,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import org.scottishtecharmy.soundscape.utils.Direction
 import org.scottishtecharmy.soundscape.utils.distanceToIntersection
 import org.scottishtecharmy.soundscape.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getCombinedDirectionPolygons
@@ -526,7 +525,7 @@ class TileUtilsTest {
         // Get the intersections from the tile
         val testIntersectionsCollectionFromTileFeatureCollection =
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create a FOV triangle to pick up the roads
         val  fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
