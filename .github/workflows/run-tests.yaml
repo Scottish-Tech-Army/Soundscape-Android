@@ -50,9 +50,27 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Instrumentation Tests
+        id: instrumentation-tests
         uses: reactivecircus/android-emulator-runner@v2
+        continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
         with:
           api-level: 34
           target: default
           arch: x86_64
-          script: ./gradlew connectedCheck
+          script: |
+            adb logcat -c                             # clear logs
+            touch app/emulator.log                    # create log file
+            chmod 777 app/emulator.log                # allow writing to log file
+            adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
+            ./gradlew connectedCheck
+
+      - name: Upload Failing Test Report Log
+        if: steps.instrumentation-tests.outcome != 'success'        # upload the generated log on failure of the tests job
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: app/emulator.log # path to where the log is
+
+      - name: Raise error on test fail # set a red tick on the workflow run if the tests failed
+        if: steps.instrumentation-tests.outcome != 'success'
+        run: exit 1
