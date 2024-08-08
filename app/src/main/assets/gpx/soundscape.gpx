@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxsc="https://microsoft.com/Soundscape" xmlns:gpxtpx="https://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="https://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="Microsoft Soundscape Authoring Tool">
+  <metadata>
+    <name>Test</name>
+    <desc>Test?</desc>
+    <author>
+      <name>dc</name>
+      <email id="davecraig" domain="unbalancedaudio.com" />
+    </author>
+    <time>2024-05-15T16:03:07.574171Z</time>
+    <extensions>
+      <gpxsc:meta expires="false">
+        <gpxsc:id>900a8159-976b-4e50-8eee-a6cf5ad2aac0</gpxsc:id>
+        <gpxsc:locale>en_US</gpxsc:locale>
+        <gpxsc:behavior>GuidedTour</gpxsc:behavior>
+        <gpxsc:version>2</gpxsc:version>
+      </gpxsc:meta>
+    </extensions>
+  </metadata>
+  <rte>
+    <rtept lat="55.947256" lon="-4.305852">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.946412" lon="-4.305621">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.946409" lon="-4.304833">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.945706" lon="-4.304774">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.945727" lon="-4.307563">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.946424" lon="-4.307574">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.946436" lon="-4.305745">
+      <name>Waypoint</name>
+    </rtept>
+    <rtept lat="55.947286" lon="-4.305696">
+      <name>Waypoint</name>
+    </rtept>
+  </rte>
+</gpx>
