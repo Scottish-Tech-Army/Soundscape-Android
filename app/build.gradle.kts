@@ -104,6 +104,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.appcompat)
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(libs.core.ktx)
 
 
     testImplementation("junit:junit:4.13.2")
@@ -166,4 +167,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
+
+    // GPX parser
+    implementation ("com.github.ticofab:android-gpx-parser:2.3.1")
 }

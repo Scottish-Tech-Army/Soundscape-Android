@@ -12,6 +12,7 @@ lifecycleRuntimeKtxVersion = "2.8.0"
 lifecycleService = "2.8.2"
 lifecycleServiceVersion = "2.8.0"
 appcompat = "1.7.0"
+coreKtxVersion = "1.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,6 +33,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "lifecycleService" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
