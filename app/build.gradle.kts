@@ -153,7 +153,7 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
 
     // Realm for Kotlin
-    implementation("io.realm.kotlin:library-base:1.13.0")
+    implementation("io.realm.kotlin:library-base:1.16.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 
     // Datastore for onboarding and settings
