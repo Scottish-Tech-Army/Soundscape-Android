@@ -9,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
+import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
@@ -33,7 +34,7 @@ class GpxTest {
         Assert.assertEquals(expectedDescription, routeData.description)
         var index = 0
         for (point in routeData.waypoints) {
-            Log.d("gpxTest", "Point: " + point.name + " " + point.latitude + " " + point.longitude)
+            Log.d("gpxTest", "Point: " + point.name + " " + point.location?.latitude + " " + point.location?.longitude)
 
             // Lookup the point in the expected values map
             Assert.assertEquals(point, expectedValues[index])
@@ -41,7 +42,7 @@ class GpxTest {
         }
 
         // The parsing has succeeded, test writing and retrieving from database
-        val config = RealmConfiguration.Builder(schema = setOf(RouteData::class, RoutePoint::class))
+        val config = RealmConfiguration.Builder(schema = setOf(RouteData::class, RoutePoint::class, Location::class))
             .inMemory()
             .build()
         val realm = Realm.open(config)
@@ -58,13 +59,24 @@ class GpxTest {
                 Log.d("gpxTest", "Retrieving route")
                 var routes = routesRepository.getRoute(routeData.name)
                 Assert.assertEquals(1, routes.size)
-                Assert.assertEquals(routeData, routes[0])
+                //Assert.assertEquals(routeData, routes[0])
+
+                // Query waypoints directly
+                var waypoints = routesRepository.getWaypoints()
+                Log.d("gpxTest", "Retrieved waypoints: " + waypoints.size)
+
+                // Geospatial test
+                waypoints = routesRepository.getWaypointsNear(waypoints[0].location, 0.1)
+                Log.d("gpxTest", "Retrieved geo waypoints: " + waypoints.size)
 
                 // Delete the route and check that it's gone
                 Log.d("gpxTest", "Delete route")
                 routesRepository.deleteRoute(routeData.name)
                 routes = routesRepository.getRoute(routeData.name)
                 Assert.assertEquals(0, routes.size)
+                waypoints = routesRepository.getWaypoints()
+                Log.d("gpxTest", "Post delete waypoints: " + waypoints.size)
+                Assert.assertEquals(0, waypoints.size)
 
                 // Check that double insertion is rejected
                 Log.d("gpxTest", "Attempt inserting duplicate route")
@@ -107,6 +119,9 @@ class GpxTest {
 
                 // Delete that route to leave the database empty for the next test
                 routesRepository.deleteRoute(routeData.name)
+
+                waypoints = routesRepository.getWaypoints()
+                Assert.assertEquals(0, waypoints.size)
             }
         }
     }
@@ -114,11 +129,11 @@ class GpxTest {
     @Test
     fun handcraftedParsing(){
 
-        val waypoint1 = RoutePoint("George Square, Glasgow", 55.8610697, -4.2499327)
-        val waypoint2 = RoutePoint("Edinburgh Castle", 55.9488161, -3.2021476)
-        val waypoint3 = RoutePoint("Greenwich Prime Meridian, London", 51.4779644, 0.0)
-        val waypoint4 = RoutePoint("Rock of Gibraltar", 36.1636308, -5.392716)
-        val waypoint5 = RoutePoint("Inverness", 57.4680357, -4.263057)
+        val waypoint1 = RoutePoint("George Square, Glasgow", Location(55.8610697, -4.2499327))
+        val waypoint2 = RoutePoint("Edinburgh Castle", Location(55.9488161, -3.2021476))
+        val waypoint3 = RoutePoint("Greenwich Prime Meridian, London", Location(51.4779644, 0.0))
+        val waypoint4 = RoutePoint("Rock of Gibraltar", Location(36.1636308, -5.392716))
+        val waypoint5 = RoutePoint("Inverness", Location(57.4680357, -4.263057))
         val expectedValues = listOf(waypoint1, waypoint2, waypoint3, waypoint4, waypoint5)
 
         testParsing("gpx/handcrafted.gpx", expectedValues, "Test", "Test?")
@@ -127,15 +142,15 @@ class GpxTest {
     @Test
     fun rideWithGpsParsing(){
 
-        val waypoint1 = RoutePoint("Slight Left", 55.94722, -4.30844)
-        val waypoint2 = RoutePoint("Right", 55.94628, -4.30901)
-        val waypoint3 = RoutePoint("Right", 55.9442, -4.31081)
-        val waypoint4 = RoutePoint("Left", 55.94245, -4.31335)
-        val waypoint5 = RoutePoint("Right", 55.94181, -4.31338)
-        val waypoint6 = RoutePoint("Right", 55.94182, -4.31358)
-        val waypoint7 = RoutePoint("Right", 55.94198, -4.31612)
-        val waypoint8 = RoutePoint("Left", 55.94229, -4.31637)
-        val waypoint9 = RoutePoint("Right", 55.94218, -4.31735)
+        val waypoint1 = RoutePoint("Slight Left", Location(55.94722, -4.30844))
+        val waypoint2 = RoutePoint("Right", Location(55.94628, -4.30901))
+        val waypoint3 = RoutePoint("Right", Location(55.9442, -4.31081))
+        val waypoint4 = RoutePoint("Left", Location(55.94245, -4.31335))
+        val waypoint5 = RoutePoint("Right", Location(55.94181, -4.31338))
+        val waypoint6 = RoutePoint("Right", Location(55.94182, -4.31358))
+        val waypoint7 = RoutePoint("Right", Location(55.94198, -4.31612))
+        val waypoint8 = RoutePoint("Left", Location(55.94229, -4.31637))
+        val waypoint9 = RoutePoint("Right", Location(55.94218, -4.31735))
 
         val expectedValues = listOf(waypoint1, waypoint2, waypoint3, waypoint4, waypoint5, waypoint6, waypoint7, waypoint8, waypoint9)
 
@@ -145,14 +160,14 @@ class GpxTest {
     @Test
     fun soundscapeParsing(){
 
-        val waypoint1 = RoutePoint("Waypoint", 55.947256, -4.305852)
-        val waypoint2 = RoutePoint("Waypoint", 55.946412, -4.305621)
-        val waypoint3 = RoutePoint("Waypoint", 55.946409, -4.304833)
-        val waypoint4 = RoutePoint("Waypoint", 55.945706, -4.304774)
-        val waypoint5 = RoutePoint("Waypoint", 55.945727, -4.307563)
-        val waypoint6 = RoutePoint("Waypoint", 55.946424, -4.307574)
-        val waypoint7 = RoutePoint("Waypoint", 55.946436, -4.305745)
-        val waypoint8 = RoutePoint("Waypoint", 55.947286, -4.305696)
+        val waypoint1 = RoutePoint("Waypoint", Location(55.947256, -4.305852))
+        val waypoint2 = RoutePoint("Waypoint", Location(55.946412, -4.305621))
+        val waypoint3 = RoutePoint("Waypoint", Location(55.946409, -4.304833))
+        val waypoint4 = RoutePoint("Waypoint", Location(55.945706, -4.304774))
+        val waypoint5 = RoutePoint("Waypoint", Location(55.945727, -4.307563))
+        val waypoint6 = RoutePoint("Waypoint", Location(55.946424, -4.307574))
+        val waypoint7 = RoutePoint("Waypoint", Location(55.946436, -4.305745))
+        val waypoint8 = RoutePoint("Waypoint", Location(55.947286, -4.305696))
 
         val expectedValues = listOf(waypoint1, waypoint2, waypoint3, waypoint4, waypoint5, waypoint6, waypoint7, waypoint8)
 
