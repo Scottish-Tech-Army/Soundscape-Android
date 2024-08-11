@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.Hearing
 import org.scottishtecharmy.soundscape.screens.onboarding.Language
 import org.scottishtecharmy.soundscape.screens.onboarding.Listening
 import org.scottishtecharmy.soundscape.screens.onboarding.Navigating
+import org.scottishtecharmy.soundscape.screens.onboarding.Terms
 import org.scottishtecharmy.soundscape.screens.onboarding.Welcome
 
 @Composable
@@ -49,6 +50,9 @@ fun SetUpNavGraph(
             }
             composable(Screens.AudioBeacons.route) {
                 AudioBeacons(navController = navController)
+            }
+            composable(Screens.Terms.route) {
+                Terms(navController = navController)
             }
         }
         composable(Screens.Home.route) {
