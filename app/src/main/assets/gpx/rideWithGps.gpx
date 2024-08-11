@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxdata="http://www.cluetrust.com/XML/GPXDATA/1/0" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.cluetrust.com/XML/GPXDATA/1/0 http://www.cluetrust.com/Schemas/gpxdata10.xsd" version="1.1" creator="http://ridewithgps.com/">
+  <metadata>
+    <name>RideWithGps</name>
+    <link href="https://ridewithgps.com/routes/46694354">
+      <text>Test</text>
+    </link>
+    <time>2024-05-17T11:10:54Z</time>
+  </metadata>
+  <wpt lon="-4.30844" lat="55.94722">
+    <name>Slight Left</name>
+    <cmt>Turn slight left</cmt>
+    <desc>Turn slight left</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.30901" lat="55.94628">
+    <name>Right</name>
+    <cmt>Turn right onto Strathblane Road, A81</cmt>
+    <desc>Turn right onto Strathblane Road, A81</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31081" lat="55.9442">
+    <name>Right</name>
+    <cmt>Turn right</cmt>
+    <desc>Turn right</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31335" lat="55.94245">
+    <name>Left</name>
+    <cmt>Turn left onto Buchanan Street</cmt>
+    <desc>Turn left onto Buchanan Street</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31338" lat="55.94181">
+    <name>Right</name>
+    <cmt>Turn right onto Station Road, B8030</cmt>
+    <desc>Turn right onto Station Road, B8030</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31358" lat="55.94182">
+    <name>Right</name>
+    <cmt>Turn right onto Station Road</cmt>
+    <desc>Turn right onto Station Road</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31612" lat="55.94198">
+    <name>Right</name>
+    <cmt>Turn right</cmt>
+    <desc>Turn right</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31637" lat="55.94229">
+    <name>Left</name>
+    <cmt>Turn left</cmt>
+    <desc>Turn left</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <wpt lon="-4.31735" lat="55.94218">
+    <name>Right</name>
+    <cmt>Turn right onto Mugdock Road</cmt>
+    <desc>Turn right onto Mugdock Road</desc>
+    <sym>Dot</sym>
+    <type>Dot</type>
+  </wpt>
+  <trk>
+    <name>Test</name>
+    <trkseg>
+      <trkpt lat="55.94726" lon="-4.30599">
+        <ele>85.0</ele>
+      </trkpt>
+      <trkpt lat="55.94724" lon="-4.30721">
+        <ele>86.4</ele>
+      </trkpt>
+      <trkpt lat="55.94722" lon="-4.30844">
+        <ele>87.4</ele>
+      </trkpt>
+      <trkpt lat="55.94707" lon="-4.30905">
+        <ele>86.8</ele>
+      </trkpt>
+      <trkpt lat="55.94682" lon="-4.30905">
+        <ele>84.5</ele>
+      </trkpt>
+      <trkpt lat="55.94628" lon="-4.30901">
+        <ele>83.1</ele>
+      </trkpt>
+      <trkpt lat="55.94596" lon="-4.31002">
+        <ele>78.6</ele>
+      </trkpt>
+      <trkpt lat="55.94588" lon="-4.3102">
+        <ele>78.0</ele>
+      </trkpt>
+      <trkpt lat="55.94578" lon="-4.31036">
+        <ele>77.5</ele>
+      </trkpt>
+      <trkpt lat="55.94569" lon="-4.31044">
+        <ele>77.2</ele>
+      </trkpt>
+      <trkpt lat="55.94525" lon="-4.3106">
+        <ele>76.1</ele>
+      </trkpt>
+      <trkpt lat="55.9448" lon="-4.31075">
+        <ele>73.8</ele>
+      </trkpt>
+      <trkpt lat="55.9442" lon="-4.31081">
+        <ele>69.3</ele>
+      </trkpt>
+      <trkpt lat="55.94419" lon="-4.31157">
+        <ele>66.5</ele>
+      </trkpt>
+      <trkpt lat="55.94417" lon="-4.312">
+        <ele>67.2</ele>
+      </trkpt>
+      <trkpt lat="55.94414" lon="-4.31209">
+        <ele>67.4</ele>
+      </trkpt>
+      <trkpt lat="55.94409" lon="-4.31211">
+        <ele>67.1</ele>
+      </trkpt>
+      <trkpt lat="55.94361" lon="-4.31209">
+        <ele>64.2</ele>
+      </trkpt>
+      <trkpt lat="55.94313" lon="-4.31208">
+        <ele>61.3</ele>
+      </trkpt>
+      <trkpt lat="55.94313" lon="-4.31208">
+        <ele>61.3</ele>
+      </trkpt>
+      <trkpt lat="55.94273" lon="-4.31206">
+        <ele>58.9</ele>
+      </trkpt>
+      <trkpt lat="55.9427" lon="-4.3121">
+        <ele>58.7</ele>
+      </trkpt>
+      <trkpt lat="55.94266" lon="-4.31227">
+        <ele>58.3</ele>
+      </trkpt>
+      <trkpt lat="55.94266" lon="-4.31227">
+        <ele>58.3</ele>
+      </trkpt>
+      <trkpt lat="55.94264" lon="-4.31251">
+        <ele>58.0</ele>
+      </trkpt>
+      <trkpt lat="55.94262" lon="-4.31256">
+        <ele>57.9</ele>
+      </trkpt>
+      <trkpt lat="55.94247" lon="-4.31268">
+        <ele>56.9</ele>
+      </trkpt>
+      <trkpt lat="55.94245" lon="-4.31282">
+        <ele>56.8</ele>
+      </trkpt>
+      <trkpt lat="55.94245" lon="-4.31335">
+        <ele>56.8</ele>
+      </trkpt>
+      <trkpt lat="55.94181" lon="-4.31338">
+        <ele>53.7</ele>
+      </trkpt>
+      <trkpt lat="55.94182" lon="-4.31358">
+        <ele>53.9</ele>
+      </trkpt>
+      <trkpt lat="55.94186" lon="-4.31358">
+        <ele>54.1</ele>
+      </trkpt>
+      <trkpt lat="55.94187" lon="-4.31392">
+        <ele>54.5</ele>
+      </trkpt>
+      <trkpt lat="55.94186" lon="-4.31445">
+        <ele>54.9</ele>
+      </trkpt>
+      <trkpt lat="55.94191" lon="-4.31524">
+        <ele>56.0</ele>
+      </trkpt>
+      <trkpt lat="55.94198" lon="-4.31606">
+        <ele>56.9</ele>
+      </trkpt>
+      <trkpt lat="55.94198" lon="-4.31612">
+        <ele>56.9</ele>
+      </trkpt>
+      <trkpt lat="55.94208" lon="-4.31618">
+        <ele>57.8</ele>
+      </trkpt>
+      <trkpt lat="55.94229" lon="-4.31637">
+        <ele>59.5</ele>
+      </trkpt>
+      <trkpt lat="55.94226" lon="-4.31667">
+        <ele>59.0</ele>
+      </trkpt>
+      <trkpt lat="55.94225" lon="-4.31696">
+        <ele>58.3</ele>
+      </trkpt>
+      <trkpt lat="55.94218" lon="-4.31735">
+        <ele>57.1</ele>
+      </trkpt>
+      <trkpt lat="55.94237" lon="-4.31746">
+        <ele>57.6</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

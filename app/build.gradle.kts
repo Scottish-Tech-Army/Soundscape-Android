@@ -29,8 +29,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 31
         targetSdk = 34
-        versionCode = 29
-        versionName = "0.0.28"
+        versionCode = 30
+        versionName = "0.0.29"
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
         buildConfigField("String", "FMOD_LIB", "\"fmod\"")
@@ -104,6 +104,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.appcompat)
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(libs.core.ktx)
 
 
     testImplementation("junit:junit:4.13.2")
@@ -112,7 +113,7 @@ dependencies {
     testImplementation ("org.jetbrains.kotlin:kotlin-test-junit:1.9.10")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
@@ -152,7 +153,7 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
 
     // Realm for Kotlin
-    implementation("io.realm.kotlin:library-base:1.13.0")
+    implementation("io.realm.kotlin:library-base:1.16.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 
     // Datastore for onboarding and settings
@@ -166,4 +167,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-analytics")
+
+    // GPX parser
+    implementation ("com.github.ticofab:android-gpx-parser:2.3.1")
 }
