@@ -23,9 +23,11 @@
     <string name="first_launch_permissions_required">この許可は必須です</string>
     <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
     <string name="first_launch_permissions_notification">Notifications</string>
+    <string name="general_error_location_services_authorize_title">位置情報サービスの使用を許可してください</string>
+    <string name="general_error_location_services_authorize_description">Soundscape は位置情報を使用して、周辺の場所などに関する情報を提供します。このアプリは、位置情報サービスを使用するため、ユーザーの許可が必要です。</string>
 
-
-
+    <string name="general_alert_yes">はい</string>
+    <string name="general_alert_no">いいえ</string>
     <string name="ui_continue">続行</string>
 
 

@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.DirectionsRun
 import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Notifications
@@ -53,8 +54,9 @@ fun Navigating(navController: NavHostController) {
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
-            if (showCheck)
-                SoundscapePermissionCheck(continueOnboard)
+            // TODO permissions check
+            /*if (showCheck)
+                SoundscapePermissionCheck(continueOnboard)*/
 
             Column(
                 modifier = Modifier
@@ -146,7 +148,8 @@ fun Navigating(navController: NavHostController) {
                     )
                     {
                         Icon(
-                            Icons.Rounded.FitnessCenter,
+                            Icons.AutoMirrored.Rounded.DirectionsRun,
+                            //Icons.Rounded.FitnessCenter,
                             contentDescription = null,
                             tint = Color.White
                         )

@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -18,6 +19,7 @@ class DataStoreManager @Inject constructor(private val context: Context) {
 
     object PreferencesKeys {
         val FIRST_LAUNCH = booleanPreferencesKey("IS_FIRST_LAUNCH")
+        val AUDIO_BEACON = stringPreferencesKey("AUDIO_BEACON")
     }
 
 

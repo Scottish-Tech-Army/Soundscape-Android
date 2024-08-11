@@ -25,8 +25,17 @@
     <string name="first_launch_permissions_required">This permission is required</string>
 <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
     <string name="first_launch_permissions_notification">Notifications</string>
+    <string name="general_error_location_services_authorize_title">Authorize Location Services</string>
+    <string name="general_error_location_services_authorize_description">Soundscape uses your location to find and tell you about the places and things around you. The app needs your permission to use Location Services.</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
+    <!-- TODO these strings aren't translated yet -->>
+    <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string>
+    <!--    Original iOS Soundscape doesn't have translations strings for Background location permission -->
+    <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
+    <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
 
-
+    <string name="general_alert_yes">Yes</string>
+    <string name="general_alert_no">No</string>
     <string name="ui_continue">Continue</string>
 
     <!-- TODO these strings aren't translated, either translate them or remove them -->>

@@ -23,8 +23,11 @@
     <string name="first_launch_permissions_required">Cette autorisation est requise</string>
     <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
     <string name="first_launch_permissions_notification">Notifications</string>
+    <string name="general_error_location_services_authorize_title">Autoriser les services de localisation</string>
+    <string name="general_error_location_services_authorize_description">Soundscape utilise votre localisation pour rechercher et vous indiquer les lieux et les choses qui vous entourent. L’application nécessite votre autorisation pour utiliser les services de localisation.</string>
 
-
+    <string name="general_alert_yes">Oui</string>
+    <string name="general_alert_no">Non</string>
     <string name="ui_continue">Continuer</string>
 
 
