@@ -177,7 +177,11 @@ fun Navigating(navController: NavHostController) {
                 Column(modifier = Modifier.padding(horizontal = 20.dp)) {
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),
-                        onClick = { showCheck = true },
+                        // just bodging this at the moment to get to next screen without permissions request screen
+                        onClick = {
+                            showCheck = true
+                            navController.navigate(Screens.Terms.route)
+                                  },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }

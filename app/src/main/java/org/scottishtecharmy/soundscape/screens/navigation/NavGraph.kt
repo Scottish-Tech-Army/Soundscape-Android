@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 
 import org.scottishtecharmy.soundscape.screens.Home
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeacons
+import org.scottishtecharmy.soundscape.screens.onboarding.Finish
 import org.scottishtecharmy.soundscape.screens.onboarding.Hearing
 import org.scottishtecharmy.soundscape.screens.onboarding.Language
 import org.scottishtecharmy.soundscape.screens.onboarding.Listening
@@ -54,10 +55,12 @@ fun SetUpNavGraph(
             composable(Screens.Terms.route) {
                 Terms(navController = navController)
             }
+            composable(Screens.Finish.route) {
+                Finish(navController = navController)
+            }
         }
         composable(Screens.Home.route) {
-            Home()
+            Home(navController = navController)
         }
-
     }
 }

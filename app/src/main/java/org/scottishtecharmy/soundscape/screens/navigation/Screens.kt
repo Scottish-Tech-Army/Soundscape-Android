@@ -10,4 +10,6 @@ sealed class Screens(val route: String)
     data object Navigating : Screens("navigating")
     data object AudioBeacons : Screens("audiobeacons")
     data object Terms : Screens("terms")
+    data object Finish : Screens("finish")
+
 }

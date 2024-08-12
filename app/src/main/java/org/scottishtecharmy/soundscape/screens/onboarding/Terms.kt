@@ -34,6 +34,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.CustomCheckbox
+import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
@@ -122,7 +123,7 @@ fun Terms(navController: NavHostController) {
                     Button(
                         onClick = {
                             if (checkedState.value) {
-                                //navController.navigate(Screens.Finish.route)
+                                navController.navigate(Screens.Finish.route)
                             }
                         },
                         colors = ButtonDefaults.buttonColors(
