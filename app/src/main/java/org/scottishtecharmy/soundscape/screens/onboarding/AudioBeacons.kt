@@ -175,7 +175,7 @@ fun AudioBeacons(navController: NavHostController) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
-                                //navController.navigate(Screens.Terms.route)
+                                navController.navigate(Screens.Terms.route)
                             },
                             modifier = Modifier.fillMaxWidth()
                         )

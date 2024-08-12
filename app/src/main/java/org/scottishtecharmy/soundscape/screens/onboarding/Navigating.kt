@@ -180,7 +180,7 @@ fun Navigating(navController: NavHostController) {
                         // just bodging this at the moment to get to next screen without permissions request screen
                         onClick = {
                             showCheck = true
-                            navController.navigate(Screens.Terms.route)
+                            navController.navigate(Screens.AudioBeacons.route)
                                   },
                         modifier = Modifier.fillMaxWidth()
                     )
