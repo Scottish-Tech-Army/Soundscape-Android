@@ -26,6 +26,7 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
     private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: Int)
+    private external fun getListOfBeacons() : Array<String>
 
     fun destroy()
     {
@@ -56,8 +57,7 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
             textToSpeech = TextToSpeech(context, this)
         }
     }
-
-        override fun onInit(status: Int) {
+    override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
 
             Log.e("Soundscape", "Android version " + Build.VERSION.SDK_INT)
@@ -158,6 +158,11 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
     }
     override fun setBeaconType(beaconType: Int)
     {
+    }
+
+    override fun getListOfBeaconTypes() : Array<String>
+    {
+        return getListOfBeacons()
     }
 
     companion object {

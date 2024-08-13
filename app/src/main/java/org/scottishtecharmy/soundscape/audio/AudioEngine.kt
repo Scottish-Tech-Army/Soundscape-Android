@@ -6,4 +6,5 @@ interface AudioEngine {
     fun createTextToSpeech(latitude: Double, longitude: Double, text: String) : Long
     fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double)
     fun setBeaconType(beaconType: Int)
+    fun getListOfBeaconTypes() : Array<String>
 }

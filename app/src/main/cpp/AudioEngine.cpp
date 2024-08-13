@@ -14,6 +14,7 @@ namespace soundscape {
 const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 {
         {
+                "Classic",
                 2,
                 {
                         {"file:///android_asset/Classic/Classic_OnAxis.wav", 22.5},
@@ -21,6 +22,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "New",
                 6,
                 {
                         {"file:///android_asset/New/Current_A+.wav", 15.0},
@@ -30,6 +32,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Tactile",
                 6,
                 {
                         {"file:///android_asset/Tactile/Tactile_OnAxis.wav", 15.0},
@@ -38,6 +41,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Flare",
                 6,
                 {
                         {"file:///android_asset/Flare/Flare_A+.wav", 15.0},
@@ -47,6 +51,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Shimmer",
                 6,
                 {
                         {"file:///android_asset/Shimmer/Shimmer_A+.wav", 15.0},
@@ -56,6 +61,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Ping",
                 6,
                 {
                         {"file:///android_asset/Ping/Ping_A+.wav", 15.0},
@@ -65,6 +71,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Drop",
                 6,
                 {
                         {"file:///android_asset/Drop/Drop_A+.wav", 15.0},
@@ -73,6 +80,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Signal",
                 6,
                 {
                         {"file:///android_asset/Signal/Signal_A+.wav", 15.0},
@@ -81,6 +89,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Signal Slow",
                 12,
                 {
                         {"file:///android_asset/Signal Slow/Signal_Slow_A+.wav", 15.0},
@@ -89,6 +98,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Signal Very Slow",
                 18,
                 {
                         {"file:///android_asset/Signal Very Slow/Signal_Very_Slow_A+.wav",
@@ -101,6 +111,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 },
         },
         {
+                "Mallet",
                 6,
                 {
                         {"file:///android_asset/Mallet/Mallet_A+.wav", 15.0},
@@ -109,6 +120,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Mallet Slow",
                 12,
                 {
                         {"file:///android_asset/Mallet Slow/Mallet_Slow_A+.wav", 15.0},
@@ -117,6 +129,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
+                "Mallet Very Slow",
                 18,
                 {
                         {"file:///android_asset/Mallet Very Slow/Mallet_Very_Slow_A+.wav", 15.0},
@@ -373,6 +386,23 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_setBeaconType(JNIEn
     } else {
         TRACE("SetBeaconType failed - no AudioEngine");
     }
+}
+
+extern "C"
+JNIEXPORT jobjectArray JNICALL
+Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_getListOfBeacons(JNIEnv *env, jobject thiz MAYBE_UNUSED){
+
+    jobjectArray array_to_return;
+
+    int number_of_beacons = sizeof(soundscape::AudioEngine::msc_BeaconDescriptors)/sizeof(soundscape::BeaconDescriptor);
+    array_to_return = (jobjectArray)env->NewObjectArray(number_of_beacons,
+                                                        env->FindClass("java/lang/String"), nullptr);
+    for(auto beacon = 0; beacon < number_of_beacons; ++beacon)
+    {
+        env->SetObjectArrayElement(array_to_return, beacon, env->NewStringUTF(soundscape::AudioEngine::msc_BeaconDescriptors[beacon].m_Name.c_str()));
+    }
+
+    return(array_to_return);
 }
 
 extern "C"
