@@ -27,8 +27,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun NavigationButton(
     onClick: () -> Unit = {},
-    text: String, icon:
-    ImageVector? = null,
+    text: String,
+    icon: ImageVector? = null,
     horizontalPadding: Dp = 16.dp
 ) {
     Button(
@@ -39,7 +39,9 @@ fun NavigationButton(
         shape = RoundedCornerShape(0.dp),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp, vertical = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             if (icon != null) {

@@ -124,7 +124,7 @@ fun Terms(navController: NavHostController) {
                         },
                         colors = ButtonDefaults.buttonColors(
                             containerColor =
-                            if (checkedState.value) IntroPrimary else Color.White.copy(alpha = 0.3f)
+                            if (checkedState.value) Primary else Color.White.copy(alpha = 0.1f)
                         ),
                         shape = RoundedCornerShape(3.dp),
                         modifier = Modifier.fillMaxWidth()

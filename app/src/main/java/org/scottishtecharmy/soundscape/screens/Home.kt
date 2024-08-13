@@ -372,7 +372,7 @@ fun HomeContent(
         searchBar()
 
         Column(
-            verticalArrangement = Arrangement.spacedBy((-7).dp),
+            verticalArrangement = Arrangement.spacedBy((1).dp),
         ) {
             // Places Nearby
             NavigationButton(
