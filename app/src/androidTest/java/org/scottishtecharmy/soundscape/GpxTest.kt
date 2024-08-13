@@ -25,7 +25,6 @@ import org.scottishtecharmy.soundscape.utils.parseGpxFile
 // this is an Instrumentation test rather than a unit test.
 
 @RunWith(AndroidJUnit4::class)
-@OrderWith(Alphanumeric::class)
 class GpxTest {
     private fun testParsing(
         filename: String,
@@ -79,10 +78,9 @@ class GpxTest {
                 Log.d("gpxTest", "Inserting route")
                 routesRepository.insertRoute(routeData)
                 Log.d("gpxTest", "Retrieving route")
-                var routes = routesRepository.getRoute(routeData.name)
+                val routes = routesRepository.getRoute(routeData.name)
                 Assert.assertEquals(1, routes.size)
-                //Assert.assertEquals(routeData, routes[0])
-
+                Assert.assertEquals(routeData, routes[0])
             }
         }
     }
@@ -246,77 +244,73 @@ class GpxTest {
 
     // The tests are run alphanumerically, so those starting with a are run first
     @Test
-    fun aHandcraftedParsing() {
+    fun handcraftedParsing() {
         val expectedValues = expectedHandcraftedValues()
         testParsing("gpx/handcrafted.gpx", expectedValues, "Handcrafted", "Handcrafted description")
     }
 
     @Test
-    fun aRideWithGpsParsing() {
+    fun rideWithGpsParsing() {
         val expectedValues = expectedRideWithGpsValues()
         testParsing("gpx/rideWithGps.gpx", expectedValues, "RideWithGps", "")
     }
 
     @Test
-    fun aSoundscapeParsing() {
+    fun soundscapeParsing() {
         val expectedValues = expectedSoundscapeValues()
         testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
     }
 
     @Test
-    fun aSoundscapeDuplicateParsing() {
+    fun soundscapeDuplicateParsing() {
         // Create a second Soundscape route, the only difference is its name. This is to test
         // that duplicate waypoints work
         val expectedValues = expectedSoundscapeValues()
         testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
     }
 
-    // We have populated the database with imported GPX, so validate the database access
+    // Test the database more thoroughly
     @Test
-    fun bHandcraftedDatabase() {
+    fun handcraftedDatabase() {
         val expectedValues = expectedHandcraftedValues()
+        testParsing("gpx/handcrafted.gpx", expectedValues, "Handcrafted", "Handcrafted description")
         testDatabase("Handcrafted", expectedValues)
     }
     @Test
-    fun bRideWithGpsDatabase() {
+    fun rideWithGpsDatabase() {
         val expectedValues = expectedRideWithGpsValues()
+        testParsing("gpx/rideWithGps.gpx", expectedValues, "RideWithGps", "")
         testDatabase("RideWithGps", expectedValues)
     }
     @Test
-    fun bSoundscapeDatabase() {
+    fun soundscapeDatabase() {
         val expectedValues = expectedSoundscapeValues()
+        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
         testDatabase("Soundscape", expectedValues)
     }
     @Test
-    fun bSoundscapeDuplicateDatabase() {
+    fun soundscapeDuplicateDatabase() {
         val expectedValues = expectedSoundscapeValues()
+        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
         testDatabase("Soundscape2", expectedValues)
     }
 
-    // Test that nothing has been left in the database
+    // Double check multiple routes at once in the database
     @Test
-    fun cTestEmpty() {
-        // The parsing has succeeded, write the result to the database
-        val config = RealmConfiguration.Builder(
-            schema = setOf(
-                RouteData::class,
-                RoutePoint::class,
-                Location::class
-            )
-        )
-            .inMemory()
-            .build()
-        val realm = Realm.open(config)
-        Log.d("gpxTest", "Successfully opened an in-memory realm")
+    fun allRoutes() {
+        // Put multiple routes into the database
+        val handcraftedExpectedValues = expectedHandcraftedValues()
+        testParsing("gpx/handcrafted.gpx", handcraftedExpectedValues, "Handcrafted", "Handcrafted description")
+        val rideWithGpsExpectedValues = expectedRideWithGpsValues()
+        testParsing("gpx/rideWithGps.gpx", rideWithGpsExpectedValues, "RideWithGps", "")
+        val soundscapeExpectedValues = expectedSoundscapeValues()
+        testParsing("gpx/soundscape.gpx", soundscapeExpectedValues, "Soundscape", "Soundscape description")
+        testParsing("gpx/soundscape.gpx", soundscapeExpectedValues, "Soundscape", "Soundscape description", "Soundscape2")
 
-        val routesDao = RoutesDao(realm)
-        val routesRepository = RoutesRepository(routesDao)
-
-        runBlocking {
-            launch {
-                var waypoints = routesRepository.getWaypoints()
-                Assert.assertEquals(0, waypoints.size)
-            }
-        }
+        // And test each of them
+        testDatabase("Soundscape", soundscapeExpectedValues)
+        testDatabase("RideWithGps", rideWithGpsExpectedValues)
+        testDatabase("Handcrafted", handcraftedExpectedValues)
+        testDatabase("Soundscape2", soundscapeExpectedValues)
     }
 }
