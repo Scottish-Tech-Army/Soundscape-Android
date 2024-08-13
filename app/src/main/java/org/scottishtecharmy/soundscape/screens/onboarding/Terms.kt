@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.components.CustomCheckbox
 import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
@@ -98,21 +98,17 @@ fun Terms(navController: NavHostController) {
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    CustomCheckbox(
-                        checkedState = checkedState,
-                        boxSize = 40.dp,
-                        borderWidth = 3.dp,
-                        boxShape = RoundedCornerShape(5.dp),
-                        borderColor = Color.White,
-                        iconSize = 30.dp,
-                        iconColor = Color.White
+
+                    Checkbox(
+                        checked = checkedState.value,
+                        onCheckedChange = { checkedState.value = it }
                     )
-                    Spacer(modifier = Modifier.width(30.dp))
                     Text(
                         modifier = Modifier.clickable { checkedState.value = !checkedState.value },
                         text = "Accept Terms of Use",
                         style = MaterialTheme.typography.bodyMedium
                     )
+
                 }
 
                 Column(
