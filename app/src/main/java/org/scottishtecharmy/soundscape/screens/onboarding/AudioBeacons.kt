@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.onboarding
 
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -106,6 +108,12 @@ fun AudioBeacons(navController: NavHostController) {
 
     val currentName = if (selected) "Do some stuff here in the datastore manager" else null
 
+    val context = LocalContext.current
+    val notAvailableText = "This is not implemented yet."
+    val notAvailableToast = {
+        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
+    }
+
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
@@ -156,6 +164,8 @@ fun AudioBeacons(navController: NavHostController) {
                             beacon.name,
                             beacon.name == currentName
                         ) {
+                            notAvailableToast()
+
                             selected = true
                             // change the audio beacon
                             Log.d(

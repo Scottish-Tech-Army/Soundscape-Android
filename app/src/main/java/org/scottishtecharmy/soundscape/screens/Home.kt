@@ -191,6 +191,11 @@ fun HomeTopAppBar(
     coroutineScope: CoroutineScope,
     navController: NavHostController
 ) {
+    val context = LocalContext.current
+    val notAvailableText = "This is not implemented yet."
+    val notAvailableToast = {
+        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
+    }
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -213,6 +218,7 @@ fun HomeTopAppBar(
         actions = {
             IconButton(
                 onClick = {
+                    notAvailableToast()
                     //navController.navigate(Screens.Sleeping.route)
                 },
             ) {
@@ -230,6 +236,12 @@ fun HomeTopAppBar(
 fun HomeBottomAppBar(
 
 ) {
+    val context = LocalContext.current
+    val notAvailableText = "This is not implemented yet."
+    val notAvailableToast = {
+        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
+    }
+
     BottomAppBar(
         modifier = Modifier
             .height(150.dp)
@@ -256,7 +268,7 @@ fun HomeBottomAppBar(
                     .fillMaxWidth(),
             ) {
                 Button(
-                    onClick = { },
+                    onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
                     Column() {
@@ -276,7 +288,7 @@ fun HomeBottomAppBar(
                 }
 
                 Button(
-                    onClick = {},
+                    onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
                     Column() {
@@ -296,7 +308,7 @@ fun HomeBottomAppBar(
                 }
 
                 Button(
-                    onClick = { },
+                    onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
                     Column() {
@@ -316,7 +328,7 @@ fun HomeBottomAppBar(
                 }
 
                 Button(
-                    onClick = {  },
+                    onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
                     Column() {
@@ -364,18 +376,18 @@ fun HomeContent(
         ) {
             // Places Nearby
             NavigationButton(
-                onClick = { notAvailableToast },
+                onClick = { notAvailableToast() },
                 text = "Places Nearby"
             )
             // Markers and routes
             NavigationButton(
-                onClick = { notAvailableToast },
+                onClick = { notAvailableToast() },
                 text = "Markers & Routes"
             )
             // Current location
             NavigationButton(
-                onClick = { notAvailableToast },
-                text = "CurrentLocation"
+                onClick = { notAvailableToast() },
+                text = "Current Location"
             )
         }
     }
