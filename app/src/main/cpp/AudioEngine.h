@@ -25,11 +25,12 @@ namespace soundscape {
         void AddBeacon(PositionedAudio *beacon, bool queued = false);
         void RemoveBeacon(PositionedAudio *beacon);
 
+        const static BeaconDescriptor msc_BeaconDescriptors[];
+
     private:
         FMOD::System * m_pSystem;
         FMOD_VECTOR m_LastPos = {0.0f, 0.0f, 0.0f};
 
-        const static BeaconDescriptor msc_BeaconDescriptors[];
         std::atomic<int> m_BeaconTypeIndex;
 
         std::recursive_mutex m_BeaconsMutex;

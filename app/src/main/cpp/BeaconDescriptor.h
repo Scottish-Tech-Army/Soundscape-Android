@@ -19,12 +19,14 @@ namespace soundscape {
 
     class BeaconDescriptor {
     public:
-        BeaconDescriptor(unsigned int beats_in_phrase, const std::vector<BeaconAsset> &beacons)
-        : m_BeatsInPhrase(beats_in_phrase),
+        BeaconDescriptor(const std::string &name, unsigned int beats_in_phrase, const std::vector<BeaconAsset> &beacons)
+        : m_Name(name),
+          m_BeatsInPhrase(beats_in_phrase),
           m_Beacons(beacons)
         {
         }
 
+        std::string m_Name;
         unsigned int m_BeatsInPhrase;
         const std::vector<BeaconAsset> m_Beacons;
     };
