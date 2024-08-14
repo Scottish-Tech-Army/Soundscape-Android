@@ -27,7 +27,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration

@@ -1,4 +1,4 @@
-package com.scottishtecharmy.soundscape.audio
+package org.scottishtecharmy.soundscape.audio
 
 import android.content.Context
 import android.os.Build
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
+import android.speech.tts.Voice
 import android.util.Log
 import java.util.Locale
 
@@ -15,6 +16,7 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
     private val engineMutex = Object()
     private var ttsSockets = HashMap<String, Array<ParcelFileDescriptor>>()
     private var currentUtteranceId: String? = null
+    private var textToSpeechInitialized : Boolean = false
 
     private lateinit var textToSpeech : TextToSpeech
     private lateinit var ttsSocket : ParcelFileDescriptor
@@ -25,7 +27,7 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
-    private external fun setBeaconType(engineHandle: Long, beaconType: Int)
+    private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
 
     fun destroy()
@@ -80,7 +82,10 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
                     Log.e("TTS", "OnDone $utteranceId")
                 }
 
-                @Deprecated("Deprecated function, but needs overridden until it actually goes.")
+                @Deprecated(
+                    message = "Deprecated function, but needs overridden until it actually goes.",
+                    replaceWith = ReplaceWith("")
+                )
                 override fun onError(utteranceId: String) {
                     // TODO: Need to test this path and handle it correctly
                     Log.e("TTS", "OnError $utteranceId")
@@ -103,6 +108,7 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
                 }
             })
         }
+        textToSpeechInitialized = true
     }
 
     override fun createBeacon(latitude: Double, longitude: Double) : Long
@@ -126,11 +132,27 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
             }
         }
     }
+    private fun awaitTextToSpeechInitialization() : Boolean {
+        // Block waiting for the TextToSpeech to initialize before using it. Timeout after
+        // waiting for 10 seconds and in that case return false
+        var timeout = 10000
+        while(!textToSpeechInitialized) {
+            Thread.sleep(100)
+            timeout -= 100
+            if(timeout <= 0)
+                return false
+        }
+
+        return true
+    }
 
     override fun createTextToSpeech(latitude: Double, longitude: Double, text: String) : Long
     {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
+
+                if(!awaitTextToSpeechInitialization())
+                    return 0
 
                 val ttsSocketPair = ParcelFileDescriptor.createReliableSocketPair()
                 ttsSocket = ttsSocketPair[0]
@@ -149,6 +171,21 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
             return 0
         }
     }
+
+    override fun getAvailableSpeechLanguages() : Set<Locale> {
+        if (!awaitTextToSpeechInitialization())
+            return emptySet()
+
+        return textToSpeech.availableLanguages
+    }
+
+    override fun getAvailableSpeechVoices() : Set<Voice> {
+        if (!awaitTextToSpeechInitialization())
+            return emptySet()
+
+        return textToSpeech.voices
+    }
+
     override fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double)
     {
         synchronized(engineMutex) {
@@ -156,8 +193,12 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
                 updateGeometry(engineHandle, listenerLatitude, listenerLongitude, listenerHeading)
         }
     }
-    override fun setBeaconType(beaconType: Int)
+    override fun setBeaconType(beaconType: String)
     {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L)
+                setBeaconType(engineHandle, beaconType)
+        }
     }
 
     override fun getListOfBeaconTypes() : Array<String>

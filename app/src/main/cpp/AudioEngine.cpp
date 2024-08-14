@@ -335,7 +335,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_create(JNIEnv *env MAYBE_UNUSED, jobject thiz MAYBE_UNUSED) {
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_create(JNIEnv *env MAYBE_UNUSED, jobject thiz MAYBE_UNUSED) {
     auto ae = std::make_unique<soundscape::AudioEngine>();
 
     if (not ae) {
@@ -348,7 +348,7 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_create(JNIEnv *env 
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroy(JNIEnv *env MAYBE_UNUSED,
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroy(JNIEnv *env MAYBE_UNUSED,
                                                                      jobject thiz MAYBE_UNUSED,
                                                                      jlong engine_handle) {
     auto* ae =
@@ -358,7 +358,7 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroy(JNIEnv *env
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_updateGeometry(JNIEnv *env MAYBE_UNUSED,
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_updateGeometry(JNIEnv *env MAYBE_UNUSED,
                                                                            jobject thiz MAYBE_UNUSED,
                                                                            jlong engine_handle,
                                                                            jdouble latitude,
@@ -375,14 +375,22 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_updateGeometry(JNIE
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_setBeaconType(JNIEnv *env MAYBE_UNUSED, jobject thiz MAYBE_UNUSED,
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_setBeaconType(JNIEnv *env MAYBE_UNUSED, jobject thiz MAYBE_UNUSED,
                                                                           jlong engine_handle,
-                                                                          jint beacon_type) {
+                                                                          jstring beacon_type) {
     auto* ae =
             reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
 
     if (ae) {
-        ae->SetBeaconType(beacon_type);
+        const char * name = env->GetStringUTFChars(beacon_type, nullptr);
+        std::string beacon_string(name);
+        env->ReleaseStringUTFChars(beacon_type, name);
+
+        int number_of_beacons = sizeof(soundscape::AudioEngine::msc_BeaconDescriptors)/sizeof(soundscape::BeaconDescriptor);
+        for(auto beacon = 0; beacon < number_of_beacons; ++beacon) {
+            if(beacon_string == soundscape::AudioEngine::msc_BeaconDescriptors[beacon].m_Name)
+            ae->SetBeaconType(beacon);
+        }
     } else {
         TRACE("SetBeaconType failed - no AudioEngine");
     }
@@ -390,7 +398,7 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_setBeaconType(JNIEn
 
 extern "C"
 JNIEXPORT jobjectArray JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_getListOfBeacons(JNIEnv *env, jobject thiz MAYBE_UNUSED){
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_getListOfBeacons(JNIEnv *env, jobject thiz MAYBE_UNUSED){
 
     jobjectArray array_to_return;
 
@@ -407,7 +415,7 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_getListOfBeacons(JN
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(JNIEnv *env MAYBE_UNUSED,
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(JNIEnv *env MAYBE_UNUSED,
                                                                                jobject thiz MAYBE_UNUSED,
                                                                                jlong engine_handle,
                                                                                jdouble latitude,
@@ -427,7 +435,7 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon(JNIEnv *env MAYBE_UNUSED,
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon(JNIEnv *env MAYBE_UNUSED,
                                                                                 jobject thiz MAYBE_UNUSED,
                                                                                 jlong beacon_handle) {
     auto beacon = reinterpret_cast<soundscape::Beacon*>(beacon_handle);
@@ -436,7 +444,7 @@ Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_com_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToSpeech(JNIEnv *env MAYBE_UNUSED,
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToSpeech(JNIEnv *env MAYBE_UNUSED,
                                                                                      jobject thiz MAYBE_UNUSED,
                                                                                      jlong engine_handle,
                                                                                      jdouble latitude,
