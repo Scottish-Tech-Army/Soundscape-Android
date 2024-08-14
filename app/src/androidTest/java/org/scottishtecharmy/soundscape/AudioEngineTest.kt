@@ -1,13 +1,9 @@
 package org.scottishtecharmy.soundscape
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
-import com.scottishtecharmy.soundscape.audio.AudioEngine
-import com.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioEngine
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.junit.Assert
 import org.junit.Test
 
@@ -15,7 +11,6 @@ class AudioEngineTest {
 
     @Test
     fun beaconList() {
-        val context = InstrumentationRegistry.getInstrumentation().context
         val audioEngine = NativeAudioEngine()
         val beaconTypes = audioEngine.getListOfBeaconTypes()
         Assert.assertEquals(beaconTypes.size, 13)
@@ -34,17 +29,21 @@ class AudioEngineTest {
         Assert.assertEquals( "Mallet Very Slow", beaconTypes[12])
     }
 
-    private fun moveListener(audioEngine: AudioEngine, latitude: Double, longitude: Double, orientation: Double) {
-        var time = 0
-        while(time < 3000) {
-            audioEngine.updateGeometry(latitude, longitude, orientation)
-            Thread.sleep(100)
-            time += 100
+    private fun moveListener(audioEngine: AudioEngine, duration: Int) {
+        val delayMilliseconds: Long = 50
+        var orientation = 0.0
+        val delta = 360.0 / (duration / delayMilliseconds)
+        var time: Long = 0
+        while(time <= duration) {
+            audioEngine.updateGeometry(0.0, 0.0, orientation)
+            Thread.sleep(delayMilliseconds)
+            time += delayMilliseconds
+            orientation += delta
         }
+        Log.d(TAG, "Time $time, Orientation $orientation")
     }
 
-    @Test
-    fun soundBeacon() {
+    private fun initializeAudioEngine() : NativeAudioEngine {
         // Use the instrumentation targetContext for the assets etc.
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         org.fmod.FMOD.init(context)
@@ -52,22 +51,83 @@ class AudioEngineTest {
         val audioEngine = NativeAudioEngine()
         audioEngine.initialize(context)
 
-        val beacon = audioEngine.createBeacon(1.0, 0.0)
-        moveListener(audioEngine, 0.0, 0.0, 90.0)
-        audioEngine.destroyBeacon(beacon)
+        return audioEngine
+    }
 
-        val speech_beacon = audioEngine.createTextToSpeech(1.0, 0.0, "Beacon here!")
-        moveListener(audioEngine, 0.0, 0.0, -90.0)
-
-        val beacon3 = audioEngine.createBeacon(1.0, 0.0)
-        moveListener(audioEngine, 0.0, 0.0, -180.0)
-        audioEngine.destroyBeacon(beacon3)
-
+    private fun tidyUp(audioEngine : NativeAudioEngine) {
         audioEngine.destroy()
         org.fmod.FMOD.close()
     }
 
+    @Test
+    fun soundBeacon() {
+        val audioEngine = initializeAudioEngine()
+
+        val beacon = audioEngine.createBeacon(1.0, 0.0)
+        moveListener(audioEngine, 4000)
+        audioEngine.destroyBeacon(beacon)
+
+        audioEngine.createTextToSpeech(1.0, 0.0, "Beacon here!")
+        moveListener(audioEngine, 4000)
+
+        val beacon3 = audioEngine.createBeacon(1.0, 0.0)
+        moveListener(audioEngine, 4000)
+        audioEngine.destroyBeacon(beacon3)
+
+        tidyUp(audioEngine)
+    }
+
+    @Test
+    fun allBeacons() {
+        val audioEngine = initializeAudioEngine()
+        val beaconTypes = audioEngine.getListOfBeaconTypes()
+
+        // Play each of the beacon types, with the orientation of the listener rotating
+        // a full 360 degrees
+        for(beaconType in beaconTypes) {
+            Log.d(TAG, "Test beacon type $beaconType")
+            audioEngine.setBeaconType(beaconType)
+
+            val beacon = audioEngine.createBeacon(1.0, 0.0)
+            moveListener(audioEngine, 6000)
+            audioEngine.destroyBeacon(beacon)
+        }
+
+        tidyUp(audioEngine)
+    }
+
+    @Test
+    fun queuedSpeech() {
+        val audioEngine = initializeAudioEngine()
+
+        audioEngine.createTextToSpeech(1.0, 0.0, "First.")
+        audioEngine.createTextToSpeech(1.0, 0.0, "Second.")
+        audioEngine.createTextToSpeech(1.0, 0.0, "Third.")
+        moveListener(audioEngine, 6000)
+
+        tidyUp(audioEngine)
+    }
+
+// This test fails on the GitHub action emulator - more investigation required
+//    @Test
+//    fun speechCapabilities() {
+//        val audioEngine = initializeAudioEngine()
+//
+//        Log.e(TAG, "Languages: " + audioEngine.getAvailableSpeechLanguages().toString())
+//
+//        val voices = audioEngine.getAvailableSpeechVoices()
+//        Log.e(TAG, "Languages: $voices")
+//        for(voice in voices) {
+//            if(!voice.isNetworkConnectionRequired) {
+//                Log.e(TAG, voice.name + " requires no network")
+//            }
+//        }
+//
+//        tidyUp(audioEngine)
+//    }
+
     companion object {
+        const val TAG : String = "AudioTestEngine"
         init {
             System.loadLibrary(BuildConfig.FMOD_LIB)
         }
