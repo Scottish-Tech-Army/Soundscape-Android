@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -34,8 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.navigation.Screens
-import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
@@ -108,7 +106,6 @@ fun Terms(navController: NavHostController) {
                         text = "Accept Terms of Use",
                         style = MaterialTheme.typography.bodyMedium
                     )
-
                 }
 
                 Column(
@@ -116,22 +113,13 @@ fun Terms(navController: NavHostController) {
                         .fillMaxWidth()
                         .padding(top = 60.dp)
                 ) {
-                    Button(
-                        onClick = {
-                            if (checkedState.value) {
-                                navController.navigate(Screens.Finish.route)
-                            }
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor =
-                            if (checkedState.value) Primary else Color.White.copy(alpha = 0.1f)
-                        ),
-                        shape = RoundedCornerShape(3.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
+                    if (checkedState.value){
+                        OnboardButton(
                             text = stringResource(R.string.ui_continue),
-                            color = if (checkedState.value) Primary else Color.White,
+                            onClick = {
+                                navController.navigate(Screens.Finish.route)
+                            },
+                            modifier = Modifier.fillMaxWidth()
                         )
                     }
                 }
