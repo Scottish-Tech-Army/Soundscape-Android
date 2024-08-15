@@ -4,48 +4,49 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-<!--    For Android 9 (API level 28) and earlier-->
-    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-<!--    For Android 10 (API level 29) and later-->
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- For Android 9 (API level 28) and earlier -->
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" /> <!-- For Android 10 (API level 29) and later -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <application
+        android:name=".SoundscapeApplication"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".SoundscapeApplication"
         android:theme="@style/Theme.SoundscapeAlpha"
-        android:localeConfig="@xml/locales_config"
         tools:targetApi="31">
         <activity
+            android:name=".OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SoundscapeAlpha" />
+        <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask"
             android:exported="true"
+            android:launchMode="singleTask"
             android:theme="@style/SplashTheme.Soundscape">
 
-<!--            android:theme="@style/Theme.AppCompat.DayNight">-->
+            <!-- android:theme="@style/Theme.AppCompat.DayNight"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".services.SoundscapeService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="location" />
-
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
             android:enabled="false"
@@ -54,7 +55,6 @@
                 android:name="autoStoreLocales"
                 android:value="true" />
         </service>
-
 
         <receiver
             android:name=".activityrecognition.ActivityTransitionReceiver"

@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
-import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -41,11 +40,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
@@ -101,7 +97,7 @@ fun getAllAudioBeacons(): List<AudioBeacon> {
     )
 }
 @Composable
-fun AudioBeacons(navController: NavHostController) {
+fun AudioBeacons(onNavigate: (String) -> Unit) {
 
     val beacons = getAllAudioBeacons()
     var selected by remember { mutableStateOf(false) }
@@ -185,7 +181,7 @@ fun AudioBeacons(navController: NavHostController) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
-                                navController.navigate(Screens.Terms.route)
+                                onNavigate(Screens.Terms.route)
                             },
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -244,5 +240,5 @@ fun AudioBeaconItem(text: String, isSelected: Boolean, onSelect: () -> Unit) {
 @Preview
 @Composable
 fun IntroductionAudioBeaconPreview() {
-    AudioBeacons(navController = rememberNavController())
+    AudioBeacons(onNavigate = {})
 }

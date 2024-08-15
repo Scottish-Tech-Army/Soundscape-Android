@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
@@ -22,7 +21,7 @@ class LanguageScreenTest {
         //Thread.sleep(20000)
         composeTestRule.setContent {
             SoundscapeTheme {
-                Language(navController = rememberNavController())
+                Language(onNavigate = {})
             }
         }
         val context: Context = ApplicationProvider.getApplicationContext()

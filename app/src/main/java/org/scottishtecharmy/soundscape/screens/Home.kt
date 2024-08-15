@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens
 
-import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ExitToApp
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Headset
@@ -38,58 +38,44 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 
 
+@Preview(showBackground = true)
 @Composable
-fun Home(
-    navController: NavHostController
-) {
+fun Home() {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val window = (LocalView.current.context as Activity).window
-    val statusBarColor = MaterialTheme.colorScheme.background
-
-    SideEffect {
-        window.statusBarColor = statusBarColor.toArgb()
-    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { DrawerContent(drawerState, navController, coroutineScope) },
+        drawerContent = { DrawerContent(drawerState, coroutineScope) },
         gesturesEnabled = false,
     ) {
         Scaffold(
             topBar = {
                 HomeTopAppBar(
                     drawerState,
-                    coroutineScope,
-                    navController
+                    coroutineScope
                 )
             },
             bottomBar = {
@@ -100,7 +86,6 @@ fun Home(
         ) { innerPadding ->
             HomeContent(
                 innerPadding,
-                navController,
                 searchBar = {
                     MainSearchBar(
                         searchText = "Hello Dave",
@@ -120,7 +105,6 @@ fun Home(
 @Composable
 fun DrawerContent(
     drawerState: DrawerState,
-    navController: NavHostController,
     scope: CoroutineScope
 ) {
     val context = LocalContext.current
@@ -188,8 +172,7 @@ fun DrawerContent(
 @Composable
 fun HomeTopAppBar(
     drawerState: DrawerState,
-    coroutineScope: CoroutineScope,
-    navController: NavHostController
+    coroutineScope: CoroutineScope
 ) {
     val context = LocalContext.current
     val notAvailableText = "This is not implemented yet."
@@ -219,12 +202,24 @@ fun HomeTopAppBar(
             IconButton(
                 onClick = {
                     notAvailableToast()
-                    //navController.navigate(Screens.Sleeping.route)
+                    //onNavigate(Screens.Sleeping.route)
                 },
             ) {
                 Icon(
                     Icons.Rounded.PhonelinkErase,
                     contentDescription = "Enable Battery Saver Mode",
+                    tint = Color.White
+                )
+            }
+
+            IconButton(
+                onClick = {
+                    (context as MainActivity).stopServiceAndExit()
+                },
+            ) {
+                Icon(
+                    Icons.AutoMirrored.Outlined.ExitToApp,
+                    contentDescription = "Exit application",
                     tint = Color.White
                 )
             }
@@ -271,7 +266,7 @@ fun HomeBottomAppBar(
                     onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
-                    Column() {
+                    Column {
                         Icon(
                             painter = painterResource(R.drawable.my_location_24px),
                             contentDescription = "My Location",
@@ -291,7 +286,7 @@ fun HomeBottomAppBar(
                     onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
-                    Column() {
+                    Column {
                         Icon(
                             painter = painterResource(R.drawable.around_me_24px),
                             contentDescription = "Around Me",
@@ -311,7 +306,7 @@ fun HomeBottomAppBar(
                     onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
-                    Column() {
+                    Column {
                         Icon(
                             painter = painterResource(R.drawable.ahead_of_me_24px),
                             contentDescription = "Ahead of me",
@@ -331,7 +326,7 @@ fun HomeBottomAppBar(
                     onClick = { notAvailableToast() },
                     shape = RectangleShape
                 ) {
-                    Column() {
+                    Column {
                         Icon(
                             painter = painterResource(R.drawable.nearby_markers_24px),
                             contentDescription = "Nearby Markers",
@@ -355,7 +350,6 @@ fun HomeBottomAppBar(
 @Composable
 fun HomeContent(
     innerPadding: PaddingValues,
-    navController: NavHostController,
     searchBar: @Composable () -> Unit
 ) {
     val context = LocalContext.current
@@ -390,13 +384,5 @@ fun HomeContent(
                 text = "Current Location"
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomePagePreview() {
-    SoundscapeTheme {
-        Home(navController = rememberNavController())
     }
 }

@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.DirectionsRun
-import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Icon
@@ -34,20 +33,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
-import org.scottishtecharmy.soundscape.screens.permissions.SoundscapePermissionCheck
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 
 @Composable
-fun Navigating(navController: NavHostController) {
+fun Navigating(onNavigate: (String) -> Unit) {
 
     val continueOnboard = {
-        navController.navigate(Screens.AudioBeacons.route)
+        onNavigate(Screens.AudioBeacons.route)
     }
 
     var showCheck by remember { mutableStateOf(false) }
@@ -180,7 +175,7 @@ fun Navigating(navController: NavHostController) {
                         // just bodging this at the moment to get to next screen without permissions request screen
                         onClick = {
                             showCheck = true
-                            navController.navigate(Screens.AudioBeacons.route)
+                            onNavigate(Screens.AudioBeacons.route)
                                   },
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -193,5 +188,5 @@ fun Navigating(navController: NavHostController) {
 @Preview
 @Composable
 fun NavigatingPreview() {
-    Navigating(navController = rememberNavController())
+    Navigating(onNavigate = {})
 }

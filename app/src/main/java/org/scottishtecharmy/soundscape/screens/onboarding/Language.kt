@@ -16,18 +16,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LanguageSelectionBox
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 
 // https://android-developers.googleblog.com/2022/11/per-app-language-preferences-part-1.html
 @Composable
-fun Language(navController: NavHostController){
+fun Language(onNavigate: (String) -> Unit){
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography){
             Column(
@@ -62,7 +59,7 @@ fun Language(navController: NavHostController){
                 Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),
-                        onClick = { navController.navigate(Screens.Listening.route) },
+                        onClick = { onNavigate(Screens.Listening.route) },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
@@ -75,5 +72,5 @@ fun Language(navController: NavHostController){
 @Preview
 @Composable
 fun LanguagePreview(){
-    Language(navController = rememberNavController())
+    Language(onNavigate = {})
 }

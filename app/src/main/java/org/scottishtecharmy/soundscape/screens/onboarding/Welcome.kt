@@ -21,17 +21,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun Welcome(navController: NavHostController) {
+fun Welcome(onNavigate: (String) -> Unit) {
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
             Column(
@@ -72,7 +69,7 @@ fun Welcome(navController: NavHostController) {
                     Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                         OnboardButton(
                             text = stringResource(R.string.first_launch_welcome_button),
-                            onClick = { navController.navigate(Screens.Language.route) },
+                            onClick = { onNavigate(Screens.Language.route) },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
@@ -92,6 +89,6 @@ fun Welcome(navController: NavHostController) {
 @Composable
 fun PreviewWelcome() {
     SoundscapeTheme {
-        Welcome(navController = rememberNavController())
+        Welcome(onNavigate = {})
     }
 }

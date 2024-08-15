@@ -1,5 +1,8 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
+import android.content.Context
+import android.content.ContextWrapper
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,22 +16,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import org.scottishtecharmy.soundscape.OnboardingActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 
+fun Context.getActivity(): ComponentActivity? = when (this) {
+    is ComponentActivity -> this
+    is ContextWrapper -> baseContext.getActivity()
+    else -> null
+}
+
+@Preview
 @Composable
-fun Finish(navController: NavHostController) {
+fun Finish() {
+    val context = LocalContext.current
+
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
             Column(
@@ -72,13 +81,8 @@ fun Finish(navController: NavHostController) {
                     OnboardButton(
                         text = "Finish",
                         onClick = {
-                            navController.navigate(Screens.Home.route) {
-                                popUpTo(Screens.Home.route) {
-                                    inclusive = true
-                                }
-
-                                launchSingleTop = true
-                            }
+                            // Tell our OnboardingActivity that we have completed onboarding
+                            (context.getActivity() as OnboardingActivity).onboardingComplete()
                         },
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -86,10 +90,4 @@ fun Finish(navController: NavHostController) {
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewIntroductionFinish() {
-    Finish(navController = rememberNavController())
 }

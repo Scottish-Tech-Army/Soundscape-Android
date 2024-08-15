@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.navigation
+package org.scottishtecharmy.soundscape.screens.onboarding
 
 sealed class Screens(val route: String)
 {
@@ -11,5 +11,4 @@ sealed class Screens(val route: String)
     data object AudioBeacons : Screens("audiobeacons")
     data object Terms : Screens("terms")
     data object Finish : Screens("finish")
-
 }

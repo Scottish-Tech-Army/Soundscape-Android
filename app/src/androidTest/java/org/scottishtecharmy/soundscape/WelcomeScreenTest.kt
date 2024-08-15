@@ -5,7 +5,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.scottishtecharmy.soundscape.screens.onboarding.Welcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -22,7 +21,7 @@ class WelcomeScreenTest {
     fun welcomeScreenTest(){
         composeTestRule.setContent {
             SoundscapeTheme {
-                Welcome(navController = rememberNavController())
+                Welcome(onNavigate = {})
             }
         }
         // Unable to get translations strings using the stringResource() which is a composable so..

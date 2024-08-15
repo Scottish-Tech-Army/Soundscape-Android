@@ -29,11 +29,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
@@ -53,7 +50,7 @@ fun getAllTerms(): List<Terms> {
     )
 }
 @Composable
-fun Terms(navController: NavHostController) {
+fun Terms(onNavigate: (String) -> Unit) {
     val terms = getAllTerms()
     val checkedState = remember { mutableStateOf(false) }
     IntroductionTheme {
@@ -117,7 +114,7 @@ fun Terms(navController: NavHostController) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
-                                navController.navigate(Screens.Finish.route)
+                                onNavigate(Screens.Finish.route)
                             },
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -154,5 +151,5 @@ fun TermsItem(text: String) {
 @Preview
 @Composable
 fun TermsPreview() {
-    Terms(navController = rememberNavController())
+    Terms(onNavigate = {})
 }
