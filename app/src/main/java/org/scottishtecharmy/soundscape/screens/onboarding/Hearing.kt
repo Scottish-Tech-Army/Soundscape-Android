@@ -30,18 +30,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @Composable
-fun Hearing(navController: NavHostController) {
+fun Hearing(onNavigate: (String) -> Unit) {
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
@@ -120,7 +115,7 @@ fun Hearing(navController: NavHostController) {
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),
                         onClick = {
-                            navController.navigate(Screens.Navigating.route)
+                            onNavigate(Screens.Navigating.route)
                         },
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -135,5 +130,5 @@ fun Hearing(navController: NavHostController) {
 @Preview
 @Composable
 fun HearingPreview() {
-    Hearing(navController = rememberNavController())
+    Hearing(onNavigate = {})
 }

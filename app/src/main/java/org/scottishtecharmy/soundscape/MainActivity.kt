@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import android.Manifest
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
@@ -9,42 +10,33 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
-import org.scottishtecharmy.soundscape.screens.navigation.SetUpNavGraph
 
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.utils.getXYTile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.scottishtecharmy.soundscape.screens.Home
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var dataStoreManager: DataStoreManager
-
-    private lateinit var navController: NavHostController
 
     private var soundscapeService: SoundscapeService? = null
 
@@ -55,8 +47,6 @@ class MainActivity : AppCompatActivity() {
 
     private var location by mutableStateOf<Location?>(null)
     //private var tileXY by mutableStateOf<Pair<Int, Int>?>(null)
-
-
 
     // needed to communicate with the service.
     private val connection = object : ServiceConnection {
@@ -86,7 +76,8 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) {
-            // if permission was denied, the service can still run only the notification won't be visible
+            // Next, get the location permissions
+            checkAndRequestLocationPermissions()
         }
 
     // we need location permission to be able to start the service
@@ -94,9 +85,9 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         when {
-            permissions.getOrDefault(android.Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
                 // Precise location access granted, service can run
-                startForegroundService()
+                startSoundscapeService()
             }
 
             else -> {
@@ -111,96 +102,112 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         var isFirstLaunch: Boolean
-
         runBlocking {
             isFirstLaunch = dataStoreManager.getValue(
                 FIRST_LAUNCH,
                 defaultValue = true
             )
         }
+
         Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
         installSplashScreen()
 
-        setContent {
-            SoundscapeTheme {
-                navController = rememberNavController()
-                SetUpNavGraph(
-                    navController = navController,
-                    isFirstLaunch = isFirstLaunch
-                )
-            }
-           /* ForegroundServiceScreen(
-                serviceRunning = serviceBoundState,
-                currentLocation = displayableLocation,
-                currentOrientation = displayableOrientation,
-                tileString = displayableTileString,
-                location = location,
-                onClick = ::onStartOrStopForegroundServiceClick
-            )*/
+        if(isFirstLaunch) {
+            // On the first launch, we want to take the user through the OnboardingActivity so
+            // switch to it immediately.
+            val intent = Intent(this, OnboardingActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+
+            // No need to carry on with the rest of the initialization as we are switching activities
+            return
         }
 
-        org.fmod.FMOD.init(applicationContext)
+        setContent {
+            SoundscapeTheme {
+                Home()
+            }
+        }
 
-        checkAndRequestNotificationPermission()
-
+        checkAndRequestNotificationPermissions()
         tryToBindToServiceIfRunning()
-
-
-
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        org.fmod.FMOD.close()
-        unbindService(connection)
+
+        // If this was the first launch
+        if(serviceBoundState) {
+            unbindService(connection)
+            serviceBoundState = false
+        }
     }
 
     /**
      * Check for notification permission before starting the service so that the notification is visible
      */
-    private fun checkAndRequestNotificationPermission() {
+    private fun checkAndRequestNotificationPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             when (ContextCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.POST_NOTIFICATIONS
+                Manifest.permission.POST_NOTIFICATIONS
             )) {
                 android.content.pm.PackageManager.PERMISSION_GRANTED -> {
-                    // permission already granted
+                    checkAndRequestLocationPermissions()
                 }
 
                 else -> {
-                    notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                    notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    return
+                }
+            }
+        }
+    }
+    private fun checkAndRequestLocationPermissions() {
+        when (ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )) {
+            android.content.pm.PackageManager.PERMISSION_GRANTED -> {
+                // permission already granted
+                startSoundscapeService()
+            }
+            else -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    locationPermissionRequest.launch(
+                        arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                        )
+                    )
+                }
+                else {
+                    locationPermissionRequest.launch(
+                        arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                        )
+                    )
                 }
             }
         }
     }
 
-
-    private fun onStartOrStopForegroundServiceClick() {
-        if (soundscapeService == null) {
-            // service is not yet running, start it after permission check
-            locationPermissionRequest.launch(
-                arrayOf(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                    android.Manifest.permission.POST_NOTIFICATIONS
-                )
-            )
-        } else {
-            // service is already running, stop it
-            soundscapeService?.stopForegroundService()
-            // And exit application
-            finishAndRemoveTask()
-        }
+    fun stopServiceAndExit() {
+        // service is already running, stop it
+        soundscapeService?.stopForegroundService()
+        // And exit application
+        finishAndRemoveTask()
     }
 
     /**
-     * Creates and starts the LocationService as a foreground service.
+     * Creates and starts the Soundscape foreground service.
      *
      * It also tries to bind to the service to update the UI with location updates.
      */
-    private fun startForegroundService() {
+    private fun startSoundscapeService() {
         // start the service
         startForegroundService(Intent(this, SoundscapeService::class.java))
 
@@ -238,16 +245,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         lifecycleScope.launch {
             delay(10000)
             val test = soundscapeService?.getTileGrid(application)
 
             println("Number of tiles in grid: ${test?.size}")
         }
-
-
-
     }
 
     companion object {

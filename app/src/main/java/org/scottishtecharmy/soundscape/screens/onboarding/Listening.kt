@@ -1,8 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
-import android.content.Context
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,18 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getString
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 
 @Composable
-fun Listening(navController: NavHostController) {
+fun Listening(onNavigate: (String) -> Unit) {
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
             Column(
@@ -75,7 +67,7 @@ fun Listening(navController: NavHostController) {
 
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),
-                        onClick = { navController.navigate(Screens.Hearing.route) },
+                        onClick = { onNavigate(Screens.Hearing.route) },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
@@ -87,5 +79,5 @@ fun Listening(navController: NavHostController) {
 @Preview
 @Composable
 fun ListeningPreview() {
-    Listening(navController = rememberNavController())
+    Listening(onNavigate = {})
 }

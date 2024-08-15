@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.scottishtecharmy.soundscape.screens.onboarding.Listening
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -22,7 +21,7 @@ class ListeningScreenTest {
     fun listeningScreenTest(){
         composeTestRule.setContent {
             SoundscapeTheme {
-                Listening(navController = rememberNavController())
+                Listening(onNavigate = {})
             }
         }
 
