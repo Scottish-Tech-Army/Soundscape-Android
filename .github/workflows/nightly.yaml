@@ -1,0 +1,130 @@
+name: Nightly build and test
+
+env:
+  # The name of the main module repository
+  main_project_module: app
+
+  # The name in the Play Store
+  playstore_name: Soundscape
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Schedule the build for 05.30 UTC
+  schedule:
+    - cron:  '30 5 * * *'
+
+jobs:
+  check_date:
+    name: Check latest commit
+    runs-on: ubuntu-latest
+    environment: development
+    permissions:
+      contents: write
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check latest commit is less than a day
+        id: should_run
+        continue-on-error: true
+        #if: ${{ github.event_name == 'schedule' }}
+        run: test -z $(git rev-list  --after="24 hours" HEAD) && echo "should_run=false" >> $GITHUB_OUTPUT
+
+  build:
+    name: Build debug package
+    runs-on: ubuntu-latest
+    environment: development
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode Google services
+        env:
+          ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
+          GOOGLE_SERVICES_PATH: ${{ secrets.GOOGLE_SERVICES_PATH }}
+
+        run: |
+          echo $ENCODED_STRING > google-services-b64.txt
+          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      - name: Run lint over the repo
+        run: ./gradlew lint
+
+      # Run Tests Build
+      - name: Run gradle tests
+        run: ./gradlew test
+
+      # Create APK Debug
+      - name: Build apk debug project (APK)
+        run: |
+          ./gradlew assembleDebug
+
+      # Upload Artifact Build
+      # Noted For Output [main_project_module]/build/outputs/apk/debug/
+      - name: Upload APK Debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+
+      # Generate android instrumentation tests APK
+      - name: Assemble Android Instrumentation Tests
+        run: ./gradlew assembleDebugAndroidTest
+      - name: Upload Android Test APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-androidTest
+          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+
+  firebase:
+    name: Run UI tests with Firebase Test Lab
+    needs: build
+    environment: development
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download app APK
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-apk
+
+      - name: Download Android test APK
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-androidTest
+
+      - name: Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Set current project
+        run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
+
+      - name: Run Instrumentation Tests in Firebase Test Lab
+        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
+
+      - name: Run Robo test in Firebase Test Lab
+        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
