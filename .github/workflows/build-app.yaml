@@ -181,8 +181,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-
       - name: Download app APK
         uses: actions/download-artifact@v4
         with:
