@@ -13,6 +13,7 @@ lifecycleService = "2.8.2"
 lifecycleServiceVersion = "2.8.0"
 appcompat = "1.7.0"
 coreKtxVersion = "1.6.1"
+screenshot = "0.0.1-alpha01"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,4 +39,5 @@ core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxV
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}
 
