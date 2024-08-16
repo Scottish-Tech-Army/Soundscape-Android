@@ -3,10 +3,11 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-    //id("org.jetbrains.kotlin.kapt")
     id("io.realm.kotlin")
     id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")}
+    id("com.google.firebase.crashlytics")
+    alias(libs.plugins.screenshot)
+}
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
@@ -71,6 +72,7 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
+        experimentalProperties["android.experimental.enableScreenshotTest"] = true
     }
     packaging {
         resources {
@@ -170,4 +172,7 @@ dependencies {
 
     // GPX parser
     implementation ("com.github.ticofab:android-gpx-parser:2.3.1")
+
+    // Screenshots for tests
+    //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }
