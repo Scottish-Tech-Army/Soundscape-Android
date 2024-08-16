@@ -46,8 +46,6 @@ class AudioEngineTest {
     private fun initializeAudioEngine() : NativeAudioEngine {
         // Use the instrumentation targetContext for the assets etc.
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        org.fmod.FMOD.init(context)
-
         val audioEngine = NativeAudioEngine()
         audioEngine.initialize(context)
 
@@ -56,7 +54,6 @@ class AudioEngineTest {
 
     private fun tidyUp(audioEngine : NativeAudioEngine) {
         audioEngine.destroy()
-        org.fmod.FMOD.close()
     }
 
     @Test

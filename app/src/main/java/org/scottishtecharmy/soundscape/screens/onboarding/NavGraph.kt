@@ -17,19 +17,19 @@ fun SetUpNavGraph(
             Welcome(onNavigate = { dest -> navController.navigate(dest) })
         }
         composable(Screens.Language.route) {
-            Language(onNavigate = { dest -> navController.navigate(dest) })
+            Language(onNavigate = { dest -> navController.navigate(dest) }, null)
         }
         composable(Screens.Listening.route) {
             Listening(onNavigate = { dest -> navController.navigate(dest) })
         }
         composable(Screens.Hearing.route) {
-            Hearing(onNavigate = { dest -> navController.navigate(dest) })
+            Hearing(onNavigate = { dest -> navController.navigate(dest) }, true)
         }
         composable(Screens.Navigating.route) {
             Navigating(onNavigate = { dest -> navController.navigate(dest) })
         }
         composable(Screens.AudioBeacons.route) {
-            AudioBeacons(onNavigate = { dest -> navController.navigate(dest) })
+            AudioBeacons(onNavigate = { dest -> navController.navigate(dest) }, null)
         }
         composable(Screens.Terms.route) {
             Terms(onNavigate = { dest -> navController.navigate(dest) })

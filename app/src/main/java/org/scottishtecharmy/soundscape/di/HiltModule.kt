@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.di
 
 import android.content.Context
 
-import com.google.android.gms.location.LocationServices
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 
 import dagger.Module
@@ -10,9 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import javax.inject.Singleton
 
 
@@ -23,5 +20,17 @@ class AppDataStoreManager {
     @Singleton
     fun provideDataStoreManager(@ApplicationContext context: Context): DataStoreManager {
         return DataStoreManager(context)
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+class AppNativeAudioEngine {
+    @Provides
+    @Singleton
+    fun provideNativeAudioEngine(@ApplicationContext context: Context): NativeAudioEngine {
+        val audioEngine = NativeAudioEngine()
+        audioEngine.initialize(context)
+        return audioEngine
     }
 }
