@@ -8,6 +8,7 @@ import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.screens.onboarding.Language
+import org.scottishtecharmy.soundscape.screens.onboarding.MockLanguagePreviewData
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 // This is very helpful:
@@ -21,7 +22,7 @@ class LanguageScreenTest {
         //Thread.sleep(20000)
         composeTestRule.setContent {
             SoundscapeTheme {
-                Language(onNavigate = {})
+                Language(onNavigate = {}, MockLanguagePreviewData)
             }
         }
         val context: Context = ApplicationProvider.getApplicationContext()

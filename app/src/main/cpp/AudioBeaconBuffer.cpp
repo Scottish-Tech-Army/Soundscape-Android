@@ -203,7 +203,7 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
             // No data - socket is non-blocking
             ++m_ReadsWithoutData;
             if(m_ReadsWithoutData > TIMEOUT_READS_WITHOUT_DATA) {
-                TRACE("TTS Timed out");
+                //TRACE("TTS Timed out");
                 m_pParent->Eof();
                 return FMOD_ERR_FILE_EOF;
             }

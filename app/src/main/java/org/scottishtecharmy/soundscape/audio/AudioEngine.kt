@@ -12,4 +12,5 @@ interface AudioEngine {
     fun getListOfBeaconTypes() : Array<String>
     fun getAvailableSpeechLanguages() : Set<Locale>
     fun getAvailableSpeechVoices() : Set<Voice>
+    fun setSpeechLanguage(language : String) : Boolean
 }

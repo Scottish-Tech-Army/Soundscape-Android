@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,19 +23,41 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
+import javax.inject.Inject
+
+@HiltViewModel
+class HearingViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
+
+    fun playSpeech(speechText: String) {
+        // Set our listener position, and play the speech
+        // TODO: If updateGeometry isn't called, then the audioEngine doesn't move on to   the next
+        //  queued text to speech. That resulted in the Listen button only working one time.
+        //  Calling updateGeometry (which in the service is called every 30ms) sorts this out.
+        //  We should consider another way of doing this.
+        audioEngine.updateGeometry(0.0, 0.0,0.0)
+        audioEngine.createTextToSpeech(0.0,0.0, speechText)
+    }
+}
 
 @Composable
-fun Hearing(onNavigate: (String) -> Unit) {
+fun Hearing(onNavigate: (String) -> Unit, useView : Boolean) {
+
+    var viewModel : HearingViewModel? = null
+    if(useView)
+        viewModel = hiltViewModel<HearingViewModel>()
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
@@ -82,18 +103,16 @@ fun Hearing(onNavigate: (String) -> Unit) {
                     )
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    val context = LocalContext.current
-                    val notAvailableText = "This is not implemented yet."
-                    val notAvailableToast = {
-                        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
-                    }
                     // TODO Strings to send to text-to-speech
                     // <string name="first_launch_callouts_example_1">Cafe</string>
                     // <string name="first_launch_callouts_example_3">Main Street goes left</string>
                     // <string name="first_launch_callouts_example_4">Main Street goes right</string>
 
+                    val speechText = stringResource(R.string.first_launch_callouts_example_4)
                     Button(
-                        onClick = { notAvailableToast() },
+                        onClick = {
+                            viewModel?.playSpeech(speechText)
+                        },
                         modifier = Modifier
                             .fillMaxWidth(),
                         shape = RoundedCornerShape(3.dp),
@@ -130,5 +149,5 @@ fun Hearing(onNavigate: (String) -> Unit) {
 @Preview
 @Composable
 fun HearingPreview() {
-    Hearing(onNavigate = {})
+    Hearing(onNavigate = {}, false)
 }

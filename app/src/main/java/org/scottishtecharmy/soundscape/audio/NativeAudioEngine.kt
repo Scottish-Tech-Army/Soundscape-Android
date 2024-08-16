@@ -9,9 +9,12 @@ import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import java.util.Locale
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
-class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
+@Singleton
+class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitListener {
     private var engineHandle : Long = 0
     private val engineMutex = Object()
     private var ttsSockets = HashMap<String, Array<ParcelFileDescriptor>>()
@@ -188,9 +191,18 @@ class NativeAudioEngine : AudioEngine, TextToSpeech.OnInitListener {
         return textToSpeech.voices
     }
 
+    override fun setSpeechLanguage(language : String) : Boolean {
+        Log.e("TTS", "setSpeechLanguage to \"$language\"")
+        val result = textToSpeech.setLanguage(Locale(language))
+        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            Log.e("TTS", "The Language not supported!")
+            return false
+        }
+        return true
+    }
+
     override fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double)
-    {
-        synchronized(engineMutex) {
+    {        synchronized(engineMutex) {
             if(engineHandle != 0L)
                 updateGeometry(engineHandle, listenerLatitude, listenerLongitude, listenerHeading)
         }

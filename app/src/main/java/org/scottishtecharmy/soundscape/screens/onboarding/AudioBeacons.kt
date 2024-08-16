@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,81 +34,75 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
+import javax.inject.Inject
 
-data class AudioBeacon(
-    val name: String
-)
+@HiltViewModel
+class AudioBeaconsViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
 
-fun getAllAudioBeacons(): List<AudioBeacon> {
-    return listOf(
-        AudioBeacon(
-            name = "Classic"
-        ),
-        AudioBeacon(
-            name = "Drop"
-        ),
-        AudioBeacon(
-            name = "Flare"
-        ),
-        AudioBeacon(
-            name = "Mallet",
-        ),
-        AudioBeacon(
-            name = "Mallet Slow",
-        ),
-        AudioBeacon(
-            name = "Mallet Very Slow",
-        ),
-        AudioBeacon(
-            name = "New",
-        ),
-        AudioBeacon(
-            name = "Ping",
-        ),
-        AudioBeacon(
-            name = "Route",
-        ),
-        AudioBeacon(
-            name = "Shimmer",
-        ),
-        AudioBeacon(
-            name = "Signal",
-        ),
-        AudioBeacon(
-            name = "Signal Slow",
-        ),
-        AudioBeacon(
-            name = "Signal Very Slow",
-        ),
-        AudioBeacon(
-            name = "Tactile"
-        )
-    )
+    //the list of live data
+    var beaconTypes = mutableListOf<String>()
+    private var beacon : Long = 0
+
+    //initialize the viewmodel
+    init {
+        viewModelScope.launch {
+            val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
+            for (type in audioEngineBeaconTypes) {
+                beaconTypes.add(type)
+            }
+        }
+    }
+
+    fun setAudioBeaconType(type: String) {
+        audioEngine.setBeaconType(type)
+        if(beacon != 0L)
+            audioEngine.destroyBeacon(beacon)
+        beacon = audioEngine.createBeacon(0.0, 0.0)
+    }
+
+    fun silenceBeacon() {
+        if(beacon != 0L)
+            audioEngine.destroyBeacon(beacon)
+    }
 }
-@Composable
-fun AudioBeacons(onNavigate: (String) -> Unit) {
 
-    val beacons = getAllAudioBeacons()
+
+@Composable
+fun AudioBeacons(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
+
+    var viewModel : AudioBeaconsViewModel? = null
+    if(mockData == null)
+        viewModel = hiltViewModel<AudioBeaconsViewModel>()
+
+    var beacons : List<String> = emptyList()
+    if(viewModel == null) {
+        // Preview operation
+        if(mockData != null)
+            beacons = mockData.names
+    }
+    else {
+        // Regular operation
+        beacons = viewModel.beaconTypes
+    }
+
     var selected by remember { mutableStateOf(false) }
 
     val currentName = if (selected) "Do some stuff here in the datastore manager" else null
-
-    val context = LocalContext.current
-    val notAvailableText = "This is not implemented yet."
-    val notAvailableToast = {
-        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
-    }
-
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
@@ -157,16 +150,15 @@ fun AudioBeacons(onNavigate: (String) -> Unit) {
                 ) {
                     items(beacons) { beacon ->
                         AudioBeaconItem(
-                            beacon.name,
-                            beacon.name == currentName
+                            beacon,
+                            beacon == currentName
                         ) {
-                            notAvailableToast()
-
                             selected = true
                             // change the audio beacon
+                            viewModel?.setAudioBeaconType(beacon)
                             Log.d(
                                 "AudioBeacon",
-                                "Audio beacon category changed to ${beacon.name}"
+                                "Audio beacon category changed to $beacon"
                             )
                         }
                     }
@@ -181,6 +173,7 @@ fun AudioBeacons(onNavigate: (String) -> Unit) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
+                                viewModel?.silenceBeacon()
                                 onNavigate(Screens.Terms.route)
                             },
                             modifier = Modifier.fillMaxWidth()
@@ -236,9 +229,27 @@ fun AudioBeaconItem(text: String, isSelected: Boolean, onSelect: () -> Unit) {
     )
 }
 
+// Data used by preview
+data object MockHearingPreviewData {
+    val names = listOf(
+        "Classic",
+        "New",
+        "Tactile",
+        "Flare",
+        "Shimmer",
+        "Ping",
+        "Drop",
+        "Signal",
+        "Signal Slow",
+        "Signal Very Slow",
+        "Mallet",
+        "Mallet Slow",
+        "Mallet Very Slow"
+    )
+}
 
 @Preview
 @Composable
 fun IntroductionAudioBeaconPreview() {
-    AudioBeacons(onNavigate = {})
+    AudioBeacons(onNavigate = {}, MockHearingPreviewData)
 }
