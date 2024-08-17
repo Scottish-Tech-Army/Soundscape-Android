@@ -40,7 +40,7 @@ annotation class DevicePreviews
 @DevicePreviews
 annotation class CustomPreviews
 
-class PreviewTest {
+class AudioBeaconsPreviewTestClass {
     @CustomPreviews
     @Composable
     fun AudioBeaconsPreviewTest() {
@@ -48,7 +48,9 @@ class PreviewTest {
             IntroductionAudioBeaconPreview()
         }
     }
+}
 
+class FinishPreviewTestClass {
     @CustomPreviews
     @Composable
     fun FinishPreviewTest() {
@@ -56,7 +58,9 @@ class PreviewTest {
             Finish()
         }
     }
+}
 
+class HearingPreviewTestClass {
     @CustomPreviews
     @Composable
     fun HearingPreviewTest() {
@@ -64,7 +68,9 @@ class PreviewTest {
             HearingPreview()
         }
     }
+}
 
+class LanguagePreviewTestClass {
     @CustomPreviews
     @Composable
     fun LanguagePreviewTest() {
@@ -72,7 +78,9 @@ class PreviewTest {
             LanguagePreview()
         }
     }
+}
 
+class ListeningPreviewTestClass {
     @CustomPreviews
     @Composable
     fun ListeningPreviewTest() {
@@ -80,7 +88,9 @@ class PreviewTest {
             ListeningPreview()
         }
     }
+}
 
+class WelcomePreviewTestClass {
     @CustomPreviews
     @Composable
     fun WelcomePreviewTest() {
@@ -88,7 +98,9 @@ class PreviewTest {
             PreviewWelcome()
         }
     }
+}
 
+class HomePreviewTestClass {
     @CustomPreviews
     @Composable
     fun HomePreviewTest() {

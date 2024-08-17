@@ -30,13 +30,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      - name: Generate screenshots
+        run : ./gradlew  updateDebugScreenshotTest
+
+      - name: Copy screenshots into docs directory and generate HTML
+        run : |
+          cp -r ./app/src/debug/screenshotTest/reference/org/scottishtecharmy/soundscape/* ./docs
+          cd ./docs
+          ./image.sh
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./docs
           destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
