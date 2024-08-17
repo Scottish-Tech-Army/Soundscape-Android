@@ -13,7 +13,7 @@ lifecycleService = "2.8.2"
 lifecycleServiceVersion = "2.8.0"
 appcompat = "1.7.0"
 coreKtxVersion = "1.6.1"
-screenshot = "0.0.1-alpha01"
+screenshot = "0.0.1-alpha03"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
