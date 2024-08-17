@@ -15,3 +15,4 @@ See the document [here](actions.md) to learn about the GitHub actions used and h
 * [Audio API](audio-API.md)
 * [Framework choices](framework.md)
 * [Pathway to product](pathway-to-product.md)
+* [Screenshots](screenshots.md)
