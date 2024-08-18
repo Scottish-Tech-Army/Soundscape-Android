@@ -68,9 +68,9 @@ fun getXYTile(
  * @return  A MutableList of VectorTiles covering the searched region
  */
 fun getTilesForRegion(
-    currentLatitude: Double,
-    currentLongitude: Double,
-    radius: Double,
+    currentLatitude: Double = 0.0,
+    currentLongitude: Double = 0.0,
+    radius: Double = 250.0,
     zoom: Int = 16
 ): MutableList<VectorTile> {
 

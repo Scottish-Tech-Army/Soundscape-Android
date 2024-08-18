@@ -336,7 +336,7 @@ class SoundscapeService : Service() {
 
     suspend fun getTileGrid(application: Application): MutableList<TileData>{
         //TODO Original Soundscape appears to have a 3 x 3 grid of tiles with the current location being the central tile
-        val tileGridQuadKeys = getTilesForRegion(_locationFlow.value!!.latitude, _locationFlow.value!!.longitude, 250.0)
+        val tileGridQuadKeys = getTilesForRegion(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, 250.0)
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         okhttpClientInstance = OkhttpClientInstance(application)
