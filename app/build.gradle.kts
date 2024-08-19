@@ -107,6 +107,8 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation(libs.core.ktx)
+    implementation(libs.androidx.benchmark.common)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
 
 
     testImplementation("junit:junit:4.13.2")

@@ -40,9 +40,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.components.OnboardButton
@@ -54,19 +58,20 @@ import javax.inject.Inject
 @HiltViewModel
 class AudioBeaconsViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
 
-    //the list of live data
-    var beaconTypes = mutableListOf<String>()
+    data class AudioBeaconsUiState(
+        // Data for the ViewMode that affects the UI
+        var beaconTypes : List<String> = emptyList()
+    )
     private var beacon : Long = 0
 
-    //initialize the viewmodel
-    init {
-        viewModelScope.launch {
-            val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
-            for (type in audioEngineBeaconTypes) {
-                beaconTypes.add(type)
-            }
+    val state: StateFlow<AudioBeaconsUiState> = flow {
+        val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
+        val beaconTypes = mutableListOf<String>()
+        for (type in audioEngineBeaconTypes) {
+            beaconTypes.add(type)
         }
-    }
+        emit(AudioBeaconsUiState(beaconTypes = beaconTypes))
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AudioBeaconsUiState())
 
     fun setAudioBeaconType(type: String) {
         audioEngine.setBeaconType(type)
@@ -97,7 +102,8 @@ fun AudioBeacons(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData
     }
     else {
         // Regular operation
-        beacons = viewModel.beaconTypes
+        val uiState: AudioBeaconsViewModel.AudioBeaconsUiState by viewModel.state.collectAsStateWithLifecycle()
+        beacons = uiState.beaconTypes
     }
 
     var selected by remember { mutableStateOf(false) }
