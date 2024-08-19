@@ -34,9 +34,33 @@
     <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
     <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
 
+    <string name="first_launch_beacon_title">Choose an Audio Beacon</string>
+    <string name="first_launch_beacon_message_1">When navigating with Soundscape, you will hear the audio beacon in the direction of your destination. By following its sound, you will always know which way to go.</string>
+    <string name="first_launch_beacon_message_2">Listen to the available audio beacons and select your preference.</string>
+    <string name="first_launch_beacon_message_3">This can be changed later in app settings.</string>
+
     <string name="general_alert_yes">Yes</string>
     <string name="general_alert_no">No</string>
     <string name="ui_continue">Continue</string>
+
+
+    <string name="beacon_styles_current">Current</string>
+    <string name="beacon_styles_original">Original</string>
+
+    <string name="beacon_styles_drop">Drop</string>
+    <string name="beacon_styles_flare">Flare</string>
+    <string name="beacon_styles_mallet">Mallet</string>
+    <string name="beacon_styles_mallet_slow">Mallet (Slow)</string>
+    <string name="beacon_styles_mallet_very_slow">Mallet (Very Slow)</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_shimmer">Shimmer</string>
+    <string name="beacon_styles_signal">Signal</string>
+    <string name="beacon_styles_signal_slow">Signal (Slow)</string>
+    <string name="beacon_styles_signal_very_slow">Signal (Very Slow)</string>
+    <string name="beacon_styles_tactile">Tactile</string>
+
+    <string name="beacon_styles_haptic_wand">Haptic Wand</string>
+    <string name="beacon_styles_haptic_pulse">Haptic Pulse</string>
 
     <!-- TODO these strings aren't translated, either translate them or remove them -->>
     <string name="notification_text" translatable="false">We are running this location service in the foreground</string>

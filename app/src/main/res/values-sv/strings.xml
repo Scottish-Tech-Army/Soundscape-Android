@@ -26,9 +26,31 @@
     <string name="general_error_location_services_authorize_title">Auktorisera Platstjänster</string>
     <string name="general_error_location_services_authorize_description">Soundscape använder din plats för att hitta och berätta om platser och saker som finns runt omkring dig. Appen behöver behörighet att använda Platstjänster.</string>
 
+    <string name="first_launch_beacon_title">Välj en ljudfyr</string>
+    <string name="first_launch_beacon_message_1">När du navigerar med Soundscape hör du ljudfyren från målets riktning. Genom att följa ljudet vet du alltid vart du ska gå.</string>
+    <string name="first_launch_beacon_message_2">Lyssna på de olika ljudfyrarna och välj den du vill ha.</string>
+    <string name="first_launch_beacon_message_3">Du kan ändra detta senare i appens inställningar.</string>
+
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nej</string>
     <string name="ui_continue">Fortsätt</string>
+
+
+    <string name="beacon_styles_current">Aktuell</string>
+    <string name="beacon_styles_original">Original</string>
+    <string name="beacon_styles_flare">Bloss</string>
+    <string name="beacon_styles_shimmer">Skimmer</string>
+    <string name="beacon_styles_tactile">Taktil</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Droppe</string>
+    <string name="beacon_styles_signal">Signal</string>
+    <string name="beacon_styles_signal_slow">Signal (långsam)</string>
+    <string name="beacon_styles_signal_very_slow">Signal (mycket långsam)</string>
+    <string name="beacon_styles_mallet">Klubba</string>
+    <string name="beacon_styles_mallet_slow">Klubba (långsam)</string>
+    <string name="beacon_styles_mallet_very_slow">Klubba (mycket långsam)</string>
+    <string name="beacon_styles_haptic_wand">Haptiskt spö</string>
+    <string name="beacon_styles_haptic_pulse">Haptisk puls</string>
 
 
 </resources>

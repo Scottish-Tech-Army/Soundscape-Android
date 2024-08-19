@@ -26,9 +26,31 @@
     <string name="general_error_location_services_authorize_title">Locatievoorzieningen autoriseren</string>
     <string name="general_error_location_services_authorize_description">Soundscape gebruikt uw locatie om plaatsen en dingen om u heen te vinden en deze te beschrijven. De app heeft uw toestemming nodig om Locatievoorzieningen te gebruiken.</string>
 
+    <string name="first_launch_beacon_title">Een audiobaken kiezen</string>
+    <string name="first_launch_beacon_message_1">Wanneer u navigeert met Soundscape, hoort u het audiobaken in de richting van uw bestemming. Als u het geluid volgt, weet u altijd in welke richting u moet lopen.</string>
+    <string name="first_launch_beacon_message_2">Luister naar de beschikbare audiobakens en selecteer uw voorkeur.</string>
+    <string name="first_launch_beacon_message_3">Dit kan later worden gewijzigd in de app-instellingen.</string>
+
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nee</string>
     <string name="ui_continue">Doorgaan</string>
+
+
+    <string name="beacon_styles_current">Huidig</string>
+    <string name="beacon_styles_original">Oorspronkelijk</string>
+    <string name="beacon_styles_flare">Flits</string>
+    <string name="beacon_styles_shimmer">Glinstering</string>
+    <string name="beacon_styles_tactile">Tactiel</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Vallen</string>
+    <string name="beacon_styles_signal">Signaal</string>
+    <string name="beacon_styles_signal_slow">Signaal (traag)</string>
+    <string name="beacon_styles_signal_very_slow">Signaal (zeer traag)</string>
+    <string name="beacon_styles_mallet">Hamer</string>
+    <string name="beacon_styles_mallet_slow">Hamer (traag)</string>
+    <string name="beacon_styles_mallet_very_slow">Hamer (heel traag)</string>
+    <string name="beacon_styles_haptic_wand">Haptische aanwijzer</string>
+    <string name="beacon_styles_haptic_pulse">Haptische pulsering</string>
 
 
 </resources>

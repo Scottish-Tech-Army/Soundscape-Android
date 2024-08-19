@@ -26,8 +26,32 @@
     <string name="general_error_location_services_authorize_title">Εξουσιοδότηση υπηρεσιών τοποθεσίας</string>
     <string name="general_error_location_services_authorize_description">Το Soundscape χρησιμοποιεί την τοποθεσία σας για να βρει και να σας ενημερώσει για τα μέρη και τα πράγματα γύρω σας. Η εφαρμογή χρειάζεται την άδειά σας για να χρησιμοποιήσει τις Υπηρεσίες τοποθεσίας.</string>
 
+    <string name="first_launch_beacon_title">Επιλέξτε ηχητικό σήμα</string>
+    <string name="first_launch_beacon_message_1">Όταν περιηγείστε με το Soundscape, θα ακούτε το ηχητικό σήμα προς την κατεύθυνση του προορισμού σας. Ακολουθώντας τον ήχο του, θα γνωρίζετε πάντα προς τα που να κατευθυνθείτε.</string>
+    <string name="first_launch_beacon_message_2">Ακούστε τα διαθέσιμα ηχητικά σήματα και επιλέξτε την προτίμησή σας.</string>
+    <string name="first_launch_beacon_message_3">Αυτό μπορεί να αλλάξει αργότερα στις ρυθμίσεις της εφαρμογής.</string>
+
     <string name="general_alert_yes">Ναι</string>
     <string name="general_alert_no">Όχι</string>
     <string name="ui_continue">Συνέχεια</string>
+
+
+    <string name="beacon_styles_current">Τρέχον</string>
+    <string name="beacon_styles_original">Αρχικός</string>
+    <string name="beacon_styles_flare">Φωτοβολίδα</string>
+    <string name="beacon_styles_shimmer">Λαμπύρισμα</string>
+    <string name="beacon_styles_tactile">Χτύπημα με το δάκτυλο</string>
+    <string name="beacon_styles_ping">Καμπανάκι</string>
+    <string name="beacon_styles_drop">Σταγόνα</string>
+    <string name="beacon_styles_signal">Σήμα</string>
+    <string name="beacon_styles_signal_slow">Σήμα (Αργό)</string>
+    <string name="beacon_styles_signal_very_slow">Σήμα (Πολύ αργό)</string>
+    <string name="beacon_styles_mallet">Μπαγκέτα</string>
+    <string name="beacon_styles_mallet_slow">Μπαγκέτα (Αργό)</string>
+    <string name="beacon_styles_mallet_very_slow">Μπαγκέτα (Πολύ αργό)</string>
+    <string name="beacon_styles_haptic_wand">Απτικό ραβδί</string>
+    <string name="beacon_styles_haptic_pulse">Απτικός παλμός</string>
+
+
 
 </resources>

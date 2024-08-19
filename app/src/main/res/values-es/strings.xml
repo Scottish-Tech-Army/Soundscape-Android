@@ -26,8 +26,30 @@
     <string name="general_error_location_services_authorize_title">Autorizar Servicios de localización</string>
     <string name="general_error_location_services_authorize_description">Soundscape usa su ubicación para encontrar los lugares y elementos de su entorno e informarle de ellos. La aplicación necesita su permiso para usar Servicios de localización.</string>
 
+    <string name="first_launch_beacon_title">Elegir una señal de audio</string>
+    <string name="first_launch_beacon_message_1">Al navegar con Soundscape, oirá la señal de audio en la dirección de su destino. Siguiendo su sonido, siempre sabrá qué camino tomar.</string>
+    <string name="first_launch_beacon_message_2">Escuche las señales de audio disponibles y seleccione su preferencia.</string>
+    <string name="first_launch_beacon_message_3">Esto se puede cambiar más adelante en la configuración de la aplicación.</string>
+
     <string name="general_alert_yes">Sí</string>
     <string name="general_alert_no">No</string>
     <string name="ui_continue">Continuar</string>
+
+
+    <string name="beacon_styles_current">Actual</string>
+    <string name="beacon_styles_original">Original</string>
+    <string name="beacon_styles_flare">Bengala</string>
+    <string name="beacon_styles_shimmer">Centelleo</string>
+    <string name="beacon_styles_tactile">Táctil</string>
+    <string name="beacon_styles_ping">Silbido</string>
+    <string name="beacon_styles_drop">Caída</string>
+    <string name="beacon_styles_signal">Señal</string>
+    <string name="beacon_styles_signal_slow">Señal (lenta)</string>
+    <string name="beacon_styles_signal_very_slow">Señal (muy lenta)</string>
+    <string name="beacon_styles_mallet">Percutor</string>
+    <string name="beacon_styles_mallet_slow">Percutor (lento)</string>
+    <string name="beacon_styles_mallet_very_slow">Percutor (muy lento)</string>
+    <string name="beacon_styles_haptic_wand">Varita háptica</string>
+    <string name="beacon_styles_haptic_pulse">Pulso háptico</string>
 
 </resources>
