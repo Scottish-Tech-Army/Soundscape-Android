@@ -4,13 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import okhttp3.Cache
 import okhttp3.CacheControl
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
+// import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
@@ -58,9 +55,9 @@ class OkhttpClientInstance(val application: Application) {
         // Add the modified request to the chain.
         chain.proceed(request)
     }
-        .addInterceptor(HttpLoggingInterceptor().apply {
+        /*.addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
-        })
+        })*/
         .build()
 
     val retrofitInstance : Retrofit?
