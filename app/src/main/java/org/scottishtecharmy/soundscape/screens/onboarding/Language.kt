@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,18 +20,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.components.Language
 import org.scottishtecharmy.soundscape.components.LanguageSelectionBox
 import org.scottishtecharmy.soundscape.components.OnboardButton
+import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconsViewModel.AudioBeaconsUiState
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import javax.inject.Inject
 
 @HiltViewModel
 class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
+
+    data class LanguageUiState(
+        // Data for the ViewMode that affects the UI
+        var supportedLanguages : List<Language> = emptyList()
+    )
 
     private fun addIfSpeechSupports(allLanguages: MutableList<Language>, language: Language) {
         // TODO: The idea here is to add the language only if it's supported by the text to speech
@@ -45,7 +58,7 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
 //        }
     }
 
-    fun getAllLanguages(): List<Language> {
+    private fun getAllLanguages(): List<Language> {
         val allLanguages = mutableListOf<Language>()
 
         addIfSpeechSupports(allLanguages, Language("Dansk", "da"))
@@ -65,6 +78,10 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         return allLanguages
     }
 
+    val state: StateFlow<LanguageUiState> = flow {
+        emit(LanguageUiState(supportedLanguages = getAllLanguages()))
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LanguageUiState())
+
     fun updateSpeechLanguage(): Boolean {
         val languageCode = AppCompatDelegate.getApplicationLocales().toLanguageTags()
         return audioEngine.setSpeechLanguage(languageCode)
@@ -75,8 +92,15 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
 fun Language(onNavigate: (String) -> Unit, mockData : MockLanguagePreviewData?){
 
     var viewModel : LanguageViewModel? = null
-    if(mockData == null)
+    val supportedLanguages : List<Language>
+    if(mockData != null) {
+        supportedLanguages = mockData.languages
+    }
+    else {
         viewModel = hiltViewModel<LanguageViewModel>()
+        val uiState: LanguageViewModel.LanguageUiState by viewModel.state.collectAsStateWithLifecycle()
+        supportedLanguages = uiState.supportedLanguages
+    }
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography){
@@ -102,16 +126,7 @@ fun Language(onNavigate: (String) -> Unit, mockData : MockLanguagePreviewData?){
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                if(viewModel == null) {
-                    // For preview
-                    if(mockData != null) {
-                        LanguageSelectionBox(mockData.languages)
-                    }
-                }
-                else {
-                    // For regular operation
-                    LanguageSelectionBox(viewModel.getAllLanguages())
-                }
+                LanguageSelectionBox(supportedLanguages)
 
                 Spacer(modifier = Modifier.height(40.dp))
 

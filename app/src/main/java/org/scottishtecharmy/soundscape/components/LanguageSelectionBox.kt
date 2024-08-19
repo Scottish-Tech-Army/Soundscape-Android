@@ -78,15 +78,8 @@ fun LanguageSelectionBoxItem(language: Language){
     )
 }
 
-// An attempt was made here to mock the list of languages to preview LanguageSelectionBox
-// But it didn't work :-(
-class LanguageSelectionMock : PreviewParameterProvider< List<Language> > {
-    override val values = listOf(LanguageViewModel(NativeAudioEngine()).getAllLanguages()).asSequence()
-}
-
-@Preview
 @Composable
-fun LanguageSelectionBox(@PreviewParameter(LanguageSelectionMock::class) allLanguages: List<Language>){
+fun LanguageSelectionBox(allLanguages: List<Language>){
     LazyColumn(modifier = Modifier
         .clip(RoundedCornerShape(5.dp))
         .fillMaxWidth()
