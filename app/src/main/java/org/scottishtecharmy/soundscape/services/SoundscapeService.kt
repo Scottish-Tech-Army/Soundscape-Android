@@ -27,6 +27,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
@@ -53,11 +54,13 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
+import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles, data persistence with realmDB.
  */
+@AndroidEntryPoint
 class SoundscapeService : Service() {
     private val binder = LocalBinder()
 
@@ -74,7 +77,7 @@ class SoundscapeService : Service() {
     private var timerJob: Job? = null
 
     // Audio engine
-    private val audioEngine = NativeAudioEngine()
+    @Inject lateinit var audioEngine: NativeAudioEngine
     private var audioBeacon: Long = 0
 
     // Flow to return beacon location
@@ -146,13 +149,6 @@ class SoundscapeService : Service() {
             onSuccess = { },
             onFailure = { },
         )
-
-
-        // Start secondary service
-        //startServiceRunningTicker()
-
-        // Start audio engine
-        audioEngine.initialize(applicationContext)
     }
 
     override fun onDestroy() {
