@@ -26,10 +26,32 @@
     <string name="general_error_location_services_authorize_title">Godkjenn stedstjenester</string>
     <string name="general_error_location_services_authorize_description">Soundscape bruker posisjonen din til å finne og fortelle deg om stedene og tingene rundt deg. Appen trenger din tillatelse for å bruke stedstjenester.</string>
 
+    <string name="first_launch_beacon_title">Velg et lydsignal</string>
+    <string name="first_launch_beacon_message_1">Når du navigerer med Soundscape, hører du lydsignalet i retningen til destinasjonen din. Ved å følge lyden vet du alltid hvilken vei du skal gå.</string>
+    <string name="first_launch_beacon_message_2">Lytt til tilgjengelige lydsignaler og velg det du foretrekker.</string>
+    <string name="first_launch_beacon_message_3">Dette kan endres senere i appinnstillingene.</string>
+
 
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nei</string>
     <string name="ui_continue">Fortsett</string>
+
+
+    <string name="beacon_styles_current">Nåværende</string>
+    <string name="beacon_styles_original">Original</string>
+    <string name="beacon_styles_flare">Lysglimt</string>
+    <string name="beacon_styles_shimmer">Glitter</string>
+    <string name="beacon_styles_tactile">Taktil</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Slipp</string>
+    <string name="beacon_styles_signal">Signal</string>
+    <string name="beacon_styles_signal_slow">Signal (langsomt)</string>
+    <string name="beacon_styles_signal_very_slow">Signal (svært langsomt)</string>
+    <string name="beacon_styles_mallet">Hammer</string>
+    <string name="beacon_styles_mallet_slow">Hammer (langsom)</string>
+    <string name="beacon_styles_mallet_very_slow">Hammer (svært langsom)</string>
+    <string name="beacon_styles_haptic_wand">Haptisk penn</string>
+    <string name="beacon_styles_haptic_pulse">Haptisk puls</string>
 
 
 

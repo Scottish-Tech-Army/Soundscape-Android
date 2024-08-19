@@ -26,8 +26,30 @@
     <string name="general_error_location_services_authorize_title">Autorizar Serviços de Localização</string>
     <string name="general_error_location_services_authorize_description">O Soundscape usa sua localização para encontrar e mostrar os locais e coisas ao seu redor. O aplicativo precisa da sua permissão para usar os Serviços de localização.</string>
 
+    <string name="first_launch_beacon_title">Escolher um Sinalizador Sonoro</string>
+    <string name="first_launch_beacon_message_1">Ao navegar com o Soundscape, você ouvirá o sinalizador sonoro na direção do seu destino. Ao acompanhar o som, você sempre saberá para onde ir.</string>
+    <string name="first_launch_beacon_message_2">Ouça os sinalizadores sonoros disponíveis e selecione sua preferência.</string>
+    <string name="first_launch_beacon_message_3">Isso poderá ser alterado posteriormente nos ajustes do aplicativo.</string>
+
     <string name="general_alert_yes">Sim</string>
     <string name="general_alert_no">Não</string>
     <string name="ui_continue">Continuar</string>
+
+
+    <string name="beacon_styles_current">Atual</string>
+    <string name="beacon_styles_original">Original</string>
+    <string name="beacon_styles_flare">Chama</string>
+    <string name="beacon_styles_shimmer">Cintilação</string>
+    <string name="beacon_styles_tactile">Tátil</string>
+    <string name="beacon_styles_ping">Zunido</string>
+    <string name="beacon_styles_drop">Queda</string>
+    <string name="beacon_styles_signal">Sinal</string>
+    <string name="beacon_styles_signal_slow">Sinal (Lento)</string>
+    <string name="beacon_styles_signal_very_slow">Sinal (Muito Lento)</string>
+    <string name="beacon_styles_mallet">Marreta</string>
+    <string name="beacon_styles_mallet_slow">Marreta (Lento)</string>
+    <string name="beacon_styles_mallet_very_slow">Marreta (Muito Lento)</string>
+    <string name="beacon_styles_haptic_wand">Varinha Háptica</string>
+    <string name="beacon_styles_haptic_pulse">Pulso Háptico</string>
 
 </resources>

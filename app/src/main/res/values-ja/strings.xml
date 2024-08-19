@@ -26,9 +26,31 @@
     <string name="general_error_location_services_authorize_title">位置情報サービスの使用を許可してください</string>
     <string name="general_error_location_services_authorize_description">Soundscape は位置情報を使用して、周辺の場所などに関する情報を提供します。このアプリは、位置情報サービスを使用するため、ユーザーの許可が必要です。</string>
 
+    <string name="first_launch_beacon_title">音声ビーコンを選択</string>
+    <string name="first_launch_beacon_message_1">移動の際に Soundscape を使用すると、目的地の方向から音声ビーコンが聞こえます。音声に向かって進めばよいので、進む方向を常に把握できます。</string>
+    <string name="first_launch_beacon_message_2">使用できる音声ビーコンを聞いて、お好きなものを選択してください。</string>
+    <string name="first_launch_beacon_message_3">この設定は、後からアプリの設定で変更できます。</string>
+
     <string name="general_alert_yes">はい</string>
     <string name="general_alert_no">いいえ</string>
     <string name="ui_continue">続行</string>
+
+
+    <string name="beacon_styles_current">最新</string>
+    <string name="beacon_styles_original">オリジナル</string>
+    <string name="beacon_styles_flare">フレア</string>
+    <string name="beacon_styles_shimmer">シマー</string>
+    <string name="beacon_styles_tactile">タクティル</string>
+    <string name="beacon_styles_ping">ピング</string>
+    <string name="beacon_styles_drop">ドロップ</string>
+    <string name="beacon_styles_signal">シグナル</string>
+    <string name="beacon_styles_signal_slow">シグナル (遅い)</string>
+    <string name="beacon_styles_signal_very_slow">シグナル (非常に遅い)</string>
+    <string name="beacon_styles_mallet">マレット</string>
+    <string name="beacon_styles_mallet_slow">マレット (遅い)</string>
+    <string name="beacon_styles_mallet_very_slow">マレット (非常に遅い)</string>
+    <string name="beacon_styles_haptic_wand">触覚ワンド</string>
+    <string name="beacon_styles_haptic_pulse">触覚パルス</string>
 
 
 </resources>

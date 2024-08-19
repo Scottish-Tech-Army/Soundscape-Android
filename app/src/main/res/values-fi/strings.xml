@@ -26,9 +26,31 @@
     <string name="general_error_location_services_authorize_title">Salli sijaintipalvelut</string>
     <string name="general_error_location_services_authorize_description">Soundscape käyttää sijaintiasi löytääkseen paikkoja ja asioita ympäriltäsi ja kertoakseen niistä sinulle. Tämä sovellus tarvitsee luvan sijaintipalveluiden käyttöön.</string>
 
+    <string name="first_launch_beacon_title">Äänimajakan valitseminen</string>
+    <string name="first_launch_beacon_message_1">Kun suunnistat Soundscapen avulla, kuulet äänimajakan siitä suunnasta, jossa määränpääsi on. Seuraamalla sen ääntä tiedät, mihin päin kulkea.</string>
+    <string name="first_launch_beacon_message_2">Kuuntele saatavilla olevia äänimajakoita ja valitse haluamasi.</string>
+    <string name="first_launch_beacon_message_3">Tämä voidaan muuttaa myöhemmin sovelluksen asetuksissa.</string>
+
     <string name="general_alert_yes">Kyllä</string>
     <string name="general_alert_no">Ei</string>
     <string name="ui_continue">Jatka</string>
+
+
+    <string name="beacon_styles_current">Nykyinen</string>
+    <string name="beacon_styles_original">Alkuperäinen</string>
+    <string name="beacon_styles_flare">Leimahdus</string>
+    <string name="beacon_styles_shimmer">Hehku</string>
+    <string name="beacon_styles_tactile">Kosketus</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Pudotus</string>
+    <string name="beacon_styles_signal">Signaali</string>
+    <string name="beacon_styles_signal_slow">Signaali (hidas)</string>
+    <string name="beacon_styles_signal_very_slow">Signaali (erittäin hidas)</string>
+    <string name="beacon_styles_mallet">Nuija</string>
+    <string name="beacon_styles_mallet_slow">Nuija (hidas)</string>
+    <string name="beacon_styles_mallet_very_slow">Nuija (erittäin hidas)</string>
+    <string name="beacon_styles_haptic_wand">Värinäsauva</string>
+    <string name="beacon_styles_haptic_pulse">Toistuva värinä</string>
 
 
 </resources>

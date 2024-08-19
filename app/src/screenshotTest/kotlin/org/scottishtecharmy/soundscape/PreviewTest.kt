@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.Home
 import org.scottishtecharmy.soundscape.screens.onboarding.Finish
 import org.scottishtecharmy.soundscape.screens.onboarding.HearingPreview
-import org.scottishtecharmy.soundscape.screens.onboarding.IntroductionAudioBeaconPreview
+import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.LanguagePreview
 import org.scottishtecharmy.soundscape.screens.onboarding.ListeningPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.PreviewWelcome
@@ -45,7 +45,7 @@ class AudioBeaconsPreviewTestClass {
     @Composable
     fun AudioBeaconsPreviewTest() {
         SoundscapeTheme {
-            IntroductionAudioBeaconPreview()
+            AudioBeaconPreview()
         }
     }
 }

@@ -123,25 +123,25 @@ fun AudioBeacons(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData
             ) {
                 // TODO translations
                 Text(
-                    text = "Choose an Audio Beacon",
+                    text = stringResource(R.string.first_launch_beacon_title),
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = "When navigating with Soundscape, you will hear the audio beacon in the direction of your destination. By following its sound, you will always know which way to go.",
+                    text = stringResource(R.string.first_launch_beacon_message_1),
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = "Listen to the available audio beacons and select your preference.",
+                    text = stringResource(R.string.first_launch_beacon_message_2),
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = "This can be changed later in app settings.",
+                    text = stringResource(R.string.first_launch_beacon_message_3),
                     style = MaterialTheme.typography.headlineMedium,
                     textAlign = TextAlign.Center
                 )
@@ -256,6 +256,6 @@ data object MockHearingPreviewData {
 
 @Preview
 @Composable
-fun IntroductionAudioBeaconPreview() {
+fun AudioBeaconPreview() {
     AudioBeacons(onNavigate = {}, MockHearingPreviewData)
 }

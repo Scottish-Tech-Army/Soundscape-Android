@@ -26,9 +26,31 @@
     <string name="general_error_location_services_authorize_title">Autoriser les services de localisation</string>
     <string name="general_error_location_services_authorize_description">Soundscape utilise votre localisation pour rechercher et vous indiquer les lieux et les choses qui vous entourent. L’application nécessite votre autorisation pour utiliser les services de localisation.</string>
 
+    <string name="first_launch_beacon_title">Choisir une balise audio</string>
+    <string name="first_launch_beacon_message_1">Lorsque vous vous vous déplacez avec Soundscape, une balise audio se déclenche dans la direction de votre destination. Grâce à ce son, vous saurez toujours quelle direction prendre.</string>
+    <string name="first_launch_beacon_message_2">Écoutez les balises audio disponibles et sélectionnez celle de votre choix.</string>
+    <string name="first_launch_beacon_message_3">Vous pourrez en changer ultérieurement dans les paramètres de l’application.</string>
+
     <string name="general_alert_yes">Oui</string>
     <string name="general_alert_no">Non</string>
     <string name="ui_continue">Continuer</string>
+
+
+    <string name="beacon_styles_current">Actuelle</string>
+    <string name="beacon_styles_original">Original</string>
+    <string name="beacon_styles_flare">Signal lumineux</string>
+    <string name="beacon_styles_shimmer">Miroitement</string>
+    <string name="beacon_styles_tactile">Tactile</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Chute</string>
+    <string name="beacon_styles_signal">Signal</string>
+    <string name="beacon_styles_signal_slow">Signal (lent)</string>
+    <string name="beacon_styles_signal_very_slow">Signal (très lent)</string>
+    <string name="beacon_styles_mallet">Maillet</string>
+    <string name="beacon_styles_mallet_slow">Maillet (lent)</string>
+    <string name="beacon_styles_mallet_very_slow">Maillet (très lent)</string>
+    <string name="beacon_styles_haptic_wand">Baguette haptique</string>
+    <string name="beacon_styles_haptic_pulse">Pulsation haptique</string>
 
 
 
