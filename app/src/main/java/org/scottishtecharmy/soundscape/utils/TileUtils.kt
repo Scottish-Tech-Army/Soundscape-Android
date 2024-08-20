@@ -14,10 +14,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import com.squareup.moshi.Moshi
+import java.lang.Math.toDegrees
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.asinh
+import kotlin.math.atan
 import kotlin.math.floor
+import kotlin.math.sinh
 import kotlin.math.tan
 
 //TODO getFovIntersectionFeatureCollection, getFovRoadsFeatureCollection and getFovPoiFeatureCollection can be rolled into one as just repeating the same thing
@@ -54,6 +57,47 @@ fun getXYTile(
         ytile = (1 shl zoom) - 1
     }
     return Pair(xtile, ytile)
+}
+
+/**
+ * Gets map coordinates from X and Y GPS coordinates. This is the same calculation as above
+ * but returns normalised x and y values scaled between 0 and 1.0. These are what are required
+ * by the mapcompose library to set markers/positions.
+ * @param lat
+ * Latitude in decimal degrees.
+ * @param lon
+ * Longitude in decimal degrees.
+ * @return a Pair(x, y).
+ */
+fun getNormalizedFromGpsMapCoordinates(
+    lat: Double,
+    lon: Double
+): Pair<Double, Double> {
+
+    val latRad = toRadians(lat)
+    var x = (lon + 180.0) / 360.0
+    var y = (1.0 - asinh(tan(latRad)) / PI) / 2
+
+    // Keep result within bounds
+    x = minOf(1.0, maxOf(0.0, x))
+    y = minOf(1.0, maxOf(0.0, y))
+
+    return Pair(x, y)
+}
+
+fun getGpsFromNormalizedMapCoordinates(
+    x: Double,
+    y: Double
+): Pair<Double, Double> {
+
+//    val latRad = toRadians(lat)
+//    var x = (lon + 180.0) / 360.0
+//    var y = (1.0 - asinh(tan(latRad)) / PI) / 2
+
+    val latitude = toDegrees(atan(sinh((1.0 - (2 * y)) * PI)))
+    val longitude = (360.0 * x) - 180.0
+
+    return Pair(latitude, longitude)
 }
 
 /**

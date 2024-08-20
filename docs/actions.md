@@ -27,6 +27,10 @@ Authenticate for talking to the Firebase servers is done using [google-github-ac
 The `run-test.yaml` action bumps the version number, committing the change back into the repo. The repo has branch protection enabled which requires a pull request for any commits. We pass in a token as described [here](https://github.com/stefanzweifel/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches) to allow the pull request to be bypassed:
 * PAT_TOKEN - token generated on an admin account which allows write access to public repos.
 
+### OSM rendered tile API key
+The code is currently hard coded to use [https://www.thunderforest.com/](Thunderforest) to provide the rendered mapping tiles. This requires an API key which for developers is stored in `local.properties` as `tileProviderApiKey`, and for the GitHub actions is
+* TILE_PROVIDER_API_KEY - API key from Thunderforest
+
 ## Actions
 `run-tests.yaml` is the action which is run on each Pull Request. It runs several layers of tests:    
 * Lint of the repo

@@ -28,6 +28,8 @@ import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
+import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -564,4 +566,29 @@ class TileUtilsTest {
         Assert.assertEquals("Weston Road", nearestIntersectionRoadNames.features[0].properties!!["name"])
     }
 
+    private fun roundtripGpsLocation(latitude: Double, longitude: Double) {
+        val normalized = getNormalizedFromGpsMapCoordinates(latitude, longitude)
+        val gps = getGpsFromNormalizedMapCoordinates(normalized.first, normalized.second)
+        Assert.assertEquals(gps.first, latitude, 0.0000000001)
+        Assert.assertEquals(gps.second, longitude, 0.0000000001)
+    }
+    @Test
+    fun testNormalizingLocation() {
+        // Roundtrip some GPS locations
+        val latitude = -3.1970584
+        val longitude = 55.9412409
+        val normalized = getNormalizedFromGpsMapCoordinates(latitude, longitude)
+        Assert.assertEquals(normalized.first, 0.6553923358333333, 0.0000000001)
+        Assert.assertEquals(normalized.second, 0.5088853297949566, 0.0000000001)
+        val gps = getGpsFromNormalizedMapCoordinates(normalized.first, normalized.second)
+        Assert.assertEquals(gps.first, latitude, 0.0000001)
+        Assert.assertEquals(gps.second, longitude, 0.0000001)
+
+        roundtripGpsLocation(-41.5870134, 162.8204719)      // Christchurch
+        roundtripGpsLocation(64.511925, -165.5752794)       // Nome
+        roundtripGpsLocation(0.0, -179.0)
+        roundtripGpsLocation(0.0, 179.0)
+        roundtripGpsLocation(85.0, -179.0)                  // The projection breaks above 85 degrees
+        roundtripGpsLocation(-85.0, 179.0)
+    }
 }

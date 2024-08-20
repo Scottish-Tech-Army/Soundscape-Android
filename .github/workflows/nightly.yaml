@@ -48,6 +48,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup tile provider API key
+        env:
+          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
+        run: |
+          echo tileProviderApiKey=$TILE_PROVIDER_API_KEY > local.properties
+
       - name: Decode Google services
         env:
           ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
