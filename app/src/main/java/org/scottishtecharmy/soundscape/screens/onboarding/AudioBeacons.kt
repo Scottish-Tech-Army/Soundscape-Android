@@ -241,8 +241,8 @@ fun AudioBeaconItem(text: String, isSelected: Boolean, onSelect: () -> Unit) {
 // Data used by preview
 data object MockHearingPreviewData {
     val names = listOf(
-        "Classic",
-        "New",
+        "Original",
+        "Current",
         "Tactile",
         "Flare",
         "Shimmer",
