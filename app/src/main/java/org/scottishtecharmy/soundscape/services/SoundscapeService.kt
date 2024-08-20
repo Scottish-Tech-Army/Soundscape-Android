@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.services
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Application
 import android.app.Service
@@ -8,12 +9,14 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.location.Location
 import android.os.Binder
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import com.google.android.gms.location.DeviceOrientation
@@ -55,11 +58,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.time.Duration.Companion.seconds
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles, data persistence with realmDB.
  */
+@Singleton
 @AndroidEntryPoint
 class SoundscapeService : Service() {
     private val binder = LocalBinder()
@@ -101,7 +106,7 @@ class SoundscapeService : Service() {
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
 
-
+    private var running : Boolean = false
 
     // Binder to allow local clients to Bind to our service
     inner class LocalBinder : Binder() {
@@ -114,15 +119,14 @@ class SoundscapeService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand")
+        Log.d(TAG, "onStartCommand $running")
 
-        startAsForegroundService()
-        startLocationUpdates()
-
-        // test
-        startOrientationUpdates()
-
-
+        if(!running) {
+            running = true
+            startAsForegroundService()
+            startLocationUpdates()
+            startOrientationUpdates()
+        }
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -131,24 +135,24 @@ class SoundscapeService : Service() {
         super.onCreate()
         Log.d(TAG, "onCreate")
 
-        //Toast.makeText(this, "Foreground Service created", Toast.LENGTH_SHORT).show()
+        if(!running) {
+            // Set up the location updates using the FusedLocationProviderClient but doesn't start them
+            setupLocationUpdates()
 
-        // Set up the location updates using the FusedLocationProviderClient but doesn't start them
-        setupLocationUpdates()
+            // Start the orientation updates using the FusedOrientationProviderClient - test
+            startOrientationUpdates()
 
-        // Start the orientation updates using the FusedOrientationProviderClient - test
-        startOrientationUpdates()
+            // create new RealmDB or open existing
+            startRealm()
 
-        // create new RealmDB or open existing
-        startRealm()
-
-        // Activity Recognition
-        // test
-        activityTransition = ActivityTransition(applicationContext)
-        activityTransition.startVehicleActivityTracking(
-            onSuccess = { },
-            onFailure = { },
-        )
+            // Activity Recognition
+            // test
+            activityTransition = ActivityTransition(applicationContext)
+            activityTransition.startVehicleActivityTracking(
+                onSuccess = { },
+                onFailure = { },
+            )
+        }
     }
 
     override fun onDestroy() {
@@ -201,6 +205,21 @@ class SoundscapeService : Service() {
      */
     private fun setupLocationUpdates() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED) {
+            // Faster startup for obtaining initial location
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    // Handle the retrieved location here
+                    if (location != null) {
+                        _locationFlow.value = location
+                    }
+                }
+                .addOnFailureListener { _: Exception ->
+                }
+        }
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
@@ -421,8 +440,17 @@ class SoundscapeService : Service() {
         _beaconFlow.value = LngLatAlt(longitude, latitude)
     }
 
+    fun destroyBeacon() {
+        if(audioBeacon != 0L) {
+            audioEngine.destroyBeacon(audioBeacon)
+            audioBeacon = 0L
+        }
+        // Report any change in beacon back to application
+        _beaconFlow.value = LngLatAlt(0.0,0.0)
+    }
+
     companion object {
-        private const val TAG = "LocationService"
+        private const val TAG = "SoundscapeService"
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every n seconds

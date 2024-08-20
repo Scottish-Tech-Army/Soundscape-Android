@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -32,6 +35,19 @@ android {
         targetSdk = 35
         versionCode = 36
         versionName = "0.0.35"
+
+        // Retrieve the tile provider API from local.properties. This is not under version control
+        // and must be configured by each developer locally. GitHb actions fill in local.properties
+        // from a secret.
+        var tileProviderApiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        try {
+            val localProperties = Properties()
+            localProperties.load(FileInputStream(rootProject.file("local.properties")))
+            tileProviderApiKey = localProperties["tileProviderApiKey"].toString()
+        } catch (e: Exception) {
+            println("Failed to load local.properties for TILE_PROVIDER_API_KEY: $e")
+        }
+        buildConfigField("String", "TILE_PROVIDER_API_KEY", "\"${tileProviderApiKey}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
         buildConfigField("String", "FMOD_LIB", "\"fmod\"")
@@ -174,6 +190,9 @@ dependencies {
 
     // GPX parser
     implementation (libs.android.gpx.parser)
+
+    // Open Street Map compose library
+    implementation (libs.mapcompose)
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)

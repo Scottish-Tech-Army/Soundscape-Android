@@ -1,13 +1,10 @@
 package org.scottishtecharmy.soundscape
 
 import android.Manifest
-import android.content.ComponentName
 import android.content.Intent
-import android.content.ServiceConnection
-import android.location.Location
+import android.net.http.HttpResponseCache
 import android.os.Build
 import android.os.Bundle
-import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
@@ -18,56 +15,36 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.lifecycleScope
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
 
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.scottishtecharmy.soundscape.screens.Home
+import java.io.File
+import java.io.IOException
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var dataStoreManager: DataStoreManager
+    @Inject
+    lateinit var soundscapeServiceConnection : SoundscapeServiceConnection
 
-    private var soundscapeService: SoundscapeService? = null
+    data class DeviceLocation(
+        var latitude : Double,
+        var longitude : Double,
+        var orientation : Double,
+    )
 
-    private var serviceBoundState by mutableStateOf(false)
-    private var displayableLocation by mutableStateOf<String?>(null)
-    private var displayableOrientation by mutableStateOf<String?>(null)
+    private var currentDeviceLocation by mutableStateOf<DeviceLocation?>(null)
     private var displayableTileString by mutableStateOf<String?>(null)
 
-    private var location by mutableStateOf<Location?>(null)
+    //private var location by mutableStateOf<Location?>(null)
     //private var tileXY by mutableStateOf<Pair<Int, Int>?>(null)
-
-    // needed to communicate with the service.
-    private val connection = object : ServiceConnection {
-
-        override fun onServiceConnected(className: ComponentName, service: IBinder) {
-
-            val binder = service as SoundscapeService.LocalBinder
-            soundscapeService = binder.getService()
-            serviceBoundState = true
-
-            onServiceConnected()
-        }
-
-        override fun onServiceDisconnected(arg0: ComponentName) {
-            // This is called when the connection with the service has been disconnected. Clean up.
-            Log.d(TAG, "onServiceDisconnected")
-
-            serviceBoundState = false
-            soundscapeService = null
-        }
-    }
 
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =
@@ -107,7 +84,10 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        installSplashScreen()
+        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            installSplashScreen()
+        }
 
         if(isFirstLaunch) {
             // On the first launch, we want to take the user through the OnboardingActivity so
@@ -121,6 +101,19 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // Install HTTP cache this caches all of the UI tiles (at least?)
+        try {
+            val httpCacheDir = File(applicationContext.cacheDir, "http")
+            val httpCacheSize = (100 * 1024 * 1024).toLong() // 100 MiB
+            HttpResponseCache.install(httpCacheDir, httpCacheSize)
+        } catch (e: IOException) {
+            Log.i("Injection", "HTTP response cache installation failed:$e")
+        }
+
+        Log.d(TAG, "Do we ever get here to check permissions?")
+        checkAndRequestNotificationPermissions()
+        Log.d(TAG, "Do we try to bind to Soundscape service?")
+        soundscapeServiceConnection.tryToBindToServiceIfRunning()
         setContent {
             SoundscapeTheme {
                 Home()
@@ -128,18 +121,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkAndRequestNotificationPermissions()
-
-        tryToBindToServiceIfRunning()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        // If this was the first launch
-        if(serviceBoundState) {
-            unbindService(connection)
-            serviceBoundState = false
-        }
     }
 
     /**
@@ -189,7 +170,7 @@ class MainActivity : AppCompatActivity() {
 
     fun stopServiceAndExit() {
         // service is already running, stop it
-        soundscapeService?.stopForegroundService()
+        soundscapeServiceConnection.stopServiceAndExit()
         // And exit application
         finishAndRemoveTask()
     }
@@ -202,49 +183,7 @@ class MainActivity : AppCompatActivity() {
     private fun startSoundscapeService() {
         // start the service
         startForegroundService(Intent(this, SoundscapeService::class.java))
-
-        // bind to the service to update UI
-        tryToBindToServiceIfRunning()
     }
-
-    private fun tryToBindToServiceIfRunning() {
-        Intent(this, SoundscapeService::class.java).also { intent ->
-            bindService(intent, connection, 0)
-        }
-    }
-
-    private fun onServiceConnected() {
-
-        lifecycleScope.launch {
-            // observe location updates from the service
-            soundscapeService?.locationFlow?.map {
-                it?.let { location ->
-                    "Latitude: ${location.latitude}, Longitude: ${location.longitude} Accuracy: ${location.accuracy}"
-                }
-            }?.collectLatest {
-                displayableLocation = it
-            }
-        }
-
-        lifecycleScope.launch {
-            soundscapeService?.orientationFlow?.map {
-                it?.let {
-                    orientation ->
-                    "Device orientation: ${orientation.headingDegrees}"
-                }
-            }?.collect {
-                displayableOrientation = it
-            }
-        }
-
-        lifecycleScope.launch {
-            delay(10000)
-            val test = soundscapeService?.getTileGrid(application)
-
-            println("Number of tiles in grid: ${test?.size}")
-        }
-    }
-
     companion object {
         private const val TAG = "MainActivity"
     }
