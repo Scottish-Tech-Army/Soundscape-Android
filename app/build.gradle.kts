@@ -28,8 +28,8 @@ android {
 
     defaultConfig {
         applicationId = "org.scottishtecharmy.soundscape"
-        minSdk = 31
-        targetSdk = 34
+        minSdk = 30
+        targetSdk = 35
         versionCode = 35
         versionName = "0.0.34"
 
@@ -95,85 +95,85 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
 
-    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.play.services.location)
 
     implementation(libs.androidx.lifecycle.service)
     implementation(libs.androidx.appcompat)
-    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.core.ktx)
     implementation(libs.androidx.benchmark.common)
     implementation(libs.androidx.lifecycle.runtime.compose.android)
 
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
-    testImplementation ("org.jetbrains.kotlin:kotlin-test-junit:1.9.10")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation (libs.kotlin.test.junit)
+    testImplementation(libs.junit.jupiter)
 
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(libs.androidx.junit.v121)
+    androidTestImplementation(libs.androidx.espresso.core.v351)
+    androidTestImplementation(platform(libs.androidx.compose.bom.v20230800))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 
     // Viewmodel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.3")
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp.v500alpha3)
     // logging interceptor
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation (libs.logging.interceptor)
 
     // Retrofit with Scalar Converter
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation(libs.converter.scalars)
 
     // Location permissions
-    implementation("com.google.android.gms:play-services-location:21.2.0")
-    implementation("com.google.accompanist:accompanist-permissions:0.33.2-alpha")
+    implementation(libs.play.services.location.v2120)
+    implementation(libs.accompanist.permissions)
 
     // GeoJSON parsing
-    implementation("com.squareup.moshi:moshi:1.15.1")
+    implementation(libs.moshi)
     //kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
+    ksp(libs.moshi.kotlin.codegen)
 
     // Dependency injection
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    implementation("com.google.dagger:hilt-android:2.50")
-    ksp("com.google.dagger:hilt-compiler:2.50")
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 
 
     // LiveData
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation(libs.androidx.runtime.livedata)
 
     // Realm for Kotlin
-    implementation("io.realm.kotlin:library-base:1.16.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    implementation(libs.library.base)
+    implementation(libs.kotlinx.coroutines.core)
 
     // Datastore for onboarding and settings
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("androidx.datastore:datastore:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore)
 
     // Audio engine
     implementation(files("libs/fmod.jar"))
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-crashlytics")
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
 
     // GPX parser
-    implementation ("com.github.ticofab:android-gpx-parser:2.3.1")
+    implementation (libs.android.gpx.parser)
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)

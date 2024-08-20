@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="SplashTheme.Soundscape" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground">#604696</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_skyscrapers</item>
         <item name="postSplashScreenTheme">@style/Theme.SoundscapeAlpha</item>
     </style>
 </resources>
