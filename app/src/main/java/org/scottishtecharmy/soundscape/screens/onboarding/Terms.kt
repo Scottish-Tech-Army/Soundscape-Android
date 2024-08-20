@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -57,9 +59,10 @@ fun Terms(onNavigate: (String) -> Unit) {
         MaterialTheme(typography = IntroTypography) {
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 50.dp)
+                    .padding(horizontal = 20.dp, vertical = 30.dp)
                     .fillMaxWidth()
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
@@ -108,7 +111,7 @@ fun Terms(onNavigate: (String) -> Unit) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 60.dp)
+                        .padding(top = 30.dp)
                 ) {
                     if (checkedState.value){
                         OnboardButton(
@@ -148,6 +151,7 @@ fun TermsItem(text: String) {
 
 
 
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
 fun TermsPreview() {

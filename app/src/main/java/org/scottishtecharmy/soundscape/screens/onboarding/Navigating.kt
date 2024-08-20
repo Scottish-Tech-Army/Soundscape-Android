@@ -55,9 +55,10 @@ fun Navigating(onNavigate: (String) -> Unit) {
 
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 30.dp, vertical = 100.dp)
+                    .padding(horizontal = 30.dp, vertical = 30.dp)
                     .fillMaxWidth()
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             )
@@ -78,7 +79,6 @@ fun Navigating(onNavigate: (String) -> Unit) {
                 Column(
                     modifier = Modifier
                         .clip(RoundedCornerShape(5.dp))
-                        .verticalScroll(rememberScrollState())
                         .fillMaxWidth()
                         .height(200.dp)
                         .background(Color.Black.copy(alpha = 0.4f))
@@ -167,7 +167,7 @@ fun Navigating(onNavigate: (String) -> Unit) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(150.dp))
+                Spacer(modifier = Modifier.height(30.dp))
 
                 Column(modifier = Modifier.padding(horizontal = 20.dp)) {
                     OnboardButton(
@@ -185,6 +185,7 @@ fun Navigating(onNavigate: (String) -> Unit) {
     }
 }
 
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
 fun NavigatingPreview() {
