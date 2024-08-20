@@ -129,8 +129,9 @@ class MainActivity : AppCompatActivity() {
                 Home()
             }
         }
-
+        Log.d(TAG, "Do we ever get here to check permissions?")
         checkAndRequestNotificationPermissions()
+        Log.d(TAG, "Do we try to bind to Soundscape service?")
         tryToBindToServiceIfRunning()
     }
 
@@ -162,7 +163,10 @@ class MainActivity : AppCompatActivity() {
                     return
                 }
             }
+        }else{
+            checkAndRequestLocationPermissions()
         }
+
     }
     private fun checkAndRequestLocationPermissions() {
         when (ContextCompat.checkSelfPermission(
@@ -174,23 +178,13 @@ class MainActivity : AppCompatActivity() {
                 startSoundscapeService()
             }
             else -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    locationPermissionRequest.launch(
-                        arrayOf(
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_BACKGROUND_LOCATION
-                        )
+                locationPermissionRequest.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
                     )
-                }
-                else {
-                    locationPermissionRequest.launch(
-                        arrayOf(
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                        )
-                    )
-                }
+                )
             }
         }
     }
