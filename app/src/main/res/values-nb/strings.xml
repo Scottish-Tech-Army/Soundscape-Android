@@ -35,6 +35,12 @@
     <string name="first_launch_prompt_message">Du er klar for din første tur med Soundscape. Hvis du vil prøve det nå, velger du en destinasjon i nærheten og starter lydsignalet. Du hører da signalet i retningen til destinasjonen din.</string>
     <string name="first_launch_prompt_button">Fullfør</string>
 
+    <string name="menu_devices">Hodetelefoner med hodesporing</string>
+    <string name="menu_help_and_tutorials">Hjelp og veiledninger</string>
+    <string name="menu_send_feedback">Send tilbakemelding</string>
+    <string name="menu_rate">Vurder</string>
+    <string name="share_title">Del</string>
+
 
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nei</string>

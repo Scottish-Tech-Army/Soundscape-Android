@@ -35,6 +35,12 @@
     <string name="first_launch_prompt_message">Sei pronto per la tua prima passeggiata con Soundscape. Per provarlo ora, basta scegliere una destinazione vicina e avviare l\'audiofaro che potrai ascoltare nella direzione della tua destinazione.</string>
     <string name="first_launch_prompt_button">Fine</string>
 
+    <string name="menu_devices">Auricolari con tracciamento della testa</string>
+    <string name="menu_help_and_tutorials">Guida e tutorial</string>
+    <string name="menu_send_feedback">Invia feedback</string>
+    <string name="menu_rate">Valuta</string>
+    <string name="share_title">Condividi</string>
+
     <string name="general_alert_yes">Sì</string>
     <string name="general_alert_no">No</string>
     <string name="ui_continue">Continua</string>

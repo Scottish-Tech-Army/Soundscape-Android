@@ -30,7 +30,7 @@
     <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
     <!-- TODO these strings aren't translated yet -->>
     <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string>
-    <!--    Original iOS Soundscape doesn't have translations strings for Background location permission -->
+    <!--    Original iOS Soundscape doesn't have translation strings for Background location permission -->
     <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
     <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
 
@@ -43,8 +43,16 @@
     <string name="first_launch_prompt_message">You are ready for your first walk with Soundscape. To try it now, just choose a nearby destination, start the audio beacon, and you’ll hear it in the direction of your destination.</string>
     <string name="first_launch_prompt_button">Finish</string>
 
+    <string name="menu_devices">Head Tracking Headphones</string>
+    <string name="menu_help_and_tutorials">Help &amp; Tutorials</string>
+    <string name="menu_send_feedback">Send Feedback</string>
+    <string name="menu_rate">Rate</string>
+    <string name="share_title">Share</string>
+
     <string name="general_alert_yes">Yes</string>
     <string name="general_alert_no">No</string>
+    <!-- Weirdly, original iOS Soundscape doesn't seem to have translation strings for "Settings" -->
+    <string name="general_alert_settings" translatable="false">Settings</string>
     <string name="ui_continue">Continue</string>
 
 

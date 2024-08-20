@@ -35,6 +35,12 @@
     <string name="first_launch_prompt_message">Vous êtes prêt pour votre première promenade avec Soundscape. Essayez-le maintenant en choisissant une destination proche, démarrez la balise auidio et vous l’entendrez dans la direction de votre destination.</string>
     <string name="first_launch_prompt_button">Arrivée</string>
 
+    <string name="menu_devices">Casque avec l’option Head Tracking</string>
+    <string name="menu_help_and_tutorials">Aide et didacticiels</string>
+    <string name="menu_send_feedback">Envoyer des commentaires</string>
+    <string name="menu_rate">Évaluer</string>
+    <string name="share_title">Partager</string>
+
     <string name="general_alert_yes">Oui</string>
     <string name="general_alert_no">Non</string>
     <string name="ui_continue">Continuer</string>
