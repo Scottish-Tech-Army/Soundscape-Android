@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.Done
@@ -115,9 +117,10 @@ fun AudioBeacons(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData
             Column(
                 modifier = Modifier
                     .padding(horizontal = 30.dp)
-                    .padding(top = 60.dp)
+                    .padding(top = 30.dp)
                     .fillMaxWidth()
-                    .fillMaxHeight(),
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
@@ -254,6 +257,7 @@ data object MockHearingPreviewData {
     )
 }
 
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
 fun AudioBeaconPreview() {
