@@ -14,7 +14,7 @@ namespace soundscape {
 const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 {
         {
-                "Classic",
+                "Original",
                 2,
                 {
                         {"file:///android_asset/Classic/Classic_OnAxis.wav", 22.5},
@@ -22,7 +22,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
         },
         {
-                "New",
+                "Current",
                 6,
                 {
                         {"file:///android_asset/New/Current_A+.wav", 15.0},
