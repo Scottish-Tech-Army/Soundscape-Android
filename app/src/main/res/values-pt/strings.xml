@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">Ouça os sinalizadores sonoros disponíveis e selecione sua preferência.</string>
     <string name="first_launch_beacon_message_3">Isso poderá ser alterado posteriormente nos ajustes do aplicativo.</string>
 
+    <string name="first_launch_prompt_title">Tudo pronto!</string>
+    <string name="first_launch_prompt_message">Você está pronto(a) para sua primeira caminhada com o Soundscape. Para experimentá-lo agora, bastará escolher um destino próximo, iniciar o sinalizador sonoro e você o ouvirá na direção de seu destino.</string>
+    <string name="first_launch_prompt_button">Concluir</string>
+
     <string name="general_alert_yes">Sim</string>
     <string name="general_alert_no">Não</string>
     <string name="ui_continue">Continuar</string>

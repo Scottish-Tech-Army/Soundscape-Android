@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">Ακούστε τα διαθέσιμα ηχητικά σήματα και επιλέξτε την προτίμησή σας.</string>
     <string name="first_launch_beacon_message_3">Αυτό μπορεί να αλλάξει αργότερα στις ρυθμίσεις της εφαρμογής.</string>
 
+    <string name="first_launch_prompt_title">Είστε έτοιμοι!</string>
+    <string name="first_launch_prompt_message">Είστε έτοιμοι για την επόμενη βόλτα με το Soundscape. Για να το δοκιμάσετε τώρα, απλά επιλέξτε έναν κοντινό προορισμό, ξεκινήστε το ηχητικό σήμα και θα το ακούσετε προς την κατεύθυνση του προορισμού σας.</string>
+    <string name="first_launch_prompt_button">Τέλος</string>
+
     <string name="general_alert_yes">Ναι</string>
     <string name="general_alert_no">Όχι</string>
     <string name="ui_continue">Συνέχεια</string>

@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">Lyt til de tilgængelige lydfyr, og vælg dine præferencer.</string>
     <string name="first_launch_beacon_message_3">Du kan ændre dette senere i appens indstillinger.</string>
 
+    <string name="first_launch_prompt_title">Så er du klar.</string>
+    <string name="first_launch_prompt_message">Du er klar til din første gåtur med Soundscape. Du skal blot vælge en destination i nærheden, starte lydfyret, og du vil høre det i retningen af din destination.</string>
+    <string name="first_launch_prompt_button">Afslut</string>
+
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nej</string>
     <string name="ui_continue">Fortsæt</string>

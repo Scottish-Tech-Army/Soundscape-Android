@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">使用できる音声ビーコンを聞いて、お好きなものを選択してください。</string>
     <string name="first_launch_beacon_message_3">この設定は、後からアプリの設定で変更できます。</string>
 
+    <string name="first_launch_prompt_title">設定が完了しました。</string>
+    <string name="first_launch_prompt_message">これで Soundscape を持って出かける準備ができました。試してみるには、近くの目的地を選択して、音声ビーコンを開始します。これで、目的地の方向からビーコンが聞こえます。</string>
+    <string name="first_launch_prompt_button">完了</string>
+
     <string name="general_alert_yes">はい</string>
     <string name="general_alert_no">いいえ</string>
     <string name="ui_continue">続行</string>

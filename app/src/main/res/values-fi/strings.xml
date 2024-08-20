@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">Kuuntele saatavilla olevia äänimajakoita ja valitse haluamasi.</string>
     <string name="first_launch_beacon_message_3">Tämä voidaan muuttaa myöhemmin sovelluksen asetuksissa.</string>
 
+    <string name="first_launch_prompt_title">Kaikki on valmista.</string>
+    <string name="first_launch_prompt_message">Olet valmis ensimmäiselle kävelyllesi Soundscapen kanssa. Jos haluat kokeilla sitä nyt, sinun tarvitsee vain valita sijainti lähelläsi ja käynnistää äänimajakka niin kuulet sen määränpääsi suunnalta.</string>
+    <string name="first_launch_prompt_button">Valmis</string>
+
     <string name="general_alert_yes">Kyllä</string>
     <string name="general_alert_no">Ei</string>
     <string name="ui_continue">Jatka</string>
