@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -61,7 +62,7 @@ fun Finish() {
                     modifier = Modifier.padding(horizontal = 50.dp)
                 ) {
                     Text(
-                        text = "You\'re all set!",
+                        text = stringResource(R.string.first_launch_prompt_title),
                         style = MaterialTheme.typography.titleLarge,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
@@ -70,7 +71,7 @@ fun Finish() {
                     Spacer(modifier = Modifier.height(30.dp))
 
                     Text(
-                        text = "You are ready for your first walk with Soundscape. To try it now, just choose a nearby destination, start the audio beacon, and you’ll hear it in the direction of your destination.",
+                        text = stringResource(R.string.first_launch_prompt_message),
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
@@ -79,7 +80,7 @@ fun Finish() {
                     Spacer(modifier = Modifier.height(50.dp))
 
                     OnboardButton(
-                        text = "Finish",
+                        text = stringResource(R.string.first_launch_prompt_button),
                         onClick = {
                             // Tell our OnboardingActivity that we have completed onboarding
                             (context.getActivity() as OnboardingActivity).onboardingComplete()

@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">Escuche las señales de audio disponibles y seleccione su preferencia.</string>
     <string name="first_launch_beacon_message_3">Esto se puede cambiar más adelante en la configuración de la aplicación.</string>
 
+    <string name="first_launch_prompt_title">Todo listo.</string>
+    <string name="first_launch_prompt_message">Está listo para su primer paseo con Soundscape. Para probarlo ahora, simplemente elija un destino cercano, inicie la señal de audio y lo escuchará en la dirección de su destino.</string>
+    <string name="first_launch_prompt_button">Finalizar</string>
+
     <string name="general_alert_yes">Sí</string>
     <string name="general_alert_no">No</string>
     <string name="ui_continue">Continuar</string>

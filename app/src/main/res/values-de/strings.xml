@@ -31,6 +31,10 @@
     <string name="first_launch_beacon_message_2">Hören Sie sich die verfügbaren Audiobeacons an, und wählen Sie Ihre bevorzugte Option aus.</string>
     <string name="first_launch_beacon_message_3">Dies können Sie später in den App-Einstellungen ändern.</string>
 
+    <string name="first_launch_prompt_title">Bereit!</string>
+    <string name="first_launch_prompt_message">Sie sind bereit für Ihren ersten Spaziergang mit Soundscape. Um gleich loszulegen, wählen Sie einfach ein nahe gelegenes Ziel aus, und starten Sie das Audiobeacon. Sie werden es aus der Richtung Ihres Ziels hören.</string>
+    <string name="first_launch_prompt_button">Endpunkt</string>
+
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nein</string>
     <string name="ui_continue">Weiter</string>
