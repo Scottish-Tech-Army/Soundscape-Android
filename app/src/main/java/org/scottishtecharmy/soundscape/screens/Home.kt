@@ -137,32 +137,33 @@ fun DrawerContent(
         }
         DrawerMenuItem(
             onClick = { notAvailableToast() },
-            label = "Head Tracking Headphones",
+            label = stringResource(R.string.menu_devices),
             icon = Icons.Rounded.Headset
         )
         DrawerMenuItem(
             onClick = { notAvailableToast() },
-            label ="Settings",
+            // Weirdly, original iOS Soundscape doesn't seem to have translation strings for "Settings"
+            label = stringResource(R.string.general_alert_settings),
             icon = Icons.Rounded.Settings
         )
         DrawerMenuItem(
             onClick = { notAvailableToast() },
-            label = "Help & Tutorials",
+            label = stringResource(R.string.menu_help_and_tutorials),
             Icons.AutoMirrored.Rounded.HelpOutline
         )
         DrawerMenuItem(
             onClick = { notAvailableToast() },
-            label = "Send Feedback",
+            label = stringResource(R.string.menu_send_feedback),
             icon = Icons.Rounded.MailOutline
         )
         DrawerMenuItem(
             onClick = { notAvailableToast() },
-            label = "Rate",
+            label = stringResource(R.string.menu_rate),
             icon = Icons.Rounded.Star
         )
         DrawerMenuItem(
             onClick = { notAvailableToast() },
-            label = "Share",
+            label = stringResource(R.string.share_title),
             icon = Icons.Rounded.IosShare
         )
     }

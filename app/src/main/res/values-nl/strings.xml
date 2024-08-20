@@ -35,6 +35,12 @@
     <string name="first_launch_prompt_message">U bent klaar voor uw eerste wandeling met Soundscape. Als u het nu wilt proberen, kiest u een bestemming in de buurt en start u het audiobaken. U hoort het dan in de richting van uw bestemming.</string>
     <string name="first_launch_prompt_button">Voltooien</string>
 
+    <string name="menu_devices">Head tracking-koptelefoon</string>
+    <string name="menu_help_and_tutorials">Help en zelfstudies</string>
+    <string name="menu_send_feedback">Feedback verzenden</string>
+    <string name="menu_rate">Beoordelen</string>
+    <string name="share_title">Delen</string>
+
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nee</string>
     <string name="ui_continue">Doorgaan</string>

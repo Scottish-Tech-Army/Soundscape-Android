@@ -35,6 +35,12 @@
     <string name="first_launch_prompt_message">Olet valmis ensimmäiselle kävelyllesi Soundscapen kanssa. Jos haluat kokeilla sitä nyt, sinun tarvitsee vain valita sijainti lähelläsi ja käynnistää äänimajakka niin kuulet sen määränpääsi suunnalta.</string>
     <string name="first_launch_prompt_button">Valmis</string>
 
+    <string name="menu_devices">Päätä seuraavat kuulokkeet</string>
+    <string name="menu_help_and_tutorials">Ohje ja opetusohjelmat</string>
+    <string name="menu_send_feedback">Lähetä palautetta</string>
+    <string name="menu_rate">Arvostele</string>
+    <string name="share_title">Jaa</string>
+
     <string name="general_alert_yes">Kyllä</string>
     <string name="general_alert_no">Ei</string>
     <string name="ui_continue">Jatka</string>
