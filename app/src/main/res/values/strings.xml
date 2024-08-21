@@ -43,6 +43,9 @@
     <string name="first_launch_prompt_message">You are ready for your first walk with Soundscape. To try it now, just choose a nearby destination, start the audio beacon, and you’ll hear it in the direction of your destination.</string>
     <string name="first_launch_prompt_button">Finish</string>
 
+    <string name="terms_of_use_title">Terms of Use</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Accept Terms of Use</string>
+
     <string name="menu_devices">Head Tracking Headphones</string>
     <string name="menu_help_and_tutorials">Help &amp; Tutorials</string>
     <string name="menu_send_feedback">Send Feedback</string>

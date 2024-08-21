@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">Está listo para su primer paseo con Soundscape. Para probarlo ahora, simplemente elija un destino cercano, inicie la señal de audio y lo escuchará en la dirección de su destino.</string>
     <string name="first_launch_prompt_button">Finalizar</string>
 
+    <string name="terms_of_use_title">Términos de uso</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Aceptar las condiciones de uso</string>
+
     <string name="menu_devices">Auriculares con seguimiento de cabeza</string>
     <string name="menu_help_and_tutorials">Ayuda y tutoriales</string>
     <string name="menu_send_feedback">Enviar comentarios</string>

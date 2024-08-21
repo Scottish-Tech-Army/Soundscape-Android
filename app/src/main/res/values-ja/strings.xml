@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">これで Soundscape を持って出かける準備ができました。試してみるには、近くの目的地を選択して、音声ビーコンを開始します。これで、目的地の方向からビーコンが聞こえます。</string>
     <string name="first_launch_prompt_button">完了</string>
 
+    <string name="terms_of_use_title">使用条件</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">使用条件に同意する</string>
+
     <string name="menu_devices">ヘッド トラッキング機能搭載ヘッドホン</string>
     <string name="menu_help_and_tutorials">ヘルプとチュートリアル</string>
     <string name="menu_send_feedback">フィードバックを送る</string>

@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">Du är nu förberedd för din första promenad med Soundscape. Du testar appen genom att välja ett mål i närheten och starta ljudfyren. Då hör du vilken riktning målet finns i.</string>
     <string name="first_launch_prompt_button">Slutför</string>
 
+    <string name="terms_of_use_title">Användningsvillkor</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Godkänn användningsvillkoren</string>
+
     <string name="menu_devices">Hörlurar med huvudspårning</string>
     <string name="menu_help_and_tutorials">Hjälp och självstudier</string>
     <string name="menu_send_feedback">Skicka feedback</string>
