@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">Você está pronto(a) para sua primeira caminhada com o Soundscape. Para experimentá-lo agora, bastará escolher um destino próximo, iniciar o sinalizador sonoro e você o ouvirá na direção de seu destino.</string>
     <string name="first_launch_prompt_button">Concluir</string>
 
+    <string name="terms_of_use_title">Termos de Uso</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Aceitar Termos de Uso</string>
+
     <string name="menu_devices">Fones de Ouvido Head Tracking</string>
     <string name="menu_help_and_tutorials">Ajuda e Tutoriais</string>
     <string name="menu_send_feedback">Enviar Comentários</string>

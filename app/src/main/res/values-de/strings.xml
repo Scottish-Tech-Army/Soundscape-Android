@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">Sie sind bereit für Ihren ersten Spaziergang mit Soundscape. Um gleich loszulegen, wählen Sie einfach ein nahe gelegenes Ziel aus, und starten Sie das Audiobeacon. Sie werden es aus der Richtung Ihres Ziels hören.</string>
     <string name="first_launch_prompt_button">Endpunkt</string>
 
+    <string name="terms_of_use_title">Nutzungsbedingungen</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Nutzungsbedingungen akzeptieren</string>
+
     <string name="menu_devices">Head Tracking-Kopfhörer</string>
     <string name="menu_help_and_tutorials">Hilfe und Tutorials</string>
     <string name="menu_send_feedback">Feedback senden</string>

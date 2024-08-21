@@ -67,7 +67,7 @@ fun Terms(onNavigate: (String) -> Unit) {
                 verticalArrangement = Arrangement.Top
             ) {
                 Text(
-                    text = "Terms of Use",
+                    text = stringResource(R.string.terms_of_use_title),
                     style = MaterialTheme.typography.titleLarge,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
@@ -103,7 +103,7 @@ fun Terms(onNavigate: (String) -> Unit) {
                     )
                     Text(
                         modifier = Modifier.clickable { checkedState.value = !checkedState.value },
-                        text = "Accept Terms of Use",
+                        text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

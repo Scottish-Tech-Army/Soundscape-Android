@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">Du er klar til din første gåtur med Soundscape. Du skal blot vælge en destination i nærheden, starte lydfyret, og du vil høre det i retningen af din destination.</string>
     <string name="first_launch_prompt_button">Afslut</string>
 
+    <string name="terms_of_use_title">Vilkår for anvendelse</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Acceptér vilkår for anvendelse</string>
+
     <string name="menu_devices">Hovedsporingshovedtelefoner</string>
     <string name="menu_help_and_tutorials">Hjælp og selvstudier</string>
     <string name="menu_send_feedback">Send feedback</string>

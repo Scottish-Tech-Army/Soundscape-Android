@@ -35,6 +35,9 @@
     <string name="first_launch_prompt_message">Είστε έτοιμοι για την επόμενη βόλτα με το Soundscape. Για να το δοκιμάσετε τώρα, απλά επιλέξτε έναν κοντινό προορισμό, ξεκινήστε το ηχητικό σήμα και θα το ακούσετε προς την κατεύθυνση του προορισμού σας.</string>
     <string name="first_launch_prompt_button">Τέλος</string>
 
+    <string name="terms_of_use_title">Όροι Χρήσης</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Αποδοχή Όρων Χρήσης</string>
+
     <string name="menu_devices">Ακουστικά Head Tracking</string>
     <string name="menu_help_and_tutorials">Βοήθεια και εκπαιδευτικά βοηθήματα</string>
     <string name="menu_send_feedback">Αποστολή σχολίων</string>
