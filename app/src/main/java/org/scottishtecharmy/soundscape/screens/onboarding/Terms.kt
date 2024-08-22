@@ -41,16 +41,18 @@ data class Terms(
     val name: String
 )
 
+@Composable
 fun getAllTerms(): List<Terms> {
     return listOf(
         Terms(
-            name = "Your use of Soundscape is subject to the terms set out below (together, the \"Terms of Use\")"
+            name = stringResource(R.string.terms_of_use_message)
         ),
         Terms(
-            name="You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\n\nSafety Notice\n\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape programme is captured from a third-party programme, and therefore, there may be limitations with the accuracy of the information presented."
+            name = stringResource(R.string.terms_of_use_medical_safety_disclaimer)
         )
     )
 }
+
 @Composable
 fun Terms(onNavigate: (String) -> Unit) {
     val terms = getAllTerms()

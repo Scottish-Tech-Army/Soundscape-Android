@@ -37,6 +37,9 @@
 
     <string name="terms_of_use_title">使用条件</string>
     <string name="terms_of_use_accept_checkbox_acc_label">使用条件に同意する</string>
+    <string name="terms_of_use_message">Soundscape の使用には Scottish Tech Army サービス規約 の使用条件および下記の条件 (両方を合わせて「使用条件」) が適用されます。</string>
+    <string name="terms_of_use_medical_safety_disclaimer">お客様は、Soundscape が (1) 医療機器として設計されておらず、医療機器として使用することが意図されておらず、医療機器として提供されていないこと、および (2) 医師のアドバイス、診断、治療、判断の代わりになるように設計または意図されておらず、医師のアドバイス、診断、治療、判断の代わりにまたはそれらを置き換えるものとして使用すべきではないことを認めます。\n\n安全上の注意事項\nSoundscape は移動を支援するものであり、周囲に注意を払い、適切な判断をする移動能力を代替するものとして使用することはできません。Soundscape プログラムに組み込まれている地図データはサードパーティ プログラムから取得したものであり、提示される情報の正確性には限界がある可能性があるため、実際に移動する際には注意してください。</string>
+
 
     <string name="menu_devices">ヘッド トラッキング機能搭載ヘッドホン</string>
     <string name="menu_help_and_tutorials">ヘルプとチュートリアル</string>

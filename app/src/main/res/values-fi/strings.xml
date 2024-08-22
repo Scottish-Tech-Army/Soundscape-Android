@@ -37,6 +37,8 @@
 
     <string name="terms_of_use_title">Käyttöehdot</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Hyväksy käyttöehdot</string>
+    <string name="terms_of_use_message">Soundscapen käyttöön sovelletaan Scottish Tech Army palvelusopimus ehtoja sekä alla esitettyjä ehtoja (yhteisesti \&quot;Käyttöehdot\&quot;).</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Ymmärrät, että Soundscapea (1) ei ole suunniteltu, tarkoitettu tai tehty saatavaksi lääkinnällisenä laitteena ja (2) sitä ei ole suunniteltu korvaamaan eikä sen ole tarkoitus korvata terveydenhuollon ammattilaisen neuvoja, diagnoosia, hoitoa eikä arviota, eikä sen tulisi korvata terveydenhuollon ammattilaisen neuvoa, diagnoosia, hoitoa eikä arviota.\n\nTurvailmoitus\nSoundscape on suunnistusapuväline, eikä sen tulisi toimia liikkumiskyvyn, ympäristön tiedostamisen sekä hyvän arviointikyvyn korvikkeena. Suunnista ympäristössäsi varovaisesti, sillä Soundscape -ohjelmaan sisällytetyt karttatiedot on kaapattu kolmannen osapuolen ohjelmalla, jonka vuoksi esitettyjen tietojen tarkkuudessa voi olla rajoituksia.</string>
 
     <string name="menu_devices">Päätä seuraavat kuulokkeet</string>
     <string name="menu_help_and_tutorials">Ohje ja opetusohjelmat</string>
