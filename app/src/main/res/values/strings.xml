@@ -45,6 +45,9 @@
 
     <string name="terms_of_use_title">Terms of Use</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Accept Terms of Use</string>
+    <string name="terms_of_use_message">Your use of Soundscape is subject to the terms of the Scottish Tech Army Services Agreement and the terms set out below (together, the \&quot;Terms of Use\&quot;).</string>
+    <string name="terms_of_use_medical_safety_disclaimer">You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\n\nSafety Notice\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape programme is captured from a third-party programme, and therefore, there may be limitations with the accuracy of the information presented.</string>
+
 
     <string name="menu_devices">Head Tracking Headphones</string>
     <string name="menu_help_and_tutorials">Help &amp; Tutorials</string>
