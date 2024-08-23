@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
     private val connection = object : ServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            // we've bound to ExampleLocationForegroundService, cast the IBinder and get ExampleLocationForegroundService instance.
-            Log.d(TAG, "onServiceConnected")
 
             val binder = service as SoundscapeService.LocalBinder
             soundscapeService = binder.getService()
@@ -109,7 +107,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
         installSplashScreen()
 
         if(isFirstLaunch) {
@@ -129,9 +126,9 @@ class MainActivity : AppCompatActivity() {
                 Home()
             }
         }
-        Log.d(TAG, "Do we ever get here to check permissions?")
+
         checkAndRequestNotificationPermissions()
-        Log.d(TAG, "Do we try to bind to Soundscape service?")
+
         tryToBindToServiceIfRunning()
     }
 
@@ -182,7 +179,8 @@ class MainActivity : AppCompatActivity() {
                     arrayOf(
                         Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                        Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                        Manifest.permission.ACTIVITY_RECOGNITION
                     )
                 )
             }
