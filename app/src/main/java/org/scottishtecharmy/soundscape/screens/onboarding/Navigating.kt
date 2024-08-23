@@ -1,5 +1,8 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
+import android.Manifest
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,10 +24,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,25 +32,40 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
+import org.scottishtecharmy.soundscape.viewmodels.PermissionsViewModel
 
 @Composable
 fun Navigating(onNavigate: (String) -> Unit) {
 
-    val continueOnboard = {
-        onNavigate(Screens.AudioBeacons.route)
-    }
+    val permissionsToRequest = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+        Manifest.permission.ACTIVITY_RECOGNITION,
+        Manifest.permission.POST_NOTIFICATIONS
+    )
+    val viewModel = viewModel<PermissionsViewModel>()
+    // val dialogQueue = viewModel.visiblePermissionDialogQueue
 
-    var showCheck by remember { mutableStateOf(false) }
+    val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions(),
+        onResult = {
+            perms ->
+            permissionsToRequest.forEach { permission ->
+                viewModel.onPermissionResult(
+                    permission = permission,
+                    isGranted = perms[permission] == true
+                )
+            }
+        }
+    )
 
     IntroductionTheme {
         MaterialTheme(typography = IntroTypography) {
-            // TODO permissions check
-            /*if (showCheck)
-                SoundscapePermissionCheck(continueOnboard)*/
 
             Column(
                 modifier = Modifier
@@ -172,9 +186,10 @@ fun Navigating(onNavigate: (String) -> Unit) {
                 Column(modifier = Modifier.padding(horizontal = 20.dp)) {
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),
-                        // just bodging this at the moment to get to next screen without permissions request screen
+                        // just bodging this at the moment as having problems with rationales
+                        // and handling denied permissions
                         onClick = {
-                            showCheck = true
+                            multiplePermissionResultLauncher.launch(permissionsToRequest)
                             onNavigate(Screens.AudioBeacons.route)
                                   },
                         modifier = Modifier.fillMaxWidth()
@@ -184,6 +199,7 @@ fun Navigating(onNavigate: (String) -> Unit) {
         }
     }
 }
+
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
