@@ -41,53 +41,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
-import javax.inject.Inject
-
-@HiltViewModel
-class AudioBeaconsViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
-
-    data class AudioBeaconsUiState(
-        // Data for the ViewMode that affects the UI
-        var beaconTypes : List<String> = emptyList()
-    )
-    private var beacon : Long = 0
-
-    val state: StateFlow<AudioBeaconsUiState> = flow {
-        val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
-        val beaconTypes = mutableListOf<String>()
-        for (type in audioEngineBeaconTypes) {
-            beaconTypes.add(type)
-        }
-        emit(AudioBeaconsUiState(beaconTypes = beaconTypes))
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), AudioBeaconsUiState())
-
-    fun setAudioBeaconType(type: String) {
-        audioEngine.setBeaconType(type)
-        if(beacon != 0L)
-            audioEngine.destroyBeacon(beacon)
-        beacon = audioEngine.createBeacon(0.0, 0.0)
-    }
-
-    fun silenceBeacon() {
-        if(beacon != 0L)
-            audioEngine.destroyBeacon(beacon)
-    }
-}
-
+import org.scottishtecharmy.soundscape.viewmodels.AudioBeaconsViewModel
 
 @Composable
 fun AudioBeacons(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
