@@ -141,7 +141,7 @@ fun Language(onNavigate: (String) -> Unit, mockData : MockLanguagePreviewData?){
                         text = stringResource(R.string.ui_continue),
                         onClick = {
                             viewModel?.updateSpeechLanguage()
-                            onNavigate(Screens.Listening.route)
+                            onNavigate(Screens.Navigating.route)
                         },
                         modifier = Modifier.fillMaxWidth()
                     )
