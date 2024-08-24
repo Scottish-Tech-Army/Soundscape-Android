@@ -40,7 +40,6 @@
     <string name="terms_of_use_message">Votre utilisation de Soundscape est soumise aux conditions de Contrat de services Scottish Tech Army et à celles définies ci-dessous (appelées conjointement, les « Conditions d’utilisation »).</string>
     <string name="terms_of_use_medical_safety_disclaimer">Vous reconnaissez que Soundscape (1) n’est pas conçu, prévu, ni rendu disponible en tant que dispositif médical, et (2) n’est pas conçu, ni prévu en tant que remplacement d’un dispositif médical professional, d’un diagnostic, d’un traitement ou d’un jugement et ne doit pas être utilisé pour remplacer un avis médical professionnel, d’un diagnostic, d’un traitement ou d’un jugement.\n\nConsigne de sécurité\nSoundscape est un assistant de navigation et ne doit pas être utilisé à la place d’outils d’aide à la mobilité, de prendre connaissance de ce qui vous entoure et de jugement. Soyez prudent lorsque vous vous déplacez dans votre environnement, car les données cartographiques incorporées au programme de Soundscape proviennent d’un programme tiers et, par conséquent, peuvent être limitées en termes de précision des informations fournies.</string>
 
-
     <string name="menu_devices">Casque avec l’option Head Tracking</string>
     <string name="menu_help_and_tutorials">Aide et didacticiels</string>
     <string name="menu_send_feedback">Envoyer des commentaires</string>
@@ -48,6 +47,10 @@
     <string name="share_title">Partager</string>
     <string name="ui_menu">Menu</string>
     <string name="ui_menu_close">Fermer le menu</string>
+
+    <string name="search_use_current_location">Emplacement actuel</string>
+    <string name="search_nearby_screen_title">Emplacements à proximité</string>
+    <string name="search_view_markers">Marqueurs et Itinéraires</string>
 
     <string name="callouts_panel_title">Écoutez mon environnement</string>
     <string name="ui_action_button_my_location">Mon\nemplacement</string>

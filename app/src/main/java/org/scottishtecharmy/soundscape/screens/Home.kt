@@ -372,17 +372,17 @@ fun HomeContent(
             // Places Nearby
             NavigationButton(
                 onClick = { notAvailableToast() },
-                text = "Places Nearby"
+                text = stringResource(R.string.search_nearby_screen_title)
             )
             // Markers and routes
             NavigationButton(
                 onClick = { notAvailableToast() },
-                text = "Markers & Routes"
+                text = stringResource(R.string.search_view_markers)
             )
             // Current location
             NavigationButton(
                 onClick = { notAvailableToast() },
-                text = "Current Location"
+                text = stringResource(R.string.search_use_current_location)
             )
         }
     }
