@@ -49,6 +49,10 @@
     <string name="ui_menu">Menu</string>
     <string name="ui_menu_close">Menu sluiten</string>
 
+    <string name="search_use_current_location">Huidige locatie</string>
+    <string name="search_nearby_screen_title">Plaatsen in de buurt</string>
+    <string name="search_view_markers">Markeringen en routes</string>
+
     <string name="callouts_panel_title">Luisteren naar mijn omgeving</string>
     <string name="ui_action_button_my_location">Mijn\nlocatie</string>
     <string name="user_activity_my_location_title">Wat is mijn locatie?</string>

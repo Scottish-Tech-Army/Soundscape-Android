@@ -49,6 +49,10 @@
     <string name="ui_menu">メニュー</string>
     <string name="ui_menu_close">メニューを閉じる</string>
 
+    <string name="search_use_current_location">現在地</string>
+    <string name="search_nearby_screen_title">近くの場所</string>
+    <string name="search_view_markers">マーカーおよびルート</string>
+
     <string name="callouts_panel_title">周辺の情報を聞く</string>
     <string name="ui_action_button_my_location">現在地\n</string>
     <string name="user_activity_my_location_title">現在地はどこ?</string>
