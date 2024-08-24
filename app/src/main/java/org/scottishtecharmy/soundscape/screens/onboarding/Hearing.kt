@@ -163,7 +163,7 @@ fun Hearing(onNavigate: (String) -> Unit, useView : Boolean) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
-                                onNavigate(Screens.Navigating.route)
+                                onNavigate(Screens.AudioBeacons.route)
                             },
                             modifier = Modifier.fillMaxWidth()
                         )
