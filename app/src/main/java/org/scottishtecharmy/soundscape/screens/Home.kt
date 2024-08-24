@@ -131,7 +131,7 @@ fun DrawerContent(
                 modifier = Modifier
                     .size(32.dp)
                     .padding(start = 4.dp),
-                contentDescription = "Close Side Menu",
+                contentDescription = stringResource(R.string.ui_menu_close),
                 tint = Color.White
             )
         }
@@ -194,7 +194,7 @@ fun HomeTopAppBar(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Menu,
-                    contentDescription = "Open Side Menu",
+                    contentDescription = stringResource(R.string.ui_menu),
                     tint = Color.White
                 )
             }
@@ -253,7 +253,7 @@ fun HomeBottomAppBar(
                 Text(
                     fontSize = 12.sp,
                     textAlign = TextAlign.Start,
-                    text = "HEAR MY SURROUNDINGS",
+                    text = stringResource(R.string.callouts_panel_title).uppercase(),
                     modifier = Modifier.padding(start = 16.dp, end = 8.dp)
                 )
             }
@@ -270,14 +270,14 @@ fun HomeBottomAppBar(
                     Column {
                         Icon(
                             painter = painterResource(R.drawable.my_location_24px),
-                            contentDescription = "My Location",
+                            contentDescription = stringResource(R.string.user_activity_my_location_title),
                             modifier = Modifier
                                 .size(24.dp)
                                 .align(Alignment.CenterHorizontally)
                         )
                         Text(
                             softWrap = true,
-                            text = "My\nLocation",
+                            text = stringResource(R.string.ui_action_button_my_location),
                             textAlign = TextAlign.Center
                         )
                     }
@@ -290,14 +290,14 @@ fun HomeBottomAppBar(
                     Column {
                         Icon(
                             painter = painterResource(R.drawable.around_me_24px),
-                            contentDescription = "Around Me",
+                            contentDescription = stringResource(R.string.user_activity_around_me_title),
                             modifier = Modifier
                                 .size(24.dp)
                                 .align(Alignment.CenterHorizontally)
                         )
                         Text(
                             softWrap = true,
-                            text = "Around\nMe",
+                            text = stringResource(R.string.ui_action_button_around_me),
                             textAlign = TextAlign.Center
                         )
                     }
@@ -310,14 +310,14 @@ fun HomeBottomAppBar(
                     Column {
                         Icon(
                             painter = painterResource(R.drawable.ahead_of_me_24px),
-                            contentDescription = "Ahead of me",
+                            contentDescription = stringResource(R.string.user_activity_ahead_of_me_title),
                             modifier = Modifier
                                 .size(24.dp)
                                 .align(Alignment.CenterHorizontally)
                         )
                         Text(
                             softWrap = true,
-                            text = "Ahead\nof Me",
+                            text = stringResource(R.string.ui_action_button_ahead_of_me),
                             textAlign = TextAlign.Center
                         )
                     }
@@ -330,14 +330,14 @@ fun HomeBottomAppBar(
                     Column {
                         Icon(
                             painter = painterResource(R.drawable.nearby_markers_24px),
-                            contentDescription = "Nearby Markers",
+                            contentDescription = stringResource(R.string.user_activity_nearby_markers_title),
                             modifier = Modifier
                                 .size(24.dp)
                                 .align(Alignment.CenterHorizontally)
                         )
                         Text(
                             softWrap = true,
-                            text = "Nearby\nMarkers",
+                            text = stringResource(R.string.ui_action_button_nearby_markers),
                             textAlign = TextAlign.Center
                         )
                     }

@@ -46,7 +46,18 @@
     <string name="menu_send_feedback">Skicka feedback</string>
     <string name="menu_rate">Betygsätt</string>
     <string name="share_title">Dela</string>
+    <string name="ui_menu">Meny</string>
+    <string name="ui_menu_close">Stäng menyn</string>
 
+    <string name="callouts_panel_title">Lyssna på mina omgivningar</string>
+    <string name="ui_action_button_my_location">Min\nplats</string>
+    <string name="user_activity_my_location_title">Var befinner jag mig?</string>
+    <string name="ui_action_button_around_me">Omkring\nmig</string>
+    <string name="user_activity_around_me_title">Vad finns runt omkring mig?</string>
+    <string name="ui_action_button_ahead_of_me">Framför\nmig</string>
+    <string name="user_activity_ahead_of_me_title">Vad finns framför mig?</string>
+    <string name="ui_action_button_nearby_markers">Markörer\nnära</string>
+    <string name="user_activity_nearby_markers_title">Hör platsmarkörer i närheten</string>
 
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nej</string>

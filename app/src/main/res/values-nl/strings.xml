@@ -46,6 +46,18 @@
     <string name="menu_send_feedback">Feedback verzenden</string>
     <string name="menu_rate">Beoordelen</string>
     <string name="share_title">Delen</string>
+    <string name="ui_menu">Menu</string>
+    <string name="ui_menu_close">Menu sluiten</string>
+
+    <string name="callouts_panel_title">Luisteren naar mijn omgeving</string>
+    <string name="ui_action_button_my_location">Mijn\nlocatie</string>
+    <string name="user_activity_my_location_title">Wat is mijn locatie?</string>
+    <string name="ui_action_button_around_me">Om me\nheen</string>
+    <string name="user_activity_around_me_title">Wat is er om me heen?</string>
+    <string name="ui_action_button_ahead_of_me">Vóór\nme</string>
+    <string name="user_activity_ahead_of_me_title">Wat is er voor me?</string>
+    <string name="ui_action_button_nearby_markers">Marker.\nvlakbij</string>
+    <string name="user_activity_nearby_markers_title">Markeringen in de buurt horen</string>
 
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nee</string>

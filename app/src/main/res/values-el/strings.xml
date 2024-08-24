@@ -46,6 +46,18 @@
     <string name="menu_send_feedback">Αποστολή σχολίων</string>
     <string name="menu_rate">Αξιολόγηση</string>
     <string name="share_title">Κοινή χρήση</string>
+    <string name="ui_menu">Μενού</string>
+    <string name="ui_menu_close">Κλείσιμο μενού</string>
+
+    <string name="callouts_panel_title">Ακρόαση του περιβάλλοντος μου</string>
+    <string name="ui_action_button_my_location">Η\nτοποθεσία μου</string>
+    <string name="user_activity_my_location_title">Ποια είναι Η τοποθεσία μου;</string>
+    <string name="ui_action_button_around_me">Γύρω\nμου</string>
+    <string name="user_activity_around_me_title">Τι είναι το Γύρω μου;</string>
+    <string name="ui_action_button_ahead_of_me">Μπροστά\nμου</string>
+    <string name="user_activity_ahead_of_me_title">Τι είναι το Μπροστά μου;</string>
+    <string name="ui_action_button_nearby_markers">Κοντινοί\nδείκτες</string>
+    <string name="user_activity_nearby_markers_title">Ακρόαση κοντινών δεικτών</string>
 
     <string name="general_alert_yes">Ναι</string>
     <string name="general_alert_no">Όχι</string>
