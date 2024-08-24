@@ -46,7 +46,18 @@
     <string name="menu_send_feedback">Send tilbakemelding</string>
     <string name="menu_rate">Vurder</string>
     <string name="share_title">Del</string>
+    <string name="ui_menu">Meny</string>
+    <string name="ui_menu_close">Lukk meny</string>
 
+    <string name="callouts_panel_title">Hør omgivelsene mine</string>
+    <string name="ui_action_button_my_location">Min\nposisjon</string>
+    <string name="user_activity_my_location_title">Hva er min posisjon?</string>
+    <string name="ui_action_button_around_me">Rundt\nmeg</string>
+    <string name="user_activity_around_me_title">Hva ligger rundt meg?</string>
+    <string name="ui_action_button_ahead_of_me">Foran\nmeg</string>
+    <string name="user_activity_ahead_of_me_title">Hva ligger foran meg?</string>
+    <string name="ui_action_button_nearby_markers">Markører\ni nærh.</string>
+    <string name="user_activity_nearby_markers_title">Hør markører i nærheten</string>
 
     <string name="general_alert_yes">Ja</string>
     <string name="general_alert_no">Nei</string>

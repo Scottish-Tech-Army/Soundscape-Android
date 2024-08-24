@@ -46,6 +46,18 @@
     <string name="menu_send_feedback">Invia feedback</string>
     <string name="menu_rate">Valuta</string>
     <string name="share_title">Condividi</string>
+    <string name="ui_menu">Menu</string>
+    <string name="ui_menu_close">Chiudi menu</string>
+
+    <string name="callouts_panel_title">Ascolta i miei dintorni</string>
+    <string name="ui_action_button_my_location">La mia\nposizione</string>
+    <string name="user_activity_my_location_title">Qual è la mia posizione?</string>
+    <string name="ui_action_button_around_me">Intorno\na me</string>
+    <string name="user_activity_around_me_title">Cosa c\'è intorno a me?</string>
+    <string name="ui_action_button_ahead_of_me">Davanti\na me</string>
+    <string name="user_activity_ahead_of_me_title">Cosa c\'è davanti a me?</string>
+    <string name="ui_action_button_nearby_markers">Indicatori\nnelle vicinanze</string>
+    <string name="user_activity_nearby_markers_title">Ascolta gli indicatori nelle vicinanze</string>
 
     <string name="general_alert_yes">Sì</string>
     <string name="general_alert_no">No</string>

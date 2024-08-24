@@ -45,6 +45,18 @@
     <string name="menu_send_feedback">Lähetä palautetta</string>
     <string name="menu_rate">Arvostele</string>
     <string name="share_title">Jaa</string>
+    <string name="ui_menu">Valikko</string>
+    <string name="ui_menu_close">Sulje valikko</string>
+
+    <string name="callouts_panel_title">Kuuntele ympäristöä</string>
+    <string name="ui_action_button_my_location">Oma si-\njaintini</string>
+    <string name="user_activity_my_location_title">Mikä on oma sijaintini?</string>
+    <string name="ui_action_button_around_me">Lähiym-\npäristö</string>
+    <string name="user_activity_around_me_title">Mitä on lähiympäristössäni?</string>
+    <string name="ui_action_button_ahead_of_me">Edessä-\npäin</string>
+    <string name="user_activity_ahead_of_me_title">Mitä on edessäpäin?</string>
+    <string name="ui_action_button_nearby_markers">Merkin-\nnät</string>
+    <string name="user_activity_nearby_markers_title">Kuuntele lähellä olevia merkintöjä</string>
 
     <string name="general_alert_yes">Kyllä</string>
     <string name="general_alert_no">Ei</string>

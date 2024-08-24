@@ -46,6 +46,18 @@
     <string name="menu_send_feedback">Enviar Comentários</string>
     <string name="menu_rate">Classificar</string>
     <string name="share_title">Compartilhar</string>
+    <string name="ui_menu">Menu</string>
+    <string name="ui_menu_close">Fechar Menu</string>
+
+    <string name="callouts_panel_title">Ouvir Meus Arredores</string>
+    <string name="ui_action_button_my_location">Minha\nLocalização</string>
+    <string name="user_activity_my_location_title">Qual É a Minha Localização?</string>
+    <string name="ui_action_button_around_me">Ao Meu\nRedor</string>
+    <string name="user_activity_around_me_title">O Que Há Ao Meu Redor?</string>
+    <string name="ui_action_button_ahead_of_me">À Minha\nFrente</string>
+    <string name="user_activity_ahead_of_me_title">O Que Há À Minha Frente?</string>
+    <string name="ui_action_button_nearby_markers">Favoritos\nnas Proximidades</string>
+    <string name="user_activity_nearby_markers_title">Ouvir Favoritos Nas Proximidades</string>
 
     <string name="general_alert_yes">Sim</string>
     <string name="general_alert_no">Não</string>
