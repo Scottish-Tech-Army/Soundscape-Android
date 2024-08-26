@@ -1,89 +1,59 @@
+// The code for Marker manipulation in maplibre has been moved into an annotations plugin.
+// However, this doesn't appear to be supported in Kotlin yet. There's talk of un-deprecating those
+// functions in the next release if support isn't added. In the meantime we use the deprecated
+// functions and suppress the warnings here.
+@file:Suppress("DEPRECATION")
+
 package org.scottishtecharmy.soundscape.viewmodels
 
+import android.content.Context
+import android.graphics.Color
+import android.location.Location
 import android.util.Log
-import androidx.compose.material.icons.Icons
-import androidx.compose.material3.Icon
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mapbox.mapboxsdk.annotations.IconFactory
+import com.mapbox.mapboxsdk.annotations.Marker
+import com.mapbox.mapboxsdk.annotations.MarkerOptions
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerClickListener
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
-import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
-import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
-import ovh.plrapps.mapcompose.api.addLayer
-import ovh.plrapps.mapcompose.api.addMarker
-import ovh.plrapps.mapcompose.api.centerOnMarker
-import ovh.plrapps.mapcompose.api.enableRotation
-import ovh.plrapps.mapcompose.api.hasMarker
-import ovh.plrapps.mapcompose.api.moveMarker
-import ovh.plrapps.mapcompose.api.onLongPress
-import ovh.plrapps.mapcompose.api.onMarkerLongPress
-import ovh.plrapps.mapcompose.api.removeMarker
-import ovh.plrapps.mapcompose.api.scale
-import ovh.plrapps.mapcompose.core.TileStreamProvider
-import ovh.plrapps.mapcompose.ui.layout.Forced
-import ovh.plrapps.mapcompose.ui.state.MapState
-import java.net.URL
 import javax.inject.Inject
-import kotlin.math.pow
-import androidx.compose.material.icons.rounded.Navigation
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val soundscapeServiceConnection : SoundscapeServiceConnection): ViewModel() {
-
-    private val tileStreamProvider = TileStreamProvider { row, col, zoomLvl ->
-        val style = "atlas"
-        val apikey = BuildConfig.TILE_PROVIDER_API_KEY
-
-        try {
-            URL("https://tile.thunderforest.com/$style/$zoomLvl/$col/$row.png?apikey=$apikey").openStream()
-        } catch (e : Exception) {
-            Log.e("TileProvider", "Exception $e")
-            null
-        }
-    }
+class HomeViewModel @Inject constructor(@ApplicationContext context: Context, private val soundscapeServiceConnection : SoundscapeServiceConnection): ViewModel(), OnMarkerClickListener {
 
     private var serviceConnection : SoundscapeServiceConnection? = null
-    private var x : Double = 0.0
-    private var y : Double = 0.0
-    private var heading : Float = 0.0F
+    private var iconFactory : IconFactory
+    var latitude : Double = 0.0
+    var longitude : Double = 0.0
+    var heading : Float = 0.0F
+    private var initialLocation : Location? = null
+    private var mapCentered : Boolean = false
+    private var beaconLocation : LatLng? = null
 
-    private val maxLevel = 20
-    private val minLevel = 5
-    private val mapSize = mapSizeAtLevel(maxLevel, tileSize = 256)
+    private var currentLocationMarker : Marker? = null
+    private var beaconLocationMarker : Marker? = null
 
-    private fun mapSizeAtLevel(wmtsLevel: Int, tileSize: Int): Int {
-        return tileSize * 2.0.pow(wmtsLevel).toInt()
-    }
+    private var mapboxMap : MapboxMap? = null
 
-    val state = MapState(levelCount = maxLevel + 1, mapSize, mapSize, workerCount = 16) {
-        minimumScaleMode(Forced((1 / 2.0.pow(maxLevel - minLevel)).toFloat()))
-    }.apply {
-        addLayer(tileStreamProvider)
-        onMarkerLongPress { id, _, _ ->
-            // A long press on the beacon marker will delete it and the audio beacon
-            if(id == "beacon") {
-                soundscapeServiceConnection.soundscapeService?.destroyBeacon()
-                removeMarker("beacon")
-            }
+    private fun updateBeaconLocation() {
+        if (beaconLocationMarker != null) {
+            beaconLocationMarker?.position = beaconLocation
+        } else {
+            val markerOptions = MarkerOptions()
+                .position(beaconLocation)
+            beaconLocationMarker = mapboxMap?.addMarker(markerOptions)
         }
-        onLongPress { x, y ->
-            // A long press for now will add an audio beacon at that point
-            soundscapeServiceConnection.soundscapeService?.destroyBeacon()
-            removeMarker("beacon")
-
-            val coordinates = getGpsFromNormalizedMapCoordinates(x, y)
-            soundscapeServiceConnection.soundscapeService?.createBeacon(coordinates.first, coordinates.second)
-        }
-        enableRotation()
-        scale = 0.5f
     }
 
     private fun startMonitoringLocation() {
@@ -92,44 +62,21 @@ class HomeViewModel @Inject constructor(private val soundscapeServiceConnection 
             // Observe location updates from the service
             serviceConnection?.soundscapeService?.locationFlow?.collectLatest { value ->
                 if (value != null) {
-                    val coordinates = getNormalizedFromGpsMapCoordinates(
-                        value.latitude,
-                        value.longitude
-                    )
-                    x = coordinates.first
-                    y = coordinates.second
-
-                    if (!state.hasMarker("position")) {
-                        state.addMarker("position", x, y) {
-                            Icon(
-                                imageVector = Icons.Rounded.Navigation,
-                                contentDescription = null,
-                                modifier = Modifier.rotate(heading),
-                                tint = Color(0xCC2196F3)
-                            )
-                        }
-                        state.centerOnMarker("position")
-                    } else {
-                        state.moveMarker("position", x, y)
-                    }
+                    Log.d(TAG, "Location $value")
+                    updateLocationOnMap(value)
                 }
             }
         }
+
         viewModelScope.launch {
             // Observe orientation updates from the service
             serviceConnection?.soundscapeService?.orientationFlow?.collectLatest { value ->
                 if (value != null) {
                     heading = value.headingDegrees
-                    state.removeMarker("position")
-                    state.addMarker("position", x, y) {
-                        Icon(
-                            //painter = painterResource(id = ),
-                            imageVector = Icons.Rounded.Navigation,
-                            contentDescription = null,
-                            modifier = Modifier.rotate(heading),
-                            tint = Color(0xCC2196F3)
-                        )
-                    }
+
+                    mapboxMap?.cameraPosition = CameraPosition.Builder()
+                        .bearing(heading.toDouble())
+                        .build()
                 }
             }
         }
@@ -137,30 +84,118 @@ class HomeViewModel @Inject constructor(private val soundscapeServiceConnection 
             // Observe beacon location update from the service so we can show it on the map
             serviceConnection?.soundscapeService?.beaconFlow?.collectLatest { value ->
                 if (value != null) {
-                    val coordinates = getNormalizedFromGpsMapCoordinates(
-                        value.latitude,
-                        value.longitude
-                    )
-
-                    if (!state.hasMarker("beacon")) {
-                        state.addMarker("beacon", coordinates.first, coordinates.second) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.nearby_markers_24px),
-                                contentDescription = null,
-                                tint = Color.Red
-                            )
-                        }
-                    }
-                    else {
-                        state.moveMarker("beacon", coordinates.first, coordinates.second)
+                    // Use MarkerOptions and addMarker() to add a new marker in map
+                    beaconLocation = LatLng(value.latitude, value.longitude)
+                    updateBeaconLocation()
+                }
+                else {
+                    if(beaconLocationMarker != null) {
+                        mapboxMap?.removeMarker(beaconLocationMarker!!)
+                        beaconLocationMarker = null
                     }
                 }
             }
         }
     }
 
+    private fun updateLocationOnMap(location : Location) {
+        if( (initialLocation == null) &&
+            location.hasAccuracy() && (location.accuracy < 250.0)) {
+            initialLocation = location
+            Log.d(TAG, "lastLocation updated to $location")
+        }
+        if(!mapCentered && (mapboxMap != null) && (initialLocation != null)) {
+            // If the map has already been created and it's not yet been centered, and we've received
+            // a location with reasonable accuracy then center it
+            mapCentered = true
+            mapboxMap?.cameraPosition = CameraPosition.Builder()
+                .target(LatLng(location.latitude, location.longitude))
+                .zoom(15.0)
+                .bearing(heading.toDouble())
+                .build()
+        }
+
+        latitude = location.latitude
+        longitude = location.longitude
+
+        // Use MarkerOptions and addMarker() to add a new marker in map
+        val latLng = LatLng(latitude, longitude)
+        if(currentLocationMarker != null) {
+            currentLocationMarker?.position = latLng
+        }
+        else {
+            val icon = iconFactory.fromResource(R.drawable.icons8_navigation_24)
+            val markerOptions = MarkerOptions()
+                .position(latLng)
+                .icon(icon)
+            currentLocationMarker = mapboxMap?.addMarker(markerOptions)
+        }
+    }
+
+    fun setMap(map: MapboxMap) {
+        // Set the style after mapView was loaded
+        mapboxMap = map
+        val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
+        val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
+        mapboxMap?.setStyle(styleUrl) {
+
+            ////////////////////////////////////////////////////////////////////////////////////////
+            // Prove that these are vector maps by listing the layers and then changing the colour
+            // of water...
+            for (singleLayer in it.layers) {
+                Log.d(TAG, "onMapReady: layer id = " + singleLayer.id)
+            }
+            val waterLayer = it.getLayer("Water")
+            waterLayer?.setProperties(PropertyFactory.fillColor(Color.parseColor("#900090")))
+            //
+            ////////////////////////////////////////////////////////////////////////////////////////
+
+            mapboxMap?.uiSettings?.setAttributionMargins(15, 0, 0, 15)
+
+            // Set the map view center if we already have an initial location
+            initialLocation?.let { location -> updateLocationOnMap(location) }
+            // Update the map with the beacon location if we already have one
+            beaconLocation?.let { updateBeaconLocation() }
+
+            mapboxMap?.addOnMapLongClickListener { latitudeLongitude ->
+                soundscapeServiceConnection.soundscapeService?.createBeacon(
+                    latitudeLongitude.latitude,
+                    latitudeLongitude.longitude
+                )
+                false
+            }
+            mapboxMap?.setOnMarkerClickListener(this)
+        }
+
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        if(marker == beaconLocationMarker) {
+            soundscapeServiceConnection.soundscapeService?.destroyBeacon()
+            return true
+        }
+        return false
+    }
+
+    // This is a demo function to show how to dynamically alter the map based on user input.
+    // The result of this function is that Food POIs have their icons toggled between enlarged
+    // and regular sized.
+    private var highlightedPointsOfInterest : Boolean = false
+    fun highlightPointsOfInterest() {
+        highlightedPointsOfInterest = highlightedPointsOfInterest.xor(true)
+        mapboxMap?.getStyle {
+            val foodLayer = it.getLayer("Food")
+            var highlightSize = 1F
+            if(highlightedPointsOfInterest)
+                highlightSize = 2F
+
+            foodLayer?.setProperties(PropertyFactory.iconSize(highlightSize))
+        }
+    }
+
     init {
         serviceConnection = soundscapeServiceConnection
+        iconFactory = IconFactory.getInstance(context)
         viewModelScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")

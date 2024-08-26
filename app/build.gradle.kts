@@ -193,6 +193,8 @@ dependencies {
 
     // Open Street Map compose library
     implementation (libs.mapcompose)
+    // MapLibre library
+    implementation (libs.maplibre)
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)

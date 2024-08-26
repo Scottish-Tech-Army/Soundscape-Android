@@ -11,6 +11,16 @@ The quickest way to get started building the app is to run Android Studio and se
 ## CI
 See the document [here](actions.md) to learn about the GitHub actions used and how they are configured.
 
+## Mapping data
+The mapping UI in the app is rendered using [MapLibre Native Android](https://maplibre.org/). Initially
+we started using [MapCompose](https://github.com/p-lr/MapCompose), but soon realized that hosting costs
+were very high for PNG rendered maps. Moving to a library which could support [protomaps](https://protomaps.com/)
+means that we can massively reduce the server costs - see [cost calculator](https://docs.protomaps.com/deploy/cost).
+Initially we're using [maptiler](https://www.maptiler.com/) with the aim of spinning up our own
+Cloudflare based protomap server prior to full deployment. [Using vector maps has other benefits](https://www.mapbox.com/insights/vector-maps),
+and it means that in the future we can change the map dynamically depending on the context of the UI
+e.g. highlight shops or improve styling for specific activities.
+
 ## Current documents
 * [Audio API](audio-API.md)
 * [Framework choices](framework.md)

@@ -51,16 +51,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.WellKnownTileServer
+import com.mapbox.mapboxsdk.maps.MapView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
-import ovh.plrapps.mapcompose.ui.MapUI
 
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
@@ -359,10 +363,18 @@ fun HomeBottomAppBar(
 }
 
 @Composable
-fun MapContainer(
-    modifier: Modifier = Modifier, viewModel: HomeViewModel
-) {
-    MapUI(modifier, state = viewModel.state)
+fun MapContainerLibre(viewModel: HomeViewModel) {
+    AndroidView(
+        factory = { context ->
+            Mapbox.getInstance(context, BuildConfig.TILE_PROVIDER_API_KEY, WellKnownTileServer.MapTiler)
+            val mapView = MapView(context)
+            mapView.onCreate(null)
+            mapView.getMapAsync { map ->
+                viewModel.setMap(map)
+            }
+            mapView
+        }
+    )
 }
 
 @Composable
@@ -394,7 +406,11 @@ fun HomeContent(
         ) {
             // Places Nearby
             NavigationButton(
-                onClick = { notAvailableToast() },
+                onClick = {
+                    // This is not the real function of the button - it just demos the live styling
+                    // of the map.
+                    viewModel?.highlightPointsOfInterest()
+                },
                 text = stringResource(R.string.search_nearby_screen_title)
             )
             // Markers and routes
@@ -408,7 +424,7 @@ fun HomeContent(
                 text = stringResource(R.string.search_use_current_location)
             )
             if(viewModel != null)
-                MapContainer(viewModel = viewModel)
+                MapContainerLibre(viewModel = viewModel)
         }
     }
 }
