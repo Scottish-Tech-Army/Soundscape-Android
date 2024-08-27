@@ -57,14 +57,12 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
-import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.time.Duration.Companion.seconds
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles, data persistence with realmDB.
  */
-@Singleton
 @AndroidEntryPoint
 class SoundscapeService : Service() {
     private val binder = LocalBinder()
@@ -82,7 +80,7 @@ class SoundscapeService : Service() {
     private var timerJob: Job? = null
 
     // Audio engine
-    @Inject lateinit var audioEngine: NativeAudioEngine
+    private var audioEngine = NativeAudioEngine()
     private var audioBeacon: Long = 0
 
     // Flow to return beacon location
@@ -136,6 +134,10 @@ class SoundscapeService : Service() {
         Log.d(TAG, "onCreate")
 
         if(!running) {
+
+            // Initialize the audio engine
+            audioEngine.initialize(applicationContext)
+
             // Set up the location updates using the FusedLocationProviderClient but doesn't start them
             setupLocationUpdates()
 
