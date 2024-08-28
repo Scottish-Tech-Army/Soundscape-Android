@@ -37,7 +37,6 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.TilesDao
-import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.database.repository.TilesRepository
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.OkhttpClientInstance
@@ -83,6 +82,9 @@ class SoundscapeService : Service() {
 
     // secondary service
     private var timerJob: Job? = null
+
+    // GeoJSON tiles job
+    private var tilesJob: Job? = null
 
     // Audio engine
     private var audioEngine = NativeAudioEngine()
@@ -131,6 +133,7 @@ class SoundscapeService : Service() {
             startOrientationUpdates()
             // Reminds the user every hour that the Soundscape service is still running in the background
             startServiceStillRunningTicker()
+            startTileGridService()
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -176,6 +179,8 @@ class SoundscapeService : Service() {
         fusedOrientationProviderClient.removeOrientationUpdates(listener)
 
         timerJob?.cancel()
+        tilesJob?.cancel()
+
         coroutineScope.coroutineContext.cancelChildren()
 
         activityTransition.stopVehicleActivityTracking()
@@ -317,12 +322,34 @@ class SoundscapeService : Service() {
         }
     }
 
+    private fun startTileGridService() {
+        tilesJob?.cancel()
+        tilesJob = coroutineScope.launch {
+            tilesFlow(30.seconds)
+                .collectLatest {
+                    withContext(Dispatchers.IO) {
+                        getTileGrid(application)
+                    }
+                }
+        }
+    }
+
+    private fun tilesFlow(
+        period: Duration
+    ) = flow {
+        while (true) {
+            delay(10.seconds)
+            emit(Unit)
+            delay(period)
+        }
+    }
+
      private fun tickerFlow(
          period: Duration = TICKER_PERIOD_SECONDS,
          initialDelay: Duration = TICKER_PERIOD_SECONDS
      ) = flow {
-         delay(initialDelay)
-         while (true) {
+         while (true){
+             delay(initialDelay)
              emit(Unit)
              delay(period)
          }
@@ -358,20 +385,18 @@ class SoundscapeService : Service() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    suspend fun getTileGrid(application: Application): MutableList<TileData>{
-        //TODO Original Soundscape appears to have a 3 x 3 grid of tiles with the current location being the central tile
+    private suspend fun getTileGrid(application: Application){
+
         val tileGridQuadKeys = getTilesForRegion(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, 250.0)
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         okhttpClientInstance = OkhttpClientInstance(application)
 
-        val tileGrid: MutableList<TileData> = mutableListOf()
-
         for(tile in tileGridQuadKeys){
             Log.d(TAG, "Tile quad key: ${tile.quadkey}")
             val frozenResult = tilesRepository.getTile(tile.quadkey)
             // If Tile doesn't already exist in db go and get it, clean it, process it
-            // and insert into db and add to MutableList to return
+            // and insert into db
             if(frozenResult.size == 0){
                 withContext(Dispatchers.IO) {
                     val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
@@ -384,8 +409,6 @@ class SoundscapeService : Service() {
                     if (cleanedTile != null) {
                         val tileData = processTileString(tile.quadkey, cleanedTile)
                         tilesRepository.insertTile(tileData)
-                        // add to mutableList
-                        tileGrid.add(tileData)
                     }
                 }
             }else{
@@ -400,9 +423,7 @@ class SoundscapeService : Service() {
                 if(timeToLive >= currentTimeStamp) {
                     Log.d(TAG, "Tile does not need updating yet get local copy")
                     // There should only ever be one tile with a unique quad key
-                    val tileDataTest = tilesRepository.getTile(tile.quadkey)
-                    // add to mutableList
-                    tileGrid.add(tileDataTest[0])
+                    //val tileDataTest = tilesRepository.getTile(tile.quadkey)
 
                 } else {
                     Log.d(TAG, "Tile does need updating")
@@ -411,33 +432,30 @@ class SoundscapeService : Service() {
                             okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
                         val tileReq = async { tile.tileX.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
                         val result = tileReq.await()?.awaitResponse()?.body()
-                        // clean the tile, process the string, perform an update on db using the clean tile, and return clean tile string
+                        // clean the tile, process the string, perform an update on db using the clean tile
                         val cleanedTile = result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
 
                         if (cleanedTile != null) {
                             val tileData = processTileString(tile.quadkey, cleanedTile)
                             // update existing tile in db
                             tilesRepository.updateTile(tileData)
-                            // add to mutableList
-                            tileGrid.add(tileData)
                         }
                     }
                 }
             }
         }
-        return tileGrid
     }
 
     private fun startRealm(){
         realm = RealmConfiguration.getInstance()
     }
 
-    fun deleteRealm(){
+/*    fun deleteRealm(){
         // need this to clean up my mess while I work on the db schema, etc.
         val config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
         // Delete the realm
         Realm.deleteRealm(config)
-    }
+    }*/
 
     fun createBeacon(latitude: Double, longitude: Double) {
         if(audioBeacon != 0L)
