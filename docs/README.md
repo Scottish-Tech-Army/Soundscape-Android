@@ -21,6 +21,9 @@ Cloudflare based protomap server prior to full deployment. [Using vector maps ha
 and it means that in the future we can change the map dynamically depending on the context of the UI
 e.g. highlight shops or improve styling for specific activities.
 
+## Release notes
+[Here](release-notes.md) are the latest release notes.
+
 ## Current documents
 * [Audio API](audio-API.md)
 * [Framework choices](framework.md)
