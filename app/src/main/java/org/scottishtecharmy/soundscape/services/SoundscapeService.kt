@@ -16,6 +16,7 @@ import android.os.Binder
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
@@ -50,14 +51,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
-import javax.inject.Singleton
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -124,6 +129,8 @@ class SoundscapeService : Service() {
             startAsForegroundService()
             startLocationUpdates()
             startOrientationUpdates()
+            // Reminds the user every hour that the Soundscape service is still running in the background
+            startServiceStillRunningTicker()
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -294,23 +301,23 @@ class SoundscapeService : Service() {
     /**
      * Starts a ticker that shows a toast every [TICKER_PERIOD_SECONDS] seconds to indicate that the service is still running.
      */
-    /*private fun startServiceRunningTicker() {
+    private fun startServiceStillRunningTicker() {
         timerJob?.cancel()
         timerJob = coroutineScope.launch {
             tickerFlow()
                 .collectLatest {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
-                            this@LocationService,
-                            "Foreground Service still running.",
+                            this@SoundscapeService,
+                            "Soundscape Service is still running.",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
         }
-    }*/
+    }
 
-    /* private fun tickerFlow(
+     private fun tickerFlow(
          period: Duration = TICKER_PERIOD_SECONDS,
          initialDelay: Duration = TICKER_PERIOD_SECONDS
      ) = flow {
@@ -319,7 +326,7 @@ class SoundscapeService : Service() {
              emit(Unit)
              delay(period)
          }
-     }*/
+     }
 
     private fun getNotification(): Notification {
         createServiceNotificationChannel()
@@ -456,7 +463,7 @@ class SoundscapeService : Service() {
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every n seconds
-        private val TICKER_PERIOD_SECONDS = 30.seconds
+        private val TICKER_PERIOD_SECONDS = 3600.seconds
         // TTL Tile refresh in local Realm DB
         private const val TTL_REFRESH_SECONDS: Long = 24 * 60 * 60
 
