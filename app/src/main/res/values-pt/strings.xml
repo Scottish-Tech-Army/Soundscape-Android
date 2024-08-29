@@ -84,4 +84,13 @@
     <string name="beacon_styles_haptic_wand">Varinha Háptica</string>
     <string name="beacon_styles_haptic_pulse">Pulso Háptico</string>
 
+    <string name="directions_facing_n">Voltado para norte</string>
+    <string name="directions_facing_ne">Voltado para nordeste</string>
+    <string name="directions_facing_e">Voltado para leste</string>
+    <string name="directions_facing_se">Voltado para sudeste</string>
+    <string name="directions_facing_s">Voltado para sul</string>
+    <string name="directions_facing_sw">Voltado para sudoeste</string>
+    <string name="directions_facing_w">Voltado para oeste</string>
+    <string name="directions_facing_nw">Voltado para noroeste</string>
+
 </resources>

@@ -83,6 +83,15 @@
     <string name="beacon_styles_haptic_wand">Haptisk penn</string>
     <string name="beacon_styles_haptic_pulse">Haptisk puls</string>
 
+    <string name="directions_facing_n">Du står mot nord</string>
+    <string name="directions_facing_ne">Du står mot nordøst</string>
+    <string name="directions_facing_e">Du står mot øst</string>
+    <string name="directions_facing_se">Du står mot sørøst</string>
+    <string name="directions_facing_s">Du står mot sør</string>
+    <string name="directions_facing_sw">Du står mot sørvest</string>
+    <string name="directions_facing_w">Du står mot vest</string>
+    <string name="directions_facing_nw">Du står mot nordvest</string>
+
 
 
 </resources>

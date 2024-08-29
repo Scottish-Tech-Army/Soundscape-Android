@@ -92,9 +92,17 @@
     <string name="beacon_styles_signal_slow">Signal (Slow)</string>
     <string name="beacon_styles_signal_very_slow">Signal (Very Slow)</string>
     <string name="beacon_styles_tactile">Tactile</string>
-
     <string name="beacon_styles_haptic_wand">Haptic Wand</string>
     <string name="beacon_styles_haptic_pulse">Haptic Pulse</string>
+
+    <string name="directions_facing_n">Facing north</string>
+    <string name="directions_facing_ne">Facing northeast</string>
+    <string name="directions_facing_e">Facing east</string>
+    <string name="directions_facing_se">Facing southeast</string>
+    <string name="directions_facing_s">Facing south</string>
+    <string name="directions_facing_sw">Facing southwest</string>
+    <string name="directions_facing_w">Facing west</string>
+    <string name="directions_facing_nw">Facing northwest</string>
 
     <!-- TODO these strings aren't translated, either translate them or remove them -->>
     <string name="notification_text" translatable="false">We are running this location service in the foreground</string>

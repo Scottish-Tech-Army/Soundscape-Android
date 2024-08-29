@@ -83,8 +83,14 @@
     <string name="beacon_styles_haptic_wand">Bacchetta aptica</string>
     <string name="beacon_styles_haptic_pulse">Pulsazione aptica</string>
 
-
-
+    <string name="directions_facing_n">Sei rivolto verso nord</string>
+    <string name="directions_facing_ne">Sei rivolto verso nord est</string>
+    <string name="directions_facing_e">Sei rivolto verso est</string>
+    <string name="directions_facing_se">Sei rivolto verso sud est</string>
+    <string name="directions_facing_s">Sei rivolto verso sud</string>
+    <string name="directions_facing_sw">Sei rivolto verso sud ovest</string>
+    <string name="directions_facing_w">Sei rivolto verso ovest</string>
+    <string name="directions_facing_nw">Sei rivolto verso nord ovest</string>
 
 
 </resources>

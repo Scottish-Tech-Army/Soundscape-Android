@@ -83,6 +83,15 @@
     <string name="beacon_styles_haptic_wand">Baguette haptique</string>
     <string name="beacon_styles_haptic_pulse">Pulsation haptique</string>
 
+    <string name="directions_facing_n">Face au nord</string>
+    <string name="directions_facing_ne">Face au nord-est</string>
+    <string name="directions_facing_e">Face à l’est</string>
+    <string name="directions_facing_se">Face au sud-est</string>
+    <string name="directions_facing_s">Face au sud</string>
+    <string name="directions_facing_sw">Face au sud-ouest</string>
+    <string name="directions_facing_w">Face à l’ouest</string>
+    <string name="directions_facing_nw">Face au nord-ouest</string>
+
 
 
 </resources>

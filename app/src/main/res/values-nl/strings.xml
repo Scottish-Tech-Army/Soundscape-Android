@@ -84,5 +84,14 @@
     <string name="beacon_styles_haptic_wand">Haptische aanwijzer</string>
     <string name="beacon_styles_haptic_pulse">Haptische pulsering</string>
 
+    <string name="directions_facing_n">U kijkt naar het noorden</string>
+    <string name="directions_facing_ne">U kijkt naar het noordoosten</string>
+    <string name="directions_facing_e">U kijkt naar het oosten</string>
+    <string name="directions_facing_se">U kijkt naar het zuidoosten</string>
+    <string name="directions_facing_s">U kijkt naar het zuiden</string>
+    <string name="directions_facing_sw">U kijkt naar het zuidwesten</string>
+    <string name="directions_facing_w">U kijkt naar het westen</string>
+    <string name="directions_facing_nw">U kijkt naar het noordwesten</string>
+
 
 </resources>

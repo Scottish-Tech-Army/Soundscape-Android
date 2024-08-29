@@ -84,5 +84,14 @@
     <string name="beacon_styles_haptic_wand">触覚ワンド</string>
     <string name="beacon_styles_haptic_pulse">触覚パルス</string>
 
+    <string name="directions_facing_n">北向き</string>
+    <string name="directions_facing_ne">北東向き</string>
+    <string name="directions_facing_e">東向き</string>
+    <string name="directions_facing_se">南東向き</string>
+    <string name="directions_facing_s">南向き</string>
+    <string name="directions_facing_sw">南西向き</string>
+    <string name="directions_facing_w">西向き</string>
+    <string name="directions_facing_nw">北西向き</string>
+
 
 </resources>
