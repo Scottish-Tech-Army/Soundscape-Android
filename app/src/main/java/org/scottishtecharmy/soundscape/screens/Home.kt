@@ -64,6 +64,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.viewmodels.HearingViewModel
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
 
 
@@ -244,13 +245,17 @@ fun HomeTopAppBar(
 
 @Composable
 fun HomeBottomAppBar(
-
+    useView : Boolean = true
 ) {
     val context = LocalContext.current
     val notAvailableText = "This is not implemented yet."
     val notAvailableToast = {
         Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
     }
+
+    var hearingViewModel : HearingViewModel? = null
+    if(useView)
+        hearingViewModel = hiltViewModel<HearingViewModel>()
 
     BottomAppBar(
         modifier = Modifier
@@ -277,8 +282,11 @@ fun HomeBottomAppBar(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
+                val speechText = "A Greggs is always 200 meters away in any direction."
                 Button(
-                    onClick = { notAvailableToast() },
+                    onClick = {
+                        hearingViewModel?.playSpeech(speechText)
+                    },
                     shape = RectangleShape
                 ) {
                     Column {
