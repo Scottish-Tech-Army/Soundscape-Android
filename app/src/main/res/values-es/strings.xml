@@ -83,4 +83,13 @@
     <string name="beacon_styles_haptic_wand">Varita háptica</string>
     <string name="beacon_styles_haptic_pulse">Pulso háptico</string>
 
+    <string name="directions_facing_n">Mirando al norte</string>
+    <string name="directions_facing_ne">Mirando al nordeste</string>
+    <string name="directions_facing_e">Mirando al este</string>
+    <string name="directions_facing_se">Mirando al sudeste</string>
+    <string name="directions_facing_s">Mirando al sur</string>
+    <string name="directions_facing_sw">Mirando al suroeste</string>
+    <string name="directions_facing_w">Mirando al oeste</string>
+    <string name="directions_facing_nw">Mirando al noroeste</string>
+
 </resources>

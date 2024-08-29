@@ -84,6 +84,15 @@
     <string name="beacon_styles_haptic_wand">Haptisk tryllestav</string>
     <string name="beacon_styles_haptic_pulse">Haptisk puls</string>
 
+    <string name="directions_facing_n">Vender nord</string>
+    <string name="directions_facing_ne">Vender nordøst</string>
+    <string name="directions_facing_e">Vender øst</string>
+    <string name="directions_facing_se">Vender sydøst</string>
+    <string name="directions_facing_s">Vender syd</string>
+    <string name="directions_facing_sw">Vender sydvest</string>
+    <string name="directions_facing_w">Vender vest</string>
+    <string name="directions_facing_nw">Vender nordvest</string>
+
 
 
 </resources>

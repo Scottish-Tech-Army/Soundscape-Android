@@ -83,5 +83,14 @@
     <string name="beacon_styles_haptic_wand">Haptiskt spö</string>
     <string name="beacon_styles_haptic_pulse">Haptisk puls</string>
 
+    <string name="directions_facing_n">Riktning norrut</string>
+    <string name="directions_facing_ne">Riktning nordost</string>
+    <string name="directions_facing_e">Riktning österut</string>
+    <string name="directions_facing_se">Riktning sydost</string>
+    <string name="directions_facing_s">Riktning söderut</string>
+    <string name="directions_facing_sw">Riktning sydväst</string>
+    <string name="directions_facing_w">Riktning västerut</string>
+    <string name="directions_facing_nw">Riktning nordväst</string>
+
 
 </resources>

@@ -59,6 +59,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.getCompassLabelFacing
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
 import kotlin.time.Duration
@@ -477,16 +478,14 @@ class SoundscapeService : Service() {
     }
 
     fun myLocation() {
-        // Set our listener position, and play the speech
-        // TODO: If updateGeometry isn't called, then the audioEngine doesn't move on to   the next
-        //  queued text to speech. That resulted in the Listen button only working one time.
-        //  Calling updateGeometry (which in the service is called every 30ms) sorts this out.
-        //  We should consider another way of doing this.
-        val speechText = "Facing North along Sixty Acres Close"
 
+        val orientation = _orientationFlow.value?.headingDegrees ?: 0.0
+        val facingCompassDirection = getCompassLabelFacing(applicationContext, orientation.toInt())
 
-        audioEngine.updateGeometry(0.0, 0.0,0.0)
-        audioEngine.createTextToSpeech(0.0,0.0, speechText)
+        val speechText = "$facingCompassDirection but I still have to do the road part."
+
+        audioEngine.createTextToSpeech(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, speechText)
+
     }
 
     companion object {
