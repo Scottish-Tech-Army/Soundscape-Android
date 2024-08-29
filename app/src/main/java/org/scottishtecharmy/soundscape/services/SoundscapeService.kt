@@ -31,6 +31,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
+import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.R
@@ -43,6 +44,7 @@ import org.scottishtecharmy.soundscape.network.OkhttpClientInstance
 import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.utils.getTilesForRegion
 import org.scottishtecharmy.soundscape.utils.processTileString
+import io.realm.kotlin.ext.query
 import io.realm.kotlin.Realm
 import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.CoroutineScope
@@ -58,8 +60,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.database.local.model.TileData
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacing
+import org.scottishtecharmy.soundscape.utils.getNearestRoad
+import org.scottishtecharmy.soundscape.utils.getQuadKey
+import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
 import java.util.concurrent.Executors
 import kotlin.time.Duration
@@ -481,8 +489,26 @@ class SoundscapeService : Service() {
 
         val orientation = _orientationFlow.value?.headingDegrees ?: 0.0
         val facingCompassDirection = getCompassLabelFacing(applicationContext, orientation.toInt())
+        // fetch the road from Realm
+        val xyTilePair = getXYTile(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0)
+        // just retrieving a single tile for now
+        val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
+        val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
+        val nearestRoad = frozenResult?.roads
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val nearestRoadFC = nearestRoad?.let {
+            moshi.adapter(FeatureCollection::class.java).fromJson(
+                it
+            )
+        }
+        val currentRoad =
+            nearestRoadFC?.let {
+                getNearestRoad(LngLatAlt(_locationFlow.value?.longitude ?: 0.0, _locationFlow.value?.latitude ?: 0.0),
+                    it
+                )
+            }
 
-        val speechText = "$facingCompassDirection but I still have to do the road part."
+        val speechText = "$facingCompassDirection along ${currentRoad?.features?.get(0)?.properties!!["name"]}"
 
         audioEngine.createTextToSpeech(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, speechText)
 
