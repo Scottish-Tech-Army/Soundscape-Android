@@ -14,7 +14,7 @@ class MyLocationViewModel @Inject constructor( private val soundscapeServiceConn
     private var serviceConnection : SoundscapeServiceConnection? = null
 
     fun myLocation(){
-        Log.e(TAG, "myLocation() triggered")
+        //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
             serviceConnection?.soundscapeService?.myLocation()
         }
