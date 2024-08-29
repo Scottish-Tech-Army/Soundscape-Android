@@ -9,6 +9,7 @@ plugins {
     id("io.realm.kotlin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
     alias(libs.plugins.screenshot)
 }
 
@@ -185,6 +186,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.perf)
 
     // GPX parser
     implementation (libs.android.gpx.parser)
