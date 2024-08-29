@@ -65,6 +65,7 @@ import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
+import org.scottishtecharmy.soundscape.viewmodels.MyLocationViewModel
 
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
@@ -92,7 +93,7 @@ fun Home(useView : Boolean = true) {
                 )
             },
             bottomBar = {
-                HomeBottomAppBar()
+                HomeBottomAppBar(useView)
             },
             floatingActionButton = {},
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -244,13 +245,17 @@ fun HomeTopAppBar(
 
 @Composable
 fun HomeBottomAppBar(
-
+    useView : Boolean = true
 ) {
     val context = LocalContext.current
     val notAvailableText = "This is not implemented yet."
     val notAvailableToast = {
         Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
     }
+
+    var myLocationViewModel : MyLocationViewModel? = null
+    if(useView)
+        myLocationViewModel = hiltViewModel<MyLocationViewModel>()
 
     BottomAppBar(
         modifier = Modifier
@@ -277,8 +282,11 @@ fun HomeBottomAppBar(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
+
                 Button(
-                    onClick = { notAvailableToast() },
+                    onClick = {
+                        myLocationViewModel?.myLocation()
+                    },
                     shape = RectangleShape
                 ) {
                     Column {
