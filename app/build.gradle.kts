@@ -135,7 +135,7 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)
-    androidTestImplementation(platform(libs.androidx.compose.bom.v20230800))
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
@@ -147,7 +147,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.okhttp)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp.v500alpha3)
     // logging interceptor
     implementation (libs.logging.interceptor)
 
@@ -155,7 +154,6 @@ dependencies {
     implementation(libs.converter.scalars)
 
     // Location permissions
-    implementation(libs.play.services.location.v2120)
     implementation(libs.accompanist.permissions)
 
     // GeoJSON parsing
