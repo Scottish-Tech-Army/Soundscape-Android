@@ -7,7 +7,6 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
 import android.content.Context
-import android.graphics.Color
 import android.location.Location
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -142,11 +141,11 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
             ////////////////////////////////////////////////////////////////////////////////////////
             // Prove that these are vector maps by listing the layers and then changing the colour
             // of water...
-            for (singleLayer in it.layers) {
-                Log.d(TAG, "onMapReady: layer id = " + singleLayer.id)
-            }
-            val waterLayer = it.getLayer("Water")
-            waterLayer?.setProperties(PropertyFactory.fillColor(Color.parseColor("#900090")))
+//            for (singleLayer in it.layers) {
+//                Log.d(TAG, "onMapReady: layer id = " + singleLayer.id)
+//            }
+//            val waterLayer = it.getLayer("Water")
+//            waterLayer?.setProperties(PropertyFactory.fillColor(Color.parseColor("#900090")))
             //
             ////////////////////////////////////////////////////////////////////////////////////////
 
