@@ -83,5 +83,14 @@
     <string name="beacon_styles_haptic_wand">Värinäsauva</string>
     <string name="beacon_styles_haptic_pulse">Toistuva värinä</string>
 
+    <string name="directions_facing_n">Kääntyneenä pohjoiseen</string>
+    <string name="directions_facing_ne">Kääntyneenä koilliseen</string>
+    <string name="directions_facing_e">Kääntyneenä itään</string>
+    <string name="directions_facing_se">Kääntyneenä kaakkoon</string>
+    <string name="directions_facing_s">Kääntyneenä etelään</string>
+    <string name="directions_facing_sw">Kääntyneenä lounaaseen</string>
+    <string name="directions_facing_w">Kääntyneenä länteen</string>
+    <string name="directions_facing_nw">Kääntyneenä luoteeseen</string>
+
 
 </resources>

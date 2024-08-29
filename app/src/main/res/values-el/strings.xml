@@ -84,6 +84,15 @@
     <string name="beacon_styles_haptic_wand">Απτικό ραβδί</string>
     <string name="beacon_styles_haptic_pulse">Απτικός παλμός</string>
 
+    <string name="directions_facing_n">Κοιτάζοντας βόρεια</string>
+    <string name="directions_facing_ne">Κοιτάζοντας βορειοανατολικά</string>
+    <string name="directions_facing_e">Κοιτάζοντας ανατολικά</string>
+    <string name="directions_facing_se">Κοιτάζοντας νοτιοανατολικά</string>
+    <string name="directions_facing_s">Κοιτάζοντας νότια</string>
+    <string name="directions_facing_sw">Κοιτάζοντας νοτιοδυτικά</string>
+    <string name="directions_facing_w">Κοιτάζοντας δυτικά</string>
+    <string name="directions_facing_nw">Κοιτάζοντας βορειοδυτικά</string>
+
 
 
 </resources>

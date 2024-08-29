@@ -83,4 +83,13 @@
     <string name="beacon_styles_haptic_wand">Haptischer Stock</string>
     <string name="beacon_styles_haptic_pulse">Haptischer Impuls</string>
 
+    <string name="directions_facing_n">Blickrichtung Norden</string>
+    <string name="directions_facing_ne">Blickrichtung Nordosten</string>
+    <string name="directions_facing_e">Blickrichtung Osten</string>
+    <string name="directions_facing_se">Blickrichtung Südosten</string>
+    <string name="directions_facing_s">Blickrichtung Süden</string>
+    <string name="directions_facing_sw">Blickrichtung Südwesten</string>
+    <string name="directions_facing_w">Blickrichtung Westen</string>
+    <string name="directions_facing_nw">Blickrichtung Nordwesten</string>
+
 </resources>
