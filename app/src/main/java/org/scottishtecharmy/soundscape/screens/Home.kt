@@ -64,8 +64,8 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.components.NavigationButton
-import org.scottishtecharmy.soundscape.viewmodels.HearingViewModel
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
+import org.scottishtecharmy.soundscape.viewmodels.MyLocationViewModel
 
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
@@ -93,7 +93,7 @@ fun Home(useView : Boolean = true) {
                 )
             },
             bottomBar = {
-                HomeBottomAppBar()
+                HomeBottomAppBar(useView)
             },
             floatingActionButton = {},
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -253,9 +253,9 @@ fun HomeBottomAppBar(
         Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
     }
 
-    var hearingViewModel : HearingViewModel? = null
+    var myLocationViewModel : MyLocationViewModel? = null
     if(useView)
-        hearingViewModel = hiltViewModel<HearingViewModel>()
+        myLocationViewModel = hiltViewModel<MyLocationViewModel>()
 
     BottomAppBar(
         modifier = Modifier
@@ -282,10 +282,10 @@ fun HomeBottomAppBar(
                 modifier = Modifier
                     .fillMaxWidth(),
             ) {
-                val speechText = "A Greggs is always 200 meters away in any direction."
+
                 Button(
                     onClick = {
-                        hearingViewModel?.playSpeech(speechText)
+                        myLocationViewModel?.myLocation()
                     },
                     shape = RectangleShape
                 ) {
