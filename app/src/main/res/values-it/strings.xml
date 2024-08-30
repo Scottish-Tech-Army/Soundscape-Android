@@ -91,6 +91,14 @@
     <string name="directions_facing_sw">Sei rivolto verso sud ovest</string>
     <string name="directions_facing_w">Sei rivolto verso ovest</string>
     <string name="directions_facing_nw">Sei rivolto verso nord ovest</string>
+    <string name="directions_along_facing_n">Sei rivolto verso nord lungo %1$s</string>
+    <string name="directions_along_facing_ne">Sei rivolto verso nord est lungo %1$s</string>
+    <string name="directions_along_facing_e">Sei rivolto verso est lungo %1$s</string>
+    <string name="directions_along_facing_se">Sei rivolto verso sud est lungo %1$s</string>
+    <string name="directions_along_facing_s">Sei rivolto verso sud lungo %1$s</string>
+    <string name="directions_along_facing_sw">Sei rivolto verso sud ovest lungo %1$s</string>
+    <string name="directions_along_facing_w">Sei rivolto verso ovest lungo %1$s</string>
+    <string name="directions_along_facing_nw">Sei rivolto verso nord ovest lungo %1$s</string>
 
 
 </resources>

@@ -91,6 +91,14 @@
     <string name="directions_facing_sw">Riktning sydväst</string>
     <string name="directions_facing_w">Riktning västerut</string>
     <string name="directions_facing_nw">Riktning nordväst</string>
+    <string name="directions_along_facing_n">Riktning norrut utmed %1$s</string>
+    <string name="directions_along_facing_ne">Riktning nordost utmed %1$s</string>
+    <string name="directions_along_facing_e">Riktning österut utmed %1$s</string>
+    <string name="directions_along_facing_se">Riktning sydost utmed %1$s</string>
+    <string name="directions_along_facing_s">Riktning söderut utmed %1$s</string>
+    <string name="directions_along_facing_sw">Riktning sydväst utmed %1$s</string>
+    <string name="directions_along_facing_w">Riktning västerut utmed %1$s</string>
+    <string name="directions_along_facing_nw">Riktning nordväst utmed %1$s</string>
 
 
 </resources>

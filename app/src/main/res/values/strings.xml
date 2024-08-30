@@ -103,6 +103,15 @@
     <string name="directions_facing_sw">Facing southwest</string>
     <string name="directions_facing_w">Facing west</string>
     <string name="directions_facing_nw">Facing northwest</string>
+    <string name="directions_along_facing_n">Facing north along %1$s</string>
+    <string name="directions_along_facing_ne">Facing northeast along %1$s</string>
+    <string name="directions_along_facing_e">Facing east along %1$s</string>
+    <string name="directions_along_facing_se">Facing southeast along %1$s</string>
+    <string name="directions_along_facing_s">Facing south along %1$s</string>
+    <string name="directions_along_facing_sw">Facing southwest along %1$s</string>
+    <string name="directions_along_facing_w">Facing west along %1$s</string>
+    <string name="directions_along_facing_nw">Facing northwest along %1$s</string>
+
 
     <!-- TODO these strings aren't translated, either translate them or remove them -->>
     <string name="notification_text" translatable="false">We are running this location service in the foreground</string>

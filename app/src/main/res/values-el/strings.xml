@@ -92,6 +92,14 @@
     <string name="directions_facing_sw">Κοιτάζοντας νοτιοδυτικά</string>
     <string name="directions_facing_w">Κοιτάζοντας δυτικά</string>
     <string name="directions_facing_nw">Κοιτάζοντας βορειοδυτικά</string>
+    <string name="directions_along_facing_n">Κοιτάζοντας βόρεια κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_ne">Κοιτάζοντας βορειοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_e">Κοιτάζοντας ανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_se">Κοιτάζοντας νοτιοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_s">Κοιτάζοντας νότια κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_sw">Κοιτάζοντας νοτιοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_w">Κοιτάζοντας δυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_nw">Κοιτάζοντας βορειοδυτικά κατά μήκος της %1$s</string>
 
 
 

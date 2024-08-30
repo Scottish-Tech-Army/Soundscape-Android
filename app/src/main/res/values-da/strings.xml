@@ -92,7 +92,13 @@
     <string name="directions_facing_sw">Vender sydvest</string>
     <string name="directions_facing_w">Vender vest</string>
     <string name="directions_facing_nw">Vender nordvest</string>
-
-
+    <string name="directions_along_facing_n">Vender nord ad %1$s</string>
+    <string name="directions_along_facing_ne">Vender nordøst ad %1$s</string>
+    <string name="directions_along_facing_e">Vender øst ad %1$s</string>
+    <string name="directions_along_facing_se">Vender sydøst ad %1$s</string>
+    <string name="directions_along_facing_s">Vender syd ad %1$s</string>
+    <string name="directions_along_facing_sw">Vender sydvest ad %1$s</string>
+    <string name="directions_along_facing_w">Vender vest ad %1$s</string>
+    <string name="directions_along_facing_nw">Vender nordvest ad %1$s</string>
 
 </resources>

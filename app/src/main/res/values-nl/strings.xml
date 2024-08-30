@@ -92,6 +92,14 @@
     <string name="directions_facing_sw">U kijkt naar het zuidwesten</string>
     <string name="directions_facing_w">U kijkt naar het westen</string>
     <string name="directions_facing_nw">U kijkt naar het noordwesten</string>
+    <string name="directions_along_facing_n">U kijkt naar het noorden langs %1$s</string>
+    <string name="directions_along_facing_ne">U kijkt naar het noordoosten langs %1$s</string>
+    <string name="directions_along_facing_e">U kijkt naar het oosten langs %1$s</string>
+    <string name="directions_along_facing_se">U kijkt naar het zuidoosten langs %1$s</string>
+    <string name="directions_along_facing_s">U kijkt naar het zuiden langs %1$s</string>
+    <string name="directions_along_facing_sw">U kijkt naar het zuidwesten langs %1$s</string>
+    <string name="directions_along_facing_w">U kijkt naar het westen langs %1$s</string>
+    <string name="directions_along_facing_nw">U kijkt naar het noordwesten langs %1$s</string>
 
 
 </resources>

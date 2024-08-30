@@ -91,6 +91,14 @@
     <string name="directions_facing_sw">Face au sud-ouest</string>
     <string name="directions_facing_w">Face à l’ouest</string>
     <string name="directions_facing_nw">Face au nord-ouest</string>
+    <string name="directions_along_facing_n">Face au nord le long de %1$s</string>
+    <string name="directions_along_facing_ne">Face au nord-est le long de %1$s</string>
+    <string name="directions_along_facing_e">Face à l’est le long de %1$s</string>
+    <string name="directions_along_facing_se">Face au sud-est le long de %1$s</string>
+    <string name="directions_along_facing_s">Face au sud le long de %1$s</string>
+    <string name="directions_along_facing_sw">Face au sud-ouest le long de %1$s</string>
+    <string name="directions_along_facing_w">Face à l’ouest le long de %1$s</string>
+    <string name="directions_along_facing_nw">Face au nord-ouest le long de %1$s</string>
 
 
 
