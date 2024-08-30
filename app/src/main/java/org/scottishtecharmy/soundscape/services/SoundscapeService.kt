@@ -397,6 +397,7 @@ class SoundscapeService : Service() {
         val facingCompassDirection = getCompassLabelFacing(applicationContext, orientation.toInt())
         // fetch the road from Realm
         val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
+        Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
         // just retrieving a single tile for now
         val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
         val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
@@ -409,12 +410,12 @@ class SoundscapeService : Service() {
         }
         val currentRoad =
             nearestRoadFC?.let {
-                getNearestRoad(LngLatAlt(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0),
+                getNearestRoad(LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
                     it
                 )
             }
 
-        if(currentRoad?.features?.get(0)?.properties != null) {
+        if(currentRoad?.features?.get(0)?.properties!!["name"] != "null") {
             val speechText =
                 "$facingCompassDirection along ${currentRoad.features[0].properties!!["name"]}"
             audioEngine.createTextToSpeech(
