@@ -169,7 +169,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
                 // Store the socket pair in a hashmap indexed by utteranceId
                 ttsSockets[ttsSocket.toString()] = ttsSocketPair
 
-                Log.d(TAG, "Call createNativeTextToSpeech")
+                Log.d(TAG, "Call createNativeTextToSpeech: $text")
                 return createNativeTextToSpeech(engineHandle, latitude, longitude, ttsSocketPair[1].fd)
             }
 
