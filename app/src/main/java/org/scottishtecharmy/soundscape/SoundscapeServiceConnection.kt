@@ -6,11 +6,14 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
+import com.google.android.gms.location.DeviceOrientation
 
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,6 +25,17 @@ class SoundscapeServiceConnection @Inject constructor(@ApplicationContext contex
 
     private var _serviceBoundState = MutableStateFlow(false)
     val serviceBoundState = _serviceBoundState.asStateFlow()
+
+    // Simplify access of flows
+    fun getLocationFlow() : StateFlow<android.location.Location?>? {
+        return soundscapeService?.locationProvider?.locationFlow
+    }
+    fun getOrientationFlow() : StateFlow<DeviceOrientation?>? {
+        return soundscapeService?.directionProvider?.orientationFlow
+    }
+    fun getBeaconFlow(): StateFlow<LngLatAlt?>? {
+        return soundscapeService?.beaconFlow
+    }
 
     // needed to communicate with the service.
     private val connection = object : ServiceConnection {

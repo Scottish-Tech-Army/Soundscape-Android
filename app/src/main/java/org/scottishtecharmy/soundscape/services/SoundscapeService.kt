@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.services
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Application
 import android.app.Service
 import android.app.Notification
@@ -9,28 +7,13 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
-import android.location.Location
 import android.os.Binder
 import android.os.IBinder
-import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
-import com.google.android.gms.location.DeviceOrientation
-import com.google.android.gms.location.DeviceOrientationListener
-import com.google.android.gms.location.DeviceOrientationRequest
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.FusedOrientationProviderClient
-import com.google.android.gms.location.Granularity
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -64,12 +47,16 @@ import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacing
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getQuadKey
 import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
-import java.util.concurrent.Executors
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -81,13 +68,9 @@ class SoundscapeService : Service() {
     private val binder = LocalBinder()
 
     private val coroutineScope = CoroutineScope(Job())
-    // core GPS service
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationCallback: LocationCallback
 
-    // core Orientation service - test
-    private lateinit var fusedOrientationProviderClient: FusedOrientationProviderClient
-    private lateinit var listener: DeviceOrientationListener
+    lateinit var locationProvider : LocationProvider
+    lateinit var directionProvider : DirectionProvider
 
     // secondary service
     private var timerJob: Job? = null
@@ -102,14 +85,6 @@ class SoundscapeService : Service() {
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)
     var beaconFlow: StateFlow<LngLatAlt?> = _beaconFlow
-
-    // Flow to return Location objects
-    private val _locationFlow = MutableStateFlow<Location?>(null)
-    var locationFlow: StateFlow<Location?> = _locationFlow
-
-    // Flow to return DeviceOrientation objects
-    private val _orientationFlow = MutableStateFlow<DeviceOrientation?>(null)
-    var orientationFlow: StateFlow<DeviceOrientation?> = _orientationFlow
 
     // OkhttpClientInstance
     private lateinit var okhttpClientInstance: OkhttpClientInstance
@@ -138,8 +113,10 @@ class SoundscapeService : Service() {
         if(!running) {
             running = true
             startAsForegroundService()
-            startLocationUpdates()
-            startOrientationUpdates()
+
+            locationProvider.start(this)
+            directionProvider.start(audioEngine, locationProvider)
+
             // Reminds the user every hour that the Soundscape service is still running in the background
             startServiceStillRunningTicker()
             startTileGridService()
@@ -157,11 +134,16 @@ class SoundscapeService : Service() {
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
-            // Set up the location updates using the FusedLocationProviderClient but doesn't start them
-            setupLocationUpdates()
-
-            // Start the orientation updates using the FusedOrientationProviderClient - test
-            startOrientationUpdates()
+            if(false) {
+                // Debug - move to this location
+                val latitude = 55.9524634
+                val longitude = -3.2116922
+                locationProvider = StaticLocationProvider(latitude, longitude)
+            }
+            else {
+                locationProvider = AndroidLocationProvider(this)
+            }
+            directionProvider = AndroidDirectionProvider(this)
 
             // create new RealmDB or open existing
             startRealm()
@@ -183,9 +165,8 @@ class SoundscapeService : Service() {
         audioEngine.destroyBeacon(audioBeacon)
         audioEngine.destroy()
 
-        fusedLocationClient.removeLocationUpdates(locationCallback)
-
-        fusedOrientationProviderClient.removeOrientationUpdates(listener)
+        locationProvider.destroy()
+        directionProvider.destroy()
 
         timerJob?.cancel()
         tilesJob?.cancel()
@@ -220,96 +201,6 @@ class SoundscapeService : Service() {
      */
     fun stopForegroundService() {
         stopSelf()
-    }
-
-    /**
-     * Sets up the location updates using the FusedLocationProviderClient, but doesn't actually start them.
-     * To start the location updates, call [startLocationUpdates].
-     */
-    private fun setupLocationUpdates() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED) {
-            // Faster startup for obtaining initial location
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    // Handle the retrieved location here
-                    if (location != null) {
-                        _locationFlow.value = location
-                    }
-                }
-                .addOnFailureListener { _: Exception ->
-                }
-        }
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                for (location in locationResult.locations) {
-                    _locationFlow.value = location
-                }
-            }
-        }
-    }
-
-    private fun startOrientationUpdates(){
-
-        fusedOrientationProviderClient =
-            LocationServices.getFusedOrientationProviderClient(this)
-
-        /*listener = DeviceOrientationListener { orientation: DeviceOrientation ->
-                    // Use the orientation object
-
-                    Log.d(TAG, "Device Orientation: ${orientation.headingDegrees} deg")
-                }*/
-        listener = DeviceOrientationListener { orientation ->
-            _orientationFlow.value = orientation  // Emit the DeviceOrientation object
-            val location = locationFlow.value
-            if(location != null) {
-                audioEngine.updateGeometry(
-                    location.latitude,
-                    location.longitude,
-                    orientation.headingDegrees.toDouble()
-                )
-            }
-        }
-
-
-        // OUTPUT_PERIOD_DEFAULT = 50Hz / 20ms
-        val request = DeviceOrientationRequest.Builder(DeviceOrientationRequest.OUTPUT_PERIOD_DEFAULT).build()
-        // Thought I could use a Looper here like for location but it seems to want an Executor instead
-        // Not clear on what the difference is...
-        val executor = Executors.newSingleThreadExecutor()
-        fusedOrientationProviderClient.requestOrientationUpdates(request, executor, listener)
-
-
-    }
-
-
-    /**
-     * Starts the location updates using the FusedLocationProviderClient.
-     * Suppressing IDE warning with annotation. Will check for this in UI.
-     *  TODO: Add permission checks and observe for permission changes by user
-     */
-    @SuppressLint("MissingPermission")
-    private fun startLocationUpdates() {
-        /*fusedLocationClient.requestLocationUpdates(
-            LocationRequest.Builder(
-                LOCATION_UPDATES_INTERVAL_MS
-            ).build(), locationCallback, Looper.getMainLooper()
-        )*/
-        fusedLocationClient.requestLocationUpdates(
-            LocationRequest.Builder(
-                Priority.PRIORITY_HIGH_ACCURACY,
-                LOCATION_UPDATES_INTERVAL_MS
-            ).apply {
-                setMinUpdateDistanceMeters(1f)
-                setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
-                setWaitForAccurateLocation(true)
-            }.build(),
-            locationCallback,
-            Looper.getMainLooper(),
-        )
     }
 
     /**
@@ -396,7 +287,7 @@ class SoundscapeService : Service() {
 
     private suspend fun getTileGrid(application: Application){
 
-        val tileGridQuadKeys = getTilesForRegion(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, 250.0)
+        val tileGridQuadKeys = getTilesForRegion(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0, 250.0)
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         okhttpClientInstance = OkhttpClientInstance(application)
@@ -487,10 +378,10 @@ class SoundscapeService : Service() {
 
     fun myLocation() {
 
-        val orientation = _orientationFlow.value?.headingDegrees ?: 0.0
+        val orientation = directionProvider.mutableOrientationFlow.value?.headingDegrees ?: 0.0
         val facingCompassDirection = getCompassLabelFacing(applicationContext, orientation.toInt())
         // fetch the road from Realm
-        val xyTilePair = getXYTile(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0)
+        val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
         // just retrieving a single tile for now
         val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
         val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
@@ -503,21 +394,18 @@ class SoundscapeService : Service() {
         }
         val currentRoad =
             nearestRoadFC?.let {
-                getNearestRoad(LngLatAlt(_locationFlow.value?.longitude ?: 0.0, _locationFlow.value?.latitude ?: 0.0),
+                getNearestRoad(LngLatAlt(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0),
                     it
                 )
             }
 
         val speechText = "$facingCompassDirection along ${currentRoad?.features?.get(0)?.properties!!["name"]}"
 
-        audioEngine.createTextToSpeech(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, speechText)
-
+        audioEngine.createTextToSpeech(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0, speechText)
     }
 
     companion object {
         private const val TAG = "SoundscapeService"
-        // Check for GPS every n seconds
-        private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
         // TTL Tile refresh in local Realm DB

@@ -59,7 +59,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
         Log.d(TAG, "ViewModel startMonitoringLocation")
         viewModelScope.launch {
             // Observe location updates from the service
-            serviceConnection?.soundscapeService?.locationFlow?.collectLatest { value ->
+            serviceConnection?.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
                     Log.d(TAG, "Location $value")
                     updateLocationOnMap(value)
@@ -69,7 +69,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
 
         viewModelScope.launch {
             // Observe orientation updates from the service
-            serviceConnection?.soundscapeService?.orientationFlow?.collectLatest { value ->
+            serviceConnection?.getOrientationFlow()?.collectLatest { value ->
                 if (value != null) {
                     heading = value.headingDegrees
 
@@ -81,7 +81,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
         }
         viewModelScope.launch {
             // Observe beacon location update from the service so we can show it on the map
-            serviceConnection?.soundscapeService?.beaconFlow?.collectLatest { value ->
+            serviceConnection?.getBeaconFlow()?.collectLatest { value ->
                 if (value != null) {
                     // Use MarkerOptions and addMarker() to add a new marker in map
                     beaconLocation = LatLng(value.latitude, value.longitude)
