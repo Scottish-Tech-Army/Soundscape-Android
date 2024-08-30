@@ -92,6 +92,14 @@
     <string name="directions_facing_sw">南西向き</string>
     <string name="directions_facing_w">西向き</string>
     <string name="directions_facing_nw">北西向き</string>
+    <string name="directions_along_facing_n">%1$s で北向き</string>
+    <string name="directions_along_facing_ne">%1$s で北東向き</string>
+    <string name="directions_along_facing_e">%1$s で東向き</string>
+    <string name="directions_along_facing_se">%1$s で南東向き</string>
+    <string name="directions_along_facing_s">%1$s で南向き</string>
+    <string name="directions_along_facing_sw">%1$s で南西向き</string>
+    <string name="directions_along_facing_w">%1$s で西向き</string>
+    <string name="directions_along_facing_nw">%1$s で北西向き</string>
 
 
 </resources>

@@ -91,6 +91,14 @@
     <string name="directions_facing_sw">Du står mot sørvest</string>
     <string name="directions_facing_w">Du står mot vest</string>
     <string name="directions_facing_nw">Du står mot nordvest</string>
+    <string name="directions_along_facing_n">Står mot nord langs %1$s</string>
+    <string name="directions_along_facing_ne">Står mot nordøst langs %1$s</string>
+    <string name="directions_along_facing_e">Står mot øst langs %1$s</string>
+    <string name="directions_along_facing_se">Står mot sørøst langs %1$s</string>
+    <string name="directions_along_facing_s">Står mot sør langs %1$s</string>
+    <string name="directions_along_facing_sw">Står mot sørvest langs %1$s</string>
+    <string name="directions_along_facing_w">Står mot vest langs %1$s</string>
+    <string name="directions_along_facing_nw">Står mot nordvest langs %1$s</string>
 
 
 

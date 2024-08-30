@@ -91,5 +91,14 @@
     <string name="directions_facing_sw">Blickrichtung Südwesten</string>
     <string name="directions_facing_w">Blickrichtung Westen</string>
     <string name="directions_facing_nw">Blickrichtung Nordwesten</string>
+    <string name="directions_along_facing_n">Auf %1$s in Blickrichtung Norden</string>
+    <string name="directions_along_facing_ne">Auf %1$s in Blickrichtung Nordosten</string>
+    <string name="directions_along_facing_e">Auf %1$s in Blickrichtung Osten</string>
+    <string name="directions_along_facing_se">Auf %1$s in Blickrichtung Südosten</string>
+    <string name="directions_along_facing_s">Auf %1$s in Blickrichtung Süden</string>
+    <string name="directions_along_facing_sw">Auf %1$s in Blickrichtung Südwesten</string>
+    <string name="directions_along_facing_w">Auf %1$s in Blickrichtung Westen</string>
+    <string name="directions_along_facing_nw">Auf %1$s in Blickrichtung Nordwesten</string>
+
 
 </resources>

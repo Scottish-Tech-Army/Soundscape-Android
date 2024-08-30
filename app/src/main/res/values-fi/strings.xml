@@ -91,6 +91,14 @@
     <string name="directions_facing_sw">Kääntyneenä lounaaseen</string>
     <string name="directions_facing_w">Kääntyneenä länteen</string>
     <string name="directions_facing_nw">Kääntyneenä luoteeseen</string>
+    <string name="directions_along_facing_n">Kääntyneenä pohjoiseen tiellä %1$s</string>
+    <string name="directions_along_facing_ne">Kääntyneenä koilliseen tiellä %1$s</string>
+    <string name="directions_along_facing_e">Kääntyneenä itään tiellä %1$s</string>
+    <string name="directions_along_facing_se">Kääntyneenä kaakkoon tiellä %1$s</string>
+    <string name="directions_along_facing_s">Kääntyneenä etelään tiellä %1$s</string>
+    <string name="directions_along_facing_sw">Kääntyneenä lounaaseen tiellä %1$s</string>
+    <string name="directions_along_facing_w">Kääntyneenä länteen tiellä %1$s</string>
+    <string name="directions_along_facing_nw">Kääntyneenä luoteeseen tiellä %1$s</string>
 
 
 </resources>
