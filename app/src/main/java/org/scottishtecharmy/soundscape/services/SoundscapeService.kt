@@ -489,28 +489,45 @@ class SoundscapeService : Service() {
 
         val orientation = _orientationFlow.value?.headingDegrees ?: 0.0
         val facingCompassDirection = getCompassLabelFacing(applicationContext, orientation.toInt())
-        // fetch the road from Realm
-        val xyTilePair = getXYTile(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0)
+        Log.d(TAG, "facingCompassDirection: $facingCompassDirection")
+        Log.d(TAG, "orientation: $orientation")
+        Log.d(TAG, "location lat: ${_locationFlow.value?.latitude},  lon: ${_locationFlow.value?.longitude}")
+
+        val xyTilePair = getXYTile(
+            _locationFlow.value?.latitude ?: 0.0,
+            _locationFlow.value?.longitude ?: 0.0
+        )
+        Log.d(TAG, "xyTilePair: ${xyTilePair.first}, ${xyTilePair.second}")
         // just retrieving a single tile for now
         val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
+        Log.d(TAG, "currentQuadKey: $currentQuadKey")
         val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
-        val nearestRoad = frozenResult?.roads
+        // just interested in roads for now
+        val roads = frozenResult?.roads
+        Log.d(TAG, "roads string: $roads")
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val nearestRoadFC = nearestRoad?.let {
+        val roadsFeatureCollection = roads?.let {
             moshi.adapter(FeatureCollection::class.java).fromJson(
                 it
             )
         }
-        val currentRoad =
-            nearestRoadFC?.let {
-                getNearestRoad(LngLatAlt(_locationFlow.value?.longitude ?: 0.0, _locationFlow.value?.latitude ?: 0.0),
+        Log.d(TAG, "roadsFeatureCollection features : ${roadsFeatureCollection?.features?.size}")
+        val nearestRoad =
+            roadsFeatureCollection?.let {
+                getNearestRoad(LngLatAlt(
+                    _locationFlow.value?.longitude ?: 0.0,
+                    _locationFlow.value?.latitude ?: 0.0),
                     it
                 )
             }
 
-        val speechText = "$facingCompassDirection along ${currentRoad?.features?.get(0)?.properties!!["name"]}"
+        val speechText = "$facingCompassDirection along ${nearestRoad?.features?.get(0)?.properties!!["name"]}"
 
-        audioEngine.createTextToSpeech(_locationFlow.value?.latitude ?: 0.0, _locationFlow.value?.longitude ?: 0.0, speechText)
+        audioEngine.createTextToSpeech(
+            _locationFlow.value?.latitude ?: 0.0,
+            _locationFlow.value?.longitude ?: 0.0,
+            speechText
+        )
 
     }
 

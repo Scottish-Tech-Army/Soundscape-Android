@@ -925,7 +925,7 @@ fun getIntersectionRoadNames(
  * @param currentLocation
  * Location of device.
  * @param roadFeatureCollection
- * The intersection feature collection that contains the intersections we want to test.
+ * The road feature collection that contains the roads we want to test.
  * @return A Feature Collection that contains the nearest road.
  */
 fun getNearestRoad(
