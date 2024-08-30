@@ -181,8 +181,31 @@ class MainActivity : AppCompatActivity() {
      * It also tries to bind to the service to update the UI with location updates.
      */
     private fun startSoundscapeService() {
-        // start the service
-        startForegroundService(Intent(this, SoundscapeService::class.java))
+
+        val serviceIntent = Intent(this, SoundscapeService::class.java)
+
+        // Was the app started with a location that we should use?
+        if (intent != null) {
+            Log.d("intent", intent.data.toString())
+            if (intent.data != null) {
+                val regex =
+                    Regex("geo:([-+]?[0-9]*\\.[0-9]+|[0-9]+),([-+]?[0-9]*\\.[0-9]+|[0-9]+).*")
+                val matchResult = regex.find(intent.data.toString())
+                if (matchResult != null) {
+                    val latitude = matchResult.groupValues[1]
+                    val longitude = matchResult.groupValues[2]
+
+                    Log.d("intent", "latitude: $latitude")
+                    Log.d("intent", "longitude: $longitude")
+
+                    // We have a geo intent with a GPS position - use that as our location
+                    serviceIntent.putExtra("latitude", latitude.toDouble())
+                    serviceIntent.putExtra("longitude", longitude.toDouble())
+                }
+            }
+        }
+
+        startForegroundService(serviceIntent)
     }
     companion object {
         private const val TAG = "MainActivity"

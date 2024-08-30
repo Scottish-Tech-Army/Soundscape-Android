@@ -72,6 +72,11 @@ class SoundscapeService : Service() {
     lateinit var locationProvider : LocationProvider
     lateinit var directionProvider : DirectionProvider
 
+    // The intentLatitude is passed in when we want to use a StaticLocationProvider to report this
+    // location. Purely for testing purposes.
+    private var intentLatitude : Double? = null
+    private var intentLongitude : Double? = null
+
     // secondary service
     private var timerJob: Job? = null
 
@@ -103,19 +108,37 @@ class SoundscapeService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder {
-        Log.d(TAG, "onBind")
+        Log.d(TAG, "onBind $intentLatitude,$intentLongitude")
+
         return binder
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.d(TAG, "onStartCommand $running")
+        intentLatitude = intent?.extras?.getDouble("latitude")
+        intentLongitude = intent?.extras?.getDouble("longitude")
+
+        Log.d(TAG, "onStartCommand $running : $intentLatitude,$intentLongitude")
+
+        var restarted = false
+        if((intentLatitude != null) && (intentLongitude != null)) {
+            // We have a location passed in, so use that is the location provider in place of
+            // the AndroidLocationProvider. Restart/start all of the providers
+            Log.d(TAG, "Update service location to: $intentLatitude,$intentLongitude")
+            locationProvider = StaticLocationProvider(intentLatitude!!, intentLongitude!!)
+            locationProvider.start(this)
+            directionProvider.start(audioEngine, locationProvider)
+
+            restarted = true
+        }
 
         if(!running) {
             running = true
             startAsForegroundService()
 
-            locationProvider.start(this)
-            directionProvider.start(audioEngine, locationProvider)
+            if(!restarted) {
+                locationProvider.start(this)
+                directionProvider.start(audioEngine, locationProvider)
+            }
 
             // Reminds the user every hour that the Soundscape service is still running in the background
             startServiceStillRunningTicker()
@@ -134,15 +157,7 @@ class SoundscapeService : Service() {
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
-            if(false) {
-                // Debug - move to this location
-                val latitude = 55.9524634
-                val longitude = -3.2116922
-                locationProvider = StaticLocationProvider(latitude, longitude)
-            }
-            else {
-                locationProvider = AndroidLocationProvider(this)
-            }
+            locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
 
             // create new RealmDB or open existing
@@ -399,9 +414,18 @@ class SoundscapeService : Service() {
                 )
             }
 
-        val speechText = "$facingCompassDirection along ${currentRoad?.features?.get(0)?.properties!!["name"]}"
-
-        audioEngine.createTextToSpeech(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0, speechText)
+        if(currentRoad?.features?.get(0)?.properties != null) {
+            val speechText =
+                "$facingCompassDirection along ${currentRoad.features[0].properties!!["name"]}"
+            audioEngine.createTextToSpeech(
+                locationProvider.getCurrentLatitude() ?: 0.0,
+                locationProvider.getCurrentLongitude() ?: 0.0,
+                speechText
+            )
+        }
+        else {
+            Log.e(TAG, "No name property for road")
+        }
     }
 
     companion object {
