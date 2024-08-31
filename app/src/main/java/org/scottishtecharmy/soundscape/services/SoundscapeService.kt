@@ -72,11 +72,6 @@ class SoundscapeService : Service() {
     lateinit var locationProvider : LocationProvider
     lateinit var directionProvider : DirectionProvider
 
-    // The intentLatitude is passed in when we want to use a StaticLocationProvider to report this
-    // location. Purely for testing purposes.
-    private var intentLatitude : Double? = null
-    private var intentLongitude : Double? = null
-
     // secondary service
     private var timerJob: Job? = null
 
@@ -108,27 +103,37 @@ class SoundscapeService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder {
-        Log.d(TAG, "onBind $intentLatitude,$intentLongitude")
+        Log.d(TAG, "onBind")
 
         return binder
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        intentLatitude = intent?.extras?.getDouble("latitude")
-        intentLongitude = intent?.extras?.getDouble("longitude")
 
-        Log.d(TAG, "onStartCommand $running : $intentLatitude,$intentLongitude")
+        Log.d(TAG, "onStartCommand $running")
 
         var restarted = false
-        if((intentLatitude != null) && (intentLongitude != null)) {
-            // We have a location passed in, so use that is the location provider in place of
-            // the AndroidLocationProvider. Restart/start all of the providers
-            Log.d(TAG, "Update service location to: $intentLatitude,$intentLongitude")
-            locationProvider = StaticLocationProvider(intentLatitude!!, intentLongitude!!)
-            locationProvider.start(this)
-            directionProvider.start(audioEngine, locationProvider)
+        if(intent != null) {
+            val beaconLatitude = intent.getDoubleExtra("beacon-latitude", Double.NaN)
+            val beaconLongitude = intent.getDoubleExtra("beacon-longitude", Double.NaN)
 
-            restarted = true
+            if((!beaconLatitude.isNaN()) && (!beaconLongitude.isNaN())) {
+                createBeacon(beaconLatitude, beaconLongitude)
+            }
+
+            val mockLatitude = intent.getDoubleExtra("mock-latitude", Double.NaN)
+            val mockLongitude = intent.getDoubleExtra("mock-longitude", Double.NaN)
+
+            if ((!mockLatitude.isNaN()) && (!mockLongitude.isNaN())) {
+                // We have a location passed in, so use that is the location provider in place of
+                // the AndroidLocationProvider. Restart/start all of the providers
+                Log.d(TAG, "Update service location to: $mockLatitude,$mockLongitude")
+                locationProvider = StaticLocationProvider(mockLatitude, mockLongitude)
+                locationProvider.start(this)
+                directionProvider.start(audioEngine, locationProvider)
+
+                restarted = true
+            }
         }
 
         if(!running) {

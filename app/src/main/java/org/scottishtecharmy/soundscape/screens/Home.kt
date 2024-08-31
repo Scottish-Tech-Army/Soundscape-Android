@@ -64,6 +64,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.viewmodels.DrawerViewModel
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
 import org.scottishtecharmy.soundscape.viewmodels.MyLocationViewModel
 
@@ -82,7 +83,7 @@ fun Home(useView : Boolean = true) {
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { DrawerContent(drawerState, coroutineScope) },
+        drawerContent = { DrawerContent(drawerState, coroutineScope, useView) },
         gesturesEnabled = false,
     ) {
         Scaffold(
@@ -120,9 +121,14 @@ fun Home(useView : Boolean = true) {
 @Composable
 fun DrawerContent(
     drawerState: DrawerState,
-    scope: CoroutineScope
+    scope: CoroutineScope,
+    useView : Boolean
 ) {
     val context = LocalContext.current
+    var drawerViewModel : DrawerViewModel? = null
+    if(useView)
+        drawerViewModel = hiltViewModel<DrawerViewModel>()
+
     val notAvailableText = "This is not implemented yet."
     val notAvailableToast = {
         Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
@@ -177,7 +183,7 @@ fun DrawerContent(
             icon = Icons.Rounded.Star
         )
         DrawerMenuItem(
-            onClick = { notAvailableToast() },
+            onClick = { drawerViewModel?.shareLocation(context) },
             label = stringResource(R.string.share_title),
             icon = Icons.Rounded.IosShare
         )
