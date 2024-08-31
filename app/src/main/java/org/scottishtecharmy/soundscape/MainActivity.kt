@@ -25,6 +25,7 @@ import kotlinx.coroutines.runBlocking
 import org.scottishtecharmy.soundscape.screens.Home
 import java.io.File
 import java.io.IOException
+import java.net.URLDecoder
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -188,19 +189,40 @@ class MainActivity : AppCompatActivity() {
         if (intent != null) {
             Log.d("intent", intent.data.toString())
             if (intent.data != null) {
-                val regex =
+                val uriData: String = URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
+
+                // Check for geo intent which means to create a beacon at the provided location
+                var regex =
                     Regex("geo:([-+]?[0-9]*\\.[0-9]+|[0-9]+),([-+]?[0-9]*\\.[0-9]+|[0-9]+).*")
-                val matchResult = regex.find(intent.data.toString())
+                var matchResult = regex.find(uriData)
                 if (matchResult != null) {
                     val latitude = matchResult.groupValues[1]
                     val longitude = matchResult.groupValues[2]
 
-                    Log.d("intent", "latitude: $latitude")
-                    Log.d("intent", "longitude: $longitude")
+                    Log.d("intent", "beacon latitude: $latitude")
+                    Log.d("intent", "beacon longitude: $longitude")
 
                     // We have a geo intent with a GPS position - use that as our location
-                    serviceIntent.putExtra("latitude", latitude.toDouble())
-                    serviceIntent.putExtra("longitude", longitude.toDouble())
+                    serviceIntent.putExtra("beacon-latitude", latitude.toDouble())
+                    serviceIntent.putExtra("beacon-longitude", longitude.toDouble())
+                }
+                else {
+                    // Check for soundscape intent which can do more complex things. For now it just
+                    // sets the mock location
+                    regex =
+                        Regex("soundscape://([-+]?[0-9]*\\.[0-9]+|[0-9]+),([-+]?[0-9]*\\.[0-9]+|[0-9]+).*")
+                    matchResult = regex.find(uriData)
+                    if (matchResult != null) {
+                        val latitude = matchResult.groupValues[1]
+                        val longitude = matchResult.groupValues[2]
+
+                        Log.d("intent", "mock latitude: $latitude")
+                        Log.d("intent", "mock longitude: $longitude")
+
+                        // We have a geo intent with a GPS position - use that as our location
+                        serviceIntent.putExtra("mock-latitude", latitude.toDouble())
+                        serviceIntent.putExtra("mock-longitude", longitude.toDouble())
+                    }
                 }
             }
         }
