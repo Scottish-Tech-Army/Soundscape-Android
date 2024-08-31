@@ -413,12 +413,17 @@ class SoundscapeService : Service() {
                 )
             }
 
-        if(nearestRoad?.features?.get(0)?.properties!!["name"] != null) {
-            val orientation = directionProvider.mutableOrientationFlow.value?.headingDegrees ?: 0.0
+        val properties = nearestRoad?.features?.get(0)?.properties
+        if(properties != null) {
+            val orientation = directionProvider.getCurrentDirection()
+            var roadName = properties["name"]
+            if(roadName == null) {
+                roadName = properties["highway"]
+            }
             val facingDirectionAlongRoad = getCompassLabelFacingDirectionAlong(
                 applicationContext,
                 orientation.toInt(),
-                nearestRoad.features[0].properties!!["name"].toString()
+                roadName.toString()
             )
             audioEngine.createTextToSpeech(
                 locationProvider.getCurrentLatitude() ?: 0.0,
@@ -427,17 +432,6 @@ class SoundscapeService : Service() {
             )
         }
         else {
-            val orientation = directionProvider.mutableOrientationFlow.value?.headingDegrees ?: 0.0
-            val facingDirectionAlongRoad = getCompassLabelFacingDirectionAlong(
-                applicationContext,
-                orientation.toInt(),
-                nearestRoad.features[0].properties!!["highway"].toString()
-            )
-            audioEngine.createTextToSpeech(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0,
-                facingDirectionAlongRoad
-            )
             Log.e(TAG, "No name property for road")
         }
     }

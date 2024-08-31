@@ -47,8 +47,10 @@ abstract class DirectionProvider {
     abstract fun start(audioEngine: NativeAudioEngine, locationProvider: LocationProvider)
     abstract fun destroy()
 
-    fun getCurrentDirection() : Float? {
-        return mutableOrientationFlow.value?.headingDegrees
+    fun getCurrentDirection() : Float {
+        var heading = 0.0F
+        mutableOrientationFlow.value?.let{ heading = it.headingDegrees }
+        return heading
     }
 
     // Flow to return DeviceOrientation objects
