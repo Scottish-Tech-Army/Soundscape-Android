@@ -59,6 +59,22 @@ fun getXYTile(
     return Pair(xtile, ytile)
 }
 
+fun getLatLonTileWithOffset(
+    xTile : Int,
+    yTile : Int,
+    zoom: Int,
+    xOffset : Double,
+    yOffset : Double,
+): LngLatAlt {
+
+    val x : Double = xTile.toDouble() + xOffset
+    val y : Double = yTile.toDouble() + yOffset
+    val lon : Double = ((x / (1 shl zoom)) * 360.0) - 180.0
+    val latRad = atan(sinh(Math.PI * (1 - 2 * y / (1 shl zoom))))
+
+    return LngLatAlt(lon, toDegrees(latRad))
+}
+
 /**
  * Gets map coordinates from X and Y GPS coordinates. This is the same calculation as above
  * but returns normalised x and y values scaled between 0 and 1.0. These are what are required

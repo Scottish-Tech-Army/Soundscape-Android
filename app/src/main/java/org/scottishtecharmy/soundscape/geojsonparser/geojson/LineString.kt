@@ -20,4 +20,8 @@ open class LineString() : MultiPoint() {
     constructor(vararg points: LngLatAlt) : this() {
         this.coordinates = arrayListOf(*points)
     }
+
+    constructor(points: ArrayList<LngLatAlt>) : this() {
+        this.coordinates = points
+    }
 }
