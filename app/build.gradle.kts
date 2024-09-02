@@ -1,5 +1,6 @@
 import java.io.FileInputStream
 import java.util.Properties
+import com.google.protobuf.gradle.id
 
 plugins {
     id("com.android.application")
@@ -10,6 +11,7 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     alias(libs.plugins.screenshot)
+    id("com.google.protobuf")
 }
 
 android {
@@ -99,6 +101,25 @@ android {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
             version = "3.22.1"
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:4.28.0"
+    }
+
+    generateProtoTasks {
+        all().forEach {
+            it.builtins {
+                id("kotlin") {
+                    option("lite")
+                }
+                id("java") {
+                    option("lite")
+                }
+            }
         }
     }
 }
@@ -198,4 +219,7 @@ dependencies {
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
+
+    // Protobuf
+    implementation(libs.protobuf.kotlin.lite)
 }

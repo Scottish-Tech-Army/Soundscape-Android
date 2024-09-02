@@ -43,6 +43,7 @@ okhttp = "4.11.0"
 okhttpVersion = "5.0.0-alpha.3"
 playServicesLocation = "21.3.0"
 playServicesLocationVersion = "21.2.0"
+protobufKotlinLite = "4.28.0"
 retrofit = "2.9.0"
 screenshot = "0.0.1-alpha03"
 benchmarkCommon = "1.2.4"
@@ -105,6 +106,7 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-v500alpha3 = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttpVersion" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-location-v2120 = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocationVersion" }
+protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 ui = { module = "androidx.compose.ui:ui" }
 ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
