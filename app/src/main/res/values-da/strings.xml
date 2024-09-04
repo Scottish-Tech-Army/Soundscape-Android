@@ -101,4 +101,6 @@
     <string name="directions_along_facing_w">Vender vest ad %1$s</string>
     <string name="directions_along_facing_nw">Vender nordvest ad %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">Vi har problemer med at finde din aktuelle placering.</string>
+
 </resources>

@@ -100,6 +100,6 @@
     <string name="directions_along_facing_w">Står mot vest langs %1$s</string>
     <string name="directions_along_facing_nw">Står mot nordvest langs %1$s</string>
 
-
+    <string name="general_error_location_services_find_location_error">Vi har problemer med å finne nåværende posisjon.</string>
 
 </resources>

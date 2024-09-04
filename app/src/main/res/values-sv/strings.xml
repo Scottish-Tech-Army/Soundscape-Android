@@ -100,5 +100,6 @@
     <string name="directions_along_facing_w">Riktning västerut utmed %1$s</string>
     <string name="directions_along_facing_nw">Riktning nordväst utmed %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">Det går inte att hitta platsen där du är.</string>
 
 </resources>

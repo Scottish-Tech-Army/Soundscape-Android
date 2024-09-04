@@ -100,5 +100,7 @@
     <string name="directions_along_facing_w">Auf %1$s in Blickrichtung Westen</string>
     <string name="directions_along_facing_nw">Auf %1$s in Blickrichtung Nordwesten</string>
 
+    <string name="general_error_location_services_find_location_error">Ihr aktueller Standort wurde nicht gefunden.</string>
+
 
 </resources>

@@ -100,4 +100,6 @@
     <string name="directions_along_facing_w">Mirando al oeste por %1$s</string>
     <string name="directions_along_facing_nw">Mirando al noroeste por %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">Tenemos problemas para encontrar su ubicación actual.</string>
+
 </resources>

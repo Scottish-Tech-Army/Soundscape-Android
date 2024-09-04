@@ -112,6 +112,8 @@
     <string name="directions_along_facing_w">Facing west along %1$s</string>
     <string name="directions_along_facing_nw">Facing northwest along %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">We are having trouble finding your current location.</string>
+
 
     <!-- TODO these strings aren't translated, either translate them or remove them -->>
     <string name="notification_text" translatable="false">We are running this location service in the foreground</string>
