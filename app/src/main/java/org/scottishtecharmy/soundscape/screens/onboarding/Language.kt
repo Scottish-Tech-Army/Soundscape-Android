@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -72,14 +74,15 @@ fun Language(onNavigate: (String) -> Unit, mockData : MockLanguagePreviewData?){
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                //val selectedLocale = AppCompatDelegate.getApplicationLocales()[0]
-                //Log.d("Locales", "Locale is set to: $selectedLocale")
+                val selectedLocale = AppCompatDelegate.getApplicationLocales()[0]
+                Log.d("Locales", "Locale is set to: $selectedLocale")
 
                 Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),
                         onClick = {
                             viewModel?.updateSpeechLanguage()
+
                             onNavigate(Screens.Navigating.route)
                         },
                         modifier = Modifier.fillMaxWidth()

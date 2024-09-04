@@ -8,10 +8,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.content.res.Configuration
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import com.squareup.moshi.Moshi
@@ -398,6 +400,11 @@ class SoundscapeService : Service() {
     }
 
     fun myLocation() {
+        /*val configuration = Configuration(applicationContext.resources.configuration)
+        val configLocale = configuration.locales.get(0)*/
+        val configLocale = AppCompatDelegate.getApplicationLocales()[0]
+
+        Log.d(TAG, "Current locale: $configLocale")
 
         //TODO: Some failure scenarios for this
         // (1) we don't have a location so we need to inform the user
@@ -450,16 +457,21 @@ class SoundscapeService : Service() {
                         if(roadName == null) {
                             roadName = properties["highway"]
                         }
-                        val facingDirectionAlongRoad = getCompassLabelFacingDirectionAlong(
-                            applicationContext,
-                            orientation.toInt(),
-                            roadName.toString()
-                        )
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            facingDirectionAlongRoad
-                        )
+                        val facingDirectionAlongRoad = configLocale?.let {
+                            getCompassLabelFacingDirectionAlong(
+                                applicationContext,
+                                orientation.toInt(),
+                                roadName.toString(),
+                                it
+                            )
+                        }
+                        if (facingDirectionAlongRoad != null) {
+                            audioEngine.createTextToSpeech(
+                                locationProvider.getCurrentLatitude() ?: 0.0,
+                                locationProvider.getCurrentLongitude() ?: 0.0,
+                                facingDirectionAlongRoad
+                            )
+                        }
                     }
                     else {
                         Log.e(TAG, "No name property for road")
@@ -469,12 +481,20 @@ class SoundscapeService : Service() {
                 else {
                     Log.d(TAG, "No roads found in tile just give device direction")
                     val orientation = directionProvider.getCurrentDirection()
-                    val facingDirection = getCompassLabelFacingDirection(applicationContext, orientation.toInt())
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        facingDirection
-                    )
+                    val facingDirection = configLocale?.let {
+                        getCompassLabelFacingDirection(
+                            applicationContext,
+                            orientation.toInt(),
+                            it
+                        )
+                    }
+                    if (facingDirection != null) {
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            facingDirection
+                        )
+                    }
                 }
             }
             else {
