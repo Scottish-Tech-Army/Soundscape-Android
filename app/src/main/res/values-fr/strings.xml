@@ -100,6 +100,6 @@
     <string name="directions_along_facing_w">Face à l’ouest le long de %1$s</string>
     <string name="directions_along_facing_nw">Face au nord-ouest le long de %1$s</string>
 
-
+    <string name="general_error_location_services_find_location_error">Nous rencontrons des problèmes pour localiser votre emplacement actuel.</string>
 
 </resources>

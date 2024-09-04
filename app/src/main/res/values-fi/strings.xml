@@ -100,5 +100,6 @@
     <string name="directions_along_facing_w">Kääntyneenä länteen tiellä %1$s</string>
     <string name="directions_along_facing_nw">Kääntyneenä luoteeseen tiellä %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">Meillä on ongelmia nykyisen sijaintisi löytämisessä.</string>
 
 </resources>

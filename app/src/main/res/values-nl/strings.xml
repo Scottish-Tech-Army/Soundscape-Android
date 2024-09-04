@@ -101,5 +101,6 @@
     <string name="directions_along_facing_w">U kijkt naar het westen langs %1$s</string>
     <string name="directions_along_facing_nw">U kijkt naar het noordwesten langs %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">We kunnen uw huidige locatie niet vinden.</string>
 
 </resources>

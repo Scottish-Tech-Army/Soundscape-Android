@@ -101,5 +101,6 @@
     <string name="directions_along_facing_w">%1$s で西向き</string>
     <string name="directions_along_facing_nw">%1$s で北西向き</string>
 
+    <string name="general_error_location_services_find_location_error">現在地を確認できません。</string>
 
 </resources>

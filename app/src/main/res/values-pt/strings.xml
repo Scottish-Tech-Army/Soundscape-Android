@@ -101,4 +101,6 @@
     <string name="directions_along_facing_w">Voltado para oeste ao longo da %1$s</string>
     <string name="directions_along_facing_nw">Voltado para noroeste ao longo da %1$s</string>
 
+    <string name="general_error_location_services_find_location_error">Estamos com problemas para achar sua localização atual.</string>
+
 </resources>

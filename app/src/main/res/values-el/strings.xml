@@ -101,6 +101,6 @@
     <string name="directions_along_facing_w">Κοιτάζοντας δυτικά κατά μήκος της %1$s</string>
     <string name="directions_along_facing_nw">Κοιτάζοντας βορειοδυτικά κατά μήκος της %1$s</string>
 
-
+    <string name="general_error_location_services_find_location_error">Δυσκολευόμαστε να βρούμε την τρέχουσα τοποθεσία σας.</string>
 
 </resources>
