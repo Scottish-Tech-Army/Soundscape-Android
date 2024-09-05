@@ -497,6 +497,14 @@ class SoundscapeService : Service() {
         }
     }
 
+    fun whatsAroundMe(){
+        audioEngine.createTextToSpeech(
+            locationProvider.getCurrentLatitude() ?: 0.0,
+            locationProvider.getCurrentLongitude() ?: 0.0,
+            "Greggs are surrounding you in every direction. Run for your life!"
+        )
+    }
+
     companion object {
         private const val TAG = "SoundscapeService"
         // Secondary "service" every n seconds
