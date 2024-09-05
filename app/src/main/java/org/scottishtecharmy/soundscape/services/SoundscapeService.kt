@@ -8,7 +8,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
-import android.content.res.Configuration
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
@@ -400,26 +399,13 @@ class SoundscapeService : Service() {
     }
 
     fun myLocation() {
-        /*val configuration = Configuration(applicationContext.resources.configuration)
-        val configLocale = configuration.locales.get(0)*/
+        // getCurrentDirection() from the direction provider has a default of 0.0
+        // even if we don't have a valid current direction.
         val configLocale = AppCompatDelegate.getApplicationLocales()[0]
-
-        Log.d(TAG, "Current locale: $configLocale")
-
-        //TODO: Some failure scenarios for this
-        // (1) we don't have a location so we need to inform the user
-        // (2) we've got a location but we haven't got the tile in the db yet
-        // (3) we've got a tile but it doesn't have any roads in it
-        // (4) we don't have an orientation so we need to inform the user
-        // (5) roads are weird. It can have a name or not, it can have a ref ("M5") or not,
-        // it can also be tagged as "service" of which there are a lot and that can cover a
-        // range of "roads" - asphalt, mud, gravel, track, someone's drive.
-        // We are going to get caught out at some point and original Soundscape weasels out of it
-        // by letting you turn off "service" roads.
 
         if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
-            Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
+            //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString = applicationContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
                  0.0,
@@ -430,7 +416,7 @@ class SoundscapeService : Service() {
         else{
             // fetch the road from Realm
             val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
-            Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
+            //Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             // just retrieving a single tile for now
             val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
             val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
@@ -444,14 +430,14 @@ class SoundscapeService : Service() {
                     )
                 }
                 if (roadFeatureCollection?.features!!.size > 0){
-                    Log.d(TAG, "Found roads in tile")
+                    //Log.d(TAG, "Found roads in tile")
                     val nearestRoad =
                         getNearestRoad(LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
                             roadFeatureCollection
                         )
 
                     val properties = nearestRoad.features[0].properties
-                    if(properties != null) {
+                    if (properties != null) {
                         val orientation = directionProvider.getCurrentDirection()
                         var roadName = properties["name"]
                         if(roadName == null) {
@@ -479,7 +465,7 @@ class SoundscapeService : Service() {
 
                 }
                 else {
-                    Log.d(TAG, "No roads found in tile just give device direction")
+                    //Log.d(TAG, "No roads found in tile just give device direction")
                     val orientation = directionProvider.getCurrentDirection()
                     val facingDirection = configLocale?.let {
                         getCompassLabelFacingDirection(
@@ -500,17 +486,15 @@ class SoundscapeService : Service() {
             else {
                 // frozenResult is null, no TileData object was found either we haven't had time
                 // to fetch the tile or network problem
-                Log.d(TAG, "No tile data found for this location")
+                //Log.d(TAG, "No tile data found for this location")
                 val noTileString = applicationContext.getString(R.string.general_error_location_services_find_location_error)
                 audioEngine.createTextToSpeech(
                     0.0,
                     0.0,
-                    noTileString)
+                    noTileString
+                )
             }
-
         }
-
-
     }
 
     companion object {
