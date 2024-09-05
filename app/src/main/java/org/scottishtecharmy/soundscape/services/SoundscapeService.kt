@@ -8,6 +8,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.content.res.Configuration
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
@@ -406,7 +407,10 @@ class SoundscapeService : Service() {
         if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val noLocationString = applicationContext.getString(R.string.general_error_location_services_find_location_error)
+            val configuration = Configuration(applicationContext.resources.configuration)
+            configuration.setLocale(configLocale)
+            val localizedContext = applicationContext.createConfigurationContext(configuration)
+            val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
                  0.0,
                  0.0,
