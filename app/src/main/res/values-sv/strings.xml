@@ -22,7 +22,7 @@
     <string name="first_launch_permissions_motion">Rörelse och fitness</string>
     <string name="first_launch_permissions_required">Den här behörigheten är obligatorisk</string>
     <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
-    <string name="first_launch_permissions_notification">Notifications</string>
+    <string name="first_launch_permissions_notification">Aviseringar</string>
     <string name="general_error_location_services_authorize_title">Auktorisera Platstjänster</string>
     <string name="general_error_location_services_authorize_description">Soundscape använder din plats för att hitta och berätta om platser och saker som finns runt omkring dig. Appen behöver behörighet att använda Platstjänster.</string>
 

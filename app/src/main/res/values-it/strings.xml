@@ -22,7 +22,7 @@
     <string name="first_launch_permissions_motion">Movimento e fitness</string>
     <string name="first_launch_permissions_required">Questa autorizzazione è necessaria</string>
     <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
-    <string name="first_launch_permissions_notification">Notifications</string>
+    <string name="first_launch_permissions_notification">Notifiche</string>
     <string name="general_error_location_services_authorize_title">Autorizza servizi di localizzazione</string>
     <string name="general_error_location_services_authorize_description">Soundscape usa la tua posizione per trovare e raccontarti i luoghi e le cose intorno a te. L\'app necessita della tua autorizzazione per utilizzare i servizi di localizzazione.</string>
 

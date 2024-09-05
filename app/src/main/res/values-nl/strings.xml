@@ -22,7 +22,7 @@
     <string name="first_launch_permissions_motion">Beweging &amp; Conditie</string>
     <string name="first_launch_permissions_required">Deze toestemming is verplicht</string>
     <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
-    <string name="first_launch_permissions_notification">Notifications</string>
+    <string name="first_launch_permissions_notification">Meldingen</string>
     <string name="general_error_location_services_authorize_title">Locatievoorzieningen autoriseren</string>
     <string name="general_error_location_services_authorize_description">Soundscape gebruikt uw locatie om plaatsen en dingen om u heen te vinden en deze te beschrijven. De app heeft uw toestemming nodig om Locatievoorzieningen te gebruiken.</string>
 
