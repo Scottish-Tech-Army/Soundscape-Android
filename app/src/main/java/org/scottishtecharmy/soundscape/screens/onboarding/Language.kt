@@ -74,8 +74,8 @@ fun Language(onNavigate: (String) -> Unit, mockData : MockLanguagePreviewData?){
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                val selectedLocale = AppCompatDelegate.getApplicationLocales()[0]
-                Log.d("Locales", "Locale is set to: $selectedLocale")
+                //val selectedLocale = AppCompatDelegate.getApplicationLocales()[0]
+                //Log.d("Locales", "Locale is set to: $selectedLocale")
 
                 Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                     OnboardButton(
