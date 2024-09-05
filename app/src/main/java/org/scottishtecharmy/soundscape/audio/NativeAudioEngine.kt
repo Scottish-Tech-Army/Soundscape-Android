@@ -8,6 +8,7 @@ import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -69,13 +70,9 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
             Log.e("Soundscape", "Android version " + Build.VERSION.SDK_INT)
 
-            Log.e("TTS", "setLanguage")
-            val result = textToSpeech.setLanguage(Locale.UK)
-
-            Log.e("TTS", "setLanguage returned")
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "The Language not supported!")
-            }
+            // Get the current locale and initialize the text to speech engine with it
+            val languageCode = AppCompatDelegate.getApplicationLocales().toLanguageTags()
+            setSpeechLanguage(languageCode)
 
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
 
