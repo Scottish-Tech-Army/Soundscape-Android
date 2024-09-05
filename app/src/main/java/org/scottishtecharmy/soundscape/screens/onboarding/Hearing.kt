@@ -111,12 +111,22 @@ fun Hearing(onNavigate: (String) -> Unit, useView : Boolean) {
                         )
                         Spacer(modifier = Modifier.height(10.dp))
 
-                        // TODO Strings to send to text-to-speech
                         // <string name="first_launch_callouts_example_1">Cafe</string>
                         // <string name="first_launch_callouts_example_3">Main Street goes left</string>
                         // <string name="first_launch_callouts_example_4">Main Street goes right</string>
 
-                        val speechText = stringResource(R.string.first_launch_callouts_example_4)
+                        //val speechText = stringResource(R.string.first_launch_callouts_example_4)
+
+                        // This is a bodged version to introduce pauses between translation strings
+                        // Not sure if this will work with some of the other languages, for example, Japanese
+                        val speechText = buildString {
+                            append(stringResource(R.string.first_launch_callouts_example_1))
+                            append(".")
+                            append(stringResource(R.string.first_launch_callouts_example_3))
+                            append(".")
+                            append(stringResource(R.string.first_launch_callouts_example_4))
+                        }
+
                         Button(
                             onClick = {
                                 viewModel?.playSpeech(speechText)
