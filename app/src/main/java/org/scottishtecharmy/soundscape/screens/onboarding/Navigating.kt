@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
 import android.Manifest
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -123,33 +124,38 @@ fun Navigating(onNavigate: (String) -> Unit) {
                             )
                         }
                     }
-                    Row(
-                        modifier = Modifier
-                            .padding(horizontal = 20.dp)
-                            .fillMaxWidth(),
-                    )
-                    {
-                        Icon(
-                            Icons.Rounded.Notifications,
-                            contentDescription = null,
-                            tint = Color.White
+                    // check Android version here to show row or not
+                    if (Build.VERSION.SDK_INT >= 33){
+                        Row(
+                            modifier = Modifier
+                                .padding(horizontal = 20.dp)
+                                .fillMaxWidth(),
                         )
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Column {
-                            Text(
-                                // Notification permission doesn't have translations as
-                                // original iOS Soundscape didn't have this
-                                text = stringResource(R.string.first_launch_permissions_notification),
-                                style = MaterialTheme.typography.titleMedium,
-                                textAlign = TextAlign.Center
+                        {
+                            Icon(
+                                Icons.Rounded.Notifications,
+                                contentDescription = null,
+                                tint = Color.White
                             )
-                            Text(
-                                text = stringResource(R.string.first_launch_permissions_required),
-                                style = MaterialTheme.typography.bodySmall,
-                                textAlign = TextAlign.Center
-                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            Column {
+                                Text(
+                                    // Notification permission doesn't have translations as
+                                    // original iOS Soundscape didn't have this
+                                    text = stringResource(R.string.first_launch_permissions_notification),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    text = stringResource(R.string.first_launch_permissions_required),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
                         }
+
                     }
+
                     Row(
                         modifier = Modifier
                             .padding(20.dp)
