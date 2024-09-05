@@ -18,9 +18,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -72,14 +69,18 @@ class AndroidDirectionProvider(context : Context) :
     override fun start(audioEngine: NativeAudioEngine, locationProvider: LocationProvider){
         listener = DeviceOrientationListener { orientation ->
             mutableOrientationFlow.value = orientation  // Emit the DeviceOrientation object
-                val location = locationProvider.locationFlow.value
-                if(location != null) {
-                    audioEngine.updateGeometry(
-                        location.latitude,
-                        location.longitude,
-                        orientation.headingDegrees.toDouble()
-                    )
-                }
+            var latitude = 0.0
+            var longitude = 0.0
+            val location = locationProvider.locationFlow.value
+            if(location != null) {
+                latitude = location.latitude
+                longitude = location.longitude
+            }
+            audioEngine.updateGeometry(
+                latitude,
+                longitude,
+                orientation.headingDegrees.toDouble()
+            )
         }
 
         // OUTPUT_PERIOD_DEFAULT = 50Hz / 20ms
