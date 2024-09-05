@@ -186,6 +186,7 @@ class SoundscapeService : Service() {
         Log.d(TAG, "onDestroy")
 
         audioEngine.destroyBeacon(audioBeacon)
+        audioBeacon = 0
         audioEngine.destroy()
 
         locationProvider.destroy()
