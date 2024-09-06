@@ -11,25 +11,25 @@ import android.location.Location
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mapbox.mapboxsdk.annotations.IconFactory
-import com.mapbox.mapboxsdk.annotations.Marker
-import com.mapbox.mapboxsdk.annotations.MarkerOptions
-import com.mapbox.mapboxsdk.camera.CameraPosition
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.MapboxMap.OnMarkerClickListener
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.maplibre.android.annotations.IconFactory
+import org.maplibre.android.annotations.Marker
+import org.maplibre.android.annotations.MarkerOptions
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.style.layers.PropertyFactory
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(@ApplicationContext context: Context, private val soundscapeServiceConnection : SoundscapeServiceConnection): ViewModel(), OnMarkerClickListener {
+class HomeViewModel @Inject constructor(@ApplicationContext context: Context, private val soundscapeServiceConnection : SoundscapeServiceConnection): ViewModel(),
+    MapLibreMap.OnMarkerClickListener {
 
     private var serviceConnection : SoundscapeServiceConnection? = null
     private var iconFactory : IconFactory
@@ -43,7 +43,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
     private var currentLocationMarker : Marker? = null
     private var beaconLocationMarker : Marker? = null
 
-    private var mapboxMap : MapboxMap? = null
+    private var mapLibreMap : MapLibreMap? = null
 
     private fun updateBeaconLocation() {
         if (beaconLocationMarker != null) {
@@ -51,7 +51,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
         } else {
             val markerOptions = MarkerOptions()
                 .position(beaconLocation)
-            beaconLocationMarker = mapboxMap?.addMarker(markerOptions)
+            beaconLocationMarker = mapLibreMap?.addMarker(markerOptions)
         }
     }
 
@@ -73,7 +73,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
                 if (value != null) {
                     heading = value.headingDegrees
 
-                    mapboxMap?.cameraPosition = CameraPosition.Builder()
+                    mapLibreMap?.cameraPosition = CameraPosition.Builder()
                         .bearing(heading.toDouble())
                         .build()
                 }
@@ -89,7 +89,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
                 }
                 else {
                     if(beaconLocationMarker != null) {
-                        mapboxMap?.removeMarker(beaconLocationMarker!!)
+                        mapLibreMap?.removeMarker(beaconLocationMarker!!)
                         beaconLocationMarker = null
                     }
                 }
@@ -103,11 +103,11 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
             initialLocation = location
             Log.d(TAG, "lastLocation updated to $location")
         }
-        if(!mapCentered && (mapboxMap != null) && (initialLocation != null)) {
+        if(!mapCentered && (mapLibreMap != null) && (initialLocation != null)) {
             // If the map has already been created and it's not yet been centered, and we've received
             // a location with reasonable accuracy then center it
             mapCentered = true
-            mapboxMap?.cameraPosition = CameraPosition.Builder()
+            mapLibreMap?.cameraPosition = CameraPosition.Builder()
                 .target(LatLng(location.latitude, location.longitude))
                 .zoom(15.0)
                 .bearing(heading.toDouble())
@@ -127,16 +127,16 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
             val markerOptions = MarkerOptions()
                 .position(latLng)
                 .icon(icon)
-            currentLocationMarker = mapboxMap?.addMarker(markerOptions)
+            currentLocationMarker = mapLibreMap?.addMarker(markerOptions)
         }
     }
 
-    fun setMap(map: MapboxMap) {
+    fun setMap(map: MapLibreMap) {
         // Set the style after mapView was loaded
-        mapboxMap = map
+        mapLibreMap = map
         val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
         val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
-        mapboxMap?.setStyle(styleUrl) {
+        mapLibreMap?.setStyle(styleUrl) {
 
             ////////////////////////////////////////////////////////////////////////////////////////
             // Prove that these are vector maps by listing the layers and then changing the colour
@@ -149,21 +149,21 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
             //
             ////////////////////////////////////////////////////////////////////////////////////////
 
-            mapboxMap?.uiSettings?.setAttributionMargins(15, 0, 0, 15)
+            mapLibreMap?.uiSettings?.setAttributionMargins(15, 0, 0, 15)
 
             // Set the map view center if we already have an initial location
             initialLocation?.let { location -> updateLocationOnMap(location) }
             // Update the map with the beacon location if we already have one
             beaconLocation?.let { updateBeaconLocation() }
 
-            mapboxMap?.addOnMapLongClickListener { latitudeLongitude ->
+            mapLibreMap?.addOnMapLongClickListener { latitudeLongitude ->
                 soundscapeServiceConnection.soundscapeService?.createBeacon(
                     latitudeLongitude.latitude,
                     latitudeLongitude.longitude
                 )
                 false
             }
-            mapboxMap?.setOnMarkerClickListener(this)
+            mapLibreMap?.setOnMarkerClickListener(this)
         }
 
     }
@@ -182,7 +182,7 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
     private var highlightedPointsOfInterest : Boolean = false
     fun highlightPointsOfInterest() {
         highlightedPointsOfInterest = highlightedPointsOfInterest.xor(true)
-        mapboxMap?.getStyle {
+        mapLibreMap?.getStyle {
             val foodLayer = it.getLayer("Food")
             var highlightSize = 1F
             if(highlightedPointsOfInterest)
