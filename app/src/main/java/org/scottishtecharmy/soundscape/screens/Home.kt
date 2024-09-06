@@ -53,11 +53,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.WellKnownTileServer
-import com.mapbox.mapboxsdk.maps.MapView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import org.maplibre.android.MapLibre
+import org.maplibre.android.WellKnownTileServer
+import org.maplibre.android.maps.MapView
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
@@ -387,7 +387,7 @@ fun HomeBottomAppBar(
 fun MapContainerLibre(viewModel: HomeViewModel) {
     AndroidView(
         factory = { context ->
-            Mapbox.getInstance(context, BuildConfig.TILE_PROVIDER_API_KEY, WellKnownTileServer.MapTiler)
+            MapLibre.getInstance(context, BuildConfig.TILE_PROVIDER_API_KEY, WellKnownTileServer.MapTiler)
             val mapView = MapView(context)
             mapView.onCreate(null)
             mapView.getMapAsync { map ->
