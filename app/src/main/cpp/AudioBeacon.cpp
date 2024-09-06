@@ -54,9 +54,9 @@ void PositionedAudio::InitFmodSound() {
     }
 }
 
-void PositionedAudio::Init()
+void PositionedAudio::Init(double degrees_off_axis)
 {
-    bool queued = CreateAudioSource();
+    bool queued = CreateAudioSource(degrees_off_axis);
 
     TRACE("%s %p", __FUNCTION__, this);
 
@@ -71,19 +71,22 @@ void PositionedAudio::PlayNow()
     InitFmodSound();
 }
 
-void PositionedAudio::UpdateGeometry(double heading, double latitude, double longitude) {
+double PositionedAudio::GetHeadingOffset(double heading, double latitude, double longitude) const {
     // Calculate how far off axis the beacon is given this new heading
 
     // Calculate the beacon heading
     auto beacon_heading = bearingFromTwoPoints(m_Latitude, m_Longitude, latitude, longitude);
     auto degrees_off_axis = beacon_heading - heading;
-    if(degrees_off_axis > 180)
+    if (degrees_off_axis > 180)
         degrees_off_axis -= 360;
-    else if(degrees_off_axis < -180)
+    else if (degrees_off_axis < -180)
         degrees_off_axis += 360;
 
-    int dist = (int)distance(latitude, longitude, m_Latitude, m_Longitude);
-    m_pAudioSource->UpdateGeometry(degrees_off_axis, dist);
+    return degrees_off_axis;
+}
+void PositionedAudio::UpdateGeometry(double heading, double latitude, double longitude) {
+    auto degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
+    m_pAudioSource->UpdateGeometry(degrees_off_axis);
 
     //TRACE("%f %f -> %f (%f %f), %dm", heading, beacon_heading, degrees_off_axis, lat_delta, long_delta, dist)
 }

@@ -66,8 +66,8 @@ unsigned int BeaconBuffer::Read(void *data, unsigned int data_length, unsigned l
 //
 //
 //
-BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae, PositionedAudio *parent)
-: BeaconAudioSource(parent)
+BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae, PositionedAudio *parent, double degrees_off_axis)
+: BeaconAudioSource(parent, degrees_off_axis)
 {
     TRACE("Create BeaconBufferGroup %p", this);
     m_pDescription = ae->GetBeaconDescriptor();
@@ -113,7 +113,7 @@ void BeaconBufferGroup::UpdateCurrentBufferFromHeading()
 {
     for(const auto &buffer: m_pBuffers)
     {
-        if(buffer->CheckIsActive(degreesOffAxis)) {
+        if(buffer->CheckIsActive(m_DegreesOffAxis)) {
             m_pCurrentBuffer = buffer.get();
             break;
         }
@@ -138,7 +138,7 @@ FMOD_RESULT F_CALLBACK BeaconBufferGroup::PcmReadCallback(void *data, unsigned i
 //
 
 TtsAudioSource::TtsAudioSource(const AudioEngine *ae MAYBE_UNUSED, PositionedAudio *parent, int tts_socket)
-              : BeaconAudioSource(parent)
+              : BeaconAudioSource(parent, 0)
 
 {
     // The file descriptor is owned by the object in Kotlin, so use a duplicate.
@@ -234,8 +234,8 @@ FMOD_RESULT F_CALLBACK BeaconAudioSource::StaticPcmReadCallback(FMOD_SOUND* soun
     return FMOD_OK;
 }
 
-void BeaconAudioSource::UpdateGeometry(double degrees_off_axis, int distance MAYBE_UNUSED)
+void BeaconAudioSource::UpdateGeometry(double degrees_off_axis)
 {
-    degreesOffAxis = degrees_off_axis;
+    m_DegreesOffAxis = degrees_off_axis;
 }
 

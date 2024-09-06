@@ -32,7 +32,7 @@ class AudioBeaconsViewModel @Inject constructor(private val audioEngine : Native
         audioEngine.setBeaconType(type)
         if(beacon != 0L)
             audioEngine.destroyBeacon(beacon)
-        beacon = audioEngine.createBeacon(0.0, 0.0)
+        beacon = audioEngine.createBeacon(1.0, 0.0)
     }
 
     fun silenceBeacon() {

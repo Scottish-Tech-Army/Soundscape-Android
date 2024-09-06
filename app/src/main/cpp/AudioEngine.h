@@ -27,9 +27,18 @@ namespace soundscape {
 
         const static BeaconDescriptor msc_BeaconDescriptors[];
 
+        void GetListenerPosition(double &heading, double &latitude, double &longitude) const
+        {
+            heading = m_LastHeading;
+            latitude = m_LastPos.z;
+            longitude = m_LastPos.x;
+        }
+
     private:
         FMOD::System * m_pSystem;
         FMOD_VECTOR m_LastPos = {0.0f, 0.0f, 0.0f};
+
+        double m_LastHeading = 0.0;
 
         std::atomic<int> m_BeaconTypeIndex;
 
