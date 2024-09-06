@@ -220,4 +220,8 @@ dependencies {
 
     // Protobuf
     implementation(libs.protobuf.kotlin.lite)
+
+    // In app review
+    implementation(libs.review)
+    implementation(libs.review.ktx)
 }
