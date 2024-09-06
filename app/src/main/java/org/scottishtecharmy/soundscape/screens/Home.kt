@@ -12,14 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ExitToApp
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Headset
 import androidx.compose.material.icons.rounded.IosShare
+import androidx.compose.material.icons.rounded.LocationOff
+import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.MailOutline
 import androidx.compose.material.icons.rounded.Menu
-import androidx.compose.material.icons.rounded.PhonelinkErase
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.BottomAppBar
@@ -29,6 +29,7 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
@@ -38,6 +39,10 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -222,29 +227,20 @@ fun HomeTopAppBar(
             }
         },
         actions = {
-            IconButton(
-                onClick = {
-                    notAvailableToast()
-                    //onNavigate(Screens.Sleeping.route)
+            var serviceRunning by remember { mutableStateOf(true) }
+            IconToggleButton(
+                checked = serviceRunning,
+                enabled = true,
+                onCheckedChange = { state ->
+                    serviceRunning = state
+                    (context as MainActivity).toggleServiceState(state)
                 },
             ) {
-                Icon(
-                    Icons.Rounded.PhonelinkErase,
-                    contentDescription = "Enable Battery Saver Mode",
-                    tint = Color.White
-                )
-            }
-
-            IconButton(
-                onClick = {
-                    (context as MainActivity).stopServiceAndExit()
-                },
-            ) {
-                Icon(
-                    Icons.AutoMirrored.Outlined.ExitToApp,
-                    contentDescription = "Exit application",
-                    tint = Color.White
-                )
+                if (serviceRunning) {
+                    Icon(Icons.Rounded.LocationOn, contentDescription = "Service running")
+                } else {
+                    Icon(Icons.Rounded.LocationOff, contentDescription = "Service stopped")
+                }
             }
         }
     )

@@ -224,6 +224,7 @@ class SoundscapeService : Service() {
      * Can be called from inside or outside the service.
      */
     fun stopForegroundService() {
+        destroyBeacon()
         stopSelf()
     }
 

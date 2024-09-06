@@ -169,11 +169,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun stopServiceAndExit() {
-        // service is already running, stop it
-        soundscapeServiceConnection.stopServiceAndExit()
-        // And exit application
-        finishAndRemoveTask()
+    fun toggleServiceState(newServiceState: Boolean) {
+
+        if(!newServiceState) {
+            soundscapeServiceConnection.soundscapeService?.stopForegroundService()
+            soundscapeServiceConnection.soundscapeService = null
+        }
+        else {
+            startSoundscapeService()
+            soundscapeServiceConnection.tryToBindToServiceIfRunning()
+        }
     }
 
     /**

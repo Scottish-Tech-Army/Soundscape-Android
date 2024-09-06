@@ -199,7 +199,19 @@ class HomeViewModel @Inject constructor(@ApplicationContext context: Context, pr
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
                 if(it) {
+                    // The service has started, so start monitoring the location and heading
                     startMonitoringLocation()
+                }
+                else {
+                    // The service has gone away so remove the current location marker
+                    if(currentLocationMarker != null) {
+                        mapLibreMap?.removeMarker(currentLocationMarker!!)
+                        currentLocationMarker = null
+                    }
+                    // Reset map view variables so that the map re-centers when the service comes back
+                    initialLocation = null
+                    mapCentered = false
+
                 }
             }
         }
