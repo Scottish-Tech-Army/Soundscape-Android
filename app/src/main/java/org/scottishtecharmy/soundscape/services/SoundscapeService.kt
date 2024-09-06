@@ -404,13 +404,13 @@ class SoundscapeService : Service() {
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
         val configLocale = AppCompatDelegate.getApplicationLocales()[0]
+        val configuration = Configuration(applicationContext.resources.configuration)
+        configuration.setLocale(configLocale)
+        val localizedContext = applicationContext.createConfigurationContext(configuration)
 
         if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val configuration = Configuration(applicationContext.resources.configuration)
-            configuration.setLocale(configLocale)
-            val localizedContext = applicationContext.createConfigurationContext(configuration)
             val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
                  0.0,
@@ -418,7 +418,7 @@ class SoundscapeService : Service() {
                 noLocationString
             )
         }
-        else{
+        else {
             // fetch the road from Realm
             val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
             //Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
@@ -489,10 +489,10 @@ class SoundscapeService : Service() {
                 }
             }
             else {
-                // frozenResult is null, no TileData object was found either we haven't had time
+                // frozenResult is null, no TileData object was found in db. Either we haven't had time
                 // to fetch the tile or network problem
                 //Log.d(TAG, "No tile data found for this location")
-                val noTileString = applicationContext.getString(R.string.general_error_location_services_find_location_error)
+                val noTileString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
                 audioEngine.createTextToSpeech(
                     0.0,
                     0.0,
