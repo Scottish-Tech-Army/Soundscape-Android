@@ -237,6 +237,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
         // store pos for next time
         m_LastPos = listener_position;
+        m_LastHeading = listenerHeading;
 
         // Set listener direction
         auto rads = static_cast<float>((listenerHeading * M_PI) / 180.0);
