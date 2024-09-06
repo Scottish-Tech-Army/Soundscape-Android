@@ -73,14 +73,6 @@ class SoundscapeServiceConnection @Inject constructor(@ApplicationContext contex
         }
     }
 
-    fun stopServiceAndExit() {
-        Log.d(TAG, "stopServiceAndExit")
-        // service is already running, stop it
-        soundscapeService?.stopForegroundService()
-
-        destroy()
-    }
-
     fun tryToBindToServiceIfRunning() {
         Log.d(TAG, "tryToBindToServiceIfRunning " + serviceBoundState.value)
 
