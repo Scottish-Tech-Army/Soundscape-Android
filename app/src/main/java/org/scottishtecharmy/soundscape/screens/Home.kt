@@ -184,7 +184,7 @@ fun DrawerContent(
             icon = Icons.Rounded.MailOutline
         )
         DrawerMenuItem(
-            onClick = { drawerViewModel?.rateSoundscape() },
+            onClick = { drawerViewModel?.rateSoundscape(context as MainActivity) },
             label = stringResource(R.string.menu_rate),
             icon = Icons.Rounded.Star
         )
