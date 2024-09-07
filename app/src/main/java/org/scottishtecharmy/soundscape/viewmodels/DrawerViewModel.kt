@@ -45,14 +45,14 @@ class DrawerViewModel @Inject constructor(@ApplicationContext val context: Conte
         }
     }
 
-    fun rateSoundscape() {
+    fun rateSoundscape(activity: MainActivity) {
         val request = reviewManager.requestReviewFlow()
         request.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 // We got the ReviewInfo object
                 val reviewInfo = task.result
 
-                val flow = reviewManager.launchReviewFlow(context as MainActivity, reviewInfo)
+                val flow = reviewManager.launchReviewFlow(activity, reviewInfo)
                 flow.addOnCompleteListener { _ ->
                     // The flow has finished. The API does not indicate whether the user
                     // reviewed or not, or even whether the review dialog was shown. Thus, no
