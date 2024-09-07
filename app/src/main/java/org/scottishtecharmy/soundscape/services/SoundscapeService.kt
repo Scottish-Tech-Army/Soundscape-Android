@@ -56,7 +56,9 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
+import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.utils.getQuadKey
 import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
@@ -504,11 +506,115 @@ class SoundscapeService : Service() {
     }
 
     fun whatsAroundMe(){
-        audioEngine.createTextToSpeech(
-            locationProvider.getCurrentLatitude() ?: 0.0,
-            locationProvider.getCurrentLongitude() ?: 0.0,
-            "Greggs are surrounding you in every direction. Run for your life!"
-        )
+        // TODO This is just a rough POC at the moment. Lots more to do...
+        //  decide on how to calculate distance to POI, use more than one tile, setup settings in the menu so we can pass in the filters, etc.
+        //  Original Soundscape just splats out a list in no particular order which is odd.
+        //  If you press the button again in original Soundscape it can give you the same list but in a different sequence or
+        //  it can add one to the list even if you haven't moved. It also only seems to give a thing and a distance but not a heading.
+        val configLocale = AppCompatDelegate.getApplicationLocales()[0]
+        val configuration = Configuration(applicationContext.resources.configuration)
+        configuration.setLocale(configLocale)
+        val localizedContext = applicationContext.createConfigurationContext(configuration)
+
+        if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+            // Should be null but let's check
+            //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
+            val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+            audioEngine.createTextToSpeech(
+                0.0,
+                0.0,
+                noLocationString
+            )
+        }
+        else {
+            // fetch the POIs from Realm
+            val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
+            //Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
+            // just retrieving a single tile for now
+            val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
+            val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
+            if (frozenResult != null) {
+                // frozenResult is a TileData object
+                val poiString = frozenResult.pois
+                val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+                val poiFeatureCollection = poiString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                // the poiFeatureCollection has something in it
+                if (poiFeatureCollection?.features!!.size > 0){
+                    Log.d(TAG, "Found POIs in tile: $poiString")
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        "We found ${poiFeatureCollection.features.size} Points Of Interest in this tile."
+                    )
+                    // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
+                    // "information", "object", "place", "landmark", "mobility", "safety"
+                    val superCategory = "landmark"
+                    val filterBySuperCategory = getPoiFeatureCollectionBySuperCategory(superCategory, poiFeatureCollection)
+                    if(filterBySuperCategory.features.size > 0){
+                        // not necessary just singular/plural annoying me
+                        val thing = if(filterBySuperCategory.features.size == 1){
+                            "thing"
+                        } else {
+                            "things"
+                        }
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            "Using the $superCategory category, we found ${filterBySuperCategory.features.size} $thing in this tile."
+                        )
+                        // Temp code to play audio to prove we've got something and how far away but not every "thing" has a name property...
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            "The first thing is: ${filterBySuperCategory.features[0].properties!!["name"]}"
+                        )
+                        val distanceToPoi = getNearestPoi(
+                            LngLatAlt( locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                            filterBySuperCategory
+                            )
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            // This calculates the distance to the nearest POI using a bounding box
+                            // so if it is a large polygon can be super inaccurate/misleading
+                            // Not sure if it might be better to calculate the nearest point/edge that makes up the polygon?
+                            // I've inserted the distance_to in the foreign member for this so...
+                            "The first $superCategory is ${distanceToPoi.features[0].foreign!!["distance_to"].toString()} meters away."
+                        )
+                    }
+                    else {
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            "Nothing in the $superCategory category found in this tile."
+                        )
+                    }
+                }
+                else {
+                    Log.d(TAG, "No Points Of Interest found in the tile")
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                            "No Points Of Interest found in this tile."
+                    )
+                }
+            }
+            else {
+                // frozenResult is null, no TileData object was found in db. Either we haven't had time
+                // to fetch the tile or network problem
+                //Log.d(TAG, "No tile data found for this location")
+                val noTileString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+                audioEngine.createTextToSpeech(
+                    0.0,
+                    0.0,
+                    noTileString
+                )
+            }
+        }
     }
 
     companion object {
