@@ -511,6 +511,8 @@ class SoundscapeService : Service() {
         //  Original Soundscape just splats out a list in no particular order which is odd.
         //  If you press the button again in original Soundscape it can give you the same list but in a different sequence or
         //  it can add one to the list even if you haven't moved. It also only seems to give a thing and a distance but not a heading.
+        // Started the work for the 3x3 grid and adding the features into a FeatureCollection
+        // but I'm currently just splatting every feature in there I need to check for duplicates
         val configLocale = AppCompatDelegate.getApplicationLocales()[0]
         val configuration = Configuration(applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
@@ -527,91 +529,88 @@ class SoundscapeService : Service() {
             )
         }
         else {
-            // fetch the POIs from Realm
-            val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
-            //Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            // just retrieving a single tile for now
-            val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
-            val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
-            if (frozenResult != null) {
-                // frozenResult is a TileData object
-                val poiString = frozenResult.pois
-                val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-                val poiFeatureCollection = poiString.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(
-                        it
-                    )
+            // start of trying to get a grid of tiles and merge into one feature collection
+            val tileGridQuadKeys = getTilesForRegion(
+                locationProvider.getCurrentLatitude() ?: 0.0,
+                locationProvider.getCurrentLongitude() ?: 0.0,
+                250.0
+            )
+            val gridFeatureCollection = FeatureCollection()
+            for (tile in tileGridQuadKeys) {
+                //Check the db for the tile
+                val frozenTileResult = realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                if (frozenTileResult != null) {
+                    val poiString = frozenTileResult.pois
+                    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+                    val poiFeatureCollection = poiString.let {
+                        moshi.adapter(FeatureCollection::class.java).fromJson(
+                            it
+                        )
+                    }
+                    for (feature in poiFeatureCollection?.features!!) {
+                        // TODO Need to check for duplicates here before splatting into the gridFeatureCollection
+                        gridFeatureCollection.features.add(feature)
+                    }
                 }
-                // the poiFeatureCollection has something in it
-                if (poiFeatureCollection?.features!!.size > 0){
-                    Log.d(TAG, "Found POIs in tile: $poiString")
+            }
+            // the gridFeatureCollection has something in it
+            if (gridFeatureCollection.features.size > 0){
+                audioEngine.createTextToSpeech(
+                    locationProvider.getCurrentLatitude() ?: 0.0,
+                    locationProvider.getCurrentLongitude() ?: 0.0,
+                    "We found ${gridFeatureCollection.features.size} Points Of Interest in this grid."
+                    )
+                // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
+                // "information", "object", "place", "landmark", "mobility", "safety"
+                val superCategory = "landmark"
+                val filterBySuperCategory = getPoiFeatureCollectionBySuperCategory(superCategory, gridFeatureCollection)
+                if(filterBySuperCategory.features.size > 0){
+                    // not necessary just singular/plural annoying me
+                    val thing = if(filterBySuperCategory.features.size == 1){
+                        "thing"
+                    } else {
+                        "things"
+                    }
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                        "We found ${poiFeatureCollection.features.size} Points Of Interest in this tile."
+                        "Using the $superCategory category, we found ${filterBySuperCategory.features.size} $thing in this grid."
                     )
-                    // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
-                    // "information", "object", "place", "landmark", "mobility", "safety"
-                    val superCategory = "landmark"
-                    val filterBySuperCategory = getPoiFeatureCollectionBySuperCategory(superCategory, poiFeatureCollection)
-                    if(filterBySuperCategory.features.size > 0){
-                        // not necessary just singular/plural annoying me
-                        val thing = if(filterBySuperCategory.features.size == 1){
-                            "thing"
-                        } else {
-                            "things"
-                        }
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            "Using the $superCategory category, we found ${filterBySuperCategory.features.size} $thing in this tile."
-                        )
-                        // Temp code to play audio to prove we've got something and how far away but not every "thing" has a name property...
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            "The first thing is: ${filterBySuperCategory.features[0].properties!!["name"]}"
-                        )
-                        val distanceToPoi = getNearestPoi(
-                            LngLatAlt( locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
-                            filterBySuperCategory
-                            )
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
+
+                    val distanceToPoi = getNearestPoi(
+                        LngLatAlt( locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                        filterBySuperCategory
+                    )
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
                             // This calculates the distance to the nearest POI using a bounding box
                             // so if it is a large polygon can be super inaccurate/misleading
                             // Not sure if it might be better to calculate the nearest point/edge that makes up the polygon?
                             // I've inserted the distance_to in the foreign member for this so...
-                            "The first $superCategory is ${distanceToPoi.features[0].foreign!!["distance_to"].toString()} meters away."
-                        )
-                    }
-                    else {
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            "Nothing in the $superCategory category found in this tile."
-                        )
-                    }
-                }
-                else {
-                    Log.d(TAG, "No Points Of Interest found in the tile")
+                        "The first $superCategory is ${distanceToPoi.features[0].foreign!!["distance_to"].toString()} meters away."
+                    )
+                    // Temp code to play audio to prove we've got something and how far away but not every "thing" has a name property...
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                            "No Points Of Interest found in this tile."
+                        "The nearest thing is: ${distanceToPoi.features[0].properties!!["name"]}"
                     )
                 }
+                else {
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        "Nothing in the $superCategory category found in this grid."
+                        )
+                    }
             }
             else {
-                // frozenResult is null, no TileData object was found in db. Either we haven't had time
-                // to fetch the tile or network problem
-                //Log.d(TAG, "No tile data found for this location")
-                val noTileString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+                Log.d(TAG, "No Points Of Interest found in the grid")
                 audioEngine.createTextToSpeech(
-                    0.0,
-                    0.0,
-                    noTileString
+                    locationProvider.getCurrentLatitude() ?: 0.0,
+                    locationProvider.getCurrentLongitude() ?: 0.0,
+                    "No Points Of Interest found in this tile."
                 )
             }
         }
