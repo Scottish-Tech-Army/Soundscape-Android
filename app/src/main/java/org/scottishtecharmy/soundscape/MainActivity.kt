@@ -111,17 +111,13 @@ class MainActivity : AppCompatActivity() {
             Log.i("Injection", "HTTP response cache installation failed:$e")
         }
 
-        Log.d(TAG, "Do we ever get here to check permissions?")
         checkAndRequestNotificationPermissions()
-        Log.d(TAG, "Do we try to bind to Soundscape service?")
         soundscapeServiceConnection.tryToBindToServiceIfRunning()
         setContent {
             SoundscapeTheme {
                 Home()
             }
         }
-
-        checkAndRequestNotificationPermissions()
     }
 
     /**
