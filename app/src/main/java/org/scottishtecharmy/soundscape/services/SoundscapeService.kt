@@ -62,6 +62,8 @@ import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCateg
 import org.scottishtecharmy.soundscape.utils.getQuadKey
 import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
+import java.io.File
+import java.io.FileOutputStream
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -535,24 +537,45 @@ class SoundscapeService : Service() {
                 locationProvider.getCurrentLongitude() ?: 0.0,
                 250.0
             )
+            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
             val gridFeatureCollection = FeatureCollection()
+            val processedOsmIds = mutableSetOf<Any>()
+            // TEMP writing tiles out to files
+            //val path = applicationContext.getFilesDir()
+            //val tilesDirectory = File(path, "TILES")
+            //tilesDirectory.mkdirs()
+
             for (tile in tileGridQuadKeys) {
                 //Check the db for the tile
                 val frozenTileResult = realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenTileResult != null) {
                     val poiString = frozenTileResult.pois
-                    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+                    //val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
                     val poiFeatureCollection = poiString.let {
                         moshi.adapter(FeatureCollection::class.java).fromJson(
                             it
                         )
                     }
+                    //Log.d(TAG, "Adding features from tile to gridFeatureCollection ${tile.quadkey} tileX: ${tile.tileX} tileY: ${tile.tileY}")
+                    //Log.d(TAG, poiString)
+
+                    //val file = File(tilesDirectory, "${tile.quadkey}.txt")
+                    //file.appendText(poiString)
+
                     for (feature in poiFeatureCollection?.features!!) {
-                        // TODO Need to check for duplicates here before splatting into the gridFeatureCollection
-                        gridFeatureCollection.features.add(feature)
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedOsmIds.contains(osmId)) {
+                            processedOsmIds.add(osmId)
+                            gridFeatureCollection.features.add(feature)
+                        }
                     }
                 }
             }
+            // TEMP writing 3x3 grid to file
+            //val gridFeatureCollectionString = moshi.adapter(FeatureCollection::class.java).toJson(gridFeatureCollection)
+            //val gridFile = File(tilesDirectory, "noduplicatesgrid3x3.txt")
+            //gridFile.appendText(gridFeatureCollectionString)
             // the gridFeatureCollection has something in it
             if (gridFeatureCollection.features.size > 0){
                 audioEngine.createTextToSpeech(
@@ -610,11 +633,13 @@ class SoundscapeService : Service() {
                 audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
                     locationProvider.getCurrentLongitude() ?: 0.0,
-                    "No Points Of Interest found in this tile."
+                    "No Points Of Interest found in this grid."
                 )
             }
         }
     }
+
+
 
     companion object {
         private const val TAG = "SoundscapeService"
@@ -629,3 +654,4 @@ class SoundscapeService : Service() {
         private const val NOTIFICATION_ID = 100000
     }
 }
+
