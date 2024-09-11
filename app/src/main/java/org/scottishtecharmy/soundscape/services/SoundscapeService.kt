@@ -56,14 +56,13 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.utils.getQuadKey
 import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
-import java.io.File
-import java.io.FileOutputStream
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -640,11 +639,68 @@ class SoundscapeService : Service() {
     }
 
     fun aheadOfMe(){
-        audioEngine.createTextToSpeech(
-            locationProvider.getCurrentLatitude() ?: 0.0,
-            locationProvider.getCurrentLongitude() ?: 0.0,
-            "You have guessed correctly. A Greggs!"
-        )
+        // TODO This is just a rough POC at the moment. Lots more to do...
+        val configLocale = AppCompatDelegate.getApplicationLocales()[0]
+        val configuration = Configuration(applicationContext.resources.configuration)
+        configuration.setLocale(configLocale)
+        val localizedContext = applicationContext.createConfigurationContext(configuration)
+
+        if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+            // Should be null but let's check
+            //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
+            val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+            audioEngine.createTextToSpeech(
+                0.0,
+                0.0,
+                noLocationString
+            )
+        }
+        else {
+            // get device direction
+            val orientation = directionProvider.getCurrentDirection()
+            val fovDistance = 50.0
+            // fetch the roads from Realm
+            val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
+
+            val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
+            val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
+            if (frozenResult != null) {
+                // frozenResult is a TileData object
+                val roadString = frozenResult.roads
+                val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+                val roadFeatureCollection = roadString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                val fovRoadsFeatureCollection = roadFeatureCollection?.let {
+                    getFovRoadsFeatureCollection(
+                        LngLatAlt(
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0
+                        ),
+                        orientation.toDouble(),
+                        fovDistance,
+                        it
+                    )
+                }
+                //TEMP This just returns the roads in the FOV. It doesn't care about distance yet
+                if (fovRoadsFeatureCollection?.features!!.size > 0) {
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        "Ahead of you is ${fovRoadsFeatureCollection.features[0].properties!!["name"]}"
+                    )
+                }
+                else {
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        "No roads found in the device Field of View."
+                    )
+                }
+            }
+        }
     }
 
 
