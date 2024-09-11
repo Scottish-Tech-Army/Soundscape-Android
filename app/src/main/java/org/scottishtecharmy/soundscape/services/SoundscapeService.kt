@@ -639,6 +639,14 @@ class SoundscapeService : Service() {
         }
     }
 
+    fun aheadOfMe(){
+        audioEngine.createTextToSpeech(
+            locationProvider.getCurrentLatitude() ?: 0.0,
+            locationProvider.getCurrentLongitude() ?: 0.0,
+            "You have guessed correctly. A Greggs!"
+        )
+    }
+
 
 
     companion object {
