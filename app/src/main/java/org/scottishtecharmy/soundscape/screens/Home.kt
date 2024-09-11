@@ -69,6 +69,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.viewmodels.AheadOfMeViewModel
 import org.scottishtecharmy.soundscape.viewmodels.DrawerViewModel
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
 import org.scottishtecharmy.soundscape.viewmodels.MyLocationViewModel
@@ -258,9 +259,11 @@ fun HomeBottomAppBar(
 
     var myLocationViewModel : MyLocationViewModel? = null
     var whatsAroundMeViewModel : WhatsAroundMeViewModel? = null
+    var aheadOfMeViewModel: AheadOfMeViewModel? = null
     if(useView){
         myLocationViewModel = hiltViewModel<MyLocationViewModel>()
         whatsAroundMeViewModel = hiltViewModel<WhatsAroundMeViewModel>()
+        aheadOfMeViewModel = hiltViewModel<AheadOfMeViewModel>()
     }
 
 
@@ -335,7 +338,7 @@ fun HomeBottomAppBar(
                 }
 
                 Button(
-                    onClick = { notAvailableToast() },
+                    onClick = { aheadOfMeViewModel?.aheadOfMe() },
                     shape = RectangleShape
                 ) {
                     Column {
