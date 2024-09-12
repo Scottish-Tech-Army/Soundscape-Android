@@ -54,6 +54,7 @@ import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
@@ -315,7 +316,7 @@ class SoundscapeService : Service() {
 
     private suspend fun getTileGrid(application: Application){
 
-        val tileGridQuadKeys = getTilesForRegion(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0, 250.0)
+        val tileGridQuadKeys = get3x3TileGrid(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         okhttpClientInstance = OkhttpClientInstance(application)
@@ -412,98 +413,105 @@ class SoundscapeService : Service() {
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
 
-        if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+            val noLocationString =
+                localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
-                 0.0,
-                 0.0,
+                0.0,
+                0.0,
                 noLocationString
             )
         }
         else {
-            // fetch the road from Realm
-            val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
-            //Log.d(TAG, "Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            // just retrieving a single tile for now
-            val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
-            val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
-            if (frozenResult != null) {
-                // frozenResult is a TileData object
-                val roadString = frozenResult.roads
-                val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-                val roadFeatureCollection = roadString.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(
-                        it
-                    )
-                }
-                if (roadFeatureCollection?.features!!.size > 0){
-                    //Log.d(TAG, "Found roads in tile")
-                    val nearestRoad =
-                        getNearestRoad(LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
-                            roadFeatureCollection
-                        )
+            // fetch the roads from Realm
+            val tileGridQuadKeys = get3x3TileGrid(
+                locationProvider.getCurrentLatitude() ?: 0.0,
+                locationProvider.getCurrentLongitude() ?: 0.0
+            )
+            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+            val gridFeatureCollection = FeatureCollection()
+            val processedOsmIds = mutableSetOf<Any>()
 
-                    val properties = nearestRoad.features[0].properties
-                    if (properties != null) {
-                        val orientation = directionProvider.getCurrentDirection()
-                        var roadName = properties["name"]
-                        if(roadName == null) {
-                            roadName = properties["highway"]
-                        }
-                        val facingDirectionAlongRoad = configLocale?.let {
-                            getCompassLabelFacingDirectionAlong(
-                                applicationContext,
-                                orientation.toInt(),
-                                roadName.toString(),
-                                it
-                            )
-                        }
-                        if (facingDirectionAlongRoad != null) {
-                            audioEngine.createTextToSpeech(
-                                locationProvider.getCurrentLatitude() ?: 0.0,
-                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                facingDirectionAlongRoad
-                            )
-                        }
-                    }
-                    else {
-                        Log.e(TAG, "No name property for road")
-                    }
-
-                }
-                else {
-                    //Log.d(TAG, "No roads found in tile just give device direction")
-                    val orientation = directionProvider.getCurrentDirection()
-                    val facingDirection = configLocale?.let {
-                        getCompassLabelFacingDirection(
-                            applicationContext,
-                            orientation.toInt(),
+            for (tile in tileGridQuadKeys) {
+                val frozenResult =
+                    realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                if (frozenResult != null) {
+                    val roadsString = frozenResult.roads
+                    //val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+                    val roadsFeatureCollection = roadsString.let {
+                        moshi.adapter(FeatureCollection::class.java).fromJson(
                             it
                         )
                     }
-                    if (facingDirection != null) {
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            facingDirection
-                        )
+                    for (feature in roadsFeatureCollection?.features!!) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedOsmIds.contains(osmId)) {
+                            processedOsmIds.add(osmId)
+                            gridFeatureCollection.features.add(feature)
+                        }
                     }
                 }
             }
-            else {
-                // frozenResult is null, no TileData object was found in db. Either we haven't had time
-                // to fetch the tile or network problem
-                //Log.d(TAG, "No tile data found for this location")
-                val noTileString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
-                audioEngine.createTextToSpeech(
-                    0.0,
-                    0.0,
-                    noTileString
-                )
+            if (gridFeatureCollection.features.size > 0) {
+                //Log.d(TAG, "Found roads in tile")
+                val nearestRoad =
+                    getNearestRoad(
+                        LngLatAlt(
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0
+                        ),
+                        gridFeatureCollection
+                    )
+                val properties = nearestRoad.features[0].properties
+                if (properties != null) {
+                    val orientation = directionProvider.getCurrentDirection()
+                    var roadName = properties["name"]
+                    if (roadName == null) {
+                        roadName = properties["highway"]
+                    }
+                    val facingDirectionAlongRoad = configLocale?.let {
+                        getCompassLabelFacingDirectionAlong(
+                            applicationContext,
+                            orientation.toInt(),
+                            roadName.toString(),
+                            it
+                        )
+                    }
+                    if (facingDirectionAlongRoad != null) {
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            facingDirectionAlongRoad
+                        )
+                    }
+                } else {
+                    Log.e(TAG, "No name property for road")
+                }
             }
+            else {
+                //Log.d(TAG, "No roads found in tile just give device direction")
+                val orientation = directionProvider.getCurrentDirection()
+                val facingDirection = configLocale?.let {
+                    getCompassLabelFacingDirection(
+                        applicationContext,
+                        orientation.toInt(),
+                        it
+                    )
+                }
+                if (facingDirection != null) {
+                    audioEngine.createTextToSpeech(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        facingDirection
+                    )
+                }
+            }
+
         }
+
     }
 
     fun whatsAroundMe(){
@@ -531,10 +539,9 @@ class SoundscapeService : Service() {
         }
         else {
             // start of trying to get a grid of tiles and merge into one feature collection
-            val tileGridQuadKeys = getTilesForRegion(
+            val tileGridQuadKeys = get3x3TileGrid(
                 locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0,
-                250.0
+                locationProvider.getCurrentLongitude() ?: 0.0
             )
             val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
             val gridFeatureCollection = FeatureCollection()
