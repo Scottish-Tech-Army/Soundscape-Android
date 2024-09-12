@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.preference.PreferenceManager
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -167,6 +168,10 @@ class SoundscapeService : Service() {
 
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
+
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+            val beaconType = sharedPreferences.getString(MainActivity.BEACON_TYPE_KEY, MainActivity.BEACON_TYPE_DEFAULT)
+            audioEngine.setBeaconType(beaconType!!)
 
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
