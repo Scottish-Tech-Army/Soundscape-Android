@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.utils
 
+import android.util.Log
 import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.dto.IntersectionRelativeDirections
 import org.scottishtecharmy.soundscape.dto.VectorTile
@@ -151,6 +152,57 @@ fun getTilesForRegion(
         for (x in startTileX..endTileX) {
             val surroundingTile = VectorTile("", x, y, zoom)
             surroundingTile.quadkey = getQuadKey(x, y, zoom)
+            tiles.add(surroundingTile)
+        }
+    }
+    return tiles
+}
+
+
+/**
+ * Given a location it calculates the set of tiles (VectorTiles) that cover a
+ * 3 x 3 grid around the specified location.
+ * @param currentLatitude
+ * The current location of the device.
+ * @param currentLongitude
+ * The current location of the device.
+ * @return  A MutableList of VectorTiles representing the 3 x 3 grid around the specified location.
+ */
+fun get3x3TileGrid(
+    currentLatitude: Double = 0.0,
+    currentLongitude: Double = 0.0
+): MutableList<VectorTile> {
+    val tileXY = getXYTile(currentLatitude, currentLongitude, 16 )
+    val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16.0)
+    val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
+    val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
+
+    var radiusFix = 0.0
+    when (currentLatitude) {
+        in -65.0..-34.0 -> { radiusFix = 250.0 }
+        in -33.0..0.0 -> { radiusFix = 500.0 }
+        in 0.0..33.0 -> { radiusFix = 500.0 }
+        in 34.0..65.0 -> { radiusFix = 250.0 }
+        else -> { Log.d("get3x3TileGrid", "Latitude out of range") }
+    }
+
+    val (pixelX, pixelY) = getPixelXY(tileBoundingBoxCenter.latitude, tileBoundingBoxCenter.longitude, 16)
+    val radiusPixels = radiusFix / groundResolution(tileBoundingBoxCenter.latitude, 16).toInt()
+
+    val startX = pixelX - radiusPixels
+    val startY = pixelY - radiusPixels
+    val endX = pixelX + radiusPixels
+    val endY = pixelY + radiusPixels
+
+    val (startTileX, startTileY) = getTileXY(startX.toInt(), startY.toInt())
+    val (endTileX, endTileY) = getTileXY(endX.toInt(), endY.toInt())
+
+    val tiles: MutableList<VectorTile> = mutableListOf()
+
+    for (y in startTileY..endTileY) {
+        for (x in startTileX..endTileX) {
+            val surroundingTile = VectorTile("", x, y, 16)
+            surroundingTile.quadkey = getQuadKey(x, y, 16)
             tiles.add(surroundingTile)
         }
     }
