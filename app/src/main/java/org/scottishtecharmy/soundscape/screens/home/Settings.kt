@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -13,16 +12,22 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
+import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.onboarding.MockHearingPreviewData
+import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
 // The UI changes the SharedPreference reference by the `key` which can then be accessed
@@ -32,11 +37,26 @@ import org.scottishtecharmy.soundscape.R
 @Preview
 @Composable
 fun SettingsPreview() {
-    Settings{ }
+    Settings({}, MockHearingPreviewData)
 }
 
 @Composable
-fun Settings(onNavigate: (String) -> Unit) {
+fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
+
+    var viewModel : SettingsViewModel? = null
+    if(mockData == null)
+        viewModel = hiltViewModel<SettingsViewModel>()
+
+    var beacons : List<String> = emptyList()
+    if(viewModel == null) {
+        // Preview operation
+        if(mockData != null)
+            beacons = mockData.names
+    }
+    else {
+        val uiState: SettingsViewModel.SettingsUiState by viewModel.state.collectAsStateWithLifecycle()
+        beacons = uiState.beaconTypes
+    }
 
     Column(
         modifier = Modifier
@@ -64,7 +84,7 @@ fun Settings(onNavigate: (String) -> Unit) {
             modifier = Modifier.fillMaxWidth()
         )
         ProvidePreferenceLocals {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyColumn {
 
                 // TODO : Add strings translations and use them
 
@@ -97,6 +117,23 @@ fun Settings(onNavigate: (String) -> Unit) {
                     defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
                     title = { Text(text = "Include unnamed roads") },
                     summary = { Text(text = if (it) "On" else "Off") }
+                )
+            }
+        }
+        Text(
+            text = "MANAGE BEACONS",
+            textAlign = TextAlign.Left,
+            color = Color.White,
+            modifier = Modifier.fillMaxWidth()
+        )
+        ProvidePreferenceLocals {
+            LazyColumn {
+                listPreference(
+                    key = MainActivity.BEACON_TYPE_KEY,
+                    defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
+                    values = beacons,
+                    title = { Text(text = "Beacon type") },
+                    summary = { Text(text = it) },
                 )
             }
         }

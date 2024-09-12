@@ -18,7 +18,7 @@ fun SetUpHomeNavGraph(
         }
         composable(HomeScreens.Settings.route) {
             // Always just pop back out of settings, don't add to the queue
-            Settings(onNavigate = { navController.navigateUp() })
+            Settings(onNavigate = { navController.navigateUp() }, null)
         }
     }
 }
