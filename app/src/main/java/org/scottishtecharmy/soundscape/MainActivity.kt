@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
 
@@ -80,6 +81,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Debug - dump preferences
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        for(pref in sharedPreferences.all) {
+            Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
+        }
 
         var isFirstLaunch: Boolean
         runBlocking {
@@ -239,5 +246,15 @@ class MainActivity : AppCompatActivity() {
     }
     companion object {
         private const val TAG = "MainActivity"
+
+        // SharedPreference keys and default values
+        const val ALLOW_CALLOUTS_DEFAULT = true
+        const val ALLOW_CALLOUTS_KEY = "AllowCallouts"
+        const val PLACES_AND_LANDMARKS_DEFAULT = true
+        const val PLACES_AND_LANDMARKS_KEY = "PlaceAndLandmarks"
+        const val MOBILITY_DEFAULT = true
+        const val MOBILITY_KEY = "Mobility"
+        const val DISTANCE_TO_BEACON_DEFAULT = true
+        const val DISTANCE_TO_BEACON_KEY = "DistanceToBeacon"
     }
 }

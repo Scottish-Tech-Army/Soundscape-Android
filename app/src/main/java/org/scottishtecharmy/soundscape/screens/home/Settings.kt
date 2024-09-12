@@ -20,7 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.switchPreference
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.components.MainSearchBar
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
 // The UI changes the SharedPreference reference by the `key` which can then be accessed
@@ -60,26 +62,26 @@ fun Settings(onNavigate: (String) -> Unit) {
                 // TODO : Add strings translations and use them
 
                 switchPreference(
-                    key = "allow_callouts",
-                    defaultValue = true,
+                    key = MainActivity.ALLOW_CALLOUTS_KEY,
+                    defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
                     title = { Text(text = "Allow Callouts") },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(
-                    key = "places_and_landmarks",
-                    defaultValue = true,
+                    key = MainActivity.PLACES_AND_LANDMARKS_KEY,
+                    defaultValue = MainActivity.PLACES_AND_LANDMARKS_DEFAULT,
                     title = { Text(text = "Places and Landmarks") },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(
-                    key = "mobility",
-                    defaultValue = true,
+                    key = MainActivity.MOBILITY_KEY,
+                    defaultValue = MainActivity.MOBILITY_DEFAULT,
                     title = { Text(text = "Mobility") },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(
-                    key = "distance_to_beacon",
-                    defaultValue = true,
+                    key = MainActivity.DISTANCE_TO_BEACON_KEY,
+                    defaultValue = MainActivity.DISTANCE_TO_BEACON_DEFAULT,
                     title = { Text(text = "Distance to the Audio Beacon") },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
