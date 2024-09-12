@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.home.HomePreview
+import org.scottishtecharmy.soundscape.screens.home.SettingsPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.Finish
 import org.scottishtecharmy.soundscape.screens.onboarding.HearingPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconPreview
@@ -106,6 +107,16 @@ class HomePreviewTestClass {
     fun HomePreviewTest() {
         SoundscapeTheme {
             HomePreview()
+        }
+    }
+}
+
+class SettingsPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun SettingsPreviewTest() {
+        SoundscapeTheme {
+            SettingsPreview()
         }
     }
 }

@@ -17,16 +17,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.components.MainSearchBar
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
 // The UI changes the SharedPreference reference by the `key` which can then be accessed
 // anywhere else in the app.
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
+@Preview
+@Composable
+fun SettingsPreview() {
+    Settings{ }
+}
 
 @Composable
 fun Settings(onNavigate: (String) -> Unit) {
