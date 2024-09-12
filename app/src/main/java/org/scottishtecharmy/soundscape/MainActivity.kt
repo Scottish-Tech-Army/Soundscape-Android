@@ -17,8 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import org.scottishtecharmy.soundscape.datastore.DataStoreManager
-import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
+import androidx.preference.PreferenceManager
 
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -32,8 +31,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var dataStoreManager: DataStoreManager
     @Inject
     lateinit var soundscapeServiceConnection : SoundscapeServiceConnection
 
@@ -81,13 +78,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var isFirstLaunch: Boolean
-        runBlocking {
-            isFirstLaunch = dataStoreManager.getValue(
-                FIRST_LAUNCH,
-                defaultValue = true
-            )
+        // Debug - dump preferences
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        for(pref in sharedPreferences.all) {
+            Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val isFirstLaunch = sharedPrefs.getBoolean(FIRST_LAUNCH_KEY, true)
 
         Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -239,5 +237,19 @@ class MainActivity : AppCompatActivity() {
     }
     companion object {
         private const val TAG = "MainActivity"
+
+        // SharedPreference keys and default values
+        const val ALLOW_CALLOUTS_DEFAULT = true
+        const val ALLOW_CALLOUTS_KEY = "AllowCallouts"
+        const val PLACES_AND_LANDMARKS_DEFAULT = true
+        const val PLACES_AND_LANDMARKS_KEY = "PlaceAndLandmarks"
+        const val MOBILITY_DEFAULT = true
+        const val MOBILITY_KEY = "Mobility"
+        const val DISTANCE_TO_BEACON_DEFAULT = true
+        const val DISTANCE_TO_BEACON_KEY = "DistanceToBeacon"
+        const val UNNAMED_ROADS_DEFAULT = false
+        const val UNNAMED_ROADS_KEY = "UnnamedRoads"
+
+        const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
 }
