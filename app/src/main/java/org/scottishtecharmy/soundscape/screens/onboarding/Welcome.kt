@@ -93,7 +93,7 @@ fun Welcome(onNavigate: (String) -> Unit) {
                         Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                             OnboardButton(
                                 text = stringResource(R.string.first_launch_welcome_button),
-                                onClick = { onNavigate(Screens.Language.route) },
+                                onClick = { onNavigate(OnboardingScreens.Language.route) },
                                 modifier = Modifier.fillMaxWidth()
                             )
                         }

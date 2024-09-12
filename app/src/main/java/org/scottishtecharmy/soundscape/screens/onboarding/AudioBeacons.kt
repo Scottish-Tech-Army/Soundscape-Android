@@ -143,7 +143,7 @@ fun AudioBeacons(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData
                             text = stringResource(R.string.ui_continue),
                             onClick = {
                                 viewModel?.silenceBeacon()
-                                onNavigate(Screens.Terms.route)
+                                onNavigate(OnboardingScreens.Terms.route)
                             },
                             modifier = Modifier.fillMaxWidth()
                         )

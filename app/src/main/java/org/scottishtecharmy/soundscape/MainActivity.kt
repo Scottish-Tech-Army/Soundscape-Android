@@ -15,6 +15,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
 
@@ -22,7 +24,7 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
-import org.scottishtecharmy.soundscape.screens.Home
+import org.scottishtecharmy.soundscape.screens.home.SetUpHomeNavGraph
 import java.io.File
 import java.io.IOException
 import java.net.URLDecoder
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         var longitude : Double,
         var orientation : Double,
     )
+
+    private lateinit var navController: NavHostController
 
     private var currentDeviceLocation by mutableStateOf<DeviceLocation?>(null)
     private var displayableTileString by mutableStateOf<String?>(null)
@@ -115,7 +119,10 @@ class MainActivity : AppCompatActivity() {
         soundscapeServiceConnection.tryToBindToServiceIfRunning()
         setContent {
             SoundscapeTheme {
-                Home()
+                navController = rememberNavController()
+                SetUpHomeNavGraph(
+                    navController = navController
+                )
             }
         }
     }

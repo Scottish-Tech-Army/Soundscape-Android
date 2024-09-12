@@ -196,7 +196,7 @@ fun Navigating(onNavigate: (String) -> Unit) {
                         // and handling denied permissions
                         onClick = {
                             multiplePermissionResultLauncher.launch(permissionsToRequest)
-                            onNavigate(Screens.Listening.route)
+                            onNavigate(OnboardingScreens.Listening.route)
                                   },
                         modifier = Modifier.fillMaxWidth()
                     )
