@@ -91,7 +91,7 @@ fun Listening(onNavigate: (String) -> Unit) {
 
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
-                            onClick = { onNavigate(Screens.Hearing.route) },
+                            onClick = { onNavigate(OnboardingScreens.Hearing.route) },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }

@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
-import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -83,7 +81,7 @@ fun Language(onNavigate: (String) -> Unit, mockData : MockLanguagePreviewData?){
                         onClick = {
                             viewModel?.updateSpeechLanguage()
 
-                            onNavigate(Screens.Navigating.route)
+                            onNavigate(OnboardingScreens.Navigating.route)
                         },
                         modifier = Modifier.fillMaxWidth()
                     )

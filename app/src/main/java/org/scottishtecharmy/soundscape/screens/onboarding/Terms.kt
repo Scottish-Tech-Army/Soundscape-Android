@@ -119,7 +119,7 @@ fun Terms(onNavigate: (String) -> Unit) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
-                                onNavigate(Screens.Finish.route)
+                                onNavigate(OnboardingScreens.Finish.route)
                             },
                             modifier = Modifier.fillMaxWidth()
                         )

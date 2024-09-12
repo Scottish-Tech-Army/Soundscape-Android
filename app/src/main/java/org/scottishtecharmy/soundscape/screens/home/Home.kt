@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens
+package org.scottishtecharmy.soundscape.screens.home
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -80,17 +80,17 @@ import org.scottishtecharmy.soundscape.viewmodels.WhatsAroundMeViewModel
 @Preview
 @Composable
 fun HomePreview() {
-    Home(false)
+    Home({}, false)
 }
 
 @Composable
-fun Home(useView : Boolean = true) {
+fun Home(onNavigate: (String) -> Unit, useView : Boolean) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { DrawerContent(drawerState, coroutineScope, useView) },
+        drawerContent = { DrawerContent(onNavigate, drawerState, coroutineScope, useView) },
         gesturesEnabled = false,
     ) {
         Scaffold(
@@ -127,6 +127,7 @@ fun Home(useView : Boolean = true) {
 
 @Composable
 fun DrawerContent(
+    onNavigate: (String) -> Unit,
     drawerState: DrawerState,
     scope: CoroutineScope,
     useView : Boolean
@@ -169,7 +170,7 @@ fun DrawerContent(
             icon = Icons.Rounded.Headset
         )
         DrawerMenuItem(
-            onClick = { notAvailableToast() },
+            onClick = { onNavigate(HomeScreens.Settings.route) },
             // Weirdly, original iOS Soundscape doesn't seem to have translation strings for "Settings"
             label = stringResource(R.string.general_alert_settings),
             icon = Icons.Rounded.Settings

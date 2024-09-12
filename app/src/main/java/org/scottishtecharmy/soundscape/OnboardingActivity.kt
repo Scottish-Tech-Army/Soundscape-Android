@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
-import org.scottishtecharmy.soundscape.screens.onboarding.SetUpNavGraph
+import org.scottishtecharmy.soundscape.screens.onboarding.SetUpOnboardingNavGraph
 
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +27,7 @@ class OnboardingActivity : AppCompatActivity() {
         setContent {
             SoundscapeTheme {
                 navController = rememberNavController()
-                SetUpNavGraph(
+                SetUpOnboardingNavGraph(
                     navController = navController
                 )
             }

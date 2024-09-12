@@ -224,4 +224,7 @@ dependencies {
     // In app review
     implementation(libs.review)
     implementation(libs.review.ktx)
+
+    // Library for preferences in compose
+    implementation(libs.composepreferencelibrary)
 }
