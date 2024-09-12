@@ -18,8 +18,6 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
-import org.scottishtecharmy.soundscape.datastore.DataStoreManager
-import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
 
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -33,8 +31,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var dataStoreManager: DataStoreManager
     @Inject
     lateinit var soundscapeServiceConnection : SoundscapeServiceConnection
 
@@ -88,13 +84,8 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
 
-        var isFirstLaunch: Boolean
-        runBlocking {
-            isFirstLaunch = dataStoreManager.getValue(
-                FIRST_LAUNCH,
-                defaultValue = true
-            )
-        }
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val isFirstLaunch = sharedPrefs.getBoolean(FIRST_LAUNCH_KEY, true)
 
         Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -256,5 +247,6 @@ class MainActivity : AppCompatActivity() {
         const val MOBILITY_KEY = "Mobility"
         const val DISTANCE_TO_BEACON_DEFAULT = true
         const val DISTANCE_TO_BEACON_KEY = "DistanceToBeacon"
+        const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
 }
