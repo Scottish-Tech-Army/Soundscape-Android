@@ -227,4 +227,5 @@ dependencies {
 
     // Library for preferences in compose
     implementation(libs.composepreferencelibrary)
+    implementation(libs.androidx.preference.ktx)
 }
