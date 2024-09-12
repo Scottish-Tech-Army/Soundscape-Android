@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
 
@@ -425,6 +426,16 @@ class TileUtilsTest {
         val testGetTilesForRadius =
             getTilesForRegion(51.43860066718254, -2.69439697265625, 500.0, 16)
         Assert.assertEquals(25, testGetTilesForRadius.size)
+    }
+
+    @Test
+    fun get3x3TileGridTest(){
+        val testGet3x3TileGrid = get3x3TileGrid(65.0, 0.0)
+        Assert.assertEquals(9, testGet3x3TileGrid.size)
+        val testGet3x3TileGrid2 = get3x3TileGrid(-65.0, 0.0)
+        Assert.assertEquals(9, testGet3x3TileGrid2.size)
+        val testGet3x3TileGrid3 = get3x3TileGrid(0.0, 0.0)
+        Assert.assertEquals(9, testGet3x3TileGrid3.size)
     }
 
     @Test
