@@ -247,6 +247,9 @@ class MainActivity : AppCompatActivity() {
         const val MOBILITY_KEY = "Mobility"
         const val DISTANCE_TO_BEACON_DEFAULT = true
         const val DISTANCE_TO_BEACON_KEY = "DistanceToBeacon"
+        const val UNNAMED_ROADS_DEFAULT = false
+        const val UNNAMED_ROADS_KEY = "UnnamedRoads"
+
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
 }
