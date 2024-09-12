@@ -85,6 +85,12 @@ fun Settings(onNavigate: (String) -> Unit) {
                     title = { Text(text = "Distance to the Audio Beacon") },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
+                switchPreference(
+                    key = MainActivity.UNNAMED_ROADS_KEY,
+                    defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
+                    title = { Text(text = "Include unnamed roads") },
+                    summary = { Text(text = if (it) "On" else "Off") }
+                )
             }
         }
     }
