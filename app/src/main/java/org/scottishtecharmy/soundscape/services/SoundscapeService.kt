@@ -730,16 +730,14 @@ class SoundscapeService : Service() {
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         locationProvider.getCurrentLatitude() ?: 0.0
                     ),
-                        fovRoadsFeatureCollection)
+                        fovRoadsFeatureCollection
+                    )
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "Ahead of you is ${nearestRoad.features[0].properties!!["name"]}"
                     )
-                    //TODO I'm only detecting if there are intersections in the field of view at this point. DONE
-                    // Next step is to detect the nearest intersection and its distance. DONE
-                    // Then the road names that make up the intersection
-                    // then their relative directions to the road/direction the user is facing
+
                     if (fovIntersectionsFeatureCollection?.features!!.size > 0) {
                         val nearestIntersectionFeatureCollection = getNearestIntersection(
                             LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
@@ -824,13 +822,14 @@ class SoundscapeService : Service() {
                         }
                     }
                 }
-                else {
+            }
+            else {
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "No roads found in the device Field of View."
                     )
-                }
+
             }
         }
     }
