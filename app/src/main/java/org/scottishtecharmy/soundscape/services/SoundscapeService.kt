@@ -28,7 +28,6 @@ import org.scottishtecharmy.soundscape.database.repository.TilesRepository
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.OkhttpClientInstance
 import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
-import org.scottishtecharmy.soundscape.utils.getTilesForRegion
 import org.scottishtecharmy.soundscape.utils.processTileString
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.Realm
@@ -69,10 +68,8 @@ import org.scottishtecharmy.soundscape.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
-import org.scottishtecharmy.soundscape.utils.getQuadKey
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
-import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -560,10 +557,6 @@ class SoundscapeService : Service() {
             val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
             val gridFeatureCollection = FeatureCollection()
             val processedOsmIds = mutableSetOf<Any>()
-            // TEMP writing tiles out to files
-            //val path = applicationContext.getFilesDir()
-            //val tilesDirectory = File(path, "TILES")
-            //tilesDirectory.mkdirs()
 
             for (tile in tileGridQuadKeys) {
                 //Check the db for the tile
@@ -576,11 +569,6 @@ class SoundscapeService : Service() {
                             it
                         )
                     }
-                    //Log.d(TAG, "Adding features from tile to gridFeatureCollection ${tile.quadkey} tileX: ${tile.tileX} tileY: ${tile.tileY}")
-                    //Log.d(TAG, poiString)
-
-                    //val file = File(tilesDirectory, "${tile.quadkey}.txt")
-                    //file.appendText(poiString)
 
                     for (feature in poiFeatureCollection?.features!!) {
                         val osmId = feature.foreign?.get("osm_ids")
@@ -680,27 +668,56 @@ class SoundscapeService : Service() {
             // get device direction
             val orientation = directionProvider.getCurrentDirection()
             val fovDistance = 50.0
-            // fetch the roads from Realm
-            val xyTilePair = getXYTile(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
+            // start of trying to get a grid of tiles and merge into one feature collection
+            val tileGridQuadKeys = get3x3TileGrid(
+                locationProvider.getCurrentLatitude() ?: 0.0,
+                locationProvider.getCurrentLongitude() ?: 0.0
+            )
+            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+            val roadGridFeatureCollection = FeatureCollection()
+            val intersectionsGridFeatureCollection = FeatureCollection()
+            val processedRoadOsmIds = mutableSetOf<Any>()
+            val processedIntersectionOsmIds = mutableSetOf<Any>()
 
-            val currentQuadKey = getQuadKey(xyTilePair.first, xyTilePair.second, 16)
-            val frozenResult = realm.query<TileData>("quadKey == $0", currentQuadKey).first().find()
-            if (frozenResult != null) {
-                // frozenResult is a TileData object
-                val roadString = frozenResult.roads
-                val intersectionString = frozenResult.intersections
-                val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-                val roadFeatureCollection = roadString.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(
-                        it
-                    )
+            for (tile in tileGridQuadKeys) {
+                //Check the db for the tile
+                val frozenTileResult = realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                if (frozenTileResult != null) {
+                    val roadString = frozenTileResult.roads
+                    val intersectionsString = frozenTileResult.intersections
+                    val roadFeatureCollection = roadString.let {
+                        moshi.adapter(FeatureCollection::class.java).fromJson(
+                            it
+                        )
+                    }
+                    val intersectionsFeatureCollection = intersectionsString.let {
+                        moshi.adapter(FeatureCollection::class.java).fromJson(
+                            it
+                        )
+                    }
+
+                    for (feature in roadFeatureCollection?.features!!) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
+                            processedRoadOsmIds.add(osmId)
+                            roadGridFeatureCollection.features.add(feature)
+                        }
+                    }
+                    for (feature in intersectionsFeatureCollection?.features!!){
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
+                            processedIntersectionOsmIds.add(osmId)
+                            intersectionsGridFeatureCollection.features.add(feature)
+                        }
+                    }
                 }
-                val intersectionFeatureCollection = intersectionString.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(
-                        it
-                    )
-                }
-                val fovRoadsFeatureCollection = roadFeatureCollection?.let {
+            }
+
+            if (roadGridFeatureCollection.features.size > 0 ) {
+
+                val fovRoadsFeatureCollection = roadGridFeatureCollection.let {
                     getFovRoadsFeatureCollection(
                         LngLatAlt(
                             locationProvider.getCurrentLongitude() ?: 0.0,
@@ -711,7 +728,7 @@ class SoundscapeService : Service() {
                         it
                     )
                 }
-                val fovIntersectionsFeatureCollection = intersectionFeatureCollection?.let {
+                val fovIntersectionsFeatureCollection = intersectionsGridFeatureCollection.let {
                     getFovIntersectionFeatureCollection(
                         LngLatAlt(
                             locationProvider.getCurrentLongitude() ?: 0.0,
@@ -724,23 +741,21 @@ class SoundscapeService : Service() {
                 }
 
                 //TEMP This just returns the roads in the FOV.
-                if (fovRoadsFeatureCollection?.features!!.size > 0) {
+                if (fovRoadsFeatureCollection.features.size > 0) {
                     val nearestRoad = getNearestRoad(
                         LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
-                        fovRoadsFeatureCollection)
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0
+                        ),
+                        fovRoadsFeatureCollection
+                    )
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "Ahead of you is ${nearestRoad.features[0].properties!!["name"]}"
                     )
-                    //TODO I'm only detecting if there are intersections in the field of view at this point. DONE
-                    // Next step is to detect the nearest intersection and its distance. DONE
-                    // Then the road names that make up the intersection
-                    // then their relative directions to the road/direction the user is facing
-                    if (fovIntersectionsFeatureCollection?.features!!.size > 0) {
+
+                    if (fovIntersectionsFeatureCollection.features.size > 0) {
                         val nearestIntersectionFeatureCollection = getNearestIntersection(
                             LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
                             fovIntersectionsFeatureCollection
@@ -815,11 +830,11 @@ class SoundscapeService : Service() {
                                     "Unknown"
                                 }
                             }
-                            val name = feature.properties?.get("name") ?: "No road name"
+                            val roadName = feature.properties?.get("name") ?: "No road name"
                             audioEngine.createTextToSpeech(
                                 locationProvider.getCurrentLatitude() ?: 0.0,
                                 locationProvider.getCurrentLongitude() ?: 0.0,
-                                "$name is $directionString"
+                                "$roadName is $directionString"
                             )
                         }
                     }
@@ -831,6 +846,14 @@ class SoundscapeService : Service() {
                         "No roads found in the device Field of View."
                     )
                 }
+            }
+            else {
+                audioEngine.createTextToSpeech(
+                    locationProvider.getCurrentLatitude() ?: 0.0,
+                    locationProvider.getCurrentLongitude() ?: 0.0,
+                    "No roads found in the device Field of View."
+                )
+
             }
         }
     }
