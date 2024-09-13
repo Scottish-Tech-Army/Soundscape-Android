@@ -56,6 +56,7 @@ import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.utils.distanceToIntersection
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
@@ -63,11 +64,14 @@ import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.utils.getQuadKey
+import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
+import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.utils.getXYTile
 import retrofit2.awaitResponse
 import kotlin.time.Duration
@@ -721,10 +725,16 @@ class SoundscapeService : Service() {
 
                 //TEMP This just returns the roads in the FOV.
                 if (fovRoadsFeatureCollection?.features!!.size > 0) {
+                    val nearestRoad = getNearestRoad(
+                        LngLatAlt(
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        locationProvider.getCurrentLatitude() ?: 0.0
+                    ),
+                        fovRoadsFeatureCollection)
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                        "Ahead of you is ${fovRoadsFeatureCollection.features[0].properties!!["name"]}"
+                        "Ahead of you is ${nearestRoad.features[0].properties!!["name"]}"
                     )
                     //TODO I'm only detecting if there are intersections in the field of view at this point. DONE
                     // Next step is to detect the nearest intersection and its distance. DONE
@@ -749,19 +759,67 @@ class SoundscapeService : Service() {
                             nearestIntersectionFeatureCollection,
                             fovRoadsFeatureCollection
                         )
-                        // TEMP
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            "The roads that make up the intersection are."
+                        val nearestRoadBearing = getRoadBearingToIntersection(
+                            nearestIntersectionFeatureCollection,
+                            nearestRoad,
+                            orientation.toDouble()
                         )
-                        // just loop through the list of roads that make up the intersection
-                        // need to order them and give relative directions
-                        for (feature in nearestIntersectionRoadNames){
+                        val intersectionLocation = nearestIntersectionFeatureCollection.features[0].geometry as Point
+                        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+                            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+                            nearestRoadBearing,
+                            fovDistance,
+                            RelativeDirections.COMBINED
+                        )
+                        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
+                            nearestIntersectionRoadNames,
+                            nearestIntersectionFeatureCollection,
+                            intersectionRelativeDirections
+                        )
+                        for (feature in roadRelativeDirections.features){
+                            val direction = feature.properties?.get("Direction").toString().toIntOrNull()
+                            val directionString: String = when(direction){
+                                0 -> {
+                                    "Behind"
+                                }
+
+                                1-> {
+                                    "Behind Left"
+                                }
+
+                                2 -> {
+                                    "Left"
+                                }
+
+                                3 -> {
+                                    "Ahead Left"
+                                }
+
+                                4 -> {
+                                    "Ahead"
+                                }
+
+                                5 -> {
+                                    "Ahead Right"
+                                }
+
+                                6 -> {
+                                    "Right"
+                                }
+
+                                7 -> {
+                                    "Behind Right"
+                                }
+
+                                else -> {
+                                    "Unknown"
+                                }
+                            }
+                            val name = feature.properties?.get("name") ?: "No road name"
                             audioEngine.createTextToSpeech(
                                 locationProvider.getCurrentLatitude() ?: 0.0,
                                 locationProvider.getCurrentLongitude() ?: 0.0,
-                                feature.properties!!["name"].toString()
+                                "$name is $directionString"
                             )
                         }
                     }
