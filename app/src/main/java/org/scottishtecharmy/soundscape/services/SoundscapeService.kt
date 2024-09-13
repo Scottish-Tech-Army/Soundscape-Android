@@ -50,15 +50,19 @@ import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.utils.distanceToIntersection
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
@@ -622,7 +626,7 @@ class SoundscapeService : Service() {
                             // so if it is a large polygon can be super inaccurate/misleading
                             // Not sure if it might be better to calculate the nearest point/edge that makes up the polygon?
                             // I've inserted the distance_to in the foreign member for this so...
-                        "The first $superCategory is ${distanceToPoi.features[0].foreign!!["distance_to"].toString()} meters away."
+                        "The first $superCategory is ${distanceToPoi.features[0].foreign!!["distance_to"].toString().toDouble().toInt()} meters away."
                     )
                     // Temp code to play audio to prove we've got something and how far away but not every "thing" has a name property...
                     audioEngine.createTextToSpeech(
@@ -679,8 +683,14 @@ class SoundscapeService : Service() {
             if (frozenResult != null) {
                 // frozenResult is a TileData object
                 val roadString = frozenResult.roads
+                val intersectionString = frozenResult.intersections
                 val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
                 val roadFeatureCollection = roadString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                val intersectionFeatureCollection = intersectionString.let {
                     moshi.adapter(FeatureCollection::class.java).fromJson(
                         it
                     )
@@ -696,13 +706,44 @@ class SoundscapeService : Service() {
                         it
                     )
                 }
-                //TEMP This just returns the roads in the FOV. It doesn't care about distance yet
+                val fovIntersectionsFeatureCollection = intersectionFeatureCollection?.let {
+                    getFovIntersectionFeatureCollection(
+                        LngLatAlt(
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0
+                        ),
+                        orientation.toDouble(),
+                        fovDistance,
+                        it
+                    )
+                }
+
+                //TEMP This just returns the roads in the FOV.
                 if (fovRoadsFeatureCollection?.features!!.size > 0) {
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "Ahead of you is ${fovRoadsFeatureCollection.features[0].properties!!["name"]}"
                     )
+                    //TODO I'm only detecting if there are intersections in the field of view at this point. DONE
+                    // Next step is to detect the nearest intersection and its distance. DONE
+                    // Then the road names that make up the intersection
+                    // then their relative directions to the road/direction the user is facing
+                    if (fovIntersectionsFeatureCollection?.features!!.size > 0) {
+                        val nearestIntersectionFeatureCollection = getNearestIntersection(
+                            LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                            fovIntersectionsFeatureCollection
+                        )
+                        val distanceToNearestIntersection = distanceToIntersection(
+                            LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                            nearestIntersectionFeatureCollection.features[0].geometry as Point
+                        )
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            "Ahead of you is an intersection. It is ${distanceToNearestIntersection.toInt()} meters away."
+                        )
+                    }
                 }
                 else {
                     audioEngine.createTextToSpeech(
