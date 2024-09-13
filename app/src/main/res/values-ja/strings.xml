@@ -103,4 +103,16 @@
 
     <string name="general_error_location_services_find_location_error">現在地を確認できません。</string>
 
+    <string name="menu_manage_callouts">コールアウトを管理</string>
+    <string name="callouts_turn_on_off">すべてのコールアウトをオン/オフ</string>
+    <string name="callouts_callouts_on">コールアウトをオン</string>
+    <string name="callouts_callouts_off">コールアウトをオフ</string>
+    <string name="callouts_allow_callouts">コールアウトを使用</string>
+    <string name="callouts_places_and_landmarks">施設</string>
+    <string name="callouts_places_and_landmarks_info">店舗やレストランなど</string>
+    <string name="callouts_mobility">移動関連</string>
+    <string name="callouts_mobility_info">交差点と交通機関の情報</string>
+    <string name="callouts_audio_beacon">音声ビーコンまでの距離</string>
+    <string name="callouts_audio_beacon_info">設定した音声ビーコンまでの距離の最新情報</string>
+
 </resources>

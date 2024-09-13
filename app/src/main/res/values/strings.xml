@@ -114,6 +114,18 @@
 
     <string name="general_error_location_services_find_location_error">We are having trouble finding your current location.</string>
 
+    <string name="menu_manage_callouts">Manage Callouts</string>
+    <string name="callouts_turn_on_off">Turn all callouts on or off</string>
+    <string name="callouts_callouts_on">Callouts On</string>
+    <string name="callouts_callouts_off">Callouts Off</string>
+    <string name="callouts_allow_callouts">Allow Callouts</string>
+    <string name="callouts_places_and_landmarks">Places and Landmarks</string>
+    <string name="callouts_places_and_landmarks_info">Nearby places like shops and restaurants</string>
+    <string name="callouts_mobility">Mobility</string>
+    <string name="callouts_mobility_info">Intersection and transportation info</string>
+    <string name="callouts_audio_beacon">Distance to the Audio Beacon</string>
+    <string name="callouts_audio_beacon_info">Updates about distance to the audio beacon when it\'s set</string>
+
 
     <!-- TODO these strings aren't translated, either translate them or remove them -->>
     <string name="notification_text" translatable="false">We are running this location service in the foreground</string>

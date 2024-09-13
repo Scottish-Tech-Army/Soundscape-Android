@@ -103,4 +103,16 @@
 
     <string name="general_error_location_services_find_location_error">Δυσκολευόμαστε να βρούμε την τρέχουσα τοποθεσία σας.</string>
 
+    <string name="menu_manage_callouts">Διαχείριση επεξηγήσεων</string>
+    <string name="callouts_turn_on_off">Ενεργοποίηση ή απενεργοποίηση όλων των επεξηγήσεων</string>
+    <string name="callouts_callouts_on">Ενεργοποίηση επεξηγήσεων</string>
+    <string name="callouts_callouts_off">Απενεργοποίηση επεξηγήσεων</string>
+    <string name="callouts_allow_callouts">Να επιτρέπονται οι επεξηγήσεις</string>
+    <string name="callouts_places_and_landmarks">Μέρη και Ορόσημα</string>
+    <string name="callouts_places_and_landmarks_info">Κοντινά μέρη όπως καταστήματα και εστιατόρια</string>
+    <string name="callouts_mobility">Κινητικότητα</string>
+    <string name="callouts_mobility_info">Πληροφορίες διασταύρωσης και μεταφοράς</string>
+    <string name="callouts_audio_beacon">Απόσταση από το ηχητικό σήμα</string>
+    <string name="callouts_audio_beacon_info">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει ρυθμιστεί</string>
+
 </resources>

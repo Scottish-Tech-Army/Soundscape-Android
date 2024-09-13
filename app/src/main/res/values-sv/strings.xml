@@ -102,4 +102,16 @@
 
     <string name="general_error_location_services_find_location_error">Det går inte att hitta platsen där du är.</string>
 
+    <string name="menu_manage_callouts">Hantera informationsljud</string>
+    <string name="callouts_turn_on_off">Sätt på eller stäng av alla informationsljud</string>
+    <string name="callouts_callouts_on">Informationsljud på</string>
+    <string name="callouts_callouts_off">Informationsljud av</string>
+    <string name="callouts_allow_callouts">Tillåt informationsljud</string>
+    <string name="callouts_places_and_landmarks">Platser och landmärken</string>
+    <string name="callouts_places_and_landmarks_info">Platser i närheten, som butiker och restauranger</string>
+    <string name="callouts_mobility">Mobilitet</string>
+    <string name="callouts_mobility_info">Vägkorsning och transportinformation</string>
+    <string name="callouts_audio_beacon">Avstånd till ljudfyren</string>
+    <string name="callouts_audio_beacon_info">Uppdateringar om avståndet till ljudfyren när en sådan ställts in</string>
+
 </resources>

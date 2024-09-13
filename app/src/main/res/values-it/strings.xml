@@ -102,4 +102,16 @@
 
     <string name="general_error_location_services_find_location_error">Si è verificato un problema durante la ricerca della tua posizione attuale.</string>
 
+    <string name="menu_manage_callouts">Gestisci notifiche</string>
+    <string name="callouts_turn_on_off">Attiva o disattiva tutte le notifiche</string>
+    <string name="callouts_callouts_on">Notifiche attivate</string>
+    <string name="callouts_callouts_off">Notifiche disattivate</string>
+    <string name="callouts_allow_callouts">Consenti notifiche</string>
+    <string name="callouts_places_and_landmarks">Luoghi e punti di riferimento</string>
+    <string name="callouts_places_and_landmarks_info">Luoghi nelle vicinanze come negozi e ristoranti</string>
+    <string name="callouts_mobility">Mobilità</string>
+    <string name="callouts_mobility_info">Informazioni sugli incroci e sui mezzi di trasporto</string>
+    <string name="callouts_audio_beacon">Distanza dall\'audiofaro</string>
+    <string name="callouts_audio_beacon_info">Aggiornamenti sulla distanza dall\'audiofaro quando è impostata</string>
+
 </resources>

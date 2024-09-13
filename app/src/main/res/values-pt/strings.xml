@@ -103,4 +103,16 @@
 
     <string name="general_error_location_services_find_location_error">Estamos com problemas para achar sua localização atual.</string>
 
+    <string name="menu_manage_callouts">Gerenciar Notificações</string>
+    <string name="callouts_turn_on_off">Ativar ou desativar todas as notificações</string>
+    <string name="callouts_callouts_on">Notificações Ativadas</string>
+    <string name="callouts_callouts_off">Notificações Desativadas</string>
+    <string name="callouts_allow_callouts">Permitir Notificações</string>
+    <string name="callouts_places_and_landmarks">Locais e Pontos de Referência</string>
+    <string name="callouts_places_and_landmarks_info">Locais nas proximidades, como lojas e restaurantes</string>
+    <string name="callouts_mobility">Mobilidade</string>
+    <string name="callouts_mobility_info">Informações sobre cruzamentos e transporte</string>
+    <string name="callouts_audio_beacon">Distância até o Sinalizador Sonoro</string>
+    <string name="callouts_audio_beacon_info">Atualizações sobre distância até o sinalizador sonoro quando estiver definido</string>
+
 </resources>
