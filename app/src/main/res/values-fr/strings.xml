@@ -102,4 +102,17 @@
 
     <string name="general_error_location_services_find_location_error">Nous rencontrons des problèmes pour localiser votre emplacement actuel.</string>
 
+    <string name="menu_manage_callouts">Gérer les notifications</string>
+    <string name="callouts_turn_on_off">Activer ou désactiver toutes les notifications</string>
+    <string name="callouts_callouts_on">Notifications activées</string>
+    <string name="callouts_callouts_off">Notifications désactivées</string>
+    <string name="callouts_allow_callouts">Autoriser les notifications</string>
+    <string name="callouts_places_and_landmarks">Lieux et repères</string>
+    <string name="callouts_places_and_landmarks_info">Lieux à proximité, comme des commerces et des restaurants</string>
+    <string name="callouts_mobility">Mobilité</string>
+    <string name="callouts_mobility_info">Informations sur les intersections et les transports</string>
+    <string name="callouts_audio_beacon">Distance de la balise audio</string>
+    <string name="callouts_audio_beacon_info">Mises à jour de la distance de la balise sonore lorsque celle-ci est définie</string>
+
+
 </resources>

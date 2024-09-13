@@ -102,5 +102,16 @@
 
     <string name="general_error_location_services_find_location_error">Ihr aktueller Standort wurde nicht gefunden.</string>
 
+    <string name="menu_manage_callouts">Hinweise verwalten</string>
+    <string name="callouts_turn_on_off">Alle Hinweise aktivieren oder deaktivieren</string>
+    <string name="callouts_callouts_on">Hinweise an</string>
+    <string name="callouts_callouts_off">Hinweise aus</string>
+    <string name="callouts_allow_callouts">Hinweise zulassen</string>
+    <string name="callouts_places_and_landmarks">Orte und Orientierungspunkte</string>
+    <string name="callouts_places_and_landmarks_info">Orte in der Nähe wie Geschäfte und Restaurants</string>
+    <string name="callouts_mobility">Mobilität</string>
+    <string name="callouts_mobility_info">Informationen zu Kreuzungen und Transport</string>
+    <string name="callouts_audio_beacon">Distanz zum Audiobeacon</string>
+    <string name="callouts_audio_beacon_info">Aktualisierung der Distanz zum Audiobeacon, wenn es platziert ist</string>
 
 </resources>

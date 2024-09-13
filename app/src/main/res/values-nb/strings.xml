@@ -102,4 +102,16 @@
 
     <string name="general_error_location_services_find_location_error">Vi har problemer med å finne nåværende posisjon.</string>
 
+    <string name="menu_manage_callouts">Administrer meldinger</string>
+    <string name="callouts_turn_on_off">Slå av eller på alle meldinger</string>
+    <string name="callouts_callouts_on">Meldinger på</string>
+    <string name="callouts_callouts_off">Meldinger av</string>
+    <string name="callouts_allow_callouts">Tillat meldinger</string>
+    <string name="callouts_places_and_landmarks">Steder og landemerker</string>
+    <string name="callouts_places_and_landmarks_info">Steder i nærheten som butikker og restauranter</string>
+    <string name="callouts_mobility">Mobilitet</string>
+    <string name="callouts_mobility_info">Informasjon om veikryss og transport</string>
+    <string name="callouts_audio_beacon">Avstand til lydsignalet</string>
+    <string name="callouts_audio_beacon_info">Oppdateringer om avstand til lydsignalet når det er angitt</string>
+
 </resources>

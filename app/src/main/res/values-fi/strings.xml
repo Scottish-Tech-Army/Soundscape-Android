@@ -102,4 +102,16 @@
 
     <string name="general_error_location_services_find_location_error">Meillä on ongelmia nykyisen sijaintisi löytämisessä.</string>
 
+    <string name="menu_manage_callouts">Hallitse ilmoituksia</string>
+    <string name="callouts_turn_on_off">Ota ilmoitukset käyttöön tai pois käytöstä</string>
+    <string name="callouts_callouts_on">Ilmoitukset käytössä</string>
+    <string name="callouts_callouts_off">Ilmoitukset pois käytöstä</string>
+    <string name="callouts_allow_callouts">Salli ilmoitukset</string>
+    <string name="callouts_places_and_landmarks">Paikat ja maamerkinnät</string>
+    <string name="callouts_places_and_landmarks_info">Lähiympäristön paikat, kuten kaupat ja ravintolat</string>
+    <string name="callouts_mobility">Liikkuvuus</string>
+    <string name="callouts_mobility_info">Tietoja risteyksistä ja julkisesta liikenteestä</string>
+    <string name="callouts_audio_beacon">Etäisyys äänimajakkaan</string>
+    <string name="callouts_audio_beacon_info">Äänimajakan etäisyyden päivitykset, kun se on määritetty</string>
+
 </resources>

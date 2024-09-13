@@ -103,4 +103,16 @@
 
     <string name="general_error_location_services_find_location_error">We kunnen uw huidige locatie niet vinden.</string>
 
+    <string name="menu_manage_callouts">Waarschuwingen beheren</string>
+    <string name="callouts_turn_on_off">Alle waarschuwingen in- of uitschakelen</string>
+    <string name="callouts_callouts_on">Waarschuwingen aan</string>
+    <string name="callouts_callouts_off">Waarschuwingen uit</string>
+    <string name="callouts_allow_callouts">Waarschuwingen toestaan</string>
+    <string name="callouts_places_and_landmarks">Plaatsen en herkenningspunten</string>
+    <string name="callouts_places_and_landmarks_info">Plaatsen in de buurt zoals winkels of restaurants</string>
+    <string name="callouts_mobility">Mobiliteit</string>
+    <string name="callouts_mobility_info">Informatie over kruispunt en vervoer</string>
+    <string name="callouts_audio_beacon">Afstand tot audiobaken</string>
+    <string name="callouts_audio_beacon_info">Updates voor de afstand tot het audiobaken wanneer het is ingesteld</string>
+
 </resources>

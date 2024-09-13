@@ -103,4 +103,16 @@
 
     <string name="general_error_location_services_find_location_error">Vi har problemer med at finde din aktuelle placering.</string>
 
+    <string name="menu_manage_callouts">Administrer lydbeskeder</string>
+    <string name="callouts_turn_on_off">Slå alle lydbeskeder til eller fra</string>
+    <string name="callouts_callouts_on">Lydbeskeder til</string>
+    <string name="callouts_callouts_off">Lydbeskeder fra</string>
+    <string name="callouts_allow_callouts">Tillad lydbeskeder</string>
+    <string name="callouts_places_and_landmarks">Steder og landemærker</string>
+    <string name="callouts_places_and_landmarks_info">Steder i nærheden, f.eks. butikker og restauranter</string>
+    <string name="callouts_mobility">Mobilitet</string>
+    <string name="callouts_mobility_info">Oplysninger om kryds og transport</string>
+    <string name="callouts_audio_beacon">Afstand til lydfyret</string>
+    <string name="callouts_audio_beacon_info">Opdateringer om afstanden til lydfyret, når det er indstillet</string>
+
 </resources>
