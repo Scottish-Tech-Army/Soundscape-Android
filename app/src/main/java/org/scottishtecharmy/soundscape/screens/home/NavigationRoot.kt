@@ -1,15 +1,26 @@
 package org.scottishtecharmy.soundscape.screens.home
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.AddRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
+
+
+class Navigator {
+    var destination = MutableStateFlow(MainScreens.Home.route)
+    fun navigate(newDestination: String) {
+        Log.d("NavigationRoot", "Navigate to $newDestination")
+        this.destination.value = newDestination
+    }
+}
 
 @Composable
 fun NavigationRoot(navController: NavHostController) {
