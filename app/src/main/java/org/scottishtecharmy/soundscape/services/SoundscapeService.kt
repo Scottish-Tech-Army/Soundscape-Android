@@ -62,6 +62,7 @@ import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
@@ -743,6 +744,26 @@ class SoundscapeService : Service() {
                             locationProvider.getCurrentLongitude() ?: 0.0,
                             "Ahead of you is an intersection. It is ${distanceToNearestIntersection.toInt()} meters away."
                         )
+                        // get the roads that make up the intersection based on the osm_ids
+                        val nearestIntersectionRoadNames = getIntersectionRoadNames(
+                            nearestIntersectionFeatureCollection,
+                            fovRoadsFeatureCollection
+                        )
+                        // TEMP
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            "The roads that make up the intersection are."
+                        )
+                        // just loop through the list of roads that make up the intersection
+                        // need to order them and give relative directions
+                        for (feature in nearestIntersectionRoadNames){
+                            audioEngine.createTextToSpeech(
+                                locationProvider.getCurrentLatitude() ?: 0.0,
+                                locationProvider.getCurrentLongitude() ?: 0.0,
+                                feature.properties!!["name"].toString()
+                            )
+                        }
                     }
                 }
                 else {
