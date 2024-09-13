@@ -43,6 +43,13 @@
             </intent-filter>
 
             <intent-filter>
+                <!-- Handle sharing of Google Maps URLs for beacons -->
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/*" />
+            </intent-filter>
+
+            <intent-filter>
                 <!-- geo intents to set a beacon -->
                 <data android:scheme="geo" />
                 <action android:name="android.intent.action.VIEW"/>

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -17,20 +19,27 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
-
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.screens.home.MainScreens
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.screens.home.NavigationRoot
+import org.scottishtecharmy.soundscape.screens.home.Navigator
+
 import java.io.File
 import java.io.IOException
-import java.net.URLDecoder
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var soundscapeServiceConnection : SoundscapeServiceConnection
+    @Inject
+    lateinit var navigator : Navigator
+    @Inject
+    lateinit var soundscapeIntents : SoundscapeIntents
 
     data class DeviceLocation(
         var latitude : Double,
@@ -76,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         // Debug - dump preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        for(pref in sharedPreferences.all) {
+        for (pref in sharedPreferences.all) {
             Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
 
@@ -88,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             installSplashScreen()
         }
 
-        if(isFirstLaunch) {
+        if (isFirstLaunch) {
             // On the first launch, we want to take the user through the OnboardingActivity so
             // switch to it immediately.
             val intent = Intent(this, OnboardingActivity::class.java)
@@ -111,12 +120,40 @@ class MainActivity : AppCompatActivity() {
 
         checkAndRequestNotificationPermissions()
         soundscapeServiceConnection.tryToBindToServiceIfRunning()
+
+        kotlinx.coroutines.MainScope().launch {
+            soundscapeServiceConnection.serviceBoundState.collect {
+                Log.d(TAG, "serviceBoundState $it")
+                if (it) {
+                    // The service has started, so parse the Intent
+                    if(intent != null) {
+                        soundscapeIntents.parse(intent, this@MainActivity)
+                    }
+                }
+            }
+        }
+
         setContent {
             SoundscapeTheme {
                 val navController = rememberNavController()
+                val destination by navigator.destination.collectAsState()
+                LaunchedEffect(destination) {
+                    if (navController.currentDestination?.route != destination) {
+                        navController.navigate(destination)
+                    }
+                }
                 NavigationRoot(navController = navController)
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        Log.d(TAG, "onNewIntent")
+        // Pop up to home page
+        navigator.navigate(MainScreens.Home.route)
+        // And then parse the new intent which may take us to the LocationDetails screen
+        soundscapeIntents.parse(intent, this@MainActivity)
     }
 
     /**
@@ -182,51 +219,7 @@ class MainActivity : AppCompatActivity() {
      * It also tries to bind to the service to update the UI with location updates.
      */
     private fun startSoundscapeService() {
-
         val serviceIntent = Intent(this, SoundscapeService::class.java)
-
-        // Was the app started with a location that we should use?
-        if (intent != null) {
-            Log.d("intent", intent.data.toString())
-            if (intent.data != null) {
-                val uriData: String = URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
-
-                // Check for geo intent which means to create a beacon at the provided location
-                var regex =
-                    Regex("geo:([-+]?[0-9]*\\.[0-9]+|[0-9]+),([-+]?[0-9]*\\.[0-9]+|[0-9]+).*")
-                var matchResult = regex.find(uriData)
-                if (matchResult != null) {
-                    val latitude = matchResult.groupValues[1]
-                    val longitude = matchResult.groupValues[2]
-
-                    Log.d("intent", "beacon latitude: $latitude")
-                    Log.d("intent", "beacon longitude: $longitude")
-
-                    // We have a geo intent with a GPS position - use that as our location
-                    serviceIntent.putExtra("beacon-latitude", latitude.toDouble())
-                    serviceIntent.putExtra("beacon-longitude", longitude.toDouble())
-                }
-                else {
-                    // Check for soundscape intent which can do more complex things. For now it just
-                    // sets the mock location
-                    regex =
-                        Regex("soundscape://([-+]?[0-9]*\\.[0-9]+|[0-9]+),([-+]?[0-9]*\\.[0-9]+|[0-9]+).*")
-                    matchResult = regex.find(uriData)
-                    if (matchResult != null) {
-                        val latitude = matchResult.groupValues[1]
-                        val longitude = matchResult.groupValues[2]
-
-                        Log.d("intent", "mock latitude: $latitude")
-                        Log.d("intent", "mock longitude: $longitude")
-
-                        // We have a geo intent with a GPS position - use that as our location
-                        serviceIntent.putExtra("mock-latitude", latitude.toDouble())
-                        serviceIntent.putExtra("mock-longitude", longitude.toDouble())
-                    }
-                }
-            }
-        }
-
         startForegroundService(serviceIntent)
     }
     companion object {
