@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -107,6 +108,7 @@ fun Home(onNavigate: (String) -> Unit, useView : Boolean) {
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
             HomeContent(
+                onNavigate,
                 innerPadding,
                 searchBar = {
                     MainSearchBar(
@@ -118,7 +120,7 @@ fun Home(onNavigate: (String) -> Unit, useView : Boolean) {
                         onItemClick = {  }
                     )
                 },
-                useView
+                useView,
             )
         }
 
@@ -170,7 +172,7 @@ fun DrawerContent(
             icon = Icons.Rounded.Headset
         )
         DrawerMenuItem(
-            onClick = { onNavigate(HomeScreens.Settings.route) },
+            onClick = { onNavigate(MainScreens.Settings.route) },
             // Weirdly, original iOS Soundscape doesn't seem to have translation strings for "Settings"
             label = stringResource(R.string.general_alert_settings),
             icon = Icons.Rounded.Settings
@@ -400,6 +402,7 @@ fun MapContainerLibre(viewModel: HomeViewModel) {
 
 @Composable
 fun HomeContent(
+    onNavigate: (String) -> Unit,
     innerPadding: PaddingValues,
     searchBar: @Composable () -> Unit,
     useView : Boolean
@@ -436,7 +439,8 @@ fun HomeContent(
             )
             // Markers and routes
             NavigationButton(
-                onClick = { notAvailableToast() },
+                onClick = { onNavigate("${MainScreens.MarkersAndRoutes.route}/markers")
+                            Log.d("Navigation", "NavController: ${MainScreens.MarkersAndRoutes.route}/markers") },
                 text = stringResource(R.string.search_view_markers)
             )
             // Current location

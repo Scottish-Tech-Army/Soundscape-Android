@@ -1,0 +1,82 @@
+package org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+
+
+@Composable
+fun RoutesScreen(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Box(modifier = Modifier.padding(top = 40.dp)) {
+            Image(
+                painter = painterResource(
+                    id = R.drawable.routes_selected
+                ),
+                contentDescription = "marker icon",
+                modifier = Modifier.size(80.dp)
+            )
+        }
+        Box(modifier = Modifier.padding(top = 10.dp)) {
+            Text(
+                stringResource(R.string.getting_started_with_route_waypoints_headline),
+                style = MaterialTheme.typography.headlineLarge,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+        Box(modifier = Modifier.padding(top = 10.dp)) {
+            Text(
+                stringResource(R.string.getting_started_with_route_waypoints_main_text),
+                style = MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+        Box(modifier = Modifier.padding(top = 10.dp, bottom = 40.dp)) {
+            Text(
+                stringResource(R.string.getting_started_with_route_waypoints_main_text2),
+                style = MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RoutesScreenPreview() {
+    SoundscapeTheme {
+        RoutesScreen(navController = rememberNavController())
+    }
+}

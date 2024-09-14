@@ -23,7 +23,10 @@ private val CommonColorScheme = darkColorScheme(
     onPrimary = OnPrimary,
     onSecondary = OnSecondary,
     onBackground = OnBackground,
-    onSurface = OnSurface
+    onSurface = OnSurface,
+    onSurfaceVariant = OnSurfaceVariant,
+    surfaceBright = surfaceBright,
+    surfaceDim = transparent,
 )
 
 val DarkColorScheme = CommonColorScheme
