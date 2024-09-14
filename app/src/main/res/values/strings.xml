@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Soundscape</string>
 
     <string name="first_launch_welcome_title">Welcome!</string>
@@ -143,4 +143,24 @@
 
     <string name="foreground_service_sample_last_location_title" translatable="false">Last location: </string>
     <string name="foreground_service_sample_last_location_fetching" translatable="false">Fetching…</string>
+
+    <!-- TODO these strings aren't translated, either translate them or remove them -->>
+    <string name="getting_started_with_markers" tools:ignore="MissingTranslation">Getting Started\nwith Markers</string>
+    <string name="getting_started_with_markers_main_text" tools:ignore="MissingTranslation">Create markers for your\nfavourite destinations,\nwaypoints on a route,\nor any locations you\nwant called out.Simply\n choose a location, or\neven your current\nlocation from the home\n screen and select\n \'Save as Marker\'.</string>
+    <string name="getting_started_with_markers_main_text_2" tools:ignore="MissingTranslation">Try marking your home,\nthe entrance to your\nwork, or your favourite\nspot in the park.</string>
+    <string name="getting_started_with_route_waypoints_headline" tools:ignore="MissingTranslation">Getting Started\nwith Route\nWaypoints</string>
+    <string name="getting_started_with_route_waypoints_main_text" tools:ignore="MissingTranslation">Create a route for\nyourself or for\nsomeone else by\norganising a set of\nmarkers as waypoints\non a route.</string>
+    <string name="new_route_app_bar_title" tools:ignore="MissingTranslation">New Route</string>
+    <string name="route_name_textfield" tools:ignore="MissingTranslation">Name</string>
+    <string name="route_description_textfield" tools:ignore="MissingTranslation">Description</string>
+    <string name="add_a_description_of_your_route" tools:ignore="MissingTranslation">Add a description of\nyour route</string>
+    <string name="add_waypoints_button" tools:ignore="MissingTranslation">Add Waypoints</string>
+    <string name="getting_started_with_route_waypoints_main_text2" tools:ignore="MissingTranslation">While out on your route\nwith Soundscape, you\nwill be informed on\narrival to each\nwaypoint, and the\nAudio Beacon will automatically advance\nto the next waypoint.</string>
+    <string name="markers_routes_app_bar_title" tools:ignore="MissingTranslation"><![CDATA[Markers & Routes]]></string>
+    <string name="markers_and_routes_back_button_label" tools:ignore="MissingTranslation">Back</string>
+    <string name="add_route_back_button_cancel" tools:ignore="MissingTranslation">Cancel</string>
+    <string name="add_route_screen_main_text" tools:ignore="MissingTranslation">Name your route and\nadd and optional\ndescription. You can\nthen add waypoints as\nyou go or pick them\nfrom you list of\nmarkers.</string>
+    <string name="marker_and_routes_screen_title_description" tools:ignore="MissingTranslation">Marker and Routes Screen</string>
+    <string name="markers_and_routes_back_button_description" tools:ignore="MissingTranslation">Back Button</string>
+    <string name="markers_and_routes_add_route_button_description" tools:ignore="MissingTranslation">Add Route</string>
 </resources>

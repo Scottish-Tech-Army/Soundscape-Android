@@ -64,7 +64,7 @@ fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
     ) {
         IconButton(
             onClick = {
-                onNavigate(HomeScreens.Home.route)
+                onNavigate(MainScreens.Home.route)
             },
         ) {
             Icon(
