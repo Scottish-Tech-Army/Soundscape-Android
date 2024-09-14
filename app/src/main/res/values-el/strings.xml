@@ -115,4 +115,6 @@
     <string name="callouts_audio_beacon">Απόσταση από το ηχητικό σήμα</string>
     <string name="callouts_audio_beacon_info">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει ρυθμιστεί</string>
 
+    <string name="markers_no_markers_title">Γρήγορα αποτελέσματα με δείκτες</string>
+
 </resources>

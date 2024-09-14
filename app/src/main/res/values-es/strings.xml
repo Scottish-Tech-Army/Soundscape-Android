@@ -114,4 +114,6 @@
     <string name="callouts_audio_beacon">Distancia a la señal de audio</string>
     <string name="callouts_audio_beacon_info">Actualizaciones acerca de la distancia a la señal de audio cuando está establecida</string>
 
+    <string name="markers_no_markers_title">Introducción a los marcadores</string>
+
 </resources>

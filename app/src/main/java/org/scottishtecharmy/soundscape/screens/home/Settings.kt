@@ -78,7 +78,7 @@ fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
         }
 
         Text(
-            text = "MANAGE CALLOUTS",
+            text = stringResource(R.string.menu_manage_callouts),
             textAlign = TextAlign.Left,
             color = Color.White,
             modifier = Modifier.fillMaxWidth()
@@ -91,25 +91,25 @@ fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
                 switchPreference(
                     key = MainActivity.ALLOW_CALLOUTS_KEY,
                     defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
-                    title = { Text(text = "Allow Callouts") },
+                    title = { Text(text = stringResource(R.string.callouts_allow_callouts)) },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(
                     key = MainActivity.PLACES_AND_LANDMARKS_KEY,
                     defaultValue = MainActivity.PLACES_AND_LANDMARKS_DEFAULT,
-                    title = { Text(text = "Places and Landmarks") },
+                    title = { Text(text = stringResource(R.string.callouts_places_and_landmarks)) },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(
                     key = MainActivity.MOBILITY_KEY,
                     defaultValue = MainActivity.MOBILITY_DEFAULT,
-                    title = { Text(text = "Mobility") },
+                    title = { Text(text = stringResource(R.string.callouts_mobility)) },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(
                     key = MainActivity.DISTANCE_TO_BEACON_KEY,
                     defaultValue = MainActivity.DISTANCE_TO_BEACON_DEFAULT,
-                    title = { Text(text = "Distance to the Audio Beacon") },
+                    title = { Text(text = stringResource(R.string.callouts_audio_beacon)) },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
                 switchPreference(

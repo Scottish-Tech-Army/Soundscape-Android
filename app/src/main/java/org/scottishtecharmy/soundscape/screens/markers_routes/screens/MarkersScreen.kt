@@ -47,7 +47,7 @@ fun MarkersScreen(navController: NavController) {
         }
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
-                stringResource(R.string.getting_started_with_markers),
+                stringResource(R.string.markers_no_markers_title),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,

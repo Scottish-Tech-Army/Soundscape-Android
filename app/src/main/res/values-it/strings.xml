@@ -114,4 +114,6 @@
     <string name="callouts_audio_beacon">Distanza dall\'audiofaro</string>
     <string name="callouts_audio_beacon_info">Aggiornamenti sulla distanza dall\'audiofaro quando è impostata</string>
 
+    <string name="markers_no_markers_title">Introduzione agli indicatori</string>
+
 </resources>
