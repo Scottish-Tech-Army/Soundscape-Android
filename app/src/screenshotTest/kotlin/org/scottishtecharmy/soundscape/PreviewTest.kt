@@ -5,6 +5,9 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.SettingsPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.MarkersScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.RoutesScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.Finish
 import org.scottishtecharmy.soundscape.screens.onboarding.HearingPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconPreview
@@ -117,6 +120,36 @@ class SettingsPreviewTestClass {
     fun SettingsPreviewTest() {
         SoundscapeTheme {
             SettingsPreview()
+        }
+    }
+}
+
+class MarkersAndRoutesPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun MarkersAndRoutesPreviewTest() {
+        SoundscapeTheme {
+            MarkersAndRoutesPreview()
+        }
+    }
+}
+
+class RoutesPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun RoutesPreviewTest() {
+        SoundscapeTheme {
+            RoutesScreenPreview()
+        }
+    }
+}
+
+class MarkersPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun MarkersPreviewTest() {
+        SoundscapeTheme {
+            MarkersScreenPreview()
         }
     }
 }
