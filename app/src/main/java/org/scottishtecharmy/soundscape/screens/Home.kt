@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -58,6 +59,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.maplibre.android.MapLibre
@@ -80,11 +83,11 @@ import org.scottishtecharmy.soundscape.viewmodels.WhatsAroundMeViewModel
 @Preview
 @Composable
 fun HomePreview() {
-    Home(false)
+    Home(false, navController = rememberNavController())
 }
 
 @Composable
-fun Home(useView : Boolean = true) {
+fun Home(useView : Boolean = true, navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
@@ -118,7 +121,8 @@ fun Home(useView : Boolean = true) {
                         onItemClick = {  }
                     )
                 },
-                useView
+                useView,
+                navController = navController
             )
         }
 
@@ -401,7 +405,8 @@ fun MapContainerLibre(viewModel: HomeViewModel) {
 fun HomeContent(
     innerPadding: PaddingValues,
     searchBar: @Composable () -> Unit,
-    useView : Boolean
+    useView : Boolean,
+    navController: NavController
 ) {
     val context = LocalContext.current
     var viewModel : HomeViewModel? = null
@@ -435,7 +440,8 @@ fun HomeContent(
             )
             // Markers and routes
             NavigationButton(
-                onClick = { notAvailableToast() },
+                onClick = { navController.navigate("${MainScreens.MarkersAndRoutes.route}/markers")
+                    Log.d("Navigation", "NavController: $navController") },
                 text = stringResource(R.string.search_view_markers)
             )
             // Current location

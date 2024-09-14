@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager
 import org.scottishtecharmy.soundscape.datastore.DataStoreManager.PreferencesKeys.FIRST_LAUNCH
 
@@ -115,7 +116,8 @@ class MainActivity : AppCompatActivity() {
         soundscapeServiceConnection.tryToBindToServiceIfRunning()
         setContent {
             SoundscapeTheme {
-                Home()
+                val navController = rememberNavController()
+                NavigationRoot(navController = navController)
             }
         }
     }
