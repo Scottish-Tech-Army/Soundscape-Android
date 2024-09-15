@@ -115,5 +115,11 @@
     <string name="callouts_audio_beacon_info">Aktualisierung der Distanz zum Audiobeacon, wenn es platziert ist</string>
 
     <string name="markers_no_markers_title">Erste Schritte mit Markierungen</string>
+    <string name="markers_no_markers_hint_1">Erstellen Sie Markierungen für Ihre Lieblingsziele, Wegpunkte einer Route oder andere Orte, die Sie hervorheben möchten. Wählen Sie einfach einen Ort oder Ihren aktuellen Standort auf dem Startbildschirm aus. Wählen Sie dann \&quot;Als Markierung speichern\&quot; aus.</string>
+    <string name="markers_no_markers_hint_2">Markieren Sie doch einmal Ihr Zuhause, den Eingang zu Ihrer Arbeit oder Ihren Lieblingsplatz im Park.</string>
+    <string name="routes_no_routes_title">Erste Schritte mit Routen-Wegpunkten</string>
+    <string name="routes_no_routes_hint_1">Erstellen Sie für sich oder eine andere Person eine Route, indem Sie eine Reihe von Markierungen als Wegpunkte einrichten.</string>
+    <string name="routes_no_routes_hint_2">Wenn Sie Ihrer Route mit Soundscape folgen, werden Sie bei der Ankunft an einem Wegpunkt informiert. Danach springt das Audiobeacon automatisch zum nächsten Wegpunkt.</string>
+
 
 </resources>

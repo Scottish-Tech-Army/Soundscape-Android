@@ -115,5 +115,11 @@
     <string name="callouts_audio_beacon_info">Actualizaciones acerca de la distancia a la señal de audio cuando está establecida</string>
 
     <string name="markers_no_markers_title">Introducción a los marcadores</string>
+    <string name="markers_no_markers_hint_1">Cree marcadores para sus destinos favoritos, puntos de una ruta o cualquier ubicación para la que desee oír avisos. Solo tiene que elegir una ubicación, o incluso su ubicación actual, en la pantalla de inicio, y seleccionar \&quot;Guardar como marcador\&quot;.</string>
+    <string name="markers_no_markers_hint_2">Intente marcar su casa, la entrada a su trabajo o su lugar favorito del parque.</string>
+    <string name="routes_no_routes_title">Introducción a los puntos de ruta</string>
+    <string name="routes_no_routes_hint_1">Cree una ruta para usted o para otra persona organizando un conjunto de marcadores como puntos de referencia en una ruta.</string>
+    <string name="routes_no_routes_hint_2">Mientras se encuentre en una ruta con Soundscape, se le informará a su llegada a cada uno de los puntos de ruta y la señal de audio avanzará automáticamente hasta el siguiente punto de ruta.</string>
+
 
 </resources>
