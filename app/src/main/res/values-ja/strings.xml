@@ -116,5 +116,11 @@
     <string name="callouts_audio_beacon_info">設定した音声ビーコンまでの距離の最新情報</string>
 
     <string name="markers_no_markers_title">マーカーの使い方</string>
+    <string name="markers_no_markers_hint_1">よく訪れる目的地、ルート上のウェイポイント、または訪れたい場所のマーカーを作成します。ホーム画面から場所を選択するか現在地を選択し、\&quot;マーカーとして保存\&quot; を選択するだけです。</string>
+    <string name="markers_no_markers_hint_2">自宅、勤務先の入り口、公園内のお気に入りのスポットなどのマーカーを作成しましょう。</string>
+    <string name="routes_no_routes_title">ルート ウェイポイントの使い方</string>
+    <string name="routes_no_routes_hint_1">自分自身のため、または誰かのために、マーカーのセットとしてウェイポイントを整理してルートを作成します。</string>
+    <string name="routes_no_routes_hint_2">Soundscape を使用してルートを進むと、各ウェイポイントに到着するたびに通知され、音声ビーコンが次のウェイポイントを自動的に案内します。</string>
+
 
 </resources>

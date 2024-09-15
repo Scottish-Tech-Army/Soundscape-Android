@@ -115,5 +115,12 @@
     <string name="callouts_audio_beacon_info">Äänimajakan etäisyyden päivitykset, kun se on määritetty</string>
 
     <string name="markers_no_markers_title">Merkintöjen käytön aloittaminen</string>
+    <string name="markers_no_markers_hint_1">Luo merkintöjä suosikkikohteillesi, reittipisteille tai reitille tai mille tahansa sijainneille, joille haluat kuulla ilmoituksen. Valitse sijainti tai nykyinen sijaintisi aloitusnäytöltä ja valitse \&quot;Tallenna merkintänä\&quot;.</string>
+    <string name="markers_no_markers_hint_2">Kokeile merkitä kotisi, työpaikkasi sisäänkäynti tai lempipaikkasi puistossa.</string>
+    <string name="routes_no_routes_title">Reitin reittipisteiden käytön aloittaminen</string>
+    <string name="routes_no_routes_hint_1">Luo reitti itsellesi tai jollekulle toiselle järjestämällä joukko merkintöjä reittipisteiksi.</string>
+    <string name="routes_no_routes_hint_2">Kun olet ulkona reitilläsi Soundscapen kanssa, sinulle ilmoitetaan kuhunkin reittipisteeseen saapumisesta, ja äänimajakka siirtyy automaattisesti seuraavaan reittipisteeseen.</string>
+
+
 
 </resources>

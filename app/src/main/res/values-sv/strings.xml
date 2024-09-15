@@ -115,5 +115,11 @@
     <string name="callouts_audio_beacon_info">Uppdateringar om avståndet till ljudfyren när en sådan ställts in</string>
 
     <string name="markers_no_markers_title">Kom i gång med platsmarkörer</string>
+    <string name="markers_no_markers_hint_1">Skapa platsmarkörer för dina favoritmål, brytpunkter längs en rutt eller andra platser som du vill ska läsas upp. Välj bara en plats, eller varför inte din aktuella plats, på startskärmen och välj \&quot;Spara som platsmarkör\&quot;.</string>
+    <string name="markers_no_markers_hint_2">Prova att markera ditt hem, ingången till ditt arbete eller din favoritplats i parken.</string>
+    <string name="routes_no_routes_title">Kom i gång med ruttbrytpunkter</string>
+    <string name="routes_no_routes_hint_1">Skapa en rutt åt dig själv eller åt någon annan genom att ordna en uppsättning platsmarkörer som brytpunkter längs en rutt.</string>
+    <string name="routes_no_routes_hint_2">När du är ute på din rutt med Soundscape kommer du att bli informerad när du kommer till varje brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.</string>
+
 
 </resources>

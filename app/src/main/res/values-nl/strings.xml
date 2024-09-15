@@ -116,5 +116,11 @@
     <string name="callouts_audio_beacon_info">Updates voor de afstand tot het audiobaken wanneer het is ingesteld</string>
 
     <string name="markers_no_markers_title">Aan de slag met markeringen</string>
+    <string name="markers_no_markers_hint_1">Maak markeringen voor uw favoriete bestemmingen, routepunten of locaties waarvoor u een beschrijving wilt horen. Kies een locatie in het startscherm, bijvoorbeeld uw huidige locatie, en selecteer Opslaan als markering.</string>
+    <string name="markers_no_markers_hint_2">Probeer uw huis te markeren, de toegang tot uw werkplek of uw favoriete plek in het park.</string>
+    <string name="routes_no_routes_title">Aan de slag met routepunten</string>
+    <string name="routes_no_routes_hint_1">Maak een route voor uzelf of voor iemand anders door een set markeringen als routepunten samen te stellen.</string>
+    <string name="routes_no_routes_hint_2">Terwijl u onderweg bent met Soundscape, hoort u informatie als u bij een routepunt aankomt en gaat het audiobaken automatisch naar het volgende routepunt.</string>
+
 
 </resources>

@@ -116,5 +116,11 @@
     <string name="callouts_audio_beacon_info">Opdateringer om afstanden til lydfyret, når det er indstillet</string>
 
     <string name="markers_no_markers_title">Introduktion til mærker</string>
+    <string name="markers_no_markers_hint_1">Opret mærker til dine foretrukne destinationer, vejpunkter på en rute eller de steder, du vil have udtalt. Du skal blot vælge en placering eller din aktuelle placering på startskærmen og vælge \&quot;Gem som Mærke\&quot;.</string>
+    <string name="markers_no_markers_hint_2">Prøv at markere dit hjem, indgangen til dit arbejde eller dit yndlingssted i parken.</string>
+    <string name="routes_no_routes_title">Introduktion til rutevejpunkter</string>
+    <string name="routes_no_routes_hint_1">Opret en rute til dig selv eller for en anden ved at organisere et sæt mærker som vejpunkter på en rute.</string>
+    <string name="routes_no_routes_hint_2">Når du er ud på en rute med Soundscape, vil du blive informeret ved ankomsten til hvert vejpunkt, og lydfyret vil automatisk gå videre til næste vejpunkt.</string>
+
 
 </resources>

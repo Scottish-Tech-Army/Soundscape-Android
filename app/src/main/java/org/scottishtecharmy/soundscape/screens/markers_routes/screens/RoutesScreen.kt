@@ -48,7 +48,7 @@ fun RoutesScreen(navController: NavController) {
         }
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
-                stringResource(R.string.getting_started_with_route_waypoints_headline),
+                stringResource(R.string.routes_no_routes_title),
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
@@ -56,7 +56,7 @@ fun RoutesScreen(navController: NavController) {
         }
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
-                stringResource(R.string.getting_started_with_route_waypoints_main_text),
+                stringResource(R.string.routes_no_routes_hint_1),
                 style = MaterialTheme.typography.headlineMedium,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
@@ -64,7 +64,7 @@ fun RoutesScreen(navController: NavController) {
         }
         Box(modifier = Modifier.padding(top = 10.dp, bottom = 40.dp)) {
             Text(
-                stringResource(R.string.getting_started_with_route_waypoints_main_text2),
+                stringResource(R.string.routes_no_routes_hint_2),
                 style = MaterialTheme.typography.headlineMedium,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,

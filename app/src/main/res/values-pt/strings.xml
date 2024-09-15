@@ -116,5 +116,11 @@
     <string name="callouts_audio_beacon_info">Atualizações sobre distância até o sinalizador sonoro quando estiver definido</string>
 
     <string name="markers_no_markers_title">Introdução aos favoritos</string>
+    <string name="markers_no_markers_hint_1">Crie favoritos para seus destinos preferenciais, localizadores em uma rota ou qualquer local que você queira destacar. Basta escolher um local ou até mesmo usar o local atual, direto de uma tela inicial e selecionar \&quot;Salvar como Favorito\&quot;.</string>
+    <string name="markers_no_markers_hint_2">Experimente marcar sua casa, a entrada do seu trabalho ou seu local favorito em um parque.</string>
+    <string name="routes_no_routes_title">Introdução aos Localizadores de Rota</string>
+    <string name="routes_no_routes_hint_1">Crie uma rota para você mesmo ou para outra pessoa. Basta organizar um conjunto de favoritos como localizadores em uma rota.</string>
+    <string name="routes_no_routes_hint_2">Enquanto estiver em sua rota com o Soundscape, você receberá informações sobre a chegada em cada localizador, e o Sinalizador Sonoro avançará automaticamente para o localizador seguinte.</string>
+
 
 </resources>

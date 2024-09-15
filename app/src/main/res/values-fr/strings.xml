@@ -115,5 +115,11 @@
     <string name="callouts_audio_beacon_info">Mises à jour de la distance de la balise sonore lorsque celle-ci est définie</string>
 
     <string name="markers_no_markers_title">Premiers pas avec les marqueurs</string>
+    <string name="markers_no_markers_hint_1">Créez des Marqueurs de vos destinations et points de repère préférés sur un Itinéraire, ou d’emplacements dont vous voulez être notifié. Il vous suffit de choisir un emplacement, ou même votre emplacement actuel, sur l’écran d’accueil et de sélectionner \&quot;Enregistrer en tant que Marqueur\&quot;.</string>
+    <string name="markers_no_markers_hint_2">Essayez de marquer votre domicile, l’entrée de votre lieu de travail ou votre endroit préféré dans un parc.</string>
+    <string name="routes_no_routes_title">Premiers pas avec les points de repère d’Itinéraire</string>
+    <string name="routes_no_routes_hint_1">Créez un Itinéraire pour vous-même ou une autre personne en organisant un ensemble de Marqueurs en tant que points de repère sur un Itinéraire.</string>
+    <string name="routes_no_routes_hint_2">Lorsque vous parcourez votre Itinéraire avec Soundscape, vous êtes informé quand vous arrivez à chaque point de repère, et la balise audio avance automatiquement jusqu’au point de repère suivant.</string>
+
 
 </resources>
