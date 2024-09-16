@@ -120,6 +120,8 @@
     <string name="routes_no_routes_title">Premiers pas avec les points de repère d’Itinéraire</string>
     <string name="routes_no_routes_hint_1">Créez un Itinéraire pour vous-même ou une autre personne en organisant un ensemble de Marqueurs en tant que points de repère sur un Itinéraire.</string>
     <string name="routes_no_routes_hint_2">Lorsque vous parcourez votre Itinéraire avec Soundscape, vous êtes informé quand vous arrivez à chaque point de repère, et la balise audio avance automatiquement jusqu’au point de repère suivant.</string>
+    <string name="route_detail_action_create">Nouvel Itinéraire</string>
+    <string name="markers_sort_button_sort_by_name">Nom</string>
 
 
 </resources>

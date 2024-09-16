@@ -121,6 +121,8 @@
     <string name="routes_no_routes_title">ルート ウェイポイントの使い方</string>
     <string name="routes_no_routes_hint_1">自分自身のため、または誰かのために、マーカーのセットとしてウェイポイントを整理してルートを作成します。</string>
     <string name="routes_no_routes_hint_2">Soundscape を使用してルートを進むと、各ウェイポイントに到着するたびに通知され、音声ビーコンが次のウェイポイントを自動的に案内します。</string>
+    <string name="route_detail_action_create">新しいルート</string>
+    <string name="markers_sort_button_sort_by_name">名前</string>
 
 
 </resources>

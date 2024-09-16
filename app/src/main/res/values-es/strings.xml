@@ -120,6 +120,8 @@
     <string name="routes_no_routes_title">Introducción a los puntos de ruta</string>
     <string name="routes_no_routes_hint_1">Cree una ruta para usted o para otra persona organizando un conjunto de marcadores como puntos de referencia en una ruta.</string>
     <string name="routes_no_routes_hint_2">Mientras se encuentre en una ruta con Soundscape, se le informará a su llegada a cada uno de los puntos de ruta y la señal de audio avanzará automáticamente hasta el siguiente punto de ruta.</string>
+    <string name="route_detail_action_create">Nueva ruta</string>
+    <string name="markers_sort_button_sort_by_name">Nombre</string>
 
 
 </resources>

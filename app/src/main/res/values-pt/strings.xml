@@ -121,6 +121,8 @@
     <string name="routes_no_routes_title">Introdução aos Localizadores de Rota</string>
     <string name="routes_no_routes_hint_1">Crie uma rota para você mesmo ou para outra pessoa. Basta organizar um conjunto de favoritos como localizadores em uma rota.</string>
     <string name="routes_no_routes_hint_2">Enquanto estiver em sua rota com o Soundscape, você receberá informações sobre a chegada em cada localizador, e o Sinalizador Sonoro avançará automaticamente para o localizador seguinte.</string>
+    <string name="route_detail_action_create">Nova Rota</string>
+    <string name="markers_sort_button_sort_by_name">Nome</string>
 
 
 </resources>
