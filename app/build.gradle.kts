@@ -215,6 +215,9 @@ dependencies {
     // MapLibre library
     implementation (libs.maplibre)
 
+    // Ramani maps
+    implementation(libs.ramani.maplibre)
+
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 

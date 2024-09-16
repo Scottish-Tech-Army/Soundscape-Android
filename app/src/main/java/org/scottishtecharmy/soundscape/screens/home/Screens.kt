@@ -16,6 +16,10 @@ sealed class MainScreens(
         route = "markers_and_routes_screen",
         title = "MarkersAndRoutesScreen",
     )
+    data object LocationDetails : MainScreens(
+        route = "location_details",
+        title = "LocationDetails",
+    )
 
     data object AddRoute : MainScreens(
         route = "add_route_screen",
