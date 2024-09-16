@@ -59,6 +59,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.maplibre.android.MapLibre
@@ -207,10 +208,6 @@ fun HomeTopAppBar(
     coroutineScope: CoroutineScope
 ) {
     val context = LocalContext.current
-    val notAvailableText = "This is not implemented yet."
-    val notAvailableToast = {
-        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
-    }
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -407,12 +404,7 @@ fun HomeContent(
     searchBar: @Composable () -> Unit,
     useView : Boolean
 ) {
-    val context = LocalContext.current
     var viewModel : HomeViewModel? = null
-    val notAvailableText = "This is not implemented yet."
-    val notAvailableToast = {
-        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
-    }
 
     if(useView)
         viewModel = hiltViewModel<HomeViewModel>()
@@ -431,9 +423,13 @@ fun HomeContent(
             // Places Nearby
             NavigationButton(
                 onClick = {
-                    // This is not the real function of the button - it just demos the live styling
-                    // of the map.
-                    viewModel?.highlightPointsOfInterest()
+                    // This isn't the final code, just an example of how the LocationDetails could work
+                    // The LocationDetails screen takes some JSON as an argument which tells the
+                    // screen which location to provide details of. The JSON is appended to the route.
+                    val ld = LocationDescription(
+                        "Barrowland Ballroom",55.8552688,-4.2366753
+                    )
+                    onNavigate(generateLocationDetailsRoute(ld))
                 },
                 text = stringResource(R.string.search_nearby_screen_title)
             )
@@ -445,7 +441,18 @@ fun HomeContent(
             )
             // Current location
             NavigationButton(
-                onClick = { notAvailableToast() },
+                onClick = {
+                    if(viewModel != null) {
+                        // The LocationDetails screen takes some JSON as an argument which tells the
+                        // screen which location to provide details of. The JSON is appended to the route.
+                        val ld = LocationDescription(
+                            "Current location",
+                            viewModel.latitude,
+                            viewModel.longitude
+                        )
+                        onNavigate(generateLocationDetailsRoute(ld))
+                    }
+                },
                 text = stringResource(R.string.search_use_current_location)
             )
             if(viewModel != null)

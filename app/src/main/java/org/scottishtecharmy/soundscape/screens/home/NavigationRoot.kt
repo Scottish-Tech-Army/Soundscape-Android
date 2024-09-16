@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.google.gson.GsonBuilder
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.AddRouteScreen
@@ -25,6 +26,17 @@ fun NavigationRoot(navController: NavHostController) {
         composable(MainScreens.Settings.route) {
             // Always just pop back out of settings, don't add to the queue
             Settings(onNavigate = { navController.navigateUp() }, null)
+        }
+
+        // Location details screen
+        composable(MainScreens.LocationDetails.route + "/{json}") { navBackStackEntry->
+
+            // Parse the LocationDescription ot of the json provided by the caller
+            val gson = GsonBuilder().create()
+            val json = navBackStackEntry.arguments?.getString("json")
+            val ld = gson.fromJson(json, LocationDescription::class.java)
+
+            LocationDetails(navController, ld)
         }
 
         // MarkersAndRoutesScreen with tab selection
