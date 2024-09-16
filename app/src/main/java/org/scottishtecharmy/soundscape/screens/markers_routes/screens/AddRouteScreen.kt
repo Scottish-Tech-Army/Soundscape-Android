@@ -78,7 +78,7 @@ fun AddRouteScreen(navController: NavController) {
                     },
                     title = {
                         CustomAppBarTitle(
-                            title = stringResource(R.string.new_route_app_bar_title),
+                            title = stringResource(R.string.route_detail_action_create),
                             contentAlignment = Alignment.Center
                         )
                     },
@@ -98,7 +98,7 @@ fun AddRouteScreen(navController: NavController) {
             ) {
                 Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
-                    text = stringResource(R.string.route_name_textfield),
+                    text = stringResource(R.string.markers_sort_button_sort_by_name),
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.surfaceBright
                 )

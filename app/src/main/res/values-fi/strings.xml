@@ -120,7 +120,8 @@
     <string name="routes_no_routes_title">Reitin reittipisteiden käytön aloittaminen</string>
     <string name="routes_no_routes_hint_1">Luo reitti itsellesi tai jollekulle toiselle järjestämällä joukko merkintöjä reittipisteiksi.</string>
     <string name="routes_no_routes_hint_2">Kun olet ulkona reitilläsi Soundscapen kanssa, sinulle ilmoitetaan kuhunkin reittipisteeseen saapumisesta, ja äänimajakka siirtyy automaattisesti seuraavaan reittipisteeseen.</string>
-
+    <string name="route_detail_action_create">Uusi reitti</string>
+    <string name="markers_sort_button_sort_by_name">Nimi</string>
 
 
 </resources>

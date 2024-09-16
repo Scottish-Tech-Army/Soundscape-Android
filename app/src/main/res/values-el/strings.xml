@@ -121,5 +121,7 @@
     <string name="routes_no_routes_title">Γρήγορα αποτελέσματα με τα σημεία πορείας</string>
     <string name="routes_no_routes_hint_1">Δημιουργήστε μια διαδρομή για τον εαυτό σας ή για κάποιον άλλο οργανώνοντας ένα σύνολο δεικτών ως σημεία πορείας σε μια διαδρομή.</string>
     <string name="routes_no_routes_hint_2">Κατά τη διάρκεια της διαδρομής σας με το Soundscape, θα ενημερωθείτε για την άφιξη σε κάθε σημείο πορείας και το Ηχητικό σήμα θα προχωρήσει αυτόματα στο επόμενο σημείο πορείας.</string>
+    <string name="route_detail_action_create">Νέα διαδρομή</string>
+    <string name="markers_sort_button_sort_by_name">Όνομα</string>
 
 </resources>

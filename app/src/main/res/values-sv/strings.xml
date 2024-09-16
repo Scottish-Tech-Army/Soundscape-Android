@@ -120,6 +120,8 @@
     <string name="routes_no_routes_title">Kom i gång med ruttbrytpunkter</string>
     <string name="routes_no_routes_hint_1">Skapa en rutt åt dig själv eller åt någon annan genom att ordna en uppsättning platsmarkörer som brytpunkter längs en rutt.</string>
     <string name="routes_no_routes_hint_2">När du är ute på din rutt med Soundscape kommer du att bli informerad när du kommer till varje brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.</string>
+    <string name="route_detail_action_create">Ny rutt</string>
+    <string name="markers_sort_button_sort_by_name">Namn</string>
 
 
 </resources>

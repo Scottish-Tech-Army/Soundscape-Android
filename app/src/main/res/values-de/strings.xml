@@ -120,6 +120,8 @@
     <string name="routes_no_routes_title">Erste Schritte mit Routen-Wegpunkten</string>
     <string name="routes_no_routes_hint_1">Erstellen Sie für sich oder eine andere Person eine Route, indem Sie eine Reihe von Markierungen als Wegpunkte einrichten.</string>
     <string name="routes_no_routes_hint_2">Wenn Sie Ihrer Route mit Soundscape folgen, werden Sie bei der Ankunft an einem Wegpunkt informiert. Danach springt das Audiobeacon automatisch zum nächsten Wegpunkt.</string>
+    <string name="route_detail_action_create">Neue Route</string>
+    <string name="markers_sort_button_sort_by_name">Name</string>
 
 
 </resources>
