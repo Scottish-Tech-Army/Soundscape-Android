@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.mapui
 
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -38,7 +40,7 @@ fun RamaniMapUi(locationDescription : LocationDescription) {
     val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
     val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth().aspectRatio(1.0F),
         color = MaterialTheme.colorScheme.background
     ) {
         MapLibre(

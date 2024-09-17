@@ -2,19 +2,24 @@ package org.scottishtecharmy.soundscape.screens.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
 import org.scottishtecharmy.soundscape.mapui.RamaniMapUi
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
 
 data class LocationDescription(val title : String,
                                val latitude : Double,
@@ -30,7 +35,12 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription) : Str
 
 @Composable
 fun LocationDetails(navController : NavController,
-                    locationDescription : LocationDescription) {
+                    locationDescription : LocationDescription,
+                    useView : Boolean = true) {
+
+    var viewModel : LocationDetailsViewModel? = null
+    if(useView)
+        viewModel = hiltViewModel<LocationDetailsViewModel>()
 
     Column(
         modifier = Modifier
@@ -50,6 +60,17 @@ fun LocationDetails(navController : NavController,
             color = MaterialTheme.colorScheme.surfaceBright
         )
         RamaniMapUi(locationDescription)
+        Button(
+            onClick = {
+                viewModel?.createBeacon(locationDescription.latitude, locationDescription.longitude)
+            }
+        ) {
+            Text(
+                text = "Create an audio beacon",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
    }
 }
 
@@ -59,7 +80,8 @@ fun LocationDetailsPreview() {
     SoundscapeTheme {
         LocationDetails(
             navController = rememberNavController(),
-            LocationDescription("", 0.0, 0.0)
+            LocationDescription("", 0.0, 0.0),
+            false
         )
     }
 }
