@@ -50,8 +50,8 @@ fun RamaniMapUi(locationDescription : LocationDescription) {
                 center = LatLng(locationDescription.latitude, locationDescription.longitude),
                 color = "red",
                 isDraggable = false,
-                size = 0.2F,
-                imageId = R.drawable.marker_selected
+                size = 1.0F,
+                imageId = R.drawable.nearby_markers
             )
         }
     }
