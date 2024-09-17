@@ -122,5 +122,13 @@
     <string name="routes_no_routes_hint_2">Quando ti trovi sul tuo percorso con Soundscape, riceverai una notifica all\'arrivo a ogni waypoint e l\'audiofaro avanzerà automaticamente al successivo waypoint.</string>
     <string name="route_detail_action_create">Nuovo Percorso</string>
     <string name="markers_sort_button_sort_by_name">Nome</string>
+    <string name="route_detail_edit_description">Descrizione</string>
+    <string name="route_detail_edit_description_default">Aggiungi una descrizione del percorso</string>
+    <string name="route_detail_edit_waypoints_button">Aggiungi waypoint</string>
+    <string name="ui_back_button_title">Indietro</string>
+    <string name="general_alert_cancel">Annulla</string>
+    <string name="route_no_waypoints_hint_1">Assegna un nome al percorso e immetti una descrizione facoltativa. Puoi quindi aggiungere waypoint durante il tuo tragitto o sceglierli dal tuo elenco di indicatori.</string>
+    <string name="route_no_waypoints_hint_2">Puoi modificare in qualsiasi momento l\'ordine dei waypoint lungo un percorso modificando quest\'ultimo.</string>
+    <string name="general_alert_add">Aggiungi</string>
 
 </resources>

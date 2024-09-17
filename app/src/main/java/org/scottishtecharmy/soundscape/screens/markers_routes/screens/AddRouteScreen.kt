@@ -70,8 +70,8 @@ fun AddRouteScreen(navController: NavController) {
                             modifier = Modifier.width(95.dp),
                             iconModifier = Modifier.size(40.dp),
                             onClick = { navController.popBackStack()},
-                            iconText = stringResource(R.string.add_route_back_button_cancel),
-                            contentDescription = "Cancel",
+                            iconText = stringResource(R.string.general_alert_cancel),
+                            contentDescription = stringResource(R.string.general_alert_cancel),
                             fontWeight = FontWeight.Bold,
                             fontSize = 18.sp
                         )
@@ -109,7 +109,7 @@ fun AddRouteScreen(navController: NavController) {
                 )
                 Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
-                    text = stringResource(R.string.route_description_textfield),
+                    text = stringResource(R.string.route_detail_edit_description),
                     style = MaterialTheme.typography.headlineLarge,
                     color = MaterialTheme.colorScheme.surfaceBright
                 )
@@ -120,7 +120,7 @@ fun AddRouteScreen(navController: NavController) {
                 )
                 Text(
                     modifier = Modifier.padding(top = 15.dp, bottom = 30.dp),
-                    text = stringResource(R.string.add_a_description_of_your_route),
+                    text = stringResource(R.string.route_detail_edit_description_default),
                     style = MaterialTheme.typography.headlineMedium,
                 )
                 HorizontalDivider(
@@ -144,7 +144,7 @@ fun AddRouteScreen(navController: NavController) {
                     buttonColor = MaterialTheme.colorScheme.onPrimary,
                     contentColor = MaterialTheme.colorScheme.onSecondary,
                     shape = RoundedCornerShape(10.dp),
-                    text = stringResource(R.string.add_waypoints_button),
+                    text = stringResource(R.string.route_detail_edit_waypoints_button),
                     textStyle = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                 )
@@ -157,10 +157,16 @@ fun AddRouteScreen(navController: NavController) {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        stringResource(R.string.add_route_screen_main_text),
+                        stringResource(R.string.route_no_waypoints_hint_1),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineMedium,
                     )
+                    // TODO fix the formatting/alignment for the addition of the original iOS text below
+                    /*Text(
+                        stringResource(R.string.route_no_waypoints_hint_2),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.headlineMedium,
+                    )*/
                 }
             }
         }

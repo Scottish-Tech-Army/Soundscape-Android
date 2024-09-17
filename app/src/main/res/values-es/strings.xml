@@ -122,6 +122,13 @@
     <string name="routes_no_routes_hint_2">Mientras se encuentre en una ruta con Soundscape, se le informará a su llegada a cada uno de los puntos de ruta y la señal de audio avanzará automáticamente hasta el siguiente punto de ruta.</string>
     <string name="route_detail_action_create">Nueva ruta</string>
     <string name="markers_sort_button_sort_by_name">Nombre</string>
-
+    <string name="route_detail_edit_description">Descripción</string>
+    <string name="route_detail_edit_description_default">Agregar una descripción de la ruta</string>
+    <string name="route_detail_edit_waypoints_button">Agregar puntos de ruta</string>
+    <string name="ui_back_button_title">Atrás</string>
+    <string name="general_alert_cancel">Cancelar</string>
+    <string name="route_no_waypoints_hint_1">Asigne un nombre a su ruta y agregue una descripción opcional. A continuación, puede agregar puntos de ruta a medida que avance o elegirlos en su lista de marcadores.</string>
+    <string name="route_no_waypoints_hint_2">Puede reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editándola.</string>
+    <string name="general_alert_add">Agregar</string>
 
 </resources>

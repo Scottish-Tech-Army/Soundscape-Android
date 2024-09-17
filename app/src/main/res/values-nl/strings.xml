@@ -123,6 +123,13 @@
     <string name="routes_no_routes_hint_2">Terwijl u onderweg bent met Soundscape, hoort u informatie als u bij een routepunt aankomt en gaat het audiobaken automatisch naar het volgende routepunt.</string>
     <string name="route_detail_action_create">Nieuwe route</string>
     <string name="markers_sort_button_sort_by_name">Naam</string>
-
+    <string name="route_detail_edit_description">Beschrijving</string>
+    <string name="route_detail_edit_description_default">Een beschrijving van uw route toevoegen</string>
+    <string name="route_detail_edit_waypoints_button">Routepunten toevoegen</string>
+    <string name="ui_back_button_title">Vorige</string>
+    <string name="general_alert_cancel">Annuleren</string>
+    <string name="route_no_waypoints_hint_1">Geef uw route een naam en voeg een optionele beschrijving toe. Voeg onderweg routepunten toe of selecteer ze uit uw lijst met markeringen.</string>
+    <string name="route_no_waypoints_hint_2">U kunt de volgorde van routepunten langs een route op elke gewenst moment aanpassen door de route te bewerken.</string>
+    <string name="general_alert_add">Toevoegen</string>
 
 </resources>

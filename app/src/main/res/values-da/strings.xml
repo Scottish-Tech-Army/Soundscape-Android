@@ -123,6 +123,13 @@
     <string name="routes_no_routes_hint_2">Når du er ud på en rute med Soundscape, vil du blive informeret ved ankomsten til hvert vejpunkt, og lydfyret vil automatisk gå videre til næste vejpunkt.</string>
     <string name="route_detail_action_create">Ny Rute</string>
     <string name="markers_sort_button_sort_by_name">Navn</string>
-
+    <string name="route_detail_edit_description">Beskrivelse</string>
+    <string name="route_detail_edit_description_default">Tilføj en beskrivelse af ruten</string>
+    <string name="route_detail_edit_waypoints_button">Tilføj vejpunkter</string>
+    <string name="ui_back_button_title">Tilbage</string>
+    <string name="general_alert_cancel">Annuller</string>
+    <string name="route_no_waypoints_hint_1">Giv ruten navn, og tilføj en valgfri beskrivelse. Du kan derefter tilføje vejpunkter, mens du går eller vælge dem på din liste over mærker.</string>
+    <string name="route_no_waypoints_hint_2">Du kan til enhver tid omarrangere rækkefølgen af vejpunkter langs en rute ved at redigere ruten.</string>
+    <string name="general_alert_add">Tilføj</string>
 
 </resources>

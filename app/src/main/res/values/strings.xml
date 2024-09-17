@@ -153,17 +153,13 @@
     <string name="routes_no_routes_hint_2">While out on your route with Soundscape, you will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.</string>
     <string name="route_detail_action_create">New Route</string>
     <string name="markers_sort_button_sort_by_name">Name</string>
+    <string name="route_detail_edit_description">Description</string>
+    <string name="route_detail_edit_description_default">Add a description of your route</string>
+    <string name="route_detail_edit_waypoints_button">Add Waypoints</string>
+    <string name="ui_back_button_title">Back</string>
+    <string name="general_alert_cancel">Cancel</string>
+    <string name="route_no_waypoints_hint_1">Name your route and add an optional description. You can then add waypoints as you go or pick them from your list of markers.</string>
+    <string name="route_no_waypoints_hint_2">You can rearrange the order of waypoints along a route at any time by editing the route.</string>
+    <string name="general_alert_add">Add</string>
 
-
-
-    <string name="route_description_textfield" tools:ignore="MissingTranslation">Description</string>
-    <string name="add_a_description_of_your_route" tools:ignore="MissingTranslation">Add a description of\nyour route</string>
-    <string name="add_waypoints_button" tools:ignore="MissingTranslation">Add Waypoints</string>
-    <string name="markers_routes_app_bar_title" tools:ignore="MissingTranslation"><![CDATA[Markers & Routes]]></string>
-    <string name="markers_and_routes_back_button_label" tools:ignore="MissingTranslation">Back</string>
-    <string name="add_route_back_button_cancel" tools:ignore="MissingTranslation">Cancel</string>
-    <string name="add_route_screen_main_text" tools:ignore="MissingTranslation">Name your route and\nadd and optional\ndescription. You can\nthen add waypoints as\nyou go or pick them\nfrom you list of\nmarkers.</string>
-    <string name="marker_and_routes_screen_title_description" tools:ignore="MissingTranslation">Marker and Routes Screen</string>
-    <string name="markers_and_routes_back_button_description" tools:ignore="MissingTranslation">Back Button</string>
-    <string name="markers_and_routes_add_route_button_description" tools:ignore="MissingTranslation">Add Route</string>
 </resources>
