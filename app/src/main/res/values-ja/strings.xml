@@ -123,6 +123,13 @@
     <string name="routes_no_routes_hint_2">Soundscape を使用してルートを進むと、各ウェイポイントに到着するたびに通知され、音声ビーコンが次のウェイポイントを自動的に案内します。</string>
     <string name="route_detail_action_create">新しいルート</string>
     <string name="markers_sort_button_sort_by_name">名前</string>
-
+    <string name="route_detail_edit_description">説明</string>
+    <string name="route_detail_edit_description_default">ルートの説明を追加</string>
+    <string name="route_detail_edit_waypoints_button">ウェイポイントを追加</string>
+    <string name="ui_back_button_title">戻る</string>
+    <string name="general_alert_cancel">キャンセル</string>
+    <string name="route_no_waypoints_hint_1">ルート名を指定して、オプションで説明を入力します。その後、ルートを進む中でウェイポイントを追加するか、マーカーのリストから選択します。</string>
+    <string name="route_no_waypoints_hint_2">ウェイポイントの順序は、ルートを進む間いつでもルートを編集することで変更できます。</string>
+    <string name="general_alert_add">追加</string>
 
 </resources>

@@ -122,6 +122,13 @@
     <string name="routes_no_routes_hint_2">Lorsque vous parcourez votre Itinéraire avec Soundscape, vous êtes informé quand vous arrivez à chaque point de repère, et la balise audio avance automatiquement jusqu’au point de repère suivant.</string>
     <string name="route_detail_action_create">Nouvel Itinéraire</string>
     <string name="markers_sort_button_sort_by_name">Nom</string>
-
+    <string name="route_detail_edit_description">Description</string>
+    <string name="route_detail_edit_description_default">Ajoutez une description à votre Itinéraire</string>
+    <string name="route_detail_edit_waypoints_button">Ajouter des points de repère</string>
+    <string name="ui_back_button_title">Retour</string>
+    <string name="general_alert_cancel">Annuler</string>
+    <string name="route_no_waypoints_hint_1">Donnez à l’Itinéraire un nom et une description facultative. Vous pouvez ajouter ensuite des points de repère à mesure que vous vous déplacez ou les choisir dans votre liste de Marqueurs.</string>
+    <string name="route_no_waypoints_hint_2">Vous pouvez réorganiser l’ordre des points de repère sur un Itinéraire à tout moment en modifiant l’Itinéraire.</string>
+    <string name="general_alert_add">Ajouter</string>
 
 </resources>

@@ -123,5 +123,13 @@
     <string name="routes_no_routes_hint_2">Κατά τη διάρκεια της διαδρομής σας με το Soundscape, θα ενημερωθείτε για την άφιξη σε κάθε σημείο πορείας και το Ηχητικό σήμα θα προχωρήσει αυτόματα στο επόμενο σημείο πορείας.</string>
     <string name="route_detail_action_create">Νέα διαδρομή</string>
     <string name="markers_sort_button_sort_by_name">Όνομα</string>
+    <string name="route_detail_edit_description">Περιγραφή</string>
+    <string name="route_detail_edit_description_default">Προσθήκη περιγραφής της διαδρομής σας</string>
+    <string name="route_detail_edit_waypoints_button">Προσθήκη σημείων πορείας</string>
+    <string name="ui_back_button_title">Πίσω</string>
+    <string name="general_alert_cancel">Ακύρωση</string>
+    <string name="route_no_waypoints_hint_1">Ονομάστε τη διαδρομή σας και προσθέστε μια προαιρετική περιγραφή. Στη συνέχεια, μπορείτε να προσθέσετε σημεία πορείας καθώς προχωράτε ή να τα επιλέξετε από τη λίστα των δεικτών σας.</string>
+    <string name="route_no_waypoints_hint_2">Μπορείτε να αναδιατάξετε τη σειρά των σημείων κατά μήκος μιας διαδρομής ανά πάσα στιγμή, με επεξεργασία της διαδρομής.</string>
+    <string name="general_alert_add">Προσθήκη</string>
 
 </resources>

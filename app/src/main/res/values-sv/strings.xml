@@ -122,6 +122,13 @@
     <string name="routes_no_routes_hint_2">När du är ute på din rutt med Soundscape kommer du att bli informerad när du kommer till varje brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.</string>
     <string name="route_detail_action_create">Ny rutt</string>
     <string name="markers_sort_button_sort_by_name">Namn</string>
-
+    <string name="route_detail_edit_description">Beskrivning</string>
+    <string name="route_detail_edit_description_default">Lägg till en beskrivning av din rutt</string>
+    <string name="route_detail_edit_waypoints_button">Lägg till brytpunkter</string>
+    <string name="ui_back_button_title">Tillbaka</string>
+    <string name="general_alert_cancel">Avbryt</string>
+    <string name="route_no_waypoints_hint_1">Namnge rutten och lägg till en valfri beskrivning. Du kan sedan lägga till brytpunkter längs vägen eller välja dem från listan med platsmarkörer.</string>
+    <string name="route_no_waypoints_hint_2">Du kan när som helst ändra ordning på brytpunkterna längs en rutt genom att redigera rutten.</string>
+    <string name="general_alert_add">Lägg till</string>
 
 </resources>

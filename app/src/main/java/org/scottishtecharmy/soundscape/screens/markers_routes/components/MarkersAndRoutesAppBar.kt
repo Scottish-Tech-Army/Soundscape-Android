@@ -36,12 +36,12 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Composable
 fun MarkersAndRoutesAppBar(showAddIcon: Boolean, navController: NavController) {
 
-    CustomAppBar(stringResource(R.string.markers_routes_app_bar_title),
-                 LocalContext.current.getString(R.string.marker_and_routes_screen_title_description),
+    CustomAppBar(stringResource(R.string.search_view_markers),
+                 LocalContext.current.getString(R.string.search_view_markers),
                  navController,
                  showAddIcon,
                  MainScreens.AddRoute.route,
-                 stringResource(R.string.markers_and_routes_add_route_button_description)
+                 stringResource(R.string.general_alert_add)
     )
 }
 

@@ -122,6 +122,13 @@
     <string name="routes_no_routes_hint_2">Wenn Sie Ihrer Route mit Soundscape folgen, werden Sie bei der Ankunft an einem Wegpunkt informiert. Danach springt das Audiobeacon automatisch zum nächsten Wegpunkt.</string>
     <string name="route_detail_action_create">Neue Route</string>
     <string name="markers_sort_button_sort_by_name">Name</string>
-
+    <string name="route_detail_edit_description">Beschreibung</string>
+    <string name="route_detail_edit_description_default">Fügen Sie eine Beschreibung Ihrer Route hinzu</string>
+    <string name="route_detail_edit_waypoints_button">Wegpunkte hinzufügen</string>
+    <string name="ui_back_button_title">Zurück</string>
+    <string name="general_alert_cancel">Abbrechen</string>
+    <string name="route_no_waypoints_hint_1">Benennen Sie Ihre Route, und fügen Sie optional eine Beschreibung hinzu. Sie können dann nach und nach Wegpunkte hinzufügen oder sie aus Ihrer Liste der Markierungen auswählen.</string>
+    <string name="route_no_waypoints_hint_2">Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit ändern, indem Sie die Route bearbeiten.</string>
+    <string name="general_alert_add">Hinzufügen</string>
 
 </resources>

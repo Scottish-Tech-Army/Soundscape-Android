@@ -123,6 +123,13 @@
     <string name="routes_no_routes_hint_2">Enquanto estiver em sua rota com o Soundscape, você receberá informações sobre a chegada em cada localizador, e o Sinalizador Sonoro avançará automaticamente para o localizador seguinte.</string>
     <string name="route_detail_action_create">Nova Rota</string>
     <string name="markers_sort_button_sort_by_name">Nome</string>
-
+    <string name="route_detail_edit_description">Descrição</string>
+    <string name="route_detail_edit_description_default">Adicione uma descrição da sua rota</string>
+    <string name="route_detail_edit_waypoints_button">Adicionar Localizadores</string>
+    <string name="ui_back_button_title">Voltar</string>
+    <string name="general_alert_cancel">Cancelar</string>
+    <string name="route_no_waypoints_hint_1">Dê um nome à sua rota e adicione uma descrição opcional. Você pode adicionar localizadores conforme segue ou selecioná-los de sua lista de favoritos.</string>
+    <string name="route_no_waypoints_hint_2">Você pode reorganizar a ordem dos localizadores na rota quando quiser. Basta editar a rota.</string>
+    <string name="general_alert_add">Adicionar</string>
 
 </resources>

@@ -122,6 +122,13 @@
     <string name="routes_no_routes_hint_2">Kun olet ulkona reitilläsi Soundscapen kanssa, sinulle ilmoitetaan kuhunkin reittipisteeseen saapumisesta, ja äänimajakka siirtyy automaattisesti seuraavaan reittipisteeseen.</string>
     <string name="route_detail_action_create">Uusi reitti</string>
     <string name="markers_sort_button_sort_by_name">Nimi</string>
-
+    <string name="route_detail_edit_description">Kuvaus</string>
+    <string name="route_detail_edit_description_default">Lisää kuvaus reittiisi</string>
+    <string name="route_detail_edit_waypoints_button">Lisää reittipisteitä</string>
+    <string name="ui_back_button_title">Takaisin</string>
+    <string name="general_alert_cancel">Peruuta</string>
+    <string name="route_no_waypoints_hint_1">Nimeä reittisi ja lisää valinnainen kuvaus. Voit sen jälkeen lisätä reittipisteitä kulkiessasi tai valita niitä merkintöjen luettelosta.</string>
+    <string name="route_no_waypoints_hint_2">Voit järjestää reittipisteet uudelleen reitillä koska tahansa muokkaamalla reittiä.</string>
+    <string name="general_alert_add">Lisää</string>
 
 </resources>

@@ -55,8 +55,8 @@ fun CustomAppBar(customTitle : String,
                         launchSingleTop = true  // Prevents multiple instances of Home
                     }
                 },
-                iconText = stringResource(R.string.markers_and_routes_back_button_label),
-                contentDescription = stringResource(R.string.markers_and_routes_back_button_description),
+                iconText = stringResource(R.string.ui_back_button_title),
+                contentDescription = stringResource(R.string.ui_back_button_title),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
             )
