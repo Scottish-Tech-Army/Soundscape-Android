@@ -109,6 +109,8 @@
     <string name="directions_direction_to_the_left">左方向</string>
     <string name="directions_direction_ahead_to_the_left">左前方</string>
 
+    <string name="intersection_approaching_intersection">まもなく交差点</string>
+
     <string name="general_error_location_services_find_location_error">現在地を確認できません。</string>
 
     <string name="menu_manage_callouts">コールアウトを管理</string>

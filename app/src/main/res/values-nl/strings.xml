@@ -109,6 +109,8 @@
     <string name="directions_direction_to_the_left">naar links</string>
     <string name="directions_direction_ahead_to_the_left">vóór u naar links</string>
 
+    <string name="intersection_approaching_intersection">U nadert een kruispunt</string>
+
     <string name="general_error_location_services_find_location_error">We kunnen uw huidige locatie niet vinden.</string>
 
     <string name="menu_manage_callouts">Waarschuwingen beheren</string>

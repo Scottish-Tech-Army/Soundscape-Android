@@ -750,11 +750,15 @@ class SoundscapeService : Service() {
                         ),
                         fovRoadsFeatureCollection
                     )
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        "Ahead of you is ${nearestRoad.features[0].properties!!["name"]}"
-                    )
+                    // TODO check for Settings, Unnamed roads on/off here
+                    if (nearestRoad.features[0].properties?.get("name") != null){
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
+                        )
+                    }
+
 
                     if (fovIntersectionsFeatureCollection.features.size > 0) {
                         val nearestIntersectionFeatureCollection = getNearestIntersection(
@@ -768,7 +772,7 @@ class SoundscapeService : Service() {
                         audioEngine.createTextToSpeech(
                             locationProvider.getCurrentLatitude() ?: 0.0,
                             locationProvider.getCurrentLongitude() ?: 0.0,
-                            "Ahead of you is an intersection. It is ${distanceToNearestIntersection.toInt()} meters away."
+                            "${localizedContext.getString(R.string.intersection_approaching_intersection)} It is ${distanceToNearestIntersection.toInt()} meters away."
                         )
                         // get the roads that make up the intersection based on the osm_ids
                         val nearestIntersectionRoadNames = getIntersectionRoadNames(
@@ -802,12 +806,14 @@ class SoundscapeService : Service() {
                                 )
                             }
 
-                            val roadName = feature.properties?.get("name") ?: "No road name"
-                            audioEngine.createTextToSpeech(
-                                locationProvider.getCurrentLatitude() ?: 0.0,
-                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                "$roadName is $relativeDirectionString"
-                            )
+                            //val roadName = feature.properties?.get("name") ?: "No road name"
+                            if (feature.properties?.get("name") != null){
+                                audioEngine.createTextToSpeech(
+                                    locationProvider.getCurrentLatitude() ?: 0.0,
+                                    locationProvider.getCurrentLongitude() ?: 0.0,
+                                    "${feature.properties?.get("name")} $relativeDirectionString"
+                                )
+                            }
                         }
                     }
                 }

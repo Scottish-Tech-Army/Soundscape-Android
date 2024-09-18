@@ -120,6 +120,8 @@
     <string name="directions_direction_to_the_left">to the left</string>
     <string name="directions_direction_ahead_to_the_left">ahead to the left</string>
 
+    <string name="intersection_approaching_intersection">Approaching intersection</string>
+
     <string name="general_error_location_services_find_location_error">We are having trouble finding your current location.</string>
 
     <string name="menu_manage_callouts">Manage Callouts</string>
@@ -152,7 +154,7 @@
     <string name="foreground_service_sample_last_location_title" translatable="false">Last location: </string>
     <string name="foreground_service_sample_last_location_fetching" translatable="false">Fetching…</string>
 
-    <!-- TODO these strings aren't translated, either translate them or remove them -->>
+
     <string name="markers_no_markers_title">Getting Started with Markers</string>
     <string name="markers_no_markers_hint_1">Create markers for your favourite destinations, waypoints on a route, or any locations you want called out. Simply choose a location, or even your current location, from the home screen and select \&quot;Save as Marker\&quot;.</string>
     <string name="markers_no_markers_hint_2">Try marking your home, the entrance to your work, or your favourite spot in the park.</string>

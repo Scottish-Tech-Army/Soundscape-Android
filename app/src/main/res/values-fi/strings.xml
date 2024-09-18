@@ -108,6 +108,8 @@
     <string name="directions_direction_to_the_left">vasemmalla</string>
     <string name="directions_direction_ahead_to_the_left">edessä vasemmalla</string>
 
+    <string name="intersection_approaching_intersection">Lähestytään risteystä</string>
+
     <string name="general_error_location_services_find_location_error">Meillä on ongelmia nykyisen sijaintisi löytämisessä.</string>
 
     <string name="menu_manage_callouts">Hallitse ilmoituksia</string>
