@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Sei rivolto verso sud ovest lungo %1$s</string>
     <string name="directions_along_facing_w">Sei rivolto verso ovest lungo %1$s</string>
     <string name="directions_along_facing_nw">Sei rivolto verso nord ovest lungo %1$s</string>
+    <string name="directions_direction_ahead">avanti</string>
+    <string name="directions_direction_ahead_to_the_right">avanti a destra</string>
+    <string name="directions_direction_to_the_right">a destra</string>
+    <string name="directions_direction_behind_to_the_right">indietro a destra</string>
+    <string name="directions_direction_behind">indietro</string>
+    <string name="directions_direction_behind_to_the_left">indietro a sinistra</string>
+    <string name="directions_direction_to_the_left">a sinistra</string>
+    <string name="directions_direction_ahead_to_the_left">avanti a sinistra</string>
 
     <string name="general_error_location_services_find_location_error">Si è verificato un problema durante la ricerca della tua posizione attuale.</string>
 

@@ -100,6 +100,14 @@
     <string name="directions_along_facing_sw">%1$s で南西向き</string>
     <string name="directions_along_facing_w">%1$s で西向き</string>
     <string name="directions_along_facing_nw">%1$s で北西向き</string>
+    <string name="directions_direction_ahead">前方</string>
+    <string name="directions_direction_ahead_to_the_right">右前方</string>
+    <string name="directions_direction_to_the_right">右方向</string>
+    <string name="directions_direction_behind_to_the_right">右後方</string>
+    <string name="directions_direction_behind">後方</string>
+    <string name="directions_direction_behind_to_the_left">左後方</string>
+    <string name="directions_direction_to_the_left">左方向</string>
+    <string name="directions_direction_ahead_to_the_left">左前方</string>
 
     <string name="general_error_location_services_find_location_error">現在地を確認できません。</string>
 

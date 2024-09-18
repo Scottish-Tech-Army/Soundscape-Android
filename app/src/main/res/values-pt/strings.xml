@@ -100,6 +100,14 @@
     <string name="directions_along_facing_sw">Voltado para sudoeste ao longo da %1$s</string>
     <string name="directions_along_facing_w">Voltado para oeste ao longo da %1$s</string>
     <string name="directions_along_facing_nw">Voltado para noroeste ao longo da %1$s</string>
+    <string name="directions_direction_ahead">à frente</string>
+    <string name="directions_direction_ahead_to_the_right">à frente, à direita</string>
+    <string name="directions_direction_to_the_right">à direita</string>
+    <string name="directions_direction_behind_to_the_right">atrás, à direita</string>
+    <string name="directions_direction_behind">atrás</string>
+    <string name="directions_direction_behind_to_the_left">atrás, à esquerda</string>
+    <string name="directions_direction_to_the_left">à esquerda</string>
+    <string name="directions_direction_ahead_to_the_left">à frente, à esquerda</string>
 
     <string name="general_error_location_services_find_location_error">Estamos com problemas para achar sua localização atual.</string>
 

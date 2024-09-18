@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Står mot sørvest langs %1$s</string>
     <string name="directions_along_facing_w">Står mot vest langs %1$s</string>
     <string name="directions_along_facing_nw">Står mot nordvest langs %1$s</string>
+    <string name="directions_direction_ahead">foran deg</string>
+    <string name="directions_direction_ahead_to_the_right">foran deg og til høyre</string>
+    <string name="directions_direction_to_the_right">til høyre</string>
+    <string name="directions_direction_behind_to_the_right">bak deg og til høyre</string>
+    <string name="directions_direction_behind">bak</string>
+    <string name="directions_direction_behind_to_the_left">bak deg og til venstre</string>
+    <string name="directions_direction_to_the_left">til venstre</string>
+    <string name="directions_direction_ahead_to_the_left">foran deg og til venstre</string>
 
     <string name="general_error_location_services_find_location_error">Vi har problemer med å finne nåværende posisjon.</string>
 
