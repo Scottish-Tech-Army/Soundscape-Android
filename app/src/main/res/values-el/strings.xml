@@ -109,6 +109,8 @@
     <string name="directions_direction_to_the_left">προς τα αριστερά</string>
     <string name="directions_direction_ahead_to_the_left">μπροστά προς τα αριστερά</string>
 
+    <string name="intersection_approaching_intersection">Πλησιάζετε τη διασταύρωση</string>
+
     <string name="general_error_location_services_find_location_error">Δυσκολευόμαστε να βρούμε την τρέχουσα τοποθεσία σας.</string>
 
     <string name="menu_manage_callouts">Διαχείριση επεξηγήσεων</string>

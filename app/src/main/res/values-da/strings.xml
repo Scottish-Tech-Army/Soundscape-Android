@@ -109,6 +109,8 @@
     <string name="directions_direction_to_the_left">til venstre</string>
     <string name="directions_direction_ahead_to_the_left">forude til venstre</string>
 
+    <string name="intersection_approaching_intersection">Nærmer sig kryds</string>
+
     <string name="general_error_location_services_find_location_error">Vi har problemer med at finde din aktuelle placering.</string>
 
     <string name="menu_manage_callouts">Administrer lydbeskeder</string>

@@ -108,6 +108,8 @@
     <string name="directions_direction_to_the_left">nach links</string>
     <string name="directions_direction_ahead_to_the_left">links vor Ihnen</string>
 
+    <string name="intersection_approaching_intersection">Kreuzung vor Ihnen</string>
+
     <string name="general_error_location_services_find_location_error">Ihr aktueller Standort wurde nicht gefunden.</string>
 
     <string name="menu_manage_callouts">Hinweise verwalten</string>
