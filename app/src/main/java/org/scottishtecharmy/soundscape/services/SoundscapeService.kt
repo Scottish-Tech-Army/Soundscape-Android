@@ -68,6 +68,7 @@ import org.scottishtecharmy.soundscape.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
+import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
 import retrofit2.awaitResponse
@@ -499,7 +500,7 @@ class SoundscapeService : Service() {
                         )
                     }
                 } else {
-                    Log.e(TAG, "No name property for road")
+                    Log.e(TAG, "No properties found for road")
                 }
             }
             else {
@@ -625,7 +626,7 @@ class SoundscapeService : Service() {
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                        "The nearest thing is: ${distanceToPoi.features[0].properties!!["name"]}"
+                        "The nearest $superCategory is: ${distanceToPoi.features[0].properties!!["name"]}"
                     )
                 }
                 else {
@@ -793,48 +794,19 @@ class SoundscapeService : Service() {
                         )
                         for (feature in roadRelativeDirections.features){
                             val direction = feature.properties?.get("Direction").toString().toIntOrNull()
-                            val directionString: String = when(direction){
-                                0 -> {
-                                    "Behind"
-                                }
-
-                                1-> {
-                                    "Behind Left"
-                                }
-
-                                2 -> {
-                                    "Left"
-                                }
-
-                                3 -> {
-                                    "Ahead Left"
-                                }
-
-                                4 -> {
-                                    "Ahead"
-                                }
-
-                                5 -> {
-                                    "Ahead Right"
-                                }
-
-                                6 -> {
-                                    "Right"
-                                }
-
-                                7 -> {
-                                    "Behind Right"
-                                }
-
-                                else -> {
-                                    "Unknown"
-                                }
+                            val relativeDirectionString = configLocale?.let {
+                                getRelativeDirectionLabel(
+                                    applicationContext,
+                                    direction!!,
+                                    it
+                                )
                             }
+
                             val roadName = feature.properties?.get("name") ?: "No road name"
                             audioEngine.createTextToSpeech(
                                 locationProvider.getCurrentLatitude() ?: 0.0,
                                 locationProvider.getCurrentLongitude() ?: 0.0,
-                                "$roadName is $directionString"
+                                "$roadName is $relativeDirectionString"
                             )
                         }
                     }

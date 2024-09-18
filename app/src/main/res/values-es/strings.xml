@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Mirando al suroeste por %1$s</string>
     <string name="directions_along_facing_w">Mirando al oeste por %1$s</string>
     <string name="directions_along_facing_nw">Mirando al noroeste por %1$s</string>
+    <string name="directions_direction_ahead">adelante</string>
+    <string name="directions_direction_ahead_to_the_right">adelante a la derecha</string>
+    <string name="directions_direction_to_the_right">a la derecha</string>
+    <string name="directions_direction_behind_to_the_right">detrás a la derecha</string>
+    <string name="directions_direction_behind">detrás</string>
+    <string name="directions_direction_behind_to_the_left">detrás a la izquierda</string>
+    <string name="directions_direction_to_the_left">a la izquierda</string>
+    <string name="directions_direction_ahead_to_the_left">adelante a la izquierda</string>
 
     <string name="general_error_location_services_find_location_error">Tenemos problemas para encontrar su ubicación actual.</string>
 

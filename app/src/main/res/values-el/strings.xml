@@ -100,6 +100,14 @@
     <string name="directions_along_facing_sw">Κοιτάζοντας νοτιοδυτικά κατά μήκος της %1$s</string>
     <string name="directions_along_facing_w">Κοιτάζοντας δυτικά κατά μήκος της %1$s</string>
     <string name="directions_along_facing_nw">Κοιτάζοντας βορειοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_direction_ahead">μπροστά</string>
+    <string name="directions_direction_ahead_to_the_right">μπροστά προς τα δεξιά</string>
+    <string name="directions_direction_to_the_right">στα δεξιά</string>
+    <string name="directions_direction_behind_to_the_right">πίσω προς τα δεξιά</string>
+    <string name="directions_direction_behind">πίσω</string>
+    <string name="directions_direction_behind_to_the_left">πίσω προς τα αριστερά</string>
+    <string name="directions_direction_to_the_left">προς τα αριστερά</string>
+    <string name="directions_direction_ahead_to_the_left">μπροστά προς τα αριστερά</string>
 
     <string name="general_error_location_services_find_location_error">Δυσκολευόμαστε να βρούμε την τρέχουσα τοποθεσία σας.</string>
 

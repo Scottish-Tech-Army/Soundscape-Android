@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Kääntyneenä lounaaseen tiellä %1$s</string>
     <string name="directions_along_facing_w">Kääntyneenä länteen tiellä %1$s</string>
     <string name="directions_along_facing_nw">Kääntyneenä luoteeseen tiellä %1$s</string>
+    <string name="directions_direction_ahead">edessä</string>
+    <string name="directions_direction_ahead_to_the_right">edessä oikealla</string>
+    <string name="directions_direction_to_the_right">oikealla</string>
+    <string name="directions_direction_behind_to_the_right">takana oikealla</string>
+    <string name="directions_direction_behind">takana</string>
+    <string name="directions_direction_behind_to_the_left">takana vasemmalla</string>
+    <string name="directions_direction_to_the_left">vasemmalla</string>
+    <string name="directions_direction_ahead_to_the_left">edessä vasemmalla</string>
 
     <string name="general_error_location_services_find_location_error">Meillä on ongelmia nykyisen sijaintisi löytämisessä.</string>
 

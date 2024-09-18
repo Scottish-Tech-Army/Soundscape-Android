@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Riktning sydväst utmed %1$s</string>
     <string name="directions_along_facing_w">Riktning västerut utmed %1$s</string>
     <string name="directions_along_facing_nw">Riktning nordväst utmed %1$s</string>
+    <string name="directions_direction_ahead">rakt fram</string>
+    <string name="directions_direction_ahead_to_the_right">framme till höger</string>
+    <string name="directions_direction_to_the_right">till höger</string>
+    <string name="directions_direction_behind_to_the_right">bakom till höger</string>
+    <string name="directions_direction_behind">bakom</string>
+    <string name="directions_direction_behind_to_the_left">bakom till vänster</string>
+    <string name="directions_direction_to_the_left">till vänster</string>
+    <string name="directions_direction_ahead_to_the_left">framme till vänster</string>
 
     <string name="general_error_location_services_find_location_error">Det går inte att hitta platsen där du är.</string>
 

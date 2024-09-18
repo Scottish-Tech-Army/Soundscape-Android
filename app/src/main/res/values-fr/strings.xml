@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Face au sud-ouest le long de %1$s</string>
     <string name="directions_along_facing_w">Face à l’ouest le long de %1$s</string>
     <string name="directions_along_facing_nw">Face au nord-ouest le long de %1$s</string>
+    <string name="directions_direction_ahead">face à vous</string>
+    <string name="directions_direction_ahead_to_the_right">face à vous à droite</string>
+    <string name="directions_direction_to_the_right">à droite</string>
+    <string name="directions_direction_behind_to_the_right">derrière vous à droite</string>
+    <string name="directions_direction_behind">derrière vous</string>
+    <string name="directions_direction_behind_to_the_left">derrière vous à gauche</string>
+    <string name="directions_direction_to_the_left">à gauche</string>
+    <string name="directions_direction_ahead_to_the_left">face à vous à gauche</string>
 
     <string name="general_error_location_services_find_location_error">Nous rencontrons des problèmes pour localiser votre emplacement actuel.</string>
 

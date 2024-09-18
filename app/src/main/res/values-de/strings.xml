@@ -99,6 +99,14 @@
     <string name="directions_along_facing_sw">Auf %1$s in Blickrichtung Südwesten</string>
     <string name="directions_along_facing_w">Auf %1$s in Blickrichtung Westen</string>
     <string name="directions_along_facing_nw">Auf %1$s in Blickrichtung Nordwesten</string>
+    <string name="directions_direction_ahead">voraus</string>
+    <string name="directions_direction_ahead_to_the_right">rechts voraus</string>
+    <string name="directions_direction_to_the_right">nach rechts</string>
+    <string name="directions_direction_behind_to_the_right">hinten rechts</string>
+    <string name="directions_direction_behind">hinten</string>
+    <string name="directions_direction_behind_to_the_left">hinten links</string>
+    <string name="directions_direction_to_the_left">nach links</string>
+    <string name="directions_direction_ahead_to_the_left">links vor Ihnen</string>
 
     <string name="general_error_location_services_find_location_error">Ihr aktueller Standort wurde nicht gefunden.</string>
 
