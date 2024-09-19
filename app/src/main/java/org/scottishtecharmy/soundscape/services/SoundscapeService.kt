@@ -84,8 +84,8 @@ class SoundscapeService : Service() {
 
     private val coroutineScope = CoroutineScope(Job())
 
-    lateinit var locationProvider : LocationProvider
-    lateinit var directionProvider : DirectionProvider
+    lateinit var locationProvider: LocationProvider
+    lateinit var directionProvider: DirectionProvider
 
     // secondary service
     private var timerJob: Job? = null
@@ -110,7 +110,7 @@ class SoundscapeService : Service() {
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
 
-    private var running : Boolean = false
+    private var running: Boolean = false
 
     // Binder to allow local clients to Bind to our service
     inner class LocalBinder : Binder() {
@@ -128,11 +128,11 @@ class SoundscapeService : Service() {
         Log.d(TAG, "onStartCommand $running")
 
         var restarted = false
-        if(intent != null) {
+        if (intent != null) {
             val beaconLatitude = intent.getDoubleExtra("beacon-latitude", Double.NaN)
             val beaconLongitude = intent.getDoubleExtra("beacon-longitude", Double.NaN)
 
-            if((!beaconLatitude.isNaN()) && (!beaconLongitude.isNaN())) {
+            if ((!beaconLatitude.isNaN()) && (!beaconLongitude.isNaN())) {
                 createBeacon(beaconLatitude, beaconLongitude)
             }
 
@@ -151,11 +151,11 @@ class SoundscapeService : Service() {
             }
         }
 
-        if(!running) {
+        if (!running) {
             running = true
             startAsForegroundService()
 
-            if(!restarted) {
+            if (!restarted) {
                 locationProvider.start(this)
                 directionProvider.start(audioEngine, locationProvider)
             }
@@ -172,13 +172,17 @@ class SoundscapeService : Service() {
         super.onCreate()
         Log.d(TAG, "onCreate")
 
-        if(!running) {
+        if (!running) {
 
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-            val beaconType = sharedPreferences.getString(MainActivity.BEACON_TYPE_KEY, MainActivity.BEACON_TYPE_DEFAULT)
+            val sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(applicationContext)
+            val beaconType = sharedPreferences.getString(
+                MainActivity.BEACON_TYPE_KEY,
+                MainActivity.BEACON_TYPE_DEFAULT
+            )
             audioEngine.setBeaconType(beaconType!!)
 
             locationProvider = AndroidLocationProvider(this)
@@ -285,16 +289,16 @@ class SoundscapeService : Service() {
         }
     }
 
-     private fun tickerFlow(
-         period: Duration = TICKER_PERIOD_SECONDS,
-         initialDelay: Duration = TICKER_PERIOD_SECONDS
-     ) = flow {
-         while (true){
-             delay(initialDelay)
-             emit(Unit)
-             delay(period)
-         }
-     }
+    private fun tickerFlow(
+        period: Duration = TICKER_PERIOD_SECONDS,
+        initialDelay: Duration = TICKER_PERIOD_SECONDS
+    ) = flow {
+        while (true) {
+            delay(initialDelay)
+            emit(Unit)
+            delay(period)
+        }
+    }
 
     private fun getNotification(): Notification {
         createServiceNotificationChannel()
@@ -326,22 +330,33 @@ class SoundscapeService : Service() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    private suspend fun getTileGrid(application: Application){
+    private suspend fun getTileGrid(application: Application) {
 
-        val tileGridQuadKeys = get3x3TileGrid(locationProvider.getCurrentLatitude() ?: 0.0, locationProvider.getCurrentLongitude() ?: 0.0)
+        val tileGridQuadKeys = get3x3TileGrid(
+            locationProvider.getCurrentLatitude() ?: 0.0,
+            locationProvider.getCurrentLongitude() ?: 0.0
+        )
         val tilesDao = TilesDao(realm)
         val tilesRepository = TilesRepository(tilesDao)
         okhttpClientInstance = OkhttpClientInstance(application)
 
-        for(tile in tileGridQuadKeys){
+        for (tile in tileGridQuadKeys) {
             Log.d(TAG, "Tile quad key: ${tile.quadkey}")
             val frozenResult = tilesRepository.getTile(tile.quadkey)
             // If Tile doesn't already exist in db go and get it, clean it, process it
             // and insert into db
-            if(frozenResult.size == 0){
+            if (frozenResult.size == 0) {
                 withContext(Dispatchers.IO) {
-                    val service = okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-                    val tileReq = async { tile.tileX.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
+                    val service =
+                        okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
+                    val tileReq = async {
+                        tile.tileX.let {
+                            service?.getTileWithCache(
+                                tile.tileX,
+                                tile.tileY
+                            )
+                        }
+                    }
                     val result = tileReq.await()?.awaitResponse()?.body()
                     // clean the tile, process the string, perform an insert into db using the clean tile data
                     val cleanedTile =
@@ -352,16 +367,19 @@ class SoundscapeService : Service() {
                         tilesRepository.insertTile(tileData)
                     }
                 }
-            }else{
+            } else {
                 // get the current time and then check against lastUpdated in frozenResult
                 val currentInstant: java.time.Instant = java.time.Instant.now()
                 val currentTimeStamp: Long = currentInstant.toEpochMilli() / 1000
                 val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
-                Log.d(TAG, "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}")
+                Log.d(
+                    TAG,
+                    "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}"
+                )
                 // How often do we want to update the tile? 24 hours?
                 val timeToLive: Long = lastUpdated.epochSeconds.plus(TTL_REFRESH_SECONDS)
 
-                if(timeToLive >= currentTimeStamp) {
+                if (timeToLive >= currentTimeStamp) {
                     Log.d(TAG, "Tile does not need updating yet get local copy")
                     // There should only ever be one tile with a unique quad key
                     //val tileDataTest = tilesRepository.getTile(tile.quadkey)
@@ -371,10 +389,18 @@ class SoundscapeService : Service() {
                     withContext(Dispatchers.IO) {
                         val service =
                             okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-                        val tileReq = async { tile.tileX.let { service?.getTileWithCache(tile.tileX, tile.tileY) } }
+                        val tileReq = async {
+                            tile.tileX.let {
+                                service?.getTileWithCache(
+                                    tile.tileX,
+                                    tile.tileY
+                                )
+                            }
+                        }
                         val result = tileReq.await()?.awaitResponse()?.body()
                         // clean the tile, process the string, perform an update on db using the clean tile
-                        val cleanedTile = result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
+                        val cleanedTile =
+                            result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
 
                         if (cleanedTile != null) {
                             val tileData = processTileString(tile.quadkey, cleanedTile)
@@ -387,20 +413,19 @@ class SoundscapeService : Service() {
         }
     }
 
-    private fun startRealm(){
+    private fun startRealm() {
         realm = RealmConfiguration.getInstance()
     }
 
-/*    fun deleteRealm(){
-        // need this to clean up my mess while I work on the db schema, etc.
-        val config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
-        // Delete the realm
-        Realm.deleteRealm(config)
-    }*/
+    /*    fun deleteRealm(){
+            // need this to clean up my mess while I work on the db schema, etc.
+            val config = io.realm.kotlin.RealmConfiguration.create(setOf(TileData::class))
+            // Delete the realm
+            Realm.deleteRealm(config)
+        }*/
 
     fun createBeacon(latitude: Double, longitude: Double) {
-        if(audioBeacon != 0L)
-        {
+        if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
         }
         audioBeacon = audioEngine.createBeacon(latitude, longitude)
@@ -409,12 +434,12 @@ class SoundscapeService : Service() {
     }
 
     fun destroyBeacon() {
-        if(audioBeacon != 0L) {
+        if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
             audioBeacon = 0L
         }
         // Report any change in beacon back to application
-        _beaconFlow.value = LngLatAlt(0.0,0.0)
+        _beaconFlow.value = LngLatAlt(0.0, 0.0)
     }
 
     fun myLocation() {
@@ -435,8 +460,7 @@ class SoundscapeService : Service() {
                 0.0,
                 noLocationString
             )
-        }
-        else {
+        } else {
             // fetch the roads from Realm
             val tileGridQuadKeys = get3x3TileGrid(
                 locationProvider.getCurrentLatitude() ?: 0.0,
@@ -502,8 +526,7 @@ class SoundscapeService : Service() {
                 } else {
                     Log.e(TAG, "No properties found for road")
                 }
-            }
-            else {
+            } else {
                 //Log.d(TAG, "No roads found in tile just give device direction")
                 val orientation = directionProvider.getCurrentDirection()
                 val facingDirection = configLocale?.let {
@@ -526,7 +549,7 @@ class SoundscapeService : Service() {
 
     }
 
-    fun whatsAroundMe(){
+    fun whatsAroundMe() {
         // TODO This is just a rough POC at the moment. Lots more to do...
         //  decide on how to calculate distance to POI, use more than one tile, setup settings in the menu so we can pass in the filters, etc.
         //  Original Soundscape just splats out a list in no particular order which is odd.
@@ -539,17 +562,17 @@ class SoundscapeService : Service() {
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
 
-        if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+            val noLocationString =
+                localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
                 0.0,
                 0.0,
                 noLocationString
             )
-        }
-        else {
+        } else {
             // start of trying to get a grid of tiles and merge into one feature collection
             val tileGridQuadKeys = get3x3TileGrid(
                 locationProvider.getCurrentLatitude() ?: 0.0,
@@ -561,7 +584,8 @@ class SoundscapeService : Service() {
 
             for (tile in tileGridQuadKeys) {
                 //Check the db for the tile
-                val frozenTileResult = realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                val frozenTileResult =
+                    realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenTileResult != null) {
                     val poiString = frozenTileResult.pois
                     //val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -586,19 +610,20 @@ class SoundscapeService : Service() {
             //val gridFile = File(tilesDirectory, "noduplicatesgrid3x3.txt")
             //gridFile.appendText(gridFeatureCollectionString)
             // the gridFeatureCollection has something in it
-            if (gridFeatureCollection.features.size > 0){
+            if (gridFeatureCollection.features.size > 0) {
                 audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
                     locationProvider.getCurrentLongitude() ?: 0.0,
                     "We found ${gridFeatureCollection.features.size} Points Of Interest in this grid."
-                    )
+                )
                 // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
                 // "information", "object", "place", "landmark", "mobility", "safety"
                 val superCategory = "landmark"
-                val filterBySuperCategory = getPoiFeatureCollectionBySuperCategory(superCategory, gridFeatureCollection)
-                if(filterBySuperCategory.features.size > 0){
+                val filterBySuperCategory =
+                    getPoiFeatureCollectionBySuperCategory(superCategory, gridFeatureCollection)
+                if (filterBySuperCategory.features.size > 0) {
                     // not necessary just singular/plural annoying me
-                    val thing = if(filterBySuperCategory.features.size == 1){
+                    val thing = if (filterBySuperCategory.features.size == 1) {
                         "thing"
                     } else {
                         "things"
@@ -610,17 +635,23 @@ class SoundscapeService : Service() {
                     )
 
                     val distanceToPoi = getNearestPoi(
-                        LngLatAlt( locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                        LngLatAlt(
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0
+                        ),
                         filterBySuperCategory
                     )
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                            // This calculates the distance to the nearest POI using a bounding box
-                            // so if it is a large polygon can be super inaccurate/misleading
-                            // Not sure if it might be better to calculate the nearest point/edge that makes up the polygon?
-                            // I've inserted the distance_to in the foreign member for this so...
-                        "The first $superCategory is ${distanceToPoi.features[0].foreign!!["distance_to"].toString().toDouble().toInt()} meters away."
+                        // This calculates the distance to the nearest POI using a bounding box
+                        // so if it is a large polygon can be super inaccurate/misleading
+                        // Not sure if it might be better to calculate the nearest point/edge that makes up the polygon?
+                        // I've inserted the distance_to in the foreign member for this so...
+                        "The first $superCategory is ${
+                            distanceToPoi.features[0].foreign!!["distance_to"].toString().toDouble()
+                                .toInt()
+                        } meters away."
                     )
                     // Temp code to play audio to prove we've got something and how far away but not every "thing" has a name property...
                     audioEngine.createTextToSpeech(
@@ -628,16 +659,14 @@ class SoundscapeService : Service() {
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "The nearest $superCategory is: ${distanceToPoi.features[0].properties!!["name"]}"
                     )
-                }
-                else {
+                } else {
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "Nothing in the $superCategory category found in this grid."
-                        )
-                    }
-            }
-            else {
+                    )
+                }
+            } else {
                 Log.d(TAG, "No Points Of Interest found in the grid")
                 audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
@@ -648,24 +677,24 @@ class SoundscapeService : Service() {
         }
     }
 
-    fun aheadOfMe(){
+    fun aheadOfMe() {
         // TODO This is just a rough POC at the moment. Lots more to do...
         val configLocale = AppCompatDelegate.getApplicationLocales()[0]
         val configuration = Configuration(applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
 
-        if(locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val noLocationString = localizedContext.getString(R.string.general_error_location_services_find_location_error)
+            val noLocationString =
+                localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
                 0.0,
                 0.0,
                 noLocationString
             )
-        }
-        else {
+        } else {
             // get device direction
             val orientation = directionProvider.getCurrentDirection()
             val fovDistance = 50.0
@@ -682,7 +711,8 @@ class SoundscapeService : Service() {
 
             for (tile in tileGridQuadKeys) {
                 //Check the db for the tile
-                val frozenTileResult = realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                val frozenTileResult =
+                    realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenTileResult != null) {
                     val roadString = frozenTileResult.roads
                     val intersectionsString = frozenTileResult.intersections
@@ -705,7 +735,7 @@ class SoundscapeService : Service() {
                             roadGridFeatureCollection.features.add(feature)
                         }
                     }
-                    for (feature in intersectionsFeatureCollection?.features!!){
+                    for (feature in intersectionsFeatureCollection?.features!!) {
                         val osmId = feature.foreign?.get("osm_ids")
                         //Log.d(TAG, "osmId: $osmId")
                         if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
@@ -716,7 +746,7 @@ class SoundscapeService : Service() {
                 }
             }
 
-            if (roadGridFeatureCollection.features.size > 0 ) {
+            if (roadGridFeatureCollection.features.size > 0) {
 
                 val fovRoadsFeatureCollection = roadGridFeatureCollection.let {
                     getFovRoadsFeatureCollection(
@@ -751,7 +781,7 @@ class SoundscapeService : Service() {
                         fovRoadsFeatureCollection
                     )
                     // TODO check for Settings, Unnamed roads on/off here
-                    if (nearestRoad.features[0].properties?.get("name") != null){
+                    if (nearestRoad.features[0].properties?.get("name") != null) {
                         audioEngine.createTextToSpeech(
                             locationProvider.getCurrentLatitude() ?: 0.0,
                             locationProvider.getCurrentLongitude() ?: 0.0,
@@ -762,11 +792,17 @@ class SoundscapeService : Service() {
 
                     if (fovIntersectionsFeatureCollection.features.size > 0) {
                         val nearestIntersectionFeatureCollection = getNearestIntersection(
-                            LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                            LngLatAlt(
+                                locationProvider.getCurrentLongitude() ?: 0.0,
+                                locationProvider.getCurrentLatitude() ?: 0.0
+                            ),
                             fovIntersectionsFeatureCollection
                         )
                         val distanceToNearestIntersection = distanceToIntersection(
-                            LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0, locationProvider.getCurrentLatitude() ?: 0.0),
+                            LngLatAlt(
+                                locationProvider.getCurrentLongitude() ?: 0.0,
+                                locationProvider.getCurrentLatitude() ?: 0.0
+                            ),
                             nearestIntersectionFeatureCollection.features[0].geometry as Point
                         )
                         audioEngine.createTextToSpeech(
@@ -784,9 +820,13 @@ class SoundscapeService : Service() {
                             nearestRoad,
                             orientation.toDouble()
                         )
-                        val intersectionLocation = nearestIntersectionFeatureCollection.features[0].geometry as Point
+                        val intersectionLocation =
+                            nearestIntersectionFeatureCollection.features[0].geometry as Point
                         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-                            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+                            LngLatAlt(
+                                intersectionLocation.coordinates.longitude,
+                                intersectionLocation.coordinates.latitude
+                            ),
                             nearestRoadBearing,
                             fovDistance,
                             RelativeDirections.COMBINED
@@ -796,8 +836,9 @@ class SoundscapeService : Service() {
                             nearestIntersectionFeatureCollection,
                             intersectionRelativeDirections
                         )
-                        for (feature in roadRelativeDirections.features){
-                            val direction = feature.properties?.get("Direction").toString().toIntOrNull()
+                        for (feature in roadRelativeDirections.features) {
+                            val direction =
+                                feature.properties?.get("Direction").toString().toIntOrNull()
                             val relativeDirectionString = configLocale?.let {
                                 getRelativeDirectionLabel(
                                     applicationContext,
@@ -806,7 +847,7 @@ class SoundscapeService : Service() {
                                 )
                             }
 
-                            if (feature.properties?.get("name") != null){
+                            if (feature.properties?.get("name") != null) {
                                 val intersectionCallout = localizedContext.getString(
                                     R.string.directions_intersection_with_name_direction,
                                     feature.properties?.get("name"),
@@ -820,16 +861,14 @@ class SoundscapeService : Service() {
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         "No roads found in the device Field of View."
                     )
                 }
-            }
-            else {
+            } else {
                 audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
                     locationProvider.getCurrentLongitude() ?: 0.0,
@@ -841,17 +880,17 @@ class SoundscapeService : Service() {
     }
 
 
-
     companion object {
         private const val TAG = "SoundscapeService"
+
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
+
         // TTL Tile refresh in local Realm DB
         private const val TTL_REFRESH_SECONDS: Long = 24 * 60 * 60
 
-
-        private const val CHANNEL_ID = "LocationService_channel_01"
-        private const val NOTIFICATION_CHANNEL_NAME = "SoundscapeAlpha_LocationService"
+        private const val CHANNEL_ID = "SoundscapeService_channel_01"
+        private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"
         private const val NOTIFICATION_ID = 100000
     }
 }
