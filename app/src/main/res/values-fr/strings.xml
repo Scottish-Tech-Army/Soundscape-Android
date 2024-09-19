@@ -124,6 +124,7 @@
     <string name="callouts_mobility_info">Informations sur les intersections et les transports</string>
     <string name="callouts_audio_beacon">Distance de la balise audio</string>
     <string name="callouts_audio_beacon_info">Mises à jour de la distance de la balise sonore lorsque celle-ci est définie</string>
+    <string name="callouts_nothing_to_call_out_now">Aucune notification disponible actuellement</string>
 
     <string name="markers_no_markers_title">Premiers pas avec les marqueurs</string>
     <string name="markers_no_markers_hint_1">Créez des Marqueurs de vos destinations et points de repère préférés sur un Itinéraire, ou d’emplacements dont vous voulez être notifié. Il vous suffit de choisir un emplacement, ou même votre emplacement actuel, sur l’écran d’accueil et de sélectionner \&quot;Enregistrer en tant que Marqueur\&quot;.</string>

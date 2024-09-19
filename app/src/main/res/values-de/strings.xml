@@ -124,6 +124,7 @@
     <string name="callouts_mobility_info">Informationen zu Kreuzungen und Transport</string>
     <string name="callouts_audio_beacon">Distanz zum Audiobeacon</string>
     <string name="callouts_audio_beacon_info">Aktualisierung der Distanz zum Audiobeacon, wenn es platziert ist</string>
+    <string name="callouts_nothing_to_call_out_now">Derzeit gibt es keine Hinweise.</string>
 
     <string name="markers_no_markers_title">Erste Schritte mit Markierungen</string>
     <string name="markers_no_markers_hint_1">Erstellen Sie Markierungen für Ihre Lieblingsziele, Wegpunkte einer Route oder andere Orte, die Sie hervorheben möchten. Wählen Sie einfach einen Ort oder Ihren aktuellen Standort auf dem Startbildschirm aus. Wählen Sie dann \&quot;Als Markierung speichern\&quot; aus.</string>
