@@ -110,6 +110,7 @@
     <string name="directions_direction_ahead_to_the_left">vóór u naar links</string>
 
     <string name="intersection_approaching_intersection">U nadert een kruispunt</string>
+    <string name="directions_intersection_with_name_direction">Kruispunt met %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">We kunnen uw huidige locatie niet vinden.</string>
 

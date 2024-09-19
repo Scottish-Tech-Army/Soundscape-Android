@@ -109,6 +109,7 @@
     <string name="directions_direction_ahead_to_the_left">foran deg og til venstre</string>
 
     <string name="intersection_approaching_intersection">Du nærmer deg et veikryss</string>
+    <string name="directions_intersection_with_name_direction">Veikryss med %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Vi har problemer med å finne nåværende posisjon.</string>
 

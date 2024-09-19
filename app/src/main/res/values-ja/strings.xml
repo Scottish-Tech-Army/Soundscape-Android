@@ -110,6 +110,7 @@
     <string name="directions_direction_ahead_to_the_left">左前方</string>
 
     <string name="intersection_approaching_intersection">まもなく交差点</string>
+    <string name="directions_intersection_with_name_direction">%1$s との交差点が %2$s</string>
 
     <string name="general_error_location_services_find_location_error">現在地を確認できません。</string>
 

@@ -109,6 +109,7 @@
     <string name="directions_direction_ahead_to_the_left">avanti a sinistra</string>
 
     <string name="intersection_approaching_intersection">Ti stai avvicinando all\'incrocio</string>
+    <string name="directions_intersection_with_name_direction">Incrocio con %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Si è verificato un problema durante la ricerca della tua posizione attuale.</string>
 

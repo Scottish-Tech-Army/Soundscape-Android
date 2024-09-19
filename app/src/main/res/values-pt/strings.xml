@@ -110,6 +110,7 @@
     <string name="directions_direction_ahead_to_the_left">à frente, à esquerda</string>
 
     <string name="intersection_approaching_intersection">Aproximando-se do cruzamento</string>
+    <string name="directions_intersection_with_name_direction">Cruzamento com %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Estamos com problemas para achar sua localização atual.</string>
 
