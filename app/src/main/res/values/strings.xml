@@ -23,16 +23,9 @@
     <string name="first_launch_permissions_location">Location Services with Precise Location</string>
     <string name="first_launch_permissions_motion">Motion &amp; Fitness</string>
     <string name="first_launch_permissions_required">This permission is required</string>
-<!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
     <string name="first_launch_permissions_notification">Notifications</string>
     <string name="general_error_location_services_authorize_title">Authorize Location Services</string>
     <string name="general_error_location_services_authorize_description">Soundscape uses your location to find and tell you about the places and things around you. The app needs your permission to use Location Services.</string>
-    <!--    Original iOS Soundscape doesn't have translations strings for Notification permission -->
-    <!-- TODO these strings aren't translated yet -->>
-    <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string>
-    <!--    Original iOS Soundscape doesn't have translation strings for Background location permission -->
-    <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
-    <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
 
     <string name="first_launch_beacon_title">Choose an Audio Beacon</string>
     <string name="first_launch_beacon_message_1">When navigating with Soundscape, you will hear the audio beacon in the direction of your destination. By following its sound, you will always know which way to go.</string>
@@ -47,7 +40,6 @@
     <string name="terms_of_use_accept_checkbox_acc_label">Accept Terms of Use</string>
     <string name="terms_of_use_message">Your use of Soundscape is subject to the terms of the Scottish Tech Army Services Agreement and the terms set out below (together, the \&quot;Terms of Use\&quot;).</string>
     <string name="terms_of_use_medical_safety_disclaimer">You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\n\nSafety Notice\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape programme is captured from a third-party programme, and therefore, there may be limitations with the accuracy of the information presented.</string>
-
 
     <string name="menu_devices">Head Tracking Headphones</string>
     <string name="menu_help_and_tutorials">Help &amp; Tutorials</string>
@@ -77,10 +69,8 @@
     <string name="general_alert_settings" translatable="false">Settings</string>
     <string name="ui_continue">Continue</string>
 
-
     <string name="beacon_styles_current">Current</string>
     <string name="beacon_styles_original">Original</string>
-
     <string name="beacon_styles_drop">Drop</string>
     <string name="beacon_styles_flare">Flare</string>
     <string name="beacon_styles_mallet">Mallet</string>
@@ -137,25 +127,6 @@
     <string name="callouts_audio_beacon">Distance to the Audio Beacon</string>
     <string name="callouts_audio_beacon_info">Updates about distance to the audio beacon when it\'s set</string>
 
-
-    <!-- TODO these strings aren't translated, either translate them or remove them -->>
-    <string name="notification_text" translatable="false">We are running this location service in the foreground</string>
-    <string name="foreground_service_sample_notification_channel_general_name" translatable="false">General notification</string>
-    <string name="foreground_service_sample_notification_title" translatable="false">Foreground Service</string>
-    <string name="foreground_service_sample_notification_description" translatable="false">Sample app is running in the background.</string>
-
-
-
-    <string name="foreground_service_sample_status_title" translatable="false">Foreground service status:</string>
-    <string name="foreground_service_sample_status_running" translatable="false">RUNNING</string>
-    <string name="foreground_service_sample_status_not_running" translatable="false">NOT RUNNING</string>
-    <string name="foreground_service_sample_button_start" translatable="false">Start foreground service</string>
-    <string name="foreground_service_sample_button_stop" translatable="false">Stop foreground service</string>
-
-    <string name="foreground_service_sample_last_location_title" translatable="false">Last location: </string>
-    <string name="foreground_service_sample_last_location_fetching" translatable="false">Fetching…</string>
-
-
     <string name="markers_no_markers_title">Getting Started with Markers</string>
     <string name="markers_no_markers_hint_1">Create markers for your favourite destinations, waypoints on a route, or any locations you want called out. Simply choose a location, or even your current location, from the home screen and select \&quot;Save as Marker\&quot;.</string>
     <string name="markers_no_markers_hint_2">Try marking your home, the entrance to your work, or your favourite spot in the park.</string>
@@ -172,5 +143,12 @@
     <string name="route_no_waypoints_hint_1">Name your route and add an optional description. You can then add waypoints as you go or pick them from your list of markers.</string>
     <string name="route_no_waypoints_hint_2">You can rearrange the order of waypoints along a route at any time by editing the route.</string>
     <string name="general_alert_add">Add</string>
+
+    <!--    Original iOS Soundscape doesn't have translations strings for Notifications -->
+    <!-- TODO these strings aren't translated yet -->>
+    <string name="notification_text" translatable="false">We are running this location service in the foreground</string>
+    <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string>
+    <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
+    <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
 
 </resources>
