@@ -125,6 +125,10 @@
     <string name="callouts_audio_beacon">Avstand til lydsignalet</string>
     <string name="callouts_audio_beacon_info">Oppdateringer om avstand til lydsignalet når det er angitt</string>
     <string name="callouts_nothing_to_call_out_now">Det er ingenting å lese opp akkurat nå</string>
+    <string name="preview_include_unnamed_roads_title">Veier uten navn</string>
+    <string name="preview_include_unnamed_roads_subtitle">Ta med veier uten navn i Soundscape Street Preview</string>
+    <string name="preview_include_unnamed_roads_label_off">Aktiver veier uten navn</string>
+    <string name="preview_include_unnamed_roads_label_on">Deaktiver veier uten navn</string>
 
     <string name="markers_no_markers_title">Kom i gang med markører</string>
     <string name="markers_no_markers_hint_1">Opprett markører for favorittdestinasjonene dine, veipunkter på en rute eller posisjoner du ønsker å få lest opp. Velg en posisjon eller nåværende posisjon fra startskjermen, og velg Lagre som markør.</string>

@@ -126,6 +126,10 @@
     <string name="callouts_audio_beacon">Afstand tot audiobaken</string>
     <string name="callouts_audio_beacon_info">Updates voor de afstand tot het audiobaken wanneer het is ingesteld</string>
     <string name="callouts_nothing_to_call_out_now">Er is momenteel niets om voor te waarschuwen</string>
+    <string name="preview_include_unnamed_roads_title">Naamloze straten</string>
+    <string name="preview_include_unnamed_roads_subtitle">Naamloze straten opnemen bij Soundscape Street Preview</string>
+    <string name="preview_include_unnamed_roads_label_off">Naamloze straten inschakelen</string>
+    <string name="preview_include_unnamed_roads_label_on">Naamloze straten uitschakelen</string>
 
     <string name="markers_no_markers_title">Aan de slag met markeringen</string>
     <string name="markers_no_markers_hint_1">Maak markeringen voor uw favoriete bestemmingen, routepunten of locaties waarvoor u een beschrijving wilt horen. Kies een locatie in het startscherm, bijvoorbeeld uw huidige locatie, en selecteer Opslaan als markering.</string>

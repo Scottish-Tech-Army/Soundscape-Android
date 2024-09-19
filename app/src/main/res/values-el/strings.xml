@@ -126,6 +126,10 @@
     <string name="callouts_audio_beacon">Απόσταση από το ηχητικό σήμα</string>
     <string name="callouts_audio_beacon_info">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει ρυθμιστεί</string>
     <string name="callouts_nothing_to_call_out_now">Δεν υπάρχει τίποτα για επεξήγηση αυτή τη στιγμή.</string>
+    <string name="preview_include_unnamed_roads_title">Μη κατονομαζόμενες οδικές αρτηρίες</string>
+    <string name="preview_include_unnamed_roads_subtitle">Συμπερίληψη ανώνυμων δρόμων κατά τη διάρκεια του Soundscape Street Preview</string>
+    <string name="preview_include_unnamed_roads_label_off">Ενεργοποίηση ανώνυμων δρόμων</string>
+    <string name="preview_include_unnamed_roads_label_on">Απενεργοποίηση ανώνυμων δρόμων</string>
 
     <string name="markers_no_markers_title">Γρήγορα αποτελέσματα με δείκτες</string>
     <string name="markers_no_markers_hint_1">Δημιουργήστε δείκτες για τους αγαπημένους σας προορισμούς, σημεία σε μια διαδρομή ή οποιεσδήποτε τοποθεσίες θέλετε να επεξηγούνται. Απλά επιλέξτε μια θέση, ή ακόμα και την τρέχουσα τοποθεσία σας, από την αρχική οθόνη και επιλέξτε \&quot;Αποθήκευση ως δείκτη\&quot;.</string>

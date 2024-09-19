@@ -126,6 +126,10 @@
     <string name="callouts_audio_beacon">Distância até o Sinalizador Sonoro</string>
     <string name="callouts_audio_beacon_info">Atualizações sobre distância até o sinalizador sonoro quando estiver definido</string>
     <string name="callouts_nothing_to_call_out_now">Não há nada sobre o que notificar no momento</string>
+    <string name="preview_include_unnamed_roads_title">Ruas Sem Nome</string>
+    <string name="preview_include_unnamed_roads_subtitle">Incluir ruas sem nome durante o Soundscape Street Preview</string>
+    <string name="preview_include_unnamed_roads_label_off">Habilitar Ruas Sem Nome</string>
+    <string name="preview_include_unnamed_roads_label_on">Desabilitar Ruas Sem Nome</string>
 
     <string name="markers_no_markers_title">Introdução aos favoritos</string>
     <string name="markers_no_markers_hint_1">Crie favoritos para seus destinos preferenciais, localizadores em uma rota ou qualquer local que você queira destacar. Basta escolher um local ou até mesmo usar o local atual, direto de uma tela inicial e selecionar \&quot;Salvar como Favorito\&quot;.</string>

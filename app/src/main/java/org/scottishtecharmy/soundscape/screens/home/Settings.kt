@@ -92,7 +92,7 @@ fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
                     key = MainActivity.ALLOW_CALLOUTS_KEY,
                     defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
                     title = { Text(text = stringResource(R.string.callouts_allow_callouts)) },
-                    summary = { Text(text = if (it) "On" else "Off") }
+                    summary = { Text(text = if (it) stringResource(R.string.callouts_callouts_on) else stringResource(R.string.callouts_callouts_off)) }
                 )
                 switchPreference(
                     key = MainActivity.PLACES_AND_LANDMARKS_KEY,
@@ -115,7 +115,7 @@ fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
                 switchPreference(
                     key = MainActivity.UNNAMED_ROADS_KEY,
                     defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
-                    title = { Text(text = "Include unnamed roads") },
+                    title = { Text(text = stringResource(R.string.preview_include_unnamed_roads_title)) },
                     summary = { Text(text = if (it) "On" else "Off") }
                 )
             }

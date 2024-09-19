@@ -126,6 +126,10 @@
     <string name="callouts_audio_beacon">Afstand til lydfyret</string>
     <string name="callouts_audio_beacon_info">Opdateringer om afstanden til lydfyret, når det er indstillet</string>
     <string name="callouts_nothing_to_call_out_now">Der er intet at sende lydbesked om i øjeblikket</string>
+    <string name="preview_include_unnamed_roads_title">Unavngivne veje</string>
+    <string name="preview_include_unnamed_roads_subtitle">Medtag unavngivne veje under Soundscape Street Preview</string>
+    <string name="preview_include_unnamed_roads_label_off">Aktivér unavngivne veje</string>
+    <string name="preview_include_unnamed_roads_label_on">Deaktiver unavngivne veje</string>
 
     <string name="markers_no_markers_title">Introduktion til mærker</string>
     <string name="markers_no_markers_hint_1">Opret mærker til dine foretrukne destinationer, vejpunkter på en rute eller de steder, du vil have udtalt. Du skal blot vælge en placering eller din aktuelle placering på startskærmen og vælge \&quot;Gem som Mærke\&quot;.</string>

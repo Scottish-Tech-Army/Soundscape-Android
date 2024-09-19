@@ -125,6 +125,10 @@
     <string name="callouts_audio_beacon">Distanz zum Audiobeacon</string>
     <string name="callouts_audio_beacon_info">Aktualisierung der Distanz zum Audiobeacon, wenn es platziert ist</string>
     <string name="callouts_nothing_to_call_out_now">Derzeit gibt es keine Hinweise.</string>
+    <string name="preview_include_unnamed_roads_title">Unbenannte Straßen</string>
+    <string name="preview_include_unnamed_roads_subtitle">Unbenannte Straßen in Soundscape Street Preview einschließen</string>
+    <string name="preview_include_unnamed_roads_label_off">Unbenannte Straßen aktivieren</string>
+    <string name="preview_include_unnamed_roads_label_on">Unbenannte Straßen deaktivieren</string>
 
     <string name="markers_no_markers_title">Erste Schritte mit Markierungen</string>
     <string name="markers_no_markers_hint_1">Erstellen Sie Markierungen für Ihre Lieblingsziele, Wegpunkte einer Route oder andere Orte, die Sie hervorheben möchten. Wählen Sie einfach einen Ort oder Ihren aktuellen Standort auf dem Startbildschirm aus. Wählen Sie dann \&quot;Als Markierung speichern\&quot; aus.</string>

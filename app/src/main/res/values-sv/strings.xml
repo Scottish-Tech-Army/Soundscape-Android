@@ -125,6 +125,10 @@
     <string name="callouts_audio_beacon">Avstånd till ljudfyren</string>
     <string name="callouts_audio_beacon_info">Uppdateringar om avståndet till ljudfyren när en sådan ställts in</string>
     <string name="callouts_nothing_to_call_out_now">Det finns inget att läsa upp just nu</string>
+    <string name="preview_include_unnamed_roads_title">Vägar utan namn</string>
+    <string name="preview_include_unnamed_roads_subtitle">Ta med vägar utan namn när du använder Soundscape Street Preview</string>
+    <string name="preview_include_unnamed_roads_label_off">Aktivera vägar utan namn</string>
+    <string name="preview_include_unnamed_roads_label_on">Inaktivera vägar utan namn</string>
 
     <string name="markers_no_markers_title">Kom i gång med platsmarkörer</string>
     <string name="markers_no_markers_hint_1">Skapa platsmarkörer för dina favoritmål, brytpunkter längs en rutt eller andra platser som du vill ska läsas upp. Välj bara en plats, eller varför inte din aktuella plats, på startskärmen och välj \&quot;Spara som platsmarkör\&quot;.</string>

@@ -126,6 +126,10 @@
     <string name="callouts_audio_beacon">音声ビーコンまでの距離</string>
     <string name="callouts_audio_beacon_info">設定した音声ビーコンまでの距離の最新情報</string>
     <string name="callouts_nothing_to_call_out_now">現在コールアウトできるものはありません</string>
+    <string name="preview_include_unnamed_roads_title">無名道路</string>
+    <string name="preview_include_unnamed_roads_subtitle">Soundscape Street Preview で無名道路を含める</string>
+    <string name="preview_include_unnamed_roads_label_off">無名道路を有効化</string>
+    <string name="preview_include_unnamed_roads_label_on">無名道路を無効化</string>
 
     <string name="markers_no_markers_title">マーカーの使い方</string>
     <string name="markers_no_markers_hint_1">よく訪れる目的地、ルート上のウェイポイント、または訪れたい場所のマーカーを作成します。ホーム画面から場所を選択するか現在地を選択し、\&quot;マーカーとして保存\&quot; を選択するだけです。</string>

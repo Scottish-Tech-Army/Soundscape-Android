@@ -611,11 +611,11 @@ class SoundscapeService : Service() {
             //gridFile.appendText(gridFeatureCollectionString)
             // the gridFeatureCollection has something in it
             if (gridFeatureCollection.features.size > 0) {
-                audioEngine.createTextToSpeech(
+                /*audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
                     locationProvider.getCurrentLongitude() ?: 0.0,
                     "We found ${gridFeatureCollection.features.size} Points Of Interest in this grid."
-                )
+                )*/
                 // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
                 // "information", "object", "place", "landmark", "mobility", "safety"
                 val superCategory = "landmark"
