@@ -660,10 +660,11 @@ class SoundscapeService : Service() {
                         "The nearest $superCategory is: ${distanceToPoi.features[0].properties!!["name"]}"
                     )
                 } else {
+
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                        "Nothing in the $superCategory category found in this grid."
+                        localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                     )
                 }
             } else {
@@ -671,7 +672,7 @@ class SoundscapeService : Service() {
                 audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
                     locationProvider.getCurrentLongitude() ?: 0.0,
-                    "No Points Of Interest found in this grid."
+                    localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                 )
             }
         }
@@ -787,6 +788,13 @@ class SoundscapeService : Service() {
                             locationProvider.getCurrentLongitude() ?: 0.0,
                             "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
                         )
+                    } else {
+                        // we are detecting an unnamed road here but pretending there is nothing here
+                        audioEngine.createTextToSpeech(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
+                        )
                     }
 
 
@@ -865,14 +873,14 @@ class SoundscapeService : Service() {
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,
-                        "No roads found in the device Field of View."
+                        localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                     )
                 }
             } else {
                 audioEngine.createTextToSpeech(
                     locationProvider.getCurrentLatitude() ?: 0.0,
                     locationProvider.getCurrentLongitude() ?: 0.0,
-                    "No roads found in the device Field of View."
+                    localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                 )
 
             }

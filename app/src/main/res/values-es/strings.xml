@@ -124,6 +124,7 @@
     <string name="callouts_mobility_info">Información de transporte y cruces</string>
     <string name="callouts_audio_beacon">Distancia a la señal de audio</string>
     <string name="callouts_audio_beacon_info">Actualizaciones acerca de la distancia a la señal de audio cuando está establecida</string>
+    <string name="callouts_nothing_to_call_out_now">No hay nada de lo que avisar ahora mismo</string>
 
     <string name="markers_no_markers_title">Introducción a los marcadores</string>
     <string name="markers_no_markers_hint_1">Cree marcadores para sus destinos favoritos, puntos de una ruta o cualquier ubicación para la que desee oír avisos. Solo tiene que elegir una ubicación, o incluso su ubicación actual, en la pantalla de inicio, y seleccionar \&quot;Guardar como marcador\&quot;.</string>

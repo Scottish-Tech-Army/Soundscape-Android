@@ -126,6 +126,7 @@
     <string name="callouts_mobility_info">Intersection and transportation info</string>
     <string name="callouts_audio_beacon">Distance to the Audio Beacon</string>
     <string name="callouts_audio_beacon_info">Updates about distance to the audio beacon when it\'s set</string>
+    <string name="callouts_nothing_to_call_out_now">There is nothing to call out right now</string>
 
     <string name="markers_no_markers_title">Getting Started with Markers</string>
     <string name="markers_no_markers_hint_1">Create markers for your favourite destinations, waypoints on a route, or any locations you want called out. Simply choose a location, or even your current location, from the home screen and select \&quot;Save as Marker\&quot;.</string>

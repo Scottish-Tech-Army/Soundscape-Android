@@ -124,6 +124,7 @@
     <string name="callouts_mobility_info">Informazioni sugli incroci e sui mezzi di trasporto</string>
     <string name="callouts_audio_beacon">Distanza dall\'audiofaro</string>
     <string name="callouts_audio_beacon_info">Aggiornamenti sulla distanza dall\'audiofaro quando è impostata</string>
+    <string name="callouts_nothing_to_call_out_now">Non c\'è niente da notificare in questo momento</string>
 
     <string name="markers_no_markers_title">Introduzione agli indicatori</string>
     <string name="markers_no_markers_hint_1">Crea indicatori per le tue destinazioni preferite, waypoint su un percorso o posizioni per cui desideri ricevere notifiche. Ti basterà scegliere una posizione, che può anche essere quella in cui ti trovi attualmente, nella schermata iniziale e selezionare \&quot;Salva come Indicatore\&quot;.</string>
