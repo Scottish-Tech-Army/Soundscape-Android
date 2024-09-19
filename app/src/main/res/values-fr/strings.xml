@@ -109,6 +109,7 @@
     <string name="directions_direction_ahead_to_the_left">face à vous à gauche</string>
 
     <string name="intersection_approaching_intersection">Vous approchez d’une intersection</string>
+    <string name="directions_intersection_with_name_direction">Intersection de %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Nous rencontrons des problèmes pour localiser votre emplacement actuel.</string>
 

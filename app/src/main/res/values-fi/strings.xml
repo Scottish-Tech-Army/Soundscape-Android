@@ -109,6 +109,7 @@
     <string name="directions_direction_ahead_to_the_left">edessä vasemmalla</string>
 
     <string name="intersection_approaching_intersection">Lähestytään risteystä</string>
+    <string name="directions_intersection_with_name_direction">Risteys tien %1$s kanssa %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Meillä on ongelmia nykyisen sijaintisi löytämisessä.</string>
 

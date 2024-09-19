@@ -109,6 +109,7 @@
     <string name="directions_direction_ahead_to_the_left">framme till vänster</string>
 
     <string name="intersection_approaching_intersection">Du närmar dig en vägkorsning</string>
+    <string name="directions_intersection_with_name_direction">Vägkorsning med %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Det går inte att hitta platsen där du är.</string>
 

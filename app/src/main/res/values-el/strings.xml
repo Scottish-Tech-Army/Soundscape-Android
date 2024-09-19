@@ -110,6 +110,7 @@
     <string name="directions_direction_ahead_to_the_left">μπροστά προς τα αριστερά</string>
 
     <string name="intersection_approaching_intersection">Πλησιάζετε τη διασταύρωση</string>
+    <string name="directions_intersection_with_name_direction">Διασταύρωση με %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Δυσκολευόμαστε να βρούμε την τρέχουσα τοποθεσία σας.</string>
 

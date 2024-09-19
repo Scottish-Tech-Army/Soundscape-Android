@@ -451,7 +451,7 @@ class SoundscapeService : Service() {
                     realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenResult != null) {
                     val roadsString = frozenResult.roads
-                    //val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+
                     val roadsFeatureCollection = roadsString.let {
                         moshi.adapter(FeatureCollection::class.java).fromJson(
                             it
@@ -806,12 +806,16 @@ class SoundscapeService : Service() {
                                 )
                             }
 
-                            //val roadName = feature.properties?.get("name") ?: "No road name"
                             if (feature.properties?.get("name") != null){
+                                val intersectionCallout = localizedContext.getString(
+                                    R.string.directions_intersection_with_name_direction,
+                                    feature.properties?.get("name"),
+                                    relativeDirectionString
+                                )
                                 audioEngine.createTextToSpeech(
                                     locationProvider.getCurrentLatitude() ?: 0.0,
                                     locationProvider.getCurrentLongitude() ?: 0.0,
-                                    "${feature.properties?.get("name")} $relativeDirectionString"
+                                    intersectionCallout
                                 )
                             }
                         }

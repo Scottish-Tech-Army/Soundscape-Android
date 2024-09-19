@@ -110,6 +110,7 @@
     <string name="directions_direction_ahead_to_the_left">forude til venstre</string>
 
     <string name="intersection_approaching_intersection">Nærmer sig kryds</string>
+    <string name="directions_intersection_with_name_direction">Kryds med %1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">Vi har problemer med at finde din aktuelle placering.</string>
 
