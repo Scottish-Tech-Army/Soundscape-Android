@@ -45,11 +45,16 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.FIRST_LAUNCH_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.UNNAMED_ROADS_KEY
 import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
@@ -57,6 +62,7 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.utils.distanceToIntersection
+import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
@@ -71,6 +77,8 @@ import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCateg
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
+import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
 import retrofit2.awaitResponse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -544,27 +552,27 @@ class SoundscapeService : Service() {
                     )
                 }
             }
-
         }
-
     }
 
     fun whatsAroundMe() {
         // TODO This is just a rough POC at the moment. Lots more to do...
-        //  decide on how to calculate distance to POI, use more than one tile, setup settings in the menu so we can pass in the filters, etc.
+        //  decide on how to calculate distance to POI, setup settings in the menu so we can pass in the filters, etc.
         //  Original Soundscape just splats out a list in no particular order which is odd.
         //  If you press the button again in original Soundscape it can give you the same list but in a different sequence or
         //  it can add one to the list even if you haven't moved. It also only seems to give a thing and a distance but not a heading.
-        // Started the work for the 3x3 grid and adding the features into a FeatureCollection
-        // but I'm currently just splatting every feature in there I need to check for duplicates
         val configLocale = AppCompatDelegate.getApplicationLocales()[0]
         val configuration = Configuration(applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
 
+        // super categories are "information", "object", "place", "landmark", "mobility", "safety"
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val placesAndLandmarks = sharedPrefs.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
+        val mobility = sharedPrefs.getBoolean(MOBILITY_KEY, true)
+        val unnamedRoads = sharedPrefs.getBoolean(UNNAMED_ROADS_KEY, false)
+
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
-            // Should be null but let's check
-            //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
@@ -573,7 +581,7 @@ class SoundscapeService : Service() {
                 noLocationString
             )
         } else {
-            // start of trying to get a grid of tiles and merge into one feature collection
+
             val tileGridQuadKeys = get3x3TileGrid(
                 locationProvider.getCurrentLatitude() ?: 0.0,
                 locationProvider.getCurrentLongitude() ?: 0.0
@@ -588,7 +596,6 @@ class SoundscapeService : Service() {
                     realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenTileResult != null) {
                     val poiString = frozenTileResult.pois
-                    //val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
                     val poiFeatureCollection = poiString.let {
                         moshi.adapter(FeatureCollection::class.java).fromJson(
                             it
@@ -605,62 +612,112 @@ class SoundscapeService : Service() {
                     }
                 }
             }
-            // TEMP writing 3x3 grid to file
-            //val gridFeatureCollectionString = moshi.adapter(FeatureCollection::class.java).toJson(gridFeatureCollection)
-            //val gridFile = File(tilesDirectory, "noduplicatesgrid3x3.txt")
-            //gridFile.appendText(gridFeatureCollectionString)
-            // the gridFeatureCollection has something in it
+
             if (gridFeatureCollection.features.size > 0) {
-                /*audioEngine.createTextToSpeech(
-                    locationProvider.getCurrentLatitude() ?: 0.0,
-                    locationProvider.getCurrentLongitude() ?: 0.0,
-                    "We found ${gridFeatureCollection.features.size} Points Of Interest in this grid."
-                )*/
+
+                val settingsFeatureCollection = FeatureCollection()
+                if (placesAndLandmarks) {
+                    if (mobility) {
+                        //Log.d(TAG, "placesAndLandmarks and mobility are both true")
+                        val placeSuperCategory =
+                            getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollection)
+                        val tempFeatureCollection = FeatureCollection()
+                        for (feature in placeSuperCategory.features) {
+                            if (feature.foreign?.get("feature_value") != "house") {
+                                if (feature.properties?.get("name") != null) {
+                                    val superCategoryList = getSuperCategoryElements("place")
+                                    for (property in feature.properties!!) {
+                                        for (featureType in superCategoryList) {
+                                            if (property.value == featureType) {
+                                                tempFeatureCollection.features.add(feature)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        val cleanedPlaceSuperCategory = removeDuplicateOsmIds(tempFeatureCollection)
+                        for (feature in cleanedPlaceSuperCategory.features) {
+                            settingsFeatureCollection.features.add(feature)
+                        }
+
+                        val landmarkSuperCategory =
+                            getPoiFeatureCollectionBySuperCategory(
+                                "landmark",
+                                gridFeatureCollection
+                            )
+                        for (feature in landmarkSuperCategory.features) {
+                            settingsFeatureCollection.features.add(feature)
+                        }
+                        val mobilitySuperCategory =
+                            getPoiFeatureCollectionBySuperCategory(
+                                "mobility",
+                                gridFeatureCollection
+                            )
+                        for (feature in mobilitySuperCategory.features) {
+                            settingsFeatureCollection.features.add(feature)
+                        }
+
+                    } else {
+
+                        val placeSuperCategory =
+                            getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollection)
+                        for (feature in placeSuperCategory.features) {
+                            if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get(
+                                    "feature_value"
+                                ) != "house"
+                            ) {
+                                settingsFeatureCollection.features.add(feature)
+                            }
+                        }
+                        val landmarkSuperCategory =
+                            getPoiFeatureCollectionBySuperCategory(
+                                "landmark",
+                                gridFeatureCollection
+                            )
+                        for (feature in landmarkSuperCategory.features) {
+                            settingsFeatureCollection.features.add(feature)
+                        }
+                    }
+                } else {
+                    if (mobility) {
+                        //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
+                        val mobilitySuperCategory =
+                            getPoiFeatureCollectionBySuperCategory(
+                                "mobility",
+                                gridFeatureCollection
+                            )
+                        for (feature in mobilitySuperCategory.features) {
+                            settingsFeatureCollection.features.add(feature)
+                        }
+                    } else {
+                        // Not sure what we are supposed to tell the user here?
+                        println("placesAndLandmarks and mobility are both false so what should I tell the user?")
+                    }
+                }
                 // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
                 // "information", "object", "place", "landmark", "mobility", "safety"
-                val superCategory = "landmark"
-                val filterBySuperCategory =
-                    getPoiFeatureCollectionBySuperCategory(superCategory, gridFeatureCollection)
-                if (filterBySuperCategory.features.size > 0) {
-                    // not necessary just singular/plural annoying me
-                    val thing = if (filterBySuperCategory.features.size == 1) {
-                        "thing"
-                    } else {
-                        "things"
+                if (settingsFeatureCollection.features.size > 0) {
+                    for (feature in settingsFeatureCollection) {
+                        if (feature.geometry is Polygon) {
+                            if (feature.properties?.get("name") != null) {
+                                audioEngine.createTextToSpeech(
+                                    locationProvider.getCurrentLatitude() ?: 0.0,
+                                    locationProvider.getCurrentLongitude() ?: 0.0,
+                                    "${feature.properties?.get("name")} ${
+                                        distanceToPolygon(
+                                            LngLatAlt(
+                                                locationProvider.getCurrentLongitude() ?: 0.0,
+                                                locationProvider.getCurrentLatitude() ?: 0.0
+                                            ),
+                                            feature.geometry as Polygon
+                                        ).toInt()
+                                    } meters."
+                                )
+                            }
+                        }
                     }
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        "Using the $superCategory category, we found ${filterBySuperCategory.features.size} $thing in this grid."
-                    )
-
-                    val distanceToPoi = getNearestPoi(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
-                        filterBySuperCategory
-                    )
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        // This calculates the distance to the nearest POI using a bounding box
-                        // so if it is a large polygon can be super inaccurate/misleading
-                        // Not sure if it might be better to calculate the nearest point/edge that makes up the polygon?
-                        // I've inserted the distance_to in the foreign member for this so...
-                        "The first $superCategory is ${
-                            distanceToPoi.features[0].foreign!!["distance_to"].toString().toDouble()
-                                .toInt()
-                        } meters away."
-                    )
-                    // Temp code to play audio to prove we've got something and how far away but not every "thing" has a name property...
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        "The nearest $superCategory is: ${distanceToPoi.features[0].properties!!["name"]}"
-                    )
                 } else {
-
                     audioEngine.createTextToSpeech(
                         locationProvider.getCurrentLatitude() ?: 0.0,
                         locationProvider.getCurrentLongitude() ?: 0.0,

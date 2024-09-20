@@ -28,9 +28,12 @@ import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
+import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -228,6 +231,104 @@ class TileUtilsTest {
             getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
         Assert.assertEquals(11, testSuperCategoryPoiCollection.features.size)
 
+    }
+
+    @Test
+    fun getWhatsAroundMeTest(){
+        val gridFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJSONData3x3gridnoduplicates.tileGrid)
+        // test flags equivalent to Settings
+        val placesAndLandmarks = true
+        val mobility = true
+
+        val settingsFeatureCollection = FeatureCollection()
+        if (placesAndLandmarks) {
+            if (mobility) {
+                //Log.d(TAG, "placesAndLandmarks and mobility are both true")
+                // if I use the placeSuperCategory it correctly detects that I am in my house
+                // and returns that as the nearest POI which isn't what original Soundscape returns
+                // so I need to throw away: houses, and anything that doesn't have a name property. and make sure that any surviving features
+                // have a property key that matches with the tags in the "place" super category
+                val placeSuperCategory =
+                    getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollectionTest!!)
+                // just checking placeSuperCategory
+                //val placeString = moshi.adapter(FeatureCollection::class.java).toJson(placeSuperCategory)
+                //println(placeString)
+                val tempFeatureCollection = FeatureCollection()
+                for (feature in placeSuperCategory.features) {
+                    if (feature.foreign?.get("feature_value") != "house") {
+                        if (feature.properties?.get("name") != null){
+                            val superCategoryList = getSuperCategoryElements("place")
+                            for (property in feature.properties!!){
+                                for (featureType in superCategoryList) {
+                                    if (property.value == featureType) {
+                                        tempFeatureCollection.features.add(feature)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                val cleanedPlaceSuperCategory = removeDuplicateOsmIds(tempFeatureCollection)
+                for (feature in cleanedPlaceSuperCategory.features) {
+                    settingsFeatureCollection.features.add(feature)
+                }
+
+                //val cleanedPlaceString = moshi.adapter(FeatureCollection::class.java).toJson(cleanedPlaceSuperCategory)
+                //println(cleanedPlaceString)
+
+                val landmarkSuperCategory =
+                    getPoiFeatureCollectionBySuperCategory("landmark", gridFeatureCollectionTest)
+                for (feature in landmarkSuperCategory.features) {
+                    settingsFeatureCollection.features.add(feature)
+                }
+                val mobilitySuperCategory =
+                    getPoiFeatureCollectionBySuperCategory("mobility", gridFeatureCollectionTest)
+                for (feature in mobilitySuperCategory.features) {
+                    settingsFeatureCollection.features.add(feature)
+                }
+                val settingsString = moshi.adapter(FeatureCollection::class.java).toJson(settingsFeatureCollection)
+                println(settingsString)
+                for (feature in settingsFeatureCollection){
+                    if (feature.geometry is Polygon){
+                        if (feature.properties?.get("name") != null){
+                            println("Feature: ${feature.properties?.get("name")} distance to polygon:${distanceToPolygon(LngLatAlt(-2.6928249366694956,
+                                51.43931965688239), feature.geometry as Polygon)}")
+                        }
+                    }
+                }
+
+            } else {
+                //Log.d(TAG, "placesAndLandmarks is true and mobility is false")
+                // if I use the placeSuperCategory it correctly detects that I am in my house
+                // and returns that as the nearest POI which isn't what original Soundscape does
+                // so I need to throw away houses
+                val placeSuperCategory =
+                    getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollectionTest!!)
+                for (feature in placeSuperCategory.features) {
+                    if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get("feature_value") != "house") {
+                        settingsFeatureCollection.features.add(feature)
+                    }
+                }
+                val landmarkSuperCategory =
+                    getPoiFeatureCollectionBySuperCategory("landmark", gridFeatureCollectionTest)
+                for (feature in landmarkSuperCategory.features) {
+                    settingsFeatureCollection.features.add(feature)
+                }
+            }
+        } else {
+            if (mobility) {
+                //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
+                val mobilitySuperCategory =
+                    getPoiFeatureCollectionBySuperCategory("mobility", gridFeatureCollectionTest!!)
+                for (feature in mobilitySuperCategory.features) {
+                    settingsFeatureCollection.features.add(feature)
+                }
+            } else {
+                // Not sure what we are supposed to tell the user here?
+                println("placesAndLandmarks and mobility are both false so what should I tell the user?")
+            }
+        }
     }
 
     @Test

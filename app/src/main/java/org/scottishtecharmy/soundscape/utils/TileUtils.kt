@@ -373,18 +373,44 @@ fun getPoiFeatureCollectionBySuperCategory(
     poiFeatureCollection: FeatureCollection
 ): FeatureCollection {
 
-    val superCategoryPoiFeatureCollection = FeatureCollection()
+    val tempFeatureCollection = FeatureCollection()
     val superCategoryList = getSuperCategoryElements(superCategory)
 
     for (feature in poiFeatureCollection) {
         for (featureType in superCategoryList) {
             if (feature.foreign!!["feature_type"] == featureType || feature.foreign!!["feature_value"] == featureType) {
-                superCategoryPoiFeatureCollection.addFeature(feature)
+                tempFeatureCollection.addFeature(feature)
             }
         }
     }
-    return superCategoryPoiFeatureCollection
+    return tempFeatureCollection
 }
+
+
+/**
+ * Given a FeatureCollection checks for duplicate OSM IDs and removes them.
+ * @param featureCollection
+ * A Feature Collection.
+ * @return a Feature Collection object with Features with duplicate "osm_ids" removed.
+ */
+fun removeDuplicateOsmIds(
+    featureCollection: FeatureCollection
+): FeatureCollection{
+    val processedOsmIds = mutableSetOf<Any>()
+    val tempFeatureCollection = FeatureCollection()
+
+    //check for osm_ids duplicates
+    for (feature in featureCollection.features) {
+        val osmId = feature.foreign?.get("osm_ids")
+        //Log.d(TAG, "osmId: $osmId")
+        if (osmId != null && !processedOsmIds.contains(osmId)) {
+            processedOsmIds.add(osmId)
+            tempFeatureCollection.features.add(feature)
+        }
+    }
+    return tempFeatureCollection
+}
+
 /**
  * Parses out roads, paths, intersections, entrances, pois, bus stops and crossings from a tile string.
  * @param quadKey

@@ -754,6 +754,30 @@ fun distanceToLineString(
 }
 
 /**
+ * Distance to a Polygon from current location.
+ * @param pointCoordinates
+ * LngLatAlt of current location
+ * @param polygon
+ * Polygon that we are working out the distance from
+ * @return The closest distance of the point to the Polygon
+ */
+fun distanceToPolygon(
+    pointCoordinates: LngLatAlt,
+    polygon: Polygon)
+: Double {
+
+    var minDistance = Double.MAX_VALUE
+    var last = polygon.coordinates[0][0]
+    for (i in 1 until polygon.coordinates[0].size) {
+        val current = polygon.coordinates[0][i]
+        val distance = distance(last, current, pointCoordinates)
+        minDistance = min(minDistance, distance)
+        last = current
+    }
+    return minDistance
+}
+
+/**
  * Distance to an intersection from current location.
  * @param location
  * LngLatAlt of current location

@@ -136,6 +136,44 @@ class VisuallyCheckOutput {
     }
 
     @Test
+    fun grid3x3WithPoisTest(){
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        // convert coordinates to tile
+        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16.0)
+        val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
+        val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
+
+        val surroundingTiles = getTilesForRegion(
+            tileBoundingBoxCenter.latitude, tileBoundingBoxCenter.longitude, 200.0, 16 )
+
+        val newFeatureCollection = FeatureCollection()
+        // Create a bounding box/Polygon for each tile in the grid
+        for(tile in surroundingTiles){
+            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16.0)
+            val polygonBoundingBox = getPolygonOfBoundingBox(surroundingTileBoundingBox)
+            val boundingBoxFeature = Feature().also {
+                val ars3: HashMap<String, Any?> = HashMap()
+                ars3 += Pair("Tile X", tile.tileX)
+                ars3 += Pair("Tile Y", tile.tileY)
+                ars3 += Pair("quadKey", tile.quadkey)
+                it.properties = ars3
+                it.type = "Feature"
+            }
+            boundingBoxFeature.geometry = polygonBoundingBox
+            newFeatureCollection.addFeature(boundingBoxFeature)
+        }
+        val gridFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJSONData3x3gridnoduplicates.tileGrid)
+        for (feature in gridFeatureCollectionTest!!.features){
+            newFeatureCollection.addFeature(feature)
+        }
+        val grid3x3PoiString = moshi.adapter(FeatureCollection::class.java).toJson(newFeatureCollection)
+        // copy and paste into GeoJSON.io
+        println(grid3x3PoiString)
+    }
+
+    @Test
     fun entireTileFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
