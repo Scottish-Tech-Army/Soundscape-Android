@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.utils.pixelXYToLatLon
 import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 
 
 class GeoUtilsTest {
@@ -423,6 +424,25 @@ class GeoUtilsTest {
         Assert.assertEquals(275.0, testQuadrant3[3].right, 0.01)
     }
 
-
+    @Test
+    fun distanceToPolygonTest(){
+        val polygonObject = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 1.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(1.0, 0.0),
+                    LngLatAlt(1.0, 1.0),
+                    LngLatAlt(0.0, 1.0)
+                )
+            )
+        }
+        val minDistanceToPolygon1 = distanceToPolygon(LngLatAlt(0.0, -1.0), polygonObject)
+        Assert.assertEquals(111319.49, minDistanceToPolygon1, 0.1)
+        val minDistanceToPolygon2 = distanceToPolygon(LngLatAlt(0.0, 2.0), polygonObject)
+        Assert.assertEquals(111319.49, minDistanceToPolygon2, 0.1)
+        val minDistanceToPolygon3 = distanceToPolygon(LngLatAlt(0.0, 0.0), polygonObject)
+        Assert.assertEquals(0.0, minDistanceToPolygon3, 0.1)
+    }
 
 }

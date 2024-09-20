@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 object GeoJSONData3x3gridnoduplicates {
-    // this contains the merged tiles from:
+    // this contains the merged tiles from but only POI data. No roads, intersections, etc.:
     // 0313131200230122 0313131200230123 0313131200230132
     // 0313131200230300 0313131200230301 0313131200230302
     // 0313131200230303 0313131200230310 0313131200230312
