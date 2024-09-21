@@ -45,10 +45,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.MainActivity.Companion.FIRST_LAUNCH_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.UNNAMED_ROADS_KEY
 import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -71,7 +69,6 @@ import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.utils.getNearestIntersection
-import org.scottishtecharmy.soundscape.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
@@ -570,7 +567,8 @@ class SoundscapeService : Service() {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         val placesAndLandmarks = sharedPrefs.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
         val mobility = sharedPrefs.getBoolean(MOBILITY_KEY, true)
-        val unnamedRoads = sharedPrefs.getBoolean(UNNAMED_ROADS_KEY, false)
+        // TODO unnamed roads switch is not used yet
+        //val unnamedRoads = sharedPrefs.getBoolean(UNNAMED_ROADS_KEY, false)
 
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             val noLocationString =
@@ -700,11 +698,13 @@ class SoundscapeService : Service() {
                 if (settingsFeatureCollection.features.size > 0) {
                     for (feature in settingsFeatureCollection) {
                         if (feature.geometry is Polygon) {
+                            // found that if a thing has a name property that ends in a number
+                            // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
                             if (feature.properties?.get("name") != null) {
                                 audioEngine.createTextToSpeech(
                                     locationProvider.getCurrentLatitude() ?: 0.0,
                                     locationProvider.getCurrentLongitude() ?: 0.0,
-                                    "${feature.properties?.get("name")} ${
+                                    "${feature.properties?.get("name")}.  ${
                                         distanceToPolygon(
                                             LngLatAlt(
                                                 locationProvider.getCurrentLongitude() ?: 0.0,
@@ -806,28 +806,24 @@ class SoundscapeService : Service() {
 
             if (roadGridFeatureCollection.features.size > 0) {
 
-                val fovRoadsFeatureCollection = roadGridFeatureCollection.let {
-                    getFovRoadsFeatureCollection(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
-                        orientation.toDouble(),
-                        fovDistance,
-                        it
-                    )
-                }
-                val fovIntersectionsFeatureCollection = intersectionsGridFeatureCollection.let {
-                    getFovIntersectionFeatureCollection(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
-                        orientation.toDouble(),
-                        fovDistance,
-                        it
-                    )
-                }
+                val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+                    LngLatAlt(
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        locationProvider.getCurrentLatitude() ?: 0.0
+                    ),
+                    orientation.toDouble(),
+                    fovDistance,
+                    roadGridFeatureCollection
+                )
+                val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+                    LngLatAlt(
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        locationProvider.getCurrentLatitude() ?: 0.0
+                    ),
+                    orientation.toDouble(),
+                    fovDistance,
+                    intersectionsGridFeatureCollection
+                )
 
                 //TEMP This just returns the roads in the FOV.
                 if (fovRoadsFeatureCollection.features.size > 0) {
