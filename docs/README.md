@@ -17,8 +17,5 @@ See the document [here](mapping.md) for information about how we configure and u
 ## Release notes
 [Here](release-notes.md) are the latest release notes.
 
-## Current documents
+## Code documentation
 * [Audio API](audio-API.md)
-* [Framework choices](framework.md)
-* [Pathway to product](pathway-to-product.md)
-* [Screenshots](screenshots.md)
