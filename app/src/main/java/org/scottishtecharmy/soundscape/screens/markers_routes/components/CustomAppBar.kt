@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
-import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
@@ -18,7 +17,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -29,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.MainScreens
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,8 +46,8 @@ fun CustomAppBar(customTitle : String,
                 iconModifier = Modifier.size(40.dp),
                 onClick = {
 //                    navController.popBackStack(MainScreens.Home.route, false)
-                    navController.navigate(MainScreens.Home.route) {
-                        popUpTo(MainScreens.Home.route) {
+                    navController.navigate(HomeRoutes.Home.route) {
+                        popUpTo(HomeRoutes.Home.route) {
                             inclusive = false  // Ensures Home screen is not popped from the stack
                         }
                         launchSingleTop = true  // Prevents multiple instances of Home

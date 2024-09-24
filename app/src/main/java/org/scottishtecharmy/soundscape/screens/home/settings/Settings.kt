@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.home
+package org.scottishtecharmy.soundscape.screens.home.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,6 +26,7 @@ import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.onboarding.MockHearingPreviewData
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
@@ -64,7 +65,7 @@ fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
     ) {
         IconButton(
             onClick = {
-                onNavigate(MainScreens.Home.route)
+                onNavigate(HomeRoutes.Home.route)
             },
         ) {
             Icon(

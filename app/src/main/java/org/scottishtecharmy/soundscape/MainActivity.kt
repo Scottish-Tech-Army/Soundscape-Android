@@ -21,10 +21,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.screens.home.MainScreens
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.screens.home.NavigationRoot
+import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 
 import java.io.File
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(destination)
                     }
                 }
-                NavigationRoot(navController = navController)
+                HomeScreen(navController = navController)
             }
         }
     }
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         Log.d(TAG, "onNewIntent")
         // Pop up to home page
-        navigator.navigate(MainScreens.Home.route)
+        navigator.navigate(HomeRoutes.Home.route)
         // And then parse the new intent which may take us to the LocationDetails screen
         soundscapeIntents.parse(intent, this@MainActivity)
     }

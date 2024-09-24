@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.home
+package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
 import org.scottishtecharmy.soundscape.mapui.RamaniMapUi
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
@@ -30,7 +31,7 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription) : Str
     val gson = GsonBuilder().create()
     val json = gson.toJson(locationDescription)
 
-    return MainScreens.LocationDetails.route + "/" + json
+    return HomeRoutes.LocationDetails.route + "/" + json
 }
 
 @Composable

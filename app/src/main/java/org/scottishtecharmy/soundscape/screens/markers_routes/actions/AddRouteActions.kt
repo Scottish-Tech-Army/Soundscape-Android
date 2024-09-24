@@ -3,7 +3,7 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.actions
 import android.content.Context
 import android.widget.Toast
 import androidx.navigation.NavController
-import org.scottishtecharmy.soundscape.screens.home.MainScreens
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.validators.validateFields
 
 // Function to handle "Add Waypoints" button click
@@ -25,9 +25,9 @@ fun onAddWaypointsClicked(
 
     if (!errorStates.first || !errorStates.second) {
 //             Navigate to the MarkersAndRoutesScreen, showing the Routes tab
-        navController.navigate("${MainScreens.MarkersAndRoutes.route}/routes")
+        navController.navigate("${HomeRoutes.MarkersAndRoutes.route}/routes")
         {
-            popUpTo(MainScreens.MarkersAndRoutes.route) {
+            popUpTo(HomeRoutes.MarkersAndRoutes.route) {
                 inclusive = true
             }
             launchSingleTop = true
