@@ -21,8 +21,7 @@ This is where the app normally spends its time. The `Home` screen looks like thi
 
 The map is zoomed around the current location and rotated based on the direction that the phone is pointing in. Here's what can be accessed from the iOS Home screen:
 
-
-```mermaid
+<div class="mermaid">
 flowchart LR
     Home(**Home**<br>Main screen with map of current location and various large buttons) --> Menu(Menu<p>Opens drawer menu on Home screen)
     Menu --> Settings(**Settings**<br>The various configurable options for the app)
@@ -56,4 +55,4 @@ flowchart LR
     LocationDetails --> StreetPreview(**Street Preview**<br>Plays audio callouts and beacons as if the phone were teleported the location)
     LocationDetails --> ShareMarker(**Marker Share**<br> Shares Marker details to another application)
     HelpAndTutorials --> RerunOnboarding(Rerun onboarding screens)
-```
+</div>
