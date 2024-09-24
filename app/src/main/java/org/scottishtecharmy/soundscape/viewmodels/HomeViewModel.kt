@@ -120,7 +120,9 @@ class HomeViewModel
         }
 
         private fun updateLocationOnMap(newLocation: Location) {
-            if (newLocation.hasAccuracy() && (newLocation.accuracy < 250.0)) {
+            if (newLocation.hasAccuracy()
+                && (newLocation.accuracy < 250.0)
+                ) {
                 _location.value = newLocation
                 Log.d(TAG, "lastLocation updated to $newLocation")
             }
