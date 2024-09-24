@@ -8,9 +8,9 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.screens.home.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.Navigator
-import org.scottishtecharmy.soundscape.screens.home.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException

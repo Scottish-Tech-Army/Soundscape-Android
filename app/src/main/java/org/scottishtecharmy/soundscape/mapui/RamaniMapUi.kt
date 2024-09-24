@@ -16,7 +16,7 @@ import org.ramani.compose.MapLibre
 import org.ramani.compose.Symbol
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview

@@ -3,8 +3,8 @@ package org.scottishtecharmy.soundscape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import org.scottishtecharmy.soundscape.screens.home.HomePreview
-import org.scottishtecharmy.soundscape.screens.home.SettingsPreview
+import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.MarkersScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.RoutesScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
