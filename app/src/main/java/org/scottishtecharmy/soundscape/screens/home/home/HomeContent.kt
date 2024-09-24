@@ -82,13 +82,18 @@ fun HomeContent(
                 },
                 text = stringResource(R.string.search_use_current_location),
             )
-            MapContainerLibre(
-                latitude = latitude,
-                longitude = longitude,
-                heading = heading,
-                onMapLongClick = onMapLongClick,
-                onMarkerClick = onMarkerClick,
-            )
+            val mapView = rememberMapViewWithLifecycle()
+
+            if(latitude != null && longitude != null) {
+                MapContainerLibre(
+                    map = mapView,
+                    latitude = latitude,
+                    longitude = longitude,
+                    heading = heading,
+                    onMapLongClick = onMapLongClick,
+                    onMarkerClick = onMarkerClick,
+                )
+            }
         }
     }
 }
