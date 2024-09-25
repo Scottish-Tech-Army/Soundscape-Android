@@ -79,9 +79,8 @@ fun HomeContent(
                 },
                 text = stringResource(R.string.search_use_current_location),
             )
-            val mapView = rememberMapViewWithLifecycle()
-
             if(latitude != null && longitude != null) {
+                val mapView = rememberMapViewWithLifecycle()
                 MapContainerLibre(
                     map = mapView,
                     latitude = latitude,
@@ -99,8 +98,8 @@ fun HomeContent(
 @Composable
 fun PreviewHomeContent(){
     HomeContent(
-        latitude = 10.0,
-        longitude = 1.0,
+        latitude = null,
+        longitude = null,
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = {},

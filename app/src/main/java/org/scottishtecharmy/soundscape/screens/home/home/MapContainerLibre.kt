@@ -86,7 +86,19 @@ fun MapContainerLibre(
     }
     AndroidView(
         modifier = modifier,
-        factory = { map },
+        factory = {
+            coroutineScope.launch {
+                val mapLibre = map.awaitMap()
+                mapLibre.addOnMapLongClickListener { latitudeLongitude ->
+                    onMapLongClick(latitudeLongitude)
+                    false
+                }
+                mapLibre.setOnMarkerClickListener { marker ->
+                    onMarkerClick(marker)
+                }
+            }
+            map
+                  },
         update = { mapView ->
             coroutineScope.launch {
                 val mapLibre = mapView.awaitMap()

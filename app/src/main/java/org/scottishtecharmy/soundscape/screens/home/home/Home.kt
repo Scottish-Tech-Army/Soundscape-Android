@@ -40,12 +40,12 @@ import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
-@Preview // TODO fix preview when we stop sending viewmodel down to the view tree
+@Preview
 @Composable
 fun HomePreview2() {
     Home(
-        latitude = 10.0,
-        longitude = 1.0,
+        latitude = null,
+        longitude = null,
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = {},
