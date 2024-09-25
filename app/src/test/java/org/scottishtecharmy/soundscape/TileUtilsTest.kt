@@ -30,6 +30,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
+import org.scottishtecharmy.soundscape.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
@@ -234,9 +235,27 @@ class TileUtilsTest {
     }
 
     @Test
+    fun getDistanceToFeatureCollectionTest(){
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonData.featureCollectionJson)
+
+        val currentLat = 0.0
+        val currentLon = 0.5
+        val distanceToFeatureCollection = getDistanceToFeatureCollection(currentLat, currentLon, featureCollectionTest!!)
+
+        // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
+        Assert.assertEquals(55659.75, distanceToFeatureCollection.features[0].foreign?.get("distance_to"))
+        // Current location is on the boundary of the Polygon so distance should be 0.0
+        Assert.assertEquals(0.0, distanceToFeatureCollection.features[1].foreign?.get("distance_to"))
+
+    }
+
+    @Test
     fun getWhatsAroundMeTest(){
         val gridFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJSONData3x3gridnoduplicates.tileGrid)
+        val currentLat = 51.43931965688239
+        val currentLon = -2.6928249366694956
         // test flags equivalent to Settings
         val placesAndLandmarks = true
         val mobility = true
@@ -244,16 +263,9 @@ class TileUtilsTest {
         val settingsFeatureCollection = FeatureCollection()
         if (placesAndLandmarks) {
             if (mobility) {
-                //Log.d(TAG, "placesAndLandmarks and mobility are both true")
-                // if I use the placeSuperCategory it correctly detects that I am in my house
-                // and returns that as the nearest POI which isn't what original Soundscape returns
-                // so I need to throw away: houses, and anything that doesn't have a name property. and make sure that any surviving features
-                // have a property key that matches with the tags in the "place" super category
                 val placeSuperCategory =
                     getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollectionTest!!)
-                // just checking placeSuperCategory
-                //val placeString = moshi.adapter(FeatureCollection::class.java).toJson(placeSuperCategory)
-                //println(placeString)
+
                 val tempFeatureCollection = FeatureCollection()
                 for (feature in placeSuperCategory.features) {
                     if (feature.foreign?.get("feature_value") != "house") {
@@ -289,12 +301,18 @@ class TileUtilsTest {
                 }
                 val settingsString = moshi.adapter(FeatureCollection::class.java).toJson(settingsFeatureCollection)
                 println(settingsString)
-                for (feature in settingsFeatureCollection){
-                    if (feature.geometry is Polygon){
-                        if (feature.properties?.get("name") != null){
-                            println("Feature: ${feature.properties?.get("name")} distance to polygon:${distanceToPolygon(LngLatAlt(-2.6928249366694956,
-                                51.43931965688239), feature.geometry as Polygon)}")
-                        }
+
+                val distanceToFeatureCollection = getDistanceToFeatureCollection(
+                    currentLat,
+                    currentLon,
+                    settingsFeatureCollection
+                ).sortedBy { feature ->
+                    feature.foreign?.get("distance_to") as? Double ?: Double.MAX_VALUE
+                }
+                for (feature in distanceToFeatureCollection){
+                    if (feature.properties?.get("name") != null){
+                            println("Feature: ${feature.properties?.get("name")} " +
+                                    "distance to feature: ${feature.foreign?.get("distance_to")}")
                     }
                 }
 

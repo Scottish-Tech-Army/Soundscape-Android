@@ -1268,6 +1268,110 @@ fun addBoundingBoxAndDistanceToFeatureCollection(
     return featureCollection
 }
 
+/**
+ * Given a Feature Collection and location this will calculate the nearest distance to each Feature,
+ * and return a Feature Collection that contains the distance_to data for each Feature.
+ * @param currentLat
+ * Current latitude as Double.
+ * @param currentLon
+ * Current longitude as Double.
+ * @param featureCollection
+ * @return a Feature Collection with the "distance_to" from the current location as a foreign member in meters for each Feature.
+ */
+fun getDistanceToFeatureCollection(
+    currentLat: Double,
+    currentLon: Double,
+    featureCollection: FeatureCollection
+): FeatureCollection {
+    for (feature in featureCollection) {
+        when (feature.geometry.type) {
+            "Point" -> {
+                val point = feature.geometry as Point
+                val distanceToFeaturePoint = distance(
+                    currentLat,
+                    currentLon,
+                    point.coordinates.latitude,
+                    point.coordinates.longitude
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeaturePoint)
+            }
+
+            "MultiPoint" -> {
+                val multiPoint = feature.geometry as MultiPoint
+                var shortestDistance = Double.MAX_VALUE
+
+                for (point in multiPoint.coordinates) {
+                    val distanceToPoint = distance(currentLat, currentLon, point.latitude, point.longitude)
+                    if (distanceToPoint < shortestDistance) {
+                        shortestDistance = distanceToPoint
+                    }
+                }
+                // this is the closest point to the current location from the collection of points
+                feature.foreign?.put("distance_to", shortestDistance)
+            }
+
+            "LineString" -> {
+                val lineString = feature.geometry as LineString
+                val distanceToFeatureLineString = distanceToLineString(
+                   LngLatAlt(currentLon, currentLat),
+                   lineString
+                )
+                // insert a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeatureLineString)
+            }
+
+            "MultiLineString" -> {
+                val multiLineString = feature.geometry as MultiLineString
+                var shortestDistance = Double.MAX_VALUE
+
+                for (arrCoordinates in multiLineString.coordinates) {
+                    for (coordinate in arrCoordinates) {
+                        val distanceToPoint = distance(currentLat, currentLon, coordinate.latitude, coordinate.longitude)
+                        if (distanceToPoint < shortestDistance) {
+                            shortestDistance = distanceToPoint
+                        }
+                    }
+                }
+                // this is the shortest distance from current location to the collection of line strings
+                feature.foreign?.put("distance_to", shortestDistance)
+            }
+
+            "Polygon" -> {
+                val polygon = feature.geometry as Polygon
+                val distanceToFeaturePolygon = distanceToPolygon(
+                    LngLatAlt(currentLon, currentLat),
+                    polygon
+                )
+                // inserting a new key value pair into feature.foreign for distance_to (meters)
+                feature.foreign?.put("distance_to", distanceToFeaturePolygon)
+            }
+
+            "MultiPolygon" -> {
+                val multiPolygon = feature.geometry as MultiPolygon
+                var shortestDistance = Double.MAX_VALUE
+
+                for (arrCoordinates in multiPolygon.coordinates) {
+                    for (arr in arrCoordinates) {
+                        for (coordinate in arr) {
+                            val distanceToPoint = distance(currentLat, currentLon, coordinate.latitude, coordinate.longitude)
+                            if (distanceToPoint < shortestDistance) {
+                                shortestDistance = distanceToPoint
+                            }
+                        }
+                    }
+                }
+                // this is the shortest distance from current location to the collection of Polygons
+                feature.foreign?.put("distance_to", shortestDistance)
+            }
+
+            else -> println("Unknown type ${feature.geometry.type}")
+        }
+    }
+    return featureCollection
+
+}
+
 fun removeDuplicates(
     intersectionToCheck: FeatureCollection
 ): FeatureCollection {
