@@ -46,6 +46,7 @@ fun HomePreview2() {
     Home(
         latitude = null,
         longitude = null,
+        beaconLocation = null,
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = {},
@@ -62,6 +63,7 @@ fun HomePreview2() {
 fun Home(
     latitude: Double?,
     longitude: Double?,
+    beaconLocation: LatLng?,
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Unit,
@@ -109,6 +111,7 @@ fun Home(
             HomeContent(
                 latitude = latitude,
                 longitude = longitude,
+                beaconLocation = beaconLocation,
                 heading = heading,
                 modifier = Modifier.padding(innerPadding),
                 onNavigate = onNavigate,

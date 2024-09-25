@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLoca
 fun HomeContent(
     latitude: Double?,
     longitude: Double?,
+    beaconLocation: LatLng?,
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Unit,
@@ -85,6 +86,7 @@ fun HomeContent(
                     map = mapView,
                     latitude = latitude,
                     longitude = longitude,
+                    beaconLocation = beaconLocation,
                     heading = heading,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
@@ -100,6 +102,7 @@ fun PreviewHomeContent(){
     HomeContent(
         latitude = null,
         longitude = null,
+        beaconLocation = null,
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = {},

@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
-import org.maplibre.android.annotations.MarkerOptions
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.style.layers.PropertyFactory
@@ -37,11 +36,11 @@ class HomeViewModel @Inject constructor(
     private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
     val location: StateFlow<Location?> = _location.asStateFlow()
 
-    private var beaconLocation: LatLng? = null
+    private val _beaconLocation: MutableStateFlow<LatLng?> = MutableStateFlow(null) // Question, can we have more beacon ?
+    val beaconLocation: StateFlow<LatLng?> = _beaconLocation.asStateFlow()
 
-    private var beaconLocationMarker: Marker? = null
 
-    private var mapLibreMap: MapLibreMap? = null
+    private var mapLibreMap: MapLibreMap? = null // TODO remove mapLibre from viewModel
 
     init {
         serviceConnection = soundscapeServiceConnection
@@ -56,17 +55,6 @@ class HomeViewModel @Inject constructor(
                     _location.value = null
                 }
             }
-        }
-    }
-
-    private fun updateBeaconLocation() {
-        if (beaconLocationMarker != null) {
-            beaconLocationMarker?.position = beaconLocation
-        } else {
-            val markerOptions =
-                MarkerOptions()
-                    .position(beaconLocation)
-            beaconLocationMarker = mapLibreMap?.addMarker(markerOptions)
         }
     }
 
@@ -93,15 +81,11 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             // Observe beacon location update from the service so we can show it on the map
             serviceConnection?.getBeaconFlow()?.collectLatest { value ->
+                Log.d(TAG, "beacon collected $value")
                 if (value != null) {
-                    // Use MarkerOptions and addMarker() to add a new marker in map
-                    beaconLocation = LatLng(value.latitude, value.longitude)
-                    updateBeaconLocation()
+                    _beaconLocation.value = LatLng(value.latitude, value.longitude)
                 } else {
-                    if (beaconLocationMarker != null) {
-                        mapLibreMap?.removeMarker(beaconLocationMarker!!)
-                        beaconLocationMarker = null
-                    }
+                    _beaconLocation.value = null
                 }
             }
         }
@@ -118,6 +102,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun createBeacon(latitudeLongitude: LatLng) {
+        Log.d(TAG, "create beacon")
         soundscapeServiceConnection.soundscapeService?.createBeacon(
             latitudeLongitude.latitude,
             latitudeLongitude.longitude,
@@ -125,8 +110,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onMarkerClick(marker: Marker): Boolean {
-        if (marker == beaconLocationMarker) {
+        Log.d(TAG, "marker click")
+
+        if (marker.position == beaconLocation.value) {
             soundscapeServiceConnection.soundscapeService?.destroyBeacon()
+            _beaconLocation.value = null
             return true
         }
         return false
