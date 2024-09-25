@@ -39,6 +39,8 @@ fun HomeScreen(
 ) {
     val location = viewModel.location.collectAsStateWithLifecycle()
     val heading = viewModel.heading.collectAsStateWithLifecycle()
+    val beaconLocation = viewModel.beaconLocation.collectAsStateWithLifecycle()
+
     LaunchedEffect(Unit) {
         viewModel.location.collect {
             Log.d("HomeViewModel", "location $location")
@@ -54,6 +56,7 @@ fun HomeScreen(
             Home(
                 latitude = location.value?.latitude,
                 longitude = location.value?.longitude,
+                beaconLocation = beaconLocation.value,
                 heading = heading.value,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->

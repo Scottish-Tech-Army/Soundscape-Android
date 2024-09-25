@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -10,6 +11,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
+import org.maplibre.android.annotations.MarkerOptions
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapView
@@ -26,6 +28,7 @@ fun MapContainerLibre(
     map: MapView,
     latitude: Double,
     longitude: Double,
+    beaconLocation: LatLng?,
     heading: Float,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Unit,
@@ -51,6 +54,9 @@ fun MapContainerLibre(
             .withIconSize(1.25f)
             .withIconAnchor("bottom")
     }
+
+    val beaconLocationMarker = remember { mutableStateOf<Marker?>(null) }
+
     val res = LocalContext.current.resources
     val drawable = remember {
         ResourcesCompat.getDrawable(
@@ -62,6 +68,7 @@ fun MapContainerLibre(
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(map) {
+        // init map first time it is displayed
         val mapLibre = map.awaitMap()
         val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
         val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
@@ -78,32 +85,56 @@ fun MapContainerLibre(
                     symbolManager.create(symbolOptions)
                 symbolManager.update(symbol)
             }
-
+            mapLibre.addOnMapLongClickListener { latitudeLongitude ->
+                onMapLongClick(latitudeLongitude)
+                false
+            }
+            mapLibre.setOnMarkerClickListener { marker ->
+                onMarkerClick(marker)
+            }
         }
 
         mapLibre.cameraPosition = cameraPosition
 
     }
+
+    LaunchedEffect(beaconLocation) {
+        val mapLibre = map.awaitMap()
+        if(beaconLocation != null && beaconLocationMarker.value == null){
+            // first time beacon is created
+            val markerOptions = MarkerOptions()
+                .position(beaconLocation)
+            beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
+        }
+    }
     AndroidView(
         modifier = modifier,
-        factory = {
-            coroutineScope.launch {
-                val mapLibre = map.awaitMap()
-                mapLibre.addOnMapLongClickListener { latitudeLongitude ->
-                    onMapLongClick(latitudeLongitude)
-                    false
-                }
-                mapLibre.setOnMarkerClickListener { marker ->
-                    onMarkerClick(marker)
-                }
-            }
-            map
-                  },
+        factory = { map },
         update = { mapView ->
             coroutineScope.launch {
                 val mapLibre = mapView.awaitMap()
                 // Move camera to the same place to trigger the zoom update
                 mapLibre.cameraPosition = cameraPosition
+                if(beaconLocation != null) {
+                    // beacon to display
+                    beaconLocationMarker.value?.let { currentBeaconMarker ->
+                        // update beacon position
+                        currentBeaconMarker.position = beaconLocation
+                        mapLibre.updateMarker(currentBeaconMarker)
+                    } ?: {
+                        // new beacon to display
+                        val markerOptions =
+                            MarkerOptions()
+                                .position(beaconLocation)
+                        beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
+                    }
+                } else {
+                    // if beacon is present we should remove it
+                    beaconLocationMarker.value?.let { currentBeacon ->
+                        mapLibre.removeMarker(currentBeacon)
+                        beaconLocationMarker.value = null
+                    }
+                }
             }
         },
     )
