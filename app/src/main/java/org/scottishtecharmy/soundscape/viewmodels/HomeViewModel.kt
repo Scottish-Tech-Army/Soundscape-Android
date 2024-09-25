@@ -20,8 +20,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
-import org.maplibre.android.maps.MapLibreMap
-import org.maplibre.android.style.layers.PropertyFactory
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import java.net.URLEncoder
 import javax.inject.Inject
@@ -35,12 +33,10 @@ class HomeViewModel @Inject constructor(
     val heading: StateFlow<Float> = _heading.asStateFlow()
     private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
     val location: StateFlow<Location?> = _location.asStateFlow()
-
+    private val _highlightedPointsOfInterest: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val highlightedPointsOfInterest: StateFlow<Boolean> = _highlightedPointsOfInterest.asStateFlow()
     private val _beaconLocation: MutableStateFlow<LatLng?> = MutableStateFlow(null) // Question, can we have more beacon ?
     val beaconLocation: StateFlow<LatLng?> = _beaconLocation.asStateFlow()
-
-
-    private var mapLibreMap: MapLibreMap? = null // TODO remove mapLibre from viewModel
 
     init {
         serviceConnection = soundscapeServiceConnection
@@ -123,19 +119,8 @@ class HomeViewModel @Inject constructor(
     // This is a demo function to show how to dynamically alter the map based on user input.
     // The result of this function is that Food POIs have their icons toggled between enlarged
     // and regular sized.
-    private var highlightedPointsOfInterest: Boolean = false
-
     fun highlightPointsOfInterest() {
-        highlightedPointsOfInterest = highlightedPointsOfInterest.xor(true)
-        mapLibreMap?.getStyle {
-            val foodLayer = it.getLayer("Food")
-            var highlightSize = 1F
-            if (highlightedPointsOfInterest) {
-                highlightSize = 2F
-            }
-
-            foodLayer?.setProperties(PropertyFactory.iconSize(highlightSize))
-        }
+        _highlightedPointsOfInterest.value = highlightedPointsOfInterest.value.xor(true)
     }
 
     fun myLocation(){
