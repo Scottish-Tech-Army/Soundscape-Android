@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.screens.home
 
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -41,11 +40,7 @@ fun HomeScreen(
     val heading = viewModel.heading.collectAsStateWithLifecycle()
     val beaconLocation = viewModel.beaconLocation.collectAsStateWithLifecycle()
     val highlightedPointsOfInterest = viewModel.highlightedPointsOfInterest.collectAsStateWithLifecycle()
-    LaunchedEffect(Unit) {
-        viewModel.location.collect {
-            Log.d("HomeViewModel", "location $location")
-        }
-    }
+
     NavHost(
         navController = navController,
         startDestination = HomeRoutes.Home.route,
@@ -79,7 +74,10 @@ fun HomeScreen(
         // Settings screen
         composable(HomeRoutes.Settings.route) {
             // Always just pop back out of settings, don't add to the queue
-            Settings(onNavigateUp = { navController.navigateUp() }, null)
+            Settings(
+                onNavigateUp = { navController.navigateUp() },
+                null
+            )
         }
 
         // Location details screen

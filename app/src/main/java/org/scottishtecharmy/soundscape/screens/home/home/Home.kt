@@ -42,7 +42,7 @@ import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
-fun HomePreview2() {
+fun HomePreview() {
     Home(
         latitude = null,
         longitude = null,

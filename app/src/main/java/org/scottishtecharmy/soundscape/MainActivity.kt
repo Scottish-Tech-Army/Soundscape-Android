@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun rateSoundscape() { // TODO avoid handling activity and context in viewModel, even in param
+    private fun rateSoundscape() {
         val reviewManager = ReviewManagerFactory.create(this)
         val request = reviewManager.requestReviewFlow()
         request.addOnCompleteListener { task ->
@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 // There was some problem, log or handle the error code.
                 @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
-                Log.e("DrawerViewModel", "Error requesting review: $reviewErrorCode")
+                Log.e(TAG, "Error requesting review: $reviewErrorCode")
             }
         }
     }
