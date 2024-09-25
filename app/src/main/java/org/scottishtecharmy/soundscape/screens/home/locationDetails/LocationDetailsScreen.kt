@@ -34,17 +34,29 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription) : Str
     return HomeRoutes.LocationDetails.route + "/" + json
 }
 
+
+
+@Composable
+fun LocationDetailsScreen(navController : NavController,
+                    locationDescription : LocationDescription,
+                    viewModel: LocationDetailsViewModel = hiltViewModel(),
+) {
+    LocationDetails(
+        navController = navController, // TODO move up navigation event
+        locationDescription = locationDescription,
+        createBeacon = { latitude, longitude ->
+            viewModel.createBeacon(latitude, longitude)
+        }
+    )
+}
+
 @Composable
 fun LocationDetails(navController : NavController,
                     locationDescription : LocationDescription,
-                    useView : Boolean = true) {
-
-    var viewModel : LocationDetailsViewModel? = null
-    if(useView)
-        viewModel = hiltViewModel<LocationDetailsViewModel>()
-
+                    createBeacon: (latitude: Double, longitude: Double) -> Unit,
+                    modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxHeight(),
     ) {
         CustomAppBar("Location Details", "Location details screen", navController)
@@ -63,7 +75,7 @@ fun LocationDetails(navController : NavController,
         RamaniMapUi(locationDescription)
         Button(
             onClick = {
-                viewModel?.createBeacon(locationDescription.latitude, locationDescription.longitude)
+                createBeacon(locationDescription.latitude, locationDescription.longitude)
             }
         ) {
             Text(
@@ -82,7 +94,8 @@ fun LocationDetailsPreview() {
         LocationDetails(
             navController = rememberNavController(),
             LocationDescription("", 0.0, 0.0),
-            false
+            createBeacon = { latitude, longitude ->
+            }
         )
     }
 }

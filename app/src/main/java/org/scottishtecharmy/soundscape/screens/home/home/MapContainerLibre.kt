@@ -15,10 +15,11 @@ import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
-import org.maplibre.android.utils.BitmapUtils
 import org.ramani.compose.awaitMap
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
+
+const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
 
 @Composable
 fun MapContainerLibre(
@@ -30,19 +31,26 @@ fun MapContainerLibre(
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
 ) {
-    val cameraPosition = remember(latitude, longitude) {
-        LatLng(latitude, longitude)
+    val cameraPosition = remember(latitude, longitude, heading) {
+        CameraPosition.Builder()
+            .target(
+                LatLng(
+                    latitude = latitude,
+                    longitude = longitude,
+                ),
+            )
+            .zoom(15.0)
+            .bearing(heading.toDouble())
+            .build()
     }
 
     val symbolOptions = remember(latitude, longitude, heading) {
         SymbolOptions()
             .withLatLng(LatLng(latitude, longitude))
-            .withIconImage("MARKER_NAME") // TODO improve
+            .withIconImage(USER_POSITION_MARKER_NAME)
             .withIconSize(1.25f)
             .withIconAnchor("bottom")
     }
-
-
     val res = LocalContext.current.resources
     val drawable = remember {
         ResourcesCompat.getDrawable(
@@ -56,25 +64,25 @@ fun MapContainerLibre(
     LaunchedEffect(map) {
         val mapLibre = map.awaitMap()
         val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
-        val styleUrl =
-            "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey" // TODO see is we move that
-
+        val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
         mapLibre.setStyle(styleUrl) { style ->
-            style.addImage("MARKER_NAME", BitmapUtils.getBitmapFromDrawable(drawable)!!)
+            drawable?.let { drawable ->
+                style.addImage(USER_POSITION_MARKER_NAME, drawable)
+                val symbolManager = SymbolManager(map, mapLibre, style)
+                // Disable symbol collisions
+                symbolManager.iconAllowOverlap = true
+                symbolManager.iconIgnorePlacement = true
+
+                // update with a new symbol at specified lat/lng
+                val symbol =
+                    symbolManager.create(symbolOptions)
+                symbolManager.update(symbol)
+            }
+
         }
 
-        // Create a SymbolManage
-        mapLibre.cameraPosition =
-            CameraPosition.Builder()
-                .target(
-                    LatLng(
-                        latitude = latitude,
-                        longitude = longitude,
-                    ),
-                )
-                .zoom(15.0)
-                .bearing(heading.toDouble())
-                .build()
+        mapLibre.cameraPosition = cameraPosition
+
     }
     AndroidView(
         modifier = modifier,
@@ -83,34 +91,7 @@ fun MapContainerLibre(
             coroutineScope.launch {
                 val mapLibre = mapView.awaitMap()
                 // Move camera to the same place to trigger the zoom update
-                mapLibre.cameraPosition =
-                    CameraPosition.Builder()
-                        .target(
-                            LatLng(
-                                latitude = latitude,
-                                longitude = longitude,
-                            ),
-                        )
-                        .zoom(15.0)
-                        .bearing(heading.toDouble())
-                        .build()
-                mapLibre.style?.let { style ->
-                    val symbolManager = SymbolManager(map, mapLibre, style)
-                    // Disable symbol collisions
-                    symbolManager.iconAllowOverlap = true
-                    symbolManager.iconIgnorePlacement = true
-
-                    // update with a new symbol at specified lat/lng
-                    val symbol =
-                        symbolManager.create(
-                            SymbolOptions()
-                                .withLatLng(LatLng(latitude, longitude))
-                                .withIconImage("MARKER_NAME") // TODO improve
-                                .withIconSize(1.25f)
-                                .withIconAnchor("bottom"),
-                        )
-                    symbolManager.update(symbol)
-                }
+                mapLibre.cameraPosition = cameraPosition
             }
         },
     )

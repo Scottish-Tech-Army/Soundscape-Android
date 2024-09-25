@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.screens.home
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -13,7 +14,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
-import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetails
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
@@ -34,6 +35,7 @@ class Navigator {
 fun HomeScreen(
     navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
+    rateSoundscape: () -> Unit,
 ) {
     val location = viewModel.location.collectAsStateWithLifecycle()
     val heading = viewModel.heading.collectAsStateWithLifecycle()
@@ -48,6 +50,7 @@ fun HomeScreen(
     ) {
         // Main navigation
         composable(HomeRoutes.Home.route) {
+            val context = LocalContext.current
             Home(
                 latitude = location.value?.latitude,
                 longitude = location.value?.longitude,
@@ -59,6 +62,11 @@ fun HomeScreen(
                 onMarkerClick = { marker ->
                     viewModel.onMarkerClick(marker)
                 },
+                getMyLocation = { viewModel.myLocation() },
+                getWhatsAheadOfMe = { viewModel.aheadOfMe() },
+                getWhatsAroundMe = { viewModel.whatsAroundMe() },
+                shareLocation = { viewModel.shareLocation(context) },
+                rateSoundscape = rateSoundscape,
             )
         }
 
@@ -76,7 +84,10 @@ fun HomeScreen(
             val json = navBackStackEntry.arguments?.getString("json")
             val ld = gson.fromJson(json, LocationDescription::class.java)
 
-            LocationDetails(navController, ld)
+            LocationDetailsScreen(
+                navController = navController,
+                locationDescription = ld,
+            )
         }
 
         // MarkersAndRoutesScreen with tab selection

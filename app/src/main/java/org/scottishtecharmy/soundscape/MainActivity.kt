@@ -19,14 +19,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
+import com.google.android.play.core.review.ReviewException
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.model.ReviewErrorCode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
-import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
-
+import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject
@@ -142,7 +144,34 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(destination)
                     }
                 }
-                HomeScreen(navController = navController)
+                HomeScreen(
+                    navController = navController,
+                    rateSoundscape = {
+                        this.rateSoundscape()
+                    }
+                )
+            }
+        }
+    }
+
+    private fun rateSoundscape() { // TODO avoid handling activity and context in viewModel, even in param
+        val reviewManager = ReviewManagerFactory.create(this)
+        val request = reviewManager.requestReviewFlow()
+        request.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // We got the ReviewInfo object
+                val reviewInfo = task.result
+
+                val flow = reviewManager.launchReviewFlow(this, reviewInfo)
+                flow.addOnCompleteListener { _ ->
+                    // The flow has finished. The API does not indicate whether the user
+                    // reviewed or not, or even whether the review dialog was shown. Thus, no
+                    // matter the result, we continue our app flow.
+                }
+            } else {
+                // There was some problem, log or handle the error code.
+                @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
+                Log.e("DrawerViewModel", "Error requesting review: $reviewErrorCode")
             }
         }
     }
