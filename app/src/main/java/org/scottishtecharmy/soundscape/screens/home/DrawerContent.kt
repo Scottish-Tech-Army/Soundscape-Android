@@ -29,8 +29,8 @@ import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 
 @Composable
 fun DrawerContent(
-    onNavigate: (String) -> Unit,
     drawerState: DrawerState,
+    onNavigate: (String) -> Unit,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
 ) {

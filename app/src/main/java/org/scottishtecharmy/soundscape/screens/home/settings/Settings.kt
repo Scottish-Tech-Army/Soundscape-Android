@@ -43,7 +43,7 @@ fun SettingsPreview() {
 @Composable
 fun Settings(
     onNavigateUp: () -> Unit,
-    mockData : MockHearingPreviewData?
+    mockData : MockHearingPreviewData? // TODO set SettingsViewModel in param of SettingsScreen, and create SettingContent
 ) {
 
     var viewModel : SettingsViewModel? = null
