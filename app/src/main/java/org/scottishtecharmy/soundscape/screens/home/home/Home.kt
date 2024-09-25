@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material.icons.rounded.LocationOn
@@ -41,7 +42,7 @@ import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview // TODO fix preview when we stop sending viewmodel down to the view tree
 @Composable
-fun HomePreview() {
+fun HomePreview2() {
     Home(
         latitude = 10.0,
         longitude = 1.0,
@@ -49,6 +50,11 @@ fun HomePreview() {
         onNavigate = {},
         onMapLongClick = {},
         onMarkerClick = { true },
+        getMyLocation = {},
+        getWhatsAheadOfMe = {},
+        getWhatsAroundMe = {},
+        shareLocation = {},
+        rateSoundscape = {},
     )
 }
 
@@ -60,6 +66,11 @@ fun Home(
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
+    getMyLocation: () -> Unit,
+    getWhatsAroundMe: () -> Unit,
+    getWhatsAheadOfMe: () -> Unit,
+    shareLocation: () -> Unit,
+    rateSoundscape: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -67,7 +78,14 @@ fun Home(
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { DrawerContent(onNavigate, drawerState, coroutineScope) },
+        drawerContent = {
+            DrawerContent(
+                onNavigate = onNavigate,
+                drawerState = drawerState,
+                shareLocation = shareLocation,
+                rateSoundscape = rateSoundscape
+            )
+                        },
         gesturesEnabled = false,
         modifier = modifier,
     ) {
@@ -79,7 +97,11 @@ fun Home(
                 )
             },
             bottomBar = {
-                HomeBottomAppBar()
+                HomeBottomAppBar(
+                    getMyLocation = getMyLocation,
+                    getWhatsAroundMe = getWhatsAroundMe,
+                    getWhatsAheadOfMe = getWhatsAheadOfMe,
+                )
             },
             floatingActionButton = {},
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -88,7 +110,7 @@ fun Home(
                 latitude = latitude,
                 longitude = longitude,
                 heading = heading,
-                innerPadding = innerPadding, // TODO move ?
+                modifier = Modifier.padding(innerPadding),
                 onNavigate = onNavigate,
                 searchBar = {
                     MainSearchBar(

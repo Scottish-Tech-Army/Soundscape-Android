@@ -42,7 +42,10 @@ fun SettingsPreview() {
 }
 
 @Composable
-fun Settings(onNavigate: (String) -> Unit, mockData : MockHearingPreviewData?) {
+fun Settings(
+    onNavigate: (String) -> Unit,
+    mockData : MockHearingPreviewData?
+) {
 
     var viewModel : SettingsViewModel? = null
     if(mockData == null)

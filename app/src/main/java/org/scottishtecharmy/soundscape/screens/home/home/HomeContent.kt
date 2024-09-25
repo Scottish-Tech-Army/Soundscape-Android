@@ -3,11 +3,10 @@ package org.scottishtecharmy.soundscape.screens.home.home
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
@@ -22,16 +21,14 @@ fun HomeContent(
     latitude: Double?,
     longitude: Double?,
     heading: Float,
-    innerPadding: PaddingValues,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
     searchBar: @Composable () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier =
-            Modifier
-                .padding(innerPadding),
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         searchBar()
@@ -96,4 +93,18 @@ fun HomeContent(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewHomeContent(){
+    HomeContent(
+        latitude = 10.0,
+        longitude = 1.0,
+        heading = 0.0f,
+        onNavigate = {},
+        onMapLongClick = {},
+        onMarkerClick = { true },
+        searchBar = {}
+    )
 }

@@ -17,28 +17,25 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
-import org.scottishtecharmy.soundscape.viewmodels.DrawerViewModel
 
 @Composable
 fun DrawerContent(
     onNavigate: (String) -> Unit,
     drawerState: DrawerState,
-    scope: CoroutineScope,
-    drawerViewModel: DrawerViewModel = hiltViewModel<DrawerViewModel>(),
+    shareLocation: () -> Unit,
+    rateSoundscape: () -> Unit,
 ) {
     val context = LocalContext.current
-
+    val scope = rememberCoroutineScope()
     val notAvailableText = "This is not implemented yet."
     val notAvailableToast = {
         Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
@@ -89,12 +86,12 @@ fun DrawerContent(
             icon = Icons.Rounded.MailOutline,
         )
         DrawerMenuItem(
-            onClick = { drawerViewModel?.rateSoundscape(context as MainActivity) },
+            onClick = { rateSoundscape() },
             label = stringResource(R.string.menu_rate),
             icon = Icons.Rounded.Star,
         )
         DrawerMenuItem(
-            onClick = { drawerViewModel?.shareLocation(context) },
+            onClick = { shareLocation() },
             label = stringResource(R.string.share_title),
             icon = Icons.Rounded.IosShare,
         )

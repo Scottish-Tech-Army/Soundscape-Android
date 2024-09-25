@@ -26,33 +26,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.viewmodels.AheadOfMeViewModel
-import org.scottishtecharmy.soundscape.viewmodels.MyLocationViewModel
-import org.scottishtecharmy.soundscape.viewmodels.WhatsAroundMeViewModel
 
 @Composable
-fun HomeBottomAppBar(useView: Boolean = true) {
+fun HomeBottomAppBar(
+    getMyLocation: () -> Unit,
+    getWhatsAroundMe: () -> Unit,
+    getWhatsAheadOfMe: () -> Unit,
+    modifier : Modifier = Modifier
+) {
     val context = LocalContext.current
     val notAvailableText = "This is not implemented yet."
     val notAvailableToast = {
         Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
     }
 
-    var myLocationViewModel: MyLocationViewModel? = null
-    var whatsAroundMeViewModel: WhatsAroundMeViewModel? = null
-    var aheadOfMeViewModel: AheadOfMeViewModel? = null
-    if (useView)
-        {
-            myLocationViewModel = hiltViewModel<MyLocationViewModel>()
-            whatsAroundMeViewModel = hiltViewModel<WhatsAroundMeViewModel>()
-            aheadOfMeViewModel = hiltViewModel<AheadOfMeViewModel>()
-        }
-
     BottomAppBar(
         modifier =
-        Modifier
+        modifier
             .height(150.dp)
             .clip(RoundedCornerShape(4.dp, 4.dp, 0.dp, 0.dp)),
         containerColor = MaterialTheme.colorScheme.primary,
@@ -79,7 +70,7 @@ fun HomeBottomAppBar(useView: Boolean = true) {
             ) {
                 Button(
                     onClick = {
-                        myLocationViewModel?.myLocation()
+                        getMyLocation()
                     },
                     shape = RectangleShape,
                 ) {
@@ -101,7 +92,7 @@ fun HomeBottomAppBar(useView: Boolean = true) {
                 }
 
                 Button(
-                    onClick = { whatsAroundMeViewModel?.whatsAroundMe() },
+                    onClick = { getWhatsAroundMe() },
                     shape = RectangleShape,
                 ) {
                     Column {
@@ -122,7 +113,7 @@ fun HomeBottomAppBar(useView: Boolean = true) {
                 }
 
                 Button(
-                    onClick = { aheadOfMeViewModel?.aheadOfMe() },
+                    onClick = { getWhatsAheadOfMe() },
                     shape = RectangleShape,
                 ) {
                     Column {

@@ -12,6 +12,7 @@ import javax.inject.Inject
 class LocationDetailsViewModel @Inject constructor(private val soundscapeServiceConnection : SoundscapeServiceConnection): ViewModel() {
 
     private var serviceConnection : SoundscapeServiceConnection? = null
+
     fun createBeacon(latitude: Double, longitude: Double) {
         soundscapeServiceConnection.soundscapeService?.createBeacon(latitude, longitude)
     }
