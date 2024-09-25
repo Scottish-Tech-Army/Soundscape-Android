@@ -2,12 +2,9 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -19,11 +16,9 @@ fun MarkersAndRoutesAppBar(showAddIcon: Boolean,
 
     CustomAppBar(
         customTitle = stringResource(R.string.search_view_markers),
-        customContentDescription = LocalContext.current.getString(R.string.search_view_markers),
         onNavigateUp = onNavigateUp,
         showAddIcon = showAddIcon,
-        onNavigateToDestination = onNavigateToDestination,
-        addIconDescription = stringResource(R.string.general_alert_add)
+        onAddClicked = onNavigateToDestination,
     )
 }
 

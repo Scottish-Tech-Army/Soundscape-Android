@@ -68,37 +68,3 @@ fun IntroductionTheme(content: @Composable () -> Unit) {
     }
 }
 
-@Composable
-fun IntroductionThemeBlue(content: @Composable () -> Unit) {
-    MaterialTheme {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(blueGradientBackgroundIntro)) {
-            content()
-        }
-    }
-}
-
-@Composable
-fun BaseTheme(content: @Composable () -> Unit) {
-    MaterialTheme(typography = TopBarTypography) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Background1)
-        ) {
-            content()
-        }
-    }
-}
-
-@Composable
-fun BackgroundBlue2Theme(content: @Composable () -> Unit) {
-    MaterialTheme {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .background(BackgroundBlue2)) {
-            content()
-        }
-    }
-}

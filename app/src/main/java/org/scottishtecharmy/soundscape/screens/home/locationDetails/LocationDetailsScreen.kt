@@ -13,8 +13,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
 import org.scottishtecharmy.soundscape.mapui.RamaniMapUi
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
@@ -63,7 +61,6 @@ fun LocationDetails(
     ) {
         CustomAppBar(
             customTitle = "Location Details", // TODO translate
-            customContentDescription = "Location details screen", // TODO translate
             onNavigateUp = onNavigateUp,
         )
         Text(
