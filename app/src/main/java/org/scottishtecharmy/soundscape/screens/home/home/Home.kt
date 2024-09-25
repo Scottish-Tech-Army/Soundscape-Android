@@ -48,6 +48,7 @@ fun HomePreview2() {
         longitude = null,
         beaconLocation = null,
         heading = 0.0f,
+        highlightedPointsOfInterest = false,
         onNavigate = {},
         onMapLongClick = {},
         onMarkerClick = { true },
@@ -65,6 +66,7 @@ fun Home(
     longitude: Double?,
     beaconLocation: LatLng?,
     heading: Float,
+    highlightedPointsOfInterest: Boolean,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
@@ -113,6 +115,7 @@ fun Home(
                 longitude = longitude,
                 beaconLocation = beaconLocation,
                 heading = heading,
+                highlightedPointsOfInterest = highlightedPointsOfInterest,
                 modifier = Modifier.padding(innerPadding),
                 onNavigate = onNavigate,
                 searchBar = {

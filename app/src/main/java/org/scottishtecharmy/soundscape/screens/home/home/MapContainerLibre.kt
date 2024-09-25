@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +18,7 @@ import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
+import org.maplibre.android.style.layers.PropertyFactory
 import org.ramani.compose.awaitMap
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
@@ -30,6 +32,7 @@ fun MapContainerLibre(
     longitude: Double,
     beaconLocation: LatLng?,
     heading: Float,
+    highlightedPointsOfInterest : Boolean,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
@@ -42,7 +45,6 @@ fun MapContainerLibre(
                     longitude = longitude,
                 ),
             )
-            .zoom(15.0)
             .bearing(heading.toDouble())
             .build()
     }
@@ -84,7 +86,19 @@ fun MapContainerLibre(
                 val symbol =
                     symbolManager.create(symbolOptions)
                 symbolManager.update(symbol)
+
+                // TODO test if Food POI working
+                val foodLayer = style.getLayer("Food")
+                Log.d("Fanny","foodLayer $foodLayer")
+                var highlightSize = 1F
+                if (highlightedPointsOfInterest) {
+                    highlightSize = 2F
+                }
+                foodLayer?.setProperties(PropertyFactory.iconSize(highlightSize))
             }
+            mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
+            mapLibre.uiSettings.isZoomGesturesEnabled = true
+            mapLibre.uiSettings.areAllGesturesEnabled()
             mapLibre.addOnMapLongClickListener { latitudeLongitude ->
                 onMapLongClick(latitudeLongitude)
                 false
@@ -94,7 +108,16 @@ fun MapContainerLibre(
             }
         }
 
-        mapLibre.cameraPosition = cameraPosition
+        mapLibre.cameraPosition = CameraPosition.Builder()
+            .target(
+                LatLng(
+                    latitude = latitude,
+                    longitude = longitude,
+                ),
+            )
+            .zoom(15.0) // we set the zoom only at init
+            .bearing(heading.toDouble())
+            .build()
 
     }
 
@@ -107,13 +130,14 @@ fun MapContainerLibre(
             beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
         }
     }
+
+
     AndroidView(
         modifier = modifier,
         factory = { map },
         update = { mapView ->
             coroutineScope.launch {
                 val mapLibre = mapView.awaitMap()
-                // Move camera to the same place to trigger the zoom update
                 mapLibre.cameraPosition = cameraPosition
                 if(beaconLocation != null) {
                     // beacon to display
