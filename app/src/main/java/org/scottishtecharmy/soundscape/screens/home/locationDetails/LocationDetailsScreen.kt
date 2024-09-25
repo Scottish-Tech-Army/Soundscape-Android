@@ -37,12 +37,13 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription) : Str
 
 
 @Composable
-fun LocationDetailsScreen(navController : NavController,
+fun LocationDetailsScreen(
                     locationDescription : LocationDescription,
+                    onNavigateUp: () -> Unit,
                     viewModel: LocationDetailsViewModel = hiltViewModel(),
 ) {
     LocationDetails(
-        navController = navController, // TODO move up navigation event
+        onNavigateUp = onNavigateUp,
         locationDescription = locationDescription,
         createBeacon = { latitude, longitude ->
             viewModel.createBeacon(latitude, longitude)
@@ -51,15 +52,20 @@ fun LocationDetailsScreen(navController : NavController,
 }
 
 @Composable
-fun LocationDetails(navController : NavController,
+fun LocationDetails(
                     locationDescription : LocationDescription,
+                    onNavigateUp: () -> Unit,
                     createBeacon: (latitude: Double, longitude: Double) -> Unit,
                     modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxHeight(),
     ) {
-        CustomAppBar("Location Details", "Location details screen", navController)
+        CustomAppBar(
+            customTitle = "Location Details", // TODO translate
+            customContentDescription = "Location details screen", // TODO translate
+            onNavigateUp = onNavigateUp,
+        )
         Text(
             text = locationDescription.title,
             modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
@@ -92,10 +98,10 @@ fun LocationDetails(navController : NavController,
 fun LocationDetailsPreview() {
     SoundscapeTheme {
         LocationDetails(
-            navController = rememberNavController(),
             LocationDescription("", 0.0, 0.0),
             createBeacon = { latitude, longitude ->
-            }
+            },
+            onNavigateUp = {}
         )
     }
 }

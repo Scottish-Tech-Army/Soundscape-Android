@@ -24,19 +24,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomAppBar(customTitle : String,
                  customContentDescription : String,
-                 navController: NavController,
+                 onNavigateUp: () -> Unit,
+                 onNavigateToDestination: (() -> Unit)? = null,
                  showAddIcon: Boolean = false,
-                 addIconLink : String = "",
                  addIconDescription : String = "") {
 
     CenterAlignedTopAppBar(
@@ -46,12 +43,7 @@ fun CustomAppBar(customTitle : String,
                 iconModifier = Modifier.size(40.dp),
                 onClick = {
 //                    navController.popBackStack(MainScreens.Home.route, false)
-                    navController.navigate(HomeRoutes.Home.route) {
-                        popUpTo(HomeRoutes.Home.route) {
-                            inclusive = false  // Ensures Home screen is not popped from the stack
-                        }
-                        launchSingleTop = true  // Prevents multiple instances of Home
-                    }
+                    onNavigateUp()
                 },
                 iconText = stringResource(R.string.ui_back_button_title),
                 contentDescription = stringResource(R.string.ui_back_button_title),
@@ -69,7 +61,9 @@ fun CustomAppBar(customTitle : String,
                 CustomIconButton(
                     modifier = Modifier.defaultMinSize(48.dp),
                     iconModifier = Modifier.size(30.dp),
-                    onClick = {navController.navigate(addIconLink)},
+                    onClick = {
+                        onNavigateToDestination?.invoke()
+                    },
                     icon = Icons.Default.Add,
                     contentDescription = addIconDescription,
                 )
@@ -97,7 +91,8 @@ fun CustomAppBarPreview() {
             "Test app bar",
             "An app bar test screen",
             showAddIcon = false,
-            navController = rememberNavController()
+            onNavigateUp = {},
+            onNavigateToDestination = {}
         )
     }
 

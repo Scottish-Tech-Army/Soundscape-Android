@@ -9,7 +9,9 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import javax.inject.Inject
 
 @HiltViewModel
-class LocationDetailsViewModel @Inject constructor(private val soundscapeServiceConnection : SoundscapeServiceConnection): ViewModel() {
+class LocationDetailsViewModel @Inject constructor(
+    private val soundscapeServiceConnection : SoundscapeServiceConnection
+): ViewModel() {
 
     private var serviceConnection : SoundscapeServiceConnection? = null
 

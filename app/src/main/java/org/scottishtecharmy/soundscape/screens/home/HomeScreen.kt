@@ -59,7 +59,9 @@ fun HomeScreen(
                 beaconLocation = beaconLocation.value,
                 heading = heading.value,
                 highlightedPointsOfInterest = highlightedPointsOfInterest.value,
-                onNavigate = { dest -> navController.navigate(dest) },
+                onNavigate = {
+                    dest -> navController.navigate(dest)
+                },
                 onMapLongClick = { latLong ->
                     viewModel.createBeacon(latLong)
                 },
@@ -77,7 +79,7 @@ fun HomeScreen(
         // Settings screen
         composable(HomeRoutes.Settings.route) {
             // Always just pop back out of settings, don't add to the queue
-            Settings(onNavigate = { navController.navigateUp() }, null)
+            Settings(onNavigateUp = { navController.navigateUp() }, null)
         }
 
         // Location details screen
@@ -89,8 +91,15 @@ fun HomeScreen(
             val ld = gson.fromJson(json, LocationDescription::class.java)
 
             LocationDetailsScreen(
-                navController = navController,
                 locationDescription = ld,
+                onNavigateUp = {
+                    navController.navigate(HomeRoutes.Home.route) {
+                        popUpTo(HomeRoutes.Home.route) {
+                            inclusive = false  // Ensures Home screen is not popped from the stack
+                        }
+                        launchSingleTop = true  // Prevents multiple instances of Home
+                    }
+                }
             )
         }
 

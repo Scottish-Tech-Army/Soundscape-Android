@@ -17,7 +17,7 @@ import org.scottishtecharmy.soundscape.BuildConfig
 fun rememberMapViewWithLifecycle(): MapView {
     val context = LocalContext.current
     val mapView = remember {
-        MapLibre.getInstance(context, BuildConfig.TILE_PROVIDER_API_KEY, WellKnownTileServer.MapTiler) // TODO inject ?
+        MapLibre.getInstance(context, BuildConfig.TILE_PROVIDER_API_KEY, WellKnownTileServer.MapTiler)
         return@remember MapView(context)
     }
 

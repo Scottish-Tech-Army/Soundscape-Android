@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
@@ -13,14 +12,18 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MarkersAndRoutesAppBar(showAddIcon: Boolean, navController: NavController) {
+fun MarkersAndRoutesAppBar(showAddIcon: Boolean,
+                           onNavigateUp: () -> Unit,
+                           onNavigateToDestination: () -> Unit
+) {
 
-    CustomAppBar(stringResource(R.string.search_view_markers),
-                 LocalContext.current.getString(R.string.search_view_markers),
-                 navController,
-                 showAddIcon,
-                 HomeRoutes.AddRoute.route,
-                 stringResource(R.string.general_alert_add)
+    CustomAppBar(
+        customTitle = stringResource(R.string.search_view_markers),
+        customContentDescription = LocalContext.current.getString(R.string.search_view_markers),
+        onNavigateUp = onNavigateUp,
+        showAddIcon = showAddIcon,
+        onNavigateToDestination = onNavigateToDestination,
+        addIconDescription = stringResource(R.string.general_alert_add)
     )
 }
 
@@ -30,7 +33,9 @@ fun MarkersAndRoutesAppBarPreview() {
     SoundscapeTheme {
         MarkersAndRoutesAppBar(
             showAddIcon = true,
-            navController = rememberNavController()
+            onNavigateUp = {},
+            onNavigateToDestination = {}
+
         )
     }
 }
