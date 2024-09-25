@@ -8,6 +8,14 @@ It's very early days in the project. We've done various proof of concept, and th
 ## Get started
 The quickest way to get started building the app is to run Android Studio and select `File/New/Project from version control` from the menu. Select `Git` as the version control and paste in the HTTPS code link for this project from above. Click on Clone and the project will download, open and initialize ready to build.
 
+
+Then you'll need to setup the tileProviderApiKey in your local.properties file. Ask someone from the team to get that key.
+like this : 
+
+```shell
+tileProviderApiKey=TODO_COMPLETE_WITH_CORRECT_KEY
+```
+
 ## CI
 See the document [here](actions.md) to learn about the GitHub actions used and how they are configured.
 
@@ -17,8 +25,6 @@ See the document [here](mapping.md) for information about how we configure and u
 ## Release notes
 [Here](release-notes.md) are the latest release notes.
 
-## Current documents
-* [Audio API](audio-API.md)
-* [Framework choices](framework.md)
-* [Pathway to product](pathway-to-product.md)
-* [Screenshots](screenshots.md)
+## Code documentation
+* [App architecture](architecture.md) is an introduction to the app structure and its UI.
+* [Audio API](audio-API.md) describes the interface with the audio engine for beacon and text to speech play out.

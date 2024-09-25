@@ -31,28 +31,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-#   These steps built the screenshots from the application, but it means that the docs build
-#   takes much longer and the output isn't that great. I'm going to move the screenshots to be an
-#   artifact from the nightly and release actions instead.
-#
-#      - name: Setup Gradle
-#        uses: gradle/actions/setup-gradle@v3
-#
-#      - name: Set Up JDK
-#        uses: actions/setup-java@v4
-#        with:
-#          distribution: 'zulu' # See 'Supported distributions' for available options
-#          java-version: '17'
-#
-#      - name: Generate screenshots
-#        run : ./gradlew  updateDebugScreenshotTest
-#
-#      - name: Copy screenshots into docs directory and generate HTML
-#        run : |
-#          cp -r ./app/src/debug/screenshotTest/reference/org/scottishtecharmy/soundscape/* ./docs
-#          cd ./docs
-#          ./image.sh
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
