@@ -6,14 +6,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.BottomNavigationBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun MarkersAndRoutesScreen(navController: NavController, selectedTab: String?) {
@@ -28,7 +29,12 @@ fun MarkersAndRoutesScreen(navController: NavController, selectedTab: String?) {
         topBar = {
             MarkersAndRoutesAppBar(
                 showAddIcon = showAddIcon,
-                navController = navController, // Main navController to navigate outside
+                onNavigateUp = {
+                    navController.navigateUp()
+                },
+                onNavigateToDestination = {
+                    navController.navigate(HomeRoutes.AddRoute.route)
+                },
             )
         },
         bottomBar = {

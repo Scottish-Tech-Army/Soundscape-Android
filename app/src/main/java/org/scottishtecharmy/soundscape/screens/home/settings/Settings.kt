@@ -26,7 +26,6 @@ import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.onboarding.MockHearingPreviewData
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
@@ -43,7 +42,7 @@ fun SettingsPreview() {
 
 @Composable
 fun Settings(
-    onNavigate: (String) -> Unit,
+    onNavigateUp: () -> Unit,
     mockData : MockHearingPreviewData?
 ) {
 
@@ -68,7 +67,7 @@ fun Settings(
     ) {
         IconButton(
             onClick = {
-                onNavigate(HomeRoutes.Home.route)
+                onNavigateUp()
             },
         ) {
             Icon(
