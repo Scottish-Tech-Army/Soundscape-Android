@@ -9,11 +9,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.gson.GsonBuilder
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.mapui.RamaniMapUi
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
@@ -60,7 +62,7 @@ fun LocationDetails(
             .fillMaxHeight(),
     ) {
         CustomAppBar(
-            customTitle = "Location Details", // TODO translate
+            customTitle =  stringResource(R.string.location_detail_title_default),
             onNavigateUp = onNavigateUp,
         )
         Text(

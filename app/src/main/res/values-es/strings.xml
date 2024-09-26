@@ -147,4 +147,6 @@
     <string name="route_no_waypoints_hint_2">Puede reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editándola.</string>
     <string name="general_alert_add">Agregar</string>
 
+    <string name="location_detail_title_default">Detalles de la ubicación</string>
+
 </resources>

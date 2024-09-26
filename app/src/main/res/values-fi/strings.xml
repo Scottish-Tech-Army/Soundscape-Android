@@ -147,4 +147,6 @@
     <string name="route_no_waypoints_hint_2">Voit järjestää reittipisteet uudelleen reitillä koska tahansa muokkaamalla reittiä.</string>
     <string name="general_alert_add">Lisää</string>
 
+    <string name="location_detail_title_default">Sijainnin tiedot</string>
+
 </resources>

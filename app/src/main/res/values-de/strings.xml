@@ -147,4 +147,6 @@
     <string name="route_no_waypoints_hint_2">Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit ändern, indem Sie die Route bearbeiten.</string>
     <string name="general_alert_add">Hinzufügen</string>
 
+    <string name="location_detail_title_default">Standortdetails</string>
+
 </resources>

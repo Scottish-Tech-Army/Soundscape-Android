@@ -148,4 +148,6 @@
     <string name="route_no_waypoints_hint_2">Você pode reorganizar a ordem dos localizadores na rota quando quiser. Basta editar a rota.</string>
     <string name="general_alert_add">Adicionar</string>
 
+    <string name="location_detail_title_default">Detalhes da Localização</string>
+
 </resources>

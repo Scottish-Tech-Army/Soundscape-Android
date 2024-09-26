@@ -148,4 +148,6 @@
     <string name="route_no_waypoints_hint_2">Du kan til enhver tid omarrangere rækkefølgen af vejpunkter langs en rute ved at redigere ruten.</string>
     <string name="general_alert_add">Tilføj</string>
 
+    <string name="location_detail_title_default">Oplysninger om placering</string>
+
 </resources>
