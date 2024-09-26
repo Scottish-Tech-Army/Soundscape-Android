@@ -143,6 +143,7 @@ TtsAudioSource::TtsAudioSource(const AudioEngine *ae MAYBE_UNUSED, PositionedAud
 {
     // The file descriptor is owned by the object in Kotlin, so use a duplicate.
     m_TtsSocket = dup(tts_socket);
+    m_SourceSocketForDebug = tts_socket;
 
     // Set it to non-blocking
     int flags = fcntl(m_TtsSocket, F_GETFL, 0);
@@ -151,6 +152,7 @@ TtsAudioSource::TtsAudioSource(const AudioEngine *ae MAYBE_UNUSED, PositionedAud
 
 TtsAudioSource::~TtsAudioSource()
 {
+    TRACE("~TtsAudioSource close socket %d", m_SourceSocketForDebug);
     close(m_TtsSocket);
 }
 
@@ -190,10 +192,10 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
     auto write_ptr = (unsigned char *)data;
     while(data_length > 0) {
         bytes_read = read(m_TtsSocket, write_ptr, data_length);
-        //TRACE("%p: read %zd/%zd/%u", this, bytes_read, total_bytes_read, data_length);
+        //TRACE("%d: read %zd/%zd/%u", m_SourceSocketForDebug, bytes_read, total_bytes_read, data_length);
         if(bytes_read == 0) {
             if(total_bytes_read == 0) {
-                TRACE("TTS EOF");
+                TRACE("TTS EOF socket %d", m_SourceSocketForDebug);
                 m_pParent->Eof();
                 return FMOD_ERR_FILE_EOF;
             }
@@ -203,7 +205,7 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
             // No data - socket is non-blocking
             ++m_ReadsWithoutData;
             if(m_ReadsWithoutData > TIMEOUT_READS_WITHOUT_DATA) {
-                //TRACE("TTS Timed out");
+                TRACE("TTS Timed out socket %d", m_SourceSocketForDebug);
                 m_pParent->Eof();
                 return FMOD_ERR_FILE_EOF;
             }
@@ -216,7 +218,7 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
         total_bytes_read += bytes_read;
     }
 
-    //TRACE("TTS callback %zd/%u", total_bytes_read, data_length);
+    //TRACE("TTS callback on socket %d %zd/%u", m_SourceSocketForDebug, total_bytes_read, data_length);
     memset(write_ptr, 0, data_length);
 
     return FMOD_OK;
