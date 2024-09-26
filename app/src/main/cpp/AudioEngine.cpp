@@ -201,6 +201,10 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
         {
             std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+
+            // Clear the queued up audio
+            ClearQueue();
+
             // Deleting the PositionedAudio calls RemoveBeacon which removes it from m_Beacons
             while(!m_Beacons.empty())
             {
@@ -277,7 +281,9 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             if(start_next && !m_QueuedBeacons.empty())
             {
                 TRACE("PlayNow on next queued beacon");
-                (*m_QueuedBeacons.begin())->PlayNow();
+                auto queued_beacon = *m_QueuedBeacons.begin();
+                m_Beacons.insert(queued_beacon);
+                queued_beacon->PlayNow();
             }
         }
 
@@ -306,19 +312,34 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         return &msc_BeaconDescriptors[m_BeaconTypeIndex];
     }
 
+    void AudioEngine::ClearQueue(){
+        std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+        TRACE("ClearQueue %zu + %zu", m_Beacons.size(), m_QueuedBeacons.size());
+        for(const auto &queued_beacon: m_QueuedBeacons)
+        {
+            delete queued_beacon;
+        }
+        m_QueuedBeacons.clear();
+    }
+
     void AudioEngine::AddBeacon(PositionedAudio *beacon, bool queued)
     {
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
-        m_Beacons.insert(beacon);
-        TRACE("AddBeacon -> %zu beacons", m_Beacons.size());
         if(queued)
         {
             if(m_QueuedBeacons.empty()) {
                 TRACE("First beacon in queue - PlayNow");
                 beacon->PlayNow();
+                m_Beacons.insert(beacon);
             }
             m_QueuedBeacons.push_back(beacon);
             TRACE("Queue of %zu", m_QueuedBeacons.size());
+        }
+        else
+        {
+            m_Beacons.insert(beacon);
+            TRACE("AddBeacon -> %zu beacons", m_Beacons.size());
+
         }
     }
 
@@ -462,4 +483,16 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
         return reinterpret_cast<jlong>(tts.release());
     }
     return 0L;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_clearNativeTextToSpeechQueue(JNIEnv *env MAYBE_UNUSED,
+                                                                                          jobject thiz MAYBE_UNUSED,
+                                                                                          jlong engine_handle) {
+
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if(ae) {
+        ae->ClearQueue();
+    }
 }

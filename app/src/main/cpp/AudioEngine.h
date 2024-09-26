@@ -34,6 +34,8 @@ namespace soundscape {
             longitude = m_LastPos.x;
         }
 
+        void ClearQueue();
+
     private:
         FMOD::System * m_pSystem;
         FMOD_VECTOR m_LastPos = {0.0f, 0.0f, 0.0f};
