@@ -15,11 +15,11 @@ There are 5 secrets required, those are what were used when creating the signing
 
 ### Google services
 The `google-services.json` file is not super secret so long as the server is configured appropriately, but we protect it just in case. The approach taken is the same as for the keystore: 
-* GOOGLE_SERVICES - base64 encoded `google-services.json` generated from the firebase console  
+* GOOGLE_SERVICES - base64 encoded `google-services.json` generated from the firebase console. This was generated on linux with `cat google-services.json | openssl enc -A -base64` which generates bas64 without line breaks.
 * GOOGLE_SERVICES_PATH - not really secret, always set to `google-services.json`
 
 There's a mock `google-services.json` file checked in to GitHub to allow builds without access to secrets to complete.
-Authenticate for talking to the Firebase servers is done using [google-github-actions/auth@v2](https://github.com/google-github-actions/auth). We pass in the `credentials_json`, see [this page](https://github.com/google-github-actions/auth?tab=readme-ov-file#inputs-service-account-key-json) for details of what this is and how to format it.  
+Authenticate for talking to the Firebase servers is done using [google-github-actions/auth@v2](https://github.com/google-github-actions/auth). We pass in the `credentials_json`, see [this page](https://github.com/google-github-actions/auth?tab=readme-ov-file#inputs-service-account-key-json) for details of what this is and how to format it. (To remove line breaks run `cat soundscape-android-CREDENTIALS-NAME.json | tr -d '\012\015'`).  
 * GCLOUD_CREDENTIALS_JSON - the value passed in to  `credentials_json`.
 * FIREBASE_PROJECT_ID - This is the Project ID from Firebase. 
 
