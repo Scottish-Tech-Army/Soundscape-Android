@@ -148,4 +148,6 @@
     <string name="route_no_waypoints_hint_2">U kunt de volgorde van routepunten langs een route op elke gewenst moment aanpassen door de route te bewerken.</string>
     <string name="general_alert_add">Toevoegen</string>
 
+    <string name="location_detail_title_default">Locatiedetails</string>
+
 </resources>

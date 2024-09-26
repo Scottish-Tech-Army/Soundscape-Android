@@ -147,4 +147,6 @@
     <string name="route_no_waypoints_hint_2">Vous pouvez réorganiser l’ordre des points de repère sur un Itinéraire à tout moment en modifiant l’Itinéraire.</string>
     <string name="general_alert_add">Ajouter</string>
 
+    <string name="location_detail_title_default">Détails de l’emplacement</string>
+
 </resources>

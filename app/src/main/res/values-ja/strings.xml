@@ -148,4 +148,6 @@
     <string name="route_no_waypoints_hint_2">ウェイポイントの順序は、ルートを進む間いつでもルートを編集することで変更できます。</string>
     <string name="general_alert_add">追加</string>
 
+    <string name="location_detail_title_default">場所の詳細</string>
+
 </resources>
