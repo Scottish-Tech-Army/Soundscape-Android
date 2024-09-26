@@ -14,7 +14,12 @@ class HearingViewModel @Inject constructor(private val audioEngine : NativeAudio
         //  queued text to speech. That resulted in the Listen button only working one time.
         //  Calling updateGeometry (which in the service is called every 30ms) sorts this out.
         //  We should consider another way of doing this.
+        audioEngine.clearTextToSpeechQueue()
         audioEngine.updateGeometry(0.0, 0.0,0.0)
         audioEngine.createTextToSpeech(0.0,0.0, speechText)
+    }
+
+    fun silenceSpeech() {
+        audioEngine.clearTextToSpeechQueue()
     }
 }

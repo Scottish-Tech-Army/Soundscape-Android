@@ -156,6 +156,7 @@ fun Hearing(onNavigate: (String) -> Unit, useView : Boolean) {
                         OnboardButton(
                             text = stringResource(R.string.ui_continue),
                             onClick = {
+                                viewModel?.silenceSpeech()
                                 onNavigate(OnboardingScreens.AudioBeacons.route)
                             },
                             modifier = Modifier.fillMaxWidth()
