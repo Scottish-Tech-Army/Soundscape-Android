@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import org.scottishtecharmy.soundscape.ui.theme.TopBarTypography
 
 @Composable
 fun CustomAppBarTitle(
@@ -15,7 +14,7 @@ fun CustomAppBarTitle(
     modifier: Modifier = Modifier, // Modifier for the Box
     textModifier: Modifier = Modifier, // Modifier for the Text component
     contentAlignment: Alignment = Alignment.CenterStart, // Alignment for the Box content
-    textStyle: TextStyle? = TopBarTypography.titleLarge // The style to apply to the title
+    textStyle: TextStyle? = MaterialTheme.typography.headlineMedium // The style to apply to the title
 ) {
     Box(
         modifier = modifier,

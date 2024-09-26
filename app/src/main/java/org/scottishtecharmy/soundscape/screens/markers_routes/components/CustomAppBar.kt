@@ -5,21 +5,23 @@ import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,22 +29,23 @@ import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomAppBar(customTitle : String,
-                 customContentDescription : String,
                  onNavigateUp: () -> Unit,
-                 onNavigateToDestination: (() -> Unit)? = null,
-                 showAddIcon: Boolean = false,
-                 addIconDescription : String = "") {
-
-    CenterAlignedTopAppBar(
-        navigationIcon = {
-            CustomIconButton(
-                modifier = Modifier.width(80.dp),
+                 onAddClicked: (() -> Unit)? = null,
+                 showAddIcon: Boolean = false
+) {
+    Surface(
+        color = MaterialTheme.colorScheme.primary
+    ) {
+        Row(
+            modifier  = Modifier.height(IntrinsicSize.Min).fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            IconWithTextButton(
                 iconModifier = Modifier.size(40.dp),
                 onClick = {
-//                    navController.popBackStack(MainScreens.Home.route, false)
                     onNavigateUp()
                 },
                 iconText = stringResource(R.string.ui_back_button_title),
@@ -50,50 +53,58 @@ fun CustomAppBar(customTitle : String,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
             )
-        },
-        actions = {
-            // Only show add route icon when on the routes tab
+
+            CustomAppBarTitle(
+                title = customTitle,
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxHeight().weight(1f)
+            )
+
             AnimatedVisibility(
                 visible = showAddIcon,
                 enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkHorizontally()
+                exit = fadeOut() + shrinkHorizontally(),
+                modifier = Modifier.fillMaxHeight()
             ) {
-                CustomIconButton(
-                    modifier = Modifier.defaultMinSize(48.dp),
-                    iconModifier = Modifier.size(30.dp),
+                IconButton(
                     onClick = {
-                        onNavigateToDestination?.invoke()
-                    },
-                    icon = Icons.Default.Add,
-                    contentDescription = addIconDescription,
-                )
+                        onAddClicked?.invoke()
+                    }
+                ){
+                    Icon(
+                        Icons.Default.Add,
+                        contentDescription = stringResource(R.string.general_alert_add),
+                    )
+                }
             }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary,
-        ),
-        title = {
-            CustomAppBarTitle(
-                modifier = Modifier.semantics { contentDescription = customContentDescription },
-                title = customTitle,
-                contentAlignment = Alignment.Center
-            )
         }
-    )
+    }
 }
 
+@Preview(showBackground = true, fontScale = 2f)
 @Preview(showBackground = true)
 @Composable
 fun CustomAppBarPreview() {
     SoundscapeTheme {
         CustomAppBar(
-            "Test app bar",
-            "An app bar test screen",
+            "Test app bar with long title",
             showAddIcon = false,
             onNavigateUp = {},
-            onNavigateToDestination = {}
+            onAddClicked = {}
         )
     }
+}
 
+@Preview(showBackground = true, fontScale = 2f)
+@Preview(showBackground = true)
+@Composable
+fun CustomAppBarWithActionButtonPreview() {
+    SoundscapeTheme {
+        CustomAppBar(
+            "Test app bar",
+            showAddIcon = true,
+            onNavigateUp = {},
+            onAddClicked = {}
+        )
+    }
 }
