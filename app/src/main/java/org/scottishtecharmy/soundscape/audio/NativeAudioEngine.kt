@@ -21,6 +21,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private var ttsSockets = HashMap<String, Array<ParcelFileDescriptor>>()
     private var currentUtteranceId: String? = null
     private var textToSpeechInitialized : Boolean = false
+    private var utteranceIncrementingCount : Int = 0
 
     private lateinit var textToSpeech : TextToSpeech
     private lateinit var ttsSocket : ParcelFileDescriptor
@@ -30,6 +31,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private external fun createNativeBeacon(engineHandle: Long, latitude: Double, longitude: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
+    private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
@@ -45,10 +47,11 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             engineHandle = 0
 
             for(ttsSocketPair in ttsSockets){
-                Log.e("TTS", "Close socket pair " + ttsSocketPair.key)
+                Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
                 ttsSocketPair.value[0].close()
                 ttsSocketPair.value[1].close()
             }
+            ttsSockets.clear()
 
             textToSpeech.shutdown()
             org.fmod.FMOD.close()
@@ -65,6 +68,17 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             textToSpeech = TextToSpeech(context, this)
         }
     }
+
+    private fun clearOutUtteranceSockets(utteranceId : String) {
+        Log.d("TTS", "Closing socket pair $utteranceId")
+        val sockets = ttsSockets[utteranceId]
+        if(sockets != null ) {
+            sockets[0].closeWithError("Finished")
+            sockets[1].close()
+        }
+        ttsSockets.remove(utteranceId)
+    }
+
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
 
@@ -76,9 +90,6 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
 
-                // TODO: Need to test what happens with this code on phones with
-                //  older API.
-
                 override fun onDone(utteranceId: String) {
                     // TODO: This never seems to be called, why?
                     Log.e("TTS", "OnDone $utteranceId")
@@ -89,24 +100,25 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
                     replaceWith = ReplaceWith("")
                 )
                 override fun onError(utteranceId: String) {
-                    // TODO: Need to test this path and handle it correctly
-                    Log.e("TTS", "OnError $utteranceId")
+                    Log.e("TTS", "OnError deprecated $utteranceId")
+                    clearOutUtteranceSockets(utteranceId)
                 }
 
                 override fun onStart(utteranceId: String) {
-                    Log.e("TTS", "OnStart $utteranceId")
-                    if(currentUtteranceId != null){
-                        Log.e("TTS", "Closing socket pair $currentUtteranceId")
-                        ttsSockets[currentUtteranceId]!![0].closeWithError("Finished")
-                        ttsSockets[currentUtteranceId]!![1].close()
-                        ttsSockets.remove(currentUtteranceId)
+                    Log.d("TTS", "OnStart $utteranceId")
+                    currentUtteranceId?.let {
+                        clearOutUtteranceSockets(it)
                     }
                     currentUtteranceId = utteranceId
                 }
 
                 override fun onError(utteranceId: String?, errorCode: Int) {
-                    // TODO: Need to test this path and handle it correctly
-                    Log.e("TTS", "OnError2 $utteranceId")
+                    // This path is triggered when shutting down the AudioEngine with multiple
+                    // speech queued.
+                    Log.d("TTS", "OnError $utteranceId")
+                    utteranceId?.let {
+                        clearOutUtteranceSockets(it)
+                    }
                 }
             })
         }
@@ -161,7 +173,12 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
                 val params = Bundle()
                 params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, ttsSocket.toString())
-                textToSpeech.synthesizeToFile(text, params, ttsSocket, ttsSocket.toString())
+                // We use the file descriptor as part of the utterance id as that's easy to track
+                // in the C++ code. However, because file descriptors get reused we qualify the
+                // utteranceId with an incrementing count.
+                utteranceIncrementingCount += 1
+                val utteranceId = ttsSocketPair[1].fd.toString() + "/" + utteranceIncrementingCount
+                textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
 
                 // Store the socket pair in a hashmap indexed by utteranceId
                 ttsSockets[ttsSocket.toString()] = ttsSocketPair
@@ -174,6 +191,29 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         }
     }
 
+    override fun clearTextToSpeechQueue() {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L) {
+                if (!awaitTextToSpeechInitialization())
+                    return
+
+                // Stop the Text to Speech engine
+                textToSpeech.stop()
+                currentUtteranceId = null
+
+                // Close all of the previously queued sockets to terminate their playback
+                for(ttsSocketPair in ttsSockets){
+                    Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
+                    ttsSocketPair.value[0].closeWithError("Finished")
+                    ttsSocketPair.value[1].close()
+                }
+                ttsSockets.clear()
+
+                // Clear the queue in the engine
+                clearNativeTextToSpeechQueue(engineHandle)
+            }
+        }
+    }
     override fun getAvailableSpeechLanguages() : Set<Locale> {
         if (!awaitTextToSpeechInitialization())
             return emptySet()

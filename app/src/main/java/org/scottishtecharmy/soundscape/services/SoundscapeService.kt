@@ -455,6 +455,8 @@ class SoundscapeService : Service() {
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
 
+        audioEngine.clearTextToSpeechQueue()
+
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
@@ -562,6 +564,8 @@ class SoundscapeService : Service() {
         val configuration = Configuration(applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
+
+        audioEngine.clearTextToSpeechQueue()
 
         // super categories are "information", "object", "place", "landmark", "mobility", "safety"
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
@@ -742,6 +746,7 @@ class SoundscapeService : Service() {
         configuration.setLocale(configLocale)
         val localizedContext = applicationContext.createConfigurationContext(configuration)
 
+        audioEngine.clearTextToSpeechQueue()
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
