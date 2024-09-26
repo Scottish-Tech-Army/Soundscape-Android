@@ -80,6 +80,7 @@ namespace soundscape {
     private:
         int m_TtsSocket;
         int m_ReadsWithoutData = 0;
+        int m_SourceSocketForDebug;
     };
 
 }
