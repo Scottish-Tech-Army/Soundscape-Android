@@ -28,3 +28,4 @@ See the document [here](mapping.md) for information about how we configure and u
 ## Code documentation
 * [App architecture](architecture.md) is an introduction to the app structure and its UI.
 * [Audio API](audio-API.md) describes the interface with the audio engine for beacon and text to speech play out.
+* [Dokka generated docs](dokka/index.html) contains docs auto-generated from comments in the code.

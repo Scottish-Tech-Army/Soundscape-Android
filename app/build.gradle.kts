@@ -12,6 +12,7 @@ plugins {
     id("com.google.firebase.crashlytics")
     alias(libs.plugins.screenshot)
     id("com.google.protobuf")
+    id("org.jetbrains.dokka")
 }
 
 android {
@@ -231,4 +232,8 @@ dependencies {
     // Library for preferences in compose
     implementation(libs.composepreferencelibrary)
     implementation(libs.androidx.preference.ktx)
+
+    // Dokka plugin
+    dokkaPlugin(libs.html.mermaid.dokka.plugin)
+
 }

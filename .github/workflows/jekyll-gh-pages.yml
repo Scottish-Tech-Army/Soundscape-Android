@@ -34,6 +34,21 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      - name: Dokka build
+        run: |
+          ./gradlew dokkaHtml
+          mkdir ./docs/dokka
+          cp -rf app/build/dokka/html/* ./docs/dokka 
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
