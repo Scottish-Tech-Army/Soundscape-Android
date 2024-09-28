@@ -99,7 +99,7 @@ class SoundscapeService : Service() {
     private var tilesJob: Job? = null
 
     // Audio engine
-    private var audioEngine = NativeAudioEngine()
+    var audioEngine = NativeAudioEngine()
     private var audioBeacon: Long = 0
 
     // Flow to return beacon location
@@ -109,8 +109,8 @@ class SoundscapeService : Service() {
     // OkhttpClientInstance
     private lateinit var okhttpClientInstance: OkhttpClientInstance
 
-    // Realm
-    private lateinit var realm: Realm
+    // Realms
+    private lateinit var tileDataRealm: Realm
 
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
@@ -194,7 +194,7 @@ class SoundscapeService : Service() {
             directionProvider = AndroidDirectionProvider(this)
 
             // create new RealmDB or open existing
-            startRealm()
+            startRealms()
 
             // Activity Recognition
             // test
@@ -341,7 +341,7 @@ class SoundscapeService : Service() {
             locationProvider.getCurrentLatitude() ?: 0.0,
             locationProvider.getCurrentLongitude() ?: 0.0
         )
-        val tilesDao = TilesDao(realm)
+        val tilesDao = TilesDao(tileDataRealm)
         val tilesRepository = TilesRepository(tilesDao)
         okhttpClientInstance = OkhttpClientInstance(application)
 
@@ -418,8 +418,9 @@ class SoundscapeService : Service() {
         }
     }
 
-    private fun startRealm() {
-        realm = RealmConfiguration.getInstance()
+    private fun startRealms() {
+        tileDataRealm = RealmConfiguration.getTileDataInstance()
+        RealmConfiguration.getMarkersInstance()
     }
 
     /*    fun deleteRealm(){
@@ -479,7 +480,7 @@ class SoundscapeService : Service() {
 
             for (tile in tileGridQuadKeys) {
                 val frozenResult =
-                    realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenResult != null) {
                     val roadsString = frozenResult.roads
 
@@ -595,7 +596,7 @@ class SoundscapeService : Service() {
             for (tile in tileGridQuadKeys) {
                 //Check the db for the tile
                 val frozenTileResult =
-                    realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenTileResult != null) {
                     val poiString = frozenTileResult.pois
                     val poiFeatureCollection = poiString.let {
@@ -775,7 +776,7 @@ class SoundscapeService : Service() {
             for (tile in tileGridQuadKeys) {
                 //Check the db for the tile
                 val frozenTileResult =
-                    realm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
                 if (frozenTileResult != null) {
                     val roadString = frozenTileResult.roads
                     val intersectionsString = frozenTileResult.intersections
@@ -945,6 +946,11 @@ class SoundscapeService : Service() {
         }
     }
 
+    private lateinit var routePlayer : RoutePlayer
+    fun setupCurrentRoute() {
+        routePlayer = RoutePlayer(this)
+        routePlayer.setupCurrentRoute()
+    }
 
     companion object {
         private const val TAG = "SoundscapeService"

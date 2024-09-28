@@ -131,6 +131,9 @@ class MainActivity : AppCompatActivity() {
                     if(intent != null) {
                         soundscapeIntents.parse(intent, this@MainActivity)
                     }
+
+                    // Pick the current route
+                    setupCurrentRoute()
                 }
             }
         }
@@ -240,6 +243,10 @@ class MainActivity : AppCompatActivity() {
             startSoundscapeService()
             soundscapeServiceConnection.tryToBindToServiceIfRunning()
         }
+    }
+
+    fun setupCurrentRoute() {
+        soundscapeServiceConnection.soundscapeService?.setupCurrentRoute()
     }
 
     /**

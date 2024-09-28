@@ -8,9 +8,14 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
+import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
+import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.utils.parseGpxFile
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
@@ -89,28 +94,28 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
 
     fun parse(intent : Intent, mainActivity: MainActivity) {
 
-        // There are several different types of Intent that we handle in our app
-        //
-        // geo: These come from clicking on a location in another app e.g. Google Calendar. It
-        //    contains a latitude and longitude and an optional text description.
-        //
-        // soundscape: This is our own format and we can do what we want with it. Initially it was
-        //    the same format as geo but put the app into 'Street Preview' mode with the user
-        //    positioned at the location provided.
-        //
-        // shared plain/text : If a user selects 'share' in Google Maps and Soundscape as the
-        //    destination app, then we receive a Google Maps URL via this type of intent. To use it
-        //    we need to follow it to get the real (non-tiny) URL and then pass that into the
-        //    Android Geocoder to parse it.
-        //
-        // The behaviour for all of these URLs is now to open a LocationDetails screen which then
-        // gives the options of:
-        //                          Create Beacon
-        //                          Street Preview
-        //                          Add Marker
-        //
-        // Navigation to the LocationDetails is done via the main activity navigator.
-        //
+        /** There are several different types of Intent that we handle in our app
+
+         geo: These come from clicking on a location in another app e.g. Google Calendar. It
+            contains a latitude and longitude and an optional text description.
+
+         soundscape: This is our own format and we can do what we want with it. Initially it was
+            the same format as geo but put the app into 'Street Preview' mode with the user
+            positioned at the location provided.
+
+         shared plain/text : If a user selects 'share' in Google Maps and Soundscape as the
+            destination app, then we receive a Google Maps URL via this type of intent. To use it
+            we need to follow it to get the real (non-tiny) URL and then pass that into the
+            Android Geocoder to parse it.
+
+         The behaviour for all of these URLs is now to open a LocationDetails screen which then
+         gives the options of:
+                                  Create Beacon
+                                  Street Preview
+                                  Add Marker
+
+         Navigation to the LocationDetails is done via the main activity navigator.
+        */
         when {
             intent.action == Intent.ACTION_SEND -> {
                 if ("text/plain" == intent.type) {
@@ -149,6 +154,50 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                         val ld =
                             LocationDescription(URLEncoder.encode(uriData, "utf-8"), latitude.toDouble(), longitude.toDouble())
                         mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
+                    }
+                }
+                else {
+                    if (Intent.ACTION_VIEW == intent.action || Intent.ACTION_MAIN == intent.action) {
+                        val data = intent.data
+                        if (data != null) {
+                            if ("file" == data.scheme) {
+                                if (data.path != null) {
+                                    Log.e(TAG, "Import data from ${data.path}")
+                                }
+                            } else if ("content" == data.scheme) {
+                                Log.d(TAG, "Import data from content ${data.path}")
+                                val uri = intent.data
+                                if(uri != null) {
+                                    try {
+                                        val input =
+                                            mainActivity.contentResolver.openInputStream(uri)
+
+                                        if (input != null) {
+                                            val routeData = parseGpxFile(input)
+
+                                            // The parsing has succeeded, write the result to a
+                                            // new markers database.
+                                            // TODO: This intent should really open up the RouteDetails
+                                            //  page and defer to that the action of inserting the
+                                            //  route into the database. This is a temporary solution
+                                            //  so that we can work on the code that uses the routes.
+                                            val realm = RealmConfiguration.getMarkersInstance(true)
+                                            val routesDao = RoutesDao(realm)
+                                            val routesRepository = RoutesRepository(routesDao)
+                                            runBlocking {
+                                                launch {
+                                                    // Write the routeData to the database
+                                                    Log.d("gpx", "Inserting route")
+                                                    routesRepository.insertRoute(routeData)
+                                                }
+                                            }
+                                        }
+                                    } catch(e: Exception) {
+                                        Log.e(TAG, "Failed to import GPX from intent: $e")
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
