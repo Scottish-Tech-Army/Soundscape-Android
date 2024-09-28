@@ -50,6 +50,14 @@
             </intent-filter>
 
             <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="content"/>
+                <data android:mimeType="application/octet-stream" />
+            </intent-filter>
+
+            <intent-filter>
                 <!-- geo intents to set a beacon -->
                 <data android:scheme="geo" />
                 <action android:name="android.intent.action.VIEW"/>

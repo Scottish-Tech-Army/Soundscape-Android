@@ -16,6 +16,10 @@ class RoutesRepository(private val routesDao: RoutesDao) {
         routesDao.getRoute(name)
     }
 
+    suspend fun getRoutes() = withContext(Dispatchers.IO){
+        routesDao.getRoutes()
+    }
+
     suspend fun deleteRoute(name: String) = withContext(Dispatchers.IO) {
         routesDao.deleteRoute(name)
     }

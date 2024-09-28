@@ -35,6 +35,10 @@ class RoutesDao(private val realm: Realm) {
         return realm.query<RouteData>("name == $0", name).find()
     }
 
+    fun getRoutes(): List<RouteData> {
+        return realm.query<RouteData>().find()
+    }
+
     fun getWaypoints(): List<RoutePoint> {
         return realm.query<RoutePoint>().find()
     }
