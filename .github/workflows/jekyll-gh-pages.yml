@@ -5,8 +5,10 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-    paths:
-      - docs/**
+# Now that we build Dokka documentation, we need to trigger a rebuild on ANY push and not just
+# those to the docs sub-directory.
+#    paths:
+#      - docs/**
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
