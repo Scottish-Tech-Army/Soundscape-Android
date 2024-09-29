@@ -32,7 +32,6 @@ fun MapContainerLibre(
     longitude: Double,
     beaconLocation: LatLng?,
     heading: Float,
-    highlightedPointsOfInterest : Boolean,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
@@ -86,15 +85,6 @@ fun MapContainerLibre(
                 val symbol =
                     symbolManager.create(symbolOptions)
                 symbolManager.update(symbol)
-
-                // TODO test if Food POI working
-                val foodLayer = style.getLayer("Food")
-                Log.d("Fanny","foodLayer $foodLayer")
-                var highlightSize = 1F
-                if (highlightedPointsOfInterest) {
-                    highlightSize = 2F
-                }
-                foodLayer?.setProperties(PropertyFactory.iconSize(highlightSize))
             }
             mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
             mapLibre.uiSettings.isZoomGesturesEnabled = true
