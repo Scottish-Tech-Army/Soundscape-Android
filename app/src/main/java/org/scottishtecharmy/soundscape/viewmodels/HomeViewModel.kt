@@ -13,6 +13,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,8 +38,10 @@ class HomeViewModel @Inject constructor(
     val highlightedPointsOfInterest: StateFlow<Boolean> = _highlightedPointsOfInterest.asStateFlow()
     private val _beaconLocation: MutableStateFlow<LatLng?> = MutableStateFlow(null) // Question, can we have more beacon ?
     val beaconLocation: StateFlow<LatLng?> = _beaconLocation.asStateFlow()
+    private var job = Job()
 
     init {
+        job = Job()
         serviceConnection = soundscapeServiceConnection
         viewModelScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
@@ -49,6 +52,8 @@ class HomeViewModel @Inject constructor(
                 } else {
                     // The service has gone away so remove the current location marker
                     _location.value = null
+
+                    stopMonitoringLocation()
                 }
             }
         }
@@ -56,7 +61,8 @@ class HomeViewModel @Inject constructor(
 
     private fun startMonitoringLocation() {
         Log.d(TAG, "ViewModel startMonitoringLocation")
-        viewModelScope.launch {
+        job = Job()
+        viewModelScope.launch(job) {
             // Observe location updates from the service
             serviceConnection?.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
@@ -66,7 +72,7 @@ class HomeViewModel @Inject constructor(
             }
         }
 
-        viewModelScope.launch {
+        viewModelScope.launch(job) {
             // Observe orientation updates from the service
             serviceConnection?.getOrientationFlow()?.collectLatest { value ->
                 if (value != null) {
@@ -74,7 +80,7 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
-        viewModelScope.launch {
+        viewModelScope.launch(job) {
             // Observe beacon location update from the service so we can show it on the map
             serviceConnection?.getBeaconFlow()?.collectLatest { value ->
                 Log.d(TAG, "beacon collected $value")
@@ -85,6 +91,10 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun stopMonitoringLocation() {
+        job.cancel()
     }
 
     private fun updateLocationOnMap(newLocation: Location) {

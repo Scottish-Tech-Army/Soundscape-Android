@@ -37,6 +37,20 @@ class SoundscapeServiceConnection @Inject constructor(@ApplicationContext contex
         return soundscapeService?.beaconFlow
     }
 
+    fun setStreetPreviewMode(on : Boolean, latitude: Double, longitude: Double) {
+
+        soundscapeService?.let { service ->
+
+            _serviceBoundState.value = false
+            service.setStreetPreviewMode(
+                true,
+                latitude.toDouble(),
+                longitude.toDouble()
+            )
+            _serviceBoundState.value = true
+        }
+    }
+
     // needed to communicate with the service.
     private val connection = object : ServiceConnection {
 

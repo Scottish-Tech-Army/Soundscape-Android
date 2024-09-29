@@ -47,6 +47,9 @@ fun LocationDetailsScreen(
         locationDescription = locationDescription,
         createBeacon = { latitude, longitude ->
             viewModel.createBeacon(latitude, longitude)
+        },
+        enableStreetPreview = { latitude, longitude ->
+            viewModel.enableStreetPreview(latitude, longitude)
         }
     )
 }
@@ -56,6 +59,7 @@ fun LocationDetails(
                     locationDescription : LocationDescription,
                     onNavigateUp: () -> Unit,
                     createBeacon: (latitude: Double, longitude: Double) -> Unit,
+                    enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
                     modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
@@ -89,6 +93,18 @@ fun LocationDetails(
                 modifier = Modifier.fillMaxWidth(),
             )
         }
+        Button(
+            onClick = {
+                enableStreetPreview(locationDescription.latitude, locationDescription.longitude)
+                onNavigateUp()
+            }
+        ) {
+            Text(
+                text = "Enter Street Preview",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
    }
 }
 
@@ -99,6 +115,8 @@ fun LocationDetailsPreview() {
         LocationDetails(
             LocationDescription("", 0.0, 0.0),
             createBeacon = { latitude, longitude ->
+            },
+            enableStreetPreview = { latitude, longitude ->
             },
             onNavigateUp = {}
         )
