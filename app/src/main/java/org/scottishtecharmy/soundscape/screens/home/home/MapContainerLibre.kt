@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -18,7 +17,6 @@ import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
-import org.maplibre.android.style.layers.PropertyFactory
 import org.ramani.compose.awaitMap
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
@@ -52,8 +50,7 @@ fun MapContainerLibre(
         SymbolOptions()
             .withLatLng(LatLng(latitude, longitude))
             .withIconImage(USER_POSITION_MARKER_NAME)
-            .withIconSize(1.25f)
-            .withIconAnchor("bottom")
+            .withIconAnchor("center")
     }
 
     val beaconLocationMarker = remember { mutableStateOf<Marker?>(null) }
@@ -62,8 +59,8 @@ fun MapContainerLibre(
     val drawable = remember {
         ResourcesCompat.getDrawable(
             res,
-            R.drawable.icons8_navigation_24,
-            null,
+            R.drawable.navigation,
+            null
         )
     }
     val coroutineScope = rememberCoroutineScope()
@@ -74,21 +71,28 @@ fun MapContainerLibre(
         val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
         val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
         mapLibre.setStyle(styleUrl) { style ->
-            drawable?.let { drawable ->
-                style.addImage(USER_POSITION_MARKER_NAME, drawable)
-                val symbolManager = SymbolManager(map, mapLibre, style)
-                // Disable symbol collisions
-                symbolManager.iconAllowOverlap = true
-                symbolManager.iconIgnorePlacement = true
+            style.addImage(USER_POSITION_MARKER_NAME, drawable!!)
+            val symbolManager = SymbolManager(map, mapLibre, style)
+            // Disable symbol collisions
+            symbolManager.iconAllowOverlap = true
+            symbolManager.iconIgnorePlacement = true
 
-                // update with a new symbol at specified lat/lng
-                val symbol =
-                    symbolManager.create(symbolOptions)
-                symbolManager.update(symbol)
-            }
+            // update with a new symbol at specified lat/lng
+            val symbol = symbolManager.create(symbolOptions)
+            symbolManager.update(symbol)
+
             mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
             mapLibre.uiSettings.isZoomGesturesEnabled = true
-            mapLibre.uiSettings.areAllGesturesEnabled()
+            // The map rotation is set by the compass heading, so we disable it from the UI
+            mapLibre.uiSettings.isRotateGesturesEnabled = false
+
+            // The phone is always at the center of the map, so listen to the camera position
+            // for redrawing the phone location.
+            mapLibre.addOnCameraMoveListener {
+                //get the camera position and use it to set the symbol location
+                symbol.setLatLng(mapLibre.cameraPosition.target)
+                symbolManager.update(symbol)
+            }
             mapLibre.addOnMapLongClickListener { latitudeLongitude ->
                 onMapLongClick(latitudeLongitude)
                 false
@@ -120,7 +124,6 @@ fun MapContainerLibre(
             beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
         }
     }
-
 
     AndroidView(
         modifier = modifier,
