@@ -92,30 +92,29 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
         }
     }
 
+    /** There are several different types of Intent that we handle in our app
+
+    geo: These come from clicking on a location in another app e.g. Google Calendar. It
+    contains a latitude and longitude and an optional text description.
+
+    soundscape: This is our own format and we can do what we want with it. Initially it was
+    the same format as geo but put the app into 'Street Preview' mode with the user
+    positioned at the location provided.
+
+    shared plain/text : If a user selects 'share' in Google Maps and Soundscape as the
+    destination app, then we receive a Google Maps URL via this type of intent. To use it
+    we need to follow it to get the real (non-tiny) URL and then pass that into the
+    Android Geocoder to parse it.
+
+    The behaviour for all of these URLs is now to open a LocationDetails screen which then
+    gives the options of:
+    Create Beacon
+    Street Preview
+    Add Marker
+
+    Navigation to the LocationDetails is done via the main activity navigator.
+     */
     fun parse(intent : Intent, mainActivity: MainActivity) {
-
-        /** There are several different types of Intent that we handle in our app
-
-         geo: These come from clicking on a location in another app e.g. Google Calendar. It
-            contains a latitude and longitude and an optional text description.
-
-         soundscape: This is our own format and we can do what we want with it. Initially it was
-            the same format as geo but put the app into 'Street Preview' mode with the user
-            positioned at the location provided.
-
-         shared plain/text : If a user selects 'share' in Google Maps and Soundscape as the
-            destination app, then we receive a Google Maps URL via this type of intent. To use it
-            we need to follow it to get the real (non-tiny) URL and then pass that into the
-            Android Geocoder to parse it.
-
-         The behaviour for all of these URLs is now to open a LocationDetails screen which then
-         gives the options of:
-                                  Create Beacon
-                                  Street Preview
-                                  Add Marker
-
-         Navigation to the LocationDetails is done via the main activity navigator.
-        */
         when {
             intent.action == Intent.ACTION_SEND -> {
                 if ("text/plain" == intent.type) {
@@ -145,15 +144,28 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                     val latitude = matchResult.groupValues[2]
                     val longitude = matchResult.groupValues[3]
 
-                    try {
-                        check(Geocoder.isPresent())
-                        useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
+                    if(matchResult.groupValues[1] == "soundscape") {
+                        // Switch to Street Preview mode
+                        mainActivity.soundscapeServiceConnection.setStreetPreviewMode(
+                            true,
+                            latitude.toDouble(),
+                            longitude.toDouble()
+                        )
                     }
-                    catch(e : Exception) {
-                        // No Geocoder available, so just report the uriData
-                        val ld =
-                            LocationDescription(URLEncoder.encode(uriData, "utf-8"), latitude.toDouble(), longitude.toDouble())
-                        mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
+                    else {
+                        try {
+                            check(Geocoder.isPresent())
+                            useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
+                        } catch (e: Exception) {
+                            // No Geocoder available, so just report the uriData
+                            val ld =
+                                LocationDescription(
+                                    URLEncoder.encode(uriData, "utf-8"),
+                                    latitude.toDouble(),
+                                    longitude.toDouble()
+                                )
+                            mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
+                        }
                     }
                 }
                 else {

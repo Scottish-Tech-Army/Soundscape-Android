@@ -128,42 +128,30 @@ class SoundscapeService : Service() {
         return binder
     }
 
+    fun setStreetPreviewMode(on : Boolean, latitude: Double, longitude: Double) {
+        if(on) {
+            // Use static location, but phone's direction
+            locationProvider = StaticLocationProvider(latitude, longitude)
+            locationProvider.start(this)
+            directionProvider.start(audioEngine, locationProvider)
+        } else
+        {
+            // Switch back to phone's location and direction
+            locationProvider = AndroidLocationProvider(this)
+            directionProvider = AndroidDirectionProvider(this)
+        }
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         Log.d(TAG, "onStartCommand $running")
-
-        var restarted = false
-        if (intent != null) {
-            val beaconLatitude = intent.getDoubleExtra("beacon-latitude", Double.NaN)
-            val beaconLongitude = intent.getDoubleExtra("beacon-longitude", Double.NaN)
-
-            if ((!beaconLatitude.isNaN()) && (!beaconLongitude.isNaN())) {
-                createBeacon(beaconLatitude, beaconLongitude)
-            }
-
-            val mockLatitude = intent.getDoubleExtra("mock-latitude", Double.NaN)
-            val mockLongitude = intent.getDoubleExtra("mock-longitude", Double.NaN)
-
-            if ((!mockLatitude.isNaN()) && (!mockLongitude.isNaN())) {
-                // We have a location passed in, so use that is the location provider in place of
-                // the AndroidLocationProvider. Restart/start all of the providers
-                Log.d(TAG, "Update service location to: $mockLatitude,$mockLongitude")
-                locationProvider = StaticLocationProvider(mockLatitude, mockLongitude)
-                locationProvider.start(this)
-                directionProvider.start(audioEngine, locationProvider)
-
-                restarted = true
-            }
-        }
 
         if (!running) {
             running = true
             startAsForegroundService()
 
-            if (!restarted) {
-                locationProvider.start(this)
-                directionProvider.start(audioEngine, locationProvider)
-            }
+            locationProvider.start(this)
+            directionProvider.start(audioEngine, locationProvider)
 
             // Reminds the user every hour that the Soundscape service is still running in the background
             startServiceStillRunningTicker()

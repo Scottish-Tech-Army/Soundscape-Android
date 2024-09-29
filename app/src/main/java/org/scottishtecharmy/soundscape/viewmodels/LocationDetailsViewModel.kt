@@ -19,6 +19,11 @@ class LocationDetailsViewModel @Inject constructor(
         soundscapeServiceConnection.soundscapeService?.createBeacon(latitude, longitude)
     }
 
+    fun enableStreetPreview(latitude: Double, longitude: Double) {
+        soundscapeServiceConnection.setStreetPreviewMode(true, latitude, longitude)
+
+    }
+
     init {
         serviceConnection = soundscapeServiceConnection
         viewModelScope.launch {
