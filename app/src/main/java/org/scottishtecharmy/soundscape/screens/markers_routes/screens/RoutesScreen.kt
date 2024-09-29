@@ -4,9 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -49,7 +47,7 @@ fun RoutesScreen(navController: NavController) {
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
                 stringResource(R.string.routes_no_routes_title),
-                style = MaterialTheme.typography.headlineLarge,
+                style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )
@@ -57,7 +55,7 @@ fun RoutesScreen(navController: NavController) {
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
                 stringResource(R.string.routes_no_routes_hint_1),
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )
@@ -65,7 +63,7 @@ fun RoutesScreen(navController: NavController) {
         Box(modifier = Modifier.padding(top = 10.dp, bottom = 40.dp)) {
             Text(
                 stringResource(R.string.routes_no_routes_hint_2),
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )

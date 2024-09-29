@@ -1,23 +1,18 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,21 +20,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.actions.onAddWaypointsClicked
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBarTitle
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -59,29 +51,11 @@ fun AddRouteScreen(navController: NavController) {
     }
     Scaffold(
         topBar = {
-                CenterAlignedTopAppBar(
-                    navigationIcon = {
-                        IconWithTextButton(
-                            modifier = Modifier.width(95.dp),
-                            iconModifier = Modifier.size(40.dp),
-                            onClick = { navController.popBackStack()},
-                            iconText = stringResource(R.string.general_alert_cancel),
-                            contentDescription = stringResource(R.string.general_alert_cancel),
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp
-                        )
-                    },
-                    title = {
-                        CustomAppBarTitle(
-                            title = stringResource(R.string.route_detail_action_create),
-                            contentAlignment = Alignment.Center
-                        )
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        titleContentColor = Color.White
-                    )
-                )
+            CustomAppBar(
+                title = stringResource(R.string.route_detail_action_create),
+                navigationButtonTitle = stringResource(R.string.general_alert_cancel),
+                onNavigateUp = { navController.popBackStack()}
+            )
         },
         content = { padding ->
             Column(
@@ -92,9 +66,15 @@ fun AddRouteScreen(navController: NavController) {
                     .padding(16.dp)
             ) {
                 Text(
+                    stringResource(R.string.route_no_waypoints_hint_1),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
+                    )
+                Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
                     text = stringResource(R.string.markers_sort_button_sort_by_name),
-                    style = MaterialTheme.typography.headlineLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.surfaceBright
                 )
                 CustomTextField(
@@ -105,7 +85,7 @@ fun AddRouteScreen(navController: NavController) {
                 Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
                     text = stringResource(R.string.route_detail_edit_description),
-                    style = MaterialTheme.typography.headlineLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.surfaceBright
                 )
                 CustomTextField(
@@ -113,18 +93,14 @@ fun AddRouteScreen(navController: NavController) {
                     value = description,
                     onValueChange = { newText -> description = newText },
                 )
-                Text(
-                    modifier = Modifier.padding(top = 15.dp, bottom = 30.dp),
-                    text = stringResource(R.string.route_detail_edit_description_default),
-                    style = MaterialTheme.typography.headlineMedium,
-                )
+
                 HorizontalDivider(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     thickness = 1.dp
                 )
                 CustomButton(
                     Modifier
-                        .width(300.dp)
+                        .fillMaxWidth()
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp, bottom = 10.dp),
                     onClick = {
@@ -140,29 +116,14 @@ fun AddRouteScreen(navController: NavController) {
                     contentColor = MaterialTheme.colorScheme.onSecondary,
                     shape = RoundedCornerShape(10.dp),
                     text = stringResource(R.string.route_detail_edit_waypoints_button),
-                    textStyle = MaterialTheme.typography.headlineSmall,
+                    textStyle = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                 )
                 HorizontalDivider(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     thickness = 1.dp,
                 )
-                Box(
-                    modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        stringResource(R.string.route_no_waypoints_hint_1),
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.headlineMedium,
-                    )
-                    // TODO fix the formatting/alignment for the addition of the original iOS text below
-                    /*Text(
-                        stringResource(R.string.route_no_waypoints_hint_2),
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.headlineMedium,
-                    )*/
-                }
+                // TODO fix the formatting/alignment for the addition of the original iOS text below
             }
         }
     )

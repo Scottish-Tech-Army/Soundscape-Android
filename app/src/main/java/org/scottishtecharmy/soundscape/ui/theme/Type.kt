@@ -77,8 +77,7 @@ val Typography = Typography(
     // Default text style
     bodyLarge = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
+        fontSize = 22.sp,
         letterSpacing = 0.5.sp,
         lineHeightStyle = LineHeightStyle(
             alignment = Alignment.Center,
@@ -87,14 +86,12 @@ val Typography = Typography(
     ),
     bodyMedium = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
+        fontSize = 18.sp,
         letterSpacing = 0.25.sp,
     ),
     bodySmall = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
+        fontSize = 16.sp,
         letterSpacing = 0.4.sp,
     ),
     // Used for Button
