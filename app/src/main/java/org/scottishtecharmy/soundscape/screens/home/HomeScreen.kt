@@ -39,7 +39,6 @@ fun HomeScreen(
     val location = viewModel.location.collectAsStateWithLifecycle()
     val heading = viewModel.heading.collectAsStateWithLifecycle()
     val beaconLocation = viewModel.beaconLocation.collectAsStateWithLifecycle()
-    val highlightedPointsOfInterest = viewModel.highlightedPointsOfInterest.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -53,7 +52,6 @@ fun HomeScreen(
                 longitude = location.value?.longitude,
                 beaconLocation = beaconLocation.value,
                 heading = heading.value,
-                highlightedPointsOfInterest = highlightedPointsOfInterest.value,
                 onNavigate = {
                     dest -> navController.navigate(dest)
                 },
