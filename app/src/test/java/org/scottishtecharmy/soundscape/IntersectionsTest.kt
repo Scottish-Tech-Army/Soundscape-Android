@@ -1028,14 +1028,4 @@ class IntersectionsTest {
 
 
     }
-
-    @Test
-    fun roundAbout1Test(){
-        //          -2.616756333445551,
-        //          51.47947050553003
-    }
-
-
-
-
 }
