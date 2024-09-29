@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
+import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -18,6 +19,8 @@ import org.scottishtecharmy.soundscape.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.utils.getNearestRoad
@@ -25,8 +28,11 @@ import org.scottishtecharmy.soundscape.utils.getQuadrants
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.utils.getTileXY
+import org.scottishtecharmy.soundscape.utils.getXYTile
 import org.scottishtecharmy.soundscape.utils.lineStringIsCircular
 import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
+import org.scottishtecharmy.soundscape.utils.removeDuplicates
 
 class RoundaboutsTest {
     //TODO There are a lot of different types of roundabouts so this might take me a while to work out
@@ -192,5 +198,88 @@ class RoundaboutsTest {
         val roundabouts =
             moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
         println(roundabouts)
+    }
+
+    @Test
+    fun miniRoundaboutTest(){
+
+        // Soundscape seems to turn mini roundabouts into intersections so
+        // using a single tile from /16/32268/21813.json to test this and the location
+        // where there is definitely a mini roundabout
+        val currentLocation = LngLatAlt(-2.7428307423190006,
+            51.43595874012766)
+        val deviceHeading = 0.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJSONRoundaboutMini.featureCollectionRoundaboutMini)
+
+        // Get the roads from the tile
+        val testRoadsCollectionFromTileFeatureCollection =
+            getRoadsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // create FOV to pickup the roads
+        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testRoadsCollectionFromTileFeatureCollection
+        )
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest
+            )
+
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+
+        // get the nearest intersection in the FoV and the roads that make up the intersection
+        val testNearestIntersection = getNearestIntersection(
+            currentLocation,fovIntersectionsFeatureCollection)
+
+        // This will remove the duplicate "osm_ids" from the intersection
+        val cleanNearestIntersection = removeDuplicates(testNearestIntersection)
+
+        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+
+        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, deviceHeading)
+
+        val testIntersectionRoadNames = getIntersectionRoadNames(
+            cleanNearestIntersection, fovRoadsFeatureCollection)
+
+        // are any of the roads that make up the intersection circular?
+        for(road in testIntersectionRoadNames){
+            if (lineStringIsCircular(road.geometry as LineString)){
+                println("Circular path")
+            }
+
+        }
+        val intersectionLocation = cleanNearestIntersection.features[0].geometry as Point
+
+        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+            testNearestRoadBearing,
+            fovDistance,
+            RelativeDirections.COMBINED
+        )
+
+        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
+            testIntersectionRoadNames,
+            cleanNearestIntersection,
+            intersectionRelativeDirections)
+
+        Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
+        Assert.assertEquals("Elm Lodge Road", roadRelativeDirections.features[0].properties!!["name"])
+        Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
+        Assert.assertEquals("Elm Lodge Road", roadRelativeDirections.features[1].properties!!["name"])
+        Assert.assertEquals(5, roadRelativeDirections.features[2].properties!!["Direction"])
+        Assert.assertEquals("Green Pastures Road", roadRelativeDirections.features[2].properties!!["name"])
     }
 }
