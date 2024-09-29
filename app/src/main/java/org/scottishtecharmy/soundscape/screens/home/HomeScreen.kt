@@ -111,7 +111,7 @@ fun HomeScreen(
         ) {
             composable("${HomeRoutes.MarkersAndRoutes.route}/{tab}") { backStackEntry ->
                 val selectedTab = backStackEntry.arguments?.getString("tab")
-                MarkersAndRoutesScreen(navController = navController, selectedTab = selectedTab)
+                MarkersAndRoutesScreen(mainNavController = navController, selectedTab = selectedTab)
             }
 
             // Nested graph: Routes and Markers
@@ -124,6 +124,7 @@ fun HomeScreen(
         }
 
         // AddRouteScreen, accessible within the MarkersAndRoutesScreen
+        // TODO should not be at this level
         composable(HomeRoutes.AddRoute.route) {
             AddRouteScreen(navController = navController)
         }

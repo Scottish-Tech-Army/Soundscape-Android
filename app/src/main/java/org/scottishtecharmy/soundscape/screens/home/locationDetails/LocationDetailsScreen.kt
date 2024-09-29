@@ -79,7 +79,7 @@ fun LocationDetails(
             .fillMaxHeight(),
     ) {
         CustomAppBar(
-            customTitle =  stringResource(R.string.location_detail_title_default),
+            title =  stringResource(R.string.location_detail_title_default),
             onNavigateUp = onNavigateUp,
         )
         Text(

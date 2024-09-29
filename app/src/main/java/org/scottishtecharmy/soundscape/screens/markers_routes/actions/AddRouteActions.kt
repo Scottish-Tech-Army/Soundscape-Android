@@ -8,8 +8,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.validators.validat
 
 // Function to handle "Add Waypoints" button click
 fun onAddWaypointsClicked(
-    context: Context,
-    navController: NavController,
+    context: Context, // TODO remove
+    navController: NavController, // TODO send navigate event in param
     name: String,
     description: String,
     setNameError: (Boolean) -> Unit,

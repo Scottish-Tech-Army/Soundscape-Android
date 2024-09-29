@@ -27,7 +27,7 @@ fun IconWithTextButton(
     iconModifier: Modifier = Modifier,
     onClick: () -> Unit,
     icon: ImageVector = Icons.Default.ChevronLeft,
-    contentDescription: String = "",
+    contentDescription: String? = null,
     iconText: String = "",
     textColor: Color = MaterialTheme.colorScheme.onPrimary, // Icon text colour White set as with default
     iconTint: Color = MaterialTheme.colorScheme.onPrimary, // Icon colour with White set as default

@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
@@ -24,7 +22,7 @@ fun CustomTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = TextStyle(fontSize = 28.sp),
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     shape: Shape = RoundedCornerShape(5.dp),
     focusedBgColor: Color = MaterialTheme.colorScheme.onPrimary, // Default colour of white for TextField
     unfocusedBgColor: Color = MaterialTheme.colorScheme.onPrimary, // Default colour of white for TextField

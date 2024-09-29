@@ -1,12 +1,10 @@
-package org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens
+package org.scottishtecharmy.soundscape.screens.markers_routes.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -42,13 +40,13 @@ fun MarkersScreen(navController: NavController) {
                     id = R.drawable.marker_selected
                 ),
                 contentDescription = "marker icon",
-                modifier = Modifier.size(80.dp)
+                modifier = Modifier.size(60.dp)
             )
         }
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
                 stringResource(R.string.markers_no_markers_title),
-                style = MaterialTheme.typography.headlineLarge,
+                style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )
@@ -56,7 +54,7 @@ fun MarkersScreen(navController: NavController) {
         Box(modifier = Modifier.padding(top = 10.dp)) {
             Text(
                 stringResource(R.string.markers_no_markers_hint_1),
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )
@@ -64,7 +62,7 @@ fun MarkersScreen(navController: NavController) {
         Box(modifier = Modifier.padding(top = 10.dp, bottom = 40.dp)) {
             Text(
                 stringResource(R.string.markers_no_markers_hint_2),
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )

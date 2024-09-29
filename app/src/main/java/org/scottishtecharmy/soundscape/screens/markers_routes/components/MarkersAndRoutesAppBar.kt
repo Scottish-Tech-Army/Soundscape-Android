@@ -15,7 +15,8 @@ fun MarkersAndRoutesAppBar(showAddIcon: Boolean,
 ) {
 
     CustomAppBar(
-        customTitle = stringResource(R.string.search_view_markers),
+        title = stringResource(R.string.search_view_markers),
+        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
         onNavigateUp = onNavigateUp,
         showAddIcon = showAddIcon,
         onAddClicked = onNavigateToDestination,
