@@ -129,7 +129,11 @@ class MainActivity : AppCompatActivity() {
                 if (it) {
                     // The service has started, so parse the Intent
                     if(intent != null) {
-                        soundscapeIntents.parse(intent, this@MainActivity)
+                        if (intent.action != "") {
+                            soundscapeIntents.parse(intent, this@MainActivity)
+                            // Clear the action so that it doesn't happen on every screen rotate etc.
+                            intent.action = ""
+                        }
                     }
 
                     // Pick the current route
@@ -143,8 +147,10 @@ class MainActivity : AppCompatActivity() {
                 val navController = rememberNavController()
                 val destination by navigator.destination.collectAsState()
                 LaunchedEffect(destination) {
-                    if (navController.currentDestination?.route != destination) {
-                        navController.navigate(destination)
+                    if(destination != "") {
+                        if (navController.currentDestination?.route != destination) {
+                            navController.navigate(destination)
+                        }
                     }
                 }
                 HomeScreen(
