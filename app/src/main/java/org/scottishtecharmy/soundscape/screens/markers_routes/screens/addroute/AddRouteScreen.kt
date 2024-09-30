@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.markers_routes.screens
+package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -8,16 +8,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,29 +23,38 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.markers_routes.actions.onAddWaypointsClicked
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddRouteScreen(navController: NavController) {
-    var name by rememberSaveable { mutableStateOf("") }
-    var description by rememberSaveable { mutableStateOf("") }
-    // Checks whether name field has been completed
-    var nameError by rememberSaveable { mutableStateOf(false) }
-    // Checks whether description field has been completed
-    var descriptionError by rememberSaveable { mutableStateOf(false) }
+fun AddRouteScreen(
+    navController: NavController,
+    viewModel: AddRouteViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    val notAvailableText = "This is not implemented yet."
-    val notAvailableToast = {
-        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
+    // Observe navigation and trigger it if necessary
+    LaunchedEffect(uiState.navigateToMarkersAndRoutes) {
+        if (uiState.navigateToMarkersAndRoutes) {
+            navController.navigate("${HomeRoutes.MarkersAndRoutes.route}/routes") {
+                popUpTo(HomeRoutes.MarkersAndRoutes.route) {
+                    inclusive = true
+                }
+                launchSingleTop = true
+            }
+            viewModel.resetNavigationState()
+            Toast.makeText(context, "Not yet implemented", Toast.LENGTH_SHORT).show()
+        }
     }
+
     Scaffold(
         topBar = {
             CustomAppBar(
@@ -79,8 +85,8 @@ fun AddRouteScreen(navController: NavController) {
                 )
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = name,
-                    onValueChange = { newText -> name = newText },
+                    value = uiState.name,
+                    onValueChange = { newText -> viewModel.onNameChange(newText) },
                 )
                 Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
@@ -90,8 +96,8 @@ fun AddRouteScreen(navController: NavController) {
                 )
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = description,
-                    onValueChange = { newText -> description = newText },
+                    value = uiState.description,
+                    onValueChange = { newText -> viewModel.onDescriptionChange(newText) },
                 )
 
                 HorizontalDivider(
@@ -104,14 +110,8 @@ fun AddRouteScreen(navController: NavController) {
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp, bottom = 10.dp),
                     onClick = {
-                        onAddWaypointsClicked(
-                        context = context,
-                        navController = navController,
-                        name = name,
-                        description = description,
-                        setNameError = { nameError = it }, // Validates name field
-                        setDescriptionError = { descriptionError = it } // Validates description field
-                    ) },
+                        viewModel.onAddWaypointsClicked()
+                    },
                     buttonColor = MaterialTheme.colorScheme.onPrimary,
                     contentColor = MaterialTheme.colorScheme.onSecondary,
                     shape = RoundedCornerShape(10.dp),
