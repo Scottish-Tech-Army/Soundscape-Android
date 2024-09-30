@@ -215,6 +215,7 @@ dependencies {
     implementation (libs.mapcompose)
     // MapLibre library
     implementation (libs.maplibre)
+    implementation (libs.maplibre.annotations)
 
     // Ramani maps
     implementation(libs.ramani.maplibre)
