@@ -85,6 +85,8 @@ fun MapContainerLibre(
             mapLibre.uiSettings.isZoomGesturesEnabled = true
             // The map rotation is set by the compass heading, so we disable it from the UI
             mapLibre.uiSettings.isRotateGesturesEnabled = false
+            // The centering of the map is set by the location provider, so disable scrolling from the UI
+            mapLibre.uiSettings.isScrollGesturesEnabled = false
 
             // The phone is always at the center of the map, so listen to the camera position
             // for redrawing the phone location.
