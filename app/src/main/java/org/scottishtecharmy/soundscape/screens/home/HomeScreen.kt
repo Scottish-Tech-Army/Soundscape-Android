@@ -39,6 +39,7 @@ fun HomeScreen(
     val location = viewModel.location.collectAsStateWithLifecycle()
     val heading = viewModel.heading.collectAsStateWithLifecycle()
     val beaconLocation = viewModel.beaconLocation.collectAsStateWithLifecycle()
+    val streetPreviewMode = viewModel.streetPreviewMode.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -66,6 +67,7 @@ fun HomeScreen(
                 getWhatsAroundMe = { viewModel.whatsAroundMe() },
                 shareLocation = { viewModel.shareLocation(context) },
                 rateSoundscape = rateSoundscape,
+                streetPreviewEnabled = streetPreviewMode.value
             )
         }
 

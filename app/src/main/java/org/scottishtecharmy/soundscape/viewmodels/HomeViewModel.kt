@@ -34,14 +34,15 @@ class HomeViewModel @Inject constructor(
     val heading: StateFlow<Float> = _heading.asStateFlow()
     private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
     val location: StateFlow<Location?> = _location.asStateFlow()
-    private val _highlightedPointsOfInterest: MutableStateFlow<Boolean> = MutableStateFlow(true)
-    val highlightedPointsOfInterest: StateFlow<Boolean> = _highlightedPointsOfInterest.asStateFlow()
     private val _beaconLocation: MutableStateFlow<LatLng?> = MutableStateFlow(null) // Question, can we have more beacon ?
     val beaconLocation: StateFlow<LatLng?> = _beaconLocation.asStateFlow()
+    private val _streetPreviewMode: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val streetPreviewMode: StateFlow<Boolean> = _streetPreviewMode.asStateFlow()
+
     private var job = Job()
+    private var spJob = Job()
 
     init {
-        job = Job()
         serviceConnection = soundscapeServiceConnection
         viewModelScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
@@ -49,16 +50,24 @@ class HomeViewModel @Inject constructor(
                 if (it) {
                     // The service has started, so start monitoring the location and heading
                     startMonitoringLocation()
+                    // And start monitoring the street preview mode
+                    startMonitoringStreetPreviewMode()
                 } else {
                     // The service has gone away so remove the current location marker
                     _location.value = null
 
+                    stopMonitoringStreetPreviewMode()
                     stopMonitoringLocation()
                 }
             }
         }
     }
 
+    /**
+     * startMonitoringLocation launches monitoring of the location and orientation providers. These
+     * can change e.g. when switching to and from StreetPreview mode, so they are launched in a job.
+     * That job is cancelled when the StreetPreview mode changes and the monitoring restarted.
+     */
     private fun startMonitoringLocation() {
         Log.d(TAG, "ViewModel startMonitoringLocation")
         job = Job()
@@ -94,7 +103,33 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun stopMonitoringLocation() {
+        Log.d(TAG, "stopMonitoringLocation")
         job.cancel()
+    }
+
+    /**
+     * startMonitoringStreetPreviewMode launches a job to monitor the state of street preview mode.
+     * When the mode from the service changes then the local flow for the UI is updated and the
+     * location and orientation monitoring is turned off and on again so as to use the new providers.
+     */
+    private fun startMonitoringStreetPreviewMode() {
+        Log.d(TAG, "startMonitoringStreetPreviewMode")
+        spJob = Job()
+        viewModelScope.launch(spJob) {
+            // Observe street preview mode from the service so we can update state
+            serviceConnection?.getStreetPreviewModeFlow()?.collect { value ->
+                Log.d(TAG, "Street Preview Mode: $value")
+                _streetPreviewMode.value = value
+
+                // Restart location monitoring for new provider
+                stopMonitoringLocation()
+                startMonitoringLocation()
+            }
+        }
+    }
+    private fun stopMonitoringStreetPreviewMode() {
+        Log.d(TAG, "stopMonitoringStreetPreviewMode")
+        spJob.cancel()
     }
 
     private fun updateLocationOnMap(newLocation: Location) {
@@ -124,13 +159,6 @@ class HomeViewModel @Inject constructor(
             return true
         }
         return false
-    }
-
-    // This is a demo function to show how to dynamically alter the map based on user input.
-    // The result of this function is that Food POIs have their icons toggled between enlarged
-    // and regular sized.
-    fun highlightPointsOfInterest() {
-        _highlightedPointsOfInterest.value = highlightedPointsOfInterest.value.xor(true)
     }
 
     fun myLocation(){

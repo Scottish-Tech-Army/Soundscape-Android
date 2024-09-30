@@ -106,6 +106,10 @@ class SoundscapeService : Service() {
     private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)
     var beaconFlow: StateFlow<LngLatAlt?> = _beaconFlow
 
+    // Flow to return street preview mode
+    private val _streetPreviewFlow = MutableStateFlow(false)
+    var streetPreviewFlow: StateFlow<Boolean> = _streetPreviewFlow
+
     // OkhttpClientInstance
     private lateinit var okhttpClientInstance: OkhttpClientInstance
 
@@ -139,7 +143,9 @@ class SoundscapeService : Service() {
             // Switch back to phone's location and direction
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
+            directionProvider.start(audioEngine, locationProvider)
         }
+        _streetPreviewFlow.value = on
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
