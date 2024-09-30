@@ -17,7 +17,6 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDeta
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.AddRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
 
@@ -116,12 +115,6 @@ fun HomeScreen(
                     startDestination = "Markers",
                 )
             }
-        }
-
-        // AddRouteScreen, accessible within the MarkersAndRoutesScreen
-        // TODO should not be at this level
-        composable(HomeRoutes.AddRoute.route) {
-            AddRouteScreen(navController = navController)
         }
     }
 }
