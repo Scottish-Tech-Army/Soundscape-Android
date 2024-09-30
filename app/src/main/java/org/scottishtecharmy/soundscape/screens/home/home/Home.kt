@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.rounded.Preview
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -56,6 +57,7 @@ fun HomePreview() {
         getWhatsAroundMe = {},
         shareLocation = {},
         rateSoundscape = {},
+        streetPreviewEnabled = false
     )
 }
 
@@ -73,6 +75,7 @@ fun Home(
     getWhatsAheadOfMe: () -> Unit,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
+    streetPreviewEnabled : Boolean,
     modifier: Modifier = Modifier,
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -96,6 +99,7 @@ fun Home(
                 HomeTopAppBar(
                     drawerState,
                     coroutineScope,
+                    streetPreviewEnabled
                 )
             },
             bottomBar = {
@@ -137,6 +141,7 @@ fun Home(
 fun HomeTopAppBar(
     drawerState: DrawerState,
     coroutineScope: CoroutineScope,
+    streetPreviewEnabled : Boolean
 ) {
     val context = LocalContext.current
     TopAppBar(
@@ -161,6 +166,21 @@ fun HomeTopAppBar(
         },
         actions = {
             var serviceRunning by remember { mutableStateOf(true) }
+            IconToggleButton(
+                checked = streetPreviewEnabled,
+                enabled = true,
+                onCheckedChange = { state ->
+                    if(!state) {
+                        (context as MainActivity).soundscapeServiceConnection.setStreetPreviewMode(
+                            false
+                        )
+                    }
+                },
+            ) {
+                if (streetPreviewEnabled) {
+                    Icon(Icons.Rounded.Preview, contentDescription = "Street Preview enabled")
+                }
+            }
             IconToggleButton(
                 checked = serviceRunning,
                 enabled = true,
