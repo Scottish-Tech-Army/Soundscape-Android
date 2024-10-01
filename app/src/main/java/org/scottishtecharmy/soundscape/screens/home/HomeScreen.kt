@@ -97,7 +97,10 @@ fun HomeScreen(
                         }
                         launchSingleTop = true  // Prevents multiple instances of Home
                     }
-                }
+                },
+                latitude = location.value?.latitude,
+                longitude = location.value?.longitude,
+                heading = heading.value,
             )
         }
 
