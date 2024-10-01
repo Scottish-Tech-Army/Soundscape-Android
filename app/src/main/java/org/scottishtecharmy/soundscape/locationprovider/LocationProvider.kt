@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Looper
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.DeviceOrientation
 import com.google.android.gms.location.DeviceOrientationListener
@@ -24,6 +25,7 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.kalman.KalmanFilter
 import java.util.concurrent.Executors
+import kotlin.math.abs
 import kotlin.time.Duration.Companion.seconds
 
 abstract class LocationProvider {
@@ -62,6 +64,8 @@ class AndroidDirectionProvider(context : Context) :
 
     private val fusedOrientationProviderClient = LocationServices.getFusedOrientationProviderClient(context)
     private lateinit var listener: DeviceOrientationListener
+    private var lastUpdateTime = 0L
+    private var lastUpdateValue = 0.0
 
     override fun destroy() {
         fusedOrientationProviderClient.removeOrientationUpdates(listener)
@@ -70,9 +74,11 @@ class AndroidDirectionProvider(context : Context) :
     @SuppressLint("MissingPermission")
     override fun start(audioEngine: NativeAudioEngine, locationProvider: LocationProvider){
         listener = DeviceOrientationListener { orientation ->
-            mutableOrientationFlow.value = orientation  // Emit the DeviceOrientation object
+            // Always send the update to the audio engine. This immediately affects the direction
+            // and sound of the audio beacon.
             var latitude = 0.0
             var longitude = 0.0
+            val newHeading = orientation.headingDegrees.toDouble()
             val location = locationProvider.locationFlow.value
             if(location != null) {
                 latitude = location.latitude
@@ -81,8 +87,22 @@ class AndroidDirectionProvider(context : Context) :
             audioEngine.updateGeometry(
                 latitude,
                 longitude,
-                orientation.headingDegrees.toDouble()
+                newHeading
             )
+            // Now send the value to all of the other interested parties. These do not require
+            // such regular updates, or sub-degree precision, so only send changes in  heading
+            // greater than 1 degree and throttle to 50Hz maximum.
+            val delta = newHeading - lastUpdateValue
+            if(abs(delta) > 1.0) {
+                val now = System.currentTimeMillis()
+                if ((now - lastUpdateTime) > 20) {
+                    mutableOrientationFlow.value =
+                        orientation  // Emit the DeviceOrientation object
+
+                    lastUpdateTime = now
+                    lastUpdateValue = newHeading
+                }
+            }
         }
 
         // OUTPUT_PERIOD_DEFAULT = 50Hz / 20ms
