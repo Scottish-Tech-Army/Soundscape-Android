@@ -15,45 +15,55 @@ import org.maplibre.android.annotations.MarkerOptions
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapView
+import org.maplibre.android.plugins.annotation.Symbol
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
-import org.ramani.compose.awaitMap
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
 
+/**
+ * A map disable component that uses maplibre.
+ *
+ * @mapCenter The `LatLng` to center around
+ * @mapHeading
+ * @userLocation The `LatLng` to draw the user location symbol at
+ * @userHeading
+ * @beaconLocation An optional `LatLng` to show a beacon marker
+ * @onMapLongClick Action to take if a long click is made on the map
+ * @onMarkerClick Action to take if a beacon marker is clicked on
+ */
 @Composable
 fun MapContainerLibre(
     map: MapView,
-    latitude: Double,
-    longitude: Double,
+    mapCenter: LatLng,
+    mapViewRotation: Float,
+    userLocation: LatLng,
+    userSymbolRotation: Float,
     beaconLocation: LatLng?,
-    heading: Float,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Unit,
     onMarkerClick: (Marker) -> Boolean,
 ) {
-    val cameraPosition = remember(latitude, longitude, heading) {
+    val cameraPosition = remember(mapCenter, mapViewRotation) {
         CameraPosition.Builder()
-            .target(
-                LatLng(
-                    latitude = latitude,
-                    longitude = longitude,
-                ),
-            )
-            .bearing(heading.toDouble())
+            .target(mapCenter)
+            .bearing(mapViewRotation.toDouble())
             .build()
     }
 
-    val symbolOptions = remember(latitude, longitude, heading) {
+    val symbolOptions = remember(userLocation, userSymbolRotation) {
         SymbolOptions()
-            .withLatLng(LatLng(latitude, longitude))
+            .withLatLng(userLocation)
             .withIconImage(USER_POSITION_MARKER_NAME)
             .withIconAnchor("center")
+            .withIconRotate(userSymbolRotation)
     }
 
     val beaconLocationMarker = remember { mutableStateOf<Marker?>(null) }
+    val symbol = remember { mutableStateOf<Symbol?>(null) }
+    val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
 
     val res = LocalContext.current.resources
     val drawable = remember {
@@ -67,63 +77,57 @@ fun MapContainerLibre(
 
     LaunchedEffect(map) {
         // init map first time it is displayed
-        val mapLibre = map.awaitMap()
-        val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
-        val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
-        mapLibre.setStyle(styleUrl) { style ->
-            style.addImage(USER_POSITION_MARKER_NAME, drawable!!)
-            val symbolManager = SymbolManager(map, mapLibre, style)
-            // Disable symbol collisions
-            symbolManager.iconAllowOverlap = true
-            symbolManager.iconIgnorePlacement = true
+        map.getMapAsync { mapLibre ->
+            val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
+            val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
+            mapLibre.setStyle(styleUrl) { style ->
+                style.addImage(USER_POSITION_MARKER_NAME, drawable!!)
 
-            // update with a new symbol at specified lat/lng
-            val symbol = symbolManager.create(symbolOptions)
-            symbolManager.update(symbol)
+                val sm = SymbolManager(map, mapLibre, style)
+                // Disable symbol collisions
+                sm.iconAllowOverlap = true
+                sm.iconIgnorePlacement = true
 
-            mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
-            mapLibre.uiSettings.isZoomGesturesEnabled = true
-            // The map rotation is set by the compass heading, so we disable it from the UI
-            mapLibre.uiSettings.isRotateGesturesEnabled = false
-            // The centering of the map is set by the location provider, so disable scrolling from the UI
-            mapLibre.uiSettings.isScrollGesturesEnabled = false
+                // update with a new symbol at specified lat/lng
+                val sym = sm.create(symbolOptions)
+                sm.update(sym)
 
-            // The phone is always at the center of the map, so listen to the camera position
-            // for redrawing the phone location.
-            mapLibre.addOnCameraMoveListener {
-                //get the camera position and use it to set the symbol location
-                symbol.setLatLng(mapLibre.cameraPosition.target)
-                symbolManager.update(symbol)
+                // Update our remembered state with the symbol manager and symbol
+                symbolManager.value = sm
+                symbol.value = sym
+
+                mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
+                mapLibre.uiSettings.isZoomGesturesEnabled = true
+                // The map rotation is set by the compass heading, so we disable it from the UI
+                mapLibre.uiSettings.isRotateGesturesEnabled = false
+                // The centering of the map is set by the location provider, so disable scrolling from the UI
+                mapLibre.uiSettings.isScrollGesturesEnabled = false
+
+                mapLibre.addOnMapLongClickListener { latitudeLongitude ->
+                    onMapLongClick(latitudeLongitude)
+                    false
+                }
+                mapLibre.setOnMarkerClickListener { marker ->
+                    onMarkerClick(marker)
+                }
             }
-            mapLibre.addOnMapLongClickListener { latitudeLongitude ->
-                onMapLongClick(latitudeLongitude)
-                false
-            }
-            mapLibre.setOnMarkerClickListener { marker ->
-                onMarkerClick(marker)
-            }
+
+            mapLibre.cameraPosition = CameraPosition.Builder()
+                .target(mapCenter)
+                .zoom(15.0) // we set the zoom only at init
+                .bearing(mapViewRotation.toDouble())
+                .build()
         }
-
-        mapLibre.cameraPosition = CameraPosition.Builder()
-            .target(
-                LatLng(
-                    latitude = latitude,
-                    longitude = longitude,
-                ),
-            )
-            .zoom(15.0) // we set the zoom only at init
-            .bearing(heading.toDouble())
-            .build()
-
     }
 
     LaunchedEffect(beaconLocation) {
-        val mapLibre = map.awaitMap()
-        if(beaconLocation != null && beaconLocationMarker.value == null){
-            // first time beacon is created
-            val markerOptions = MarkerOptions()
-                .position(beaconLocation)
-            beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
+        map.getMapAsync { mapLibre ->
+            if (beaconLocation != null && beaconLocationMarker.value == null) {
+                // first time beacon is created
+                val markerOptions = MarkerOptions()
+                    .position(beaconLocation)
+                beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
+            }
         }
     }
 
@@ -132,26 +136,35 @@ fun MapContainerLibre(
         factory = { map },
         update = { mapView ->
             coroutineScope.launch {
-                val mapLibre = mapView.awaitMap()
-                mapLibre.cameraPosition = cameraPosition
-                if(beaconLocation != null) {
-                    // beacon to display
-                    beaconLocationMarker.value?.let { currentBeaconMarker ->
-                        // update beacon position
-                        currentBeaconMarker.position = beaconLocation
-                        mapLibre.updateMarker(currentBeaconMarker)
-                    } ?: {
-                        // new beacon to display
-                        val markerOptions =
-                            MarkerOptions()
-                                .position(beaconLocation)
-                        beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
+                mapView.getMapAsync { mapLibre ->
+
+                    mapLibre.cameraPosition = cameraPosition
+                    symbol.value?.let { sym ->
+                        // We have a symbol, so update it
+                        sym.latLng = userLocation
+                        sym.iconRotate = userSymbolRotation
+                        symbolManager.value?.update(sym)
                     }
-                } else {
-                    // if beacon is present we should remove it
-                    beaconLocationMarker.value?.let { currentBeacon ->
-                        mapLibre.removeMarker(currentBeacon)
-                        beaconLocationMarker.value = null
+
+                    if(beaconLocation != null) {
+                        // beacon to display
+                        beaconLocationMarker.value?.let { currentBeaconMarker ->
+                            // update beacon position
+                            currentBeaconMarker.position = beaconLocation
+                            mapLibre.updateMarker(currentBeaconMarker)
+                        } ?: {
+                            // new beacon to display
+                            val markerOptions =
+                                MarkerOptions()
+                                    .position(beaconLocation)
+                            beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
+                        }
+                    } else {
+                        // if beacon is present we should remove it
+                        beaconLocationMarker.value?.let { currentBeacon ->
+                            mapLibre.removeMarker(currentBeacon)
+                            beaconLocationMarker.value = null
+                        }
                     }
                 }
             }

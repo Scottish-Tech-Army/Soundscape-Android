@@ -84,10 +84,11 @@ fun HomeContent(
                 val mapView = rememberMapViewWithLifecycle()
                 MapContainerLibre(
                     map = mapView,
-                    latitude = latitude,
-                    longitude = longitude,
                     beaconLocation = beaconLocation,
-                    heading = heading,
+                    mapCenter = LatLng(latitude, longitude),
+                    mapViewRotation = heading,
+                    userLocation = LatLng(latitude, longitude),
+                    userSymbolRotation = 0.0F,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
                 )

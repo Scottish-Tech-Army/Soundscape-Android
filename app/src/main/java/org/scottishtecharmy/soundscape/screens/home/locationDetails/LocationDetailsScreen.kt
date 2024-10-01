@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,9 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.gson.GsonBuilder
+import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.mapui.RamaniMapUi
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
+import org.scottishtecharmy.soundscape.screens.home.home.rememberMapViewWithLifecycle
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
@@ -39,18 +42,24 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription) : Str
 @Composable
 fun LocationDetailsScreen(
                     locationDescription : LocationDescription,
+                    latitude : Double?,
+                    longitude: Double?,
+                    heading : Float,
                     onNavigateUp: () -> Unit,
                     viewModel: LocationDetailsViewModel = hiltViewModel(),
 ) {
     LocationDetails(
         onNavigateUp = onNavigateUp,
         locationDescription = locationDescription,
-        createBeacon = { latitude, longitude ->
-            viewModel.createBeacon(latitude, longitude)
+        createBeacon = { lat, lng ->
+            viewModel.createBeacon(lat, lng)
         },
-        enableStreetPreview = { latitude, longitude ->
-            viewModel.enableStreetPreview(latitude, longitude)
-        }
+        enableStreetPreview = { lat, lng ->
+            viewModel.enableStreetPreview(lat, lng)
+        },
+        latitude = latitude,
+        longitude = longitude,
+        heading = heading
     )
 }
 
@@ -58,9 +67,13 @@ fun LocationDetailsScreen(
 fun LocationDetails(
                     locationDescription : LocationDescription,
                     onNavigateUp: () -> Unit,
+                    latitude: Double?,
+                    longitude: Double?,
+                    heading: Float,
                     createBeacon: (latitude: Double, longitude: Double) -> Unit,
                     enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
                     modifier: Modifier = Modifier) {
+
     Column(
         modifier = modifier
             .fillMaxHeight(),
@@ -81,7 +94,31 @@ fun LocationDetails(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.surfaceBright
         )
-        RamaniMapUi(locationDescription)
+
+        val mapView = rememberMapViewWithLifecycle()
+        MapContainerLibre(
+            map = mapView,
+            beaconLocation = LatLng(
+                locationDescription.latitude,
+                locationDescription.longitude
+            ),
+            onMapLongClick = { },
+            onMarkerClick = { false },
+            // Center on the beacon
+            mapCenter = LatLng(
+                locationDescription.latitude,
+                locationDescription.longitude
+            ),
+            userLocation = LatLng(
+                latitude ?: 0.0,
+                longitude ?: 0.0
+            ),
+
+        mapViewRotation = 0.0F,
+            userSymbolRotation = heading,
+            modifier = modifier.fillMaxWidth().aspectRatio(1.0F),
+        )
+
         Button(
             onClick = {
                 createBeacon(locationDescription.latitude, locationDescription.longitude)
@@ -114,11 +151,14 @@ fun LocationDetailsPreview() {
     SoundscapeTheme {
         LocationDetails(
             LocationDescription("", 0.0, 0.0),
-            createBeacon = { latitude, longitude ->
+            createBeacon = { _,_ ->
             },
-            enableStreetPreview = { latitude, longitude ->
+            enableStreetPreview = { _,_ ->
             },
-            onNavigateUp = {}
+            onNavigateUp = {},
+            latitude = null,
+            longitude = null,
+            heading = 0.0F
         )
     }
 }

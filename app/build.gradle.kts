@@ -217,9 +217,6 @@ dependencies {
     implementation (libs.maplibre)
     implementation (libs.maplibre.annotations)
 
-    // Ramani maps
-    implementation(libs.ramani.maplibre)
-
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 

@@ -76,11 +76,10 @@ class HomeViewModel @Inject constructor(
             serviceConnection?.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
                     Log.d(TAG, "Location $value")
-                    updateLocationOnMap(value)
+                    _location.value = value
                 }
             }
         }
-
         viewModelScope.launch(job) {
             // Observe orientation updates from the service
             serviceConnection?.getOrientationFlow()?.collectLatest { value ->
@@ -130,16 +129,6 @@ class HomeViewModel @Inject constructor(
     private fun stopMonitoringStreetPreviewMode() {
         Log.d(TAG, "stopMonitoringStreetPreviewMode")
         spJob.cancel()
-    }
-
-    private fun updateLocationOnMap(newLocation: Location) {
-        if (newLocation.hasAccuracy()
-            && (newLocation.accuracy < 250.0)
-            && (newLocation.latitude != _location.value?.latitude || newLocation.longitude != _location.value?.longitude)
-        ) {
-            _location.value = newLocation
-            Log.d(TAG, "lastLocation updated to $newLocation")
-        }
     }
 
     fun createBeacon(latitudeLongitude: LatLng) {
