@@ -479,12 +479,14 @@ class SoundscapeService : Service() {
                             it
                         )
                     }
-                    for (feature in roadsFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedOsmIds.contains(osmId)) {
-                            processedOsmIds.add(osmId)
-                            gridFeatureCollection.features.add(feature)
+                    roadsFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedOsmIds.contains(osmId)) {
+                                processedOsmIds.add(osmId)
+                                gridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
                 }
@@ -583,12 +585,14 @@ class SoundscapeService : Service() {
                         )
                     }
 
-                    for (feature in poiFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedOsmIds.contains(osmId)) {
-                            processedOsmIds.add(osmId)
-                            gridFeatureCollection.features.add(feature)
+                    poiFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedOsmIds.contains(osmId)) {
+                                processedOsmIds.add(osmId)
+                                gridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
                 }
@@ -759,20 +763,25 @@ class SoundscapeService : Service() {
                         )
                     }
 
-                    for (feature in roadFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
-                            processedRoadOsmIds.add(osmId)
-                            roadGridFeatureCollection.features.add(feature)
+                    roadFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
+                                processedRoadOsmIds.add(osmId)
+                                roadGridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
-                    for (feature in intersectionsFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
-                            processedIntersectionOsmIds.add(osmId)
-                            intersectionsGridFeatureCollection.features.add(feature)
+
+                    intersectionsFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
+                                processedIntersectionOsmIds.add(osmId)
+                                intersectionsGridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
                 }
@@ -868,23 +877,24 @@ class SoundscapeService : Service() {
                         for (feature in roadRelativeDirections.features) {
                             val direction =
                                 feature.properties?.get("Direction").toString().toIntOrNull()
-                            val relativeDirectionString = configLocale?.let {
-                                getRelativeDirectionLabel(
-                                    applicationContext,
-                                    direction!!,
-                                    it
-                                )
-                            }
-
-                            if (feature.properties?.get("name") != null) {
-                                val intersectionCallout = localizedContext.getString(
-                                    R.string.directions_intersection_with_name_direction,
-                                    feature.properties?.get("name"),
-                                    relativeDirectionString
-                                )
-                                audioEngine.createTextToSpeech(
-                                    intersectionCallout
-                                )
+                            if(direction != null) {
+                                val relativeDirectionString = configLocale?.let {
+                                    getRelativeDirectionLabel(
+                                        applicationContext,
+                                        direction,
+                                        it
+                                    )
+                                } ?: ""
+                                if (feature.properties?.get("name") != null) {
+                                    val intersectionCallout = localizedContext.getString(
+                                        R.string.directions_intersection_with_name_direction,
+                                        feature.properties?.get("name"),
+                                        relativeDirectionString
+                                    )
+                                    audioEngine.createTextToSpeech(
+                                        intersectionCallout
+                                    )
+                                }
                             }
                         }
                     }
