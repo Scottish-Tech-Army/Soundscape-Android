@@ -229,15 +229,15 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         listener_position.y = 0.0f;
         listener_position.z = static_cast<float>(listenerLatitude);
 
-        // ********* NOTE ******* READ NEXT COMMENT!!!!!
         // vel = how far we moved last FRAME (m/f), then time compensate it to SECONDS (m/s).
-        // TODO: replace INTERFACE_UPDATE_TIME with calculated time difference
-        const int INTERFACE_UPDATE_TIME = 50;
+        auto now = std::chrono::system_clock::now();
+        auto ms_diff = std::chrono::duration<double, std::milli>(now - m_LastTime).count();
+        m_LastTime = now;
 
         FMOD_VECTOR vel;
-        vel.x = static_cast<float>((listener_position.x - m_LastPos.x) * (1000.0 / INTERFACE_UPDATE_TIME));
-        vel.y = static_cast<float>((listener_position.y - m_LastPos.y) * (1000.0 / INTERFACE_UPDATE_TIME));
-        vel.z = static_cast<float>((listener_position.z - m_LastPos.z) * (1000.0 / INTERFACE_UPDATE_TIME));
+        vel.x = static_cast<float>((listener_position.x - m_LastPos.x) * (1000.0 / ms_diff));
+        vel.y = static_cast<float>((listener_position.y - m_LastPos.y) * (1000.0 / ms_diff));
+        vel.z = static_cast<float>((listener_position.z - m_LastPos.z) * (1000.0 / ms_diff));
 
         // store pos for next time
         m_LastPos = listener_position;

@@ -41,6 +41,7 @@ namespace soundscape {
         FMOD_VECTOR m_LastPos = {0.0f, 0.0f, 0.0f};
 
         double m_LastHeading = 0.0;
+        std::chrono::time_point<std::chrono::system_clock> m_LastTime;
 
         std::atomic<int> m_BeaconTypeIndex;
 
