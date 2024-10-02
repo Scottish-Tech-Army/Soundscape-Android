@@ -133,18 +133,21 @@ class SoundscapeService : Service() {
     }
 
     fun setStreetPreviewMode(on : Boolean, latitude: Double, longitude: Double) {
+        directionProvider.destroy()
+        locationProvider.destroy()
         if(on) {
             // Use static location, but phone's direction
             locationProvider = StaticLocationProvider(latitude, longitude)
-            locationProvider.start(this)
-            directionProvider.start(audioEngine, locationProvider)
+            directionProvider = AndroidDirectionProvider(this)
         } else
         {
             // Switch back to phone's location and direction
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
-            directionProvider.start(audioEngine, locationProvider)
         }
+        locationProvider.start(this)
+        directionProvider.start(audioEngine, locationProvider)
+
         _streetPreviewFlow.value = on
     }
 
