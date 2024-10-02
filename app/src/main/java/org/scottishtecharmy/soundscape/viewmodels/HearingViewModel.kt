@@ -16,7 +16,7 @@ class HearingViewModel @Inject constructor(private val audioEngine : NativeAudio
         //  We should consider another way of doing this.
         audioEngine.clearTextToSpeechQueue()
         audioEngine.updateGeometry(0.0, 0.0,0.0)
-        audioEngine.createTextToSpeech(0.0,0.0, speechText)
+        audioEngine.createTextToSpeech(speechText)
     }
 
     fun silenceSpeech() {

@@ -58,7 +58,7 @@ class RoutePlayer(val service: SoundscapeService) {
             val location = route.waypoints[index].location!!
 
             service.audioEngine.clearTextToSpeechQueue()
-            service.audioEngine.createTextToSpeech(location.latitude, location.longitude, "Move to marker ${index+1}, ${route.waypoints[index].name}")
+            service.audioEngine.createTextToSpeech("Move to marker ${index+1}, ${route.waypoints[index].name}", location.latitude, location.longitude)
 
             service.createBeacon(location.latitude, location.longitude)
 }

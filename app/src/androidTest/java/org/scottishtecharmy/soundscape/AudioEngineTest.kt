@@ -64,7 +64,7 @@ class AudioEngineTest {
         moveListener(audioEngine, 4000)
         audioEngine.destroyBeacon(beacon)
 
-        audioEngine.createTextToSpeech(1.0, 0.0, "Beacon here!")
+        audioEngine.createTextToSpeech("Beacon here!")
         moveListener(audioEngine, 4000)
 
         val beacon3 = audioEngine.createBeacon(1.0, 0.0)
@@ -97,9 +97,9 @@ class AudioEngineTest {
     fun queuedSpeech() {
         val audioEngine = initializeAudioEngine()
 
-        audioEngine.createTextToSpeech(1.0, 0.0, "First.")
-        audioEngine.createTextToSpeech(1.0, 0.0, "Second.")
-        audioEngine.createTextToSpeech(1.0, 0.0, "Third.")
+        audioEngine.createTextToSpeech("First.")
+        audioEngine.createTextToSpeech("Second.")
+        audioEngine.createTextToSpeech("Third.")
         moveListener(audioEngine, 6000)
 
         tidyUp(audioEngine)
