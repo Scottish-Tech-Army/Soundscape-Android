@@ -457,11 +457,7 @@ class SoundscapeService : Service() {
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(
-                0.0,
-                0.0,
-                noLocationString
-            )
+            audioEngine.createTextToSpeech(noLocationString)
         } else {
             // fetch the roads from Realm
             val tileGridQuadKeys = get3x3TileGrid(
@@ -519,11 +515,7 @@ class SoundscapeService : Service() {
                         )
                     }
                     if (facingDirectionAlongRoad != null) {
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            facingDirectionAlongRoad
-                        )
+                        audioEngine.createTextToSpeech(facingDirectionAlongRoad)
                     }
                 } else {
                     Log.e(TAG, "No properties found for road")
@@ -539,11 +531,7 @@ class SoundscapeService : Service() {
                     )
                 }
                 if (facingDirection != null) {
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        facingDirection
-                    )
+                    audioEngine.createTextToSpeech(facingDirection)
                 }
             }
         }
@@ -572,11 +560,7 @@ class SoundscapeService : Service() {
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(
-                0.0,
-                0.0,
-                noLocationString
-            )
+            audioEngine.createTextToSpeech(noLocationString)
         } else {
 
             val tileGridQuadKeys = get3x3TileGrid(
@@ -701,8 +685,6 @@ class SoundscapeService : Service() {
                             // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
                             if (feature.properties?.get("name") != null) {
                                 audioEngine.createTextToSpeech(
-                                    locationProvider.getCurrentLatitude() ?: 0.0,
-                                    locationProvider.getCurrentLongitude() ?: 0.0,
                                     "${feature.properties?.get("name")}.  ${
                                         distanceToPolygon(
                                             LngLatAlt(
@@ -717,17 +699,11 @@ class SoundscapeService : Service() {
                         }
                     }
                 } else {
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                    )
+                    audioEngine.createTextToSpeech(localizedContext.getString(R.string.callouts_nothing_to_call_out_now))
                 }
             } else {
                 Log.d(TAG, "No Points Of Interest found in the grid")
                 audioEngine.createTextToSpeech(
-                    locationProvider.getCurrentLatitude() ?: 0.0,
-                    locationProvider.getCurrentLongitude() ?: 0.0,
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                 )
             }
@@ -748,8 +724,6 @@ class SoundscapeService : Service() {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
-                0.0,
-                0.0,
                 noLocationString
             )
         } else {
@@ -837,15 +811,11 @@ class SoundscapeService : Service() {
                     // TODO check for Settings, Unnamed roads on/off here
                     if (nearestRoad.features[0].properties?.get("name") != null) {
                         audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
                             "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
                         )
                     } else {
                         // we are detecting an unnamed road here but pretending there is nothing here
                         audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
                             localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                         )
                     }
@@ -867,8 +837,6 @@ class SoundscapeService : Service() {
                             nearestIntersectionFeatureCollection.features[0].geometry as Point
                         )
                         audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
                             "${localizedContext.getString(R.string.intersection_approaching_intersection)} It is ${distanceToNearestIntersection.toInt()} meters away."
                         )
                         // get the roads that make up the intersection based on the osm_ids
@@ -915,8 +883,6 @@ class SoundscapeService : Service() {
                                     relativeDirectionString
                                 )
                                 audioEngine.createTextToSpeech(
-                                    locationProvider.getCurrentLatitude() ?: 0.0,
-                                    locationProvider.getCurrentLongitude() ?: 0.0,
                                     intersectionCallout
                                 )
                             }
@@ -924,15 +890,11 @@ class SoundscapeService : Service() {
                     }
                 } else {
                     audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
                         localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                     )
                 }
             } else {
                 audioEngine.createTextToSpeech(
-                    locationProvider.getCurrentLatitude() ?: 0.0,
-                    locationProvider.getCurrentLongitude() ?: 0.0,
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                 )
 

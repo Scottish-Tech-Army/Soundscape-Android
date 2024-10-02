@@ -6,7 +6,7 @@ import java.util.Locale
 interface AudioEngine {
     fun createBeacon(latitude: Double, longitude: Double) : Long
     fun destroyBeacon(beaconHandle : Long)
-    fun createTextToSpeech(latitude: Double, longitude: Double, text: String) : Long
+    fun createTextToSpeech(text: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long
     fun clearTextToSpeechQueue()
     fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double)
     fun setBeaconType(beaconType: String)
