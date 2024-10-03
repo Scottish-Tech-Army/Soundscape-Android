@@ -26,6 +26,7 @@ See the document [here](mapping.md) for information about how we configure and u
 [Here](release-notes.md) are the latest release notes.
 
 ## Testing resources
+[Testing](testing.md) is the start of a document on how to test the app.
 [A document](tricky-locations.md) containing locations which cause particular issues in Soundscape. 
 
 ## Code documentation
