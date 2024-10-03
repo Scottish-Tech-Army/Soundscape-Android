@@ -34,6 +34,7 @@ It's most definitely NOT for real use. For any issues found, or questions you ha
 * **Menu** 
   * **Settings** allows the altering of a few settings that exist in the app. Changing the beacon type works, but only the next time that the app is run. The callout settings aren't yet hooked in.
   * **Share** shares the current location as a soundscape URI. This can be sent in WhatsApp/Email/Slack etc. This should make it easier to report problem locations.
+
 ### Missing features
 Everything else!
 
