@@ -2017,6 +2017,17 @@ fun findClosestDirection(reference: Double, option1: Double, option2: Double): D
     return if (adjustedDistance1 < adjustedDistance2) option1 else option2
 }
 
+fun searchFeaturesByName(featureCollection: FeatureCollection, query: String): FeatureCollection {
+    val results = FeatureCollection()
+    for (feature in featureCollection) {
+        val name = feature.properties?.get("name") as? String
+        if (name != null && name.contains(query, ignoreCase = true)) {
+            results.addFeature(feature)
+        }
+    }
+    return results
+}
+
 /**
  * A wrapper around:
  * getCombinedDirectionPolygons, getIndividualDirectionPolygons, getAheadBehindDirectionPolygons, getLeftRightDirectionPolygons
