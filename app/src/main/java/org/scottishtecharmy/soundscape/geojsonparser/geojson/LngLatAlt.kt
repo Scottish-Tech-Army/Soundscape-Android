@@ -29,4 +29,8 @@ open class LngLatAlt(
         result = 31 * result + (altitude?.hashCode() ?: 0)
         return result
     }
+
+    override fun toString(): String {
+        return "$latitude,$longitude"
+    }
 }
