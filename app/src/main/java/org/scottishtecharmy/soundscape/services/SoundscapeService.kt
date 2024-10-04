@@ -133,18 +133,21 @@ class SoundscapeService : Service() {
     }
 
     fun setStreetPreviewMode(on : Boolean, latitude: Double, longitude: Double) {
+        directionProvider.destroy()
+        locationProvider.destroy()
         if(on) {
             // Use static location, but phone's direction
             locationProvider = StaticLocationProvider(latitude, longitude)
-            locationProvider.start(this)
-            directionProvider.start(audioEngine, locationProvider)
+            directionProvider = AndroidDirectionProvider(this)
         } else
         {
             // Switch back to phone's location and direction
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
-            directionProvider.start(audioEngine, locationProvider)
         }
+        locationProvider.start(this)
+        directionProvider.start(audioEngine, locationProvider)
+
         _streetPreviewFlow.value = on
     }
 
@@ -457,11 +460,7 @@ class SoundscapeService : Service() {
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(
-                0.0,
-                0.0,
-                noLocationString
-            )
+            audioEngine.createTextToSpeech(noLocationString)
         } else {
             // fetch the roads from Realm
             val tileGridQuadKeys = get3x3TileGrid(
@@ -483,12 +482,14 @@ class SoundscapeService : Service() {
                             it
                         )
                     }
-                    for (feature in roadsFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedOsmIds.contains(osmId)) {
-                            processedOsmIds.add(osmId)
-                            gridFeatureCollection.features.add(feature)
+                    roadsFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedOsmIds.contains(osmId)) {
+                                processedOsmIds.add(osmId)
+                                gridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
                 }
@@ -519,11 +520,7 @@ class SoundscapeService : Service() {
                         )
                     }
                     if (facingDirectionAlongRoad != null) {
-                        audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            facingDirectionAlongRoad
-                        )
+                        audioEngine.createTextToSpeech(facingDirectionAlongRoad)
                     }
                 } else {
                     Log.e(TAG, "No properties found for road")
@@ -539,11 +536,7 @@ class SoundscapeService : Service() {
                     )
                 }
                 if (facingDirection != null) {
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        facingDirection
-                    )
+                    audioEngine.createTextToSpeech(facingDirection)
                 }
             }
         }
@@ -572,11 +565,7 @@ class SoundscapeService : Service() {
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(
-                0.0,
-                0.0,
-                noLocationString
-            )
+            audioEngine.createTextToSpeech(noLocationString)
         } else {
 
             val tileGridQuadKeys = get3x3TileGrid(
@@ -599,12 +588,14 @@ class SoundscapeService : Service() {
                         )
                     }
 
-                    for (feature in poiFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedOsmIds.contains(osmId)) {
-                            processedOsmIds.add(osmId)
-                            gridFeatureCollection.features.add(feature)
+                    poiFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedOsmIds.contains(osmId)) {
+                                processedOsmIds.add(osmId)
+                                gridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
                 }
@@ -701,8 +692,6 @@ class SoundscapeService : Service() {
                             // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
                             if (feature.properties?.get("name") != null) {
                                 audioEngine.createTextToSpeech(
-                                    locationProvider.getCurrentLatitude() ?: 0.0,
-                                    locationProvider.getCurrentLongitude() ?: 0.0,
                                     "${feature.properties?.get("name")}.  ${
                                         distanceToPolygon(
                                             LngLatAlt(
@@ -717,17 +706,11 @@ class SoundscapeService : Service() {
                         }
                     }
                 } else {
-                    audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                    )
+                    audioEngine.createTextToSpeech(localizedContext.getString(R.string.callouts_nothing_to_call_out_now))
                 }
             } else {
                 Log.d(TAG, "No Points Of Interest found in the grid")
                 audioEngine.createTextToSpeech(
-                    locationProvider.getCurrentLatitude() ?: 0.0,
-                    locationProvider.getCurrentLongitude() ?: 0.0,
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                 )
             }
@@ -748,8 +731,6 @@ class SoundscapeService : Service() {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             audioEngine.createTextToSpeech(
-                0.0,
-                0.0,
                 noLocationString
             )
         } else {
@@ -785,20 +766,25 @@ class SoundscapeService : Service() {
                         )
                     }
 
-                    for (feature in roadFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
-                            processedRoadOsmIds.add(osmId)
-                            roadGridFeatureCollection.features.add(feature)
+                    roadFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
+                                processedRoadOsmIds.add(osmId)
+                                roadGridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
-                    for (feature in intersectionsFeatureCollection?.features!!) {
-                        val osmId = feature.foreign?.get("osm_ids")
-                        //Log.d(TAG, "osmId: $osmId")
-                        if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
-                            processedIntersectionOsmIds.add(osmId)
-                            intersectionsGridFeatureCollection.features.add(feature)
+
+                    intersectionsFeatureCollection?.let { collection ->
+                        for (feature in collection.features) {
+                            val osmId = feature.foreign?.get("osm_ids")
+                            //Log.d(TAG, "osmId: $osmId")
+                            if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
+                                processedIntersectionOsmIds.add(osmId)
+                                intersectionsGridFeatureCollection.features.add(feature)
+                            }
                         }
                     }
                 }
@@ -837,15 +823,11 @@ class SoundscapeService : Service() {
                     // TODO check for Settings, Unnamed roads on/off here
                     if (nearestRoad.features[0].properties?.get("name") != null) {
                         audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
                             "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
                         )
                     } else {
                         // we are detecting an unnamed road here but pretending there is nothing here
                         audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
                             localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                         )
                     }
@@ -867,8 +849,6 @@ class SoundscapeService : Service() {
                             nearestIntersectionFeatureCollection.features[0].geometry as Point
                         )
                         audioEngine.createTextToSpeech(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
                             "${localizedContext.getString(R.string.intersection_approaching_intersection)} It is ${distanceToNearestIntersection.toInt()} meters away."
                         )
                         // get the roads that make up the intersection based on the osm_ids
@@ -900,39 +880,34 @@ class SoundscapeService : Service() {
                         for (feature in roadRelativeDirections.features) {
                             val direction =
                                 feature.properties?.get("Direction").toString().toIntOrNull()
-                            val relativeDirectionString = configLocale?.let {
-                                getRelativeDirectionLabel(
-                                    applicationContext,
-                                    direction!!,
-                                    it
-                                )
-                            }
-
-                            if (feature.properties?.get("name") != null) {
-                                val intersectionCallout = localizedContext.getString(
-                                    R.string.directions_intersection_with_name_direction,
-                                    feature.properties?.get("name"),
-                                    relativeDirectionString
-                                )
-                                audioEngine.createTextToSpeech(
-                                    locationProvider.getCurrentLatitude() ?: 0.0,
-                                    locationProvider.getCurrentLongitude() ?: 0.0,
-                                    intersectionCallout
-                                )
+                            if(direction != null) {
+                                val relativeDirectionString = configLocale?.let {
+                                    getRelativeDirectionLabel(
+                                        applicationContext,
+                                        direction,
+                                        it
+                                    )
+                                } ?: ""
+                                if (feature.properties?.get("name") != null) {
+                                    val intersectionCallout = localizedContext.getString(
+                                        R.string.directions_intersection_with_name_direction,
+                                        feature.properties?.get("name"),
+                                        relativeDirectionString
+                                    )
+                                    audioEngine.createTextToSpeech(
+                                        intersectionCallout
+                                    )
+                                }
                             }
                         }
                     }
                 } else {
                     audioEngine.createTextToSpeech(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
                         localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                     )
                 }
             } else {
                 audioEngine.createTextToSpeech(
-                    locationProvider.getCurrentLatitude() ?: 0.0,
-                    locationProvider.getCurrentLongitude() ?: 0.0,
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
                 )
 

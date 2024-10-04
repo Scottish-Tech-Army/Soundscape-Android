@@ -160,7 +160,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         return true
     }
 
-    override fun createTextToSpeech(latitude: Double, longitude: Double, text: String) : Long
+    override fun createTextToSpeech(text: String, latitude: Double, longitude: Double) : Long
     {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {

@@ -25,6 +25,10 @@ See the document [here](mapping.md) for information about how we configure and u
 ## Release notes
 [Here](release-notes.md) are the latest release notes.
 
+## Testing resources
+[Testing](testing.md) is the start of a document on how to test the app.
+[A document](tricky-locations.md) containing locations which cause particular issues in Soundscape. 
+
 ## Code documentation
 * [App architecture](architecture.md) is an introduction to the app structure and its UI.
 * [Audio API](audio-API.md) describes the interface with the audio engine for beacon and text to speech play out.

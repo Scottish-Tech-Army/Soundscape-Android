@@ -1,16 +1,19 @@
+
 [versions]
 accompanistPermissions = "0.33.2-alpha"
 androidGpxParser = "2.3.1"
 composePreferenceLibrary = "1.1.1"
+converterMoshi = "2.11.0"
 htmlMermaidDokkaPlugin = "0.6.0"
-mapLibre = "11.0.0"
+mapLibre = "11.5.0"
+mapLibreAnnotation = "3.0.1"
 androidxJunit = "1.2.1"
-converterScalars = "2.9.0"
+converterScalars = "2.11.0"
 coreSplashscreen = "1.0.1"
 coreTesting = "2.2.0"
 datastorePreferences = "1.1.1"
 espressoCoreVersion = "3.6.1"
-firebaseBom = "33.2.0"
+firebaseBom = "33.3.0"
 hiltAndroid = "2.50"
 hiltCompiler = "2.50"
 hiltNavigationCompose = "1.2.0"
@@ -22,28 +25,27 @@ kotlinxCoroutinesCore = "1.8.0"
 kotlinxCoroutinesTest = "1.8.0"
 kotlinxSerializationJson = "1.7.1"
 libraryBase = "1.16.0"
-lifecycleRuntimeKtx = "2.8.5"
+lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
-composeBom = "2024.09.00"
-lifecycleService = "2.8.5"
+composeBom = "2024.09.02"
+lifecycleService = "2.8.6"
 appcompat = "1.7.0"
 coreKtxVersion = "1.6.1"
-lifecycleViewmodelCompose = "2.8.5"
+lifecycleViewmodelCompose = "2.8.6"
 loggingInterceptor = "4.10.0"
 mapcompose = "2.12.6"
 moshi = "1.15.1"
 moshiKotlinCodegen = "1.15.0"
-okhttp = "4.11.0"
+okhttp = "4.12.0"
 playServicesLocation = "21.3.0"
 preferenceKtx = "1.2.1"
 protobufKotlinLite = "4.28.0"
-ramaniMaplibre = "0.5.0"
-retrofit = "2.9.0"
+retrofit = "2.11.0"
 review = "2.0.1"
 reviewKtx = "2.0.1"
-screenshot = "0.0.1-alpha06"
-benchmarkCommon = "1.3.0"
-lifecycleRuntimeComposeAndroid = "2.8.5"
+screenshot = "0.0.1-alpha07"
+benchmarkCommon = "1.3.1"
+lifecycleRuntimeComposeAndroid = "2.8.6"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
@@ -60,6 +62,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
@@ -91,7 +94,6 @@ moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", ver
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
-ramani-maplibre = { module = "org.ramani-maps:ramani-maplibre", version.ref = "ramaniMaplibre" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
@@ -102,6 +104,7 @@ ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 maplibre = { module = "org.maplibre.gl:android-sdk", version.ref = "mapLibre" }
+maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 
 [plugins]
 screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}
