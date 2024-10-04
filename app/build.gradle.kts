@@ -174,6 +174,7 @@ dependencies {
 
     // Retrofit with Scalar Converter
     implementation(libs.converter.scalars)
+    implementation(libs.converter.moshi)
 
     // Location permissions
     implementation(libs.accompanist.permissions)
