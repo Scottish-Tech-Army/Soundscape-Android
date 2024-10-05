@@ -20,7 +20,7 @@ tileProviderApiKey=TODO_COMPLETE_WITH_CORRECT_KEY
 See the document [here](actions.md) to learn about the GitHub actions used and how they are configured.
 
 ## Mapping data
-See the document [here](mapping.md) for information about how we configure and use mapping data.
+See the document [here](mapping.md) for information about how we configure and use mapping data. There's also [this document](debugging-geojson.md) which describes a possible workflow for GeoJSON debugging.
 
 ## Release notes
 [Here](release-notes.md) are the latest release notes.

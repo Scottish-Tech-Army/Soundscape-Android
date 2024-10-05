@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAda
 import org.scottishtecharmy.soundscape.utils.getLatLonTileWithOffset
 import vector_tile.VectorTile
 import java.io.FileInputStream
+import java.io.FileOutputStream
 
 
 class VectorTileTest {
@@ -135,6 +136,15 @@ class VectorTileTest {
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
         val collection = FeatureCollection()
         for (layer in tile.layersList) {
+            when(layer.name){
+                "landuse" -> continue
+                "earth" -> continue
+                "natural" -> continue
+                "wood" -> continue
+                "buildings" -> continue
+                "physical_line" -> continue
+            }
+
             println("Process layer: " + layer.name)
             for (feature in layer.featuresList) {
                 // Convert coordinates to GeoJSON. This is where we find out how many features
@@ -230,13 +240,19 @@ class VectorTileTest {
     fun testVectorToGeoJsonMilngavie() {
         val geojson = vectorTileToGeoJson(15992, 10212, "10212.mvt")
         val adapter = GeoJsonObjectMoshiAdapter()
-        println(adapter.toJson(geojson))
+
+        val outputFile = FileOutputStream("milngavie.geojson")
+        outputFile.write(adapter.toJson(geojson).toByteArray())
+        outputFile.close()
     }
 
     @Test
     fun testVectorToGeoJsonEdinburgh() {
         val geojson = vectorTileToGeoJson(16093, 10211, "10211.mvt")
         val adapter = GeoJsonObjectMoshiAdapter()
-        println(adapter.toJson(geojson))
+
+        val outputFile = FileOutputStream("edinburgh.geojson")
+        outputFile.write(adapter.toJson(geojson).toByteArray())
+        outputFile.close()
     }
 }
