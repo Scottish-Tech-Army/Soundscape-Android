@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.utils.pixelXYToLatLon
 import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 
 
@@ -443,6 +444,114 @@ class GeoUtilsTest {
         Assert.assertEquals(111319.49, minDistanceToPolygon2, 0.1)
         val minDistanceToPolygon3 = distanceToPolygon(LngLatAlt(0.0, 0.0), polygonObject)
         Assert.assertEquals(0.0, minDistanceToPolygon3, 0.1)
+    }
+
+    @Test
+    fun calculateCenterOfCircleFromSegmentTest(){
+        //this test uses coordinates for a circle generated from:
+        // val circleTest = circleToPolygon(32,51.4378656388476,-2.747654754997829, 5.0)
+        // segments as linestrings/segments to test
+        val segmentLineString1 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.7475827010838696,
+                    51.437865683763356),
+                LngLatAlt(-2.747584099636648,
+                    51.43787444552683),
+                LngLatAlt(-2.747588213435333,
+                    51.437882868854565),
+                LngLatAlt(-2.7475948843889473,
+                    51.437890630042794),
+                LngLatAlt(-2.7476038561364855,
+                    51.4378974308334),
+                LngLatAlt(-2.7476147838987206,
+                    51.43790300987583
+                ),
+                LngLatAlt(-2.7476272477278783,
+                    51.4379071527706
+                ),
+                LngLatAlt(-2.747640768645994,
+                    51.437909700308595)
+            )
+        }
+        val segmentLineString2 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.747654827051767,
+                    51.437910554589344),
+                LngLatAlt(-2.7476688826885476,
+                    51.437909682783335),
+                LngLatAlt(-2.747682395406097,
+                    51.43790711839357),
+                LngLatAlt(-2.7476948459182573,
+                    51.43790295996812),
+                LngLatAlt(-2.7477057557588287,
+                    51.437897367312935),
+                LngLatAlt(-2.747714705668757,
+                    51.43789055535062
+                ),
+                LngLatAlt(-2.7477213517080217,
+                    51.43788278586107
+                ),
+                LngLatAlt(-2.747725438473062,
+                    51.43787435742141)
+            )
+        }
+        val segmentLineString3 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.7477268089117883,
+                    51.43786559393184),
+                LngLatAlt(-2.74772541035901,
+                    51.437856832168364),
+                LngLatAlt(-2.747721296560325,
+                    51.43784840884063),
+                LngLatAlt(-2.7477146256067106,
+                    51.4378406476524),
+                LngLatAlt(-2.7477056538591724,
+                    51.43783384686179),
+                LngLatAlt(-2.7476947260969373,
+                    51.43782826781936
+                ),
+                LngLatAlt(-2.7476822622677797,
+                    51.437824124924596
+                ),
+                LngLatAlt(-2.747668741349664,
+                    51.4378215773866)
+            )
+        }
+        val segmentLineString4 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.747654682943891,
+                    51.43782072310585),
+                LngLatAlt( -2.7476406273071103,
+                    51.43782159491186),
+                LngLatAlt(-2.747627114589561,
+                    51.43782415930163),
+                LngLatAlt(-2.7476146640774006,
+                    51.437828317727075),
+                LngLatAlt(-2.7476037542368292,
+                    51.43783391038226),
+                LngLatAlt(-2.747594804326901,
+                    51.437840722344575
+                ),
+                LngLatAlt(-2.7475881582876363,
+                    51.437848491834124
+                ),
+                LngLatAlt(-2.747584071522596,
+                    51.43785692027379)
+            )
+        }
+        val actualCircleCenter = LngLatAlt(-2.747654754997829, 51.4378656388476)
+
+        val center1 = calculateCenterOfCircle(segmentLineString1)
+        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, center1.latitude, center1.longitude), 0.1)
+
+        val center2 = calculateCenterOfCircle(segmentLineString2)
+        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, center2.latitude, center2.longitude), 0.1)
+
+        val center3 = calculateCenterOfCircle(segmentLineString3)
+        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, center3.latitude, center3.longitude), 0.1)
+
+        val center4 = calculateCenterOfCircle(segmentLineString4)
+        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, center4.latitude, center4.longitude), 0.1)
     }
 
 }
