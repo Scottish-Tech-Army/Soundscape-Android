@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import com.google.android.play.core.review.ReviewException
@@ -121,9 +122,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkAndRequestNotificationPermissions()
-        soundscapeServiceConnection.tryToBindToServiceIfRunning()
+        soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 
-        kotlinx.coroutines.MainScope().launch {
+        lifecycleScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
                 if (it) {
@@ -247,7 +248,7 @@ class MainActivity : AppCompatActivity() {
         }
         else {
             startSoundscapeService()
-            soundscapeServiceConnection.tryToBindToServiceIfRunning()
+            soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
         }
     }
 
