@@ -29,7 +29,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
-    private var serviceConnection: SoundscapeServiceConnection? = null // TODO this should be improved to use soundscapeServiceConnection
     private val _heading: MutableStateFlow<Float> = MutableStateFlow(0.0f)
     val heading: StateFlow<Float> = _heading.asStateFlow()
     private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
@@ -43,7 +42,6 @@ class HomeViewModel @Inject constructor(
     private var spJob = Job()
 
     init {
-        serviceConnection = soundscapeServiceConnection
         viewModelScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
@@ -63,6 +61,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        stopMonitoringStreetPreviewMode()
+        stopMonitoringLocation()
+    }
+
     /**
      * startMonitoringLocation launches monitoring of the location and orientation providers. These
      * can change e.g. when switching to and from StreetPreview mode, so they are launched in a job.
@@ -73,7 +77,7 @@ class HomeViewModel @Inject constructor(
         job = Job()
         viewModelScope.launch(job) {
             // Observe location updates from the service
-            serviceConnection?.getLocationFlow()?.collectLatest { value ->
+            soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
                     Log.d(TAG, "Location $value")
                     _location.value = value
@@ -82,7 +86,7 @@ class HomeViewModel @Inject constructor(
         }
         viewModelScope.launch(job) {
             // Observe orientation updates from the service
-            serviceConnection?.getOrientationFlow()?.collectLatest { value ->
+            soundscapeServiceConnection.getOrientationFlow()?.collectLatest { value ->
                 if (value != null) {
                     _heading.value = value.headingDegrees
                 }
@@ -90,7 +94,7 @@ class HomeViewModel @Inject constructor(
         }
         viewModelScope.launch(job) {
             // Observe beacon location update from the service so we can show it on the map
-            serviceConnection?.getBeaconFlow()?.collectLatest { value ->
+            soundscapeServiceConnection.getBeaconFlow()?.collectLatest { value ->
                 Log.d(TAG, "beacon collected $value")
                 if (value != null) {
                     _beaconLocation.value = LatLng(value.latitude, value.longitude)
@@ -116,7 +120,7 @@ class HomeViewModel @Inject constructor(
         spJob = Job()
         viewModelScope.launch(spJob) {
             // Observe street preview mode from the service so we can update state
-            serviceConnection?.getStreetPreviewModeFlow()?.collect { value ->
+            soundscapeServiceConnection.getStreetPreviewModeFlow()?.collect { value ->
                 Log.d(TAG, "Street Preview Mode: $value")
                 _streetPreviewMode.value = value
 
@@ -153,21 +157,21 @@ class HomeViewModel @Inject constructor(
     fun myLocation(){
         //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
-            serviceConnection?.soundscapeService?.myLocation()
+            soundscapeServiceConnection.soundscapeService?.myLocation()
         }
     }
 
     fun aheadOfMe(){
         //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
-            serviceConnection?.soundscapeService?.aheadOfMe()
+            soundscapeServiceConnection.soundscapeService?.aheadOfMe()
         }
     }
 
     fun whatsAroundMe(){
         //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
-            serviceConnection?.soundscapeService?.whatsAroundMe()
+            soundscapeServiceConnection.soundscapeService?.whatsAroundMe()
         }
     }
 
@@ -179,7 +183,7 @@ class HomeViewModel @Inject constructor(
         //
         // URI, with the , encoded. This shows up in Slack as a clickable link which is the main
         // usefulness for now
-        val location = serviceConnection?.getLocationFlow()?.value
+        val location = soundscapeServiceConnection.getLocationFlow()?.value
         if(location != null) {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
