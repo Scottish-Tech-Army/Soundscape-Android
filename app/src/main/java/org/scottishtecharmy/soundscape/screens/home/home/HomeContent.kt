@@ -23,7 +23,7 @@ fun HomeContent(
     beaconLocation: LatLng?,
     heading: Float,
     onNavigate: (String) -> Unit,
-    onMapLongClick: (LatLng) -> Unit,
+    onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier
@@ -81,9 +81,7 @@ fun HomeContent(
                 text = stringResource(R.string.search_use_current_location),
             )
             if(latitude != null && longitude != null) {
-                val mapView = rememberMapViewWithLifecycle()
                 MapContainerLibre(
-                    map = mapView,
                     beaconLocation = beaconLocation,
                     mapCenter = LatLng(latitude, longitude),
                     mapViewRotation = heading,
@@ -106,7 +104,7 @@ fun PreviewHomeContent(){
         beaconLocation = null,
         heading = 0.0f,
         onNavigate = {},
-        onMapLongClick = {},
+        onMapLongClick = { false },
         onMarkerClick = { true },
         searchBar = {}
     )

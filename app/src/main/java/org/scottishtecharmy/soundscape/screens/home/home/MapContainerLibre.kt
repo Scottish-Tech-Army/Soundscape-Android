@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.maplibre.android.annotations.Marker
 import org.maplibre.android.annotations.MarkerOptions
 import org.maplibre.android.camera.CameraPosition
@@ -36,14 +38,13 @@ const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
  */
 @Composable
 fun MapContainerLibre(
-    map: MapView,
     mapCenter: LatLng,
     mapViewRotation: Float,
     userLocation: LatLng,
     userSymbolRotation: Float,
     beaconLocation: LatLng?,
     modifier: Modifier = Modifier,
-    onMapLongClick: (LatLng) -> Unit,
+    onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
 ) {
     val cameraPosition = remember(mapCenter, mapViewRotation) {
@@ -74,6 +75,32 @@ fun MapContainerLibre(
         )
     }
     val coroutineScope = rememberCoroutineScope()
+    val map = rememberMapViewWithLifecycle { mapView: MapView ->
+        // This code will be run just before the MapView is destroyed to tidy up any map
+        // allocations that have been made. I did try replacing the LaunchedEffects below with
+        // DisposableEffects and putting the code there, but by the time onDisposal is called it's
+        // too late - the view has already been destroyed. Passing it into the helper means that
+        // it's called prior to the onDestroy call on mapView. As a result Leak Canary no longer
+        // detects any leaks.
+        runBlocking {
+            mapView.getMapAsync { map ->
+                Log.d("MapContainer", "MapView is being disposed, tidy up")
+                beaconLocationMarker.value?.let { currentBeacon ->
+                    map.removeMarker(currentBeacon)
+                    beaconLocationMarker.value = null
+                }
+                map.removeOnMapLongClickListener(onMapLongClick)
+                map.setOnMarkerClickListener(null)
+
+                symbol.value?.let { sym ->
+                    symbolManager.value?.delete(sym)
+                    symbol.value = null
+                }
+                symbolManager.value?.onDestroy()
+                symbolManager.value = null
+            }
+        }
+    }
 
     LaunchedEffect(map) {
         // init map first time it is displayed
@@ -103,13 +130,8 @@ fun MapContainerLibre(
                 // The centering of the map is set by the location provider, so disable scrolling from the UI
                 mapLibre.uiSettings.isScrollGesturesEnabled = false
 
-                mapLibre.addOnMapLongClickListener { latitudeLongitude ->
-                    onMapLongClick(latitudeLongitude)
-                    false
-                }
-                mapLibre.setOnMarkerClickListener { marker ->
-                    onMarkerClick(marker)
-                }
+                mapLibre.addOnMapLongClickListener(onMapLongClick)
+                mapLibre.setOnMarkerClickListener(onMarkerClick)
             }
 
             mapLibre.cameraPosition = CameraPosition.Builder()
