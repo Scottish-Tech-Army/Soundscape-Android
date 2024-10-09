@@ -881,3 +881,90 @@ fun Double.round(digitLength: Int): Double {
     val pow = 10.0.pow(digitLength)
     return (this * pow).roundToLong() / pow
 }
+
+fun findCircleCenter(
+    arcMidPoint: LngLatAlt,
+    chordBearing: Double,
+    radius: Double
+): LngLatAlt {
+    // Calculate the bearing of the perpendicular bisector
+    val perpendicularBearing = (chordBearing + 90.0) % 360.0
+    // Calculate the circle center using the arc midpoint, bearing, and radius
+    val centerCoordinates = getDestinationCoordinate(arcMidPoint, perpendicularBearing, radius)
+
+    return centerCoordinates
+}
+
+fun calculateRadius(
+    chordLength: Double,
+    arcMidPoint: LngLatAlt,
+    chordMidPoint: LngLatAlt
+): Double {
+    val h =
+        distance(arcMidPoint.latitude, arcMidPoint.longitude, chordMidPoint.latitude, chordMidPoint.longitude)
+    // https://math.stackexchange.com/questions/2809531/how-to-find-a-circle-given-a-segment
+    var radius = (h / 2) + (chordLength * chordLength / (8 * h))
+    // Iterate to refine radius (more repeats more accuracy but we don't need to be super accurate
+    // as we are looking for an approximate value to eventually splat our relative directions polygon)
+    repeat(10) {
+        val centralAngle = 2 * asin(chordLength / (2 * radius))
+        radius = chordLength / (2 * sin(centralAngle / 2))
+    }
+    // we've got the radius but now we need to work out the circle center coordinates
+    return radius
+}
+
+fun calculateCenter(
+    a: LngLatAlt,
+    b: LngLatAlt,
+    arcMidPoint: LngLatAlt
+): LngLatAlt {
+    val chordMidpoint =
+        LngLatAlt((a.longitude + b.longitude) / 2, (a.latitude + b.latitude) / 2)
+    val chordLength = distance(a.latitude, a.longitude, b.latitude, b.longitude)
+    // calculate radius
+    val radius = calculateRadius(chordLength, arcMidPoint, chordMidpoint)
+
+    // Calculate chord bearing
+    val chordBearing = bearingFromTwoPoints( b.latitude, b.longitude, a.latitude, a.longitude)
+    val circleCenter = findCircleCenter(arcMidPoint, chordBearing, radius)
+
+    return circleCenter
+}
+
+fun calculateCenterOfCircle(
+    segment: LineString
+): LngLatAlt {
+    val a = segment.coordinates.first()
+    val b = segment.coordinates.last()
+    val arcMidPoint: LngLatAlt
+
+    if (segment.coordinates.size % 2 == 0) {
+        // synthesize the arcPoint
+        val firstCoordinate = segment.coordinates[segment.coordinates.size / 2 - 1]
+        val secondCoordinate = segment.coordinates[segment.coordinates.size / 2]
+        val distanceBetweenCoordinates =
+            distance(
+                firstCoordinate.latitude,
+                firstCoordinate.longitude,
+                secondCoordinate.latitude,
+                secondCoordinate.longitude
+            )
+        val bearing =
+            bearingFromTwoPoints(
+                firstCoordinate.latitude,
+                firstCoordinate.longitude,
+                secondCoordinate.latitude,
+                secondCoordinate.longitude
+            )
+        arcMidPoint =
+            getDestinationCoordinate(firstCoordinate, bearing, distanceBetweenCoordinates / 2)
+
+    } else {
+        arcMidPoint = segment.coordinates[segment.coordinates.size / 2]
+    }
+
+    val center = calculateCenter(a, b, arcMidPoint)
+
+    return center
+}
