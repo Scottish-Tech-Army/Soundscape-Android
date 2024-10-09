@@ -17,8 +17,8 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDeta
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.AddRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute.AddRouteScreen
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
 
 class Navigator {
@@ -111,7 +111,7 @@ fun HomeScreen(
         ) {
             composable("${HomeRoutes.MarkersAndRoutes.route}/{tab}") { backStackEntry ->
                 val selectedTab = backStackEntry.arguments?.getString("tab")
-                MarkersAndRoutesScreen(navController = navController, selectedTab = selectedTab)
+                MarkersAndRoutesScreen(mainNavController = navController, selectedTab = selectedTab)
             }
 
             // Nested graph: Routes and Markers

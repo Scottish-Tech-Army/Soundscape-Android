@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,11 +32,12 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun CustomAppBar(customTitle : String,
+fun CustomAppBar(title : String,
                  onNavigateUp: () -> Unit,
                  onAddClicked: (() -> Unit)? = null,
-                 showAddIcon: Boolean = false
-) {
+                 showAddIcon: Boolean = false,
+                 navigationButtonTitle: String = stringResource(R.string.ui_back_button_title),
+                 ) {
     Surface(
         color = MaterialTheme.colorScheme.primary
     ) {
@@ -48,17 +51,20 @@ fun CustomAppBar(customTitle : String,
                 onClick = {
                     onNavigateUp()
                 },
-                iconText = stringResource(R.string.ui_back_button_title),
-                contentDescription = stringResource(R.string.ui_back_button_title),
+                iconText = navigationButtonTitle,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
             )
 
-            CustomAppBarTitle(
-                title = customTitle,
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxHeight().weight(1f)
-            )
+            Box(
+                modifier = Modifier.fillMaxHeight().weight(1f),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                Text(
+                    text = title,
+                )
+            }
+
 
             AnimatedVisibility(
                 visible = showAddIcon,
@@ -88,6 +94,7 @@ fun CustomAppBarPreview() {
     SoundscapeTheme {
         CustomAppBar(
             "Test app bar with long title",
+            navigationButtonTitle = "Back",
             showAddIcon = false,
             onNavigateUp = {},
             onAddClicked = {}
@@ -102,6 +109,7 @@ fun CustomAppBarWithActionButtonPreview() {
     SoundscapeTheme {
         CustomAppBar(
             "Test app bar",
+            navigationButtonTitle = "Back",
             showAddIcon = true,
             onNavigateUp = {},
             onAddClicked = {}

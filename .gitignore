@@ -12,6 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+app/*.geojson
 
 
 # Gradle files

@@ -17,7 +17,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.Screens
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun MarkersAndRoutesScreen(navController: NavController, selectedTab: String?) {
+fun MarkersAndRoutesScreen(mainNavController: NavController, selectedTab: String?) {
     // Nested navController for the tab navigation inside MarkersAndRoutes
     val nestedNavController = rememberNavController()
 
@@ -30,10 +30,10 @@ fun MarkersAndRoutesScreen(navController: NavController, selectedTab: String?) {
             MarkersAndRoutesAppBar(
                 showAddIcon = showAddIcon,
                 onNavigateUp = {
-                    navController.navigateUp()
+                    mainNavController.navigateUp()
                 },
                 onNavigateToDestination = {
-                    navController.navigate(HomeRoutes.AddRoute.route)
+                    mainNavController.navigate(HomeRoutes.AddRoute.route)
                 },
             )
         },
@@ -57,7 +57,7 @@ fun MarkersAndRoutesScreen(navController: NavController, selectedTab: String?) {
 fun MarkersAndRoutesPreview() {
     SoundscapeTheme {
         MarkersAndRoutesScreen(
-            navController = rememberNavController(),
+            mainNavController = rememberNavController(),
             selectedTab = ScreensForMarkersAndRoutes.Markers.route)
     }
 }
