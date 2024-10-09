@@ -882,6 +882,16 @@ fun Double.round(digitLength: Int): Double {
     return (this * pow).roundToLong() / pow
 }
 
+/**
+ * Calculate the center coordinates of a circle based on the arc midpoint, chord bearing and radius.
+ * @param arcMidPoint
+ * the mid point of the arc as LngLatAlt
+ * @param chordBearing
+ * The bearing of the chord as a double.
+ * @param radius
+ * The radius of the arc as a double.
+ * @return The coordinates of the center of the circle as LngLatAlt.
+ */
 fun findCircleCenter(
     arcMidPoint: LngLatAlt,
     chordBearing: Double,
@@ -895,6 +905,16 @@ fun findCircleCenter(
     return centerCoordinates
 }
 
+/**
+ * Calculate the radius of a circle based on the chord length, arc midpoint and chord midpoint
+ * @param chordLength
+ * the length of the segment chord
+ * @param arcMidPoint
+ * coordinates of the arc midpoint as LngLatAlt
+ * @param chordMidPoint
+ * The coordinates of the chord midpoint as LngLatAlt.
+ * @return The coordinates of the center of the circle as LngLatAlt.
+ */
 fun calculateRadius(
     chordLength: Double,
     arcMidPoint: LngLatAlt,
@@ -914,24 +934,41 @@ fun calculateRadius(
     return radius
 }
 
+/**
+ * Calculate the approximate center coordinates of a circle based on the start and end coordinates
+ * of a segment and the arc midpoint.
+ * @param a
+ * is start coordinates of segment
+ * @param b
+ * is end coordinates of segment
+ * @param arcMidPoint
+ * The coordinates of the arc midpoint as LngLatAlt.
+ * @return The coordinates of the center of the circle as LngLatAlt.
+ */
 fun calculateCenter(
-    a: LngLatAlt,
-    b: LngLatAlt,
+    start: LngLatAlt,
+    end: LngLatAlt,
     arcMidPoint: LngLatAlt
 ): LngLatAlt {
     val chordMidpoint =
-        LngLatAlt((a.longitude + b.longitude) / 2, (a.latitude + b.latitude) / 2)
-    val chordLength = distance(a.latitude, a.longitude, b.latitude, b.longitude)
+        LngLatAlt((start.longitude + end.longitude) / 2, (start.latitude + end.latitude) / 2)
+    val chordLength = distance(start.latitude, start.longitude, end.latitude, end.longitude)
     // calculate radius
     val radius = calculateRadius(chordLength, arcMidPoint, chordMidpoint)
 
     // Calculate chord bearing
-    val chordBearing = bearingFromTwoPoints( b.latitude, b.longitude, a.latitude, a.longitude)
+    val chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
     val circleCenter = findCircleCenter(arcMidPoint, chordBearing, radius)
 
     return circleCenter
 }
 
+/**
+ * Calculate the approximate center coordinates of a circle based on a segment.
+ * @param segment
+ * segment of circle as LineString
+ * @return The coordinates of the center of the circle as LngLatAlt.
+ */
 fun calculateCenterOfCircle(
     segment: LineString
 ): LngLatAlt {
