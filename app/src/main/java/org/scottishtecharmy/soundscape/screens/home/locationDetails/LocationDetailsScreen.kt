@@ -20,7 +20,6 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
-import org.scottishtecharmy.soundscape.screens.home.home.rememberMapViewWithLifecycle
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
@@ -95,14 +94,12 @@ fun LocationDetails(
             color = MaterialTheme.colorScheme.surfaceBright
         )
 
-        val mapView = rememberMapViewWithLifecycle()
         MapContainerLibre(
-            map = mapView,
             beaconLocation = LatLng(
                 locationDescription.latitude,
                 locationDescription.longitude
             ),
-            onMapLongClick = { },
+            onMapLongClick = { false },
             onMarkerClick = { false },
             // Center on the beacon
             mapCenter = LatLng(
