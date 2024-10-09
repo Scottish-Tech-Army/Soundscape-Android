@@ -7,21 +7,17 @@ import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
 import com.google.android.gms.location.DeviceOrientation
-
-import org.scottishtecharmy.soundscape.services.SoundscapeService
-import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.SoundscapeService
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class SoundscapeServiceConnection @Inject constructor(@ApplicationContext context: Context) {
-
+@ActivityRetainedScoped
+class SoundscapeServiceConnection @Inject constructor() {
     var soundscapeService: SoundscapeService? = null
-    private val appContext = context
 
     private var _serviceBoundState = MutableStateFlow(false)
     val serviceBoundState = _serviceBoundState.asStateFlow()
@@ -59,34 +55,18 @@ class SoundscapeServiceConnection @Inject constructor(@ApplicationContext contex
 
         override fun onServiceDisconnected(arg0: ComponentName) {
             // This is called when the connection with the service has been disconnected. Clean up.
-            Log.d(TAG, "onServiceDisconnected")
+            Log.e(TAG, "onServiceDisconnected")
 
             _serviceBoundState.value = false
         }
     }
 
-    fun create() {
-        Log.d(TAG, "create")
-        tryToBindToServiceIfRunning()
-    }
-
-    private fun destroy() {
-
-        Log.d(TAG, "destroy")
-
-        // If this was the first launch
-        if(serviceBoundState.value) {
-            appContext.unbindService(connection)
-            _serviceBoundState.value = false
-        }
-    }
-
-    fun tryToBindToServiceIfRunning() {
+    fun tryToBindToServiceIfRunning(context : Context) {
         Log.d(TAG, "tryToBindToServiceIfRunning " + serviceBoundState.value)
 
         if(!serviceBoundState.value) {
-            Intent(appContext, SoundscapeService::class.java).also { intent ->
-                appContext.bindService(intent, connection, 0)
+            Intent(context, SoundscapeService::class.java).also { intent ->
+                context.bindService(intent, connection, 0)
             }
         }
     }

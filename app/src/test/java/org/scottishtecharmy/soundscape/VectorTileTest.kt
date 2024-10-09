@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.utils.searchFeaturesByName
 import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.text.Collator.PRIMARY
 
 
 class VectorTileTest {
@@ -140,7 +141,17 @@ class VectorTileTest {
         assert(tileOrigin2.longitude == -4.306640625)
     }
 
-    private fun intersectionCheck(highwayPoints : HashMap< Int, ArrayList<String>>, line : ArrayList<Pair<Int, Int>>, id : String) {
+    data class IntersectionDetails(
+        val name : String,
+        val type : String,
+        val subClass : String,
+        val brunnel : String,
+        val nameLayer : Boolean,
+        var lineEnd : Boolean = false
+    )
+    private fun intersectionCheck(highwayPoints : HashMap< Int, ArrayList<IntersectionDetails>>,
+                                  line : ArrayList<Pair<Int, Int>>,
+                                  details : IntersectionDetails) {
         for (point in line) {
             if((point.first < 0) || (point.first > 4095) ||
                 (point.second < 0) || (point.second > 4095)) {
@@ -149,10 +160,23 @@ class VectorTileTest {
 
             val coordinateKey = point.first.shl(12) + point.second
             if (highwayPoints[coordinateKey] == null) {
-                highwayPoints[coordinateKey] = arrayListOf(id)
+                highwayPoints[coordinateKey] = arrayListOf(details)
             }
             else {
-                highwayPoints[coordinateKey]?.add(id)
+                // If the road type matches but we're on a different layer then skip
+                var add = true
+                for(listDetails in highwayPoints[coordinateKey]!!) {
+                    if((listDetails.nameLayer != details.nameLayer) &&
+                       (listDetails.type == details.type)) {
+                        add = false
+                        break
+                    }
+                }
+                if(!add) continue
+                if((point == line.first()) || (point == line.last())) {
+                    details.lineEnd = true
+                }
+                highwayPoints[coordinateKey]?.add(details)
                 //
                 // On initial testing, this intersection spotting is unreliable with the
                 // maptiler tiles :-( There's a good explanation of why here:
@@ -183,7 +207,7 @@ class VectorTileTest {
                     for (road in roads) {
                         if (!firstRoad)
                             intersectionNames += ","
-                        intersectionNames += road
+                        intersectionNames += road.name
                         firstRoad = false
                     }
                     println("Intersection: $intersectionNames")
@@ -203,145 +227,187 @@ class VectorTileTest {
         val remoteTile = FileInputStream(path + filename)
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
         val collection = FeatureCollection()
-        for (layer in tile.layersList) {
-            when(layer.name){
-                "boundary",
-                "building",
-                "housenumber",
-                "landcover",
-                "landuse",
-                "mountain_peak",
-                "park",
-                //"place",
-                //"poi",
-                "transportation",
-                //"transportation_name",
-                "water" -> {
-                    println("Skip layer: " + layer.name)
+        val intersectionPoints : HashMap< Int, ArrayList<IntersectionDetails>> = hashMapOf()
+
+        // When processing the layers, we want to handle transportation_name before transportation.
+        // This is so that we can calculate intersections with the named lines and then discard their
+        // un-named duplicates in the transportation layer.
+        // The only other layers we want to look at is poi.
+        for (layerId in arrayOf("transportation_name", "transportation", "poi")) {
+            for(layer in tile.layersList) {
+                if(layer.name != layerId)
                     continue
-                }
-            }
 
-            val intersectionPoints : HashMap< Int, ArrayList<String>> = hashMapOf()
+                println("Process layer: " + layer.name)
+                for (feature in layer.featuresList) {
+                    // Convert coordinates to GeoJSON. This is where we find out how many features
+                    // we're actually dealing with as there can be multiple features that have the
+                    // same properties.
+                    assert(feature.type != null)
+                    val listOfGeometries = mutableListOf<GeoJsonObject>()
 
-            println("Process layer: " + layer.name)
-            for (feature in layer.featuresList) {
-                // Convert coordinates to GeoJSON. This is where we find out how many features
-                // we're actually dealing with as there can be multiple features that have the
-                // same properties.
-                assert(feature.type != null)
-                val listOfGeometries = mutableListOf<GeoJsonObject>()
-
-                // Parse tags
-                var firstInPair = true
-                var key = ""
-                var value: Any? = null
-                var properties: java.util.HashMap<String, Any?>? = null
-                for (tag in feature.tagsList) {
-                    if (firstInPair)
-                        key = layer.getKeys(tag)
-                    else {
-                        val raw = layer.getValues(tag)
-                        if (raw.hasBoolValue())
-                            value = layer.getValues(tag).boolValue
-                        else if (raw.hasIntValue())
-                            value = layer.getValues(tag).intValue
-                        else if (raw.hasSintValue())
-                            value = layer.getValues(tag).sintValue
-                        else if (raw.hasFloatValue())
-                            value = layer.getValues(tag).doubleValue
-                        else if (raw.hasDoubleValue())
-                            value = layer.getValues(tag).floatValue
-                        else if (raw.hasStringValue())
-                            value = layer.getValues(tag).stringValue
-                        else if (raw.hasUintValue())
-                            value = layer.getValues(tag).uintValue
-                    }
-
-                    if (!firstInPair) {
-                        if (properties == null) {
-                            properties = HashMap()
+                    // Parse tags
+                    var firstInPair = true
+                    var key = ""
+                    var value: Any? = null
+                    var properties: java.util.HashMap<String, Any?>? = null
+                    for (tag in feature.tagsList) {
+                        if (firstInPair)
+                            key = layer.getKeys(tag)
+                        else {
+                            val raw = layer.getValues(tag)
+                            if (raw.hasBoolValue())
+                                value = layer.getValues(tag).boolValue
+                            else if (raw.hasIntValue())
+                                value = layer.getValues(tag).intValue
+                            else if (raw.hasSintValue())
+                                value = layer.getValues(tag).sintValue
+                            else if (raw.hasFloatValue())
+                                value = layer.getValues(tag).doubleValue
+                            else if (raw.hasDoubleValue())
+                                value = layer.getValues(tag).floatValue
+                            else if (raw.hasStringValue())
+                                value = layer.getValues(tag).stringValue
+                            else if (raw.hasUintValue())
+                                value = layer.getValues(tag).uintValue
                         }
-                        properties.put(key, value)
-                        firstInPair = true
-                    } else
-                        firstInPair = false
-                }
 
-                when (feature.type) {
-                    VectorTile.Tile.GeomType.POLYGON -> {
-                        val polygons = parseGeometry(
-                            false,
-                            feature.geometryList)
-                        for(polygon in polygons) {
-                            if(polygon.first() != polygon.last())
-                                polygon.add(polygon.first())
-                            listOfGeometries.add(Polygon(convertGeometry(tileX, tileY, tileZoom, polygon)))
-                        }
+                        if (!firstInPair) {
+                            if (properties == null) {
+                                properties = HashMap()
+                            }
+                            properties[key] = value
+                            firstInPair = true
+                        } else
+                            firstInPair = false
                     }
-
-                    VectorTile.Tile.GeomType.POINT -> {
-                        val points =
-                            parseGeometry(cropPoints, feature.geometryList)
-                        for(point in points) {
-                            if(point.isNotEmpty()) {
-                                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+                    when (feature.type) {
+                        VectorTile.Tile.GeomType.POLYGON -> {
+                            val polygons = parseGeometry(
+                                false,
+                                feature.geometryList
+                            )
+                            for (polygon in polygons) {
+                                if (polygon.first() != polygon.last())
+                                    polygon.add(polygon.first())
                                 listOfGeometries.add(
-                                    Point(coordinates[0].longitude, coordinates[0].latitude)
+                                    Polygon(
+                                        convertGeometry(
+                                            tileX,
+                                            tileY,
+                                            tileZoom,
+                                            polygon
+                                        )
+                                    )
                                 )
                             }
                         }
-                    }
 
-                    VectorTile.Tile.GeomType.LINESTRING -> {
-                        val lines = parseGeometry(
-                            false,
-                            feature.geometryList)
-
-                        var name = "Unknown"
-                        properties?.let {
-                            name = properties["name"].toString()
+                        VectorTile.Tile.GeomType.POINT -> {
+                            val points =
+                                parseGeometry(cropPoints, feature.geometryList)
+                            for (point in points) {
+                                if (point.isNotEmpty()) {
+                                    val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+                                    listOfGeometries.add(
+                                        Point(coordinates[0].longitude, coordinates[0].latitude)
+                                    )
+                                }
+                            }
                         }
 
-                        for(line in lines) {
-                            intersectionCheck(intersectionPoints, line, name)
-                            listOfGeometries.add(LineString(convertGeometry(tileX, tileY, tileZoom, line)))
+                        VectorTile.Tile.GeomType.LINESTRING -> {
+                            val lines = parseGeometry(
+                                false,
+                                feature.geometryList
+                            )
+
+                            var name = ""
+                            var type = ""
+                            var subclass = ""
+                            var brunnel = ""
+                            properties?.let {
+                                name = properties["name"].toString()
+                                if(name == "null") {
+                                    name = properties["class"].toString()
+                                }
+                                type = properties["class"].toString()
+                                subclass = properties["subclass"].toString()
+                                brunnel = properties["brunnel"].toString()
+                            }
+
+                            for (line in lines) {
+                                val details = IntersectionDetails(name,
+                                    type,
+                                    subclass,
+                                    brunnel,
+                                    layerId == "transportation_name")
+                                intersectionCheck(intersectionPoints, line, details)
+                                listOfGeometries.add(
+                                    LineString(
+                                        convertGeometry(
+                                            tileX,
+                                            tileY,
+                                            tileZoom,
+                                            line
+                                        )
+                                    )
+                                )
+                            }
+                        }
+
+                        VectorTile.Tile.GeomType.UNKNOWN -> {
+                            assert(false)
                         }
                     }
 
-                    VectorTile.Tile.GeomType.UNKNOWN -> {
-                        assert(false)
+                    for (geometry in listOfGeometries) {
+                        // And map the tags
+                        val geoFeature = Feature()
+                        geoFeature.id = feature.id.toString()
+                        geoFeature.geometry = geometry
+                        geoFeature.properties = properties
+                        collection.addFeature(geoFeature)
                     }
-                }
-
-                for(geometry in listOfGeometries) {
-                    // And map the tags
-                    val geoFeature = Feature()
-                    geoFeature.id = feature.id.toString()
-                    geoFeature.geometry = geometry
-                    geoFeature.properties = properties
-                    collection.addFeature(geoFeature)
                 }
             }
-            // Add points for the intersections that we found
-            for((key, intersections)  in intersectionPoints) {
-                if(intersections.size > 1) {
-                    val intersection = Feature()
-                    val x = key.shr(12)
-                    val y = key.and(0xfff)
-                    val point = arrayListOf(Pair(x, y))
-                    val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
-                    intersection.geometry =
-                        Point(coordinates[0].longitude, coordinates[0].latitude)
-                    intersection.properties = HashMap()
-                    intersection.properties!!["class"] = "gd_intersection"
-                    var name = ""
-                    for (road in intersections) {
-                        name += "$road/"
+        }
+        // Add points for the intersections that we found
+        for((key, intersections)  in intersectionPoints) {
+            if(intersections.size > 1) {
+
+                // Skip any intersections where there are only two lines and they are both ending
+                var skip = false
+                if(intersections.size == 2) {
+                    val road1 = intersections[0]
+                    val road2 = intersections[1]
+                    if((road1.lineEnd && road2.lineEnd) &&
+                       (road1.type == road2.type)) {
+                        skip = true
                     }
-                    intersection.properties!!["name"] = name
-                    collection.addFeature(intersection)
                 }
+                if(skip) continue
+
+                val intersection = Feature()
+                val x = key.shr(12)
+                val y = key.and(0xfff)
+                val point = arrayListOf(Pair(x, y))
+                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+                intersection.geometry =
+                    Point(coordinates[0].longitude, coordinates[0].latitude)
+                intersection.properties = HashMap()
+                intersection.properties!!["class"] = "gd_intersection"
+                var name = ""
+                for (road in intersections) {
+                    if(road.brunnel != "null")
+                        name += "${road.brunnel}/"
+                    else if(road.subClass != "null")
+                        name += "${road.subClass}/"
+                    else
+                        name += "${road.name}/"
+                }
+                intersection.properties!!["name"] = name
+                collection.addFeature(intersection)
             }
         }
         return collection

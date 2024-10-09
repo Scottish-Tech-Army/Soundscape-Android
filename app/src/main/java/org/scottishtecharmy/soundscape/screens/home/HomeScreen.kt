@@ -58,6 +58,7 @@ fun HomeScreen(
                 },
                 onMapLongClick = { latLong ->
                     viewModel.createBeacon(latLong)
+                    true
                 },
                 onMarkerClick = { marker ->
                     viewModel.onMarkerClick(marker)
