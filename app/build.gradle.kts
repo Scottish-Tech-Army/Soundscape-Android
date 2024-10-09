@@ -235,4 +235,6 @@ dependencies {
     // Dokka plugin
     dokkaPlugin(libs.html.mermaid.dokka.plugin)
 
+    // Leak canary
+    debugImplementation(libs.leakcanary.android)
 }
