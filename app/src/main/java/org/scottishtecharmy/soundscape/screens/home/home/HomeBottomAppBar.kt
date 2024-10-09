@@ -94,14 +94,14 @@ fun HomeBottomAppBar(
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.ahead_of_me_24px),
                     text = stringResource(R.string.ui_action_button_ahead_of_me),
-                    onClick = notAvailableToast,
+                    onClick = getWhatsAheadOfMe,
                     modifier = Modifier.weight(1f).fillMaxHeight()
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.nearby_markers_24px),
                     text = stringResource(R.string.ui_action_button_nearby_markers),
-                    onClick = getWhatsAheadOfMe,
+                    onClick = notAvailableToast,
                     modifier = Modifier.weight(1f).fillMaxHeight()
                 )
             }
