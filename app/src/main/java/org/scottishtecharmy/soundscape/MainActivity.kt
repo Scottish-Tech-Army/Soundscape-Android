@@ -243,8 +243,7 @@ class MainActivity : AppCompatActivity() {
     fun toggleServiceState(newServiceState: Boolean) {
 
         if(!newServiceState) {
-            soundscapeServiceConnection.soundscapeService?.stopForegroundService()
-            soundscapeServiceConnection.soundscapeService = null
+            soundscapeServiceConnection.stopService(applicationContext)
         }
         else {
             startSoundscapeService()
