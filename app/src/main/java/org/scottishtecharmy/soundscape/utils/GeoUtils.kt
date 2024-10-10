@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
+import org.scottishtecharmy.soundscape.dto.Circle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
@@ -949,7 +950,7 @@ fun calculateCenter(
     start: LngLatAlt,
     end: LngLatAlt,
     arcMidPoint: LngLatAlt
-): LngLatAlt {
+): Circle {
     val chordMidpoint =
         LngLatAlt((start.longitude + end.longitude) / 2, (start.latitude + end.latitude) / 2)
     val chordLength = distance(start.latitude, start.longitude, end.latitude, end.longitude)
@@ -960,15 +961,17 @@ fun calculateCenter(
     if(pointOnRightSide(start, arcMidPoint, end)){
         chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
     } else {
-
         chordBearing = bearingFromTwoPoints(start.latitude, start.longitude, end.latitude, end.longitude)
     }
 
     // Calculate chord bearing
     //val chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
     val circleCenter = findCircleCenter(arcMidPoint, chordBearing, radius)
+    val circle = Circle()
+    circle.center = circleCenter
+    circle.radius = radius
 
-    return circleCenter
+    return circle
 }
 
 /**
@@ -992,7 +995,7 @@ fun pointOnRightSide(start: LngLatAlt, pointToCheck: LngLatAlt, end: LngLatAlt):
  */
 fun calculateCenterOfCircle(
     segment: LineString
-): LngLatAlt {
+): Circle {
     val a = segment.coordinates.first()
     val b = segment.coordinates.last()
     val arcMidPoint: LngLatAlt
