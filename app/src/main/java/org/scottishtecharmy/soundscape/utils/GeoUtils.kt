@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
+import org.scottishtecharmy.soundscape.dto.Circle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
@@ -937,9 +938,9 @@ fun calculateRadius(
 /**
  * Calculate the approximate center coordinates of a circle based on the start and end coordinates
  * of a segment and the arc midpoint.
- * @param a
+ * @param start
  * is start coordinates of segment
- * @param b
+ * @param end
  * is end coordinates of segment
  * @param arcMidPoint
  * The coordinates of the arc midpoint as LngLatAlt.
@@ -949,18 +950,46 @@ fun calculateCenter(
     start: LngLatAlt,
     end: LngLatAlt,
     arcMidPoint: LngLatAlt
-): LngLatAlt {
+): Circle {
     val chordMidpoint =
         LngLatAlt((start.longitude + end.longitude) / 2, (start.latitude + end.latitude) / 2)
     val chordLength = distance(start.latitude, start.longitude, end.latitude, end.longitude)
     // calculate radius
     val radius = calculateRadius(chordLength, arcMidPoint, chordMidpoint)
+    // is the chord midpoint to the right or left of the segment?
+    val chordBearing: Double
+    if(pointOnRightSide(start, arcMidPoint, end)){
+        chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
+    } else {
+        chordBearing = bearingFromTwoPoints(start.latitude, start.longitude, end.latitude, end.longitude)
+    }
 
     // Calculate chord bearing
-    val chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
+    //val chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
     val circleCenter = findCircleCenter(arcMidPoint, chordBearing, radius)
+    val circle = Circle()
+    circle.center = circleCenter
+    circle.radius = radius
 
-    return circleCenter
+    return circle
+}
+
+/**
+ * Checks if a point is on the right side of a line segment or not.
+ * @param start
+ * coordinate of line segment as LngLatAlt
+ * @param pointToCheck
+ * point to check as LngLatAlt
+ * @param end
+ * coordinate of line segment as LngLatAlt
+ * @return true if b is right of the line defined by start and end coordinates.
+ */
+fun pointOnRightSide(
+    start: LngLatAlt,
+    pointToCheck: LngLatAlt,
+    end: LngLatAlt
+): Boolean {
+    return (pointToCheck.longitude - start.longitude) * (end.latitude - start.latitude) - (pointToCheck.latitude - start.latitude) * (end.longitude - start.longitude) > 0
 }
 
 /**
@@ -971,7 +1000,7 @@ fun calculateCenter(
  */
 fun calculateCenterOfCircle(
     segment: LineString
-): LngLatAlt {
+): Circle {
     val a = segment.coordinates.first()
     val b = segment.coordinates.last()
     val arcMidPoint: LngLatAlt
