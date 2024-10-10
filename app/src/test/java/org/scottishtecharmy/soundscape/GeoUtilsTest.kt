@@ -539,6 +539,17 @@ class GeoUtilsTest {
                     51.43785692027379)
             )
         }
+        // minimum segment length possible (three points)
+        val segmentLineString5 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.747654682943891,
+                    51.43782072310585),
+                LngLatAlt( -2.7476406273071103,
+                    51.43782159491186),
+                LngLatAlt(-2.747627114589561,
+                    51.43782415930163)
+            )
+        }
         val actualCircleCenter = LngLatAlt(-2.747654754997829, 51.4378656388476)
 
         val center1 = calculateCenterOfCircle(segmentLineString1)
@@ -552,6 +563,9 @@ class GeoUtilsTest {
 
         val center4 = calculateCenterOfCircle(segmentLineString4)
         Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, center4.latitude, center4.longitude), 0.1)
+
+        val center5 = calculateCenterOfCircle(segmentLineString5)
+        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, center5.latitude, center5.longitude), 0.1)
     }
 
 }
