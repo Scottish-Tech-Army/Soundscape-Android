@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.services
 
+import android.annotation.SuppressLint
 import android.app.Application
-import android.app.Service
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -13,24 +13,18 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.OptIn
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.session.MediaSession
+import androidx.media3.session.MediaSessionService
 import androidx.preference.PreferenceManager
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
-import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.dao.TilesDao
-import org.scottishtecharmy.soundscape.database.repository.TilesRepository
-import org.scottishtecharmy.soundscape.network.ITileDAO
-import org.scottishtecharmy.soundscape.network.OkhttpClientInstance
-import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
-import org.scottishtecharmy.soundscape.utils.processTileString
-import io.realm.kotlin.ext.query
 import io.realm.kotlin.Realm
+import io.realm.kotlin.ext.query
 import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,7 +41,13 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
+import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
+import org.scottishtecharmy.soundscape.database.local.dao.TilesDao
 import org.scottishtecharmy.soundscape.database.local.model.TileData
+import org.scottishtecharmy.soundscape.database.repository.TilesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -58,7 +58,10 @@ import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.network.ITileDAO
+import org.scottishtecharmy.soundscape.network.OkhttpClientInstance
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.utils.distanceToIntersection
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
@@ -75,16 +78,21 @@ import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.utils.processTileString
 import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
 import retrofit2.awaitResponse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
+
 /**
- * Foreground service that provides location updates, device orientation updates, requests tiles, data persistence with realmDB.
+ * Foreground service that provides location updates, device orientation updates, requests tiles,
+ * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
+ * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
 @AndroidEntryPoint
-class SoundscapeService : Service() {
+class SoundscapeService : MediaSessionService() {
+
     private val coroutineScope = CoroutineScope(Job())
 
     lateinit var locationProvider: LocationProvider
@@ -117,9 +125,14 @@ class SoundscapeService : Service() {
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
 
+    // Media control button code
+    private var mediaSession: MediaSession? = null
+    private val mediaPlayer = SoundscapeDummyMediaPlayer()
+
     private var running: Boolean = false
 
     private var binder : SoundscapeBinder? = null
+    @SuppressLint("MissingSuperCall")
     override fun onBind(intent: Intent?): IBinder {
         if(binder == null) {
             // Create binder if we don't have one already
@@ -147,6 +160,8 @@ class SoundscapeService : Service() {
         _streetPreviewFlow.value = on
     }
 
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? = mediaSession
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (!running) {
             running = true
@@ -163,6 +178,7 @@ class SoundscapeService : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
+    @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "onCreate")
@@ -193,10 +209,23 @@ class SoundscapeService : Service() {
                 onSuccess = { },
                 onFailure = { },
             )
+
+            mediaSession = MediaSession.Builder(this, mediaPlayer)
+                .setCallback(SoundscapeMediaSessionCallback(this))
+                .build()
         }
     }
 
     override fun onDestroy() {
+        // If _mediaSession is not null, run the following block
+        mediaSession?.run {
+            // Release the player
+            player.release()
+            // Release the MediaSession instance
+            release()
+            // Set _mediaSession to null
+            mediaSession = null
+        }
         super.onDestroy()
 
         Log.d(TAG, "onDestroy")
