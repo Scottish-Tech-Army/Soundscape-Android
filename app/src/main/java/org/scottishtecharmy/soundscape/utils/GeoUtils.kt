@@ -975,6 +975,7 @@ fun calculateCenter(
 }
 
 /**
+ * Checks if a point is on the right side of a line segment or not.
  * @param start
  * coordinate of line segment as LngLatAlt
  * @param pointToCheck
@@ -983,7 +984,11 @@ fun calculateCenter(
  * coordinate of line segment as LngLatAlt
  * @return true if b is right of the line defined by start and end coordinates.
  */
-fun pointOnRightSide(start: LngLatAlt, pointToCheck: LngLatAlt, end: LngLatAlt): Boolean {
+fun pointOnRightSide(
+    start: LngLatAlt,
+    pointToCheck: LngLatAlt,
+    end: LngLatAlt
+): Boolean {
     return (pointToCheck.longitude - start.longitude) * (end.latitude - start.latitude) - (pointToCheck.latitude - start.latitude) * (end.longitude - start.longitude) > 0
 }
 
