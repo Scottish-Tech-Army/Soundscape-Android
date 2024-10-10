@@ -85,8 +85,6 @@ import kotlin.time.Duration.Companion.seconds
  */
 @AndroidEntryPoint
 class SoundscapeService : Service() {
-    private val binder = LocalBinder()
-
     private val coroutineScope = CoroutineScope(Job())
 
     lateinit var locationProvider: LocationProvider
@@ -121,15 +119,13 @@ class SoundscapeService : Service() {
 
     private var running: Boolean = false
 
-    // Binder to allow local clients to Bind to our service
-    inner class LocalBinder : Binder() {
-        fun getService(): SoundscapeService = this@SoundscapeService
-    }
-
+    private var binder : SoundscapeBinder? = null
     override fun onBind(intent: Intent?): IBinder {
-        Log.d(TAG, "onBind")
-
-        return binder
+        if(binder == null) {
+            // Create binder if we don't have one already
+            binder = SoundscapeBinder(this@SoundscapeService)
+        }
+        return binder!!
     }
 
     fun setStreetPreviewMode(on : Boolean, latitude: Double, longitude: Double) {
@@ -152,9 +148,6 @@ class SoundscapeService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
-        Log.d(TAG, "onStartCommand $running")
-
         if (!running) {
             running = true
             startAsForegroundService()
@@ -205,8 +198,8 @@ class SoundscapeService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "onDestroy")
 
+        Log.d(TAG, "onDestroy")
         audioEngine.destroyBeacon(audioBeacon)
         audioBeacon = 0
         audioEngine.destroy()
@@ -221,7 +214,8 @@ class SoundscapeService : Service() {
 
         activityTransition.stopVehicleActivityTracking()
 
-        //Toast.makeText(this, "Foreground Service destroyed", Toast.LENGTH_SHORT).show()
+        // Clear service reference in binder so that it can be garbage collected
+        binder?.reset()
     }
 
     /**
@@ -936,3 +930,13 @@ class SoundscapeService : Service() {
     }
 }
 
+// Binder to allow local clients to Bind to our service
+class SoundscapeBinder(newService : SoundscapeService?) : Binder() {
+    var service : SoundscapeService? = newService
+    fun getSoundscapeService(): SoundscapeService {
+        return service!!
+    }
+    fun reset() {
+        service = null
+    }
+}

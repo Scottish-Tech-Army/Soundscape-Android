@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import javax.inject.Inject
 
@@ -48,16 +49,16 @@ class SoundscapeServiceConnection @Inject constructor() {
             // we've bound to ExampleLocationForegroundService, cast the IBinder and get ExampleLocationForegroundService instance.
             Log.d(TAG, "onServiceConnected")
 
-            val binder = service as SoundscapeService.LocalBinder
-            soundscapeService = binder.getService()
+            val binder = service as SoundscapeBinder
+            soundscapeService = binder.getSoundscapeService()
             _serviceBoundState.value = true
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
             // This is called when the connection with the service has been disconnected. Clean up.
-            Log.e(TAG, "onServiceDisconnected")
-
+            Log.d(TAG, "onServiceDisconnected")
             _serviceBoundState.value = false
+            soundscapeService = null
         }
     }
 
@@ -69,6 +70,11 @@ class SoundscapeServiceConnection @Inject constructor() {
                 context.bindService(intent, connection, 0)
             }
         }
+    }
+
+    fun stopService(context : Context) {
+        Log.d(TAG, "stopService")
+        soundscapeService?.stopForegroundService()
     }
 
     companion object {
