@@ -31,6 +31,6 @@ open class LngLatAlt(
     }
 
     override fun toString(): String {
-        return "$latitude,$longitude"
+        return "$longitude,$latitude"
     }
 }
