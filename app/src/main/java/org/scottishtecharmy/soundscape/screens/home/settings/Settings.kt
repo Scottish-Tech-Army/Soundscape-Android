@@ -1,32 +1,20 @@
 package org.scottishtecharmy.soundscape.screens.home.settings
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
+import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.onboarding.MockHearingPreviewData
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
@@ -37,108 +25,99 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 @Preview
 @Composable
 fun SettingsPreview() {
-    Settings({}, MockHearingPreviewData)
+    Settings({}, SettingsViewModel.SettingsUiState())
 }
 
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Settings(
     onNavigateUp: () -> Unit,
-    mockData : MockHearingPreviewData? // TODO set SettingsViewModel in param of SettingsScreen, and create SettingContent
-) {
+    uiState : SettingsViewModel.SettingsUiState)
+{
+    ProvidePreferenceLocals {
+        LazyColumn {
 
-    var viewModel : SettingsViewModel? = null
-    if(mockData == null)
-        viewModel = hiltViewModel<SettingsViewModel>()
+            stickyHeader {
+                Surface {
+                    CustomAppBar(stringResource(R.string.general_alert_settings),
+                        onNavigateUp = onNavigateUp,
+                        navigationButtonTitle = "Back"
+                    )
+                }
+            }
 
-    var beacons : List<String> = emptyList()
-    if(viewModel == null) {
-        // Preview operation
-        if(mockData != null)
-            beacons = mockData.names
-    }
-    else {
-        val uiState: SettingsViewModel.SettingsUiState by viewModel.state.collectAsStateWithLifecycle()
-        beacons = uiState.beaconTypes
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxHeight(),
-    ) {
-        IconButton(
-            onClick = {
-                onNavigateUp()
-            },
-        ) {
-            Icon(
-                Icons.AutoMirrored.Rounded.ArrowBack,
-                modifier = Modifier
-                    .size(32.dp)
-                    .padding(start = 4.dp),
-                contentDescription = stringResource(R.string.ui_menu_close),
-                tint = Color.White
+            // TODO : Add strings translations and use them
+            item {
+                Text(
+                    text = stringResource(R.string.menu_manage_callouts),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                )
+            }
+            switchPreference(
+                key = MainActivity.ALLOW_CALLOUTS_KEY,
+                defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
+                title = { Text(text = stringResource(R.string.callouts_allow_callouts)) },
+                summary = {
+                    Text(
+                        text = if (it) stringResource(R.string.callouts_callouts_on) else stringResource(
+                            R.string.callouts_callouts_off
+                        ),
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
             )
-        }
+            switchPreference(
+                key = MainActivity.PLACES_AND_LANDMARKS_KEY,
+                defaultValue = MainActivity.PLACES_AND_LANDMARKS_DEFAULT,
+                title = { Text(text = stringResource(R.string.callouts_places_and_landmarks)) },
+            )
+            switchPreference(
+                key = MainActivity.MOBILITY_KEY,
+                defaultValue = MainActivity.MOBILITY_DEFAULT,
+                title = { Text(text = stringResource(R.string.callouts_mobility)) },
+            )
+            switchPreference(
+                key = MainActivity.DISTANCE_TO_BEACON_KEY,
+                defaultValue = MainActivity.DISTANCE_TO_BEACON_DEFAULT,
+                title = { Text(text = stringResource(R.string.callouts_audio_beacon)) },
+            )
+            switchPreference(
+                key = MainActivity.UNNAMED_ROADS_KEY,
+                defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
+                title = { Text(text = stringResource(R.string.preview_include_unnamed_roads_title)) },
+            )
 
-        Text(
-            text = stringResource(R.string.menu_manage_callouts),
-            textAlign = TextAlign.Left,
-            color = Color.White,
-            modifier = Modifier.fillMaxWidth()
-        )
-        ProvidePreferenceLocals {
-            LazyColumn {
-
-                // TODO : Add strings translations and use them
-
-                switchPreference(
-                    key = MainActivity.ALLOW_CALLOUTS_KEY,
-                    defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
-                    title = { Text(text = stringResource(R.string.callouts_allow_callouts)) },
-                    summary = { Text(text = if (it) stringResource(R.string.callouts_callouts_on) else stringResource(R.string.callouts_callouts_off)) }
-                )
-                switchPreference(
-                    key = MainActivity.PLACES_AND_LANDMARKS_KEY,
-                    defaultValue = MainActivity.PLACES_AND_LANDMARKS_DEFAULT,
-                    title = { Text(text = stringResource(R.string.callouts_places_and_landmarks)) },
-                    summary = { Text(text = if (it) "On" else "Off") }
-                )
-                switchPreference(
-                    key = MainActivity.MOBILITY_KEY,
-                    defaultValue = MainActivity.MOBILITY_DEFAULT,
-                    title = { Text(text = stringResource(R.string.callouts_mobility)) },
-                    summary = { Text(text = if (it) "On" else "Off") }
-                )
-                switchPreference(
-                    key = MainActivity.DISTANCE_TO_BEACON_KEY,
-                    defaultValue = MainActivity.DISTANCE_TO_BEACON_DEFAULT,
-                    title = { Text(text = stringResource(R.string.callouts_audio_beacon)) },
-                    summary = { Text(text = if (it) "On" else "Off") }
-                )
-                switchPreference(
-                    key = MainActivity.UNNAMED_ROADS_KEY,
-                    defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
-                    title = { Text(text = stringResource(R.string.preview_include_unnamed_roads_title)) },
-                    summary = { Text(text = if (it) "On" else "Off") }
+            item {
+                Text(
+                    text = "Manage Audio Engine",
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
-        }
-        Text(
-            text = "MANAGE BEACONS",
-            textAlign = TextAlign.Left,
-            color = Color.White,
-            modifier = Modifier.fillMaxWidth()
-        )
-        ProvidePreferenceLocals {
-            LazyColumn {
-                listPreference(
-                    key = MainActivity.BEACON_TYPE_KEY,
-                    defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
-                    values = beacons,
-                    title = { Text(text = "Beacon type") },
-                    summary = { Text(text = it) },
-                )
-            }
+            listPreference(
+                key = MainActivity.BEACON_TYPE_KEY,
+                defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
+                values = uiState.beaconTypes,
+                title = { Text(text = "Beacon type") },
+                summary = { Text(text = it, color = MaterialTheme.colorScheme.onPrimary) },
+            )
+
+            listPreference(
+                key = MainActivity.VOICE_TYPE_KEY,
+                defaultValue = MainActivity.VOICE_TYPE_DEFAULT,
+                values = uiState.voiceTypes,
+                title = { Text(text = "Voice type") },
+                summary = { Text(text = it, color = MaterialTheme.colorScheme.onPrimary) },
+            )
+
+            sliderPreference(
+                key = MainActivity.SPEECH_RATE_KEY,
+                defaultValue = MainActivity.SPEECH_RATE_DEFAULT,
+                title = { Text(text = "Speech rate") },
+                valueRange = 0.5f..2.0f,
+                valueSteps = 10,
+                valueText = { Text(text = "%.1fx".format(it), color = MaterialTheme.colorScheme.onPrimary) },
+            )
         }
     }
 }

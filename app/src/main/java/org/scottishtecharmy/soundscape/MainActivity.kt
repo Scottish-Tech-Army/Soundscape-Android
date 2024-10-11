@@ -92,8 +92,7 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
 
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val isFirstLaunch = sharedPrefs.getBoolean(FIRST_LAUNCH_KEY, true)
+        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
 
         Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -280,6 +279,10 @@ class MainActivity : AppCompatActivity() {
         const val UNNAMED_ROADS_KEY = "UnnamedRoads"
         const val BEACON_TYPE_DEFAULT = "Classic"
         const val BEACON_TYPE_KEY = "BeaconType"
+        const val VOICE_TYPE_DEFAULT = "Default"
+        const val VOICE_TYPE_KEY = "VoiceType"
+        const val SPEECH_RATE_DEFAULT = 1.0f
+        const val SPEECH_RATE_KEY = "SpeechRate"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
