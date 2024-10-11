@@ -35,8 +35,8 @@ jobs:
           build_version=$(echo $version_name |  awk -F \. {'print $3'})
 
           # Increment existing version code and build version by 1
-          #version_code=$((version_code + 1))
-          #build_version=$((build_version + 1))
+          version_code=$((version_code + 1))
+          build_version=$((build_version + 1))
           
           # The major and minor versions can be bumped manually by editing
           # app/build.gradle.kts. When doing this, reset the build version
@@ -56,14 +56,14 @@ jobs:
           sed -i "s/versionCode = [0-9]\+/versionCode = $VERSION_CODE/g" app/build.gradle.kts
           sed -i "s/versionName = \"[^\"]*\"/versionName = \"$VERSION_NAME\"/g" app/build.gradle.kts
 
-#      - name: Bump version from "${{ steps.current-version.outputs.VERSION_NAME }}"
-#        env:
-#          VERSION_CODE: ${{ steps.current-version.outputs.VERSION_CODE }}
-#          VERSION_NAME: ${{ steps.current-version.outputs.VERSION_NAME }}
-#        uses: stefanzweifel/git-auto-commit-action@v5
-#        with:
-#          commit_message: "Bump version to ${{ env.VERSION_NAME }}, version code ${{ env.VERSION_CODE }}"
-#          tagging_message: "soundscape-${{ env.VERSION_NAME }}"
+      - name: Bump version from "${{ steps.current-version.outputs.VERSION_NAME }}"
+        env:
+          VERSION_CODE: ${{ steps.current-version.outputs.VERSION_CODE }}
+          VERSION_NAME: ${{ steps.current-version.outputs.VERSION_NAME }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Bump version to ${{ env.VERSION_NAME }}, version code ${{ env.VERSION_CODE }}"
+          tagging_message: "soundscape-${{ env.VERSION_NAME }}"
 
       # Set version
       - name: Set 'git describe --tags' as version
@@ -94,8 +94,8 @@ jobs:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '17'
 
-#      - name: Run lint over the repo
-#        run: ./gradlew lint
+      - name: Run lint over the repo
+        run: ./gradlew lint
 
       # Setup release build keys
       - name: Decode Keystore
@@ -108,35 +108,35 @@ jobs:
           base64 -d keystore-b64.txt > ${{ env.main_project_module }}/$SIGNING_KEY_STORE_PATH
 
       # Run Tests Build
-#      - name: Run gradle tests
-#        run: ./gradlew test
+      - name: Run gradle tests
+        run: ./gradlew test
 
       # Generate the screenshots from the Preview code
-#      - name: Generate screenshots
-#        run : ./gradlew  updateDebugScreenshotTest
+      - name: Generate screenshots
+        run : ./gradlew  updateDebugScreenshotTest
 
       # Upload screenshots as an artifact
       # Noted For Output [main_project_module]/build/outputs/apk/debug/
-#      - name: Upload screenshots
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: screenshot-previews
-#          path: ${{ env.main_project_module }}/src/debug/screenshotTest/reference/org/scottishtecharmy/soundscape/
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-previews
+          path: ${{ env.main_project_module }}/src/debug/screenshotTest/reference/org/scottishtecharmy/soundscape/
 
       # Run Build Project
-#      - name: Build gradle project
-#        env:
-#          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-#          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-#          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-#          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-#        run: |
-#          ./gradlew build
+      - name: Build gradle project
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: |
+          ./gradlew build
 
       # Create APK Debug
-#      - name: Build apk debug project (APK)
-#        run: |
-#          ./gradlew assembleDebug
+      - name: Build apk debug project (APK)
+        run: |
+          ./gradlew assembleDebug
 
       # Create APK Release
       - name: Build apk release project (APK)
@@ -159,55 +159,38 @@ jobs:
 
       # Upload Artifact Build
       # Noted For Output [main_project_module]/build/outputs/apk/debug/
-#      - name: Upload APK Debug
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: debug-apk
-#          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+      - name: Upload APK Debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
 
       # Noted For Output [main_project_module]/build/outputs/apk/release/
-#      - name: Upload APK Release
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: release-apk
-#          path: |
-#            ${{ env.main_project_module }}/build/outputs/apk/release/
-#            ${{ env.main_project_module }}/build/outputs/mapping/release/
+      - name: Upload APK Release
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: |
+            ${{ env.main_project_module }}/build/outputs/apk/release/
+            ${{ env.main_project_module }}/build/outputs/mapping/release/
 
       # Noted For Output [main_project_module]/build/outputs/bundle/release/
-#      - name: Upload AAB (App Bundle) Release
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: release-aab
-#          path: |
-#            ${{ env.main_project_module }}/build/outputs/bundle/release/
-#            ${{ env.main_project_module }}/build/outputs/mapping/release/
+      - name: Upload AAB (App Bundle) Release
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-aab
+          path: |
+            ${{ env.main_project_module }}/build/outputs/bundle/release/
+            ${{ env.main_project_module }}/build/outputs/mapping/release/
 
       # Generate android instrumentation tests APK
-#      - name: Assemble Android Instrumentation Tests
-#        run: ./gradlew assembleDebugAndroidTest
-#      - name: Upload Android Test APK
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: debug-androidTest
-#          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-
-      - name: Base64 encode Google credentials
-        id: b64-credentials
-        env:
-          PLAIN_STRING: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
-        run: |
-          BASE64_ENCODED_CREDENTIALS=`echo $PLAIN_STRING | openssl enc -A -base64`
-          echo "BASE64_ENCODED_CREDENTIALS=$BASE64_ENCODED_CREDENTIALS" >> $GITHUB_OUTPUT
-
-      - name: Upload .AAB to internal test track
-        uses: KevinRohn/github-action-upload-play-store@v1.0.0
+      - name: Assemble Android Instrumentation Tests
+        run: ./gradlew assembleDebugAndroidTest
+      - name: Upload Android Test APK
+        uses: actions/upload-artifact@v4
         with:
-          service_account_json: ${{ steps.b64-credentials.outputs.BASE64_ENCODED_CREDENTIALS }}
-          package_name: "org.scottishtecharmy.soundscape"
-          aab_file_path: "${{ env.main_project_module }}/build/outputs/bundle/release/app-release.aab"
-          track: "internal"
-          release_status: "draft"
+          name: debug-androidTest
+          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 
   firebase:
     name: Run UI tests with Firebase Test Lab
