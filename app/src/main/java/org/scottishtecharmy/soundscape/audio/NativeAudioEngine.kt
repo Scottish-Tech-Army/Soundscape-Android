@@ -9,10 +9,13 @@ import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import org.scottishtecharmy.soundscape.MainActivity
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
-
 
 @Singleton
 class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitListener {
@@ -25,6 +28,8 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
     private lateinit var textToSpeech : TextToSpeech
     private lateinit var ttsSocket : ParcelFileDescriptor
+    private var textToSpeechVoiceType = MainActivity.VOICE_TYPE_DEFAULT
+    private var textToSpeechRate = MainActivity.SPEECH_RATE_DEFAULT
 
     private external fun create() : Long
     private external fun destroy(engineHandle: Long)
@@ -35,6 +40,10 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
+
+    private var _textToSpeechRunning = MutableStateFlow(false)
+    val textToSpeechRunning = _textToSpeechRunning.asStateFlow()
+
 
     fun destroy()
     {
@@ -59,6 +68,22 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     }
     fun initialize(context : Context)
     {
+
+        val sharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(context)
+        val beaconType = sharedPreferences.getString(
+            MainActivity.BEACON_TYPE_KEY,
+            MainActivity.BEACON_TYPE_DEFAULT
+        )
+        textToSpeechVoiceType = sharedPreferences.getString(
+            MainActivity.VOICE_TYPE_KEY,
+            MainActivity.VOICE_TYPE_DEFAULT
+        )!!
+        textToSpeechRate = sharedPreferences.getFloat(
+            MainActivity.SPEECH_RATE_KEY,
+            MainActivity.SPEECH_RATE_DEFAULT
+        )
+
         synchronized(engineMutex) {
             if (engineHandle != 0L) {
                 return
@@ -66,6 +91,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             org.fmod.FMOD.init(context)
             engineHandle = this.create()
             textToSpeech = TextToSpeech(context, this)
+            setBeaconType(beaconType!!)
         }
     }
 
@@ -82,12 +108,17 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
 
-            Log.e("Soundscape", "Android version " + Build.VERSION.SDK_INT)
+            Log.d(TAG, "Android version " + Build.VERSION.SDK_INT)
 
             // Get the current locale and initialize the text to speech engine with it
             val languageCode = AppCompatDelegate.getApplicationLocales().toLanguageTags()
             setSpeechLanguage(languageCode)
 
+            for(voice in textToSpeech.voices) {
+                if(voice.name == textToSpeechVoiceType)
+                    textToSpeech.voice = voice
+            }
+            textToSpeech.setSpeechRate(textToSpeechRate)
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
 
                 override fun onDone(utteranceId: String) {
@@ -121,8 +152,10 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
                     }
                 }
             })
+            // Tell the flow listeners that the TextToSpeech is ready
+            textToSpeechInitialized = true
+            _textToSpeechRunning.value = true
         }
-        textToSpeechInitialized = true
     }
 
     override fun createBeacon(latitude: Double, longitude: Double) : Long
@@ -215,21 +248,20 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         }
     }
     override fun getAvailableSpeechLanguages() : Set<Locale> {
-        if (!awaitTextToSpeechInitialization())
+        if (!textToSpeechInitialized)
             return emptySet()
 
         return textToSpeech.availableLanguages
     }
 
     override fun getAvailableSpeechVoices() : Set<Voice> {
-        if (!awaitTextToSpeechInitialization())
+        if (!textToSpeechInitialized)
             return emptySet()
-
         return textToSpeech.voices
     }
 
     override fun setSpeechLanguage(language : String) : Boolean {
-        Log.e("TTS", "setSpeechLanguage to \"$language\"")
+        Log.d("TTS", "setSpeechLanguage to \"$language\"")
         val result = textToSpeech.setLanguage(Locale(language))
         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
             Log.e("TTS", "The Language not supported!")

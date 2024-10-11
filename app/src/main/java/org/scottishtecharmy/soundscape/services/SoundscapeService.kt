@@ -188,14 +188,6 @@ class SoundscapeService : MediaSessionService() {
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
-            val sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(applicationContext)
-            val beaconType = sharedPreferences.getString(
-                MainActivity.BEACON_TYPE_KEY,
-                MainActivity.BEACON_TYPE_DEFAULT
-            )
-            audioEngine.setBeaconType(beaconType!!)
-
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
 

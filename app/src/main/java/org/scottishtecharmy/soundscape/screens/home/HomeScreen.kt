@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.Screens
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute.AddRouteScreen
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
+import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 class Navigator {
     var destination = MutableStateFlow(HomeRoutes.Home.route)
@@ -75,9 +76,11 @@ fun HomeScreen(
         // Settings screen
         composable(HomeRoutes.Settings.route) {
             // Always just pop back out of settings, don't add to the queue
+            val settingsViewModel : SettingsViewModel = hiltViewModel()
+            val uiState = settingsViewModel.state.collectAsStateWithLifecycle()
             Settings(
                 onNavigateUp = { navController.navigateUp() },
-                null
+                uiState = uiState.value
             )
         }
 
