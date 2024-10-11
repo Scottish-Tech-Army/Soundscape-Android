@@ -40,18 +40,14 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
             KeyEvent::class.java
         )
 
-        // Keycodes seen from headphones in testing so far:
-        //
-        // * Either KEYCODE_MEDIA_PLAY_PAUSE (Aeropex) or KEYCODE_MEDIA_PLAY (Sony)
-        // * KEYCODE_MEDIA_PREVIOUS
-        // * KEYCODE_MEDIA_NEXT
-        //
+        // So far I've only seen KEYCODE_MEDIA_PLAY_PAUSE, KEYCODE_MEDIA_PREVIOUS and
+        // KEYCODE_MEDIA_NEXT, though that may be specific to my phone. The only event actually
+        // handled for now is KEYCODE_MEDIA_NEXT.
+
         keyEvent?.let { event ->
             val decodedKey = when(event.keyCode) {
-                KeyEvent.KEYCODE_MEDIA_PLAY,
                 KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
-                    // TODO: ⏯ Play/Pause or Play: Mute any current callouts and if the audio
-                    //  beacon is set, toggle the beacon audio.
+                    // TODO: ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
                     "Play/Pause"
                 }
                 KeyEvent.KEYCODE_MEDIA_SKIP_FORWARD -> {
@@ -59,7 +55,7 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
                     "Skip forward"
                 }
                 KeyEvent.KEYCODE_MEDIA_SKIP_BACKWARD -> {
-                    // TODO: ⏪ Skip Backward: Callout "Around Me".
+                    // ⏪ Skip Backward: Callout "Around Me".
                     "Skip backward"
                 }
                 KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
@@ -71,9 +67,9 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
                     service.myLocation()
                     "Next"
                 }
+                KeyEvent.KEYCODE_MEDIA_PLAY -> "Play"
                 KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> "Fast forward"
                 KeyEvent.KEYCODE_MEDIA_REWIND -> "Rewind"
-
                 else -> return false
             }
             Log.e("SoundscapeMediaSession", "onMediaButtonEvent ${event.keyCode} $decodedKey")
