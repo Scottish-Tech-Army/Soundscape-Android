@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
 @Composable
 fun SetUpOnboardingNavGraph(
@@ -14,10 +16,10 @@ fun SetUpOnboardingNavGraph(
         startDestination = OnboardingScreens.Welcome.route
     ) {
         composable(OnboardingScreens.Welcome.route) {
-            Welcome(onNavigate = { dest -> navController.navigate(dest) })
+            Welcome(onNavigate = { navController.navigate(OnboardingScreens.Language.route) })
         }
         composable(OnboardingScreens.Language.route) {
-            Language(onNavigate = { dest -> navController.navigate(dest) }, null)
+            LanguageScreen( onNavigate = { navController.navigate(OnboardingScreens.Navigating.route) })
         }
         composable(OnboardingScreens.Listening.route) {
             Listening(onNavigate = { dest -> navController.navigate(dest) })

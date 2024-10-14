@@ -59,10 +59,13 @@ fun SoundscapeTheme(
 
 @Composable
 fun IntroductionTheme(content: @Composable () -> Unit) {
-    MaterialTheme {
+    MaterialTheme(
+        typography = Typography
+    ) {
         Box(modifier = Modifier
+            .background(gradientBackgroundIntro)
             .fillMaxSize()
-            .background(gradientBackgroundIntro)) {
+        ) {
             content()
         }
     }

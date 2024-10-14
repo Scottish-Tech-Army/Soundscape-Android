@@ -5,15 +5,15 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.RoutesScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersScreenPreview
+import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.Finish
 import org.scottishtecharmy.soundscape.screens.onboarding.HearingPreview
-import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconPreview
-import org.scottishtecharmy.soundscape.screens.onboarding.LanguagePreview
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguagePreview
 import org.scottishtecharmy.soundscape.screens.onboarding.ListeningPreview
-import org.scottishtecharmy.soundscape.screens.onboarding.PreviewWelcome
+import org.scottishtecharmy.soundscape.screens.onboarding.welcome.PreviewWelcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Preview(name = "Dansk", locale = "da", group = "Language", showBackground = true, device = "id:small_phone")

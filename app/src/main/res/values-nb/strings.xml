@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="first_launch_welcome_title">Velkommen!</string>
-    <string name="first_launch_welcome_title_accessibility_label">Velkommen til Soundscape!</string>
     <string name="first_launch_welcome_description">Naviger med selvtillit ved å bruke romlig lyd i Soundscape</string>
     <string name="first_launch_welcome_button">Kom i gang</string>
     <string name="first_launch_soundscape_language">Soundscape-språk</string>
