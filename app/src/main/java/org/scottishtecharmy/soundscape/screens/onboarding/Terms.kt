@@ -33,7 +33,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.Primary
 
@@ -58,77 +57,76 @@ fun Terms(onNavigate: (String) -> Unit) {
     val terms = getAllTerms()
     val checkedState = remember { mutableStateOf(false) }
     IntroductionTheme {
-        MaterialTheme(typography = IntroTypography) {
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 20.dp, vertical = 30.dp)
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Text(
+                text = stringResource(R.string.terms_of_use_title),
+                style = MaterialTheme.typography.titleLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp)
+            )
+
+            LazyColumn(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(5.dp))
+                    .fillMaxWidth()
+                    .height(400.dp)
+                    .background(Color.White)
+            ) {
+                items(terms) { term ->
+                    TermsItem(
+                        term.name
+                    )
+                }
+            }
+
+            Row(
+                modifier = Modifier
+                    .padding(top = 40.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Checkbox(
+                    checked = checkedState.value,
+                    onCheckedChange = { checkedState.value = it }
+                )
+                Text(
+                    modifier = Modifier.clickable { checkedState.value = !checkedState.value },
+                    text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 30.dp)
                     .fillMaxWidth()
-                    .fillMaxHeight()
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
+                    .padding(top = 30.dp)
             ) {
-                Text(
-                    text = stringResource(R.string.terms_of_use_title),
-                    style = MaterialTheme.typography.titleLarge,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 20.dp)
-                )
-
-                LazyColumn(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(5.dp))
-                        .fillMaxWidth()
-                        .height(400.dp)
-                        .background(Color.White)
-                ) {
-                    items(terms) { term ->
-                        TermsItem(
-                            term.name
-                        )
-                    }
-                }
-
-                Row(
-                    modifier = Modifier
-                        .padding(top = 40.dp)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-
-                    Checkbox(
-                        checked = checkedState.value,
-                        onCheckedChange = { checkedState.value = it }
-                    )
-                    Text(
-                        modifier = Modifier.clickable { checkedState.value = !checkedState.value },
-                        text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
-                        style = MaterialTheme.typography.bodyMedium
+                if (checkedState.value){
+                    OnboardButton(
+                        text = stringResource(R.string.ui_continue),
+                        onClick = {
+                            onNavigate(OnboardingScreens.Finish.route)
+                        },
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 30.dp)
-                ) {
-                    if (checkedState.value){
-                        OnboardButton(
-                            text = stringResource(R.string.ui_continue),
-                            onClick = {
-                                onNavigate(OnboardingScreens.Finish.route)
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
-                }
-
             }
+
         }
     }
+
 }
 
 @Composable

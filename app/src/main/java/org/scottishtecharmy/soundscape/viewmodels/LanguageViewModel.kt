@@ -1,23 +1,26 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.components.Language
+import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import javax.inject.Inject
 
 @HiltViewModel
 class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
 
+    val _state : MutableStateFlow<LanguageUiState> = MutableStateFlow(LanguageUiState())
+    val state: StateFlow<LanguageUiState> = _state.asStateFlow()
+    init {
+        _state.value = LanguageUiState(supportedLanguages = getAllLanguages(), selectedLanguageIndex = -1)
+    }
     data class LanguageUiState(
         // Data for the ViewMode that affects the UI
-        var supportedLanguages : List<Language> = emptyList()
+        var supportedLanguages : List<Language> = emptyList(),
+        var selectedLanguageIndex: Int = -1
     )
 
     private fun addIfSpeechSupports(allLanguages: MutableList<Language>, language: Language) {
@@ -53,12 +56,9 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         return allLanguages
     }
 
-    val state: StateFlow<LanguageUiState> = flow {
-        emit(LanguageUiState(supportedLanguages = getAllLanguages()))
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LanguageUiState())
-
-    fun updateSpeechLanguage(): Boolean {
-        val languageCode = AppCompatDelegate.getApplicationLocales().toLanguageTags()
-        return audioEngine.setSpeechLanguage(languageCode)
+    fun updateSpeechLanguage(selectedLanguage: Language): Boolean {
+        val indexOfSelectedLanguage = _state.value.supportedLanguages.indexOf(selectedLanguage)
+        _state.value = _state.value.copy(selectedLanguageIndex = indexOfSelectedLanguage)
+        return audioEngine.setSpeechLanguage(selectedLanguage.code)
     }
 }

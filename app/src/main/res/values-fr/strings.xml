@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="first_launch_welcome_title">Bienvenue !</string>
-    <string name="first_launch_welcome_title_accessibility_label">Bienvenue dans Soundscape !</string>
     <string name="first_launch_welcome_description">Promenez-vous en toute confiance grâce à l’audio spatial de Soundscape</string>
     <string name="first_launch_welcome_button">Commencer</string>
     <string name="first_launch_soundscape_language">Langue de Soundscape</string>

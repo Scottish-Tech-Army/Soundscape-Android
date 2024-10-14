@@ -2,13 +2,18 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToLog
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
-import org.scottishtecharmy.soundscape.screens.onboarding.Language
-import org.scottishtecharmy.soundscape.screens.onboarding.MockLanguagePreviewData
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageComposable
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageSelectionBox
+import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 // This is very helpful:
@@ -19,77 +24,39 @@ class LanguageScreenTest {
 
     @Test
     fun languageScreenTest(){
-        //Thread.sleep(20000)
         composeTestRule.setContent {
-            SoundscapeTheme {
-                Language(onNavigate = {}, MockLanguagePreviewData)
-            }
+            LanguageComposable(
+                supportedLanguages = MockLanguagePreviewData.languages,
+                onNavigate = {},
+                onLanguageSelected = {},
+                selectedLanguageIndex = -1,
+            )
         }
         val context: Context = ApplicationProvider.getApplicationContext()
         val stringLanguageTitle = context.resources.getString(R.string.first_launch_soundscape_language)
         val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)
-        //val stringLanguageContinue = context.resources.getString(R.string.ui_continue)
 
         composeTestRule.onNodeWithText(stringLanguageTitle).assertIsDisplayed()
         composeTestRule.onNodeWithText(stringLanguageText).assertIsDisplayed()
-        //Thread.sleep(5000)
-        //composeTestRule.onNodeWithText(stringLanguageContinue).assertIsDisplayed()
-
-
-        // Delay so I can see it appear on my device screen. Remove when using CI
-        //Thread.sleep(5000)
     }
 
-    /*@Test
+    @Test
     fun languageSelectionBoxTest(){
+        val selectedIndex = 1
         composeTestRule.setContent {
             SoundscapeTheme {
-                LanguageSelectionBox()
+                LanguageSelectionBox(
+                    allLanguages = MockLanguagePreviewData.languages,
+                    onLanguageSelected = {},
+                    selectedLanguageIndex = selectedIndex
+                )
             }
         }
-        val languageList = listOf(
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Dansk",
-                code = "da"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Deutsch",
-                code = "de"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Ελληνικά",
-                code = "el"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "English",
-                code = "en"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Español",
-                code = "es"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Suomi",
-                code = "fi"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Français",
-                code = "fr"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "Italiano",
-                code = "it"
-            ),
-            org.scottishtecharmy.soundscape.components.Language(
-                name = "日本語",
-                code = "ja"
-            )
-        )
+        composeTestRule.onRoot().printToLog("languageSelectionBoxTest") // TO print tree in logcat for debugging
 
-        for(language in languageList){
-            composeTestRule.onNodeWithText(language.name).assertIsDisplayed()
-        }
-        // Delay so I can see it appear on my device screen. Remove when using CI
-        //Thread.sleep(10000)
-    }*/
+        composeTestRule.onNodeWithTag(
+            testTag = "LANGUAGE_SELECTION_${MockLanguagePreviewData.languages[selectedIndex].code}",
+            useUnmergedTree = true
+        ).assertIsSelected()
+    }
 }
