@@ -12,10 +12,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -73,7 +77,10 @@ fun LanguageComposable(
                 text = stringResource(R.string.first_launch_soundscape_language),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimary,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.semantics {
+                    heading()
+                },
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
@@ -96,13 +103,19 @@ fun LanguageComposable(
             //val selectedLocale = AppCompatDelegate.getApplicationLocales()[0]
             //Log.d("Locales", "Locale is set to: $selectedLocale")
 
+            val isContinueEnabled by remember(selectedLanguageIndex) {
+                derivedStateOf {
+                    selectedLanguageIndex != -1
+                }
+            }
             Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
                     onClick = {
                         onNavigate()
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = isContinueEnabled
                 )
             }
 

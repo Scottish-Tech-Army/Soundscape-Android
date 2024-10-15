@@ -12,7 +12,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.AudioBeaconPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.Finish
 import org.scottishtecharmy.soundscape.screens.onboarding.HearingPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguagePreview
-import org.scottishtecharmy.soundscape.screens.onboarding.ListeningPreview
+import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.PreviewWelcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
