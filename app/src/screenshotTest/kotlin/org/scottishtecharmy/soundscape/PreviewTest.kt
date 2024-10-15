@@ -9,7 +9,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_scree
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersScreenPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconPreview
-import org.scottishtecharmy.soundscape.screens.onboarding.Finish
+import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguagePreview
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningPreview
@@ -59,7 +59,7 @@ class FinishPreviewTestClass {
     @Composable
     fun FinishPreviewTest() {
         SoundscapeTheme {
-            Finish()
+            FinishScreen()
         }
     }
 }
