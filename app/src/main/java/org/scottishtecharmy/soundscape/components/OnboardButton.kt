@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.scottishtecharmy.soundscape.screens.onboarding.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable

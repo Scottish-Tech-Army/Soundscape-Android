@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.onboarding
+package org.scottishtecharmy.soundscape.screens.onboarding.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

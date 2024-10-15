@@ -27,7 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.onboarding.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 
 @Composable
 fun LanguageScreen(
