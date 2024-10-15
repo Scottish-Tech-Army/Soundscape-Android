@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.navigating.NavigatingScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
 @Composable
@@ -38,7 +39,7 @@ fun SetUpOnboardingNavGraph(
             AudioBeaconsScreen(onNavigate = { navController.navigate(OnboardingScreens.Terms.route) })
         }
         composable(OnboardingScreens.Terms.route) {
-            Terms(onNavigate = { dest -> navController.navigate(dest) })
+            TermsScreen(onNavigate = { navController.navigate(OnboardingScreens.Finish.route) })
         }
         composable(OnboardingScreens.Finish.route) {
             Finish()

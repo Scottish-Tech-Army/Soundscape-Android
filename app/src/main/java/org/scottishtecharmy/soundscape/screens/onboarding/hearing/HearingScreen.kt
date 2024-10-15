@@ -37,7 +37,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
-import org.scottishtecharmy.soundscape.viewmodels.HearingViewModel
 
 
 @Composable

@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.onboarding
+package org.scottishtecharmy.soundscape.screens.onboarding.terms
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
@@ -25,38 +26,32 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
+import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.Primary
 
-data class Terms(
-    val name: String
-)
 
 @Composable
-fun getAllTerms(): List<Terms> {
-    return listOf(
-        Terms(
-            name = stringResource(R.string.terms_of_use_message)
-        ),
-        Terms(
-            name = stringResource(R.string.terms_of_use_medical_safety_disclaimer)
-        )
-    )
-}
-
-@Composable
-fun Terms(onNavigate: (String) -> Unit) {
+fun TermsScreen(
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val terms = getAllTerms()
     val checkedState = remember { mutableStateOf(false) }
-    IntroductionTheme {
+    BoxWithGradientBackground(
+        modifier = modifier
+    ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 20.dp, vertical = 30.dp)
@@ -69,10 +64,14 @@ fun Terms(onNavigate: (String) -> Unit) {
             Text(
                 text = stringResource(R.string.terms_of_use_title),
                 style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 20.dp)
+                    .semantics {
+                        heading()
+                    },
             )
 
             LazyColumn(
@@ -92,14 +91,20 @@ fun Terms(onNavigate: (String) -> Unit) {
             Row(
                 modifier = Modifier
                     .padding(top = 40.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .toggleable( // This give the toggleable behaviour to the entire row, providing a better UX with alpha() Screen reader
+                        value = checkedState.value,
+                        role = Role.Checkbox,
+                    ){
+                        checkedState.value = !checkedState.value
+                    },
                 horizontalArrangement = Arrangement.Start,
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Checkbox(
                     checked = checkedState.value,
-                    onCheckedChange = { checkedState.value = it }
+                    onCheckedChange = null
                 )
                 Text(
                     modifier = Modifier.clickable { checkedState.value = !checkedState.value },
@@ -113,15 +118,14 @@ fun Terms(onNavigate: (String) -> Unit) {
                     .fillMaxWidth()
                     .padding(top = 30.dp)
             ) {
-                if (checkedState.value){
-                    OnboardButton(
-                        text = stringResource(R.string.ui_continue),
-                        onClick = {
-                            onNavigate(OnboardingScreens.Finish.route)
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
+                OnboardButton(
+                    text = stringResource(R.string.ui_continue),
+                    onClick = {
+                        onNavigate()
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = checkedState.value
+                )
             }
 
         }
@@ -149,11 +153,22 @@ fun TermsItem(text: String) {
     )
 }
 
+@Composable
+fun getAllTerms(): List<Terms> {
+    return listOf(
+        Terms(
+            name = stringResource(R.string.terms_of_use_message)
+        ),
+        Terms(
+            name = stringResource(R.string.terms_of_use_medical_safety_disclaimer)
+        )
+    )
+}
 
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
 fun TermsPreview() {
-    Terms(onNavigate = {})
+    TermsScreen(onNavigate = {})
 }
