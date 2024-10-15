@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.viewmodels
+package org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons
 
 import android.annotation.SuppressLint
 import android.content.Context
