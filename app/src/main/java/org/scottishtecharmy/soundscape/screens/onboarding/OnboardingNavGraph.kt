@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconsScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
@@ -15,6 +16,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 @Composable
 fun SetUpOnboardingNavGraph(
     navController: NavHostController,
+    onFinish: () -> Unit,
 ) {
     NavHost(
         navController = navController,
@@ -42,7 +44,9 @@ fun SetUpOnboardingNavGraph(
             TermsScreen(onNavigate = { navController.navigate(OnboardingScreens.Finish.route) })
         }
         composable(OnboardingScreens.Finish.route) {
-            Finish()
+            FinishScreen(
+                onFinish = onFinish
+            )
         }
     }
 }
