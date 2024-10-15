@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.onboarding.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 
 @Composable
 fun NavigatingScreen(
@@ -133,13 +133,11 @@ fun Navigating(
                             text = stringResource(R.string.first_launch_permissions_location),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onPrimary,
-                            textAlign = TextAlign.Center
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onPrimary,
-                            textAlign = TextAlign.Center
                         )
                     }
                 }
@@ -166,13 +164,11 @@ fun Navigating(
                                 text = stringResource(R.string.first_launch_permissions_notification),
                                 style = MaterialTheme.typography.titleMedium,
                                 color = MaterialTheme.colorScheme.onPrimary,
-                                textAlign = TextAlign.Center
                             )
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onPrimary,
-                                textAlign = TextAlign.Center
                             )
                         }
                     }
@@ -201,7 +197,6 @@ fun Navigating(
                             text = stringResource(R.string.first_launch_permissions_motion),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onPrimary,
-                            textAlign = TextAlign.Center
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.navigating.NavigatingScreen
@@ -27,7 +28,7 @@ fun SetUpOnboardingNavGraph(
             ListeningScreen(onNavigate = { navController.navigate(OnboardingScreens.Hearing.route) })
         }
         composable(OnboardingScreens.Hearing.route) {
-            Hearing(onNavigate = { dest -> navController.navigate(dest) }, true)
+            HearingScreen(onNavigate = { navController.navigate( OnboardingScreens.AudioBeacons.route) })
         }
         composable(OnboardingScreens.Navigating.route) {
             NavigatingScreen(onNavigate = { navController.navigate(OnboardingScreens.Listening.route) })

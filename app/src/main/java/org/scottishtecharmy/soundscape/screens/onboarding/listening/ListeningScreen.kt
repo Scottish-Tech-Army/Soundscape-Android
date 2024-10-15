@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.screens.onboarding.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 
 @Composable
 fun ListeningScreen(
