@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.viewmodels
+package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel

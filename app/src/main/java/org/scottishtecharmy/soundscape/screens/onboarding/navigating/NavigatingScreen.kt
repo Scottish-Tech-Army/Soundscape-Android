@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.onboarding
+package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
 import android.Manifest
 import android.os.Build
@@ -36,12 +36,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
-import org.scottishtecharmy.soundscape.ui.theme.IntroTypography
-import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
-import org.scottishtecharmy.soundscape.viewmodels.PermissionsViewModel
+import org.scottishtecharmy.soundscape.screens.onboarding.BoxWithGradientBackground
 
 @Composable
-fun Navigating(onNavigate: (String) -> Unit) {
+fun NavigatingScreen(
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: PermissionsViewModel = viewModel()
+) {
 
     val permissionsToRequest = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -49,13 +51,10 @@ fun Navigating(onNavigate: (String) -> Unit) {
         Manifest.permission.ACTIVITY_RECOGNITION,
         Manifest.permission.POST_NOTIFICATIONS
     )
-    val viewModel = viewModel<PermissionsViewModel>()
-    // val dialogQueue = viewModel.visiblePermissionDialogQueue
-
     val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
         onResult = {
-            perms ->
+                perms ->
             permissionsToRequest.forEach { permission ->
                 viewModel.onPermissionResult(
                     permission = permission,
@@ -64,10 +63,26 @@ fun Navigating(onNavigate: (String) -> Unit) {
             }
         }
     )
+    Navigating(
+        onContinue = {
+            multiplePermissionResultLauncher.launch(permissionsToRequest)
+            onNavigate()
+        },
+        modifier = modifier,
+    )
+}
 
-    IntroductionTheme {
-        MaterialTheme(typography = IntroTypography) {
+@Composable
+fun Navigating(
+    onContinue: () -> Unit,
+    modifier: Modifier = Modifier
+) {
 
+    // val dialogQueue = viewModel.visiblePermissionDialogQueue
+
+
+
+    BoxWithGradientBackground(modifier = modifier) {
             Column(
                 modifier = Modifier
                     .padding(horizontal = 30.dp, vertical = 30.dp)
@@ -81,12 +96,14 @@ fun Navigating(onNavigate: (String) -> Unit) {
                 Text(
                     text = stringResource(id = R.string.first_launch_permissions_title),
                     style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 Text(
                     text = stringResource(id = R.string.first_launch_permissions_message),
                     style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(30.dp))
@@ -115,11 +132,13 @@ fun Navigating(onNavigate: (String) -> Unit) {
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_location),
                                 style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center
                             )
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center
                             )
                         }
@@ -144,11 +163,13 @@ fun Navigating(onNavigate: (String) -> Unit) {
                                     // original iOS Soundscape didn't have this
                                     text = stringResource(R.string.first_launch_permissions_notification),
                                     style = MaterialTheme.typography.titleMedium,
+                                    color = MaterialTheme.colorScheme.onPrimary,
                                     textAlign = TextAlign.Center
                                 )
                                 Text(
                                     text = stringResource(R.string.first_launch_permissions_required),
                                     style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onPrimary,
                                     textAlign = TextAlign.Center
                                 )
                             }
@@ -175,11 +196,13 @@ fun Navigating(onNavigate: (String) -> Unit) {
                                 // I'm reusing the original translation strings
                                 text = stringResource(R.string.first_launch_permissions_motion),
                                 style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center
                             )
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center
                             )
                         }
@@ -194,16 +217,13 @@ fun Navigating(onNavigate: (String) -> Unit) {
                         text = stringResource(R.string.ui_continue),
                         // just bodging this at the moment as having problems with rationales
                         // and handling denied permissions
-                        onClick = {
-                            multiplePermissionResultLauncher.launch(permissionsToRequest)
-                            onNavigate(OnboardingScreens.Listening.route)
-                                  },
+                        onClick = { onContinue() },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
         }
-    }
+
 }
 
 
@@ -211,5 +231,5 @@ fun Navigating(onNavigate: (String) -> Unit) {
 @Preview
 @Composable
 fun NavigatingPreview() {
-    Navigating(onNavigate = {})
+    Navigating(onContinue = {})
 }

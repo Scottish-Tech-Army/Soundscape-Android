@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -56,7 +57,11 @@ class LanguageScreenTest {
 
         composeTestRule.onNodeWithTag(
             testTag = "LANGUAGE_SELECTION_${MockLanguagePreviewData.languages[selectedIndex].code}",
-            useUnmergedTree = true
         ).assertIsSelected()
+
+        composeTestRule.onNodeWithTag(
+            testTag = "LANGUAGE_SELECTION_${MockLanguagePreviewData.languages[0].code}",
+            useUnmergedTree = true
+        ).assertIsNotSelected()
     }
 }

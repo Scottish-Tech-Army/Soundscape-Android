@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.viewmodels
+package org.scottishtecharmy.soundscape.screens.onboarding.language
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import javax.inject.Inject
 
 @HiltViewModel
