@@ -59,7 +59,9 @@ class FinishPreviewTestClass {
     @Composable
     fun FinishPreviewTest() {
         SoundscapeTheme {
-            FinishScreen()
+            FinishScreen(
+                onFinish = {}
+            )
         }
     }
 }
