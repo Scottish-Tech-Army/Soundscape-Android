@@ -6,15 +6,20 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
 
-    val _state : MutableStateFlow<LanguageUiState> = MutableStateFlow(LanguageUiState())
+    private val _state : MutableStateFlow<LanguageUiState> = MutableStateFlow(LanguageUiState())
     val state: StateFlow<LanguageUiState> = _state.asStateFlow()
     init {
-        _state.value = LanguageUiState(supportedLanguages = getAllLanguages(), selectedLanguageIndex = -1)
+        val allLanguages = getAllLanguages()
+        _state.value = LanguageUiState(
+            supportedLanguages = allLanguages,
+            selectedLanguageIndex = allLanguages.indexOfLanguageMatchingDeviceLanguage()
+        )
     }
     data class LanguageUiState(
         // Data for the ViewMode that affects the UI
@@ -53,6 +58,11 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         addIfSpeechSupports(allLanguages, Language("Svenska", "sv"))
 
         return allLanguages
+    }
+
+    private fun List<Language>.indexOfLanguageMatchingDeviceLanguage(): Int {
+        val deviceLanguage = Locale.getDefault().language
+        return this.indexOfFirst { it.code == deviceLanguage }
     }
 
     fun updateSpeechLanguage(selectedLanguage: Language): Boolean {
