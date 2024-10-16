@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="first_launch_welcome_title">ようこそ!</string>
-    <string name="first_launch_welcome_title_accessibility_label">Soundscape へようこそ!</string>
     <string name="first_launch_welcome_description">Soundscape の空間オーディオでお出かけも安心です</string>
     <string name="first_launch_welcome_button">始める</string>
     <string name="first_launch_soundscape_language">Soundscape の言語</string>

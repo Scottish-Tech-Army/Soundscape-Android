@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="first_launch_welcome_title">Καλώς ήρθατε!</string>
-    <string name="first_launch_welcome_title_accessibility_label">Καλώς ήρθατε στο Soundscape!</string>
     <string name="first_launch_welcome_description">Περιηγηθείτε με εμπιστοσύνη χρησιμοποιώντας τον χωρικό ήχο του Soundscape</string>
     <string name="first_launch_welcome_button"> Γρήγορα αποτελέσματα</string>
     <string name="first_launch_soundscape_language">Γλώσσα Soundscape</string>

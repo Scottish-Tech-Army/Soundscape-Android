@@ -4,38 +4,49 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconsScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.navigating.NavigatingScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
 @Composable
 fun SetUpOnboardingNavGraph(
     navController: NavHostController,
+    onFinish: () -> Unit,
 ) {
     NavHost(
         navController = navController,
         startDestination = OnboardingScreens.Welcome.route
     ) {
         composable(OnboardingScreens.Welcome.route) {
-            Welcome(onNavigate = { dest -> navController.navigate(dest) })
+            Welcome(onNavigate = { navController.navigate(OnboardingScreens.Language.route) })
         }
         composable(OnboardingScreens.Language.route) {
-            Language(onNavigate = { dest -> navController.navigate(dest) }, null)
+            LanguageScreen( onNavigate = { navController.navigate(OnboardingScreens.Navigating.route) })
         }
         composable(OnboardingScreens.Listening.route) {
-            Listening(onNavigate = { dest -> navController.navigate(dest) })
+            ListeningScreen(onNavigate = { navController.navigate(OnboardingScreens.Hearing.route) })
         }
         composable(OnboardingScreens.Hearing.route) {
-            Hearing(onNavigate = { dest -> navController.navigate(dest) }, true)
+            HearingScreen(onNavigate = { navController.navigate( OnboardingScreens.AudioBeacons.route) })
         }
         composable(OnboardingScreens.Navigating.route) {
-            Navigating(onNavigate = { dest -> navController.navigate(dest) })
+            NavigatingScreen(onNavigate = { navController.navigate(OnboardingScreens.Listening.route) })
         }
         composable(OnboardingScreens.AudioBeacons.route) {
-            AudioBeacons(onNavigate = { dest -> navController.navigate(dest) }, null)
+            AudioBeaconsScreen(onNavigate = { navController.navigate(OnboardingScreens.Terms.route) })
         }
         composable(OnboardingScreens.Terms.route) {
-            Terms(onNavigate = { dest -> navController.navigate(dest) })
+            TermsScreen(onNavigate = { navController.navigate(OnboardingScreens.Finish.route) })
         }
         composable(OnboardingScreens.Finish.route) {
-            Finish()
+            FinishScreen(
+                onFinish = onFinish
+            )
         }
     }
 }

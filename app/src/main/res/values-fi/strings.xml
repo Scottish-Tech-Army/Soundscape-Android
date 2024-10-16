@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="first_launch_welcome_title">Tervetuloa!</string>
-    <string name="first_launch_welcome_title_accessibility_label">Tervetuloa Soundscapeen!</string>
     <string name="first_launch_welcome_description">Turvallinen suunnistaminen Soundscapen tilaäänen avulla</string>
     <string name="first_launch_welcome_button">Aloita</string>
     <string name="first_launch_soundscape_language">Soundscapen kieli</string>

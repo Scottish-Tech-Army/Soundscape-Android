@@ -1,8 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name" translatable="false">Soundscape</string>
 
     <string name="first_launch_welcome_title">Welcome!</string>
-    <string name="first_launch_welcome_title_accessibility_label">Welcome to Soundscape!</string>
     <string name="first_launch_welcome_description">Navigate with confidence using Soundscape spatial audio</string>
     <string name="first_launch_welcome_button">Get Started</string>
     <string name="first_launch_soundscape_language">Soundscape Language</string>

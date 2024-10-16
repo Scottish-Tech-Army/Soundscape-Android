@@ -6,7 +6,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ApplicationProvider
-import org.scottishtecharmy.soundscape.screens.onboarding.Welcome
+import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.junit.Rule
 import org.junit.Test
@@ -26,7 +26,6 @@ class WelcomeScreenTest {
         }
         // Unable to get translations strings using the stringResource() which is a composable so..
         val context: Context = ApplicationProvider.getApplicationContext()
-        val stringImageDescription = context.resources.getString(R.string.first_launch_welcome_title_accessibility_label)
         val stringWelcomeTitle = context.resources.getString(R.string.first_launch_welcome_title)
         val stringWelcomeDescription = context.resources.getString(R.string.first_launch_welcome_description)
         val stringWelcomeGetStarted = context.resources.getString(R.string.first_launch_welcome_button)
@@ -34,7 +33,6 @@ class WelcomeScreenTest {
         // format for composeTestRule is:
         // composeTestRule{.finder}{.assertion}{.action}
 
-        composeTestRule.onNodeWithContentDescription(stringImageDescription).assertExists()
         composeTestRule.onNodeWithText(stringWelcomeTitle).assertIsDisplayed()
         composeTestRule.onNodeWithText(stringWelcomeDescription).assertIsDisplayed()
         composeTestRule.onNodeWithText(stringWelcomeGetStarted).assertIsDisplayed()

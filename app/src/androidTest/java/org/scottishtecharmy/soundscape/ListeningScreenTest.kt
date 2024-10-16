@@ -5,7 +5,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ApplicationProvider
-import org.scottishtecharmy.soundscape.screens.onboarding.Listening
+import org.scottishtecharmy.soundscape.screens.onboarding.listening.Listening
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.junit.Rule
 import org.junit.Test

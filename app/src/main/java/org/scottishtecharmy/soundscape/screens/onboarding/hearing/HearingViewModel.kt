@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.viewmodels
+package org.scottishtecharmy.soundscape.screens.onboarding.hearing
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
