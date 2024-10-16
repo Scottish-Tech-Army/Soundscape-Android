@@ -147,5 +147,6 @@
     <string name="general_alert_add">Lägg till</string>
 
     <string name="location_detail_title_default">Platsuppgifter</string>
+    <string name="no_language_selected">No language selected</string>
 
 </resources>

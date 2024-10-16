@@ -148,5 +148,6 @@
     <string name="general_alert_add">Tilføj</string>
 
     <string name="location_detail_title_default">Oplysninger om placering</string>
+    <string name="no_language_selected">No language selected</string>
 
 </resources>

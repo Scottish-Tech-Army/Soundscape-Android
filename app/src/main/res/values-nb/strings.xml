@@ -147,5 +147,6 @@
     <string name="general_alert_add">Legg til</string>
 
     <string name="location_detail_title_default">Posisjonsinformasjon</string>
+    <string name="no_language_selected">No language selected</string>
 
 </resources>
