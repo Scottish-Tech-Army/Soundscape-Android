@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.TestTags
 
 @Composable
 fun LanguageDropDownMenu(
@@ -92,6 +93,7 @@ fun LanguageDropDownMenu(
             onDismissRequest = { expanded = false },
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
+                .testTag(TestTags.LANGUAGE_DROPDOWN_MENU)
                 .selectableGroup(),
         ) {
             allLanguages.forEachIndexed { index, language ->
@@ -100,13 +102,16 @@ fun LanguageDropDownMenu(
                     text = {
                         DropdownItemContent(language, isSelected)
                     },
-                    modifier = Modifier.selectable(
-                        selected = isSelected,
-                        onClick = {
-                            expanded = false
-                            onLanguageSelected(language)
-                        }
-                    ),
+                    modifier = Modifier
+                        .selectable(
+                            selected = isSelected,
+                            onClick = {
+                                expanded = false
+                                onLanguageSelected(language)
+                            }
+                        )
+                        .testTag("${TestTags.LANGUAGE_DROPDOWN_ITEM}${language.code}")
+                    ,
                     onClick = {
                         expanded = false
                         onLanguageSelected(language)
@@ -123,10 +128,7 @@ private fun DropdownItemContent(
     isSelected: Boolean,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier
-            .testTag("LANGUAGE_SELECTION_${language.code}")
-    ) {
+    Row(modifier = modifier) {
         Text(
             text = language.name,
             style = MaterialTheme.typography.bodyMedium,
