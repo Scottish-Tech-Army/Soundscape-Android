@@ -35,6 +35,7 @@ import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
+import org.scottishtecharmy.soundscape.utils.sortedByDistanceTo
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -460,6 +461,42 @@ class TileUtilsTest {
         val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
         // Should only be the nearest intersection in this Feature Collection
         Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
+    }
+
+    @Test
+    fun sortedByDistanceToTest(){
+        // Fake device location and pretend the device is pointing East.
+        // I've moved the device location so the FoV picks up a couple of intersections
+        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
+        val deviceHeading = 90.0
+        val fovDistance = 50.0
+
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        // Get the intersections from the tile
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            getIntersectionsFeatureCollectionFromTileFeatureCollection(
+                featureCollectionTest!!
+            )
+        // Create a FOV triangle to pick up the intersections
+        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            testIntersectionsCollectionFromTileFeatureCollection
+        )
+        Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
+        // This should sort the intersections (but any feature collection wil do)
+        // by distance to the current location
+        val sortedByDistanceToTest = sortedByDistanceTo(
+            currentLocation.latitude,
+            currentLocation.longitude,
+            fovIntersectionsFeatureCollection
+        )
+        Assert.assertEquals(6.0, sortedByDistanceToTest.features[0].foreign?.get("distance_to"))
+        Assert.assertEquals(36.7, sortedByDistanceToTest.features[1].foreign?.get("distance_to"))
+
     }
 
     @Test

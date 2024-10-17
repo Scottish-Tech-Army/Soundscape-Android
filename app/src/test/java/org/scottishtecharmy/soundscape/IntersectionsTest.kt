@@ -832,6 +832,7 @@ class IntersectionsTest {
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
+         Assert.assertEquals(4, roadRelativeDirections.features.size )
 
          // Lansdown Road (0) and (4) Manilla Road (2) and Vyvyan Road(6)
          Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
@@ -927,6 +928,7 @@ class IntersectionsTest {
              testIntersectionRoadNames,
              testNearestIntersection,
              intersectionRelativeDirections)
+         Assert.assertEquals(4, roadRelativeDirections.features.size )
 
          // St Mary's Butts (0)  Oxford Road (2), West Street (4) and Broad Street (6)
          Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
@@ -1017,6 +1019,7 @@ class IntersectionsTest {
             intersectionRelativeDirections)
 
         // Removed the duplicate osm_ids so we should be good to go...or not
+        Assert.assertEquals(3, roadRelativeDirections.features.size )
 
         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
         Assert.assertEquals("Kodiak Court", roadRelativeDirections.features[0].properties!!["name"])
