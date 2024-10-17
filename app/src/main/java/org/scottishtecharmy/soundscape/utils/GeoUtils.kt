@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import java.util.ArrayList
 import kotlin.math.PI
 import kotlin.math.asin
 import kotlin.math.atan
@@ -505,34 +506,70 @@ fun getReferenceCoordinate(path: LineString, targetDistance: Double, reverseLine
 
     if (targetDistance == Double.MAX_VALUE) return path.coordinates.last()
 
-    if (reverseLineString) path.coordinates.reverse()
+    //if (reverseLineString) path.coordinates.reverse()
+    if (reverseLineString) {
+        val reversedCoordinates = path.coordinates.toMutableList().asReversed()
+        val reversedPath = LineString().also {
+            it.coordinates = ArrayList(reversedCoordinates)
+        }
+        var totalDistance = 0.0
+        // work our way along the linestring to check the distance
+        for (i in 0 until reversedPath.coordinates.lastIndex) {
+            val coord1 = reversedPath.coordinates[i]
+            val coord2 = reversedPath.coordinates[i + 1]
 
-    var totalDistance = 0.0
-    // work our way along the linestring to check the distance
-    for (i in 0 until path.coordinates.lastIndex) {
-        val coord1 = path.coordinates[i]
-        val coord2 = path.coordinates[i + 1]
+            val coordDistance = distance(
+                coord1.latitude,
+                coord1.longitude,
+                coord2.latitude,
+                coord2.longitude
+            )
+            totalDistance += coordDistance
 
-        val coordDistance = distance(
-            coord1.latitude,
-            coord1.longitude,
-            coord2.latitude,
-            coord2.longitude
-        )
-        totalDistance += coordDistance
+            if (totalDistance == targetDistance) {
+                return coord2
+            }
 
-        if (totalDistance == targetDistance) {
-            return coord2
+            if (totalDistance > targetDistance) {
+                // Target coordinate is between two coordinates so synthesize it
+                val prevTotalDistance = totalDistance - coordDistance
+                val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
+                val bearing = bearingFromTwoPoints(coord1.latitude, coord1.longitude, coord2.latitude, coord2.longitude)
+                return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
+            }
         }
 
-        if (totalDistance > targetDistance) {
-            // Target coordinate is between two coordinates so synthesize it
-            val prevTotalDistance = totalDistance - coordDistance
-            val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
-            val bearing = bearingFromTwoPoints(coord1.latitude, coord1.longitude, coord2.latitude, coord2.longitude)
-            return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
+    } else {
+        var totalDistance = 0.0
+        // work our way along the linestring to check the distance
+        for (i in 0 until path.coordinates.lastIndex) {
+            val coord1 = path.coordinates[i]
+            val coord2 = path.coordinates[i + 1]
+
+            val coordDistance = distance(
+                coord1.latitude,
+                coord1.longitude,
+                coord2.latitude,
+                coord2.longitude
+            )
+            totalDistance += coordDistance
+
+            if (totalDistance == targetDistance) {
+                return coord2
+            }
+
+            if (totalDistance > targetDistance) {
+                // Target coordinate is between two coordinates so synthesize it
+                val prevTotalDistance = totalDistance - coordDistance
+                val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
+                val bearing = bearingFromTwoPoints(coord1.latitude, coord1.longitude, coord2.latitude, coord2.longitude)
+                return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
+            }
         }
+
     }
+
+
     return path.coordinates.last()
 }
 

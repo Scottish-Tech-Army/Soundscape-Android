@@ -950,7 +950,7 @@ fun getPoiFovFeatureCollection(
  * Location of device.
  * @param intersectionFeatureCollection
  * The intersection feature collection that contains the intersections we want to test.
- * * @return A Feature Collection that contains the nearest intersection.
+ * @return A Feature Collection that contains the nearest intersection.
  */
 fun getNearestIntersection(
     currentLocation: LngLatAlt,
@@ -1370,6 +1370,38 @@ fun getDistanceToFeatureCollection(
     }
     return featureCollection
 
+}
+
+/**
+ * Given a Feature Collection and location this will calculate the nearest distance to each Feature,
+ * and return a sorted Feature Collection by the distance_to foreign member for each Feature.
+ * @param currentLat
+ * Current latitude as Double.
+ * @param currentLon
+ * Current longitude as Double.
+ * @param featureCollection
+ * @return a sorted Feature Collection with the "distance_to" from the current location as a foreign member in meters for each Feature.
+ */
+fun sortedByDistanceTo(
+    currentLat: Double,
+    currentLon: Double,
+    featureCollection: FeatureCollection
+): FeatureCollection {
+
+    val featuresWithDistance = getDistanceToFeatureCollection(
+        currentLat,
+        currentLon,
+        featureCollection
+    )
+    val featuresSortedByDistanceList = featuresWithDistance.features
+        .sortedBy {(it.foreign?.get("distance_to") as? Number)?.toDouble() ?: Double.MAX_VALUE
+        }
+    // loop through the list of sorted Features and add to a new Feature Collection
+    val featuresSortedByDistance = FeatureCollection()
+    for (feature in featuresSortedByDistanceList) {
+        featuresSortedByDistance.addFeature(feature)
+    }
+    return featuresSortedByDistance
 }
 
 fun removeDuplicates(
@@ -1892,7 +1924,7 @@ fun getIntersectionRoadNamesRelativeDirections(
             // for each split road work out the relative direction from the intersection
             for (splitRoad in roadCoordinatesSplitIntoTwo) {
                 val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                    splitRoad.geometry as LineString, 3.0, false)
+                    splitRoad.geometry as LineString, 1.0, false)
                 // test if the reference coordinate we've created is in any of the relative direction triangles
                 for(direction in intersectionRelativeDirections){
                     val iAmHere1 = polygonContainsCoordinates(
@@ -1907,7 +1939,7 @@ fun getIntersectionRoadNamesRelativeDirections(
                     } else {
                         // reverse the LineString, create the ref coordinate and test it again
                         val testReferenceCoordinateReverse = getReferenceCoordinate(
-                            splitRoad.geometry as LineString, 3.0, true
+                            splitRoad.geometry as LineString, 1.0, true
                         )
                         val iAmHere2 = polygonContainsCoordinates(
                             testReferenceCoordinateReverse, (direction.geometry as Polygon)
@@ -1925,7 +1957,7 @@ fun getIntersectionRoadNamesRelativeDirections(
         else{
             for (direction in intersectionRelativeDirections){
                 val testReferenceCoordinateForward = getReferenceCoordinate(
-                    road.geometry as LineString, 3.0, false)
+                    road.geometry as LineString, 1.0, false)
                 val iAmHere1 = polygonContainsCoordinates(
                     testReferenceCoordinateForward, (direction.geometry as Polygon))
                 if (iAmHere1){
@@ -1936,7 +1968,7 @@ fun getIntersectionRoadNamesRelativeDirections(
                 } else {
                     // reverse the LineString, create the ref coordinate and test it again
                     val testReferenceCoordinateReverse = getReferenceCoordinate(
-                        road.geometry as LineString, 3.0, true
+                        road.geometry as LineString, 1.0, true
                     )
                     val iAmHere2 = polygonContainsCoordinates(
                         testReferenceCoordinateReverse,
