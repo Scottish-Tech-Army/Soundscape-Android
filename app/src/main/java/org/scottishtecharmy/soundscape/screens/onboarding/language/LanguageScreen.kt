@@ -41,7 +41,7 @@ fun LanguageScreen(
         onNavigate = onNavigate,
         supportedLanguages = uiState.supportedLanguages,
         onLanguageSelected = { selectedLanguage ->
-            viewModel.updateSpeechLanguage(selectedLanguage)
+            viewModel.updateLanguage(selectedLanguage)
         },
         selectedLanguageIndex = uiState.selectedLanguageIndex,
         modifier = modifier
