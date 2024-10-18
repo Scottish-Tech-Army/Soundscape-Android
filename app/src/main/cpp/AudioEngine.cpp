@@ -158,7 +158,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         TRACE("%s %p", __FUNCTION__, this);
 
         // Create a System object and initialize
-        FMOD::System *system;
+        FMOD::System *system = nullptr;
         FMOD::System_Create(&system);
         m_pSystem = system;
 
@@ -495,4 +495,28 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_clearNativeTextToSp
     if(ae) {
         ae->ClearQueue();
     }
+}
+
+extern "C"
+JNIEXPORT jlong JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(JNIEnv *env MAYBE_UNUSED,
+                                                                                      jobject thiz MAYBE_UNUSED,
+                                                                                      jlong engine_handle,
+                                                                                      jstring earcon_asset,
+                                                                                      jdouble latitude,
+                                                                                      jdouble longitude) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if(ae) {
+        const char * asset = env->GetStringUTFChars(earcon_asset, nullptr);
+        std::string earcon_string(asset);
+        env->ReleaseStringUTFChars(earcon_asset, asset);
+
+        auto earcon = std::make_unique<soundscape::Earcon>(ae, asset, latitude, longitude);
+        if (not earcon) {
+            TRACE("Failed to create Earcon");
+            earcon.reset(nullptr);
+        }
+        return reinterpret_cast<jlong>(earcon.release());
+    }
+    return 0L;
 }

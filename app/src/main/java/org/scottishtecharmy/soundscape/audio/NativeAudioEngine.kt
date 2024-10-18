@@ -40,6 +40,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private external fun createNativeBeacon(engineHandle: Long, latitude: Double, longitude: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
+    private external fun createNativeEarcon(engineHandle: Long, asset:String, latitude: Double, longitude: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
@@ -205,11 +206,12 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     }
     private fun awaitTextToSpeechInitialization() : Boolean {
         // Block waiting for the TextToSpeech to initialize before using it. Timeout after
-        // waiting for 10 seconds and in that case return false
-        var timeout = 10000
+        // waiting for 2 seconds and in that case return false
+        var timeout = 2000
         while(!textToSpeechInitialized) {
             Thread.sleep(100)
             timeout -= 100
+            Log.d(TAG, "$timeout")
             if(timeout <= 0)
                 return false
         }
@@ -242,6 +244,19 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
                 Log.d(TAG, "Call createNativeTextToSpeech: $text")
                 return createNativeTextToSpeech(engineHandle, latitude, longitude, ttsSocketPair[1].fd)
+            }
+
+            return 0
+        }
+    }
+
+    override fun createEarcon(asset: String, latitude: Double, longitude: Double) : Long
+    {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L) {
+
+                Log.d(TAG, "Call createNativeEarcon: $asset")
+                return createNativeEarcon(engineHandle, asset, latitude, longitude)
             }
 
             return 0
@@ -362,5 +377,21 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         init {
             System.loadLibrary("soundscape-audio")
         }
+
+        // Earcon asset filenames
+        const val EARCON_CALIBRATION_IN_PROGRESS = "file:///android_asset/earcons/calibration_in_progress.wav"
+        const val EARCON_CALIBRATION_SUCCESS = "file:///android_asset/earcons/calibration_success.wav"
+        const val EARCON_CALLOUTS_ON = "file:///android_asset/earcons/callouts_on.wav"
+        const val EARCON_CALLOUTS_OFF = "file:///android_asset/earcons/callouts_off.wav"
+        const val EARCON_CONNECTION_SUCCESS = "file:///android_asset/earcons/connection_success.wav"
+        const val EARCON_LOW_CONFIDENCE = "file:///android_asset/earcons/low_confidence.wav"
+        const val EARCON_MODE_ENTER = "file:///android_asset/earcons/mode_enter.wav"
+        const val EARCON_MODE_EXIT = "file:///android_asset/earcons/mode_exit.wav"
+        const val EARCON_OFFLINE = "file:///android_asset/earcons/offline.wav"
+        const val EARCON_ONLINE = "file:///android_asset/earcons/online.wav"
+        const val EARCON_SENSE_LOCATION = "file:///android_asset/earcons/sense_location.wav"
+        const val EARCON_SENSE_MOBILITY = "file:///android_asset/earcons/sense_mobility.wav"
+        const val EARCON_SENSE_POI = "file:///android_asset/earcons/sense_poi.wav"
+        const val EARCON_SENSE_SAFETY = "file:///android_asset/earcons/sense_safety.wav"
     }
 }
