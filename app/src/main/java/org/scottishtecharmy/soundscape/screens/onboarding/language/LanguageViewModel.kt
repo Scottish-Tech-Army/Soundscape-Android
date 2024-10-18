@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.language
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,9 +57,11 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         return allLanguages
     }
 
-    fun updateSpeechLanguage(selectedLanguage: Language): Boolean {
+    fun updateLanguage(selectedLanguage: Language): Boolean {
         val indexOfSelectedLanguage = _state.value.supportedLanguages.indexOf(selectedLanguage)
         _state.value = _state.value.copy(selectedLanguageIndex = indexOfSelectedLanguage)
+
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(selectedLanguage.code))
         return audioEngine.setSpeechLanguage(selectedLanguage.code)
     }
 }
