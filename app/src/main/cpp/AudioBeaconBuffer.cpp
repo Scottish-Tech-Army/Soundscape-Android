@@ -137,7 +137,7 @@ FMOD_RESULT F_CALLBACK BeaconBufferGroup::PcmReadCallback(void *data, unsigned i
 //
 //
 
-TtsAudioSource::TtsAudioSource(const AudioEngine *ae MAYBE_UNUSED, PositionedAudio *parent, int tts_socket)
+TtsAudioSource::TtsAudioSource(PositionedAudio *parent, int tts_socket)
               : BeaconAudioSource(parent, 0)
 
 {
@@ -241,3 +241,32 @@ void BeaconAudioSource::UpdateGeometry(double degrees_off_axis)
     m_DegreesOffAxis = degrees_off_axis;
 }
 
+//
+//
+//
+EarconSource::EarconSource(PositionedAudio *parent, std::string &asset)
+        : BeaconAudioSource(parent, 0.0),
+          m_Asset(asset)
+{
+}
+
+
+EarconSource::~EarconSource()
+{
+    m_pSound->release();
+}
+
+void EarconSource::CreateSound(FMOD::System *system, FMOD::Sound **sound)
+{
+    auto result = system->createSound(m_Asset.c_str(), FMOD_DEFAULT, nullptr, &m_pSound);
+    ERROR_CHECK(result);
+    system->playSound(m_pSound, nullptr, false, nullptr);
+}
+
+void EarconSource::UpdateGeometry(double degrees_off_axis)
+{
+    FMOD_OPENSTATE state;
+    m_pSound->getOpenState(&state, nullptr, nullptr, nullptr);
+    if(state == FMOD_OPENSTATE_READY)
+        m_pParent->Eof();
+}

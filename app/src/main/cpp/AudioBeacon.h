@@ -1,4 +1,6 @@
 #pragma once
+#include <utility>
+
 #include "AudioBeaconBuffer.h"
 
 namespace soundscape {
@@ -78,11 +80,34 @@ namespace soundscape {
     protected:
         bool CreateAudioSource(double degrees_off_axis) final
         {
-            m_pAudioSource = std::make_unique<TtsAudioSource>(m_pEngine, this, m_TtsSocket);
+            m_pAudioSource = std::make_unique<TtsAudioSource>(this, m_TtsSocket);
             // Text to speech audio are queued to play one after the other
             return true;
         }
 
         int m_TtsSocket;
+    };
+
+    class Earcon : public PositionedAudio {
+    public:
+        Earcon(AudioEngine *engine,
+               std::string asset,
+               double latitude,
+               double longitude)
+                : PositionedAudio(engine, latitude, longitude),
+                  m_Asset(std::move(asset))
+        {
+            Init(0.0);
+        }
+
+    protected:
+        bool CreateAudioSource(double degrees_off_axis) final
+        {
+            m_pAudioSource = std::make_unique<EarconSource>(this, m_Asset);
+            // Earcons are queued along with the TextToSpeech audio
+            return true;
+        }
+
+        std::string m_Asset;
     };
 }
