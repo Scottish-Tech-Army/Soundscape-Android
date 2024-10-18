@@ -54,6 +54,20 @@ class SettingsViewModel @Inject constructor(
                                         voiceTypes.add(type.name)
                                     }
                                 }
+                                if(voiceTypes.isEmpty()) {
+                                    // I found that with some alternate Text to Speech engines
+                                    // installed (e.g. Vocalizer TTS) the locale language doesn't
+                                    // always match. If we found no voices, try again without checking
+                                    // the language.
+                                    for (type in audioEngineVoiceTypes) {
+                                        if (!type.isNetworkConnectionRequired &&
+                                            !type.features.contains("notInstalled")
+                                        ) {
+                                            // The Voice don't contain any description, just a text string
+                                            voiceTypes.add(type.name)
+                                        }
+                                    }
+                                }
 
                                 val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
                                 val beaconTypes = mutableListOf<String>()
