@@ -17,7 +17,7 @@ class AppNativeAudioEngine {
     @Singleton
     fun provideNativeAudioEngine(@ApplicationContext context: Context): NativeAudioEngine {
         val audioEngine = NativeAudioEngine()
-        audioEngine.initialize(context)
+        audioEngine.initialize(context, false)
         return audioEngine
     }
 }
