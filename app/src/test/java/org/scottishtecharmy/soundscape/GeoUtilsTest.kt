@@ -32,6 +32,9 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
+import org.scottishtecharmy.soundscape.utils.lineStringsIntersect
+import org.scottishtecharmy.soundscape.utils.straightLinesIntersect
+import kotlin.math.abs
 
 
 class GeoUtilsTest {
@@ -568,4 +571,69 @@ class GeoUtilsTest {
         Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, circle5.center.latitude, circle5.center.longitude), 0.1)
     }
 
+    @Test
+    fun intersectingLinesTest(){
+
+        val testLinesIntersect1 = straightLinesIntersect(
+            LngLatAlt(0.0,0.0),
+            LngLatAlt(0.0, 1.0),
+            LngLatAlt(0.0, 0.0),
+            LngLatAlt(1.0,1.0)
+        )
+        // touching lines should intersect
+        Assert.assertEquals(true, testLinesIntersect1)
+
+        val testLinesIntersect2 = straightLinesIntersect(
+            LngLatAlt(0.0,0.0),
+            LngLatAlt(0.0, 1.0),
+            LngLatAlt(1.0, 0.0),
+            LngLatAlt(1.0,1.0)
+        )
+        // parallel lines should not intersect
+        Assert.assertEquals(false, testLinesIntersect2)
+
+        val testLinesIntersect3 = straightLinesIntersect(
+            LngLatAlt(0.0,0.5),
+            LngLatAlt(1.0, 0.5),
+            LngLatAlt(0.5, 0.0),
+            LngLatAlt(0.5,1.0)
+        )
+        //crossing lines should intersect
+        Assert.assertEquals(true, testLinesIntersect3)
+
+
+    }
+
+    @Test
+    fun intersectingLineStringsTest(){
+        val lineString1 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.6856311440872105,51.44095049507263),
+                LngLatAlt(-2.6854046355432217,51.44085784067977),
+                LngLatAlt(-2.6852524501146036,51.440941670852794)
+            )
+        }
+
+        val lineString2 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.685340930014803,51.4409946161459),
+                LngLatAlt(-2.6853480084065495,51.44081371947439)
+            )
+        }
+
+        val lineString3 = LineString().also {
+            it.coordinates = arrayListOf(
+                LngLatAlt(-2.6851321174495126,51.44103432507555),
+                LngLatAlt(-2.685135656646054,51.44082474977969)
+            )
+        }
+
+        // These linestrings do intersect
+        val intersect1 = lineStringsIntersect(lineString1, lineString2)
+        Assert.assertEquals(true, intersect1)
+
+        // These linestrings do not intersect
+        val intersect2 = lineStringsIntersect(lineString1, lineString3)
+        Assert.assertEquals(false, intersect2)
+    }
 }
