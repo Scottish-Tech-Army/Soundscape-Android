@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.audio
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
@@ -13,6 +15,7 @@ import androidx.preference.PreferenceManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.R
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -30,12 +33,14 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private lateinit var ttsSocket : ParcelFileDescriptor
     private var textToSpeechVoiceType = MainActivity.VOICE_TYPE_DEFAULT
     private var textToSpeechRate = MainActivity.SPEECH_RATE_DEFAULT
+    private var beaconType = MainActivity.BEACON_TYPE_DEFAULT
 
     private external fun create() : Long
     private external fun destroy(engineHandle: Long)
     private external fun createNativeBeacon(engineHandle: Long, latitude: Double, longitude: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
+    private external fun createNativeEarcon(engineHandle: Long, asset:String, latitude: Double, longitude: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
@@ -47,6 +52,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
     fun destroy()
     {
+        sharedPreferences?.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
         synchronized(engineMutex)
         {
             if (engineHandle == 0L) {
@@ -66,23 +72,42 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             org.fmod.FMOD.close()
         }
     }
-    fun initialize(context : Context)
-    {
 
-        val sharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(context)
-        val beaconType = sharedPreferences.getString(
-            MainActivity.BEACON_TYPE_KEY,
-            MainActivity.BEACON_TYPE_DEFAULT
-        )
-        textToSpeechVoiceType = sharedPreferences.getString(
-            MainActivity.VOICE_TYPE_KEY,
-            MainActivity.VOICE_TYPE_DEFAULT
-        )!!
-        textToSpeechRate = sharedPreferences.getFloat(
-            MainActivity.SPEECH_RATE_KEY,
-            MainActivity.SPEECH_RATE_DEFAULT
-        )
+    private var sharedPreferences : SharedPreferences? = null
+    private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
+
+    fun initialize(context : Context, followPreferences : Boolean = true)
+    {
+        if(followPreferences) {
+            val configLocale = AppCompatDelegate.getApplicationLocales()[0]
+            val configuration = Configuration(context.resources.configuration)
+            configuration.setLocale(configLocale)
+            val localizedContext = context.createConfigurationContext(configuration)
+
+            // Listen for changes to shared preference settings so that we can update the audio engine
+            // configuration.
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+            sharedPreferencesListener =
+                SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
+                    if (sharedPreferences == preferences) {
+                        if ((key == MainActivity.VOICE_TYPE_KEY) ||
+                            (key == MainActivity.SPEECH_RATE_KEY)
+                        ) {
+                            if (updateSpeech(preferences)) {
+                                // If the voice type preference changes play some test speech
+                                clearTextToSpeechQueue()
+                                val testString =
+                                    localizedContext.getString(R.string.first_launch_callouts_example_3)
+                                createTextToSpeech(testString)
+                            }
+                        }
+                        if (key == MainActivity.BEACON_TYPE_KEY) {
+                            updateBeaconType(preferences)
+                        }
+                    }
+                }
+            sharedPreferences?.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
+        }
 
         synchronized(engineMutex) {
             if (engineHandle != 0L) {
@@ -91,7 +116,9 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             org.fmod.FMOD.init(context)
             engineHandle = this.create()
             textToSpeech = TextToSpeech(context, this)
-            setBeaconType(beaconType!!)
+            sharedPreferences?.let {
+                updateBeaconType(it)
+            }
         }
     }
 
@@ -114,11 +141,9 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             val languageCode = AppCompatDelegate.getApplicationLocales().toLanguageTags()
             setSpeechLanguage(languageCode)
 
-            for(voice in textToSpeech.voices) {
-                if(voice.name == textToSpeechVoiceType)
-                    textToSpeech.voice = voice
+            sharedPreferences?.let {
+                updateSpeech(it)
             }
-            textToSpeech.setSpeechRate(textToSpeechRate)
             textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
 
                 override fun onDone(utteranceId: String) {
@@ -181,11 +206,12 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     }
     private fun awaitTextToSpeechInitialization() : Boolean {
         // Block waiting for the TextToSpeech to initialize before using it. Timeout after
-        // waiting for 10 seconds and in that case return false
-        var timeout = 10000
+        // waiting for 2 seconds and in that case return false
+        var timeout = 2000
         while(!textToSpeechInitialized) {
             Thread.sleep(100)
             timeout -= 100
+            Log.d(TAG, "$timeout")
             if(timeout <= 0)
                 return false
         }
@@ -218,6 +244,19 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
                 Log.d(TAG, "Call createNativeTextToSpeech: $text")
                 return createNativeTextToSpeech(engineHandle, latitude, longitude, ttsSocketPair[1].fd)
+            }
+
+            return 0
+        }
+    }
+
+    override fun createEarcon(asset: String, latitude: Double, longitude: Double) : Long
+    {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L) {
+
+                Log.d(TAG, "Call createNativeEarcon: $asset")
+                return createNativeEarcon(engineHandle, asset, latitude, longitude)
             }
 
             return 0
@@ -260,6 +299,50 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         return textToSpeech.voices
     }
 
+    override fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
+        val newBeaconType = sharedPreferences.getString(
+            MainActivity.BEACON_TYPE_KEY,
+            MainActivity.BEACON_TYPE_DEFAULT
+        )!!
+        if(newBeaconType != beaconType) {
+            setBeaconType(newBeaconType)
+            Log.d(TAG, "Beacon changed from $beaconType to $newBeaconType on $this")
+            beaconType = newBeaconType
+            return true
+        }
+        return false
+    }
+
+    override fun updateSpeech(sharedPreferences: SharedPreferences): Boolean {
+
+        var change = false
+
+        // Check for change in voice type preference
+        val voiceType = sharedPreferences.getString(MainActivity.VOICE_TYPE_KEY, MainActivity.VOICE_TYPE_DEFAULT)!!
+        for (voice in textToSpeech.voices) {
+            if (voice.name == voiceType) {
+                if(textToSpeechVoiceType != voice.name) {
+                    textToSpeech.voice = voice
+                    Log.d(TAG, "Voice changed from $textToSpeechVoiceType to ${voice.name} on $this")
+                    textToSpeechVoiceType = voice.name
+                    change = true
+                }
+                break
+            }
+        }
+
+        // Check for change in rate preference
+        val rate = sharedPreferences.getFloat(MainActivity.SPEECH_RATE_KEY, MainActivity.SPEECH_RATE_DEFAULT)
+        if (rate != textToSpeechRate) {
+            textToSpeech.setSpeechRate(rate)
+            Log.d(TAG, "Speech rate changed from $textToSpeechRate to $rate on $this")
+            textToSpeechRate = rate
+            change = change.or(true)
+        }
+
+        return change
+    }
+
     override fun setSpeechLanguage(language : String) : Boolean {
         Log.d("TTS", "setSpeechLanguage to \"$language\"")
         val result = textToSpeech.setLanguage(Locale(language))
@@ -294,5 +377,21 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         init {
             System.loadLibrary("soundscape-audio")
         }
+
+        // Earcon asset filenames
+        const val EARCON_CALIBRATION_IN_PROGRESS = "file:///android_asset/earcons/calibration_in_progress.wav"
+        const val EARCON_CALIBRATION_SUCCESS = "file:///android_asset/earcons/calibration_success.wav"
+        const val EARCON_CALLOUTS_ON = "file:///android_asset/earcons/callouts_on.wav"
+        const val EARCON_CALLOUTS_OFF = "file:///android_asset/earcons/callouts_off.wav"
+        const val EARCON_CONNECTION_SUCCESS = "file:///android_asset/earcons/connection_success.wav"
+        const val EARCON_LOW_CONFIDENCE = "file:///android_asset/earcons/low_confidence.wav"
+        const val EARCON_MODE_ENTER = "file:///android_asset/earcons/mode_enter.wav"
+        const val EARCON_MODE_EXIT = "file:///android_asset/earcons/mode_exit.wav"
+        const val EARCON_OFFLINE = "file:///android_asset/earcons/offline.wav"
+        const val EARCON_ONLINE = "file:///android_asset/earcons/online.wav"
+        const val EARCON_SENSE_LOCATION = "file:///android_asset/earcons/sense_location.wav"
+        const val EARCON_SENSE_MOBILITY = "file:///android_asset/earcons/sense_mobility.wav"
+        const val EARCON_SENSE_POI = "file:///android_asset/earcons/sense_poi.wav"
+        const val EARCON_SENSE_SAFETY = "file:///android_asset/earcons/sense_safety.wav"
     }
 }

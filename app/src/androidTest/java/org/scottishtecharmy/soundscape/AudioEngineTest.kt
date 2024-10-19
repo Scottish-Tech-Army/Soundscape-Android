@@ -105,6 +105,52 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @Test
+    fun earcon() {
+        val audioEngine = initializeAudioEngine()
+
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALIBRATION_IN_PROGRESS)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALIBRATION_SUCCESS)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALLOUTS_ON)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALLOUTS_OFF)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CONNECTION_SUCCESS)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_LOW_CONFIDENCE)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_MODE_ENTER)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_MODE_EXIT)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_OFFLINE)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_ONLINE)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_LOCATION)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_MOBILITY)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_POI)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_SAFETY)
+
+        moveListener(audioEngine, 20000)
+        tidyUp(audioEngine)
+    }
+
+    @Test
+    fun textAndEarcon() {
+        val audioEngine = initializeAudioEngine()
+        audioEngine.createTextToSpeech("Text with ")
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_OFFLINE)
+        audioEngine.createTextToSpeech("in the middle.")
+        moveListener(audioEngine, 8000)
+        tidyUp(audioEngine)
+    }
+
+    @Test
+    fun textWithShutdownRestart() {
+        var audioEngine = initializeAudioEngine()
+        audioEngine.createTextToSpeech("Text is playing out to test shutdown.")
+        moveListener(audioEngine, 1000)
+        tidyUp(audioEngine)
+        audioEngine = initializeAudioEngine()
+        audioEngine.createTextToSpeech("Text is playing out again to test shutdown.")
+        moveListener(audioEngine, 5000)
+        tidyUp(audioEngine)
+    }
+
+
 // This test fails on the GitHub action emulator - more investigation required
 //    @Test
 //    fun speechCapabilities() {
