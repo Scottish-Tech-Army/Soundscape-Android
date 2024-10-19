@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import java.util.ArrayList
 import kotlin.math.PI
+import kotlin.math.abs
 import kotlin.math.asin
 import kotlin.math.atan
 import kotlin.math.atan2
@@ -1070,4 +1071,124 @@ fun calculateCenterOfCircle(
     val center = calculateCenter(a, b, arcMidPoint)
 
     return center
+}
+
+/**
+ * Check if two LineStrings intersect.
+ * @param lineString1
+ * Line1 as LineString.
+ * @param lineString2
+ * Line2 as LineString.
+ * @return true if the linestrings intersect each other.
+ */
+fun lineStringsIntersect(
+    lineString1: LineString,
+    lineString2: LineString
+): Boolean {
+    var lineStringsIntersect = false
+
+    // Loop through segments of lineString1
+    for (i in 0 until lineString1.coordinates.size - 1) {
+        val line1Start = lineString1.coordinates[i]
+        val line1End = lineString1.coordinates[i + 1]
+
+        // Loop through segments of lineString2
+        for (j in 0 until lineString2.coordinates.size - 1) {
+            val line2Start = lineString2.coordinates[j]
+            val line2End = lineString2.coordinates[j + 1]
+
+            // Check if segments intersect
+            if (straightLinesIntersect(line1Start, line1End, line2Start, line2End)) {
+                lineStringsIntersect = true
+                break
+            }
+        }
+
+        if (lineStringsIntersect) break
+    }
+    return lineStringsIntersect
+
+}
+
+/**
+ * Check if straight lines defined by line1Start, line1End, line2Start, line2End intersect.
+ * @param line1Start
+ * Start of line1 as LngLatAlt.
+ * @param line1End
+ * End of line1 as LngLatAlt.
+ * @param line2Start
+ * Start of line2 as LngLatAlt.
+ * @param line2End
+ * End of line2 as LngLatAlt.
+ * @return true if the lines intersect each other.
+ */
+fun straightLinesIntersect(
+    line1Start: LngLatAlt,
+    line1End: LngLatAlt,
+    line2Start: LngLatAlt,
+    line2End: LngLatAlt,
+): Boolean {
+
+    val line1Vertical = line1Start.latitude == line1End.latitude
+    val line2Vertical = line2Start.latitude == line2End.latitude
+    return when {
+        line1Vertical && line2Vertical ->
+            if (line1Start.latitude == line2Start.latitude) {
+                // lines are both vertical check whether they overlap
+                line1Start.longitude <= line2Start.longitude && line2Start.longitude < line1End.longitude || line1Start.longitude <= line2End.longitude && line2End.longitude < line1End.longitude
+            } else {
+                // parallel -> they don't intersect
+                false
+            }
+        line1Vertical -> {
+            val gradient2 = (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
+            val a2 = line2Start.longitude - gradient2 * line2Start.latitude
+            val yi = a2 + gradient2 * line1Start.latitude
+
+            isBetween(line1Start.longitude, line1End.longitude, yi) && isBetween(line2Start.longitude, line2End.longitude, yi)
+        }
+        line2Vertical -> {
+            val gradient1 = (line1End.longitude - line1Start.longitude) / (line1End.latitude - line1Start.latitude)
+            val a1 = line1Start.longitude - gradient1 * line1Start.latitude
+            val yi = a1 + gradient1 * line2Start.latitude
+
+            isBetween(line1Start.longitude, line1End.longitude, yi) && isBetween(line2Start.longitude, line2End.longitude, yi)
+        }
+        else -> {
+
+            val gradient1 = (line1End.longitude - line1Start.longitude) / (line1End.latitude - line1Start.latitude)
+            val gradient2 = (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
+
+            val a1 = line1Start.longitude - gradient1 * line1Start.latitude
+            val a2 = line2Start.longitude - gradient2 * line2Start.latitude
+
+            if (gradient1 - gradient2 == 0.0) {
+                // same gradient
+                if (abs(a1 - a2) < .0000001) {
+                    // lines are definitely the same within a margin of error, check if overlaps
+                    isBetween(line1Start.latitude, line1End.latitude, line2Start.latitude) || isBetween(line1Start.latitude, line1End.latitude, line2End.latitude)
+                } else {
+                    // parallel
+                    false
+                }
+            } else {
+                // calculate intersection coordinates
+                val intersectLat = -(a1 - a2) / (gradient1 - gradient2)
+                val intersectLon = a1 + gradient1 * intersectLat
+
+                (line1Start.latitude - intersectLat) * (intersectLat - line1End.latitude) >= 0 &&
+                        (line2Start.latitude - intersectLat) * (intersectLat - line2End.latitude) >= 0 &&
+                        (line1Start.longitude - intersectLon) * (intersectLon - line1End.longitude) >= 0 &&
+                        (line2Start.longitude - intersectLon) * (intersectLon - line2End.longitude) >= 0
+            }
+        }
+    }
+}
+
+fun isBetween(x1: Double, x2: Double, value: Double): Boolean {
+    return if (x1 > x2) {
+        value in x2..x1
+    } else {
+        value in x1..x2
+    }
 }
