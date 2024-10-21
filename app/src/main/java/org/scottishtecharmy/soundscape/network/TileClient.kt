@@ -17,7 +17,13 @@ import java.util.concurrent.TimeUnit
 // https://stackoverflow.com/questions/70711512/context-getapplicationcontext-on-a-null-object-when-using-okhttp-cache
 //https://proandroiddev.com/increase-performance-of-your-app-by-caching-api-calls-using-okhttp-1384a621c51f
 // https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
-class OkhttpClientInstance(val application: Application) {
+class TileClient(val application: Application) {
+
+    private val connectivityManager: ConnectivityManager
+    init {
+        connectivityManager =
+            application.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    }
 
     private var retrofit : Retrofit? = null
 
@@ -76,10 +82,6 @@ class OkhttpClientInstance(val application: Application) {
         }
 
     private fun hasNetwork(): Boolean {
-        //val connectivityManager =
-        //    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val connectivityManager =
-            application.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = connectivityManager.activeNetwork ?: return false
         val activeNetworkCapabilities =
             connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false

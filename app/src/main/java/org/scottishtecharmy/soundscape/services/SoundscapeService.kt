@@ -1,35 +1,26 @@
 package org.scottishtecharmy.soundscape.services
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
-import android.content.res.Configuration
 import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.OptIn
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
-import androidx.preference.PreferenceManager
-import com.squareup.moshi.Moshi
 import dagger.hilt.android.AndroidEntryPoint
-import io.realm.kotlin.Realm
-import io.realm.kotlin.ext.query
-import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,48 +30,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.dao.TilesDao
-import org.scottishtecharmy.soundscape.database.local.model.TileData
-import org.scottishtecharmy.soundscape.database.repository.TilesRepository
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
-import org.scottishtecharmy.soundscape.network.ITileDAO
-import org.scottishtecharmy.soundscape.network.OkhttpClientInstance
-import org.scottishtecharmy.soundscape.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
-import org.scottishtecharmy.soundscape.utils.distanceToIntersection
-import org.scottishtecharmy.soundscape.utils.distanceToPolygon
-import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
-import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
-import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
-import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
-import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.utils.getNearestIntersection
-import org.scottishtecharmy.soundscape.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
-import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
-import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
-import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
-import org.scottishtecharmy.soundscape.utils.processTileString
-import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
-import retrofit2.awaitResponse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -101,12 +61,12 @@ class SoundscapeService : MediaSessionService() {
     // secondary service
     private var timerJob: Job? = null
 
-    // GeoJSON tiles job
-    private var tilesJob: Job? = null
-
     // Audio engine
     var audioEngine = NativeAudioEngine()
     private var audioBeacon: Long = 0
+
+    // Geo engine
+    private var geoEngine = GeoEngine()
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)
@@ -115,12 +75,6 @@ class SoundscapeService : MediaSessionService() {
     // Flow to return street preview mode
     private val _streetPreviewFlow = MutableStateFlow(false)
     var streetPreviewFlow: StateFlow<Boolean> = _streetPreviewFlow
-
-    // OkhttpClientInstance
-    private lateinit var okhttpClientInstance: OkhttpClientInstance
-
-    // Realms
-    private lateinit var tileDataRealm: Realm
 
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
@@ -144,6 +98,7 @@ class SoundscapeService : MediaSessionService() {
     fun setStreetPreviewMode(on : Boolean, latitude: Double, longitude: Double) {
         directionProvider.destroy()
         locationProvider.destroy()
+        geoEngine.stop()
         if(on) {
             // Use static location, but phone's direction
             locationProvider = StaticLocationProvider(latitude, longitude)
@@ -156,6 +111,7 @@ class SoundscapeService : MediaSessionService() {
         }
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
+        geoEngine.start(application, locationProvider, directionProvider)
 
         _streetPreviewFlow.value = on
     }
@@ -172,7 +128,7 @@ class SoundscapeService : MediaSessionService() {
 
             // Reminds the user every hour that the Soundscape service is still running in the background
             startServiceStillRunningTicker()
-            startTileGridService()
+            geoEngine.start(application, locationProvider, directionProvider)
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -229,7 +185,7 @@ class SoundscapeService : MediaSessionService() {
         directionProvider.destroy()
 
         timerJob?.cancel()
-        tilesJob?.cancel()
+        geoEngine.stop()
 
         coroutineScope.coroutineContext.cancelChildren()
 
@@ -284,28 +240,6 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    private fun startTileGridService() {
-        tilesJob?.cancel()
-        tilesJob = coroutineScope.launch {
-            tilesFlow(30.seconds)
-                .collectLatest {
-                    withContext(Dispatchers.IO) {
-                        getTileGrid(application)
-                    }
-                }
-        }
-    }
-
-    private fun tilesFlow(
-        period: Duration
-    ) = flow {
-        while (true) {
-            delay(10.seconds)
-            emit(Unit)
-            delay(period)
-        }
-    }
-
     private fun tickerFlow(
         period: Duration = TICKER_PERIOD_SECONDS,
         initialDelay: Duration = TICKER_PERIOD_SECONDS
@@ -347,91 +281,7 @@ class SoundscapeService : MediaSessionService() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    private suspend fun getTileGrid(application: Application) {
-
-        val tileGridQuadKeys = get3x3TileGrid(
-            locationProvider.getCurrentLatitude() ?: 0.0,
-            locationProvider.getCurrentLongitude() ?: 0.0
-        )
-        val tilesDao = TilesDao(tileDataRealm)
-        val tilesRepository = TilesRepository(tilesDao)
-        okhttpClientInstance = OkhttpClientInstance(application)
-
-        for (tile in tileGridQuadKeys) {
-            Log.d(TAG, "Tile quad key: ${tile.quadkey}")
-            val frozenResult = tilesRepository.getTile(tile.quadkey)
-            // If Tile doesn't already exist in db go and get it, clean it, process it
-            // and insert into db
-            if (frozenResult.size == 0) {
-                withContext(Dispatchers.IO) {
-                    val service =
-                        okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-                    val tileReq = async {
-                        tile.tileX.let {
-                            service?.getTileWithCache(
-                                tile.tileX,
-                                tile.tileY
-                            )
-                        }
-                    }
-                    val result = tileReq.await()?.awaitResponse()?.body()
-                    // clean the tile, process the string, perform an insert into db using the clean tile data
-                    val cleanedTile =
-                        result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
-
-                    if (cleanedTile != null) {
-                        val tileData = processTileString(tile.quadkey, cleanedTile)
-                        tilesRepository.insertTile(tileData)
-                    }
-                }
-            } else {
-                // get the current time and then check against lastUpdated in frozenResult
-                val currentInstant: java.time.Instant = java.time.Instant.now()
-                val currentTimeStamp: Long = currentInstant.toEpochMilli() / 1000
-                val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
-                Log.d(
-                    TAG,
-                    "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}"
-                )
-                // How often do we want to update the tile? 24 hours?
-                val timeToLive: Long = lastUpdated.epochSeconds.plus(TTL_REFRESH_SECONDS)
-
-                if (timeToLive >= currentTimeStamp) {
-                    Log.d(TAG, "Tile does not need updating yet get local copy")
-                    // There should only ever be one tile with a unique quad key
-                    //val tileDataTest = tilesRepository.getTile(tile.quadkey)
-
-                } else {
-                    Log.d(TAG, "Tile does need updating")
-                    withContext(Dispatchers.IO) {
-                        val service =
-                            okhttpClientInstance.retrofitInstance?.create(ITileDAO::class.java)
-                        val tileReq = async {
-                            tile.tileX.let {
-                                service?.getTileWithCache(
-                                    tile.tileX,
-                                    tile.tileY
-                                )
-                            }
-                        }
-                        val result = tileReq.await()?.awaitResponse()?.body()
-                        // clean the tile, process the string, perform an update on db using the clean tile
-                        val cleanedTile =
-                            result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
-
-                        if (cleanedTile != null) {
-                            val tileData = processTileString(tile.quadkey, cleanedTile)
-                            // update existing tile in db
-                            tilesRepository.updateTile(tileData)
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     private fun startRealms() {
-        tileDataRealm = RealmConfiguration.getTileDataInstance()
         RealmConfiguration.getMarkersInstance()
     }
 
@@ -461,472 +311,35 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun myLocation() {
-        // getCurrentDirection() from the direction provider has a default of 0.0
-        // even if we don't have a valid current direction.
-        val configLocale = AppCompatDelegate.getApplicationLocales()[0]
-        val configuration = Configuration(applicationContext.resources.configuration)
-        configuration.setLocale(configLocale)
-        val localizedContext = applicationContext.createConfigurationContext(configuration)
-
         audioEngine.clearTextToSpeechQueue()
-
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
-            // Should be null but let's check
-            //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(noLocationString)
-        } else {
-            // fetch the roads from Realm
-            val tileGridQuadKeys = get3x3TileGrid(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0
-            )
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val gridFeatureCollection = FeatureCollection()
-            val processedOsmIds = mutableSetOf<Any>()
-
-            for (tile in tileGridQuadKeys) {
-                val frozenResult =
-                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-                if (frozenResult != null) {
-                    val roadsString = frozenResult.roads
-
-                    val roadsFeatureCollection = roadsString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-                    roadsFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedOsmIds.contains(osmId)) {
-                                processedOsmIds.add(osmId)
-                                gridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-                }
-            }
-            if (gridFeatureCollection.features.size > 0) {
-                //Log.d(TAG, "Found roads in tile")
-                val nearestRoad =
-                    getNearestRoad(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
-                        gridFeatureCollection
-                    )
-                val properties = nearestRoad.features[0].properties
-                if (properties != null) {
-                    val orientation = directionProvider.getCurrentDirection()
-                    var roadName = properties["name"]
-                    if (roadName == null) {
-                        roadName = properties["highway"]
-                    }
-                    val facingDirectionAlongRoad = configLocale?.let {
-                        getCompassLabelFacingDirectionAlong(
-                            applicationContext,
-                            orientation.toInt(),
-                            roadName.toString(),
-                            it
-                        )
-                    }
-                    if (facingDirectionAlongRoad != null) {
-                        audioEngine.createTextToSpeech(facingDirectionAlongRoad)
-                    }
-                } else {
-                    Log.e(TAG, "No properties found for road")
-                }
-            } else {
-                //Log.d(TAG, "No roads found in tile just give device direction")
-                val orientation = directionProvider.getCurrentDirection()
-                val facingDirection = configLocale?.let {
-                    getCompassLabelFacingDirection(
-                        applicationContext,
-                        orientation.toInt(),
-                        it
-                    )
-                }
-                if (facingDirection != null) {
-                    audioEngine.createTextToSpeech(facingDirection)
-                }
-            }
+        val results = geoEngine.myLocation()
+        for(result in results) {
+            audioEngine.createTextToSpeech(result)
         }
     }
 
     fun whatsAroundMe() {
-        // TODO This is just a rough POC at the moment. Lots more to do...
-        //  decide on how to calculate distance to POI, setup settings in the menu so we can pass in the filters, etc.
-        //  Original Soundscape just splats out a list in no particular order which is odd.
-        //  If you press the button again in original Soundscape it can give you the same list but in a different sequence or
-        //  it can add one to the list even if you haven't moved. It also only seems to give a thing and a distance but not a heading.
-        val configLocale = AppCompatDelegate.getApplicationLocales()[0]
-        val configuration = Configuration(applicationContext.resources.configuration)
-        configuration.setLocale(configLocale)
-        val localizedContext = applicationContext.createConfigurationContext(configuration)
-
         audioEngine.clearTextToSpeechQueue()
-
-        // super categories are "information", "object", "place", "landmark", "mobility", "safety"
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        val placesAndLandmarks = sharedPrefs.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
-        val mobility = sharedPrefs.getBoolean(MOBILITY_KEY, true)
-        // TODO unnamed roads switch is not used yet
-        //val unnamedRoads = sharedPrefs.getBoolean(UNNAMED_ROADS_KEY, false)
-
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
-            val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(noLocationString)
-        } else {
-
-            val tileGridQuadKeys = get3x3TileGrid(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0
-            )
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val gridFeatureCollection = FeatureCollection()
-            val processedOsmIds = mutableSetOf<Any>()
-
-            for (tile in tileGridQuadKeys) {
-                //Check the db for the tile
-                val frozenTileResult =
-                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-                if (frozenTileResult != null) {
-                    val poiString = frozenTileResult.pois
-                    val poiFeatureCollection = poiString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-
-                    poiFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedOsmIds.contains(osmId)) {
-                                processedOsmIds.add(osmId)
-                                gridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-                }
+        val results = geoEngine.whatsAroundMe()
+        for(result in results) {
+            if(result.location == null) {
+                audioEngine.createTextToSpeech(result.text)
             }
-
-            if (gridFeatureCollection.features.size > 0) {
-
-                val settingsFeatureCollection = FeatureCollection()
-                if (placesAndLandmarks) {
-                    if (mobility) {
-                        //Log.d(TAG, "placesAndLandmarks and mobility are both true")
-                        val placeSuperCategory =
-                            getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollection)
-                        val tempFeatureCollection = FeatureCollection()
-                        for (feature in placeSuperCategory.features) {
-                            if (feature.foreign?.get("feature_value") != "house") {
-                                if (feature.properties?.get("name") != null) {
-                                    val superCategoryList = getSuperCategoryElements("place")
-                                    for (property in feature.properties!!) {
-                                        for (featureType in superCategoryList) {
-                                            if (property.value == featureType) {
-                                                tempFeatureCollection.features.add(feature)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        val cleanedPlaceSuperCategory = removeDuplicateOsmIds(tempFeatureCollection)
-                        for (feature in cleanedPlaceSuperCategory.features) {
-                            settingsFeatureCollection.features.add(feature)
-                        }
-
-                        val landmarkSuperCategory =
-                            getPoiFeatureCollectionBySuperCategory(
-                                "landmark",
-                                gridFeatureCollection
-                            )
-                        for (feature in landmarkSuperCategory.features) {
-                            settingsFeatureCollection.features.add(feature)
-                        }
-                        val mobilitySuperCategory =
-                            getPoiFeatureCollectionBySuperCategory(
-                                "mobility",
-                                gridFeatureCollection
-                            )
-                        for (feature in mobilitySuperCategory.features) {
-                            settingsFeatureCollection.features.add(feature)
-                        }
-
-                    } else {
-
-                        val placeSuperCategory =
-                            getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollection)
-                        for (feature in placeSuperCategory.features) {
-                            if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get(
-                                    "feature_value"
-                                ) != "house"
-                            ) {
-                                settingsFeatureCollection.features.add(feature)
-                            }
-                        }
-                        val landmarkSuperCategory =
-                            getPoiFeatureCollectionBySuperCategory(
-                                "landmark",
-                                gridFeatureCollection
-                            )
-                        for (feature in landmarkSuperCategory.features) {
-                            settingsFeatureCollection.features.add(feature)
-                        }
-                    }
-                } else {
-                    if (mobility) {
-                        //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
-                        val mobilitySuperCategory =
-                            getPoiFeatureCollectionBySuperCategory(
-                                "mobility",
-                                gridFeatureCollection
-                            )
-                        for (feature in mobilitySuperCategory.features) {
-                            settingsFeatureCollection.features.add(feature)
-                        }
-                    } else {
-                        // Not sure what we are supposed to tell the user here?
-                        println("placesAndLandmarks and mobility are both false so what should I tell the user?")
-                    }
-                }
-                // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
-                // "information", "object", "place", "landmark", "mobility", "safety"
-                if (settingsFeatureCollection.features.size > 0) {
-                    for (feature in settingsFeatureCollection) {
-                        if (feature.geometry is Polygon) {
-                            // found that if a thing has a name property that ends in a number
-                            // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
-                            if (feature.properties?.get("name") != null) {
-                                audioEngine.createTextToSpeech(
-                                    "${feature.properties?.get("name")}.  ${
-                                        distanceToPolygon(
-                                            LngLatAlt(
-                                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                                locationProvider.getCurrentLatitude() ?: 0.0
-                                            ),
-                                            feature.geometry as Polygon
-                                        ).toInt()
-                                    } meters."
-                                )
-                            }
-                        }
-                    }
-                } else {
-                    audioEngine.createTextToSpeech(localizedContext.getString(R.string.callouts_nothing_to_call_out_now))
-                }
-            } else {
-                Log.d(TAG, "No Points Of Interest found in the grid")
+            else {
                 audioEngine.createTextToSpeech(
-                    localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
+                    result.text,
+                    result.location.latitude,
+                    result.location.longitude
                 )
             }
         }
     }
 
     fun aheadOfMe() {
-        // TODO This is just a rough POC at the moment. Lots more to do...
-        val configLocale = AppCompatDelegate.getApplicationLocales()[0]
-        val configuration = Configuration(applicationContext.resources.configuration)
-        configuration.setLocale(configLocale)
-        val localizedContext = applicationContext.createConfigurationContext(configuration)
-
         audioEngine.clearTextToSpeechQueue()
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
-            // Should be null but let's check
-            //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
-            val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            audioEngine.createTextToSpeech(
-                noLocationString
-            )
-        } else {
-            // get device direction
-            val orientation = directionProvider.getCurrentDirection()
-            val fovDistance = 50.0
-            // start of trying to get a grid of tiles and merge into one feature collection
-            val tileGridQuadKeys = get3x3TileGrid(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0
-            )
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val roadGridFeatureCollection = FeatureCollection()
-            val intersectionsGridFeatureCollection = FeatureCollection()
-            val processedRoadOsmIds = mutableSetOf<Any>()
-            val processedIntersectionOsmIds = mutableSetOf<Any>()
-
-            for (tile in tileGridQuadKeys) {
-                //Check the db for the tile
-                val frozenTileResult =
-                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-                if (frozenTileResult != null) {
-                    val roadString = frozenTileResult.roads
-                    val intersectionsString = frozenTileResult.intersections
-                    val roadFeatureCollection = roadString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-                    val intersectionsFeatureCollection = intersectionsString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-
-                    roadFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
-                                processedRoadOsmIds.add(osmId)
-                                roadGridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-
-                    intersectionsFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
-                                processedIntersectionOsmIds.add(osmId)
-                                intersectionsGridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (roadGridFeatureCollection.features.size > 0) {
-
-                val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
-                    LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
-                    orientation.toDouble(),
-                    fovDistance,
-                    roadGridFeatureCollection
-                )
-                val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
-                    LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
-                    orientation.toDouble(),
-                    fovDistance,
-                    intersectionsGridFeatureCollection
-                )
-
-                //TEMP This just returns the roads in the FOV.
-                if (fovRoadsFeatureCollection.features.size > 0) {
-                    val nearestRoad = getNearestRoad(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
-                        fovRoadsFeatureCollection
-                    )
-                    // TODO check for Settings, Unnamed roads on/off here
-                    if (nearestRoad.features[0].properties?.get("name") != null) {
-                        audioEngine.createTextToSpeech(
-                            "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
-                        )
-                    } else {
-                        // we are detecting an unnamed road here but pretending there is nothing here
-                        audioEngine.createTextToSpeech(
-                            localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                        )
-                    }
-
-
-                    if (fovIntersectionsFeatureCollection.features.size > 0) {
-                        val nearestIntersectionFeatureCollection = getNearestIntersection(
-                            LngLatAlt(
-                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                locationProvider.getCurrentLatitude() ?: 0.0
-                            ),
-                            fovIntersectionsFeatureCollection
-                        )
-                        val distanceToNearestIntersection = distanceToIntersection(
-                            LngLatAlt(
-                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                locationProvider.getCurrentLatitude() ?: 0.0
-                            ),
-                            nearestIntersectionFeatureCollection.features[0].geometry as Point
-                        )
-                        audioEngine.createTextToSpeech(
-                            "${localizedContext.getString(R.string.intersection_approaching_intersection)} It is ${distanceToNearestIntersection.toInt()} meters away."
-                        )
-                        // get the roads that make up the intersection based on the osm_ids
-                        val nearestIntersectionRoadNames = getIntersectionRoadNames(
-                            nearestIntersectionFeatureCollection,
-                            fovRoadsFeatureCollection
-                        )
-                        val nearestRoadBearing = getRoadBearingToIntersection(
-                            nearestIntersectionFeatureCollection,
-                            nearestRoad,
-                            orientation.toDouble()
-                        )
-                        val intersectionLocation =
-                            nearestIntersectionFeatureCollection.features[0].geometry as Point
-                        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-                            LngLatAlt(
-                                intersectionLocation.coordinates.longitude,
-                                intersectionLocation.coordinates.latitude
-                            ),
-                            nearestRoadBearing,
-                            fovDistance,
-                            RelativeDirections.COMBINED
-                        )
-                        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
-                            nearestIntersectionRoadNames,
-                            nearestIntersectionFeatureCollection,
-                            intersectionRelativeDirections
-                        )
-                        for (feature in roadRelativeDirections.features) {
-                            val direction =
-                                feature.properties?.get("Direction").toString().toIntOrNull()
-                            if(direction != null) {
-                                val relativeDirectionString = configLocale?.let {
-                                    getRelativeDirectionLabel(
-                                        applicationContext,
-                                        direction,
-                                        it
-                                    )
-                                } ?: ""
-                                if (feature.properties?.get("name") != null) {
-                                    val intersectionCallout = localizedContext.getString(
-                                        R.string.directions_intersection_with_name_direction,
-                                        feature.properties?.get("name"),
-                                        relativeDirectionString
-                                    )
-                                    audioEngine.createTextToSpeech(
-                                        intersectionCallout
-                                    )
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    audioEngine.createTextToSpeech(
-                        localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                    )
-                }
-            } else {
-                audioEngine.createTextToSpeech(
-                    localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                )
-
-            }
+        val results = geoEngine.aheadOfMe()
+        for(result in results) {
+            audioEngine.createTextToSpeech(result)
         }
     }
 
@@ -941,9 +354,6 @@ class SoundscapeService : MediaSessionService() {
 
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
-
-        // TTL Tile refresh in local Realm DB
-        private const val TTL_REFRESH_SECONDS: Long = 24 * 60 * 60
 
         private const val CHANNEL_ID = "SoundscapeService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"
