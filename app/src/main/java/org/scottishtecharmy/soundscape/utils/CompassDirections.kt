@@ -5,11 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import org.scottishtecharmy.soundscape.R
 
-fun getCompassLabelFacingDirection(context: Context, degrees: Int, locale: java.util.Locale): String{
-    val configuration = Configuration(context.resources.configuration)
-    configuration.setLocale(locale)
-    val localizedContext = context.createConfigurationContext(configuration)
-
+fun getCompassLabelFacingDirection(localizedContext: Context, degrees: Int, locale: java.util.Locale): String{
     return when (degrees) {
         in 338..360, in 0..22 -> localizedContext.getString(R.string.directions_facing_n)
         in 23..67 -> localizedContext.getString(R.string.directions_facing_ne)
@@ -23,13 +19,9 @@ fun getCompassLabelFacingDirection(context: Context, degrees: Int, locale: java.
     }
 }
 
-fun getCompassLabelFacingDirectionAlong(context: Context, degrees: Int, placeholder: String, locale: java.util.Locale):String{
-    val configuration = Configuration(context.resources.configuration)
-    configuration.setLocale(locale)
-    val localizedContext = context.createConfigurationContext(configuration)
-
+fun getCompassLabelFacingDirectionAlong(localizedContext: Context, degrees: Int, placeholder: String, locale: java.util.Locale):String{
     return when (degrees) {
-        in 338 .. 360, in 0 .. 22 -> context.getString(R.string.directions_along_facing_n, placeholder)
+        in 338 .. 360, in 0 .. 22 -> localizedContext.getString(R.string.directions_along_facing_n, placeholder)
         in 23 .. 67 -> localizedContext.getString(R.string.directions_along_facing_ne, placeholder)
         in 68 .. 112 -> localizedContext.getString(R.string.directions_along_facing_e, placeholder)
         in 113 .. 157 -> localizedContext.getString(R.string.directions_along_facing_se, placeholder)
@@ -41,11 +33,7 @@ fun getCompassLabelFacingDirectionAlong(context: Context, degrees: Int, placehol
     }
 }
 
-fun getRelativeDirectionLabel(context: Context, relativeDirection: Int, locale: java.util.Locale): String{
-    val configuration = Configuration(context.resources.configuration)
-    configuration.setLocale(locale)
-    val localizedContext = context.createConfigurationContext(configuration)
-
+fun getRelativeDirectionLabel(localizedContext: Context, relativeDirection: Int, locale: java.util.Locale): String{
     return when (relativeDirection) {
         0 -> localizedContext.getString(R.string.directions_direction_behind)
         1 -> localizedContext.getString(R.string.directions_direction_behind_to_the_left)
