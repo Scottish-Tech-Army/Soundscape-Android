@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject
@@ -85,6 +86,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Extract the maplibre style assets
+        Log.d("ExtractAssets", "Start extraction")
+        extractAssets(applicationContext, "osm-bright-gl-style","osm-bright-gl-style")
+        Log.d("ExtractAssets", "Completed extraction")
 
         // Debug - dump preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -263,6 +269,7 @@ class MainActivity : AppCompatActivity() {
         val serviceIntent = Intent(this, SoundscapeService::class.java)
         startForegroundService(serviceIntent)
     }
+
     companion object {
         private const val TAG = "MainActivity"
 

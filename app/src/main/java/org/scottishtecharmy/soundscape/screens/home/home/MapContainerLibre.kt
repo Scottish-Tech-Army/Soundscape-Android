@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,6 +23,7 @@ import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
+import java.io.File
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
 
@@ -65,6 +67,7 @@ fun MapContainerLibre(
     val beaconLocationMarker = remember { mutableStateOf<Marker?>(null) }
     val symbol = remember { mutableStateOf<Symbol?>(null) }
     val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
+    val filesDir = LocalContext.current.filesDir.toString()
 
     val res = LocalContext.current.resources
     val drawable = remember {
@@ -105,8 +108,8 @@ fun MapContainerLibre(
     LaunchedEffect(map) {
         // init map first time it is displayed
         map.getMapAsync { mapLibre ->
-            val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
-            val styleUrl = "https://api.maptiler.com/maps/streets-v2/style.json?key=$apiKey"
+            // val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
+            val styleUrl = Uri.fromFile(File("$filesDir/osm-bright-gl-style/style.json")).toString()
             mapLibre.setStyle(styleUrl) { style ->
                 style.addImage(USER_POSITION_MARKER_NAME, drawable!!)
 
@@ -129,6 +132,11 @@ fun MapContainerLibre(
                 mapLibre.uiSettings.isRotateGesturesEnabled = false
                 // The centering of the map is set by the location provider, so disable scrolling from the UI
                 mapLibre.uiSettings.isScrollGesturesEnabled = false
+
+                // Disable the mapLibre logo as there's not enough screen estate for it
+                mapLibre.uiSettings.isLogoEnabled = false
+                // Enable the attribution so that we can still get to see who provided the maps
+                mapLibre.uiSettings.isAttributionEnabled = true
 
                 mapLibre.addOnMapLongClickListener(onMapLongClick)
                 mapLibre.setOnMarkerClickListener(onMarkerClick)
