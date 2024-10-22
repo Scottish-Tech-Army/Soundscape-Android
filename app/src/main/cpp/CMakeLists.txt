@@ -31,13 +31,14 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
     AudioBeacon.cpp
     AudioBeaconBuffer.cpp)
 
-set(FMOD_API_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/fmod/api)
-set( LIB_FMOD ${FMOD_API_ROOT}/core/lib/${ANDROID_ABI}/libfmod${FMOD_LIB_SUFFIX}.so )
+set(FMOD_LIBS ${CMAKE_CURRENT_SOURCE_DIR}/../jniLibs)
+set(FMOD_INC ${CMAKE_CURRENT_SOURCE_DIR}/fmod/api/core/inc)
+set( LIB_FMOD ${FMOD_LIBS}/${ANDROID_ABI}/libfmod.so )
 add_library( fmod SHARED IMPORTED )
 set_target_properties(
         fmod PROPERTIES
         IMPORTED_LOCATION ${LIB_FMOD}
-        INTERFACE_INCLUDE_DIRECTORIES ${FMOD_API_ROOT}/core/inc
+        INTERFACE_INCLUDE_DIRECTORIES ${FMOD_INC}
 )
 
 # Specifies libraries CMake should link to your target library. You
