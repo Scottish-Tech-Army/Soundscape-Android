@@ -35,11 +35,14 @@ import org.scottishtecharmy.soundscape.utils.BoPoint
 import org.scottishtecharmy.soundscape.utils.BoSegment
 import org.scottishtecharmy.soundscape.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
+import org.scottishtecharmy.soundscape.utils.getXYTile
 import org.scottishtecharmy.soundscape.utils.isBetween
 import org.scottishtecharmy.soundscape.utils.lineStringsIntersect
 import org.scottishtecharmy.soundscape.utils.straightLinesIntersect
 import org.scottishtecharmy.soundscape.utils.straightLinesIntersectLngLatAlt
 import kotlin.math.abs
+import kotlin.math.min
+import kotlin.math.sqrt
 
 
 class GeoUtilsTest {
@@ -772,4 +775,82 @@ class GeoUtilsTest {
         test1.printIntersections()
     }
 
+    @Test
+    fun nearestCoordinateOnPolygonSegmentTest(){
+
+        val currentLocation1 = LngLatAlt(0.0, 0.0)
+        //closed triangle/polygon
+        val polygon1 = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 1.0),
+                    LngLatAlt(1.0, 1.0),
+                    LngLatAlt(1.0, 0.0),
+                    LngLatAlt(0.0, 1.0),
+                )
+            )
+        }
+
+        val nearestDistance1 = distanceToPolygon(currentLocation1, polygon1)
+        val nearestPoint1 = nearestPointOnPolygonSegment(currentLocation1, polygon1)
+
+        // distance to midpoint of hypotenuse
+        Assert.assertEquals(78714.27, nearestDistance1, 0.0001)
+        // midpoint of hypotenuse
+        Assert.assertEquals(LngLatAlt(0.5, 0.5), nearestPoint1)
+
+    }
+
+    fun nearestPointOnPolygonSegment(point: LngLatAlt, polygon: Polygon): LngLatAlt? {
+        var nearestPoint: LngLatAlt? = null
+        var minDistance = Double.MAX_VALUE
+
+
+        for (ring in polygon.coordinates) {
+            // not sure if we really need to do this as any point on the outer ring is going to be closer than the inner ring(s)
+            // assuming the location is outside the polygon
+            for (i in ring.indices) {
+                val start = ring[i]
+                val end = ring[(i + 1) % ring.size]
+
+                val nearestPointOnSegment = nearestPointOnSegment(point, start, end)
+                val distance = distance(point.latitude, point.longitude, nearestPointOnSegment.latitude, nearestPointOnSegment.longitude)
+
+                if (distance < minDistance) {
+                    minDistance = distance
+                    nearestPoint = nearestPointOnSegment
+                }
+            }
+        }
+
+        return nearestPoint
+    }
+
+    fun nearestPointOnSegment(point: LngLatAlt, start: LngLatAlt, end: LngLatAlt): LngLatAlt {
+        val segment = subtractLngLatAlt(end, start)
+        val segmentLengthSquared = dotProductLngLatAlt(segment, segment)
+
+        if (segmentLengthSquared == 0.0) {
+            return start
+        }
+
+        val t = (dotProductLngLatAlt(subtractLngLatAlt(point, start), segment) / segmentLengthSquared).coerceIn(0.0, 1.0)
+        return addLngLatAlt(start, multiplyLngLatAltByScalar(segment, t))
+    }
+
+    fun subtractLngLatAlt(a: LngLatAlt, b: LngLatAlt): LngLatAlt {
+        return LngLatAlt(a.longitude - b.longitude, a.latitude - b.latitude, a.altitude)
+    }
+
+    fun addLngLatAlt(a: LngLatAlt, b: LngLatAlt): LngLatAlt {
+        return LngLatAlt(a.longitude + b.longitude, a.latitude + b.latitude, a.altitude)
+    }
+
+    fun multiplyLngLatAltByScalar(a: LngLatAlt, scalar: Double): LngLatAlt {
+        return LngLatAlt(a.longitude * scalar, a.latitude * scalar, a.altitude)
+    }
+
+    fun dotProductLngLatAlt(a: LngLatAlt, b: LngLatAlt): Double {
+        return a.longitude * b.longitude + a.latitude * b.latitude
+    }
 }
