@@ -1131,6 +1131,8 @@ fun straightLinesIntersect(
 
     val line1Vertical = line1Start.latitude == line1End.latitude
     val line2Vertical = line2Start.latitude == line2End.latitude
+    val line1Horizontal = isLineHorizontal(line1Start, line1End)
+    val line2Horizontal = isLineHorizontal(line2Start, line2End)
     return when {
         line1Vertical && line2Vertical ->
             if (line1Start.latitude == line2Start.latitude) {
@@ -1140,6 +1142,46 @@ fun straightLinesIntersect(
                 // parallel -> they don't intersect
                 false
             }
+        line1Horizontal && line2Horizontal -> {
+            if (line1Start.longitude == line2Start.longitude) {
+                // lines are both horizontal check whether they overlap
+                if (isBetween(line1Start.latitude, line1End.latitude, line2Start.latitude) || isBetween(line1Start.latitude, line1End.latitude, line2End.latitude)) {
+                    true
+                } else {
+                    false // No intersection
+                }
+            } else {
+                false // Parallel lines, no intersection
+            }
+        }
+        line1Vertical && line2Horizontal -> {
+            val intersectLon = line1Start.longitude
+            val intersectLat = line2Start.latitude
+
+            // Check if the intersection point is within the bounds of both lines
+            if (isBetween(line1Start.longitude, line1End.longitude, intersectLon) &&
+                isBetween(line2Start.latitude, line2End.latitude, intersectLat)
+            ) {
+                true
+            } else {
+                false // No intersection
+            }
+        }
+        line1Horizontal && line2Vertical -> {
+            // If line1 is horizontal and line2 is vertical
+            // the intersection point is the longitude of line2 and the latitude of line1
+            val intersectLon = line2Start.longitude
+            val intersectLat = line1Start.latitude
+
+            // Check if the intersection point is within the bounds of both lines
+            if (isBetween(line1Start.latitude, line1End.latitude, intersectLat) &&
+                isBetween(line2Start.longitude, line2End.longitude, intersectLon)
+            ) {
+                true
+            } else {
+                false // No intersection
+            }
+        }
         line1Vertical -> {
             val gradient2 = (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
             val a2 = line2Start.longitude - gradient2 * line2Start.latitude
@@ -1183,6 +1225,153 @@ fun straightLinesIntersect(
             }
         }
     }
+}
+
+
+/**
+ * Check if straight lines defined by line1Start, line1End, line2Start, line2End intersect
+ * and if they do return the intersection coordinates
+ * @param line1Start
+ * Start of line1 as LngLatAlt.
+ * @param line1End
+ * End of line1 as LngLatAlt.
+ * @param line2Start
+ * Start of line2 as LngLatAlt.
+ * @param line2End
+ * End of line2 as LngLatAlt.
+ * @return true if the lines intersect each other.
+ */
+fun straightLinesIntersectLngLatAlt(
+    line1Start: LngLatAlt,
+    line1End: LngLatAlt,
+    line2Start: LngLatAlt,
+    line2End: LngLatAlt,
+): LngLatAlt? {
+    val line1Vertical = isLineVertical(line1Start, line1End)
+    val line2Vertical = isLineVertical(line2Start, line2End)
+    val line1Horizontal = isLineHorizontal(line1Start, line1End)
+    val line2Horizontal = isLineHorizontal(line2Start, line2End)
+
+    return when {
+        line1Vertical && line2Vertical -> {
+            if (line1Start.latitude == line2Start.latitude) {
+                // lines are both vertical check whether they overlap
+                if (isBetween(line1Start.longitude, line1End.longitude, line2Start.longitude) || isBetween(line1Start.longitude, line1End.longitude, line2End.longitude)) {
+                    line2Start // Return line2Start as intersection point
+                } else {
+                    null // No intersection
+                }
+            } else {
+                null // Parallel lines, no intersection
+            }
+        }
+        line1Horizontal && line2Horizontal -> {
+            if (line1Start.longitude == line2Start.longitude) {
+                // lines are both horizontal check whether they overlap
+                if (isBetween(line1Start.latitude, line1End.latitude, line2Start.latitude) || isBetween(line1Start.latitude, line1End.latitude, line2End.latitude)) {
+                    line2Start // Return line2Start as intersection point
+                } else {
+                    null // No intersection
+                }
+            } else {
+                null // Parallel lines, no intersection
+            }
+        }
+        line1Vertical && line2Horizontal -> {
+            val intersectLon = line1Start.longitude
+            val intersectLat = line2Start.latitude
+
+            // Check if the intersection point is within the bounds of both lines
+            if (isBetween(line1Start.longitude, line1End.longitude, intersectLon) &&
+                isBetween(line2Start.latitude, line2End.latitude, intersectLat)
+            ) {
+                LngLatAlt(intersectLon, intersectLat, line1Start.altitude) // Return intersection point
+            } else {
+                null // No intersection
+            }
+        }
+        line1Horizontal && line2Vertical -> {
+            // If line1 is horizontal and line2 is vertical
+            // the intersection point is the longitude of line2 and the latitude of line1
+            val intersectLon = line2Start.longitude
+            val intersectLat = line1Start.latitude
+
+            // Check if the intersection point is within the bounds of both lines
+            if (isBetween(line1Start.latitude, line1End.latitude, intersectLat) &&
+                isBetween(line2Start.longitude, line2End.longitude, intersectLon)
+            ) {
+                LngLatAlt(intersectLon, intersectLat, line1Start.altitude) // Return intersection point
+            } else {
+                null // No intersection
+            }
+        }
+        line1Vertical -> {
+            val gradient2 = (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
+            val a2 = line2Start.longitude - gradient2 * line2Start.latitude
+            val intersectLon = a2 + gradient2 * line1Start.latitude
+
+
+            // Check if the intersection point is within the bounds of both lines
+            if (isBetween(line1Start.longitude, line1End.longitude, intersectLon) && isBetween(line2Start.latitude, line2End.latitude, a2)) {
+                LngLatAlt(intersectLon, line1Start.latitude, line1Start.altitude) // Return intersection point with calculated longitude
+            } else {
+                null // No intersection
+            }
+        }
+        line2Vertical -> {
+
+            val gradient1 = (line1End.latitude - line1Start.latitude) / (line1End.longitude - line1Start.longitude)
+            val a1 = line1Start.longitude - gradient1 * line1Start.latitude
+            val intersectLon = a1 + gradient1 * line2Start.latitude
+
+            // Check if the intersection point is within the bounds of both lines
+            if (isBetween(line1Start.latitude, line1End.latitude, a1) && isBetween(line2Start.longitude, line2End.longitude, intersectLon)) {
+                LngLatAlt(intersectLon, a1, line2Start.altitude) // Return intersection point with calculated longitude
+            } else {
+                null // No intersection
+            }
+        }
+        else -> {
+            val gradient1 = (line1End.longitude - line1Start.longitude) / (line1End.latitude - line1Start.latitude)
+            val gradient2 = (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
+
+            if (gradient1 == gradient2) {
+                // Lines are parallel, check if they overlap
+                val a1 = line1Start.longitude - gradient1 * line1Start.latitude
+                val a2 = line2Start.longitude - gradient2 * line2Start.latitude
+
+                if (a1 == a2) {
+                    // Lines overlap, return an arbitrary point on the line (e.g., line1Start)
+                    line1Start
+                } else {
+                    null // Lines are parallel and do not overlap
+                }
+            } else {
+                // Lines are not parallel, calculate intersection point
+                val intersectLat = (line2Start.longitude - line1Start.longitude + gradient1 * line1Start.latitude - gradient2 * line2Start.latitude) / (gradient1 - gradient2)
+                val intersectLon = line1Start.longitude + gradient1 * (intersectLat - line1Start.latitude)
+
+                // Check if the intersection point is within the bounds of both lines
+                if (isBetween(line1Start.latitude, line1End.latitude, intersectLat) &&
+                    isBetween(line2Start.latitude, line2End.latitude, intersectLat) &&
+                    isBetween(line1Start.longitude, line1End.longitude, intersectLon) &&
+                    isBetween(line2Start.longitude, line2End.longitude, intersectLon)
+                ) {
+                    LngLatAlt(intersectLon, intersectLat, line1Start.altitude) // Return intersection point
+                } else {
+                    null // Lines do not intersect within their bounds
+                }
+            }
+        }
+    }
+}
+
+fun isLineHorizontal(lineStart: LngLatAlt, lineEnd: LngLatAlt, tolerance: Double = 1e-6): Boolean {
+    return abs(lineStart.latitude - lineEnd.latitude) < tolerance
+}
+
+fun isLineVertical(lineStart: LngLatAlt, lineEnd: LngLatAlt, tolerance: Double = 1e-6): Boolean {
+    return abs(lineStart.longitude - lineEnd.longitude) < tolerance
 }
 
 fun isBetween(x1: Double, x2: Double, value: Double): Boolean {
