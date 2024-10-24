@@ -18,6 +18,7 @@ import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,7 +27,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -104,12 +104,16 @@ fun TermsScreen(
 
                 Checkbox(
                     checked = checkedState.value,
-                    onCheckedChange = null
+                    onCheckedChange = null,
+                    colors = CheckboxDefaults.colors(
+                        uncheckedColor = MaterialTheme.colorScheme.onPrimary,
+                    )
                 )
                 Text(
                     modifier = Modifier.clickable { checkedState.value = !checkedState.value },
                     text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             }
 

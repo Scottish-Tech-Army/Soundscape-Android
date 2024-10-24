@@ -156,5 +156,6 @@
     <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string>
     <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
     <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
+    <string name="no_language_selected">No language selected yet</string>
 
 </resources>

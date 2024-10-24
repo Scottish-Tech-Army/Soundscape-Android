@@ -148,5 +148,6 @@
     <string name="general_alert_add">Προσθήκη</string>
 
     <string name="location_detail_title_default">Λεπτομέρειες τοποθεσίας</string>
+    <string name="no_language_selected">Δεν επιλέχθηκε γλώσσα</string>
 
 </resources>
