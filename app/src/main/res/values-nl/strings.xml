@@ -148,6 +148,6 @@
     <string name="general_alert_add">Toevoegen</string>
 
     <string name="location_detail_title_default">Locatiedetails</string>
-    <string name="no_language_selected">No language selected</string>
+    <string name="no_language_selected">Geen taal geselecteerd</string>
 
 </resources>

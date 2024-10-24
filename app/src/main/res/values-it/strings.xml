@@ -145,8 +145,6 @@
     <string name="route_no_waypoints_hint_1">Assegna un nome al percorso e immetti una descrizione facoltativa. Puoi quindi aggiungere waypoint durante il tuo tragitto o sceglierli dal tuo elenco di indicatori.</string>
     <string name="route_no_waypoints_hint_2">Puoi modificare in qualsiasi momento l\'ordine dei waypoint lungo un percorso modificando quest\'ultimo.</string>
     <string name="general_alert_add">Aggiungi</string>
-
     <string name="location_detail_title_default">Dettagli posizione</string>
-    <string name="no_language_selected">No language selected</string>
-
+    <string name="no_language_selected">Nessuna lingua selezionata</string>
 </resources>

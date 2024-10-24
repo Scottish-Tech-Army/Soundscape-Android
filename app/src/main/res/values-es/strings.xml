@@ -147,6 +147,6 @@
     <string name="general_alert_add">Agregar</string>
 
     <string name="location_detail_title_default">Detalles de la ubicación</string>
-    <string name="no_language_selected">No language selected</string>
+    <string name="no_language_selected">Ningún idioma seleccionado</string>
 
 </resources>
