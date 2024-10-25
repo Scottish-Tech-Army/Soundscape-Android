@@ -150,5 +150,6 @@
     <string name="location_detail_title_default">Locatiedetails</string>
     <string name="osm_tag_crossing">Zebrapad</string>
     <string name="distance_format_meters">%1$s meter</string>
+    <string name="no_language_selected">Geen taal geselecteerd</string>
 
 </resources>

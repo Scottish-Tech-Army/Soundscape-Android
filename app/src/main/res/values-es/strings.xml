@@ -149,5 +149,6 @@
     <string name="location_detail_title_default">Detalles de la ubicación</string>
     <string name="osm_tag_crossing">Paso de peatones</string>
     <string name="distance_format_meters">%1$s metros</string>
+    <string name="no_language_selected">Ningún idioma seleccionado</string>
 
 </resources>

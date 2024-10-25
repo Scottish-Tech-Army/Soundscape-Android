@@ -47,9 +47,9 @@ fun HearingScreen(
 ){
     val speechText = buildString {
         append(stringResource(R.string.first_launch_callouts_example_1))
-        append(".")
+        append(". ")
         append(stringResource(R.string.first_launch_callouts_example_3))
-        append(".")
+        append(". ")
         append(stringResource(R.string.first_launch_callouts_example_4))
     }
     Hearing(

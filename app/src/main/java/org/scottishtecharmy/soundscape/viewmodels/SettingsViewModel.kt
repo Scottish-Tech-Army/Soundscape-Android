@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
 import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,11 +44,11 @@ class SettingsViewModel @Inject constructor(
                                 val audioEngineVoiceTypes = audioEngine.getAvailableSpeechVoices()
                                 val voiceTypes = mutableListOf<String>()
 
-                                val locale = AppCompatDelegate.getApplicationLocales()[0]
+                                val locale = getCurrentLocale()
                                 for (type in audioEngineVoiceTypes) {
                                     if (!type.isNetworkConnectionRequired &&
                                         !type.features.contains("notInstalled") &&
-                                        type.locale.language == locale!!.language
+                                        type.locale.language == locale.language
                                     ) {
                                         // The Voice don't contain any description, just a text string
                                         voiceTypes.add(type.name)

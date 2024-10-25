@@ -35,7 +35,8 @@ fun LanguageScreen(
     modifier : Modifier = Modifier,
     viewModel: LanguageViewModel = hiltViewModel<LanguageViewModel>()
 ){
-    val uiState: LanguageViewModel.LanguageUiState by viewModel.state.collectAsStateWithLifecycle()
+    val uiState: LanguageViewModel.LanguageUiState
+    by viewModel.state.collectAsStateWithLifecycle()
 
     LanguageComposable(
         onNavigate = onNavigate,
@@ -92,11 +93,11 @@ fun LanguageComposable(
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            LanguageSelectionBox(
+            LanguageDropDownMenu(
                 allLanguages = supportedLanguages,
                 onLanguageSelected = onLanguageSelected,
                 selectedLanguageIndex = selectedLanguageIndex
-                )
+            )
 
             Spacer(modifier = Modifier.height(40.dp))
 
@@ -108,6 +109,7 @@ fun LanguageComposable(
                     selectedLanguageIndex != -1
                 }
             }
+
             Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
