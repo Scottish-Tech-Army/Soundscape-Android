@@ -148,5 +148,6 @@
     <string name="general_alert_add">追加</string>
 
     <string name="location_detail_title_default">場所の詳細</string>
+    <string name="no_language_selected">言語が選択されていません</string>
 
 </resources>
