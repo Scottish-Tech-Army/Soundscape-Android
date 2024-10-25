@@ -147,5 +147,7 @@
     <string name="general_alert_add">Aggiungi</string>
 
     <string name="location_detail_title_default">Dettagli posizione</string>
+    <string name="osm_tag_crossing">Attraversamento pedonale</string>
+    <string name="distance_format_meters">%1$s metri</string>
 
 </resources>
