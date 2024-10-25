@@ -147,6 +147,8 @@
     <string name="general_alert_add">Lisää</string>
 
     <string name="location_detail_title_default">Sijainnin tiedot</string>
+    <string name="osm_tag_crossing">Suojatie</string>
+    <string name="distance_format_meters">%1$s metriä</string>
     <string name="no_language_selected">Ei kieltä valittu</string>
 
 </resources>

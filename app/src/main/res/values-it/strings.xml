@@ -146,5 +146,8 @@
     <string name="route_no_waypoints_hint_2">Puoi modificare in qualsiasi momento l\'ordine dei waypoint lungo un percorso modificando quest\'ultimo.</string>
     <string name="general_alert_add">Aggiungi</string>
     <string name="location_detail_title_default">Dettagli posizione</string>
+    <string name="osm_tag_crossing">Attraversamento pedonale</string>
+    <string name="distance_format_meters">%1$s metri</string>
     <string name="no_language_selected">Nessuna lingua selezionata</string>
+
 </resources>

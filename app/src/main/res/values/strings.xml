@@ -150,6 +150,10 @@
 
     <string name="location_detail_title_default">Location Details</string>
 
+    <string name="osm_tag_crossing">Crossing</string>
+    <string name="distance_format_meters">%1$s metres</string>
+
+
     <!--    Original iOS Soundscape doesn't have translations strings for Notifications -->
     <!-- TODO these strings aren't translated yet -->>
     <string name="notification_text" translatable="false">We are running this location service in the foreground</string>
