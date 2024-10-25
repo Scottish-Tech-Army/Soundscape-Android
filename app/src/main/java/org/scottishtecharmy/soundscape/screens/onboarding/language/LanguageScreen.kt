@@ -108,6 +108,7 @@ fun LanguageComposable(
                     selectedLanguageIndex != -1
                 }
             }
+
             Column(modifier = Modifier.padding(horizontal = 50.dp)) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),

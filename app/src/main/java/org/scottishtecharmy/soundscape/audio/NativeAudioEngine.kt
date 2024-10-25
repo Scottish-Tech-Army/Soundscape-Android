@@ -10,12 +10,12 @@ import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -79,7 +79,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     fun initialize(context : Context, followPreferences : Boolean = true)
     {
         if(followPreferences) {
-            val configLocale = AppCompatDelegate.getApplicationLocales()[0]
+            val configLocale = getCurrentLocale()
             val configuration = Configuration(context.resources.configuration)
             configuration.setLocale(configLocale)
             val localizedContext = context.createConfigurationContext(configuration)
@@ -138,7 +138,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             Log.d(TAG, "Android version " + Build.VERSION.SDK_INT)
 
             // Get the current locale and initialize the text to speech engine with it
-            val languageCode = AppCompatDelegate.getApplicationLocales().toLanguageTags()
+            val languageCode = getCurrentLocale().toLanguageTag()
             setSpeechLanguage(languageCode)
 
             sharedPreferences?.let {

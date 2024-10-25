@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.util.Log
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import com.squareup.moshi.Moshi
 import io.realm.kotlin.Realm
@@ -43,6 +42,7 @@ import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
@@ -95,7 +95,7 @@ class GeoEngine {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
 
         tileClient = TileClient(application)
-        configLocale = AppCompatDelegate.getApplicationLocales()[0]!!
+        configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
         localizedContext = application.applicationContext.createConfigurationContext(configuration)
