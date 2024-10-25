@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.utils.checkIntersection
 import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
@@ -289,30 +290,5 @@ class ComplexIntersections {
 
     }
 
-    private fun checkIntersection(
-        intersectionNumber: Int,
-        intersectionRoadNames: FeatureCollection,
-        testNearestRoad:FeatureCollection
-    ): Boolean {
-        println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
-        for (road in intersectionRoadNames) {
-            val roadName = road.properties?.get("name")
-            val isOneWay = road.properties?.get("oneway") == "yes"
-            val isMatch = testNearestRoad.features[0].properties?.get("name") == roadName
 
-            println("The road name is: $roadName")
-            if (isMatch && isOneWay) {
-                println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
-                return false
-            } else if (isMatch) {
-                println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
-                return false
-            } else {
-                println("Intersection $intersectionNumber is probably NOT a compound roundabout or compound intersection and we DO want to call it out.")
-                return true
-            }
-
-        }
-        return false
-    }
 }

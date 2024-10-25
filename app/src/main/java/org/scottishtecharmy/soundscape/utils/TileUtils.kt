@@ -2088,6 +2088,32 @@ fun getRelativeDirectionsPolygons(
     }
 }
 
+fun checkIntersection(
+    intersectionNumber: Int,
+    intersectionRoadNames: FeatureCollection,
+    testNearestRoad:FeatureCollection
+): Boolean {
+    //println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
+    for (road in intersectionRoadNames) {
+        val roadName = road.properties?.get("name")
+        val isOneWay = road.properties?.get("oneway") == "yes"
+        val isMatch = testNearestRoad.features[0].properties?.get("name") == roadName
+
+        //println("The road name is: $roadName")
+        if (isMatch && isOneWay) {
+            //println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
+            return false
+        } else if (isMatch) {
+            //println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
+            return false
+        } else {
+            //println("Intersection $intersectionNumber is probably NOT a compound roundabout or compound intersection and we DO want to call it out.")
+            return true
+        }
+    }
+    return false
+}
+
 /**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
