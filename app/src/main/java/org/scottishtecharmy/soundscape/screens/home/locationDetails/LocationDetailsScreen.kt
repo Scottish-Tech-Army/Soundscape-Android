@@ -99,6 +99,7 @@ fun LocationDetails(
                 locationDescription.latitude,
                 locationDescription.longitude
             ),
+            allowScrolling = true,
             onMapLongClick = { false },
             onMarkerClick = { false },
             // Center on the beacon
@@ -111,7 +112,7 @@ fun LocationDetails(
                 longitude ?: 0.0
             ),
 
-        mapViewRotation = 0.0F,
+            mapViewRotation = 0.0F,
             userSymbolRotation = heading,
             modifier = modifier.fillMaxWidth().aspectRatio(1.0F),
         )
