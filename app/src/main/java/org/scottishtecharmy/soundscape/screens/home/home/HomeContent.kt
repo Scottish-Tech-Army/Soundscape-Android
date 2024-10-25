@@ -84,6 +84,7 @@ fun HomeContent(
                 MapContainerLibre(
                     beaconLocation = beaconLocation,
                     mapCenter = LatLng(latitude, longitude),
+                    allowScrolling = false,
                     mapViewRotation = heading,
                     userLocation = LatLng(latitude, longitude),
                     userSymbolRotation = 0.0F,

@@ -21,7 +21,6 @@ import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.annotation.Symbol
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
-import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import java.io.File
 
@@ -41,6 +40,7 @@ const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
 @Composable
 fun MapContainerLibre(
     mapCenter: LatLng,
+    allowScrolling: Boolean,
     mapViewRotation: Float,
     userLocation: LatLng,
     userSymbolRotation: Float,
@@ -49,11 +49,14 @@ fun MapContainerLibre(
     onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
 ) {
-    val cameraPosition = remember(mapCenter, mapViewRotation) {
-        CameraPosition.Builder()
-            .target(mapCenter)
-            .bearing(mapViewRotation.toDouble())
-            .build()
+    val cameraPosition = remember(mapCenter, mapViewRotation, allowScrolling) {
+
+        // We always use the mapViewRotation, but we only recenter the map if scrolling has
+        // been disallowed
+        val cp = CameraPosition.Builder().bearing(mapViewRotation.toDouble())
+        if(!allowScrolling)
+            cp.target(mapCenter)
+        cp.build()
     }
 
     val symbolOptions = remember(userLocation, userSymbolRotation) {
@@ -130,8 +133,9 @@ fun MapContainerLibre(
                 mapLibre.uiSettings.isZoomGesturesEnabled = true
                 // The map rotation is set by the compass heading, so we disable it from the UI
                 mapLibre.uiSettings.isRotateGesturesEnabled = false
-                // The centering of the map is set by the location provider, so disable scrolling from the UI
-                mapLibre.uiSettings.isScrollGesturesEnabled = false
+                // When allowScrolling is false, the centering of the map is set by the location
+                // provider, and in that case we disable scrolling from the UI
+                mapLibre.uiSettings.isScrollGesturesEnabled = allowScrolling
 
                 // Disable the mapLibre logo as there's not enough screen estate for it
                 mapLibre.uiSettings.isLogoEnabled = false
