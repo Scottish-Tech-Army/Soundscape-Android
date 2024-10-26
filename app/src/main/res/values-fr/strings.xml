@@ -148,6 +148,7 @@
 
     <string name="location_detail_title_default">Détails de l’emplacement</string>
     <string name="osm_tag_crossing">Passage pour piétons</string>
+    <string name="osm_tag_bus_stop">Arrêt de bus</string>
     <string name="distance_format_meters">%1$s mètres</string>
     <string name="no_language_selected">Aucune langue sélectionnée</string>
 

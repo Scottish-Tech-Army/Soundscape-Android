@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.util.Log
-import androidx.compose.ui.res.stringResource
 import androidx.preference.PreferenceManager
 import com.squareup.moshi.Moshi
 import io.realm.kotlin.Realm
@@ -41,7 +40,6 @@ import org.scottishtecharmy.soundscape.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.utils.checkIntersection
 import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.utils.distance
-import org.scottishtecharmy.soundscape.utils.distanceToIntersection
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
@@ -230,39 +228,12 @@ class GeoEngine {
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(noLocationString)
         } else {
-            // fetch the roads from Realm
-            val tileGridQuadKeys = get3x3TileGrid(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0
-            )
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val gridFeatureCollection = FeatureCollection()
-            val processedOsmIds = mutableSetOf<Any>()
 
-            for (tile in tileGridQuadKeys) {
-                val frozenResult =
-                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-                if (frozenResult != null) {
-                    val roadsString = frozenResult.roads
+            val roadGridFeatureCollection = FeatureCollection()
+            val gridFeatureCollections = getGridFeatureCollections()
+            roadGridFeatureCollection.features.addAll(gridFeatureCollections[0])
 
-                    val roadsFeatureCollection = roadsString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-                    roadsFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedOsmIds.contains(osmId)) {
-                                processedOsmIds.add(osmId)
-                                gridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-                }
-            }
-            if (gridFeatureCollection.features.size > 0) {
+            if (roadGridFeatureCollection.features.size > 0) {
                 //Log.d(TAG, "Found roads in tile")
                 val nearestRoad =
                     getNearestRoad(
@@ -270,7 +241,7 @@ class GeoEngine {
                             locationProvider.getCurrentLongitude() ?: 0.0,
                             locationProvider.getCurrentLatitude() ?: 0.0
                         ),
-                        gridFeatureCollection
+                        roadGridFeatureCollection
                     )
                 val properties = nearestRoad.features[0].properties
                 if (properties != null) {
@@ -307,7 +278,7 @@ class GeoEngine {
 
     fun whatsAroundMe() : List<PositionedString> {
         // TODO This is just a rough POC at the moment. Lots more to do...
-        //  decide on how to calculate distance to POI, setup settings in the menu so we can pass in the filters, etc.
+        //  setup settings in the menu so we can pass in the filters, etc.
         //  Original Soundscape just splats out a list in no particular order which is odd.
         //  If you press the button again in original Soundscape it can give you the same list but in a different sequence or
         //  it can add one to the list even if you haven't moved. It also only seems to give a thing and a distance but not a heading.
@@ -325,47 +296,18 @@ class GeoEngine {
             results.add(PositionedString(noLocationString))
         } else {
 
-            val tileGridQuadKeys = get3x3TileGrid(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0
-            )
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val gridFeatureCollection = FeatureCollection()
-            val processedOsmIds = mutableSetOf<Any>()
+            val gridPoiFeatureCollection = FeatureCollection()
+            val gridFeatureCollections = getGridFeatureCollections()
+            gridPoiFeatureCollection.features.addAll(gridFeatureCollections[3])
 
-            for (tile in tileGridQuadKeys) {
-                //Check the db for the tile
-                val frozenTileResult =
-                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-                if (frozenTileResult != null) {
-                    val poiString = frozenTileResult.pois
-                    val poiFeatureCollection = poiString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-
-                    poiFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedOsmIds.contains(osmId)) {
-                                processedOsmIds.add(osmId)
-                                gridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (gridFeatureCollection.features.size > 0) {
+            if (gridPoiFeatureCollection.features.size > 0) {
 
                 val settingsFeatureCollection = FeatureCollection()
                 if (placesAndLandmarks) {
                     if (mobility) {
                         //Log.d(TAG, "placesAndLandmarks and mobility are both true")
                         val placeSuperCategory =
-                            getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollection)
+                            getPoiFeatureCollectionBySuperCategory("place", gridPoiFeatureCollection)
                         val tempFeatureCollection = FeatureCollection()
                         for (feature in placeSuperCategory.features) {
                             if (feature.foreign?.get("feature_value") != "house") {
@@ -389,7 +331,7 @@ class GeoEngine {
                         val landmarkSuperCategory =
                             getPoiFeatureCollectionBySuperCategory(
                                 "landmark",
-                                gridFeatureCollection
+                                gridPoiFeatureCollection
                             )
                         for (feature in landmarkSuperCategory.features) {
                             settingsFeatureCollection.features.add(feature)
@@ -397,7 +339,7 @@ class GeoEngine {
                         val mobilitySuperCategory =
                             getPoiFeatureCollectionBySuperCategory(
                                 "mobility",
-                                gridFeatureCollection
+                                gridPoiFeatureCollection
                             )
                         for (feature in mobilitySuperCategory.features) {
                             settingsFeatureCollection.features.add(feature)
@@ -406,7 +348,7 @@ class GeoEngine {
                     } else {
 
                         val placeSuperCategory =
-                            getPoiFeatureCollectionBySuperCategory("place", gridFeatureCollection)
+                            getPoiFeatureCollectionBySuperCategory("place", gridPoiFeatureCollection)
                         for (feature in placeSuperCategory.features) {
                             if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get(
                                     "feature_value"
@@ -418,7 +360,7 @@ class GeoEngine {
                         val landmarkSuperCategory =
                             getPoiFeatureCollectionBySuperCategory(
                                 "landmark",
-                                gridFeatureCollection
+                                gridPoiFeatureCollection
                             )
                         for (feature in landmarkSuperCategory.features) {
                             settingsFeatureCollection.features.add(feature)
@@ -430,7 +372,7 @@ class GeoEngine {
                         val mobilitySuperCategory =
                             getPoiFeatureCollectionBySuperCategory(
                                 "mobility",
-                                gridFeatureCollection
+                                gridPoiFeatureCollection
                             )
                         for (feature in mobilitySuperCategory.features) {
                             settingsFeatureCollection.features.add(feature)
@@ -487,99 +429,36 @@ class GeoEngine {
             results.add(noLocationString)
         } else {
             // get device direction
-            val orientation = directionProvider.getCurrentDirection()
+            val orientation = directionProvider.getCurrentDirection().toDouble()
             val fovDistance = 50.0
-            // start of trying to get a grid of tiles and merge into one feature collection
-            val tileGridQuadKeys = get3x3TileGrid(
-                locationProvider.getCurrentLatitude() ?: 0.0,
-                locationProvider.getCurrentLongitude() ?: 0.0
-            )
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val roadGridFeatureCollection = FeatureCollection()
+            val roadsGridFeatureCollection = FeatureCollection()
             val intersectionsGridFeatureCollection = FeatureCollection()
             val crossingsGridFeatureCollection = FeatureCollection()
-            val processedRoadOsmIds = mutableSetOf<Any>()
-            val processedIntersectionOsmIds = mutableSetOf<Any>()
-            val processedCrossingsOsmIds = mutableSetOf<Any>()
+            val busStopsGridFeatureCollection = FeatureCollection()
 
-            for (tile in tileGridQuadKeys) {
-                //Check the db for the tile
-                val frozenTileResult =
-                    tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-                if (frozenTileResult != null) {
-                    val roadString = frozenTileResult.roads
-                    val intersectionsString = frozenTileResult.intersections
-                    val crossingsString = frozenTileResult.crossings
+            val gridFeatureCollections = getGridFeatureCollections()
 
-                    val roadFeatureCollection = roadString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-                    val intersectionsFeatureCollection = intersectionsString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
-                    val crossingsFeatureCollection = crossingsString.let {
-                        moshi.adapter(FeatureCollection::class.java).fromJson(
-                            it
-                        )
-                    }
+            roadsGridFeatureCollection.features.addAll(gridFeatureCollections[0])
+            intersectionsGridFeatureCollection.features.addAll(gridFeatureCollections[1])
+            crossingsGridFeatureCollection.features.addAll(gridFeatureCollections[2])
+            busStopsGridFeatureCollection.features.addAll(gridFeatureCollections[4])
 
-                    roadFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
-                                processedRoadOsmIds.add(osmId)
-                                roadGridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-
-                    intersectionsFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
-                                processedIntersectionOsmIds.add(osmId)
-                                intersectionsGridFeatureCollection.features.add(feature)
-                            }
-                        }
-                    }
-
-                    crossingsFeatureCollection?.let { collection ->
-                        for (feature in collection.features) {
-                            val osmId = feature.foreign?.get("osm_ids")
-                            //Log.d(TAG, "osmId: $osmId")
-                            if (osmId != null && !processedCrossingsOsmIds.contains(osmId)) {
-                                processedCrossingsOsmIds.add(osmId)
-                                crossingsGridFeatureCollection.features.add(feature)
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            if (roadGridFeatureCollection.features.size > 0) {
-
+            if (roadsGridFeatureCollection.features.size > 0) {
                 val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
                     LngLatAlt(
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         locationProvider.getCurrentLatitude() ?: 0.0
                     ),
-                    orientation.toDouble(),
+                    orientation,
                     fovDistance,
-                    roadGridFeatureCollection
+                    roadsGridFeatureCollection
                 )
                 val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
                     LngLatAlt(
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         locationProvider.getCurrentLatitude() ?: 0.0
                     ),
-                    orientation.toDouble(),
+                    orientation,
                     fovDistance,
                     intersectionsGridFeatureCollection
                 )
@@ -588,12 +467,20 @@ class GeoEngine {
                         locationProvider.getCurrentLongitude() ?: 0.0,
                         locationProvider.getCurrentLatitude() ?: 0.0
                     ),
-                    orientation.toDouble(),
+                    orientation,
                     fovDistance,
                     crossingsGridFeatureCollection
                 )
+                val fovBusStopsFeatureCollection = getFovIntersectionFeatureCollection(
+                    LngLatAlt(
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        locationProvider.getCurrentLatitude() ?: 0.0
+                    ),
+                    orientation,
+                    fovDistance,
+                    busStopsGridFeatureCollection
+                )
 
-                //TEMP This just returns the roads in the FOV.
                 if (fovRoadsFeatureCollection.features.size > 0) {
                     val nearestRoad = getNearestRoad(
                         LngLatAlt(
@@ -614,9 +501,8 @@ class GeoEngine {
                         )
                     }
 
-
                     if (fovIntersectionsFeatureCollection.features.size > 0) {
-                        // I will need a feature collection of all the intersections in the FOV sorted by distance to the current location
+
                         val intersectionsSortedByDistance = sortedByDistanceTo(
                             locationProvider.getCurrentLatitude() ?: 0.0,
                             locationProvider.getCurrentLongitude() ?: 0.0,
@@ -655,7 +541,7 @@ class GeoEngine {
                             locationProvider.getCurrentLatitude() ?: 0.0),
                             fovIntersectionsFeatureCollection
                         )
-                        val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, orientation.toDouble())
+                        val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, orientation)
                         val intersectionLocation = newIntersectionFeatureCollection.features[0].geometry as Point
                         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
                             LngLatAlt(intersectionLocation.coordinates.longitude,
@@ -705,10 +591,6 @@ class GeoEngine {
                             }
                         }
                     }
-                } else {
-                    results.add(
-                        localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                    )
                 }
                 // detect if there is a crossing in the FOV
                 if (fovCrossingsFeatureCollection.features.size > 0) {
@@ -747,6 +629,42 @@ class GeoEngine {
                     results.add(crossingText)
                 }
 
+                // detect if there is a bus_stop in the FOV
+                if (fovBusStopsFeatureCollection.features.size > 0) {
+                    val nearestBusStop = getNearestIntersection(
+                        LngLatAlt(
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0
+                        ),
+                        fovBusStopsFeatureCollection
+                    )
+                    val busStopLocation = nearestBusStop.features[0].geometry as Point
+                    val distanceToBusStop = distance(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        busStopLocation.coordinates.latitude,
+                        busStopLocation.coordinates.longitude
+                    )
+                    // Confirm which road the crossing is on
+                    val nearestRoadToBus = getNearestRoad(
+                        LngLatAlt(
+                            busStopLocation.coordinates.longitude,
+                            busStopLocation.coordinates.latitude
+                        ),
+                        fovRoadsFeatureCollection
+                    )
+                    val busText = buildString {
+                        append(localizedContext.getString(R.string.osm_tag_bus_stop))
+                        append(". ")
+                        append(localizedContext.getString(R.string.distance_format_meters, distanceToBusStop.toInt().toString()))
+                        append(". ")
+                        if (nearestRoadToBus.features[0].properties?.get("name") != null){
+                            append(nearestRoadToBus.features[0].properties?.get("name"))
+                        }
+                    }
+                    results.add(busText)
+                }
+
             } else {
                 results.add(
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
@@ -754,6 +672,128 @@ class GeoEngine {
 
             }
         }
+        return results
+    }
+
+    private fun getGridFeatureCollections(): List<FeatureCollection> {
+        val results : MutableList<FeatureCollection> = mutableListOf()
+        val tileGridQuadKeys = get3x3TileGrid(
+            locationProvider.getCurrentLatitude() ?: 0.0,
+            locationProvider.getCurrentLongitude() ?: 0.0
+        )
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val roadsGridFeatureCollection = FeatureCollection()
+        val intersectionsGridFeatureCollection = FeatureCollection()
+        val crossingsGridFeatureCollection = FeatureCollection()
+        val poiGridFeatureCollection = FeatureCollection()
+        val busGridFeatureCollection = FeatureCollection()
+
+        val processedRoadOsmIds = mutableSetOf<Any>()
+        val processedIntersectionOsmIds = mutableSetOf<Any>()
+        val processedCrossingsOsmIds = mutableSetOf<Any>()
+        val processedPoiOsmIds = mutableSetOf<Any>()
+        val processedBusOsmIds = mutableSetOf<Any>()
+
+        for (tile in tileGridQuadKeys) {
+            //Check the db for the tile
+            val frozenTileResult =
+                tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
+            if (frozenTileResult != null) {
+                val roadString = frozenTileResult.roads
+                val intersectionsString = frozenTileResult.intersections
+                val crossingsString = frozenTileResult.crossings
+                val poiString = frozenTileResult.pois
+                val busString = frozenTileResult.busStops
+
+                val roadFeatureCollection = roadString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                val intersectionsFeatureCollection = intersectionsString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                val crossingsFeatureCollection = crossingsString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                val poiFeatureCollection = poiString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+                val busFeatureCollection = busString.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(
+                        it
+                    )
+                }
+
+                roadFeatureCollection?.let { collection ->
+                    for (feature in collection.features) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedRoadOsmIds.contains(osmId)) {
+                            processedRoadOsmIds.add(osmId)
+                            roadsGridFeatureCollection.features.add(feature)
+                        }
+                    }
+                }
+
+                intersectionsFeatureCollection?.let { collection ->
+                    for (feature in collection.features) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedIntersectionOsmIds.contains(osmId)) {
+                            processedIntersectionOsmIds.add(osmId)
+                            intersectionsGridFeatureCollection.features.add(feature)
+                        }
+                    }
+                }
+
+                crossingsFeatureCollection?.let { collection ->
+                    for (feature in collection.features) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedCrossingsOsmIds.contains(osmId)) {
+                            processedCrossingsOsmIds.add(osmId)
+                            crossingsGridFeatureCollection.features.add(feature)
+                        }
+
+                    }
+                }
+                poiFeatureCollection?.let { collection ->
+                    for (feature in collection.features) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedPoiOsmIds.contains(osmId)) {
+                            processedPoiOsmIds.add(osmId)
+                            poiGridFeatureCollection.features.add(feature)
+                        }
+                    }
+                }
+                busFeatureCollection?.let { collection ->
+                    for (feature in collection.features) {
+                        val osmId = feature.foreign?.get("osm_ids")
+                        //Log.d(TAG, "osmId: $osmId")
+                        if (osmId != null && !processedBusOsmIds.contains(osmId)) {
+                            processedBusOsmIds.add(osmId)
+                            busGridFeatureCollection.features.add(feature)
+                        }
+                    }
+                }
+            }
+        }
+
+        // Not sure if this is my best plan as this is potentially quite a big splodge
+        results.add(roadsGridFeatureCollection)
+        results.add(intersectionsGridFeatureCollection)
+        results.add(crossingsGridFeatureCollection)
+        results.add(poiGridFeatureCollection)
+        results.add(busGridFeatureCollection)
+
         return results
     }
 
