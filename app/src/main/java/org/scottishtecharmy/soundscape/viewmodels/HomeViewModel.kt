@@ -12,6 +12,7 @@ import android.location.Location
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import java.net.URLEncoder
 import javax.inject.Inject
@@ -37,6 +39,8 @@ class HomeViewModel @Inject constructor(
     val beaconLocation: StateFlow<LatLng?> = _beaconLocation.asStateFlow()
     private val _streetPreviewMode: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val streetPreviewMode: StateFlow<Boolean> = _streetPreviewMode.asStateFlow()
+    private val _tileGridGeoJson: MutableStateFlow<String> = MutableStateFlow("")
+    val tileGridGeoJson: StateFlow<String> = _tileGridGeoJson.asStateFlow()
 
     private var job = Job()
     private var spJob = Job()
@@ -100,6 +104,20 @@ class HomeViewModel @Inject constructor(
                     _beaconLocation.value = LatLng(value.latitude, value.longitude)
                 } else {
                     _beaconLocation.value = null
+                }
+            }
+        }
+
+        viewModelScope.launch(job) {
+            // Observe tile grid update from the service so we can show it on the map
+            soundscapeServiceConnection.getTileGridFlow()?.collectLatest { tileGrid ->
+                if(tileGrid.tiles.isNotEmpty()) {
+                    Log.d(TAG, "new tile grid")
+                    // Flow out the GeoJSON describing our current grid
+                    _tileGridGeoJson.value = tileGrid.generateGeoJson()
+                }
+                else {
+                    _tileGridGeoJson.value = ""
                 }
             }
         }
@@ -200,7 +218,6 @@ class HomeViewModel @Inject constructor(
             context.startActivity(shareIntent)
         }
     }
-
 
     companion object {
         private const val TAG = "HomeViewModel"

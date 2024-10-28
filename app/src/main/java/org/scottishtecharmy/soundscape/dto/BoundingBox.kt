@@ -1,4 +1,8 @@
 package org.scottishtecharmy.soundscape.dto
+
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.isBetween
+
 /**
  * Bounding box usually follow the standard format of:
  *

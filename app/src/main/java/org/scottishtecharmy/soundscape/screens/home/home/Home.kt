@@ -57,7 +57,8 @@ fun HomePreview() {
         getWhatsAroundMe = {},
         shareLocation = {},
         rateSoundscape = {},
-        streetPreviewEnabled = false
+        streetPreviewEnabled = false,
+        tileGridGeoJson = ""
     )
 }
 
@@ -77,6 +78,7 @@ fun Home(
     rateSoundscape: () -> Unit,
     streetPreviewEnabled : Boolean,
     modifier: Modifier = Modifier,
+    tileGridGeoJson: String
 ) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -131,6 +133,7 @@ fun Home(
                 },
                 onMapLongClick = onMapLongClick,
                 onMarkerClick = onMarkerClick,
+                tileGridGeoJson = tileGridGeoJson
             )
         }
     }

@@ -54,7 +54,7 @@ class VisuallyCheckOutput {
         // convert coordinates to tile - I'm cheating here as the coordinates are already
         // in the center of the tile.
         val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
-        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16.0)
+        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
         val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
         val tilePolygon = getPolygonOfBoundingBox(tileBoundingBox)
         val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
@@ -90,7 +90,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
         val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
-        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16.0)
+        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
         val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
         val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
 
@@ -100,7 +100,7 @@ class VisuallyCheckOutput {
         val newFeatureCollection = FeatureCollection()
         // Create a bounding box/Polygon for each tile in the grid
         for(tile in surroundingTiles){
-            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16.0)
+            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16)
             val polygonBoundingBox = getPolygonOfBoundingBox(surroundingTileBoundingBox)
             val boundingBoxFeature = Feature().also {
                 val ars3: HashMap<String, Any?> = HashMap()
@@ -140,7 +140,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
         val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
-        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16.0)
+        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
         val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
         val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
 
@@ -150,7 +150,7 @@ class VisuallyCheckOutput {
         val newFeatureCollection = FeatureCollection()
         // Create a bounding box/Polygon for each tile in the grid
         for(tile in surroundingTiles){
-            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16.0)
+            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16)
             val polygonBoundingBox = getPolygonOfBoundingBox(surroundingTileBoundingBox)
             val boundingBoxFeature = Feature().also {
                 val ars3: HashMap<String, Any?> = HashMap()
@@ -185,7 +185,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
             tileXY.second,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(featureCollectionTest)
         )
         // copy and paste into GeoJSON.io
@@ -204,7 +204,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
             tileXY.second,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the roads Feature Collection.
@@ -230,7 +230,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
             tileXY.second,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the Intersections Feature Collection.
@@ -255,7 +255,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
             tileXY.second,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the POI Feature Collection.
@@ -280,7 +280,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             32295,
             21787,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the paths Feature Collection.
@@ -303,7 +303,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             32295,
             21787,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the entrances Feature Collection.
@@ -328,7 +328,7 @@ class VisuallyCheckOutput {
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             32295,
             21787,
-            16.0,
+            16,
             moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
         )
         // get the poi Feature Collection.
