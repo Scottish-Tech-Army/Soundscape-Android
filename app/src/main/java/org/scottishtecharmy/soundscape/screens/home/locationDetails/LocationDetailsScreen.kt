@@ -115,6 +115,7 @@ fun LocationDetails(
             mapViewRotation = 0.0F,
             userSymbolRotation = heading,
             modifier = modifier.fillMaxWidth().aspectRatio(1.0F),
+            tileGridGeoJson = ""
         )
 
         Button(

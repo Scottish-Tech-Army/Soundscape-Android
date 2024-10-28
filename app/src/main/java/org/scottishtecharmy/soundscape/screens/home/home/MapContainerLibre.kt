@@ -4,9 +4,11 @@ import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
@@ -21,6 +23,12 @@ import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.annotation.Symbol
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
+import org.maplibre.android.style.layers.LineLayer
+import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.Property
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import java.io.File
 
@@ -48,6 +56,7 @@ fun MapContainerLibre(
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
+    tileGridGeoJson: String
 ) {
     val cameraPosition = remember(mapCenter, mapViewRotation, allowScrolling) {
 
@@ -71,6 +80,7 @@ fun MapContainerLibre(
     val symbol = remember { mutableStateOf<Symbol?>(null) }
     val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
     val filesDir = LocalContext.current.filesDir.toString()
+    var lastTileGridGeoJson by remember { mutableStateOf(tileGridGeoJson)}
 
     val res = LocalContext.current.resources
     val drawable = remember {
@@ -180,7 +190,7 @@ fun MapContainerLibre(
                         symbolManager.value?.update(sym)
                     }
 
-                    if(beaconLocation != null) {
+                    if (beaconLocation != null) {
                         // beacon to display
                         beaconLocationMarker.value?.let { currentBeaconMarker ->
                             // update beacon position
@@ -198,6 +208,38 @@ fun MapContainerLibre(
                         beaconLocationMarker.value?.let { currentBeacon ->
                             mapLibre.removeMarker(currentBeacon)
                             beaconLocationMarker.value = null
+                        }
+                    }
+
+                    if (BuildConfig.DEBUG && tileGridGeoJson.isNotEmpty()) {
+                        mapLibre.style?.let { style ->
+                            // Add the source to the style if it doesn't already exist, or if the
+                            // GeoJSON for it has changed
+                            if((style.getLayer("current-grid") == null) ||
+                               (tileGridGeoJson != lastTileGridGeoJson)) {
+                                Log.d("MapContainerLibre", "Redraw grid for new GeoJSON")
+                                // Remove any previously adder layer and source
+                                style.removeLayer("current-grid")
+                                style.removeSource("current-grid")
+
+                                // Create a GeoJson Source from our feature GeoJSON which
+                                // was generated from the GeoEngine tile grid.
+                                val tileGeoJson = FeatureCollection.fromJson(tileGridGeoJson)
+                                val geojsonSource = GeoJsonSource("current-grid", tileGeoJson)
+                                // Add our new source
+                                style.addSource(geojsonSource)
+                                // And our new layer
+                                val layer = LineLayer("current-grid", "current-grid")
+                                    .withProperties(
+                                        PropertyFactory.lineCap(Property.LINE_CAP_SQUARE),
+                                        PropertyFactory.lineJoin(Property.LINE_JOIN_MITER),
+                                        PropertyFactory.lineOpacity(0.7f),
+                                        PropertyFactory.lineWidth(4f),
+                                        PropertyFactory.lineColor("#0094ff")
+                                    )
+                                style.addLayer(layer)
+                                lastTileGridGeoJson = tileGridGeoJson
+                            }
                         }
                     }
                 }

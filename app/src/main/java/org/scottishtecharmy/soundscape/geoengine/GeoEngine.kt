@@ -14,11 +14,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
@@ -27,6 +28,7 @@ import org.scottishtecharmy.soundscape.database.local.dao.TilesDao
 import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.database.repository.TilesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -37,11 +39,13 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.TileClient
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.utils.TileGrid
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.utils.checkIntersection
 import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.utils.distance
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
-import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -56,13 +60,12 @@ import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.utils.processTileString
 import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.utils.sortedByDistanceTo
 import retrofit2.awaitResponse
 import java.util.Locale
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null)
 
@@ -72,6 +75,10 @@ class GeoEngine {
 
     // GeoJSON tiles job
     private var tilesJob: Job? = null
+
+    // Flow to return current tile grid GeoJSON
+    private val _tileGridFlow = MutableStateFlow(TileGrid(mutableListOf(), BoundingBox()))
+    var tileGridFlow: StateFlow<TileGrid> = _tileGridFlow
 
     // Realms
     private var tileDataRealm: Realm = RealmConfiguration.getTileDataInstance()
@@ -90,6 +97,8 @@ class GeoEngine {
     private lateinit var localizedContext : Context
 
     private lateinit var sharedPreferences : SharedPreferences
+
+    private var centralBoundingBox = BoundingBox()
 
     fun start(application: Application,
               newLocationProvider: LocationProvider,
@@ -115,62 +124,76 @@ class GeoEngine {
         directionProvider.destroy()
     }
 
+    /**
+     * The tile grid service is called each time the location changes. It checks if the location
+     * has moved away from the center of the current tile grid and if it has calculates a new grid.
+     */
     private fun startTileGridService() {
+        Log.e(TAG, "startTileGridService")
         tilesJob?.cancel()
         tilesJob = coroutineScope.launch {
-            tilesFlow(30.seconds)
-                .collectLatest {
-                    withContext(Dispatchers.IO) {
-                        getTileGrid()
+            locationProvider.locationFlow.collectLatest { newLocation ->
+                // Check if we've moved out of the bounds of the central area
+                newLocation?.let { location ->
+                    // Check if we're still within the central area of our grid
+                    if (!pointIsWithinBoundingBox(LngLatAlt(location.longitude, location.latitude),
+                                                  centralBoundingBox)) {
+                        Log.d(TAG, "Update central grid area")
+                        // The current location has moved from within the central area, so get the
+                        // new grid and the new central area.
+                        val tileGrid = getTileGrid(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0
+                        )
+                        centralBoundingBox = tileGrid.centralBoundingBox
+
+                        // We have a new centralBoundingBox, so update the tiles
+                        updateTileGrid(tileGrid)
+
+                        // Update the flow with our new tile grid
+                        if(sharedPreferences.getBoolean(MAP_DEBUG_KEY, false)) {
+                            _tileGridFlow.value = tileGrid
+                        }
+                        else {
+                            _tileGridFlow.value = TileGrid(mutableListOf(), BoundingBox())
+                        }
+
                     }
                 }
+            }
         }
     }
 
-    private fun tilesFlow(
-        period: Duration
-    ) = flow {
-        while (true) {
-            delay(10.seconds)
-            emit(Unit)
-            delay(period)
+    private suspend fun updateTile(x : Int, y: Int, quadkey: String, update: Boolean) {
+        withContext(Dispatchers.IO) {
+            val service =
+                tileClient.retrofitInstance?.create(ITileDAO::class.java)
+            val tileReq = async {
+                    service?.getTileWithCache(x, y)
+            }
+            val result = tileReq.await()?.awaitResponse()?.body()
+            // clean the tile, process the string, perform an insert into db using the clean tile data
+            val cleanedTile =
+                result?.let { cleanTileGeoJSON(x, y, ZOOM_LEVEL, it) }
+
+            if (cleanedTile != null) {
+                val tileData = processTileString(quadkey, cleanedTile)
+                if(update)
+                    tilesRepository.updateTile(tileData)
+                else
+                    tilesRepository.insertTile(tileData)
+            }
         }
     }
 
-    private suspend fun getTileGrid() {
-
-        val tileGridQuadKeys = get3x3TileGrid(
-            locationProvider.getCurrentLatitude() ?: 0.0,
-            locationProvider.getCurrentLongitude() ?: 0.0
-        )
-
-        for (tile in tileGridQuadKeys) {
+    private suspend fun updateTileGrid(tileGrid : TileGrid) {
+        for (tile in tileGrid.tiles) {
             Log.d(TAG, "Tile quad key: ${tile.quadkey}")
             val frozenResult = tilesRepository.getTile(tile.quadkey)
             // If Tile doesn't already exist in db go and get it, clean it, process it
             // and insert into db
             if (frozenResult.size == 0) {
-                withContext(Dispatchers.IO) {
-                    val service =
-                        tileClient.retrofitInstance?.create(ITileDAO::class.java)
-                    val tileReq = async {
-                        tile.tileX.let {
-                            service?.getTileWithCache(
-                                tile.tileX,
-                                tile.tileY
-                            )
-                        }
-                    }
-                    val result = tileReq.await()?.awaitResponse()?.body()
-                    // clean the tile, process the string, perform an insert into db using the clean tile data
-                    val cleanedTile =
-                        result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
-
-                    if (cleanedTile != null) {
-                        val tileData = processTileString(tile.quadkey, cleanedTile)
-                        tilesRepository.insertTile(tileData)
-                    }
-                }
+                updateTile(tile.tileX, tile.tileY, tile.quadkey, false)
             } else {
                 // get the current time and then check against lastUpdated in frozenResult
                 val currentInstant: java.time.Instant = java.time.Instant.now()
@@ -190,28 +213,7 @@ class GeoEngine {
 
                 } else {
                     Log.d(TAG, "Tile does need updating")
-                    withContext(Dispatchers.IO) {
-                        val service =
-                            tileClient.retrofitInstance?.create(ITileDAO::class.java)
-                        val tileReq = async {
-                            tile.tileX.let {
-                                service?.getTileWithCache(
-                                    tile.tileX,
-                                    tile.tileY
-                                )
-                            }
-                        }
-                        val result = tileReq.await()?.awaitResponse()?.body()
-                        // clean the tile, process the string, perform an update on db using the clean tile
-                        val cleanedTile =
-                            result?.let { cleanTileGeoJSON(tile.tileX, tile.tileY, 16.0, it) }
-
-                        if (cleanedTile != null) {
-                            val tileData = processTileString(tile.quadkey, cleanedTile)
-                            // update existing tile in db
-                            tilesRepository.updateTile(tileData)
-                        }
-                    }
+                    updateTile(tile.tileX, tile.tileY, tile.quadkey, true)
                 }
             }
         }
@@ -228,7 +230,6 @@ class GeoEngine {
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(noLocationString)
         } else {
-
             val roadGridFeatureCollection = FeatureCollection()
             val gridFeatureCollections = getGridFeatureCollections()
             roadGridFeatureCollection.features.addAll(gridFeatureCollections[0])
@@ -301,7 +302,6 @@ class GeoEngine {
             gridPoiFeatureCollection.features.addAll(gridFeatureCollections[3])
 
             if (gridPoiFeatureCollection.features.size > 0) {
-
                 val settingsFeatureCollection = FeatureCollection()
                 if (placesAndLandmarks) {
                     if (mobility) {
@@ -677,7 +677,7 @@ class GeoEngine {
 
     private fun getGridFeatureCollections(): List<FeatureCollection> {
         val results : MutableList<FeatureCollection> = mutableListOf()
-        val tileGridQuadKeys = get3x3TileGrid(
+        val tileGrid = getTileGrid(
             locationProvider.getCurrentLatitude() ?: 0.0,
             locationProvider.getCurrentLongitude() ?: 0.0
         )
@@ -694,7 +694,7 @@ class GeoEngine {
         val processedPoiOsmIds = mutableSetOf<Any>()
         val processedBusOsmIds = mutableSetOf<Any>()
 
-        for (tile in tileGridQuadKeys) {
+        for (tile in tileGrid.tiles) {
             //Check the db for the tile
             val frozenTileResult =
                 tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()

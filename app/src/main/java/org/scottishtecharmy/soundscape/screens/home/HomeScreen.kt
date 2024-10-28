@@ -41,6 +41,7 @@ fun HomeScreen(
     val heading = viewModel.heading.collectAsStateWithLifecycle()
     val beaconLocation = viewModel.beaconLocation.collectAsStateWithLifecycle()
     val streetPreviewMode = viewModel.streetPreviewMode.collectAsStateWithLifecycle()
+    val tileGridGeoJson = viewModel.tileGridGeoJson.collectAsStateWithLifecycle()
 
     NavHost(
         navController = navController,
@@ -69,7 +70,8 @@ fun HomeScreen(
                 getWhatsAroundMe = { viewModel.whatsAroundMe() },
                 shareLocation = { viewModel.shareLocation(context) },
                 rateSoundscape = rateSoundscape,
-                streetPreviewEnabled = streetPreviewMode.value
+                streetPreviewEnabled = streetPreviewMode.value,
+                tileGridGeoJson = tileGridGeoJson.value
             )
         }
 

@@ -28,8 +28,8 @@ import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.utils.distanceToPolygon
-import org.scottishtecharmy.soundscape.utils.get3x3TileGrid
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.GRID_SIZE
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
@@ -586,12 +586,28 @@ class TileUtilsTest {
 
     @Test
     fun get3x3TileGridTest(){
-        val testGet3x3TileGrid = get3x3TileGrid(65.0, 0.0)
-        Assert.assertEquals(9, testGet3x3TileGrid.size)
-        val testGet3x3TileGrid2 = get3x3TileGrid(-65.0, 0.0)
-        Assert.assertEquals(9, testGet3x3TileGrid2.size)
-        val testGet3x3TileGrid3 = get3x3TileGrid(0.0, 0.0)
-        Assert.assertEquals(9, testGet3x3TileGrid3.size)
+        var tileGrid = getTileGrid(65.0, 0.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        tileGrid = getTileGrid(-65.0, 0.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        tileGrid = getTileGrid(0.0, 0.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        tileGrid = getTileGrid(0.0, 180.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        tileGrid = getTileGrid(0.0, -180.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+    }
+
+    @Test
+    fun get2x2TileGridTest(){
+
+        // Override Global grid size setting
+        GRID_SIZE = 2
+
+        var tileGrid = getTileGrid(0.001, 0.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        tileGrid = getTileGrid(0.0, 0.0)
+        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
     }
 
     @Test

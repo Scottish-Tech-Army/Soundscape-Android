@@ -248,7 +248,7 @@ class MainActivity : AppCompatActivity() {
     fun toggleServiceState(newServiceState: Boolean) {
 
         if(!newServiceState) {
-            soundscapeServiceConnection.stopService(applicationContext)
+            soundscapeServiceConnection.stopService()
         }
         else {
             startSoundscapeService()
@@ -290,6 +290,8 @@ class MainActivity : AppCompatActivity() {
         const val VOICE_TYPE_KEY = "VoiceType"
         const val SPEECH_RATE_DEFAULT = 1.0f
         const val SPEECH_RATE_KEY = "SpeechRate"
+        const val MAP_DEBUG_DEFAULT = false
+        const val MAP_DEBUG_KEY = "MapDebug"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
