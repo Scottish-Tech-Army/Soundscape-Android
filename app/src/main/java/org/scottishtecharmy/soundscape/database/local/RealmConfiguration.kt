@@ -8,6 +8,7 @@ import io.realm.kotlin.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
 
 object RealmConfiguration {
     private var tileDataRealm: Realm? = null
@@ -20,6 +21,13 @@ object RealmConfiguration {
             val config = RealmConfiguration.Builder(
                 schema = setOf(TileData::class)
             ).name("TileData").build()
+
+            // TODO: Whilst we are working on the protomap -> GeoJSON conversion we always want to
+            //  start with a fresh tile database. Once the work is complete, then we can remove this
+            //  code.
+            if(!SOUNDSCAPE_TILE_BACKEND)
+                deleteRealm(config)
+
             tileDataRealm = Realm.open(config)
         }
         return tileDataRealm!!
