@@ -1,16 +1,16 @@
 package org.scottishtecharmy.soundscape.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
-import org.scottishtecharmy.soundscape.dto.VectorTile
+import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 
-class TileGrid(newTiles : MutableList<VectorTile>, newCentralBoundingBox : BoundingBox) {
+class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox) {
 
-    val tiles : MutableList<VectorTile> = newTiles
+    val tiles : MutableList<Tile> = newTiles
     var centralBoundingBox : BoundingBox = newCentralBoundingBox
 
     /**
@@ -57,8 +57,9 @@ class TileGrid(newTiles : MutableList<VectorTile>, newCentralBoundingBox : Bound
          * The zoom level and grid size are constant. When using soundscape-backend these will be
          * 16 and 3, but if we switch to using protobuf tiles they will be 15 and 2.
          */
-        var ZOOM_LEVEL = 16
-        var GRID_SIZE = 3
+        const val SOUNDSCAPE_TILE_BACKEND = true
+        val ZOOM_LEVEL = if(SOUNDSCAPE_TILE_BACKEND) 16 else 15
+        var GRID_SIZE = if(SOUNDSCAPE_TILE_BACKEND) 3 else 2
 
         /**
          * Given a location it calculates the set of tiles (VectorTiles) that cover a
@@ -98,10 +99,10 @@ class TileGrid(newTiles : MutableList<VectorTile>, newCentralBoundingBox : Bound
             yValues[1] = tileXY.second
             yValues[2] = (tileXY.second + 1).mod(maxCoordinate)
 
-            val tiles: MutableList<VectorTile> = mutableListOf()
+            val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
                 for (x in xValues) {
-                    val surroundingTile = VectorTile("", x, y, ZOOM_LEVEL)
+                    val surroundingTile = Tile("", x, y, ZOOM_LEVEL)
                     surroundingTile.quadkey = getQuadKey(x, y, ZOOM_LEVEL)
                     tiles.add(surroundingTile)
                 }
@@ -176,10 +177,10 @@ class TileGrid(newTiles : MutableList<VectorTile>, newCentralBoundingBox : Bound
                 northEast.second,
                 northEast.first)
 
-            val tiles: MutableList<VectorTile> = mutableListOf()
+            val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
                 for (x in xValues) {
-                    val surroundingTile = VectorTile("", x, y, ZOOM_LEVEL)
+                    val surroundingTile = Tile("", x, y, ZOOM_LEVEL)
                     surroundingTile.quadkey = getQuadKey(x, y, ZOOM_LEVEL)
                     tiles.add(surroundingTile)
                 }

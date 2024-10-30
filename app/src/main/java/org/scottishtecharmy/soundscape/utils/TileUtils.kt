@@ -2,7 +2,7 @@ package org.scottishtecharmy.soundscape.utils
 
 import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.dto.IntersectionRelativeDirections
-import org.scottishtecharmy.soundscape.dto.VectorTile
+import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import com.squareup.moshi.Moshi
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.lang.Math.toDegrees
 import kotlin.math.PI
 import kotlin.math.abs
@@ -133,7 +134,7 @@ fun getTilesForRegion(
     currentLongitude: Double = 0.0,
     radius: Double = 250.0,
     zoom: Int = 16
-): MutableList<VectorTile> {
+): MutableList<Tile> {
 
     val (pixelX, pixelY) = getPixelXY(currentLatitude, currentLongitude, zoom)
     val radiusPixels = radius / groundResolution(currentLatitude, zoom).toInt()
@@ -146,11 +147,11 @@ fun getTilesForRegion(
     val (startTileX, startTileY) = getTileXY(startX.toInt(), startY.toInt())
     val (endTileX, endTileY) = getTileXY(endX.toInt(), endY.toInt())
 
-    val tiles: MutableList<VectorTile> = mutableListOf()
+    val tiles: MutableList<Tile> = mutableListOf()
 
     for (y in startTileY..endTileY) {
         for (x in startTileX..endTileX) {
-            val surroundingTile = VectorTile("", x, y, zoom)
+            val surroundingTile = Tile("", x, y, zoom)
             surroundingTile.quadkey = getQuadKey(x, y, zoom)
             tiles.add(surroundingTile)
         }
@@ -179,15 +180,17 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
 
 
     for (feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] == "highway"
-            && feature.foreign!!["feature_value"] != "gd_intersection"
-            && feature.foreign!!["feature_value"] != "footway"
-            && feature.foreign!!["feature_value"] != "path"
-            && feature.foreign!!["feature_value"] != "cycleway"
-            && feature.foreign!!["feature_value"] != "bridleway"
-            && feature.foreign!!["feature_value"] != "bus_stop"
-            && feature.foreign!!["feature_value"] != "crossing") {
-            roadsFeatureCollection.addFeature(feature)
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] == "highway"
+                && foreign["feature_value"] != "gd_intersection"
+                && foreign["feature_value"] != "footway"
+                && foreign["feature_value"] != "path"
+                && foreign["feature_value"] != "cycleway"
+                && foreign["feature_value"] != "bridleway"
+                && foreign["feature_value"] != "bus_stop"
+                && foreign["feature_value"] != "crossing") {
+                    roadsFeatureCollection.addFeature(feature)
+            }
         }
     }
     return roadsFeatureCollection
@@ -205,8 +208,10 @@ fun getBusStopsFeatureCollectionFromTileFeatureCollection(
 ): FeatureCollection{
     val busStopFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] == "highway" && feature.foreign!!["feature_value"] == "bus_stop"){
-            busStopFeatureCollection.addFeature(feature)
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "bus_stop") {
+                busStopFeatureCollection.addFeature(feature)
+            }
         }
     }
     return busStopFeatureCollection
@@ -222,8 +227,10 @@ fun getBusStopsFeatureCollectionFromTileFeatureCollection(
 fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
     val crossingsFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] == "highway" && feature.foreign!!["feature_value"] == "crossing"){
-            crossingsFeatureCollection.addFeature(feature)
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "crossing") {
+                crossingsFeatureCollection.addFeature(feature)
+            }
         }
     }
     return crossingsFeatureCollection
@@ -243,13 +250,15 @@ fun getPathsFeatureCollectionFromTileFeatureCollection(
     val pathsFeatureCollection = FeatureCollection()
 
     for(feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] == "highway")
-            when(feature.foreign!!["feature_value"]){
-                "footway" -> pathsFeatureCollection.addFeature(feature)
-                "path" -> pathsFeatureCollection.addFeature(feature)
-                "cycleway" -> pathsFeatureCollection.addFeature(feature)
-                "bridleway" -> pathsFeatureCollection.addFeature(feature)
-            }
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] == "highway")
+                when (foreign["feature_value"]) {
+                    "footway" -> pathsFeatureCollection.addFeature(feature)
+                    "path" -> pathsFeatureCollection.addFeature(feature)
+                    "cycleway" -> pathsFeatureCollection.addFeature(feature)
+                    "bridleway" -> pathsFeatureCollection.addFeature(feature)
+                }
+        }
     }
     return pathsFeatureCollection
 }
@@ -266,8 +275,10 @@ fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
     val intersectionsFeatureCollection = FeatureCollection()
     // split out the intersections into their own intersections FeatureCollection
     for (feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] == "highway" && feature.foreign!!["feature_value"] == "gd_intersection") {
-            intersectionsFeatureCollection.addFeature(feature)
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "gd_intersection") {
+                intersectionsFeatureCollection.addFeature(feature)
+            }
         }
     }
     return intersectionsFeatureCollection
@@ -284,8 +295,10 @@ fun getEntrancesFeatureCollectionFromTileFeatureCollection(
 ): FeatureCollection {
     val entrancesFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] == "gd_entrance_list") {
-            entrancesFeatureCollection.addFeature(feature)
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] == "gd_entrance_list") {
+                entrancesFeatureCollection.addFeature(feature)
+            }
         }
     }
     return entrancesFeatureCollection
@@ -302,8 +315,10 @@ fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
 ): FeatureCollection {
     val poiFeaturesCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        if (feature.foreign!!["feature_type"] != "highway" && feature.foreign!!["feature_type"] != "gd_entrance_list") {
-            poiFeaturesCollection.addFeature(feature)
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_type"] != "highway" && foreign["feature_type"] != "gd_entrance_list") {
+                poiFeaturesCollection.addFeature(feature)
+            }
         }
     }
     return poiFeaturesCollection
@@ -327,8 +342,10 @@ fun getPoiFeatureCollectionBySuperCategory(
 
     for (feature in poiFeatureCollection) {
         for (featureType in superCategoryList) {
-            if (feature.foreign!!["feature_type"] == featureType || feature.foreign!!["feature_value"] == featureType) {
-                tempFeatureCollection.addFeature(feature)
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] == featureType || foreign["feature_value"] == featureType) {
+                    tempFeatureCollection.addFeature(feature)
+                }
             }
         }
     }
@@ -350,11 +367,13 @@ fun removeDuplicateOsmIds(
 
     //check for osm_ids duplicates
     for (feature in featureCollection.features) {
-        val osmId = feature.foreign?.get("osm_ids")
-        //Log.d(TAG, "osmId: $osmId")
-        if (osmId != null && !processedOsmIds.contains(osmId)) {
-            processedOsmIds.add(osmId)
-            tempFeatureCollection.features.add(feature)
+        feature.foreign?.let { foreign ->
+            //val osmId = foreign["osm_ids"]
+            //Log.d(TAG, "osmId: $osmId")
+            if (true) {//osmId != null && !processedOsmIds.contains(osmId)) {
+                //processedOsmIds.add(osmId)
+                tempFeatureCollection.features.add(feature)
+            }
         }
     }
     return tempFeatureCollection
@@ -371,13 +390,27 @@ fun removeDuplicateOsmIds(
 
 fun processTileString(quadKey: String, tileString: String): TileData {
     val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-    val tileData = TileData()
-
-    tileData.quadKey = quadKey
-    tileData.tileString = tileString
-
     val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
         .fromJson(tileString)
+
+    return processTileFeatureCollection(tileFeatureCollection, quadKey, tileString)
+}
+
+fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection?,
+                                 quadKey: String,
+                                 tileString: String? = null): TileData {
+
+    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+    val tileData = TileData()
+    tileData.quadKey = quadKey
+
+    if(tileString != null) {
+        tileData.tileString = tileString
+    }
+    else {
+        val adapter = GeoJsonObjectMoshiAdapter()
+        tileData.tileString = adapter.toJson(tileFeatureCollection)
+    }
 
     val roadsFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
         tileFeatureCollection!!
@@ -992,7 +1025,16 @@ fun getNearestRoad(
                 nearestRoad = feature
                 maxDistanceToRoad = distanceToRoad
             }
-        } else {
+        } else if (feature.geometry.type == "Polygon") {
+            val distanceToRoad = distanceToPolygon(
+                LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+                (feature.geometry as Polygon)
+            )
+            if (distanceToRoad < maxDistanceToRoad) {
+                nearestRoad = feature
+                maxDistanceToRoad = distanceToRoad
+            }
+        }  else {
             val distanceToRoad = distance(
                 currentLocation.latitude,
                 currentLocation.longitude,
@@ -1034,9 +1076,11 @@ fun getNearestPoi(
     var maxDistanceToPoi = Int.MAX_VALUE.toDouble()
     var nearestPoi = Feature()
     for (feature in poiWithBoundingBoxAndDistance){
-        if (feature.foreign!!["distance_to"].toString().toDouble() < maxDistanceToPoi){
-            nearestPoi = feature
-            maxDistanceToPoi = feature.foreign!!["distance_to"].toString().toDouble()
+        feature.foreign?.let { foreign ->
+            if (foreign["distance_to"].toString().toDouble() < maxDistanceToPoi) {
+                nearestPoi = feature
+                maxDistanceToPoi = foreign["distance_to"].toString().toDouble()
+            }
         }
     }
     val nearestPoiFeatureCollection = FeatureCollection()

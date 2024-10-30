@@ -586,6 +586,9 @@ class TileUtilsTest {
 
     @Test
     fun get3x3TileGridTest(){
+        // Override Global grid size setting
+        GRID_SIZE = 3
+
         var tileGrid = getTileGrid(65.0, 0.0)
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
         tileGrid = getTileGrid(-65.0, 0.0)
@@ -600,7 +603,6 @@ class TileUtilsTest {
 
     @Test
     fun get2x2TileGridTest(){
-
         // Override Global grid size setting
         GRID_SIZE = 2
 

@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.dto
 
-data class VectorTile(
+data class Tile(
     var quadkey: String = "",
     var tileX: Int = 0,
     var tileY: Int = 0,
