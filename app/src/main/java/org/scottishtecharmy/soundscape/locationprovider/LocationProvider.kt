@@ -38,6 +38,12 @@ abstract class LocationProvider {
     fun getCurrentLongitude() : Double? {
         return mutableLocationFlow.value?.longitude
     }
+    fun get() : LngLatAlt? {
+        mutableLocationFlow.value?.let { location ->
+            return LngLatAlt(location.longitude, location.latitude)
+        }
+        return null
+    }
 
     // Flow to return Location objects
     val mutableLocationFlow = MutableStateFlow<Location?>(null)

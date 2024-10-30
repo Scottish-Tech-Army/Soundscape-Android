@@ -66,7 +66,7 @@ class SoundscapeService : MediaSessionService() {
     private var audioBeacon: Long = 0
 
     // Geo engine
-    private var geoEngine = GeoEngine()
+    var geoEngine = GeoEngine()
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)

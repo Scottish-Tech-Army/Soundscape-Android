@@ -26,7 +26,8 @@ fun HomeContent(
     onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
     searchBar: @Composable () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    tileGridGeoJson: String
 ) {
     Column(
         modifier = modifier,
@@ -90,6 +91,7 @@ fun HomeContent(
                     userSymbolRotation = 0.0F,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
+                    tileGridGeoJson = tileGridGeoJson
                 )
             }
         }
@@ -107,6 +109,7 @@ fun PreviewHomeContent(){
         onNavigate = {},
         onMapLongClick = { false },
         onMarkerClick = { true },
-        searchBar = {}
+        searchBar = {},
+        tileGridGeoJson = ""
     )
 }
