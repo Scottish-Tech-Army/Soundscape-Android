@@ -7,9 +7,7 @@ import android.net.NetworkCapabilities
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
-// import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 // TODO I want to get to the Cache class which is described in these articles:
@@ -17,7 +15,7 @@ import java.util.concurrent.TimeUnit
 // https://stackoverflow.com/questions/70711512/context-getapplicationcontext-on-a-null-object-when-using-okhttp-cache
 //https://proandroiddev.com/increase-performance-of-your-app-by-caching-api-calls-using-okhttp-1384a621c51f
 // https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
-class TileClient(val application: Application) {
+abstract class TileClient(val application: Application) {
 
     private val connectivityManager: ConnectivityManager
     init {
@@ -30,7 +28,7 @@ class TileClient(val application: Application) {
     private val cacheSize = (5 * 1024 * 1024).toLong() //5MB cache size
     private val myCache = Cache(application.applicationContext.cacheDir, cacheSize)
 
-    private val okHttpClient = OkHttpClient.Builder()
+    protected val okHttpClient = OkHttpClient.Builder()
         .cache(myCache)
         .addInterceptor { chain ->
 
@@ -66,17 +64,20 @@ class TileClient(val application: Application) {
         })*/
         .build()
 
+    /**
+     * buildRetrofit is called in the sub-class and is responsible for creating the correct type
+     * of Retrofit object. The SoundscapeBackendTiledClient returns a String type and the
+     * ProtomapsTileClient returns a VectorTile. That and the differing server URLs is taken care
+     * of in buildRetrofit.
+     */
+    abstract fun buildRetrofit() : Retrofit
+
     val retrofitInstance : Retrofit?
         get() {
             // has this object been created yet?
             if (retrofit == null) {
                 // create it
-                retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    // use it to output the string
-                    .addConverterFactory(ScalarsConverterFactory.create())
-                    .client(okHttpClient)
-                    .build()
+                retrofit = buildRetrofit()
             }
             return retrofit
         }
@@ -93,11 +94,4 @@ class TileClient(val application: Application) {
             else -> false
         }
     }
-
-    companion object {
-        private const val BASE_URL = "https://soundscape.scottishtecharmy.org"
-    }
-
 }
-
-
