@@ -47,6 +47,7 @@ import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.utils.checkIntersection
 import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
+import org.scottishtecharmy.soundscape.utils.deduplicateFeatureCollection
 import org.scottishtecharmy.soundscape.utils.distance
 import org.scottishtecharmy.soundscape.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
@@ -777,34 +778,6 @@ class GeoEngine {
         return results
     }
 
-    /** isDuplicateByOsmId returns true if the OSM id for the feature has already been entered into
-     * the existingSet. It returns false if it's the first time, or there's no OSM id.
-     */
-    private fun isDuplicateByOsmId(existingSet : MutableSet<Any>, feature : Feature) : Boolean {
-        val osmId = feature.foreign?.get("osm_ids")
-        if (osmId != null) {
-            if(existingSet.contains(osmId))
-                return true
-            existingSet.add(osmId)
-        }
-        return false
-    }
-
-    /** processFeatureCollection goes through the feature collection from a tile and adds it to the
-     * feature collection for the grid, deduplicating by OSM is as it goes.
-     */
-    private fun processFeatureCollection(gridFeatureCollection: FeatureCollection,
-                                         tileFeatureCollection: FeatureCollection?,
-                                         existingSet : MutableSet<Any>) {
-        tileFeatureCollection?.let { collection ->
-            for (feature in collection.features) {
-                if (!isDuplicateByOsmId(existingSet, feature)) {
-                    gridFeatureCollection.features.add(feature)
-                }
-            }
-        }
-    }
-
     private enum class Fc(val id: Int) {
         ROADS(0), INTERSECTIONS(1), CROSSINGS(2), POIS(3), BUS_STOPS(4), MAX_COLLECTION_ID(5)
     }
@@ -843,7 +816,7 @@ class GeoEngine {
                 }
 
                 for((index, fc) in featureCollection.withIndex())
-                    processFeatureCollection(gridFeatureCollection[index], fc, processedOsmIds[index])
+                    deduplicateFeatureCollection(gridFeatureCollection[index], fc, processedOsmIds[index])
             }
         }
         for(fc in gridFeatureCollection)

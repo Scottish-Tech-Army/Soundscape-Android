@@ -353,6 +353,35 @@ fun getPoiFeatureCollectionBySuperCategory(
 }
 
 
+/** isDuplicateByOsmId returns true if the OSM id for the feature has already been entered into
+ * the existingSet. It returns false if it's the first time, or there's no OSM id.
+ */
+fun isDuplicateByOsmId(existingSet : MutableSet<Any>, feature : Feature) : Boolean {
+    val osmId = feature.foreign?.get("osm_ids")
+    if (osmId != null) {
+        if(existingSet.contains(osmId))
+            return true
+        existingSet.add(osmId)
+    }
+    return false
+}
+
+/** processFeatureCollection goes through the feature collection from a tile and adds it to the
+ * feature collection for the grid, deduplicat
+ * ing by OSM is as it goes.
+ */
+fun deduplicateFeatureCollection(outputFeatureCollection: FeatureCollection,
+                                 inputFeatureCollection: FeatureCollection?,
+                                 existingSet : MutableSet<Any>) {
+    inputFeatureCollection?.let { collection ->
+        for (feature in collection.features) {
+            if (!isDuplicateByOsmId(existingSet, feature)) {
+                outputFeatureCollection.features.add(feature)
+            }
+        }
+    }
+}
+
 /**
  * Given a FeatureCollection checks for duplicate OSM IDs and removes them.
  * @param featureCollection
@@ -365,17 +394,8 @@ fun removeDuplicateOsmIds(
     val processedOsmIds = mutableSetOf<Any>()
     val tempFeatureCollection = FeatureCollection()
 
-    //check for osm_ids duplicates
-    for (feature in featureCollection.features) {
-        feature.foreign?.let { foreign ->
-            //val osmId = foreign["osm_ids"]
-            //Log.d(TAG, "osmId: $osmId")
-            if (true) {//osmId != null && !processedOsmIds.contains(osmId)) {
-                //processedOsmIds.add(osmId)
-                tempFeatureCollection.features.add(feature)
-            }
-        }
-    }
+    deduplicateFeatureCollection(tempFeatureCollection, featureCollection, processedOsmIds)
+
     return tempFeatureCollection
 }
 
