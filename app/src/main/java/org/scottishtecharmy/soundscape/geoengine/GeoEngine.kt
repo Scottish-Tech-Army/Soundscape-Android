@@ -70,6 +70,7 @@ import org.scottishtecharmy.soundscape.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.utils.vectorTileToGeoJson
 import retrofit2.awaitResponse
 import java.util.Locale
+import kotlin.coroutines.cancellation.CancellationException
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null)
 
@@ -149,80 +150,115 @@ class GeoEngine {
                             locationProvider.getCurrentLatitude() ?: 0.0,
                             locationProvider.getCurrentLongitude() ?: 0.0
                         )
-                        centralBoundingBox = tileGrid.centralBoundingBox
 
                         // We have a new centralBoundingBox, so update the tiles
-                        updateTileGrid(tileGrid)
+                        if(updateTileGrid(tileGrid)) {
+                            // We have got a new grid, so create our new central region
+                            centralBoundingBox = tileGrid.centralBoundingBox
 
-                        // Update the flow with our new tile grid
-                        if(sharedPreferences.getBoolean(MAP_DEBUG_KEY, false)) {
-                            _tileGridFlow.value = tileGrid
+                            // Update the flow with our new tile grid
+                            if (sharedPreferences.getBoolean(MAP_DEBUG_KEY, false)) {
+                                _tileGridFlow.value = tileGrid
+                            } else {
+                                _tileGridFlow.value = TileGrid(mutableListOf(), BoundingBox())
+                            }
+                        } else {
+                            // Updating the tile grid failed, due to a lack of cached tile and then
+                            // a lack of network/server issue. There's nothing that we can do, so
+                            // simply retry on the next location update.
                         }
-                        else {
-                            _tileGridFlow.value = TileGrid(mutableListOf(), BoundingBox())
-                        }
-
                     }
                 }
             }
         }
     }
 
-    private suspend fun updateTileFromProtomaps(x : Int, y: Int, quadkey: String, update: Boolean) {
+    private suspend fun updateTileFromProtomaps(x : Int, y: Int, quadkey: String, update: Boolean) : Boolean {
+        var ret = false
         withContext(Dispatchers.IO) {
-            val protomapsClient = ProtomapsTileClient()
-            val tileReq = async {
-                protomapsClient.getClient().getMvtTileWithCache(x, y, ZOOM_LEVEL)
-            }
-            val result = tileReq.await().awaitResponse().body()
-            if(result != null) {
-                val tileFeatureCollection = vectorTileToGeoJson(x, y, result)
-                val tileData = processTileFeatureCollection(tileFeatureCollection, quadkey)
-                if(update)
-                    tilesRepository.updateTile(tileData)
-                else
-                    tilesRepository.insertTile(tileData)
+            try {
+                val protomapsClient = ProtomapsTileClient()
+                val tileReq = async {
+                    protomapsClient.getClient().getMvtTileWithCache(x, y, ZOOM_LEVEL)
+                }
+                val result = tileReq.await().awaitResponse().body()
+                if (result != null) {
+                    val tileFeatureCollection = vectorTileToGeoJson(x, y, result)
+                    val tileData = processTileFeatureCollection(tileFeatureCollection, quadkey)
+                    if (update)
+                        tilesRepository.updateTile(tileData)
+                    else
+                        tilesRepository.insertTile(tileData)
+
+                    ret = true
+                }
+                else {
+                    Log.e(TAG, "No response for protomaps tile")
+                }
+            } catch (ce: CancellationException) {
+                // We have to rethrow cancellation exceptions
+                throw ce
+            } catch (e: Exception) {
+                Log.e(TAG, "Exception getting protomaps tile $e")
             }
         }
+        return ret
     }
 
-    private suspend fun updateTileFromSoundscapeBackend(x : Int, y: Int, quadkey: String, update: Boolean) {
-        withContext(Dispatchers.IO) {
-            val service =
-                tileClient.retrofitInstance?.create(ITileDAO::class.java)
-            val tileReq = async {
-                    service?.getTileWithCache(x, y)
-            }
-            val result = tileReq.await()?.awaitResponse()?.body()
-            // clean the tile, process the string, perform an insert into db using the clean tile data
-            val cleanedTile =
-                result?.let { cleanTileGeoJSON(x, y, ZOOM_LEVEL, it) }
+    private suspend fun updateTileFromSoundscapeBackend(x : Int, y: Int, quadkey: String, update: Boolean) : Boolean {
+        var ret = false
 
-            if (cleanedTile != null) {
-                val tileData = processTileString(quadkey, cleanedTile)
-                if(update)
-                    tilesRepository.updateTile(tileData)
-                else
-                    tilesRepository.insertTile(tileData)
+        withContext(Dispatchers.IO) {
+            try {
+                val service =
+                    tileClient.retrofitInstance?.create(ITileDAO::class.java)
+                val tileReq = async {
+                        service?.getTileWithCache(x, y)
+                }
+                val result = tileReq.await()?.awaitResponse()?.body()
+                // clean the tile, process the string, perform an insert into db using the clean tile data
+                val cleanedTile =
+                    result?.let { cleanTileGeoJSON(x, y, ZOOM_LEVEL, it) }
+
+                if (cleanedTile != null) {
+                    val tileData = processTileString(quadkey, cleanedTile)
+                    if(update)
+                        tilesRepository.updateTile(tileData)
+                    else
+                        tilesRepository.insertTile(tileData)
+
+                    ret = true
+                }
+                else {
+                    Log.e(TAG, "Failed to get clean soundscape-backend tile")
+                }
+            } catch (ce: CancellationException) {
+                // We have to rethrow cancellation exceptions
+                throw ce
+            } catch (e: Exception) {
+                Log.e(TAG, "Exception getting soundscape-backend tile $e")
             }
         }
+        return ret
     }
 
-    private suspend fun updateTile(x : Int, y: Int, quadkey: String, update: Boolean) {
+    private suspend fun updateTile(x : Int, y: Int, quadkey: String, update: Boolean) : Boolean {
         if(!SOUNDSCAPE_TILE_BACKEND) {
             return updateTileFromProtomaps(x, y, quadkey, update)
         }
         return updateTileFromSoundscapeBackend(x, y, quadkey, update)
     }
 
-    private suspend fun updateTileGrid(tileGrid : TileGrid) {
+    private suspend fun updateTileGrid(tileGrid : TileGrid) : Boolean {
         for (tile in tileGrid.tiles) {
             Log.d(TAG, "Tile quad key: ${tile.quadkey}")
+            var fetchTile = false
+            var update = false
             val frozenResult = tilesRepository.getTile(tile.quadkey)
             // If Tile doesn't already exist in db go and get it, clean it, process it
             // and insert into db
             if (frozenResult.size == 0) {
-                updateTile(tile.tileX, tile.tileY, tile.quadkey, false)
+                fetchTile = true
             } else {
                 // get the current time and then check against lastUpdated in frozenResult
                 val currentInstant: java.time.Instant = java.time.Instant.now()
@@ -242,10 +278,24 @@ class GeoEngine {
 
                 } else {
                     Log.d(TAG, "Tile does need updating")
-                    updateTile(tile.tileX, tile.tileY, tile.quadkey, true)
+                    fetchTile = true
+                    update = true
+                }
+            }
+            if(fetchTile) {
+                var ret = false
+                for(retry in 1..5) {
+                    ret = updateTile(tile.tileX, tile.tileY, tile.quadkey, update)
+                    if(ret) {
+                        break
+                    }
+                }
+                if(!ret) {
+                    return false
                 }
             }
         }
+        return true
     }
 
     fun myLocation() : List<String> {
