@@ -117,15 +117,6 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Install HTTP cache this caches all of the UI tiles (at least?)
-        try {
-            val httpCacheDir = File(applicationContext.cacheDir, "http")
-            val httpCacheSize = (100 * 1024 * 1024).toLong() // 100 MiB
-            HttpResponseCache.install(httpCacheDir, httpCacheSize)
-        } catch (e: IOException) {
-            Log.i("Injection", "HTTP response cache installation failed:$e")
-        }
-
         checkAndRequestNotificationPermissions()
         soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 

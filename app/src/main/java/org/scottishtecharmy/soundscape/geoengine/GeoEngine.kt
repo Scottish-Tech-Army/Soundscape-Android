@@ -38,6 +38,7 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
+import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient
 import org.scottishtecharmy.soundscape.network.TileClient
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.utils.TileGrid
@@ -90,7 +91,7 @@ class GeoEngine {
     private val tilesDao : TilesDao = TilesDao(tileDataRealm)
     private val tilesRepository : TilesRepository = TilesRepository(tilesDao)
 
-    // HTTP connection to soundscape-backend tile server
+    // HTTP connection to soundscape-backend or protomaps tile server
     private lateinit var tileClient : TileClient
 
     private lateinit var locationProvider : LocationProvider
@@ -111,7 +112,12 @@ class GeoEngine {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
 
-        tileClient = TileClient(application)
+        tileClient = if(SOUNDSCAPE_TILE_BACKEND) {
+            SoundscapeBackendTileClient(application)
+        } else {
+            ProtomapsTileClient(application)
+        }
+
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
@@ -177,11 +183,12 @@ class GeoEngine {
         var ret = false
         withContext(Dispatchers.IO) {
             try {
-                val protomapsClient = ProtomapsTileClient()
+                val service =
+                    tileClient.retrofitInstance?.create(ITileDAO::class.java)
                 val tileReq = async {
-                    protomapsClient.getClient().getMvtTileWithCache(x, y, ZOOM_LEVEL)
+                    service?.getVectorTileWithCache(x, y, ZOOM_LEVEL)
                 }
-                val result = tileReq.await().awaitResponse().body()
+                val result = tileReq.await()?.awaitResponse()?.body()
                 if (result != null) {
                     val tileFeatureCollection = vectorTileToGeoJson(x, y, result)
                     val tileData = processTileFeatureCollection(tileFeatureCollection, quadkey)
