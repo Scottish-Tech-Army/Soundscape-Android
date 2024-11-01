@@ -10,10 +10,10 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
-// TODO I want to get to the Cache class which is described in these articles:
-//  https://medium.com/@malikshahbaz213/fech-cache-api-data-in-android-kotlin-using-retrofit-91f83f36cde3
+// Cache class which is described in these articles:
+// https://medium.com/@malikshahbaz213/fech-cache-api-data-in-android-kotlin-using-retrofit-91f83f36cde3
 // https://stackoverflow.com/questions/70711512/context-getapplicationcontext-on-a-null-object-when-using-okhttp-cache
-//https://proandroiddev.com/increase-performance-of-your-app-by-caching-api-calls-using-okhttp-1384a621c51f
+// https://proandroiddev.com/increase-performance-of-your-app-by-caching-api-calls-using-okhttp-1384a621c51f
 // https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
 abstract class TileClient(val application: Application) {
 
@@ -25,7 +25,7 @@ abstract class TileClient(val application: Application) {
 
     private var retrofit : Retrofit? = null
 
-    private val cacheSize = (5 * 1024 * 1024).toLong() //5MB cache size
+    private val cacheSize = (100 * 1024 * 1024).toLong() //100MB cache size
     private val myCache = Cache(application.applicationContext.cacheDir, cacheSize)
 
     protected val okHttpClient = OkHttpClient.Builder()
