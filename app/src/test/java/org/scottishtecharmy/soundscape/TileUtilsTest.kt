@@ -28,14 +28,19 @@ import org.scottishtecharmy.soundscape.utils.polygonContainsCoordinates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.GRID_SIZE
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.utils.distance
+import org.scottishtecharmy.soundscape.utils.explodeLineString
 import org.scottishtecharmy.soundscape.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.utils.traceLineString
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -776,4 +781,55 @@ class TileUtilsTest {
         roundtripGpsLocation(85.0, -179.0)                  // The projection breaks above 85 degrees
         roundtripGpsLocation(-85.0, 179.0)
     }
+
+    @Test
+    fun explodeLineStringTest(){
+        val featureCollection = FeatureCollection().also {
+            it.addFeature(
+                Feature().also { feature ->
+                    feature.geometry = LineString().also {
+                            lineString ->
+                        lineString.coordinates = arrayListOf(
+                            LngLatAlt(0.0, 0.0),
+                            LngLatAlt(1.0, 1.0),
+                            LngLatAlt(2.0, 0.0)
+                        )
+                    }
+                }
+            )
+        }
+
+        val explodedFeatureCollection = explodeLineString(featureCollection)
+        Assert.assertEquals(2, explodedFeatureCollection.features.size)
+    }
+
+    @Test
+    fun traceLineStringTest(){
+        val featureCollection = FeatureCollection().also {
+            it.addFeature(
+                Feature().also { feature ->
+                    feature.geometry = LineString().also {
+                            lineString ->
+                        lineString.coordinates = arrayListOf(
+                            LngLatAlt(0.0, 0.0),
+                            LngLatAlt(1.0, 1.0),
+                            LngLatAlt(2.0, 0.0)
+                        )
+                    }
+                }
+            )
+        }
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+
+        val tracedEvery1000FeatureCollection = traceLineString(featureCollection, 1000.0)
+        val tracedEvery10000FeatureCollection = traceLineString(featureCollection, 10000.0)
+
+        val pointEvery1000String = moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery1000FeatureCollection)
+        val pointEvery10000String = moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery10000FeatureCollection)
+        // copy and paste into GeoJSON.io
+        println(pointEvery1000String)
+        println(pointEvery10000String)
+    }
+
+
 }
