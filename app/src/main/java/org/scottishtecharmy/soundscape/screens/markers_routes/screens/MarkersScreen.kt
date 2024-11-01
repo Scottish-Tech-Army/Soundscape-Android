@@ -39,7 +39,7 @@ fun MarkersScreen(navController: NavController) {
                 painter = painterResource(
                     id = R.drawable.marker_selected
                 ),
-                contentDescription = "marker icon",
+                contentDescription = null,
                 modifier = Modifier.size(60.dp)
             )
         }

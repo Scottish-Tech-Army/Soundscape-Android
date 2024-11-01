@@ -40,7 +40,7 @@ fun RoutesScreen(navController: NavController) {
                 painter = painterResource(
                     id = R.drawable.routes_selected
                 ),
-                contentDescription = "marker icon",
+                contentDescription = null,
                 modifier = Modifier.size(80.dp)
             )
         }
