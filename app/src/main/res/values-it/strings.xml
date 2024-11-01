@@ -182,5 +182,7 @@
     <string name="osm_tag_bus_stop">Fermata dell\'autobus</string>
     <string name="distance_format_meters">%1$s metri</string>
     <string name="no_language_selected">Nessuna lingua selezionata</string>
+    <string name="street_preview_enabled">Anteprima strada attivata</string>
+    <string name="street_preview_disabled">Anteprima strada disattivata</string>
 
 </resources>

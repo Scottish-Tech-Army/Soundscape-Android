@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -186,7 +187,17 @@ fun HomeTopAppBar(
                 },
             ) {
                 if (streetPreviewEnabled) {
-                    Icon(Icons.Rounded.Preview, contentDescription = "Street Preview enabled")
+                    Icon(
+                        Icons.Rounded.Preview,
+                    tint = MaterialTheme.colorScheme.primary,
+                    contentDescription = stringResource(R.string.street_preview_enabled)
+                    )
+                } else {
+                    Icon(
+                        painterResource(R.drawable.preview_off),
+                        tint = MaterialTheme.colorScheme.secondary,
+                        contentDescription = stringResource(R.string.street_preview_disabled)
+                    )
                 }
             }
             IconToggleButton(
