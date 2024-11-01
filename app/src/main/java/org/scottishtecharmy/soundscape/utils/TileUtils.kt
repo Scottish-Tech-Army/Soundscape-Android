@@ -2128,6 +2128,127 @@ fun checkIntersection(
 }
 
 /**
+ * Given a Feature Collection that contains a LineString it will return a Feature Collection
+ * that contains the "exploded" LineString which are the individual segments of the LineString.
+ * @param featureCollection
+ * A FeatureCollection containing the whole LineString
+ * @return a Feature Collection containing the segments of the LineString.
+ */
+fun explodeLineString(featureCollection: FeatureCollection): FeatureCollection {
+    val explodedFeatureCollection = FeatureCollection()
+
+    for (feature in featureCollection.features) {
+        if (feature.geometry is LineString) {
+            val lineString = feature.geometry as LineString
+            val coordinates = lineString.coordinates
+
+            for (i in 0 until coordinates.size - 1) {
+                val start = coordinates[i]
+                val end = coordinates[i + 1]
+
+                val segmentLineString = LineString().also {
+                    it.coordinates = arrayListOf(start, end)
+                }
+
+                val segmentFeature = Feature().also {
+                    it.geometry = segmentLineString
+                }
+
+                explodedFeatureCollection.addFeature(segmentFeature)
+            }
+        }
+    }
+
+    return explodedFeatureCollection
+}
+
+/**
+ * Given a Feature Collection that contains a LineString it will return a Feature Collection of Points
+ * that trace along the LineString at given distance intervals.
+ * This is useful for faking the locations of a user walking down a road but isn't super accurate if you
+ * enter big distance intervals and the LineString has lots of curves or bends.
+ * @param featureCollection
+ * A FeatureCollection containing the LineString we want to trace along.
+ * @param distanceBetweenPoints
+ * The distance between the Points tracing the LineString.
+ * @return a Feature Collection containing the Points tracing the LineString.
+ */
+fun traceLineString(
+    featureCollection: FeatureCollection,
+    distanceBetweenPoints: Double
+): FeatureCollection {
+    val pointFeatures = FeatureCollection()
+    var pointId = 1
+
+    for (feature in featureCollection.features) {
+        if (feature.geometry is LineString) {
+            val lineString = feature.geometry as LineString
+            val coordinates = lineString.coordinates
+
+            // Add the first point of the LineString
+            val firstPointFeature = Feature().also {
+                val ars3: HashMap<String, Any?> = HashMap()
+                // increment id value for each point
+                ars3 += Pair("id", pointId++)
+                it.properties = ars3
+                it.geometry = Point(coordinates[0].longitude, coordinates[0].latitude)
+            }
+            pointFeatures.addFeature(firstPointFeature)
+
+            var currentDistance = 0.0
+            var previousPoint = coordinates[0]
+
+            for (i in 1 until coordinates.size) {
+                val currentPoint = coordinates[i]
+                val segmentDistance = distance(
+                    previousPoint.latitude,
+                    previousPoint.longitude,
+                    currentPoint.latitude,
+                    currentPoint.longitude
+                )
+
+                while (currentDistance + distanceBetweenPoints <= segmentDistance) {
+                    currentDistance += distanceBetweenPoints
+                    val fraction = currentDistance / segmentDistance
+                    val interpolatedPoint = interpolate(previousPoint, currentPoint, fraction)
+                    val pointFeature = Feature().also {
+                        val ars3: HashMap<String, Any?> = HashMap()
+                        ars3 += Pair("id", pointId++)
+                        it.properties = ars3
+                        it.geometry = Point(interpolatedPoint.longitude, interpolatedPoint.latitude)
+                    }
+                    pointFeatures.addFeature(pointFeature)
+                }
+
+                currentDistance = (currentDistance + distanceBetweenPoints) - segmentDistance
+                previousPoint = currentPoint
+            }
+
+            // Add the last point of the LineString
+            val pointFeature = Feature().also {
+                val ars3: HashMap<String, Any?> = HashMap()
+                ars3 += Pair("id", pointId++)
+                it.properties = ars3
+                it.geometry = Point(previousPoint.longitude, previousPoint.latitude)
+            }
+            pointFeatures.addFeature(pointFeature)
+        }
+    }
+
+    return pointFeatures
+}
+
+private fun interpolate(
+    point1: LngLatAlt,
+    point2: LngLatAlt,
+    fraction: Double
+): LngLatAlt {
+    val lon = point1.longitude + (point2.longitude - point1.longitude) * fraction
+    val lat = point1.latitude + (point2.latitude - point1.latitude) * fraction
+    return LngLatAlt(lon, lat)
+}
+
+/**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
  * @param category

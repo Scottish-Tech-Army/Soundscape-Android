@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.distance
+import org.scottishtecharmy.soundscape.utils.explodeLineString
 import java.util.PriorityQueue
 
 
@@ -174,8 +175,8 @@ class DijkstraTest {
         featureCollection: FeatureCollection
     ): Pair<Map<Int, List<Pair<Int, Int>>>, Map<LngLatAlt, Int>> {
         // take the feature collection and explode the linestring coordinates
-        // into pairs of coordinates as linestrings
-        val explodedFeatureCollection = explodeLineStrings(featureCollection)
+        // into pairs of coordinates as LineStrings
+        val explodedFeatureCollection = explodeLineString(featureCollection)
         val nodeMap = mutableMapOf<LngLatAlt, Int>()
         var nodeIdCounter = 1
 
@@ -210,55 +211,6 @@ class DijkstraTest {
 
     private fun getNode(coordinate: LngLatAlt, nodeMap: MutableMap<LngLatAlt, Int>, nodeIdCounter: Int): Int {
         return nodeMap.computeIfAbsent(coordinate) { nodeIdCounter }
-    }
-
-    @Test
-    fun explodeLineStringTest(){
-        val featureCollection = FeatureCollection().also {
-            it.addFeature(
-                Feature().also { feature ->
-                    feature.geometry = LineString().also {
-                        lineString ->
-                        lineString.coordinates = arrayListOf(
-                        LngLatAlt(0.0, 0.0),
-                        LngLatAlt(1.0, 1.0),
-                        LngLatAlt(2.0, 0.0)
-                        )
-                    }
-                }
-            )
-        }
-
-        val explodedFeatureCollection = explodeLineStrings(featureCollection)
-        Assert.assertEquals(2, explodedFeatureCollection.features.size)
-    }
-
-    private fun explodeLineStrings(featureCollection: FeatureCollection): FeatureCollection {
-        val explodedFeatureCollection = FeatureCollection()
-
-        for (feature in featureCollection.features) {
-            if (feature.geometry is LineString) {
-                val lineString = feature.geometry as LineString
-                val coordinates = lineString.coordinates
-
-                for (i in 0 until coordinates.size - 1) {
-                    val start = coordinates[i]
-                    val end = coordinates[i + 1]
-
-                    val segmentLineString = LineString().also {
-                        it.coordinates = arrayListOf(start, end)
-                    }
-
-                    val segmentFeature = Feature().also {
-                        it.geometry = segmentLineString
-                    }
-
-                    explodedFeatureCollection.addFeature(segmentFeature)
-                }
-            }
-        }
-
-        return explodedFeatureCollection
     }
 
 }
