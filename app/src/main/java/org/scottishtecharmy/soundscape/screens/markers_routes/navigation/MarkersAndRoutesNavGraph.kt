@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute.A
 @Composable
 fun MarkersAndRoutesNavGraph(
     navController: NavHostController,
+    onNavigateToAddRoute: () -> Unit,
     startDestination: String) {
     NavHost(
         navController = navController,
@@ -21,7 +22,10 @@ fun MarkersAndRoutesNavGraph(
             MarkersScreen(navController = navController)
         }
         composable(ScreensForMarkersAndRoutes.Routes.route) {
-            RoutesScreen(navController = navController)
+            RoutesScreen(
+                navController = navController,
+                onNavigateToAddRoute = onNavigateToAddRoute
+            )
         }
 
         // AddRouteScreen, accessible within the MarkersAndRoutesScreen

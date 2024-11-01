@@ -1,10 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -13,10 +8,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,8 +27,6 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Composable
 fun CustomAppBar(title : String,
                  onNavigateUp: () -> Unit,
-                 onAddClicked: (() -> Unit)? = null,
-                 showAddIcon: Boolean = false,
                  navigationButtonTitle: String = stringResource(R.string.ui_back_button_title),
                  ) {
     Surface(
@@ -67,25 +56,6 @@ fun CustomAppBar(title : String,
                     modifier = Modifier.semantics { heading() }
                 )
             }
-
-
-            AnimatedVisibility(
-                visible = showAddIcon,
-                enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkHorizontally(),
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                IconButton(
-                    onClick = {
-                        onAddClicked?.invoke()
-                    }
-                ){
-                    Icon(
-                        Icons.Default.Add,
-                        contentDescription = stringResource(R.string.general_alert_add),
-                    )
-                }
-            }
         }
     }
 }
@@ -98,9 +68,7 @@ fun CustomAppBarPreview() {
         CustomAppBar(
             "Test app bar with long title",
             navigationButtonTitle = "Back",
-            showAddIcon = false,
             onNavigateUp = {},
-            onAddClicked = {}
         )
     }
 }
@@ -113,9 +81,7 @@ fun CustomAppBarWithActionButtonPreview() {
         CustomAppBar(
             "Test app bar",
             navigationButtonTitle = "Back",
-            showAddIcon = true,
             onNavigateUp = {},
-            onAddClicked = {}
         )
     }
 }
