@@ -2176,7 +2176,7 @@ fun explodeLineString(featureCollection: FeatureCollection): FeatureCollection {
 fun traceLineString(
     featureCollection: FeatureCollection,
     distanceBetweenPoints: Double
-): FeatureCollection {
+):FeatureCollection {
     val pointFeatures = FeatureCollection()
     var pointId = 1
 
@@ -2188,29 +2188,27 @@ fun traceLineString(
             // Add the first point of the LineString
             val firstPointFeature = Feature().also {
                 val ars3: HashMap<String, Any?> = HashMap()
-                // increment id value for each point
                 ars3 += Pair("id", pointId++)
                 it.properties = ars3
-                it.geometry = Point(coordinates[0].longitude, coordinates[0].latitude)
+                it.geometry =Point(coordinates[0].longitude, coordinates[0].latitude)
             }
             pointFeatures.addFeature(firstPointFeature)
 
-            var currentDistance = 0.0
+            var currentDistance = 0.0 // Accumulated distance along the LineString
             var previousPoint = coordinates[0]
 
             for (i in 1 until coordinates.size) {
                 val currentPoint = coordinates[i]
-                val segmentDistance = distance(
-                    previousPoint.latitude,
-                    previousPoint.longitude,
-                    currentPoint.latitude,
-                    currentPoint.longitude
-                )
+                val segmentDistance = distance(previousPoint.latitude, previousPoint.longitude, currentPoint.latitude, currentPoint.longitude)
 
-                while (currentDistance + distanceBetweenPoints <= segmentDistance) {
-                    currentDistance += distanceBetweenPoints
-                    val fraction = currentDistance / segmentDistance
+                // Calculate the remaining distance needed to reach the next point
+                val remainingDistanceToNextPoint = distanceBetweenPoints - currentDistance
+
+                // If the segment is longer than the remaining distance, add a point
+                if (segmentDistance >= remainingDistanceToNextPoint) {
+                    val fraction = remainingDistanceToNextPoint / segmentDistance
                     val interpolatedPoint = interpolate(previousPoint, currentPoint, fraction)
+
                     val pointFeature = Feature().also {
                         val ars3: HashMap<String, Any?> = HashMap()
                         ars3 += Pair("id", pointId++)
@@ -2218,25 +2216,55 @@ fun traceLineString(
                         it.geometry = Point(interpolatedPoint.longitude, interpolatedPoint.latitude)
                     }
                     pointFeatures.addFeature(pointFeature)
+
+                    // Update currentDistance and previousPoint
+                    currentDistance = 0.0 // Reset for the next point
+                    previousPoint = interpolatedPoint
+
+                    // Recalculate segmentDistance for the remaining part of the segment
+                    val remainingSegmentDistance = distance(previousPoint.latitude, previousPoint.longitude, currentPoint.latitude, currentPoint.longitude)
+
+                    // If there's still distance to cover in the segment, add more points
+                    if (remainingSegmentDistance > distanceBetweenPoints) {
+                        var segmentCurrentDistance = 0.0 // Distance covered within the current segment
+
+                        while (segmentCurrentDistance + distanceBetweenPoints <= remainingSegmentDistance) {
+                            segmentCurrentDistance += distanceBetweenPoints
+                            val innerFraction = segmentCurrentDistance / remainingSegmentDistance
+                            val innerInterpolatedPoint = interpolate(previousPoint, currentPoint, innerFraction)
+
+                            val innerPointFeature = Feature().also {
+                                val ars3: HashMap<String, Any?> = HashMap()
+                                ars3 += Pair("id", pointId++)
+                                it.properties = ars3
+                                it.geometry = Point(innerInterpolatedPoint.longitude, innerInterpolatedPoint.latitude)
+                            }
+                            pointFeatures.addFeature(innerPointFeature)
+                        }
+                    }
+                } else {
+                    // If the segment is shorter than the remaining distance, accumulate the distance
+                    currentDistance += segmentDistance
                 }
 
-                currentDistance = (currentDistance + distanceBetweenPoints) - segmentDistance
+                // Update previousPoint for the next segment
                 previousPoint = currentPoint
             }
 
             // Add the last point of the LineString
-            val pointFeature = Feature().also {
+            val lastPointFeature = Feature().also {
                 val ars3: HashMap<String, Any?> = HashMap()
                 ars3 += Pair("id", pointId++)
                 it.properties = ars3
                 it.geometry = Point(previousPoint.longitude, previousPoint.latitude)
             }
-            pointFeatures.addFeature(pointFeature)
+            pointFeatures.addFeature(lastPointFeature)
         }
     }
 
     return pointFeatures
 }
+
 
 private fun interpolate(
     point1: LngLatAlt,
