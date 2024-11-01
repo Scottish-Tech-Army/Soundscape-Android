@@ -184,5 +184,7 @@
     <string name="osm_tag_bus_stop">バス停</string>
     <string name="distance_format_meters">%1$s メートル</string>
     <string name="no_language_selected">言語が選択されていません</string>
+    <string name="street_preview_enabled">ストリートプレビューが有効になっています</string>
+    <string name="street_preview_disabled">ストリートプレビューが無効になっています</string>
 
 </resources>

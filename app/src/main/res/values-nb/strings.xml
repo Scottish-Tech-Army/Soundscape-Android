@@ -183,5 +183,8 @@
     <string name="osm_tag_bus_stop">Busstopp</string>
     <string name="distance_format_meters">%1$s meter</string>
     <string name="no_language_selected">Ingen språk valgt</string>
+    <string name="street_preview_enabled">Gateforhåndsvisning aktivert</string>
+    <string name="street_preview_disabled">Gateforhåndsvisning deaktivert</string>
+
 
 </resources>
