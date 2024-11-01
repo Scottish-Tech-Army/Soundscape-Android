@@ -23,7 +23,7 @@ val items = listOf(
 )
 
 @Composable
-fun BottomNavigationBar(navController: NavController,
+fun MarkersAndRoutesTabs(navController: NavController,
 ) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -75,7 +75,7 @@ fun BottomNavigationBar(navController: NavController,
 fun BottomNavigationBarPreview() {
     val navController = rememberNavController()
     MaterialTheme {
-        BottomNavigationBar(navController = navController,
+        MarkersAndRoutesTabs(navController = navController,
         )
     }
 }

@@ -7,19 +7,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MarkersAndRoutesAppBar(showAddIcon: Boolean,
-                           onNavigateUp: () -> Unit,
-                           onNavigateToDestination: () -> Unit
+fun MarkersAndRoutesAppBar(
+   onNavigateUp: () -> Unit,
 ) {
 
     CustomAppBar(
         title = stringResource(R.string.search_view_markers),
         navigationButtonTitle = stringResource(R.string.ui_back_button_title),
         onNavigateUp = onNavigateUp,
-        showAddIcon = showAddIcon,
-        onAddClicked = onNavigateToDestination,
     )
 }
 
@@ -28,10 +24,7 @@ fun MarkersAndRoutesAppBar(showAddIcon: Boolean,
 fun MarkersAndRoutesAppBarPreview() {
     SoundscapeTheme {
         MarkersAndRoutesAppBar(
-            showAddIcon = true,
             onNavigateUp = {},
-            onNavigateToDestination = {}
-
         )
     }
 }
