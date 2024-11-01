@@ -477,7 +477,13 @@ class GeoEngine {
                 // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
                 // "information", "object", "place", "landmark", "mobility", "safety"
                 if (settingsFeatureCollection.features.size > 0) {
-                    for (feature in settingsFeatureCollection) {
+                    // Original Soundscape doesn't work like this as it doesn't order them by distance
+                    val sortedByDistanceToFeatureCollection = sortedByDistanceTo(
+                        locationProvider.getCurrentLatitude() ?: 0.0,
+                        locationProvider.getCurrentLongitude() ?: 0.0,
+                        settingsFeatureCollection
+                    )
+                    for (feature in sortedByDistanceToFeatureCollection) {
                         if (feature.geometry is Polygon) {
                             // found that if a thing has a name property that ends in a number
                             // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
