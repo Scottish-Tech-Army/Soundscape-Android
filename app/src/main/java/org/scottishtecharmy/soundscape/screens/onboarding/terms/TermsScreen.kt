@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.terms
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -110,7 +109,6 @@ fun TermsScreen(
                     )
                 )
                 Text(
-                    modifier = Modifier.clickable { checkedState.value = !checkedState.value },
                     text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onPrimary
