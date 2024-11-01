@@ -41,7 +41,9 @@ fun SetUpOnboardingNavGraph(
             AudioBeaconsScreen(onNavigate = { navController.navigate(OnboardingScreens.Terms.route) })
         }
         composable(OnboardingScreens.Terms.route) {
-            TermsScreen(onNavigate = { navController.navigate(OnboardingScreens.Finish.route) })
+            TermsScreen(onNavigate = {
+                navController.navigate(OnboardingScreens.Finish.route)
+            })
         }
         composable(OnboardingScreens.Finish.route) {
             FinishScreen(
