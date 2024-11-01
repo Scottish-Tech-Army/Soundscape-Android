@@ -53,13 +53,13 @@
     <string name="search_view_markers">Markers &amp; Routes</string>
 
     <string name="callouts_panel_title">Hear My Surroundings</string>
-    <string name="ui_action_button_my_location">My\nLocation</string>
+    <string name="ui_action_button_my_location">My Location</string>
     <string name="user_activity_my_location_title">What\'s My Location?</string>
-    <string name="ui_action_button_around_me">Around\nMe</string>
+    <string name="ui_action_button_around_me">Around Me</string>
     <string name="user_activity_around_me_title">What\'s Around Me?</string>
-    <string name="ui_action_button_ahead_of_me">Ahead\nof Me</string>
+    <string name="ui_action_button_ahead_of_me">Ahead of Me</string>
     <string name="user_activity_ahead_of_me_title">What\'s Ahead of Me?</string>
-    <string name="ui_action_button_nearby_markers">Nearby\nMarkers</string>
+    <string name="ui_action_button_nearby_markers">Nearby Markers</string>
     <string name="user_activity_nearby_markers_title">Hear Markers Nearby</string>
 
     <string name="general_alert_yes">Yes</string>

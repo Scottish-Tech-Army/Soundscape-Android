@@ -122,7 +122,7 @@ private fun HomeBottomAppBarButton(
         },
         shape = RectangleShape,
         modifier = modifier,
-        contentPadding = PaddingValues(0.dp)
+        contentPadding = PaddingValues(4.dp)
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
@@ -143,8 +143,9 @@ private fun HomeBottomAppBarButton(
             Text(
                 text = text,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelMedium
+                style = MaterialTheme.typography.labelMedium,
             )
+
         }
     }
 }
