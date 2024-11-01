@@ -126,7 +126,7 @@ fun Home(
                 onNavigate = onNavigate,
                 searchBar = {
                     MainSearchBar(
-                        searchText = "Hello Dave",
+                        searchText = "",
                         isSearching = false,
                         itemList = emptyList(),
                         onSearchTextChange = { },
