@@ -6,7 +6,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
@@ -53,20 +56,13 @@ fun Settings(
                 Text(
                     text = stringResource(R.string.menu_manage_callouts),
                     color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.semantics { heading() },
                 )
             }
             switchPreference(
                 key = MainActivity.ALLOW_CALLOUTS_KEY,
                 defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
                 title = { Text(text = stringResource(R.string.callouts_allow_callouts)) },
-                summary = {
-                    Text(
-                        text = if (it) stringResource(R.string.callouts_callouts_on) else stringResource(
-                            R.string.callouts_callouts_off
-                        ),
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-                }
             )
             switchPreference(
                 key = MainActivity.PLACES_AND_LANDMARKS_KEY,
@@ -93,7 +89,8 @@ fun Settings(
                 Text(
                     text = "Manage Audio Engine",
                     color = MaterialTheme.colorScheme.onPrimary,
-                )
+                    modifier = Modifier.semantics { heading() },
+                    )
             }
             listPreference(
                 key = MainActivity.BEACON_TYPE_KEY,
@@ -124,7 +121,8 @@ fun Settings(
                     Text(
                         text = "Debug settings",
                         color = MaterialTheme.colorScheme.onPrimary,
-                    )
+                        modifier = Modifier.semantics { heading() },
+                        )
                 }
                 switchPreference(
                     key = MainActivity.MAP_DEBUG_KEY,
