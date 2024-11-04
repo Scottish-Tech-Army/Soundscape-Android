@@ -166,6 +166,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
             is String -> writer.value(value)
             is Double -> writer.value(value)
             is Int -> writer.value(value)
+            is Long -> writer.value(value)
             is Boolean -> writer.value(value)
             is Map<*, *> -> writeMap(value, writer)
             is Collection<*> -> {
