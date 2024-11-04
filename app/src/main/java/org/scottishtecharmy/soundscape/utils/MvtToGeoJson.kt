@@ -108,7 +108,7 @@ data class IntersectionDetails(
     val subClass : String,
     val brunnel : String,
     val nameLayer : Boolean,
-    val id : String,
+    val id : Long,
     var lineEnd : Boolean = false
 )
 private fun intersectionCheck(highwayPoints : HashMap< Int, ArrayList<IntersectionDetails>>,
@@ -135,9 +135,7 @@ private fun intersectionCheck(highwayPoints : HashMap< Int, ArrayList<Intersecti
                 }
             }
             if(!add) continue
-            if((point == line.first()) || (point == line.last())) {
-                details.lineEnd = true
-            }
+            details.lineEnd = ((point == line.first()) || (point == line.last()))
             highwayPoints[coordinateKey]?.add(details)
             //
             // On initial testing, this intersection spotting is unreliable with the
@@ -186,6 +184,7 @@ fun vectorTileToGeoJson(tileX: Int,
     val tileZoom = ZOOM_LEVEL
 
     val collection = FeatureCollection()
+    val osmNameMap : HashMap<Long, String> = hashMapOf()
     val intersectionPoints : HashMap< Int, ArrayList<IntersectionDetails>> = hashMapOf()
 
     // When processing the layers, we want to handle transportation_name before transportation.
@@ -288,31 +287,42 @@ fun vectorTileToGeoJson(tileX: Int,
                         properties?.let {
                             name = properties["name"].toString()
                             if(name == "null") {
-                                name = properties["class"].toString()
+                                if(osmNameMap.containsKey(feature.id)) {
+                                    name = osmNameMap[feature.id]!!
+                                } else {
+                                    name = properties["class"].toString()
+                                }
+                            } else {
+                                // Populate our map of ids to names
+                                osmNameMap[feature.id] = name
                             }
                             type = properties["class"].toString()
                             subclass = properties["subclass"].toString()
                             brunnel = properties["brunnel"].toString()
                         }
 
-                        for (line in lines) {
-                            val details = IntersectionDetails(name,
-                                type,
-                                subclass,
-                                brunnel,
-                                layerId == "transportation_name",
-                                feature.id.toString())
-                            intersectionCheck(intersectionPoints, line, details)
-                            listOfGeometries.add(
-                                LineString(
-                                    convertGeometry(
-                                        tileX,
-                                        tileY,
-                                        tileZoom,
-                                        line
+                        if((layerId == "transportation_name") || true /*!osmNameMap.containsKey(feature.id)*/) {
+                            for (line in lines) {
+                                val details = IntersectionDetails(
+                                    name,
+                                    type,
+                                    subclass,
+                                    brunnel,
+                                    layerId == "transportation_name",
+                                    feature.id
+                                )
+                                intersectionCheck(intersectionPoints, line, details)
+                                listOfGeometries.add(
+                                    LineString(
+                                        convertGeometry(
+                                            tileX,
+                                            tileY,
+                                            tileZoom,
+                                            line
+                                        )
                                     )
                                 )
-                            )
+                            }
                         }
                     }
 
@@ -324,10 +334,9 @@ fun vectorTileToGeoJson(tileX: Int,
                 for (geometry in listOfGeometries) {
                     // And map the tags
                     val geoFeature = Feature()
-                    geoFeature.id = feature.id.toString()
                     geoFeature.geometry = geometry
                     geoFeature.properties = properties
-                    geoFeature.foreign = translateProperties(properties, feature.id.toString())
+                    geoFeature.foreign = translateProperties(properties, feature.id)
                     collection.addFeature(geoFeature)
                 }
             }
@@ -337,18 +346,18 @@ fun vectorTileToGeoJson(tileX: Int,
     for((key, intersections)  in intersectionPoints) {
         if(intersections.size > 1) {
 
-            // Skip any intersections where there are only two lines that are both ending and the
-            // road type isn't changing
-            var skip = false
-            if(intersections.size == 2) {
-                val road1 = intersections[0]
-                val road2 = intersections[1]
-                if((road1.lineEnd && road2.lineEnd) &&
-                    (road1.type == road2.type)) {
-                    skip = true
-                }
-            }
-            if(skip) continue
+//            // Skip any intersections where there are only two lines that are both ending, the
+//            // road type isn't changing and they are named
+//            var skip = false
+//            if(intersections.size == 2) {
+//                val road1 = intersections[0]
+//                val road2 = intersections[1]
+//                if((road1.lineEnd && road2.lineEnd) &&
+//                    (road1.type == road2.type)) {
+//                    skip = true
+//                }
+//            }
+//            //if(skip) continue
 
             val intersection = Feature()
             val x = key.shr(12)
@@ -361,7 +370,7 @@ fun vectorTileToGeoJson(tileX: Int,
             intersection.foreign!!["feature_type"] = "highway"
             intersection.foreign!!["feature_value"] = "gd_intersection"
             var name = ""
-            val osmIds = arrayListOf<String>()
+            val osmIds = arrayListOf<Long>()
             for (road in intersections) {
                 if(road.brunnel != "null")
                     name += "${road.brunnel}/"
@@ -381,7 +390,7 @@ fun vectorTileToGeoJson(tileX: Int,
     return collection
 }
 
-fun translateProperties(properties: HashMap<String, Any?>?, id: String): HashMap<String, Any?> {
+fun translateProperties(properties: HashMap<String, Any?>?, id: Long): HashMap<String, Any?> {
     val foreign : HashMap<String, Any?> = hashMapOf()
     if(properties != null) {
         for(property in properties) {
@@ -419,7 +428,7 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: String): HashMap
             }
         }
     }
-    val osmIds = arrayListOf<String>()
+    val osmIds = arrayListOf<Long>()
     osmIds.add(id)
     foreign["osm_ids"] = osmIds
 
