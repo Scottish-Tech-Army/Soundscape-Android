@@ -373,6 +373,7 @@ fun vectorTileToGeoJson(tileX: Int,
                                     // This is nameless, so use the class to describe it
                                     name = properties["class"].toString()
                                 }
+                                properties["name"] = name
                             } else {
                                 // Populate our map of ids to names
                                 assert(layerId == "transportation_name")
@@ -390,7 +391,7 @@ fun vectorTileToGeoJson(tileX: Int,
                         if(layerId == "transportation")
                         {
                             for (line in lines) {
-                                if(feature.id != 0L) {
+                                if(feature.id == 0L) {
                                     println("Feature ID is zero for ${name.toString()}")
                                 }
                                 val details = IntersectionDetails(
