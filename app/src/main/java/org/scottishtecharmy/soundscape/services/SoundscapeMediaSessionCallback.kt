@@ -60,6 +60,9 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
                 }
                 KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
                     // TODO: ⏮ Previous: Repeat last callout.
+                    //  For now play out what's ahead of me - this is to aid testing as I wander
+                    //  around!
+                    service.aheadOfMe()
                     "Previous"
                 }
                 KeyEvent.KEYCODE_MEDIA_NEXT -> {
