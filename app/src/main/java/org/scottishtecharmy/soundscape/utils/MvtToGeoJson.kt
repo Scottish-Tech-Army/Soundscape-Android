@@ -240,19 +240,20 @@ class IntersectionDetection {
  * `planetiler`. A stock running of `planetiler` is missing some data that we need, so we disable
  * simplification at the maximum zoom level (which is what we're using here) and we also force the
  * addition of a Feature id on all Features within the transportation layer. This allows us to more
- * easily deduplicate roads and paths. This addition of the Feature id is only in our builds and not
- * yet in upstream `planetiler`. Neither of these changes should affect the graphical rendering of
- * the tiles which is important as we're using the tiles for that too.
+ * easily identify roads and paths for intersection handling. We also add a name tag to every
+ * feature in the transportation layer. This ensures that we always have an OSM id and a name where
+ * there's one available. The `transportation_name` layer is left unused and so its merging of
+ * lines to improve the graphical UI is untouched.
+ * Note that these changes are  only in our builds and won't be in upstream `planetiler`. None of
+ * these changes should affect the graphical rendering of the tiles which is important as we're
+ * using the tiles for that too.
  *
- * We currently only look at 3 layers which are defined here https://openmaptiles.org/schema/:
+ * This means that we only look at 2 layers which are defined here https://openmaptiles.org/schema/:
  *
- * 1. `transportation_name` which contains all of the named footways/roads etc. in the tile. We use
- * this just to create a dictionary mapping the unique id of a road to its name.
- * 2. `transportation` contains all footways/roads etc. including named and unnamed and so is a
- * superset of `transportation_name`.  We use the lines from this and then lookup the names via the
- * dictionary we made from the `transportation_name` layer with the Feature id. The result is that
- * we should have no duplication of roads.
- * 3. `poi` contains points of interest.
+ * 1. `transportation` contains all footways/roads etc. including named and unnamed and so is a
+ * superset of `transportation_name`.  We use the lines from this and along with the names which we
+ * added in our custom map.
+ * 2. `poi` contains points of interest.
  *
  */
 fun vectorTileToGeoJson(tileX: Int,
@@ -263,176 +264,162 @@ fun vectorTileToGeoJson(tileX: Int,
     val tileZoom = ZOOM_LEVEL
 
     val collection = FeatureCollection()
-    val osmNameMap : HashMap<Long, String> = hashMapOf()
     val intersectionDetection = IntersectionDetection()
 
-    // When processing the layers, we want to handle transportation_name before transportation so
-    // that we can populate a dictionary of id -> names.
-    for (layerId in arrayOf("transportation_name", "transportation", "poi")) {
-        for(layer in mvt.layersList) {
-            if(layer.name != layerId)
-                continue
+    val layerIds = arrayOf("transportation", "poi")
 
-            println("Process layer: " + layer.name)
-            for (feature in layer.featuresList) {
-                // Convert coordinates to GeoJSON. This is where we find out how many features
-                // we're actually dealing with as there can be multiple features that have the
-                // same properties.
-                assert(feature.type != null)
-                val listOfGeometries = mutableListOf<GeoJsonObject>()
+    for(layer in mvt.layersList) {
+        if(!layerIds.contains(layer.name)) {
+            continue
+        }
 
-                // Parse tags
-                var firstInPair = true
-                var key = ""
-                var value: Any? = null
-                var properties: java.util.HashMap<String, Any?>? = null
-                for (tag in feature.tagsList) {
-                    if (firstInPair)
-                        key = layer.getKeys(tag)
-                    else {
-                        val raw = layer.getValues(tag)
-                        if (raw.hasBoolValue())
-                            value = layer.getValues(tag).boolValue
-                        else if (raw.hasIntValue())
-                            value = layer.getValues(tag).intValue
-                        else if (raw.hasSintValue())
-                            value = layer.getValues(tag).sintValue
-                        else if (raw.hasFloatValue())
-                            value = layer.getValues(tag).doubleValue
-                        else if (raw.hasDoubleValue())
-                            value = layer.getValues(tag).floatValue
-                        else if (raw.hasStringValue())
-                            value = layer.getValues(tag).stringValue
-                        else if (raw.hasUintValue())
-                            value = layer.getValues(tag).uintValue
-                    }
+        println("Process layer: " + layer.name)
+        for (feature in layer.featuresList) {
+            // Convert coordinates to GeoJSON. This is where we find out how many features
+            // we're actually dealing with as there can be multiple features that have the
+            // same properties.
+            assert(feature.type != null)
+            val listOfGeometries = mutableListOf<GeoJsonObject>()
 
-                    if (!firstInPair) {
-                        if (properties == null) {
-                            properties = HashMap()
-                        }
-                        properties[key] = value
-                        firstInPair = true
-                    } else
-                        firstInPair = false
+            // Parse tags
+            var firstInPair = true
+            var key = ""
+            var value: Any? = null
+            var properties: java.util.HashMap<String, Any?>? = null
+            for (tag in feature.tagsList) {
+                if (firstInPair)
+                    key = layer.getKeys(tag)
+                else {
+                    val raw = layer.getValues(tag)
+                    if (raw.hasBoolValue())
+                        value = layer.getValues(tag).boolValue
+                    else if (raw.hasIntValue())
+                        value = layer.getValues(tag).intValue
+                    else if (raw.hasSintValue())
+                        value = layer.getValues(tag).sintValue
+                    else if (raw.hasFloatValue())
+                        value = layer.getValues(tag).doubleValue
+                    else if (raw.hasDoubleValue())
+                        value = layer.getValues(tag).floatValue
+                    else if (raw.hasStringValue())
+                        value = layer.getValues(tag).stringValue
+                    else if (raw.hasUintValue())
+                        value = layer.getValues(tag).uintValue
                 }
 
-                // Parse geometries
-                when (feature.type) {
-                    VectorTile.Tile.GeomType.POLYGON -> {
-                        val polygons = parseGeometry(
-                            false,
-                            feature.geometryList
+                if (!firstInPair) {
+                    if (properties == null) {
+                        properties = HashMap()
+                    }
+                    properties[key] = value
+                    firstInPair = true
+                } else
+                    firstInPair = false
+            }
+
+            // Parse geometries
+            when (feature.type) {
+                VectorTile.Tile.GeomType.POLYGON -> {
+                    val polygons = parseGeometry(
+                        false,
+                        feature.geometryList
+                    )
+                    for (polygon in polygons) {
+                        if (polygon.first() != polygon.last())
+                            polygon.add(polygon.first())
+                        listOfGeometries.add(
+                            Polygon(
+                                convertGeometry(
+                                    tileX,
+                                    tileY,
+                                    tileZoom,
+                                    polygon
+                                )
+                            )
                         )
-                        for (polygon in polygons) {
-                            if (polygon.first() != polygon.last())
-                                polygon.add(polygon.first())
+                    }
+                }
+
+                VectorTile.Tile.GeomType.POINT -> {
+                    val points =
+                        parseGeometry(cropPoints, feature.geometryList)
+                    for (point in points) {
+                        if (point.isNotEmpty()) {
+                            val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
                             listOfGeometries.add(
-                                Polygon(
+                                Point(coordinates[0].longitude, coordinates[0].latitude)
+                            )
+                        }
+                    }
+                }
+
+                VectorTile.Tile.GeomType.LINESTRING -> {
+                    val lines = parseGeometry(
+                        false,
+                        feature.geometryList
+                    )
+
+                    var name : Any? = null
+                    var type = ""
+                    var subclass = ""
+                    var brunnel = ""
+                    properties?.let {
+                        name = properties["name"]
+                        if(name == null) {
+                            // This is nameless, so use the class to describe it
+                            name = properties["class"].toString()
+                        }
+                        properties["name"] = name
+                        type = properties["class"].toString()
+                        subclass = properties["subclass"].toString()
+                        brunnel = properties["brunnel"].toString()
+                    }
+
+                    if(layer.name == "transportation")
+                    {
+                        for (line in lines) {
+                            if(feature.id == 0L) {
+                                println("Feature ID is zero for ${name.toString()}")
+                            }
+                            val details = IntersectionDetails(
+                                name.toString(),
+                                type,
+                                subclass,
+                                brunnel,
+                                feature.id
+                            )
+                            intersectionDetection.addLine(line, details)
+                            listOfGeometries.add(
+                                LineString(
                                     convertGeometry(
                                         tileX,
                                         tileY,
                                         tileZoom,
-                                        polygon
+                                        line
                                     )
                                 )
                             )
                         }
-                    }
-
-                    VectorTile.Tile.GeomType.POINT -> {
-                        val points =
-                            parseGeometry(cropPoints, feature.geometryList)
-                        for (point in points) {
-                            if (point.isNotEmpty()) {
-                                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
-                                listOfGeometries.add(
-                                    Point(coordinates[0].longitude, coordinates[0].latitude)
-                                )
-                            }
-                        }
-                    }
-
-                    VectorTile.Tile.GeomType.LINESTRING -> {
-                        val lines = parseGeometry(
-                            false,
-                            feature.geometryList
-                        )
-
-                        var name : Any? = null
-                        var type = ""
-                        var subclass = ""
-                        var brunnel = ""
-                        properties?.let {
-                            // Only features within the transportation_name layer should have a name
-                            name = properties["name"]
-                            if(name == null) {
-                                if(osmNameMap.containsKey(feature.id)) {
-                                    name = osmNameMap[feature.id]
-                                } else {
-                                    // This is nameless, so use the class to describe it
-                                    name = properties["class"].toString()
-                                }
-                                properties["name"] = name
-                            } else {
-                                // Populate our map of ids to names
-                                assert(layerId == "transportation_name")
-                                if(osmNameMap.containsKey(feature.id)) {
-                                    println("Name for ${feature.id} already exists ${osmNameMap[feature.id]}")
-                                } else {
-                                    osmNameMap[feature.id] = name.toString()
-                                }
-                            }
-                            type = properties["class"].toString()
-                            subclass = properties["subclass"].toString()
-                            brunnel = properties["brunnel"].toString()
-                        }
-
-                        if(layerId == "transportation")
-                        {
-                            for (line in lines) {
-                                if(feature.id == 0L) {
-                                    println("Feature ID is zero for ${name.toString()}")
-                                }
-                                val details = IntersectionDetails(
-                                    name.toString(),
-                                    type,
-                                    subclass,
-                                    brunnel,
-                                    feature.id
-                                )
-                                intersectionDetection.addLine(line, details)
-                                listOfGeometries.add(
-                                    LineString(
-                                        convertGeometry(
-                                            tileX,
-                                            tileY,
-                                            tileZoom,
-                                            line
-                                        )
-                                    )
-                                )
-                            }
-                       }
-                    }
-
-                    VectorTile.Tile.GeomType.UNKNOWN -> {
-                        assert(false)
-                    }
+                   }
                 }
 
-                for (geometry in listOfGeometries) {
-                    // And map the tags
-                    val geoFeature = Feature()
-                    geoFeature.geometry = geometry
-                    properties!!["osm_ids"] = feature.id
-                    geoFeature.properties = properties
-                    geoFeature.foreign = translateProperties(properties, feature.id)
-                    collection.addFeature(geoFeature)
+                VectorTile.Tile.GeomType.UNKNOWN -> {
+                    assert(false)
                 }
+            }
+
+            for (geometry in listOfGeometries) {
+                // And map the tags
+                val geoFeature = Feature()
+                geoFeature.geometry = geometry
+                properties!!["osm_ids"] = feature.id
+                geoFeature.properties = properties
+                geoFeature.foreign = translateProperties(properties, feature.id)
+                collection.addFeature(geoFeature)
             }
         }
     }
+
     // Add intersections
     intersectionDetection.generateIntersections(collection, tileX, tileY)
 
