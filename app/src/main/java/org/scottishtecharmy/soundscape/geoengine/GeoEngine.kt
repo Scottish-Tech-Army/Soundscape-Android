@@ -265,7 +265,7 @@ class GeoEngine {
             val frozenResult = tilesRepository.getTile(tile.quadkey)
             // If Tile doesn't already exist in db go and get it, clean it, process it
             // and insert into db
-            if (frozenResult.size == 0) {
+            if (frozenResult.isEmpty()) {
                 fetchTile = true
             } else {
                 // get the current time and then check against lastUpdated in frozenResult
@@ -321,7 +321,7 @@ class GeoEngine {
             val gridFeatureCollections = getGridFeatureCollections()
             roadGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.ROADS.id])
 
-            if (roadGridFeatureCollection.features.size > 0) {
+            if (roadGridFeatureCollection.features.isNotEmpty()) {
                 //Log.d(TAG, "Found roads in tile")
                 val nearestRoad =
                     getNearestRoad(
@@ -331,23 +331,25 @@ class GeoEngine {
                         ),
                         roadGridFeatureCollection
                     )
-                val properties = nearestRoad.features[0].properties
-                if (properties != null) {
-                    val orientation = directionProvider.getCurrentDirection()
-                    var roadName = properties["name"]
-                    if (roadName == null) {
-                        roadName = properties["highway"]
+                if(nearestRoad.features.isNotEmpty()) {
+                    val properties = nearestRoad.features[0].properties
+                    if (properties != null) {
+                        val orientation = directionProvider.getCurrentDirection()
+                        var roadName = properties["name"]
+                        if (roadName == null) {
+                            roadName = properties["highway"]
+                        }
+                        val facingDirectionAlongRoad =
+                            getCompassLabelFacingDirectionAlong(
+                                localizedContext,
+                                orientation.toInt(),
+                                roadName.toString(),
+                                configLocale
+                            )
+                        results.add(facingDirectionAlongRoad)
+                    } else {
+                        Log.e(TAG, "No properties found for road")
                     }
-                    val facingDirectionAlongRoad =
-                        getCompassLabelFacingDirectionAlong(
-                            localizedContext,
-                            orientation.toInt(),
-                            roadName.toString(),
-                            configLocale
-                        )
-                    results.add(facingDirectionAlongRoad)
-                } else {
-                    Log.e(TAG, "No properties found for road")
                 }
             } else {
                 //Log.d(TAG, "No roads found in tile just give device direction")
@@ -388,7 +390,7 @@ class GeoEngine {
             val gridFeatureCollections = getGridFeatureCollections()
             gridPoiFeatureCollection.features.addAll(gridFeatureCollections[Fc.POIS.id])
 
-            if (gridPoiFeatureCollection.features.size > 0) {
+            if (gridPoiFeatureCollection.features.isNotEmpty()) {
                 val settingsFeatureCollection = FeatureCollection()
                 if (placesAndLandmarks) {
                     if (mobility) {
@@ -476,7 +478,7 @@ class GeoEngine {
                 }
                 // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
                 // "information", "object", "place", "landmark", "mobility", "safety"
-                if (settingsFeatureCollection.features.size > 0) {
+                if (settingsFeatureCollection.features.isNotEmpty()) {
                     // Original Soundscape doesn't work like this as it doesn't order them by distance
                     val sortedByDistanceToFeatureCollection = sortedByDistanceTo(
                         locationProvider.getCurrentLatitude() ?: 0.0,
@@ -552,7 +554,7 @@ class GeoEngine {
             crossingsGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.CROSSINGS.id])
             busStopsGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.BUS_STOPS.id])
 
-            if (roadsGridFeatureCollection.features.size > 0) {
+            if (roadsGridFeatureCollection.features.isNotEmpty()) {
                 val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
                     LngLatAlt(
                         locationProvider.getCurrentLongitude() ?: 0.0,
@@ -590,7 +592,7 @@ class GeoEngine {
                     busStopsGridFeatureCollection
                 )
 
-                if (fovRoadsFeatureCollection.features.size > 0) {
+                if (fovRoadsFeatureCollection.features.isNotEmpty()) {
                     val nearestRoad = getNearestRoad(
                         LngLatAlt(
                             locationProvider.getCurrentLongitude() ?: 0.0,
@@ -599,18 +601,20 @@ class GeoEngine {
                         fovRoadsFeatureCollection
                     )
                     // TODO check for Settings, Unnamed roads on/off here
-                    if (nearestRoad.features[0].properties?.get("name") != null) {
-                        results.add(
-                            "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
-                        )
-                    } else {
-                        // we are detecting an unnamed road here but pretending there is nothing here
-                        results.add(
-                            localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                        )
+                    if (nearestRoad.features.isNotEmpty()) {
+                        if (nearestRoad.features[0].properties?.get("name") != null) {
+                            results.add(
+                                "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
+                            )
+                        } else {
+                            // we are detecting an unnamed road here but pretending there is nothing here
+                            results.add(
+                                localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
+                            )
+                        }
                     }
 
-                    if (fovIntersectionsFeatureCollection.features.size > 0) {
+                    if (fovIntersectionsFeatureCollection.features.isNotEmpty()) {
 
                         val intersectionsSortedByDistance = sortedByDistanceTo(
                             locationProvider.getCurrentLatitude() ?: 0.0,
@@ -651,58 +655,71 @@ class GeoEngine {
                             fovIntersectionsFeatureCollection
                         )
                         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, orientation)
-                        val intersectionLocation = newIntersectionFeatureCollection.features[0].geometry as Point
-                        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-                            LngLatAlt(intersectionLocation.coordinates.longitude,
-                                intersectionLocation.coordinates.latitude),
-                            nearestRoadBearing,
-                            //fovDistance,
-                            5.0,
-                            RelativeDirections.COMBINED
-                        )
-                        val distanceToNearestIntersection = distance(
-                            locationProvider.getCurrentLatitude() ?: 0.0,
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            intersectionLocation.coordinates.latitude,
-                            intersectionLocation.coordinates.longitude
+                        if(newIntersectionFeatureCollection.features.isNotEmpty()) {
+                            val intersectionLocation =
+                                newIntersectionFeatureCollection.features[0].geometry as Point
+                            val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+                                LngLatAlt(
+                                    intersectionLocation.coordinates.longitude,
+                                    intersectionLocation.coordinates.latitude
+                                ),
+                                nearestRoadBearing,
+                                //fovDistance,
+                                5.0,
+                                RelativeDirections.COMBINED
                             )
-                        val intersectionRoadNames = getIntersectionRoadNames(newIntersectionFeatureCollection, fovRoadsFeatureCollection)
-                        results.add(
-                            "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${localizedContext.getString(R.string.distance_format_meters, distanceToNearestIntersection.toInt().toString())}"
-                        )
+                            val distanceToNearestIntersection = distance(
+                                locationProvider.getCurrentLatitude() ?: 0.0,
+                                locationProvider.getCurrentLongitude() ?: 0.0,
+                                intersectionLocation.coordinates.latitude,
+                                intersectionLocation.coordinates.longitude
+                            )
+                            val intersectionRoadNames = getIntersectionRoadNames(
+                                newIntersectionFeatureCollection,
+                                fovRoadsFeatureCollection
+                            )
+                            results.add(
+                                "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
+                                    localizedContext.getString(
+                                        R.string.distance_format_meters,
+                                        distanceToNearestIntersection.toInt().toString()
+                                    )
+                                }"
+                            )
 
-                        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
-                            intersectionRoadNames,
-                            newIntersectionFeatureCollection,
-                            intersectionRelativeDirections
-                        )
-                        for (feature in roadRelativeDirections.features) {
-                            val direction =
-                                feature.properties?.get("Direction").toString().toIntOrNull()
-                            // Don't call out the road we are on (0) as part of the intersection
-                            if (direction != null && direction != 0) {
-                                val relativeDirectionString =
-                                    getRelativeDirectionLabel(
-                                        localizedContext,
-                                        direction,
-                                        configLocale
-                                    )
-                                if (feature.properties?.get("name") != null) {
-                                    val intersectionCallout = localizedContext.getString(
-                                        R.string.directions_intersection_with_name_direction,
-                                        feature.properties?.get("name"),
-                                        relativeDirectionString
-                                    )
-                                    results.add(
-                                        intersectionCallout
-                                    )
+                            val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
+                                intersectionRoadNames,
+                                newIntersectionFeatureCollection,
+                                intersectionRelativeDirections
+                            )
+                            for (feature in roadRelativeDirections.features) {
+                                val direction =
+                                    feature.properties?.get("Direction").toString().toIntOrNull()
+                                // Don't call out the road we are on (0) as part of the intersection
+                                if (direction != null && direction != 0) {
+                                    val relativeDirectionString =
+                                        getRelativeDirectionLabel(
+                                            localizedContext,
+                                            direction,
+                                            configLocale
+                                        )
+                                    if (feature.properties?.get("name") != null) {
+                                        val intersectionCallout = localizedContext.getString(
+                                            R.string.directions_intersection_with_name_direction,
+                                            feature.properties?.get("name"),
+                                            relativeDirectionString
+                                        )
+                                        results.add(
+                                            intersectionCallout
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
                 }
                 // detect if there is a crossing in the FOV
-                if (fovCrossingsFeatureCollection.features.size > 0) {
+                if (fovCrossingsFeatureCollection.features.isNotEmpty()) {
 
                     val nearestCrossing = getNearestIntersection(
                         LngLatAlt(
@@ -711,35 +728,44 @@ class GeoEngine {
                         ),
                         fovCrossingsFeatureCollection
                     )
-                    val crossingLocation = nearestCrossing.features[0].geometry as Point
-                    val distanceToCrossing = distance(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        crossingLocation.coordinates.latitude,
-                        crossingLocation.coordinates.longitude
-                    )
-                    // Confirm which road the crossing is on
-                    val nearestRoadToCrossing = getNearestRoad(
-                        LngLatAlt(
-                            crossingLocation.coordinates.longitude,
-                            crossingLocation.coordinates.latitude
-                        ),
-                        fovRoadsFeatureCollection
-                    )
-                    val crossingText = buildString {
-                        append(localizedContext.getString(R.string.osm_tag_crossing))
-                        append(". ")
-                        append(localizedContext.getString(R.string.distance_format_meters, distanceToCrossing.toInt().toString()))
-                        append(". ")
-                        if (nearestRoadToCrossing.features[0].properties?.get("name") != null){
-                            append(nearestRoadToCrossing.features[0].properties?.get("name"))
+                    if (nearestCrossing.features.isNotEmpty()) {
+                        val crossingLocation = nearestCrossing.features[0].geometry as Point
+                        val distanceToCrossing = distance(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            crossingLocation.coordinates.latitude,
+                            crossingLocation.coordinates.longitude
+                        )
+                        // Confirm which road the crossing is on
+                        val nearestRoadToCrossing = getNearestRoad(
+                            LngLatAlt(
+                                crossingLocation.coordinates.longitude,
+                                crossingLocation.coordinates.latitude
+                            ),
+                            fovRoadsFeatureCollection
+                        )
+                        if (nearestRoadToCrossing.features.isNotEmpty()) {
+                            val crossingText = buildString {
+                                append(localizedContext.getString(R.string.osm_tag_crossing))
+                                append(". ")
+                                append(
+                                    localizedContext.getString(
+                                        R.string.distance_format_meters,
+                                        distanceToCrossing.toInt().toString()
+                                    )
+                                )
+                                append(". ")
+                                if (nearestRoadToCrossing.features[0].properties?.get("name") != null) {
+                                    append(nearestRoadToCrossing.features[0].properties?.get("name"))
+                                }
+                            }
+                            results.add(crossingText)
                         }
                     }
-                    results.add(crossingText)
                 }
 
                 // detect if there is a bus_stop in the FOV
-                if (fovBusStopsFeatureCollection.features.size > 0) {
+                if (fovBusStopsFeatureCollection.features.isNotEmpty()) {
                     val nearestBusStop = getNearestIntersection(
                         LngLatAlt(
                             locationProvider.getCurrentLongitude() ?: 0.0,
@@ -747,33 +773,41 @@ class GeoEngine {
                         ),
                         fovBusStopsFeatureCollection
                     )
-                    val busStopLocation = nearestBusStop.features[0].geometry as Point
-                    val distanceToBusStop = distance(
-                        locationProvider.getCurrentLatitude() ?: 0.0,
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        busStopLocation.coordinates.latitude,
-                        busStopLocation.coordinates.longitude
-                    )
-                    // Confirm which road the crossing is on
-                    val nearestRoadToBus = getNearestRoad(
-                        LngLatAlt(
-                            busStopLocation.coordinates.longitude,
-                            busStopLocation.coordinates.latitude
-                        ),
-                        fovRoadsFeatureCollection
-                    )
-                    val busText = buildString {
-                        append(localizedContext.getString(R.string.osm_tag_bus_stop))
-                        append(". ")
-                        append(localizedContext.getString(R.string.distance_format_meters, distanceToBusStop.toInt().toString()))
-                        append(". ")
-                        if (nearestRoadToBus.features[0].properties?.get("name") != null){
-                            append(nearestRoadToBus.features[0].properties?.get("name"))
+                    if (nearestBusStop.features.isNotEmpty()) {
+                        val busStopLocation = nearestBusStop.features[0].geometry as Point
+                        val distanceToBusStop = distance(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            busStopLocation.coordinates.latitude,
+                            busStopLocation.coordinates.longitude
+                        )
+                        // Confirm which road the crossing is on
+                        val nearestRoadToBus = getNearestRoad(
+                            LngLatAlt(
+                                busStopLocation.coordinates.longitude,
+                                busStopLocation.coordinates.latitude
+                            ),
+                            fovRoadsFeatureCollection
+                        )
+                        if(nearestRoadToBus.features.isNotEmpty()) {
+                            val busText = buildString {
+                                append(localizedContext.getString(R.string.osm_tag_bus_stop))
+                                append(". ")
+                                append(
+                                    localizedContext.getString(
+                                        R.string.distance_format_meters,
+                                        distanceToBusStop.toInt().toString()
+                                    )
+                                )
+                                append(". ")
+                                if (nearestRoadToBus.features[0].properties?.get("name") != null) {
+                                    append(nearestRoadToBus.features[0].properties?.get("name"))
+                                }
+                            }
+                            results.add(busText)
                         }
                     }
-                    results.add(busText)
                 }
-
             } else {
                 results.add(
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)

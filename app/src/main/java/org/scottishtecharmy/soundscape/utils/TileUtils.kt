@@ -1422,18 +1422,19 @@ fun removeDuplicates(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
+    if(intersectionToCheck.features.isNotEmpty()) {
+        val osmIdsAtIntersection =
+            intersectionToCheck.features[0].foreign?.get("osm_ids") as? List<*>
+                ?: // Handle case where osmIds is null
+                return newFeatureCollection // Or handle the error differently
 
-    val osmIdsAtIntersection = intersectionToCheck.features[0].foreign?.get("osm_ids") as? List<*>
-        ?: // Handle case where osmIds is null
-        return newFeatureCollection // Or handle the error differently
+        val uniqueOsmIds = osmIdsAtIntersection.toSet()
+        val cleanOsmIds = uniqueOsmIds.toList() // Convert back to list for potential modification
 
-    val uniqueOsmIds = osmIdsAtIntersection.toSet()
-    val cleanOsmIds = uniqueOsmIds.toList() // Convert back to list for potential modification
-
-    val intersectionClean = intersectionToCheck.features[0]
-    intersectionClean.foreign?.set("osm_ids", cleanOsmIds)
-    newFeatureCollection.addFeature(intersectionClean)
-
+        val intersectionClean = intersectionToCheck.features[0]
+        intersectionClean.foreign?.set("osm_ids", cleanOsmIds)
+        newFeatureCollection.addFeature(intersectionClean)
+    }
     return newFeatureCollection
 }
 
@@ -1836,6 +1837,9 @@ fun getRoadBearingToIntersection(
     deviceHeading: Double
 ): Double {
 
+    if(road.features.isEmpty() || intersection.features.isEmpty())
+        return 0.0
+
     val roadCoordinates = (road.features[0].geometry as LineString).coordinates
     val intersectionCoordinate = (intersection.features[0].geometry as Point).coordinates
 
@@ -1872,9 +1876,10 @@ fun getRoadBearingToIntersection(
             )
             bearingArray.add(bearing)
         }
-        return findClosestDirection(deviceHeading, bearingArray[0], bearingArray[1])
+        if(bearingArray.size >= 2)
+            return findClosestDirection(deviceHeading, bearingArray[0], bearingArray[1])
 
-
+        return 0.0
     }
 
     val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
@@ -1923,6 +1928,8 @@ fun getIntersectionRoadNamesRelativeDirections(
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
+    if(nearestIntersection.features.isEmpty())
+        return newFeatureCollection
 
     for (road in intersectionRoadNames) {
         val testRoadDirectionAtIntersection =
@@ -2107,6 +2114,9 @@ fun checkIntersection(
     testNearestRoad:FeatureCollection
 ): Boolean {
     //println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
+    if(testNearestRoad.features.isEmpty())
+        return false
+
     for (road in intersectionRoadNames) {
         val roadName = road.properties?.get("name")
         val isOneWay = road.properties?.get("oneway") == "yes"
