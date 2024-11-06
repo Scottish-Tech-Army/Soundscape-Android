@@ -1,9 +1,9 @@
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15991/10212.pbf -O 15991x10212.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15991/10213.pbf -O 15991x10213.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15992/10212.pbf -O 15992x10212.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15992/10213.pbf -O 15992x10213.mvt
+for x in $(seq 15990 15992);
+do
+  for y in $(seq 10212 10214);
+  do
+    wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/$x/$y.pbf -O ${x}x${y}.mvt
+  done
+done
+
 wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/16093/10211.pbf -O 16093x10211.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15990/10212.pbf -O 15990x10212.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15990/10213.pbf -O 15990x10213.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15990/10214.pbf -O 15990x10214.mvt
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/15991/10214.pbf -O 15991x10214.mvt
