@@ -639,79 +639,81 @@ class GeoEngine {
                                 intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[i])
                             }
                         }
-                        // Approach 1: find the intersection feature with the most osm_ids and use that?
-                        val featureWithMostOsmIds: Feature? = intersectionsNeedsFurtherCheckingFC.features.maxByOrNull {
-                                feature ->
-                            (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
-                        }
-                        val newIntersectionFeatureCollection = FeatureCollection()
-                        if (featureWithMostOsmIds != null) {
-                            newIntersectionFeatureCollection.addFeature(featureWithMostOsmIds)
-                        }
+                        if (intersectionsNeedsFurtherCheckingFC.features.isNotEmpty()) {
+                            // Approach 1: find the intersection feature with the most osm_ids and use that?
+                            val featureWithMostOsmIds: Feature? = intersectionsNeedsFurtherCheckingFC.features.maxByOrNull {
+                                    feature ->
+                                (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
+                            }
+                            val newIntersectionFeatureCollection = FeatureCollection()
+                            if (featureWithMostOsmIds != null) {
+                                newIntersectionFeatureCollection.addFeature(featureWithMostOsmIds)
+                            }
 
-                        val nearestIntersection = getNearestIntersection(
-                            LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0),
-                            fovIntersectionsFeatureCollection
-                        )
-                        val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, orientation)
-                        if(newIntersectionFeatureCollection.features.isNotEmpty()) {
-                            val intersectionLocation =
-                                newIntersectionFeatureCollection.features[0].geometry as Point
-                            val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-                                LngLatAlt(
-                                    intersectionLocation.coordinates.longitude,
-                                    intersectionLocation.coordinates.latitude
-                                ),
-                                nearestRoadBearing,
-                                //fovDistance,
-                                5.0,
-                                RelativeDirections.COMBINED
+                            val nearestIntersection = getNearestIntersection(
+                                LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0,
+                                    locationProvider.getCurrentLatitude() ?: 0.0),
+                                fovIntersectionsFeatureCollection
                             )
-                            val distanceToNearestIntersection = distance(
-                                locationProvider.getCurrentLatitude() ?: 0.0,
-                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                intersectionLocation.coordinates.latitude,
-                                intersectionLocation.coordinates.longitude
-                            )
-                            val intersectionRoadNames = getIntersectionRoadNames(
-                                newIntersectionFeatureCollection,
-                                fovRoadsFeatureCollection
-                            )
-                            results.add(
-                                "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
-                                    localizedContext.getString(
-                                        R.string.distance_format_meters,
-                                        distanceToNearestIntersection.toInt().toString()
-                                    )
-                                }"
-                            )
+                            val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, orientation)
+                            if(newIntersectionFeatureCollection.features.isNotEmpty()) {
+                                val intersectionLocation =
+                                    newIntersectionFeatureCollection.features[0].geometry as Point
+                                val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+                                    LngLatAlt(
+                                        intersectionLocation.coordinates.longitude,
+                                        intersectionLocation.coordinates.latitude
+                                    ),
+                                    nearestRoadBearing,
+                                    //fovDistance,
+                                    5.0,
+                                    RelativeDirections.COMBINED
+                                )
+                                val distanceToNearestIntersection = distance(
+                                    locationProvider.getCurrentLatitude() ?: 0.0,
+                                    locationProvider.getCurrentLongitude() ?: 0.0,
+                                    intersectionLocation.coordinates.latitude,
+                                    intersectionLocation.coordinates.longitude
+                                )
+                                val intersectionRoadNames = getIntersectionRoadNames(
+                                    newIntersectionFeatureCollection,
+                                    fovRoadsFeatureCollection
+                                )
+                                results.add(
+                                    "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
+                                        localizedContext.getString(
+                                            R.string.distance_format_meters,
+                                            distanceToNearestIntersection.toInt().toString()
+                                        )
+                                    }"
+                                )
 
-                            val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
-                                intersectionRoadNames,
-                                newIntersectionFeatureCollection,
-                                intersectionRelativeDirections
-                            )
-                            for (feature in roadRelativeDirections.features) {
-                                val direction =
-                                    feature.properties?.get("Direction").toString().toIntOrNull()
-                                // Don't call out the road we are on (0) as part of the intersection
-                                if (direction != null && direction != 0) {
-                                    val relativeDirectionString =
-                                        getRelativeDirectionLabel(
-                                            localizedContext,
-                                            direction,
-                                            configLocale
-                                        )
-                                    if (feature.properties?.get("name") != null) {
-                                        val intersectionCallout = localizedContext.getString(
-                                            R.string.directions_intersection_with_name_direction,
-                                            feature.properties?.get("name"),
-                                            relativeDirectionString
-                                        )
-                                        results.add(
-                                            intersectionCallout
-                                        )
+                                val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
+                                    intersectionRoadNames,
+                                    newIntersectionFeatureCollection,
+                                    intersectionRelativeDirections
+                                )
+                                for (feature in roadRelativeDirections.features) {
+                                    val direction =
+                                        feature.properties?.get("Direction").toString().toIntOrNull()
+                                    // Don't call out the road we are on (0) as part of the intersection
+                                    if (direction != null && direction != 0) {
+                                        val relativeDirectionString =
+                                            getRelativeDirectionLabel(
+                                                localizedContext,
+                                                direction,
+                                                configLocale
+                                            )
+                                        if (feature.properties?.get("name") != null) {
+                                            val intersectionCallout = localizedContext.getString(
+                                                R.string.directions_intersection_with_name_direction,
+                                                feature.properties?.get("name"),
+                                                relativeDirectionString
+                                            )
+                                            results.add(
+                                                intersectionCallout
+                                            )
+                                        }
                                     }
                                 }
                             }
