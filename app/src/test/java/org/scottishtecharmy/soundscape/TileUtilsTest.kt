@@ -32,8 +32,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.GRID_SIZE
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.utils.createTriangleFOV
 import org.scottishtecharmy.soundscape.utils.distance
 import org.scottishtecharmy.soundscape.utils.explodeLineString
+import org.scottishtecharmy.soundscape.utils.explodePolygon
 import org.scottishtecharmy.soundscape.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.utils.getNormalizedFromGpsMapCoordinates
@@ -831,5 +833,47 @@ class TileUtilsTest {
         println(pointEvery10000String)
     }
 
+    @Test
+    fun explodePolygonTest(){
+        // create a test polygon
+        val polygonTriangleFOV = createTriangleFOV(
+            LngLatAlt(0.0, 1.0),
+            LngLatAlt(0.5, 0.0),
+            LngLatAlt(1.0, 1.0)
+        )
+
+        Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][0].longitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][0].latitude, 0.01)
+        Assert.assertEquals(0.5, polygonTriangleFOV.coordinates[0][1].longitude, 0.01)
+        Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][1].latitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][2].longitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][2].latitude, 0.01)
+        // check it is closed
+        Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][3].longitude, 0.01)
+        Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][3].latitude, 0.01)
+
+        // add it to a feature collection
+        val polygonFeatureCollection = FeatureCollection()
+        polygonFeatureCollection.addFeature(
+            Feature().also { feature ->
+                feature.geometry = polygonTriangleFOV
+            }
+        )
+        // explode the triangle into segments
+        val explodedPolygonFeatureCollection = explodePolygon(polygonFeatureCollection)
+        // The triangle polygon should be exploded into three segments/linestrings
+        Assert.assertEquals(3, explodedPolygonFeatureCollection.features.size)
+        // Check the linestrings have the correct coordinates
+        val firstLineString = explodedPolygonFeatureCollection.features[0].geometry as LineString
+        Assert.assertEquals(0.0, firstLineString.coordinates[0].longitude, 0.1)
+        Assert.assertEquals(1.0, firstLineString.coordinates[0].latitude, 0.1)
+        val secondLineString = explodedPolygonFeatureCollection.features[1].geometry as LineString
+        Assert.assertEquals(0.5, secondLineString.coordinates[0].longitude, 0.1)
+        Assert.assertEquals(0.0, secondLineString.coordinates[0].latitude, 0.1)
+        val thirdLineString = explodedPolygonFeatureCollection.features[2].geometry as LineString
+        Assert.assertEquals(1.0, thirdLineString.coordinates[0].longitude, 0.1)
+        Assert.assertEquals(1.0, thirdLineString.coordinates[0].latitude, 0.1)
+
+    }
 
 }
