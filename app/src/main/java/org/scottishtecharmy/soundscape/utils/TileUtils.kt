@@ -2274,6 +2274,40 @@ fun traceLineString(
 
     return pointFeatures
 }
+/**
+ * Given a Feature Collection that contains a Polygon it will return a Feature Collection
+ * that contains the "exploded" Polygon which are the individual segments of the Polygon as LineStrings.
+ * @param featureCollection
+ * A FeatureCollection containing the whole Polygon
+ * @return a Feature Collection containing the segments of the Polygon.
+ */
+fun explodePolygon(featureCollection: FeatureCollection): FeatureCollection {
+    val explodedFeatureCollection = FeatureCollection()
+
+    for (feature in featureCollection.features) {
+        if (feature.geometry is Polygon) {
+            val polygon = feature.geometry as Polygon
+            val coordinates = polygon.coordinates[0]
+
+            for (i in 0 until coordinates.size - 1) {
+                val start = coordinates[i]
+                val end = coordinates[i + 1]
+
+                val segmentLineString = LineString().also {
+                    it.coordinates = arrayListOf(start, end)
+                }
+
+                val segmentFeature = Feature().also {
+                    it.geometry = segmentLineString
+                }
+
+                explodedFeatureCollection.addFeature(segmentFeature)
+            }
+        }
+    }
+
+    return explodedFeatureCollection
+}
 
 
 private fun interpolate(
