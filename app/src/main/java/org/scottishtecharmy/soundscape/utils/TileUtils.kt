@@ -25,7 +25,6 @@ import kotlin.math.min
 import kotlin.math.sinh
 import kotlin.math.tan
 
-//TODO getFovIntersectionFeatureCollection, getFovRoadsFeatureCollection and getFovPoiFeatureCollection can be rolled into one as just repeating the same thing
 
 /**
  * Gets Slippy Map Tile Name from X and Y GPS coordinates and Zoom (fixed at 16 for Soundscape).
@@ -367,8 +366,7 @@ fun isDuplicateByOsmId(existingSet : MutableSet<Any>, feature : Feature) : Boole
 }
 
 /** processFeatureCollection goes through the feature collection from a tile and adds it to the
- * feature collection for the grid, deduplicat
- * ing by OSM is as it goes.
+ * feature collection for the grid, deduplicating by OSM is as it goes.
  */
 fun deduplicateFeatureCollection(outputFeatureCollection: FeatureCollection,
                                  inputFeatureCollection: FeatureCollection?,
@@ -780,6 +778,35 @@ fun getRoadsFovFeatureCollection(
                         break
                     }
                 }
+                // If the user is on a road and the FOV happens to be between two pairs of coordinates
+                // then we need to detect if the linestring intersects with the FOV polygon at any of its edges
+                // we first need to explode the road linestring into segments
+                val explodedLineStringFeatureCollection = FeatureCollection()
+                explodedLineStringFeatureCollection.addFeature(feature)
+                val explodedLinestring = explodeLineString(explodedLineStringFeatureCollection)
+                // Then we need to explode the polygonTriangleFOV into a set of linestrings
+                val explodedPolygonFeatureCollection = FeatureCollection()
+                val featurePolygon = Feature().also {
+                    val ars3: HashMap<String, Any?> = HashMap()
+                    ars3 += Pair("FoV", "Triangle to test against")
+                    it.properties = ars3
+                }
+                featurePolygon.geometry = polygonTriangleFOV
+                explodedPolygonFeatureCollection.addFeature(featurePolygon)
+                // the above is a bit fiddly as I wrote explodePolygon() to accept and return a Feature Collection
+                // maybe change that to accept a Feature or Polygon?
+                val explodedPolygon = explodePolygon(explodedPolygonFeatureCollection)
+                // detect if any of the linestrings intersect and add to the roadsFOVFeatureCollection
+                for (polygonFeature in explodedPolygon){
+                    for (explodedLineStringFeature in explodedLinestring){
+                        val lineStringsIntersect = lineStringsIntersect(polygonFeature.geometry as LineString, explodedLineStringFeature.geometry as LineString)
+                        if (lineStringsIntersect) {
+                            roadsFOVFeatureCollection.addFeature(feature)
+                            break
+                        }
+                    }
+                }
+
             }
             "Point" -> {
                 val testPoint = LngLatAlt(
@@ -795,8 +822,12 @@ fun getRoadsFovFeatureCollection(
             }
         }
     }
+    // We can have a situation where the road is added in multiple times as the
+    // road linestring can intersect the triangle FoV more than once so get rid of duplicates
+    // as we only want to know if it does intersect not how many times it intersects
+    val duplicatesRemoved = removeDuplicateOsmIds(roadsFOVFeatureCollection)
     // only the road Features that are in the FOV triangle are returned
-    return roadsFOVFeatureCollection
+    return duplicatesRemoved
 }
 
 /**
