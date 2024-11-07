@@ -171,7 +171,7 @@ class IntersectionDetection {
      * @param tileY the tile y coordinate so that the tile relative location of the intersection can
      *      * be turned into a latitude/longitude
      */
-    fun generateIntersections(collection: FeatureCollection, tileX : Int, tileY : Int) {
+    fun generateIntersections(collection: FeatureCollection, tileX : Int, tileY : Int, tileZoom : Int) {
         // Add points for the intersections that we found
         for ((key, intersections) in highwayNodes) {
 
@@ -183,7 +183,7 @@ class IntersectionDetection {
                 val y = key.and(0xfff)
                 // Convert the tile relative coordinate into a LatLngAlt
                 val point = arrayListOf(Pair(x, y))
-                val coordinates = convertGeometry(tileX, tileY, ZOOM_LEVEL, point)
+                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
 
                 // Create our intersection feature to match those from soundscape-backend
                 val intersection = Feature()
@@ -218,10 +218,12 @@ class IntersectionDetection {
 
 /**
  * vectorTileToGeoJson generates a GeoJSON FeatureCollection from a Mapbox Vector Tile.
- * @param tileX is the x coordinate of the tile (the zoom level is fixed at ZOOM_LEVEL)
- * @param tileY is the y coordinate of the tile (the zoom level is fixed at ZOOM_LEVEL)
+ * @param tileX is the x coordinate of the tile
+ * @param tileY is the y coordinate of the tile
  * @param mvt is the Tile which has been decoded from the protobuf on its way into the application
  * @param cropPoints is a flag to indicate whether or not crop points to be within the tile
+ * @param tileZoom defaults to ZOOM_LEVEL but can be forced to 15 to run unit tests even when the
+ * backend is not configured to be protomaps.
  *
  * There are really two parts of this function:
  *
@@ -259,9 +261,8 @@ class IntersectionDetection {
 fun vectorTileToGeoJson(tileX: Int,
                         tileY: Int,
                         mvt: VectorTile.Tile,
-                        cropPoints: Boolean = true): FeatureCollection {
-
-    val tileZoom = ZOOM_LEVEL
+                        cropPoints: Boolean = true,
+                        tileZoom: Int = ZOOM_LEVEL): FeatureCollection {
 
     val collection = FeatureCollection()
     val intersectionDetection = IntersectionDetection()
@@ -421,7 +422,7 @@ fun vectorTileToGeoJson(tileX: Int,
     }
 
     // Add intersections
-    intersectionDetection.generateIntersections(collection, tileX, tileY)
+    intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
 
     return collection
 }
