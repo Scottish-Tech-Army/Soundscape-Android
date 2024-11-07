@@ -93,33 +93,29 @@ class MvtTileTest {
      * the array moving when the user location leaves the center.
      */
     @Test
-    fun testVectorToGeoJson2x2() {
-        val geojsonTopLeft = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212.mvt")
-        val geojsonTopRight = vectorTileToGeoJsonFromFile(15992, 10212, "15992x10212.mvt")
-        val geojsonBottomLeft = vectorTileToGeoJsonFromFile(15991, 10213, "15991x10213.mvt")
-        val geojsonBottomRight = vectorTileToGeoJsonFromFile(15992, 10213, "15992x10213.mvt")
+    fun testVectorToGeoJsonGrid() {
 
-        // Merge the GeoJSON into a single FeatureCollection
-        val geojson = FeatureCollection()
-        for(feature in geojsonTopLeft.features)
-            geojson.addFeature(feature)
-        for(feature in geojsonTopRight.features)
-            geojson.addFeature(feature)
-        for(feature in geojsonBottomLeft.features)
-            geojson.addFeature(feature)
-        for(feature in geojsonBottomRight.features)
-            geojson.addFeature(feature)
+        // Make a large grid to aid analysis
+        val featureCollection = FeatureCollection()
+        for(x in 15990..15992) {
+            for (y in 10212..10213) {
+                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+                for(feature in geojson) {
+                    featureCollection.addFeature(feature)
+                }
+            }
+        }
 
         val adapter = GeoJsonObjectMoshiAdapter()
 
         // Check that the de-duplication of the points worked (without that there are two points
         // for Graeme Pharmacy, one each from two separate tiles).
-        val searchResults = searchFeaturesByName(geojson, "Graeme")
+        val searchResults = searchFeaturesByName(featureCollection, "Graeme")
         println(adapter.toJson(searchResults))
         assert(searchResults.features.size == 1)
 
         val outputFile = FileOutputStream("2x2.geojson")
-        outputFile.write(adapter.toJson(geojson).toByteArray())
+        outputFile.write(adapter.toJson(featureCollection).toByteArray())
         outputFile.close()
     }
 }
