@@ -2148,7 +2148,6 @@ fun checkIntersection(
     if(testNearestRoad.features.isEmpty())
         return false
 
-    var needsFurtherChecking: Boolean = true
     for (road in intersectionRoadNames) {
         val roadName = road.properties?.get("name")
         val isOneWay = road.properties?.get("oneway") == "yes"
@@ -2157,17 +2156,16 @@ fun checkIntersection(
         //println("The road name is: $roadName")
         if (isMatch && isOneWay) {
             //println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
-            needsFurtherChecking = false
+            return false
         } else if (isMatch) {
             //println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
-            needsFurtherChecking = false
+            return false
         } else {
             //println("Intersection $intersectionNumber is probably NOT a compound roundabout or compound intersection and we DO want to call it out.")
-            needsFurtherChecking = true
-            break
+            return true
         }
     }
-    return needsFurtherChecking
+    return false
 }
 
 /**
