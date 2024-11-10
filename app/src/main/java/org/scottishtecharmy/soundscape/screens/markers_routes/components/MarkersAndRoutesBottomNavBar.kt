@@ -1,7 +1,8 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -47,23 +48,19 @@ fun MarkersAndRoutesTabs(navController: NavController,
                     Text(item.title, style = MaterialTheme.typography.bodyLarge)
                 },
                 icon = {
-                    Image(
-                        painter = painterResource(
-                            id = if (isSelected) {
-                                item.selectedIconResId!!
-                            } else {
-                                item.unselectedIconResId!!
-                            }
-                        ),
-                        contentDescription = null, // No need of contentDescription as text is below
-                    )
+                    item.iconResId?.let {
+                        Icon(painter = painterResource(it),
+                            contentDescription = null, // No need of contentDescription as text is below,
+                            modifier = Modifier.size(64.dp)
+                        )
+                    }
+
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
                     selectedTextColor = MaterialTheme.colorScheme.onPrimary,
-                    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                    indicatorColor = MaterialTheme.colorScheme.surfaceDim
+                    unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
                 )
             )
         }
