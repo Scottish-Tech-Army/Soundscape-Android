@@ -31,7 +31,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextFieldWithLabel
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -77,26 +77,16 @@ fun AddRouteScreen(
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
                     )
-                Text(
-                    modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
-                    text = stringResource(R.string.markers_sort_button_sort_by_name),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.surfaceBright
-                )
-                CustomTextField(
-                    modifier = Modifier.fillMaxWidth(),
+                TextFieldWithLabel(
+                    modifier = Modifier.fillMaxWidth().padding(top = 20.dp, bottom = 5.dp),
                     value = uiState.name,
+                    label =  stringResource(R.string.markers_sort_button_sort_by_name),
                     onValueChange = { newText -> viewModel.onNameChange(newText) },
                 )
-                Text(
-                    modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
-                    text = stringResource(R.string.route_detail_edit_description),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.surfaceBright
-                )
-                CustomTextField(
-                    modifier = Modifier.fillMaxWidth(),
+                TextFieldWithLabel(
+                    modifier = Modifier.fillMaxWidth().padding(top = 20.dp, bottom = 5.dp),
                     value = uiState.description,
+                    label = stringResource(R.string.route_detail_edit_description),
                     onValueChange = { newText -> viewModel.onDescriptionChange(newText) },
                 )
 
