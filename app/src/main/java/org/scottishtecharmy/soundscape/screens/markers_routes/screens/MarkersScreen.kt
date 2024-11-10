@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,10 +35,11 @@ fun MarkersScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center
     ) {
         Box(modifier = Modifier.padding(top = 40.dp)) {
-            Image(
+            Icon(
                 painter = painterResource(
-                    id = R.drawable.marker_selected
+                    id = R.drawable.ic_markers
                 ),
+                tint = MaterialTheme.colorScheme.onBackground,
                 contentDescription = null,
                 modifier = Modifier.size(60.dp)
             )
@@ -47,6 +48,7 @@ fun MarkersScreen(navController: NavController) {
             Text(
                 stringResource(R.string.markers_no_markers_title),
                 style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )
@@ -55,6 +57,7 @@ fun MarkersScreen(navController: NavController) {
             Text(
                 stringResource(R.string.markers_no_markers_hint_1),
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )
@@ -63,6 +66,7 @@ fun MarkersScreen(navController: NavController) {
             Text(
                 stringResource(R.string.markers_no_markers_hint_2),
                 style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
             )

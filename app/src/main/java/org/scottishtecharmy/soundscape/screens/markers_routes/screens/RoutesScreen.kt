@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,10 +44,11 @@ fun RoutesScreen(
             modifier = Modifier.semantics(mergeDescendants = true) {}
             ) {
             Box(modifier = Modifier.padding(top = 40.dp)) {
-                Image(
+                Icon(
                     painter = painterResource(
-                        id = R.drawable.routes_selected
+                        id = R.drawable.ic_routes
                     ),
+                    tint = MaterialTheme.colorScheme.onPrimary,
                     contentDescription = null,
                     modifier = Modifier.size(80.dp)
                 )
