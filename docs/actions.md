@@ -27,11 +27,6 @@ Authenticate for talking to the Firebase servers is done using [google-github-ac
 The `run-test.yaml` action bumps the version number, committing the change back into the repo. The repo has branch protection enabled which requires a pull request for any commits. We pass in a token as described [here](https://github.com/stefanzweifel/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches) to allow the pull request to be bypassed:
 * PAT_TOKEN - token generated on an admin account which allows write access to public repos.
 
-### Map tile API key
-The code uses maplibre to render vector tiles. During evaluation we're using https://www.maptiler.com/ as the source of those tiles though it seems like [the most cost effective long term approach](https://docs.protomaps.com/deploy/cost) would be to move to our own [Cloudflare solution](https://docs.protomaps.com/deploy/cloudflare). Server cost is one of the main driving factors here.
-The Mapping API key which for developers is stored in `local.properties` as `tileProviderApiKey`, and for the GitHub actions is
-* TILE_PROVIDER_API_KEY - API key from maptiler
-
 ## Actions
 `run-tests.yaml` is the action which is run on each Pull Request. It runs several layers of tests:    
 * Lint of the repo
