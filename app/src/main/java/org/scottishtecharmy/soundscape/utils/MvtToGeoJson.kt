@@ -273,8 +273,14 @@ fun vectorTileToGeoJson(tileX: Int,
         if(!layerIds.contains(layer.name)) {
             continue
         }
-
         println("Process layer: " + layer.name)
+
+        // POI can have duplicate entries for polygons and points, we de-duplicate them with these
+        // maps
+        val poiLayer = (layer.name == "poi")
+        val mapPolygonFeatures : HashMap<Long, Feature> = hashMapOf()
+        val mapPointFeatures : HashMap<Long, Feature> = hashMapOf()
+
         for (feature in layer.featuresList) {
             // Convert coordinates to GeoJSON. This is where we find out how many features
             // we're actually dealing with as there can be multiple features that have the
@@ -326,8 +332,9 @@ fun vectorTileToGeoJson(tileX: Int,
                         feature.geometryList
                     )
                     for (polygon in polygons) {
-                        if (polygon.first() != polygon.last())
+                        if (polygon.first() != polygon.last()) {
                             polygon.add(polygon.first())
+                        }
                         listOfGeometries.add(
                             Polygon(
                                 convertGeometry(
@@ -416,11 +423,31 @@ fun vectorTileToGeoJson(tileX: Int,
                 properties!!["osm_ids"] = feature.id
                 geoFeature.properties = properties
                 geoFeature.foreign = translateProperties(properties, feature.id)
-                collection.addFeature(geoFeature)
+
+                if(poiLayer) {
+                    if(feature.type == VectorTile.Tile.GeomType.POLYGON) {
+                        mapPolygonFeatures[feature.id] = geoFeature
+                    } else {
+                        mapPointFeatures[feature.id] = geoFeature
+                    }
+                } else {
+                    collection.addFeature(geoFeature)
+                }
+            }
+        }
+        if(poiLayer) {
+            // Add all of the polygon features
+            for(feature in mapPolygonFeatures) {
+                collection.addFeature(feature.value)
+                // If we add as a polygon feature, then remove any point feature for the same id
+                mapPointFeatures.remove(feature.key)
+            }
+            // And then add the remaining non-duplicated point features
+            for(feature in mapPointFeatures) {
+                collection.addFeature(feature.value)
             }
         }
     }
-
     // Add intersections
     intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
 
