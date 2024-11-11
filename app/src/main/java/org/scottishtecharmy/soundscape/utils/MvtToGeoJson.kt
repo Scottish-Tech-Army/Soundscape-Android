@@ -471,6 +471,11 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Long): HashMap<S
                         foreign["feature_value"] = "bus_stop"
                     }
 
+                    "crossing" -> {
+                        foreign["feature_type"] = "highway"
+                        foreign["feature_value"] = "crossing"
+                    }
+
                     else -> {
                         foreign["feature_type"] = property.value
                     }
