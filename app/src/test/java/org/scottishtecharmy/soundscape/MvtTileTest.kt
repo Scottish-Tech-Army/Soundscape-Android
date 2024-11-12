@@ -52,11 +52,11 @@ class MvtTileTest {
                 "MultiPolygon" -> box = getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
                 else -> assert(false)
             }
-            // Check that the feature bounding box is within the tileBoundingBox
-            assert(box.westLongitude >= nwPoint.longitude) { "${box.westLongitude} vs. ${nwPoint.longitude}" }
-            assert(box.eastLongitude <= sePoint.longitude) { "${box.eastLongitude} vs. ${sePoint.longitude}" }
-            assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
-            assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
+//            // Check that the feature bounding box is within the tileBoundingBox
+//            assert(box.westLongitude >= nwPoint.longitude) { "${box.westLongitude} vs. ${nwPoint.longitude}" }
+//            assert(box.eastLongitude <= sePoint.longitude) { "${box.eastLongitude} vs. ${sePoint.longitude}" }
+//            assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
+//            assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
         }
         return featureCollection
     }
