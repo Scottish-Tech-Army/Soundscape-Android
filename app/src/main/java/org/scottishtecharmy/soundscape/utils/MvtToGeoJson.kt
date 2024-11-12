@@ -139,25 +139,13 @@ class IntersectionDetection {
             // Rather than have a 2D sparse array, turn the coordinates into a single int so that we
             // can have a 1D sparse array instead.
             val coordinateKey = point.first.shl(12) + point.second
+            val detailsCopy = details.copy()
+            detailsCopy.lineEnd = ((point == line.first()) || (point == line.last()))
             if (highwayNodes[coordinateKey] == null) {
-                highwayNodes[coordinateKey] = arrayListOf(details)
+                highwayNodes[coordinateKey] = arrayListOf(detailsCopy)
             }
             else {
-                details.lineEnd = ((point == line.first()) || (point == line.last()))
-                highwayNodes[coordinateKey]?.add(details)
-
-                val roads = highwayNodes[coordinateKey]
-                if (roads != null) {
-                    var intersectionNames = ""
-                    var firstRoad = true
-                    for (road in roads) {
-                        if (!firstRoad)
-                            intersectionNames += ","
-                        intersectionNames += road.name
-                        firstRoad = false
-                    }
-                    //println("Intersection: $intersectionNames")
-                }
+                highwayNodes[coordinateKey]?.add(detailsCopy)
             }
         }
     }
@@ -177,6 +165,26 @@ class IntersectionDetection {
 
             // An intersection exists where there are nodes from multiple line at the same location
             if (intersections.size > 1) {
+
+                if(intersections.size == 2) {
+                    // An intersection with only 2 lines might just be the same line but it's been
+                    // drawn in two separate segments. It's an an intersection if both lines aren't
+                    // ending (i.e. one line is joining half way along the other line) or the type
+                    // of line changes, or the name changes etc. Check these and don't add the
+                    // intersection if we don't believe it meets the criteria.
+                    val line1 = intersections[0]
+                    val line2 = intersections[1]
+                    if((line1.type == line2.type) &&
+                        (line1.name == line2.name) &&
+                        (line1.brunnel == line2.brunnel) &&
+                        (line1.subClass == line2.subClass) &&
+                        line1.lineEnd && line2.lineEnd) {
+                        // This isn't an intersection, simply two line segments with the same
+                        // properties joining at a point.
+                        continue
+                    }
+
+                }
 
                 // Turn our coordinate key back into tile relative x,y coordinates
                 val x = key.shr(12)
