@@ -57,7 +57,7 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
          * The zoom level and grid size are constant. When using soundscape-backend these will be
          * 16 and 3, but if we switch to using protobuf tiles they will be 15 and 2.
          */
-        const val SOUNDSCAPE_TILE_BACKEND = true
+        const val SOUNDSCAPE_TILE_BACKEND = false
         val ZOOM_LEVEL = if(SOUNDSCAPE_TILE_BACKEND) 16 else 15
         var GRID_SIZE = if(SOUNDSCAPE_TILE_BACKEND) 3 else 2
 
