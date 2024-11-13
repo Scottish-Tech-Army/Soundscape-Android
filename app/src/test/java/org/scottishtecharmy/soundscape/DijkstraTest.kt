@@ -8,8 +8,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.dijkstraWithLoops
 import org.scottishtecharmy.soundscape.utils.distance
 import org.scottishtecharmy.soundscape.utils.explodeLineString
+import org.scottishtecharmy.soundscape.utils.featureCollectionToGraphWithNodeMap
+import org.scottishtecharmy.soundscape.utils.getPathCoordinates
+import org.scottishtecharmy.soundscape.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.utils.getShortestRoute
 import java.util.PriorityQueue
 
 
@@ -17,7 +22,7 @@ class DijkstraTest {
     // I've taken the algorithm example and original graph data (converted it to real GeoJSON
     // coordinates) from here: https://www.baeldung.com/kotlin/dijkstra-algorithm-graphs
     @Test
-    fun testDijkstra(){
+    fun testDijkstra1(){
         // turning example into GeoJSON
         val lineString1 = LineString().also {
             it.coordinates = arrayListOf(
@@ -99,7 +104,7 @@ class DijkstraTest {
         // Pass nodeMap to dijkstraWithLoops and start node
         val (shortestPath, previousNodes) = dijkstraWithLoops(graph, 1)
         // get the path coordinates to the end node (destination)
-        val shortestPathCoordinates = getPathCoordinates(6, previousNodes, nodeMap)
+        val shortestPathCoordinates = getPathCoordinates(6, 1, previousNodes, nodeMap)
 
         // The shortest path to node 6 should be 37 metres
         Assert.assertEquals(37, shortestPath.getValue(6))
@@ -121,96 +126,26 @@ class DijkstraTest {
 
     }
 
-    fun dijkstraWithLoops(
-        graph: Map<Int, List<Pair<Int, Int>>>,
-        start: Int,
-    ): Pair<Map<Int, Int>, Map<Int, Int>> {
-        // Return distances and previous nodes
-        val distances = mutableMapOf<Int, Int>().withDefault { Int.MAX_VALUE }
-        val previousNodes = mutableMapOf<Int, Int>()
-        val priorityQueue = PriorityQueue<Pair<Int, Int>>(compareBy { it.second })
-        val visited = mutableSetOf<Pair<Int, Int>>()
+    @Test
+    fun testDijkstra2(){
+        // Get the data for the entire tile
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(GeoJSONStreetPreviewTest.streetPreviewTest)
+        val startLocation = LngLatAlt( -2.695517313268283,
+            51.44082881061331)
+        val endLocation = LngLatAlt(-2.6930021169370093,51.43942502273583)
+        // get the roads Feature Collection.
+        val testRoadsCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
+            entireFeatureCollectionTest!!
+        )
+        val shortestRoute = getShortestRoute(startLocation, endLocation, testRoadsCollection)
+        Assert.assertEquals(368, shortestRoute.features[0].properties?.get("length"))
+        // Visualise the shortest route
+        val routeString = moshi.adapter(FeatureCollection::class.java).toJson(shortestRoute)
+        println("Shortest path: $routeString")
 
-        priorityQueue.add(start to 0)
-        distances[start] = 0
-
-        while (priorityQueue.isNotEmpty()) {
-            val (node, currentDist) = priorityQueue.poll()
-            if (visited.add(node to currentDist)) {
-                graph[node]?.forEach { (adjacent, weight) ->
-                    val totalDist = currentDist + weight
-                    if (totalDist < distances.getValue(adjacent)) {
-                        distances[adjacent] = totalDist
-                        previousNodes[adjacent] = node
-                        priorityQueue.add(adjacent to totalDist)
-                    }
-                }
-            }
-        }
-
-        return Pair(distances, previousNodes)
     }
 
-    fun getPathCoordinates(
-        endNode: Int,
-        previousNodes: Map<Int, Int>,
-        nodeMap: Map<LngLatAlt, Int>
-    ): List<LngLatAlt> {
-        val pathCoordinates = mutableListOf<LngLatAlt>()
-        var currentNode = endNode
-
-        while (previousNodes.containsKey(currentNode)) {
-            val coordinate = nodeMap.entries.find { it.value == currentNode }?.key
-            coordinate?.let { pathCoordinates.add(0, it) }
-            currentNode = previousNodes.getValue(currentNode)
-        }
-
-        val startCoordinate = nodeMap.entries.find { it.value == 1 }?.key
-        startCoordinate?.let { pathCoordinates.add(0, it) }
-
-        return pathCoordinates
-    }
-
-    fun featureCollectionToGraphWithNodeMap(
-        featureCollection: FeatureCollection
-    ): Pair<Map<Int, List<Pair<Int, Int>>>, Map<LngLatAlt, Int>> {
-        // take the feature collection and explode the linestring coordinates
-        // into pairs of coordinates as LineStrings
-        val explodedFeatureCollection = explodeLineString(featureCollection)
-        val nodeMap = mutableMapOf<LngLatAlt, Int>()
-        var nodeIdCounter = 1
-
-        val graph = mutableMapOf<Int, MutableList<Pair<Int, Int>>>()
-
-        for (feature in explodedFeatureCollection.features) {
-            if (feature.geometry is LineString) {
-                val lineString = feature.geometry as LineString
-                val coordinates = lineString.coordinates
-
-                val startNode = getNode(coordinates[0], nodeMap, nodeIdCounter)
-                nodeIdCounter = if (startNode == nodeIdCounter) nodeIdCounter + 1 else nodeIdCounter
-                val endNode = getNode(coordinates[1], nodeMap, nodeIdCounter)
-                nodeIdCounter = if (endNode == nodeIdCounter) nodeIdCounter + 1 else nodeIdCounter
-
-
-                val weight = distance(
-                    coordinates[0].latitude,
-                    coordinates[0].longitude,
-                    coordinates[1].latitude,
-                    coordinates[1].longitude
-                ).toInt()
-
-                graph.computeIfAbsent(startNode) { mutableListOf() }.add(Pair(endNode, weight))
-                // For undirected graph which is what we want for pedestrians as we don't care about one-way streets
-                graph.computeIfAbsent(endNode) { mutableListOf() }.add(Pair(startNode, weight))
-            }
-        }
-
-        return Pair(graph, nodeMap)
-    }
-
-    private fun getNode(coordinate: LngLatAlt, nodeMap: MutableMap<LngLatAlt, Int>, nodeIdCounter: Int): Int {
-        return nodeMap.computeIfAbsent(coordinate) { nodeIdCounter }
-    }
 
 }
