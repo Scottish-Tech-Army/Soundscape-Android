@@ -5,6 +5,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.ZOOM_LEVEL
@@ -317,11 +318,16 @@ fun getTileCrossingPoint(point1 : Pair<Int, Int>, point2 : Pair<Int, Int>) : Lis
  * simplest case, the points are all within the tile and so there will just be a single LineString
  * output. However, if the line goes off and on the tile (bouncing around in the buffer region) then
  * there can be multiple segments returned.
+ * We also store all of the interpolated points that we've been created so that we can more easily
+ * connect them to the adjacent tiles in the grid.
  */
-fun convertGeometryAndClipLineToTile(tileX : Int,
-                                     tileY : Int,
-                                     tileZoom : Int,
-                                     line : ArrayList<Pair<Int, Int>>) : List<LineString> {
+fun convertGeometryAndClipLineToTile(
+    tileX: Int,
+    tileY: Int,
+    tileZoom: Int,
+    line: ArrayList<Pair<Int, Int>>,
+    interpolatedNodes: MutableList<LngLatAlt>
+) : List<LineString> {
     val returnList = mutableListOf<LineString>()
 
     if(line.isEmpty()) {
@@ -342,11 +348,13 @@ fun convertGeometryAndClipLineToTile(tileX : Int,
                 // We started off tile and this point is now on tile
                 // Add interpolated point from lastPoint to this point
                 val interpolatedPoint = getTileCrossingPoint(lastPoint, point)
-                segment.add(getLatLonTileWithOffset(tileX,
+                val interpolatedLatLon = getLatLonTileWithOffset(tileX,
                     tileY,
                     tileZoom,
                     interpolatedPoint[0].first/4096.0,
-                    interpolatedPoint[0].second/4096.0))
+                    interpolatedPoint[0].second/4096.0)
+                segment.add(interpolatedLatLon)
+                interpolatedNodes.add(interpolatedLatLon)
 
                 // Add the new point
                 segment.add(getLatLonTileWithOffset(tileX,
@@ -358,12 +366,14 @@ fun convertGeometryAndClipLineToTile(tileX : Int,
                 // We started on tile and this point is now off tile
                 // Add interpolated point from lastPoint to this point
                 val interpolatedPoint = getTileCrossingPoint(lastPoint, point)
-                segment.add(getLatLonTileWithOffset(tileX,
+                val interpolatedLatLon = getLatLonTileWithOffset(tileX,
                     tileY,
                     tileZoom,
                     interpolatedPoint[0].first/4096.0,
-                    interpolatedPoint[0].second/4096.0))
+                    interpolatedPoint[0].second/4096.0)
 
+                segment.add(interpolatedLatLon)
+                interpolatedNodes.add(interpolatedLatLon)
                 returnList.add(LineString(ArrayList(segment)))
                 segment.clear()
             }
@@ -382,11 +392,13 @@ fun convertGeometryAndClipLineToTile(tileX : Int,
             // points crossed over the tile.
             val interpolatedPoints = getTileCrossingPoint(lastPoint, point)
             for(ip in interpolatedPoints) {
-                segment.add(getLatLonTileWithOffset(tileX,
+                val interpolatedLatLon = getLatLonTileWithOffset(tileX,
                     tileY,
                     tileZoom,
                     ip.first/4096.0,
-                    ip.second/4096.0))
+                    ip.second/4096.0)
+                segment.add(interpolatedLatLon)
+                interpolatedNodes.add(interpolatedLatLon)
             }
             if(segment.isNotEmpty()) {
                 returnList.add(LineString(ArrayList(segment)))
@@ -466,6 +478,7 @@ fun vectorTileToGeoJson(tileX: Int,
         val poiLayer = (layer.name == "poi")
         val mapPolygonFeatures : HashMap<Long, Feature> = hashMapOf()
         val mapPointFeatures : HashMap<Long, Feature> = hashMapOf()
+        val mapInterpolatedNodes : HashMap<Long, Feature> = hashMapOf()
 
         for (feature in layer.featuresList) {
             // Convert coordinates to GeoJSON. This is where we find out how many features
@@ -583,12 +596,45 @@ fun vectorTileToGeoJson(tileX: Int,
                                 feature.id
                             )
                             intersectionDetection.addLine(line, details)
-                            val clippedLines = convertGeometryAndClipLineToTile(tileX, tileY, tileZoom, line)
+                            val interpolatedNodes : MutableList<LngLatAlt> = mutableListOf()
+                            val clippedLines = convertGeometryAndClipLineToTile(tileX,
+                                                                                tileY,
+                                                                                tileZoom,
+                                                                                line,
+                                                                                interpolatedNodes)
                             for(clippedLine in clippedLines) {
                                 listOfGeometries.add(clippedLine)
                             }
+
+                            if(interpolatedNodes.isNotEmpty()) {
+                                // If the line went off the edge of the tile then we will have
+                                // generated an interpolated node at the tile edge. We store this in
+                                // a Feature which is a list of those nodes for this OSM id. It may
+                                // just be a single point, or the line may have gone on and off the
+                                // tile multiple times.
+                                if (mapInterpolatedNodes.containsKey(feature.id)) {
+                                    // If we've already got this OSM id, we want to extend it with
+                                    // the new points
+                                    val currentLine = mapInterpolatedNodes[feature.id]?.geometry as MultiPoint
+                                    for(node in interpolatedNodes) {
+                                        currentLine.coordinates.add(node)
+                                    }
+                                } else {
+                                    val interpolatedFeature = Feature()
+                                    val foreign: HashMap<String, Any?> = hashMapOf()
+                                    val osmIds = arrayListOf<Long>()
+                                    osmIds.add(feature.id)
+                                    foreign["osm_ids"] = osmIds
+                                    interpolatedFeature.foreign = foreign
+                                    interpolatedFeature.geometry =
+                                        MultiPoint(ArrayList(interpolatedNodes))
+                                    interpolatedFeature.properties = hashMapOf()
+                                    interpolatedFeature.properties!!["class"] = "edgePoint"
+                                    mapInterpolatedNodes[feature.id] = interpolatedFeature
+                                }
+                            }
                         }
-                   }
+                    }
                 }
 
                 VectorTile.Tile.GeomType.UNKNOWN -> {
@@ -617,13 +663,18 @@ fun vectorTileToGeoJson(tileX: Int,
         }
         if(poiLayer) {
             // Add all of the polygon features
-            for(feature in mapPolygonFeatures) {
+            for (feature in mapPolygonFeatures) {
                 collection.addFeature(feature.value)
                 // If we add as a polygon feature, then remove any point feature for the same id
                 mapPointFeatures.remove(feature.key)
             }
             // And then add the remaining non-duplicated point features
-            for(feature in mapPointFeatures) {
+            for (feature in mapPointFeatures) {
+                collection.addFeature(feature.value)
+            }
+        } else {
+            // Add all of our interpolated nodes
+            for (feature in mapInterpolatedNodes) {
                 collection.addFeature(feature.value)
             }
         }
