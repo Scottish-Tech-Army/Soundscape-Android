@@ -877,6 +877,8 @@ class IntersectionsTest {
              getRoadsFeatureCollectionFromTileFeatureCollection(
                  featureCollectionTest!!
              )
+         val roads = moshi.adapter(FeatureCollection::class.java).toJson(testRoadsCollectionFromTileFeatureCollection)
+         println(roads)
          // create FOV to pickup the roads
          val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
              currentLocation,
