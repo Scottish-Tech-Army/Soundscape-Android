@@ -10,11 +10,7 @@ import androidx.preference.PreferenceManager
 import com.google.android.gms.location.ActivityTransition
 import com.google.android.gms.location.ActivityTransitionEvent
 import com.google.android.gms.location.DetectedActivity
-import com.squareup.moshi.Moshi
 import com.squareup.otto.Subscribe
-import io.realm.kotlin.Realm
-import io.realm.kotlin.ext.query
-import io.realm.kotlin.types.RealmInstant
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -29,17 +25,12 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.dao.TilesDao
-import org.scottishtecharmy.soundscape.database.local.model.TileData
-import org.scottishtecharmy.soundscape.database.repository.TilesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
@@ -84,6 +75,7 @@ import org.scottishtecharmy.soundscape.services.getOttoBus
 import retrofit2.awaitResponse
 import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.time.TimeSource
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null)
 
@@ -97,11 +89,6 @@ class GeoEngine {
     // Flow to return current tile grid GeoJSON
     private val _tileGridFlow = MutableStateFlow(TileGrid(mutableListOf(), BoundingBox()))
     var tileGridFlow: StateFlow<TileGrid> = _tileGridFlow
-
-    // Realms
-    private var tileDataRealm: Realm = RealmConfiguration.getTileDataInstance()
-    private val tilesDao : TilesDao = TilesDao(tileDataRealm)
-    private val tilesRepository : TilesRepository = TilesRepository(tilesDao)
 
     // HTTP connection to soundscape-backend or protomaps tile server
     private lateinit var tileClient : TileClient
@@ -118,6 +105,7 @@ class GeoEngine {
 
     private var centralBoundingBox = BoundingBox()
     private var inVehicle = false
+    private var gridFeatureCollection : Array<FeatureCollection> = emptyArray()
 
     @Subscribe
     fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
@@ -179,8 +167,11 @@ class GeoEngine {
                 newLocation?.let { location ->
                     // Check if we're still within the central area of our grid
                     if (!pointIsWithinBoundingBox(LngLatAlt(location.longitude, location.latitude),
-                                                  centralBoundingBox)
-                    ) {
+                                                  centralBoundingBox)) {
+
+                        val timeSource = TimeSource.Monotonic
+                        val gridStartTime = timeSource.markNow()
+
                         Log.d(TAG, "Update central grid area")
                         // The current location has moved from within the central area, so get the
                         // new grid and the new central area.
@@ -190,9 +181,37 @@ class GeoEngine {
                         )
 
                         // We have a new centralBoundingBox, so update the tiles
-                        if(updateTileGrid(tileGrid)) {
+                        val featureCollections = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                        if(updateTileGrid(tileGrid, featureCollections)) {
+
                             // We have got a new grid, so create our new central region
                             centralBoundingBox = tileGrid.centralBoundingBox
+
+                            if(SOUNDSCAPE_TILE_BACKEND) {
+                                // De-duplicate into our new tile grid data set, starting from fresh
+                                gridFeatureCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                                for((index, fc) in featureCollections.withIndex()) {
+                                    val existingSet: MutableSet<Any> = mutableSetOf()
+                                    deduplicateFeatureCollection(
+                                        gridFeatureCollection[index],
+                                        fc,
+                                        existingSet
+                                    )
+                                }
+                            } else {
+                                // Join up roads/paths at the tile boundary
+                                val joiner = InterpolatedPointsJoiner()
+                                for (ip in featureCollections[Fc.INTERPOLATIONS.id]) {
+                                    joiner.addInterpolatedPoints(ip)
+                                }
+                                joiner.addJoiningLines(featureCollections[Fc.ROADS.id])
+
+                                // And store what the grid contains
+                                gridFeatureCollection = featureCollections
+                            }
+
+                            val gridFinishTime = timeSource.markNow()
+                            Log.e(TAG, "Time to populate grid: ${gridFinishTime - gridStartTime}")
 
                             // Update the flow with our new tile grid
                             if (sharedPreferences.getBoolean(MAP_DEBUG_KEY, false)) {
@@ -217,7 +236,7 @@ class GeoEngine {
         }
     }
 
-    private suspend fun updateTileFromProtomaps(x : Int, y: Int, quadkey: String, update: Boolean) : Boolean {
+    private suspend fun updateTileFromProtomaps(x : Int, y: Int, featureCollections: Array<FeatureCollection>) : Boolean {
         var ret = false
         withContext(Dispatchers.IO) {
             try {
@@ -228,12 +247,11 @@ class GeoEngine {
                 }
                 val result = tileReq.await()?.awaitResponse()?.body()
                 if (result != null) {
+                    Log.e(TAG, "Tile size ${result.serializedSize}")
                     val tileFeatureCollection = vectorTileToGeoJson(x, y, result)
-                    val tileData = processTileFeatureCollection(tileFeatureCollection, quadkey)
-                    if (update)
-                        tilesRepository.updateTile(tileData)
-                    else
-                        tilesRepository.insertTile(tileData)
+                    val collections = processTileFeatureCollection(tileFeatureCollection)
+                    for((index, collection) in collections.withIndex())
+                        featureCollections[index].plusAssign(collection)
 
                     ret = true
                 }
@@ -250,7 +268,7 @@ class GeoEngine {
         return ret
     }
 
-    private suspend fun updateTileFromSoundscapeBackend(x : Int, y: Int, quadkey: String, update: Boolean) : Boolean {
+    private suspend fun updateTileFromSoundscapeBackend(x : Int, y: Int, featureCollections: Array<FeatureCollection>) : Boolean {
         var ret = false
 
         withContext(Dispatchers.IO) {
@@ -262,15 +280,14 @@ class GeoEngine {
                 }
                 val result = tileReq.await()?.awaitResponse()?.body()
                 // clean the tile, process the string, perform an insert into db using the clean tile data
+                Log.e(TAG, "Tile size ${result?.length}")
                 val cleanedTile =
                     result?.let { cleanTileGeoJSON(x, y, ZOOM_LEVEL, it) }
 
                 if (cleanedTile != null) {
-                    val tileData = processTileString(quadkey, cleanedTile)
-                    if(update)
-                        tilesRepository.updateTile(tileData)
-                    else
-                        tilesRepository.insertTile(tileData)
+                    val tileData = processTileString(cleanedTile)
+                    for((index, collection) in tileData.withIndex())
+                        featureCollections[index].plusAssign(collection)
 
                     ret = true
                 }
@@ -287,57 +304,25 @@ class GeoEngine {
         return ret
     }
 
-    private suspend fun updateTile(x : Int, y: Int, quadkey: String, update: Boolean) : Boolean {
+    private suspend fun updateTile(x : Int, y: Int, featureCollections: Array<FeatureCollection>) : Boolean {
         if(!SOUNDSCAPE_TILE_BACKEND) {
-            return updateTileFromProtomaps(x, y, quadkey, update)
+            return updateTileFromProtomaps(x, y, featureCollections)
         }
-        return updateTileFromSoundscapeBackend(x, y, quadkey, update)
+        return updateTileFromSoundscapeBackend(x, y, featureCollections)
     }
 
-    private suspend fun updateTileGrid(tileGrid : TileGrid) : Boolean {
+    private suspend fun updateTileGrid(tileGrid : TileGrid, featureCollections: Array<FeatureCollection>) : Boolean {
         for (tile in tileGrid.tiles) {
             Log.d(TAG, "Tile quad key: ${tile.quadkey}")
-            var fetchTile = false
-            var update = false
-            val frozenResult = tilesRepository.getTile(tile.quadkey)
-            // If Tile doesn't already exist in db go and get it, clean it, process it
-            // and insert into db
-            if (frozenResult.isEmpty()) {
-                fetchTile = true
-            } else {
-                // get the current time and then check against lastUpdated in frozenResult
-                val currentInstant: java.time.Instant = java.time.Instant.now()
-                val currentTimeStamp: Long = currentInstant.toEpochMilli() / 1000
-                val lastUpdated: RealmInstant = frozenResult[0].lastUpdated!!
-                Log.d(
-                    TAG,
-                    "Current time: $currentTimeStamp Tile lastUpdated: ${lastUpdated.epochSeconds}"
-                )
-                // How often do we want to update the tile? 24 hours?
-                val timeToLive: Long = lastUpdated.epochSeconds.plus(TTL_REFRESH_SECONDS)
-
-                if (timeToLive >= currentTimeStamp) {
-                    Log.d(TAG, "Tile does not need updating yet get local copy")
-                    // There should only ever be one tile with a unique quad key
-                    //val tileDataTest = tilesRepository.getTile(tile.quadkey)
-
-                } else {
-                    Log.d(TAG, "Tile does need updating")
-                    fetchTile = true
-                    update = true
+            var ret = false
+            for(retry in 1..5) {
+                ret = updateTile(tile.tileX, tile.tileY, featureCollections)
+                if(ret) {
+                    break
                 }
             }
-            if(fetchTile) {
-                var ret = false
-                for(retry in 1..5) {
-                    ret = updateTile(tile.tileX, tile.tileY, tile.quadkey, update)
-                    if(ret) {
-                        break
-                    }
-                }
-                if(!ret) {
-                    return false
-                }
+            if(!ret) {
+                return false
             }
         }
         return true
@@ -1058,84 +1043,23 @@ class GeoEngine {
         return results
     }
 
-    private enum class Fc(val id: Int) {
+    enum class Fc(val id: Int) {
         ROADS(0),
-        INTERSECTIONS(1),
-        CROSSINGS(2),
-        POIS(3),
-        BUS_STOPS(4),
-        INTERPOLATIONS(5),
-        PATHS(6),
-        MAX_COLLECTION_ID(7)
+        PATHS(1),
+        INTERSECTIONS(2),
+        ENTRANCES(3),
+        CROSSINGS(4),
+        POIS(5),
+        BUS_STOPS(6),
+        INTERPOLATIONS(7),
+        MAX_COLLECTION_ID(8)
     }
 
-    private fun getGridFeatureCollections(): List<FeatureCollection> {
-        val results : MutableList<FeatureCollection> = mutableListOf()
-        val tileGrid = getTileGrid(
-            locationProvider.getCurrentLatitude() ?: 0.0,
-            locationProvider.getCurrentLongitude() ?: 0.0
-        )
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-
-        val processedOsmIds = Array(Fc.MAX_COLLECTION_ID.id) { mutableSetOf<Any>() }
-        val gridFeatureCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
-
-        val joiner = InterpolatedPointsJoiner()
-        for (tile in tileGrid.tiles) {
-            //Check the db for the tile
-            val frozenTileResult =
-                tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
-            if (frozenTileResult != null) {
-                val featureCollection = Array<FeatureCollection?>(Fc.MAX_COLLECTION_ID.id) { null }
-                featureCollection[Fc.ROADS.id] = frozenTileResult.roads.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                featureCollection[Fc.INTERSECTIONS.id] = frozenTileResult.intersections.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                featureCollection[Fc.CROSSINGS.id] = frozenTileResult.crossings.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                featureCollection[Fc.POIS.id] = frozenTileResult.pois.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                featureCollection[Fc.BUS_STOPS.id] = frozenTileResult.busStops.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                featureCollection[Fc.PATHS.id] = frozenTileResult.paths.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                featureCollection[Fc.INTERPOLATIONS.id] = frozenTileResult.interpolations.let {
-                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
-                }
-                for(ip in featureCollection[Fc.INTERPOLATIONS.id]!!) {
-                    joiner.addInterpolatedPoints(ip)
-                }
-
-                if(SOUNDSCAPE_TILE_BACKEND) {
-                    for ((index, fc) in featureCollection.withIndex())
-                        deduplicateFeatureCollection(
-                            gridFeatureCollection[index],
-                            fc,
-                            processedOsmIds[index]
-                        )
-                } else {
-                    for ((index, fc) in featureCollection.withIndex())
-                        gridFeatureCollection[index].plusAssign(fc!!)
-                }
-            }
-        }
-        for(fc in gridFeatureCollection)
-            results.add(fc)
-        joiner.addJoiningLines(results[Fc.ROADS.id])
-
-        return results
+    private fun getGridFeatureCollections(): Array<FeatureCollection> {
+        return gridFeatureCollection
     }
 
     companion object {
         private const val TAG = "GeoEngine"
-
-        // TTL Tile refresh in local Realm DB
-        private const val TTL_REFRESH_SECONDS: Long = 24 * 60 * 60
     }
 }
