@@ -263,6 +263,40 @@ class GeoJsonParserTest {
         Assert.assertEquals(5, multiPolygon.coordinates[1][0].size)
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun testOsmIds() {
+        // OSM ids are really 64 bit values. But JSON can only deal with Int and Double which there's
+        // not really a way around it. From https://osmstats.neis-one.org/?item=elements the
+        // current largest OSM id is 10000000000L and this tests that we can deal with 100000 times
+        // greater than that. Larger than that and the test will fail, but that should be enough so
+        // long as OSM ids don't start being allocated differently e.g. special high numbers.
+        roundtripOsmId(0L)
+        val one = roundtripOsmId(1000000000000000L)
+        val two = roundtripOsmId(1000000000000001L)
+        assert(one != two)
+    }
+
+    private fun roundtripOsmId(osm_id : Long) : Double {
+
+        val feature = Feature()
+        val foreign: HashMap<String, Any?> = hashMapOf()
+        foreign["osm_id"] = osm_id.toDouble()
+        feature.foreign = foreign
+        feature.geometry = Point(0.0, 0.0)
+        feature.properties = hashMapOf()
+        feature.properties!!["class"] = "edgePoint"
+
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val geoJsonText = adapter.toJson(feature)
+        val roundTrippedFeature = adapter.fromJson(geoJsonText)
+
+        assert(feature.foreign!!["osm_id"] == roundTrippedFeature!!.foreign!!["osm_id"])
+
+        return roundTrippedFeature.foreign!!["osm_id"] as Double
+    }
+
+
     private fun assertListEquals(
         expectedList: ArrayList<LngLatAlt>,
         actualList: ArrayList<LngLatAlt>
