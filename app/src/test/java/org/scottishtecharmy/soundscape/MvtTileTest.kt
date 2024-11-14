@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.utils.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfLineString
 import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfMultiLineString
 import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfMultiPoint
@@ -23,13 +24,14 @@ import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
-
 class MvtTileTest {
 
-    private fun vectorTileToGeoJsonFromFile(tileX: Int,
-                                            tileY: Int,
-                                            filename: String,
-                                            cropPoints: Boolean = true): FeatureCollection {
+    private fun vectorTileToGeoJsonFromFile(
+        tileX: Int,
+        tileY: Int,
+        filename: String,
+        cropPoints: Boolean = true
+    ): FeatureCollection {
 
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
         val remoteTile = FileInputStream(path + filename)
@@ -39,20 +41,25 @@ class MvtTileTest {
 
         // We want to check that all of the coordinates generated are within the buffered
         // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.
-        val nwPoint = getLatLonTileWithOffset(tileX, tileY, 15, -4/256.0, -4/256.0)
-        val sePoint = getLatLonTileWithOffset(tileX+1, tileY+1, 15, 4/256.0, 4/256.0)
-        for(feature in featureCollection) {
+        val nwPoint = getLatLonTileWithOffset(tileX, tileY, 15, -4 / 256.0, -4 / 256.0)
+        val sePoint = getLatLonTileWithOffset(tileX + 1, tileY + 1, 15, 4 / 256.0, 4 / 256.0)
+        for (feature in featureCollection) {
             var box = BoundingBox()
-            when(feature.geometry.type) {
+            when (feature.geometry.type) {
                 "Point" -> box = getBoundingBoxOfPoint(feature.geometry as Point)
-                "MultiPoint" ->  box = getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
+                "MultiPoint" -> box = getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
                 "LineString" -> box = getBoundingBoxOfLineString(feature.geometry as LineString)
-                "MultiLineString" -> box = getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
+                "MultiLineString" -> box =
+                    getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
+
                 "Polygon" -> box = getBoundingBoxOfPolygon(feature.geometry as Polygon)
-                "MultiPolygon" -> box = getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
+                "MultiPolygon" -> box =
+                    getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
+
                 else -> assert(false)
             }
-//            // Check that the feature bounding box is within the tileBoundingBox
+//            // Check that the feature bounding box is within the tileBoundingBox. This has been
+//            // broken by the addition of POI polygons which go beyond tile boundaries.
 //            assert(box.westLongitude >= nwPoint.longitude) { "${box.westLongitude} vs. ${nwPoint.longitude}" }
 //            assert(box.eastLongitude <= sePoint.longitude) { "${box.eastLongitude} vs. ${sePoint.longitude}" }
 //            assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
@@ -131,16 +138,23 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonGrid() {
 
+        val joiner = InterpolatedPointsJoiner()
+
         // Make a large grid to aid analysis
         val featureCollection = FeatureCollection()
-        for(x in 15990..15992) {
+        for (x in 15990..15992) {
             for (y in 10212..10213) {
                 val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
-                for(feature in geojson) {
-                    featureCollection.addFeature(feature)
+                for (feature in geojson) {
+                    val addFeature = joiner.addInterpolatedPoints(feature)
+                    if (addFeature) {
+                        featureCollection.addFeature(feature)
+                    }
                 }
             }
         }
+        // Add lines to connect all of the interpolated points
+        joiner.addJoiningLines(featureCollection)
 
         val adapter = GeoJsonObjectMoshiAdapter()
 

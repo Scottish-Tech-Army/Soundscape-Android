@@ -237,6 +237,25 @@ fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollecti
 }
 
 /**
+ * Given a valid Tile feature collection this will parse the collection and return an interpolation
+ * points feature collection. Uses the "edgePoint" feature_value to extract crossings from GeoJSON.
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only edgePoints
+ */
+fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
+    val interpolationPointsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        feature.properties?.let { properties ->
+            if (properties["class"] == "edgePoint") {
+                interpolationPointsFeatureCollection.addFeature(feature)
+            }
+        }
+    }
+    return interpolationPointsFeatureCollection
+}
+
+/**
  * Given a valid Tile feature collection this will parse the collection and return a paths
  * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
  * Paths from Feature Collection.
@@ -486,6 +505,14 @@ fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection?,
         crossingsFeatureCollection
     )
     tileData.crossings = crossingsString
+
+    val interpolationFeatureCollection = getInterpolationPointsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    val interpolationString = moshi.adapter(FeatureCollection::class.java).toJson(
+        interpolationFeatureCollection
+    )
+    tileData.interpolations = interpolationString
 
     return  tileData
 

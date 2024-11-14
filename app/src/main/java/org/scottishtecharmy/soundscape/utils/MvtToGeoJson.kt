@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.utils
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Geometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
@@ -116,6 +117,68 @@ data class IntersectionDetails(
     val id : Double,
     var lineEnd : Boolean = false
 )
+
+class InterpolatedPointsJoiner {
+
+    private val interpolatedPoints: HashMap<Double, MutableList<LngLatAlt>> = hashMapOf()
+
+    fun addInterpolatedPoints(feature: Feature): Boolean {
+        // We add all edgePoint coordinates to our HashMap of interpolated points by OSM id
+        if (feature.properties?.containsKey("class")!!) {
+            if (feature.properties!!["class"] == "edgePoint") {
+                val geometry = feature.geometry as Geometry<LngLatAlt>
+                val osmId = feature.foreign!!["osm_id"] as Double
+                if (!interpolatedPoints.containsKey(osmId)) {
+                    interpolatedPoints[osmId] = mutableListOf()
+                }
+                for (point in geometry.coordinates) {
+                    // Add the point
+                    interpolatedPoints[osmId]!!.add(point)
+                }
+                return false
+            }
+        }
+        return true
+    }
+
+    fun addJoiningLines(featureCollection : FeatureCollection) {
+        for (entries in interpolatedPoints) {
+            if (entries.value.size > 1) {
+                // We want to find points that we can join together. Go through the list of points
+                // for the OSM id comparing against the other members in the list to see if any are
+                // almost at the same point.
+                for ((index1, point1) in entries.value.withIndex()) {
+                    for ((index2, point2) in entries.value.withIndex()) {
+                        if (index1 != index2) {
+                            if (distance(
+                                    point1.latitude,
+                                    point1.longitude,
+                                    point2.latitude,
+                                    point2.longitude
+                                ) < 0.1
+                            ) {
+                                // If the points are within 10cm of each other, then join their
+                                // LineStrings together.
+                                val joining = Feature()
+                                val foreign: HashMap<String, Any?> = hashMapOf()
+                                val osmIds = arrayListOf<Double>()
+                                osmIds.add(entries.key)
+                                foreign["osm_ids"] = entries.key
+                                joining.foreign = foreign
+                                joining.geometry = LineString(point1, point2)
+                                joining.properties = foreign
+
+                                featureCollection.addFeature(joining)
+                            }
+                        }
+                    }
+                }
+            } else {
+                // This is point must be on the outer edge or our grid, so we need do nothing
+            }
+        }
+    }
+}
 
 class IntersectionDetection {
 

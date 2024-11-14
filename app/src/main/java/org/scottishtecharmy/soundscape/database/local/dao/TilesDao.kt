@@ -44,6 +44,7 @@ class TilesDao(val realm: Realm) {
             pois = tile?.pois ?: "-"
             busStops = tile?.busStops ?: "-"
             crossings = tile?.crossings ?: "-"
+            interpolations = tile?.interpolations ?: "-"
         }
     }
 
