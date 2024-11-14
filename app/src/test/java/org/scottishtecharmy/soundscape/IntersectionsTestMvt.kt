@@ -1035,7 +1035,7 @@ class IntersectionsTestMvt {
         Assert.assertEquals("service", roadRelativeDirections.features[2].properties!!["highway"])
     }*/
 
-    @Test
+    /*@Test
     fun debugUtil(){
         val currentLocation = LngLatAlt(-0.9752549546655587, 51.4553843453491)
         // mvt tile so zoom at 15
@@ -1065,5 +1065,5 @@ class IntersectionsTestMvt {
         val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
 
         return featureCollection
-    }
+    }*/
 }
