@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
 import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient
 import org.scottishtecharmy.soundscape.network.TileClient
+import org.scottishtecharmy.soundscape.utils.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.utils.TileGrid
 import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
@@ -821,7 +822,13 @@ class GeoEngine {
     }
 
     private enum class Fc(val id: Int) {
-        ROADS(0), INTERSECTIONS(1), CROSSINGS(2), POIS(3), BUS_STOPS(4), MAX_COLLECTION_ID(5)
+        ROADS(0),
+        INTERSECTIONS(1),
+        CROSSINGS(2),
+        POIS(3),
+        BUS_STOPS(4),
+        INTERPOLATIONS(5),
+        MAX_COLLECTION_ID(6)
     }
 
     private fun getGridFeatureCollections(): List<FeatureCollection> {
@@ -835,12 +842,13 @@ class GeoEngine {
         val processedOsmIds = Array(Fc.MAX_COLLECTION_ID.id) { mutableSetOf<Any>() }
         val gridFeatureCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
+        val joiner = InterpolatedPointsJoiner()
         for (tile in tileGrid.tiles) {
             //Check the db for the tile
             val frozenTileResult =
                 tileDataRealm.query<TileData>("quadKey == $0", tile.quadkey).first().find()
             if (frozenTileResult != null) {
-                val featureCollection = Array<FeatureCollection?>(5) { null }
+                val featureCollection = Array<FeatureCollection?>(Fc.MAX_COLLECTION_ID.id) { null }
                 featureCollection[Fc.ROADS.id] = frozenTileResult.roads.let {
                     moshi.adapter(FeatureCollection::class.java).fromJson(it)
                 }
@@ -856,6 +864,12 @@ class GeoEngine {
                 featureCollection[Fc.BUS_STOPS.id] = frozenTileResult.busStops.let {
                     moshi.adapter(FeatureCollection::class.java).fromJson(it)
                 }
+                featureCollection[Fc.INTERPOLATIONS.id] = frozenTileResult.interpolations.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
+                }
+                for(ip in featureCollection[Fc.INTERPOLATIONS.id]!!) {
+                    joiner.addInterpolatedPoints(ip)
+                }
 
                 for((index, fc) in featureCollection.withIndex())
                     deduplicateFeatureCollection(gridFeatureCollection[index], fc, processedOsmIds[index])
@@ -863,6 +877,7 @@ class GeoEngine {
         }
         for(fc in gridFeatureCollection)
             results.add(fc)
+        joiner.addJoiningLines(results[Fc.ROADS.id])
 
         return results
     }

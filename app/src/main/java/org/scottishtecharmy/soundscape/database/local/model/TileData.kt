@@ -5,6 +5,7 @@ import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
 
 class TileData() : RealmObject {
+
     @PrimaryKey
     var quadKey : String = ""
     var lastUpdated : RealmInstant? = RealmInstant.now() // this timestamps it
@@ -16,6 +17,7 @@ class TileData() : RealmObject {
     var pois : String = "" // same as above
     var busStops: String = ""
     var crossings: String = ""
+    var interpolations: String = ""
     //var pois : RealmList<GDASpatialDataResultEntity> = realmListOf()
     //var roads : RealmList<GDASpatialDataResultEntity> = realmListOf()
     //var paths : RealmList<GDASpatialDataResultEntity> = realmListOf()

@@ -28,7 +28,17 @@ object RealmConfiguration {
             if(!SOUNDSCAPE_TILE_BACKEND)
                 deleteRealm(config)
 
-            tileDataRealm = Realm.open(config)
+            try {
+                tileDataRealm = Realm.open(config)
+            } catch(e: Exception) {
+                Log.e("Realm", "Exception opening database: $e")
+
+                // TODO: Is this really the best approach, deleting the database and trying again?
+                // We're going to delete it and try again. This is likely due to a change in schema
+                Log.e("Realm", "Deleting and re-trying")
+                deleteRealm(config)
+                tileDataRealm = Realm.open(config)
+            }
         }
         return tileDataRealm!!
     }
