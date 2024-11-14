@@ -113,7 +113,7 @@ data class IntersectionDetails(
     val type : String,
     val subClass : String,
     val brunnel : String,
-    val id : Long,
+    val id : Double,
     var lineEnd : Boolean = false
 )
 
@@ -206,7 +206,7 @@ class IntersectionDetection {
                 intersection.foreign!!["feature_type"] = "highway"
                 intersection.foreign!!["feature_value"] = "gd_intersection"
                 var name = ""
-                val osmIds = arrayListOf<Long>()
+                val osmIds = arrayListOf<Double>()
                 for (road in intersections) {
                     if(name.isNotEmpty()) {
                         name += "/"
@@ -476,11 +476,15 @@ fun vectorTileToGeoJson(tileX: Int,
         // POI can have duplicate entries for polygons and points, we de-duplicate them with these
         // maps
         val poiLayer = (layer.name == "poi")
-        val mapPolygonFeatures : HashMap<Long, Feature> = hashMapOf()
-        val mapPointFeatures : HashMap<Long, Feature> = hashMapOf()
-        val mapInterpolatedNodes : HashMap<Long, Feature> = hashMapOf()
+        val mapPolygonFeatures : HashMap<Double, Feature> = hashMapOf()
+        val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
+        val mapInterpolatedNodes : HashMap<Double, Feature> = hashMapOf()
 
         for (feature in layer.featuresList) {
+
+            // We use Double to store the OSM id as JSON doesn't support Long
+            val id = feature.id.toDouble()
+
             // Convert coordinates to GeoJSON. This is where we find out how many features
             // we're actually dealing with as there can be multiple features that have the
             // same properties.
@@ -593,7 +597,7 @@ fun vectorTileToGeoJson(tileX: Int,
                                 type,
                                 subclass,
                                 brunnel,
-                                feature.id
+                                id
                             )
                             intersectionDetection.addLine(line, details)
                             val interpolatedNodes : MutableList<LngLatAlt> = mutableListOf()
@@ -612,25 +616,23 @@ fun vectorTileToGeoJson(tileX: Int,
                                 // a Feature which is a list of those nodes for this OSM id. It may
                                 // just be a single point, or the line may have gone on and off the
                                 // tile multiple times.
-                                if (mapInterpolatedNodes.containsKey(feature.id)) {
+                                if (mapInterpolatedNodes.containsKey(id)) {
                                     // If we've already got this OSM id, we want to extend it with
                                     // the new points
-                                    val currentLine = mapInterpolatedNodes[feature.id]?.geometry as MultiPoint
+                                    val currentLine = mapInterpolatedNodes[id]?.geometry as MultiPoint
                                     for(node in interpolatedNodes) {
                                         currentLine.coordinates.add(node)
                                     }
                                 } else {
                                     val interpolatedFeature = Feature()
                                     val foreign: HashMap<String, Any?> = hashMapOf()
-                                    val osmIds = arrayListOf<Long>()
-                                    osmIds.add(feature.id)
-                                    foreign["osm_ids"] = osmIds
+                                    foreign["osm_id"] = id
                                     interpolatedFeature.foreign = foreign
                                     interpolatedFeature.geometry =
                                         MultiPoint(ArrayList(interpolatedNodes))
                                     interpolatedFeature.properties = hashMapOf()
                                     interpolatedFeature.properties!!["class"] = "edgePoint"
-                                    mapInterpolatedNodes[feature.id] = interpolatedFeature
+                                    mapInterpolatedNodes[id] = interpolatedFeature
                                 }
                             }
                         }
@@ -646,15 +648,15 @@ fun vectorTileToGeoJson(tileX: Int,
                 // And map the tags
                 val geoFeature = Feature()
                 geoFeature.geometry = geometry
-                properties!!["osm_ids"] = feature.id
+                properties!!["osm_ids"] = id
                 geoFeature.properties = properties
-                geoFeature.foreign = translateProperties(properties, feature.id)
+                geoFeature.foreign = translateProperties(properties, id)
 
                 if(poiLayer) {
                     if(feature.type == VectorTile.Tile.GeomType.POLYGON) {
-                        mapPolygonFeatures[feature.id] = geoFeature
+                        mapPolygonFeatures[id] = geoFeature
                     } else {
-                        mapPointFeatures[feature.id] = geoFeature
+                        mapPointFeatures[id] = geoFeature
                     }
                 } else {
                     collection.addFeature(geoFeature)
@@ -698,7 +700,7 @@ fun vectorTileToGeoJson(tileX: Int,
  * @return a map of properties that can be used in the same way as those from soundscape-backend
  */
 
-fun translateProperties(properties: HashMap<String, Any?>?, id: Long): HashMap<String, Any?> {
+fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap<String, Any?> {
     val foreign : HashMap<String, Any?> = hashMapOf()
     if(properties != null) {
         for(property in properties) {
@@ -741,7 +743,7 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Long): HashMap<S
             }
         }
     }
-    val osmIds = arrayListOf<Long>()
+    val osmIds = arrayListOf<Double>()
     osmIds.add(id)
     foreign["osm_ids"] = osmIds
 
