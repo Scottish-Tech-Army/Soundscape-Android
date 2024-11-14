@@ -28,4 +28,8 @@ open class FeatureCollection : GeoJsonObject(), Iterable<Feature> {
     operator fun plusAssign(rhs: Feature): Unit {
         features.add(rhs)
     }
+
+    operator fun plusAssign(rhs: FeatureCollection): Unit {
+        features.addAll(rhs)
+    }
 }

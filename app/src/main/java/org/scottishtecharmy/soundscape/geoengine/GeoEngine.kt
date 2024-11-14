@@ -871,8 +871,17 @@ class GeoEngine {
                     joiner.addInterpolatedPoints(ip)
                 }
 
-                for((index, fc) in featureCollection.withIndex())
-                    deduplicateFeatureCollection(gridFeatureCollection[index], fc, processedOsmIds[index])
+                if(SOUNDSCAPE_TILE_BACKEND) {
+                    for ((index, fc) in featureCollection.withIndex())
+                        deduplicateFeatureCollection(
+                            gridFeatureCollection[index],
+                            fc,
+                            processedOsmIds[index]
+                        )
+                } else {
+                    for ((index, fc) in featureCollection.withIndex())
+                        gridFeatureCollection[index].plusAssign(fc!!)
+                }
             }
         }
         for(fc in gridFeatureCollection)
