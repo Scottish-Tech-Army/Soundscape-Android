@@ -768,22 +768,39 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
     if(properties != null) {
         for(property in properties) {
             if (property.key == "class") {
-                //println("Class ${property.value}")
+                // This mapping is constructed from the class description in:
+                // https://github.com/davecraig/openmaptiles/blob/master/layers/transportation/transportation.yaml
                 when (property.value) {
-                    "crossing",
-                    "service",
+                    "motorway",
+                    "trunk",
+                    "primary",
                     "secondary",
                     "tertiary",
                     "minor",
+                    "service",
                     "track",
-                    "path",
-                    "primary" -> {
+                    "raceway",
+                    "busway",
+                    "bus_guideway",
+                    "ferry",
+                    "motorway_construction",
+                    "trunk_construction",
+                    "primary_construction",
+                    "secondary_construction",
+                    "tertiary_construction",
+                    "minor_construction",
+                    "path_construction",
+                    "service_construction",
+                    "track_construction",
+                    "raceway_construction",
+                    "crossing" -> {
                         foreign["feature_type"] = "highway"
                         foreign["feature_value"] = property.value
-
-                        if(properties["subclass"] == "pedestrian") {
-                            foreign["feature_value"] = "pedestrian"
-                        }
+                    }
+                    "path" -> {
+                        // Paths can have a more descriptive type in their subclass
+                        foreign["feature_type"] = "highway"
+                        foreign["feature_value"] = properties["subclass"]
                     }
 
                     "bus" -> {
