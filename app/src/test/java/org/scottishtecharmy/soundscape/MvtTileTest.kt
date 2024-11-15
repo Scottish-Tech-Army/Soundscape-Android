@@ -1,22 +1,11 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
-import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.InterpolatedPointsJoiner
-import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfLineString
-import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfMultiLineString
-import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfMultiPoint
-import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfMultiPolygon
-import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfPoint
-import org.scottishtecharmy.soundscape.utils.getBoundingBoxOfPolygon
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.utils.vectorTileToGeoJson
@@ -24,50 +13,89 @@ import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
-class MvtTileTest {
+private fun vectorTileToGeoJsonFromFile(
+    tileX: Int,
+    tileY: Int,
+    filename: String,
+    cropPoints: Boolean = true
+): FeatureCollection {
 
-    private fun vectorTileToGeoJsonFromFile(
-        tileX: Int,
-        tileY: Int,
-        filename: String,
-        cropPoints: Boolean = true
-    ): FeatureCollection {
+    val path = "src/test/res/org/scottishtecharmy/soundscape/"
+    val remoteTile = FileInputStream(path + filename)
+    val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
 
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val remoteTile = FileInputStream(path + filename)
-        val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
+    val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
 
-        val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
+//            // We want to check that all of the coordinates generated are within the buffered
+//            // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.
+//            val nwPoint = getLatLonTileWithOffset(tileX, tileY, 15, -4 / 256.0, -4 / 256.0)
+//            val sePoint = getLatLonTileWithOffset(tileX + 1, tileY + 1, 15, 4 / 256.0, 4 / 256.0)
+//            for (feature in featureCollection) {
+//                var box = BoundingBox()
+//                when (feature.geometry.type) {
+//                    "Point" -> box = getBoundingBoxOfPoint(feature.geometry as Point)
+//                    "MultiPoint" -> box = getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
+//                    "LineString" -> box = getBoundingBoxOfLineString(feature.geometry as LineString)
+//                    "MultiLineString" -> box =
+//                        getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
+//
+//                    "Polygon" -> box = getBoundingBoxOfPolygon(feature.geometry as Polygon)
+//                    "MultiPolygon" -> box =
+//                        getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
+//
+//                    else -> assert(false)
+//                }
+//                // Check that the feature bounding box is within the tileBoundingBox. This has been
+//                // broken by the addition of POI polygons which go beyond tile boundaries.
+//                assert(box.westLongitude >= nwPoint.longitude) { "${box.westLongitude} vs. ${nwPoint.longitude}" }
+//                assert(box.eastLongitude <= sePoint.longitude) { "${box.eastLongitude} vs. ${sePoint.longitude}" }
+//                assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
+//                assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
+//            }
+    return featureCollection
+}
 
-        // We want to check that all of the coordinates generated are within the buffered
-        // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.
-        val nwPoint = getLatLonTileWithOffset(tileX, tileY, 15, -4 / 256.0, -4 / 256.0)
-        val sePoint = getLatLonTileWithOffset(tileX + 1, tileY + 1, 15, 4 / 256.0, 4 / 256.0)
-        for (feature in featureCollection) {
-            var box = BoundingBox()
-            when (feature.geometry.type) {
-                "Point" -> box = getBoundingBoxOfPoint(feature.geometry as Point)
-                "MultiPoint" -> box = getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
-                "LineString" -> box = getBoundingBoxOfLineString(feature.geometry as LineString)
-                "MultiLineString" -> box =
-                    getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
+fun getGeoJsonForLocation(
+    location: LngLatAlt,
+    soundscapeBackend: Boolean = false
+): FeatureCollection {
 
-                "Polygon" -> box = getBoundingBoxOfPolygon(feature.geometry as Polygon)
-                "MultiPolygon" -> box =
-                    getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
-
-                else -> assert(false)
-            }
-//            // Check that the feature bounding box is within the tileBoundingBox. This has been
-//            // broken by the addition of POI polygons which go beyond tile boundaries.
-//            assert(box.westLongitude >= nwPoint.longitude) { "${box.westLongitude} vs. ${nwPoint.longitude}" }
-//            assert(box.eastLongitude <= sePoint.longitude) { "${box.eastLongitude} vs. ${sePoint.longitude}" }
-//            assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
-//            assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
-        }
-        return featureCollection
+    var gridSize = 2
+    if (soundscapeBackend) {
+        gridSize = 3
+    }
+    // Get a grid around the location
+    val grid = getTileGrid(location.latitude, location.longitude, gridSize)
+    for (tile in grid.tiles) {
+        println("Need tile ${tile.tileX}x${tile.tileY}")
     }
 
+    // This is implemented for the soundscape-backend yet, so assert to make that clear
+    assert(!soundscapeBackend)
+
+    // Read in the files
+    val joiner = InterpolatedPointsJoiner()
+    val featureCollection = FeatureCollection()
+    for (tile in grid.tiles) {
+        val geojson = vectorTileToGeoJsonFromFile(
+            tile.tileX,
+            tile.tileY,
+            "${tile.tileX}x${tile.tileY}.mvt"
+        )
+        for (feature in geojson) {
+            val addFeature = joiner.addInterpolatedPoints(feature)
+            if (addFeature) {
+                featureCollection.addFeature(feature)
+            }
+        }
+    }
+    // Add lines to connect all of the interpolated points
+    joiner.addJoiningLines(featureCollection)
+
+    return featureCollection
+}
+
+class MvtTileTest {
 
     @Test
     fun simpleVectorTile() {
