@@ -770,33 +770,25 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
             if (property.key == "class") {
                 //println("Class ${property.value}")
                 when (property.value) {
+                    "crossing",
                     "service",
                     "secondary",
                     "tertiary",
-                    "minor" -> {
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = "unclassified"
-                    }
-
+                    "minor",
                     "track",
-                    "path" -> {
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = "path"
-                    }
-
+                    "path",
                     "primary" -> {
                         foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = "primary"
+                        foreign["feature_value"] = property.value
+
+                        if(properties["subclass"] == "pedestrian") {
+                            foreign["feature_value"] = "pedestrian"
+                        }
                     }
 
                     "bus" -> {
                         foreign["feature_type"] = "highway"
                         foreign["feature_value"] = "bus_stop"
-                    }
-
-                    "crossing" -> {
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = "crossing"
                     }
 
                     else -> {
