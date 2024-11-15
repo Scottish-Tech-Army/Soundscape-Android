@@ -201,9 +201,10 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
          */
         fun getTileGrid(
             currentLatitude: Double = 0.0,
-            currentLongitude: Double = 0.0
+            currentLongitude: Double = 0.0,
+            gridSize : Int = GRID_SIZE
         ): TileGrid {
-            when(GRID_SIZE) {
+            when(gridSize) {
                 2 -> return get2x2TileGrid(currentLatitude, currentLongitude)
                 3 -> return get3x3TileGrid(currentLatitude, currentLongitude)
             }

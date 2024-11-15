@@ -1,13 +1,9 @@
 package org.scottishtecharmy.soundscape
 
-import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
@@ -19,11 +15,6 @@ import org.scottishtecharmy.soundscape.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getXYTile
-import org.scottishtecharmy.soundscape.utils.vectorTileToGeoJson
-import vector_tile.VectorTile
-import java.io.FileInputStream
-import java.io.FileOutputStream
 
 class IntersectionsTestMvt {
     @Test
@@ -50,13 +41,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 90.0
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraightMvt.intersectionStraightAheadFeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -135,13 +125,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 225.0 // South West
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionRightAndLeftTurnMvt.intersectionRightAndLeftTurn)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -223,13 +212,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 135.0 // South East
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionRightAndLeftTurnMvt.intersectionRightAndLeftTurn)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -314,13 +302,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 250.0 // South West
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraightMvt.intersectionStraightAheadFeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -406,13 +393,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 50.0 // North East
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraightMvt.intersectionStraightAheadFeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -500,13 +486,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 140.0 // South East
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraightMvt.intersectionStraightAheadFeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -590,13 +575,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 225.0 // South West
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionT2Mvt.intersectionT2FeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
+
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -680,14 +664,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 340.0 // North North West
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionCross1Mvt.intersectionCross1FeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
 
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -778,14 +760,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 340.0 // North West
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionCross1Mvt.intersectionCross1FeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
 
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -850,7 +830,7 @@ class IntersectionsTestMvt {
 
     }
 
-    /*@Test
+    @Test
     fun intersectionsCross3Test(){
         //  Cross3
         //         | ↑ |
@@ -872,17 +852,14 @@ class IntersectionsTestMvt {
         val deviceHeading = 320.0 // North West
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionCross3Mvt.intersectionCross3FeatureCollection)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
 
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
-        val roads = moshi.adapter(FeatureCollection::class.java).toJson(testRoadsCollectionFromTileFeatureCollection)
-        println(roads)
+
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
             currentLocation,
@@ -948,6 +925,7 @@ class IntersectionsTestMvt {
 
     }
 
+    /* Enable once we have a planet wide map
     @Test
     fun intersectionsLoopBackTest(){
         // Some intersections can contain the same road more than once,
@@ -958,14 +936,12 @@ class IntersectionsTestMvt {
         val deviceHeading = 270.0
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionLoopBack.intersectionLoopBack)
+        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
 
         // Get the roads from the tile
         val testRoadsCollectionFromTileFeatureCollection =
             getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
+                featureCollectionTest
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
@@ -1006,7 +982,6 @@ class IntersectionsTestMvt {
             if (lineStringIsCircular(road.geometry as LineString)){
                 println("Circular path")
             }
-
         }
 
 
@@ -1033,7 +1008,8 @@ class IntersectionsTestMvt {
         Assert.assertEquals("service", roadRelativeDirections.features[1].properties!!["highway"])
         Assert.assertEquals(5, roadRelativeDirections.features[2].properties!!["Direction"])
         Assert.assertEquals("service", roadRelativeDirections.features[2].properties!!["highway"])
-    }*/
+    }
+    */
 
     /*@Test
     fun debugUtil(){
