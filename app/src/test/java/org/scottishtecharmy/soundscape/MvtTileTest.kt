@@ -92,6 +92,11 @@ fun getGeoJsonForLocation(
     // Add lines to connect all of the interpolated points
     joiner.addJoiningLines(featureCollection)
 
+    val adapter = GeoJsonObjectMoshiAdapter()
+    val outputFile = FileOutputStream("${grid.tiles[0].tileX}-${grid.tiles[1].tileX}x${grid.tiles[0].tileY}-${grid.tiles[3].tileY}.geojson")
+    outputFile.write(adapter.toJson(featureCollection).toByteArray())
+    outputFile.close()
+
     return featureCollection
 }
 
