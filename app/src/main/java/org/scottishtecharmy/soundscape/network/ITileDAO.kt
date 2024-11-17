@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.network
 
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SERVER_PATH
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SUFFIX
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -20,14 +22,14 @@ interface ITileDAO {
     ): Call<String>
 
     // protomaps server functions
-    @GET("protomaps/{z}/{x}/{y}.mvt")
+    @GET("$PROTOMAPS_SERVER_PATH/{z}/{x}/{y}.$PROTOMAPS_SUFFIX")
     fun getVectorTile(
         @Path("x") x: Int,
         @Path("y") y: Int,
         @Path("z") z: Int
     ): Call<VectorTile.Tile>
 
-    @GET("protomaps/{z}/{x}/{y}.mvt")
+    @GET("$PROTOMAPS_SERVER_PATH/{z}/{x}/{y}.$PROTOMAPS_SUFFIX")
     fun getVectorTileWithCache(
         @Path("x") x: Int,
         @Path("y") y: Int,
