@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape
 
 import android.Manifest
 import android.content.Intent
-import android.net.http.HttpResponseCache
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -30,9 +29,10 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SERVER_PATH
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SERVER_BASE
 import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
-import java.io.IOException
 import javax.inject.Inject
 
 
@@ -91,6 +91,24 @@ class MainActivity : AppCompatActivity() {
         Log.d("ExtractAssets", "Start extraction")
         extractAssets(applicationContext, "osm-bright-gl-style","osm-bright-gl-style")
         Log.d("ExtractAssets", "Completed extraction")
+
+        // Update extracted style.json with protomaps server URI
+        val filesDir = applicationContext.filesDir.toString()
+        val outputStyleStream = File("$filesDir/osm-bright-gl-style/processedstyle.json").outputStream()
+        val inputStyleStream = File("$filesDir/osm-bright-gl-style/style.json").inputStream()
+        inputStyleStream.bufferedReader().useLines { lines ->
+            lines.forEach { line ->
+                if(line.contains("PROTOMAPS_SERVER_URL")) {
+                    val newline = line.replace("PROTOMAPS_SERVER_URL", "$PROTOMAPS_SERVER_BASE/$PROTOMAPS_SERVER_PATH.json")
+                    outputStyleStream.write(newline.toByteArray())
+                }
+                else {
+                    outputStyleStream.write(line.toByteArray())
+                }
+            }
+        }
+        inputStyleStream.close()
+        outputStyleStream.close()
 
         // Debug - dump preferences
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)

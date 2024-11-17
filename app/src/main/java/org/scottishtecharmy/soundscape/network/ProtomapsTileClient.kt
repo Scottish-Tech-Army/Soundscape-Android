@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.network
 
 import android.app.Application
+import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SERVER_BASE
 import retrofit2.Retrofit
 import retrofit2.converter.protobuf.ProtoConverterFactory
 
@@ -15,6 +16,6 @@ class ProtomapsTileClient(application: Application) : TileClient(application) {
     }
 
     companion object {
-        private const val BASE_URL = "https://d1wzlzgah5gfol.cloudfront.net"
+        private const val BASE_URL = PROTOMAPS_SERVER_BASE
     }
 }
