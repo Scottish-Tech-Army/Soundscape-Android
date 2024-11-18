@@ -292,6 +292,107 @@ class IntersectionDetection {
     }
 }
 
+data class EntranceDetails(
+    val name : String?,
+    val entranceType : String?,
+    val poi: Boolean,
+    val osmId : Double,
+)
+class EntranceMatching {
+
+    /**
+     * buildingNodes is a sparse map which maps from a location within the tile to a list of
+     * building polygons which have nodes at that point. Every node on any `POI` polygon will appear
+     * in the map along with any entrance. After processing it should be straightforward to match
+     * up entrances to their POI polygons.
+     */
+    private val buildingNodes : HashMap< Int, ArrayList<EntranceDetails>> = hashMapOf()
+
+    /**
+     * addLine is called for any line feature that is being added to the FeatureCollection.
+     * @param line is a new `transportation` layer line to add to the map
+     * @param details describes the line that is being added.
+     *
+     */
+    fun addPolygon(line : ArrayList<Pair<Int, Int>>,
+                details : EntranceDetails) {
+        for (point in line) {
+            if((point.first < 0) || (point.first > 4095) ||
+                (point.second < 0) || (point.second > 4095)) {
+                continue
+            }
+
+            // Rather than have a 2D sparse array, turn the coordinates into a single int so that we
+            // can have a 1D sparse array instead.
+            val coordinateKey = point.first.shl(12) + point.second
+            if (buildingNodes[coordinateKey] == null) {
+                buildingNodes[coordinateKey] = arrayListOf(details.copy())
+            }
+            else {
+                buildingNodes[coordinateKey]?.add(details.copy())
+            }
+        }
+    }
+
+    /**
+     * generateIntersections goes through our hash map and adds an intersection feature to the
+     * collection wherever it finds out.
+     * @param collection is where the new intersection features are added
+     * @param tileX the tile x coordinate so that the tile relative location of the intersection can
+     * be turned into a latitude/longitude
+     * @param tileY the tile y coordinate so that the tile relative location of the intersection can
+     *      * be turned into a latitude/longitude
+     */
+    fun generateEntrances(collection: FeatureCollection, tileX : Int, tileY : Int, tileZoom : Int) {
+        // Add points for the intersections that we found
+        for ((key, nodes) in buildingNodes) {
+
+            // Generate an entrance with a matching POI polygon
+            var entranceDetails : EntranceDetails? = null
+            var poiDetails : EntranceDetails? = null
+            for(node in nodes) {
+                if(!node.poi) {
+                    // We have an entrance!
+                    entranceDetails = node
+                } else {
+                    poiDetails = node
+                }
+            }
+
+            // If we have an entrance at this point then we generate a feature to represent it
+            // using the POI that it is coincident with if there is one.
+            if(entranceDetails != null) {
+                // Turn our coordinate key back into tile relative x,y coordinates
+                val x = key.shr(12)
+                val y = key.and(0xfff)
+                // Convert the tile relative coordinate into a LatLngAlt
+                val point = arrayListOf(Pair(x, y))
+                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+
+                // Create our entrance feature to match those from soundscape-backend
+                val entrance = Feature()
+                entrance.geometry =
+                    Point(coordinates[0].longitude, coordinates[0].latitude)
+                entrance.foreign = HashMap()
+                entrance.foreign!!["feature_type"] = "entrance"
+                entrance.foreign!!["feature_value"] = entranceDetails.entranceType
+                val osmIds = arrayListOf<Double>()
+                osmIds.add(entranceDetails.osmId)
+                entrance.foreign!!["osm_ids"] = osmIds
+
+                entrance.properties = HashMap()
+                entrance.properties!!["name"] = entranceDetails.name
+                if(entranceDetails.name == null)
+                    entrance.properties!!["name"] = poiDetails?.name
+
+                collection.addFeature(entrance)
+
+                println("Entrance: ${poiDetails?.name} ${entranceDetails.entranceType} ")
+            }
+        }
+    }
+}
+
 fun calculateSlope(aConst: Double, a1: Double, a2: Double) : Double? {
     if (a1 == a2) {
         // Parallel lines, so no intersection
@@ -527,6 +628,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
     val collection = FeatureCollection()
     val intersectionDetection = IntersectionDetection()
+    val entranceMatching = EntranceMatching()
 
     val layerIds = arrayOf("transportation", "poi")
 
@@ -542,9 +644,9 @@ fun vectorTileToGeoJson(tileX: Int,
         val mapPolygonFeatures : HashMap<Double, Feature> = hashMapOf()
         val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
         val mapInterpolatedNodes : HashMap<Double, Feature> = hashMapOf()
-
         for (feature in layer.featuresList) {
 
+            var entrance = false
             // We use Double to store the OSM id as JSON doesn't support Long
             val id = feature.id.toDouble()
 
@@ -598,6 +700,16 @@ fun vectorTileToGeoJson(tileX: Int,
                         feature.geometryList
                     )
                     for (polygon in polygons) {
+                        if(poiLayer) {
+                            if(properties?.get("name") != null) {
+                                val entranceDetails = EntranceDetails(properties["name"]?.toString(),
+                                    null,
+                                    true,
+                                    id)
+                                entranceMatching.addPolygon(polygon, entranceDetails)
+                            }
+                        }
+
                         if (polygon.first() != polygon.last()) {
                             polygon.add(polygon.first())
                         }
@@ -623,6 +735,14 @@ fun vectorTileToGeoJson(tileX: Int,
                             listOfGeometries.add(
                                 Point(coordinates[0].longitude, coordinates[0].latitude)
                             )
+
+                            if(properties?.get("class") == "entrance") {
+                                val entranceDetails = EntranceDetails(properties["name"]?.toString(),
+                                    properties["subclass"]?.toString(),
+                                    false, id)
+                                entranceMatching.addPolygon(point, entranceDetails)
+                                entrance = true
+                            }
                         }
                     }
                 }
@@ -707,22 +827,30 @@ fun vectorTileToGeoJson(tileX: Int,
                 }
             }
 
+            if(entrance) {
+                // We've added the entrance to our matching code and so we don't need to add it as
+                // as feature now
+                continue
+            }
+
             for (geometry in listOfGeometries) {
                 // And map the tags
                 val geoFeature = Feature()
                 geoFeature.geometry = geometry
                 properties!!["osm_ids"] = id
                 geoFeature.properties = properties
-                geoFeature.foreign = translateProperties(properties, id)
-
-                if(poiLayer) {
-                    if(feature.type == VectorTile.Tile.GeomType.POLYGON) {
-                        mapPolygonFeatures[id] = geoFeature
+                val foreign = translateProperties(properties, id)
+                if(foreign.isNotEmpty()) {
+                    geoFeature.foreign = foreign
+                    if (poiLayer) {
+                        if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
+                            mapPolygonFeatures[id] = geoFeature
+                        } else {
+                            mapPointFeatures[id] = geoFeature
+                        }
                     } else {
-                        mapPointFeatures[id] = geoFeature
+                        collection.addFeature(geoFeature)
                     }
-                } else {
-                    collection.addFeature(geoFeature)
                 }
             }
         }
@@ -733,6 +861,9 @@ fun vectorTileToGeoJson(tileX: Int,
                 // If we add as a polygon feature, then remove any point feature for the same id
                 mapPointFeatures.remove(feature.key)
             }
+
+            entranceMatching.generateEntrances(collection, tileX, tileY, tileZoom)
+
             // And then add the remaining non-duplicated point features
             for (feature in mapPointFeatures) {
                 collection.addFeature(feature.value)
@@ -806,6 +937,13 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                     "bus" -> {
                         foreign["feature_type"] = "highway"
                         foreign["feature_value"] = "bus_stop"
+                    }
+
+                    // These are the features which we don't add to POI (for now at least)
+                    "cycle_barrier",
+                    "bollard",
+                    "gate" -> {
+                        return hashMapOf()
                     }
 
                     else -> {
