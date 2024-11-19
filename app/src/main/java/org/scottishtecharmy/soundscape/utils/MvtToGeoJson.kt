@@ -387,7 +387,7 @@ class EntranceMatching {
 
                 collection.addFeature(entrance)
 
-                println("Entrance: ${poiDetails?.name} ${entranceDetails.entranceType} ")
+//                println("Entrance: ${poiDetails?.name} ${entranceDetails.entranceType} ")
             }
         }
     }
@@ -630,7 +630,13 @@ fun vectorTileToGeoJson(tileX: Int,
     val intersectionDetection = IntersectionDetection()
     val entranceMatching = EntranceMatching()
 
-    val layerIds = arrayOf("transportation", "poi")
+    val layerIds = arrayOf("transportation", "poi", "building")
+
+    // POI can have duplicate entries for polygons and points and also duplicates in the Buildings
+    // layer we de-duplicate them with these maps.
+    val mapPolygonFeatures : HashMap<Double, Feature> = hashMapOf()
+    val mapBuildingFeatures : HashMap<Double, Feature> = hashMapOf()
+    val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
 
     for(layer in mvt.layersList) {
         if(!layerIds.contains(layer.name)) {
@@ -638,11 +644,6 @@ fun vectorTileToGeoJson(tileX: Int,
         }
         println("Process layer: " + layer.name)
 
-        // POI can have duplicate entries for polygons and points, we de-duplicate them with these
-        // maps
-        val poiLayer = (layer.name == "poi")
-        val mapPolygonFeatures : HashMap<Double, Feature> = hashMapOf()
-        val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
         val mapInterpolatedNodes : HashMap<Double, Feature> = hashMapOf()
         for (feature in layer.featuresList) {
 
@@ -692,6 +693,12 @@ fun vectorTileToGeoJson(tileX: Int,
                     firstInPair = false
             }
 
+            if(layer.name == "building") {
+                // Check that we have a name, otherwise we're not interested
+                if((properties == null) || (properties["name"] == null))
+                    continue
+            }
+
             // Parse geometries
             when (feature.type) {
                 VectorTile.Tile.GeomType.POLYGON -> {
@@ -700,7 +707,7 @@ fun vectorTileToGeoJson(tileX: Int,
                         feature.geometryList
                     )
                     for (polygon in polygons) {
-                        if(poiLayer) {
+                        if(layer.name == "poi") {
                             if(properties?.get("name") != null) {
                                 val entranceDetails = EntranceDetails(properties["name"]?.toString(),
                                     null,
@@ -842,38 +849,46 @@ fun vectorTileToGeoJson(tileX: Int,
                 val foreign = translateProperties(properties, id)
                 if(foreign.isNotEmpty()) {
                     geoFeature.foreign = foreign
-                    if (poiLayer) {
+                    if (layer.name == "poi") {
                         if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
                             mapPolygonFeatures[id] = geoFeature
                         } else {
                             mapPointFeatures[id] = geoFeature
                         }
-                    } else {
+                    } else if (layer.name == "transportation") {
                         collection.addFeature(geoFeature)
+                    } else {
+                        mapBuildingFeatures[id] = geoFeature
                     }
                 }
             }
         }
-        if(poiLayer) {
-            // Add all of the polygon features
-            for (feature in mapPolygonFeatures) {
-                collection.addFeature(feature.value)
-                // If we add as a polygon feature, then remove any point feature for the same id
-                mapPointFeatures.remove(feature.key)
-            }
 
-            entranceMatching.generateEntrances(collection, tileX, tileY, tileZoom)
-
-            // And then add the remaining non-duplicated point features
-            for (feature in mapPointFeatures) {
-                collection.addFeature(feature.value)
-            }
-        } else {
+        if(layer.name == "transportation") {
             // Add all of our interpolated nodes
             for (feature in mapInterpolatedNodes) {
                 collection.addFeature(feature.value)
             }
         }
+    }
+    // Add all of the polygon features
+    for (feature in mapPolygonFeatures) {
+        collection.addFeature(feature.value)
+        // If we add as a polygon feature, then remove any point feature for the same id
+        mapPointFeatures.remove(feature.key)
+        mapBuildingFeatures.remove(feature.key)
+    }
+
+    entranceMatching.generateEntrances(collection, tileX, tileY, tileZoom)
+
+    // And then add the remaining non-duplicated point features
+    for (feature in mapPointFeatures) {
+        collection.addFeature(feature.value)
+        mapBuildingFeatures.remove(feature.key)
+    }
+    // And then any remaining buildings that weren't POIs
+    for (feature in mapBuildingFeatures) {
+        collection.addFeature(feature.value)
     }
     // Add intersections
     intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
@@ -928,6 +943,7 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                         foreign["feature_type"] = "highway"
                         foreign["feature_value"] = property.value
                     }
+
                     "path" -> {
                         // Paths can have a more descriptive type in their subclass
                         foreign["feature_type"] = "highway"
@@ -950,6 +966,10 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                         foreign["feature_type"] = property.value
                     }
                 }
+            } else if (property.key == "building") {
+                // This is used for mapping warehouses
+                foreign["feature_type"] = property.key
+                foreign["feature_value"] = property.value
             }
         }
     }
