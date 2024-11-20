@@ -8,7 +8,7 @@ import io.realm.kotlin.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
 
 object RealmConfiguration {
     private var tileDataRealm: Realm? = null

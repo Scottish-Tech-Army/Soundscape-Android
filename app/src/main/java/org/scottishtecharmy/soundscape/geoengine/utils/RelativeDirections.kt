@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 enum class RelativeDirections (val value: Int) {
     // Ahead, Right, Behind, and Left all get a 150 degree window centered in their respective

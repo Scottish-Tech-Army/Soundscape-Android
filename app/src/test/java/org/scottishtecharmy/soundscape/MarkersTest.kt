@@ -6,9 +6,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.utils.distanceToIntersection
-import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceToIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
 
 class MarkersTest {
 

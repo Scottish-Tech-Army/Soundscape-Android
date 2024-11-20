@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 enum class Direction(val value: Int) {
     // This is tracking around clockwise from 6 o'clock

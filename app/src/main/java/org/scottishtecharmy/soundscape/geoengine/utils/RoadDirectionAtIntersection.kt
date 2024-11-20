@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 enum class RoadDirectionAtIntersection {
     LEADING,

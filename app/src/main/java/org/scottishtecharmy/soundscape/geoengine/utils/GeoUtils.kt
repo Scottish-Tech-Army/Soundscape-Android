@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners

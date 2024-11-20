@@ -40,37 +40,37 @@ import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
 import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient
 import org.scottishtecharmy.soundscape.network.TileClient
-import org.scottishtecharmy.soundscape.utils.InterpolatedPointsJoiner
-import org.scottishtecharmy.soundscape.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.utils.TileGrid
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.ZOOM_LEVEL
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.utils.checkIntersection
-import org.scottishtecharmy.soundscape.utils.cleanTileGeoJSON
-import org.scottishtecharmy.soundscape.utils.deduplicateFeatureCollection
-import org.scottishtecharmy.soundscape.utils.distance
-import org.scottishtecharmy.soundscape.utils.distanceToPolygon
-import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirection
-import org.scottishtecharmy.soundscape.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
+import org.scottishtecharmy.soundscape.geoengine.utils.deduplicateFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
-import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
-import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.utils.getNearestIntersection
-import org.scottishtecharmy.soundscape.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.utils.getPoiFeatureCollectionBySuperCategory
-import org.scottishtecharmy.soundscape.utils.getRelativeDirectionLabel
-import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
-import org.scottishtecharmy.soundscape.utils.getSuperCategoryElements
-import org.scottishtecharmy.soundscape.utils.pointIsWithinBoundingBox
-import org.scottishtecharmy.soundscape.utils.processTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.processTileString
-import org.scottishtecharmy.soundscape.utils.removeDuplicateOsmIds
-import org.scottishtecharmy.soundscape.utils.sortedByDistanceTo
-import org.scottishtecharmy.soundscape.utils.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
+import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionLabel
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
+import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
+import org.scottishtecharmy.soundscape.geoengine.utils.processTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.processTileString
+import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
+import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import retrofit2.awaitResponse
 import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
@@ -150,7 +150,8 @@ class GeoEngine {
                 newLocation?.let { location ->
                     // Check if we're still within the central area of our grid
                     if (!pointIsWithinBoundingBox(LngLatAlt(location.longitude, location.latitude),
-                                                  centralBoundingBox)) {
+                                                  centralBoundingBox)
+                    ) {
                         Log.d(TAG, "Update central grid area")
                         // The current location has moved from within the central area, so get the
                         // new grid and the new central area.

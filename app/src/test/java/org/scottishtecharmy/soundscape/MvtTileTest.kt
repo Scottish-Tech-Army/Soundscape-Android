@@ -1,14 +1,14 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import org.scottishtecharmy.soundscape.utils.InterpolatedPointsJoiner
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.utils.getLatLonTileWithOffset
-import org.scottishtecharmy.soundscape.utils.searchFeaturesByName
-import org.scottishtecharmy.soundscape.utils.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream

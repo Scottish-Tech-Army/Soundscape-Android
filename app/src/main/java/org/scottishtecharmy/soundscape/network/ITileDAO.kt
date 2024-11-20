@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.network
 
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SERVER_PATH
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.PROTOMAPS_SUFFIX
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.PROTOMAPS_SERVER_PATH
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.PROTOMAPS_SUFFIX
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

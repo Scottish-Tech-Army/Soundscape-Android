@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 class BoSegment(
     private val p1: BoPoint,

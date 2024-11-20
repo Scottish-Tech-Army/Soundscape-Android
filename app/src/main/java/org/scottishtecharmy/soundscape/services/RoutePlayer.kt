@@ -6,12 +6,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
-import org.scottishtecharmy.soundscape.utils.distance
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
 
 class RoutePlayer(val service: SoundscapeService) {
     private var currentRouteData: RouteData? = null

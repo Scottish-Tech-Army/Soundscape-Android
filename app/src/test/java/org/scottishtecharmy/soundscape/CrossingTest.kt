@@ -7,13 +7,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.utils.distance
-import org.scottishtecharmy.soundscape.utils.getCrossingsFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getNearestIntersection
-import org.scottishtecharmy.soundscape.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
+import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 
 class CrossingTest {
 
