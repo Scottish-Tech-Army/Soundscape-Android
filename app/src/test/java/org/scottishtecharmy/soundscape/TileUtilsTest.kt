@@ -28,9 +28,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinate
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
 import org.scottishtecharmy.soundscape.geoengine.utils.explodeLineString

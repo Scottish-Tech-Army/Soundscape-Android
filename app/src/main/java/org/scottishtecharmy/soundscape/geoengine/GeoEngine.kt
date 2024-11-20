@@ -43,8 +43,6 @@ import org.scottishtecharmy.soundscape.network.TileClient
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.SOUNDSCAPE_TILE_BACKEND
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON

@@ -24,13 +24,13 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.model.ReviewErrorCode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_BASE
+import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.PROTOMAPS_SERVER_PATH
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.PROTOMAPS_SERVER_BASE
 import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
 import javax.inject.Inject
