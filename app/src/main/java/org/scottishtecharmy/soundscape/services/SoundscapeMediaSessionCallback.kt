@@ -48,6 +48,7 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
             val decodedKey = when(event.keyCode) {
                 KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
                     // TODO: ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
+                    service.whatsAroundMe()
                     "Play/Pause"
                 }
                 KeyEvent.KEYCODE_MEDIA_SKIP_FORWARD -> {
