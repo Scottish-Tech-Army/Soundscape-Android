@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.dto.IntersectionRelativeDirections

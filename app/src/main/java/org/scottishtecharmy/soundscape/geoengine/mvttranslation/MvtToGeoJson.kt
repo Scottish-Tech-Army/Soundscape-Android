@@ -1,5 +1,6 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
@@ -9,7 +10,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import org.scottishtecharmy.soundscape.utils.TileGrid.Companion.ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import vector_tile.VectorTile
 
 fun pointIsOffTile(x: Int, y: Int) : Boolean {
@@ -100,11 +102,13 @@ private fun parseGeometry(
 private fun convertGeometry(tileX : Int, tileY : Int, tileZoom : Int, geometry: ArrayList<Pair<Int, Int>>) : ArrayList<LngLatAlt> {
     val results = arrayListOf<LngLatAlt>()
     for(point in geometry) {
-        results.add(getLatLonTileWithOffset(tileX,
+        results.add(
+            getLatLonTileWithOffset(tileX,
             tileY,
             tileZoom,
             point.first.toDouble()/4096.0,
-            point.second.toDouble()/4096.0))
+            point.second.toDouble()/4096.0)
+        )
     }
     return results
 }
@@ -197,7 +201,8 @@ class IntersectionDetection {
      *
      */
     fun addLine(line : ArrayList<Pair<Int, Int>>,
-                details : IntersectionDetails) {
+                details : IntersectionDetails
+    ) {
         for (point in line) {
             if((point.first < 0) || (point.first > 4095) ||
                 (point.second < 0) || (point.second > 4095)) {
@@ -315,7 +320,8 @@ class EntranceMatching {
      *
      */
     fun addPolygon(line : ArrayList<Pair<Int, Int>>,
-                details : EntranceDetails) {
+                details : EntranceDetails
+    ) {
         for (point in line) {
             if((point.first < 0) || (point.first > 4095) ||
                 (point.second < 0) || (point.second > 4095)) {
@@ -521,11 +527,13 @@ fun convertGeometryAndClipLineToTile(
                 interpolatedNodes.add(interpolatedLatLon)
 
                 // Add the new point
-                segment.add(getLatLonTileWithOffset(tileX,
+                segment.add(
+                    getLatLonTileWithOffset(tileX,
                     tileY,
                     tileZoom,
                     point.first.toDouble()/4096.0,
-                    point.second.toDouble()/4096.0))
+                    point.second.toDouble()/4096.0)
+                )
             } else {
                 // We started on tile and this point is now off tile
                 // Add interpolated point from lastPoint to this point
@@ -546,11 +554,13 @@ fun convertGeometryAndClipLineToTile(
             offTile = offTile.xor(true)
         }
         else if(!offTile) {
-            segment.add(getLatLonTileWithOffset(tileX,
+            segment.add(
+                getLatLonTileWithOffset(tileX,
                 tileY,
                 tileZoom,
                 point.first.toDouble()/4096.0,
-                point.second.toDouble()/4096.0))
+                point.second.toDouble()/4096.0)
+            )
         } else {
             // We're continuing off tile, but we need to check if the line between the two off tile
             // points crossed over the tile.

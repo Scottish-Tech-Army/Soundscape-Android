@@ -8,14 +8,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.utils.dijkstraWithLoops
-import org.scottishtecharmy.soundscape.utils.distance
-import org.scottishtecharmy.soundscape.utils.explodeLineString
-import org.scottishtecharmy.soundscape.utils.featureCollectionToGraphWithNodeMap
-import org.scottishtecharmy.soundscape.utils.getPathCoordinates
-import org.scottishtecharmy.soundscape.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getShortestRoute
-import java.util.PriorityQueue
+import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraWithLoops
+import org.scottishtecharmy.soundscape.geoengine.utils.featureCollectionToGraphWithNodeMap
+import org.scottishtecharmy.soundscape.geoengine.utils.getPathCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
 
 
 class DijkstraTest {

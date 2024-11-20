@@ -5,8 +5,8 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
-import org.scottishtecharmy.soundscape.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.searchFeaturesByName
+import org.scottishtecharmy.soundscape.geoengine.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 
 class SearchTest {
 

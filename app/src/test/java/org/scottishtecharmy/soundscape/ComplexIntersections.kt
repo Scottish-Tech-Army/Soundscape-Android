@@ -8,19 +8,19 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.utils.checkIntersection
-import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getFovRoadsFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNames
-import org.scottishtecharmy.soundscape.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getNearestIntersection
-import org.scottishtecharmy.soundscape.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.utils.getRoadBearingToIntersection
-import org.scottishtecharmy.soundscape.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
+import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 
 class ComplexIntersections {
 

@@ -1,8 +1,7 @@
-package org.scottishtecharmy.soundscape.utils
+package org.scottishtecharmy.soundscape.geoengine.utils
 
 
 import android.content.Context
-import android.content.res.Configuration
 import org.scottishtecharmy.soundscape.R
 
 fun getCompassLabelFacingDirection(localizedContext: Context, degrees: Int, locale: java.util.Locale): String{

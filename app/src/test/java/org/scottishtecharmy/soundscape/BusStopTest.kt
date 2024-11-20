@@ -7,10 +7,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.utils.distance
-import org.scottishtecharmy.soundscape.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.geoengine.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
 
 class BusStopTest {
 
