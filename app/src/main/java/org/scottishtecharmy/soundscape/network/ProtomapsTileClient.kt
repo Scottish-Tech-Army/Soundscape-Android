@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.network
 
 import android.app.Application
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.PROTOMAPS_SERVER_BASE
+import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_BASE
 import retrofit2.Retrofit
 import retrofit2.converter.protobuf.ProtoConverterFactory
 
