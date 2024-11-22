@@ -106,6 +106,22 @@
     <string name="directions_direction_behind_to_the_left">derrière vous à gauche</string>
     <string name="directions_direction_to_the_left">à gauche</string>
     <string name="directions_direction_ahead_to_the_left">face à vous à gauche</string>
+    <string name="directions_traveling_n">Se déplaçant vers le nord</string>
+    <string name="directions_traveling_ne">Se déplaçant vers le nord-est</string>
+    <string name="directions_traveling_e">Se déplaçant vers l’est</string>
+    <string name="directions_traveling_se">Se déplaçant vers le sud-est</string>
+    <string name="directions_traveling_s">Se déplaçant vers le sud</string>
+    <string name="directions_traveling_sw">Se déplaçant vers le sud-ouest</string>
+    <string name="directions_traveling_w">Se déplaçant vers l’ouest</string>
+    <string name="directions_traveling_nw">Se déplaçant vers le nord-ouest</string>
+    <string name="directions_heading_n">En direction du nord</string>
+    <string name="directions_heading_ne">En direction du nord-est</string>
+    <string name="directions_heading_e">En direction de l’est</string>
+    <string name="directions_heading_se">En direction du sud-est</string>
+    <string name="directions_heading_s">En direction du sud</string>
+    <string name="directions_heading_sw">En direction du sud-ouest</string>
+    <string name="directions_heading_w">En direction de l’ouest</string>
+    <string name="directions_heading_nw">En direction du nord-ouest</string>
 
     <string name="intersection_approaching_intersection">Vous approchez d’une intersection</string>
     <string name="directions_intersection_with_name_direction">Intersection de %1$s %2$s</string>

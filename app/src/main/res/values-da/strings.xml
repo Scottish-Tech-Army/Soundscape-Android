@@ -107,6 +107,22 @@
     <string name="directions_direction_behind_to_the_left">bagved til venstre</string>
     <string name="directions_direction_to_the_left">til venstre</string>
     <string name="directions_direction_ahead_to_the_left">forude til venstre</string>
+    <string name="directions_traveling_n">Kører nord</string>
+    <string name="directions_traveling_ne">Kører nordøst</string>
+    <string name="directions_traveling_e">Kører øst</string>
+    <string name="directions_traveling_se">Kører sydøst</string>
+    <string name="directions_traveling_s">Kører syd</string>
+    <string name="directions_traveling_sw">Kører sydvest</string>
+    <string name="directions_traveling_w">Kører vest</string>
+    <string name="directions_traveling_nw">Kører nordvest</string>
+    <string name="directions_heading_n">På vej nord</string>
+    <string name="directions_heading_ne">På vej nordøst</string>
+    <string name="directions_heading_e">På vej øst</string>
+    <string name="directions_heading_se">På vej sydøst</string>
+    <string name="directions_heading_s">På vej syd</string>
+    <string name="directions_heading_sw">På vej sydvest</string>
+    <string name="directions_heading_w">På vej vest</string>
+    <string name="directions_heading_nw">På vej nordvest</string>
 
     <string name="intersection_approaching_intersection">Nærmer sig kryds</string>
     <string name="directions_intersection_with_name_direction">Kryds med %1$s %2$s</string>

@@ -106,6 +106,22 @@
     <string name="directions_direction_behind_to_the_left">bak deg og til venstre</string>
     <string name="directions_direction_to_the_left">til venstre</string>
     <string name="directions_direction_ahead_to_the_left">foran deg og til venstre</string>
+    <string name="directions_traveling_n">Kjører mot nord</string>
+    <string name="directions_traveling_ne">Kjører mot nordøst</string>
+    <string name="directions_traveling_e">Kjører mot øst</string>
+    <string name="directions_traveling_se">Kjører mot sørøst</string>
+    <string name="directions_traveling_s">Kjører mot sør</string>
+    <string name="directions_traveling_sw">Kjører mot sørvest</string>
+    <string name="directions_traveling_w">Kjører mot vest</string>
+    <string name="directions_traveling_nw">Kjører mot nordvest</string>
+    <string name="directions_heading_n">Du går mot nord</string>
+    <string name="directions_heading_ne">Du går mot nordøst</string>
+    <string name="directions_heading_e">Du går mot øst</string>
+    <string name="directions_heading_se">Du går mot sørøst</string>
+    <string name="directions_heading_s">Du går mot sør</string>
+    <string name="directions_heading_sw">Du går mot sørvest</string>
+    <string name="directions_heading_w">Du går mot vest</string>
+    <string name="directions_heading_nw">Du går mot nordvest</string>
 
     <string name="intersection_approaching_intersection">Du nærmer deg et veikryss</string>
     <string name="directions_intersection_with_name_direction">Veikryss med %1$s %2$s</string>

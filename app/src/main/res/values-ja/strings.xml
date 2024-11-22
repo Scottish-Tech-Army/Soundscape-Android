@@ -107,6 +107,22 @@
     <string name="directions_direction_behind_to_the_left">左後方</string>
     <string name="directions_direction_to_the_left">左方向</string>
     <string name="directions_direction_ahead_to_the_left">左前方</string>
+    <string name="directions_traveling_n">北へ走行中</string>
+    <string name="directions_traveling_ne">北東へ走行中</string>
+    <string name="directions_traveling_e">東へ走行中</string>
+    <string name="directions_traveling_se">南東へ走行中</string>
+    <string name="directions_traveling_s">南へ走行中</string>
+    <string name="directions_traveling_sw">南西へ走行中</string>
+    <string name="directions_traveling_w">西へ走行中</string>
+    <string name="directions_traveling_nw">北西へ走行中</string>
+    <string name="directions_heading_n">北方向へ</string>
+    <string name="directions_heading_ne">北東方向へ</string>
+    <string name="directions_heading_e">東方向へ</string>
+    <string name="directions_heading_se">南東方向へ</string>
+    <string name="directions_heading_s">南方向へ</string>
+    <string name="directions_heading_sw">南西方向へ</string>
+    <string name="directions_heading_w">西方向へ</string>
+    <string name="directions_heading_nw">北西方向へ</string>
 
     <string name="intersection_approaching_intersection">まもなく交差点</string>
     <string name="directions_intersection_with_name_direction">%1$s との交差点が %2$s</string>

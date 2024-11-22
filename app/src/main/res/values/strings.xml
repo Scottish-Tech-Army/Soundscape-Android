@@ -108,6 +108,22 @@
     <string name="directions_direction_behind_to_the_left">behind to the left</string>
     <string name="directions_direction_to_the_left">to the left</string>
     <string name="directions_direction_ahead_to_the_left">ahead to the left</string>
+    <string name="directions_traveling_n">Travelling north</string>
+    <string name="directions_traveling_ne">Travelling northeast</string>
+    <string name="directions_traveling_e">Travelling east</string>
+    <string name="directions_traveling_se">Travelling southeast</string>
+    <string name="directions_traveling_s">Travelling south</string>
+    <string name="directions_traveling_sw">Travelling southwest</string>
+    <string name="directions_traveling_w">Travelling west</string>
+    <string name="directions_traveling_nw">Travelling northwest</string>
+    <string name="directions_heading_n">Heading north</string>
+    <string name="directions_heading_ne">Heading northeast</string>
+    <string name="directions_heading_e">Heading east</string>
+    <string name="directions_heading_se">Heading southeast</string>
+    <string name="directions_heading_s">Heading south</string>
+    <string name="directions_heading_sw">Heading southwest</string>
+    <string name="directions_heading_w">Heading west</string>
+    <string name="directions_heading_nw">Heading northwest</string>
 
     <string name="intersection_approaching_intersection">Approaching intersection</string>
     <string name="directions_intersection_with_name_direction">Intersection with %1$s %2$s</string>

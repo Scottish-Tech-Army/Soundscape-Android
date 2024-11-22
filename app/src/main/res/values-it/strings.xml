@@ -106,6 +106,22 @@
     <string name="directions_direction_behind_to_the_left">indietro a sinistra</string>
     <string name="directions_direction_to_the_left">a sinistra</string>
     <string name="directions_direction_ahead_to_the_left">avanti a sinistra</string>
+    <string name="directions_traveling_n">Stai viaggiando verso nord</string>
+    <string name="directions_traveling_ne">Stai viaggiando verso nord est</string>
+    <string name="directions_traveling_e">Stai viaggiando verso est</string>
+    <string name="directions_traveling_se">Stai viaggiando verso sud est</string>
+    <string name="directions_traveling_s">Stai viaggiando verso sud</string>
+    <string name="directions_traveling_sw">Stai viaggiando verso sud ovest</string>
+    <string name="directions_traveling_w">Stai viaggiando verso ovest</string>
+    <string name="directions_traveling_nw">Stai viaggiando verso nord ovest</string>
+    <string name="directions_heading_n">Sei diretto verso nord</string>
+    <string name="directions_heading_ne">Sei diretto verso nord est</string>
+    <string name="directions_heading_e">Sei diretto verso est</string>
+    <string name="directions_heading_se">Sei diretto verso sud est</string>
+    <string name="directions_heading_s">Sei diretto verso sud</string>
+    <string name="directions_heading_sw">Sei diretto verso sud ovest</string>
+    <string name="directions_heading_w">Sei diretto verso ovest</string>
+    <string name="directions_heading_nw">Sei diretto verso nord ovest</string>
 
     <string name="intersection_approaching_intersection">Ti stai avvicinando all\'incrocio</string>
     <string name="directions_intersection_with_name_direction">Incrocio con %1$s %2$s</string>

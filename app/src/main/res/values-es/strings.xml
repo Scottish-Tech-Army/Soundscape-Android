@@ -106,6 +106,22 @@
     <string name="directions_direction_behind_to_the_left">detrás a la izquierda</string>
     <string name="directions_direction_to_the_left">a la izquierda</string>
     <string name="directions_direction_ahead_to_the_left">adelante a la izquierda</string>
+    <string name="directions_traveling_n">Viajando al norte</string>
+    <string name="directions_traveling_ne">Viajando al nordeste</string>
+    <string name="directions_traveling_e">Viajando al este</string>
+    <string name="directions_traveling_se">Viajando al sudeste</string>
+    <string name="directions_traveling_s">Viajando al sur</string>
+    <string name="directions_traveling_sw">Viajando al suroeste</string>
+    <string name="directions_traveling_w">Viajando al oeste</string>
+    <string name="directions_traveling_nw">Viajando al noroeste</string>
+    <string name="directions_heading_n">Caminando hacia el norte</string>
+    <string name="directions_heading_ne">Caminando hacia el nordeste</string>
+    <string name="directions_heading_e">Caminando hacia el este</string>
+    <string name="directions_heading_se">Caminando hacia el sudeste</string>
+    <string name="directions_heading_s">Caminando hacia el sur</string>
+    <string name="directions_heading_sw">Caminando hacia el suroeste</string>
+    <string name="directions_heading_w">Caminando hacia el oeste</string>
+    <string name="directions_heading_nw">Caminando hacia el noroeste</string>
 
     <string name="intersection_approaching_intersection">Aproximándose al cruce</string>
     <string name="directions_intersection_with_name_direction">Cruce con %1$s %2$s</string>
