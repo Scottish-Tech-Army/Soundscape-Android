@@ -388,7 +388,8 @@ class GeoEngine {
 
             val gridPoiFeatureCollection = FeatureCollection()
             val gridFeatureCollections = getGridFeatureCollections()
-            gridPoiFeatureCollection.features.addAll(gridFeatureCollections[Fc.POIS.id])
+            val removeDuplicatePoisFeatureCollection = removeDuplicateOsmIds(gridFeatureCollections[Fc.POIS.id])
+            gridPoiFeatureCollection.features.addAll(removeDuplicatePoisFeatureCollection)
 
             if (gridPoiFeatureCollection.features.isNotEmpty()) {
                 val settingsFeatureCollection = FeatureCollection()
