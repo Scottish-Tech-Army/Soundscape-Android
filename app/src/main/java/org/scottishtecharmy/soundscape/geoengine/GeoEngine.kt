@@ -320,6 +320,8 @@ class GeoEngine {
             val roadGridFeatureCollection = FeatureCollection()
             val gridFeatureCollections = getGridFeatureCollections()
             roadGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.ROADS.id])
+            // Add in paths so we can pick up named paths
+            roadGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.PATHS.id])
 
             if (roadGridFeatureCollection.features.isNotEmpty()) {
                 //Log.d(TAG, "Found roads in tile")
@@ -332,6 +334,7 @@ class GeoEngine {
                         roadGridFeatureCollection
                     )
                 if(nearestRoad.features.isNotEmpty()) {
+
                     val properties = nearestRoad.features[0].properties
                     if (properties != null) {
                         val orientation = directionProvider.getCurrentDirection()
@@ -828,7 +831,8 @@ class GeoEngine {
         POIS(3),
         BUS_STOPS(4),
         INTERPOLATIONS(5),
-        MAX_COLLECTION_ID(6)
+        PATHS(6),
+        MAX_COLLECTION_ID(7)
     }
 
     private fun getGridFeatureCollections(): List<FeatureCollection> {
@@ -862,6 +866,9 @@ class GeoEngine {
                     moshi.adapter(FeatureCollection::class.java).fromJson(it)
                 }
                 featureCollection[Fc.BUS_STOPS.id] = frozenTileResult.busStops.let {
+                    moshi.adapter(FeatureCollection::class.java).fromJson(it)
+                }
+                featureCollection[Fc.PATHS.id] = frozenTileResult.paths.let {
                     moshi.adapter(FeatureCollection::class.java).fromJson(it)
                 }
                 featureCollection[Fc.INTERPOLATIONS.id] = frozenTileResult.interpolations.let {
