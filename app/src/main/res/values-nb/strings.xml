@@ -122,6 +122,22 @@
     <string name="directions_heading_sw">Du går mot sørvest</string>
     <string name="directions_heading_w">Du går mot vest</string>
     <string name="directions_heading_nw">Du går mot nordvest</string>
+    <string name="directions_along_traveling_n">Kjører mot nord langs %1$s</string>
+    <string name="directions_along_traveling_ne">Kjører mot nordøst langs %1$s</string>
+    <string name="directions_along_traveling_e">Kjører mot øst langs %1$s</string>
+    <string name="directions_along_traveling_se">Kjører mot sørøst langs %1$s</string>
+    <string name="directions_along_traveling_s">Kjører mot sør langs %1$s</string>
+    <string name="directions_along_traveling_sw">Kjører mot sørvest langs %1$s</string>
+    <string name="directions_along_traveling_w">Kjører mot vest langs %1$s</string>
+    <string name="directions_along_traveling_nw">Kjører mot nordvest langs %1$s</string>
+    <string name="directions_along_heading_n">Går mot nord langs %1$s</string>
+    <string name="directions_along_heading_ne">Går mot nordøst langs %1$s</string>
+    <string name="directions_along_heading_e">Går mot øst langs %1$s</string>
+    <string name="directions_along_heading_se">Går mot sørøst langs %1$s</string>
+    <string name="directions_along_heading_s">Går mot sør langs %1$s</string>
+    <string name="directions_along_heading_sw">Går mot sørvest langs %1$s</string>
+    <string name="directions_along_heading_w">Går mot vest langs %1$s</string>
+    <string name="directions_along_heading_nw">Går mot nordvest langs %1$s</string>
 
     <string name="intersection_approaching_intersection">Du nærmer deg et veikryss</string>
     <string name="directions_intersection_with_name_direction">Veikryss med %1$s %2$s</string>

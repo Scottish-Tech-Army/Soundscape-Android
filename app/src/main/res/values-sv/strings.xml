@@ -122,6 +122,22 @@
     <string name="directions_heading_sw">På väg mot sydväst</string>
     <string name="directions_heading_w">På väg västerut</string>
     <string name="directions_heading_nw">På väg mot nordväst</string>
+    <string name="directions_along_traveling_n">Reser norrut utmed %1$s</string>
+    <string name="directions_along_traveling_ne">Reser mot nordost utmed %1$s</string>
+    <string name="directions_along_traveling_e">Reser österut utmed %1$s</string>
+    <string name="directions_along_traveling_se">Reser mot sydost utmed %1$s</string>
+    <string name="directions_along_traveling_s">Reser söderut utmed %1$s</string>
+    <string name="directions_along_traveling_sw">Reser mot sydväst utmed %1$s</string>
+    <string name="directions_along_traveling_w">Reser västerut utmed %1$s</string>
+    <string name="directions_along_traveling_nw">Reser mot nordväst utmed %1$s</string>
+    <string name="directions_along_heading_n">På väg norrut utmed %1$s</string>
+    <string name="directions_along_heading_ne">På väg mot nordost utmed %1$s</string>
+    <string name="directions_along_heading_e">På väg österut utmed %1$s</string>
+    <string name="directions_along_heading_se">På väg mot sydost utmed %1$s</string>
+    <string name="directions_along_heading_s">På väg söderut utmed %1$s</string>
+    <string name="directions_along_heading_sw">På väg mot sydväst utmed %1$s</string>
+    <string name="directions_along_heading_w">På väg västerut utmed %1$s</string>
+    <string name="directions_along_heading_nw">På väg mot nordväst utmed %1$s</string>
 
     <string name="intersection_approaching_intersection">Du närmar dig en vägkorsning</string>
     <string name="directions_intersection_with_name_direction">Vägkorsning med %1$s %2$s</string>

@@ -122,6 +122,22 @@
     <string name="directions_heading_sw">En direction du sud-ouest</string>
     <string name="directions_heading_w">En direction de l’ouest</string>
     <string name="directions_heading_nw">En direction du nord-ouest</string>
+    <string name="directions_along_traveling_n">Se déplaçant vers le nord le long de %1$s</string>
+    <string name="directions_along_traveling_ne">Se déplaçant vers le nord-est le long de %1$s</string>
+    <string name="directions_along_traveling_e">Se déplaçant vers l’est le long de %1$s</string>
+    <string name="directions_along_traveling_se">Se déplaçant vers le sud-est le long de %1$s</string>
+    <string name="directions_along_traveling_s">Se déplaçant vers le sud le long de %1$s</string>
+    <string name="directions_along_traveling_sw">Se déplaçant vers le sud-ouest le long de %1$s</string>
+    <string name="directions_along_traveling_w">Se déplaçant vers l’ouest le long de %1$s</string>
+    <string name="directions_along_traveling_nw">Se déplaçant vers le nord-ouest le long de %1$s</string>
+    <string name="directions_along_heading_n">En direction du nord le long de %1$s</string>
+    <string name="directions_along_heading_ne">En direction du nord-est le long de %1$s</string>
+    <string name="directions_along_heading_e">En direction de l’est le long de %1$s</string>
+    <string name="directions_along_heading_se">En direction du sud-est le long de %1$s</string>
+    <string name="directions_along_heading_s">En direction du sud le long de %1$s</string>
+    <string name="directions_along_heading_sw">En direction du sud-ouest le long de %1$s</string>
+    <string name="directions_along_heading_w">En direction de l’ouest le long de %1$s</string>
+    <string name="directions_along_heading_nw">En direction du nord-ouest le long de %1$s</string>
 
     <string name="intersection_approaching_intersection">Vous approchez d’une intersection</string>
     <string name="directions_intersection_with_name_direction">Intersection de %1$s %2$s</string>

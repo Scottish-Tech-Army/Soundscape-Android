@@ -123,6 +123,22 @@
     <string name="directions_heading_sw">南西方向へ</string>
     <string name="directions_heading_w">西方向へ</string>
     <string name="directions_heading_nw">北西方向へ</string>
+    <string name="directions_along_traveling_n">%1$s を北へ移動中</string>
+    <string name="directions_along_traveling_ne">%1$s を北東へ移動中</string>
+    <string name="directions_along_traveling_e">%1$s を東へ移動中</string>
+    <string name="directions_along_traveling_se">%1$s を南東へ移動中</string>
+    <string name="directions_along_traveling_s">%1$s を南へ移動中</string>
+    <string name="directions_along_traveling_sw">%1$s を南西へ移動中</string>
+    <string name="directions_along_traveling_w">%1$s を西へ移動中</string>
+    <string name="directions_along_traveling_nw">%1$s を北西へ移動中</string>
+    <string name="directions_along_heading_n">%1$s を北方向へ</string>
+    <string name="directions_along_heading_ne">%1$s を北東方向へ</string>
+    <string name="directions_along_heading_e">%1$s を東方向へ</string>
+    <string name="directions_along_heading_se">%1$s を南東方向へ</string>
+    <string name="directions_along_heading_s">%1$s を南方向へ</string>
+    <string name="directions_along_heading_sw">%1$s を南西方向へ</string>
+    <string name="directions_along_heading_w">%1$s を西方向へ</string>
+    <string name="directions_along_heading_nw">%1$s を北西方向へ</string>
 
     <string name="intersection_approaching_intersection">まもなく交差点</string>
     <string name="directions_intersection_with_name_direction">%1$s との交差点が %2$s</string>

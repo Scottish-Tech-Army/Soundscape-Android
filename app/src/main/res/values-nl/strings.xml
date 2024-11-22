@@ -123,6 +123,22 @@
     <string name="directions_heading_sw">U loopt naar het zuidwesten</string>
     <string name="directions_heading_w">U loopt naar het westen</string>
     <string name="directions_heading_nw">U loopt naar het noordwesten</string>
+    <string name="directions_along_traveling_n">U rijdt naar het noorden langs %1$s</string>
+    <string name="directions_along_traveling_ne">U rijdt naar het noordoosten langs %1$s</string>
+    <string name="directions_along_traveling_e">U rijdt naar het oosten langs %1$s</string>
+    <string name="directions_along_traveling_se">U rijdt naar het zuidoosten langs %1$s</string>
+    <string name="directions_along_traveling_s">U rijdt naar het zuiden langs %1$s</string>
+    <string name="directions_along_traveling_sw">U rijdt naar het zuidwesten langs %1$s</string>
+    <string name="directions_along_traveling_w">U rijdt naar het westen langs %1$s</string>
+    <string name="directions_along_traveling_nw">U rijdt naar het noordwesten langs %1$s</string>
+    <string name="directions_along_heading_n">U loopt naar het noorden langs %1$s</string>
+    <string name="directions_along_heading_ne">U loopt naar het noordoosten langs %1$s</string>
+    <string name="directions_along_heading_e">U loopt naar het oosten langs %1$s</string>
+    <string name="directions_along_heading_se">U loopt naar het zuidoosten langs %1$s</string>
+    <string name="directions_along_heading_s">U loopt naar het zuiden langs %1$s</string>
+    <string name="directions_along_heading_sw">U loopt naar het zuidwesten langs %1$s</string>
+    <string name="directions_along_heading_w">U loopt naar het westen langs %1$s</string>
+    <string name="directions_along_heading_nw">U loopt naar het noordwesten langs %1$s</string>
 
     <string name="intersection_approaching_intersection">U nadert een kruispunt</string>
     <string name="directions_intersection_with_name_direction">Kruispunt met %1$s %2$s</string>

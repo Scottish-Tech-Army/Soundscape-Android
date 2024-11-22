@@ -123,6 +123,22 @@
     <string name="directions_heading_sw">På vej sydvest</string>
     <string name="directions_heading_w">På vej vest</string>
     <string name="directions_heading_nw">På vej nordvest</string>
+    <string name="directions_along_traveling_n">Kører nord ad %1$s</string>
+    <string name="directions_along_traveling_ne">Kører nordøst ad %1$s</string>
+    <string name="directions_along_traveling_e">Kører øst ad %1$s</string>
+    <string name="directions_along_traveling_se">Kører sydøst ad %1$s</string>
+    <string name="directions_along_traveling_s">Kører syd ad %1$s</string>
+    <string name="directions_along_traveling_sw">Kører sydvest ad %1$s</string>
+    <string name="directions_along_traveling_w">Kører vest ad %1$s</string>
+    <string name="directions_along_traveling_nw">Kører nordvest ad %1$s</string>
+    <string name="directions_along_heading_n">På vej nord ad %1$s</string>
+    <string name="directions_along_heading_ne">På vej nordøst ad %1$s</string>
+    <string name="directions_along_heading_e">På vej øst ad %1$s</string>
+    <string name="directions_along_heading_se">På vej sydøst ad %1$s</string>
+    <string name="directions_along_heading_s">På vej syd ad %1$s</string>
+    <string name="directions_along_heading_sw">På vej sydvest ad %1$s</string>
+    <string name="directions_along_heading_w">På vej vest ad %1$s</string>
+    <string name="directions_along_heading_nw">På vej nordvest ad %1$s</string>
 
     <string name="intersection_approaching_intersection">Nærmer sig kryds</string>
     <string name="directions_intersection_with_name_direction">Kryds med %1$s %2$s</string>

@@ -123,6 +123,22 @@
     <string name="directions_heading_sw">Κατεύθυνση νοτιοδυτικά</string>
     <string name="directions_heading_w">Κατεύθυνση δυτικά</string>
     <string name="directions_heading_nw">Κατεύθυνση βορειοδυτικά</string>
+    <string name="directions_along_traveling_n">Ταξιδεύοντας βόρεια κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_ne">Ταξιδεύοντας βορειοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_e">Ταξιδεύοντας ανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_se">Ταξιδεύοντας νοτιοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_s">Ταξιδεύοντας νότια κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_sw">Ταξιδεύοντας νοτιοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_w">Ταξιδεύοντας δυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_nw">Ταξιδεύοντας βορειοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_n">Κατεύθυνση βόρεια κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_ne">Κατεύθυνση βορειοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_e">Κατεύθυνση ανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_se">Κατεύθυνση νοτιοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_s">Κατεύθυνση νότια κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_sw">Κατεύθυνση νοτιοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_w">Κατεύθυνση δυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_nw">Κατεύθυνση βορειοδυτικά κατά μήκος της %1$s</string>
 
     <string name="intersection_approaching_intersection">Πλησιάζετε τη διασταύρωση</string>
     <string name="directions_intersection_with_name_direction">Διασταύρωση με %1$s %2$s</string>

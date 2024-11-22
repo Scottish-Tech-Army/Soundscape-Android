@@ -122,6 +122,23 @@
     <string name="directions_heading_sw">Matkalla lounaaseen</string>
     <string name="directions_heading_w">Matkalla länteen</string>
     <string name="directions_heading_nw">Matkalla luoteeseen</string>
+    <string name="directions_along_traveling_n">Kuljetaan pohjoiseen tiellä %1$s</string>
+    <string name="directions_along_traveling_ne">Kuljetaan koilliseen tiellä %1$s</string>
+    <string name="directions_along_traveling_e">Kuljetaan itään tietä %1$s pitkin</string>
+    <string name="directions_along_traveling_se">Kuljetaan kaakkoon tiellä %1$s</string>
+    <string name="directions_along_traveling_s">Kuljetaan etelään tiellä %1$s</string>
+    <string name="directions_along_traveling_sw">Kuljetaan lounaaseen tiellä %1$s</string>
+    <string name="directions_along_traveling_w">Kuljetaan länteen tiellä %1$s</string>
+    <string name="directions_along_traveling_nw">Kuljetaan luoteeseen tiellä %1$s</string>
+    <string name="directions_along_heading_n">Matkalla pohjoiseen tiellä %1$s</string>
+    <string name="directions_along_heading_ne">Matkalla koilliseen tiellä %1$s</string>
+    <string name="directions_along_heading_e">Matkalla itään tiellä %1$s</string>
+    <string name="directions_along_heading_se">Matkalla kaakkoon tiellä %1$s</string>
+    <string name="directions_along_heading_s">Matkalla etelään tiellä %1$s</string>
+    <string name="directions_along_heading_sw">Matkalla lounaaseen tiellä %1$s</string>
+    <string name="directions_along_heading_w">Matkalla länteen tiellä %1$s</string>
+    <string name="directions_along_heading_nw">Matkalla luoteeseen tiellä %1$s</string>
+
 
     <string name="intersection_approaching_intersection">Lähestytään risteystä</string>
     <string name="directions_intersection_with_name_direction">Risteys tien %1$s kanssa %2$s</string>

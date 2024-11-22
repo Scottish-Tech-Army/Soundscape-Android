@@ -123,6 +123,22 @@
     <string name="directions_heading_sw">Indo para sudoeste</string>
     <string name="directions_heading_w">Indo para oeste</string>
     <string name="directions_heading_nw">Indo para noroeste</string>
+    <string name="directions_along_traveling_n">Movendo-se para norte ao longo da %1$s</string>
+    <string name="directions_along_traveling_ne">Movendo-se para nordeste ao longo da %1$s</string>
+    <string name="directions_along_traveling_e">Movendo-se para leste ao longo da %1$s</string>
+    <string name="directions_along_traveling_se">Movendo-se para sudeste ao longo da %1$s</string>
+    <string name="directions_along_traveling_s">Movendo-se para sul ao longo da %1$s</string>
+    <string name="directions_along_traveling_sw">Movendo-se para sudoeste ao longo da %1$s</string>
+    <string name="directions_along_traveling_w">Movendo-se para oeste ao longo da %1$s</string>
+    <string name="directions_along_traveling_nw">Movendo-se para noroeste ao longo da %1$s</string>
+    <string name="directions_along_heading_n">Indo para norte ao longo da %1$s</string>
+    <string name="directions_along_heading_ne">Indo para nordeste ao longo da %1$s</string>
+    <string name="directions_along_heading_e">Indo para leste ao longo da %1$s</string>
+    <string name="directions_along_heading_se">Indo para sudeste ao longo da %1$s</string>
+    <string name="directions_along_heading_s">Indo para sul ao longo da %1$s</string>
+    <string name="directions_along_heading_sw">Indo para sudoeste ao longo da %1$s</string>
+    <string name="directions_along_heading_w">Indo para oeste ao longo da %1$s</string>
+    <string name="directions_along_heading_nw">Indo para noroeste ao longo da %1$s</string>
 
     <string name="intersection_approaching_intersection">Aproximando-se do cruzamento</string>
     <string name="directions_intersection_with_name_direction">Cruzamento com %1$s %2$s</string>
