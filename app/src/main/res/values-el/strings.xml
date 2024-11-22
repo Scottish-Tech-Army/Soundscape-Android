@@ -107,6 +107,22 @@
     <string name="directions_direction_behind_to_the_left">πίσω προς τα αριστερά</string>
     <string name="directions_direction_to_the_left">προς τα αριστερά</string>
     <string name="directions_direction_ahead_to_the_left">μπροστά προς τα αριστερά</string>
+    <string name="directions_traveling_n">Ταξιδεύοντας βόρεια</string>
+    <string name="directions_traveling_ne">Ταξιδεύοντας βορειοανατολικά</string>
+    <string name="directions_traveling_e">Ταξιδεύοντας ανατολικά</string>
+    <string name="directions_traveling_se">Ταξιδεύοντας νοτιοανατολικά</string>
+    <string name="directions_traveling_s">Ταξιδεύοντας νότια</string>
+    <string name="directions_traveling_sw">Ταξιδεύοντας νοτιοδυτικά</string>
+    <string name="directions_traveling_w">Ταξιδεύοντας δυτικά</string>
+    <string name="directions_traveling_nw">Ταξιδεύοντας βορειοδυτικά</string>
+    <string name="directions_heading_n">Κατεύθυνση βόρεια</string>
+    <string name="directions_heading_ne">Κατεύθυνση βορειοανατολικά</string>
+    <string name="directions_heading_e">Κατεύθυνση ανατολικά</string>
+    <string name="directions_heading_se">Κατεύθυνση νοτιοανατολικά</string>
+    <string name="directions_heading_s">Κατεύθυνση νότια</string>
+    <string name="directions_heading_sw">Κατεύθυνση νοτιοδυτικά</string>
+    <string name="directions_heading_w">Κατεύθυνση δυτικά</string>
+    <string name="directions_heading_nw">Κατεύθυνση βορειοδυτικά</string>
 
     <string name="intersection_approaching_intersection">Πλησιάζετε τη διασταύρωση</string>
     <string name="directions_intersection_with_name_direction">Διασταύρωση με %1$s %2$s</string>

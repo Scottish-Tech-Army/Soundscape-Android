@@ -106,6 +106,22 @@
     <string name="directions_direction_behind_to_the_left">bakom till vänster</string>
     <string name="directions_direction_to_the_left">till vänster</string>
     <string name="directions_direction_ahead_to_the_left">framme till vänster</string>
+    <string name="directions_traveling_n">Reser norrut</string>
+    <string name="directions_traveling_ne">Reser mot nordost</string>
+    <string name="directions_traveling_e">Reser österut</string>
+    <string name="directions_traveling_se">Reser mot sydost</string>
+    <string name="directions_traveling_s">Reser söderut</string>
+    <string name="directions_traveling_sw">Reser mot sydväst</string>
+    <string name="directions_traveling_w">Reser västerut</string>
+    <string name="directions_traveling_nw">Reser mot nordväst</string>
+    <string name="directions_heading_n">På väg norrut</string>
+    <string name="directions_heading_ne">På väg mot nordost</string>
+    <string name="directions_heading_e">På väg österut</string>
+    <string name="directions_heading_se">På väg mot sydost</string>
+    <string name="directions_heading_s">På väg söderut</string>
+    <string name="directions_heading_sw">På väg mot sydväst</string>
+    <string name="directions_heading_w">På väg västerut</string>
+    <string name="directions_heading_nw">På väg mot nordväst</string>
 
     <string name="intersection_approaching_intersection">Du närmar dig en vägkorsning</string>
     <string name="directions_intersection_with_name_direction">Vägkorsning med %1$s %2$s</string>

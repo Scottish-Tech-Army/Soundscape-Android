@@ -106,6 +106,22 @@
     <string name="directions_direction_behind_to_the_left">hinten links</string>
     <string name="directions_direction_to_the_left">nach links</string>
     <string name="directions_direction_ahead_to_the_left">links vor Ihnen</string>
+    <string name="directions_traveling_n">Nach Norden fahrend</string>
+    <string name="directions_traveling_ne">Nach Nordosten fahrend</string>
+    <string name="directions_traveling_e">Nach Osten fahrend</string>
+    <string name="directions_traveling_se">Nach Südosten fahrend</string>
+    <string name="directions_traveling_s">Nach Süden fahrend</string>
+    <string name="directions_traveling_sw">Nach Südwesten fahrend</string>
+    <string name="directions_traveling_w">Nach Westen fahrend</string>
+    <string name="directions_traveling_nw">Nach Nordwesten fahrend</string>
+    <string name="directions_heading_n">Richtung Norden</string>
+    <string name="directions_heading_ne">Richtung Nordosten</string>
+    <string name="directions_heading_e">Richtung Osten</string>
+    <string name="directions_heading_se">Richtung Südosten</string>
+    <string name="directions_heading_s">Richtung Süden</string>
+    <string name="directions_heading_sw">Richtung Südwesten</string>
+    <string name="directions_heading_w">Richtung Westen</string>
+    <string name="directions_heading_nw">Richtung Nordwesten</string>
 
     <string name="intersection_approaching_intersection">Kreuzung vor Ihnen</string>
     <string name="directions_intersection_with_name_direction">Kreuzung mit %1$s %2$s</string>

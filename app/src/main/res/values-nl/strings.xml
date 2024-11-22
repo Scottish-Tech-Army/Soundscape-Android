@@ -107,6 +107,22 @@
     <string name="directions_direction_behind_to_the_left">achter u naar links</string>
     <string name="directions_direction_to_the_left">naar links</string>
     <string name="directions_direction_ahead_to_the_left">vóór u naar links</string>
+    <string name="directions_traveling_n">U rijdt naar het noorden</string>
+    <string name="directions_traveling_ne">U rijdt naar het noordoosten</string>
+    <string name="directions_traveling_e">U rijdt naar het oosten</string>
+    <string name="directions_traveling_se">U rijdt naar het zuidoosten</string>
+    <string name="directions_traveling_s">U rijdt naar het zuiden</string>
+    <string name="directions_traveling_sw">U rijdt naar het zuidwesten</string>
+    <string name="directions_traveling_w">U rijdt naar het westen</string>
+    <string name="directions_traveling_nw">U rijdt naar het noordwesten</string>
+    <string name="directions_heading_n">U loopt naar het noorden</string>
+    <string name="directions_heading_ne">U loopt naar het noordoosten</string>
+    <string name="directions_heading_e">U loopt naar het oosten</string>
+    <string name="directions_heading_se">U loopt naar het zuidoosten</string>
+    <string name="directions_heading_s">U loopt naar het zuiden</string>
+    <string name="directions_heading_sw">U loopt naar het zuidwesten</string>
+    <string name="directions_heading_w">U loopt naar het westen</string>
+    <string name="directions_heading_nw">U loopt naar het noordwesten</string>
 
     <string name="intersection_approaching_intersection">U nadert een kruispunt</string>
     <string name="directions_intersection_with_name_direction">Kruispunt met %1$s %2$s</string>
