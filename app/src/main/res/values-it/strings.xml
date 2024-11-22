@@ -122,6 +122,22 @@
     <string name="directions_heading_sw">Sei diretto verso sud ovest</string>
     <string name="directions_heading_w">Sei diretto verso ovest</string>
     <string name="directions_heading_nw">Sei diretto verso nord ovest</string>
+    <string name="directions_along_traveling_n">Stai viaggiando verso nord lungo %1$s</string>
+    <string name="directions_along_traveling_ne">Stai viaggiando verso nord est lungo %1$s</string>
+    <string name="directions_along_traveling_e">Stai viaggiando verso est lungo %1$s</string>
+    <string name="directions_along_traveling_se">Stai viaggiando verso sud est lungo %1$s</string>
+    <string name="directions_along_traveling_s">Stai viaggiando verso sud lungo %1$s</string>
+    <string name="directions_along_traveling_sw">Stai viaggiando verso sud ovest lungo %1$s</string>
+    <string name="directions_along_traveling_w">Stai viaggiando verso ovest lungo %1$s</string>
+    <string name="directions_along_traveling_nw">Stai viaggiando verso nord ovest lungo %1$s</string>
+    <string name="directions_along_heading_n">Sei diretto verso nord lungo %1$s</string>
+    <string name="directions_along_heading_ne">Sei diretto verso nord est lungo %1$s</string>
+    <string name="directions_along_heading_e">Sei diretto verso est lungo %1$s</string>
+    <string name="directions_along_heading_se">Sei diretto verso sud est lungo %1$s</string>
+    <string name="directions_along_heading_s">Sei diretto verso sud lungo %1$s</string>
+    <string name="directions_along_heading_sw">Sei diretto verso sud ovest lungo %1$s</string>
+    <string name="directions_along_heading_w">Sei diretto verso ovest lungo %1$s</string>
+    <string name="directions_along_heading_nw">Sei diretto verso nord ovest lungo %1$s</string>
 
     <string name="intersection_approaching_intersection">Ti stai avvicinando all\'incrocio</string>
     <string name="directions_intersection_with_name_direction">Incrocio con %1$s %2$s</string>

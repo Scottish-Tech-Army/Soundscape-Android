@@ -122,6 +122,22 @@
     <string name="directions_heading_sw">Caminando hacia el suroeste</string>
     <string name="directions_heading_w">Caminando hacia el oeste</string>
     <string name="directions_heading_nw">Caminando hacia el noroeste</string>
+    <string name="directions_along_traveling_n">Viajando al norte por %1$s</string>
+    <string name="directions_along_traveling_ne">Viajando al nordeste por %1$s</string>
+    <string name="directions_along_traveling_e">Viajando al este por %1$s</string>
+    <string name="directions_along_traveling_se">Viajando al sudeste por %1$s</string>
+    <string name="directions_along_traveling_s">Viajando al sur por %1$s</string>
+    <string name="directions_along_traveling_sw">Viajando al suroeste por %1$s</string>
+    <string name="directions_along_traveling_w">Viajando al oeste por %1$s</string>
+    <string name="directions_along_traveling_nw">Viajando al noroeste por %1$s</string>
+    <string name="directions_along_heading_n">Caminando hacia el norte por %1$s</string>
+    <string name="directions_along_heading_ne">Caminando hacia el nordeste por %1$s</string>
+    <string name="directions_along_heading_e">Caminando hacia el este por %1$s</string>
+    <string name="directions_along_heading_se">Caminando hacia el sudeste por %1$s</string>
+    <string name="directions_along_heading_s">Caminando hacia el sur por %1$s</string>
+    <string name="directions_along_heading_sw">Caminando hacia el suroeste por %1$s</string>
+    <string name="directions_along_heading_w">Caminando hacia el oeste por %1$s</string>
+    <string name="directions_along_heading_nw">Caminando hacia el noroeste por %1$s</string>
 
     <string name="intersection_approaching_intersection">Aproximándose al cruce</string>
     <string name="directions_intersection_with_name_direction">Cruce con %1$s %2$s</string>

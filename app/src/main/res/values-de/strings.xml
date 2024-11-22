@@ -122,6 +122,22 @@
     <string name="directions_heading_sw">Richtung Südwesten</string>
     <string name="directions_heading_w">Richtung Westen</string>
     <string name="directions_heading_nw">Richtung Nordwesten</string>
+    <string name="directions_along_traveling_n">Auf %1$s nach Norden fahrend</string>
+    <string name="directions_along_traveling_ne">Auf %1$s nach Nordosten fahrend</string>
+    <string name="directions_along_traveling_e">Auf %1$s nach Osten fahrend</string>
+    <string name="directions_along_traveling_se">Auf %1$s nach Südosten fahrend</string>
+    <string name="directions_along_traveling_s">Auf %1$s nach Süden fahrend</string>
+    <string name="directions_along_traveling_sw">Auf %1$s nach Südwesten fahrend</string>
+    <string name="directions_along_traveling_w">Auf %1$s nach Westen fahrend</string>
+    <string name="directions_along_traveling_nw">Auf %1$s nach Nordwesten fahrend</string>
+    <string name="directions_along_heading_n">Auf %1$s in Richtung Norden</string>
+    <string name="directions_along_heading_ne">Auf %1$s in Richtung Nordosten</string>
+    <string name="directions_along_heading_e">Auf %1$s in Richtung Osten</string>
+    <string name="directions_along_heading_se">Auf %1$s in Richtung Südosten</string>
+    <string name="directions_along_heading_s">Auf %1$s in Richtung Süden</string>
+    <string name="directions_along_heading_sw">Auf %1$s in Richtung Südwesten</string>
+    <string name="directions_along_heading_w">Auf %1$s in Richtung Westen</string>
+    <string name="directions_along_heading_nw">Auf %1$s in Richtung Nordwesten</string>
 
     <string name="intersection_approaching_intersection">Kreuzung vor Ihnen</string>
     <string name="directions_intersection_with_name_direction">Kreuzung mit %1$s %2$s</string>
