@@ -4,60 +4,62 @@
 // functions and suppress the warnings here.
 @file:Suppress("DEPRECATION")
 
-package org.scottishtecharmy.soundscape.viewmodels
+package org.scottishtecharmy.soundscape.viewmodels.home
 
 import android.content.Context
 import android.content.Intent
-import android.location.Location
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.utils.blankOrEmpty
+import org.scottishtecharmy.soundscape.utils.toSearchItems
 import java.net.URLEncoder
 import javax.inject.Inject
 
 @HiltViewModel
+@OptIn(FlowPreview::class)
 class HomeViewModel @Inject constructor(
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
-    private val _heading: MutableStateFlow<Float> = MutableStateFlow(0.0f)
-    val heading: StateFlow<Float> = _heading.asStateFlow()
-    private val _location: MutableStateFlow<Location?> = MutableStateFlow(null)
-    val location: StateFlow<Location?> = _location.asStateFlow()
-    private val _beaconLocation: MutableStateFlow<LatLng?> = MutableStateFlow(null) // Question, can we have more beacon ?
-    val beaconLocation: StateFlow<LatLng?> = _beaconLocation.asStateFlow()
-    private val _streetPreviewMode: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val streetPreviewMode: StateFlow<Boolean> = _streetPreviewMode.asStateFlow()
-    private val _tileGridGeoJson: MutableStateFlow<String> = MutableStateFlow("")
-    val tileGridGeoJson: StateFlow<String> = _tileGridGeoJson.asStateFlow()
+    private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
+    val state: StateFlow<HomeState> = _state.asStateFlow()
+    private val _searchText: MutableStateFlow<String> = MutableStateFlow("")
+    val searchText: StateFlow<String> = _searchText.asStateFlow()
 
     private var job = Job()
     private var spJob = Job()
 
     init {
+        handleMonitoring()
+        fetchSearchResult()
+    }
+
+    private fun handleMonitoring() {
         viewModelScope.launch {
-            soundscapeServiceConnection.serviceBoundState.collect {
-                Log.d(TAG, "serviceBoundState $it")
-                if (it) {
+            soundscapeServiceConnection.serviceBoundState.collect { serviceBoundState ->
+                Log.d(TAG, "serviceBoundState $serviceBoundState")
+                if (serviceBoundState) {
                     // The service has started, so start monitoring the location and heading
                     startMonitoringLocation()
                     // And start monitoring the street preview mode
                     startMonitoringStreetPreviewMode()
                 } else {
                     // The service has gone away so remove the current location marker
-                    _location.value = null
-
+                    _state.update { it.copy(location = null) }
                     stopMonitoringStreetPreviewMode()
                     stopMonitoringLocation()
                 }
@@ -84,7 +86,8 @@ class HomeViewModel @Inject constructor(
             soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
                     Log.d(TAG, "Location $value")
-                    _location.value = value
+                    _state.update { it.copy(location = value) }
+
                 }
             }
         }
@@ -92,7 +95,8 @@ class HomeViewModel @Inject constructor(
             // Observe orientation updates from the service
             soundscapeServiceConnection.getOrientationFlow()?.collectLatest { value ->
                 if (value != null) {
-                    _heading.value = value.headingDegrees
+                    _state.update { it.copy(heading = value.headingDegrees) }
+
                 }
             }
         }
@@ -101,9 +105,16 @@ class HomeViewModel @Inject constructor(
             soundscapeServiceConnection.getBeaconFlow()?.collectLatest { value ->
                 Log.d(TAG, "beacon collected $value")
                 if (value != null) {
-                    _beaconLocation.value = LatLng(value.latitude, value.longitude)
+                    _state.update {
+                        it.copy(
+                            beaconLocation = LatLng(
+                                value.latitude,
+                                value.longitude
+                            )
+                        )
+                    }
                 } else {
-                    _beaconLocation.value = null
+                    _state.update { it.copy(beaconLocation = null) }
                 }
             }
         }
@@ -111,13 +122,13 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(job) {
             // Observe tile grid update from the service so we can show it on the map
             soundscapeServiceConnection.getTileGridFlow()?.collectLatest { tileGrid ->
-                if(tileGrid.tiles.isNotEmpty()) {
+                if (tileGrid.tiles.isNotEmpty()) {
                     Log.d(TAG, "new tile grid")
                     // Flow out the GeoJSON describing our current grid
-                    _tileGridGeoJson.value = tileGrid.generateGeoJson()
-                }
-                else {
-                    _tileGridGeoJson.value = ""
+                    _state.update { it.copy(tileGridGeoJson = tileGrid.generateGeoJson()) }
+
+                } else {
+                    _state.update { it.copy(tileGridGeoJson = "") }
                 }
             }
         }
@@ -140,7 +151,7 @@ class HomeViewModel @Inject constructor(
             // Observe street preview mode from the service so we can update state
             soundscapeServiceConnection.getStreetPreviewModeFlow()?.collect { value ->
                 Log.d(TAG, "Street Preview Mode: $value")
-                _streetPreviewMode.value = value
+                _state.update { it.copy(streetPreviewMode = value) }
 
                 // Restart location monitoring for new provider
                 stopMonitoringLocation()
@@ -148,6 +159,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
     private fun stopMonitoringStreetPreviewMode() {
         Log.d(TAG, "stopMonitoringStreetPreviewMode")
         spJob.cancel()
@@ -164,29 +176,30 @@ class HomeViewModel @Inject constructor(
     fun onMarkerClick(marker: Marker): Boolean {
         Log.d(TAG, "marker click")
 
-        if (marker.position == beaconLocation.value) {
+        if (marker.position == _state.value.beaconLocation) {
             soundscapeServiceConnection.soundscapeService?.destroyBeacon()
-            _beaconLocation.value = null
+            _state.update { it.copy(beaconLocation = null) }
+
             return true
         }
         return false
     }
 
-    fun myLocation(){
+    fun myLocation() {
         //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
             soundscapeServiceConnection.soundscapeService?.myLocation()
         }
     }
 
-    fun aheadOfMe(){
+    fun aheadOfMe() {
         //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
             soundscapeServiceConnection.soundscapeService?.aheadOfMe()
         }
     }
 
-    fun whatsAroundMe(){
+    fun whatsAroundMe() {
         //Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
             soundscapeServiceConnection.soundscapeService?.whatsAroundMe()
@@ -202,13 +215,14 @@ class HomeViewModel @Inject constructor(
         // URI, with the , encoded. This shows up in Slack as a clickable link which is the main
         // usefulness for now
         val location = soundscapeServiceConnection.getLocationFlow()?.value
-        if(location != null) {
+        if (location != null) {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TITLE, "Problem location")
                 val latitude = location.latitude
                 val longitude = location.longitude
-                val uriData: String = URLEncoder.encode("$latitude,$longitude", Charsets.UTF_8.name())
+                val uriData: String =
+                    URLEncoder.encode("$latitude,$longitude", Charsets.UTF_8.name())
                 putExtra(Intent.EXTRA_TEXT, "soundscape://$uriData")
                 type = "text/plain"
 
@@ -216,6 +230,45 @@ class HomeViewModel @Inject constructor(
 
             val shareIntent = Intent.createChooser(sendIntent, null)
             context.startActivity(shareIntent)
+        }
+    }
+
+
+    fun onSearchTextChange(text: String) {
+        _searchText.value = text
+    }
+
+
+    private fun fetchSearchResult() {
+        viewModelScope.launch {
+            _searchText.debounce(500).distinctUntilChanged()
+                .collectLatest { searchText ->
+                    if (searchText.blankOrEmpty()) {
+                        _state.update { it.copy(searchItems = emptyList()) }
+                    } else {
+                        val result =
+                            soundscapeServiceConnection.soundscapeService?.searchResult(searchText)
+
+                        _state.update {
+                            it.copy(
+                                searchItems = result?.toSearchItems(
+                                    currentLocationLatitude = state.value.location?.latitude ?: 0.0,
+                                    currentLocationLongitude = state.value.location?.longitude
+                                        ?: 0.0
+                                )
+                            )
+                        }
+
+                    }
+                }
+        }
+    }
+
+    fun onToogleSearch() {
+        _state.update { it.copy(isSearching = !it.isSearching) }
+
+        if (!state.value.isSearching) {
+            onSearchTextChange("")
         }
     }
 

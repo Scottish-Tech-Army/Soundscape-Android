@@ -46,9 +46,9 @@ fun HomeContent(
                     // screen which location to provide details of. The JSON is appended to the route.
                     val ld =
                         LocationDescription(
-                            "Barrowland Ballroom",
-                            55.8552688,
-                            -4.2366753,
+                            name = "Barrowland Ballroom",
+                            latitude = 55.8552688,
+                            longitude = -4.2366753
                         )
                     onNavigate(generateLocationDetailsRoute(ld))
                 },
@@ -72,16 +72,16 @@ fun HomeContent(
                         val ld =
                             LocationDescription(
                                 // TODO handle LocationDescription instantiation in viewmodel ?
-                                "Current location",
-                                latitude,
-                                longitude,
+                                name = "Current location",
+                                latitude = latitude,
+                                longitude = longitude
                             )
                         onNavigate(generateLocationDetailsRoute(ld)) // TODO handle at top level the generateLocationDetailsRoute ?
                     }
                 },
                 text = stringResource(R.string.search_use_current_location),
             )
-            if(latitude != null && longitude != null) {
+            if (latitude != null && longitude != null) {
                 MapContainerLibre(
                     beaconLocation = beaconLocation,
                     mapCenter = LatLng(latitude, longitude),
@@ -100,7 +100,7 @@ fun HomeContent(
 
 @Preview
 @Composable
-fun PreviewHomeContent(){
+fun PreviewHomeContent() {
     HomeContent(
         latitude = null,
         longitude = null,

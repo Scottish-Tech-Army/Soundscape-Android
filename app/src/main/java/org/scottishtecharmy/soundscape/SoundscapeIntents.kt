@@ -24,11 +24,13 @@ import java.net.URLDecoder
 import java.net.URLEncoder
 import javax.inject.Inject
 
-class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
+class SoundscapeIntents @Inject constructor(private val navigator: Navigator) {
 
     private lateinit var geocoder: Geocoder
-    private fun useGeocoderToGetAddress(location : String,
-                                        context : Context) {
+    private fun useGeocoderToGetAddress(
+        location: String,
+        context: Context
+    ) {
         geocoder = Geocoder(context)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val geocodeListener = Geocoder.GeocodeListener { addresses ->
@@ -36,7 +38,11 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                 val address = addresses.firstOrNull()
                 if (address != null) {
                     Log.d(TAG, "$address")
-                    val ld = LocationDescription(address.getAddressLine(0), address.latitude, address.longitude)
+                    val ld = LocationDescription(
+                        name = address.getAddressLine(0),
+                        latitude = address.latitude,
+                        longitude = address.longitude,
+                    )
                     navigator.navigate(generateLocationDetailsRoute(ld))
                 }
             }
@@ -47,17 +53,18 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
 
             @Suppress("DEPRECATION")
             val address = geocoder.getFromLocationName(location, 1)?.firstOrNull()
-            if(address != null) {
+            if (address != null) {
                 Log.d(TAG, "Address: $address")
                 val ld = LocationDescription(
-                    address.getAddressLine(0),
-                    address.latitude,
-                    address.longitude
+                    name = address.getAddressLine(0),
+                    latitude = address.latitude,
+                    longitude = address.longitude,
                 )
                 navigator.navigate(generateLocationDetailsRoute(ld))
             }
         }
     }
+
     private fun getRedirectUrl(url: String, context: Context) {
         CoroutineScope(Dispatchers.IO).launch {
             var urlTmp: URL? = null
@@ -73,8 +80,7 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
             try {
                 Log.d(TAG, "Open connection")
                 connection = urlTmp!!.openConnection() as HttpURLConnection
-            }
-            catch (e: IOException) {
+            } catch (e: IOException) {
                 e.printStackTrace()
             }
             try {
@@ -114,7 +120,7 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
 
     Navigation to the LocationDetails is done via the main activity navigator.
      */
-    fun parse(intent : Intent, mainActivity: MainActivity) {
+    fun parse(intent: Intent, mainActivity: MainActivity) {
         when {
             intent.action == Intent.ACTION_SEND -> {
                 if ("text/plain" == intent.type) {
@@ -130,6 +136,7 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                     }
                 }
             }
+
             else -> {
                 val uriData: String =
                     URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
@@ -144,15 +151,14 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                     val latitude = matchResult.groupValues[2]
                     val longitude = matchResult.groupValues[3]
 
-                    if(matchResult.groupValues[1] == "soundscape") {
+                    if (matchResult.groupValues[1] == "soundscape") {
                         // Switch to Street Preview mode
                         mainActivity.soundscapeServiceConnection.setStreetPreviewMode(
                             true,
                             latitude.toDouble(),
                             longitude.toDouble()
                         )
-                    }
-                    else {
+                    } else {
                         try {
                             check(Geocoder.isPresent())
                             useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
@@ -160,15 +166,14 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                             // No Geocoder available, so just report the uriData
                             val ld =
                                 LocationDescription(
-                                    URLEncoder.encode(uriData, "utf-8"),
-                                    latitude.toDouble(),
-                                    longitude.toDouble()
+                                    name = URLEncoder.encode(uriData, "utf-8"),
+                                    latitude = latitude.toDouble(),
+                                    longitude = longitude.toDouble()
                                 )
                             mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
                         }
                     }
-                }
-                else {
+                } else {
                     if (Intent.ACTION_VIEW == intent.action || Intent.ACTION_MAIN == intent.action) {
                         val data = intent.data
                         if (data != null) {
@@ -179,7 +184,7 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                             } else if ("content" == data.scheme) {
                                 Log.d(TAG, "Import data from content ${data.path}")
                                 val uri = intent.data
-                                if(uri != null) {
+                                if (uri != null) {
                                     try {
                                         val input =
                                             mainActivity.contentResolver.openInputStream(uri)
@@ -204,7 +209,7 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
                                                 }
                                             }
                                         }
-                                    } catch(e: Exception) {
+                                    } catch (e: Exception) {
                                         Log.e(TAG, "Failed to import GPX from intent: $e")
                                     }
                                 }
@@ -215,6 +220,7 @@ class SoundscapeIntents @Inject constructor(private val navigator : Navigator) {
             }
         }
     }
+
     companion object {
         private const val TAG = "SoundscapeIntents"
     }
