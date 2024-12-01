@@ -42,20 +42,29 @@ fun AddRouteScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
+    // Display error message if it exists
+    LaunchedEffect(uiState.errorMessage) {
+        uiState.errorMessage?.let { message ->
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            viewModel.clearErrorMessage()
+        }
+    }
+
     // Determine if the "Done" button should be visible
     val showDoneButton = uiState.name.isNotBlank()
 
     // Observe navigation and trigger it if necessary
-    LaunchedEffect(uiState.navigateToMarkersAndRoutes) {
-        if (uiState.navigateToMarkersAndRoutes) {
+    LaunchedEffect(uiState.doneActionCompleted) {
+        if (uiState.doneActionCompleted) {
             navController.navigate("${HomeRoutes.MarkersAndRoutes.route}/routes") {
                 popUpTo(HomeRoutes.MarkersAndRoutes.route) {
                     inclusive = true
                 }
                 launchSingleTop = true
             }
+            viewModel.resetDoneActionState()
             viewModel.resetNavigationState()
-            Toast.makeText(context, "Not yet implemented", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Route added successfully", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -65,9 +74,9 @@ fun AddRouteScreen(
                 title = stringResource(R.string.route_detail_action_create),
                 navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                 onNavigateUp = { navController.popBackStack()},
-                showDoneButton = uiState.showDoneButton,
+                showDoneButton = showDoneButton,
                 onDoneClicked = {
-                    viewModel.onAddWaypointsClicked()
+                    viewModel.onDoneClicked()
                 }
             )
         },
@@ -84,7 +93,7 @@ fun AddRouteScreen(
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-                    )
+                )
                 Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
                     text = stringResource(R.string.markers_sort_button_sort_by_name),
