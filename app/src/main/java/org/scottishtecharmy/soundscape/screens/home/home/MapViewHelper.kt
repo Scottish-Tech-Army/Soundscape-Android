@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.maplibre.android.MapLibre
+import org.maplibre.android.maps.MapLibreMapOptions.createFromAttributes
 import org.maplibre.android.maps.MapView
 
 @Composable
@@ -16,7 +17,11 @@ fun rememberMapViewWithLifecycle(disposeCode : (map : MapView) -> Unit): MapView
     val context = LocalContext.current
     val mapView = remember {
         MapLibre.getInstance(context)
-        return@remember MapView(context)
+        val options = createFromAttributes(context)
+        options.apply {
+            pixelRatio(4.0F)
+        }
+        return@remember MapView(context, options)
     }
 
     val lifecycle = LocalLifecycleOwner.current.lifecycle
