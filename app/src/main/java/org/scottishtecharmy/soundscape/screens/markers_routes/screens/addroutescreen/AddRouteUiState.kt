@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute
+package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen
 
 data class AddRouteUiState(
     val name: String = "",
