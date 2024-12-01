@@ -15,8 +15,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreen
 import org.scottishtecharmy.soundscape.viewmodels.HomeViewModel
@@ -121,12 +119,12 @@ fun HomeScreen(
             }
 
             // Nested graph: Routes and Markers
-            composable(ScreensForMarkersAndRoutes.Markers.route) {
-                MarkersAndRoutesNavGraph(
-                    navController = navController,
-                    startDestination = "Markers",
-                )
-            }
+//            composable(ScreensForMarkersAndRoutes.Markers.route) {
+//                MarkersAndRoutesNavGraph(
+//                    navController = navController,
+//                    startDestination = "Markers",
+//                )
+//            }
         }
 
         // AddRouteScreen, accessible within the MarkersAndRoutesScreen

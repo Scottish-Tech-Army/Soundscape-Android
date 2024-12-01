@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -17,30 +18,31 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 
-val items = listOf(
-    ScreensForMarkersAndRoutes.Markers,
-    ScreensForMarkersAndRoutes.Routes,
-)
-
 @Composable
-fun BottomNavigationBar(navController: NavController,
+fun MarkersAndRoutesTabs(
+    selectedTabIndex: Int,
+    onTabSelected: (Int) -> Unit
 ) {
-    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+    val items = listOf(
+        ScreensForMarkersAndRoutes.Markers,
+        ScreensForMarkersAndRoutes.Routes,
+    )
 
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primary
     ) {
-        items.forEach { item ->
-            val isSelected = currentRoute == item.route
+        items.forEachIndexed { index, item ->
+            val isSelected = selectedTabIndex == index
             NavigationBarItem(
                 modifier = Modifier.padding(16.dp),
                 selected = isSelected,
                 onClick = {
                     if (!isSelected) {
-                        navController.navigate(item.route) {
-                            launchSingleTop = true  // Avoids multiple instances of the same destination
-                            restoreState = true     // Restore state when navigating back
-                        }
+                        Log.d("MarkersAndRoutesTabs", "Navigating to ${item.route}, current index: $index")
+                        onTabSelected(index)
+
+                    } else {
+                        Log.d("MarkersAndRoutesTabs", "Tab already selected: ${item.route}, index: $index")
                     }
                 },
                 label = {
@@ -55,7 +57,7 @@ fun BottomNavigationBar(navController: NavController,
                                 item.unselectedIconResId!!
                             }
                         ),
-                        contentDescription = null, // No need of contentDescription as text is below
+                        contentDescription = null, // No need for contentDescription as text is below
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
@@ -70,12 +72,3 @@ fun BottomNavigationBar(navController: NavController,
     }
 }
 
-@Preview
-@Composable
-fun BottomNavigationBarPreview() {
-    val navController = rememberNavController()
-    MaterialTheme {
-        BottomNavigationBar(navController = navController,
-        )
-    }
-}

@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun RoutesScreen(navController: NavController,
+                 onNavigateToAddRoute: () -> Unit,
                  viewModel: RoutesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -147,10 +148,10 @@ fun RoutesScreen(navController: NavController,
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun RoutesScreenPreview() {
-    SoundscapeTheme {
-        RoutesScreen(navController = rememberNavController())
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun RoutesScreenPreview() {
+//    SoundscapeTheme {
+//        RoutesScreen()
+//    }
+//}
