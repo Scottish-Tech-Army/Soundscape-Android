@@ -20,6 +20,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,14 +36,18 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 fun CustomAppBar(title : String,
                  onNavigateUp: () -> Unit,
                  onAddClicked: (() -> Unit)? = null,
+                 onDoneClicked: (() -> Unit)? = null,
                  showAddIcon: Boolean = false,
+                 showDoneButton: Boolean = false,
                  navigationButtonTitle: String = stringResource(R.string.ui_back_button_title),
-                 ) {
+) {
     Surface(
         color = MaterialTheme.colorScheme.primary
     ) {
         Row(
-            modifier  = Modifier.height(IntrinsicSize.Min).fillMaxWidth(),
+            modifier  = Modifier
+                .height(IntrinsicSize.Min)
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -57,7 +62,9 @@ fun CustomAppBar(title : String,
             )
 
             Box(
-                modifier = Modifier.fillMaxHeight().weight(1f),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(1f),
                 contentAlignment = Alignment.CenterStart
             ) {
                 Text(
@@ -80,6 +87,20 @@ fun CustomAppBar(title : String,
                     Icon(
                         Icons.Default.Add,
                         contentDescription = stringResource(R.string.general_alert_add),
+                    )
+                }
+            }
+            if (showDoneButton) {
+                TextButton(
+                    onClick = {
+                        onDoneClicked?.invoke()
+                    }
+                ) {
+                    Text(
+                        //text = stringResource(R.string.general_alert_done),
+                        text = "Done",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             }
@@ -111,6 +132,21 @@ fun CustomAppBarWithActionButtonPreview() {
             "Test app bar",
             navigationButtonTitle = "Back",
             showAddIcon = true,
+            onNavigateUp = {},
+            onAddClicked = {}
+        )
+    }
+}
+
+@Preview(showBackground = true, fontScale = 2f)
+@Preview(showBackground = true)
+@Composable
+fun CustomAppBarWithDoneActionButtonPreview() {
+    SoundscapeTheme {
+        CustomAppBar(
+            "Test app bar",
+            navigationButtonTitle = "Back",
+            showDoneButton = true,
             onNavigateUp = {},
             onAddClicked = {}
         )

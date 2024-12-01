@@ -41,6 +41,10 @@ fun AddRouteScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+
+    // Determine if the "Done" button should be visible
+    val showDoneButton = uiState.name.isNotBlank()
+
     // Observe navigation and trigger it if necessary
     LaunchedEffect(uiState.navigateToMarkersAndRoutes) {
         if (uiState.navigateToMarkersAndRoutes) {
@@ -60,7 +64,11 @@ fun AddRouteScreen(
             CustomAppBar(
                 title = stringResource(R.string.route_detail_action_create),
                 navigationButtonTitle = stringResource(R.string.general_alert_cancel),
-                onNavigateUp = { navController.popBackStack()}
+                onNavigateUp = { navController.popBackStack()},
+                showDoneButton = uiState.showDoneButton,
+                onDoneClicked = {
+                    viewModel.onAddWaypointsClicked()
+                }
             )
         },
         content = { padding ->

@@ -5,5 +5,6 @@ data class AddRouteUiState(
     val description: String = "",
     val nameError: Boolean = false,
     val descriptionError: Boolean = false,
-    val navigateToMarkersAndRoutes: Boolean = false
+    val navigateToMarkersAndRoutes: Boolean = false,
+    val showDoneButton: Boolean = false
 )

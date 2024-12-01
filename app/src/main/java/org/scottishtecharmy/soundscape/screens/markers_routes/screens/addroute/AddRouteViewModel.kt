@@ -13,6 +13,11 @@ class AddRouteViewModel @Inject constructor(): ViewModel() {
     val uiState: StateFlow<AddRouteUiState> = _uiState
 
     fun onNameChange(newText: String) {
+        val showDoneButton = newText.isNotBlank()
+        _uiState.value = _uiState.value.copy(
+            name = newText,
+            showDoneButton = showDoneButton
+        )
         _uiState.value = _uiState.value.copy(name = newText)
     }
 
