@@ -4,9 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.location.Location
 import android.util.Log
 import androidx.preference.PreferenceManager
+import com.google.android.gms.location.ActivityTransition
+import com.google.android.gms.location.ActivityTransitionEvent
+import com.google.android.gms.location.DetectedActivity
 import com.squareup.moshi.Moshi
+import com.squareup.otto.Subscribe
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import io.realm.kotlin.types.RealmInstant
@@ -19,6 +24,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
@@ -29,6 +35,9 @@ import org.scottishtecharmy.soundscape.database.local.model.TileData
 import org.scottishtecharmy.soundscape.database.repository.TilesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.dto.BoundingBox
+import org.scottishtecharmy.soundscape.filters.CalloutHistory
+import org.scottishtecharmy.soundscape.filters.LocationUpdateFilter
+import org.scottishtecharmy.soundscape.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -69,6 +78,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.processTileString
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
+import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.services.getOttoBus
 import retrofit2.awaitResponse
 import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
@@ -105,10 +117,25 @@ class GeoEngine {
     private lateinit var sharedPreferences : SharedPreferences
 
     private var centralBoundingBox = BoundingBox()
+    private var inVehicle = false
 
-    fun start(application: Application,
-              newLocationProvider: LocationProvider,
-              newDirectionProvider: DirectionProvider) {
+    @Subscribe
+    fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
+        if(event.transitionType == ActivityTransition.ACTIVITY_TRANSITION_ENTER) {
+            inVehicle = when(event.activityType) {
+                DetectedActivity.ON_BICYCLE,
+                DetectedActivity.IN_VEHICLE -> true
+                else -> false
+            }
+        }
+    }
+
+    fun start(
+        application: Application,
+        newLocationProvider: LocationProvider,
+        newDirectionProvider: DirectionProvider,
+        soundscapeService: SoundscapeService
+    ) {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
 
@@ -126,10 +153,14 @@ class GeoEngine {
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
 
-        startTileGridService()
+        startTileGridService(soundscapeService)
+
+        getOttoBus().register(this)
     }
 
     fun stop() {
+        getOttoBus().unregister(this)
+
         tilesJob?.cancel()
         locationProvider.destroy()
         directionProvider.destroy()
@@ -139,7 +170,7 @@ class GeoEngine {
      * The tile grid service is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
-    private fun startTileGridService() {
+    private fun startTileGridService(soundscapeService: SoundscapeService) {
         Log.e(TAG, "startTileGridService")
         tilesJob?.cancel()
         tilesJob = coroutineScope.launch {
@@ -174,6 +205,12 @@ class GeoEngine {
                             // a lack of network/server issue. There's nothing that we can do, so
                             // simply retry on the next location update.
                         }
+                    }
+                    // Run any auto callouts that we need
+                    val callouts = autoCallout(location)
+                    if(callouts.isNotEmpty()) {
+                        // Tell the service that we've got some callouts to tell the user about
+                        soundscapeService.speakCallout(callouts)
                     }
                 }
             }
@@ -306,16 +343,213 @@ class GeoEngine {
         return true
     }
 
-    fun myLocation() : List<String> {
+    private val locationFilter = LocationUpdateFilter(10000, 50.0)
+    private val poiFilter = LocationUpdateFilter(5000, 5.0)
+
+    private fun buildCalloutForRoadSense(location: LngLatAlt) : List<PositionedString> {
+        val results : MutableList<PositionedString> = mutableListOf()
+
+        // Check that our location/time has changed enough to generate this callout
+        if(!locationFilter.shouldUpdate(location))
+            return emptyList()
+
+        // Check that we're in a vehicle
+        if(!inVehicle)
+            return emptyList()
+
+        // Update time/location filter for our new position
+        locationFilter.update(location)
+
+        // Reverse geocode the current location
+
+        // Check that the geocode has changed before returning a callout describing it
+
+        return results
+    }
+
+    private val poiCalloutHistory = CalloutHistory()
+    private fun buildCalloutForNearbyPOI(location: LngLatAlt, speed: Float) : List<PositionedString> {
+        if (!poiFilter.shouldUpdateActivity(location, speed, inVehicle)) {
+            return emptyList()
+        }
+
+        val results: MutableList<PositionedString> = mutableListOf()
+
+        // Trim history based on location and current time
+        poiCalloutHistory.trim(location)
+
+        // Make a list of POIs - this has been copied from the whatsAroundMe code, and it definitely
+        // needs some work.
+
+        // super categories are "information", "object", "place", "landmark", "mobility", "safety"
+        val placesAndLandmarks = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
+        val mobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
+        val gridFeatureCollections = getGridFeatureCollections()
+        val gridPoiFeatureCollection = removeDuplicateOsmIds(gridFeatureCollections[Fc.POIS.id])
+        val settingsFeatureCollection = FeatureCollection()
+        if (gridPoiFeatureCollection.features.isNotEmpty()) {
+            if (placesAndLandmarks) {
+                if (mobility) {
+                    val placeSuperCategory =
+                        getPoiFeatureCollectionBySuperCategory("place", gridPoiFeatureCollection)
+                    val tempFeatureCollection = FeatureCollection()
+                    for (feature in placeSuperCategory.features) {
+                        if (feature.foreign?.get("feature_value") != "house") {
+                            if (feature.properties?.get("name") != null) {
+                                val superCategoryList = getSuperCategoryElements("place")
+                                // We never want to add a feature more than once
+                                var found = false
+                                for (property in feature.properties!!) {
+                                    for (featureType in superCategoryList) {
+                                        if (property.value == featureType) {
+                                            tempFeatureCollection.features.add(feature)
+                                            found = true
+                                        }
+                                        if (found) break
+                                    }
+                                    if (found) break
+                                }
+                            }
+                        }
+                    }
+                    val cleanedPlaceSuperCategory = removeDuplicateOsmIds(tempFeatureCollection)
+                    for (feature in cleanedPlaceSuperCategory.features) {
+                        settingsFeatureCollection.features.add(feature)
+                    }
+
+                    val landmarkSuperCategory =
+                        getPoiFeatureCollectionBySuperCategory(
+                            "landmark",
+                            gridPoiFeatureCollection
+                        )
+                    for (feature in landmarkSuperCategory.features) {
+                        settingsFeatureCollection.features.add(feature)
+                    }
+                    val mobilitySuperCategory =
+                        getPoiFeatureCollectionBySuperCategory(
+                            "mobility",
+                            gridPoiFeatureCollection
+                        )
+                    for (feature in mobilitySuperCategory.features) {
+                        settingsFeatureCollection.features.add(feature)
+                    }
+
+                } else {
+
+                    val placeSuperCategory =
+                        getPoiFeatureCollectionBySuperCategory("place", gridPoiFeatureCollection)
+                    for (feature in placeSuperCategory.features) {
+                        if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get(
+                                "feature_value"
+                            ) != "house"
+                        ) {
+                            settingsFeatureCollection.features.add(feature)
+                        }
+                    }
+                    val landmarkSuperCategory =
+                        getPoiFeatureCollectionBySuperCategory(
+                            "landmark",
+                            gridPoiFeatureCollection
+                        )
+                    for (feature in landmarkSuperCategory.features) {
+                        settingsFeatureCollection.features.add(feature)
+                    }
+                }
+            } else {
+                if (mobility) {
+                    //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
+                    val mobilitySuperCategory =
+                        getPoiFeatureCollectionBySuperCategory(
+                            "mobility",
+                            gridPoiFeatureCollection
+                        )
+                    for (feature in mobilitySuperCategory.features) {
+                        settingsFeatureCollection.features.add(feature)
+                    }
+                } else {
+                    // Not sure what we are supposed to tell the user here?
+                    println("placesAndLandmarks and mobility are both false so what should I tell the user?")
+                }
+            }
+        }
+
+        // Check this type of POI is enabled
+
+        // If the POI is outside the trigger range for that POI category, skip it (see CalloutRangeContext)
+        if (settingsFeatureCollection.features.isNotEmpty()) {
+            // Original Soundscape doesn't work like this as it doesn't order them by distance
+            val sortedByDistanceToFeatureCollection = sortedByDistanceTo(
+                locationProvider.getCurrentLatitude() ?: 0.0,
+                locationProvider.getCurrentLongitude() ?: 0.0,
+                settingsFeatureCollection
+            )
+            for (feature in sortedByDistanceToFeatureCollection) {
+                val distance = feature.foreign?.get("distance_to") as Double?
+                if (distance != null) {
+                    if (distance < 10.0) {
+                        val text = "${feature.properties?.get("name")}"
+
+                        // Check the history and if the POI has been called out recently, skip it (iOS uses 60 seconds)
+                        val nearestPoint = getFeatureNearestPoint(location, feature)
+                        if(nearestPoint != null) {
+                            val callout = TrackedCallout(text, nearestPoint)
+                            if (poiCalloutHistory.find(callout)) {
+                                Log.d(TAG, "Discard ${callout.callout}")
+                            } else {
+                                results.add(PositionedString(text))
+                                poiCalloutHistory.add(callout)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //Add the entries to the history
+
+        return results
+    }
+
+
+    private fun autoCallout(androidLocation: Location) : List<PositionedString> {
+
+        // The autoCallout logic comes straight from the iOS app.
+
+        val location = LngLatAlt(androidLocation.longitude, androidLocation.latitude)
+        val speed = androidLocation.speed
+
+        // Check that the callout isn't disabled in the settings
+        if (!sharedPreferences.getBoolean(ALLOW_CALLOUTS_KEY, true)) {
+            return emptyList()
+        }
+
+        // buildCalloutForRoadSense
+        val roadSenseCallout = buildCalloutForRoadSense(location)
+        if(roadSenseCallout.isNotEmpty()) {
+            return roadSenseCallout
+        }
+
+        // Get normal callouts for nearby POIs, for the destination, and for beacons
+        val poiCallout = buildCalloutForNearbyPOI(location, speed)
+
+        // Update time/location filter for our new position
+        if(poiCallout.isNotEmpty()) {
+            poiFilter.update(location)
+        }
+
+        return poiCallout
+    }
+
+    fun myLocation() : List<PositionedString> {
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
-        val results : MutableList<String> = mutableListOf()
+        val results : MutableList<PositionedString> = mutableListOf()
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            results.add(noLocationString)
+            results.add(PositionedString(noLocationString))
         } else {
             val roadGridFeatureCollection = FeatureCollection()
             val gridFeatureCollections = getGridFeatureCollections()
@@ -349,7 +583,7 @@ class GeoEngine {
                                 roadName.toString(),
                                 configLocale
                             )
-                        results.add(facingDirectionAlongRoad)
+                        results.add(PositionedString(facingDirectionAlongRoad))
                     } else {
                         Log.e(TAG, "No properties found for road")
                     }
@@ -363,7 +597,7 @@ class GeoEngine {
                         orientation.toInt(),
                         configLocale
                     )
-                results.add(facingDirection)
+                results.add(PositionedString(facingDirection))
             }
         }
         return results
@@ -532,16 +766,16 @@ class GeoEngine {
         return results
     }
 
-    fun aheadOfMe() : List<String> {
+    fun aheadOfMe() : List<PositionedString> {
         // TODO This is just a rough POC at the moment. Lots more to do...
-        val results : MutableList<String> = mutableListOf()
+        val results : MutableList<PositionedString> = mutableListOf()
 
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             // Should be null but let's check
             //Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            results.add(noLocationString)
+            results.add(PositionedString(noLocationString))
         } else {
             // get device direction
             val orientation = directionProvider.getCurrentDirection().toDouble()
@@ -607,14 +841,14 @@ class GeoEngine {
                     // TODO check for Settings, Unnamed roads on/off here
                     if (nearestRoad.features.isNotEmpty()) {
                         if (nearestRoad.features[0].properties?.get("name") != null) {
-                            results.add(
+                            results.add(PositionedString(
                                 "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.features[0].properties!!["name"]}"
-                            )
+                            ))
                         } else {
                             // we are detecting an unnamed road here but pretending there is nothing here
-                            results.add(
+                            results.add(PositionedString(
                                 localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                            )
+                            ))
                         }
                     }
 
@@ -683,14 +917,14 @@ class GeoEngine {
                                     newIntersectionFeatureCollection,
                                     fovRoadsFeatureCollection
                                 )
-                                results.add(
+                                results.add(PositionedString(
                                     "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
                                         localizedContext.getString(
                                             R.string.distance_format_meters,
                                             distanceToNearestIntersection.toInt().toString()
                                         )
                                     }"
-                                )
+                                ))
 
                                 val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
                                     intersectionRoadNames,
@@ -714,9 +948,9 @@ class GeoEngine {
                                                 feature.properties?.get("name"),
                                                 relativeDirectionString
                                             )
-                                            results.add(
+                                            results.add(PositionedString(
                                                 intersectionCallout
-                                            )
+                                            ))
                                         }
                                     }
                                 }
@@ -765,7 +999,7 @@ class GeoEngine {
                                     append(nearestRoadToCrossing.features[0].properties?.get("name"))
                                 }
                             }
-                            results.add(crossingText)
+                            results.add(PositionedString(crossingText))
                         }
                     }
                 }
@@ -810,14 +1044,14 @@ class GeoEngine {
                                     append(nearestRoadToBus.features[0].properties?.get("name"))
                                 }
                             }
-                            results.add(busText)
+                            results.add(PositionedString(busText))
                         }
                     }
                 }
             } else {
-                results.add(
+                results.add(PositionedString(
                     localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
-                )
+                ))
 
             }
         }

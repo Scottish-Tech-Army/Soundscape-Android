@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import com.squareup.moshi.Moshi
+import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.lang.Math.toDegrees
 import java.util.PriorityQueue
@@ -1165,7 +1166,25 @@ fun getNearestPoi(
     val nearestPoiFeatureCollection = FeatureCollection()
     // I've inserted the distance_to as a foreign member. Not sure if this is a good idea or not
     return nearestPoiFeatureCollection.addFeature(nearestPoi)
+}
 
+fun getFeatureNearestPoint(
+    currentLocation: LngLatAlt,
+    feature: Feature
+): LngLatAlt? {
+    val featureCollection = FeatureCollection()
+    featureCollection.addFeature(feature)
+    val poiWithBoundingBoxAndDistance = addBoundingBoxAndDistanceToFeatureCollection(
+        currentLocation.latitude,
+        currentLocation.longitude,
+        featureCollection
+    )
+    val geometry = poiWithBoundingBoxAndDistance.features[0].bbox
+    if(geometry != null) {
+        val box = BoundingBox(geometry)
+        return nearestPointOnBoundingBox(box, currentLocation)
+    }
+    return null
 }
 
 /**

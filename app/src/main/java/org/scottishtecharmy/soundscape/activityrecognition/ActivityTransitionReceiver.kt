@@ -3,17 +3,21 @@ package org.scottishtecharmy.soundscape.activityrecognition
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import com.google.android.gms.location.ActivityTransition
 import com.google.android.gms.location.ActivityTransitionEvent
 import com.google.android.gms.location.ActivityTransitionResult
-import com.google.android.gms.location.DetectedActivity
+import org.scottishtecharmy.soundscape.services.getOttoBus
 
+/**
+ * There are several limitations on receiving activity transitions. The Intent passed in has to be
+ * mutable because it's altered by the Activity Recognition code to add in the transition events.
+ * However, to be mutable means that it has to be an explicit Intent which in turn means that it
+ * must be registered in the Android manifest and can't be registered dynamically using
+ * registerReceiver. In turn that means that ActivityTransitionReceiver can't take any extra
+ * arguments, so to get data out of here we use a singleton Otto bus.
+ */
 class ActivityTransitionReceiver: BroadcastReceiver() {
 
-    //private lateinit var actionTransition: ActivityTransition
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.d(TAG, "onReceive")
         intent?.let { atIntent ->
             if (ActivityTransitionResult.hasResult(intent)) {
                 val result = ActivityTransitionResult.extractResult(atIntent)
@@ -25,47 +29,8 @@ class ActivityTransitionReceiver: BroadcastReceiver() {
     }
 
     private fun processTransitionResults(transitionEvents: List<ActivityTransitionEvent>) {
-        //if driving, start location service
         for (event in transitionEvents) {
-            val uiTransition = mapActivityToString(event)
-            val transition = "${mapTransitionToString(event)} $uiTransition"
-            Log.d(TAG, "Process Transition Results: $transition")
-            //actionTransition.onDetectedTransitionEvent(uiTransition)
-
-            /*if (event.activityType == DetectedActivity.IN_VEHICLE) {
-                val intent = Intent(context, SoundscapeService::class.java)
-                when (event.transitionType) {
-                    ActivityTransition.ACTIVITY_TRANSITION_ENTER -> {
-                        intent.putExtra("IN_VEHICLE", true)
-                    }
-                    ActivityTransition.ACTIVITY_TRANSITION_EXIT -> {
-                        intent.putExtra("IN_VEHICLE", false)
-                    }
-                }
-
-            }*/
+            getOttoBus().post(event)
         }
-    }
-
-    private fun mapActivityToString(event: ActivityTransitionEvent) =
-        when (event.activityType) {
-            DetectedActivity.STILL -> "STILL"
-            DetectedActivity.ON_FOOT -> "STAND"
-            DetectedActivity.WALKING -> "WALK"
-            DetectedActivity.RUNNING -> "RUN"
-            DetectedActivity.ON_BICYCLE -> "BIKE"
-            DetectedActivity.IN_VEHICLE -> "DRIVE"
-            else -> "UNKNOWN"
-        }
-
-    private fun mapTransitionToString(event: ActivityTransitionEvent) =
-        when (event.transitionType) {
-            ActivityTransition.ACTIVITY_TRANSITION_ENTER -> "ENTER"
-            ActivityTransition.ACTIVITY_TRANSITION_EXIT -> "EXIT"
-            else -> "UNKNOWN"
-        }
-
-    companion object {
-        private const val TAG = "ActivityTransitionReceiver"
     }
 }

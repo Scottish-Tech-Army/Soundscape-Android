@@ -1388,3 +1388,19 @@ fun pointIsWithinBoundingBox(point: LngLatAlt?, box: BoundingBox) : Boolean {
     return (isBetween(box.westLongitude, box.eastLongitude, point.longitude) &&
             isBetween(box.southLatitude, box.northLatitude, point.latitude))
 }
+
+fun nearestPointOnBoundingBox(box: BoundingBox, point: LngLatAlt): LngLatAlt {
+
+    // If the point is inside the bounding box, return our current location as
+    // that will give a distance of zero.
+    if(pointIsWithinBoundingBox(point, box))
+        return point
+
+    // If outside of the box, then the nearest point is either one of the corners of the box,
+    // or if the point is within the range of box latitude/longitude it's on the side nearest.
+    // The quickest way to find it is to clamp the point's coordinates to the square's boundaries.
+    val nearestLat = clip(point.latitude, box.southLatitude, box.northLatitude)
+    val nearestLng = clip(point.longitude, box.westLongitude, box.eastLongitude)
+
+    return LngLatAlt(nearestLng, nearestLat)
+}

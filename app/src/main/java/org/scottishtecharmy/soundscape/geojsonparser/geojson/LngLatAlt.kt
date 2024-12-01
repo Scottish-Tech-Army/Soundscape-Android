@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
 import com.squareup.moshi.JsonClass
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
@@ -32,5 +33,9 @@ open class LngLatAlt(
 
     override fun toString(): String {
         return "$longitude,$latitude"
+    }
+
+    fun distance(other: LngLatAlt): Double {
+        return distance(latitude, longitude, other.latitude, other.longitude)
     }
 }
