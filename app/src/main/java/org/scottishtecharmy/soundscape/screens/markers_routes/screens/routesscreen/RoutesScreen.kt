@@ -37,6 +37,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RouteList
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -44,10 +46,10 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Composable
 fun RoutesScreen(navController: NavController,
                  onNavigateToAddRoute: () -> Unit,
-                 viewModel: RoutesViewModel = hiltViewModel()
-) {
+                 viewModel: RoutesViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
@@ -68,10 +70,8 @@ fun RoutesScreen(navController: NavController,
     } else {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (uiState.routes.isEmpty()) {
                 // Display UI when no routes are available
@@ -107,44 +107,26 @@ fun RoutesScreen(navController: NavController,
                     )
                 }
             } else {
-
-                // Display the list of routes
-                uiState.routes.forEach { route ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.primary)
-                            .padding(16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween, // Space between elements to align text and icon
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column {
-                            Text(
-                                text = route.name,
-                                style = MaterialTheme.typography.headlineMedium,
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.padding(bottom = 4.dp)
-                            )
-                            Text(
-                                text = route.description,
-                                style = MaterialTheme.typography.bodyLarge,
-                                fontWeight = FontWeight.Bold,
-                            )
-
-                        }
-                        Icon(
-                            modifier = Modifier
-                                .align(Alignment.CenterVertically)
-                                .clickable {  },
-                            imageVector = Icons.Default.ChevronRight,
-                            contentDescription = "")
-                    }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    MarkersAndRoutesListSort(
+                        isSortByName = uiState.isSortByName,
+                        onToggleSortOrder = {viewModel.toggleSortOrder()}
+                    )
                 }
             }
-        }
 
+            // Display the list of routes
+            RouteList(uiState = uiState)
+        }
     }
 }
+
 
 
 

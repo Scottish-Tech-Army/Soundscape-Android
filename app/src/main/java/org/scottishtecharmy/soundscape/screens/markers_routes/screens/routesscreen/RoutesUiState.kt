@@ -5,5 +5,6 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteData
 data class RoutesUiState(
     val routes: List<RouteData> = emptyList(),
     val isLoading: Boolean = false,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    val isSortByName: Boolean = false,
 )

@@ -22,6 +22,16 @@ class RoutesViewModel @Inject constructor(
         loadRoutes()
     }
 
+    fun toggleSortOrder() {
+        val isAscending = !_uiState.value.isSortByName
+        val sortedRoutes = if (isAscending) {
+            _uiState.value.routes.sortedBy { it.name }
+        } else {
+            _uiState.value.routes
+        }
+        _uiState.value = _uiState.value.copy(routes = sortedRoutes, isSortByName = isAscending)
+    }
+
     private fun loadRoutes() {
         viewModelScope.launch {
             Log.d("RoutesViewModel", "Loading routes started")
