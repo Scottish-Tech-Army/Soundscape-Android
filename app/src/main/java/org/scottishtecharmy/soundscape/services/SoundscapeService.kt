@@ -17,6 +17,7 @@ import androidx.core.app.ServiceCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.squareup.otto.Bus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,7 @@ import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
@@ -44,6 +46,17 @@ import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
+
+/**
+ * Publish/Subscribe Otto bus used for some types of communication within the service.
+ */
+private var ottoBus : Bus? = null
+fun getOttoBus() : Bus {
+    if(ottoBus == null) {
+        ottoBus = Bus()
+    }
+    return ottoBus!!
+}
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles,
@@ -111,7 +124,7 @@ class SoundscapeService : MediaSessionService() {
         }
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
-        geoEngine.start(application, locationProvider, directionProvider)
+        geoEngine.start(application, locationProvider, directionProvider, this)
 
         _streetPreviewFlow.value = on
     }
@@ -128,7 +141,7 @@ class SoundscapeService : MediaSessionService() {
 
             // Reminds the user every hour that the Soundscape service is still running in the background
             startServiceStillRunningTicker()
-            geoEngine.start(application, locationProvider, directionProvider)
+            geoEngine.start(application, locationProvider, directionProvider, this)
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -152,8 +165,9 @@ class SoundscapeService : MediaSessionService() {
 
             // Activity Recognition
             // test
-            activityTransition = ActivityTransition(applicationContext)
+            activityTransition = ActivityTransition()
             activityTransition.startVehicleActivityTracking(
+                applicationContext,
                 onSuccess = { },
                 onFailure = { },
             )
@@ -189,7 +203,7 @@ class SoundscapeService : MediaSessionService() {
 
         coroutineScope.coroutineContext.cancelChildren()
 
-        activityTransition.stopVehicleActivityTracking()
+        activityTransition.stopVehicleActivityTracking(applicationContext)
 
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
@@ -313,19 +327,35 @@ class SoundscapeService : MediaSessionService() {
     fun myLocation() {
         audioEngine.clearTextToSpeechQueue()
         val results = geoEngine.myLocation()
-        for(result in results) {
-            audioEngine.createTextToSpeech(result)
-        }
+        speakCallout(results)
     }
 
     fun whatsAroundMe() {
         audioEngine.clearTextToSpeechQueue()
         val results = geoEngine.whatsAroundMe()
-        for(result in results) {
+        speakCallout(results)
+    }
+
+    fun aheadOfMe() {
+        audioEngine.clearTextToSpeechQueue()
+        val results = geoEngine.aheadOfMe()
+        speakCallout(results)
+    }
+
+    private lateinit var routePlayer : RoutePlayer
+    fun setupCurrentRoute() {
+        routePlayer = RoutePlayer(this)
+        routePlayer.setupCurrentRoute()
+    }
+
+    fun speakCallout(callouts: List<PositionedString>) {
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER)
+        for(result in callouts) {
             if(result.location == null) {
                 audioEngine.createTextToSpeech(result.text)
             }
             else {
+                audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_POI, result.location.latitude, result.location.longitude)
                 audioEngine.createTextToSpeech(
                     result.text,
                     result.location.latitude,
@@ -333,20 +363,7 @@ class SoundscapeService : MediaSessionService() {
                 )
             }
         }
-    }
-
-    fun aheadOfMe() {
-        audioEngine.clearTextToSpeechQueue()
-        val results = geoEngine.aheadOfMe()
-        for(result in results) {
-            audioEngine.createTextToSpeech(result)
-        }
-    }
-
-    private lateinit var routePlayer : RoutePlayer
-    fun setupCurrentRoute() {
-        routePlayer = RoutePlayer(this)
-        routePlayer.setupCurrentRoute()
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT)
     }
 
     companion object {

@@ -3,7 +3,7 @@ package org.scottishtecharmy.soundscape
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.kalman.KalmanFilter
+import org.scottishtecharmy.soundscape.filters.KalmanFilter
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 

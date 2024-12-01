@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.kalman
+package org.scottishtecharmy.soundscape.filters
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 

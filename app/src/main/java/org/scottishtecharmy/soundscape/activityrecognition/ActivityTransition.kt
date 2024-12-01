@@ -10,42 +10,66 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.ActivityRecognition
 import com.google.android.gms.location.ActivityTransition
+import com.google.android.gms.location.ActivityTransitionEvent
 import com.google.android.gms.location.ActivityTransitionRequest
 import com.google.android.gms.location.DetectedActivity
+import com.squareup.otto.Subscribe
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.services.getOttoBus
+
 
 // This is from the documentation here:
 // https://developer.android.com/develop/sensors-and-location/location/transitions
 // https://developers.google.com/android/reference/com/google/android/gms/location/ActivityRecognitionClient
 /**
-* Class to detect if a device is entering/exiting a vehicle. We need this information
- * so we can increase/decrease the frequency of GeoJSON tile requests. The tile requests will need
- * to be more frequent if the device is moving quickly.
-*/
-class ActivityTransition(val context: Context) {
+ * Class to detect if a device is entering/exiting a vehicle, or stopping moving. This is used to
+ * adjust the contents of call outs and when they are made.
+ */
+class ActivityTransition {
 
-    private val _transition = MutableStateFlow("UNKNOWN")
-    val transition: StateFlow<String> = _transition
+    private val _transition = MutableStateFlow(ActivityTransitionEvent(DetectedActivity.UNKNOWN,
+        ActivityTransition.ACTIVITY_TRANSITION_ENTER,
+        0))
+    val transition: StateFlow<ActivityTransitionEvent> = _transition
 
     private var pendingIntent: PendingIntent? = null
 
+    /**
+     * onActivityTransitionEvent is where ActivityTransitionEvent percolate up to after they have
+     * been received by the ActivityTransitionReceiver.
+     */
+    @Subscribe
+    fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
+        val uiTransition = mapActivityToString(event)
+        val transition = "${mapTransitionToString(event)} $uiTransition"
+
+        Log.e(TAG, "onActivityTransitionEvent: $transition")
+
+        _transition.value = event
+    }
+
     @SuppressWarnings("MissingPermission")
     fun startVehicleActivityTracking(
+        context: Context,
         onSuccess: () -> Unit = { },
         onFailure: (String) -> Unit = { }
     ){
+        // We've got an @Subscribe function, so we need to register our class
+        getOttoBus().register(this)
+
         Log.d(TAG,"startVehicleTracking function")
         pendingIntent = PendingIntent.getBroadcast(
             context,
             0,
             Intent(context, ActivityTransitionReceiver::class.java),
-            // not sure if this should be FLAG_MUTABLE or FLAG_IMMUTABLE
+            // This has to be FLAG_MUTABLE as it is extended by the code that sends it to the
+            // receiver to add in the activity transition details.
             PendingIntent.FLAG_MUTABLE
         )
         val request = ActivityTransitionRequest(getTransitions())
         Log.d(TAG,"startVehicleTracking function - permission check")
-        if (permissionGranted()) {
+        if (permissionGranted(context)) {
             pendingIntent?.let { trackingIntent ->
                 ActivityRecognition.getClient(context)
                     .requestActivityTransitionUpdates(request, trackingIntent)
@@ -64,8 +88,9 @@ class ActivityTransition(val context: Context) {
     }
 
     @SuppressWarnings("MissingPermission")
-    fun stopVehicleActivityTracking(){
-        if (permissionGranted()) {
+    fun stopVehicleActivityTracking(context: Context){
+        getOttoBus().unregister(this)
+        if (permissionGranted(context)) {
             pendingIntent?.let { trackingIntent ->
                 ActivityRecognition.getClient(context).removeActivityTransitionUpdates(trackingIntent)
                     .addOnSuccessListener {
@@ -80,7 +105,7 @@ class ActivityTransition(val context: Context) {
 
     }
 
-    private fun permissionGranted(): Boolean {
+    private fun permissionGranted(context: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ActivityCompat.checkSelfPermission(
                 context,
@@ -91,9 +116,6 @@ class ActivityTransition(val context: Context) {
         }
     }
 
-    // TODO Remove the other DetectedActivity once I've figured out how to do this as I'm only
-    //  interested in the DetectedActivity.IN_VEHICLE
-    //  and the two ActivityTransitions: ACTIVITY_TRANSITION_ENTER and ACTIVITY_TRANSITION_EXIT
     private fun getTransitions() = listOf(
         ActivityTransition.Builder()
             .setActivityType(DetectedActivity.STILL)
@@ -104,11 +126,11 @@ class ActivityTransition(val context: Context) {
             .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_EXIT)
             .build(),
         ActivityTransition.Builder()
-            .setActivityType(DetectedActivity.WALKING)
+            .setActivityType(DetectedActivity.ON_FOOT)
             .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
             .build(),
         ActivityTransition.Builder()
-            .setActivityType(DetectedActivity.WALKING)
+            .setActivityType(DetectedActivity.ON_FOOT)
             .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_EXIT)
             .build(),
         ActivityTransition.Builder()
@@ -128,16 +150,42 @@ class ActivityTransition(val context: Context) {
             .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_EXIT)
             .build(),
         ActivityTransition.Builder()
+            .setActivityType(DetectedActivity.WALKING)
+            .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
+            .build(),
+        ActivityTransition.Builder()
+            .setActivityType(DetectedActivity.WALKING)
+            .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_EXIT)
+            .build(),
+        ActivityTransition.Builder()
             .setActivityType(DetectedActivity.RUNNING)
             .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
             .build(),
         ActivityTransition.Builder()
             .setActivityType(DetectedActivity.RUNNING)
             .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_EXIT)
-            .build(),
+            .build()
     )
     companion object {
         private const val TAG = "ActivityTransition"
     }
 }
+
+fun mapActivityToString(event: ActivityTransitionEvent) =
+    when (event.activityType) {
+        DetectedActivity.STILL -> "Still"
+        DetectedActivity.ON_FOOT -> "OnFoot"
+        DetectedActivity.ON_BICYCLE -> "OnBike"
+        DetectedActivity.IN_VEHICLE -> "InVehicle"
+        DetectedActivity.WALKING -> "Walking"
+        DetectedActivity.RUNNING -> "Running"
+        else -> "Unknown ${event.activityType}"
+    }
+
+fun mapTransitionToString(event: ActivityTransitionEvent) =
+    when (event.transitionType) {
+        ActivityTransition.ACTIVITY_TRANSITION_ENTER -> "Enter"
+        ActivityTransition.ACTIVITY_TRANSITION_EXIT -> "Exit"
+        else -> "Unknown"
+    }
 

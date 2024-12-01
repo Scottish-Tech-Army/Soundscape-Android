@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Looper
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.DeviceOrientation
 import com.google.android.gms.location.DeviceOrientationListener
@@ -23,7 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.kalman.KalmanFilter
+import org.scottishtecharmy.soundscape.filters.KalmanFilter
 import java.util.concurrent.Executors
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.seconds

@@ -11,5 +11,7 @@ data class BoundingBox(
     var westLongitude: Double = 0.0,
     var southLatitude: Double = 0.0,
     var eastLongitude: Double = 0.0,
-    var northLatitude: Double = 0.0
-)
+    var northLatitude: Double = 0.0) {
+    constructor(geometry: List<Double>) :
+            this(geometry[0], geometry[1], geometry[2], geometry[3])
+}
