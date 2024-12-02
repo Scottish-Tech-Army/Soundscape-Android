@@ -34,6 +34,8 @@ void PositionedAudio::InitFmodSound() {
     FMOD_RESULT result;
 
     m_pAudioSource->CreateSound(m_pSystem, &m_pSound);
+    if(!m_pSound)
+        return;
 
     result = m_pSound->set3DMinMaxDistance(10.0f * FMOD_DISTANCE_FACTOR,
                                            5000.0f * FMOD_DISTANCE_FACTOR);
