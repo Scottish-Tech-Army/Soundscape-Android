@@ -25,6 +25,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.filters.CalloutHistory
@@ -77,7 +78,7 @@ import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.time.TimeSource
 
-data class PositionedString(val text : String, val location : LngLatAlt? = null)
+data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
 
 class GeoEngine {
 
@@ -481,7 +482,8 @@ class GeoEngine {
                             if (poiCalloutHistory.find(callout)) {
                                 Log.d(TAG, "Discard ${callout.callout}")
                             } else {
-                                results.add(PositionedString(text))
+                                results.add(PositionedString(text, nearestPoint, NativeAudioEngine.EARCON_SENSE_POI))
+                                //Add the entries to the history
                                 poiCalloutHistory.add(callout)
                             }
                         }
@@ -489,8 +491,6 @@ class GeoEngine {
                 }
             }
         }
-
-        //Add the entries to the history
 
         return results
     }
@@ -713,19 +713,19 @@ class GeoEngine {
                             // found that if a thing has a name property that ends in a number
                             // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
                             if (feature.properties?.get("name") != null) {
+                                val userLocation = LngLatAlt(
+                                    locationProvider.getCurrentLongitude() ?: 0.0,
+                                    locationProvider.getCurrentLatitude() ?: 0.0
+                                )
                                 val text = "${feature.properties?.get("name")}.  ${
                                     distanceToPolygon(
-                                            LngLatAlt(
-                                                locationProvider.getCurrentLongitude() ?: 0.0,
-                                                locationProvider.getCurrentLatitude() ?: 0.0
-                                            ),
+                                            userLocation,
                                             feature.geometry as Polygon
                                         ).toInt()
                                     } meters."
-                                // TODO: We want to play the speech out at a location representing
-                                //  the polygon. Because we're calculating the nearest point, it
-                                //  should be the location of that. For now we pass no location.
-                                results.add(PositionedString(text/*, polygonAsPoint*/))
+
+                                val poiLocation =  getFeatureNearestPoint(userLocation, feature)
+                                results.add(PositionedString(text, poiLocation, NativeAudioEngine.EARCON_SENSE_POI))
                             }
                         } else if (feature.geometry is Point) {
                             if (feature.properties?.get("name") != null) {
@@ -735,7 +735,7 @@ class GeoEngine {
                                                   point.coordinates.latitude,
                                                   point.coordinates.longitude).toInt()
                                 val text = "${feature.properties?.get("name")}. $d meters."
-                                results.add(PositionedString(text, point.coordinates))
+                                results.add(PositionedString(text, point.coordinates, NativeAudioEngine.EARCON_SENSE_POI))
                             }
                         }
 

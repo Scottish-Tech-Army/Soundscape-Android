@@ -352,10 +352,17 @@ class SoundscapeService : MediaSessionService() {
         audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER)
         for(result in callouts) {
             if(result.location == null) {
+                if(result.earcon != null) {
+                    audioEngine.createEarcon(result.earcon)
+                }
                 audioEngine.createTextToSpeech(result.text)
             }
             else {
-                audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_POI, result.location.latitude, result.location.longitude)
+                if(result.earcon != null) {
+                    audioEngine.createEarcon(result.earcon,
+                        result.location.latitude,
+                        result.location.longitude)
+                }
                 audioEngine.createTextToSpeech(
                     result.text,
                     result.location.latitude,
