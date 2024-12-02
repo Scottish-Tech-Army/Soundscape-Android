@@ -86,9 +86,9 @@ fun HomeContent(
                     beaconLocation = beaconLocation,
                     mapCenter = LatLng(latitude, longitude),
                     allowScrolling = false,
-                    mapViewRotation = heading,
+                    mapViewRotation = 0.0F,
                     userLocation = LatLng(latitude, longitude),
-                    userSymbolRotation = 0.0F,
+                    userSymbolRotation = heading,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
                     tileGridGeoJson = tileGridGeoJson
