@@ -3,15 +3,19 @@ package org.scottishtecharmy.soundscape
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestPoi
+import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
-import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
+
 
 private fun vectorTileToGeoJsonFromFile(
     tileX: Int,
@@ -200,5 +204,120 @@ class MvtTileTest {
         val outputFile = FileOutputStream("2x2.geojson")
         outputFile.write(adapter.toJson(featureCollection).toByteArray())
         outputFile.close()
+    }
+
+    @Test
+    fun testRtree() {
+
+        val joiner = InterpolatedPointsJoiner()
+
+        // Make a large grid to aid analysis
+        val featureCollection = FeatureCollection()
+        for (x in 15990..15992) {
+            for (y in 10212..10213) {
+                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+                for (feature in geojson) {
+                    val addFeature = joiner.addInterpolatedPoints(feature)
+                    if (addFeature) {
+                        featureCollection.addFeature(feature)
+                    }
+                }
+            }
+        }
+        // Add lines to connect all of the interpolated points
+        joiner.addJoiningLines(featureCollection)
+
+        // Iterate through all of the features and add them to an Rtree
+        var start = System.currentTimeMillis()
+        val tree = FeatureTree(featureCollection)
+        var end = System.currentTimeMillis()
+
+        // Prove that we can edit the feature property in the original collection and it affects
+        // the contents of the rtree. We don't really want this behaviour, but it's what we have.
+        for(feature in featureCollection) {
+            if(feature.properties?.get("name") == "Blane Drive") {
+                feature.properties!!["name"] = "Blah Drive"
+            }
+        }
+
+        // We have all the points in an rtree
+        println("Tree size: ${tree.tree!!.size()}, depth ${tree.tree!!.calculateDepth()} - ${end-start}ms")
+        //tree.tree!!.visualize(4096,4096).save("tree.png");
+
+        start = System.currentTimeMillis()
+        val distanceFc = tree.generateNearbyFeatureCollection(LngLatAlt(-4.3058322, 55.9473305), 20.0)
+        end = System.currentTimeMillis()
+        println("Search (${end-start}ms):")
+        for(feature in distanceFc) {
+            println(feature.properties?.get("name"))
+        }
+
+        start = System.currentTimeMillis()
+        val nearestFc = tree.generateNearestFeatureCollection(LngLatAlt(-4.316914, 55.941861), 50.0)
+        end = System.currentTimeMillis()
+        println("Nearest (${end-start}ms):")
+        for(feature in nearestFc) {
+            println(feature.properties?.get("name"))
+        }
+
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val outputFile = FileOutputStream("rtree.geojson")
+        outputFile.write(adapter.toJson(distanceFc).toByteArray())
+        outputFile.close()
+
+        start = System.currentTimeMillis()
+        val fc = getNearestPoi(LngLatAlt(-4.316914, 55.941861), featureCollection)
+        end = System.currentTimeMillis()
+        println("getNearestPoi result in ${end-start}ms : ${fc.features[0].properties}")
+    }
+
+    @Test
+    fun testObjects() {
+        // This test is to show how Kotlin doesn't copy objects by default. featureCopy isn't a copy
+        // as it might be in C++, but a reference to the same object. There's no copy() defined
+        // for Feature. This means that in all the machinations with FeatureCollections, the Features
+        // underlying them are the same ones. So long as they are not changed then this isn't a
+        // problem, but we do add "distance_to".
+
+        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, "15990x10212.mvt")
+        println(featureCollection.features[0].id)
+        val newFeatureCollection = FeatureCollection()
+        newFeatureCollection.plusAssign(featureCollection)
+        val featureReference = featureCollection.features[0]
+        featureReference.id = "Blah"
+        println(featureCollection.features[0].id)
+        println(newFeatureCollection.features[0].id)
+        println(featureReference.id)
+        assert(featureCollection.features[0].id == newFeatureCollection.features[0].id)
+        assert(featureReference.id == newFeatureCollection.features[0].id)
+
+        // Copy
+        val copyFeatureCollection = FeatureCollection()
+        copyFeatureCollection.features = newFeatureCollection.features.clone() as ArrayList<Feature>
+        println(copyFeatureCollection.features[0].id)
+
+        // newFeatureCollection is new, but the features that it contains are not
+        newFeatureCollection.features.clear()
+        println(newFeatureCollection.features.size)
+
+        // It's actually not possible to easily copy a Feature. What about a simple hashmap?
+        val map = hashMapOf<Int, String>()
+        map[0] = "Zero"
+        map[1] = "One"
+        map[2] = "Two"
+
+        val mapCopy = map.clone() as HashMap<*, *>
+        for (entry in mapCopy) {
+            println(entry.value)
+        }
+        map[0] = "Not zero?"
+        for (entry in mapCopy) {
+            println(entry.value)
+        }
+        for (entry in map) {
+            println(entry.value)
+        }
+
+        // Clone is cloning all of the hashmap entries
     }
 }

@@ -70,6 +70,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.processTileString
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.getOttoBus
@@ -106,7 +107,8 @@ class GeoEngine {
 
     private var centralBoundingBox = BoundingBox()
     private var inVehicle = false
-    private var gridFeatureCollection : Array<FeatureCollection> = emptyArray()
+    private var gridFeatureCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
+    private var featureTrees = Array(Fc.MAX_COLLECTION_ID.id) { FeatureTree(null) }
 
     @Subscribe
     fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
@@ -209,6 +211,11 @@ class GeoEngine {
 
                                 // And store what the grid contains
                                 gridFeatureCollection = featureCollections
+
+                                // Create rtrees for each feature collection
+                                for((index, fc) in featureCollections.withIndex()) {
+                                    featureTrees[index] = FeatureTree(fc)
+                                }
                             }
 
                             val gridFinishTime = timeSource.markNow()
@@ -370,8 +377,8 @@ class GeoEngine {
         // super categories are "information", "object", "place", "landmark", "mobility", "safety"
         val placesAndLandmarks = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
         val mobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
-        val gridFeatureCollections = getGridFeatureCollections()
-        val gridPoiFeatureCollection = removeDuplicateOsmIds(gridFeatureCollections[Fc.POIS.id])
+        val gridPoiCollection = getGridFeatureCollection(Fc.POIS.id, location, 50.0)
+        val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
         val settingsFeatureCollection = FeatureCollection()
         if (gridPoiFeatureCollection.features.isNotEmpty()) {
             if (placesAndLandmarks) {
@@ -536,11 +543,17 @@ class GeoEngine {
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(PositionedString(noLocationString))
         } else {
+            val location = LngLatAlt(
+            locationProvider.getCurrentLongitude() ?: 0.0,
+            locationProvider.getCurrentLatitude() ?: 0.0
+            )
+
             val roadGridFeatureCollection = FeatureCollection()
-            val gridFeatureCollections = getGridFeatureCollections()
-            roadGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.ROADS.id])
+            val roadFeatureCollection = getGridFeatureCollection(Fc.ROADS.id, location, 100.0)
+            val pathFeatureCollection = getGridFeatureCollection(Fc.PATHS.id, location, 100.0)
+            roadGridFeatureCollection.features.addAll(roadFeatureCollection)
             // Add in paths so we can pick up named paths
-            roadGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.PATHS.id])
+            roadGridFeatureCollection.features.addAll(pathFeatureCollection)
 
             if (roadGridFeatureCollection.features.isNotEmpty()) {
                 //Log.d(TAG, "Found roads in tile")
@@ -608,9 +621,13 @@ class GeoEngine {
             results.add(PositionedString(noLocationString))
         } else {
 
+            val location = LngLatAlt(
+                locationProvider.getCurrentLongitude() ?: 0.0,
+                locationProvider.getCurrentLatitude() ?: 0.0
+            )
             val gridPoiFeatureCollection = FeatureCollection()
-            val gridFeatureCollections = getGridFeatureCollections()
-            val removeDuplicatePoisFeatureCollection = removeDuplicateOsmIds(gridFeatureCollections[Fc.POIS.id])
+            val poiFeatureCollections = getGridFeatureCollection(Fc.POIS.id, location, 500.0)
+            val removeDuplicatePoisFeatureCollection = removeDuplicateOsmIds(poiFeatureCollections)
             gridPoiFeatureCollection.features.addAll(removeDuplicatePoisFeatureCollection)
 
             if (gridPoiFeatureCollection.features.isNotEmpty()) {
@@ -763,53 +780,38 @@ class GeoEngine {
             results.add(PositionedString(noLocationString))
         } else {
             // get device direction
+            val location = LngLatAlt(
+                locationProvider.getCurrentLongitude() ?: 0.0,
+                locationProvider.getCurrentLatitude() ?: 0.0
+            )
             val orientation = directionProvider.getCurrentDirection().toDouble()
             val fovDistance = 50.0
-            val roadsGridFeatureCollection = FeatureCollection()
-            val intersectionsGridFeatureCollection = FeatureCollection()
-            val crossingsGridFeatureCollection = FeatureCollection()
-            val busStopsGridFeatureCollection = FeatureCollection()
-
-            val gridFeatureCollections = getGridFeatureCollections()
-
-            roadsGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.ROADS.id])
-            intersectionsGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.INTERSECTIONS.id])
-            crossingsGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.CROSSINGS.id])
-            busStopsGridFeatureCollection.features.addAll(gridFeatureCollections[Fc.BUS_STOPS.id])
+            val roadsGridFeatureCollection = getGridFeatureCollection(Fc.ROADS.id, location, 100.0)
+            val intersectionsGridFeatureCollection = getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 100.0)
+            val crossingsGridFeatureCollection = getGridFeatureCollection(Fc.CROSSINGS.id, location, 100.0)
+            val busStopsGridFeatureCollection = getGridFeatureCollection(Fc.BUS_STOPS.id, location, 100.0)
 
             if (roadsGridFeatureCollection.features.isNotEmpty()) {
                 val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
-                    LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
+                    location,
                     orientation,
                     fovDistance,
                     roadsGridFeatureCollection
                 )
                 val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
-                    LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
+                    location,
                     orientation,
                     fovDistance,
                     intersectionsGridFeatureCollection
                 )
                 val fovCrossingsFeatureCollection = getFovIntersectionFeatureCollection(
-                    LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
+                    location,
                     orientation,
                     fovDistance,
                     crossingsGridFeatureCollection
                 )
                 val fovBusStopsFeatureCollection = getFovIntersectionFeatureCollection(
-                    LngLatAlt(
-                        locationProvider.getCurrentLongitude() ?: 0.0,
-                        locationProvider.getCurrentLatitude() ?: 0.0
-                    ),
+                    location,
                     orientation,
                     fovDistance,
                     busStopsGridFeatureCollection
@@ -817,10 +819,7 @@ class GeoEngine {
 
                 if (fovRoadsFeatureCollection.features.isNotEmpty()) {
                     val nearestRoad = getNearestRoad(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
+                        location,
                         fovRoadsFeatureCollection
                     )
                     // TODO check for Settings, Unnamed roads on/off here
@@ -846,9 +845,7 @@ class GeoEngine {
                         )
 
                         val testNearestRoad = getNearestRoad(
-                            LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0,
-                                locationProvider.getCurrentLatitude() ?: 0.0
-                            ),
+                            location,
                             fovRoadsFeatureCollection
                         )
                         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
@@ -947,10 +944,7 @@ class GeoEngine {
                 if (fovCrossingsFeatureCollection.features.isNotEmpty()) {
 
                     val nearestCrossing = getNearestIntersection(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
+                        location,
                         fovCrossingsFeatureCollection
                     )
                     if (nearestCrossing.features.isNotEmpty()) {
@@ -992,10 +986,7 @@ class GeoEngine {
                 // detect if there is a bus_stop in the FOV
                 if (fovBusStopsFeatureCollection.features.isNotEmpty()) {
                     val nearestBusStop = getNearestIntersection(
-                        LngLatAlt(
-                            locationProvider.getCurrentLongitude() ?: 0.0,
-                            locationProvider.getCurrentLatitude() ?: 0.0
-                        ),
+                        location,
                         fovBusStopsFeatureCollection
                     )
                     if (nearestBusStop.features.isNotEmpty()) {
@@ -1055,8 +1046,12 @@ class GeoEngine {
         MAX_COLLECTION_ID(8)
     }
 
-    private fun getGridFeatureCollections(): Array<FeatureCollection> {
-        return gridFeatureCollection
+    private fun getGridFeatureCollection(id: Int, location: LngLatAlt = LngLatAlt(), distance : Double = Double.POSITIVE_INFINITY): FeatureCollection {
+        return if(distance == Double.POSITIVE_INFINITY) {
+            featureTrees[id].generateFeatureCollection()
+        } else {
+            featureTrees[id].generateNearbyFeatureCollection(location, distance)
+        }
     }
 
     companion object {

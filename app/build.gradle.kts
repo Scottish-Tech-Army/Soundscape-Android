@@ -239,6 +239,9 @@ dependencies {
     implementation(libs.composepreferencelibrary)
     implementation(libs.androidx.preference.ktx)
 
+    // Rtree spatial search library
+    implementation(libs.rtree2)
+
     // Dokka plugin
     dokkaPlugin(libs.html.mermaid.dokka.plugin)
 
