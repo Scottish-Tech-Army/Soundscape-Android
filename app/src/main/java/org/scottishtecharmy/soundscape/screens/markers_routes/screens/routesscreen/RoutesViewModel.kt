@@ -1,18 +1,23 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.screens.markers_routes.getSortOrderPreference
+import org.scottishtecharmy.soundscape.screens.markers_routes.saveSortOrderPreference
 import javax.inject.Inject
 
 @HiltViewModel
 class RoutesViewModel @Inject constructor(
-    private val routesRepository: RoutesRepository
+    private val routesRepository: RoutesRepository,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(RoutesUiState())
@@ -20,10 +25,19 @@ class RoutesViewModel @Inject constructor(
 
     init {
         loadRoutes()
+        // Load the saved sort order when initializing the ViewModel
+        val isAscending = getSortOrderPreference(context)
+        _uiState.value = _uiState.value.copy(isSortByName = isAscending)
+        sortRoutes(isAscending)
     }
 
     fun toggleSortOrder() {
         val isAscending = !_uiState.value.isSortByName
+        sortRoutes(isAscending)
+        saveSortOrderPreference(context, isAscending)
+    }
+
+    private fun sortRoutes(isAscending: Boolean) {
         val sortedRoutes = if (isAscending) {
             _uiState.value.routes.sortedBy { it.name }
         } else {
@@ -34,26 +48,25 @@ class RoutesViewModel @Inject constructor(
 
     private fun loadRoutes() {
         viewModelScope.launch {
-            Log.d("RoutesViewModel", "Loading routes started")
-
             _uiState.value = _uiState.value.copy(isLoading = true)
 
             try {
                 val routes = routesRepository.getRoutes()
-                Log.d("RoutesViewModel", "Routes loaded successfully: ${routes.size} routes found")
-                _uiState.value = _uiState.value.copy(routes = routes, isLoading = false)
+                val isAscending = getSortOrderPreference(context)
+                val sortedRoutes = if (isAscending) {
+                    routes.sortedBy { it.name }
+                } else {
+                    routes
+                }
+                _uiState.value = _uiState.value.copy(routes = sortedRoutes, isLoading = false, isSortByName = isAscending)
             } catch (e: Exception) {
-                Log.e("RoutesViewModel", "Error loading routes: ${e.message}")
                 _uiState.value = _uiState.value.copy(
                     errorMessage = "Failed to load routes: ${e.message}",
                     isLoading = false
                 )
             }
-
-            Log.d("RoutesViewModel", "Loading routes finished")
         }
     }
-
 
     fun clearErrorMessage() {
         _uiState.value = _uiState.value.copy(errorMessage = null)

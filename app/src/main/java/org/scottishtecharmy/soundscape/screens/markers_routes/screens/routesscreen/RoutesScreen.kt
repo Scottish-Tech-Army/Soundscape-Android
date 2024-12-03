@@ -42,14 +42,14 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscre
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
-
 @Composable
-fun RoutesScreen(navController: NavController,
-                 onNavigateToAddRoute: () -> Unit,
-                 viewModel: RoutesViewModel = hiltViewModel()) {
+fun RoutesScreen(
+    navController: NavController,
+    onNavigateToAddRoute: () -> Unit,
+    viewModel: RoutesViewModel = hiltViewModel()
+) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
@@ -116,7 +116,7 @@ fun RoutesScreen(navController: NavController,
                 ) {
                     MarkersAndRoutesListSort(
                         isSortByName = uiState.isSortByName,
-                        onToggleSortOrder = {viewModel.toggleSortOrder()}
+                        onToggleSortOrder = { viewModel.toggleSortOrder() }
                     )
                 }
             }
@@ -130,10 +130,5 @@ fun RoutesScreen(navController: NavController,
 
 
 
-//@Preview(showBackground = true)
-//@Composable
-//fun RoutesScreenPreview() {
-//    SoundscapeTheme {
-//        RoutesScreen()
-//    }
-//}
+
+

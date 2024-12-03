@@ -20,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 
-
 @Composable
 fun MarkersAndRoutesListSort(
     isSortByName: Boolean,
@@ -32,7 +31,7 @@ fun MarkersAndRoutesListSort(
             .padding(8.dp)
             .toggleable(
                 value = isSortByName,
-                role = Role.Button, // Role can be Button or Switch based on the use case
+                role = Role.Button,
                 onValueChange = { onToggleSortOrder() }
             ),
         horizontalArrangement = Arrangement.Start,
@@ -50,7 +49,6 @@ fun MarkersAndRoutesListSort(
             text = if (isSortByName) "Name" else "Distance",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold
-
         )
 
         Spacer(modifier = Modifier.width(8.dp))
@@ -59,7 +57,7 @@ fun MarkersAndRoutesListSort(
             text = if (isSortByName) "Sort by Distance" else "Sort by Name",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.surfaceBright
+            color = MaterialTheme.colorScheme.surface
         )
     }
 }
