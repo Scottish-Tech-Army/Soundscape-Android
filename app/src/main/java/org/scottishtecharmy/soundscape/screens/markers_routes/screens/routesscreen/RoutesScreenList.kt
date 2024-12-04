@@ -20,13 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 
 @Composable
 fun RouteList(
     uiState: RoutesUiState,
-    navController: NavController,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
@@ -56,7 +53,7 @@ fun RouteList(
                 Icon(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
-                        .clickable {navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}")},
+                        .clickable {},
                     imageVector = Icons.Default.ChevronRight,
                     contentDescription = ""
                 )

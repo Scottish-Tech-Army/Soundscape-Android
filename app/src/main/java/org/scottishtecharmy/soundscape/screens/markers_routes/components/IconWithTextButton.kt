@@ -25,7 +25,6 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 fun IconWithTextButton(
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
-    textModifier: Modifier = Modifier,
     onClick: () -> Unit,
     icon: ImageVector = Icons.Default.ChevronLeft,
     contentDescription: String? = null,
@@ -45,14 +44,12 @@ fun IconWithTextButton(
     ) {
         Icon(
             modifier = iconModifier, // Only modifies the set Icon
-
             imageVector = icon,
             contentDescription = contentDescription,
             tint = iconTint,
         )
         if (iconText.isNotEmpty()) {
             Text(
-                modifier = textModifier,
                 text = iconText,
                 color = textColor,
                 style = textStyle.copy(

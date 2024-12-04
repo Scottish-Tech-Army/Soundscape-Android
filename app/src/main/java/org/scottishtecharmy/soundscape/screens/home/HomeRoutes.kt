@@ -25,9 +25,4 @@ sealed class HomeRoutes(
         route = "add_route_screen",
         title = "AddRouteScreen",
     )
-
-    data object RouteDetails : HomeRoutes(
-        route = "route_details_screen",
-        title = "RouteDetailsScreen",
-    )
 }

@@ -9,7 +9,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.screens.markers_routes.getSortOrderPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.saveSortOrderPreference
@@ -67,10 +66,6 @@ class RoutesViewModel @Inject constructor(
                 )
             }
         }
-    }
-
-    fun getRouteByName(routeId: String): RouteData? {
-        return _uiState.value.routes.find { it.name == routeId }
     }
 
     fun clearErrorMessage() {
