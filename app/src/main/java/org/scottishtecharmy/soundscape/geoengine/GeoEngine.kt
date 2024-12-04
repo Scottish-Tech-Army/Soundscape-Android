@@ -360,6 +360,150 @@ class GeoEngine {
         return results
     }
 
+    private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
+    private val intersectionCalloutHistory = CalloutHistory(30000)
+
+    private fun buildCalloutForIntersections(location: LngLatAlt) : List<PositionedString> {
+        val results : MutableList<PositionedString> = mutableListOf()
+
+        // Check that our location/time has changed enough to generate this callout
+        if(!intersectionFilter.shouldUpdate(location))
+            return emptyList()
+
+        // Check that we're not in a vehicle
+        if(inVehicle)
+            return emptyList()
+
+        // Update time/location filter for our new position
+        intersectionFilter.update(location)
+        intersectionCalloutHistory.trim(location)
+
+        val orientation = directionProvider.getCurrentDirection().toDouble()
+        val fovDistance = 50.0
+        val roadsGridFeatureCollection = getGridFeatureCollection(Fc.ROADS.id, location, 20.0)
+        val intersectionsGridFeatureCollection = getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 60.0)
+
+        if (roadsGridFeatureCollection.features.isNotEmpty()) {
+            val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+                location,
+                orientation,
+                fovDistance,
+                roadsGridFeatureCollection
+            )
+            val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+                location,
+                orientation,
+                fovDistance,
+                intersectionsGridFeatureCollection
+            )
+
+            if (fovIntersectionsFeatureCollection.features.isNotEmpty()) {
+
+                val intersectionsSortedByDistance = sortedByDistanceTo(
+                    locationProvider.getCurrentLatitude() ?: 0.0,
+                    locationProvider.getCurrentLongitude() ?: 0.0,
+                    fovIntersectionsFeatureCollection
+                )
+
+                val testNearestRoad = getNearestRoad(
+                    location,
+                    fovRoadsFeatureCollection
+                )
+                val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
+
+                for (i in 0 until intersectionsSortedByDistance.features.size) {
+                    val testNearestIntersection = FeatureCollection()
+                    testNearestIntersection.addFeature(intersectionsSortedByDistance.features[i])
+                    val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
+                    val intersectionsNeedsFurtherChecking = checkIntersection(i, intersectionRoadNames, testNearestRoad)
+                    if(intersectionsNeedsFurtherChecking) {
+                        intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[i])
+                    }
+                }
+                if (intersectionsNeedsFurtherCheckingFC.features.isNotEmpty()) {
+                    // Approach 1: find the intersection feature with the most osm_ids and use that?
+                    val featureWithMostOsmIds: Feature? = intersectionsNeedsFurtherCheckingFC.features.maxByOrNull {
+                            feature ->
+                        (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
+                    }
+                    val newIntersectionFeatureCollection = FeatureCollection()
+                    if (featureWithMostOsmIds != null) {
+                        newIntersectionFeatureCollection.addFeature(featureWithMostOsmIds)
+                    }
+
+                    val nearestIntersection = getNearestIntersection(
+                        LngLatAlt(locationProvider.getCurrentLongitude() ?: 0.0,
+                            locationProvider.getCurrentLatitude() ?: 0.0),
+                        fovIntersectionsFeatureCollection
+                    )
+                    val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, orientation)
+                    if(newIntersectionFeatureCollection.features.isNotEmpty()) {
+                        val intersectionLocation =
+                            newIntersectionFeatureCollection.features[0].geometry as Point
+                        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+                            LngLatAlt(
+                                intersectionLocation.coordinates.longitude,
+                                intersectionLocation.coordinates.latitude
+                            ),
+                            nearestRoadBearing,
+                            //fovDistance,
+                            5.0,
+                            RelativeDirections.COMBINED
+                        )
+                        val distanceToNearestIntersection = distance(
+                            locationProvider.getCurrentLatitude() ?: 0.0,
+                            locationProvider.getCurrentLongitude() ?: 0.0,
+                            intersectionLocation.coordinates.latitude,
+                            intersectionLocation.coordinates.longitude
+                        )
+                        val intersectionRoadNames = getIntersectionRoadNames(
+                            newIntersectionFeatureCollection,
+                            fovRoadsFeatureCollection
+                        )
+                        results.add(PositionedString(
+                            "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
+                                localizedContext.getString(
+                                    R.string.distance_format_meters,
+                                    distanceToNearestIntersection.toInt().toString()
+                                )
+                            }"
+                        ))
+
+                        val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
+                            intersectionRoadNames,
+                            newIntersectionFeatureCollection,
+                            intersectionRelativeDirections
+                        )
+                        for (feature in roadRelativeDirections.features) {
+                            val direction =
+                                feature.properties?.get("Direction").toString().toIntOrNull()
+                            // Don't call out the road we are on (0) as part of the intersection
+                            if (direction != null && direction != 0) {
+                                val relativeDirectionString =
+                                    getRelativeDirectionLabel(
+                                        localizedContext,
+                                        direction,
+                                        configLocale
+                                    )
+                                if (feature.properties?.get("name") != null) {
+                                    val intersectionCallout = localizedContext.getString(
+                                        R.string.directions_intersection_with_name_direction,
+                                        feature.properties?.get("name"),
+                                        relativeDirectionString
+                                    )
+                                    results.add(PositionedString(
+                                        intersectionCallout
+                                    ))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return results
+    }
+
     private val poiCalloutHistory = CalloutHistory()
     private fun buildCalloutForNearbyPOI(location: LngLatAlt, speed: Float) : List<PositionedString> {
         if (!poiFilter.shouldUpdateActivity(location, speed, inVehicle)) {
@@ -480,16 +624,21 @@ class GeoEngine {
                 val distance = feature.foreign?.get("distance_to") as Double?
                 if (distance != null) {
                     if (distance < 10.0) {
-                        val text = "${feature.properties?.get("name")}"
+                        var name = feature.properties?.get("name") as String?
+                        var generic = false
+                        if(name == null) {
+                            name = feature.properties?.get("class") as String?
+                            generic = true
+                        }
 
                         // Check the history and if the POI has been called out recently, skip it (iOS uses 60 seconds)
                         val nearestPoint = getFeatureNearestPoint(location, feature)
-                        if(nearestPoint != null) {
-                            val callout = TrackedCallout(text, nearestPoint)
+                        if((name != null) && ( nearestPoint != null)) {
+                            val callout = TrackedCallout(name, nearestPoint, feature.geometry.type == "Point", generic)
                             if (poiCalloutHistory.find(callout)) {
                                 Log.d(TAG, "Discard ${callout.callout}")
                             } else {
-                                results.add(PositionedString(text, nearestPoint, NativeAudioEngine.EARCON_SENSE_POI))
+                                results.add(PositionedString(name, nearestPoint, NativeAudioEngine.EARCON_SENSE_POI))
                                 //Add the entries to the history
                                 poiCalloutHistory.add(callout)
                             }
@@ -521,15 +670,22 @@ class GeoEngine {
             return roadSenseCallout
         }
 
+        val intersectionCallout = buildCalloutForIntersections(location)
+        if(intersectionCallout.isNotEmpty()) {
+            intersectionFilter.update(location)
+            return intersectionCallout
+        }
+
         // Get normal callouts for nearby POIs, for the destination, and for beacons
         val poiCallout = buildCalloutForNearbyPOI(location, speed)
 
         // Update time/location filter for our new position
         if(poiCallout.isNotEmpty()) {
             poiFilter.update(location)
+            return poiCallout
         }
 
-        return poiCallout
+        return emptyList()
     }
 
     fun myLocation() : List<PositionedString> {
