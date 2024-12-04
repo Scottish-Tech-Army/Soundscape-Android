@@ -5,41 +5,26 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class TrackedCallout(
     val callout: String,
-    val location: LngLatAlt
-//    val category: String,
-//    val isGenericOSMPOI: Boolean,
-//    val trackingKey: String
+    val location: LngLatAlt,
+    private val isPoint: Boolean,
+    private val isGeneric: Boolean
     )
 {
     val time = System.currentTimeMillis()
 
-     init {
-
-//        if let poi = callout.poi {
-//            isGenericOSMPOI = poi.isGenericOSMPOI
-//            trackingKey = poi.keyForTracking
-//            category = SuperCategory(rawValue: poi.superCategory) ?? SuperCategory.undefined
-//        } else {
-//            isGenericOSMPOI = false
-//            trackingKey = callout.key
-//            category = SuperCategory.undefined
-//        }
-    }
-
     override fun equals(other: Any?) : Boolean {
         if(other is TrackedCallout) {
-            return (other.callout == callout) &&
-                    (location.distance(other.location) < 10.0)
+            if(isGeneric && other.isGeneric) {
+                // If the POIs are both generic OSM POIs and are within the appropriate proximity
+                // range+ of each other, treat them as a match
+                // TODO: Don't hard code the distance here
+                return location.distance(other.location) < 20.0
+            }
+            // If the TrackedCallout isn't for a point i.e. it's a Polygon, then we can't compare
+            // it's location, as the nearest point on a Polygon changes as we move.
+            return (other.callout == callout)
+                    && (!isPoint || location.distance(other.location) < 10.0)
         }
-//        if poi.isGenericOSMPOI {
-//            if trackingKey == poi.keyForTracking, let trackedPOI = callout.poi {
-//                // If the POIs are both generic OSM POIs and are within the appropriate proximity range+ of each other, treat them as a match
-//                return trackedPOI.centroidLocation.distance(from: poi.centroidLocation) < category.proximityRange(context: context)
-//            }
-//            return false
-//        } else {
-//            return trackingKey == poi.keyForTracking
-//        }
         return false
     }
 
@@ -50,7 +35,7 @@ class TrackedCallout(
     }
 }
 
-class CalloutHistory(val expiryPeriod : Long = 60000) {
+class CalloutHistory(private val expiryPeriod : Long = 60000) {
 
     // List of recent history
     private val history = mutableListOf<TrackedCallout>()

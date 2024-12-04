@@ -142,7 +142,7 @@
     <string name="directions_along_heading_nw">Heading northwest along %1$s</string>
 
     <string name="intersection_approaching_intersection">Approaching intersection</string>
-    <string name="directions_intersection_with_name_direction">Intersection with %1$s %2$s</string>
+    <string name="directions_intersection_with_name_direction">%1$s %2$s</string>
 
     <string name="general_error_location_services_find_location_error">We are having trouble finding your current location.</string>
 
