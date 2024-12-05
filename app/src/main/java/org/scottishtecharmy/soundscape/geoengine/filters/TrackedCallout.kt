@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.filters
+package org.scottishtecharmy.soundscape.geoengine.filters
 
 import android.util.Log
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt

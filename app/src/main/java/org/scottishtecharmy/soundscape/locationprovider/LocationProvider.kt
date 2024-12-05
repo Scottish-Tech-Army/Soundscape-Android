@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.filters.KalmanFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.KalmanFilter
 import java.util.concurrent.Executors
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.seconds

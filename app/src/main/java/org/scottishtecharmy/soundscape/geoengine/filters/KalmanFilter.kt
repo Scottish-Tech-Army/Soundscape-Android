@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.filters
+package org.scottishtecharmy.soundscape.geoengine.filters
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 

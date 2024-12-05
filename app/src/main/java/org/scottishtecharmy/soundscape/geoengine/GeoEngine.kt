@@ -28,9 +28,9 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.dto.BoundingBox
-import org.scottishtecharmy.soundscape.filters.CalloutHistory
-import org.scottishtecharmy.soundscape.filters.LocationUpdateFilter
-import org.scottishtecharmy.soundscape.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
+import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
