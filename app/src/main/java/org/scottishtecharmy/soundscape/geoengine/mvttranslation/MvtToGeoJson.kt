@@ -496,6 +496,10 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
 
                     else -> {
                         foreign["feature_type"] = property.value
+                        val subclass = properties["subclass"]
+                        if(subclass != null) {
+                            foreign["feature_value"] = subclass
+                        }
                     }
                 }
             } else if (property.key == "building") {
