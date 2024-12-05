@@ -450,11 +450,12 @@ class GeoEngine {
                     if(newIntersectionFeatureCollection.features.isNotEmpty()) {
                         val intersectionLocation =
                             newIntersectionFeatureCollection.features[0].geometry as Point
+                        val intersectionLngLat = LngLatAlt(
+                            intersectionLocation.coordinates.longitude,
+                            intersectionLocation.coordinates.latitude
+                        )
                         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-                            LngLatAlt(
-                                intersectionLocation.coordinates.longitude,
-                                intersectionLocation.coordinates.latitude
-                            ),
+                            intersectionLngLat,
                             nearestRoadBearing,
                             //fovDistance,
                             5.0,
@@ -470,14 +471,26 @@ class GeoEngine {
                             newIntersectionFeatureCollection,
                             fovRoadsFeatureCollection
                         )
-                        results.add(PositionedString(
-                            "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
-                                localizedContext.getString(
-                                    R.string.distance_format_meters,
-                                    distanceToNearestIntersection.toInt().toString()
+
+                        val intersectionName = newIntersectionFeatureCollection.features[0].properties?.get("name") as String
+                        val callout = TrackedCallout(intersectionName,
+                                                     intersectionLngLat, true, false)
+                        if (intersectionCalloutHistory.find(callout)) {
+                            Log.d(TAG, "Discard ${callout.callout}")
+                            return emptyList()
+                        } else {
+                            results.add(
+                                PositionedString(
+                                    "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
+                                        localizedContext.getString(
+                                            R.string.distance_format_meters,
+                                            distanceToNearestIntersection.toInt().toString()
+                                        )
+                                    }"
                                 )
-                            }"
-                        ))
+                            )
+                            intersectionCalloutHistory.add(callout)
+                        }
 
                         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
                             intersectionRoadNames,
