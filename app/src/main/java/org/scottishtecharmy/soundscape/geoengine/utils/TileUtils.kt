@@ -1022,7 +1022,7 @@ fun getNearestRoad(
     // In which case this will fail. Need to have a look at some tiles with motorways/dual carriageways
 
     var maxDistanceToRoad = Int.MAX_VALUE.toDouble()
-    var nearestRoad = Feature()
+    var nearestRoad : Feature? = null
 
     for (feature in roadFeatureCollection) {
         if (feature.geometry.type == "LineString") {
@@ -1057,9 +1057,12 @@ fun getNearestRoad(
         }
     }
     val nearestRoadFeatureCollection = FeatureCollection()
+    if(nearestRoad != null) {
+        nearestRoadFeatureCollection.addFeature(nearestRoad)
+    }
     // TODO As the distance to the road has already been calculated
     //  perhaps we could insert the distance to the road as a property/foreign member of the Feature?
-    return nearestRoadFeatureCollection.addFeature(nearestRoad)
+    return nearestRoadFeatureCollection
 }
 
 /**

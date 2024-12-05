@@ -389,7 +389,7 @@ class GeoEngine {
 
         val orientation = directionProvider.getCurrentDirection().toDouble()
         val fovDistance = 50.0
-        val roadsGridFeatureCollection = getGridFeatureCollection(Fc.ROADS.id, location, 20.0)
+        val roadsGridFeatureCollection = getGridFeatureCollection(Fc.ROADS.id, location, 60.0)
         val intersectionsGridFeatureCollection = getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 60.0)
 
         if (roadsGridFeatureCollection.features.isNotEmpty()) {
@@ -406,7 +406,8 @@ class GeoEngine {
                 intersectionsGridFeatureCollection
             )
 
-            if (fovIntersectionsFeatureCollection.features.isNotEmpty()) {
+            if (fovIntersectionsFeatureCollection.features.isNotEmpty() &&
+                fovRoadsFeatureCollection.features.isNotEmpty()) {
 
                 val intersectionsSortedByDistance = sortedByDistanceTo(
                     locationProvider.getCurrentLatitude() ?: 0.0,
@@ -1005,7 +1006,8 @@ class GeoEngine {
                         }
                     }
 
-                    if (fovIntersectionsFeatureCollection.features.isNotEmpty()) {
+                    if (fovIntersectionsFeatureCollection.features.isNotEmpty() &&
+                        fovRoadsFeatureCollection.features.isNotEmpty()) {
 
                         val intersectionsSortedByDistance = sortedByDistanceTo(
                             locationProvider.getCurrentLatitude() ?: 0.0,
