@@ -253,7 +253,7 @@ class MvtTileTest {
         }
 
         start = System.currentTimeMillis()
-        val nearestFc = tree.generateNearestFeatureCollection(LngLatAlt(-4.316914, 55.941861), 50.0)
+        val nearestFc = tree.generateNearestFeatureCollection(LngLatAlt(-4.316914, 55.941861), 50.0, 1)
         end = System.currentTimeMillis()
         println("Nearest (${end-start}ms):")
         for(feature in nearestFc) {
