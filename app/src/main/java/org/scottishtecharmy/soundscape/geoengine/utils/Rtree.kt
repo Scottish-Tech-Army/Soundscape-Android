@@ -198,13 +198,13 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * of the rtree that is also within distance.
      */
 
-    fun generateNearestFeatureCollection(location: LngLatAlt, distance: Double): FeatureCollection {
+    fun generateNearestFeatureCollection(location: LngLatAlt, distance: Double, maxCount: Int): FeatureCollection {
         val featureCollection = FeatureCollection()
         if(tree != null) {
             val distanceResults = Iterables.toList(nearest(
                 Geometries.pointGeographic(location.longitude, location.latitude),
                 distance,
-                1))
+                maxCount))
 
             for (feature in distanceResults) {
                 featureCollection.addFeature(feature.value())

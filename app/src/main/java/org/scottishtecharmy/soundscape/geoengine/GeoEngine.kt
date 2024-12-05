@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
@@ -107,8 +108,8 @@ class GeoEngine {
 
     private var centralBoundingBox = BoundingBox()
     private var inVehicle = false
-    private var gridFeatureCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
     private var featureTrees = Array(Fc.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+    private var treeMutex = Mutex()
 
     @Subscribe
     fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
@@ -190,16 +191,21 @@ class GeoEngine {
                             // We have got a new grid, so create our new central region
                             centralBoundingBox = tileGrid.centralBoundingBox
 
+                            val localTrees = Array(Fc.MAX_COLLECTION_ID.id) { FeatureTree(null) }
                             if(SOUNDSCAPE_TILE_BACKEND) {
-                                // De-duplicate into our new tile grid data set, starting from fresh
-                                gridFeatureCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                                // De-duplicate
+                                val deDuplicatedCollection = Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
                                 for((index, fc) in featureCollections.withIndex()) {
                                     val existingSet: MutableSet<Any> = mutableSetOf()
                                     deduplicateFeatureCollection(
-                                        gridFeatureCollection[index],
+                                        deDuplicatedCollection[index],
                                         fc,
                                         existingSet
                                     )
+                                }
+                                // Create rtrees for each feature collection
+                                for((index, fc) in deDuplicatedCollection.withIndex()) {
+                                    localTrees[index] = FeatureTree(fc)
                                 }
                             } else {
                                 // Join up roads/paths at the tile boundary
@@ -209,14 +215,17 @@ class GeoEngine {
                                 }
                                 joiner.addJoiningLines(featureCollections[Fc.ROADS.id])
 
-                                // And store what the grid contains
-                                gridFeatureCollection = featureCollections
-
                                 // Create rtrees for each feature collection
                                 for((index, fc) in featureCollections.withIndex()) {
-                                    featureTrees[index] = FeatureTree(fc)
+                                    localTrees[index] = FeatureTree(fc)
                                 }
                             }
+                            // Assign rtrees to our shared trees with mutex taken
+                            treeMutex.lock()
+                            for(fc in featureCollections.withIndex()) {
+                                featureTrees[fc.index] = localTrees[fc.index]
+                            }
+                            treeMutex.unlock()
 
                             val gridFinishTime = timeSource.markNow()
                             Log.e(TAG, "Time to populate grid: ${gridFinishTime - gridStartTime}")
@@ -363,7 +372,7 @@ class GeoEngine {
     private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionCalloutHistory = CalloutHistory(30000)
 
-    private fun buildCalloutForIntersections(location: LngLatAlt) : List<PositionedString> {
+    private suspend fun buildCalloutForIntersections(location: LngLatAlt) : List<PositionedString> {
         val results : MutableList<PositionedString> = mutableListOf()
 
         // Check that our location/time has changed enough to generate this callout
@@ -505,7 +514,7 @@ class GeoEngine {
     }
 
     private val poiCalloutHistory = CalloutHistory()
-    private fun buildCalloutForNearbyPOI(location: LngLatAlt, speed: Float) : List<PositionedString> {
+    private suspend fun buildCalloutForNearbyPOI(location: LngLatAlt, speed: Float) : List<PositionedString> {
         if (!poiFilter.shouldUpdateActivity(location, speed, inVehicle)) {
             return emptyList()
         }
@@ -652,7 +661,7 @@ class GeoEngine {
     }
 
 
-    private fun autoCallout(androidLocation: Location) : List<PositionedString> {
+    private suspend fun autoCallout(androidLocation: Location) : List<PositionedString> {
 
         // The autoCallout logic comes straight from the iOS app.
 
@@ -688,7 +697,7 @@ class GeoEngine {
         return emptyList()
     }
 
-    fun myLocation() : List<PositionedString> {
+    suspend fun myLocation() : List<PositionedString> {
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
         val results : MutableList<PositionedString> = mutableListOf()
@@ -757,7 +766,7 @@ class GeoEngine {
         return results
     }
 
-    fun whatsAroundMe() : List<PositionedString> {
+    suspend fun whatsAroundMe() : List<PositionedString> {
         // TODO This is just a rough POC at the moment. Lots more to do...
         //  setup settings in the menu so we can pass in the filters, etc.
         //  Original Soundscape just splats out a list in no particular order which is odd.
@@ -781,6 +790,10 @@ class GeoEngine {
                 locationProvider.getCurrentLongitude() ?: 0.0,
                 locationProvider.getCurrentLatitude() ?: 0.0
             )
+            // TODO: We could build separate rtrees for each of the super categories i.e.  landmarks,
+            //  places etc. and that would make this code simpler. We could ask for a maximum number
+            //  of results when calling getGridFeatureCollection. For now, we just limit arbitrarily
+            //  to 500m.
             val gridPoiFeatureCollection = FeatureCollection()
             val poiFeatureCollections = getGridFeatureCollection(Fc.POIS.id, location, 500.0)
             val removeDuplicatePoisFeatureCollection = removeDuplicateOsmIds(poiFeatureCollections)
@@ -924,7 +937,7 @@ class GeoEngine {
         return results
     }
 
-    fun aheadOfMe() : List<PositionedString> {
+    suspend fun aheadOfMe() : List<PositionedString> {
         // TODO This is just a rough POC at the moment. Lots more to do...
         val results : MutableList<PositionedString> = mutableListOf()
 
@@ -1202,12 +1215,22 @@ class GeoEngine {
         MAX_COLLECTION_ID(8)
     }
 
-    private fun getGridFeatureCollection(id: Int, location: LngLatAlt = LngLatAlt(), distance : Double = Double.POSITIVE_INFINITY): FeatureCollection {
-        return if(distance == Double.POSITIVE_INFINITY) {
+    private suspend fun getGridFeatureCollection(id: Int,
+                                                 location: LngLatAlt = LngLatAlt(),
+                                                 distance : Double = Double.POSITIVE_INFINITY,
+                                                 maxCount : Int = 0): FeatureCollection {
+        treeMutex.lock()
+        val result = if(distance == Double.POSITIVE_INFINITY) {
             featureTrees[id].generateFeatureCollection()
         } else {
-            featureTrees[id].generateNearbyFeatureCollection(location, distance)
+            if(maxCount == 0) {
+                featureTrees[id].generateNearbyFeatureCollection(location, distance)
+            } else {
+                featureTrees[id].generateNearestFeatureCollection(location, distance, maxCount)
+            }
         }
+        treeMutex.unlock()
+        return result
     }
 
     companion object {
