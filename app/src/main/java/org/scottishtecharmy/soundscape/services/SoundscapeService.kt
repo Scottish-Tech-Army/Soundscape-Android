@@ -325,21 +325,27 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun myLocation() {
-        audioEngine.clearTextToSpeechQueue()
-        val results = geoEngine.myLocation()
-        speakCallout(results)
+        coroutineScope.launch {
+            audioEngine.clearTextToSpeechQueue()
+            val results = geoEngine.myLocation()
+            speakCallout(results)
+        }
     }
 
     fun whatsAroundMe() {
-        audioEngine.clearTextToSpeechQueue()
-        val results = geoEngine.whatsAroundMe()
-        speakCallout(results)
+        coroutineScope.launch {
+            audioEngine.clearTextToSpeechQueue()
+            val results = geoEngine.whatsAroundMe()
+            speakCallout(results)
+        }
     }
 
     fun aheadOfMe() {
-        audioEngine.clearTextToSpeechQueue()
-        val results = geoEngine.aheadOfMe()
-        speakCallout(results)
+        coroutineScope.launch {
+            audioEngine.clearTextToSpeechQueue()
+            val results = geoEngine.aheadOfMe()
+            speakCallout(results)
+        }
     }
 
     private lateinit var routePlayer : RoutePlayer
