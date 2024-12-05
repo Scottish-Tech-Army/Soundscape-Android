@@ -18,6 +18,12 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import kotlin.math.PI
 import kotlin.math.cos
 
+/**
+ * FeatureTree is a class which stores FeatureCollections within an rtree which gives us faster
+ * spatial searching. The APIs are purely FeatureCollections - pass one in to create the tree
+ * and then call one of generateFeatureCollection, generateNearbyFeatureCollection or
+ * generateNearestFeatureCollection to return a FeatureCollection trimmed down by location.
+ */
 class FeatureTree(featureCollection: FeatureCollection?) {
 
     var tree: RTree<Feature, Geometry?>? = null
