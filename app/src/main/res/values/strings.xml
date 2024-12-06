@@ -193,6 +193,11 @@
     <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string>
     <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string>
     <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
-
+    <string name="general_alert_done">Done</string>
+    <string name="route_edit_no_waypoints_hint_1">Edit your route name, description or both. Then click done to update your route. You can also delete your route or add waypoints as you go or pick them from your list of markers.</string>
+    <string name="route_detail_action_edit">Edit Route</string>
+    <string name="delete_route">Delete Route</string>
+    <string name="route_edited_successfully">Route edited successfully</string>
+    <string name="route_deleted_successfully">Route deleted successfully</string>
 
 </resources>
