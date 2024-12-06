@@ -75,24 +75,6 @@ fun CustomAppBar(title : String,
                 )
             }
 
-
-            AnimatedVisibility(
-                visible = showAddIcon,
-                enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkHorizontally(),
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                IconButton(
-                    onClick = {
-                        onAddClicked?.invoke()
-                    }
-                ){
-                    Icon(
-                        Icons.Default.Add,
-                        contentDescription = stringResource(R.string.general_alert_add),
-                    )
-                }
-            }
             if (showDoneButton) {
                 TextButton(
                     onClick = {

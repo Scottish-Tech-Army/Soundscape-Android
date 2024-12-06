@@ -39,19 +39,18 @@ fun MarkersAndRoutesScreen(
         topBar = {
             Column {
                 MarkersAndRoutesAppBar(
-                    showAddIcon = showAddIcon,
                     onNavigateUp = { mainNavController.navigateUp()},
                     onNavigateToDestination = {
                         mainNavController.navigate(HomeRoutes.AddRoute.route)
                     },
                 )
-            }
-        },
-        bottomBar = {
-            MarkersAndRoutesTabs(
-                selectedTabIndex = selectedTabIndex.intValue,
+                MarkersAndRoutesTabs(
+                        selectedTabIndex = selectedTabIndex.intValue,
                 onTabSelected = { index -> selectedTabIndex.intValue = index }
-            )}
+                )
+            }
+
+        }
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             when (selectedTabIndex.intValue) {
