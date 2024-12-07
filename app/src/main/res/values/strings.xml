@@ -51,6 +51,10 @@
     <string name="search_use_current_location">Current Location</string>
     <string name="search_nearby_screen_title">Places Nearby</string>
     <string name="search_view_markers">Markers &amp; Routes</string>
+    <string name="search_hint_input" translatable="false">Search for an address</string>
+    <string name="cancel_search_contentDescription" translatable="false">Cancel search</string>
+    <string name="create_an_audio_beacon"  translatable="false">Create an audio beacon</string>
+    <string name="enter_street_preview"  translatable="false">Enter Street Preview</string>
 
     <string name="callouts_panel_title">Hear My Surroundings</string>
     <string name="ui_action_button_my_location">My Location</string>
