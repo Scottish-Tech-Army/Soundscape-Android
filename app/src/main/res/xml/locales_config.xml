@@ -3,15 +3,16 @@
     <locale android:name="da"/> <!-- Danish -->
     <locale android:name="de"/> <!-- German -->
     <locale android:name="el"/> <!-- Greek -->
-    <locale android:name="en"/> <!-- English  -->
+    <locale android:name="en-GB"/> <!-- English (UK) -->
     <locale android:name="es"/> <!-- Spanish (Spain) -->
     <locale android:name="fi"/> <!-- Finnish -->
     <locale android:name="fr"/> <!-- French (France) -->
+    <locale android:name="fr-CA"/> <!-- French (Canada) -->
     <locale android:name="it"/> <!-- Italian -->
     <locale android:name="ja"/> <!-- Japanese -->
     <locale android:name="nb"/> <!-- Norwegian -->
     <locale android:name="nl"/> <!-- Dutch -->
-    <locale android:name="pt"/> <!-- Portuguese -->
+    <locale android:name="pt"/> <!-- Portuguese (Portugal) -->
+    <locale android:name="pt-BR"/> <!-- Portuguese (Brazil) -->
     <locale android:name="sv"/> <!-- Swedish -->
-
 </locale-config>
