@@ -72,13 +72,13 @@ class LanguageScreenTest {
         MockLanguagePreviewData.languages.forEachIndexed { index, language ->
             if( index == selectedIndex ) {
                 composeTestRule.onNodeWithTag(
-                    testTag = "${TestTags.LANGUAGE_DROPDOWN_ITEM}${MockLanguagePreviewData.languages[index].code}",
+                    testTag = "${TestTags.LANGUAGE_DROPDOWN_ITEM}${language.code}-${language.region}",
                     useUnmergedTree = true
                 ).assertIsSelected()
             } else {
                 composeTestRule.onNodeWithTag(
-                    testTag = "${TestTags.LANGUAGE_DROPDOWN_ITEM}${MockLanguagePreviewData.languages[index].code}",
-                    useUnmergedTree = true
+                    testTag = "${TestTags.LANGUAGE_DROPDOWN_ITEM}${language.code}-${language.region}",
+                    useUnmergedTree = true,
                 ).assertIsNotSelected()
             }
 

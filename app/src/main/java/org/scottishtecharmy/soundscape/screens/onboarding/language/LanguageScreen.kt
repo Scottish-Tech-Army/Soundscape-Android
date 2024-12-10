@@ -128,19 +128,22 @@ fun LanguageComposable(
 // Data used by preview
 data object MockLanguagePreviewData {
     val languages = listOf(
-        Language("Dansk", "da"),
-        Language("Deutsch", "de"),
-        Language("Ελληνικά", "el"),
-        Language("English", "en"),
-        Language("Español", "es"),
-        Language("Suomi", "fi"),
-        Language("Français", "fr"),
-        Language("Italiano", "it"),
-        Language("日本語", "ja"),
-        Language("Norsk", "nb"),
-        Language("Nederlands", "nl"),
-        Language("Português (Brasil)", "pt"),
-        Language("Svenska", "sv")
+        Language("Dansk", "da", "DK"),
+        Language("Deutsch", "de", "DE"),
+        Language("Ελληνικά", "el", "GR"),
+        Language("English", "en", "US"),
+        Language("English (UK)", "en", "GB"),
+        Language("Español", "es", "ES"),
+        Language("Suomi", "fi", "FI"),
+        Language("Français", "fr", "FR"),
+        Language("Français (Canada)", "fr", "CA"),
+        Language("Italiano", "it", "IT"),
+        Language("日本語", "ja", "JP"),
+        Language("Norsk", "nb", "NO"),
+        Language("Nederlands", "nl", "NL"),
+        Language("Português (Brasil)", "pt", "BR"),
+        Language("Português (Portugal)", "pt", "PT"),
+        Language("Svenska", "sv", "SE")
     )
 }
 

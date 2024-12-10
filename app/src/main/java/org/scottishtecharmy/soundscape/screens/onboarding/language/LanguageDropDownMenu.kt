@@ -110,7 +110,7 @@ fun LanguageDropDownMenu(
                                 onLanguageSelected(language)
                             }
                         )
-                        .testTag("${TestTags.LANGUAGE_DROPDOWN_ITEM}${language.code}")
+                        .testTag("${TestTags.LANGUAGE_DROPDOWN_ITEM}${language.code}-${language.region}")
                     ,
                     onClick = {
                         expanded = false
