@@ -36,29 +36,38 @@ class InterpolatedPointsJoiner {
             if (entries.value.size > 1) {
                 // We want to find points that we can join together. Go through the list of points
                 // for the OSM id comparing against the other members in the list to see if any are
-                // almost at the same point.
-                for ((index1, point1) in entries.value.withIndex()) {
-                    for ((index2, point2) in entries.value.withIndex()) {
-                        if (index1 != index2) {
-                            if (distance(
-                                    point1.latitude,
-                                    point1.longitude,
-                                    point2.latitude,
-                                    point2.longitude
-                                ) < 0.1
-                            ) {
-                                // If the points are within 10cm of each other, then join their
-                                // LineStrings together.
-                                val joining = Feature()
-                                val foreign: HashMap<String, Any?> = hashMapOf()
-                                val osmIds = arrayListOf<Double>()
-                                osmIds.add(entries.key)
-                                foreign["osm_ids"] = entries.key
-                                joining.foreign = foreign
-                                joining.geometry = LineString(point1, point2)
-                                joining.properties = foreign
+                // almost at the same point. We only want a single line to join the points together
+                // not a line from A -> B and from B -> A so we de-duplicate as we go.
+                val deduplicateSet = mutableSetOf<LngLatAlt>()
+                for (point1 in entries.value) {
+                    if(!deduplicateSet.contains(point1)) {
+                        for (point2 in entries.value) {
+                            if(point1 == point2)
+                                continue
+                            if (!deduplicateSet.contains(point2)) {
+                                // We haven't already added this line
+                                if (distance(
+                                        point1.latitude,
+                                        point1.longitude,
+                                        point2.latitude,
+                                        point2.longitude
+                                    ) < 0.1
+                                ) {
+                                    // If the points are within 10cm of each other, then join their
+                                    // LineStrings together.
+                                    val joining = Feature()
+                                    val foreign: HashMap<String, Any?> = hashMapOf()
+                                    val osmIds = arrayListOf<Double>()
+                                    osmIds.add(entries.key)
+                                    foreign["osm_ids"] = entries.key
+                                    joining.foreign = foreign
+                                    joining.geometry = LineString(point1, point2)
+                                    joining.properties = foreign
 
-                                featureCollection.addFeature(joining)
+                                    featureCollection.addFeature(joining)
+                                    deduplicateSet.add(point1)
+                                    deduplicateSet.add(point2)
+                                }
                             }
                         }
                     }
