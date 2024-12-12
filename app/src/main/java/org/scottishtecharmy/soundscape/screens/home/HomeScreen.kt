@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute.AddRouteScreen
@@ -52,7 +53,13 @@ fun HomeScreen(
                 heading = state.value.heading,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->
-                    viewModel.createBeacon(latLong)
+                    val ld =
+                        LocationDescription(
+                            adressName = "Current location",
+                            latitude =latLong.latitude,
+                            longitude = latLong.longitude,
+                        )
+                    navController.navigate(generateLocationDetailsRoute(ld))
                     true
                 },
                 onMarkerClick = { marker ->
@@ -104,6 +111,7 @@ fun HomeScreen(
                 },
                 latitude = state.value.location?.latitude,
                 longitude = state.value.location?.longitude,
+                navController = navController,
                 heading = state.value.heading,
             )
         }
