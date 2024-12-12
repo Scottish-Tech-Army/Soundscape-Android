@@ -81,6 +81,10 @@ class SoundscapeServiceConnection @Inject constructor() {
         soundscapeService?.stopForegroundService()
     }
 
+    fun streetPreviewGo() {
+        soundscapeService?.streetPreviewGo()
+    }
+
     companion object {
         private const val TAG = "SoundscapeServiceConnection"
     }

@@ -1931,6 +1931,41 @@ fun getRoadBearingToIntersection(
  * Feature collection that consists of relative direction polygons that we are using to determine relative direction
  * @return A feature collection sorted by "Direction" that contains the roads that make up the intersection tagged with their relative direction
  */
+fun testRoad(road: Feature, intersectionRelativeDirections: FeatureCollection) : FeatureCollection {
+    val testReferenceCoordinateForRoad = getReferenceCoordinate(
+        road.geometry as LineString, 1.0, false
+    )
+    // test if the reference coordinate we've created is in any of the relative direction triangles
+    val newFeatureCollection = FeatureCollection()
+    for (direction in intersectionRelativeDirections) {
+        val iAmHere1 = polygonContainsCoordinates(
+            testReferenceCoordinateForRoad, (direction.geometry as Polygon)
+        )
+        if (iAmHere1) {
+            // at this point we need to take the road and direction and merge their properties
+            // and create a new Feature and add it to the FeatureCollection
+            val newFeature = mergeRoadAndDirectionFeatures(road, direction)
+            newFeatureCollection.addFeature(newFeature)
+            //println("Road name: ${splitRoad.properties!!["name"]}")
+            //println("Road direction: ${direction.properties!!["Direction"]}")
+        } else {
+            // reverse the LineString, create the ref coordinate and test it again
+            val testReferenceCoordinateReverse = getReferenceCoordinate(
+                road.geometry as LineString, 1.0, true
+            )
+            val iAmHere2 = polygonContainsCoordinates(
+                testReferenceCoordinateReverse, (direction.geometry as Polygon)
+            )
+            if (iAmHere2) {
+                val newFeature = mergeRoadAndDirectionFeatures(road, direction)
+                newFeatureCollection.addFeature(newFeature)
+                //println("Road name: ${splitRoad.properties!!["name"]}")
+                //println("Road direction: ${direction.properties!!["Direction"]}")
+            }
+        }
+    }
+    return newFeatureCollection
+}
 fun getIntersectionRoadNamesRelativeDirections(
     intersectionRoadNames: FeatureCollection,
     nearestIntersection: FeatureCollection,
@@ -1953,65 +1988,11 @@ fun getIntersectionRoadNamesRelativeDirections(
             )
             // for each split road work out the relative direction from the intersection
             for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                val testReferenceCoordinateForRoad = getReferenceCoordinate(
-                    splitRoad.geometry as LineString, 1.0, false)
-                // test if the reference coordinate we've created is in any of the relative direction triangles
-                for(direction in intersectionRelativeDirections){
-                    val iAmHere1 = polygonContainsCoordinates(
-                        testReferenceCoordinateForRoad, (direction.geometry as Polygon))
-                    if (iAmHere1){
-                        // at this point we need to take the road and direction and merge their properties
-                        // and create a new Feature and add it to the FeatureCollection
-                        val newFeature = mergeRoadAndDirectionFeatures(splitRoad, direction)
-                        newFeatureCollection.addFeature(newFeature)
-                        //println("Road name: ${splitRoad.properties!!["name"]}")
-                        //println("Road direction: ${direction.properties!!["Direction"]}")
-                    } else {
-                        // reverse the LineString, create the ref coordinate and test it again
-                        val testReferenceCoordinateReverse = getReferenceCoordinate(
-                            splitRoad.geometry as LineString, 1.0, true
-                        )
-                        val iAmHere2 = polygonContainsCoordinates(
-                            testReferenceCoordinateReverse, (direction.geometry as Polygon)
-                        )
-                        if (iAmHere2) {
-                            val newFeature = mergeRoadAndDirectionFeatures(splitRoad, direction)
-                            newFeatureCollection.addFeature(newFeature)
-                            //println("Road name: ${splitRoad.properties!!["name"]}")
-                            //println("Road direction: ${direction.properties!!["Direction"]}")
-                        }
-                    }
-                }
+                newFeatureCollection.plusAssign(testRoad(splitRoad, intersectionRelativeDirections))
             }
         }
         else{
-            for (direction in intersectionRelativeDirections){
-                val testReferenceCoordinateForward = getReferenceCoordinate(
-                    road.geometry as LineString, 1.0, false)
-                val iAmHere1 = polygonContainsCoordinates(
-                    testReferenceCoordinateForward, (direction.geometry as Polygon))
-                if (iAmHere1){
-                    val newFeature = mergeRoadAndDirectionFeatures(road, direction)
-                    newFeatureCollection.addFeature(newFeature)
-                    //println("Road name: ${road.properties!!["name"]}")
-                    //println("Road direction: ${direction.properties!!["Direction"]}")
-                } else {
-                    // reverse the LineString, create the ref coordinate and test it again
-                    val testReferenceCoordinateReverse = getReferenceCoordinate(
-                        road.geometry as LineString, 1.0, true
-                    )
-                    val iAmHere2 = polygonContainsCoordinates(
-                        testReferenceCoordinateReverse,
-                        (direction.geometry as Polygon)
-                    )
-                    if (iAmHere2) {
-                        val newFeature = mergeRoadAndDirectionFeatures(road, direction)
-                        newFeatureCollection.addFeature(newFeature)
-                        //println("Road name: ${road.properties!!["name"]}")
-                        //println("Road direction: ${direction.properties!!["Direction"]}")
-                    }
-                }
-            }
+            newFeatureCollection.plusAssign(testRoad(road, intersectionRelativeDirections))
         }
     }
 
