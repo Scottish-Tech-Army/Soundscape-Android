@@ -17,7 +17,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.withContext
@@ -72,12 +71,18 @@ import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.RoadDirectionAtIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
+import org.scottishtecharmy.soundscape.geoengine.utils.splitRoadByIntersection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.getOttoBus
 import retrofit2.awaitResponse
 import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.math.abs
 import kotlin.time.TimeSource
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
@@ -145,6 +150,8 @@ class GeoEngine {
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
 
+        previewState = PreviewState.INITIAL
+
         startTileGridService(soundscapeService)
 
         getOttoBus().register(this)
@@ -166,7 +173,7 @@ class GeoEngine {
         Log.e(TAG, "startTileGridService")
         tilesJob?.cancel()
         tilesJob = coroutineScope.launch {
-            locationProvider.locationFlow.collectLatest { newLocation ->
+            locationProvider.locationFlow.collect { newLocation ->
                 // Check if we've moved out of the bounds of the central area
                 newLocation?.let { location ->
                     // Check if we're still within the central area of our grid
@@ -474,7 +481,7 @@ class GeoEngine {
 
                         val intersectionName = newIntersectionFeatureCollection.features[0].properties?.get("name") as String
                         val callout = TrackedCallout(intersectionName,
-                                                     intersectionLngLat, true, false)
+                                                     intersectionLngLat, isPoint = true, isGeneric = true)
                         if (intersectionCalloutHistory.find(callout)) {
                             Log.d(TAG, "Discard ${callout.callout}")
                             return emptyList()
@@ -1246,6 +1253,220 @@ class GeoEngine {
         }
         treeMutex.unlock()
         return result
+    }
+
+    enum class PreviewState(val id: Int) {
+        INITIAL(0),
+        NOT_AT_INTERSECTION(1),
+        MOVING(2),
+        AT_INTERSECTION(3),
+    }
+
+    data class StreetPreviewChoice (
+        val heading: Double,
+        val name: String,
+        val route: List<LngLatAlt>
+    )
+
+    private var previewState = PreviewState.INITIAL
+    private var previewRoad : StreetPreviewChoice? = null
+
+    fun streetPreviewGo() {
+
+        val start = System.currentTimeMillis()
+
+        // Get our current location and figure out what GO means
+        val location = LngLatAlt(
+            locationProvider.getCurrentLongitude() ?: 0.0,
+            locationProvider.getCurrentLatitude() ?: 0.0
+        )
+        val heading = directionProvider.getCurrentDirection()
+        val scope = CoroutineScope(Job())
+        scope.launch {
+            when(previewState) {
+
+                PreviewState.INITIAL -> {
+                    // Get the nearest intersection
+                    val intersections = getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 200.0, 1)
+                    // And jump to it's location
+                    for (intersection in intersections) {
+                        Log.e(TAG, intersection.properties?.get("name").toString())
+                        val loc = intersection.geometry as Point
+                        locationProvider.updateLocation(loc.coordinates, 0.0F)
+                        previewState = PreviewState.AT_INTERSECTION
+                        break
+                    }
+                }
+                PreviewState.NOT_AT_INTERSECTION -> {
+
+                }
+                PreviewState.MOVING -> {
+
+                }
+                PreviewState.AT_INTERSECTION -> {
+                    // Find which road that we're choosing based on the current heading
+                    val choices = getDirectionChoices(location)
+                    var bestIndex = -1
+                    var bestHeadingDiff = Double.POSITIVE_INFINITY
+
+                    // Find the choice with the closest heading to our own
+                    var diff = 0.0
+                    for((index, choice) in choices.withIndex()) {
+                        diff = abs(choice.heading - heading)
+                        if(diff < bestHeadingDiff) {
+                            bestHeadingDiff = diff
+                            bestIndex = index
+                        }
+                    }
+                    // Check that the closest heading is close enough
+                    if(bestHeadingDiff < 30.0) {
+
+                        // We've got a road - let's head down it
+                        previewRoad = extendChoice(location, choices[bestIndex])
+                        previewRoad?.let { road ->
+                            locationProvider.updateLocation(road.route.last(), 1.0F)
+                        }
+                        previewState = PreviewState.AT_INTERSECTION
+                    }
+                }
+            }
+        }
+        val end = System.currentTimeMillis()
+        Log.d(TAG, "streetPreviewGo: ${end-start}ms")
+    }
+
+    private fun bearingOfLineFromEnd(location: LngLatAlt, line: List<LngLatAlt>) : Double {
+        var heading = 0.0
+        var nextPoint : LngLatAlt? = null
+        if(location == line.first()) {
+            nextPoint = line[1]
+        } else if(location == line.last()) {
+            nextPoint = line.dropLast(1).last()
+        }
+        if(nextPoint != null) {
+            heading = bearingFromTwoPoints(
+                location.latitude,
+                location.longitude,
+                nextPoint.latitude,
+                nextPoint.longitude
+            )
+        }
+        return heading
+    }
+
+    /**
+     * extendChoice extends the road line in the choice in the direction of travel. It  also orders
+     * the points in the line so that first() is the current location and last() is one of either:
+     *  1. The next intersection (most common)
+     *  2. The end of the road
+     *  3. The edge of the tile grid
+     */
+    private suspend fun extendUntilIntersection(newLine : List<LngLatAlt>, extendedLine : MutableList<LngLatAlt>) : Boolean {
+        var foundIntersection = false
+        for((index, point) in newLine.withIndex()) {
+            extendedLine.add(point)
+
+            if(index != 0) {
+                // Check for an intersection at this point by searching in the intersection tree
+                val intersection = getGridFeatureCollection(Fc.INTERSECTIONS.id, point, 0.5, 1)
+                if (intersection.features.isNotEmpty()) {
+                    Log.e(
+                        TAG,
+                        "Stop at intersection ${intersection.features[0].properties?.get("name")}"
+                    )
+                    foundIntersection = true
+                    break
+                }
+            }
+        }
+        return foundIntersection
+    }
+
+    private suspend fun extendChoice(location: LngLatAlt, choice : StreetPreviewChoice) : StreetPreviewChoice {
+        var line = choice.route
+        if(location == line.last()) {
+            line = line.reversed()
+        }
+
+        val extendedLine = mutableListOf<LngLatAlt>()
+
+        while(true) {
+            // Find any intersections in the current line segment
+            val foundIntersection = extendUntilIntersection(line, extendedLine)
+
+            if (foundIntersection) {
+                return StreetPreviewChoice(choice.heading, choice.name, extendedLine)
+            }
+
+            // We've not found an intersection yet, so we've reached the end of the line
+            val currentPoint = line.last()
+            val previousPoint = line.dropLast(1).last()
+            val roads = getGridFeatureCollection(Fc.ROADS.id, currentPoint, 0.1, 3)
+            for (road in roads) {
+                // Find which roads the currentPoint is in
+                val roadPoints = road.geometry as LineString
+                val containsCurrentPoint = roadPoints.coordinates.any { it == currentPoint }
+                val containsPreviousPoint = roadPoints.coordinates.any { it == previousPoint }
+                if (containsCurrentPoint && containsPreviousPoint)
+                {
+                    // This is our line, so ignore it
+                } else if (containsCurrentPoint) {
+                    // This is the next line
+                    line = roadPoints.coordinates
+                    if(currentPoint == line.last()) {
+                        line = line.reversed()
+                    }
+                    break
+                }
+            }
+        }
+    }
+
+    /**
+     * getDirectionChoices returns a List of possible choices at an intersection
+     * Each entry contains a heading, the street name and a list of points that make up the road.
+     * The app can choose the road based on the heading and then move the user along it.
+     */
+    private suspend fun getDirectionChoices(location: LngLatAlt) : List<StreetPreviewChoice> {
+        val choices = mutableListOf<StreetPreviewChoice>()
+
+        val start = System.currentTimeMillis()
+
+        val nearestIntersection = getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 10.0, 1)
+        val nearestRoads = getGridFeatureCollection(Fc.ROADS.id, location, 10.0)
+        val intersectionRoadNames = getIntersectionRoadNames(nearestIntersection, nearestRoads)
+
+        for (road in intersectionRoadNames) {
+            val testRoadDirectionAtIntersection =
+                getDirectionAtIntersection(nearestIntersection.features[0], road)
+
+            if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
+                // split the road into two
+                val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
+                    nearestIntersection.features[0],
+                    road
+                )
+
+                for (splitRoad in roadCoordinatesSplitIntoTwo) {
+                    road.properties?.get("name")?.let { choice ->
+                        val line = splitRoad.geometry as LineString
+                        val heading = bearingOfLineFromEnd(location, line.coordinates)
+                        choices.add(StreetPreviewChoice(heading, choice.toString(), line.coordinates))
+                    }
+                }
+            }
+            else if (testRoadDirectionAtIntersection != RoadDirectionAtIntersection.NONE) {
+                road.properties?.get("name")?.let { choice ->
+                    val line = road.geometry as LineString
+                    val heading = bearingOfLineFromEnd(location, line.coordinates)
+                    choices.add(StreetPreviewChoice(heading, choice.toString(), line.coordinates))
+                }
+            }
+        }
+        val end = System.currentTimeMillis()
+        Log.d(TAG, "getDirectionChoices: ${end-start}ms")
+
+        return choices
     }
 
     companion object {
