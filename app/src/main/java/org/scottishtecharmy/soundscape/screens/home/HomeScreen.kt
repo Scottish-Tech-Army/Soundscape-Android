@@ -11,14 +11,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.Home
-import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute.AddRouteScreen
-import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
+import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
 class Navigator {
     var destination = MutableStateFlow(HomeRoutes.Home.route)
@@ -69,7 +69,7 @@ fun HomeScreen(
                 shareLocation = { viewModel.shareLocation(context) },
                 rateSoundscape = rateSoundscape,
                 streetPreviewEnabled = state.value.streetPreviewMode,
-                tileGridGeoJson = state.value.tileGridGeoJson
+                tileGridGeoJson = state.value.tileGridGeoJson,
             )
         }
 
@@ -80,7 +80,7 @@ fun HomeScreen(
             val uiState = settingsViewModel.state.collectAsStateWithLifecycle()
             Settings(
                 onNavigateUp = { navController.navigateUp() },
-                uiState = uiState.value
+                uiState = uiState.value,
             )
         }
 
@@ -97,9 +97,9 @@ fun HomeScreen(
                 onNavigateUp = {
                     navController.navigate(HomeRoutes.Home.route) {
                         popUpTo(HomeRoutes.Home.route) {
-                            inclusive = false  // Ensures Home screen is not popped from the stack
+                            inclusive = false // Ensures Home screen is not popped from the stack
                         }
-                        launchSingleTop = true  // Prevents multiple instances of Home
+                        launchSingleTop = true // Prevents multiple instances of Home
                     }
                 },
                 latitude = state.value.location?.latitude,

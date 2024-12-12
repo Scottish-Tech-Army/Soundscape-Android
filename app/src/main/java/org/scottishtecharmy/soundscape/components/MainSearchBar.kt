@@ -30,16 +30,17 @@ import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainSearchBar(
     searchText: String,
     isSearching: Boolean,
-    itemList: List<SearchItem>,
+    itemList: List<LocationDescription>,
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
-    onItemClick: (SearchItem) -> Unit,
+    onItemClick: (LocationDescription) -> Unit,
 ) {
     SearchBar(
         modifier =

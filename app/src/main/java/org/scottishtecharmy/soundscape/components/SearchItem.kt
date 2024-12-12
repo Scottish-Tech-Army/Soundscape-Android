@@ -23,22 +23,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
-
-data class SearchItem(
-    val adressName: String?,
-    val streetNumberAndName: String?,
-    val postcodeAndLocality: String?,
-    val country: String?,
-    val distance: String?,
-    val latitude: Double,
-    val longitude: Double,
-)
+import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
+import org.scottishtecharmy.soundscape.utils.buildAddressFormat
 
 @Composable
 fun SearchItemButton(
-    item: SearchItem,
+    item: LocationDescription,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -78,17 +71,14 @@ fun SearchItemButton(
                         fontWeight = FontWeight(450),
                     )
                 }
-                Text(
-                    text =
-                        listOfNotNull(
-                            item.streetNumberAndName,
-                            item.postcodeAndLocality,
-                            item.country,
-                        ).joinToString("\n"),
-                    fontWeight = FontWeight(400),
-                    fontSize = 18.sp,
-                    color = Color.White,
-                )
+                item.buildAddressFormat()?.let {
+                    Text(
+                        text = it,
+                        fontWeight = FontWeight(400),
+                        fontSize = 18.sp,
+                        color = PaleBlue,
+                    )
+                }
             }
         }
     }
@@ -107,7 +97,7 @@ fun PreviewSearchItemButton() {
             verticalArrangement = Arrangement.Center,
         ) {
             val test =
-                SearchItem(
+                LocationDescription(
                     adressName = "Bristol",
                     streetNumberAndName = "18 Street",
                     postcodeAndLocality = "59000 Lille",

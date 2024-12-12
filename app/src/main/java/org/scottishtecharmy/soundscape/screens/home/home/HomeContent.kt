@@ -13,7 +13,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
-import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Composable
@@ -27,7 +27,7 @@ fun HomeContent(
     onMarkerClick: (Marker) -> Boolean,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    tileGridGeoJson: String
+    tileGridGeoJson: String,
 ) {
     Column(
         modifier = modifier,
@@ -46,9 +46,9 @@ fun HomeContent(
                     // screen which location to provide details of. The JSON is appended to the route.
                     val ld =
                         LocationDescription(
-                            name = "Barrowland Ballroom",
+                            adressName = "Barrowland Ballroom",
                             latitude = 55.8552688,
-                            longitude = -4.2366753
+                            longitude = -4.2366753,
                         )
                     onNavigate(generateLocationDetailsRoute(ld))
                 },
@@ -72,9 +72,9 @@ fun HomeContent(
                         val ld =
                             LocationDescription(
                                 // TODO handle LocationDescription instantiation in viewmodel ?
-                                name = "Current location",
+                                adressName = "Current location",
                                 latitude = latitude,
-                                longitude = longitude
+                                longitude = longitude,
                             )
                         onNavigate(generateLocationDetailsRoute(ld)) // TODO handle at top level the generateLocationDetailsRoute ?
                     }
@@ -91,7 +91,7 @@ fun HomeContent(
                     userSymbolRotation = heading,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
-                    tileGridGeoJson = tileGridGeoJson
+                    tileGridGeoJson = tileGridGeoJson,
                 )
             }
         }
@@ -110,6 +110,6 @@ fun PreviewHomeContent() {
         onMapLongClick = { false },
         onMarkerClick = { true },
         searchBar = {},
-        tileGridGeoJson = ""
+        tileGridGeoJson = "",
     )
 }

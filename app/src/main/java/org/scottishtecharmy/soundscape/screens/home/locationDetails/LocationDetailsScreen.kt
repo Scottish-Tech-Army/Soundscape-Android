@@ -34,23 +34,15 @@ import com.google.gson.GsonBuilder
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
+import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.ui.theme.surfaceBright
+import org.scottishtecharmy.soundscape.utils.buildAddressFormat
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
-
-data class LocationDescription(
-    val name: String? = null,
-    val streetNumberAndName: String? = null,
-    val postcodeAndLocality: String? = null,
-    val country: String? = null,
-    val distance: String? = null,
-    val latitude: Double,
-    val longitude: Double,
-)
 
 fun generateLocationDetailsRoute(locationDescription: LocationDescription): String {
     // Generate JSON for the LocationDescription and append it to the rout
@@ -184,7 +176,7 @@ private fun LocationDescriptionTextsSection(locationDescription: LocationDescrip
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        locationDescription.name?.let {
+        locationDescription.adressName?.let {
             Text(
                 text = it,
                 style = MaterialTheme.typography.titleLarge,
@@ -208,11 +200,7 @@ private fun LocationDescriptionTextsSection(locationDescription: LocationDescrip
                 )
             }
         }
-        listOfNotNull(
-            locationDescription.streetNumberAndName,
-            locationDescription.postcodeAndLocality,
-            locationDescription.country,
-        ).joinToString("\n").let {
+        locationDescription.buildAddressFormat()?.let {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -220,12 +208,12 @@ private fun LocationDescriptionTextsSection(locationDescription: LocationDescrip
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
                     contentDescription = null,
-                    tint = surfaceBright,
+                    tint = PaleBlue,
                 )
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = surfaceBright,
+                    color = PaleBlue,
                 )
             }
         }
@@ -282,7 +270,7 @@ fun LocationDetailsPreview() {
     SoundscapeTheme {
         LocationDetails(
             LocationDescription(
-                name = "Pizza hut",
+                adressName = "Pizza hut",
                 distance = "3,5 km",
                 latitude = 0.0,
                 longitude = 0.0,

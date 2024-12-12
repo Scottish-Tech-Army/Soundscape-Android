@@ -41,9 +41,8 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
-import org.scottishtecharmy.soundscape.components.SearchItem
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
-import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
@@ -94,7 +93,7 @@ fun Home(
     isSearching: Boolean,
     onSearchTextChange: (String) -> Unit,
     onToogleSearch: () -> Unit,
-    searchItems: List<SearchItem>,
+    searchItems: List<LocationDescription>,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -148,9 +147,10 @@ fun Home(
                             onNavigate(
                                 generateLocationDetailsRoute(
                                     LocationDescription(
-                                        name = item.adressName,
+                                        adressName = item.adressName,
                                         streetNumberAndName = item.streetNumberAndName,
                                         postcodeAndLocality = item.postcodeAndLocality,
+                                        country = item.country,
                                         distance = item.distance,
                                         latitude = item.latitude,
                                         longitude = item.longitude,
