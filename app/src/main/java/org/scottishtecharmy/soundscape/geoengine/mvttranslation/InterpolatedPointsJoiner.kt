@@ -32,50 +32,92 @@ class InterpolatedPointsJoiner {
     }
 
     fun addJoiningLines(featureCollection : FeatureCollection) {
+        val start = System.currentTimeMillis()
+        var highestSeparation = 0.0
+        var highestSeparationOsmId = 0.0
         for (entries in interpolatedPoints) {
             if (entries.value.size > 1) {
                 // We want to find points that we can join together. Go through the list of points
                 // for the OSM id comparing against the other members in the list to see if any are
                 // almost at the same point. We only want a single line to join the points together
                 // not a line from A -> B and from B -> A so we de-duplicate as we go.
+                var linesAdded = 0
+                var perfectlyCoincident = 0
                 val deduplicateSet = mutableSetOf<LngLatAlt>()
-                for (point1 in entries.value) {
+                for ((index1, point1) in entries.value.withIndex()) {
                     if(!deduplicateSet.contains(point1)) {
-                        for (point2 in entries.value) {
-                            if(point1 == point2)
+                        var nearestPoint = Double.POSITIVE_INFINITY
+                        var nearestPointIndex = -1
+                        for ((index2, point2) in entries.value.withIndex()) {
+                            if(index1 == index2) {
+                                // This covers comparing the same point to itself
                                 continue
+                            }
+
+                            if(point1 == point2) {
+                                // This covers points which although on different tiles are
+                                // perfectly coincident. In that case there's no need to add a
+                                // joining line.
+                                ++perfectlyCoincident
+                                deduplicateSet.add(point1)
+                                deduplicateSet.add(point2)
+                                continue
+                            }
                             if (!deduplicateSet.contains(point2)) {
                                 // We haven't already added this line
-                                if (distance(
+                                val separation = distance(
                                         point1.latitude,
                                         point1.longitude,
                                         point2.latitude,
                                         point2.longitude
-                                    ) < 0.1
-                                ) {
-                                    // If the points are within 10cm of each other, then join their
-                                    // LineStrings together.
-                                    val joining = Feature()
-                                    val foreign: HashMap<String, Any?> = hashMapOf()
-                                    val osmIds = arrayListOf<Double>()
-                                    osmIds.add(entries.key)
-                                    foreign["osm_ids"] = entries.key
-                                    joining.foreign = foreign
-                                    joining.geometry = LineString(point1, point2)
-                                    joining.properties = foreign
-
-                                    featureCollection.addFeature(joining)
-                                    deduplicateSet.add(point1)
-                                    deduplicateSet.add(point2)
+                                    )
+                                if(separation < nearestPoint) {
+                                    nearestPoint = separation
+                                    nearestPointIndex = index2
                                 }
                             }
                         }
+
+                        if(nearestPoint < 1.0) {
+                            // We've found the nearest point, and it's within 1m so join their
+                            // LineStrings together.
+                            val joining = Feature()
+                            val foreign: HashMap<String, Any?> = hashMapOf()
+                            val osmIds = arrayListOf<Double>()
+                            osmIds.add(entries.key)
+                            foreign["osm_ids"] = osmIds
+                            joining.foreign = foreign
+                            joining.geometry = LineString(point1, entries.value[nearestPointIndex])
+                            joining.properties = foreign
+
+                            featureCollection.addFeature(joining)
+                            deduplicateSet.add(point1)
+                            deduplicateSet.add(entries.value[nearestPointIndex])
+                            ++linesAdded
+                            if(nearestPoint > highestSeparation) {
+                                highestSeparation = nearestPoint
+                                highestSeparationOsmId = entries.key
+                            }
+                        }
+                        else {
+//                            if(nearestPoint < 10.0) {
+//                                println("Skipped separation ${entries.key.toLong()}: $nearestPoint")
+//                            }
+                        }
                     }
+                }
+                if((linesAdded +  perfectlyCoincident) != (entries.value.size / 2)) {
+                    // The most likely reasons for this are that the line goes off grid at both ends
+                    // or that it has some crossing points within the grid amd then goes off grid.
+                    //println("Some points were not paired for ${entries.key.toLong()}: ($linesAdded + $perfectlyCoincident) / ${entries.value.size / 2}")
                 }
             } else {
                 // This is point must be on the outer edge or our grid, so we need do nothing
             }
         }
+        val end = System.currentTimeMillis()
+        println("Highest added separation $highestSeparation for OSM id ${highestSeparationOsmId.toLong()}")
+        println("Interpolated points join time: ${end - start}ms for ${interpolatedPoints.size} points")
     }
 }
 
