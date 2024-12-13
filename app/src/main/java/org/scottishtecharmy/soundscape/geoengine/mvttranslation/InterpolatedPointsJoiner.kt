@@ -86,6 +86,7 @@ class InterpolatedPointsJoiner {
                             val osmIds = arrayListOf<Double>()
                             osmIds.add(entries.key)
                             foreign["osm_ids"] = osmIds
+                            foreign["tileJoiner"] = 1
                             joining.foreign = foreign
                             joining.geometry = LineString(point1, entries.value[nearestPointIndex])
                             joining.properties = foreign
