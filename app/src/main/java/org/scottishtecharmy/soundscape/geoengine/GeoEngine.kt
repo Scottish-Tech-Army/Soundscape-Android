@@ -230,6 +230,9 @@ class GeoEngine {
                                     for (ip in featureCollections[Fc.INTERPOLATIONS.id]) {
                                         joiner.addInterpolatedPoints(ip)
                                     }
+                                    // TODO: The joining lines are being added to ROADS, but some of
+                                    //  them will be for paths. I don't think this is an issue, but it
+                                    //  it's slightly confusing.
                                     joiner.addJoiningLines(featureCollections[Fc.ROADS.id])
 
                                     // Create rtrees for each feature collection
@@ -1566,9 +1569,11 @@ class GeoEngine {
             }
 
             // We've not found an intersection yet, so we've reached the end of the line
+            var foundNewRoad = false
             val currentPoint = line.last()
             val previousPoint = line.dropLast(1).last()
-            val roads = getGridFeatureCollection(Fc.ROADS.id, currentPoint, 0.1, 3)
+            val roads = getGridFeatureCollection(Fc.ROADS.id, currentPoint, 0.5, 3)
+            roads.plusAssign(getGridFeatureCollection(Fc.PATHS.id, currentPoint, 0.5, 3))
             for (road in roads) {
                 // Find which roads the currentPoint is in
                 val roadPoints = road.geometry as LineString
@@ -1583,8 +1588,13 @@ class GeoEngine {
                     if(currentPoint == line.last()) {
                         line = line.reversed()
                     }
+                    foundNewRoad = true
                     break
                 }
+            }
+            if(!foundNewRoad) {
+                // Return what we have
+                return StreetPreviewChoice(choice.heading, choice.name, extendedLine)
             }
         }
     }
@@ -1601,6 +1611,7 @@ class GeoEngine {
 
         val nearestIntersection = getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 10.0, 1)
         val nearestRoads = getGridFeatureCollection(Fc.ROADS.id, location, 10.0)
+        nearestRoads.plusAssign(getGridFeatureCollection(Fc.PATHS.id, location, 10.0))
         val intersectionRoadNames = getIntersectionRoadNames(nearestIntersection, nearestRoads)
 
         for (road in intersectionRoadNames) {
