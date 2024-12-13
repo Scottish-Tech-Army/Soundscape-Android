@@ -1791,16 +1791,22 @@ fun splitRoadByIntersection(
     intersection: Feature,
     road: Feature
 ): FeatureCollection {
-    val roadCoordinates = (road.geometry as LineString).coordinates
     val intersectionCoordinate = (intersection.geometry as Point).coordinates
+    return splitRoadAtNode(intersectionCoordinate, road)
+}
+fun splitRoadAtNode(
+    node: LngLatAlt,
+    road: Feature
+): FeatureCollection {
+    val roadCoordinates = (road.geometry as LineString).coordinates
 
-    val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
+    val coordinateFound = roadCoordinates.any{ it.latitude == node.latitude && it.longitude == node.longitude}
     if (!coordinateFound) {
         // Intersection not found, return empty
         return FeatureCollection()
     }
 
-    val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
+    val indexOfIntersection = roadCoordinates.indexOfFirst { it == node }
     val part1 = roadCoordinates.subList(0, indexOfIntersection + 1)
     val part2 = roadCoordinates.subList(indexOfIntersection, roadCoordinates.size)
 
