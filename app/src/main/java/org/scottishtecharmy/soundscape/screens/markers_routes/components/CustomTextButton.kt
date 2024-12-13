@@ -38,10 +38,13 @@ fun CustomTextButton(
     }
 }
 
-@Preview
+@Preview(fontScale = 1.5f, showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun CustomTextButtonPreview() {
     SoundscapeTheme {
+
+        // Default preview
         CustomTextButton(
             onClick = { /*TODO*/ },
             text = "Done",

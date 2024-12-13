@@ -32,8 +32,6 @@ fun MarkersAndRoutesScreen(
 
     val selectedTabIndex = remember { mutableIntStateOf(initialTabIndex) }
 
-    val showAddIcon = selectedTabIndex.intValue == 1
-
     // Top bar and tabs
     Scaffold(
         topBar = {
@@ -64,12 +62,26 @@ fun MarkersAndRoutesScreen(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Markers Tab Preview")
 @Composable
-fun MarkersAndRoutesPreview() {
+fun PreviewMarkersTab() {
     SoundscapeTheme {
+        val navController = rememberNavController()
         MarkersAndRoutesScreen(
-            mainNavController = rememberNavController(),
-            selectedTab = ScreensForMarkersAndRoutes.Markers.route)
+            mainNavController = navController,
+            selectedTab = "markers"
+        ) }
+
+}
+
+@Preview(showBackground = true, name = "Routes Tab Preview")
+@Composable
+fun PreviewRoutesTab() {
+    SoundscapeTheme {
+        val navController = rememberNavController()
+        MarkersAndRoutesScreen(
+            mainNavController = navController,
+            selectedTab = "routes"
+        )
     }
 }

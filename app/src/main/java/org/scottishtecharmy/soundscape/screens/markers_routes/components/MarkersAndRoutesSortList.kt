@@ -19,6 +19,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun MarkersAndRoutesListSort(
@@ -58,6 +60,30 @@ fun MarkersAndRoutesListSort(
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.surface
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarkersAndRoutesListSortByNamePreview() {
+    SoundscapeTheme {
+        // Preview with sorting by name
+        MarkersAndRoutesListSort(
+            isSortByName = true,
+            onToggleSortOrder = { /* Handle toggle */ }
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MarkersAndRoutesListSortByDistancePreview() {
+    SoundscapeTheme {
+        // Preview with sorting by name
+        MarkersAndRoutesListSort(
+            isSortByName = false,
+            onToggleSortOrder = { /* Handle toggle */ }
         )
     }
 }

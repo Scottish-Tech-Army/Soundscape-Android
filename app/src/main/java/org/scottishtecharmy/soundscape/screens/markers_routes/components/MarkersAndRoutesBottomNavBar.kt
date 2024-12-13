@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun MarkersAndRoutesTabs(
@@ -72,3 +73,27 @@ fun MarkersAndRoutesTabs(
     }
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun MarkerTabsPreview() {
+    SoundscapeTheme {
+        // Preview with first tab selected
+        MarkersAndRoutesTabs(
+            selectedTabIndex = 0,
+            onTabSelected = { /* Handle tab selection */ }
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RoutesTabsPreview() {
+    SoundscapeTheme {
+        // Preview with first tab selected
+        MarkersAndRoutesTabs(
+            selectedTabIndex = 1,
+            onTabSelected = { /* Handle tab selection */ }
+        )
+    }
+}

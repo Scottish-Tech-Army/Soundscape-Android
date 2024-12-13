@@ -142,15 +142,11 @@ fun AddRouteScreen(
                 )
                 // TODO fix the formatting/alignment for the addition of the original iOS text below
             }
+
         }
     )
+//TODO create @Preview that works with viewmodel
 }
 
-@Preview
-@Composable
-fun AddRoutePreview() {
-    SoundscapeTheme {
-        AddRouteScreen(navController = rememberNavController())
-    }
-}
+
 

@@ -147,4 +147,6 @@ fun RouteDetailsScreen(
 
             }
         }
-    }}
+    }
+    //TODO create @Preview that works with viewmodel
+}

@@ -37,10 +37,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RouteList
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -136,7 +138,15 @@ fun RoutesScreen(
             contentDescription = stringResource(R.string.general_alert_add),
         )
     }
+    //TODO create @Preview that works with viewmodel
 }
+
+
+
+
+
+
+
 
 
 
