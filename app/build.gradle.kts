@@ -67,8 +67,6 @@ android {
                 cppFlags += ""
             }
         }
-
-        resourceConfigurations += listOf("da", "de", "el", "en", "es", "fi", "fr", "it", "ja", "nb", "nl", "pt", "sv")
     }
 
     buildTypes {
