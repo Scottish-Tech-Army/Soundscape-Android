@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.screens.markers_routes.navigation
+package org.scottishtecharmy.soundscape.screens.markers_routes.screens
 
 import org.scottishtecharmy.soundscape.R
 

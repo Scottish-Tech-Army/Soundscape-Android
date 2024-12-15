@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,8 +10,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
-import org.scottishtecharmy.soundscape.screens.markers_routes.getSortOrderPreference
-import org.scottishtecharmy.soundscape.screens.markers_routes.saveSortOrderPreference
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortOrderPreference
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortOrderPreference
 import javax.inject.Inject
 
 @HiltViewModel
