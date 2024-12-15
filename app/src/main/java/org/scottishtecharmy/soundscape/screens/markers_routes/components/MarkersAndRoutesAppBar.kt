@@ -18,7 +18,6 @@ fun MarkersAndRoutesAppBar(
         title = stringResource(R.string.search_view_markers),
         navigationButtonTitle = stringResource(R.string.ui_back_button_title),
         onNavigateUp = onNavigateUp,
-        onAddClicked = onNavigateToDestination,
     )
 }
 
