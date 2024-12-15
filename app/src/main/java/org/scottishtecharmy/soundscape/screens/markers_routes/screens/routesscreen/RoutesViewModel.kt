@@ -68,10 +68,6 @@ class RoutesViewModel @Inject constructor(
         }
     }
 
-    fun getRouteByName(routeId: String): RouteData? {
-        return _uiState.value.routes.find { it.name == routeId }
-    }
-
     fun clearErrorMessage() {
         _uiState.value = _uiState.value.copy(errorMessage = null)
     }
