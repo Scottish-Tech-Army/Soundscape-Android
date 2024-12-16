@@ -37,11 +37,12 @@ fun SettingsPreview() {
 @Composable
 fun Settings(
     onNavigateUp: () -> Unit,
-    uiState : SettingsViewModel.SettingsUiState)
+    uiState: SettingsViewModel.SettingsUiState,
+    modifier: Modifier = Modifier,
+)
 {
     ProvidePreferenceLocals {
-        LazyColumn {
-
+        LazyColumn (modifier = modifier){
             stickyHeader {
                 Surface {
                     CustomAppBar(stringResource(R.string.general_alert_settings),
