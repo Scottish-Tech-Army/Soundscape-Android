@@ -189,7 +189,11 @@ fun getRoadsFeatureCollectionFromTileFeatureCollection(
                 && foreign["feature_value"] != "bridleway"
                 && foreign["feature_value"] != "bus_stop"
                 && foreign["feature_value"] != "crossing") {
-                    roadsFeatureCollection.addFeature(feature)
+                    // We're only going to add linestrings to the roads feature collection
+                    when(feature.geometry.type) {
+                        "LineString", "MultiLineString" ->
+                            roadsFeatureCollection.addFeature(feature)
+                    }
             }
         }
     }
@@ -270,13 +274,18 @@ fun getPathsFeatureCollectionFromTileFeatureCollection(
 
     for(feature in tileFeatureCollection) {
         feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] == "highway")
-                when (foreign["feature_value"]) {
-                    "footway" -> pathsFeatureCollection.addFeature(feature)
-                    "path" -> pathsFeatureCollection.addFeature(feature)
-                    "cycleway" -> pathsFeatureCollection.addFeature(feature)
-                    "bridleway" -> pathsFeatureCollection.addFeature(feature)
+            // We're only going to add linestrings to the roads feature collection
+            when(feature.geometry.type) {
+                "LineString", "MultiLineString" -> {
+                    if (foreign["feature_type"] == "highway")
+                        when (foreign["feature_value"]) {
+                            "footway" -> pathsFeatureCollection.addFeature(feature)
+                            "path" -> pathsFeatureCollection.addFeature(feature)
+                            "cycleway" -> pathsFeatureCollection.addFeature(feature)
+                            "bridleway" -> pathsFeatureCollection.addFeature(feature)
+                        }
                 }
+            }
         }
     }
     return pathsFeatureCollection
