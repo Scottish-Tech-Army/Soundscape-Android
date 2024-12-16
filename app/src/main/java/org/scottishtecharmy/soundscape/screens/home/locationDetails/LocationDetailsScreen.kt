@@ -10,11 +10,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
@@ -40,15 +42,17 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription) : Str
 
 @Composable
 fun LocationDetailsScreen(
-                    locationDescription : LocationDescription,
-                    latitude : Double?,
-                    longitude: Double?,
-                    heading : Float,
-                    onNavigateUp: () -> Unit,
-                    viewModel: LocationDetailsViewModel = hiltViewModel(),
+    locationDescription : LocationDescription,
+    latitude : Double?,
+    longitude: Double?,
+    heading : Float,
+    onNavigateUp: () -> Unit,
+    navController: NavHostController,
+    viewModel: LocationDetailsViewModel = hiltViewModel(),
 ) {
     LocationDetails(
         onNavigateUp = onNavigateUp,
+        navController = navController,
         locationDescription = locationDescription,
         createBeacon = { lat, lng ->
             viewModel.createBeacon(lat, lng)
@@ -66,6 +70,7 @@ fun LocationDetailsScreen(
 fun LocationDetails(
                     locationDescription : LocationDescription,
                     onNavigateUp: () -> Unit,
+                    navController: NavHostController,
                     latitude: Double?,
                     longitude: Double?,
                     heading: Float,
@@ -100,7 +105,22 @@ fun LocationDetails(
                 locationDescription.longitude
             ),
             allowScrolling = true,
-            onMapLongClick = { false },
+            onMapLongClick = { latLong ->
+                val ld =
+                    LocationDescription(
+                        "Selected location",
+                        latLong.latitude,
+                        latLong.longitude,
+                    )
+                // This effectively replaces the current screen with the new one
+                navController.navigate(generateLocationDetailsRoute(ld)) {
+                    popUpTo(HomeRoutes.Home.route) {
+                        inclusive = false  // Ensures Home screen is not popped from the stack
+                    }
+                    launchSingleTop = true  // Prevents multiple instances of Home
+                }
+                true
+            },
             onMarkerClick = { false },
             // Center on the beacon
             mapCenter = LatLng(
@@ -114,7 +134,9 @@ fun LocationDetails(
 
             mapViewRotation = 0.0F,
             userSymbolRotation = heading,
-            modifier = modifier.fillMaxWidth().aspectRatio(1.0F),
+            modifier = modifier
+                .fillMaxWidth()
+                .aspectRatio(1.0F),
             tileGridGeoJson = ""
         )
 
@@ -155,6 +177,7 @@ fun LocationDetailsPreview() {
             enableStreetPreview = { _,_ ->
             },
             onNavigateUp = {},
+            navController = NavHostController(LocalContext.current),
             latitude = null,
             longitude = null,
             heading = 0.0F

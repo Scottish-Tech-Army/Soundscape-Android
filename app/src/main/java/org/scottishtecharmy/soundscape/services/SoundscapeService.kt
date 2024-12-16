@@ -379,6 +379,14 @@ class SoundscapeService : MediaSessionService() {
         audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT)
     }
 
+    /**
+     * streetPreviewGo is called when the 'GO' button is pressed when in StreetPreview mode.
+     * It indicates that the user has selected the direction of travel in which they wich to move.
+     */
+    fun streetPreviewGo() {
+        geoEngine.streetPreviewGo()
+    }
+
     companion object {
         private const val TAG = "SoundscapeService"
 

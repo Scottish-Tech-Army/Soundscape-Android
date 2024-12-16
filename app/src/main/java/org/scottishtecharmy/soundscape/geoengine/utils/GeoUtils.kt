@@ -777,15 +777,22 @@ fun getQuadrants(heading: Double): List<Quadrant> {
  */
 fun distanceToLineString(
     pointCoordinates: LngLatAlt,
-    lineStringCoordinates: LineString
+    lineStringCoordinates: LineString,
+    nearestPoint: LngLatAlt? = null
 ): Double {
 
     var minDistance = Double.MAX_VALUE
     var last = lineStringCoordinates.coordinates[0]
-    for (i in 1 until lineStringCoordinates.coordinates.size) {
-        val current = lineStringCoordinates.coordinates[i]
-        val distance = distance(last, current, pointCoordinates)
-        minDistance = min(minDistance, distance)
+    for (current in  lineStringCoordinates.coordinates.drop(1)) {
+        val point = LngLatAlt()
+        val distance = distance(last, current, pointCoordinates, point)
+        if(distance < minDistance) {
+            minDistance = distance
+            if(nearestPoint != null) {
+                nearestPoint.latitude = point.latitude
+                nearestPoint.longitude = point.longitude
+            }
+        }
         last = current
     }
     return minDistance
@@ -846,8 +853,14 @@ fun distanceToIntersection(
  * current location point
  * @return the distance of the point to the line
  */
-fun distance(l1: LngLatAlt, l2: LngLatAlt, p: LngLatAlt): Double {
-    return distance(l1.latitude, l1.longitude, l2.latitude, l2.longitude, p.latitude, p.longitude)
+fun distance(l1: LngLatAlt,
+             l2: LngLatAlt,
+             p: LngLatAlt,
+             nearestPoint: LngLatAlt? = null): Double {
+    return distance(l1.latitude, l1.longitude,
+        l2.latitude, l2.longitude,
+        p.latitude, p.longitude,
+        nearestPoint)
 }
 
 /**
@@ -860,7 +873,13 @@ fun distance(l1: LngLatAlt, l2: LngLatAlt, p: LngLatAlt): Double {
  * @param y double
  * @return the distance of the point to the line
  */
-fun distance(x1: Double, y1: Double, x2: Double, y2: Double, x: Double, y: Double): Double {
+fun distance(x1: Double,
+             y1: Double,
+             x2: Double,
+             y2: Double,
+             x: Double,
+             y: Double,
+             nearestPoint: LngLatAlt? = null): Double {
     val xx: Double
     val yy: Double
     when {
@@ -890,10 +909,22 @@ fun distance(x1: Double, y1: Double, x2: Double, y2: Double, x: Double, y: Doubl
             yy = s * xx + c
         }
     }
+
+    // Set nearestPoint to be the nearest node in the line
+    val distance1 = distance(x, y, x1, y1)
+    val distance2 = distance(x, y, x2, y2)
+    if(distance1 < distance2) {
+        nearestPoint?.latitude = x1
+        nearestPoint?.longitude = y1
+    } else {
+        nearestPoint?.latitude = x2
+        nearestPoint?.longitude = y2
+    }
+
     return if (onSegment(xx, yy, x1, y1, x2, y2)) {
         distance(x, y, xx, yy)
     } else {
-        min(distance(x, y, x1, y1), distance(x, y, x2, y2))
+        min(distance1, distance2)
     }
 }
 

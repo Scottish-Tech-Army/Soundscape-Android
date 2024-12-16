@@ -6,6 +6,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.rounded.PlayCircle
+import androidx.compose.material.icons.rounded.PlayCircleOutline
 import androidx.compose.material.icons.rounded.Preview
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -175,6 +177,28 @@ fun HomeTopAppBar(
         },
         actions = {
             var serviceRunning by remember { mutableStateOf(true) }
+            IconButton(
+                enabled = streetPreviewEnabled,
+                onClick = {
+                    if(streetPreviewEnabled) {
+                        (context as MainActivity).soundscapeServiceConnection.streetPreviewGo()
+                    }
+                },
+            ) {
+                if (streetPreviewEnabled) {
+                    Icon(
+                        Icons.Rounded.PlayCircle,
+                        tint = MaterialTheme.colorScheme.primary,
+                        contentDescription = "StreetPreview play"
+                    )
+                } else {
+                    Icon(
+                        Icons.Rounded.PlayCircleOutline,
+                        tint = MaterialTheme.colorScheme.secondary,
+                        contentDescription = "StreetPreview play disabled"
+                    )
+                }
+            }
             IconToggleButton(
                 checked = streetPreviewEnabled,
                 enabled = true,
@@ -188,11 +212,21 @@ fun HomeTopAppBar(
             ) {
                 if (streetPreviewEnabled) {
                     Icon(
+                        Icons.Rounded.PlayCircle,
+                        tint = MaterialTheme.colorScheme.primary,
+                        contentDescription = "StreetPreview play"
+                    )
+                    Icon(
                         Icons.Rounded.Preview,
                     tint = MaterialTheme.colorScheme.primary,
                     contentDescription = stringResource(R.string.street_preview_enabled)
                     )
                 } else {
+                    Icon(
+                        Icons.Rounded.PlayCircleOutline,
+                        tint = MaterialTheme.colorScheme.secondary,
+                        contentDescription = "StreetPreview play disabled"
+                    )
                     Icon(
                         painterResource(R.drawable.preview_off),
                         tint = MaterialTheme.colorScheme.secondary,

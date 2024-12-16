@@ -58,6 +58,10 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 }
 
                 "LineString" -> {
+                    // We add each line segment as a separate entry into the rtree for more precise
+                    // searching, however this does mean that searches in the tree will return
+                    // duplicates of the same Feature and so these must be de-duplicated when
+                    // retrieving the data from the tree.
                     val line = feature.geometry as LineString
                     for ((index, point) in line.coordinates.withIndex()) {
                         if (index < (line.coordinates.size - 1)) {
@@ -172,9 +176,13 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     fun generateFeatureCollection(): FeatureCollection {
         val featureCollection = FeatureCollection()
         if(tree != null) {
+            val deduplicationSet = mutableSetOf<Feature>()
             val entries = tree!!.entries()
             for (feature in entries) {
-                featureCollection.addFeature(feature.value())
+                if(!deduplicationSet.contains(feature.value())) {
+                    featureCollection.addFeature(feature.value())
+                    deduplicationSet.add(feature.value())
+                }
             }
         }
         return featureCollection
@@ -192,8 +200,12 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 Geometries.pointGeographic(location.longitude, location.latitude),
                 distance))
 
+            val deduplicationSet = mutableSetOf<Feature>()
             for (feature in distanceResults) {
-                featureCollection.addFeature(feature.value())
+                if(!deduplicationSet.contains(feature.value())) {
+                    featureCollection.addFeature(feature.value())
+                    deduplicationSet.add(feature.value())
+                }
             }
         }
         return featureCollection
@@ -212,8 +224,12 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 distance,
                 maxCount))
 
+            val deduplicationSet = mutableSetOf<Feature>()
             for (feature in distanceResults) {
-                featureCollection.addFeature(feature.value())
+                if(!deduplicationSet.contains(feature.value())) {
+                    featureCollection.addFeature(feature.value())
+                    deduplicationSet.add(feature.value())
+                }
             }
         }
         return featureCollection
