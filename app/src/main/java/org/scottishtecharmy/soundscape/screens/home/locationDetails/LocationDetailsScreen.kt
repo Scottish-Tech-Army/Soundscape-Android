@@ -46,6 +46,7 @@ fun LocationDetailsScreen(
                     heading : Float,
                     onNavigateUp: () -> Unit,
                     viewModel: LocationDetailsViewModel = hiltViewModel(),
+                    modifier: Modifier = Modifier
 ) {
     LocationDetails(
         onNavigateUp = onNavigateUp,
@@ -58,7 +59,8 @@ fun LocationDetailsScreen(
         },
         latitude = latitude,
         longitude = longitude,
-        heading = heading
+        heading = heading,
+        modifier = modifier
     )
 }
 
