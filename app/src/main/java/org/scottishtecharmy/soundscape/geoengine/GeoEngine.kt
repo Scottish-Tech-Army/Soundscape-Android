@@ -792,22 +792,23 @@ class GeoEngine {
                 val roadSenseCallout = buildCalloutForRoadSense(location)
                 if (roadSenseCallout.isNotEmpty()) {
                     list = roadSenseCallout
-                } else {
-                    val intersectionCallout = buildCalloutForIntersections(location)
-                    if (intersectionCallout.isNotEmpty()) {
-                        intersectionFilter.update(location)
-                        list = intersectionCallout
-                    } else {
-                        // Get normal callouts for nearby POIs, for the destination, and for beacons
-                        val poiCallout = buildCalloutForNearbyPOI(location, speed)
-
-                        // Update time/location filter for our new position
-                        if (poiCallout.isNotEmpty()) {
-                            poiFilter.update(location)
-                            list = poiCallout
-                        }
-                    }
                 }
+                val intersectionCallout = buildCalloutForIntersections(location)
+                if (intersectionCallout.isNotEmpty()) {
+                    intersectionFilter.update(location)
+                    list = list + intersectionCallout
+                }
+
+
+                // Get normal callouts for nearby POIs, for the destination, and for beacons
+                val poiCallout = buildCalloutForNearbyPOI(location, speed)
+
+                // Update time/location filter for our new position
+                if (poiCallout.isNotEmpty()) {
+                    poiFilter.update(location)
+                    list = list + poiCallout
+                }
+
                 list
             }
         }
