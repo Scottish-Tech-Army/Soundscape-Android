@@ -7,7 +7,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.RoutesScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingPreview

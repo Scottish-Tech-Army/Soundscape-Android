@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,7 +23,10 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDeta
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroute.AddRouteScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteViewModel
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreen
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
@@ -138,6 +143,33 @@ fun HomeScreen(
         // AddRouteScreen, accessible within the MarkersAndRoutesScreen
         composable(HomeRoutes.AddRoute.route) {
             AddRouteScreen(navController = navController)
+        }
+
+        composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->
+            val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
+            RouteDetailsScreen(
+                routeName = routeName,
+                navController = navController)
+        }
+
+        // Edit route screen
+        composable("edit_route/{routeName}") { backStackEntry ->
+            val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
+            val editRouteViewModel: EditRouteViewModel = hiltViewModel()
+
+            // Call the ViewModel's function to initialize the route data
+            LaunchedEffect(routeName) {
+                editRouteViewModel.initializeRoute(routeName)
+            }
+
+            // Pass the route details to the EditRouteScreen composable
+            val uiState by editRouteViewModel.uiState.collectAsStateWithLifecycle()
+            EditRouteScreen(
+                routeName = uiState.name,
+                routeDescription = uiState.description,
+                navController = navController,
+                viewModel = editRouteViewModel
+            )
         }
     }
 }
