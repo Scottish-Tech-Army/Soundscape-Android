@@ -1,7 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home
 
 import android.util.Log
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -80,7 +84,8 @@ fun HomeScreen(
             val uiState = settingsViewModel.state.collectAsStateWithLifecycle()
             Settings(
                 onNavigateUp = { navController.navigateUp() },
-                uiState = uiState.value
+                uiState = uiState.value,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
             )
         }
 
@@ -105,6 +110,7 @@ fun HomeScreen(
                 latitude = location.value?.latitude,
                 longitude = location.value?.longitude,
                 heading = heading.value,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
             )
         }
 
