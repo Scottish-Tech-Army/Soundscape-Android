@@ -31,6 +31,8 @@ class StreetPreview {
     private var previewState = PreviewState.INITIAL
     private var previewRoad: StreetPreviewChoice? = null
 
+    private var lastHeading = Double.NaN
+
     fun start() {
         previewState = PreviewState.INITIAL
     }
@@ -87,6 +89,7 @@ class StreetPreview {
                     previewRoad = extendChoice(engine, location, choices[bestIndex])
                     previewRoad?.let { road ->
                         engine.locationProvider.updateLocation(road.route.last(), 1.0F)
+                        lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
                     }
                     previewState = PreviewState.AT_NODE
                 }
@@ -207,7 +210,7 @@ class StreetPreview {
      * Each entry contains a heading, the street name and a list of points that make up the road.
      * The app can choose the road based on the heading and then move the user along it.
      */
-    private fun getDirectionChoices(engine: GeoEngine, location: LngLatAlt): List<StreetPreviewChoice> {
+    fun getDirectionChoices(engine: GeoEngine, location: LngLatAlt): List<StreetPreviewChoice> {
         val choices = mutableListOf<StreetPreviewChoice>()
 
         val start = System.currentTimeMillis()
@@ -347,6 +350,10 @@ class StreetPreview {
         Log.d(TAG, "getDirectionChoices: ${end - start}ms")
 
         return choices
+    }
+
+    fun getLastHeading() : Double {
+        return lastHeading
     }
 
     companion object {
