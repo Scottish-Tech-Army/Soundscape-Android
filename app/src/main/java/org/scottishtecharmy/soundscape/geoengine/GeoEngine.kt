@@ -38,6 +38,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPoin
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
@@ -86,11 +87,7 @@ import kotlin.math.abs
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.TimeSource
 
-data class PositionedString(
-    val text: String,
-    val location: LngLatAlt? = null,
-    val earcon: String? = null,
-)
+data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
 
 class GeoEngine {
     private val coroutineScope = CoroutineScope(Job())
@@ -730,21 +727,21 @@ class GeoEngine {
                     if (distance < 10.0) {
                         var name = feature.properties?.get("name") as String?
                         var generic = false
-                        if (name == null) {
-                            name = feature.properties?.get("class") as String?
+                        if(name == null) {
+                            val osmClass = feature.properties?.get("class") as String?
+                            val id = ResourceMapper.getResourceId(osmClass!!)
+                            name = if(id == null) {
+                                osmClass
+                            } else {
+                                localizedContext.getString(id)
+                            }
                             generic = true
                         }
 
                         // Check the history and if the POI has been called out recently, skip it (iOS uses 60 seconds)
                         val nearestPoint = getFeatureNearestPoint(location, feature)
-                        if ((name != null) && (nearestPoint != null)) {
-                            val callout =
-                                TrackedCallout(
-                                    name,
-                                    nearestPoint,
-                                    feature.geometry.type == "Point",
-                                    generic,
-                                )
+                        if( nearestPoint != null) {
+                            val callout = TrackedCallout(name, nearestPoint, feature.geometry.type == "Point", generic)
                             if (poiCalloutHistory.find(callout)) {
                                 Log.d(TAG, "Discard ${callout.callout}")
                             } else {
