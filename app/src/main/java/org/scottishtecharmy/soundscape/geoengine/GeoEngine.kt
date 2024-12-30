@@ -30,23 +30,15 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
-import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
-import org.scottishtecharmy.soundscape.network.ITileDAO
-import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
-import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient
-import org.scottishtecharmy.soundscape.network.TileClient
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
@@ -56,7 +48,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
-import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
@@ -73,17 +65,27 @@ import org.scottishtecharmy.soundscape.geoengine.utils.processTileFeatureCollect
 import org.scottishtecharmy.soundscape.geoengine.utils.processTileString
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.network.ITileDAO
+import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
+import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient
+import org.scottishtecharmy.soundscape.network.TileClient
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.getOttoBus
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import retrofit2.awaitResponse
 import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.TimeSource
+
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
 
@@ -667,13 +669,19 @@ class GeoEngine {
                         var name = feature.properties?.get("name") as String?
                         var generic = false
                         if(name == null) {
-                            name = feature.properties?.get("class") as String?
+                            val osmClass = feature.properties?.get("class") as String?
+                            val id = ResourceMapper.getResourceId(osmClass!!)
+                            name = if(id == null) {
+                                osmClass
+                            } else {
+                                localizedContext.getString(id)
+                            }
                             generic = true
                         }
 
                         // Check the history and if the POI has been called out recently, skip it (iOS uses 60 seconds)
                         val nearestPoint = getFeatureNearestPoint(location, feature)
-                        if((name != null) && ( nearestPoint != null)) {
+                        if( nearestPoint != null) {
                             val callout = TrackedCallout(name, nearestPoint, feature.geometry.type == "Point", generic)
                             if (poiCalloutHistory.find(callout)) {
                                 Log.d(TAG, "Discard ${callout.callout}")
