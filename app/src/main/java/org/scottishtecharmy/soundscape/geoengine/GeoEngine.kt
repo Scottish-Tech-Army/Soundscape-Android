@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -81,6 +82,8 @@ import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import retrofit2.awaitResponse
 import java.util.Locale
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.math.abs
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.TimeSource
 
 data class PositionedString(
@@ -1452,6 +1455,68 @@ class GeoEngine {
     }
 
     fun streetPreviewGo() {
+        if(true) {
+            streetPreviewGoInternal()
+        } else {
+            // Random walker for StreetPreview
+            CoroutineScope(Job()).launch() {
+                repeat(1000) {
+                    streetPreviewGoWander()
+                    delay(200.milliseconds)
+                }
+            }
+        }
+    }
+
+    private fun streetPreviewGoWander() {
+
+        val start = System.currentTimeMillis()
+        // Get our current location and figure out what GO means
+        val location = LngLatAlt(
+            locationProvider.getCurrentLongitude() ?: 0.0,
+            locationProvider.getCurrentLatitude() ?: 0.0
+        )
+        // Run the code within the treeContext to protect it from changes to the trees whilst it's
+        // running.
+        val engine = this
+        CoroutineScope(Job()).launch(treeContext) {
+            val choices = streetPreview.getDirectionChoices(engine, location)
+            var heading = 0.0
+            if(choices.isNotEmpty()) {
+                // We want to choose a direction roughly in the forward direction if possible. We
+                // need to know which road we're coming in on.
+                val lastHeading = streetPreview.getLastHeading()
+                // Default to a random road
+                heading = choices.random().heading
+                if(!lastHeading.isNaN()) {
+                    // If we came in on a road, then try and keep going in that direction
+                    val trimmedChoices = mutableListOf<StreetPreview.StreetPreviewChoice>()
+                    for (choice in choices) {
+                        if ((choice.heading != lastHeading) && (!choice.heading.isNaN())) {
+                            // Don't add the road we just came in on, or any with a NaN heading.
+                            trimmedChoices.add(choice)
+                            // We want to skew results in favour of continuing onwards so add multiple
+                            // times if the choice is in a direction that's fairly opposite to the road
+                            // we're currently on.
+                            if(abs(choice.heading - lastHeading) > 140.0) {
+                                trimmedChoices.add(choice)
+                                trimmedChoices.add(choice)
+                                trimmedChoices.add(choice)
+                            }
+                        }
+                    }
+                    if(trimmedChoices.isNotEmpty()) {
+                        heading = trimmedChoices.random().heading
+                    }
+                }
+            }
+            streetPreview.go(location, heading.toFloat(), engine)
+        }
+        val end = System.currentTimeMillis()
+        Log.d(TAG, "streetPreviewGo: ${end-start}ms")
+    }
+
+    private fun streetPreviewGoInternal() {
 
         val start = System.currentTimeMillis()
 
