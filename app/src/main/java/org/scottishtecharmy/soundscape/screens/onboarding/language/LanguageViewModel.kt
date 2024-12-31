@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.language
 
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.ui.text.intl.LocaleList
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -45,19 +46,22 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
     private fun getAllLanguages(): List<Language> {
         val allLanguages = mutableListOf<Language>()
 
-        addIfSpeechSupports(allLanguages, Language("Dansk", "da"))
-        addIfSpeechSupports(allLanguages, Language("Deutsch", "de"))
-        addIfSpeechSupports(allLanguages, Language("Ελληνικά", "el"))
-        addIfSpeechSupports(allLanguages, Language("English", "en"))
-        addIfSpeechSupports(allLanguages, Language("Español", "es"))
-        addIfSpeechSupports(allLanguages, Language("Suomi", "fi"))
-        addIfSpeechSupports(allLanguages, Language("Français", "fr"))
-        addIfSpeechSupports(allLanguages, Language("Italiano", "it"))
-        addIfSpeechSupports(allLanguages, Language("日本語", "ja"))
-        addIfSpeechSupports(allLanguages, Language("Norsk", "nb"))
-        addIfSpeechSupports(allLanguages, Language("Nederlands", "nl"))
-        addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt"))
-        addIfSpeechSupports(allLanguages, Language("Svenska", "sv"))
+        addIfSpeechSupports(allLanguages, Language("Dansk", "da", "DK"))
+        addIfSpeechSupports(allLanguages, Language("Deutsch", "de", "DE"))
+        addIfSpeechSupports(allLanguages, Language("Ελληνικά", "el", "GR"))
+        addIfSpeechSupports(allLanguages, Language("English", "en", "US"))
+        addIfSpeechSupports(allLanguages, Language("English (UK)", "en", "GB"))
+        addIfSpeechSupports(allLanguages, Language("Español", "es", "ES"))
+        addIfSpeechSupports(allLanguages, Language("Suomi", "fi", "FI"))
+        addIfSpeechSupports(allLanguages, Language("Français (France)", "fr", "FR"))
+        addIfSpeechSupports(allLanguages, Language("Français (Canada)", "fr", "CA"))
+        addIfSpeechSupports(allLanguages, Language("Italiano", "it", "IT"))
+        addIfSpeechSupports(allLanguages, Language("日本語", "ja", "JP"))
+        addIfSpeechSupports(allLanguages, Language("Norsk", "nb", "NO"))
+        addIfSpeechSupports(allLanguages, Language("Nederlands", "nl", "NL"))
+        addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt", "BR"))
+        addIfSpeechSupports(allLanguages, Language("Português (Portugal)", "pt", "PT"))
+        addIfSpeechSupports(allLanguages, Language("Svenska", "sv", "SE"))
 
         return allLanguages
     }
@@ -71,7 +75,10 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         val indexOfSelectedLanguage = _state.value.supportedLanguages.indexOf(selectedLanguage)
         _state.value = _state.value.copy(selectedLanguageIndex = indexOfSelectedLanguage)
 
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(selectedLanguage.code))
+
+        val list = LocaleListCompat.forLanguageTags("${selectedLanguage.code}-${selectedLanguage.region}")
+        AppCompatDelegate.setApplicationLocales(list)
+
         return audioEngine.setSpeechLanguage(selectedLanguage.code)
     }
 }
