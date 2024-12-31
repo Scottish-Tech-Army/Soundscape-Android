@@ -1,14 +1,18 @@
 package org.scottishtecharmy.soundscape.network
 
 import com.squareup.moshi.Moshi
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
+import java.util.Locale
 
 const val BASE_URL = "https://photon.komoot.io/"
 
@@ -23,23 +27,42 @@ const val BASE_URL = "https://photon.komoot.io/"
  *  @param limit is the number of results to return.
  */
 interface PhotonSearchProvider {
+    @Headers(
+        "Cache-control: max-age=0",
+        "Connection: keep-alive"
+    )
     @GET("api/")
-    fun getSearchResults(@Query("q") searchString : String,
-                         @Query("lat") latitude : Double? = null,
-                         @Query("lon") longitude : Double? = null,
-                         @Query("limit") limit : UInt = 5U
-                         ): Call<FeatureCollection>
+    fun getSearchResults(
+        @Query("q") searchString: String,
+        @Query("lat") latitude: Double? = null,
+        @Query("lon") longitude: Double? = null,
+        @Query("lang") language: String = Locale.getDefault().language,
+        @Query("limit") limit: UInt = 5U,
+        @Query("location_bias_scale") bias: Float = 0.2f
+    ): Call<FeatureCollection>
 
     companion object {
         private var searchProvider: PhotonSearchProvider? = null
         private var moshi: Moshi? = null
+        private val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BASIC
+            } else {
+                HttpLoggingInterceptor.Level.NONE // Disable logging in release builds
+            }
+        }
+        private val logging = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
         fun getInstance(): PhotonSearchProvider {
             if (searchProvider == null) {
                 moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
                 searchProvider = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(BASE_URL).client(logging)
                     .addConverterFactory(MoshiConverterFactory.create(moshi!!))
-                    .build().create(PhotonSearchProvider::class.java)
+                    .build()
+                    .create(PhotonSearchProvider::class.java)
             }
             return searchProvider!!
         }

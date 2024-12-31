@@ -13,7 +13,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
-import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Composable
@@ -27,7 +27,7 @@ fun HomeContent(
     onMarkerClick: (Marker) -> Boolean,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    tileGridGeoJson: String
+    tileGridGeoJson: String,
 ) {
     Column(
         modifier = modifier,
@@ -46,9 +46,9 @@ fun HomeContent(
                     // screen which location to provide details of. The JSON is appended to the route.
                     val ld =
                         LocationDescription(
-                            "Barrowland Ballroom",
-                            55.8552688,
-                            -4.2366753,
+                            adressName = "Barrowland Ballroom",
+                            latitude = 55.8552688,
+                            longitude = -4.2366753,
                         )
                     onNavigate(generateLocationDetailsRoute(ld))
                 },
@@ -72,16 +72,16 @@ fun HomeContent(
                         val ld =
                             LocationDescription(
                                 // TODO handle LocationDescription instantiation in viewmodel ?
-                                "Current location",
-                                latitude,
-                                longitude,
+                                adressName = "Current location",
+                                latitude = latitude,
+                                longitude = longitude,
                             )
                         onNavigate(generateLocationDetailsRoute(ld)) // TODO handle at top level the generateLocationDetailsRoute ?
                     }
                 },
                 text = stringResource(R.string.search_use_current_location),
             )
-            if(latitude != null && longitude != null) {
+            if (latitude != null && longitude != null) {
                 MapContainerLibre(
                     beaconLocation = beaconLocation,
                     mapCenter = LatLng(latitude, longitude),
@@ -91,7 +91,7 @@ fun HomeContent(
                     userSymbolRotation = heading,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
-                    tileGridGeoJson = tileGridGeoJson
+                    tileGridGeoJson = tileGridGeoJson,
                 )
             }
         }
@@ -100,7 +100,7 @@ fun HomeContent(
 
 @Preview
 @Composable
-fun PreviewHomeContent(){
+fun PreviewHomeContent() {
     HomeContent(
         latitude = null,
         longitude = null,
@@ -110,6 +110,6 @@ fun PreviewHomeContent(){
         onMapLongClick = { false },
         onMarkerClick = { true },
         searchBar = {},
-        tileGridGeoJson = ""
+        tileGridGeoJson = "",
     )
 }

@@ -19,52 +19,66 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
-
-
-data class SearchItem(
-    val text: String,
-    val label: String,
-)
+import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
+import org.scottishtecharmy.soundscape.utils.buildAddressFormat
 
 @Composable
-fun SearchItemButton(item: SearchItem, onClick: () -> Unit, modifier: Modifier,) {
+fun SearchItemButton(
+    item: LocationDescription,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Button(
         onClick = onClick,
         shape = RoundedCornerShape(0),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.tertiary,
-        ),
+        colors =
+            ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.tertiary,
+            ),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 Icons.Rounded.LocationOn,
-                contentDescription = "Choose destination",
-                tint = Color.White
+                contentDescription = null,
+                tint = Color.White,
             )
-            Column(modifier = Modifier.padding(start = 18.dp)) {
-                Text(
-                    item.text,
-                    fontWeight = FontWeight(400),
-                    fontSize = 18.sp,
-                    color = Color.White,
-                )
-                Text(
-                    item.label,
-                    color = Foreground2,
-                    fontWeight = FontWeight(350),
-                )
+            Column(
+                modifier = Modifier.padding(start = 18.dp),
+                verticalArrangement = Arrangement.spacedBy(5.dp),
+            ) {
+                item.adressName?.let {
+                    Text(
+                        text = it,
+                        fontWeight = FontWeight(700),
+                        fontSize = 22.sp,
+                        color = Color.White,
+                    )
+                }
+                item.distance?.let {
+                    Text(
+                        text = it,
+                        color = Foreground2,
+                        fontWeight = FontWeight(450),
+                    )
+                }
+                item.buildAddressFormat()?.let {
+                    Text(
+                        text = it,
+                        fontWeight = FontWeight(400),
+                        fontSize = 18.sp,
+                        color = PaleBlue,
+                    )
+                }
             }
         }
     }
@@ -74,14 +88,24 @@ fun SearchItemButton(item: SearchItem, onClick: () -> Unit, modifier: Modifier,)
 @Composable
 fun PreviewSearchItemButton() {
     IntroductionTheme {
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        )
-        {
-            val test = SearchItem("Bristol", "1")
+            verticalArrangement = Arrangement.Center,
+        ) {
+            val test =
+                LocationDescription(
+                    adressName = "Bristol",
+                    streetNumberAndName = "18 Street",
+                    postcodeAndLocality = "59000 Lille",
+                    distance = "17 Km",
+                    country = "France",
+                    latitude = 9.55,
+                    longitude = 8.00,
+                )
             SearchItemButton(test, onClick = {}, Modifier.width(200.dp))
         }
     }

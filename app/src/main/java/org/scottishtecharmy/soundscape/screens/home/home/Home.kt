@@ -42,6 +42,8 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
@@ -56,12 +58,17 @@ fun HomePreview() {
         onMapLongClick = { false },
         onMarkerClick = { true },
         getMyLocation = {},
-        getWhatsAheadOfMe = {},
         getWhatsAroundMe = {},
+        getWhatsAheadOfMe = {},
         shareLocation = {},
         rateSoundscape = {},
         streetPreviewEnabled = false,
-        tileGridGeoJson = ""
+        tileGridGeoJson = "",
+        searchText = "Lille",
+        isSearching = true,
+        onSearchTextChange = {},
+        onToogleSearch = {},
+        searchItems = emptyList(),
     )
 }
 
@@ -79,9 +86,14 @@ fun Home(
     getWhatsAheadOfMe: () -> Unit,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
-    streetPreviewEnabled : Boolean,
+    streetPreviewEnabled: Boolean,
     modifier: Modifier = Modifier,
-    tileGridGeoJson: String
+    tileGridGeoJson: String,
+    searchText: String,
+    isSearching: Boolean,
+    onSearchTextChange: (String) -> Unit,
+    onToogleSearch: () -> Unit,
+    searchItems: List<LocationDescription>,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -93,9 +105,9 @@ fun Home(
                 onNavigate = onNavigate,
                 drawerState = drawerState,
                 shareLocation = shareLocation,
-                rateSoundscape = rateSoundscape
+                rateSoundscape = rateSoundscape,
             )
-                        },
+        },
         gesturesEnabled = false,
         modifier = modifier,
     ) {
@@ -104,7 +116,7 @@ fun Home(
                 HomeTopAppBar(
                     drawerState,
                     coroutineScope,
-                    streetPreviewEnabled
+                    streetPreviewEnabled,
                 )
             },
             bottomBar = {
@@ -126,17 +138,31 @@ fun Home(
                 onNavigate = onNavigate,
                 searchBar = {
                     MainSearchBar(
-                        searchText = "",
-                        isSearching = false,
-                        itemList = emptyList(),
-                        onSearchTextChange = { },
-                        onToggleSearch = { },
-                        onItemClick = { },
+                        searchText = searchText,
+                        isSearching = isSearching,
+                        itemList = searchItems,
+                        onSearchTextChange = onSearchTextChange,
+                        onToggleSearch = onToogleSearch,
+                        onItemClick = { item ->
+                            onNavigate(
+                                generateLocationDetailsRoute(
+                                    LocationDescription(
+                                        adressName = item.adressName,
+                                        streetNumberAndName = item.streetNumberAndName,
+                                        postcodeAndLocality = item.postcodeAndLocality,
+                                        country = item.country,
+                                        distance = item.distance,
+                                        latitude = item.latitude,
+                                        longitude = item.longitude,
+                                    ),
+                                ),
+                            )
+                        },
                     )
                 },
                 onMapLongClick = onMapLongClick,
                 onMarkerClick = onMarkerClick,
-                tileGridGeoJson = tileGridGeoJson
+                tileGridGeoJson = tileGridGeoJson,
             )
         }
     }
@@ -147,19 +173,21 @@ fun Home(
 fun HomeTopAppBar(
     drawerState: DrawerState,
     coroutineScope: CoroutineScope,
-    streetPreviewEnabled : Boolean
+    streetPreviewEnabled: Boolean,
 ) {
     val context = LocalContext.current
     TopAppBar(
         colors =
             TopAppBarDefaults.topAppBarColors(
                 containerColor = MaterialTheme.colorScheme.background,
-                titleContentColor = Color.White,
+                titleContentColor = MaterialTheme.colorScheme.onBackground,
             ),
-        title = { Text(
-            text = stringResource(R.string.app_name),
-            modifier = Modifier.semantics { heading() }
-        ) },
+        title = {
+            Text(
+                text = stringResource(R.string.app_name),
+                modifier = Modifier.semantics { heading() },
+            )
+        },
         navigationIcon = {
             IconButton(
                 onClick = {
@@ -179,9 +207,9 @@ fun HomeTopAppBar(
                 checked = streetPreviewEnabled,
                 enabled = true,
                 onCheckedChange = { state ->
-                    if(!state) {
+                    if (!state) {
                         (context as MainActivity).soundscapeServiceConnection.setStreetPreviewMode(
-                            false
+                            false,
                         )
                     }
                 },
@@ -189,14 +217,14 @@ fun HomeTopAppBar(
                 if (streetPreviewEnabled) {
                     Icon(
                         Icons.Rounded.Preview,
-                    tint = MaterialTheme.colorScheme.primary,
-                    contentDescription = stringResource(R.string.street_preview_enabled)
+                        tint = MaterialTheme.colorScheme.primary,
+                        contentDescription = stringResource(R.string.street_preview_enabled),
                     )
                 } else {
                     Icon(
                         painterResource(R.drawable.preview_off),
                         tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = stringResource(R.string.street_preview_disabled)
+                        contentDescription = stringResource(R.string.street_preview_disabled),
                     )
                 }
             }

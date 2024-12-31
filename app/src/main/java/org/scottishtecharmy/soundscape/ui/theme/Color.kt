@@ -17,7 +17,7 @@ val OnSurface = Color.White
 val OnSurfaceVariant = Color.DarkGray
 val surfaceBright = Color.Cyan
 val transparent = Color.Transparent
-
+val PaleBlue = Color(0xFFB6F2EC)
 val Foreground1 = Color(0xFF93F7F6) // Light Cyan
 val Foreground2 = Color(0xFFFFEE59) // Bright Yellow
 
@@ -38,14 +38,16 @@ val IntroPrimary = Color(0xFFFFFFFF) // White
 val IntroBlue = Color(0xFF196497) // Medium Blue
 val IntroBlue2 = Color(0xFF083865) // Dark Blue
 
-val gradientBackgroundIntro = Brush.linearGradient(
-    colors = listOf(PurpleGradientDark, PurpleGradientLight),
-    start = Offset(0f, 0f),
-    end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
-)
+val gradientBackgroundIntro =
+    Brush.linearGradient(
+        colors = listOf(PurpleGradientDark, PurpleGradientLight),
+        start = Offset(0f, 0f),
+        end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY),
+    )
 
-val blueGradientBackgroundIntro = Brush.linearGradient(
-    colors = listOf(IntroBlue, IntroBlue2),
-    start = Offset(0f, 0f),
-    end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)
-)
+val blueGradientBackgroundIntro =
+    Brush.linearGradient(
+        colors = listOf(IntroBlue, IntroBlue2),
+        start = Offset(0f, 0f),
+        end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY),
+    )
