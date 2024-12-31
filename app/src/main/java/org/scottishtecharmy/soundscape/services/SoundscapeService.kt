@@ -178,6 +178,9 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        Log.d(TAG, "onTaskRemoved for service - ignoring, as we want to keep running")
+    }
     override fun onDestroy() {
         // If _mediaSession is not null, run the following block
         mediaSession?.run {
