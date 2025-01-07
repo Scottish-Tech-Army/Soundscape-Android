@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
@@ -52,6 +53,8 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
+import java.io.File
+import java.io.FileOutputStream
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
@@ -85,6 +88,7 @@ class GeoEngine {
     lateinit var localizedContext: Context
 
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
 
     private var inVehicle = false
     private var inMotion = false
@@ -194,6 +198,18 @@ class GeoEngine {
     ) {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
+        sharedPreferencesListener =
+            SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
+                if (sharedPreferences == preferences) {
+                    if(key == MainActivity.RECORD_TRAVEL_KEY) {
+                        Log.e(TAG, "RECORD_TRAVEL_KEY changed")
+                        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
+                    }
+                }
+            }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
+        application.applicationContext
+        travelFile = File(application.applicationContext.filesDir, "travel.json")
 
         gridState.start(application)
 
@@ -251,6 +267,28 @@ class GeoEngine {
         gridState.stop()
         locationProvider.destroy()
         directionProvider.destroy()
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
+   }
+    private var recordTravel = false
+    private var travelFile: File? = null
+
+    private fun writeLocationToFile(location: Location, heading: Float) {
+
+        val jsonString =
+            "\"location\": {\n" +
+            "\"latitude\": \"${location.latitude}\",\n" +
+            "\"longitude\": \"${location.longitude}\",\n" +
+            "\"altitude\": \"${location.altitude}\",\n" +
+            "\"accuracy\": \"${location.accuracy}\",\n" +
+            "\"speed\": \"${location.speed}\",\n" +
+            "\"bearing\": \"${location.bearing}\",\n" +
+            "\"bearingAccuracyDegrees\": \"${location.bearingAccuracyDegrees}\",\n" +
+            "\"time\": \"${location.time}\"\n" +
+            "\"heading\": \"${heading}\"\n" +
+            "},\n"
+        FileOutputStream(travelFile, true).use { outputStream ->
+            outputStream.write(jsonString.toByteArray())
+        }
     }
 
     /**
@@ -325,6 +363,11 @@ class GeoEngine {
                         if (callouts.isNotEmpty()) {
                             // Tell the service that we've got some callouts to tell the user about
                             soundscapeService.speakCallout(callouts, false)
+                        }
+
+                        // Save the location data to a file if enabled
+                        if(recordTravel) {
+                            writeLocationToFile(location, directionProvider.orientationFlow.value?.headingDegrees ?: 0.0F)
                         }
                     }
                 }
