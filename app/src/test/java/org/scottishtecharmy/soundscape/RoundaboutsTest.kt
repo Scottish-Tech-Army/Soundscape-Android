@@ -4,40 +4,36 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.Circle
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
-import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
-import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
-import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFOVFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getQuadrants
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringIsCircular
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Geometry
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
 
 class RoundaboutsTest {
     //TODO There are a lot of different types of roundabouts so this might take me a while to work out
@@ -59,11 +55,11 @@ class RoundaboutsTest {
             )
 
         // create FOV to pickup the road(s) and roundabout
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
 
         // It is straightforward to detect a roundabout if it has been tagged properly but
@@ -91,20 +87,24 @@ class RoundaboutsTest {
                 featureCollectionTest
             )
 
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
-        val nearestIntersection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
-        val distanceToRoundabout = getDistanceToFeatureCollection(
-            currentLocation.latitude,
-            currentLocation.longitude, nearestIntersection
-        )
+
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
+            currentLocation,
+            points.left,
+            points.right)
+
+        val distanceToRoundabout = getDistanceToFeature(currentLocation, nearestIntersection)
         // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
         println("Roundabout with ${roundaboutExitRoads.features.size} " +
-                "exits ${distanceToRoundabout.features[0].foreign?.get("distance_to")} away")
+                "exits $distanceToRoundabout away")
 
         // Detect the relative directions of the exit roads ahead left, ahead, ahead right, blah
         // easiest way is probably to put a bounding box around the roundabout circle, find the center of the circle,
@@ -114,10 +114,9 @@ class RoundaboutsTest {
         val boundingBoxOfCircle = getBoundingBoxOfLineString(roundaboutCircleRoad.features[0].geometry as LineString)
         val boundingBoxOfCircleCorners = getBoundingBoxCorners(boundingBoxOfCircle)
         val centerOfBoundingBox = getCenterOfBoundingBox(boundingBoxOfCircleCorners)
-        val testNearestIntersection = getNearestIntersection(
-            currentLocation,fovIntersectionsFeatureCollection)
         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
-        val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, deviceHeading)
+        val testNearestRoadBearing =
+            getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
         val roundaboutRoadsRelativeDirections = getRelativeDirectionsPolygons(
             centerOfBoundingBox,
             testNearestRoadBearing,
@@ -157,38 +156,11 @@ class RoundaboutsTest {
         //val intersections = moshi.adapter(FeatureCollection::class.java).toJson(fovIntersectionsFeatureCollection)
         //println("intersections: $intersections")
 
-        // Below is just the visual part to display the FOV and check we are picking up the roundabout and roads
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
-
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
-
         // We can now construct our FOV polygon (triangle)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
+            points.left,
             currentLocation,
-            destinationCoordinateRight
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {
@@ -226,11 +198,11 @@ class RoundaboutsTest {
                 featureCollectionTest!!
             )
         // create FOV to pickup the roads
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Get the intersections from the tile
         val testIntersectionsCollectionFromTileFeatureCollection =
@@ -238,19 +210,15 @@ class RoundaboutsTest {
                 featureCollectionTest
             )
 
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
-        )
-
         // get the nearest intersection in the FoV and the roads that make up the intersection
-        val testNearestIntersection = getNearestIntersection(
-            currentLocation,fovIntersectionsFeatureCollection)
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
+            currentLocation,
+            points.left,
+            points.right)
 
         // This will remove the duplicate "osm_ids" from the intersection
-        val cleanNearestIntersection = removeDuplicates(testNearestIntersection)
+        val cleanNearestIntersection = removeDuplicates(nearestIntersection)
 
         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
 
@@ -266,7 +234,7 @@ class RoundaboutsTest {
             }
 
         }
-        val intersectionLocation = cleanNearestIntersection.features[0].geometry as Point
+        val intersectionLocation = cleanNearestIntersection!!.geometry as Point
 
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
@@ -312,24 +280,19 @@ class RoundaboutsTest {
             featureCollectionTest
         )
         // create FOV to pickup the road(s) and roundabout (this won't detect every road as we are too far away)
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
-        )
-        // create FOV to pickup the intersections (this won't detect every intersection as we are too far away)
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // get the nearest intersection in the FoV
-        val testNearestIntersection = getNearestIntersection(
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val testNearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
             currentLocation,
-            fovIntersectionsFeatureCollection
-        )
+            points.left,
+            points.right)
+
         // get the roads that make up the intersection - this is where the road splits into two "oneway" roads
         val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
         println("Number of roads that make up the nearest intersection ${intersectionRoadNames.features.size}")
@@ -337,7 +300,7 @@ class RoundaboutsTest {
         // "oneway" and "yes" tags and that the road names are all the same
         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
         for (road in intersectionRoadNames) {
-            if(testNearestRoad.features[0].properties?.get("name") == road.properties?.get("name")
+            if(testNearestRoad!!.properties?.get("name") == road.properties?.get("name")
                 && road.properties?.get("oneway") == "yes"){
                 println("Intersection is probably a compound roundabout or compound intersection and we don't want to call it out.")
             }
@@ -405,9 +368,12 @@ class RoundaboutsTest {
                 val allIntersectionsInRoundabout = FeatureCollection()
                 // this is looping through each FoV triangle in the roundabout
                 for (triangle in intersectionRelativeDirectionsPolygons){
-                    val fovRoundaboutRoadsFeatureCollection = getRoadsFovFeatureCollection(
-                        testRoadsCollectionFromTileFeatureCollection,
-                        triangle.geometry as Polygon
+
+                    val geometry = triangle.geometry as Geometry<ArrayList<LngLatAlt>>
+                    val fovRoundaboutRoadsFeatureCollection = FeatureTree(testRoadsCollectionFromTileFeatureCollection).generateFeatureCollectionWithinTriangle(
+                        geometry.coordinates[0][0],
+                        geometry.coordinates[0][1],
+                        geometry.coordinates[0][2]
                     )
                     for (road in fovRoundaboutRoadsFeatureCollection){
                         // roads can span multiple triangles so we need to check for duplicates later
@@ -415,9 +381,10 @@ class RoundaboutsTest {
                             allRoadsInRoundabout.addFeature(road)
                         }
                     }
-                    val fovRoundaboutIntersectionsFeatureCollection = getIntersectionsFOVFeatureCollection(
-                        testIntersectionsCollectionFromTileFeatureCollection,
-                        triangle.geometry as Polygon
+                    val fovRoundaboutIntersectionsFeatureCollection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).generateFeatureCollectionWithinTriangle(
+                        geometry.coordinates[0][0],
+                        geometry.coordinates[0][1],
+                        geometry.coordinates[0][2]
                     )
                     for (intersection in fovRoundaboutIntersectionsFeatureCollection){
                         allIntersectionsInRoundabout.addFeature(intersection)
@@ -495,12 +462,8 @@ class RoundaboutsTest {
 
 
 
-                val distanceToRoundabout = distance(
-                    currentLocation.latitude,
-                    currentLocation.longitude,
-                    roundaboutCenter.center.latitude,
-                    roundaboutCenter.center.longitude
-                )
+                val distanceToRoundabout = currentLocation.distance(roundaboutCenter.center)
+
                 // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
                 println(
                     "Roundabout with ${duplicateRoadsRemoved.features.size} " +
@@ -513,43 +476,12 @@ class RoundaboutsTest {
                 // we won't ever get here in this test as there is no circle just segments/linestrings
                 println("Circle exists")
             }
-
-
         }
 
-
-        // Below is just the visual part to display the FOV and check we are picking up the roundabout and roads
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
-
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
-
-        // We can now construct our FOV polygon (triangle)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
+            points.left,
             currentLocation,
-            destinationCoordinateRight
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {

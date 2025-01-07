@@ -2,13 +2,13 @@ package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToIntersection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 
 class MarkersTest {
 
@@ -22,20 +22,18 @@ class MarkersTest {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val markersFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJSONMarkers.markersFeatureCollection)
+        val markersTree = FeatureTree(markersFeatureCollectionTest)
 
         // I'm just reusing the Intersection functions here for the markers test
-        val fovMarkersFeatureCollection = getFovIntersectionFeatureCollection(
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val nearestMarker = markersTree.getNearestFeatureWithinTriangle(
             currentLocation,
-            deviceHeading,
-            fovDistance,
-            markersFeatureCollectionTest!!
-        )
-        // I'm just reusing the Intersection functions here for the markers test
-        val nearestMarker = getNearestIntersection(currentLocation, fovMarkersFeatureCollection)
-        val nearestPoint = nearestMarker.features[0].geometry as Point
+            points.left,
+            points.right)
+        val nearestPoint = nearestMarker!!.geometry as Point
         val nearestMarkerDistance = distanceToIntersection(currentLocation, nearestPoint)
 
-        println("Approaching ${nearestMarker.features[0].properties!!["marker"]} marker at $nearestMarkerDistance meters")
+        println("Approaching ${nearestMarker.properties!!["marker"]} marker at $nearestMarkerDistance meters")
 
 
     }

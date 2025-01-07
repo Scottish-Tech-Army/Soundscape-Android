@@ -15,6 +15,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import com.squareup.moshi.Moshi
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import java.io.FileOutputStream
 import java.lang.Math.toDegrees
 import java.util.PriorityQueue
 import kotlin.math.PI
@@ -218,6 +220,7 @@ fun getBusStopsFeatureCollectionFromTileFeatureCollection(
             }
         }
     }
+
     return busStopFeatureCollection
 }
 
@@ -457,560 +460,104 @@ fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Arra
     return  tileData
 }
 
-/**
- * There's a bug in the backend API where the GeoJSON can contain data that isn't part of the tile
- * for example the 16/32277/21812.json contains MultiPolygons for the University of Law,
- * University of Bristol, and Monarchs Way walking route. This strips out Features that someone has
- * wrapped giant polygons around in the original OSM data. Need to see if there is a fix for this on the backend...
- * @param tileX
- * Slippy tile X.
- * @param tileY
- * Slippy tile Y.
- * @param zoom
- * Zoom level should be 16.0
- * @param geoJSONTile
- * String that represents the tile.
- * @return String representing the cleaned tile.
- */
-fun cleanTileGeoJSON(
-    tileX: Int,
-    tileY: Int,
-    zoom: Int,
-    geoJSONTile: String
-): String {
-    // create a feature collection from the string
-    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-    val tileFeatureCollection: FeatureCollection? =
-        moshi.adapter(FeatureCollection::class.java).fromJson(geoJSONTile)
+data class FovLeftRight(val left: LngLatAlt, val right: LngLatAlt)
 
-    val tileBoundingBox = tileToBoundingBox(tileX, tileY, zoom)
-    val tilePolygon = getPolygonOfBoundingBox(tileBoundingBox)
-    // loop through the tile feature collection and add anything that is contained in the tile polygon
-    // to a new feature collection and dump the weirdness
-    val cleanTileFeatureCollection = FeatureCollection()
-
-    if (tileFeatureCollection != null) {
-        for (feature in tileFeatureCollection){
-            when (feature.geometry.type) {
-                "Point" -> {
-                    val lngLatAlt = (feature.geometry as Point).coordinates
-                    val testPoint = polygonContainsCoordinates(lngLatAlt, tilePolygon)
-                    if (testPoint){
-                        cleanTileFeatureCollection.addFeature(feature)
-                    }
-                }
-
-                "MultiPoint" -> {
-                    for (point in (feature.geometry as MultiPoint).coordinates) {
-                        val testPoint = polygonContainsCoordinates(point, tilePolygon)
-                        if (testPoint){
-                            cleanTileFeatureCollection.addFeature(feature)
-                            // at least one of the points is in the tile so add the entire
-                            // MultiPoint Feature and break
-                            break
-                        }
-                    }
-                }
-
-                "LineString" -> {
-                    for (point in (feature.geometry as LineString).coordinates){
-                        val testPoint = polygonContainsCoordinates(point, tilePolygon)
-                        if (testPoint) {
-                            cleanTileFeatureCollection.addFeature(feature)
-                            // at least one of the points is in the tile so add the entire
-                            // LineString Feature and break
-                            break
-                        }
-                    }
-                }
-
-                "MultiLineString" -> {
-                    for (lineString in (feature.geometry as MultiLineString).coordinates) {
-                        for (point in lineString) {
-                            val testPoint = polygonContainsCoordinates(point, tilePolygon)
-                            if (testPoint) {
-                                cleanTileFeatureCollection.addFeature(feature)
-                                // at least one of the points is in the tile so add the entire
-                                // MultiLineString Feature and break
-                                break
-                            }
-                        }
-                    }
-                }
-
-                "Polygon" -> {
-                    for (geometry in (feature.geometry as Polygon).coordinates) {
-                        for (point in geometry) {
-                            val testPoint = polygonContainsCoordinates(point, tilePolygon)
-                            if (testPoint) {
-                                cleanTileFeatureCollection.addFeature(feature)
-                                // at least one of the points is in the tile so add the entire
-                                // Polygon Feature and break
-                                break
-                            }
-                        }
-                    }
-                }
-
-                "MultiPolygon" -> {
-                    for (polygon in (feature.geometry as MultiPolygon).coordinates) {
-                        for (linearRing in polygon) {
-                            for (point in linearRing) {
-                                val testPoint = polygonContainsCoordinates(point, tilePolygon)
-                                if (testPoint) {
-                                    cleanTileFeatureCollection.addFeature(feature)
-                                    // at least one of the points is in the tile so add the entire
-                                    // MultiPolygon Feature and break
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
-
-                else -> println("Unknown type ${feature.geometry.type}")
-            }
+fun getFovTrianglePoints(location: LngLatAlt,
+                         heading: Double,
+                         distance: Double) : FovLeftRight {
+    // Direction the device is pointing
+    val quadrants = getQuadrants(heading)
+    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
+    var quadrantIndex = 0
+    for (quadrant in quadrants) {
+        val containsHeading = quadrant.contains(heading)
+        if (containsHeading) {
+            break
+        } else {
+            quadrantIndex++
         }
     }
-    return moshi.adapter(FeatureCollection::class.java).toJson(cleanTileFeatureCollection)
+    // Get the coordinate for the "Left" of the FOV
+    val points = FovLeftRight(
+        getDestinationCoordinate(
+            LngLatAlt(location.longitude, location.latitude),
+            quadrants[quadrantIndex].left,
+            distance
+        ),
+        getDestinationCoordinate(
+            LngLatAlt(location.longitude, location.latitude),
+            quadrants[quadrantIndex].right,
+            distance
+        )
+    )
+
+    return points
 }
 
 /**
- * Return a Feature Collection that contains the Intersections in the "field of view" triangle.
+ * Return a Feature Collection that contains the Features within the "field of view" triangle.
  * @param location
  * Location of the device.
  * @param heading
  * Direction the device is pointing.
  * @param distance
  * Distance to extend the "field of view"
- * @param intersectionsFeatureCollection
- * The intersections feature collection that we want to filter.
- * @return A Feature Collection that contains the Intersections in the FOV triangle.
+ * @param featureTree
+ * The feature tree that we want to filter.
+ * @return A Feature Collection that contains the Features in the FOV triangle.
  */
-fun getFovIntersectionFeatureCollection(
+fun getFovFeatureCollection(
     location: LngLatAlt,
     heading: Double,
     distance: Double,
-    intersectionsFeatureCollection: FeatureCollection
+    featureTree: FeatureTree
 ): FeatureCollection {
-    // Direction the device is pointing
-    val quadrants = getQuadrants(heading)
-    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-    var quadrantIndex = 0
-    for (quadrant in quadrants) {
-        val containsHeading = quadrant.contains(heading)
-        if (containsHeading) {
-            break
-        } else {
-            quadrantIndex++
-        }
-    }
-    // Get the coordinate for the "Left" of the FOV
-    val destinationCoordinateLeft = getDestinationCoordinate(
-        LngLatAlt(location.longitude, location.latitude),
-        quadrants[quadrantIndex].left,
-        distance
-    )
 
-    //Get the coordinate for the "Right" of the FOV
-    val destinationCoordinateRight = getDestinationCoordinate(
-        LngLatAlt(location.longitude, location.latitude),
-        quadrants[quadrantIndex].right,
-        distance
-    )
-
-    // We can now construct our FOV polygon (triangle)
-    val polygonTriangleFOV = createTriangleFOV(
-        destinationCoordinateLeft,
-        location,
-        destinationCoordinateRight
-    )
-
-    // only the intersections Features that are in the FOV triangle are returned
-    return getIntersectionsFOVFeatureCollection(intersectionsFeatureCollection, polygonTriangleFOV)
+    val points = getFovTrianglePoints(location, heading, distance)
+    return featureTree.generateFeatureCollectionWithinTriangle(location, points.left, points.right)
 }
 
-/**
- * Return a Feature Collection that contains the intersections in the "field of view" triangle.
- * @param intersectionsFeatureCollection
- * The intersections feature collection for a tile.
- * @param polygonTriangleFOV
- * The triangle to see what intersections it contains.
- * @return A Feature Collection that contains the intersections in the FOV triangle.
- */
-fun getIntersectionsFOVFeatureCollection(
-    intersectionsFeatureCollection: FeatureCollection,
-    polygonTriangleFOV: Polygon
-): FeatureCollection {
-    // Are any of the points from the intersectionsFeatureCollection contained in the polygonTriangleFOV
-    val intersectionsFOVFeatureCollection = FeatureCollection()
-
-    for (feature in intersectionsFeatureCollection) {
-        when(feature.geometry.type) {
-            "Point" -> {
-                val testPoint = LngLatAlt(
-                    (feature.geometry as Point).coordinates.longitude,
-                    (feature.geometry as Point).coordinates.latitude,
-
-                    )
-                val containsCoordinate =
-                    polygonContainsCoordinates(testPoint, polygonTriangleFOV)
-                if (containsCoordinate) {
-                    intersectionsFOVFeatureCollection.addFeature(feature)
-                }
-            }
-        }
-    }
-    // only the intersections Features that are in the FOV triangle are returned
-    return intersectionsFOVFeatureCollection
-}
-
-/**
- * Return a roads feature collection that is contained in the "field of view".
- * @param location
- * Location where the device is.
- * @param heading
- * Direction the device is pointing.
- * @param distance
- * Distance to the destination points ("left" point and "right" point) in meters.
- * @param roadsFeatureCollection
- * Feature Collection that contains the roads to check.
- * @return The road features that are contained in the FOV triangle.
- */
-fun getFovRoadsFeatureCollection(
+fun getNearestFovFeature(
     location: LngLatAlt,
     heading: Double,
     distance: Double,
-    roadsFeatureCollection: FeatureCollection
-): FeatureCollection {
-    // Direction the device is pointing
-    val quadrants = getQuadrants(heading)
-    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-    var quadrantIndex = 0
-    for (quadrant in quadrants) {
-        val containsHeading = quadrant.contains(heading)
-        if (containsHeading) {
-            break
-        } else {
-            quadrantIndex++
-        }
-    }
-    // Get the coordinate for the "Left" of the FOV
-    val destinationCoordinateLeft = getDestinationCoordinate(
-        LngLatAlt(location.longitude, location.latitude),
-        quadrants[quadrantIndex].left,
-        distance
-    )
+    featureTree: FeatureTree
+): Feature? {
 
-    //Get the coordinate for the "Right" of the FOV
-    val destinationCoordinateRight = getDestinationCoordinate(
-        LngLatAlt(location.longitude, location.latitude),
-        quadrants[quadrantIndex].right,
-        distance
-    )
-
-    // We can now construct our FOV polygon (triangle)
-    val polygonTriangleFOV = createTriangleFOV(
-        destinationCoordinateLeft,
-        location,
-        destinationCoordinateRight
-    )
-
-    // only the road Features that are in the FOV triangle are returned
-    return getRoadsFovFeatureCollection(roadsFeatureCollection, polygonTriangleFOV)
-}
-
-/**
- * Return a Feature Collection that contains the roads in the "field of view" triangle.
- * @param roadsFeatureCollection
- * The roads feature collection for a tile.
- * @param polygonTriangleFOV
- * The triangle that is being tested to see what roads it contains.
- * @return A Feature Collection that contains the roads in the FOV triangle.
- */
-fun getRoadsFovFeatureCollection(
-    roadsFeatureCollection: FeatureCollection,
-    polygonTriangleFOV: Polygon ): FeatureCollection {
-
-    // Are any of the points from the roadsFeatureCollection contained in the polygonTriangleFOV
-    val roadsFOVFeatureCollection = FeatureCollection()
-    for (feature in roadsFeatureCollection) {
-        when(feature.geometry.type) {
-            "LineString" -> {
-                for (coordinate in (feature.geometry as LineString).coordinates) {
-                    val containsCoordinate =
-                        polygonContainsCoordinates(coordinate, polygonTriangleFOV)
-                    if (containsCoordinate) {
-                        roadsFOVFeatureCollection.addFeature(feature)
-                        break
-                    }
-                }
-                // If the user is on a road and the FOV happens to be between two pairs of coordinates
-                // then we need to detect if the linestring intersects with the FOV polygon at any of its edges
-                // we first need to explode the road linestring into segments
-                val explodedLineStringFeatureCollection = FeatureCollection()
-                explodedLineStringFeatureCollection.addFeature(feature)
-                val explodedLinestring = explodeLineString(explodedLineStringFeatureCollection)
-                // Then we need to explode the polygonTriangleFOV into a set of linestrings
-                val explodedPolygonFeatureCollection = FeatureCollection()
-                val featurePolygon = Feature().also {
-                    val ars3: HashMap<String, Any?> = HashMap()
-                    ars3 += Pair("FoV", "Triangle to test against")
-                    it.properties = ars3
-                }
-                featurePolygon.geometry = polygonTriangleFOV
-                explodedPolygonFeatureCollection.addFeature(featurePolygon)
-                // the above is a bit fiddly as I wrote explodePolygon() to accept and return a Feature Collection
-                // maybe change that to accept a Feature or Polygon?
-                val explodedPolygon = explodePolygon(explodedPolygonFeatureCollection)
-                // detect if any of the linestrings intersect and add to the roadsFOVFeatureCollection
-                for (polygonFeature in explodedPolygon){
-                    for (explodedLineStringFeature in explodedLinestring){
-                        val lineStringsIntersect = lineStringsIntersect(polygonFeature.geometry as LineString, explodedLineStringFeature.geometry as LineString)
-                        if (lineStringsIntersect) {
-                            roadsFOVFeatureCollection.addFeature(feature)
-                            break
-                        }
-                    }
-                }
-
-            }
-            "Point" -> {
-                val testPoint = LngLatAlt(
-                    (feature.geometry as Point).coordinates.longitude,
-                    (feature.geometry as Point).coordinates.latitude,
-
-                    )
-                val containsCoordinate =
-                    polygonContainsCoordinates(testPoint, polygonTriangleFOV)
-                if (containsCoordinate) {
-                    roadsFOVFeatureCollection.addFeature(feature)
-                }
-            }
-        }
-    }
-    // We can have a situation where the road is added in multiple times as the
-    // road linestring can intersect the triangle FoV more than once so get rid of duplicates
-    // as we only want to know if it does intersect not how many times it intersects
-    val duplicatesRemoved = removeDuplicateOsmIds(roadsFOVFeatureCollection)
-    // only the road Features that are in the FOV triangle are returned
-    return duplicatesRemoved
-}
-
-/**
- * Return a poi feature collection that is contained in the "field of view".
- * @param location
- * Location where the device is.
- * @param heading
- * Direction the device is pointing.
- * @param distance
- * Distance to the destination points ("left" point and "right" point) in meters.
- * @param poiFeatureCollection
- * Points Of Interest Feature Collection to check.
- * @return The poi features that are contained in the FOV triangle.
- */
-fun getFovPoiFeatureCollection(
-    location: LngLatAlt,
-    heading: Double,
-    distance: Double,
-    poiFeatureCollection: FeatureCollection): FeatureCollection{
-    // Direction the device is pointing
-    val quadrants = getQuadrants(heading)
-    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-    var quadrantIndex = 0
-    for (quadrant in quadrants) {
-        val containsHeading = quadrant.contains(heading)
-        if (containsHeading) {
-            break
-        } else {
-            quadrantIndex++
-        }
-    }
-    // Get the coordinate for the "Left" of the FOV
-    val destinationCoordinateLeft = getDestinationCoordinate(
-        LngLatAlt(location.longitude, location.latitude),
-        quadrants[quadrantIndex].left,
-        distance
-    )
-
-    //Get the coordinate for the "Right" of the FOV
-    val destinationCoordinateRight = getDestinationCoordinate(
-        LngLatAlt(location.longitude, location.latitude),
-        quadrants[quadrantIndex].right,
-        distance
-    )
-
-    // We can now construct our FOV polygon (triangle)
-    val polygonTriangleFOV = createTriangleFOV(
-        destinationCoordinateLeft,
-        location,
-        destinationCoordinateRight
-    )
-
-    // only the road Features that are in the FOV triangle are returned
-    return getPoiFovFeatureCollection(poiFeatureCollection, polygonTriangleFOV)
-
-}
-
-/**
- * Return a Feature Collection that contains the Points Of Interest in the "field of view" triangle.
- * @param poiFeatureCollection
- * The poi feature collection for a tile.
- * @param polygonTriangleFOV
- * The triangle that is being tested to see what poi it contains.
- * @return A Feature Collection that contains the Points of Interest in the FOV triangle.
- */
-fun getPoiFovFeatureCollection(
-    poiFeatureCollection: FeatureCollection,
-    polygonTriangleFOV: Polygon): FeatureCollection {
-
-    // Are any of the points from the poiFeatureCollection contained in the polygonTriangleFOV
-    val poiFOVFeatureCollection = FeatureCollection()
-    for (feature in poiFeatureCollection) {
-        when(feature.geometry.type) {
-            "LineString" -> {
-                for (coordinate in (feature.geometry as LineString).coordinates) {
-                    val containsCoordinate =
-                        polygonContainsCoordinates(coordinate, polygonTriangleFOV)
-                    if (containsCoordinate) {
-                        poiFOVFeatureCollection.addFeature(feature)
-                        break
-                    }
-                }
-            }
-            "MultiLineString" -> {
-                for (lineString in (feature.geometry as MultiLineString).coordinates) {
-                    for (coordinate in lineString) {
-                        val testPoint = polygonContainsCoordinates(coordinate, polygonTriangleFOV)
-                        if (testPoint) {
-                            poiFOVFeatureCollection.addFeature(feature)
-                            break
-                        }
-                    }
-                }
-            }
-            "Polygon" -> {
-                for (geometry in (feature.geometry as Polygon).coordinates) {
-                    for (point in geometry) {
-                        val containsCoordinate =
-                            polygonContainsCoordinates(point, polygonTriangleFOV)
-                        if (containsCoordinate) {
-                            poiFOVFeatureCollection.addFeature(feature)
-                            break
-                        }
-                    }
-                }
-            }
-            "MultiPolygon" -> {
-                for (polygon in (feature.geometry as MultiPolygon).coordinates) {
-                    for (linearRing in polygon) {
-                        for (coordinate in linearRing) {
-                            val containsCoordinate =
-                                polygonContainsCoordinates(coordinate, polygonTriangleFOV)
-                            if (containsCoordinate) {
-                                poiFOVFeatureCollection.addFeature(feature)
-                                break
-                            }
-                        }
-                    }
-                }
-            }
-            "Point" -> {
-                val testPoint = LngLatAlt(
-                    (feature.geometry as Point).coordinates.longitude,
-                    (feature.geometry as Point).coordinates.latitude
-                    )
-                val containsCoordinate =
-                    polygonContainsCoordinates(testPoint, polygonTriangleFOV)
-                if (containsCoordinate) {
-                    poiFOVFeatureCollection.addFeature(feature)
-                }
-            }
-            "MultiPoint" -> {
-                for (point in (feature.geometry as MultiPoint).coordinates) {
-                    val containsCoordinate =
-                        polygonContainsCoordinates(point, polygonTriangleFOV)
-                    if (containsCoordinate){
-                        poiFOVFeatureCollection.addFeature(feature)
-                        break
-                    }
-                }
-            }
-        }
-    }
-    // only the poi Features that are in the FOV triangle are returned
-    return poiFOVFeatureCollection
-}
-
-/**
- * Get nearest intersection from intersections Feature Collection.
- * WARNING: This is just a "straight line" haversine distance to an intersection it doesn't
- * care which direction the intersection is.
- * @param currentLocation
- * Location of device.
- * @param intersectionFeatureCollection
- * The intersection feature collection that contains the intersections we want to test.
- * @return A Feature Collection that contains the nearest intersection.
- */
-fun getNearestIntersection(
-    currentLocation: LngLatAlt,
-    intersectionFeatureCollection: FeatureCollection
-): FeatureCollection{
-
-    var maxDistanceToIntersection = Int.MAX_VALUE.toDouble()
-    var nearestIntersection = Feature()
-
-    for (feature in intersectionFeatureCollection) {
-        val distanceToIntersection = distance(
-            currentLocation.latitude,
-            currentLocation.longitude,
-            (feature.geometry as Point).coordinates.latitude,
-            (feature.geometry as Point).coordinates.longitude
-        )
-        if (distanceToIntersection < maxDistanceToIntersection){
-            nearestIntersection = feature
-            maxDistanceToIntersection = distanceToIntersection
-        }
-    }
-    val nearestIntersectionFeatureCollection = FeatureCollection()
-    // TODO As the distance to the intersection has already been calculated
-    //  perhaps we could insert the distance to the intersection as a property/foreign member of the Feature?
-    return nearestIntersectionFeatureCollection.addFeature(nearestIntersection)
+    val points = getFovTrianglePoints(location, heading, distance)
+    return featureTree.getNearestFeatureWithinTriangle(location, points.left, points.right)
 }
 
 /**
  * Get the road names/ref/road type that make up the intersection. Intersection objects only
  * contain "osm_ids" so we need to hook the osm_ids up with the information from the roads
  * feature collection
- * @param intersectionFeatureCollection
- * Feature collection that contains a single intersection
+ * @param intersectionFeature
+ * A single intersection
  * @param roadsFeatureCollection
  * A roads feature collection.
  * @return A Feature Collection that contains the roads that make up the nearest intersection.
  */
 fun getIntersectionRoadNames(
-    intersectionFeatureCollection: FeatureCollection,
+    intersectionFeature: Feature?,
     roadsFeatureCollection: FeatureCollection
 ): FeatureCollection {
 
     val intersectionRoads = FeatureCollection()
+    if(intersectionFeature == null) return intersectionRoads
 
-    for (intersectionFeature in intersectionFeatureCollection) {
-        val osmIds = intersectionFeature.foreign?.get("osm_ids") as? List<*> ?: continue
+    val osmIds = intersectionFeature.foreign?.get("osm_ids") as? List<*> ?: return intersectionRoads
 
-        for (item in osmIds) {
-            for (roadFeature in roadsFeatureCollection) {
-                val roadOsmIds = roadFeature.foreign?.get("osm_ids") as? List<*> ?: continue
-                if (roadOsmIds.firstOrNull() == item) {
-                    intersectionRoads.addFeature(roadFeature)
-                }
+    for (item in osmIds) {
+        for (roadFeature in roadsFeatureCollection) {
+            val roadOsmIds = roadFeature.foreign?.get("osm_ids") as? List<*> ?: return intersectionRoads
+            if (roadOsmIds.firstOrNull() == item) {
+                intersectionRoads.addFeature(roadFeature)
             }
         }
     }
     return intersectionRoads
 }
-
-
 
 /**
  * Get nearest road from roads Feature Collection.
@@ -1020,12 +567,12 @@ fun getIntersectionRoadNames(
  * Location of device.
  * @param roadFeatureCollection
  * The intersection feature collection that contains the intersections we want to test.
- * @return A Feature Collection that contains the nearest road.
+ * @return A Feature that is the nearest road.
  */
 fun getNearestRoad(
     currentLocation: LngLatAlt,
     roadFeatureCollection: FeatureCollection
-): FeatureCollection {
+): Feature? {
 
     //TODO I have no idea if roads can also be represented with MultiLineStrings.
     // In which case this will fail. Need to have a look at some tiles with motorways/dual carriageways
@@ -1065,67 +612,20 @@ fun getNearestRoad(
             }
         }
     }
-    val nearestRoadFeatureCollection = FeatureCollection()
-    if(nearestRoad != null) {
-        nearestRoadFeatureCollection.addFeature(nearestRoad)
-    }
+
     // TODO As the distance to the road has already been calculated
     //  perhaps we could insert the distance to the road as a property/foreign member of the Feature?
-    return nearestRoadFeatureCollection
-}
-
-/**
- * Get nearest Point Of Interest from poi Feature Collection.
- * WARNING: It doesn't care which direction the poi is and this is using bounding boxes
- * to calculate the distance which aren't that accurate depending on the shape and the size of the Poi.
- * Point - good accuracy. Giant, weirdly shaped polygon - bad accuracy.
- * @param currentLocation
- * Location of device.
- * @param poiFeatureCollection
- * The poi feature collection.
- * @return A Feature Collection that contains the nearest poi.
- */
-fun getNearestPoi(
-    currentLocation: LngLatAlt,
-    poiFeatureCollection: FeatureCollection
-): FeatureCollection {
-    val poiWithBoundingBoxAndDistance = addBoundingBoxAndDistanceToFeatureCollection(
-        currentLocation.latitude,
-        currentLocation.longitude,
-        poiFeatureCollection
-    )
-    var maxDistanceToPoi = Int.MAX_VALUE.toDouble()
-    var nearestPoi = Feature()
-    for (feature in poiWithBoundingBoxAndDistance){
-        feature.foreign?.let { foreign ->
-            if (foreign["distance_to"].toString().toDouble() < maxDistanceToPoi) {
-                nearestPoi = feature
-                maxDistanceToPoi = foreign["distance_to"].toString().toDouble()
-            }
-        }
-    }
-    val nearestPoiFeatureCollection = FeatureCollection()
-    // I've inserted the distance_to as a foreign member. Not sure if this is a good idea or not
-    return nearestPoiFeatureCollection.addFeature(nearestPoi)
+    return nearestRoad
 }
 
 fun getFeatureNearestPoint(
     currentLocation: LngLatAlt,
     feature: Feature
 ): LngLatAlt? {
-    val featureCollection = FeatureCollection()
-    featureCollection.addFeature(feature)
-    val poiWithBoundingBoxAndDistance = addBoundingBoxAndDistanceToFeatureCollection(
-        currentLocation.latitude,
-        currentLocation.longitude,
-        featureCollection
-    )
-    val geometry = poiWithBoundingBoxAndDistance.features[0].bbox
-    if(geometry != null) {
-        val box = BoundingBox(geometry)
-        return nearestPointOnBoundingBox(box, currentLocation)
-    }
-    return null
+
+    // Get the bounding box for the feature, and return the nearest point on it
+    val box = getBoundingBoxForFeature(feature) ?: return null
+    return nearestPointOnBoundingBox(box, currentLocation)
 }
 
 /**
@@ -1140,164 +640,120 @@ fun getFeatureNearestPoint(
  * @return a Feature Collection with bounding boxes added for each Feature and
  * the "distance_to" from the current location as a foreign member in meters.
  */
-fun addBoundingBoxAndDistanceToFeatureCollection(
-    currentLat: Double,
-    currentLon: Double,
-    featureCollection: FeatureCollection
-): FeatureCollection {
-    // Adding bounding box to each Feature so we can then calculate distance_to
-    // TODO It is a quick but crude measure of the center explore more accurate algorithms
-    for (feature in featureCollection) {
-        when (feature.geometry.type) {
-            "Point" -> {
-                val bbPoint = getBoundingBoxOfPoint(feature.geometry as Point)
-                val bbPointCorners = getBoundingBoxCorners(bbPoint)
-                val centerOfBBPoint = getCenterOfBoundingBox(bbPointCorners)
-                // Distance from current location lat/lon to center of bb for Feature
-                val distanceToFeaturePoint = distance(
-                    currentLat,
-                    currentLon,
-                    centerOfBBPoint.latitude,
-                    centerOfBBPoint.longitude
-                )
-                // Add the bounding box for the feature
-                feature.bbox = mutableListOf(
-                    bbPoint.westLongitude,
-                    bbPoint.southLatitude,
-                    bbPoint.eastLongitude,
-                    bbPoint.northLatitude
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeaturePoint)
+private fun getBoundingBoxForFeature(
+    feature: Feature?
+): BoundingBox? {
+    if(feature == null) return null
 
+    // Return the bounding box for the Feature
+    when (feature.geometry.type) {
+        "Point"             -> return getBoundingBoxOfPoint(feature.geometry as Point)
+        "MultiPoint"        -> return getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
+        "LineString"        -> return getBoundingBoxOfLineString(feature.geometry as LineString)
+        "MultiLineString"   -> return getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
+        "Polygon"           -> return getBoundingBoxOfPolygon(feature.geometry as Polygon)
+        "MultiPolygon"      -> return getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
+        else                -> println("Unknown type ${feature.geometry.type}")
+    }
+    return null
+}
+
+/**
+ * Given a Feature and a location this will calculate the nearest distance to it
+ * @param currentLocation
+ * Current location as LngLatAlt
+ * @param feature
+ * @return The distance between currentLocation and feature
+ */
+fun getDistanceToFeature(
+    currentLocation: LngLatAlt,
+    feature: Feature?
+): Double {
+    if(feature == null) return Double.NaN
+
+    when (feature.geometry.type) {
+        "Point" -> {
+            val point = feature.geometry as Point
+            val distanceToFeaturePoint = currentLocation.distance(
+                LngLatAlt(point.coordinates.longitude, point.coordinates.latitude)
+            )
+            return distanceToFeaturePoint
+        }
+
+        "MultiPoint" -> {
+            val multiPoint = feature.geometry as MultiPoint
+            var shortestDistance = Double.MAX_VALUE
+
+            for (point in multiPoint.coordinates) {
+                val distanceToPoint = currentLocation.distance(point)
+                if (distanceToPoint < shortestDistance) {
+                    shortestDistance = distanceToPoint
+                }
             }
+            // this is the closest point to the current location from the collection of points
+            return shortestDistance
+        }
 
-            "MultiPoint" -> {
-                val bbMultiPoint =
-                    getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
-                val bbMultiPointCorners = getBoundingBoxCorners(bbMultiPoint)
-                val centerOfBBMultiPoint =
-                    getCenterOfBoundingBox(bbMultiPointCorners)
-                // Distance from current location lat/lon to center of bb for Feature
-                val distanceToFeatureMultiPoint = distance(
-                    currentLat,
-                    currentLon,
-                    centerOfBBMultiPoint.latitude,
-                    centerOfBBMultiPoint.longitude
-                )
-                // Add the bounding box for the feature
-                feature.bbox = mutableListOf(
-                    bbMultiPoint.westLongitude,
-                    bbMultiPoint.southLatitude,
-                    bbMultiPoint.eastLongitude,
-                    bbMultiPoint.northLatitude
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeatureMultiPoint)
+        "LineString" -> {
+            val lineString = feature.geometry as LineString
+            val distanceToFeatureLineString = distanceToLineString(
+                currentLocation,
+                lineString
+            )
+            return distanceToFeatureLineString
+        }
+
+        "MultiLineString" -> {
+            val multiLineString = feature.geometry as MultiLineString
+            var shortestDistance = Double.MAX_VALUE
+
+            for (arrCoordinates in multiLineString.coordinates) {
+                for (coordinate in arrCoordinates) {
+                    val distanceToPoint = currentLocation.distance(
+                        LngLatAlt(coordinate.longitude, coordinate.latitude)
+                    )
+                    if (distanceToPoint < shortestDistance) {
+                        shortestDistance = distanceToPoint
+                    }
+                }
             }
+            return shortestDistance
+        }
 
-            "LineString" -> {
-                val bbLineString =
-                    getBoundingBoxOfLineString(feature.geometry as LineString)
-                val bbLineStringCorners = getBoundingBoxCorners(bbLineString)
-                val centerOfBBLineString =
-                    getCenterOfBoundingBox(bbLineStringCorners)
-                // Distance from current location lat/lon to center of bb for Feature
-                val distanceToFeatureLineString = distance(
-                    currentLat,
-                    currentLon,
-                    centerOfBBLineString.latitude,
-                    centerOfBBLineString.longitude
-                )
-                // Add the bounding box for the feature
-                feature.bbox = mutableListOf(
-                    bbLineString.westLongitude,
-                    bbLineString.southLatitude,
-                    bbLineString.eastLongitude,
-                    bbLineString.northLatitude
-                )
-                // insert a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeatureLineString)
+        "Polygon" -> {
+            val polygon = feature.geometry as Polygon
+            val distanceToFeaturePolygon = distanceToPolygon(
+                currentLocation,
+                polygon
+            )
+            return distanceToFeaturePolygon
+        }
+
+        "MultiPolygon" -> {
+            val multiPolygon = feature.geometry as MultiPolygon
+            var shortestDistance = Double.MAX_VALUE
+
+            for (arrCoordinates in multiPolygon.coordinates) {
+                for (arr in arrCoordinates) {
+                    for (coordinate in arr) {
+                        val distanceToPoint = currentLocation.distance(
+                            LngLatAlt(coordinate.longitude, coordinate.latitude)
+                        )
+                        if (distanceToPoint < shortestDistance) {
+                            shortestDistance = distanceToPoint
+                        }
+                    }
+                }
             }
+            // this is the shortest distance from current location to the collection of Polygons
+            return shortestDistance
+        }
 
-            "MultiLineString" -> {
-                val bbMultiLineString =
-                    getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
-                val bbMultiLineStringCorners =
-                    getBoundingBoxCorners(bbMultiLineString)
-                val centerOfBBMultiLineString =
-                    getCenterOfBoundingBox(bbMultiLineStringCorners)
-                // Distance from current location lat/lon to center of bb for Feature
-                val distanceToFeatureMultiLineString = distance(
-                    currentLat,
-                    currentLon,
-                    centerOfBBMultiLineString.latitude,
-                    centerOfBBMultiLineString.longitude
-                )
-                // Add the bounding box for the feature
-                feature.bbox = mutableListOf(
-                    bbMultiLineString.westLongitude,
-                    bbMultiLineString.southLatitude,
-                    bbMultiLineString.eastLongitude,
-                    bbMultiLineString.northLatitude
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeatureMultiLineString)
-            }
-
-            "Polygon" -> {
-                val bbPolygon =
-                    getBoundingBoxOfPolygon(feature.geometry as Polygon)
-                val bbPolygonCorners = getBoundingBoxCorners(bbPolygon)
-                val centerOfBBPolygon =
-                    getCenterOfBoundingBox(bbPolygonCorners)
-                // Distance from current location lat/lon to center of bb for Feature
-                val distanceToFeaturePolygon = distance(
-                    currentLat,
-                    currentLon,
-                    centerOfBBPolygon.latitude,
-                    centerOfBBPolygon.longitude
-                )
-                // Add the bounding box for the feature
-                feature.bbox = mutableListOf(
-                    bbPolygon.westLongitude,
-                    bbPolygon.southLatitude,
-                    bbPolygon.eastLongitude,
-                    bbPolygon.northLatitude
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeaturePolygon)
-            }
-
-            "MultiPolygon" -> {
-                val bbMultiPolygon =
-                    getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
-                val bbMultiPolygonCorners =
-                    getBoundingBoxCorners(bbMultiPolygon)
-                val centerOfBBMultiPolygon =
-                    getCenterOfBoundingBox(bbMultiPolygonCorners)
-                // Distance from current location lat/lon to center of bb for Feature
-                val distanceToFeatureMultiPolygon = distance(
-                    currentLat,
-                    currentLon,
-                    centerOfBBMultiPolygon.latitude,
-                    centerOfBBMultiPolygon.longitude
-                )
-                // Add the bounding box for the feature
-                feature.bbox = mutableListOf(
-                    bbMultiPolygon.westLongitude,
-                    bbMultiPolygon.southLatitude,
-                    bbMultiPolygon.eastLongitude,
-                    bbMultiPolygon.northLatitude
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeatureMultiPolygon)
-            }
-
-            else -> println("Unknown type ${feature.geometry.type}")
+        else -> {
+            println("Unknown type ${feature.geometry.type}")
+            return Double.NaN
         }
     }
-    return featureCollection
 }
 
 /**
@@ -1316,92 +772,9 @@ fun getDistanceToFeatureCollection(
     featureCollection: FeatureCollection
 ): FeatureCollection {
     for (feature in featureCollection) {
-        when (feature.geometry.type) {
-            "Point" -> {
-                val point = feature.geometry as Point
-                val distanceToFeaturePoint = distance(
-                    currentLat,
-                    currentLon,
-                    point.coordinates.latitude,
-                    point.coordinates.longitude
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeaturePoint)
-            }
-
-            "MultiPoint" -> {
-                val multiPoint = feature.geometry as MultiPoint
-                var shortestDistance = Double.MAX_VALUE
-
-                for (point in multiPoint.coordinates) {
-                    val distanceToPoint = distance(currentLat, currentLon, point.latitude, point.longitude)
-                    if (distanceToPoint < shortestDistance) {
-                        shortestDistance = distanceToPoint
-                    }
-                }
-                // this is the closest point to the current location from the collection of points
-                feature.foreign?.put("distance_to", shortestDistance)
-            }
-
-            "LineString" -> {
-                val lineString = feature.geometry as LineString
-                val distanceToFeatureLineString = distanceToLineString(
-                   LngLatAlt(currentLon, currentLat),
-                   lineString
-                )
-                // insert a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeatureLineString)
-            }
-
-            "MultiLineString" -> {
-                val multiLineString = feature.geometry as MultiLineString
-                var shortestDistance = Double.MAX_VALUE
-
-                for (arrCoordinates in multiLineString.coordinates) {
-                    for (coordinate in arrCoordinates) {
-                        val distanceToPoint = distance(currentLat, currentLon, coordinate.latitude, coordinate.longitude)
-                        if (distanceToPoint < shortestDistance) {
-                            shortestDistance = distanceToPoint
-                        }
-                    }
-                }
-                // this is the shortest distance from current location to the collection of line strings
-                feature.foreign?.put("distance_to", shortestDistance)
-            }
-
-            "Polygon" -> {
-                val polygon = feature.geometry as Polygon
-                val distanceToFeaturePolygon = distanceToPolygon(
-                    LngLatAlt(currentLon, currentLat),
-                    polygon
-                )
-                // inserting a new key value pair into feature.foreign for distance_to (meters)
-                feature.foreign?.put("distance_to", distanceToFeaturePolygon)
-            }
-
-            "MultiPolygon" -> {
-                val multiPolygon = feature.geometry as MultiPolygon
-                var shortestDistance = Double.MAX_VALUE
-
-                for (arrCoordinates in multiPolygon.coordinates) {
-                    for (arr in arrCoordinates) {
-                        for (coordinate in arr) {
-                            val distanceToPoint = distance(currentLat, currentLon, coordinate.latitude, coordinate.longitude)
-                            if (distanceToPoint < shortestDistance) {
-                                shortestDistance = distanceToPoint
-                            }
-                        }
-                    }
-                }
-                // this is the shortest distance from current location to the collection of Polygons
-                feature.foreign?.put("distance_to", shortestDistance)
-            }
-
-            else -> println("Unknown type ${feature.geometry.type}")
-        }
+        feature.foreign?.put("distance_to", getDistanceToFeature(LngLatAlt(currentLon, currentLat), feature))
     }
     return featureCollection
-
 }
 
 /**
@@ -1437,24 +810,22 @@ fun sortedByDistanceTo(
 }
 
 fun removeDuplicates(
-    intersectionToCheck: FeatureCollection
-): FeatureCollection {
+    intersectionToCheck: Feature?
+): Feature? {
 
-    val newFeatureCollection = FeatureCollection()
-    if(intersectionToCheck.features.isNotEmpty()) {
-        val osmIdsAtIntersection =
-            intersectionToCheck.features[0].foreign?.get("osm_ids") as? List<*>
-                ?: // Handle case where osmIds is null
-                return newFeatureCollection // Or handle the error differently
+    if(intersectionToCheck == null) return null
 
-        val uniqueOsmIds = osmIdsAtIntersection.toSet()
-        val cleanOsmIds = uniqueOsmIds.toList() // Convert back to list for potential modification
+    val osmIdsAtIntersection =
+        intersectionToCheck.foreign?.get("osm_ids") as? List<*>
+            ?: // Handle case where osmIds is null
+            return null // Or handle the error differently
 
-        val intersectionClean = intersectionToCheck.features[0]
-        intersectionClean.foreign?.set("osm_ids", cleanOsmIds)
-        newFeatureCollection.addFeature(intersectionClean)
-    }
-    return newFeatureCollection
+    val uniqueOsmIds = osmIdsAtIntersection.toSet()
+    val cleanOsmIds = uniqueOsmIds.toList() // Convert back to list for potential modification
+
+    val intersectionClean = intersectionToCheck
+    intersectionClean.foreign?.set("osm_ids", cleanOsmIds)
+    return intersectionClean
 }
 
 
@@ -1848,31 +1219,31 @@ fun splitRoadAtNode(
 
 
 /**
- * Given an intersection FeatureCollection and a road FeatureCollection will return the bearing of the road
- * to the intersection
+ * Given an intersection Feature and a road Feature will return the bearing of the road to the
+ * intersection
  * @param intersection
- * intersection FeatureCollection that contains a single intersection.
+ * intersection Feature
  * @param road
- * road FeatureCollection that contains a single road
+ * road Feature
  * @return the bearing from the road to the intersection
  */
 fun getRoadBearingToIntersection(
-    intersection: FeatureCollection,
-    road: FeatureCollection,
+    intersection: Feature?,
+    road: Feature?,
     deviceHeading: Double
 ): Double {
 
-    if(road.features.isEmpty() || intersection.features.isEmpty())
+    if((road == null) || (intersection == null))
         return 0.0
 
-    val roadCoordinates = (road.features[0].geometry as LineString).coordinates
-    val intersectionCoordinate = (intersection.features[0].geometry as Point).coordinates
+    val roadCoordinates = (road.geometry as LineString).coordinates
+    val intersectionCoordinate = (intersection.geometry as Point).coordinates
 
     // if the intersection location doesn't match the start/finish location of the road
     // then we are dealing with a LEADING_AND_TRAILING road. We need to split the road into two
     // where the intersection coordinate is on the road
     if (roadCoordinates.first() != intersectionCoordinate && roadCoordinates.last() != intersectionCoordinate){
-        val splitRoads = splitRoadByIntersection(intersection.features[0], road.features[0])
+        val splitRoads = splitRoadByIntersection(intersection, road)
         // we've got two split roads but which one do we want the bearing for?
         // get the bearing for both
 
@@ -1911,13 +1282,13 @@ fun getRoadBearingToIntersection(
 
     val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
         getReferenceCoordinate(
-            road.features[0].geometry as LineString,
+            road.geometry as LineString,
             3.0,
             false
         )
     } else {
         getReferenceCoordinate(
-            road.features[0].geometry as LineString,
+            road.geometry as LineString,
             3.0,
             true
         )
@@ -1932,20 +1303,6 @@ fun getRoadBearingToIntersection(
     )
 }
 
-/**
- * Given an intersection Road names FeatureCollection, a nearest Intersection FeatureCollection
- * and an intersectionRelativeDirections FeatureCollection. This will return a feature collection of the roads
- * that make up the intersection tagged with their relative directions.
- * 0 = Behind, 1 = Behind Left, 2 = Left, 3 = Ahead Left,
- * 4 = Ahead, 5 = Ahead Right, 6 = Right, 7 = Behind Right
- * @param intersectionRoadNames
- * Roads FeatureCollection that contains the roads that make up the intersection.
- * @param nearestIntersection
- * Intersection FeatureCollection that contains a single intersection
- * @param intersectionRelativeDirections
- * Feature collection that consists of relative direction polygons that we are using to determine relative direction
- * @return A feature collection sorted by "Direction" that contains the roads that make up the intersection tagged with their relative direction
- */
 fun testRoad(road: Feature, intersectionRelativeDirections: FeatureCollection) : FeatureCollection {
     val testReferenceCoordinateForRoad = getReferenceCoordinate(
         road.geometry as LineString, 1.0, false
@@ -1981,24 +1338,39 @@ fun testRoad(road: Feature, intersectionRelativeDirections: FeatureCollection) :
     }
     return newFeatureCollection
 }
+
+/**
+ * Given an intersection Road names FeatureCollection, a nearest Intersection FeatureCollection
+ * and an intersectionRelativeDirections FeatureCollection. This will return a feature collection of the roads
+ * that make up the intersection tagged with their relative directions.
+ * 0 = Behind, 1 = Behind Left, 2 = Left, 3 = Ahead Left,
+ * 4 = Ahead, 5 = Ahead Right, 6 = Right, 7 = Behind Right
+ * @param intersectionRoadNames
+ * Roads FeatureCollection that contains the roads that make up the intersection.
+ * @param nearestIntersection
+ * Intersection Feature
+ * @param intersectionRelativeDirections
+ * Feature collection that consists of relative direction polygons that we are using to determine relative direction
+ * @return A feature collection sorted by "Direction" that contains the roads that make up the intersection tagged with their relative direction
+ */
 fun getIntersectionRoadNamesRelativeDirections(
     intersectionRoadNames: FeatureCollection,
-    nearestIntersection: FeatureCollection,
+    nearestIntersection: Feature?,
     intersectionRelativeDirections: FeatureCollection
 ): FeatureCollection {
 
     val newFeatureCollection = FeatureCollection()
-    if(nearestIntersection.features.isEmpty())
+    if(nearestIntersection == null)
         return newFeatureCollection
 
     for (road in intersectionRoadNames) {
         val testRoadDirectionAtIntersection =
-            getDirectionAtIntersection(nearestIntersection.features[0], road)
+            getDirectionAtIntersection(nearestIntersection, road)
         //println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
         if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
             // split the road into two
             val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
-                nearestIntersection.features[0],
+                nearestIntersection,
                 road
             )
             // for each split road work out the relative direction from the intersection
@@ -2114,20 +1486,19 @@ fun getRelativeDirectionsPolygons(
     }
 }
 
-fun checkIntersection(
-    intersectionNumber: Int,
+fun checkWhetherIntersectionIsOfInterest(
     intersectionRoadNames: FeatureCollection,
-    testNearestRoad:FeatureCollection
+    testNearestRoad:Feature?
 ): Boolean {
     //println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
-    if(testNearestRoad.features.isEmpty())
+    if(testNearestRoad == null)
         return false
 
     var needsFurtherChecking = true
     for (road in intersectionRoadNames) {
         val roadName = road.properties?.get("name")
         val isOneWay = road.properties?.get("oneway") == "yes"
-        val isMatch = testNearestRoad.features[0].properties?.get("name") == roadName
+        val isMatch = testNearestRoad.properties?.get("name") == roadName
 
         //println("The road name is: $roadName")
         if (isMatch && isOneWay) {
@@ -3220,4 +2591,33 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
 
         else -> mutableListOf("Unknown category")
     }
+}
+
+fun generateDebugFovGeoJson(
+    location: LngLatAlt,
+    heading: Double,
+    distance: Double,
+    featureCollection: FeatureCollection
+) {
+    val points = getFovTrianglePoints(location, heading, distance)
+
+    // Take care not to add the triangle to the passed in collection
+    val mapCollection = FeatureCollection()
+    mapCollection.plusAssign(featureCollection)
+
+    val triangle = Feature()
+    triangle.geometry = Polygon(
+        arrayListOf(
+            location,
+            points.left,
+            points.right,
+            location
+        )
+    )
+    mapCollection.addFeature(triangle)
+
+    val outputFile = FileOutputStream("markers.geojson")
+    val adapter = GeoJsonObjectMoshiAdapter()
+    outputFile.write(adapter.toJson(mapCollection).toByteArray())
+    outputFile.close()
 }
