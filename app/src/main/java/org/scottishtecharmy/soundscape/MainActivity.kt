@@ -389,6 +389,8 @@ class MainActivity : AppCompatActivity() {
         const val THEME_IS_LIGHT_KEY = "ThemeIsLight"
         const val THEME_CONTRAST_DEFAULT = "High"
         const val THEME_CONTRAST_KEY = "ThemeContrast"
+        const val RECORD_TRAVEL_DEFAULT = false
+        const val RECORD_TRAVEL_KEY = "RecordTravel"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }

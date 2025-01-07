@@ -25,6 +25,7 @@ import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
@@ -269,6 +270,20 @@ fun Settings(
                 valueSteps = 10,
                 valueText = { Text(text = "%.1fx".format(it), color = textColor) },
             )
+            if(BuildConfig.DEBUG) {
+                item {
+                    Text(
+                        text = "Debug settings",
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.semantics { heading() },
+                        )
+                }
+                switchPreference(
+                    key = MainActivity.RECORD_TRAVEL_KEY,
+                    defaultValue = MainActivity.RECORD_TRAVEL_DEFAULT,
+                    title = { Text(text = "Record travel") },
+                )
+            }
         }
     }
 }
