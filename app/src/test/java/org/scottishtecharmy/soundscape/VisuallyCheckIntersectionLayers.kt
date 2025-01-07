@@ -1,7 +1,9 @@
+package org.scottishtecharmy.soundscape
+
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.GeoJSONDataComplexIntersection1
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -10,15 +12,12 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
 import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getQuadrants
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
@@ -55,26 +54,26 @@ class VisuallyCheckIntersectionLayers {
         )
 
         // Create a FOV triangle to pick up the intersections
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         // Create a FOV triangle to pick up the roads
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Create a FOV triangle to pick up the crossings
         // (crossings are Points so we can use the same function as for intersections)
-        val fovCrossingsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovCrossingsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testCrossingsCollectionFromTileFeatureCollection
+            FeatureTree(testCrossingsCollectionFromTileFeatureCollection)
         )
         // At this point we have three field of view FeatureCollections:
         // roads, intersections and crossings
@@ -90,9 +89,7 @@ class VisuallyCheckIntersectionLayers {
         val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
         for (i in 0 until intersectionsSortedByDistance.features.size) {
-            val testNearestIntersection = FeatureCollection()
-            testNearestIntersection.addFeature(intersectionsSortedByDistance.features[i])
-            val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
+            val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[i], fovRoadsFeatureCollection)
             val intersectionsNeedsFurtherChecking = checkIntersection(i, intersectionRoadNames, testNearestRoad)
             if(intersectionsNeedsFurtherChecking) {
                 intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[i])
@@ -103,13 +100,14 @@ class VisuallyCheckIntersectionLayers {
                 feature ->
             (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
         }
-        val newIntersectionFeatureCollection = FeatureCollection()
-        if (featureWithMostOsmIds != null) {
-            newIntersectionFeatureCollection.addFeature(featureWithMostOsmIds)
-        }
-        val nearestIntersection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
+
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeatureWithinTriangle(
+            currentLocation,
+            points.left,
+            points.right)
         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
-        val intersectionLocation = newIntersectionFeatureCollection.features[0].geometry as Point
+        val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude,
                 intersectionLocation.coordinates.latitude),
@@ -118,10 +116,10 @@ class VisuallyCheckIntersectionLayers {
             5.0,
             RelativeDirections.COMBINED
         )
-        val intersectionRoadNames = getIntersectionRoadNames(newIntersectionFeatureCollection, fovRoadsFeatureCollection)
+        val intersectionRoadNames = getIntersectionRoadNames(featureWithMostOsmIds, fovRoadsFeatureCollection)
         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
             intersectionRoadNames,
-            newIntersectionFeatureCollection,
+            featureWithMostOsmIds,
             intersectionRelativeDirections
         )
         // *** End of Intersection and Road
@@ -132,9 +130,12 @@ class VisuallyCheckIntersectionLayers {
         // a traffic island for the road that we are currently on.
         // Original Soundscape doesn't flag that a crossing is a traffic island
         // or has tactile paving, etc.
-        val nearestCrossing = getNearestIntersection(currentLocation, fovCrossingsFeatureCollection)
+        val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(
+            currentLocation,
+            points.left,
+            points.right)
         // Confirm which road the crossing is on
-        val crossingLocation = nearestCrossing.features[0].geometry as Point
+        val crossingLocation = nearestCrossing!!.geometry as Point
         val nearestRoadToCrossing = getNearestRoad(
             LngLatAlt(crossingLocation.coordinates.longitude,crossingLocation.coordinates.latitude),
             fovRoadsFeatureCollection
@@ -142,8 +143,8 @@ class VisuallyCheckIntersectionLayers {
         // *** End of Crossing
 
         // Road with nearest crossing
-        Assert.assertEquals("Flax Bourton Road", nearestRoadToCrossing.features[0].properties?.get("name"))
-        Assert.assertEquals("yes", nearestCrossing.features[0].properties?.get("tactile_paving"))
+        Assert.assertEquals("Flax Bourton Road", nearestRoadToCrossing!!.properties?.get("name"))
+        Assert.assertEquals("yes", nearestCrossing.properties?.get("tactile_paving"))
         // Junction info
         Assert.assertEquals(3, roadRelativeDirections.features.size)
         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
@@ -156,37 +157,12 @@ class VisuallyCheckIntersectionLayers {
 
         // *************************************************************
         // *** Display Field of View triangle ***
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
-
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
 
         // We can now construct our FOV polygon (triangle)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
+            points.left,
             currentLocation,
-            destinationCoordinateRight
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {
@@ -216,13 +192,13 @@ class VisuallyCheckIntersectionLayers {
     private fun checkIntersection(
         intersectionNumber: Int,
         intersectionRoadNames: FeatureCollection,
-        testNearestRoad:FeatureCollection
+        testNearestRoad:Feature?
     ): Boolean {
         println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
         for (road in intersectionRoadNames) {
             val roadName = road.properties?.get("name")
             val isOneWay = road.properties?.get("oneway") == "yes"
-            val isMatch = testNearestRoad.features[0].properties?.get("name") == roadName
+            val isMatch = testNearestRoad!!.properties?.get("name") == roadName
 
             println("The road name is: $roadName")
             if (isMatch && isOneWay) {

@@ -5,6 +5,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
@@ -13,11 +14,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getAheadBehindDirectionPo
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovPoiFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIndividualDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getLeftRightDirectionPolygons
@@ -25,7 +23,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getPathsFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getPolygonOfBoundingBox
-import org.scottishtecharmy.soundscape.geoengine.utils.getQuadrants
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getTilesForRegion
@@ -33,6 +30,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 
 // Functions to output GeoJSON strings that can be put into the very useful Geojson.io
 // for a visual check. The GeoJSON parser that they use is also handy to make sure output
@@ -366,45 +364,19 @@ class VisuallyCheckOutput {
         //
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         // *************************************************************
 
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
-
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
-
-        // We can now construct our FOV polygon (triangle)
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
             currentLocation,
-            destinationCoordinateRight
+            points.left,
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {
@@ -450,45 +422,19 @@ class VisuallyCheckOutput {
         //
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // *************************************************************
 
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
-
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
-
-        // We can now construct our FOV polygon (triangle)
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
             currentLocation,
-            destinationCoordinateRight
+            points.left,
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {
@@ -535,45 +481,19 @@ class VisuallyCheckOutput {
         //
         // Create a FOV triangle to pick up the poi in the FoV.
         // In this case a couple of buildings
-        val fovPoiFeatureCollection = getFovPoiFeatureCollection(
+        val fovPoiFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testPoiCollectionFromTileFeatureCollection
+            FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
         // *************************************************************
 
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
-
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
-
-        // We can now construct our FOV polygon (triangle)
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
             currentLocation,
-            destinationCoordinateRight
+            points.left,
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {
