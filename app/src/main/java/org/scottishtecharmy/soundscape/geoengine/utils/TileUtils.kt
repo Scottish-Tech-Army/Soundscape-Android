@@ -1302,7 +1302,15 @@ fun getRoadBearingToIntersection(
     )
 }
 
-fun testRoad(road: Feature, intersectionRelativeDirections: FeatureCollection) : FeatureCollection {
+/**
+ * Given a road Feature and a set of intersectionRelativeDirections this will return a feature
+ * collection with an entry for the road each time it appears in the intersection. Normally this
+ * would be a single Feature (one road leaving the intersection) but if the road loops around and
+ * back into the roundabout then there can be two entries - see intersectionsLoopBackTest for an
+ * example e.g. https://geojson.io/#map=18/37.339112/-122.038756
+ */
+fun getFeaturesWithRoadDirection(road: Feature,
+                                 intersectionRelativeDirections: FeatureCollection) : FeatureCollection {
     val testReferenceCoordinateForRoad = getReferenceCoordinate(
         road.geometry as LineString, 1.0, false
     )
@@ -1374,11 +1382,11 @@ fun getIntersectionRoadNamesRelativeDirections(
             )
             // for each split road work out the relative direction from the intersection
             for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                newFeatureCollection.plusAssign(testRoad(splitRoad, intersectionRelativeDirections))
+                newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(splitRoad, intersectionRelativeDirections))
             }
         }
         else{
-            newFeatureCollection.plusAssign(testRoad(road, intersectionRelativeDirections))
+            newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(road, intersectionRelativeDirections))
         }
     }
 
