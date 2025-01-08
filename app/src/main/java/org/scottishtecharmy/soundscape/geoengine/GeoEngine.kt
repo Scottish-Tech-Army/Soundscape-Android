@@ -552,7 +552,8 @@ class GeoEngine {
                         LngLatAlt(
                             locationProvider.getCurrentLongitude() ?: 0.0,
                             locationProvider.getCurrentLatitude() ?: 0.0,
-                        ), Double.NaN)
+                        )
+                )
                 val nearestRoadBearing =
                     getRoadBearingToIntersection(
                         nearestIntersection,
@@ -1262,11 +1263,10 @@ class GeoEngine {
                                         (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
                                     }
 
-                                val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeature(
-                                    LngLatAlt(
-                                        locationProvider.getCurrentLongitude() ?: 0.0,
-                                        locationProvider.getCurrentLatitude() ?: 0.0,
-                                    ), Double.NaN)
+                                val nearestIntersection = FeatureTree(intersectionsNeedsFurtherCheckingFC).getNearestFeature(location)
+
+//                                val nearestIntersection = intersectionsNeedsFurtherCheckingFC.features[0]
+
 
                                 val nearestRoadBearing = getRoadBearingToIntersection(
                                     nearestIntersection,
@@ -1350,7 +1350,8 @@ class GeoEngine {
                             LngLatAlt(
                                 locationProvider.getCurrentLongitude() ?: 0.0,
                                 locationProvider.getCurrentLatitude() ?: 0.0,
-                            ), Double.NaN)
+                            )
+                        )
                         if (nearestCrossing != null) {
                             val crossingLocation = nearestCrossing.geometry as Point
                             val distanceToCrossing = distance(
@@ -1395,7 +1396,8 @@ class GeoEngine {
                             LngLatAlt(
                                 locationProvider.getCurrentLongitude() ?: 0.0,
                                 locationProvider.getCurrentLatitude() ?: 0.0,
-                            ), Double.NaN)
+                            )
+                        )
                         if (nearestBusStop != null) {
                             val busStopLocation = nearestBusStop.geometry as Point
                             val distanceToBusStop = distance(
