@@ -447,8 +447,12 @@ fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Arra
 
     val tileData = Array(GeoEngine.Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
+    // We have separate collections for the different types of Feature. ROADS_AND_PATHS adds PATHS
+    // to the ROADS features already contained in ROADS. This slight extra cost in terms of memory
+    // is made up for by the ease of searching a single collection.
     tileData[GeoEngine.Fc.ROADS.id] = getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[GeoEngine.Fc.ROADS_AND_PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[GeoEngine.Fc.ROADS_AND_PATHS.id].plusAssign(tileData[GeoEngine.Fc.ROADS.id])
     tileData[GeoEngine.Fc.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
     tileData[GeoEngine.Fc.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
     tileData[GeoEngine.Fc.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)

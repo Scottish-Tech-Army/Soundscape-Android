@@ -230,10 +230,7 @@ class GeoEngine {
                                     for (ip in featureCollections[Fc.INTERPOLATIONS.id]) {
                                         joiner.addInterpolatedPoints(ip)
                                     }
-                                    // TODO: The joining lines are being added to ROADS, but some of
-                                    //  them will be for paths. I don't think this is an issue, but it
-                                    //  it's slightly confusing.
-                                    joiner.addJoiningLines(featureCollections[Fc.ROADS.id])
+                                    joiner.addJoiningLines(featureCollections[Fc.ROADS_AND_PATHS.id])
 
                                     // Create rtrees for each feature collection
                                     for ((index, fc) in featureCollections.withIndex()) {
@@ -422,11 +419,8 @@ class GeoEngine {
             }
         }
 
-        // Check if we're alongside a road
-        var nearestRoad = getNearestFeature(Fc.ROADS.id, location, 100.0)
-        if(nearestRoad == null) {
-            nearestRoad = getNearestFeature(Fc.PATHS.id, location, 100.0)
-        }
+        // Check if we're alongside a road/path
+        val nearestRoad = getNearestFeature(Fc.ROADS_AND_PATHS.id, location, 100.0)
         if(nearestRoad != null) {
             val properties = nearestRoad.properties
             if (properties != null) {
@@ -881,14 +875,10 @@ class GeoEngine {
                         locationProvider.getCurrentLatitude() ?: 0.0
                     )
 
-                    val roadGridFeatureCollection = FeatureCollection()
-                    val roadFeatureCollection =
-                        getGridFeatureCollection(Fc.ROADS.id, location, 100.0)
-                    val pathFeatureCollection =
-                        getGridFeatureCollection(Fc.PATHS.id, location, 100.0)
-                    roadGridFeatureCollection.features.addAll(roadFeatureCollection)
-                    // Add in paths so we can pick up named paths
-                    roadGridFeatureCollection.features.addAll(pathFeatureCollection)
+                    val roadGridFeatureCollection = getGridFeatureCollection(Fc.ROADS_AND_PATHS.id,
+                        location,
+                        100.0
+                    )
 
                     if (roadGridFeatureCollection.features.isNotEmpty()) {
                         //Log.d(TAG, "Found roads in tile")
@@ -1179,30 +1169,18 @@ class GeoEngine {
                     val orientation = directionProvider.getCurrentDirection().toDouble()
                     val fovDistance = 50.0
 
-                    val fovRoadsFeatureCollection = getFovFeatureCollection(
-                        location,
-                        orientation,
-                        fovDistance,
-                        featureTrees[Fc.ROADS.id]
-                    )
-                    val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-                        location,
-                        orientation,
-                        fovDistance,
-                        featureTrees[Fc.INTERSECTIONS.id]
-                    )
-                    val fovCrossingsFeatureCollection = getFovFeatureCollection(
-                        location,
-                        orientation,
-                        fovDistance,
-                        featureTrees[Fc.CROSSINGS.id]
-                    )
-                    val fovBusStopsFeatureCollection = getFovFeatureCollection(
-                        location,
-                        orientation,
-                        fovDistance,
-                        featureTrees[Fc.BUS_STOPS.id]
-                    )
+                    val points = getFovTrianglePoints(location, orientation, fovDistance)
+                    val fovRoadsFeatureCollection = featureTrees[Fc.ROADS.id].
+                        generateFeatureCollectionWithinTriangle(location, points.left, points.right)
+
+                    val fovIntersectionsFeatureCollection = featureTrees[Fc.INTERSECTIONS.id].
+                        generateFeatureCollectionWithinTriangle(location, points.left, points.right)
+
+                    val fovCrossingsFeatureCollection = featureTrees[Fc.CROSSINGS.id].
+                        generateFeatureCollectionWithinTriangle(location, points.left, points.right)
+
+                    val fovBusStopsFeatureCollection = featureTrees[Fc.BUS_STOPS.id].
+                        generateFeatureCollectionWithinTriangle(location, points.left, points.right)
 
                     if (fovRoadsFeatureCollection.features.isNotEmpty()) {
                         val nearestRoad = getNearestRoad(
@@ -1230,7 +1208,6 @@ class GeoEngine {
                         if (fovIntersectionsFeatureCollection.features.isNotEmpty() &&
                             fovRoadsFeatureCollection.features.isNotEmpty()
                         ) {
-
                             val intersectionsSortedByDistance = sortedByDistanceTo(
                                 locationProvider.getCurrentLatitude() ?: 0.0,
                                 locationProvider.getCurrentLongitude() ?: 0.0,
@@ -1451,7 +1428,7 @@ class GeoEngine {
         val id: Int,
     ) {
         ROADS(0),
-        PATHS(1),
+        ROADS_AND_PATHS(1),
         INTERSECTIONS(2),
         ENTRANCES(3),
         CROSSINGS(4),
