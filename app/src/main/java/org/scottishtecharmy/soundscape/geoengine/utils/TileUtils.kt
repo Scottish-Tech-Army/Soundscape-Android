@@ -29,22 +29,19 @@ import kotlin.math.tan
 
 
 /**
- * Gets Slippy Map Tile Name from X and Y GPS coordinates and Zoom (fixed at 16 for Soundscape).
- * @param lat
- * Latitude in decimal degrees.
- * @param lon
- * Longitude in decimal degrees.
+ * Gets Slippy Map Tile Name from GPS coordinates and Zoom (fixed at 16 for Soundscape).
+ * @param location
+ * Location in LngLatAlt
  * @param zoom
  * The zoom level.
  * @return a Pair(xtile, ytile).
  */
 fun getXYTile(
-    lat: Double,
-    lon: Double,
+    location: LngLatAlt,
     zoom: Int = 16
 ): Pair<Int, Int> {
-    val latRad = toRadians(lat)
-    var xtile = floor((lon + 180) / 360 * (1 shl zoom)).toInt()
+    val latRad = toRadians(location.latitude)
+    var xtile = floor((location.longitude + 180) / 360 * (1 shl zoom)).toInt()
     var ytile = floor((1.0 - asinh(tan(latRad)) / PI) / 2 * (1 shl zoom)).toInt()
 
     if (xtile < 0) {
@@ -586,7 +583,7 @@ fun getNearestRoad(
     for (feature in roadFeatureCollection) {
         if (feature.geometry.type == "LineString") {
             val distanceToRoad = distanceToLineString(
-                LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+                currentLocation,
                 (feature.geometry as LineString)
             )
             if (distanceToRoad < maxDistanceToRoad) {
@@ -595,7 +592,7 @@ fun getNearestRoad(
             }
         } else if (feature.geometry.type == "Polygon") {
             val distanceToRoad = distanceToPolygon(
-                LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+                currentLocation,
                 (feature.geometry as Polygon)
             )
             if (distanceToRoad < maxDistanceToRoad) {
@@ -603,11 +600,9 @@ fun getNearestRoad(
                 maxDistanceToRoad = distanceToRoad
             }
         }  else {
-            val distanceToRoad = distance(
-                currentLocation.latitude,
-                currentLocation.longitude,
-                (feature.geometry as Point).coordinates.latitude,
-                (feature.geometry as Point).coordinates.longitude
+            val distanceToRoad = currentLocation.distance(
+                LngLatAlt((feature.geometry as Point).coordinates.latitude,
+                          (feature.geometry as Point).coordinates.longitude)
             )
             if (distanceToRoad < maxDistanceToRoad) {
                 nearestRoad = feature
@@ -632,16 +627,9 @@ fun getFeatureNearestPoint(
 }
 
 /**
- * Given a Feature Collection and location this will add bounding boxes to each feature,
- * calculate the distance to the center of the bounding box from the current location and return
- * a Feature Collection that contains the bounding box and distance_to data for each Feature.
- * @param currentLat
- * Current latitude as Double.
- * @param currentLon
- * Current longitude as Double.
- * @param featureCollection
- * @return a Feature Collection with bounding boxes added for each Feature and
- * the "distance_to" from the current location as a foreign member in meters.
+ * Given a Feature this will return its bounding box.
+ * @param feature
+ * @return a bounding box
  */
 private fun getBoundingBoxForFeature(
     feature: Feature?
@@ -762,20 +750,17 @@ fun getDistanceToFeature(
 /**
  * Given a Feature Collection and location this will calculate the nearest distance to each Feature,
  * and return a Feature Collection that contains the distance_to data for each Feature.
- * @param currentLat
- * Current latitude as Double.
- * @param currentLon
- * Current longitude as Double.
+ * @param currentLocation
+ * Current location as LngLatAlt.
  * @param featureCollection
  * @return a Feature Collection with the "distance_to" from the current location as a foreign member in meters for each Feature.
  */
 fun getDistanceToFeatureCollection(
-    currentLat: Double,
-    currentLon: Double,
+    currentLocation: LngLatAlt,
     featureCollection: FeatureCollection
 ): FeatureCollection {
     for (feature in featureCollection) {
-        feature.foreign?.put("distance_to", getDistanceToFeature(LngLatAlt(currentLon, currentLat), feature))
+        feature.foreign?.put("distance_to", getDistanceToFeature(currentLocation, feature))
     }
     return featureCollection
 }
@@ -783,22 +768,18 @@ fun getDistanceToFeatureCollection(
 /**
  * Given a Feature Collection and location this will calculate the nearest distance to each Feature,
  * and return a sorted Feature Collection by the distance_to foreign member for each Feature.
- * @param currentLat
- * Current latitude as Double.
- * @param currentLon
- * Current longitude as Double.
+ * @param currentLocation
+ * Current location as LngLatAlt.
  * @param featureCollection
  * @return a sorted Feature Collection with the "distance_to" from the current location as a foreign member in meters for each Feature.
  */
 fun sortedByDistanceTo(
-    currentLat: Double,
-    currentLon: Double,
+    currentLocation: LngLatAlt,
     featureCollection: FeatureCollection
 ): FeatureCollection {
 
     val featuresWithDistance = getDistanceToFeatureCollection(
-        currentLat,
-        currentLon,
+        currentLocation,
         featureCollection
     )
     val featuresSortedByDistanceList = featuresWithDistance.features
@@ -1267,12 +1248,7 @@ fun getRoadBearingToIntersection(
                     true
                 )
             }
-            val bearing = bearingFromTwoPoints(
-                testReferenceCoordinate.latitude,
-                testReferenceCoordinate.longitude,
-                intersectionCoordinate.latitude,
-                intersectionCoordinate.longitude
-            )
+            val bearing = bearingFromTwoPoints(testReferenceCoordinate, intersectionCoordinate)
             bearingArray.add(bearing)
         }
         if(bearingArray.size >= 2)
@@ -1298,12 +1274,7 @@ fun getRoadBearingToIntersection(
     }
 
     //  bearing from synthetic coordinate on road to intersection
-    return bearingFromTwoPoints(
-        testReferenceCoordinate.latitude,
-        testReferenceCoordinate.longitude,
-        intersectionCoordinate.latitude,
-        intersectionCoordinate.longitude
-    )
+    return bearingFromTwoPoints(testReferenceCoordinate, intersectionCoordinate)
 }
 
 /**

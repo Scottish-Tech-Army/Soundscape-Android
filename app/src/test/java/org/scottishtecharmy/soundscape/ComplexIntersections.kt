@@ -77,8 +77,7 @@ class ComplexIntersections {
 
         // I will need a feature collection of all the intersections in the FOV sorted by distance to the current location
         val intersectionsSortedByDistance = sortedByDistanceTo(
-            currentLocation.latitude,
-            currentLocation.longitude,
+            currentLocation,
             fovIntersectionsFeatureCollection
         )
         val intersectionsSortedByDistanceString =
@@ -111,8 +110,7 @@ class ComplexIntersections {
 
         // Approach 2: Use the nearest "checked" intersection to the device location?
         val intersectionsToCheckSortedByDistance = sortedByDistanceTo(
-            currentLocation.latitude,
-            currentLocation.longitude,
+            currentLocation,
             intersectionsNeedsFurtherCheckingFC
         )
         val nearestCheckedIntersection = intersectionsToCheckSortedByDistance.features[0]
@@ -204,8 +202,7 @@ class ComplexIntersections {
 
         // I will need a feature collection of all the intersections in the FOV sorted by distance to the current location
         val intersectionsSortedByDistance = sortedByDistanceTo(
-            currentLocation.latitude,
-            currentLocation.longitude,
+            currentLocation,
             fovIntersectionsFeatureCollection
         )
         val intersectionsSortedByDistanceString =

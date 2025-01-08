@@ -58,10 +58,8 @@ class GpxDrivenProvider  {
                             lngStep = (nextPoint.longitude - point.longitude) / stepsInPoint
 
                             heading = bearingFromTwoPoints(
-                                point.latitude,
-                                point.longitude,
-                                nextPoint.latitude,
-                                nextPoint.longitude)
+                                LngLatAlt(point.longitude, point.latitude),
+                                LngLatAlt(nextPoint.longitude, nextPoint.latitude))
 
                             val orientation = DeviceOrientation.Builder(FloatArray(4),
                                 heading.toFloat(),

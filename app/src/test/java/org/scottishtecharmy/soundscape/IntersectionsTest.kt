@@ -82,7 +82,7 @@ class IntersectionsTest {
         val intersectionLocation = cleanNearestIntersection!!.geometry as Point
 
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+            intersectionLocation.coordinates,
             testNearestRoadBearing,
             fovDistance,
             RelativeDirections.COMBINED

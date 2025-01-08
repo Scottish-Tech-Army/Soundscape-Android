@@ -43,7 +43,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile - I'm cheating here as the coordinates are already
         // in the center of the tile.
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
         val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
         val tilePolygon = getPolygonOfBoundingBox(tileBoundingBox)
@@ -79,7 +79,7 @@ class VisuallyCheckOutput {
     fun grid3x3Test(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
         val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
         val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
@@ -129,7 +129,7 @@ class VisuallyCheckOutput {
     fun grid3x3WithPoisTest(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
         val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
         val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
@@ -167,7 +167,7 @@ class VisuallyCheckOutput {
     fun entireTileFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
@@ -186,7 +186,7 @@ class VisuallyCheckOutput {
     fun roadsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
@@ -212,7 +212,7 @@ class VisuallyCheckOutput {
     fun intersectionsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
@@ -237,7 +237,7 @@ class VisuallyCheckOutput {
     fun poiFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(51.43860066718254, -2.69439697265625, 16 )
+        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
