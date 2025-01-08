@@ -58,19 +58,16 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
         /**
          * Given a location it calculates the set of tiles (VectorTiles) that cover a
          * 3 x 3 grid around the specified location.
-         * @param currentLatitude
-         * The current location of the device.
-         * @param currentLongitude
+         * @param currentLocation
          * The current location of the device.
          * @return  A TileGrid describing the new grid
          */
         private fun get3x3TileGrid(
-            currentLatitude: Double = 0.0,
-            currentLongitude: Double = 0.0
+            currentLocation: LngLatAlt
         ) : TileGrid {
 
             // Get tile that contains current location
-            val tileXY = getXYTile(currentLatitude, currentLongitude, ZOOM_LEVEL)
+            val tileXY = getXYTile(currentLocation, ZOOM_LEVEL)
 
             // Center of grid is at the center of this tile
             val centerX = (tileXY.first * 256) + 128
@@ -107,24 +104,21 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
         /**
          * Given a location it calculates the set of tiles (VectorTiles) that cover a
          * 2 x 2 grid around the specified location.
-         * @param currentLatitude
-         * The current location of the device.
-         * @param currentLongitude
+         * @param currentLocation
          * The current location of the device.
          * @return  A TileGrid describing the new grid
          */
         private fun get2x2TileGrid(
-            currentLatitude: Double = 0.0,
-            currentLongitude: Double = 0.0
+            currentLocation: LngLatAlt
         ): TileGrid {
 
             // Get tile that contains current location
-            val tileXY = getXYTile(currentLatitude, currentLongitude, ZOOM_LEVEL)
+            val tileXY = getXYTile(currentLocation, ZOOM_LEVEL)
             // Scale up the tile xy
             val scaledTile = Pair(tileXY.first * 2, tileXY.second * 2)
 
             // And the quadrant within that tile
-            val tileQuadrant = getXYTile(currentLatitude, currentLongitude, ZOOM_LEVEL + 1)
+            val tileQuadrant = getXYTile(currentLocation, ZOOM_LEVEL + 1)
 
             // The center of the grid is the corner of the tile that is shared with the quadrant that the
             // location is within.
@@ -185,22 +179,19 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
         /**
          * Given a location and a grid size it creates either a 2x2 or a 3x3 grid of tiles
          * (VectorTiles) to cover that location.
-         * @param currentLatitude
-         * The current location of the device.
-         * @param currentLongitude
+         * @param currentLocation
          * The current location of the device.
          * @return  A TileGrid object which contains a MutableList of VectorTiles representing the
          * grid along with a BoundingBox around the center of the grid. When the location leaves
          * that BoundingBox a new grid is required.
          */
         fun getTileGrid(
-            currentLatitude: Double = 0.0,
-            currentLongitude: Double = 0.0,
+            currentLocation: LngLatAlt,
             gridSize : Int = GRID_SIZE
         ): TileGrid {
             when(gridSize) {
-                2 -> return get2x2TileGrid(currentLatitude, currentLongitude)
-                3 -> return get3x3TileGrid(currentLatitude, currentLongitude)
+                2 -> return get2x2TileGrid(currentLocation)
+                3 -> return get3x3TileGrid(currentLocation)
             }
             assert(false)
             return TileGrid(mutableListOf(), BoundingBox())

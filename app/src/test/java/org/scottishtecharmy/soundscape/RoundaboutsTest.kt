@@ -137,7 +137,7 @@ class RoundaboutsTest {
             val point = intersection.geometry as Point
             for (direction in roundaboutRoadsRelativeDirections) {
                 val intersectionIsHere = polygonContainsCoordinates(
-                    LngLatAlt(point.coordinates.longitude, point.coordinates.latitude),
+                    point.coordinates,
                     (direction.geometry as Polygon))
                 if (intersectionIsHere){
                     println("Roundabout exit direction: ${direction.properties?.get("Direction")}")
@@ -237,7 +237,7 @@ class RoundaboutsTest {
         val intersectionLocation = cleanNearestIntersection!!.geometry as Point
 
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-            LngLatAlt(intersectionLocation.coordinates.longitude, intersectionLocation.coordinates.latitude),
+            intersectionLocation.coordinates,
             testNearestRoadBearing,
             fovDistance,
             RelativeDirections.COMBINED

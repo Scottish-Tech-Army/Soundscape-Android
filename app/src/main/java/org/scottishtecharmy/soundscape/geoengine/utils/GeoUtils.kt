@@ -392,14 +392,12 @@ fun getPolygonOfBoundingBox(boundingBox: BoundingBox): Polygon{
  * @return The heading in degrees clockwise from north.
  */
 fun bearingFromTwoPoints(
-    lat1: Double,
-    lon1: Double,
-    lat2: Double,
-    lon2: Double
+    loc1: LngLatAlt,
+    loc2: LngLatAlt,
 ): Double {
-    val latitude1 = toRadians(lat1)
-    val latitude2 = toRadians(lat2)
-    val longDiff = toRadians(lon2 - lon1)
+    val latitude1 = toRadians(loc1.latitude)
+    val latitude2 = toRadians(loc2.latitude)
+    val longDiff = toRadians(loc2.longitude - loc1.longitude)
     val y = sin(longDiff) * cos(latitude2)
     val x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longDiff)
     return ((fromRadians(atan2(y, x)) + 360) % 360).round(1)
@@ -534,7 +532,7 @@ fun getReferenceCoordinate(path: LineString, targetDistance: Double, reverseLine
                 // Target coordinate is between two coordinates so synthesize it
                 val prevTotalDistance = totalDistance - coordDistance
                 val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
-                val bearing = bearingFromTwoPoints(coord1.latitude, coord1.longitude, coord2.latitude, coord2.longitude)
+                val bearing = bearingFromTwoPoints(coord1, coord2)
                 return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
             }
         }
@@ -562,7 +560,7 @@ fun getReferenceCoordinate(path: LineString, targetDistance: Double, reverseLine
                 // Target coordinate is between two coordinates so synthesize it
                 val prevTotalDistance = totalDistance - coordDistance
                 val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
-                val bearing = bearingFromTwoPoints(coord1.latitude, coord1.longitude, coord2.latitude, coord2.longitude)
+                val bearing = bearingFromTwoPoints(coord1, coord2)
                 return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
             }
         }
@@ -1021,15 +1019,15 @@ fun calculateCenter(
 ): Circle {
     val chordMidpoint =
         LngLatAlt((start.longitude + end.longitude) / 2, (start.latitude + end.latitude) / 2)
-    val chordLength = distance(start.latitude, start.longitude, end.latitude, end.longitude)
+    val chordLength = start.distance(end)
     // calculate radius
     val radius = calculateRadius(chordLength, arcMidPoint, chordMidpoint)
     // is the chord midpoint to the right or left of the segment?
     val chordBearing: Double
     if(pointOnRightSide(start, arcMidPoint, end)){
-        chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
+        chordBearing = bearingFromTwoPoints(end, start)
     } else {
-        chordBearing = bearingFromTwoPoints(start.latitude, start.longitude, end.latitude, end.longitude)
+        chordBearing = bearingFromTwoPoints(start, end)
     }
 
     // Calculate chord bearing
@@ -1085,12 +1083,7 @@ fun calculateCenterOfCircle(
                 secondCoordinate.longitude
             )
         val bearing =
-            bearingFromTwoPoints(
-                firstCoordinate.latitude,
-                firstCoordinate.longitude,
-                secondCoordinate.latitude,
-                secondCoordinate.longitude
-            )
+            bearingFromTwoPoints(firstCoordinate, secondCoordinate)
         arcMidPoint =
             getDestinationCoordinate(firstCoordinate, bearing, distanceBetweenCoordinates / 2)
 

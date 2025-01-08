@@ -108,12 +108,7 @@ class StreetPreview {
             nextPoint = line.dropLast(1).last()
         }
         if (nextPoint != null) {
-            heading = bearingFromTwoPoints(
-                location.latitude,
-                location.longitude,
-                nextPoint.latitude,
-                nextPoint.longitude
-            )
+            heading = bearingFromTwoPoints(location, nextPoint)
         }
         return heading
     }

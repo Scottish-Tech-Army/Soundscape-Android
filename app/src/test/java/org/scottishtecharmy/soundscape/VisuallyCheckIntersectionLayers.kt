@@ -81,8 +81,7 @@ class VisuallyCheckIntersectionLayers {
         // *** This part is the intersection and road bothering ***
         // I will need a feature collection of all the intersections in the FOV sorted by distance to the current location
         val intersectionsSortedByDistance = sortedByDistanceTo(
-            currentLocation.latitude,
-            currentLocation.longitude,
+            currentLocation,
             fovIntersectionsFeatureCollection
         )
         // Get the nearest Road in the FoV

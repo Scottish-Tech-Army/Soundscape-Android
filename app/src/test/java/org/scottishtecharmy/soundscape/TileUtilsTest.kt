@@ -49,7 +49,7 @@ class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
     @Test
     fun getXYTileTest() {
-        val testSlippyMapTileName = getXYTile(0.5, 0.5, 16)
+        val testSlippyMapTileName = getXYTile(LngLatAlt(0.5, 0.5), 16)
         Assert.assertEquals(32859, testSlippyMapTileName.first)
         Assert.assertEquals(32676, testSlippyMapTileName.second)
     }
@@ -250,7 +250,7 @@ class TileUtilsTest {
 
         val currentLat = 0.0
         val currentLon = 0.5
-        val distanceToFeatureCollection = getDistanceToFeatureCollection(currentLat, currentLon, featureCollectionTest!!)
+        val distanceToFeatureCollection = getDistanceToFeatureCollection(LngLatAlt(currentLon, currentLat), featureCollectionTest!!)
 
         // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
         Assert.assertEquals(55659.75, distanceToFeatureCollection.features[0].foreign?.get("distance_to"))
@@ -312,8 +312,7 @@ class TileUtilsTest {
                 println(settingsString)
 
                 val distanceToFeatureCollection = getDistanceToFeatureCollection(
-                    currentLat,
-                    currentLon,
+                    LngLatAlt(currentLon,currentLat),
                     settingsFeatureCollection
                 ).sortedBy { feature ->
                     feature.foreign?.get("distance_to") as? Double ?: Double.MAX_VALUE
@@ -496,8 +495,7 @@ class TileUtilsTest {
         // This should sort the intersections (but any feature collection wil do)
         // by distance to the current location
         val sortedByDistanceToTest = sortedByDistanceTo(
-            currentLocation.latitude,
-            currentLocation.longitude,
+            currentLocation,
             fovIntersectionsFeatureCollection
         )
         Assert.assertEquals(6.0, sortedByDistanceToTest.features[0].foreign?.get("distance_to"))
@@ -598,15 +596,15 @@ class TileUtilsTest {
         // Override Global grid size setting
         GRID_SIZE = 3
 
-        var tileGrid = getTileGrid(65.0, 0.0)
+        var tileGrid = getTileGrid(LngLatAlt(65.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(-65.0, 0.0)
+        tileGrid = getTileGrid(LngLatAlt(-65.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, 0.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, 180.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 180.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, -180.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, -180.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
     }
 
@@ -615,9 +613,9 @@ class TileUtilsTest {
         // Override Global grid size setting
         GRID_SIZE = 2
 
-        var tileGrid = getTileGrid(0.001, 0.0)
+        var tileGrid = getTileGrid(LngLatAlt(0.001, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, 0.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
     }
 
