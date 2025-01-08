@@ -6,7 +6,6 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
@@ -63,10 +62,5 @@ class MvtPerformanceTest {
         for(dResult in distanceResults) {
             println(dResult.properties?.get("name"))
         }
-
-        start = System.currentTimeMillis()
-        val fc = getNearestPoi(LngLatAlt(-4.316914, 55.941861), featureCollection)
-        end = System.currentTimeMillis()
-        println("getNearestPoi result in ${end-start}ms : ${fc.features[0].properties}")
     }
 }

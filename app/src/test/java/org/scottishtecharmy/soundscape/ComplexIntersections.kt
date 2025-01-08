@@ -3,19 +3,19 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
+import org.scottishtecharmy.soundscape.geoengine.utils.generateDebugFovGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
@@ -46,24 +46,27 @@ class ComplexIntersections {
                 featureCollectionTest!!
             )
         // create FOV to pickup the roads
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
+//        generateDebugFovGeoJson(currentLocation, deviceHeading, fovDistance, testRoadsCollectionFromTileFeatureCollection)
+
         // Get the intersections from the tile
         val testIntersectionsCollectionFromTileFeatureCollection =
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest
             )
         // Create a FOV triangle to pick up the intersections
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
+        generateDebugFovGeoJson(currentLocation, deviceHeading, fovDistance, testIntersectionsCollectionFromTileFeatureCollection)
 
         val roadsFOVString =
             moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
@@ -87,10 +90,8 @@ class ComplexIntersections {
         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
 
         for (i in 0 until intersectionsSortedByDistance.features.size) {
-            val testNearestIntersection = FeatureCollection()
-            testNearestIntersection.addFeature(intersectionsSortedByDistance.features[i])
-            val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
-            val intersectionsNeedsFurtherChecking = checkIntersection(i, intersectionRoadNames, testNearestRoad)
+            val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[i], fovRoadsFeatureCollection)
+            val intersectionsNeedsFurtherChecking = checkWhetherIntersectionIsOfInterest(intersectionRoadNames, testNearestRoad)
             if(intersectionsNeedsFurtherChecking) {
                 intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[i])
             }
@@ -114,11 +115,12 @@ class ComplexIntersections {
             currentLocation.longitude,
             intersectionsNeedsFurtherCheckingFC
         )
+        val nearestCheckedIntersection = intersectionsToCheckSortedByDistance.features[0]
 
 
-        val nearestIntersection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
+        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeature(currentLocation)
         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
-        val intersectionLocation = intersectionsToCheckSortedByDistance.features[0].geometry as Point
+        val intersectionLocation = nearestCheckedIntersection.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude,
                 intersectionLocation.coordinates.latitude),
@@ -131,20 +133,13 @@ class ComplexIntersections {
             moshi.adapter(FeatureCollection::class.java).toJson(intersectionRelativeDirections)
         println("relative directions polygons: $relativeDirectionsString")
 
-        val newIntersectionFeatureCollection = FeatureCollection()
-        newIntersectionFeatureCollection.addFeature(intersectionsToCheckSortedByDistance.features[0])
-        val intersectionThatWeAreChecking =
-            moshi.adapter(FeatureCollection::class.java).toJson(newIntersectionFeatureCollection)
-        println("Intersection we are checking: $intersectionThatWeAreChecking")
-
-
-        val intersectionRoadNames = getIntersectionRoadNames(newIntersectionFeatureCollection, fovRoadsFeatureCollection)
+        val intersectionRoadNames = getIntersectionRoadNames(nearestCheckedIntersection, fovRoadsFeatureCollection)
         val intersectionRoadNamesString =
             moshi.adapter(FeatureCollection::class.java).toJson(intersectionRoadNames)
         println("Intersection roads: $intersectionRoadNamesString")
         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
             intersectionRoadNames,
-            newIntersectionFeatureCollection,
+            nearestCheckedIntersection,
             intersectionRelativeDirections
         )
 
@@ -180,11 +175,11 @@ class ComplexIntersections {
                 featureCollectionTest!!
             )
         // create FOV to pickup the roads
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Get the intersections from the tile
         val testIntersectionsCollectionFromTileFeatureCollection =
@@ -192,11 +187,11 @@ class ComplexIntersections {
                 featureCollectionTest
             )
         // Create a FOV triangle to pick up the intersections
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
 
         val roadsFOVString =
@@ -222,10 +217,8 @@ class ComplexIntersections {
         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
 
         for (i in 0 until intersectionsSortedByDistance.features.size) {
-            val testNearestIntersection = FeatureCollection()
-            testNearestIntersection.addFeature(intersectionsSortedByDistance.features[i])
-            val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
-            val intersectionsNeedsFurtherChecking = checkIntersection(i, intersectionRoadNames, testNearestRoad)
+            val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[i], fovRoadsFeatureCollection)
+            val intersectionsNeedsFurtherChecking = checkWhetherIntersectionIsOfInterest(intersectionRoadNames, testNearestRoad)
             if(intersectionsNeedsFurtherChecking) {
                 intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[i])
             }
@@ -238,10 +231,6 @@ class ComplexIntersections {
                 feature ->
             (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
         }
-        val newIntersectionFeatureCollection = FeatureCollection()
-        if (featureWithMostOsmIds != null) {
-            newIntersectionFeatureCollection.addFeature(featureWithMostOsmIds)
-        }
 
         // Approach 2: Use the nearest "checked" intersection to the device location?
         /*val intersectionsToCheckSortedByDistance = sortedByDistanceTo(
@@ -249,9 +238,9 @@ class ComplexIntersections {
             currentLocation.longitude,
             intersectionsNeedsFurtherCheckingFC
         )*/
-        val nearestIntersection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
+        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeature(currentLocation)
         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
-        val intersectionLocation = newIntersectionFeatureCollection.features[0].geometry as Point
+        val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             LngLatAlt(intersectionLocation.coordinates.longitude,
                 intersectionLocation.coordinates.latitude),
@@ -263,13 +252,13 @@ class ComplexIntersections {
         //val newIntersectionFeatureCollection = FeatureCollection()
         //newIntersectionFeatureCollection.addFeature(intersectionsToCheckSortedByDistance.features[0])
 
-        val intersectionRoadNames = getIntersectionRoadNames(newIntersectionFeatureCollection, fovRoadsFeatureCollection)
+        val intersectionRoadNames = getIntersectionRoadNames(featureWithMostOsmIds, fovRoadsFeatureCollection)
         val intersectionRoadNamesString =
             moshi.adapter(FeatureCollection::class.java).toJson(intersectionRoadNames)
         println("Intersection roads: $intersectionRoadNamesString")
         val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
             intersectionRoadNames,
-            newIntersectionFeatureCollection,
+            featureWithMostOsmIds,
             intersectionRelativeDirections
         )
 

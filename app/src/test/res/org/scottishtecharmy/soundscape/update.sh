@@ -54,12 +54,12 @@ done
 
 # Tiles for intersectionsLoopBackTest (-122.03856292573965,37.33916628666543)
 # Enable once we have a planet wide map
-#for x in $(seq 5275 5276);
-#do
-#  for y in $(seq 12715 12716);
-#  do
-#    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
-#  done
-#done
+for x in $(seq 5275 5276);
+do
+  for y in $(seq 12715 12716);
+  do
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+  done
+done
 
 wget $protomaps_server/15/16093/10211.pbf -O 16093x10211.mvt

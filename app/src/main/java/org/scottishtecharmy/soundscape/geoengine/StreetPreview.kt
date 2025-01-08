@@ -42,22 +42,24 @@ class StreetPreview {
 
             PreviewState.INITIAL -> {
                 // Jump to a node on the nearest road or path
-                val roads = engine.getGridFeatureCollection(Fc.ROADS.id, location, 200.0, 1)
-                roads.plusAssign(engine.getGridFeatureCollection(Fc.PATHS.id, location, 200.0, 1))
+                var road = engine.getNearestFeature(Fc.ROADS.id, location, Double.POSITIVE_INFINITY)
+                if(road == null)
+                    road = engine.getNearestFeature(Fc.PATHS.id, location, Double.POSITIVE_INFINITY)
+
+                if(road == null)
+                    return
 
                 var nearestDistance = Double.POSITIVE_INFINITY
                 var nearestPoint = LngLatAlt()
-                for (road in roads) {
-                    val nearestPointOnRoad = LngLatAlt()
-                    val distance = distanceToLineString(
-                        location,
-                        road.geometry as LineString,
-                        nearestPointOnRoad
-                    )
-                    if (distance < nearestDistance) {
-                        nearestDistance = distance
-                        nearestPoint = nearestPointOnRoad
-                    }
+                val nearestPointOnRoad = LngLatAlt()
+                val distance = distanceToLineString(
+                    location,
+                    road.geometry as LineString,
+                    nearestPointOnRoad
+                )
+                if (distance < nearestDistance) {
+                    nearestDistance = distance
+                    nearestPoint = nearestPointOnRoad
                 }
                 if (nearestDistance != Double.POSITIVE_INFINITY) {
                     // We've got a location, so jump to it
@@ -138,11 +140,11 @@ class StreetPreview {
 
             if (index != 0) {
                 // Check for an intersection at this point by searching in the intersection tree
-                val intersection = engine.getGridFeatureCollection(Fc.INTERSECTIONS.id, point, 0.5, 1)
-                if (intersection.features.isNotEmpty()) {
+                val intersection = engine.getNearestFeature(Fc.INTERSECTIONS.id, point, 0.5)
+                if (intersection != null) {
                     Log.e(
                         TAG,
-                        "Stop at intersection ${intersection.features[0].properties?.get("name")}"
+                        "Stop at intersection ${intersection.properties?.get("name")}"
                     )
                     foundIntersection = true
                     break
@@ -215,21 +217,21 @@ class StreetPreview {
 
         val start = System.currentTimeMillis()
 
-        val nearestIntersection = engine.getGridFeatureCollection(Fc.INTERSECTIONS.id, location, 1.0, 1)
+        val nearestIntersection = engine.getNearestFeature(Fc.INTERSECTIONS.id, location, 1.0)
         val nearestRoads = engine.getGridFeatureCollection(Fc.ROADS.id, location, 1.0)
         nearestRoads.plusAssign(engine.getGridFeatureCollection(Fc.PATHS.id, location, 1.0))
 
-        if (nearestIntersection.features.isNotEmpty()) {
+        if (nearestIntersection != null) {
             // We're at an intersection
             val intersectionRoadNames = getIntersectionRoadNames(nearestIntersection, nearestRoads)
             for (road in intersectionRoadNames) {
                 val testRoadDirectionAtIntersection =
-                    getDirectionAtIntersection(nearestIntersection.features[0], road)
+                    getDirectionAtIntersection(nearestIntersection, road)
 
                 if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
                     // split the road into two
                     val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
-                        nearestIntersection.features[0],
+                        nearestIntersection,
                         road
                     )
 
