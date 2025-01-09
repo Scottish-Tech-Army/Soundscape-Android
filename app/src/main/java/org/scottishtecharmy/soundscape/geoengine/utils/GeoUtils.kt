@@ -385,10 +385,8 @@ fun getPolygonOfBoundingBox(boundingBox: BoundingBox): Polygon{
 
 /**
  * Gives the heading from one point to another point.
- * @param lat1
- * @param lon2
- * @param lat2
- * @param lon2
+ * @param loc1
+ * @param loc2
  * @return The heading in degrees clockwise from north.
  */
 fun bearingFromTwoPoints(
@@ -1220,31 +1218,43 @@ fun straightLinesIntersect(
             isBetween(line1Start.longitude, line1End.longitude, yi) && isBetween(line2Start.longitude, line2End.longitude, yi)
         }
         else -> {
-
-            val gradient1 = (line1End.longitude - line1Start.longitude) / (line1End.latitude - line1Start.latitude)
-            val gradient2 = (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
-
-            val a1 = line1Start.longitude - gradient1 * line1Start.latitude
-            val a2 = line2Start.longitude - gradient2 * line2Start.latitude
-
-            if (gradient1 - gradient2 == 0.0) {
-                // same gradient
-                if (abs(a1 - a2) < .0000001) {
-                    // lines are definitely the same within a margin of error, check if overlaps
-                    isBetween(line1Start.latitude, line1End.latitude, line2Start.latitude) || isBetween(line1Start.latitude, line1End.latitude, line2End.latitude)
-                } else {
-                    // parallel
-                    false
-                }
+            if((line1Start == line2Start) ||
+               (line1Start == line2End) ||
+               (line1End == line2Start) ||
+               (line1End == line2End)) {
+                true
             } else {
-                // calculate intersection coordinates
-                val intersectLat = -(a1 - a2) / (gradient1 - gradient2)
-                val intersectLon = a1 + gradient1 * intersectLat
+                val gradient1 =
+                    (line1End.longitude - line1Start.longitude) / (line1End.latitude - line1Start.latitude)
+                val gradient2 =
+                    (line2End.longitude - line2Start.longitude) / (line2End.latitude - line2Start.latitude)
 
-                (line1Start.latitude - intersectLat) * (intersectLat - line1End.latitude) >= 0 &&
-                        (line2Start.latitude - intersectLat) * (intersectLat - line2End.latitude) >= 0 &&
-                        (line1Start.longitude - intersectLon) * (intersectLon - line1End.longitude) >= 0 &&
-                        (line2Start.longitude - intersectLon) * (intersectLon - line2End.longitude) >= 0
+                val a1 = line1Start.longitude - gradient1 * line1Start.latitude
+                val a2 = line2Start.longitude - gradient2 * line2Start.latitude
+
+                if (gradient1 - gradient2 == 0.0) {
+                    // same gradient
+                    if (abs(a1 - a2) < .0000001) {
+                        // lines are definitely the same within a margin of error, check if overlaps
+                        isBetween(
+                            line1Start.latitude,
+                            line1End.latitude,
+                            line2Start.latitude
+                        ) || isBetween(line1Start.latitude, line1End.latitude, line2End.latitude)
+                    } else {
+                        // parallel
+                        false
+                    }
+                } else {
+                    // calculate intersection coordinates
+                    val intersectLat = -(a1 - a2) / (gradient1 - gradient2)
+                    val intersectLon = a1 + gradient1 * intersectLat
+
+                    (line1Start.latitude - intersectLat) * (intersectLat - line1End.latitude) >= 0 &&
+                            (line2Start.latitude - intersectLat) * (intersectLat - line2End.latitude) >= 0 &&
+                            (line1Start.longitude - intersectLon) * (intersectLon - line1End.longitude) >= 0 &&
+                            (line2Start.longitude - intersectLon) * (intersectLon - line2End.longitude) >= 0
+                }
             }
         }
     }
