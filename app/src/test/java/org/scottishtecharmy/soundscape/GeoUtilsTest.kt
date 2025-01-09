@@ -669,6 +669,15 @@ class GeoUtilsTest {
         // These linestrings do not intersect
         val intersect2 = lineStringsIntersect(lineString1, lineString3)
         Assert.assertEquals(false, intersect2)
+
+        // These linestrings do intersect - they share a vertex
+        val intersect3 = straightLinesIntersect(
+            LngLatAlt(-4.305750131607056,55.947229354934144),
+            LngLatAlt(-4.30576890707016,55.947257891396816),
+            LngLatAlt(-4.306174131587852,55.946848076693094),
+            LngLatAlt(-4.305750131607056,55.947229354934144)
+        )
+        Assert.assertEquals(true, intersect3)
     }
 
     @Test
