@@ -236,7 +236,7 @@ class MergePolygonsTest {
             gridSize = 3
         }
         // Get a grid around the location
-        val grid = getTileGrid(location.latitude, location.longitude, gridSize)
+        val grid = getTileGrid(location, gridSize)
         for (tile in grid.tiles) {
             println("Need tile ${tile.tileX}x${tile.tileY}")
         }
