@@ -240,6 +240,9 @@ dependencies {
     // Rtree spatial search library
     implementation(libs.rtree2)
 
+    // JTS for manipulating 2D geometry
+    implementation(libs.jts.core)
+
     // Dokka plugin
     dokkaPlugin(libs.html.mermaid.dokka.plugin)
 

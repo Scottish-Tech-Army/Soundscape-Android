@@ -6,6 +6,7 @@ composePreferenceLibrary = "1.1.1"
 converterMoshi = "2.11.0"
 converterProtobuf = "2.11.0"
 htmlMermaidDokkaPlugin = "0.6.0"
+jtsCore = "1.20.0"
 leakcanaryAndroid = "2.14"
 mapLibre = "11.5.0"
 mapLibreAnnotation = "3.0.1"
@@ -76,6 +77,7 @@ firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", version.ref = "htmlMermaidDokkaPlugin" }
+jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
