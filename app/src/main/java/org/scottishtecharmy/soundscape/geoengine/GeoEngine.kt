@@ -57,6 +57,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.processTileFeatureCollection
@@ -224,6 +225,10 @@ class GeoEngine {
                                     for (ip in featureCollections[Fc.INTERPOLATIONS.id]) {
                                         joiner.addInterpolatedPoints(ip)
                                     }
+                                    // merging any overlapping Polygons that are on the tile boundaries
+                                    val mergedPoi = mergeAllPolygonsInFeatureCollection(featureCollections[Fc.POIS.id])
+                                    featureCollections[Fc.POIS.id] = mergedPoi
+
                                     joiner.addJoiningLines(featureCollections[Fc.ROADS_AND_PATHS.id])
 
                                     // Create rtrees for each feature collection
