@@ -10,13 +10,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getBusStopsFeatureCollect
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovPoiFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
@@ -29,14 +24,21 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
 import org.scottishtecharmy.soundscape.geoengine.utils.explodeLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.explodePolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
+import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getGpsFromNormalizedMapCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.geoengine.utils.getNearestFovFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
@@ -47,7 +49,7 @@ class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
     @Test
     fun getXYTileTest() {
-        val testSlippyMapTileName = getXYTile(0.5, 0.5, 16)
+        val testSlippyMapTileName = getXYTile(LngLatAlt(0.5, 0.5), 16)
         Assert.assertEquals(32859, testSlippyMapTileName.first)
         Assert.assertEquals(32676, testSlippyMapTileName.second)
     }
@@ -248,7 +250,7 @@ class TileUtilsTest {
 
         val currentLat = 0.0
         val currentLon = 0.5
-        val distanceToFeatureCollection = getDistanceToFeatureCollection(currentLat, currentLon, featureCollectionTest!!)
+        val distanceToFeatureCollection = getDistanceToFeatureCollection(LngLatAlt(currentLon, currentLat), featureCollectionTest!!)
 
         // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
         Assert.assertEquals(55659.75, distanceToFeatureCollection.features[0].foreign?.get("distance_to"))
@@ -310,8 +312,7 @@ class TileUtilsTest {
                 println(settingsString)
 
                 val distanceToFeatureCollection = getDistanceToFeatureCollection(
-                    currentLat,
-                    currentLon,
+                    LngLatAlt(currentLon,currentLat),
                     settingsFeatureCollection
                 ).sortedBy { feature ->
                     feature.foreign?.get("distance_to") as? Double ?: Double.MAX_VALUE
@@ -373,11 +374,11 @@ class TileUtilsTest {
             )
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         // Should only be one intersection in this FoV
         Assert.assertEquals(1, fovIntersectionsFeatureCollection.features.size)
@@ -400,11 +401,11 @@ class TileUtilsTest {
             )
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Should contain two roads - Weston Road and Long Ashton Road
         Assert.assertEquals(2, fovRoadsFeatureCollection.features.size)
@@ -427,11 +428,11 @@ class TileUtilsTest {
                 featureCollectionTest!!
             )
         // Create a FOV triangle to pick up the Points of interest in the FoV
-        val fovPoiFeatureCollection = getFovPoiFeatureCollection(
+        val fovPoiFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testPoiCollectionFromTileFeatureCollection
+            FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
         // Should contain two buildings
         // unfortunately I seem to have chosen the two dullest buildings for my FoV as
@@ -457,16 +458,14 @@ class TileUtilsTest {
                 featureCollectionTest!!
             )
         // Create a FOV triangle to pick up the intersections
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
             currentLocation,
-            deviceHeading,
-            fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
-        )
-        Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
-        val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
+            points.left,
+            points.right)
+
         // Should only be the nearest intersection in this Feature Collection
-        Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
+        assert(nearestIntersection != null)
     }
 
     @Test
@@ -486,18 +485,17 @@ class TileUtilsTest {
                 featureCollectionTest!!
             )
         // Create a FOV triangle to pick up the intersections
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
         // This should sort the intersections (but any feature collection wil do)
         // by distance to the current location
         val sortedByDistanceToTest = sortedByDistanceTo(
-            currentLocation.latitude,
-            currentLocation.longitude,
+            currentLocation,
             fovIntersectionsFeatureCollection
         )
         Assert.assertEquals(6.0, sortedByDistanceToTest.features[0].foreign?.get("distance_to"))
@@ -521,19 +519,19 @@ class TileUtilsTest {
                 featureCollectionTest!!
             )
         // Create a FOV triangle to pick up the roads
-        val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // This should pick up three roads in the FoV
         Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
-        val nearestRoadFeatureCollection = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        val nearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
         // Should only be the nearest road in this Feature Collection
-        Assert.assertEquals(1, nearestRoadFeatureCollection.features.size)
+        assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
-        Assert.assertEquals("Weston Road", nearestRoadFeatureCollection.features[0].properties!!["name"])
+        Assert.assertEquals("Weston Road", nearestRoad!!.properties!!["name"])
     }
 
     @Test
@@ -546,24 +544,27 @@ class TileUtilsTest {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+
+
         // Get the poi from the tile
         val testPoiCollectionFromTileFeatureCollection =
             getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest!!
             )
+
         // Create a FOV triangle to pick up the poi
-        val fovPoiFeatureCollection = getFovPoiFeatureCollection(
-            currentLocation,
+        val nearestPoiFeature = getNearestFovFeature(currentLocation,
             deviceHeading,
             fovDistance,
-            testPoiCollectionFromTileFeatureCollection
+            FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
-        // This should pick up two boring buildings in the FoV
-        Assert.assertEquals(2, fovPoiFeatureCollection.features.size)
-        val nearestPoiFeatureCollection = getNearestPoi(currentLocation, fovPoiFeatureCollection)
-        Assert.assertEquals(1,  nearestPoiFeatureCollection.features.size)
-        // I've inserted the distance_to in the foreign member for this so...
-        Assert.assertEquals(29.65, nearestPoiFeatureCollection.features[0].foreign!!["distance_to"].toString().toDouble(), 0.01)
+
+        // The distance is measured to the center of the bounding box
+        val box = getBoundingBoxOfPolygon(nearestPoiFeature!!.geometry as Polygon)
+        val center = getCenterOfBoundingBox(getBoundingBoxCorners(box))
+        val distance = currentLocation.distance(center)
+
+        Assert.assertEquals(29.65, distance, 0.01)
     }
 
     @Test
@@ -595,15 +596,15 @@ class TileUtilsTest {
         // Override Global grid size setting
         GRID_SIZE = 3
 
-        var tileGrid = getTileGrid(65.0, 0.0)
+        var tileGrid = getTileGrid(LngLatAlt(65.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(-65.0, 0.0)
+        tileGrid = getTileGrid(LngLatAlt(-65.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, 0.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, 180.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 180.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, -180.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, -180.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
     }
 
@@ -612,9 +613,9 @@ class TileUtilsTest {
         // Override Global grid size setting
         GRID_SIZE = 2
 
-        var tileGrid = getTileGrid(0.001, 0.0)
+        var tileGrid = getTileGrid(LngLatAlt(0.001, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(0.0, 0.0)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
         Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
     }
 
@@ -721,36 +722,29 @@ class TileUtilsTest {
                 featureCollectionTest
             )
         // create a FOV triangle to pick up the roads
-        val  fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
+        val  fovRoadsFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            testRoadsCollectionFromTileFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Create a FOV triangle to pick up the intersections
-        val fovIntersectionsFeatureCollection = getFovIntersectionFeatureCollection(
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
             currentLocation,
-            deviceHeading,
-            fovDistance,
-            testIntersectionsCollectionFromTileFeatureCollection
-        )
-        // we will pick up three roads in our FoV so we need to identify which of the
-        // roads makes up the nearest intersection
-        Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
-        Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
-
-        val nearestIntersectionFeatureCollection = getNearestIntersection(currentLocation, fovIntersectionsFeatureCollection)
-        Assert.assertEquals(1, nearestIntersectionFeatureCollection.features.size)
+            points.left,
+            points.right)
+        assert(nearestIntersection != null)
 
         // how far away is the intersection?
         val distanceToNearestIntersection = distanceToIntersection(currentLocation,
-            nearestIntersectionFeatureCollection.features[0].geometry as Point
+            nearestIntersection!!.geometry as Point
         )
         Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
         val nearestIntersectionRoadNames = getIntersectionRoadNames(
-            nearestIntersectionFeatureCollection,
+            nearestIntersection,
             fovRoadsFeatureCollection
         )
         Assert.assertEquals("Long Ashton Road", nearestIntersectionRoadNames.features[1].properties!!["name"])

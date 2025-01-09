@@ -1,7 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home
 
 import android.util.Log
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -88,6 +92,7 @@ fun HomeScreen(
             Settings(
                 onNavigateUp = { navController.navigateUp() },
                 uiState = uiState.value,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
             )
         }
 
@@ -113,6 +118,7 @@ fun HomeScreen(
                 longitude = state.value.location?.longitude,
                 navController = navController,
                 heading = state.value.heading,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
             )
         }
 
@@ -123,7 +129,9 @@ fun HomeScreen(
         ) {
             composable("${HomeRoutes.MarkersAndRoutes.route}/{tab}") { backStackEntry ->
                 val selectedTab = backStackEntry.arguments?.getString("tab")
-                MarkersAndRoutesScreen(mainNavController = navController, selectedTab = selectedTab)
+                MarkersAndRoutesScreen(mainNavController = navController,
+                    selectedTab = selectedTab,
+                    modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
             }
         }
 

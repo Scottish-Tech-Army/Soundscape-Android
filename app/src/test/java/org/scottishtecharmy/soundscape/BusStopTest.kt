@@ -3,14 +3,14 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 
 class BusStopTest {
 
@@ -38,17 +38,17 @@ class BusStopTest {
         val deviceHeading = 225.0
         val fovDistance = 50.0
         // we can reuse the intersection code as bus stops are GeoJSON Points just like Intersections
-        val fovBusStopFeatureCollection = getFovIntersectionFeatureCollection(
+        val fovBusStopFeatureCollection = getFovFeatureCollection(
             currentLocation,
             deviceHeading,
             fovDistance,
-            busStopFeatureCollection
+            FeatureTree(busStopFeatureCollection)
         )
         Assert.assertEquals(2, fovBusStopFeatureCollection.features.size)
         // we can detect the nearest bus stop and give a distance/direction but as mentioned above the OSM
         // bus stop location data for this example is rubbish so not sure how useful this is to the user?
-        val nearestBusStop = getNearestIntersection(currentLocation, fovBusStopFeatureCollection)
-        val busStopLocation = nearestBusStop.features[0].geometry as Point
+        val nearestBusStop = FeatureTree(fovBusStopFeatureCollection).getNearestFeature(currentLocation)
+        val busStopLocation = nearestBusStop!!.geometry as Point
         val distanceToBusStop = distance(
             currentLocation.latitude,
             currentLocation.longitude,

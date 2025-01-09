@@ -17,11 +17,11 @@ abstract class LocationProvider {
     fun getCurrentLongitude() : Double? {
         return mutableLocationFlow.value?.longitude
     }
-    fun get() : LngLatAlt? {
+    fun get() : LngLatAlt {
         mutableLocationFlow.value?.let { location ->
             return LngLatAlt(location.longitude, location.latitude)
         }
-        return null
+        return LngLatAlt(0.0,0.0)
     }
 
     // Flow to return Location objects

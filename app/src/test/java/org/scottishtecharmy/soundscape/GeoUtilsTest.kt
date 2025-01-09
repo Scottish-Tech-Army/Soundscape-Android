@@ -306,18 +306,13 @@ class GeoUtilsTest {
     fun getBearingForTwoPointsSouthToNorthTest() {
 
         val testBearingBetweenTwoPointsSouthToNorth = bearingFromTwoPoints(
-            0.0,
-            0.0,
-            1.0,
-            0.0
-        )
+            LngLatAlt(0.0, 0.0),
+            LngLatAlt(0.0, 1.0))
         Assert.assertEquals(0.0, testBearingBetweenTwoPointsSouthToNorth, 0.1)
 
         val testBearingBetweenTwoPointsNorthToSouth = bearingFromTwoPoints(
-            1.0,
-            0.0,
-            0.0,
-            0.0
+            LngLatAlt(0.0,1.0),
+            LngLatAlt(0.0,0.0)
         )
         Assert.assertEquals(180.0, testBearingBetweenTwoPointsNorthToSouth, 0.1)
     }

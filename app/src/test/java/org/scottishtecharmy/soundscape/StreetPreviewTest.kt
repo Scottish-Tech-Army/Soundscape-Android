@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -9,20 +10,16 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
-import org.scottishtecharmy.soundscape.geoengine.utils.checkIntersection
+import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
-import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovIntersectionFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovRoadsFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getQuadrants
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
@@ -40,10 +37,12 @@ class StreetPreviewTest {
             .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
         val roadFeatureCollectionTest = getRoadsFeatureCollectionFromTileFeatureCollection(
             featureCollectionTest!!)
-        val nearestRoadTest = getNearestRoad(
+        val nearestRoad = getNearestRoad(
             LngLatAlt(-2.693002695425122,51.43938442591545),
             roadFeatureCollectionTest
         )
+        val nearestRoadTest = FeatureCollection()
+        nearestRoadTest.addFeature(nearestRoad!!)
         val nearestRoadString = moshi.adapter(FeatureCollection::class.java).toJson(nearestRoadTest)
         // copy and paste into GeoJSON.io
         println("Nearest road/linestring $nearestRoadString")
@@ -57,18 +56,11 @@ class StreetPreviewTest {
         // walk down the road using the Points from the roadTrace FeatureCollection as a track
         for (feature in roadTrace.features.subList(0, roadTrace.features.size - 1)) {
             val currentPoint = feature.geometry as Point
-            val currentLocation = LngLatAlt(
-                currentPoint.coordinates.longitude,
-                currentPoint.coordinates.latitude
-            )
+            val currentLocation = currentPoint.coordinates
+
             val nextLocation = roadTrace.features[i++].geometry as Point
             // fake the device heading by "looking" at the next Point
-            val deviceHeading = bearingFromTwoPoints(
-                currentLocation.latitude,
-                currentLocation.longitude,
-                nextLocation.coordinates.latitude,
-                nextLocation.coordinates.longitude
-            )
+            val deviceHeading = bearingFromTwoPoints(currentLocation, nextLocation.coordinates)
             println("Device Heading: $deviceHeading")
             val fovTriangle = generateFOVTriangle(currentLocation, deviceHeading)
             fovFeatureCollection.addFeature(fovTriangle)
@@ -115,7 +107,11 @@ class StreetPreviewTest {
             )
         }
         // trace along the road with equidistant points 30m apart.
-        val roadTrace = nearestRoadTest?.let { traceLineString(it, 30.0) }
+        val roadTrace = nearestRoadTest?.let {
+            val fcIt =FeatureCollection()
+            fcIt.addFeature(it)
+            traceLineString(fcIt, 30.0)
+        }
 
         var i = 2
         // walk down the road using the Points from the roadTrace FeatureCollection as a track
@@ -127,75 +123,53 @@ class StreetPreviewTest {
                 val results : MutableList<String> = mutableListOf()
 
                 val currentPoint = feature.geometry as Point
-                val currentLocation = LngLatAlt(
-                    currentPoint.coordinates.longitude,
-                    currentPoint.coordinates.latitude
-                )
+                val currentLocation = currentPoint.coordinates
+
                 val nextLocation = roadTrace.features[i++].geometry as Point
                 // fake the device heading by "looking" at the next Point
-                val deviceHeading = bearingFromTwoPoints(
-                    currentLocation.latitude,
-                    currentLocation.longitude,
-                    nextLocation.coordinates.latitude,
-                    nextLocation.coordinates.longitude
-                )
+                val deviceHeading = bearingFromTwoPoints(currentLocation, nextLocation.coordinates)
                 val fovDistance = 50.0
                 if (roadFeatureCollectionTest.features.size > 0) {
-                    val fovRoadsFeatureCollection = getFovRoadsFeatureCollection(
-                        LngLatAlt(
-                            currentLocation.longitude,
-                            currentLocation.latitude
-                        ),
+                    val fovRoadsFeatureCollection = getFovFeatureCollection(
+                        currentLocation,
                         deviceHeading,
                         fovDistance,
-                        roadFeatureCollectionTest
+                        FeatureTree(roadFeatureCollectionTest)
                     )
                     val fovIntersectionsFeatureCollection = intersectionsFeatureCollectionTest?.let {
-                        getFovIntersectionFeatureCollection(
-                            LngLatAlt(
-                                currentLocation.longitude,
-                                currentLocation.latitude
-                            ),
+                        getFovFeatureCollection(
+                            currentLocation,
                             deviceHeading,
                             fovDistance,
-                            it
+                            FeatureTree(it)
                         )
                     }
                     val fovCrossingsFeatureCollection = crossingsFeatureCollectionTest?.let {
-                        getFovIntersectionFeatureCollection(
-                            LngLatAlt(
-                                currentLocation.longitude,
-                                currentLocation.latitude
-                            ),
+                        getFovFeatureCollection(
+                            currentLocation,
                             deviceHeading,
                             fovDistance,
-                            it
+                            FeatureTree(it)
                         )
                     }
                     val fovBusStopsFeatureCollection = busStopsGridFeatureCollection?.let {
-                        getFovIntersectionFeatureCollection(
-                            LngLatAlt(
-                                currentLocation.longitude,
-                                currentLocation.latitude
-                            ),
+                        getFovFeatureCollection(
+                            currentLocation,
                             deviceHeading,
                             fovDistance,
-                            it
+                            FeatureTree(it)
                         )
                     }
 
                     if (fovRoadsFeatureCollection.features.size > 0) {
                         val nearestRoad = getNearestRoad(
-                            LngLatAlt(
-                                currentLocation.longitude,
-                                currentLocation.latitude
-                            ),
+                            currentLocation,
                             fovRoadsFeatureCollection
                         )
 
-                        if (nearestRoad.features[0].properties?.get("name") != null) {
+                        if (nearestRoad!!.properties?.get("name") != null) {
                             results.add(
-                                "Ahead ${nearestRoad.features[0].properties!!["name"]}"
+                                "Ahead ${nearestRoad.properties!!["name"]}"
                             )
                         } else {
                             // we are detecting an unnamed road here but pretending there is nothing here
@@ -208,25 +182,19 @@ class StreetPreviewTest {
                             if (fovIntersectionsFeatureCollection.features.size > 0) {
 
                                 val intersectionsSortedByDistance = sortedByDistanceTo(
-                                    currentLocation.latitude,
-                                    currentLocation.longitude,
+                                    currentLocation,
                                     fovIntersectionsFeatureCollection
                                 )
 
                                 val testNearestRoad = getNearestRoad(
-                                    LngLatAlt(
-                                        currentLocation.longitude,
-                                        currentLocation.latitude
-                                    ),
+                                    currentLocation,
                                     fovRoadsFeatureCollection
                                 )
                                 val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
 
                                 for (y in 0 until intersectionsSortedByDistance.features.size) {
-                                    val testNearestIntersection = FeatureCollection()
-                                    testNearestIntersection.addFeature(intersectionsSortedByDistance.features[y])
-                                    val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
-                                    val intersectionsNeedsFurtherChecking = checkIntersection(y, intersectionRoadNames, testNearestRoad)
+                                    val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[y], fovRoadsFeatureCollection)
+                                    val intersectionsNeedsFurtherChecking = checkWhetherIntersectionIsOfInterest(intersectionRoadNames, testNearestRoad)
                                     if(intersectionsNeedsFurtherChecking) {
                                         intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[y])
                                     }
@@ -236,40 +204,30 @@ class StreetPreviewTest {
                                     val featureWithMostOsmIds: Feature? = intersectionsNeedsFurtherCheckingFC.features.maxByOrNull { intersectionFeature ->
                                         (intersectionFeature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
                                     }
-                                    val newIntersectionFeatureCollection = FeatureCollection()
-                                    if (featureWithMostOsmIds != null) {
-                                        newIntersectionFeatureCollection.addFeature(featureWithMostOsmIds)
-                                    }
 
-                                    val nearestIntersection = getNearestIntersection(
-                                        LngLatAlt(currentLocation.longitude,
-                                            currentLocation.latitude),
-                                        fovIntersectionsFeatureCollection
+                                    val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeature(
+                                        currentLocation
                                     )
                                     val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
-                                    val intersectionLocation = newIntersectionFeatureCollection.features[0].geometry as Point
+                                    val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
                                     val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-                                        LngLatAlt(intersectionLocation.coordinates.longitude,
-                                            intersectionLocation.coordinates.latitude),
+                                        intersectionLocation.coordinates,
                                         nearestRoadBearing,
                                         //fovDistance,
                                         5.0,
                                         RelativeDirections.COMBINED
                                     )
-                                    val distanceToNearestIntersection = distance(
-                                        currentLocation.latitude,
-                                        currentLocation.longitude,
-                                        intersectionLocation.coordinates.latitude,
-                                        intersectionLocation.coordinates.longitude
+                                    val distanceToNearestIntersection = currentLocation.distance(
+                                        intersectionLocation.coordinates
                                     )
-                                    val intersectionRoadNames = getIntersectionRoadNames(newIntersectionFeatureCollection, fovRoadsFeatureCollection)
+                                    val intersectionRoadNames = getIntersectionRoadNames(featureWithMostOsmIds, fovRoadsFeatureCollection)
                                     results.add(
                                         "Approaching intersection ${distanceToNearestIntersection.toInt()} metres"
                                     )
 
                                     val roadRelativeDirections = getIntersectionRoadNamesRelativeDirections(
                                         intersectionRoadNames,
-                                        newIntersectionFeatureCollection,
+                                        featureWithMostOsmIds,
                                         intersectionRelativeDirections
                                     )
                                     for (directionFeature in roadRelativeDirections.features) {
@@ -294,28 +252,15 @@ class StreetPreviewTest {
                     }
                     // detect if there is a crossing in the FOV
                     if (fovCrossingsFeatureCollection != null) {
-                        if (fovCrossingsFeatureCollection.features.size > 0) {
-
-                            val nearestCrossing = getNearestIntersection(
-                                LngLatAlt(
-                                    currentLocation.longitude,
-                                    currentLocation.latitude
-                                ),
-                                fovCrossingsFeatureCollection
-                            )
-                            val crossingLocation = nearestCrossing.features[0].geometry as Point
-                            val distanceToCrossing = distance(
-                                currentLocation.latitude,
-                                currentLocation.longitude,
-                                crossingLocation.coordinates.latitude,
-                                crossingLocation.coordinates.longitude
-                            )
+                        val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeature(
+                            currentLocation
+                        )
+                        if (nearestCrossing != null) {
+                            val crossingLocation = nearestCrossing.geometry as Point
+                            val distanceToCrossing = currentLocation.distance(crossingLocation.coordinates)
                             // Confirm which road the crossing is on
                             val nearestRoadToCrossing = getNearestRoad(
-                                LngLatAlt(
-                                    crossingLocation.coordinates.longitude,
-                                    crossingLocation.coordinates.latitude
-                                ),
+                                crossingLocation.coordinates,
                                 fovRoadsFeatureCollection
                             )
 
@@ -324,8 +269,8 @@ class StreetPreviewTest {
                                 append(". ")
                                 append("${distanceToCrossing.toInt()} metres")
                                 append(". ")
-                                if (nearestRoadToCrossing.features[0].properties?.get("name") != null){
-                                    append(nearestRoadToCrossing.features[0].properties?.get("name"))
+                                if (nearestRoadToCrossing!!.properties?.get("name") != null){
+                                    append(nearestRoadToCrossing.properties?.get("name"))
                                 }
                             }
                             results.add(crossingCallout)
@@ -334,27 +279,17 @@ class StreetPreviewTest {
 
                     // detect if there is a bus_stop in the FOV
                     if (fovBusStopsFeatureCollection != null) {
-                        if (fovBusStopsFeatureCollection.features.size > 0) {
-                            val nearestBusStop = getNearestIntersection(
-                                LngLatAlt(
-                                    currentLocation.longitude,
-                                    currentLocation.latitude
-                                ),
-                                fovBusStopsFeatureCollection
-                            )
-                            val busStopLocation = nearestBusStop.features[0].geometry as Point
-                            val distanceToBusStop = distance(
-                                currentLocation.latitude,
-                                currentLocation.latitude,
-                                busStopLocation.coordinates.latitude,
-                                busStopLocation.coordinates.longitude
+                        val nearestBusStop = FeatureTree(fovBusStopsFeatureCollection).getNearestFeature(
+                            currentLocation
+                        )
+                        if (nearestBusStop != null) {
+                            val busStopLocation = nearestBusStop.geometry as Point
+                            val distanceToBusStop = currentLocation.distance(
+                                busStopLocation.coordinates
                             )
                             // Confirm which road the crossing is on
                             val nearestRoadToBus = getNearestRoad(
-                                LngLatAlt(
-                                    busStopLocation.coordinates.longitude,
-                                    busStopLocation.coordinates.latitude
-                                ),
+                                busStopLocation.coordinates,
                                 fovRoadsFeatureCollection
                             )
 
@@ -363,8 +298,8 @@ class StreetPreviewTest {
                                 append(". ")
                                 append("${distanceToBusStop.toInt()} metres")
                                 append(". ")
-                                if (nearestRoadToBus.features[0].properties?.get("name") != null){
-                                    append(nearestRoadToBus.features[0].properties?.get("name"))
+                                if (nearestRoadToBus!!.properties?.get("name") != null){
+                                    append(nearestRoadToBus.properties?.get("name"))
                                 }
                             }
                             results.add(busStopCallout)
@@ -391,37 +326,14 @@ class StreetPreviewTest {
         deviceHeading: Double,
         fovDistance: Double = 50.0
     ): Feature {
-        // Direction the device is pointing
-        val quadrants = getQuadrants(deviceHeading)
-        // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-        var quadrantIndex = 0
-        for (quadrant in quadrants) {
-            val containsHeading = quadrant.contains(deviceHeading)
-            if (containsHeading) {
-                break
-            } else {
-                quadrantIndex++
-            }
-        }
-        // Get the coordinate for the "Left" of the FOV
-        val destinationCoordinateLeft = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].left,
-            fovDistance
-        )
 
-        //Get the coordinate for the "Right" of the FOV
-        val destinationCoordinateRight = getDestinationCoordinate(
-            LngLatAlt(currentLocation.longitude, currentLocation.latitude),
-            quadrants[quadrantIndex].right,
-            fovDistance
-        )
+        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
 
         // We can now construct our FOV polygon (triangle)
         val polygonTriangleFOV = createTriangleFOV(
-            destinationCoordinateLeft,
             currentLocation,
-            destinationCoordinateRight
+            points.left,
+            points.right
         )
 
         val featureFOVTriangle = Feature().also {
@@ -451,7 +363,7 @@ class StreetPreviewTest {
         return directionString
     }
 
-    fun getRelativeDirectionLabelStreetPreview(relativeDirection: Int): String {
+    private fun getRelativeDirectionLabelStreetPreview(relativeDirection: Int): String {
         return when (relativeDirection) {
             0 -> "behind"
             1 -> "behind to the left"

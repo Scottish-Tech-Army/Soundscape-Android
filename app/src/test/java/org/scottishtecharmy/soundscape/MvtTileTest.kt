@@ -6,10 +6,10 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJ
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestPoi
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
@@ -69,7 +69,7 @@ fun getGeoJsonForLocation(
         gridSize = 3
     }
     // Get a grid around the location
-    val grid = getTileGrid(location.latitude, location.longitude, gridSize)
+    val grid = getTileGrid(location, gridSize)
     for (tile in grid.tiles) {
         println("Need tile ${tile.tileX}x${tile.tileY}")
     }
@@ -253,22 +253,15 @@ class MvtTileTest {
         }
 
         start = System.currentTimeMillis()
-        val nearestFc = tree.generateNearestFeatureCollection(LngLatAlt(-4.316914, 55.941861), 50.0, 1)
+        val nearestFc = tree.getNearestFeature(LngLatAlt(-4.316914, 55.941861), 50.0)
         end = System.currentTimeMillis()
         println("Nearest (${end-start}ms):")
-        for(feature in nearestFc) {
-            println(feature.properties?.get("name"))
-        }
+        println(nearestFc?.properties?.get("name"))
 
         val adapter = GeoJsonObjectMoshiAdapter()
         val outputFile = FileOutputStream("rtree.geojson")
         outputFile.write(adapter.toJson(distanceFc).toByteArray())
         outputFile.close()
-
-        start = System.currentTimeMillis()
-        val fc = getNearestPoi(LngLatAlt(-4.316914, 55.941861), featureCollection)
-        end = System.currentTimeMillis()
-        println("getNearestPoi result in ${end-start}ms : ${fc.features[0].properties}")
     }
 
     @Test
@@ -321,3 +314,4 @@ class MvtTileTest {
         // Clone is cloning all of the hashmap entries
     }
 }
+

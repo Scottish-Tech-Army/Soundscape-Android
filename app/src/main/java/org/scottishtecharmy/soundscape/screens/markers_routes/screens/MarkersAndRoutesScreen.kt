@@ -20,7 +20,8 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Composable
 fun MarkersAndRoutesScreen(
     mainNavController: NavController,
-    selectedTab: String?
+    selectedTab: String?,
+    modifier: Modifier
 ) {
     // Nested navController for the tab navigation inside MarkersAndRoutes
     val nestedNavController = rememberNavController()
@@ -30,6 +31,7 @@ fun MarkersAndRoutesScreen(
     val showAddIcon = currentRoute == ScreensForMarkersAndRoutes.Routes.route
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             Column {
                 MarkersAndRoutesAppBar(
@@ -60,6 +62,8 @@ fun MarkersAndRoutesPreview() {
     SoundscapeTheme {
         MarkersAndRoutesScreen(
             mainNavController = rememberNavController(),
-            selectedTab = ScreensForMarkersAndRoutes.Markers.route)
+            selectedTab = ScreensForMarkersAndRoutes.Markers.route,
+            modifier = Modifier
+        )
     }
 }
