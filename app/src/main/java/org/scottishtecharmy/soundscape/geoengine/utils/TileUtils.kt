@@ -13,6 +13,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import com.squareup.moshi.Moshi
+import org.locationtech.jts.geom.Coordinate
+import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
@@ -1681,7 +1683,138 @@ fun interpolate(
     return LngLatAlt(lon, lat)
 }
 
+fun mergeAllPolygonsInFeatureCollection(
+    polygonFeatureCollection: FeatureCollection
+): FeatureCollection{
+    val processOsmIds = mutableSetOf<Any>()
+    val notDuplicateFeaturesFeatureCollection = FeatureCollection()
+    val duplicateFeaturesFeatureCollection = FeatureCollection()
 
+    for (feature in polygonFeatureCollection.features) {
+        if (!isDuplicateByOsmId(processOsmIds, feature)) {
+            notDuplicateFeaturesFeatureCollection.features.add(feature)
+        } else {
+            duplicateFeaturesFeatureCollection.features.add(feature)
+        }
+    }
+
+    val mergedPolygonsFeatureCollection = FeatureCollection()
+    val duplicateLineStringsAndPoints = FeatureCollection()
+    val originalPolygonsUsedInMerge = mutableSetOf<Any>() // Track original polygons
+
+    for (duplicate in duplicateFeaturesFeatureCollection) {
+        // Find the original Feature
+        val originalFeature = notDuplicateFeaturesFeatureCollection.features.find {
+            it.foreign?.get("osm_ids") == duplicate.foreign?.get("osm_ids")
+        }
+
+        // Merge duplicate polygons
+        if (originalFeature != null && originalFeature.geometry.type == "Polygon" && duplicate.geometry.type == "Polygon") {
+            mergedPolygonsFeatureCollection.features.add(mergePolygons(originalFeature, duplicate))
+            // Add to the set
+            originalFeature.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
+            // Add to the set
+            duplicate.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
+        } else {
+            // TODO Merge the linestrings so we get a contiguous road/path
+            if (duplicate.geometry.type == "LineString" || duplicate.geometry.type == "Point"){
+                duplicateLineStringsAndPoints.features.add(duplicate)
+            }
+        }
+    }
+
+    val finalFeatureCollection = FeatureCollection()
+
+    // Add merged Polygons
+    finalFeatureCollection.features.addAll(mergedPolygonsFeatureCollection.features)
+
+
+    // Add original Features but excluding the Polygons that were merged
+    for (feature in notDuplicateFeaturesFeatureCollection.features) {
+        if (!isDuplicateByOsmId(originalPolygonsUsedInMerge, feature)) { // Check object identity
+            finalFeatureCollection.features.add(feature)
+        }
+    }
+
+    // Add the duplicate linestrings and points back in... need to sort out/merge the linestrings at later date
+    finalFeatureCollection.features.addAll(duplicateLineStringsAndPoints)
+
+    // The original GeoJson from the MVT tile has some features that aren't valid GeoJSON and
+    // GeoJSON.io is having a huff: "Polygons and MultiPolygons should follow the right hand rule"
+    // so fix that.
+    for (feature in finalFeatureCollection.features) {
+        if (feature.geometry.type == "Polygon") {
+            if (isPolygonClockwise(feature)){
+                (feature.geometry as Polygon).coordinates[0].reverse()
+            }
+        }
+    }
+
+    //TODO: figure out why the MVT tile has a linestring with only one coordinate? GeoJSON has a huff about it
+    val thisIsTheFinalFeatureCollectionHonest = FeatureCollection()
+    for (feature in finalFeatureCollection) {
+        if (feature.geometry.type == "LineString" && (feature.geometry as LineString).coordinates.size < 2 ){
+            println("Bug: This is a linestring with only one coordinate")
+        } else {
+            thisIsTheFinalFeatureCollectionHonest.features.add(feature)
+        }
+    }
+
+    return thisIsTheFinalFeatureCollectionHonest
+
+}
+
+fun isPolygonClockwise(
+    feature: Feature
+): Boolean {
+    // get outer ring coordinates (don't care about inner rings at the moment)
+    val coordinates = (feature.geometry as Polygon).coordinates[0]
+    var area = 0.0
+    val n = coordinates.size
+    for(i in 0 until n) {
+        val j = (i + 1) % n
+        area += (coordinates[j].longitude - coordinates[i].longitude) * (coordinates[j].latitude + coordinates[i].latitude)
+
+    }
+    return area > 0
+}
+
+fun mergePolygons(
+    polygon1: Feature,
+    polygon2: Feature
+): Feature {
+
+    val geometryFactory = GeometryFactory()
+    val feature1Coordinates = (polygon1.geometry as? Polygon)?.coordinates?.firstOrNull()
+        ?.map {
+                position -> Coordinate(position.longitude, position.latitude)
+        }?.toTypedArray()
+    val feature2Coordinates = (polygon2.geometry as? Polygon)?.coordinates?.firstOrNull()
+        ?.map {
+                position -> Coordinate(position.longitude, position.latitude)
+        }?.toTypedArray()
+
+    val polygon1GeometryJTS = feature1Coordinates?.let { geometryFactory.createPolygon(it)}
+    val polygon2GeometryJTS = feature2Coordinates?.let { geometryFactory.createPolygon(it)}
+    // merge/union the polygons
+    val mergedGeometryJTS = polygon1GeometryJTS?.union(polygon2GeometryJTS)
+    // create a new Polygon with a single outer ring using the coordinates from the JTS merged geometry
+    val mergedPolygon = Feature().also { feature ->
+        feature.properties = polygon1.properties
+        feature.foreign = polygon1.foreign
+        feature.type = "Feature"
+        feature.geometry = Polygon().also { polygon ->
+            //Convert JTS to GeoJSON coordinates
+            val geoJsonCoordinates = mergedGeometryJTS?.coordinates?.map { coordinate ->
+                LngLatAlt(coordinate.x, coordinate.y )
+            }?.let {
+                arrayListOf(arrayListOf(*it.toTypedArray()))
+            }
+            polygon.coordinates = geoJsonCoordinates ?: arrayListOf()
+        }
+    }
+    return mergedPolygon
+}
 /**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
