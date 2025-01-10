@@ -789,9 +789,9 @@ class GeoEngine {
     fun whatsAroundMe() : List<PositionedString> {
         // TODO This is just a rough POC at the moment. Lots more to do...
         //  setup settings in the menu so we can pass in the filters, etc.
-        //  Original Soundscape just splats out a list in no particular order which is odd.
-        //  If you press the button again in original Soundscape it can give you the same list but in a different sequence or
-        //  it can add one to the list even if you haven't moved. It also only seems to give a thing and a distance but not a heading.
+        //  Original Soundscape "in findCalloutsFor and it tries to get a POI in each quadrant.
+        //  It starts off searching within 200m and keeps increasing by 200m until it
+        //  hits the maximum of 1000m. It only plays out one POI per quadrant"
         var results : MutableList<PositionedString> = mutableListOf()
 
         // super categories are "information", "object", "place", "landmark", "mobility", "safety"
@@ -931,12 +931,8 @@ class GeoEngine {
                                     // found that if a thing has a name property that ends in a number
                                     // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
                                     if (feature.properties?.get("name") != null) {
-                                        val text = "${feature.properties?.get("name")}.  ${
-                                            distanceToPolygon(
-                                                location,
-                                                feature.geometry as Polygon
-                                            ).toInt()
-                                        } meters."
+                                        val d = distanceToPolygon(location, feature.geometry as Polygon).toInt()
+                                        val text = "${feature.properties?.get("name")} ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
 
                                         val poiLocation =
                                             getFeatureNearestPoint(location, feature)
@@ -952,7 +948,7 @@ class GeoEngine {
                                     if (feature.properties?.get("name") != null) {
                                         val point = feature.geometry as Point
                                         val d = location.distance(point.coordinates).toInt()
-                                        val text = "${feature.properties?.get("name")}. $d meters."
+                                        val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
                                         list.add(
                                             PositionedString(
                                                 text,
