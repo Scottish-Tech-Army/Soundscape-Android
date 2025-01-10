@@ -13,6 +13,8 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 import java.util.Locale
+import java.util.concurrent.TimeUnit
+import kotlin.time.Duration
 
 const val BASE_URL = "https://photon.komoot.io/"
 
@@ -53,6 +55,7 @@ interface PhotonSearchProvider {
         }
         private val logging = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .callTimeout(20, TimeUnit.SECONDS)
             .build()
 
         fun getInstance(): PhotonSearchProvider {
