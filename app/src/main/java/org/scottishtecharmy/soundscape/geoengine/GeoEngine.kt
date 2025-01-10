@@ -51,7 +51,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
-import org.scottishtecharmy.soundscape.geoengine.callouts.getIntersectionDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
@@ -488,7 +488,7 @@ class GeoEngine {
         val heading = directionProvider.getCurrentDirection().toDouble()
         val fovDistance = 50.0
 
-        val intersectionDescription = getIntersectionDescriptionFromFov(
+        val roadsDescription = getRoadsDescriptionFromFov(
             featureTrees[Fc.ROADS_AND_PATHS.id],
             featureTrees[Fc.INTERSECTIONS.id],
             location,
@@ -496,7 +496,7 @@ class GeoEngine {
             fovDistance,
             ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION)
 
-        addIntersectionCalloutFromDescription(intersectionDescription,
+        addIntersectionCalloutFromDescription(roadsDescription,
                 localizedContext,
                 results,
                 intersectionCalloutHistory)
@@ -995,8 +995,8 @@ class GeoEngine {
                     val orientation = directionProvider.getCurrentDirection().toDouble()
                     val fovDistance = 50.0
 
-                    // Detect if there is an intersection in the FOV
-                    val intersectionDescription = getIntersectionDescriptionFromFov(
+                    // Detect if there is a road or an intersection in the FOV
+                    val roadsDescription = getRoadsDescriptionFromFov(
                         featureTrees[Fc.ROADS_AND_PATHS.id],
                         featureTrees[Fc.INTERSECTIONS.id],
                         location,
@@ -1004,7 +1004,7 @@ class GeoEngine {
                         fovDistance,
                         ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
                     )
-                    addIntersectionCalloutFromDescription(intersectionDescription,
+                    addIntersectionCalloutFromDescription(roadsDescription,
                         localizedContext,
                         list)
 

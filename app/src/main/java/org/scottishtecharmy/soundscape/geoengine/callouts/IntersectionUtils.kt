@@ -28,15 +28,16 @@ enum class ComplexIntersectionApproach {
     NEAREST_NON_TRIVIAL_INTERSECTION
 }
 
-data class IntersectionDescription(val roads: FeatureCollection = FeatureCollection(),
-                                   val location: LngLatAlt = LngLatAlt(),
-                                   val name: String = "",
-                                   val fovBaseLocation: LngLatAlt = LngLatAlt())
+data class RoadsDescription(val nearestRoad: Feature? = null,
+                            val heading: Double = 0.0,
+                            val fovBaseLocation: LngLatAlt = LngLatAlt(),
+                            val intersection: Feature? = null,
+                            val intersectionRoads: FeatureCollection = FeatureCollection())
 
 /**
- * getIntersectionDescriptionFromFov returns a description of the 'best' intersection within the
- * field of view. The description includes the roads that join the intersection, the location of the
- * intersection and the name of the intersection.
+ * getRoadsDescriptionFromFov returns a description of the nearestRoad and also the 'best'
+ * intersection within the field of view. The description includes the roads that join the
+ * intersection, the location of the intersection and the name of the intersection.
  *
  * @param roadTree A FeatureTree of roads to use
  * @param intersectionTree A FeatureTree of intersections to use
@@ -48,13 +49,13 @@ data class IntersectionDescription(val roads: FeatureCollection = FeatureCollect
  * @return An IntersectionDescription containing all the data required for callouts to describe the
  * intersection.
  */
-fun getIntersectionDescriptionFromFov(roadTree: FeatureTree,
-                                      intersectionTree: FeatureTree,
-                                      currentLocation: LngLatAlt,
-                                      deviceHeading: Double,
-                                      fovDistance: Double,
-                                      approach: ComplexIntersectionApproach
-) : IntersectionDescription {
+fun getRoadsDescriptionFromFov(roadTree: FeatureTree,
+                               intersectionTree: FeatureTree,
+                               currentLocation: LngLatAlt,
+                               deviceHeading: Double,
+                               fovDistance: Double,
+                               approach: ComplexIntersectionApproach
+) : RoadsDescription {
 
     // Create FOV triangle
     val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
@@ -62,19 +63,23 @@ fun getIntersectionDescriptionFromFov(roadTree: FeatureTree,
     // Find roads within FOV
     val fovRoads = roadTree.generateFeatureCollectionWithinTriangle(
         currentLocation, points.left, points.right)
-    if(fovRoads.features.isEmpty()) return IntersectionDescription()
+    if(fovRoads.features.isEmpty()) return RoadsDescription()
+
+    // Two roads that we are interested in:
+    //  1. The one that we are nearest to. We use this for intersection call outs to decide which
+    //     intersection road we're on. This can be slightly behind us, it doesn't have to be in our
+    //     FOV.
+    //  2. The nearest one in our FOV. We use this to describe 'what's ahead'
+    val nearestRoad = getNearestRoad(currentLocation, roadTree)
+    val nearestRoadInFoV = getNearestRoad(currentLocation, FeatureTree(fovRoads))
 
     // Find intersections within FOV
     val fovIntersections = intersectionTree.generateFeatureCollectionWithinTriangle(
         currentLocation, points.left, points.right)
-    if(fovIntersections.features.isEmpty()) return IntersectionDescription()
+    if(fovIntersections.features.isEmpty()) return RoadsDescription(nearestRoadInFoV, deviceHeading, currentLocation)
 
     // Sort the FOV intersections by distance
     val sortedFovIntersections = sortedByDistanceTo(currentLocation, fovIntersections)
-
-    // Which road are we nearest to? In order to allow any road (including those outwith the FOV
-    // triangle as it could be 1m behind us) we pass in the complete road FeatureTree.
-    val nearestRoad = getNearestRoad(currentLocation, roadTree)
 
     // Inspect each intersection so as to skip trivial ones
     val nonTrivialIntersections = FeatureCollection()
@@ -87,7 +92,7 @@ fun getIntersectionDescriptionFromFov(roadTree: FeatureTree,
         }
     }
     if(nonTrivialIntersections.features.isEmpty()) {
-        return IntersectionDescription()
+        return RoadsDescription(nearestRoadInFoV, deviceHeading, currentLocation)
     }
 
     // We have two different approaches to picking the intersection we're interested in
@@ -120,23 +125,18 @@ fun getIntersectionDescriptionFromFov(roadTree: FeatureTree,
         RelativeDirections.COMBINED
     )
 
-    val intersectionNameProperty = intersection.properties?.get("name")
-    val intersectionName = if(intersectionNameProperty == null)
-        ""
-    else
-        intersectionNameProperty as String
-
     // And use the polygons to describe the roads at the intersection
     val intersectionRoadNames = getIntersectionRoadNames(intersection, fovRoads)
-    return IntersectionDescription(
+    return RoadsDescription(
+        nearestRoadInFoV,
+        deviceHeading,
+        currentLocation,
+        intersection,
         getIntersectionRoadNamesRelativeDirections(
                 intersectionRoadNames,
                 intersection,
                 relativeDirections
-        ),
-        intersectionLocation.coordinates,
-        intersectionName,
-        currentLocation
+        )
     )
 }
 
@@ -152,18 +152,45 @@ fun getIntersectionDescriptionFromFov(roadTree: FeatureTree,
  * callouts
  */
 fun addIntersectionCalloutFromDescription(
-    description: IntersectionDescription,
+    description: RoadsDescription,
     localizedContext: Context,
     results: MutableList<PositionedString>,
     calloutHistory: CalloutHistory? = null
 ) {
-    if(description.roads.features.isEmpty()) return
 
+    // Report nearby road
+    if(description.nearestRoad != null) {
+        if (description.nearestRoad.properties?.get("name") != null) {
+            results.add(
+                PositionedString(
+                    "${localizedContext.getString(R.string.directions_direction_ahead)} ${description.nearestRoad.properties!!["name"]}"
+                )
+            )
+        } else {
+            // we are detecting an unnamed road here but pretending there is nothing here
+            results.add(
+                PositionedString(
+                    localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
+                )
+            )
+        }
+    }
+
+    if(description.intersection == null) return
+
+    val intersectionNameProperty = description.intersection.properties?.get("name")
+    val intersectionName = if(intersectionNameProperty == null)
+        ""
+    else
+        intersectionNameProperty as String
+
+
+    val intersectionLocation = (description.intersection.geometry as Point).coordinates
     if(calloutHistory != null) {
         val callout =
             TrackedCallout(
-                description.name,
-                description.location,
+                intersectionName,
+                intersectionLocation,
                 isPoint = true,
                 isGeneric = false,
             )
@@ -181,14 +208,14 @@ fun addIntersectionCalloutFromDescription(
             "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
                 localizedContext.getString(
                     R.string.distance_format_meters,
-                    description.fovBaseLocation.distance(description.location).toInt().toString(),
+                    description.fovBaseLocation.distance(intersectionLocation).toInt().toString(),
                 )
             }",
         ),
     )
 
     // Report roads
-    for (feature in description.roads.features) {
+    for (feature in description.intersectionRoads.features) {
         val direction = feature.properties?.get("Direction").toString().toIntOrNull()
 
         // Don't call out the road we are on (0) as part of the intersection
