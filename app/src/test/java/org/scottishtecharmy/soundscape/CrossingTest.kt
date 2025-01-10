@@ -45,13 +45,6 @@ class CrossingTest {
             fovDistance,
             FeatureTree(crossingsFeatureCollection)
         )
-        // Create a FOV triangle to pick up the roads
-        val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
-        )
         Assert.assertEquals(1, fovCrossingFeatureCollection.features.size)
 
         val nearestCrossing = FeatureTree(fovCrossingFeatureCollection).getNearestFeature(currentLocation)
@@ -66,7 +59,7 @@ class CrossingTest {
         // Confirm which road the crossing is on
         val nearestRoadToCrossing = getNearestRoad(
             LngLatAlt(crossingLocation.coordinates.longitude,crossingLocation.coordinates.latitude),
-            fovRoadsFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
 
         Assert.assertEquals(24.58, distanceToCrossing, 0.1)

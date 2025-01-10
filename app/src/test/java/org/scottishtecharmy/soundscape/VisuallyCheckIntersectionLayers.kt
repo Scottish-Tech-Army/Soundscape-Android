@@ -85,7 +85,7 @@ class VisuallyCheckIntersectionLayers {
             fovIntersectionsFeatureCollection
         )
         // Get the nearest Road in the FoV
-        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(testRoadsCollectionFromTileFeatureCollection))
         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
         for (i in 0 until intersectionsSortedByDistance.features.size) {
             val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[i], fovRoadsFeatureCollection)
@@ -137,7 +137,7 @@ class VisuallyCheckIntersectionLayers {
         val crossingLocation = nearestCrossing!!.geometry as Point
         val nearestRoadToCrossing = getNearestRoad(
             LngLatAlt(crossingLocation.coordinates.longitude,crossingLocation.coordinates.latitude),
-            fovRoadsFeatureCollection
+            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // *** End of Crossing
 
@@ -152,7 +152,6 @@ class VisuallyCheckIntersectionLayers {
         Assert.assertEquals("Clevedon Road", roadRelativeDirections.features[1].properties!!["name"])
         Assert.assertEquals(7, roadRelativeDirections.features[2].properties!!["Direction"])
         Assert.assertEquals("Clevedon Road", roadRelativeDirections.features[2].properties!!["name"])
-
 
         // *************************************************************
         // *** Display Field of View triangle ***

@@ -2,25 +2,15 @@ package org.scottishtecharmy.soundscape
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.lineStringIsCircular
-import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.geoengine.callouts.getIntersectionDescriptionFromFov
 
 
 class IntersectionsTest {
@@ -40,58 +30,21 @@ class IntersectionsTest {
                 featureCollectionTest!!
             )
         )
-        // create FOV to pickup the roads
-        val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            testRoadsTree
-        )
+
         // Get the intersections from the tile
         val testIntersectionsTree = FeatureTree(
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest
             )
         )
-        // Create a FOV triangle to pick up the intersection
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
-        val testNearestIntersection = testIntersectionsTree.getNearestFeatureWithinTriangle(
+
+        return getIntersectionDescriptionFromFov(testRoadsTree,
+            testIntersectionsTree,
             currentLocation,
-            points.left,
-            points.right
-        )
-
-        // This will remove the duplicate "osm_ids" from the intersection
-        val cleanNearestIntersection = removeDuplicates(testNearestIntersection)
-
-        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
-
-        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, deviceHeading)
-
-        val testIntersectionRoadNames = getIntersectionRoadNames(
-            cleanNearestIntersection, fovRoadsFeatureCollection)
-
-        // are any of the roads that make up the intersection circular?
-        for(road in testIntersectionRoadNames){
-            if (lineStringIsCircular(road.geometry as LineString)){
-                println("Circular path")
-            }
-
-        }
-
-        val intersectionLocation = cleanNearestIntersection!!.geometry as Point
-
-        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-            intersectionLocation.coordinates,
-            testNearestRoadBearing,
+            deviceHeading,
             fovDistance,
-            RelativeDirections.COMBINED
-        )
-
-        return getIntersectionRoadNamesRelativeDirections(
-            testIntersectionRoadNames,
-            cleanNearestIntersection,
-            intersectionRelativeDirections)
+            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+        ).roads
     }
 
     @Test
