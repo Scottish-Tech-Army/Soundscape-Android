@@ -9,7 +9,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.callouts.getIntersectionDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 
 class ComplexIntersections {
@@ -42,13 +42,13 @@ class ComplexIntersections {
                 featureCollectionTest
             )
 
-        val roadRelativeDirections = getIntersectionDescriptionFromFov(
+        val roadRelativeDirections = getRoadsDescriptionFromFov(
             FeatureTree(testRoadsCollectionFromTileFeatureCollection),
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection),
             currentLocation,
             deviceHeading,
             fovDistance,
-            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION).roads
+            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION).intersectionRoads
 
 
         Assert.assertEquals(3, roadRelativeDirections.features.size )
@@ -88,13 +88,13 @@ class ComplexIntersections {
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest
             )
-        val roadRelativeDirections = getIntersectionDescriptionFromFov(
+        val roadRelativeDirections = getRoadsDescriptionFromFov(
             FeatureTree(testRoadsCollectionFromTileFeatureCollection),
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection),
             currentLocation,
             deviceHeading,
             fovDistance,
-            ComplexIntersectionApproach.INTERSECTION_WITH_MOST_OSM_IDS).roads
+            ComplexIntersectionApproach.INTERSECTION_WITH_MOST_OSM_IDS).intersectionRoads
 
         Assert.assertEquals(4, roadRelativeDirections.features.size )
         //

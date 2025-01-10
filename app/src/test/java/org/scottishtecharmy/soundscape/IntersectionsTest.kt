@@ -10,7 +10,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.callouts.getIntersectionDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 
 
 class IntersectionsTest {
@@ -38,13 +38,13 @@ class IntersectionsTest {
             )
         )
 
-        return getIntersectionDescriptionFromFov(testRoadsTree,
+        return getRoadsDescriptionFromFov(testRoadsTree,
             testIntersectionsTree,
             currentLocation,
             deviceHeading,
             fovDistance,
             ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
-        ).roads
+        ).intersectionRoads
     }
 
     @Test

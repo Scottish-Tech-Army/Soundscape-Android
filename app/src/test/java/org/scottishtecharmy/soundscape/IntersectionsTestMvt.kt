@@ -6,7 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApp
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.callouts.getIntersectionDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
@@ -29,13 +29,13 @@ class IntersectionsTestMvt {
                 featureCollectionTest
             )
         )
-        return getIntersectionDescriptionFromFov(testRoadsTree,
+        return getRoadsDescriptionFromFov(testRoadsTree,
             testIntersectionsTree,
             currentLocation,
             deviceHeading,
             fovDistance,
             ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
-        ).roads
+        ).intersectionRoads
     }
     @Test
     fun intersectionsStraightAheadType(){
