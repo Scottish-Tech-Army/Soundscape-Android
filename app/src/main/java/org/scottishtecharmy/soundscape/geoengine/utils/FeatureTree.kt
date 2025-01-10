@@ -426,6 +426,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
         val results =
             nearestWithinTriangle(arrayListOf(location, left, right), 1) ?: return null
+        if(results.count() == 0) return null
 
         return results.first().value()
     }

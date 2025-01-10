@@ -2,23 +2,13 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
+import org.scottishtecharmy.soundscape.geoengine.callouts.getIntersectionDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.lineStringIsCircular
-import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 
 class IntersectionsTestMvt {
     private fun setupTest(currentLocation: LngLatAlt,
@@ -28,60 +18,24 @@ class IntersectionsTestMvt {
         val featureCollectionTest = getGeoJsonForLocation(currentLocation)
 
         // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
+        val testRoadsTree = FeatureTree(
             getRoadsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest
             )
-        // create FOV to pickup the roads
-        val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
+        val testIntersectionsTree = FeatureTree(
             getIntersectionsFeatureCollectionFromTileFeatureCollection(
                 featureCollectionTest
             )
-        // Create a FOV triangle to pick up the intersection (this intersection is a transition from
-        // Weston Road to Long Ashton Road)
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
-        val testNearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            currentLocation,
-            points.left,
-            points.right)
-        // This will remove the duplicate "osm_ids" from the intersection
-        val cleanNearestIntersection = removeDuplicates(testNearestIntersection)
-
-        // what relative direction(s) are the road(s) that make up the nearest intersection?
-        // what road are we nearest to?
-        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
-
-        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, deviceHeading)
-        // what is the road direction type in relation to the nearest intersection and nearest road
-
-        val testIntersectionRoadNames = getIntersectionRoadNames(cleanNearestIntersection, fovRoadsFeatureCollection)
-
-        // are any of the roads that make up the intersection circular?
-        for(road in testIntersectionRoadNames){
-            if (lineStringIsCircular(road.geometry as LineString)){
-                println("Circular path")
-            }
-        }
-
-        val intersectionLocation = cleanNearestIntersection!!.geometry as Point
-        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-            intersectionLocation.coordinates,
-            testNearestRoadBearing,
-            fovDistance,
-            RelativeDirections.COMBINED
         )
-
-        return getIntersectionRoadNamesRelativeDirections(
-            testIntersectionRoadNames,
-            cleanNearestIntersection,
-            intersectionRelativeDirections)
+        return getIntersectionDescriptionFromFov(testRoadsTree,
+            testIntersectionsTree,
+            currentLocation,
+            deviceHeading,
+            fovDistance,
+            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+        ).roads
     }
     @Test
     fun intersectionsStraightAheadType(){

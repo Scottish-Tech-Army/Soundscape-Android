@@ -567,54 +567,18 @@ fun getIntersectionRoadNames(
  * Roads can contain crossings which are Points not LineStrings.
  * @param currentLocation
  * Location of device.
- * @param roadFeatureCollection
- * The intersection feature collection that contains the intersections we want to test.
+ * @param searchTree
+ * The FeatureTree to search for the nearest road.
  * @return A Feature that is the nearest road.
  */
 fun getNearestRoad(
     currentLocation: LngLatAlt,
-    roadFeatureCollection: FeatureCollection
+    searchTree: FeatureTree
 ): Feature? {
 
-    //TODO I have no idea if roads can also be represented with MultiLineStrings.
-    // In which case this will fail. Need to have a look at some tiles with motorways/dual carriageways
-
-    var maxDistanceToRoad = Int.MAX_VALUE.toDouble()
-    var nearestRoad : Feature? = null
-
-    for (feature in roadFeatureCollection) {
-        if (feature.geometry.type == "LineString") {
-            val distanceToRoad = distanceToLineString(
-                currentLocation,
-                (feature.geometry as LineString)
-            )
-            if (distanceToRoad < maxDistanceToRoad) {
-                nearestRoad = feature
-                maxDistanceToRoad = distanceToRoad
-            }
-        } else if (feature.geometry.type == "Polygon") {
-            val distanceToRoad = distanceToPolygon(
-                currentLocation,
-                (feature.geometry as Polygon)
-            )
-            if (distanceToRoad < maxDistanceToRoad) {
-                nearestRoad = feature
-                maxDistanceToRoad = distanceToRoad
-            }
-        }  else {
-            val distanceToRoad = currentLocation.distance(
-                LngLatAlt((feature.geometry as Point).coordinates.latitude,
-                          (feature.geometry as Point).coordinates.longitude)
-            )
-            if (distanceToRoad < maxDistanceToRoad) {
-                nearestRoad = feature
-                maxDistanceToRoad = distanceToRoad
-            }
-        }
-    }
-
-    // TODO As the distance to the road has already been calculated
-    //  perhaps we could insert the distance to the road as a property/foreign member of the Feature?
+    // This is just the nearest road. In the future, the algorithm will get almost certainly become
+    // more elaborate.
+    val nearestRoad = searchTree.getNearestFeature(currentLocation)
     return nearestRoad
 }
 

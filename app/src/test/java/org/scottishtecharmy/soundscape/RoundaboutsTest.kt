@@ -114,7 +114,7 @@ class RoundaboutsTest {
         val boundingBoxOfCircle = getBoundingBoxOfLineString(roundaboutCircleRoad.features[0].geometry as LineString)
         val boundingBoxOfCircleCorners = getBoundingBoxCorners(boundingBoxOfCircle)
         val centerOfBoundingBox = getCenterOfBoundingBox(boundingBoxOfCircleCorners)
-        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(fovRoadsFeatureCollection))
         val testNearestRoadBearing =
             getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
         val roundaboutRoadsRelativeDirections = getRelativeDirectionsPolygons(
@@ -220,7 +220,7 @@ class RoundaboutsTest {
         // This will remove the duplicate "osm_ids" from the intersection
         val cleanNearestIntersection = removeDuplicates(nearestIntersection)
 
-        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(fovRoadsFeatureCollection))
 
         val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, deviceHeading)
 
@@ -298,7 +298,7 @@ class RoundaboutsTest {
         println("Number of roads that make up the nearest intersection ${intersectionRoadNames.features.size}")
         // I need to test that the intersection roads have
         // "oneway" and "yes" tags and that the road names are all the same
-        val testNearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(fovRoadsFeatureCollection))
         for (road in intersectionRoadNames) {
             if(testNearestRoad!!.properties?.get("name") == road.properties?.get("name")
                 && road.properties?.get("oneway") == "yes"){

@@ -527,7 +527,7 @@ class TileUtilsTest {
         )
         // This should pick up three roads in the FoV
         Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
-        val nearestRoad = getNearestRoad(currentLocation, fovRoadsFeatureCollection)
+        val nearestRoad = getNearestRoad(currentLocation, FeatureTree(testRoadsCollectionFromTileFeatureCollection))
         // Should only be the nearest road in this Feature Collection
         assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
