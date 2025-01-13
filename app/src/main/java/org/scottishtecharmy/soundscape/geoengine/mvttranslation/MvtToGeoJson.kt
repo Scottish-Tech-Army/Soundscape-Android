@@ -15,6 +15,10 @@ fun pointIsOffTile(x: Int, y: Int) : Boolean {
     return (x < 0 || y < 0 || x >= 4096 || y >= 4096)
 }
 
+fun sampleToFractionOfTile(sample: Int) : Double {
+    return (sample.toDouble() + 0.5) / 4096.0
+}
+
 private fun parseGeometry(
     cropToTile: Boolean,
     geometry: MutableList<Int>
@@ -103,8 +107,8 @@ fun convertGeometry(tileX : Int, tileY : Int, tileZoom : Int, geometry: ArrayLis
             getLatLonTileWithOffset(tileX,
             tileY,
             tileZoom,
-            point.first.toDouble()/4096.0,
-            point.second.toDouble()/4096.0)
+            sampleToFractionOfTile(point.first),
+            sampleToFractionOfTile(point.second))
         )
     }
     return results
