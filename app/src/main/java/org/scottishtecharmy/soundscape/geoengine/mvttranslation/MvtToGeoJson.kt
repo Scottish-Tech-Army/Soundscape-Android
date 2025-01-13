@@ -179,7 +179,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
     // POI can have duplicate entries for polygons and points and also duplicates in the Buildings
     // layer we de-duplicate them with these maps.
-    val mapPolygonFeatures : HashMap<Double, Feature> = hashMapOf()
+    val mapPolygonFeatures : HashMap<Double, MutableList<Feature>> = hashMapOf()
     val mapBuildingFeatures : HashMap<Double, Feature> = hashMapOf()
     val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
 
@@ -421,7 +421,11 @@ fun vectorTileToGeoJson(tileX: Int,
                     geoFeature.foreign = foreign
                     if (layer.name == "poi") {
                         if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
-                            mapPolygonFeatures[id] = geoFeature
+                            if(!mapPolygonFeatures.contains(id)) {
+                                mapPolygonFeatures[id] = MutableList(1){ geoFeature }
+                            } else {
+                                mapPolygonFeatures[id]!!.add(geoFeature)
+                            }
                         } else {
                             mapPointFeatures[id] = geoFeature
                         }
@@ -442,11 +446,13 @@ fun vectorTileToGeoJson(tileX: Int,
         }
     }
     // Add all of the polygon features
-    for (feature in mapPolygonFeatures) {
-        collection.addFeature(feature.value)
+    for (featureList in mapPolygonFeatures) {
+        for(feature in featureList.value) {
+            collection.addFeature(feature)
+        }
         // If we add as a polygon feature, then remove any point feature for the same id
-        mapPointFeatures.remove(feature.key)
-        mapBuildingFeatures.remove(feature.key)
+        mapPointFeatures.remove(featureList.key)
+        mapBuildingFeatures.remove(featureList.key)
     }
 
     entranceMatching.generateEntrances(collection, tileX, tileY, tileZoom)
