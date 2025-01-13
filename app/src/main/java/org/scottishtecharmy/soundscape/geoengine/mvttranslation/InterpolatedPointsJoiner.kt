@@ -173,8 +173,8 @@ fun convertGeometryAndClipLineToTile(
                         tileX,
                         tileY,
                         tileZoom,
-                        point.first.toDouble() / 4096.0,
-                        point.second.toDouble() / 4096.0
+                        sampleToFractionOfTile(point.first),
+                        sampleToFractionOfTile(point.second)
                     )
                 )
             } else {
@@ -204,8 +204,8 @@ fun convertGeometryAndClipLineToTile(
                     tileX,
                     tileY,
                     tileZoom,
-                    point.first.toDouble() / 4096.0,
-                    point.second.toDouble() / 4096.0
+                    sampleToFractionOfTile(point.first),
+                    sampleToFractionOfTile(point.second)
                 )
             )
         } else {
@@ -249,10 +249,10 @@ fun convertGeometryAndClipLineToTile(
 fun getTileCrossingPoint(point1 : Pair<Int, Int>, point2 : Pair<Int, Int>) : List<Pair<Double, Double>> {
 
     // Extract the coordinates of the points and square boundaries
-    val x1 = point1.first.toDouble()
-    val y1 = point1.second.toDouble()
-    val x2 = point2.first.toDouble()
-    val y2 = point2.second.toDouble()
+    val x1 = point1.first.toDouble() + 0.5
+    val y1 = point1.second.toDouble() + 0.5
+    val x2 = point2.first.toDouble() + 0.5
+    val y2 = point2.second.toDouble() + 0.5
 
     val intersections = mutableListOf<Pair<Double, Double>>()
 
