@@ -1703,17 +1703,6 @@ fun mergeAllPolygonsInFeatureCollection(
     // Add the duplicate linestrings and points back in... need to sort out/merge the linestrings at later date
     finalFeatureCollection.features.addAll(duplicateLineStringsAndPoints)
 
-    // The original GeoJson from the MVT tile has some features that aren't valid GeoJSON and
-    // GeoJSON.io is having a huff: "Polygons and MultiPolygons should follow the right hand rule"
-    // so fix that.
-    for (feature in finalFeatureCollection.features) {
-        if (feature.geometry.type == "Polygon") {
-            if (isPolygonClockwise(feature)){
-                (feature.geometry as Polygon).coordinates[0].reverse()
-            }
-        }
-    }
-
     //TODO: figure out why the MVT tile has a linestring with only one coordinate? GeoJSON has a huff about it
     val thisIsTheFinalFeatureCollectionHonest = FeatureCollection()
     for (feature in finalFeatureCollection) {

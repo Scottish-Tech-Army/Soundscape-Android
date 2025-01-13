@@ -110,6 +110,19 @@ fun convertGeometry(tileX : Int, tileY : Int, tileZoom : Int, geometry: ArrayLis
     return results
 }
 
+fun areCoordinatesClockwise(
+    coordinates: ArrayList<Pair<Int, Int>>
+): Boolean {
+
+    // The coordinates are for a closed polygon - the last coordinate is the same as the first
+    var area = 0.0
+    for(i in 0 until coordinates.size - 1) {
+        area += (coordinates[i + 1].first - coordinates[i].first) * (coordinates[i + 1].second + coordinates[i].second)
+
+    }
+    return area < 0
+}
+
 /**
  * vectorTileToGeoJson generates a GeoJSON FeatureCollection from a Mapbox Vector Tile.
  * @param tileX is the x coordinate of the tile
@@ -238,7 +251,46 @@ fun vectorTileToGeoJson(tileX: Int,
                         false,
                         feature.geometryList
                     )
+                    // The polygon geometry encoding has some subtleties:
+                    //
+                    // A Polygon in MVT can consist of multiple polygons. If each polygon has a
+                    // positive winding order then they are all individual polygons. If any have
+                    // negative winding order, then they make up a MultiPolygon along with the last
+                    // positive winding order Polygon that was found.
+                    //
+                    // So the MVT polygon can intersperse a number of Polygons and MultiPolygons and
+                    // some care is required when decoding them.
+                    //
+                    var lastClockwisePolygon: Polygon? = null
                     for (polygon in polygons) {
+
+                        if(areCoordinatesClockwise(polygon)) {
+                            // We have an exterior ring, so create a new Polygon
+                            lastClockwisePolygon = Polygon(
+                                convertGeometry(
+                                    tileX,
+                                    tileY,
+                                    tileZoom,
+                                    polygon
+                                )
+                            )
+                            listOfGeometries.add(lastClockwisePolygon)
+                        } else {
+                            // We have an inner ring, add it to the last polygon
+                            if(lastClockwisePolygon != null) {
+                                lastClockwisePolygon.addInteriorRing(
+                                    convertGeometry(
+                                        tileX,
+                                        tileY,
+                                        tileZoom,
+                                        polygon
+                                    )
+                                )
+                            } else {
+                                println("Interior ring without any exterior ring!")
+                            }
+                        }
+
                         if(layer.name == "poi") {
                             if(properties?.get("name") != null) {
                                 val entranceDetails = EntranceDetails(properties["name"]?.toString(),
@@ -248,20 +300,6 @@ fun vectorTileToGeoJson(tileX: Int,
                                 entranceMatching.addPolygon(polygon, entranceDetails)
                             }
                         }
-
-                        if (polygon.first() != polygon.last()) {
-                            polygon.add(polygon.first())
-                        }
-                        listOfGeometries.add(
-                            Polygon(
-                                convertGeometry(
-                                    tileX,
-                                    tileY,
-                                    tileZoom,
-                                    polygon
-                                )
-                            )
-                        )
                     }
                 }
 
