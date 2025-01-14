@@ -269,7 +269,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                         start_next = true;
                     }
 
-                    TRACE("Remove EOF beacon");
+//                    TRACE("Remove EOF beacon");
                     delete *it;
                     it = m_Beacons.begin();
                     continue;
@@ -348,7 +348,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
         m_Beacons.erase(beacon);
 
-        TRACE("RemoveBeacon -> %zu beacons", m_Beacons.size());
+//        TRACE("RemoveBeacon -> %zu beacons", m_Beacons.size());
     }
 
 

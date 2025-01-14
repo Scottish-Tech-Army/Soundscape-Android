@@ -185,7 +185,8 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
     // The text to speech data is sent over a socket from Kotlin. The socket is closed on the
     // Kotlin end when the speech has been fully synthesised. However, the onDone appears to be
     // unreliable and so we also timeout if no data is read after TIMEOUT_READS_WITHOUT_DATA calls.
-#define TIMEOUT_READS_WITHOUT_DATA 10
+    // Each read is reading 100ms (decodebuffersize set in CreateSound), so timeout after 500ms.
+#define TIMEOUT_READS_WITHOUT_DATA 5
 
     ssize_t total_bytes_read = 0;
     ssize_t bytes_read;
@@ -204,6 +205,7 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
         else if(bytes_read == -1) {
             // No data - socket is non-blocking
             ++m_ReadsWithoutData;
+            //TRACE("m_ReadsWithoutData %d (%d bytes)", m_ReadsWithoutData, data_length);
             if(m_ReadsWithoutData > TIMEOUT_READS_WITHOUT_DATA) {
                 TRACE("TTS Timed out socket %d", m_SourceSocketForDebug);
                 m_pParent->Eof();
