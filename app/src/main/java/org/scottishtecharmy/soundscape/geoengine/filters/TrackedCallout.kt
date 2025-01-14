@@ -6,7 +6,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 class TrackedCallout(
     val callout: String,
     val location: LngLatAlt,
-    private val isPoint: Boolean,
+    val isPoint: Boolean,
     private val isGeneric: Boolean
     )
 {
@@ -48,7 +48,7 @@ class CalloutHistory(private val expiryPeriod : Long = 60000) {
         val now = System.currentTimeMillis()
         // TODO : Remove hardcoded expiry time and distance should be based on category
         history.removeAll {
-            val result = ((now - it.time) > expiryPeriod) || (location.distance(it.location) > 50.0)
+            val result = ((now - it.time) > expiryPeriod) || (it.isPoint && location.distance(it.location) > 50.0)
             if(result)  println("Trim ${it.callout} - ${now - it.time} ${location.distance(it.location)}")
             result
         }
@@ -63,6 +63,21 @@ class CalloutHistory(private val expiryPeriod : Long = 60000) {
         return false
     }
 
+    /**
+     * checkAndAdd checks the history to see if a callout already exists. If it does it returns
+     * false, otherwise it adds it and returns true.
+     * @return Returns true if the callout can go ahead, false if it should be skipped.
+     */
+    fun checkAndAdd(callout: TrackedCallout) : Boolean {
+        if (find(callout)) {
+            Log.d("TrackedCallout", "Discard ${callout.callout} as in history")
+            return false
+        } else {
+            add(callout)
+        }
+        return true
+
+    }
     fun size() : Int {
         return history.size
     }
