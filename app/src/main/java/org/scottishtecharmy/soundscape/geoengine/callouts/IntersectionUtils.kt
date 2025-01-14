@@ -160,12 +160,18 @@ fun addIntersectionCalloutFromDescription(
 
     // Report nearby road
     if(description.nearestRoad != null) {
+
         if (description.nearestRoad.properties?.get("name") != null) {
-            results.add(
-                PositionedString(
-                    "${localizedContext.getString(R.string.directions_direction_ahead)} ${description.nearestRoad.properties!!["name"]}"
-                )
-            )
+            val calloutText = "${localizedContext.getString(R.string.directions_direction_ahead)} ${description.nearestRoad.properties!!["name"]}"
+            var skip = false
+            calloutHistory?.checkAndAdd(TrackedCallout(calloutText,
+                    LngLatAlt(),
+                    isPoint = false,
+                    isGeneric = false
+                ))?.let { newCallout ->
+                    if(!newCallout) skip = true
+            }
+            if(!skip) results.add(PositionedString(calloutText))
         } else {
             // we are detecting an unnamed road here but pretending there is nothing here
             results.add(
@@ -185,24 +191,17 @@ fun addIntersectionCalloutFromDescription(
         intersectionNameProperty as String
 
 
+    // Check if we should be filtering out this callout
     val intersectionLocation = (description.intersection.geometry as Point).coordinates
-    if(calloutHistory != null) {
-        val callout =
-            TrackedCallout(
-                intersectionName,
-                intersectionLocation,
-                isPoint = true,
-                isGeneric = false,
-            )
-        if (calloutHistory.find(callout)) {
-            Log.d("Intersections", "Discard ${callout.callout} as in history")
-            return
-        } else {
-            calloutHistory.add(callout)
-        }
+    calloutHistory?.checkAndAdd(TrackedCallout(intersectionName,
+        intersectionLocation,
+        isPoint = true,
+        isGeneric = false
+    ))?.let { success ->
+        if(!success) return
     }
 
-    // Report distance
+    // Report distance to intersection
     results.add(
         PositionedString(
             "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
@@ -214,7 +213,7 @@ fun addIntersectionCalloutFromDescription(
         ),
     )
 
-    // Report roads
+    // Report roads that join the intersection
     for (feature in description.intersectionRoads.features) {
         val direction = feature.properties?.get("Direction").toString().toIntOrNull()
 
