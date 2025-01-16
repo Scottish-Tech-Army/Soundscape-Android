@@ -19,7 +19,7 @@ PositionedAudio::PositionedAudio(AudioEngine *engine,
 }
 
 PositionedAudio::~PositionedAudio() {
-    TRACE("%s %p", __FUNCTION__, this);
+//    TRACE("%s %p", __FUNCTION__, this);
     m_pEngine->RemoveBeacon(this);
 
     if(m_pSound) {
@@ -27,7 +27,7 @@ PositionedAudio::~PositionedAudio() {
         ERROR_CHECK(result);
     }
 
-    TRACE("%s %p done", __FUNCTION__, this);
+//    TRACE("%s %p done", __FUNCTION__, this);
 }
 
 void PositionedAudio::InitFmodSound() {

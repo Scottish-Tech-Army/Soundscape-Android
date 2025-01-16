@@ -2,7 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.filters
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
-class KalmanFilter(filterSigma : Double = 3.0) {
+class KalmanFilter(filterSigma : Double = 9.0) {
 
     /// The minimum allowable accuracy measurement. Input accuracy values are clamped to this
     /// minimum in order to prevent a division by zero in the `process(:)` method.

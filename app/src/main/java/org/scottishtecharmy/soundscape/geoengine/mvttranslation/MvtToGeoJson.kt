@@ -15,6 +15,10 @@ fun pointIsOffTile(x: Int, y: Int) : Boolean {
     return (x < 0 || y < 0 || x >= 4096 || y >= 4096)
 }
 
+fun sampleToFractionOfTile(sample: Int) : Double {
+    return (sample.toDouble() + 0.5) / 4096.0
+}
+
 private fun parseGeometry(
     cropToTile: Boolean,
     geometry: MutableList<Int>
@@ -103,11 +107,24 @@ fun convertGeometry(tileX : Int, tileY : Int, tileZoom : Int, geometry: ArrayLis
             getLatLonTileWithOffset(tileX,
             tileY,
             tileZoom,
-            point.first.toDouble()/4096.0,
-            point.second.toDouble()/4096.0)
+            sampleToFractionOfTile(point.first),
+            sampleToFractionOfTile(point.second))
         )
     }
     return results
+}
+
+fun areCoordinatesClockwise(
+    coordinates: ArrayList<Pair<Int, Int>>
+): Boolean {
+
+    // The coordinates are for a closed polygon - the last coordinate is the same as the first
+    var area = 0.0
+    for(i in 0 until coordinates.size - 1) {
+        area += (coordinates[i + 1].first - coordinates[i].first) * (coordinates[i + 1].second + coordinates[i].second)
+
+    }
+    return area < 0
 }
 
 /**
@@ -166,7 +183,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
     // POI can have duplicate entries for polygons and points and also duplicates in the Buildings
     // layer we de-duplicate them with these maps.
-    val mapPolygonFeatures : HashMap<Double, Feature> = hashMapOf()
+    val mapPolygonFeatures : HashMap<Double, MutableList<Feature>> = hashMapOf()
     val mapBuildingFeatures : HashMap<Double, Feature> = hashMapOf()
     val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
 
@@ -238,7 +255,46 @@ fun vectorTileToGeoJson(tileX: Int,
                         false,
                         feature.geometryList
                     )
+                    // The polygon geometry encoding has some subtleties:
+                    //
+                    // A Polygon in MVT can consist of multiple polygons. If each polygon has a
+                    // positive winding order then they are all individual polygons. If any have
+                    // negative winding order, then they make up a MultiPolygon along with the last
+                    // positive winding order Polygon that was found.
+                    //
+                    // So the MVT polygon can intersperse a number of Polygons and MultiPolygons and
+                    // some care is required when decoding them.
+                    //
+                    var lastClockwisePolygon: Polygon? = null
                     for (polygon in polygons) {
+
+                        if(areCoordinatesClockwise(polygon)) {
+                            // We have an exterior ring, so create a new Polygon
+                            lastClockwisePolygon = Polygon(
+                                convertGeometry(
+                                    tileX,
+                                    tileY,
+                                    tileZoom,
+                                    polygon
+                                )
+                            )
+                            listOfGeometries.add(lastClockwisePolygon)
+                        } else {
+                            // We have an inner ring, add it to the last polygon
+                            if(lastClockwisePolygon != null) {
+                                lastClockwisePolygon.addInteriorRing(
+                                    convertGeometry(
+                                        tileX,
+                                        tileY,
+                                        tileZoom,
+                                        polygon
+                                    )
+                                )
+                            } else {
+                                println("Interior ring without any exterior ring!")
+                            }
+                        }
+
                         if(layer.name == "poi") {
                             if(properties?.get("name") != null) {
                                 val entranceDetails = EntranceDetails(properties["name"]?.toString(),
@@ -248,20 +304,6 @@ fun vectorTileToGeoJson(tileX: Int,
                                 entranceMatching.addPolygon(polygon, entranceDetails)
                             }
                         }
-
-                        if (polygon.first() != polygon.last()) {
-                            polygon.add(polygon.first())
-                        }
-                        listOfGeometries.add(
-                            Polygon(
-                                convertGeometry(
-                                    tileX,
-                                    tileY,
-                                    tileZoom,
-                                    polygon
-                                )
-                            )
-                        )
                     }
                 }
 
@@ -383,7 +425,11 @@ fun vectorTileToGeoJson(tileX: Int,
                     geoFeature.foreign = foreign
                     if (layer.name == "poi") {
                         if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
-                            mapPolygonFeatures[id] = geoFeature
+                            if(!mapPolygonFeatures.contains(id)) {
+                                mapPolygonFeatures[id] = MutableList(1){ geoFeature }
+                            } else {
+                                mapPolygonFeatures[id]!!.add(geoFeature)
+                            }
                         } else {
                             mapPointFeatures[id] = geoFeature
                         }
@@ -404,11 +450,13 @@ fun vectorTileToGeoJson(tileX: Int,
         }
     }
     // Add all of the polygon features
-    for (feature in mapPolygonFeatures) {
-        collection.addFeature(feature.value)
+    for (featureList in mapPolygonFeatures) {
+        for(feature in featureList.value) {
+            collection.addFeature(feature)
+        }
         // If we add as a polygon feature, then remove any point feature for the same id
-        mapPointFeatures.remove(feature.key)
-        mapBuildingFeatures.remove(feature.key)
+        mapPointFeatures.remove(featureList.key)
+        mapBuildingFeatures.remove(featureList.key)
     }
 
     entranceMatching.generateEntrances(collection, tileX, tileY, tileZoom)
