@@ -37,9 +37,6 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun getStreetPreviewModeFlow(): StateFlow<Boolean>? {
         return soundscapeService?.streetPreviewFlow
     }
-    fun getTileGridFlow(): StateFlow<TileGrid>? {
-        return soundscapeService?.geoEngine?.tileGridFlow
-    }
 
     fun setStreetPreviewMode(on : Boolean, latitude: Double = 0.0, longitude: Double = 0.0) {
         Log.d(TAG, "setStreetPreviewMode $on")

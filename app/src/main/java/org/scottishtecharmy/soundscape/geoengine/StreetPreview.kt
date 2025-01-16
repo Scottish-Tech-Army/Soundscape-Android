@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.util.Log
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine.Fc
 import org.scottishtecharmy.soundscape.geoengine.utils.RoadDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToLineString
@@ -42,7 +41,7 @@ class StreetPreview {
 
             PreviewState.INITIAL -> {
                 // Jump to a node on the nearest road or path
-                val road = engine.getNearestFeature(Fc.ROADS_AND_PATHS.id, location, Double.POSITIVE_INFINITY)
+                val road = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, Double.POSITIVE_INFINITY)
                     ?: return
 
                 var nearestDistance = Double.POSITIVE_INFINITY
@@ -131,7 +130,7 @@ class StreetPreview {
 
             if (index != 0) {
                 // Check for an intersection at this point by searching in the intersection tree
-                val intersection = engine.getNearestFeature(Fc.INTERSECTIONS.id, point, 0.5)
+                val intersection = engine.gridState.getNearestFeature(TreeId.INTERSECTIONS, point, 0.5)
                 if (intersection != null) {
                     Log.e(
                         TAG,
@@ -172,7 +171,7 @@ class StreetPreview {
             }
             val currentPoint = line.last()
             val previousPoint = line.dropLast(1).last()
-            val roads = engine.getGridFeatureCollection(Fc.ROADS_AND_PATHS.id, currentPoint, 0.5, 3)
+            val roads = engine.gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS, currentPoint, 0.5, 3)
             for (road in roads) {
                 // Find which roads the currentPoint is in
                 val roadPoints = road.geometry as LineString
@@ -207,8 +206,8 @@ class StreetPreview {
 
         val start = System.currentTimeMillis()
 
-        val nearestIntersection = engine.getNearestFeature(Fc.INTERSECTIONS.id, location, 1.0)
-        val nearestRoads = engine.getGridFeatureCollection(Fc.ROADS_AND_PATHS.id, location, 1.0)
+        val nearestIntersection = engine.gridState.getNearestFeature(TreeId.INTERSECTIONS, location, 1.0)
+        val nearestRoads = engine.gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS, location, 1.0)
 
         if (nearestIntersection != null) {
             // We're at an intersection
