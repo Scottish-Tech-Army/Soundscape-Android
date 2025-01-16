@@ -3,11 +3,8 @@ package org.scottishtecharmy.soundscape
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
 class IntersectionsTestMvt {
@@ -15,27 +12,14 @@ class IntersectionsTestMvt {
                           deviceHeading: Double,
                           fovDistance: Double) : FeatureCollection {
 
-        val featureCollectionTest = getGeoJsonForLocation(currentLocation)
-
-        // Get the roads from the tile
-        val testRoadsTree = FeatureTree(
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
-        )
-        // Get the intersections from the tile
-        val testIntersectionsTree = FeatureTree(
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
-        )
-        return getRoadsDescriptionFromFov(testRoadsTree,
-            testIntersectionsTree,
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
-        ).intersectionRoads
+        val gridState = getGridStateForLocation(currentLocation)
+        return getRoadsDescriptionFromFov(
+                    gridState,
+                    currentLocation,
+                    deviceHeading,
+                    fovDistance,
+                    ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+                ).intersectionRoads
     }
     @Test
     fun intersectionsStraightAheadType(){

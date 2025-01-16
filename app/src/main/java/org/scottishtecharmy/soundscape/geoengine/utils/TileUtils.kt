@@ -16,7 +16,7 @@ import com.squareup.moshi.Moshi
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.dto.BoundingBox
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 import java.lang.Math.toDegrees
@@ -444,20 +444,20 @@ fun processTileString(tileString: String): Array<FeatureCollection> {
 
 fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Array<FeatureCollection> {
 
-    val tileData = Array(GeoEngine.Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
+    val tileData = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
     // We have separate collections for the different types of Feature. ROADS_AND_PATHS adds PATHS
     // to the ROADS features already contained in ROADS. This slight extra cost in terms of memory
     // is made up for by the ease of searching a single collection.
-    tileData[GeoEngine.Fc.ROADS.id] = getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.ROADS_AND_PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.ROADS_AND_PATHS.id].plusAssign(tileData[GeoEngine.Fc.ROADS.id])
-    tileData[GeoEngine.Fc.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.BUS_STOPS.id] = getBusStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.CROSSINGS.id] = getCrossingsFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.ROADS.id] = getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.ROADS_AND_PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.ROADS_AND_PATHS.id].plusAssign(tileData[TreeId.ROADS.id])
+    tileData[TreeId.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.BUS_STOPS.id] = getBusStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.CROSSINGS.id] = getCrossingsFromTileFeatureCollection(tileFeatureCollection)
+    tileData[TreeId.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
 
     return  tileData
 }

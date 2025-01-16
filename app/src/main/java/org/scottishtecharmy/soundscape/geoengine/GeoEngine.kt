@@ -12,38 +12,23 @@ import com.google.android.gms.location.ActivityTransitionEvent
 import com.google.android.gms.location.DetectedActivity
 import com.squareup.otto.Subscribe
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MAP_DEBUG_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
-import org.scottishtecharmy.soundscape.geoengine.utils.deduplicateFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
@@ -54,14 +39,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBy
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.findFeaturesInPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
-import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.processTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.processTileString
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -71,17 +51,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
-import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
-import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
-import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient
-import org.scottishtecharmy.soundscape.network.TileClient
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.getOttoBus
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
-import retrofit2.awaitResponse
 import java.util.Locale
-import kotlin.coroutines.cancellation.CancellationException
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.TimeSource
@@ -91,15 +65,10 @@ data class PositionedString(val text : String, val location : LngLatAlt? = null,
 class GeoEngine {
     private val coroutineScope = CoroutineScope(Job())
 
-    // GeoJSON tiles job
-    private var tilesJob: Job? = null
+    // Location update job
+    private var locationMonitoringJob: Job? = null
 
-    // Flow to return current tile grid GeoJSON
-    private val _tileGridFlow = MutableStateFlow(TileGrid(mutableListOf(), BoundingBox()))
-    var tileGridFlow: StateFlow<TileGrid> = _tileGridFlow
-
-    // HTTP connection to soundscape-backend or protomaps tile server
-    private lateinit var tileClient: TileClient
+    val gridState = if(SOUNDSCAPE_TILE_BACKEND) SoundscapeBackendGridState() else ProtomapsGridState()
 
     internal lateinit var locationProvider : LocationProvider
     private lateinit var directionProvider : DirectionProvider
@@ -111,12 +80,8 @@ class GeoEngine {
 
     private lateinit var sharedPreferences: SharedPreferences
 
-    private var centralBoundingBox = BoundingBox()
     private var inVehicle = false
     private var inMotion = false
-    private var featureTrees = Array(Fc.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-    @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-    private val treeContext = newSingleThreadContext("TreeContext")
 
     private val streetPreview = StreetPreview()
 
@@ -144,12 +109,7 @@ class GeoEngine {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
 
-        tileClient =
-            if (SOUNDSCAPE_TILE_BACKEND) {
-                SoundscapeBackendTileClient(application)
-            } else {
-                ProtomapsTileClient(application)
-            }
+        gridState.start(application, soundscapeService)
 
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)
@@ -159,9 +119,9 @@ class GeoEngine {
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
 
-        streetPreview.start()
+        startMonitoringLocation(soundscapeService)
 
-        startTileGridService(soundscapeService)
+        streetPreview.start()
 
         getOttoBus().register(this)
     }
@@ -169,220 +129,37 @@ class GeoEngine {
     fun stop() {
         getOttoBus().unregister(this)
 
-        tilesJob?.cancel()
+        locationMonitoringJob?.cancel()
+
+        gridState.stop()
         locationProvider.destroy()
         directionProvider.destroy()
     }
 
     /**
-     * The tile grid service is called each time the location changes. It checks if the location
+     * The gridState is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
-    private fun startTileGridService(soundscapeService: SoundscapeService) {
+    private fun startMonitoringLocation(soundscapeService: SoundscapeService) {
         Log.e(TAG, "startTileGridService")
-        tilesJob?.cancel()
-        tilesJob = coroutineScope.launch {
+        locationMonitoringJob?.cancel()
+        locationMonitoringJob = coroutineScope.launch {
             locationProvider.locationFlow.collect { newLocation ->
-                val timeSource = TimeSource.Monotonic
-                val gridStartTime = timeSource.markNow()
 
-                // Check if we've moved out of the bounds of the central area
                 newLocation?.let { location ->
-                    // Check if we're still within the central area of our grid
-                    if (!pointIsWithinBoundingBox(LngLatAlt(location.longitude, location.latitude),
-                                                  centralBoundingBox)) {
 
-                            Log.d(TAG, "Update central grid area")
-                            // The current location has moved from within the central area, so get the
-                            // new grid and the new central area.
-                            val tileGrid = getTileGrid(locationProvider.get())
+                    // Update the grid state
+                    gridState.locationUpdate(LngLatAlt(location.longitude, location.latitude))
 
-                            // We have a new centralBoundingBox, so update the tiles
-                            val featureCollections =
-                                Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
-                            if (updateTileGrid(tileGrid, featureCollections)) {
-                                // We have got a new grid, so create our new central region
-                                centralBoundingBox = tileGrid.centralBoundingBox
-
-                                val localTrees = Array(Fc.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-                                if (SOUNDSCAPE_TILE_BACKEND) {
-                                    // De-duplicate
-                                    val deDuplicatedCollection =
-                                        Array(Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
-                                    for ((index, fc) in featureCollections.withIndex()) {
-                                        val existingSet: MutableSet<Any> = mutableSetOf()
-                                        deduplicateFeatureCollection(
-                                            deDuplicatedCollection[index],
-                                            fc,
-                                            existingSet,
-                                        )
-                                    }
-                                    // Create rtrees for each feature collection
-                                    for ((index, fc) in deDuplicatedCollection.withIndex()) {
-                                        localTrees[index] = FeatureTree(fc)
-                                    }
-                                } else {
-                                    // Join up roads/paths at the tile boundary
-                                    val joiner = InterpolatedPointsJoiner()
-                                    for (ip in featureCollections[Fc.INTERPOLATIONS.id]) {
-                                        joiner.addInterpolatedPoints(ip)
-                                    }
-                                    // merging any overlapping Polygons that are on the tile boundaries
-                                    val mergedPoi = mergeAllPolygonsInFeatureCollection(featureCollections[Fc.POIS.id])
-                                    featureCollections[Fc.POIS.id] = mergedPoi
-
-                                    joiner.addJoiningLines(featureCollections[Fc.ROADS_AND_PATHS.id])
-
-                                    // Create rtrees for each feature collection
-                                    for ((index, fc) in featureCollections.withIndex()) {
-                                        localTrees[index] = FeatureTree(fc)
-                                    }
-                                }
-
-                                // Assign rtrees to our shared trees from within the treeContext. All
-                                // other accesses of featureTrees needs to be from within the same
-                                // context.
-                                runBlocking {
-                                    withContext(treeContext) {
-                                        for (fc in featureCollections.withIndex()) {
-                                            featureTrees[fc.index] = localTrees[fc.index]
-                                        }
-                                    }
-                                }
-
-                                val gridFinishTime = timeSource.markNow()
-                                Log.e(TAG, "Time to populate grid: ${gridFinishTime - gridStartTime}")
-
-                                // Update the flow with our new tile grid
-                                if (sharedPreferences.getBoolean(MAP_DEBUG_KEY, false)) {
-                                    _tileGridFlow.value = tileGrid
-                                } else {
-                                    _tileGridFlow.value = TileGrid(mutableListOf(), BoundingBox())
-                                }
-                            } else {
-                                // Updating the tile grid failed, due to a lack of cached tile and then
-                                // a lack of network/server issue. There's nothing that we can do, so
-                                // simply retry on the next location update.
-                            }
-                        }
-                        // Run any auto callouts that we need
-                        val callouts = autoCallout(location)
-                        if (callouts.isNotEmpty()) {
-                            // Tell the service that we've got some callouts to tell the user about
-                            soundscapeService.speakCallout(callouts)
-                        }
+                    // Run any auto callouts that we need
+                    val callouts = autoCallout(location)
+                    if (callouts.isNotEmpty()) {
+                        // Tell the service that we've got some callouts to tell the user about
+                        soundscapeService.speakCallout(callouts)
                     }
                 }
             }
-    }
-
-    private suspend fun updateTileFromProtomaps(
-        x: Int,
-        y: Int,
-        featureCollections: Array<FeatureCollection>,
-    ): Boolean {
-        var ret = false
-        withContext(Dispatchers.IO) {
-            try {
-                val service =
-                    tileClient.retrofitInstance?.create(ITileDAO::class.java)
-                val tileReq =
-                    async {
-                        service?.getVectorTileWithCache(x, y, ZOOM_LEVEL)
-                    }
-                val result = tileReq.await()?.awaitResponse()?.body()
-                if (result != null) {
-                    Log.e(TAG, "Tile size ${result.serializedSize}")
-                    val tileFeatureCollection = vectorTileToGeoJson(x, y, result)
-                    val collections = processTileFeatureCollection(tileFeatureCollection)
-                    for ((index, collection) in collections.withIndex()) {
-                        featureCollections[index].plusAssign(collection)
-                    }
-
-                    ret = true
-                } else {
-                    Log.e(TAG, "No response for protomaps tile")
-                }
-            } catch (ce: CancellationException) {
-                // We have to rethrow cancellation exceptions
-                throw ce
-            } catch (e: Exception) {
-                Log.e(TAG, "Exception getting protomaps tile $e")
-            }
         }
-        return ret
-    }
-
-    private suspend fun updateTileFromSoundscapeBackend(
-        x: Int,
-        y: Int,
-        featureCollections: Array<FeatureCollection>,
-    ): Boolean {
-        var ret = false
-
-        withContext(Dispatchers.IO) {
-            try {
-                val service =
-                    tileClient.retrofitInstance?.create(ITileDAO::class.java)
-                val tileReq =
-                    async {
-                        service?.getTileWithCache(x, y)
-                    }
-                val result = tileReq.await()?.awaitResponse()?.body()
-                // clean the tile, process the string, perform an insert into db using the clean tile data
-                Log.e(TAG, "Tile size ${result?.length}")
-                val cleanedTile =
-                    result?.let { cleanTileGeoJSON(x, y, ZOOM_LEVEL, it) }
-
-                if (cleanedTile != null) {
-                    val tileData = processTileString(cleanedTile)
-                    for ((index, collection) in tileData.withIndex()) {
-                        featureCollections[index].plusAssign(collection)
-                    }
-
-                    ret = true
-                } else {
-                    Log.e(TAG, "Failed to get clean soundscape-backend tile")
-                }
-            } catch (ce: CancellationException) {
-                // We have to rethrow cancellation exceptions
-                throw ce
-            } catch (e: Exception) {
-                Log.e(TAG, "Exception getting soundscape-backend tile $e")
-            }
-        }
-        return ret
-    }
-
-    private suspend fun updateTile(
-        x: Int,
-        y: Int,
-        featureCollections: Array<FeatureCollection>,
-    ): Boolean {
-        if (!SOUNDSCAPE_TILE_BACKEND) {
-            return updateTileFromProtomaps(x, y, featureCollections)
-        }
-        return updateTileFromSoundscapeBackend(x, y, featureCollections)
-    }
-
-    private suspend fun updateTileGrid(
-        tileGrid: TileGrid,
-        featureCollections: Array<FeatureCollection>,
-    ): Boolean {
-        for (tile in tileGrid.tiles) {
-            Log.d(TAG, "Tile quad key: ${tile.quadkey}")
-            var ret = false
-            for (retry in 1..5) {
-                ret = updateTile(tile.tileX, tile.tileY, featureCollections)
-                if (ret) {
-                    break
-                }
-            }
-            if (!ret) {
-                return false
-            }
-        }
-        return true
     }
 
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
@@ -398,7 +175,7 @@ class GeoEngine {
         val results : MutableList<PositionedString> = mutableListOf()
 
         // Check if we're inside a POI
-        val gridPoiCollection = getGridFeatureCollection(Fc.POIS.id, location, 200.0)
+        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, location, 200.0)
         val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
         for(poi in gridPoiFeatureCollection) {
             // We can only be inside polygons
@@ -421,7 +198,7 @@ class GeoEngine {
         }
 
         // Check if we're alongside a road/path
-        val nearestRoad = getNearestFeature(Fc.ROADS_AND_PATHS.id, location, 100.0)
+        val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0)
         if(nearestRoad != null) {
             val properties = nearestRoad.properties
             if (properties != null) {
@@ -493,8 +270,7 @@ class GeoEngine {
         val fovDistance = 50.0
 
         val roadsDescription = getRoadsDescriptionFromFov(
-            featureTrees[Fc.ROADS_AND_PATHS.id],
-            featureTrees[Fc.INTERSECTIONS.id],
+            gridState,
             location,
             heading,
             fovDistance,
@@ -525,7 +301,7 @@ class GeoEngine {
         // super categories are "information", "object", "place", "landmark", "mobility", "safety"
         val placesAndLandmarks = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
         val mobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
-        val gridPoiCollection = getGridFeatureCollection(Fc.POIS.id, location, 50.0)
+        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, location, 50.0)
         val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
         val settingsFeatureCollection = FeatureCollection()
         if (gridPoiFeatureCollection.features.isNotEmpty()) {
@@ -681,7 +457,7 @@ class GeoEngine {
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
         val returnList = runBlocking {
-            withContext(treeContext) {
+            withContext(gridState.treeContext) {
                 var list = emptyList<PositionedString>()
                 // buildCalloutForRoadSense
                 val roadSenseCallout = buildCalloutForRoadSense(location)
@@ -725,18 +501,18 @@ class GeoEngine {
             // Run the code within the treeContext to protect it from changes to the trees whilst it's
             // running.
             results = runBlocking {
-                withContext(treeContext) {
+                withContext(gridState.treeContext) {
                     val list : MutableList<PositionedString> = mutableListOf()
                     val location = locationProvider.get()
 
-                    val roadGridFeatureCollection = getGridFeatureCollection(Fc.ROADS_AND_PATHS.id,
+                    val roadGridFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS,
                         location,
                         100.0
                     )
 
                     if (roadGridFeatureCollection.features.isNotEmpty()) {
                         //Log.d(TAG, "Found roads in tile")
-                        val nearestRoad = getNearestRoad(location, featureTrees[Fc.ROADS_AND_PATHS.id])
+                        val nearestRoad = getNearestRoad(location, gridState.getFeatureTree(TreeId.ROADS_AND_PATHS))
                         if (nearestRoad != null) {
 
                             val properties = nearestRoad.properties
@@ -806,7 +582,7 @@ class GeoEngine {
             // Run the code within the treeContext to protect it from changes to the trees whilst it's
             // running.
             results = runBlocking {
-                withContext(treeContext) {
+                withContext(gridState.treeContext) {
                     val list: MutableList<PositionedString> = mutableListOf()
 
                     val location = locationProvider.get()
@@ -817,7 +593,7 @@ class GeoEngine {
                     //  to 600m.
                     val gridPoiFeatureCollection = FeatureCollection()
                     val poiFeatureCollections =
-                        getGridFeatureCollection(Fc.POIS.id, location, 600.0)
+                        gridState.getFeatureCollection(TreeId.POIS, location, 600.0)
                     val removeDuplicatePoisFeatureCollection =
                         removeDuplicateOsmIds(poiFeatureCollections)
                     gridPoiFeatureCollection.features.addAll(removeDuplicatePoisFeatureCollection)
@@ -957,7 +733,7 @@ class GeoEngine {
             // Run the code within the treeContext to protect it from changes to the trees whilst it's
             // running.
             results = runBlocking {
-                withContext(treeContext) {
+                withContext(gridState.treeContext) {
                     val list: MutableList<PositionedString> = mutableListOf()
 
                     // get device direction
@@ -967,8 +743,7 @@ class GeoEngine {
 
                     // Detect if there is a road or an intersection in the FOV
                     val roadsDescription = getRoadsDescriptionFromFov(
-                        featureTrees[Fc.ROADS_AND_PATHS.id],
-                        featureTrees[Fc.INTERSECTIONS.id],
+                        gridState,
                         location,
                         orientation,
                         fovDistance,
@@ -980,14 +755,14 @@ class GeoEngine {
 
                     // Detect if there is a crossing in the FOV
                     val points = getFovTrianglePoints(location, orientation, fovDistance)
-                    val nearestCrossing = getNearestFeatureOnRoadInFov(Fc.CROSSINGS.id,
+                    val nearestCrossing = gridState.getNearestFeatureOnRoadInFov(TreeId.CROSSINGS,
                         location,
                         points.left,
                         points.right)
                     appendNearestFeatureCallout(nearestCrossing, R.string.osm_tag_crossing, list)
 
                     // Detect if there is a bus_stop in the FOV
-                    val nearestBusStop = getNearestFeatureOnRoadInFov(Fc.BUS_STOPS.id,
+                    val nearestBusStop = gridState.getNearestFeatureOnRoadInFov(TreeId.BUS_STOPS,
                         location,
                         points.left,
                         points.right)
@@ -1007,79 +782,7 @@ class GeoEngine {
         return results
     }
 
-    enum class Fc(
-        val id: Int,
-    ) {
-        ROADS(0),
-        ROADS_AND_PATHS(1),
-        INTERSECTIONS(2),
-        ENTRANCES(3),
-        CROSSINGS(4),
-        POIS(5),
-        BUS_STOPS(6),
-        INTERPOLATIONS(7),
-        MAX_COLLECTION_ID(8),
-    }
-
-    internal fun getGridFeatureCollection(id: Int,
-                                          location: LngLatAlt = LngLatAlt(),
-                                          distance : Double = Double.POSITIVE_INFINITY,
-                                          maxCount : Int = 0): FeatureCollection {
-        val result = if(distance == Double.POSITIVE_INFINITY) {
-            featureTrees[id].generateFeatureCollection()
-        } else {
-            if(maxCount == 0) {
-                featureTrees[id].generateNearbyFeatureCollection(location, distance)
-            } else {
-                if (maxCount == 0) {
-                    featureTrees[id].generateNearbyFeatureCollection(location, distance)
-                } else {
-                    featureTrees[id].generateNearestFeatureCollection(location, distance, maxCount)
-                }
-            }
-        }
-        return result
-    }
-
-    internal fun getNearestFeature(id: Int,
-                                   location: LngLatAlt = LngLatAlt(),
-                                   distance : Double = Double.POSITIVE_INFINITY
-    ): Feature? {
-        return featureTrees[id].getNearestFeature(location, distance)
-    }
-
-    data class FeatureByRoad(val feature: Feature,
-                             val road: Feature,
-                             val distance: Double = Double.POSITIVE_INFINITY)
-    private fun getNearestFeatureOnRoadInFov(id: Int,
-                                             location: LngLatAlt,
-                                             left: LngLatAlt,
-                                             right: LngLatAlt
-    ): FeatureByRoad? {
-
-        val nearestFeature = featureTrees[id].getNearestFeatureWithinTriangle(
-            location,
-            left,
-            right)
-        if (nearestFeature != null) {
-            val featureLocation = nearestFeature.geometry as Point
-
-            // Confirm which road the feature is on
-            val nearestRoad = getNearestRoad(
-                featureLocation.coordinates,
-                featureTrees[Fc.ROADS_AND_PATHS.id]
-            )
-            if(nearestRoad != null) {
-                // We found a feature and the road that it is on
-                val distance = location.distance(featureLocation.coordinates)
-                return FeatureByRoad(nearestFeature, nearestRoad, distance)
-            }
-        }
-
-        return null
-    }
-
-    private fun appendNearestFeatureCallout(nearestFeature: FeatureByRoad?,
+    private fun appendNearestFeatureCallout(nearestFeature: GridState.FeatureByRoad?,
                                             osmTagType: Int,
                                             list: MutableList<PositionedString>) {
         if(nearestFeature != null) {
@@ -1124,7 +827,7 @@ class GeoEngine {
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
         val engine = this
-        CoroutineScope(Job()).launch(treeContext) {
+        CoroutineScope(Job()).launch(gridState.treeContext) {
             val choices = streetPreview.getDirectionChoices(engine, location)
             var heading = 0.0
             if(choices.isNotEmpty()) {
@@ -1171,7 +874,7 @@ class GeoEngine {
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
         val engine = this
-        CoroutineScope(Job()).launch(treeContext) {
+        CoroutineScope(Job()).launch(gridState.treeContext) {
             streetPreview.go(location, heading, engine)
         }
         val end = System.currentTimeMillis()

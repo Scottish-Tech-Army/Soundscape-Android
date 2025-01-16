@@ -1,8 +1,9 @@
 package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import android.content.Context
-import android.util.Log
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
@@ -49,8 +50,7 @@ data class RoadsDescription(val nearestRoad: Feature? = null,
  * @return An IntersectionDescription containing all the data required for callouts to describe the
  * intersection.
  */
-fun getRoadsDescriptionFromFov(roadTree: FeatureTree,
-                               intersectionTree: FeatureTree,
+fun getRoadsDescriptionFromFov(gridState: GridState,
                                currentLocation: LngLatAlt,
                                deviceHeading: Double,
                                fovDistance: Double,
@@ -59,6 +59,9 @@ fun getRoadsDescriptionFromFov(roadTree: FeatureTree,
 
     // Create FOV triangle
     val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+
+    val roadTree = gridState.getFeatureTree(TreeId.ROADS)
+    val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
     // Find roads within FOV
     val fovRoads = roadTree.generateFeatureCollectionWithinTriangle(

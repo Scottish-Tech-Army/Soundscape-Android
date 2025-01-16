@@ -1,16 +1,11 @@
 package org.scottishtecharmy.soundscape
 
-import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 
 class ComplexIntersections {
 
@@ -26,40 +21,32 @@ class ComplexIntersections {
         val deviceHeading = 320.0
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
-
-        // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
-
-        // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
-
+        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
         val roadRelativeDirections = getRoadsDescriptionFromFov(
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection),
-            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection),
+            gridState,
             currentLocation,
             deviceHeading,
             fovDistance,
-            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION).intersectionRoads
+            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+        ).intersectionRoads
 
-
-        Assert.assertEquals(3, roadRelativeDirections.features.size )
+        Assert.assertEquals(3, roadRelativeDirections.features.size)
 
         Assert.assertEquals(0, roadRelativeDirections.features[0].properties!!["Direction"])
-        Assert.assertEquals("Flax Bourton Road", roadRelativeDirections.features[0].properties!!["name"])
+        Assert.assertEquals(
+            "Flax Bourton Road",
+            roadRelativeDirections.features[0].properties!!["name"]
+        )
         Assert.assertEquals(3, roadRelativeDirections.features[1].properties!!["Direction"])
-        Assert.assertEquals("Clevedon Road", roadRelativeDirections.features[1].properties!!["name"])
+        Assert.assertEquals(
+            "Clevedon Road",
+            roadRelativeDirections.features[1].properties!!["name"]
+        )
         Assert.assertEquals(7, roadRelativeDirections.features[2].properties!!["Direction"])
-        Assert.assertEquals("Clevedon Road", roadRelativeDirections.features[2].properties!!["name"])
-
+        Assert.assertEquals(
+            "Clevedon Road",
+            roadRelativeDirections.features[2].properties!!["name"]
+        )
     }
 
     @Test
@@ -73,39 +60,36 @@ class ComplexIntersections {
         val deviceHeading = 45.0
         val fovDistance = 50.0
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONDataComplexIntersection.complexIntersectionGeoJSON)
-
-        // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
-
-        // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
+        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection.complexIntersectionGeoJSON)
         val roadRelativeDirections = getRoadsDescriptionFromFov(
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection),
-            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection),
+            gridState,
             currentLocation,
             deviceHeading,
             fovDistance,
-            ComplexIntersectionApproach.INTERSECTION_WITH_MOST_OSM_IDS).intersectionRoads
+            ComplexIntersectionApproach.INTERSECTION_WITH_MOST_OSM_IDS
+        ).intersectionRoads
 
-        Assert.assertEquals(4, roadRelativeDirections.features.size )
+        Assert.assertEquals(4, roadRelativeDirections.features.size)
         //
         Assert.assertEquals(1, roadRelativeDirections.features[0].properties!!["Direction"])
-        Assert.assertEquals("Clevedon Road", roadRelativeDirections.features[0].properties!!["name"])
+        Assert.assertEquals(
+            "Clevedon Road",
+            roadRelativeDirections.features[0].properties!!["name"]
+        )
         Assert.assertEquals(3, roadRelativeDirections.features[1].properties!!["Direction"])
-        Assert.assertEquals("Beggar Bush Lane", roadRelativeDirections.features[1].properties!!["name"])
+        Assert.assertEquals(
+            "Beggar Bush Lane",
+            roadRelativeDirections.features[1].properties!!["name"]
+        )
         Assert.assertEquals(5, roadRelativeDirections.features[2].properties!!["Direction"])
-        Assert.assertEquals("Clevedon Road", roadRelativeDirections.features[2].properties!!["name"])
+        Assert.assertEquals(
+            "Clevedon Road",
+            roadRelativeDirections.features[2].properties!!["name"]
+        )
         Assert.assertEquals(7, roadRelativeDirections.features[3].properties!!["Direction"])
-        Assert.assertEquals("Weston Road", roadRelativeDirections.features[3].properties!!["name"])
-
+        Assert.assertEquals(
+            "Weston Road",
+            roadRelativeDirections.features[3].properties!!["name"]
+        )
     }
 }
