@@ -52,6 +52,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.findFeaturesInPolygons
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
@@ -787,18 +791,12 @@ class GeoEngine {
         }
 
     fun whatsAroundMe() : List<PositionedString> {
-        // TODO This is just a rough POC at the moment. Lots more to do...
-        //  setup settings in the menu so we can pass in the filters, etc.
+        // TODO:
+        //  Setup settings in the menu so we can pass in the filters, etc.
         //  Original Soundscape "in findCalloutsFor and it tries to get a POI in each quadrant.
         //  It starts off searching within 200m and keeps increasing by 200m until it
         //  hits the maximum of 1000m. It only plays out one POI per quadrant"
         var results : MutableList<PositionedString> = mutableListOf()
-
-        // super categories are "information", "object", "place", "landmark", "mobility", "safety"
-        val placesAndLandmarks = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
-        val mobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
-        // TODO unnamed roads switch is not used yet
-        // val unnamedRoads = sharedPrefs.getBoolean(UNNAMED_ROADS_KEY, false)
 
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             val noLocationString =
@@ -816,152 +814,124 @@ class GeoEngine {
                     // TODO: We could build separate rtrees for each of the super categories i.e.  landmarks,
                     //  places etc. and that would make this code simpler. We could ask for a maximum number
                     //  of results when calling getGridFeatureCollection. For now, we just limit arbitrarily
-                    //  to 500m.
+                    //  to 600m.
                     val gridPoiFeatureCollection = FeatureCollection()
                     val poiFeatureCollections =
-                        getGridFeatureCollection(Fc.POIS.id, location, 500.0)
+                        getGridFeatureCollection(Fc.POIS.id, location, 600.0)
                     val removeDuplicatePoisFeatureCollection =
                         removeDuplicateOsmIds(poiFeatureCollections)
                     gridPoiFeatureCollection.features.addAll(removeDuplicatePoisFeatureCollection)
 
                     if (gridPoiFeatureCollection.features.isNotEmpty()) {
-                        val settingsFeatureCollection = FeatureCollection()
-                        if (placesAndLandmarks) {
-                            if (mobility) {
-                                //Log.d(TAG, "placesAndLandmarks and mobility are both true")
-                                val placeSuperCategory =
-                                    getPoiFeatureCollectionBySuperCategory(
-                                        "place",
-                                        gridPoiFeatureCollection
-                                    )
-                                val tempFeatureCollection = FeatureCollection()
-                                for (feature in placeSuperCategory.features) {
-                                    if (feature.foreign?.get("feature_value") != "house") {
-                                        if (feature.properties?.get("name") != null) {
-                                            val superCategoryList =
-                                                getSuperCategoryElements("place")
-                                            // We never want to add a feature more than once
-                                            var found = false
-                                            for (property in feature.properties!!) {
-                                                for (featureType in superCategoryList) {
-                                                    if (property.value == featureType) {
-                                                        tempFeatureCollection.features.add(feature)
-                                                        found = true
-                                                    }
-                                                    if (found) break
-                                                }
-                                                if (found) break
+                        // filter POI feature collection by super category
+                        val superCategories = listOf("information", "object", "place", "landmark", "mobility", "safety")
+                        val poiFeatureCollectionsBySuperCategory = superCategories.associateWith { superCategory ->
+                            getPoiFeatureCollectionBySuperCategory(superCategory, gridPoiFeatureCollection)
+                        }
+                        // Categories from settings
+                        val blnInformation = false
+                        val blnObject = false
+                        val blnPlace = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
+                        val blnLandmark = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
+                        val blnMobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
+                        val blnSafety = false
+                        // Specify the super categories we want to check for in the relative directions polygons
+                        // based on above
+                        val selectedSuperCategories = mutableListOf<String>()
+                        if (blnInformation){
+                            selectedSuperCategories.add("information")
+                        }
+                        if (blnObject){
+                            selectedSuperCategories.add("object")
+                        }
+                        if (blnPlace){
+                            selectedSuperCategories.add("place")
+                        }
+                        if (blnLandmark){
+                            selectedSuperCategories.add("landmark")
+                        }
+                        if (blnMobility){
+                            selectedSuperCategories.add("mobility")
+                        }
+                        if (blnSafety){
+                            selectedSuperCategories.add("safety")
+                        }
+                        // Filter the feature collections based on the selected super categories
+                        val selectedFeatureCollections = poiFeatureCollectionsBySuperCategory.filterKeys {
+                            it in selectedSuperCategories }.values
+                        // Process the selected feature collections
+                        var distance = 200.0
+                        val incrementDistance = 200.0
+                        val maxDistance = 1000.0
+                        // Direction order is: behind(0) left(1) ahead(2) right(3)
+                        val allDirections = listOf(0, 1, 2, 3)
+
+                        val featuresByDirection = mutableMapOf<Int, MutableList<Feature>>()
+                        val addedFeatureNames = mutableSetOf<String>()
+                        while (true) {
+                            val individualRelativePolygons = getRelativeDirectionsPolygons(location, 0.0, distance, relativeDirectionType = RelativeDirections.INDIVIDUAL)
+
+                            for (superCategoryFC in selectedFeatureCollections) {
+                                val featureDirections = findFeaturesInPolygons(individualRelativePolygons, superCategoryFC)
+                                for ((feature, direction) in featureDirections) {
+                                    val featureName = feature.properties?.get("name") as? String
+                                    // Check if direction already has a feature and that we don't have a feature with the same name already
+                                    if (!featuresByDirection.containsKey(direction!! as Int)
+                                        && featureName != null
+                                        && !addedFeatureNames.contains(featureName)) {
+                                        featuresByDirection.getOrPut(direction as Int) {
+                                            mutableListOf() }.add(feature)
+                                        addedFeatureNames.add(featureName)
+                                        //println("Feature: OSM ID: ${feature.foreign?.get("osm_ids")} Name: ${feature.properties?.get("name")} Direction: $direction")
+                                    }
+                                }
+                            }
+
+                            val directionsWithoutFeatures = allDirections.filter { !featuresByDirection.containsKey(it) }
+                            if (directionsWithoutFeatures.isEmpty() || distance >= maxDistance) {
+                                val sortedFeaturesByDirection = featuresByDirection.toSortedMap()
+                                for ((direction, features) in sortedFeaturesByDirection) {
+                                    for (feature in features) {
+                                        if (feature.geometry is Polygon) {
+                                            // found that if a thing has a name property that ends in a number
+                                            // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
+                                            if (feature.properties?.get("name") != null) {
+                                                val d = distanceToPolygon(location, feature.geometry as Polygon).toInt()
+                                                val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
+
+                                                val poiLocation =
+                                                    getFeatureNearestPoint(location, feature)
+                                                list.add(
+                                                    PositionedString(
+                                                        text,
+                                                        poiLocation,
+                                                        NativeAudioEngine.EARCON_SENSE_POI
+                                                    )
+                                                )
+                                            }
+                                        } else if (feature.geometry is Point) {
+                                            if (feature.properties?.get("name") != null) {
+                                                val point = feature.geometry as Point
+                                                val d = location.distance(point.coordinates).toInt()
+                                                val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
+                                                list.add(
+                                                    PositionedString(
+                                                        text,
+                                                        point.coordinates,
+                                                        NativeAudioEngine.EARCON_SENSE_POI
+                                                    )
+                                                )
                                             }
                                         }
                                     }
                                 }
-                                val cleanedPlaceSuperCategory =
-                                    removeDuplicateOsmIds(tempFeatureCollection)
-                                for (feature in cleanedPlaceSuperCategory.features) {
-                                    settingsFeatureCollection.features.add(feature)
-                                }
-
-                                val landmarkSuperCategory =
-                                    getPoiFeatureCollectionBySuperCategory(
-                                        "landmark",
-                                        gridPoiFeatureCollection
-                                    )
-                                for (feature in landmarkSuperCategory.features) {
-                                    settingsFeatureCollection.features.add(feature)
-                                }
-                                val mobilitySuperCategory =
-                                    getPoiFeatureCollectionBySuperCategory(
-                                        "mobility",
-                                        gridPoiFeatureCollection
-                                    )
-                                for (feature in mobilitySuperCategory.features) {
-                                    settingsFeatureCollection.features.add(feature)
-                                }
-
+                                break
                             } else {
-
-                                val placeSuperCategory =
-                                    getPoiFeatureCollectionBySuperCategory(
-                                        "place",
-                                        gridPoiFeatureCollection
-                                    )
-                                for (feature in placeSuperCategory.features) {
-                                    if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get(
-                                            "feature_value"
-                                        ) != "house"
-                                    ) {
-                                        settingsFeatureCollection.features.add(feature)
-                                    }
-                                }
-                                val landmarkSuperCategory =
-                                    getPoiFeatureCollectionBySuperCategory(
-                                        "landmark",
-                                        gridPoiFeatureCollection
-                                    )
-                                for (feature in landmarkSuperCategory.features) {
-                                    settingsFeatureCollection.features.add(feature)
-                                }
-                            }
-                        } else {
-                            if (mobility) {
-                                //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
-                                val mobilitySuperCategory =
-                                    getPoiFeatureCollectionBySuperCategory(
-                                        "mobility",
-                                        gridPoiFeatureCollection
-                                    )
-                                for (feature in mobilitySuperCategory.features) {
-                                    settingsFeatureCollection.features.add(feature)
-                                }
-                            } else {
-                                // Not sure what we are supposed to tell the user here?
-                                println("placesAndLandmarks and mobility are both false so what should I tell the user?")
+                                distance += incrementDistance
+                                //println("Increasing distance to $distance meters")
                             }
                         }
-                        // Strings we can filter by which is from original Soundscape (we could more granular if we wanted to):
-                        // "information", "object", "place", "landmark", "mobility", "safety"
-                        if (settingsFeatureCollection.features.isNotEmpty()) {
-                            // Original Soundscape doesn't work like this as it doesn't order them by distance
-                            val sortedByDistanceToFeatureCollection = sortedByDistanceTo(
-                                location,
-                                settingsFeatureCollection
-                            )
-                            for (feature in sortedByDistanceToFeatureCollection) {
-                                if (feature.geometry is Polygon) {
-                                    // found that if a thing has a name property that ends in a number
-                                    // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
-                                    if (feature.properties?.get("name") != null) {
-                                        val d = distanceToPolygon(location, feature.geometry as Polygon).toInt()
-                                        val text = "${feature.properties?.get("name")} ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
 
-                                        val poiLocation =
-                                            getFeatureNearestPoint(location, feature)
-                                        list.add(
-                                            PositionedString(
-                                                text,
-                                                poiLocation,
-                                                NativeAudioEngine.EARCON_SENSE_POI
-                                            )
-                                        )
-                                    }
-                                } else if (feature.geometry is Point) {
-                                    if (feature.properties?.get("name") != null) {
-                                        val point = feature.geometry as Point
-                                        val d = location.distance(point.coordinates).toInt()
-                                        val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
-                                        list.add(
-                                            PositionedString(
-                                                text,
-                                                point.coordinates,
-                                                NativeAudioEngine.EARCON_SENSE_POI
-                                            )
-                                        )
-                                    }
-                                }
-                            }
-                        } else {
-                            list.add(PositionedString(localizedContext.getString(R.string.callouts_nothing_to_call_out_now)))
-                        }
                     } else {
                         Log.d(TAG, "No Points Of Interest found in the grid")
                         list.add(PositionedString(localizedContext.getString(R.string.callouts_nothing_to_call_out_now)))

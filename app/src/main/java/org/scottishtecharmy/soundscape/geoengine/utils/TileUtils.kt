@@ -1768,6 +1768,105 @@ fun mergePolygons(
     }
     return mergedPolygon
 }
+
+fun findFeaturesInPolygons(
+    polygons: FeatureCollection,
+    features: FeatureCollection): List<Pair<Feature, Any?>> {
+    val results = mutableListOf<Pair<Feature, Any?>>()
+    for (polygon in polygons) {
+        val direction = polygon.properties?.get("Direction")
+        for (feature in features) {
+            when (feature.geometry.type) {
+                "Point" -> {
+                    val lngLatAlt = (feature.geometry as Point).coordinates
+                    val testPoint = polygonContainsCoordinates(lngLatAlt, (polygon.geometry as Polygon))
+                    if (testPoint) {
+                        if (feature.properties?.get("name") != null){
+                            results.add(Pair(feature, direction))
+                        }
+
+                        //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: Point Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
+                    }
+                }
+                "MultiPoint" -> {
+                    for (point in (feature.geometry as MultiPoint).coordinates) {
+                        val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
+                        if (testPoint) {
+                            if (feature.properties?.get("name") != null){
+                                results.add(Pair(feature, direction))
+                            }
+                            //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: MultiPoint Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
+                            break
+                        }
+                    }
+                }
+                "LineString" -> {
+                    for (point in (feature.geometry as LineString).coordinates) {
+                        val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
+                        if (testPoint) {
+                            if (feature.properties?.get("name") != null){
+                                results.add(Pair(feature, direction))
+                            }
+                            //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: LineString Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
+                            break
+                        }
+                    }
+                }
+                "MultiLineString" -> {
+                    for (lineString in (feature.geometry as MultiLineString).coordinates) {
+                        for (point in lineString) {
+                            val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
+                            if (testPoint) {
+                                if (feature.properties?.get("name") != null){
+                                    results.add(Pair(feature, direction))
+                                }
+                                //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: MultiLineString Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
+                                break
+                            }
+                        }
+                    }
+                }
+
+                "Polygon" -> {
+                    for (geometry in (feature.geometry as Polygon).coordinates) {
+                        for (point in geometry) {
+                            val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
+                            if (testPoint) {
+                                if (feature.properties?.get("name") != null){
+                                    results.add(Pair(feature, direction))
+                                }
+                                // println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: Polygon Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
+                                break
+                            }
+                        }
+                    }
+                }
+
+                "MultiPolygon" -> {
+                    for (polygon1 in (feature.geometry as MultiPolygon).coordinates) {
+                        for (linearRing in polygon1) {
+                            for (point in linearRing) {
+                                val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
+                                if (testPoint) {
+                                    if (feature.properties?.get("name") != null){
+                                        results.add(Pair(feature, direction))
+                                    }
+                                    //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: MultiPolygon Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
+                                    // at least one of the points is in the tile so add the entire
+                                    // MultiPolygon Feature and break
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+
+                else -> println("Unknown type ${feature.geometry.type}")
+            }
+        }
+    }
+    return results
+}
 /**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
