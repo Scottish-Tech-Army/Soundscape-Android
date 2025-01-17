@@ -175,9 +175,9 @@ open class GridState {
                              val road: Feature,
                              val distance: Double = Double.POSITIVE_INFINITY)
     fun getNearestFeatureOnRoadInFov(id: TreeId,
-                                             location: LngLatAlt,
-                                             left: LngLatAlt,
-                                             right: LngLatAlt
+                                     location: LngLatAlt,
+                                     left: LngLatAlt,
+                                     right: LngLatAlt
     ): FeatureByRoad? {
 
         checkContext()

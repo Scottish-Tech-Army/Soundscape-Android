@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.Circle
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -42,9 +43,11 @@ class RoundaboutsTest {
     fun roundaboutsTest() {
         // This is a proof of concept so this is the simplest, cleanest roundabout I could find
         // and is only using a single tile from /16/32267/21812.json
-        val currentLocation = LngLatAlt(-2.747119798700794, 51.43854214667482)
-        val deviceHeading = 225.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.747119798700794, 51.43854214667482),
+            225.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -56,9 +59,7 @@ class RoundaboutsTest {
 
         // create FOV to pickup the road(s) and roundabout
         val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
 
@@ -89,19 +90,17 @@ class RoundaboutsTest {
 
 
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
 
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right)
 
-        val distanceToRoundabout = getDistanceToFeature(currentLocation, nearestIntersection)
+        val distanceToRoundabout = getDistanceToFeature(userGeometry.location, nearestIntersection)
         // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
         println("Roundabout with ${roundaboutExitRoads.features.size} " +
                 "exits $distanceToRoundabout away")
@@ -114,13 +113,12 @@ class RoundaboutsTest {
         val boundingBoxOfCircle = getBoundingBoxOfLineString(roundaboutCircleRoad.features[0].geometry as LineString)
         val boundingBoxOfCircleCorners = getBoundingBoxCorners(boundingBoxOfCircle)
         val centerOfBoundingBox = getCenterOfBoundingBox(boundingBoxOfCircleCorners)
-        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(fovRoadsFeatureCollection))
+        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
         val testNearestRoadBearing =
-            getRoadBearingToIntersection(nearestIntersection, testNearestRoad, deviceHeading)
+            getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading)
+        val geometry = GeoEngine.UserGeometry(centerOfBoundingBox, testNearestRoadBearing, userGeometry.fovDistance)
         val roundaboutRoadsRelativeDirections = getRelativeDirectionsPolygons(
-            centerOfBoundingBox,
-            testNearestRoadBearing,
-            fovDistance,
+            geometry,
             RelativeDirections.COMBINED
         )
 
@@ -159,7 +157,7 @@ class RoundaboutsTest {
         // We can now construct our FOV polygon (triangle)
         val polygonTriangleFOV = createTriangleFOV(
             points.left,
-            currentLocation,
+            userGeometry.location,
             points.right
         )
 
@@ -183,10 +181,11 @@ class RoundaboutsTest {
         // Soundscape seems to turn mini roundabouts into intersections so
         // using a single tile from /16/32268/21813.json to test this and the location
         // where there is definitely a mini roundabout
-        val currentLocation = LngLatAlt(-2.7428307423190006,
-            51.43595874012766)
-        val deviceHeading = 0.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.7428307423190006,51.43595874012766),
+            0.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -199,9 +198,7 @@ class RoundaboutsTest {
             )
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Get the intersections from the tile
@@ -211,18 +208,18 @@ class RoundaboutsTest {
             )
 
         // get the nearest intersection in the FoV and the roads that make up the intersection
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right)
 
         // This will remove the duplicate "osm_ids" from the intersection
         val cleanNearestIntersection = removeDuplicates(nearestIntersection)
 
-        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(fovRoadsFeatureCollection))
+        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
 
-        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, deviceHeading)
+        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, userGeometry.heading)
 
         val testIntersectionRoadNames = getIntersectionRoadNames(
             cleanNearestIntersection, fovRoadsFeatureCollection)
@@ -236,10 +233,12 @@ class RoundaboutsTest {
         }
         val intersectionLocation = cleanNearestIntersection!!.geometry as Point
 
-        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+        val geometry = GeoEngine.UserGeometry(
             intersectionLocation.coordinates,
             testNearestRoadBearing,
-            fovDistance,
+            userGeometry.fovDistance)
+        val intersectionRelativeDirections = getRelativeDirectionsPolygons(
+            geometry,
             RelativeDirections.COMBINED
         )
 
@@ -264,9 +263,11 @@ class RoundaboutsTest {
         // further away  -2.7474554685902604, 51.43822549502224
         // further away -2.7474735115298756, 51.4381923217035
         // closer but not complete -2.7475109456763676,51.43813340231313
-        val currentLocation = LngLatAlt(-2.7474554685902604, 51.43822549502224)
-        val deviceHeading = 200.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.7474554685902604, 51.43822549502224),
+            200.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -281,15 +282,13 @@ class RoundaboutsTest {
         )
         // create FOV to pickup the road(s) and roundabout (this won't detect every road as we are too far away)
         val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // get the nearest intersection in the FoV
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val testNearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right)
 
@@ -298,7 +297,7 @@ class RoundaboutsTest {
         println("Number of roads that make up the nearest intersection ${intersectionRoadNames.features.size}")
         // I need to test that the intersection roads have
         // "oneway" and "yes" tags and that the road names are all the same
-        val testNearestRoad = getNearestRoad(currentLocation, FeatureTree(fovRoadsFeatureCollection))
+        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
         for (road in intersectionRoadNames) {
             if(testNearestRoad!!.properties?.get("name") == road.properties?.get("name")
                 && road.properties?.get("oneway") == "yes"){
@@ -348,14 +347,16 @@ class RoundaboutsTest {
             // if the circle doesn't exist (which it doesn't in this test)
             if (roundaboutCircleRoad.features.size == 0) {
 
-                val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, deviceHeading)
+                val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, userGeometry.heading)
                 //create a relative directions polygon based on our calculated approx center of the roundabout
                 // How big do we want out polygon to be? Ideally we need the radius of the roundabout plus a few meters
                 val intersectionRelativeDirectionsPolygons = getRelativeDirectionsPolygons(
-                    roundaboutCenter.center,
-                    testNearestRoadBearing,
-                    // TODO adding 3.0 is a fudge as the roundaboutCenter.center is not 100% accurate
-                    roundaboutCenter.radius + 3.0,
+                    GeoEngine.UserGeometry(
+                        roundaboutCenter.center,
+                        testNearestRoadBearing,
+                        // TODO adding 3.0 is a fudge as the roundaboutCenter.center is not 100% accurate
+                        roundaboutCenter.radius + 3.0
+                    ),
                     RelativeDirections.COMBINED
                 )
                 // temp see the relative directions polygons and bounding box of roundabout
@@ -460,9 +461,7 @@ class RoundaboutsTest {
                 val newFeatureCollectionJson = moshi.adapter(FeatureCollection::class.java).toJson(newFeatureCollection)
                 println("This should display the combined roads and directions: $newFeatureCollectionJson")*/
 
-
-
-                val distanceToRoundabout = currentLocation.distance(roundaboutCenter.center)
+                val distanceToRoundabout = userGeometry.location.distance(roundaboutCenter.center)
 
                 // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
                 println(
@@ -480,7 +479,7 @@ class RoundaboutsTest {
 
         val polygonTriangleFOV = createTriangleFOV(
             points.left,
-            currentLocation,
+            userGeometry.location,
             points.right
         )
 

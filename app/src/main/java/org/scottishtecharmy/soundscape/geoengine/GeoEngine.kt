@@ -89,12 +89,13 @@ class GeoEngine {
      */
     data class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                             var heading: Double = 0.0,
+                            val fovDistance: Double = 50.0,
                             val inVehicle: Boolean = false,
-                            val inMotion: Boolean = false,
-                            val fovDistance: Double = 50.0)
+                            val inMotion: Boolean = false)
     private fun getCurrentUserGeometry() : UserGeometry {
         return UserGeometry(locationProvider.get(),
             directionProvider.getCurrentDirection().toDouble(),
+            50.0,
             inVehicle,
             inMotion)
     }
@@ -595,7 +596,7 @@ class GeoEngine {
                 withContext(gridState.treeContext) {
                     val list: MutableList<PositionedString> = mutableListOf()
 
-                    val location = locationProvider.get()
+                    val userGeometry = getCurrentUserGeometry()
 
                     // TODO: We could build separate rtrees for each of the super categories i.e.  landmarks,
                     //  places etc. and that would make this code simpler. We could ask for a maximum number
@@ -603,7 +604,7 @@ class GeoEngine {
                     //  to 600m.
                     val gridPoiFeatureCollection = FeatureCollection()
                     val poiFeatureCollections =
-                        gridState.getFeatureCollection(TreeId.POIS, location, 600.0)
+                        gridState.getFeatureCollection(TreeId.POIS, userGeometry.location, 1000.0)
                     val removeDuplicatePoisFeatureCollection =
                         removeDuplicateOsmIds(poiFeatureCollections)
                     gridPoiFeatureCollection.features.addAll(removeDuplicatePoisFeatureCollection)
@@ -655,7 +656,12 @@ class GeoEngine {
                         val featuresByDirection = mutableMapOf<Int, MutableList<Feature>>()
                         val addedFeatureNames = mutableSetOf<String>()
                         while (true) {
-                            val individualRelativePolygons = getRelativeDirectionsPolygons(location, 0.0, distance, relativeDirectionType = RelativeDirections.INDIVIDUAL)
+                            val individualRelativePolygons = getRelativeDirectionsPolygons(
+                                UserGeometry(
+                                    userGeometry.location,
+                                    userGeometry.heading,
+                                    distance
+                                ), RelativeDirections.INDIVIDUAL)
 
                             for (superCategoryFC in selectedFeatureCollections) {
                                 val featureDirections = findFeaturesInPolygons(individualRelativePolygons, superCategoryFC)
@@ -682,11 +688,11 @@ class GeoEngine {
                                             // found that if a thing has a name property that ends in a number
                                             // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
                                             if (feature.properties?.get("name") != null) {
-                                                val d = distanceToPolygon(location, feature.geometry as Polygon).toInt()
+                                                val d = distanceToPolygon(userGeometry.location, feature.geometry as Polygon).toInt()
                                                 val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
 
                                                 val poiLocation =
-                                                    getFeatureNearestPoint(location, feature)
+                                                    getFeatureNearestPoint(userGeometry.location, feature)
                                                 list.add(
                                                     PositionedString(
                                                         text,
@@ -698,7 +704,7 @@ class GeoEngine {
                                         } else if (feature.geometry is Point) {
                                             if (feature.properties?.get("name") != null) {
                                                 val point = feature.geometry as Point
-                                                val d = location.distance(point.coordinates).toInt()
+                                                val d = userGeometry.location.distance(point.coordinates).toInt()
                                                 val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
                                                 list.add(
                                                     PositionedString(
@@ -760,7 +766,7 @@ class GeoEngine {
                         list)
 
                     // Detect if there is a crossing in the FOV
-                    val points = getFovTrianglePoints(userGeometry.location, userGeometry.heading, userGeometry.fovDistance)
+                    val points = getFovTrianglePoints(userGeometry)
                     val nearestCrossing = gridState.getNearestFeatureOnRoadInFov(TreeId.CROSSINGS,
                         userGeometry.location,
                         points.left,

@@ -10,15 +10,11 @@ import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
-import org.scottishtecharmy.soundscape.geoengine.utils.getAheadBehindDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
-import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getIndividualDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getLeftRightDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
@@ -30,6 +26,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 
 // Functions to output GeoJSON strings that can be put into the very useful Geojson.io
@@ -347,9 +344,11 @@ class VisuallyCheckOutput {
 
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -365,16 +364,14 @@ class VisuallyCheckOutput {
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         // *************************************************************
 
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val polygonTriangleFOV = createTriangleFOV(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right
         )
@@ -405,9 +402,11 @@ class VisuallyCheckOutput {
 
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -423,16 +422,14 @@ class VisuallyCheckOutput {
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
         val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // *************************************************************
 
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val polygonTriangleFOV = createTriangleFOV(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right
         )
@@ -464,9 +461,11 @@ class VisuallyCheckOutput {
 
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -482,16 +481,14 @@ class VisuallyCheckOutput {
         // Create a FOV triangle to pick up the poi in the FoV.
         // In this case a couple of buildings
         val fovPoiFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
         // *************************************************************
 
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val polygonTriangleFOV = createTriangleFOV(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right
         )
@@ -516,11 +513,12 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsCombined(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 0.0
-        val distance = 50.0
-
-        val combinedDirectionPolygons  = getCombinedDirectionPolygons(location, deviceHeading, distance)
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            0.0,
+            50.0
+        )
+        val combinedDirectionPolygons  = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.COMBINED)
 
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(combinedDirectionPolygons)
@@ -533,11 +531,13 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsIndividual(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val distance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
-        val individualRelativeDirections = getIndividualDirectionPolygons(location, deviceHeading, distance)
+        val individualRelativeDirections = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.INDIVIDUAL)
 
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(individualRelativeDirections)
@@ -549,13 +549,15 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsAheadBehind(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val distance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
         // Issue here is because of the bias towards "ahead" and "behind" you end up with a wide but shallow field of view
         // Probably better to do some trig to provide the distance to keep the depth of the field of view constant?
-        val aheadBehindRelativeDirections = getAheadBehindDirectionPolygons(location, deviceHeading, distance)
+        val aheadBehindRelativeDirections  = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.AHEAD_BEHIND)
 
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(aheadBehindRelativeDirections)
@@ -568,11 +570,13 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsLeftRight(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val distance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
-        val leftRightRelativeDirections = getLeftRightDirectionPolygons(location, deviceHeading, distance)
+        val leftRightRelativeDirections  = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.LEFT_RIGHT)
 
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(leftRightRelativeDirections)
@@ -583,14 +587,14 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsAll(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val distance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
         // A wrapper around the individual functions
-        val relativeDirections = getRelativeDirectionsPolygons(
-            location, deviceHeading, distance, RelativeDirections.COMBINED
-        )
+        val relativeDirections = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.COMBINED)
         val relativeDirectionTrianglesString = moshi.adapter(FeatureCollection::class.java)
             .toJson(relativeDirections)
 

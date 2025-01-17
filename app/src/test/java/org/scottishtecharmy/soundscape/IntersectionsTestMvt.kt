@@ -14,7 +14,7 @@ class IntersectionsTestMvt {
                           fovDistance: Double) : FeatureCollection {
 
         val gridState = getGridStateForLocation(currentLocation)
-        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, false, false, fovDistance)
+        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, fovDistance)
         return getRoadsDescriptionFromFov(
                     gridState,
                     userGeometry,

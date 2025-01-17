@@ -5,9 +5,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import org.scottishtecharmy.soundscape.geoengine.utils.distanceToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
@@ -24,7 +22,9 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getGpsFromNormalizedMapCo
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestFovFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getNormalizedFromGpsMapCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
@@ -360,9 +361,11 @@ class TileUtilsTest {
     @Test
     fun getIntersectionInFovTest(){
         // Fake device location and pretend the device is pointing East.
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -375,9 +378,7 @@ class TileUtilsTest {
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         // Should only be one intersection in this FoV
@@ -387,9 +388,11 @@ class TileUtilsTest {
     @Test
     fun getRoadsInFovTest(){
         // Fake device location and pretend the device is pointing East.
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -402,9 +405,7 @@ class TileUtilsTest {
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
         val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Should contain two roads - Weston Road and Long Ashton Road
@@ -415,9 +416,11 @@ class TileUtilsTest {
     @Test
     fun getPoiInFovTest(){
         // Fake device location and pretend the device is pointing East.
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -429,9 +432,7 @@ class TileUtilsTest {
             )
         // Create a FOV triangle to pick up the Points of interest in the FoV
         val fovPoiFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
         // Should contain two buildings
@@ -445,9 +446,11 @@ class TileUtilsTest {
     fun getNearestIntersectionTest(){
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
-        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -458,9 +461,9 @@ class TileUtilsTest {
                 featureCollectionTest!!
             )
         // Create a FOV triangle to pick up the intersections
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right)
 
@@ -472,9 +475,11 @@ class TileUtilsTest {
     fun sortedByDistanceToTest(){
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
-        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -486,16 +491,14 @@ class TileUtilsTest {
             )
         // Create a FOV triangle to pick up the intersections
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
         Assert.assertEquals(2, fovIntersectionsFeatureCollection.features.size)
         // This should sort the intersections (but any feature collection wil do)
         // by distance to the current location
         val sortedByDistanceToTest = sortedByDistanceTo(
-            currentLocation,
+            userGeometry.location,
             fovIntersectionsFeatureCollection
         )
         Assert.assertEquals(6.0, sortedByDistanceToTest.features[0].foreign?.get("distance_to"))
@@ -506,9 +509,10 @@ class TileUtilsTest {
     @Test
     fun getNearestRoadTest(){
         // Fake device location and pretend the device is pointing East.
-        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -520,14 +524,12 @@ class TileUtilsTest {
             )
         // Create a FOV triangle to pick up the roads
         val fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // This should pick up three roads in the FoV
         Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
-        val nearestRoad = getNearestRoad(currentLocation, FeatureTree(testRoadsCollectionFromTileFeatureCollection))
+        val nearestRoad = getNearestRoad(userGeometry.location, FeatureTree(testRoadsCollectionFromTileFeatureCollection))
         // Should only be the nearest road in this Feature Collection
         assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
@@ -537,9 +539,11 @@ class TileUtilsTest {
     @Test
     fun getNearestPoiTest(){
         // Fake device location and pretend the device is pointing East.
-        val currentLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -553,16 +557,15 @@ class TileUtilsTest {
             )
 
         // Create a FOV triangle to pick up the poi
-        val nearestPoiFeature = getNearestFovFeature(currentLocation,
-            deviceHeading,
-            fovDistance,
+        val nearestPoiFeature = getNearestFovFeature(
+            userGeometry,
             FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
 
         // The distance is measured to the center of the bounding box
         val box = getBoundingBoxOfPolygon(nearestPoiFeature!!.geometry as Polygon)
         val center = getCenterOfBoundingBox(getBoundingBoxCorners(box))
-        val distance = currentLocation.distance(center)
+        val distance = userGeometry.location.distance(center)
 
         Assert.assertEquals(29.65, distance, 0.01)
     }
@@ -622,11 +625,13 @@ class TileUtilsTest {
     @Test
     fun getRelativeDirectionsTest(){
 
-        val location = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 0.0
-        val distance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            0.0,
+            50.0
+        )
 
-        val combinedDirectionPolygons  = getCombinedDirectionPolygons(location, deviceHeading, distance)
+        val combinedDirectionPolygons  = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.COMBINED)
 
         // Location to test relative directions. Placed in "Ahead" triangle
         val testBeaconAhead = LngLatAlt(-2.6572829456840736,51.4307659303868)
@@ -704,9 +709,11 @@ class TileUtilsTest {
     fun getIntersectionRoadNamesTest(){
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
-        val currentLocation = LngLatAlt(-2.657279900280031, 51.430461188129385)
-        val deviceHeading = 90.0
-        val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
@@ -723,23 +730,20 @@ class TileUtilsTest {
             )
         // create a FOV triangle to pick up the roads
         val  fovRoadsFeatureCollection = getFovFeatureCollection(
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Create a FOV triangle to pick up the intersections
-        val points = getFovTrianglePoints(currentLocation, deviceHeading, fovDistance)
+        val points = getFovTrianglePoints(userGeometry)
         val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            currentLocation,
+            userGeometry.location,
             points.left,
             points.right)
         assert(nearestIntersection != null)
 
         // how far away is the intersection?
-        val distanceToNearestIntersection = distanceToIntersection(currentLocation,
-            nearestIntersection!!.geometry as Point
-        )
+        val nearestIntersectionPoint = nearestIntersection!!.geometry as Point
+        val distanceToNearestIntersection = userGeometry.location.distance(nearestIntersectionPoint.coordinates)
         Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
