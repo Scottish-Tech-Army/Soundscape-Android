@@ -5,12 +5,9 @@ import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.geoengine.utils.deduplicateFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.processTileString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.SoundscapeBackendTileClient

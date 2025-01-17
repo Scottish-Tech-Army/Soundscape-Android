@@ -5,16 +5,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import org.scottishtecharmy.soundscape.geoengine.utils.getBusStopsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getEntrancesFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getPathsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
-import org.scottishtecharmy.soundscape.geoengine.utils.getPointsOfInterestFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getTilesForRegion
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
@@ -23,6 +16,8 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -57,10 +52,9 @@ class TileUtilsTest {
 
     @Test
     fun getRoadsFeatureCollectionFromTileFeatureCollectionTest() {
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
         val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(featureCollectionTest!!)
+            gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
@@ -71,10 +65,9 @@ class TileUtilsTest {
 
     @Test
     fun getBusStopsFeatureCollectionFromTileFeatureCollectionTest(){
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testBusStopFeatureCollectionFromTileFeatureCollection =
-            getBusStopsFeatureCollectionFromTileFeatureCollection(featureCollectionTest!!)
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testBusStopFeatureCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.BUS_STOPS)
+
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
             Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
         }
@@ -83,10 +76,8 @@ class TileUtilsTest {
 
     @Test
     fun getCrossingsFeatureCollectionFromTileFeatureCollectionTest(){
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
-        val testCrossingsFeatureCollection =
-            getCrossingsFromTileFeatureCollection(featureCollectionTest!!)
+        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
         for (feature in testCrossingsFeatureCollection){
             Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
         }
@@ -96,24 +87,21 @@ class TileUtilsTest {
     @Test
     fun getPathsFeatureCollectionFromTileFeatureCollectionTest() {
         // This is the tile from /16/32295/21787.json as it contains footway, cycleway
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPathsCollectionFromTileFeatureCollection =
-            getPathsFeatureCollectionFromTileFeatureCollection(featureCollectionTest!!)
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPathsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testPathsCollectionFromTileFeatureCollection){
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
-        Assert.assertEquals(54, testPathsCollectionFromTileFeatureCollection.features.size)
+        // Check that the number of paths (road_and_paths - roads) is 54
+        Assert.assertEquals(54,
+            testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
     fun getIntersectionsFeatureCollectionFromTileFeatureCollectionTest() {
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
@@ -123,10 +111,8 @@ class TileUtilsTest {
 
     @Test
     fun getEntrancesFeatureCollectionFromTileFeatureCollectionTest() {
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testEntrancesCollectionFromTileFeatureCollection =
-            getEntrancesFeatureCollectionFromTileFeatureCollection(featureCollectionTest!!)
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testEntrancesCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ENTRANCES)
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_entrance_list", feature.foreign!!["feature_type"])
         }
@@ -136,12 +122,9 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionFromTileFeatureCollectionTest() {
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         //There are 16 roads, 10 intersections, 0 entrances and 149 Features in total
         // so there should be 123 POI Features in the POI Feature Collection
         Assert.assertEquals(123, testPoiCollection.features.size)
@@ -151,12 +134,9 @@ class TileUtilsTest {
     @Test
     fun getPoiFeatureCollectionBySuperCategoryMobilityTest() {
         // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
@@ -167,12 +147,9 @@ class TileUtilsTest {
     @Test
     fun getPoiFeatureCollectionBySuperCategoryObjectTest() {
         // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // select "object" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
@@ -183,12 +160,9 @@ class TileUtilsTest {
     @Test
     fun getPoiFeatureCollectionBySuperCategoryInformationTest() {
         // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // select "information" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("information", testPoiCollection)
@@ -199,12 +173,9 @@ class TileUtilsTest {
     @Test
     fun getPoiFeatureCollectionBySuperCategoryPlaceTest() {
         // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
@@ -215,12 +186,9 @@ class TileUtilsTest {
     @Test
     fun getPoiFeatureCollectionBySuperCategoryLandmarkTest() {
         // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
@@ -231,12 +199,9 @@ class TileUtilsTest {
     @Test
     fun getPoiFeatureCollectionBySuperCategorySafetyTest() {
         // This is the tile from /16/32295/21787.json as it contains a variety of shops, entrances, etc
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPoiCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // select "safety" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
@@ -367,14 +332,9 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
@@ -394,14 +354,9 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
         val fovRoadsFeatureCollection = getFovFeatureCollection(
@@ -422,14 +377,9 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the poi from the tile
-        val testPoiCollectionFromTileFeatureCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testPoiCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.POIS)
+
         // Create a FOV triangle to pick up the Points of interest in the FoV
         val fovPoiFeatureCollection = getFovFeatureCollection(
             userGeometry,
@@ -452,14 +402,9 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+
         // Create a FOV triangle to pick up the intersections
         val points = getFovTrianglePoints(userGeometry)
         val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
@@ -481,14 +426,9 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+
         // Create a FOV triangle to pick up the intersections
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             userGeometry,
@@ -514,14 +454,9 @@ class TileUtilsTest {
             90.0,50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+
         // Create a FOV triangle to pick up the roads
         val fovRoadsFeatureCollection = getFovFeatureCollection(
             userGeometry,
@@ -545,16 +480,8 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-
-
-        // Get the poi from the tile
-        val testPoiCollectionFromTileFeatureCollection =
-            getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testPoiCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // Create a FOV triangle to pick up the poi
         val nearestPoiFeature = getNearestFovFeature(
@@ -715,19 +642,10 @@ class TileUtilsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
-        // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
+        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+
         // create a FOV triangle to pick up the roads
         val  fovRoadsFeatureCollection = getFovFeatureCollection(
             userGeometry,
