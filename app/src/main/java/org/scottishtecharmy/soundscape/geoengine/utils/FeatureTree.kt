@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import kotlin.math.PI
 import kotlin.math.cos
@@ -57,6 +58,22 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                     )
                 }
 
+                "MultiPoint" -> {
+                    val multiPoint =
+                        feature.geometry as org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
+                    for(location in multiPoint.coordinates) {
+                        rtreeList.add(
+                            EntryDefault(
+                                feature,
+                                Geometries.pointGeographic(
+                                    location.longitude,
+                                    location.latitude
+                                )
+                            )
+                        )
+                    }
+                }
+
                 "LineString" -> {
                     // We add each line segment as a separate entry into the rtree for more precise
                     // searching, however this does mean that searches in the tree will return
@@ -95,6 +112,27 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                             )
                         )
                     )
+                }
+
+                "MultiPolygon" -> {
+                    val multiPolygon = feature.geometry as MultiPolygon
+                    // The rtree only supports points, lines, rectangles and circles. Let's create
+                    // a bounding box for the polygon and use that in rtree. We can then validate
+                    // the search results in a second pass.
+                    val box = getBoundingBoxOfMultiPolygon(multiPolygon)
+                    rtreeList.add(
+                        EntryDefault(
+                            feature,
+                            Geometries.rectangleGeographic(
+                                box.westLongitude, box.southLatitude,
+                                box.eastLongitude, box.northLatitude
+                            )
+                        )
+                    )
+                }
+
+                else -> {
+                    assert(false)
                 }
             }
         }
@@ -300,16 +338,44 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 // The rtree entry is a bounding box for a more complex polygon. We return true if
                 // any of the polygon coordinates are within the FOV triangle
                 val feature = entry.value()
-                for (geometry in (feature.geometry as Polygon).coordinates) {
-                    for (point in geometry) {
-                        val polygonTriangleFOV = Polygon(arrayListOf(triangle[0], triangle[1], triangle[2], triangle[0]))
-                        val containsCoordinate =
-                            polygonContainsCoordinates(point, polygonTriangleFOV)
-                        if (containsCoordinate) {
-                            return true
+                if(feature.geometry.type == "Polygon") {
+                    for (geometry in (feature.geometry as Polygon).coordinates) {
+                        for (point in geometry) {
+                            val polygonTriangleFOV = Polygon(
+                                arrayListOf(
+                                    triangle[0],
+                                    triangle[1],
+                                    triangle[2],
+                                    triangle[0]
+                                )
+                            )
+                            val containsCoordinate =
+                                polygonContainsCoordinates(point, polygonTriangleFOV)
+                            if (containsCoordinate) {
+                                return true
+                            }
+                        }
+                    }
+                } else if(feature.geometry.type == "MultiPolygon") {
+                    for (geometry in (feature.geometry as MultiPolygon).coordinates[0]) {
+                        for (point in geometry) {
+                            val polygonTriangleFOV = Polygon(
+                                arrayListOf(
+                                    triangle[0],
+                                    triangle[1],
+                                    triangle[2],
+                                    triangle[0]
+                                )
+                            )
+                            val containsCoordinate =
+                                polygonContainsCoordinates(point, polygonTriangleFOV)
+                            if (containsCoordinate) {
+                                return true
+                            }
                         }
                     }
                 }
+
                 return false
             }
             else -> {

@@ -5,6 +5,8 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.Circle
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -24,11 +26,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringIsCircular
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
@@ -49,13 +49,8 @@ class RoundaboutsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONRoundabout.featureCollectionRoundabout)
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val gridState = createFromGeoJson(GeoJSONRoundabout.featureCollectionRoundabout)
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
 
         // create FOV to pickup the road(s) and roundabout
         val fovRoadsFeatureCollection = getFovFeatureCollection(
@@ -83,12 +78,7 @@ class RoundaboutsTest {
                 roundaboutExitRoads.addFeature(road)
             }
         }
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
-
-
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
             userGeometry,
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
@@ -170,6 +160,7 @@ class RoundaboutsTest {
         fovRoadsFeatureCollection.addFeature(featureFOVTriangle)
 
         // copy and paste into GeoJSON.io
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val roundabouts =
             moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
         println(roundabouts)
@@ -187,25 +178,18 @@ class RoundaboutsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONRoundaboutMini.featureCollectionRoundaboutMini)
+        val gridState = createFromGeoJson(GeoJSONRoundaboutMini.featureCollectionRoundaboutMini)
 
         // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+
         // create FOV to pickup the roads
         val fovRoadsFeatureCollection = getFovFeatureCollection(
             userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Get the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // get the nearest intersection in the FoV and the roads that make up the intersection
         val points = getFovTrianglePoints(userGeometry)
@@ -269,17 +253,10 @@ class RoundaboutsTest {
             50.0
         )
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONRoundabout.featureCollectionRoundabout)
+        val gridState = createFromGeoJson(GeoJSONRoundabout.featureCollectionRoundabout)
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
-        val testRoadsCollectionFromTileFeatureCollection =
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
-        val testIntersectionsCollectionFromTileFeatureCollection = getIntersectionsFeatureCollectionFromTileFeatureCollection(
-            featureCollectionTest
-        )
         // create FOV to pickup the road(s) and roundabout (this won't detect every road as we are too far away)
         val fovRoadsFeatureCollection = getFovFeatureCollection(
             userGeometry,
@@ -361,6 +338,7 @@ class RoundaboutsTest {
                 )
                 // temp see the relative directions polygons and bounding box of roundabout
                 //intersectionRelativeDirectionsPolygons.addFeature(featurePolygonBB)
+                val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
                 val relativeDirectionPolygons =
                     moshi.adapter(FeatureCollection::class.java).toJson(intersectionRelativeDirectionsPolygons)
                 println("relative directions polygons: $relativeDirectionPolygons")
@@ -492,6 +470,7 @@ class RoundaboutsTest {
         fovRoadsFeatureCollection.addFeature(featureFOVTriangle)
 
         // copy and paste into GeoJSON.io
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val roundabouts =
             moshi.adapter(FeatureCollection::class.java).toJson(fovRoadsFeatureCollection)
         println(roundabouts)
