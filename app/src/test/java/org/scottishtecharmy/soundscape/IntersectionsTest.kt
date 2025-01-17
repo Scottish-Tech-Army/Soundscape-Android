@@ -1,15 +1,12 @@
 package org.scottishtecharmy.soundscape
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
-import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 
 
@@ -20,31 +17,13 @@ class IntersectionsTest {
                           deviceHeading: Double,
                           fovDistance: Double) : FeatureCollection {
 
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(geoJsonResource)
-
-        // Get the roads from the tile
-        val testRoadsTree = FeatureTree(
-            getRoadsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
-        )
-
-        // Get the intersections from the tile
-        val testIntersectionsTree = FeatureTree(
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest
-            )
-        )
-
-        return getRoadsDescriptionFromFov(testRoadsTree,
-            testIntersectionsTree,
-            currentLocation,
-            deviceHeading,
-            fovDistance,
-            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
-        ).intersectionRoads
+        val gridState = GridState.createFromGeoJson(geoJsonResource)
+        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, fovDistance)
+        return  getRoadsDescriptionFromFov(
+                    gridState,
+                    userGeometry,
+                    ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+                ).intersectionRoads
     }
 
     @Test

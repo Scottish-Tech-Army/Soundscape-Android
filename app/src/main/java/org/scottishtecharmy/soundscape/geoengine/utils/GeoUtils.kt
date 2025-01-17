@@ -748,11 +748,7 @@ fun lineStringIsCircular(path: LineString): Boolean {
 fun getQuadrants(heading: Double): List<Quadrant> {
     // Find the quadrant the heading is currently in
     val quadrantIndex = ((heading + 45.0).rem(360.0)).toInt() / 90
-
-    val northHeading = when (quadrantIndex) {
-        0 -> heading
-        else -> (heading + 90 * (4 - quadrantIndex).toDouble()).rem(360.0)
-    }
+    val northHeading = (heading + 90 * (4 - quadrantIndex).toDouble()).rem(360.0)
 
     // Define the quadrants based off the offset heading to the north
     return listOf(
@@ -816,27 +812,6 @@ fun distanceToPolygon(
         last = current
     }
     return minDistance
-}
-
-/**
- * Distance to an intersection from current location.
- * @param location
- * LngLatAlt of current location
- * @param intersection
- * Coordinates for intersection that we want to know the distance to as Point
- * @return The distance of the current location to the intersection in meters.
- */
-fun distanceToIntersection(
-    location: LngLatAlt,
-    intersection: Point
-): Double {
-    return distance(
-        location.latitude,
-        location.longitude,
-        intersection.coordinates.latitude,
-        intersection.coordinates.longitude
-    )
-
 }
 
 /**

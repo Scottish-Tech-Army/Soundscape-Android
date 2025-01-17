@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -9,7 +10,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
@@ -59,10 +59,10 @@ private fun vectorTileToGeoJsonFromFile(
     return featureCollection
 }
 
-fun getGeoJsonForLocation(
+fun getGridStateForLocation(
     location: LngLatAlt,
     soundscapeBackend: Boolean = false
-): FeatureCollection {
+): GridState {
 
     var gridSize = 2
     if (soundscapeBackend) {
@@ -96,12 +96,7 @@ fun getGeoJsonForLocation(
     // Add lines to connect all of the interpolated points
     joiner.addJoiningLines(featureCollection)
 
-    val adapter = GeoJsonObjectMoshiAdapter()
-    val outputFile = FileOutputStream("${grid.tiles[0].tileX}-${grid.tiles[1].tileX}x${grid.tiles[0].tileY}-${grid.tiles[3].tileY}.geojson")
-    outputFile.write(adapter.toJson(featureCollection).toByteArray())
-    outputFile.close()
-
-    return featureCollection
+    return GridState.createFromFeatureCollection(featureCollection)
 }
 
 class MvtTileTest {

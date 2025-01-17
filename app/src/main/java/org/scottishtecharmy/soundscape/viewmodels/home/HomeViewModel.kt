@@ -119,19 +119,6 @@ class HomeViewModel
                     }
                 }
             }
-
-            viewModelScope.launch(job) {
-                // Observe tile grid update from the service so we can show it on the map
-                soundscapeServiceConnection.getTileGridFlow()?.collectLatest { tileGrid ->
-                    if (tileGrid.tiles.isNotEmpty()) {
-                        Log.d(TAG, "new tile grid")
-                        // Flow out the GeoJSON describing our current grid
-                        _state.update { it.copy(tileGridGeoJson = tileGrid.generateGeoJson()) }
-                    } else {
-                        _state.update { it.copy(tileGridGeoJson = "") }
-                    }
-                }
-            }
         }
 
         private fun stopMonitoringLocation() {

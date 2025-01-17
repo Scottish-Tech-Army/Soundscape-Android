@@ -4,7 +4,6 @@ import org.scottishtecharmy.soundscape.dto.IntersectionRelativeDirections
 import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
@@ -12,7 +11,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import com.squareup.moshi.Moshi
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.dto.BoundingBox
@@ -160,200 +158,6 @@ fun getTilesForRegion(
 }
 
 /**
- * Given a valid Tile feature collection this will parse the collection and return a roads
- * feature collection. Uses the "highway" feature_type to extract roads from GeoJSON.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only roads.
- */
-fun getRoadsFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection {
-
-    val roadsFeatureCollection = FeatureCollection()
-
-    // Original Soundscape excludes the below feature_value (s) even though they have the
-    // feature_type == highway
-    // and creates a separate Paths Feature Collection for them
-    // "footway", "path", "cycleway", "bridleway"
-    // gd_intersection are a special case and get their own Intersections Feature Collection
-
-
-    for (feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] == "highway"
-                && foreign["feature_value"] != "gd_intersection"
-                && foreign["feature_value"] != "footway"
-                && foreign["feature_value"] != "path"
-                && foreign["feature_value"] != "cycleway"
-                && foreign["feature_value"] != "bridleway"
-                && foreign["feature_value"] != "bus_stop"
-                && foreign["feature_value"] != "crossing") {
-                    // We're only going to add linestrings to the roads feature collection
-                    when(feature.geometry.type) {
-                        "LineString", "MultiLineString" ->
-                            roadsFeatureCollection.addFeature(feature)
-                    }
-            }
-        }
-    }
-    return roadsFeatureCollection
-}
-
-/**
- * Given a valid Tile feature collection this will parse the collection and return a bus stops
- * feature collection. Uses the "bus_stop" feature_value to extract bus stops from GeoJSON.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only bus stops.
- */
-fun getBusStopsFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection{
-    val busStopFeatureCollection = FeatureCollection()
-    for (feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "bus_stop") {
-                busStopFeatureCollection.addFeature(feature)
-            }
-        }
-    }
-
-    return busStopFeatureCollection
-}
-
-/**
- * Given a valid Tile feature collection this will parse the collection and return a crossing
- * feature collection. Uses the "crossing" feature_value to extract crossings from GeoJSON.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only crossings.
- */
-fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
-    val crossingsFeatureCollection = FeatureCollection()
-    for (feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "crossing") {
-                crossingsFeatureCollection.addFeature(feature)
-            }
-        }
-    }
-    return crossingsFeatureCollection
-}
-
-/**
- * Given a valid Tile feature collection this will parse the collection and return an interpolation
- * points feature collection. Uses the "edgePoint" feature_value to extract crossings from GeoJSON.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only edgePoints
- */
-fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
-    val interpolationPointsFeatureCollection = FeatureCollection()
-    for (feature in tileFeatureCollection) {
-        feature.properties?.let { properties ->
-            if (properties["class"] == "edgePoint") {
-                interpolationPointsFeatureCollection.addFeature(feature)
-            }
-        }
-    }
-    return interpolationPointsFeatureCollection
-}
-
-/**
- * Given a valid Tile feature collection this will parse the collection and return a paths
- * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
- * Paths from Feature Collection.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only paths.
- */
-fun getPathsFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection{
-    val pathsFeatureCollection = FeatureCollection()
-
-    for(feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            // We're only going to add linestrings to the roads feature collection
-            when(feature.geometry.type) {
-                "LineString", "MultiLineString" -> {
-                    if (foreign["feature_type"] == "highway")
-                        when (foreign["feature_value"]) {
-                            "footway" -> pathsFeatureCollection.addFeature(feature)
-                            "path" -> pathsFeatureCollection.addFeature(feature)
-                            "cycleway" -> pathsFeatureCollection.addFeature(feature)
-                            "bridleway" -> pathsFeatureCollection.addFeature(feature)
-                        }
-                }
-            }
-        }
-    }
-    return pathsFeatureCollection
-}
-
-/**
- * Parses out all the Intersections in a tile FeatureCollection using the "gd_intersection" feature_value.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return a Feature collection object that only contains intersections.
- */
-fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection {
-    val intersectionsFeatureCollection = FeatureCollection()
-    // split out the intersections into their own intersections FeatureCollection
-    for (feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "gd_intersection") {
-                intersectionsFeatureCollection.addFeature(feature)
-            }
-        }
-    }
-    return intersectionsFeatureCollection
-}
-
-/**
- * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return a feature collection object that contains only entrances.
- */
-fun getEntrancesFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection {
-    val entrancesFeatureCollection = FeatureCollection()
-    for (feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] == "gd_entrance_list") {
-                entrancesFeatureCollection.addFeature(feature)
-            }
-        }
-    }
-    return entrancesFeatureCollection
-}
-
-/**
- * Parses out all the Points of Interest (POI) in a tile FeatureCollection.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return a Feature collection object that contains only POI.
- */
-fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection {
-    val poiFeaturesCollection = FeatureCollection()
-    for (feature in tileFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_type"] != "highway" && foreign["feature_type"] != "gd_entrance_list") {
-                poiFeaturesCollection.addFeature(feature)
-            }
-        }
-    }
-    return poiFeaturesCollection
-}
-
-/**
  * Parses out the super category Features contained in the Points of Interest (POI) Feature Collection.
  * @param superCategory
  * String for super category. Options are "information", "object", "place", "landmark", "mobility", "safety"
@@ -427,52 +231,15 @@ fun removeDuplicateOsmIds(
     return tempFeatureCollection
 }
 
-/**
- * Parses out roads, paths, intersections, entrances, pois, bus stops and crossings from a tile string.
- * @return a TileData object with the string parsed into separate strings.
- */
-
-fun processTileString(tileString: String): Array<FeatureCollection> {
-    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-    val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
-        .fromJson(tileString)
-    if(tileFeatureCollection == null)
-        return emptyArray()
-
-    return processTileFeatureCollection(tileFeatureCollection)
-}
-
-fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Array<FeatureCollection> {
-
-    val tileData = Array(GeoEngine.Fc.MAX_COLLECTION_ID.id) { FeatureCollection() }
-
-    // We have separate collections for the different types of Feature. ROADS_AND_PATHS adds PATHS
-    // to the ROADS features already contained in ROADS. This slight extra cost in terms of memory
-    // is made up for by the ease of searching a single collection.
-    tileData[GeoEngine.Fc.ROADS.id] = getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.ROADS_AND_PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.ROADS_AND_PATHS.id].plusAssign(tileData[GeoEngine.Fc.ROADS.id])
-    tileData[GeoEngine.Fc.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.BUS_STOPS.id] = getBusStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.CROSSINGS.id] = getCrossingsFromTileFeatureCollection(tileFeatureCollection)
-    tileData[GeoEngine.Fc.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
-
-    return  tileData
-}
-
 data class FovLeftRight(val left: LngLatAlt, val right: LngLatAlt)
 
-fun getFovTrianglePoints(location: LngLatAlt,
-                         heading: Double,
-                         distance: Double) : FovLeftRight {
+fun getFovTrianglePoints(userGeometry: GeoEngine.UserGeometry) : FovLeftRight {
     // Direction the device is pointing
-    val quadrants = getQuadrants(heading)
+    val quadrants = getQuadrants(userGeometry.heading)
     // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
     var quadrantIndex = 0
     for (quadrant in quadrants) {
-        val containsHeading = quadrant.contains(heading)
+        val containsHeading = quadrant.contains(userGeometry.heading)
         if (containsHeading) {
             break
         } else {
@@ -482,14 +249,14 @@ fun getFovTrianglePoints(location: LngLatAlt,
     // Get the coordinate for the "Left" of the FOV
     val points = FovLeftRight(
         getDestinationCoordinate(
-            LngLatAlt(location.longitude, location.latitude),
+            userGeometry.location,
             quadrants[quadrantIndex].left,
-            distance
+            userGeometry.fovDistance
         ),
         getDestinationCoordinate(
-            LngLatAlt(location.longitude, location.latitude),
+            userGeometry.location,
             quadrants[quadrantIndex].right,
-            distance
+            userGeometry.fovDistance
         )
     )
 
@@ -498,36 +265,28 @@ fun getFovTrianglePoints(location: LngLatAlt,
 
 /**
  * Return a Feature Collection that contains the Features within the "field of view" triangle.
- * @param location
- * Location of the device.
- * @param heading
- * Direction the device is pointing.
- * @param distance
- * Distance to extend the "field of view"
+ * @param userGeometry
+ * Location, heading an FOV distance
  * @param featureTree
  * The feature tree that we want to filter.
  * @return A Feature Collection that contains the Features in the FOV triangle.
  */
 fun getFovFeatureCollection(
-    location: LngLatAlt,
-    heading: Double,
-    distance: Double,
+    userGeometry: GeoEngine.UserGeometry,
     featureTree: FeatureTree
 ): FeatureCollection {
 
-    val points = getFovTrianglePoints(location, heading, distance)
-    return featureTree.generateFeatureCollectionWithinTriangle(location, points.left, points.right)
+    val points = getFovTrianglePoints(userGeometry)
+    return featureTree.generateFeatureCollectionWithinTriangle(userGeometry.location, points.left, points.right)
 }
 
 fun getNearestFovFeature(
-    location: LngLatAlt,
-    heading: Double,
-    distance: Double,
+    userGeometry: GeoEngine.UserGeometry,
     featureTree: FeatureTree
 ): Feature? {
 
-    val points = getFovTrianglePoints(location, heading, distance)
-    return featureTree.getNearestFeatureWithinTriangle(location, points.left, points.right)
+    val points = getFovTrianglePoints(userGeometry)
+    return featureTree.getNearestFeatureWithinTriangle(userGeometry.location, points.left, points.right)
 }
 
 /**
@@ -780,215 +539,146 @@ fun removeDuplicates(
 
 
 /**
- * Given a location, device heading and distance this will create a feature collection of triangles
- * that represent relative directions for the given heading. The triangles represent "ahead", "ahead right", "right", "behind right"
- * "behind", "behind left", "left" and "ahead left" this represents original Soundscapes COMBINED direction type.
- * @param location
- * LngLatAlt object
- * @param deviceHeading
+ * This represent the original iOS COMBINED direction type which they described like this:
+ *
+ *  Ahead, Right, Behind, and Left all get a 150 degree window centered in their respective
+ *  directions (e.g. right is 15 degrees to 165 degrees). In the areas where these windows
+ *  overlap, the relative directions get combined. For example, 0 degrees is "ahead", while
+ *  20 degrees is "ahead to the right."
+
+ * @param heading
  * Direction the device is pointing in degrees
- * @param distance
- * Length of left and right side of triangle in meters.
- * @return a Feature Collection containing triangles for the relative directions.
+ * @return an array of Segments describing the angles
  */
-fun getCombinedDirectionPolygons(
-    location: LngLatAlt,
-    deviceHeading: Double,
-    distance: Double = 50.0
-): FeatureCollection {
-
-    val newFeatureCollection = FeatureCollection()
-
-    val triangleDirectionsQuad = Quadrant(deviceHeading)
-    // Take the  original 45 degree "ahead"/quadrant triangle and making
-    // it a 30 degree "behind" triangle
-    val triangle5Left = (triangleDirectionsQuad.left + 210.0) % 360.0
-    val triangle5Right = (triangleDirectionsQuad.right + 150.0) % 360.0
-    val degreesList = mutableListOf(Pair(triangle5Left, triangle5Right))
-
-    // Take the  original 45 degree "ahead"/quadrant triangle and making
-    // it a 30 degree "behind left" triangle
-    val triangle6Left = (triangleDirectionsQuad.left + 240.0) % 360.0
-    val triangle6Right = (triangleDirectionsQuad.right + 210.0) % 360.0
-    degreesList.add(Pair(triangle6Left, triangle6Right))
-
-    // Take the original 45 degree "ahead"/quadrant triangle and making
-    // it a 30 degree "left" triangle
-    val triangle7Left = (triangleDirectionsQuad.left + 300.0) % 360.0
-    val triangle7Right = (triangleDirectionsQuad.right + 240.0) % 360.0
-    degreesList.add(Pair(triangle7Left, triangle7Right))
-
-    // Take the original 45 degree "ahead"/quadrant triangle and making
-    // it a 60 degree "ahead left" triangle
-    val triangle8Left = (triangleDirectionsQuad.left - 30.0) % 360.0
-    val triangle8Right = (triangleDirectionsQuad.right - 60.0) % 360.0
-    degreesList.add(Pair(triangle8Left, triangle8Right))
-
-    // Take the original 45 degree "ahead"/quadrant triangle and cutting it down
-    // to a 30 degree "ahead" triangle
-    val triangle1Left = (triangleDirectionsQuad.left + 30.0) % 360.0
-    val triangle1Right = (triangleDirectionsQuad.right - 30.0) % 360.0
-    degreesList.add(Pair(triangle1Left, triangle1Right))
-
-    // Take the original 45 degree "ahead"/quadrant triangle and making
-    // it a 60 degree "ahead right" triangle
-    val triangle2Left = (triangleDirectionsQuad.left + 60.0) % 360.0
-    val triangle2Right = (triangleDirectionsQuad.right + 30.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
-
-    // Take the original 45 degree "ahead"/quadrant triangle and making
-    // it a 30 degree "right" triangle
-    val triangle3Left = (triangleDirectionsQuad.left + 120.0) % 360.0
-    val triangle3Right = (triangleDirectionsQuad.right + 60.0) % 360.0
-    degreesList.add(Pair(triangle3Left, triangle3Right))
-
-    // Take the  original 45 degree "ahead"/quadrant triangle and making
-    // it a 60 degree "behind right" triangle
-    val triangle4Left = (triangleDirectionsQuad.left + 150.0) % 360.0
-    val triangle4Right = (triangleDirectionsQuad.right + 120.0) % 360.0
-    degreesList.add(Pair(triangle4Left, triangle4Right))
-
-    for ((count, degreePair) in degreesList.withIndex()) {
-        val ahead1 = getDestinationCoordinate(
-            location,
-            degreePair.first,
-            distance
+fun getCombinedDirectionSegments(
+    heading: Double
+): Array<Segment> {
+    return arrayOf(
+            // 30 degree "behind" triangle
+            Segment(heading + 180.0, 30.0),
+            // 60 degree "behind left" triangle
+            Segment(heading + 225.0, 60.0),
+            // 30 degree "left" triangle
+            Segment(heading + 270.0, 30.0),
+            // 60 degree "ahead left" triangle
+            Segment(heading + 315.0, 60.0),
+            // 30 degree "ahead" triangle
+            Segment(heading, 30.0),
+            // 60 degree "ahead right" triangle
+            Segment(heading + 45, 60.0),
+            // 30 degree "right" triangle
+            Segment(heading + 90, 30.0),
+            // 60 degree "behind right" triangle
+            Segment(heading + 135, 60.0)
         )
-        val ahead2 = getDestinationCoordinate(
-            location,
-            degreePair.second,
-            distance
-        )
-        val aheadTriangle = createTriangleFOV(
-            ahead1,
-            location,
-            ahead2
-        )
-        val featureAheadTriangle = Feature().also {
-            val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", count)
-            it.properties = ars3
-        }
-        featureAheadTriangle.geometry = aheadTriangle
-        newFeatureCollection.addFeature(featureAheadTriangle)
-    }
-    return newFeatureCollection
-
 }
 
 /**
- * Given a location, device heading and distance this will create a feature collection of triangles
- * that represent relative directions for the given heading. The triangles represent "ahead", "right",
- * "behind", "left". This represents original Soundscapes INDIVIDUAL direction type.
- * @param location
- * LngLatAlt object
- * @param deviceHeading
+ * This represent the original iOS INDIVIDUAL direction type which they described like this:
+ *
+ *  Ahead, Right, Behind, and Left all get a 90 degree window centered in their respective
+ *  directions (e.g. right is from 45 degrees to 135 degrees). These windows do not overlap,
+ *  so relative directions can only be "ahead", "to the right", "behind", or "to the left".
+ *
+ * @param heading
  * Direction the device is pointing in degrees
- * @param distance
- * Length of left and right side of triangle in meters.
- * @return a Feature Collection containing triangles for the relative directions.
+ * @return an array of Segments describing the angles
  */
-fun getIndividualDirectionPolygons(
-    location: LngLatAlt,
-    deviceHeading: Double,
-    distance: Double = 50.0
-): FeatureCollection {
 
-    // Take the original 45 degree "ahead"
-    val triangle1DirectionsQuad = Quadrant(deviceHeading)
-    // I got the ordering wrong with this originally as Soundscape works clockwise starting from behind, left, ahead, right
-    // so my triangle numbering looks weird
-    val triangle3Left = (triangle1DirectionsQuad.left + 180.0) % 360.0
-    val triangle3Right = (triangle1DirectionsQuad.right + 180.0) % 360.0
-    val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
-    val triangle4Left = (triangle1DirectionsQuad.left + 270.0) % 360.0
-    val triangle4Right = (triangle1DirectionsQuad.right + 270.0) % 360.0
-    degreesList.add(Pair(triangle4Left, triangle4Right))
-    val triangle1Left = triangle1DirectionsQuad.left
-    val triangle1Right = triangle1DirectionsQuad.right
-    degreesList.add(Pair(triangle1Left, triangle1Right))
-    val triangle2Left = (triangle1DirectionsQuad.left + 90.0) % 360.0
-    val triangle2Right = (triangle1DirectionsQuad.right + 90.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
-
-    return makeTriangles(degreesList, location, distance)
-
+fun getIndividualDirectionSegments(
+    heading: Double
+): Array<Segment> {
+    return arrayOf(
+        // 90 degree "behind" triangle
+        Quadrant(heading + 180.0),
+        // 90 degree "left" triangle
+        Quadrant(heading + 270.0),
+        // 90 degree "ahead" triangle
+        Quadrant(heading + 0.0),
+        // 90 degree "right" triangle
+        Quadrant(heading + 90.0),
+    )
 }
 
 /**
- * Given a location, device heading and distance this will create a feature collection of triangles
- * that represent relative directions for the given heading. The triangles represent "ahead", "right",
- * "behind", "left". This represents original Soundscapes AHEAD_BEHIND direction type.
- * @param location
- * LngLatAlt object
- * @param deviceHeading
+ * This represent the original iOS AHEAD_BEHIND direction type which they described like this:
+ *
+ *  Ahead and Behind get a 150 degree window, while Left and Right get 30 degree windows in their
+ *  respective directions (e.g. right is 75 degrees to 105 degrees and behind is 105 degrees to
+ *  255 degrees). These windows do not overlap, so relative directions can only be "ahead",
+ *  "to the right", "behind", or "to the left". This style of relative direction is bias towards
+ *  calling out things as either ahead or behind unless they are directly to the left or right.
+ *
+ * @param heading
  * Direction the device is pointing in degrees
- * @param distance
- * Length of left and right side of triangle in meters.
- * @return a Feature Collection containing triangles for the relative directions.
+ * @return an array of Segments describing the angles
  */
-fun getAheadBehindDirectionPolygons(
-    location: LngLatAlt,
-    deviceHeading: Double,
-    distance: Double = 50.0
-): FeatureCollection {
+fun getAheadBehindDirectionSegments(
+    heading: Double
+): Array<Segment> {
 
-    // Take the original 45 degree "ahead" and give it a bias for ahead (285 to 75 degrees)
-    val triangle1DirectionsQuad = Quadrant(deviceHeading)
-    // I got the ordering wrong with this originally as Soundscape works clockwise from behind, left, ahead, right
-    // so my triangle numbering looks weird
-    val triangle3Left = (triangle1DirectionsQuad.left + 150.0) % 360.0
-    val triangle3Right = (triangle1DirectionsQuad.right + 210.0) % 360.0
-    val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
-
-    val triangle4Left = (triangle1DirectionsQuad.left + 300.0) % 360.0
-    val triangle4Right = (triangle1DirectionsQuad.right + 240.0) % 360.0
-    degreesList.add(Pair(triangle4Left, triangle4Right))
-
-    val triangle1Left = (triangle1DirectionsQuad.left - 30.0) % 360.0
-    val triangle1Right = (triangle1DirectionsQuad.right + 30.0) % 360
-    degreesList.add(Pair(triangle1Left, triangle1Right))
-
-    val triangle2Left = (triangle1DirectionsQuad.left + 120.0) % 360.0
-    val triangle2Right = (triangle1DirectionsQuad.right + 60.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
-
-    return makeTriangles(degreesList, location, distance)
+    return arrayOf(
+        // 150 degree "behind" triangle
+        Segment(heading + 180.0, 150.0),
+        // 30 degree "left" triangle
+        Segment(heading + 270.0, 30.0),
+        // 150 degree "ahead" triangle
+        Segment(heading + 0.0, 150.0),
+        // 30 degree "right" triangle
+        Segment(heading + 90.0, 30.0),
+    )
 }
 
 /**
-* Given a list of Pairs() of degrees which represent left and right for a FoV triangle, a location
- * and a distance it wil generate lots of triangles
-* @param degreesList
-* A MutableList<Pair<Double, Double>> of degrees to construct triangles
-* @param location
-* location to radiate triangles from
-* @param distance
-* Length of left and right side of triangle in meters.
-* @return a Feature Collection containing triangles for the relative directions.
-*/
+ * This represent the original iOS LEFT_RIGHT direction type which they described like this:
+ *
+ *  Left and Right get a 120 degree window, while Ahead and Behind get 60 degree windows in their
+ *  respective directions (e.g. right is 30 degrees to 150 degrees and behind is 150 degrees to
+ *  210 degrees). These windows do not overlap, so relative directions can only be "ahead",
+ *  "to the right", "behind", or "to the left". This style of relative direction is bias towards
+ *  calling out things as either left or right unless they are directly ahead or behind.
+ *
+ * @param heading
+ * Direction the device is pointing in degrees
+ * @return an array of Segments describing the angles
+ */
+fun getLeftRightDirectionSegments(
+    heading: Double
+): Array<Segment> {
+
+    return arrayOf(
+        // 60 degree "behind" triangle
+        Segment(heading + 180.0, 60.0),
+        // 120 degree "left" triangle
+        Segment(heading + 270.0, 120.0),
+        // 60 degree "ahead" triangle
+        Segment(heading + 0.0, 60.0),
+        // 120 degree "right" triangle
+        Segment(heading + 90.0, 120.0),
+    )
+}
+
+/**
+ * Given an array of Segments and some user geometry with the location and Field of View distance it
+ * which represent the FoV triangles it will generate a FeatureCollection of triangles.
+ * @param segments
+ * An Array<Segment> of degrees to construct triangles
+ * @param userGeometry
+ * UserGeometry containing the location and Field of View distance
+ * @return a Feature Collection containing triangles for the relative directions.
+ */
 fun makeTriangles(
-    degreesList: MutableList<Pair<Double, Double>>,
-    location: LngLatAlt,
-    distance: Double,
+    segments: Array<Segment>,
+    userGeometry: GeoEngine.UserGeometry
 ): FeatureCollection{
 
     val newFeatureCollection = FeatureCollection()
-    for ((count, degreePair) in degreesList.withIndex()) {
-        val ahead1 = getDestinationCoordinate(
-            location,
-            degreePair.first,
-            distance
-        )
-        val ahead2 = getDestinationCoordinate(
-            location,
-            degreePair.second,
-            distance
-        )
+    for ((count, segment) in segments.withIndex()) {
+
         val aheadTriangle = createTriangleFOV(
-            ahead1,
-            location,
-            ahead2
+            getDestinationCoordinate(userGeometry.location, segment.left, userGeometry.fovDistance),
+            userGeometry.location,
+            getDestinationCoordinate(userGeometry.location, segment.right, userGeometry.fovDistance)
         )
         val featureAheadTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
@@ -1035,75 +725,6 @@ fun getDirectionAtIntersection(intersection: Feature, road: Feature): RoadDirect
     } else {
         RoadDirectionAtIntersection.NONE
     }
-}
-
-
-/**
- * Given a location, device heading and distance this will create a feature collection of triangles
- * that represent relative directions for the given heading. The triangles represent "ahead", "right",
- * "behind", "left". This represents original Soundscapes LEFT_RIGHT direction type.
- * @param location
- * LngLatAlt object
- * @param deviceHeading
- * Direction the device is pointing in degrees
- * @param distance
- * Length of left and right side of triangle in meters.
- * @return a Feature Collection containing triangles for the relative directions.
- */
-fun getLeftRightDirectionPolygons(
-    location: LngLatAlt,
-    deviceHeading: Double,
-    distance: Double = 50.0
-): FeatureCollection {
-
-    val newFeatureCollection = FeatureCollection()
-    // Take the original 45 degree "ahead" and give it a bias for left and right (ahead is 330 to 30 degrees)
-    val triangle1DirectionsQuad = Quadrant(deviceHeading)
-    // Behind
-    val triangle3Left = (triangle1DirectionsQuad.left + 195.0) % 360.0
-    val triangle3Right = (triangle1DirectionsQuad.right + 165.0) % 360.0
-    val degreesList = mutableListOf(Pair(triangle3Left, triangle3Right))
-
-    // Left
-    val triangle4Left = (triangle1DirectionsQuad.left + 255.0) % 360.0
-    val triangle4Right = (triangle1DirectionsQuad.right + 285.0) % 360.0
-    degreesList.add(Pair(triangle4Left, triangle4Right))
-    // Ahead
-    val triangle1Left = (triangle1DirectionsQuad.left + 15.0) % 360.0
-    val triangle1Right = (triangle1DirectionsQuad.right - 15.0) % 360
-    degreesList.add(Pair(triangle1Left, triangle1Right))
-    // Right
-    val triangle2Left = (triangle1DirectionsQuad.left + 75.0) % 360.0
-    val triangle2Right = (triangle1DirectionsQuad.right + 105.0) % 360.0
-    degreesList.add(Pair(triangle2Left, triangle2Right))
-
-    for ((count, degreePair) in degreesList.withIndex()) {
-        val ahead1 = getDestinationCoordinate(
-            location,
-            degreePair.first,
-            distance
-        )
-        val ahead2 = getDestinationCoordinate(
-            location,
-            degreePair.second,
-            distance
-        )
-        val aheadTriangle = createTriangleFOV(
-            ahead1,
-            location,
-            ahead2
-        )
-        val featureAheadTriangle = Feature().also {
-            val ars3: HashMap<String, Any?> = HashMap()
-            ars3 += Pair("Direction", count)
-            it.properties = ars3
-        }
-        featureAheadTriangle.geometry = aheadTriangle
-        newFeatureCollection.addFeature(featureAheadTriangle)
-    }
-
-    return newFeatureCollection
-
 }
 
 
@@ -1409,29 +1030,26 @@ fun searchFeaturesByName(featureCollection: FeatureCollection, query: String): F
 /**
  * A wrapper around:
  * getCombinedDirectionPolygons, getIndividualDirectionPolygons, getAheadBehindDirectionPolygons, getLeftRightDirectionPolygons
- * @param location
- * LngLatAlt object
- * @param deviceHeading
- * Direction the device is pointing in degrees
- * @param distance
- * Length of left and right side of triangle in meters.
+ * @param userGeometry
+ * Location, heading and FOV distance
  * @param relativeDirectionType
  * Enum for the function you want to use
  * @return a Feature Collection containing triangles for the relative directions.
  */
 fun getRelativeDirectionsPolygons(
-    location: LngLatAlt,
-    deviceHeading: Double,
-    distance: Double = 50.0,
+    userGeometry: GeoEngine.UserGeometry,
     relativeDirectionType: RelativeDirections
 ): FeatureCollection {
 
-    return when(relativeDirectionType){
-        RelativeDirections.COMBINED -> getCombinedDirectionPolygons(location, deviceHeading, distance)
-        RelativeDirections.INDIVIDUAL -> getIndividualDirectionPolygons(location, deviceHeading, distance)
-        RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionPolygons(location, deviceHeading, distance)
-        RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionPolygons(location, deviceHeading, distance)
-    }
+    val segments =
+        when(relativeDirectionType){
+            RelativeDirections.COMBINED -> getCombinedDirectionSegments(userGeometry.heading)
+            RelativeDirections.INDIVIDUAL -> getIndividualDirectionSegments(userGeometry.heading)
+            RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionSegments(userGeometry.heading)
+            RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionSegments(userGeometry.heading)
+        }
+
+    return makeTriangles(segments, userGeometry)
 }
 
 fun checkWhetherIntersectionIsOfInterest(
@@ -2592,12 +2210,10 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
 }
 
 fun generateDebugFovGeoJson(
-    location: LngLatAlt,
-    heading: Double,
-    distance: Double,
+    userGeometry: GeoEngine.UserGeometry,
     featureCollection: FeatureCollection
 ) {
-    val points = getFovTrianglePoints(location, heading, distance)
+    val points = getFovTrianglePoints(userGeometry)
 
     // Take care not to add the triangle to the passed in collection
     val mapCollection = FeatureCollection()
@@ -2606,10 +2222,10 @@ fun generateDebugFovGeoJson(
     val triangle = Feature()
     triangle.geometry = Polygon(
         arrayListOf(
-            location,
+            userGeometry.location,
             points.left,
             points.right,
-            location
+            userGeometry.location
         )
     )
     mapCollection.addFeature(triangle)
