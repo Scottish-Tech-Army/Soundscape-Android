@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.screens.home.home.USER_POSITION_MARKER_NAME
 
 enum class ComplexIntersectionApproach {
     INTERSECTION_WITH_MOST_OSM_IDS,
@@ -53,7 +54,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 ) : RoadsDescription {
 
     // Create FOV triangle
-    val points = getFovTrianglePoints(userGeometry.location, userGeometry.heading, userGeometry.fovDistance)
+    val points = getFovTrianglePoints(userGeometry)
 
     val roadTree = gridState.getFeatureTree(TreeId.ROADS)
     val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
@@ -116,10 +117,13 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // Create a set of relative direction polygons
     val intersectionLocation = intersection!!.geometry as Point
-    val relativeDirections = getRelativeDirectionsPolygons(
+    val geometry = GeoEngine.UserGeometry(
         intersectionLocation.coordinates,
         nearestRoadBearing,
-        5.0,
+        5.0
+    )
+    val relativeDirections = getRelativeDirectionsPolygons(
+        geometry,
         RelativeDirections.COMBINED
     )
 

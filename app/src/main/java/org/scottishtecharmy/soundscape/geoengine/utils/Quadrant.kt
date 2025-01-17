@@ -1,13 +1,9 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
-class Quadrant(private val heading: Double) {
-    val left: Double
-    val right: Double
+open class Segment(heading: Double, width: Double) {
 
-    init {
-        left = (heading + 315) % 360.0
-        right = (heading + 45) % 360.0
-    }
+    val left: Double = (heading + 360-(width/2)) % 360.0
+    val right: Double = (heading + width/2) % 360.0
 
     fun contains(headingToCheck: Double): Boolean {
         val wrappedHeading = headingToCheck % 360.0
@@ -17,3 +13,5 @@ class Quadrant(private val heading: Double) {
         } else right < left && (wrappedHeading >= left || wrappedHeading < right)
     }
 }
+
+class Quadrant(private val heading: Double) : Segment(heading, 90.0)
