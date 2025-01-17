@@ -4,6 +4,8 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -12,16 +14,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
-import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 
 class VisuallyCheckIntersectionLayers {
@@ -38,22 +37,16 @@ class VisuallyCheckIntersectionLayers {
         )
 
         // Get the tile feature collection from the GeoJSON
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
+        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
+
         // Get all the intersections from the tile
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            getIntersectionsFeatureCollectionFromTileFeatureCollection(
-                featureCollectionTest!!
-            )
+        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+
         // Get all the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
-            featureCollectionTest
-        )
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+
         // Get all the crossings from the tile
-        val testCrossingsCollectionFromTileFeatureCollection = getCrossingsFromTileFeatureCollection(
-            featureCollectionTest
-        )
+        val testCrossingsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
 
         // Create a FOV triangle to pick up the intersections
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
@@ -173,6 +166,7 @@ class VisuallyCheckIntersectionLayers {
         fovRoadsFeatureCollection.addFeature(featureFOVTriangle)
         fovCrossingsFeatureCollection.addFeature(featureFOVTriangle)
 
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val fovIntersections = moshi.adapter(FeatureCollection::class.java).toJson(fovIntersectionsFeatureCollection)
         // copy and paste into GeoJSON.io
         println("FOV Intersections: $fovIntersections")

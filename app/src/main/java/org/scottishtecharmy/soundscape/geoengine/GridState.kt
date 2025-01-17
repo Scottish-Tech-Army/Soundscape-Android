@@ -14,7 +14,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
-import org.scottishtecharmy.soundscape.geoengine.utils.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -203,12 +202,241 @@ open class GridState {
         return null
     }
 
+    /**
+     * Parses out roads, paths, intersections, entrances, pois, bus stops and crossings from a tile string.
+     * @return a TileData object with the string parsed into separate strings.
+     */
+
+    internal fun processTileString(tileString: String): Array<FeatureCollection> {
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+        val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
+            .fromJson(tileString)
+        if(tileFeatureCollection == null)
+            return emptyArray()
+
+        return processTileFeatureCollection(tileFeatureCollection)
+    }
+
+    internal fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Array<FeatureCollection> {
+
+        val tileData = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+
+        // We have separate collections for the different types of Feature. ROADS_AND_PATHS adds PATHS
+        // to the ROADS features already contained in ROADS. This slight extra cost in terms of memory
+        // is made up for by the ease of searching a single collection.
+        tileData[TreeId.ROADS.id] = getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.ROADS_AND_PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.ROADS_AND_PATHS.id].plusAssign(tileData[TreeId.ROADS.id])
+        tileData[TreeId.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.BUS_STOPS.id] = getBusStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.CROSSINGS.id] = getCrossingsFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
+
+        return  tileData
+    }
+
+    /**
+     * Given a valid Tile feature collection this will parse the collection and return a roads
+     * feature collection. Uses the "highway" feature_type to extract roads from GeoJSON.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return A FeatureCollection object that contains only roads.
+     */
+    private fun getRoadsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection {
+
+        val roadsFeatureCollection = FeatureCollection()
+
+        // Original Soundscape excludes the below feature_value (s) even though they have the
+        // feature_type == highway
+        // and creates a separate Paths Feature Collection for them
+        // "footway", "path", "cycleway", "bridleway"
+        // gd_intersection are a special case and get their own Intersections Feature Collection
+
+
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] == "highway"
+                    && foreign["feature_value"] != "gd_intersection"
+                    && foreign["feature_value"] != "footway"
+                    && foreign["feature_value"] != "path"
+                    && foreign["feature_value"] != "cycleway"
+                    && foreign["feature_value"] != "bridleway"
+                    && foreign["feature_value"] != "bus_stop"
+                    && foreign["feature_value"] != "crossing") {
+                    // We're only going to add linestrings to the roads feature collection
+                    when(feature.geometry.type) {
+                        "LineString", "MultiLineString" ->
+                            roadsFeatureCollection.addFeature(feature)
+                    }
+                }
+            }
+        }
+        return roadsFeatureCollection
+    }
+
+    /**
+     * Given a valid Tile feature collection this will parse the collection and return a bus stops
+     * feature collection. Uses the "bus_stop" feature_value to extract bus stops from GeoJSON.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return A FeatureCollection object that contains only bus stops.
+     */
+    private fun getBusStopsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection{
+        val busStopFeatureCollection = FeatureCollection()
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "bus_stop") {
+                    busStopFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+
+        return busStopFeatureCollection
+    }
+
+    /**
+     * Given a valid Tile feature collection this will parse the collection and return a crossing
+     * feature collection. Uses the "crossing" feature_value to extract crossings from GeoJSON.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return A FeatureCollection object that contains only crossings.
+     */
+    private fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
+        val crossingsFeatureCollection = FeatureCollection()
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "crossing") {
+                    crossingsFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+        return crossingsFeatureCollection
+    }
+
+    /**
+     * Given a valid Tile feature collection this will parse the collection and return an interpolation
+     * points feature collection. Uses the "edgePoint" feature_value to extract crossings from GeoJSON.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return A FeatureCollection object that contains only edgePoints
+     */
+    private fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
+        val interpolationPointsFeatureCollection = FeatureCollection()
+        for (feature in tileFeatureCollection) {
+            feature.properties?.let { properties ->
+                if (properties["class"] == "edgePoint") {
+                    interpolationPointsFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+        return interpolationPointsFeatureCollection
+    }
+
+    /**
+     * Given a valid Tile feature collection this will parse the collection and return a paths
+     * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
+     * Paths from Feature Collection.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return A FeatureCollection object that contains only paths.
+     */
+    private fun getPathsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection{
+        val pathsFeatureCollection = FeatureCollection()
+
+        for(feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                // We're only going to add linestrings to the roads feature collection
+                when(feature.geometry.type) {
+                    "LineString", "MultiLineString" -> {
+                        if (foreign["feature_type"] == "highway")
+                            when (foreign["feature_value"]) {
+                                "footway" -> pathsFeatureCollection.addFeature(feature)
+                                "path" -> pathsFeatureCollection.addFeature(feature)
+                                "cycleway" -> pathsFeatureCollection.addFeature(feature)
+                                "bridleway" -> pathsFeatureCollection.addFeature(feature)
+                            }
+                    }
+                }
+            }
+        }
+        return pathsFeatureCollection
+    }
+
+    /**
+     * Parses out all the Intersections in a tile FeatureCollection using the "gd_intersection" feature_value.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return a Feature collection object that only contains intersections.
+     */
+    private fun getIntersectionsFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection {
+        val intersectionsFeatureCollection = FeatureCollection()
+        // split out the intersections into their own intersections FeatureCollection
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "gd_intersection") {
+                    intersectionsFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+        return intersectionsFeatureCollection
+    }
+
+    /**
+     * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return a feature collection object that contains only entrances.
+     */
+    private fun getEntrancesFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection {
+        val entrancesFeatureCollection = FeatureCollection()
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] == "gd_entrance_list") {
+                    entrancesFeatureCollection.addFeature(feature)
+                }
+            }
+        }
+        return entrancesFeatureCollection
+    }
+
+    /**
+     * Parses out all the Points of Interest (POI) in a tile FeatureCollection.
+     * @param tileFeatureCollection
+     * A FeatureCollection object.
+     * @return a Feature collection object that contains only POI.
+     */
+    fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection {
+        val poiFeaturesCollection = FeatureCollection()
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if (foreign["feature_type"] != "highway" && foreign["feature_type"] != "gd_entrance_list") {
+                    poiFeaturesCollection.addFeature(feature)
+                }
+            }
+        }
+        return poiFeaturesCollection
+    }
+
     companion object {
         fun createFromFeatureCollection(featureCollection: FeatureCollection) : GridState {
 
             val gridState = GridState()
 
-            val collections = processTileFeatureCollection(featureCollection)
+            val collections = gridState.processTileFeatureCollection(featureCollection)
             for ((index, collection) in collections.withIndex()) {
                 gridState.featureTrees[index] = FeatureTree(collection)
             }

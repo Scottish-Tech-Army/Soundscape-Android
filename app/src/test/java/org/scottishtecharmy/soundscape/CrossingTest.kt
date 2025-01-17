@@ -4,31 +4,29 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geoengine.utils.getCrossingsFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 
 class CrossingTest {
 
     @Test
     fun simpleCrossingTest(){
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+
         // Get all the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
-            featureCollectionTest!!
-        )
+        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
         // extract crossings for tile
-        val crossingsFeatureCollection = getCrossingsFromTileFeatureCollection(featureCollectionTest)
+        val crossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
         Assert.assertEquals(2, crossingsFeatureCollection.features.size)
 
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val crossingString = moshi.adapter(FeatureCollection::class.java).toJson(crossingsFeatureCollection)
         println("Crossings in tile: $crossingString")
 

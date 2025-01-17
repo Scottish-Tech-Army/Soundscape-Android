@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Test
 import org.junit.Assert
+import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -11,7 +13,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraWithLoops
 import org.scottishtecharmy.soundscape.geoengine.utils.featureCollectionToGraphWithNodeMap
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
 
 
@@ -126,19 +127,17 @@ class DijkstraTest {
     @Test
     fun testDijkstra2(){
         // Get the data for the entire tile
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONStreetPreviewTest.streetPreviewTest)
+        val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.streetPreviewTest)
         val startLocation = LngLatAlt( -2.695517313268283,
             51.44082881061331)
         val endLocation = LngLatAlt(-2.6930021169370093,51.43942502273583)
         // get the roads Feature Collection.
-        val testRoadsCollection = getRoadsFeatureCollectionFromTileFeatureCollection(
-            entireFeatureCollectionTest!!
-        )
+        val testRoadsCollection = gridState.getFeatureCollection(TreeId.ROADS)
+
         val shortestRoute = getShortestRoute(startLocation, endLocation, testRoadsCollection)
         Assert.assertEquals(368, shortestRoute.features[0].properties?.get("length"))
         // Visualise the shortest route
+        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val routeString = moshi.adapter(FeatureCollection::class.java).toJson(shortestRoute)
         println("Shortest path: $routeString")
 
