@@ -36,19 +36,19 @@ class StreetPreview {
         previewState = PreviewState.INITIAL
     }
 
-    fun go(location : LngLatAlt, heading: Float, engine: GeoEngine) {
+    fun go(userGeometry: GeoEngine.UserGeometry, engine: GeoEngine) {
         when (previewState) {
 
             PreviewState.INITIAL -> {
                 // Jump to a node on the nearest road or path
-                val road = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, Double.POSITIVE_INFINITY)
+                val road = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.location, Double.POSITIVE_INFINITY)
                     ?: return
 
                 var nearestDistance = Double.POSITIVE_INFINITY
                 var nearestPoint = LngLatAlt()
                 val nearestPointOnRoad = LngLatAlt()
                 val distance = distanceToLineString(
-                    location,
+                    userGeometry.location,
                     road.geometry as LineString,
                     nearestPointOnRoad
                 )
@@ -65,14 +65,14 @@ class StreetPreview {
 
             PreviewState.AT_NODE -> {
                 // Find which road that we're choosing based on our current heading
-                val choices = getDirectionChoices(engine, location)
+                val choices = getDirectionChoices(engine, userGeometry.location)
                 var bestIndex = -1
                 var bestHeadingDiff = Double.POSITIVE_INFINITY
 
                 // Find the choice with the closest heading to our own
                 var diff: Double
                 for ((index, choice) in choices.withIndex()) {
-                    diff = abs(choice.heading - heading)
+                    diff = abs(choice.heading - userGeometry.heading)
                     if (diff < bestHeadingDiff) {
                         bestHeadingDiff = diff
                         bestIndex = index
@@ -83,7 +83,7 @@ class StreetPreview {
                 if (bestHeadingDiff < 30.0) {
 
                     // We've got a road - let's head down it
-                    previewRoad = extendChoice(engine, location, choices[bestIndex])
+                    previewRoad = extendChoice(engine, userGeometry.location, choices[bestIndex])
                     previewRoad?.let { road ->
                         engine.locationProvider.updateLocation(road.route.last(), 1.0F)
                         lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
