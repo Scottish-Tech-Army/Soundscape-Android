@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -20,13 +21,12 @@ class ComplexIntersections {
         val currentLocation = LngLatAlt(-2.697291022799874,51.44378095087524)
         val deviceHeading = 320.0
         val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, false, false, fovDistance)
 
         val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
         val roadRelativeDirections = getRoadsDescriptionFromFov(
             gridState,
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
         ).intersectionRoads
 
@@ -59,13 +59,12 @@ class ComplexIntersections {
         val currentLocation = LngLatAlt(-2.6854420947740323, 51.44036284885249)
         val deviceHeading = 45.0
         val fovDistance = 50.0
+        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, false, false, fovDistance)
 
         val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection.complexIntersectionGeoJSON)
         val roadRelativeDirections = getRoadsDescriptionFromFov(
             gridState,
-            currentLocation,
-            deviceHeading,
-            fovDistance,
+            userGeometry,
             ComplexIntersectionApproach.INTERSECTION_WITH_MOST_OSM_IDS
         ).intersectionRoads
 

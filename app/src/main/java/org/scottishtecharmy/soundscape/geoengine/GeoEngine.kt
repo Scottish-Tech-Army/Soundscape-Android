@@ -58,7 +58,6 @@ import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.TimeSource
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
 
@@ -84,6 +83,21 @@ class GeoEngine {
     private var inMotion = false
 
     private val streetPreview = StreetPreview()
+
+    /** UserGeometry contains all of the data relating to the location and motion of the user. It's
+     * aim is simply to reduces the number of arguments to many of the API calls.
+     */
+    data class UserGeometry(val location: LngLatAlt = LngLatAlt(),
+                            var heading: Double = 0.0,
+                            val inVehicle: Boolean = false,
+                            val inMotion: Boolean = false,
+                            val fovDistance: Double = 50.0)
+    private fun getCurrentUserGeometry() : UserGeometry {
+        return UserGeometry(locationProvider.get(),
+            directionProvider.getCurrentDirection().toDouble(),
+            inVehicle,
+            inMotion)
+    }
 
     @Subscribe
     fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
@@ -266,14 +280,10 @@ class GeoEngine {
         intersectionFilter.update(location)
         intersectionCalloutHistory.trim(location)
 
-        val heading = directionProvider.getCurrentDirection().toDouble()
-        val fovDistance = 50.0
-
+        val userGeometry = getCurrentUserGeometry()
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
-            location,
-            heading,
-            fovDistance,
+            userGeometry,
             ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION)
 
         addIntersectionCalloutFromDescription(roadsDescription,
@@ -737,16 +747,12 @@ class GeoEngine {
                     val list: MutableList<PositionedString> = mutableListOf()
 
                     // get device direction
-                    val location = locationProvider.get()
-                    val orientation = directionProvider.getCurrentDirection().toDouble()
-                    val fovDistance = 50.0
+                    val userGeometry = getCurrentUserGeometry()
 
                     // Detect if there is a road or an intersection in the FOV
                     val roadsDescription = getRoadsDescriptionFromFov(
                         gridState,
-                        location,
-                        orientation,
-                        fovDistance,
+                        userGeometry,
                         ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
                     )
                     addIntersectionCalloutFromDescription(roadsDescription,
@@ -754,16 +760,16 @@ class GeoEngine {
                         list)
 
                     // Detect if there is a crossing in the FOV
-                    val points = getFovTrianglePoints(location, orientation, fovDistance)
+                    val points = getFovTrianglePoints(userGeometry.location, userGeometry.heading, userGeometry.fovDistance)
                     val nearestCrossing = gridState.getNearestFeatureOnRoadInFov(TreeId.CROSSINGS,
-                        location,
+                        userGeometry.location,
                         points.left,
                         points.right)
                     appendNearestFeatureCallout(nearestCrossing, R.string.osm_tag_crossing, list)
 
                     // Detect if there is a bus_stop in the FOV
                     val nearestBusStop = gridState.getNearestFeatureOnRoadInFov(TreeId.BUS_STOPS,
-                        location,
+                        userGeometry.location,
                         points.left,
                         points.right)
                     appendNearestFeatureCallout(nearestBusStop, R.string.osm_tag_bus_stop, list)
@@ -820,15 +826,13 @@ class GeoEngine {
 
     private fun streetPreviewGoWander() {
 
-        val start = System.currentTimeMillis()
-        // Get our current location and figure out what GO means
-        val location = locationProvider.get()
-
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
         val engine = this
         CoroutineScope(Job()).launch(gridState.treeContext) {
-            val choices = streetPreview.getDirectionChoices(engine, location)
+            // Get our current location and figure out what GO means
+            val userGeometry = getCurrentUserGeometry()
+            val choices = streetPreview.getDirectionChoices(engine, userGeometry.location)
             var heading = 0.0
             if(choices.isNotEmpty()) {
                 // We want to choose a direction roughly in the forward direction if possible. We
@@ -858,27 +862,21 @@ class GeoEngine {
                     }
                 }
             }
-            streetPreview.go(location, heading.toFloat(), engine)
+            // Update the heading with the random one that was chosen
+            userGeometry.heading = heading
+            streetPreview.go(userGeometry, engine)
         }
-        val end = System.currentTimeMillis()
-        Log.d(TAG, "streetPreviewGo: ${end-start}ms")
     }
 
     private fun streetPreviewGoInternal() {
-
-        val start = System.currentTimeMillis()
-
-        // Get our current location and figure out what GO means
-        val location = locationProvider.get()
-        val heading = directionProvider.getCurrentDirection()
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
         val engine = this
         CoroutineScope(Job()).launch(gridState.treeContext) {
-            streetPreview.go(location, heading, engine)
+            // Get our current location and figure out what GO means
+            val userGeometry = getCurrentUserGeometry()
+            streetPreview.go(userGeometry, engine)
         }
-        val end = System.currentTimeMillis()
-        Log.d(TAG, "streetPreviewGo: ${end-start}ms")
     }
 
     companion object {
