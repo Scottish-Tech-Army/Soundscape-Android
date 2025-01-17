@@ -18,10 +18,10 @@ class ComplexIntersections {
         // multiple gd_intersections detected in the FoV so we need to determine which ones to ignore
         // and which ones are useful to call out to the user
         // Fake location, heading and Field of View for testing
-        val currentLocation = LngLatAlt(-2.697291022799874,51.44378095087524)
-        val deviceHeading = 320.0
-        val fovDistance = 50.0
-        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, false, false, fovDistance)
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.697291022799874,51.44378095087524),
+            320.0,
+            50.0)
 
         val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
         val roadRelativeDirections = getRoadsDescriptionFromFov(
@@ -56,10 +56,10 @@ class ComplexIntersections {
         // and which ones are useful to call out to the user
         // https://geojson.io/#map=18.65/51.4405486/-2.6851813
         // Fake location, heading and Field of View for testing
-        val currentLocation = LngLatAlt(-2.6854420947740323, 51.44036284885249)
-        val deviceHeading = 45.0
-        val fovDistance = 50.0
-        val userGeometry = GeoEngine.UserGeometry(currentLocation, deviceHeading, false, false, fovDistance)
+        val userGeometry = GeoEngine.UserGeometry(
+            LngLatAlt(-2.6854420947740323, 51.44036284885249),
+            45.0,
+            50.0)
 
         val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection.complexIntersectionGeoJSON)
         val roadRelativeDirections = getRoadsDescriptionFromFov(
