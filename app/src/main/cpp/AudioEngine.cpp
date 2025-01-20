@@ -280,7 +280,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             }
             if(start_next && !m_QueuedBeacons.empty())
             {
-                TRACE("PlayNow on next queued beacon");
+                //TRACE("PlayNow on next queued beacon");
                 auto queued_beacon = *m_QueuedBeacons.begin();
                 m_Beacons.insert(queued_beacon);
                 queued_beacon->PlayNow();
@@ -333,7 +333,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 m_Beacons.insert(beacon);
             }
             m_QueuedBeacons.push_back(beacon);
-            TRACE("Queue of %zu", m_QueuedBeacons.size());
+            //TRACE("Queue of %zu", m_QueuedBeacons.size());
         }
         else
         {

@@ -152,7 +152,7 @@ TtsAudioSource::TtsAudioSource(PositionedAudio *parent, int tts_socket)
 
 TtsAudioSource::~TtsAudioSource()
 {
-    TRACE("~TtsAudioSource close socket %d", m_SourceSocketForDebug);
+    //TRACE("~TtsAudioSource close socket %d", m_SourceSocketForDebug);
     close(m_TtsSocket);
 }
 
@@ -193,7 +193,11 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
     auto write_ptr = (unsigned char *)data;
     while(data_length > 0) {
         bytes_read = read(m_TtsSocket, write_ptr, data_length);
-        //TRACE("%d: read %zd/%zd/%u", m_SourceSocketForDebug, bytes_read, total_bytes_read, data_length);
+        //TRACE("%d: read %zd/%zd/%u heading %f", m_SourceSocketForDebug,
+        //                                        bytes_read,
+        //                                        total_bytes_read,
+        //                                        data_length,
+        //                                        m_DegreesOffAxis.load());
         if(bytes_read == 0) {
             if(total_bytes_read == 0) {
                 TRACE("TTS EOF socket %d", m_SourceSocketForDebug);
@@ -207,7 +211,7 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
             ++m_ReadsWithoutData;
             //TRACE("m_ReadsWithoutData %d (%d bytes)", m_ReadsWithoutData, data_length);
             if(m_ReadsWithoutData > TIMEOUT_READS_WITHOUT_DATA) {
-                TRACE("TTS Timed out socket %d", m_SourceSocketForDebug);
+                //TRACE("TTS Timed out socket %d", m_SourceSocketForDebug);
                 m_pParent->Eof();
                 return FMOD_ERR_FILE_EOF;
             }
