@@ -162,11 +162,9 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
             is Line -> {
                 val thisDistance =
-                    distanceToLineString(
-                        from, LineString(
+                    from.distanceToLine(
                             LngLatAlt(p.x1(), p.y1()),
                             LngLatAlt(p.x2(), p.y2())
-                        )
                     )
                 return thisDistance < distance
             }
@@ -422,11 +420,9 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
                 is Line -> {
                     val thisDistance =
-                        distanceToLineString(
-                            triangleCoordinates[0], LineString(
-                                LngLatAlt(p.x1(), p.y1()),
-                                LngLatAlt(p.x2(), p.y2())
-                            )
+                        triangleCoordinates[0].distanceToLine(
+                            LngLatAlt(p.x1(), p.y1()),
+                            LngLatAlt(p.x2(), p.y2())
                         )
                     thisDistance
                 }

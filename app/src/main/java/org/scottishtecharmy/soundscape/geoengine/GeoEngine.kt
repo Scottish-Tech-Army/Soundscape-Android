@@ -23,22 +23,21 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState.Companion
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
-import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
-import org.scottishtecharmy.soundscape.geoengine.utils.getFeatureNearestPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.findFeaturesInPolygons
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
@@ -47,7 +46,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
@@ -58,6 +56,7 @@ import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.TimeSource
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
 
@@ -414,36 +413,23 @@ class GeoEngine {
                 val distance = feature.foreign?.get("distance_to") as Double?
                 if (distance != null) {
                     if (distance < 10.0) {
-                        var name = feature.properties?.get("name") as String?
-                        var generic = false
-                        if(name == null) {
-                            val osmClass = feature.properties?.get("class") as String?
-                            val id = ResourceMapper.getResourceId(osmClass!!)
-                            name = if(id == null) {
-                                osmClass
-                            } else {
-                                localizedContext.getString(id)
-                            }
-                            generic = true
-                        }
+                        val name = getNameForFeature(feature)
 
                         // Check the history and if the POI has been called out recently, skip it (iOS uses 60 seconds)
-                        val nearestPoint = getFeatureNearestPoint(location, feature)
-                        if( nearestPoint != null) {
-                            val callout = TrackedCallout(name, nearestPoint, feature.geometry.type == "Point", generic)
-                            if (poiCalloutHistory.find(callout)) {
-                                Log.d(TAG, "Discard ${callout.callout}")
-                            } else {
-                                results.add(
-                                    PositionedString(
-                                        name,
-                                        nearestPoint,
-                                        NativeAudioEngine.EARCON_SENSE_POI,
-                                    ),
-                                )
-                                // Add the entries to the history
-                                poiCalloutHistory.add(callout)
-                            }
+                        val nearestPoint = getDistanceToFeature(location, feature)
+                        val callout = TrackedCallout(name.name, nearestPoint.point, feature.geometry.type == "Point", name.generic)
+                        if (poiCalloutHistory.find(callout)) {
+                            Log.d(TAG, "Discard ${callout.callout}")
+                        } else {
+                            results.add(
+                                PositionedString(
+                                    name.name,
+                                    nearestPoint.point,
+                                    NativeAudioEngine.EARCON_SENSE_POI,
+                                ),
+                            )
+                            // Add the entries to the history
+                            poiCalloutHistory.add(callout)
                         }
                     }
                 }
@@ -578,12 +564,13 @@ class GeoEngine {
         }
 
     fun whatsAroundMe() : List<PositionedString> {
-        // TODO:
-        //  Setup settings in the menu so we can pass in the filters, etc.
-        //  Original Soundscape "in findCalloutsFor and it tries to get a POI in each quadrant.
-        //  It starts off searching within 200m and keeps increasing by 200m until it
-        //  hits the maximum of 1000m. It only plays out one POI per quadrant"
+        // Duplicate original Soundscape behaviour:
+        //   In findCalloutsFor it tries to get a POI in each quadrant. It starts off searching
+        //   within 200m and keeps increasing by 200m until it hits the maximum of 1000m. It only
+        //   plays out a single POI per quadrant.
         var results : MutableList<PositionedString> = mutableListOf()
+        val timeSource = TimeSource.Monotonic
+        val gridStartTime = timeSource.markNow()
 
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             val noLocationString =
@@ -594,144 +581,81 @@ class GeoEngine {
             // running.
             results = runBlocking {
                 withContext(gridState.treeContext) {
-                    val list: MutableList<PositionedString> = mutableListOf()
 
                     val userGeometry = getCurrentUserGeometry()
 
-                    // TODO: We could build separate rtrees for each of the super categories i.e.  landmarks,
-                    //  places etc. and that would make this code simpler. We could ask for a maximum number
-                    //  of results when calling getGridFeatureCollection. For now, we just limit arbitrarily
-                    //  to 600m.
-                    val gridPoiFeatureCollection = FeatureCollection()
-                    val poiFeatureCollections =
-                        gridState.getFeatureCollection(TreeId.POIS, userGeometry.location, 1000.0)
-                    val removeDuplicatePoisFeatureCollection =
-                        removeDuplicateOsmIds(poiFeatureCollections)
-                    gridPoiFeatureCollection.features.addAll(removeDuplicatePoisFeatureCollection)
+                    // Direction order is: behind(0) left(1) ahead(2) right(3)
+                    val featuresByDirection: Array<Feature?> = arrayOfNulls(4)
+                    val directionsNeeded = setOf(0, 1, 2, 3).toMutableSet()
 
-                    if (gridPoiFeatureCollection.features.isNotEmpty()) {
-                        // filter POI feature collection by super category
-                        val superCategories = listOf("information", "object", "place", "landmark", "mobility", "safety")
-                        val poiFeatureCollectionsBySuperCategory = superCategories.associateWith { superCategory ->
-                            getPoiFeatureCollectionBySuperCategory(superCategory, gridPoiFeatureCollection)
-                        }
-                        // Categories from settings
-                        val blnInformation = false
-                        val blnObject = false
-                        val blnPlace = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
-                        val blnLandmark = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
-                        val blnMobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
-                        val blnSafety = false
-                        // Specify the super categories we want to check for in the relative directions polygons
-                        // based on above
-                        val selectedSuperCategories = mutableListOf<String>()
-                        if (blnInformation){
-                            selectedSuperCategories.add("information")
-                        }
-                        if (blnObject){
-                            selectedSuperCategories.add("object")
-                        }
-                        if (blnPlace){
-                            selectedSuperCategories.add("place")
-                        }
-                        if (blnLandmark){
-                            selectedSuperCategories.add("landmark")
-                        }
-                        if (blnMobility){
-                            selectedSuperCategories.add("mobility")
-                        }
-                        if (blnSafety){
-                            selectedSuperCategories.add("safety")
-                        }
-                        // Filter the feature collections based on the selected super categories
-                        val selectedFeatureCollections = poiFeatureCollectionsBySuperCategory.filterKeys {
-                            it in selectedSuperCategories }.values
-                        // Process the selected feature collections
-                        var distance = 200.0
-                        val incrementDistance = 200.0
-                        val maxDistance = 1000.0
-                        // Direction order is: behind(0) left(1) ahead(2) right(3)
-                        val allDirections = listOf(0, 1, 2, 3)
+                    // We already have a FeatureTree containing the POI that we wish to search on
+                    val featureTree = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES)
+                    for (distance in 200..1000 step 200) {
 
-                        val featuresByDirection = mutableMapOf<Int, MutableList<Feature>>()
-                        val addedFeatureNames = mutableSetOf<String>()
-                        while (true) {
-                            val individualRelativePolygons = getRelativeDirectionsPolygons(
-                                UserGeometry(
-                                    userGeometry.location,
-                                    userGeometry.heading,
-                                    distance
-                                ), RelativeDirections.INDIVIDUAL)
+                        // Get Polygons for this FOV distance
+                        val individualRelativePolygons = getRelativeDirectionsPolygons(
+                            UserGeometry(
+                                userGeometry.location,
+                                userGeometry.heading,
+                                distance.toDouble()
+                            ), RelativeDirections.INDIVIDUAL
+                        )
 
-                            for (superCategoryFC in selectedFeatureCollections) {
-                                val featureDirections = findFeaturesInPolygons(individualRelativePolygons, superCategoryFC)
-                                for ((feature, direction) in featureDirections) {
-                                    val featureName = feature.properties?.get("name") as? String
-                                    // Check if direction already has a feature and that we don't have a feature with the same name already
-                                    if (!featuresByDirection.containsKey(direction!! as Int)
-                                        && featureName != null
-                                        && !addedFeatureNames.contains(featureName)) {
-                                        featuresByDirection.getOrPut(direction as Int) {
-                                            mutableListOf() }.add(feature)
-                                        addedFeatureNames.add(featureName)
-                                        //println("Feature: OSM ID: ${feature.foreign?.get("osm_ids")} Name: ${feature.properties?.get("name")} Direction: $direction")
-                                    }
+                        val direction = directionsNeeded.iterator()
+                        while (direction.hasNext()) {
+
+                            val dir = direction.next()
+                            val polygon =
+                                individualRelativePolygons.features[dir].geometry as Polygon
+                            val feature = featureTree.getNearestFeatureWithinTriangle(
+                                polygon.coordinates[0][0],
+                                polygon.coordinates[0][1],
+                                polygon.coordinates[0][2]
+                            )
+
+                            if (feature != null) {
+                                // We found a feature in this direction, check whether we're already
+                                // calling out e.g. there's an L shaped park wrapping around us
+                                var duplicate = false
+                                for(otherFeature in featuresByDirection) {
+                                    if(otherFeature == null) continue
+                                    if(feature == otherFeature) duplicate = true
+                                }
+                                if(!duplicate) {
+                                    // Remember it and remove it from the set of directions to search
+                                    featuresByDirection[dir] = feature
+                                    direction.remove()
                                 }
                             }
-
-                            val directionsWithoutFeatures = allDirections.filter { !featuresByDirection.containsKey(it) }
-                            if (directionsWithoutFeatures.isEmpty() || distance >= maxDistance) {
-                                val sortedFeaturesByDirection = featuresByDirection.toSortedMap()
-                                for ((direction, features) in sortedFeaturesByDirection) {
-                                    for (feature in features) {
-                                        if (feature.geometry is Polygon) {
-                                            // found that if a thing has a name property that ends in a number
-                                            // "data 365" then the 365 and distance away get merged into a large number "365200 meters". Hoping a full stop will fix it
-                                            if (feature.properties?.get("name") != null) {
-                                                val d = distanceToPolygon(userGeometry.location, feature.geometry as Polygon).toInt()
-                                                val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
-
-                                                val poiLocation =
-                                                    getFeatureNearestPoint(userGeometry.location, feature)
-                                                list.add(
-                                                    PositionedString(
-                                                        text,
-                                                        poiLocation,
-                                                        NativeAudioEngine.EARCON_SENSE_POI
-                                                    )
-                                                )
-                                            }
-                                        } else if (feature.geometry is Point) {
-                                            if (feature.properties?.get("name") != null) {
-                                                val point = feature.geometry as Point
-                                                val d = userGeometry.location.distance(point.coordinates).toInt()
-                                                val text = "${feature.properties?.get("name")}. ${localizedContext.getString(R.string.distance_format_meters, d.toString())}"
-                                                list.add(
-                                                    PositionedString(
-                                                        text,
-                                                        point.coordinates,
-                                                        NativeAudioEngine.EARCON_SENSE_POI
-                                                    )
-                                                )
-                                            }
-                                        }
-                                    }
-                                }
-                                break
-                            } else {
-                                distance += incrementDistance
-                                //println("Increasing distance to $distance meters")
-                            }
                         }
+                        // We've found all the directions, so no need to look any further afield
+                        if (directionsNeeded.isEmpty()) break
+                    }
 
-                    } else {
-                        Log.d(TAG, "No Points Of Interest found in the grid")
-                        list.add(PositionedString(localizedContext.getString(R.string.callouts_nothing_to_call_out_now)))
+                    // We've tried to get a POI in all directions, now return the ones we have into
+                    // callouts
+                    val list: MutableList<PositionedString> = mutableListOf()
+                    for (feature in featuresByDirection) {
+
+                        if(feature == null) continue
+                        val poiLocation = getDistanceToFeature(userGeometry.location, feature)
+                        val name = getNameForFeature(feature)
+                        val text = "${name.name}. ${localizedContext.getString(R.string.distance_format_meters, poiLocation.distance.toString())}"
+                        list.add(
+                            PositionedString(
+                                text,
+                                poiLocation.point,
+                                NativeAudioEngine.EARCON_SENSE_POI
+                            )
+                        )
                     }
                     list
                 }
             }
         }
+        val gridFinishTime = timeSource.markNow()
+        Log.e(GridState.TAG, "Time to calculate AroundMe: ${gridFinishTime - gridStartTime}")
+
         return results
     }
 
@@ -883,6 +807,31 @@ class GeoEngine {
             val userGeometry = getCurrentUserGeometry()
             streetPreview.go(userGeometry, engine)
         }
+    }
+
+    data class NameForFeature(val name: String = "", val generic: Boolean= false)
+
+    /**
+     * getNameForFeature returns the name of the feature if it has one. If not, then it returns
+     * a localized description of the type of feature it is e.g. bike parking, or style
+     * @param feature to evaluate
+     * @return a NameForFeature object containing the name and a flag indicating if it is a generic
+     * name from the OSM tag rather than an actual name.
+     */
+    private fun getNameForFeature(feature: Feature) : NameForFeature {
+        var generic = false
+        var name = feature.properties?.get("name") as String?
+        if (name == null) {
+            val osmClass = feature.properties?.get("class") as String?
+            val id = ResourceMapper.getResourceId(osmClass!!)
+            name = if (id == null) {
+                osmClass
+            } else {
+                localizedContext.getString(id)
+            }
+            generic = true
+        }
+        return NameForFeature(name, generic)
     }
 
     companion object {

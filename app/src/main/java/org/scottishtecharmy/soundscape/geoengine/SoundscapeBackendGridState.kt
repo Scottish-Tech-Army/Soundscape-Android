@@ -18,6 +18,7 @@ import kotlin.coroutines.cancellation.CancellationException
 class SoundscapeBackendGridState : GridState() {
 
     override fun start(application: Application, soundscapeService: SoundscapeService) {
+        super.start(application, soundscapeService)
         tileClient = SoundscapeBackendTileClient(application)
     }
 
@@ -62,7 +63,7 @@ class SoundscapeBackendGridState : GridState() {
         return ret
     }
 
-    override fun fixupCollectionAndCreateTrees(trees: Array<FeatureTree>, featureCollections: Array<FeatureCollection>){
+    override fun fixupCollections(featureCollections: Array<FeatureCollection>){
         // De-duplicate
         val deDuplicatedCollection =
             Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
@@ -73,10 +74,6 @@ class SoundscapeBackendGridState : GridState() {
                 fc,
                 existingSet,
             )
-        }
-        // Create rtrees for each feature collection
-        for ((index, fc) in deDuplicatedCollection.withIndex()) {
-            trees[index] = FeatureTree(fc)
         }
     }
 }
