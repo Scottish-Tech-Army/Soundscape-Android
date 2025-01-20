@@ -63,7 +63,7 @@ void PositionedAudio::Init(double degrees_off_axis)
 {
     bool queued = CreateAudioSource(degrees_off_axis);
 
-    TRACE("%s %p", __FUNCTION__, this);
+    //TRACE("%s %p", __FUNCTION__, this);
 
     if(!queued)
         InitFmodSound();
