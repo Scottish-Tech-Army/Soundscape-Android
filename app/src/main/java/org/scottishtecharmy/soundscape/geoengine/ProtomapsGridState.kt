@@ -19,6 +19,7 @@ import kotlin.coroutines.cancellation.CancellationException
 class ProtomapsGridState : GridState() {
 
     override fun start(application: Application, soundscapeService: SoundscapeService) {
+        super.start(application, soundscapeService)
         tileClient = ProtomapsTileClient(application)
     }
 
@@ -63,7 +64,7 @@ class ProtomapsGridState : GridState() {
         return ret
     }
 
-    override fun fixupCollectionAndCreateTrees(trees: Array<FeatureTree>, featureCollections: Array<FeatureCollection>) {
+    override fun fixupCollections(featureCollections: Array<FeatureCollection>) {
         // Join up roads/paths at the tile boundary
         val joiner = InterpolatedPointsJoiner()
         for (ip in featureCollections[TreeId.INTERPOLATIONS.id]) {
@@ -74,10 +75,5 @@ class ProtomapsGridState : GridState() {
         featureCollections[TreeId.POIS.id] = mergedPoi
 
         joiner.addJoiningLines(featureCollections[TreeId.ROADS_AND_PATHS.id])
-
-        // Create rtrees for each feature collection
-        for ((index, fc) in featureCollections.withIndex()) {
-            trees[index] = FeatureTree(fc)
-        }
     }
 }

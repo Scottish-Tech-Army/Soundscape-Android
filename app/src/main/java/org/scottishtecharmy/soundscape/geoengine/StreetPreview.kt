@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.geoengine
 import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.utils.RoadDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
-import org.scottishtecharmy.soundscape.geoengine.utils.distanceToLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.splitRoadAtNode
@@ -47,8 +46,7 @@ class StreetPreview {
                 var nearestDistance = Double.POSITIVE_INFINITY
                 var nearestPoint = LngLatAlt()
                 val nearestPointOnRoad = LngLatAlt()
-                val distance = distanceToLineString(
-                    userGeometry.location,
+                val distance = userGeometry.location.distanceToLineString(
                     road.geometry as LineString,
                     nearestPointOnRoad
                 )

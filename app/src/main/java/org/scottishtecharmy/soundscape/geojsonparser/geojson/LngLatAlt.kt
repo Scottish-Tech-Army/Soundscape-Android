@@ -38,4 +38,32 @@ open class LngLatAlt(
     fun distance(other: LngLatAlt): Double {
         return distance(latitude, longitude, other.latitude, other.longitude)
     }
+
+    fun distanceToLine(l1: LngLatAlt,
+                       l2: LngLatAlt,
+                       nearestPoint: LngLatAlt? = null): Double {
+        return distance(l1.latitude, l1.longitude,
+            l2.latitude, l2.longitude,
+            latitude, longitude,
+            nearestPoint)
+    }
+
+    /**
+     * Distance to a LineString from current location.
+     * @param pointCoordinates
+     * LngLatAlt of current location
+     * @param lineStringCoordinates
+     * LineString that we are working out the distance from
+     * @return The distance of the point to the LineString
+     */
+    fun distanceToLineString(
+        lineStringCoordinates: LineString,
+        nearestPoint: LngLatAlt? = null
+    ): Double {
+
+        return distanceToLine(
+            lineStringCoordinates.coordinates[0],
+            lineStringCoordinates.coordinates[1],
+            nearestPoint)
+    }
 }

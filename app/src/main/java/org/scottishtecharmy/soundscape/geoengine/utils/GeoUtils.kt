@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
 import org.scottishtecharmy.soundscape.dto.Circle
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
@@ -760,37 +761,6 @@ fun getQuadrants(heading: Double): List<Quadrant> {
 }
 
 /**
- * Distance to a LineString from current location.
- * @param pointCoordinates
- * LngLatAlt of current location
- * @param lineStringCoordinates
- * LineString that we are working out the distance from
- * @return The distance of the point to the LineString
- */
-fun distanceToLineString(
-    pointCoordinates: LngLatAlt,
-    lineStringCoordinates: LineString,
-    nearestPoint: LngLatAlt? = null
-): Double {
-
-    var minDistance = Double.MAX_VALUE
-    var last = lineStringCoordinates.coordinates[0]
-    for (current in  lineStringCoordinates.coordinates.drop(1)) {
-        val point = LngLatAlt()
-        val distance = distance(last, current, pointCoordinates, point)
-        if(distance < minDistance) {
-            minDistance = distance
-            if(nearestPoint != null) {
-                nearestPoint.latitude = point.latitude
-                nearestPoint.longitude = point.longitude
-            }
-        }
-        last = current
-    }
-    return minDistance
-}
-
-/**
  * Distance to a Polygon from current location.
  * @param pointCoordinates
  * LngLatAlt of current location
@@ -800,38 +770,26 @@ fun distanceToLineString(
  */
 fun distanceToPolygon(
     pointCoordinates: LngLatAlt,
-    polygon: Polygon)
+    polygon: Polygon,
+    nearestPoint: LngLatAlt? = null)
 : Double {
 
     var minDistance = Double.MAX_VALUE
     var last = polygon.coordinates[0][0]
     for (i in 1 until polygon.coordinates[0].size) {
         val current = polygon.coordinates[0][i]
-        val distance = distance(last, current, pointCoordinates)
-        minDistance = min(minDistance, distance)
+        val pointOnLine = LngLatAlt()
+        val distance = pointCoordinates.distanceToLine(last, current, pointOnLine)
+        if(distance < minDistance) {
+            minDistance = min(minDistance, distance)
+            if(nearestPoint != null) {
+                nearestPoint.latitude = pointOnLine.latitude
+                nearestPoint.longitude = pointOnLine.longitude
+            }
+        }
         last = current
     }
     return minDistance
-}
-
-/**
- * Calculate distance of a point p to a line defined by two other points l1 and l2.
- * @param l1
- * point 1 on the line
- * @param l2
- * point 2 on the line
- * @param p
- * current location point
- * @return the distance of the point to the line
- */
-fun distance(l1: LngLatAlt,
-             l2: LngLatAlt,
-             p: LngLatAlt,
-             nearestPoint: LngLatAlt? = null): Double {
-    return distance(l1.latitude, l1.longitude,
-        l2.latitude, l2.longitude,
-        p.latitude, p.longitude,
-        nearestPoint)
 }
 
 /**

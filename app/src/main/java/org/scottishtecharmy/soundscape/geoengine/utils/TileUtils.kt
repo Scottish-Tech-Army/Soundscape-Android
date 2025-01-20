@@ -341,39 +341,6 @@ fun getNearestRoad(
     return nearestRoad
 }
 
-fun getFeatureNearestPoint(
-    currentLocation: LngLatAlt,
-    feature: Feature
-): LngLatAlt? {
-
-    // Get the bounding box for the feature, and return the nearest point on it
-    val box = getBoundingBoxForFeature(feature) ?: return null
-    return nearestPointOnBoundingBox(box, currentLocation)
-}
-
-/**
- * Given a Feature this will return its bounding box.
- * @param feature
- * @return a bounding box
- */
-private fun getBoundingBoxForFeature(
-    feature: Feature?
-): BoundingBox? {
-    if(feature == null) return null
-
-    // Return the bounding box for the Feature
-    when (feature.geometry.type) {
-        "Point"             -> return getBoundingBoxOfPoint(feature.geometry as Point)
-        "MultiPoint"        -> return getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
-        "LineString"        -> return getBoundingBoxOfLineString(feature.geometry as LineString)
-        "MultiLineString"   -> return getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
-        "Polygon"           -> return getBoundingBoxOfPolygon(feature.geometry as Polygon)
-        "MultiPolygon"      -> return getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
-        else                -> println("Unknown type ${feature.geometry.type}")
-    }
-    return null
-}
-
 /**
  * Given a Feature and a location this will calculate the nearest distance to it
  * @param currentLocation
@@ -381,93 +348,101 @@ private fun getBoundingBoxForFeature(
  * @param feature
  * @return The distance between currentLocation and feature
  */
+data class PointAndDistance(val point: LngLatAlt, val distance: Double)
 fun getDistanceToFeature(
     currentLocation: LngLatAlt,
-    feature: Feature?
-): Double {
-    if(feature == null) return Double.NaN
-
+    feature: Feature
+): PointAndDistance {
     when (feature.geometry.type) {
         "Point" -> {
             val point = feature.geometry as Point
             val distanceToFeaturePoint = currentLocation.distance(
                 LngLatAlt(point.coordinates.longitude, point.coordinates.latitude)
             )
-            return distanceToFeaturePoint
+            return PointAndDistance(point.coordinates, distanceToFeaturePoint)
         }
 
         "MultiPoint" -> {
             val multiPoint = feature.geometry as MultiPoint
             var shortestDistance = Double.MAX_VALUE
+            var nearestPoint = LngLatAlt()
 
             for (point in multiPoint.coordinates) {
                 val distanceToPoint = currentLocation.distance(point)
                 if (distanceToPoint < shortestDistance) {
                     shortestDistance = distanceToPoint
+                    nearestPoint = point
                 }
             }
             // this is the closest point to the current location from the collection of points
-            return shortestDistance
+            return PointAndDistance(nearestPoint, shortestDistance)
         }
 
         "LineString" -> {
             val lineString = feature.geometry as LineString
-            val distanceToFeatureLineString = distanceToLineString(
-                currentLocation,
-                lineString
+            val nearestPoint = LngLatAlt()
+            val distanceToFeatureLineString = currentLocation.distanceToLineString(
+                lineString,
+                nearestPoint
             )
-            return distanceToFeatureLineString
+            return PointAndDistance(nearestPoint, distanceToFeatureLineString)
         }
 
         "MultiLineString" -> {
             val multiLineString = feature.geometry as MultiLineString
             var shortestDistance = Double.MAX_VALUE
+            var nearestPoint = LngLatAlt()
 
             for (arrCoordinates in multiLineString.coordinates) {
-                for (coordinate in arrCoordinates) {
-                    val distanceToPoint = currentLocation.distance(
-                        LngLatAlt(coordinate.longitude, coordinate.latitude)
-                    )
-                    if (distanceToPoint < shortestDistance) {
-                        shortestDistance = distanceToPoint
-                    }
+                val pointOnLine = LngLatAlt()
+                val distanceToLine = currentLocation.distanceToLineString(
+                    LineString(arrCoordinates),
+                    pointOnLine
+                )
+                if (distanceToLine < shortestDistance) {
+                    shortestDistance = distanceToLine
+                    nearestPoint = pointOnLine
                 }
             }
-            return shortestDistance
+            return PointAndDistance(nearestPoint, shortestDistance)
         }
 
         "Polygon" -> {
             val polygon = feature.geometry as Polygon
-            val distanceToFeaturePolygon = distanceToPolygon(
+            val nearestPoint = LngLatAlt()
+            val distance = distanceToPolygon(
                 currentLocation,
-                polygon
+                polygon,
+                nearestPoint
             )
-            return distanceToFeaturePolygon
+            return PointAndDistance(nearestPoint, distance)
         }
 
         "MultiPolygon" -> {
             val multiPolygon = feature.geometry as MultiPolygon
             var shortestDistance = Double.MAX_VALUE
+            var nearestPoint = LngLatAlt()
 
             for (arrCoordinates in multiPolygon.coordinates) {
-                for (arr in arrCoordinates) {
-                    for (coordinate in arr) {
-                        val distanceToPoint = currentLocation.distance(
-                            LngLatAlt(coordinate.longitude, coordinate.latitude)
-                        )
-                        if (distanceToPoint < shortestDistance) {
-                            shortestDistance = distanceToPoint
-                        }
-                    }
+                val pointOnPolygon = LngLatAlt()
+                val distance = distanceToPolygon(
+                    currentLocation,
+                    Polygon(arrCoordinates[0]), // Use outer ring
+                    pointOnPolygon
+                )
+                if (distance < shortestDistance) {
+                    shortestDistance = distance
+                    nearestPoint = pointOnPolygon
                 }
             }
             // this is the shortest distance from current location to the collection of Polygons
-            return shortestDistance
+            return PointAndDistance(nearestPoint, shortestDistance)
         }
 
         else -> {
             println("Unknown type ${feature.geometry.type}")
-            return Double.NaN
+            assert(false)
+            return PointAndDistance(LngLatAlt(), Double.NaN)
         }
     }
 }
@@ -485,7 +460,7 @@ fun getDistanceToFeatureCollection(
     featureCollection: FeatureCollection
 ): FeatureCollection {
     for (feature in featureCollection) {
-        feature.foreign?.put("distance_to", getDistanceToFeature(currentLocation, feature))
+        feature.foreign?.put("distance_to", getDistanceToFeature(currentLocation, feature).distance)
     }
     return featureCollection
 }
@@ -1387,104 +1362,6 @@ fun mergePolygons(
     return mergedPolygon
 }
 
-fun findFeaturesInPolygons(
-    polygons: FeatureCollection,
-    features: FeatureCollection): List<Pair<Feature, Any?>> {
-    val results = mutableListOf<Pair<Feature, Any?>>()
-    for (polygon in polygons) {
-        val direction = polygon.properties?.get("Direction")
-        for (feature in features) {
-            when (feature.geometry.type) {
-                "Point" -> {
-                    val lngLatAlt = (feature.geometry as Point).coordinates
-                    val testPoint = polygonContainsCoordinates(lngLatAlt, (polygon.geometry as Polygon))
-                    if (testPoint) {
-                        if (feature.properties?.get("name") != null){
-                            results.add(Pair(feature, direction))
-                        }
-
-                        //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: Point Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
-                    }
-                }
-                "MultiPoint" -> {
-                    for (point in (feature.geometry as MultiPoint).coordinates) {
-                        val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
-                        if (testPoint) {
-                            if (feature.properties?.get("name") != null){
-                                results.add(Pair(feature, direction))
-                            }
-                            //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: MultiPoint Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
-                            break
-                        }
-                    }
-                }
-                "LineString" -> {
-                    for (point in (feature.geometry as LineString).coordinates) {
-                        val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
-                        if (testPoint) {
-                            if (feature.properties?.get("name") != null){
-                                results.add(Pair(feature, direction))
-                            }
-                            //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: LineString Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
-                            break
-                        }
-                    }
-                }
-                "MultiLineString" -> {
-                    for (lineString in (feature.geometry as MultiLineString).coordinates) {
-                        for (point in lineString) {
-                            val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
-                            if (testPoint) {
-                                if (feature.properties?.get("name") != null){
-                                    results.add(Pair(feature, direction))
-                                }
-                                //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: MultiLineString Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
-                                break
-                            }
-                        }
-                    }
-                }
-
-                "Polygon" -> {
-                    for (geometry in (feature.geometry as Polygon).coordinates) {
-                        for (point in geometry) {
-                            val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
-                            if (testPoint) {
-                                if (feature.properties?.get("name") != null){
-                                    results.add(Pair(feature, direction))
-                                }
-                                // println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: Polygon Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
-                                break
-                            }
-                        }
-                    }
-                }
-
-                "MultiPolygon" -> {
-                    for (polygon1 in (feature.geometry as MultiPolygon).coordinates) {
-                        for (linearRing in polygon1) {
-                            for (point in linearRing) {
-                                val testPoint = polygonContainsCoordinates(point, (polygon.geometry as Polygon))
-                                if (testPoint) {
-                                    if (feature.properties?.get("name") != null){
-                                        results.add(Pair(feature, direction))
-                                    }
-                                    //println("Found something in Polygon: ${polygon.properties?.get("Direction")} What is it? Type: MultiPolygon Name: ${feature.properties?.get("name")} OSM ID: ${feature.foreign?.get("osm_ids")}")
-                                    // at least one of the points is in the tile so add the entire
-                                    // MultiPolygon Feature and break
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
-
-                else -> println("Unknown type ${feature.geometry.type}")
-            }
-        }
-    }
-    return results
-}
 /**
  * Given a super category string returns a mutable list of things in the super category.
  * Categories taken from original Soundscape.
