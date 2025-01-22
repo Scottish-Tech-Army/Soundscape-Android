@@ -5,9 +5,9 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.marker_route_screens.RoutesScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingPreview
@@ -35,7 +35,7 @@ annotation class LocalePreviews
 @Preview(name = "LargeFont", fontScale = 1.15f, group = "FontScale", device = "id:small_phone")
 annotation class FontSizePreviews
 
-@Preview(name = "MediumPhone", group = "Devices", device = "spec:id=reference_phone,shape=Normal,width=411,height=891,unit=dp,dpi=420", showSystemUi = true)
+@Preview(name = "MediumPhone", group = "Devices", device = "spec:width=411dp,height=891dp,dpi=420", showSystemUi = true)
 @Preview(name = "Tablet", group = "Devices", device = Devices.PIXEL_C, showSystemUi = true)
 annotation class DevicePreviews
 
