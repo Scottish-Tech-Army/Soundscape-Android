@@ -13,7 +13,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
-import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
@@ -231,36 +230,20 @@ fun removeDuplicateOsmIds(
     return tempFeatureCollection
 }
 
-data class FovLeftRight(val left: LngLatAlt, val right: LngLatAlt)
-
-fun getFovTrianglePoints(userGeometry: GeoEngine.UserGeometry) : FovLeftRight {
-    // Direction the device is pointing
-    val quadrants = getQuadrants(userGeometry.heading)
-    // get the quadrant index from the heading so we can construct a FOV triangle using the correct quadrant
-    var quadrantIndex = 0
-    for (quadrant in quadrants) {
-        val containsHeading = quadrant.contains(userGeometry.heading)
-        if (containsHeading) {
-            break
-        } else {
-            quadrantIndex++
-        }
-    }
-    // Get the coordinate for the "Left" of the FOV
-    val points = FovLeftRight(
+fun getFovTriangle(userGeometry: GeoEngine.UserGeometry) : Triangle {
+    val quadrant = Quadrant(userGeometry.heading)
+    return Triangle(userGeometry.location,
         getDestinationCoordinate(
             userGeometry.location,
-            quadrants[quadrantIndex].left,
+            quadrant.left,
             userGeometry.fovDistance
         ),
         getDestinationCoordinate(
             userGeometry.location,
-            quadrants[quadrantIndex].right,
+            quadrant.right,
             userGeometry.fovDistance
         )
     )
-
-    return points
 }
 
 /**
@@ -276,8 +259,8 @@ fun getFovFeatureCollection(
     featureTree: FeatureTree
 ): FeatureCollection {
 
-    val points = getFovTrianglePoints(userGeometry)
-    return featureTree.generateFeatureCollectionWithinTriangle(userGeometry.location, points.left, points.right)
+    val triangle = getFovTriangle(userGeometry)
+    return featureTree.generateFeatureCollectionWithinTriangle(triangle)
 }
 
 fun getNearestFovFeature(
@@ -285,8 +268,8 @@ fun getNearestFovFeature(
     featureTree: FeatureTree
 ): Feature? {
 
-    val points = getFovTrianglePoints(userGeometry)
-    return featureTree.getNearestFeatureWithinTriangle(userGeometry.location, points.left, points.right)
+    val triangle = getFovTriangle(userGeometry)
+    return featureTree.getNearestFeatureWithinTriangle(triangle)
 }
 
 /**
@@ -341,14 +324,16 @@ fun getNearestRoad(
     return nearestRoad
 }
 
+data class PointAndDistance(val point: LngLatAlt, val distance: Double)
+
 /**
  * Given a Feature and a location this will calculate the nearest distance to it
  * @param currentLocation
  * Current location as LngLatAlt
  * @param feature
- * @return The distance between currentLocation and feature
+ * @return The a PointAndDistance object which contains the distance between currentLocation and
+ *  feature and the point to which the distance is measured.
  */
-data class PointAndDistance(val point: LngLatAlt, val distance: Double)
 fun getDistanceToFeature(
     currentLocation: LngLatAlt,
     feature: Feature
@@ -410,11 +395,17 @@ fun getDistanceToFeature(
         "Polygon" -> {
             val polygon = feature.geometry as Polygon
             val nearestPoint = LngLatAlt()
-            val distance = distanceToPolygon(
+            var distance = distanceToPolygon(
                 currentLocation,
                 polygon,
                 nearestPoint
             )
+            // TODO: Could we return negative distance and then interpret that differently in the
+            //  caller?
+            // If we are inside the polygon, return 0m
+            if(polygonContainsCoordinates(currentLocation, polygon)) {
+                distance = 0.0
+            }
             return PointAndDistance(nearestPoint, distance)
         }
 
@@ -650,10 +641,12 @@ fun makeTriangles(
     val newFeatureCollection = FeatureCollection()
     for ((count, segment) in segments.withIndex()) {
 
-        val aheadTriangle = createTriangleFOV(
-            getDestinationCoordinate(userGeometry.location, segment.left, userGeometry.fovDistance),
-            userGeometry.location,
-            getDestinationCoordinate(userGeometry.location, segment.right, userGeometry.fovDistance)
+        val aheadTriangle = createPolygonFromTriangle(
+            Triangle(
+                userGeometry.location,
+                getDestinationCoordinate(userGeometry.location, segment.left, userGeometry.fovDistance),
+                getDestinationCoordinate(userGeometry.location, segment.right, userGeometry.fovDistance)
+            )
         )
         val featureAheadTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
@@ -1897,6 +1890,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "hot_water_tank",
             "campanile",
             "sports_centre",
+            "fitness_centre",
             "beach_resort",
             "village_green",
             "ship",
@@ -2090,22 +2084,22 @@ fun generateDebugFovGeoJson(
     userGeometry: GeoEngine.UserGeometry,
     featureCollection: FeatureCollection
 ) {
-    val points = getFovTrianglePoints(userGeometry)
+    val triangle = getFovTriangle(userGeometry)
 
     // Take care not to add the triangle to the passed in collection
     val mapCollection = FeatureCollection()
     mapCollection.plusAssign(featureCollection)
 
-    val triangle = Feature()
-    triangle.geometry = Polygon(
+    val triangleFeature = Feature()
+    triangleFeature.geometry = Polygon(
         arrayListOf(
-            userGeometry.location,
-            points.left,
-            points.right,
+            triangle.origin,
+            triangle.left,
+            triangle.right,
             userGeometry.location
         )
     )
-    mapCollection.addFeature(triangle)
+    mapCollection.addFeature(triangleFeature)
 
     val outputFile = FileOutputStream("markers.geojson")
     val adapter = GeoJsonObjectMoshiAdapter()

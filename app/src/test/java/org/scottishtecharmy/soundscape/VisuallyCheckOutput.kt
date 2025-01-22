@@ -9,7 +9,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
-import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
@@ -24,7 +23,8 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 
 // Functions to output GeoJSON strings that can be put into the very useful Geojson.io
 // for a visual check. The GeoJSON parser that they use is also handy to make sure output
@@ -354,12 +354,8 @@ class VisuallyCheckOutput {
         )
         // *************************************************************
 
-        val points = getFovTrianglePoints(userGeometry)
-        val polygonTriangleFOV = createTriangleFOV(
-            userGeometry.location,
-            points.left,
-            points.right
-        )
+        val triangle = getFovTriangle(userGeometry)
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
@@ -408,12 +404,8 @@ class VisuallyCheckOutput {
         )
         // *************************************************************
 
-        val points = getFovTrianglePoints(userGeometry)
-        val polygonTriangleFOV = createTriangleFOV(
-            userGeometry.location,
-            points.left,
-            points.right
-        )
+        val triangle = getFovTriangle(userGeometry)
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
@@ -463,12 +455,8 @@ class VisuallyCheckOutput {
         )
         // *************************************************************
 
-        val points = getFovTrianglePoints(userGeometry)
-        val polygonTriangleFOV = createTriangleFOV(
-            userGeometry.location,
-            points.left,
-            points.right
-        )
+        val triangle = getFovTriangle(userGeometry)
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()

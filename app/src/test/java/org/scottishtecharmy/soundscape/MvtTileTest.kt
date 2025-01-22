@@ -74,7 +74,7 @@ fun getGridStateForLocation(
         println("Need tile ${tile.tileX}x${tile.tileY}")
     }
 
-    // This is implemented for the soundscape-backend yet, so assert to make that clear
+    // This isn't implemented for the soundscape-backend yet, so assert to make that clear
     assert(!soundscapeBackend)
 
     // Read in the files
@@ -93,9 +93,6 @@ fun getGridStateForLocation(
             }
         }
     }
-    // Add lines to connect all of the interpolated points
-    joiner.addJoiningLines(featureCollection)
-
     return GridState.createFromFeatureCollection(featureCollection)
 }
 

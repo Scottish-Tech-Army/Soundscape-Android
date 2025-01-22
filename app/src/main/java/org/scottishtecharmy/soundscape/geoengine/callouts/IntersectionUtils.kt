@@ -10,8 +10,9 @@ import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
@@ -24,7 +25,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.screens.home.home.USER_POSITION_MARKER_NAME
 
 enum class ComplexIntersectionApproach {
     INTERSECTION_WITH_MOST_OSM_IDS,
@@ -54,14 +54,13 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 ) : RoadsDescription {
 
     // Create FOV triangle
-    val points = getFovTrianglePoints(userGeometry)
+    val triangle = getFovTriangle(userGeometry)
 
     val roadTree = gridState.getFeatureTree(TreeId.ROADS)
     val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
     // Find roads within FOV
-    val fovRoads = roadTree.generateFeatureCollectionWithinTriangle(
-        userGeometry.location, points.left, points.right)
+    val fovRoads = roadTree.generateFeatureCollectionWithinTriangle(triangle)
     if(fovRoads.features.isEmpty()) return RoadsDescription()
 
     // Two roads that we are interested in:
@@ -73,8 +72,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val nearestRoadInFoV = getNearestRoad(userGeometry.location, FeatureTree(fovRoads))
 
     // Find intersections within FOV
-    val fovIntersections = intersectionTree.generateFeatureCollectionWithinTriangle(
-        userGeometry.location, points.left, points.right)
+    val fovIntersections = intersectionTree.generateFeatureCollectionWithinTriangle(triangle)
     if(fovIntersections.features.isEmpty()) return RoadsDescription(nearestRoadInFoV, userGeometry)
 
     // Sort the FOV intersections by distance

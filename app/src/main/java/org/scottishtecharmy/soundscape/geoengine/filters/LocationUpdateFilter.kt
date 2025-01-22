@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 
 /**
  * This class acts as a filter for throttling the frequency of computation which is initiated by
@@ -9,16 +9,16 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 open class LocationUpdateFilter(private val minTimeMs: Long, private val minDistance: Double) {
 
-    private var lastLocation : LngLatAlt? = null
+    private var lastLocation : GeoEngine.UserGeometry? = null
     private var lastTime = 0L
 
-    fun update(location: LngLatAlt)
+    fun update(userGeometry: GeoEngine.UserGeometry)
     {
         lastTime = System.currentTimeMillis()
-        lastLocation = location
+        lastLocation = userGeometry
     }
 
-    private fun shouldUpdate(location: LngLatAlt,
+    private fun shouldUpdate(userGeometry: GeoEngine.UserGeometry,
                              updateTimeInterval: Long,
                              updateDistanceInterval: Double)
         : Boolean {
@@ -27,35 +27,37 @@ open class LocationUpdateFilter(private val minTimeMs: Long, private val minDist
             return true
         }
 
-        val distance = location.distance(lastLocation!!)
-        val timeDifference = System.currentTimeMillis() - lastTime
+        lastLocation?.let { geometry ->
+            val distance = userGeometry.location.distance(geometry.location)
+            val timeDifference = System.currentTimeMillis() - lastTime
 
-        if((distance > updateDistanceInterval) && (timeDifference > updateTimeInterval)) {
-            return true
+            if ((distance > updateDistanceInterval) && (timeDifference > updateTimeInterval)) {
+                return true
+            }
         }
 
         // Neither the time interval and/or the distance interval have been passed
         return false
     }
 
-    fun shouldUpdate(location: LngLatAlt) : Boolean {
-        return shouldUpdate(location, minTimeMs, minDistance)
+    fun shouldUpdate(userGeometry: GeoEngine.UserGeometry) : Boolean {
+        return shouldUpdate(userGeometry, minTimeMs, minDistance)
     }
 
     private val inVehicleTimeIntervalMultiplier = 4
-    fun shouldUpdateActivity(location: LngLatAlt, speed: Float, inVehicle: Boolean) : Boolean {
-        if(inVehicle) {
+    fun shouldUpdateActivity(userGeometry: GeoEngine.UserGeometry) : Boolean {
+        if(userGeometry.inVehicle) {
             // If travelling in a vehicle then the speed is used to determine how far has to be
             // travelled before updating and the time is increased by a multiplier.
             val timeInterval = minTimeMs * inVehicleTimeIntervalMultiplier
             var distanceInterval = minDistance
-            if(speed > 0) {
-                distanceInterval = speed.toDouble() * minTimeMs
+            if(userGeometry.speed > 0) {
+                distanceInterval = userGeometry.speed.toDouble() * minTimeMs
             }
 
-            return shouldUpdate(location, timeInterval, distanceInterval)
+            return shouldUpdate(userGeometry, timeInterval, distanceInterval)
 
         }
-        return shouldUpdate(location, minTimeMs, minDistance)
+        return shouldUpdate(userGeometry, minTimeMs, minDistance)
     }
 }

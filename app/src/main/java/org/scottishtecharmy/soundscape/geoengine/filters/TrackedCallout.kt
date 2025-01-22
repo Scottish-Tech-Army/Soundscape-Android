@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
 import android.util.Log
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class TrackedCallout(
@@ -44,12 +45,12 @@ class CalloutHistory(private val expiryPeriod : Long = 60000) {
         history.add(callout)
     }
 
-    fun trim(location: LngLatAlt) {
+    fun trim(userGeometry: GeoEngine.UserGeometry) {
         val now = System.currentTimeMillis()
         // TODO : Remove hardcoded expiry time and distance should be based on category
         history.removeAll {
-            val result = ((now - it.time) > expiryPeriod) || (it.isPoint && location.distance(it.location) > 50.0)
-            if(result)  println("Trim ${it.callout} - ${now - it.time} ${location.distance(it.location)}")
+            val result = ((now - it.time) > expiryPeriod) || (it.isPoint && userGeometry.location.distance(it.location) > 50.0)
+            if(result)  println("Trim ${it.callout} - ${now - it.time} ${userGeometry.location.distance(it.location)}")
             result
         }
     }

@@ -8,7 +8,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 
 class MarkersTest {
 
@@ -26,11 +26,8 @@ class MarkersTest {
         val markersTree = FeatureTree(markersFeatureCollectionTest)
 
         // I'm just reusing the Intersection functions here for the markers test
-        val points = getFovTrianglePoints(userGeometry)
-        val nearestMarker = markersTree.getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val nearestMarker = markersTree.getNearestFeatureWithinTriangle(triangle)
         val nearestPoint = nearestMarker!!.geometry as Point
         val nearestMarkerDistance = userGeometry.location.distance(nearestPoint.coordinates)
 

@@ -3,7 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
 import org.scottishtecharmy.soundscape.dto.Circle
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
@@ -616,28 +616,34 @@ fun tileToLon(y: Int, zoom: Int): Double {
 }
 
 /**
- * Return a triangle that is used as a "field of view".
- * @param left
- * The left most point from the starting point.
- * @param location
- * The starting location of the triangle.
- * @param right
- * The right most point from the starting point.
- * @return A triangle that is a Polygon object.
+ * Return a triangle Polygon e.g. for use as a "field of view".
+ * @param triangle
+ * The points of the triangle
+ * @return A Polygon object with the triangle coordinates.
  */
-fun createTriangleFOV(left: LngLatAlt, location: LngLatAlt, right: LngLatAlt): Polygon {
+fun createPolygonFromTriangle(triangle: Triangle): Polygon {
     val polygonTriangleFOV = Polygon().also {
         it.coordinates = arrayListOf(
             arrayListOf(
-                left,
-                location,
-                right,
+                triangle.left,
+                triangle.origin,
+                triangle.right,
                 // Close the polygon
-                left
+                triangle.left
             )
         )
     }
     return polygonTriangleFOV
+}
+
+fun getTriangleForDirection(featureCollection: FeatureCollection, direction: Int) : Triangle {
+    val geometry = featureCollection.features[direction].geometry as Polygon
+    // The order of coordinates is as passed in to createTriangleFOV
+    return Triangle(
+        geometry.coordinates[0][1],     // location
+        geometry.coordinates[0][0],     // left
+        geometry.coordinates[0][2]      // right
+    )
 }
 
 /**
@@ -704,60 +710,6 @@ fun lineStringIsCircular(path: LineString): Boolean {
     val first = path.coordinates.first()
     val last = path.coordinates.last()
     return first == last
-}
-
-/**
- * Calculates the bounds of the quadrants that should be used for filtering POIs
- * These quadrants are rotated from the standard cardinal direction
- * quadrants (north: [315.0, 45.0), east: [45.0, 135.0), etc.) such that the provided
- * heading becomes the center of the standard cardinal direction quadrant that it belongs
- * to. This ensures that callouts filtered into quadrants will always be centered around
- * the user's current heading if possible (if quadrants were fixed to the standard cardinal
- * direction, and the user were facing 315.0, then all callouts for `north` would be to the
- * user's right).
- *  Here are several examples to illustrate how this works:
- *
- *  Heading := 0.0 In this case, the heading is already aligned with the center of
- *  the `north` quadrant, so the standard cardinal direction quadrants are returned.
- *  Quadrants returned:
- *     north: [315.0, 45.0]
- *     east: [45.0, 135.0]
- *     south: [135.0, 225.0]
- *     west: [225.0, 315.0]
- *
- *  Heading := 95.0 In this case, the heading is in the `east` quadrant, but it is rotated
- *  5.0 degrees clockwise from the center of the `east` quadrant, so the
- *  standard cardinal direction quadrants are rotated 5.0 degrees clockwise.
- *  Quadrants returned:
- *     north: [320.0, 50.0]
- *     east: [50.0, 140.0]
- *     south: [140.0, 230.0]
- *     west: [230.0, 320.0]
- *
- *  Heading := 230.0 In this case, the heading is in the `west` quadrant, but it is rotated
- *  40.0 degrees counter-clockwise from the center of the `west` quadrant, so
- *  the standard cardinal direction quadrants are rotated 40.0 degrees counter-clockwise.
- *  Quadrants returned:
- *     north: [275.0, 5.0]
- *     east: [5.0, 95.0]
- *     south: [95.0, 185.0]
- *     west: [185.0, 275.0]
- * @param heading
- * Heading in degrees.
- * @return A List of Quadrant objects that hold the heading for each quadrant.
- */
-fun getQuadrants(heading: Double): List<Quadrant> {
-    // Find the quadrant the heading is currently in
-    val quadrantIndex = ((heading + 45.0).rem(360.0)).toInt() / 90
-    val northHeading = (heading + 90 * (4 - quadrantIndex).toDouble()).rem(360.0)
-
-    // Define the quadrants based off the offset heading to the north
-    return listOf(
-        Quadrant(northHeading),         // North
-        Quadrant(northHeading + 90.0),  // East
-        Quadrant(northHeading + 180.0), // South
-        Quadrant(northHeading + 270.0)  // West
-    )
 }
 
 /**
