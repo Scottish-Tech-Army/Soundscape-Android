@@ -3589,5 +3589,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="cancel_search_contentDescription" translatable="false">Cancel search</string>
   <string name="create_an_audio_beacon"  translatable="false">Create an audio beacon</string>
   <string name="enter_street_preview"  translatable="false">Enter Street Preview</string>
+  <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
+  <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
 
 </resources>

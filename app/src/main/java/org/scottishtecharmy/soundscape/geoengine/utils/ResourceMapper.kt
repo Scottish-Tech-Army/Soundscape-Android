@@ -71,7 +71,8 @@ class ResourceMapper {
                 put("picnic_site", R.string.osm_tag_picnic_area)
             }
         }
-        fun getResourceId(key: String): Int? {
+        fun getResourceId(key: String?): Int? {
+            if(key == null) return null
             return resourceMap[key]
         }
     }

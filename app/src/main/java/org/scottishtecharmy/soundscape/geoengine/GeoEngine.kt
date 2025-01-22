@@ -323,17 +323,17 @@ class GeoEngine {
         )
 
         for (feature in pois) {
-            val name = getNameForFeature(feature)
+            val name = getTextForFeature(feature)
 
             // Check the history and if the POI has been called out recently then we skip it
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature)
-            val callout = TrackedCallout(name.name, nearestPoint.point, feature.geometry.type == "Point", name.generic)
+            val callout = TrackedCallout(name.text, nearestPoint.point, feature.geometry.type == "Point", name.generic)
             if (poiCalloutHistory.find(callout)) {
                 Log.d(TAG, "Discard ${callout.callout}")
             } else {
                 results.add(
                     PositionedString(
-                        name.name,
+                        name.text,
                         nearestPoint.point,
                         NativeAudioEngine.EARCON_SENSE_POI,
                     ),
@@ -538,8 +538,8 @@ class GeoEngine {
 
                         if(feature == null) continue
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature)
-                        val name = getNameForFeature(feature)
-                        val text = "${name.name}. ${localizedContext.getString(R.string.distance_format_meters, poiLocation.distance.toString())}"
+                        val name = getTextForFeature(feature)
+                        val text = "${name.text}. ${localizedContext.getString(R.string.distance_format_meters, poiLocation.distance.toString())}"
                         list.add(
                             PositionedString(
                                 text,
@@ -708,29 +708,50 @@ class GeoEngine {
         }
     }
 
-    data class NameForFeature(val name: String = "", val generic: Boolean= false)
+    data class TextForFeature(val text: String = "", val generic: Boolean= false)
 
     /**
-     * getNameForFeature returns the name of the feature if it has one. If not, then it returns
-     * a localized description of the type of feature it is e.g. bike parking, or style
+     * getNameForFeature returns text describing the feature for callouts. Usually it returns a name
+     * or if it doesn't have one then a localized description of the type of feature it is e.g. bike
+     * parking, or style. Some types of Feature have more info e.g. bus stops and railway stations
      * @param feature to evaluate
      * @return a NameForFeature object containing the name and a flag indicating if it is a generic
      * name from the OSM tag rather than an actual name.
      */
-    private fun getNameForFeature(feature: Feature) : NameForFeature {
+    private fun getTextForFeature(feature: Feature) : TextForFeature {
         var generic = false
-        var name = feature.properties?.get("name") as String?
-        if (name == null) {
-            val osmClass = feature.properties?.get("class") as String?
-            val id = ResourceMapper.getResourceId(osmClass!!)
-            name = if (id == null) {
+        val name = feature.properties?.get("name") as String?
+        val featureValue = feature.foreign?.get("feature_value")
+
+        var text = name
+        when(featureValue) {
+            "bus_stop" -> {
+                text = if (name != null)
+                    localizedContext.getString(R.string.osm_tag_bus_stop_named).format(name)
+                else
+                    localizedContext.getString(R.string.osm_tag_bus_stop)
+            }
+            "station" -> {
+                text = if (name != null)
+                    localizedContext.getString(R.string.osm_tag_train_station_named).format(name)
+                else
+                    localizedContext.getString(R.string.osm_tag_train_station)
+            }
+        }
+        if (text == null) {
+            val osmClass =
+                feature.properties?.get("class") as String? ?: return TextForFeature("", true)
+
+            val id = ResourceMapper.getResourceId(osmClass)
+            text = if (id == null) {
                 osmClass
             } else {
                 localizedContext.getString(id)
             }
             generic = true
         }
-        return NameForFeature(name, generic)
+
+        return TextForFeature(text, generic)
     }
 
     companion object {
