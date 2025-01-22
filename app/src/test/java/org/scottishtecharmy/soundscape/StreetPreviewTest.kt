@@ -14,9 +14,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
-import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
@@ -291,14 +291,10 @@ class StreetPreviewTest {
         userGeometry: GeoEngine.UserGeometry
     ): Feature {
 
-        val points = getFovTrianglePoints(userGeometry)
+        val triangle = getFovTriangle(userGeometry)
 
         // We can now construct our FOV polygon (triangle)
-        val polygonTriangleFOV = createTriangleFOV(
-            userGeometry.location,
-            points.left,
-            points.right
-        )
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()

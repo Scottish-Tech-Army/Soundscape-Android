@@ -23,7 +23,6 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.geoengine.GridState.Companion
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
@@ -32,19 +31,16 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
+import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
-import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
@@ -90,13 +86,15 @@ class GeoEngine {
                             var heading: Double = 0.0,
                             val fovDistance: Double = 50.0,
                             val inVehicle: Boolean = false,
-                            val inMotion: Boolean = false)
+                            val inMotion: Boolean = false,
+                            val speed: Double = 0.0)
     private fun getCurrentUserGeometry() : UserGeometry {
         return UserGeometry(locationProvider.get(),
             directionProvider.getCurrentDirection().toDouble(),
             50.0,
             inVehicle,
-            inMotion)
+            inMotion,
+            locationProvider.getSpeed())
     }
 
     @Subscribe
@@ -154,6 +152,16 @@ class GeoEngine {
      * The gridState is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
+    private fun createSuperCategoriesSet() : Set<String> {
+        val enabledCategories = emptySet<String>().toMutableSet()
+        if (sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
+            enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
+
+        if (sharedPreferences.getBoolean(MOBILITY_KEY, true))
+            enabledCategories.add(MOBILITY_KEY)
+
+        return enabledCategories
+    }
     private fun startMonitoringLocation(soundscapeService: SoundscapeService) {
         Log.e(TAG, "startTileGridService")
         locationMonitoringJob?.cancel()
@@ -163,7 +171,10 @@ class GeoEngine {
                 newLocation?.let { location ->
 
                     // Update the grid state
-                    gridState.locationUpdate(LngLatAlt(location.longitude, location.latitude))
+                    gridState.locationUpdate(
+                        LngLatAlt(location.longitude, location.latitude),
+                        createSuperCategoriesSet()
+                    )
 
                     // Run any auto callouts that we need
                     val callouts = autoCallout(location)
@@ -185,18 +196,18 @@ class GeoEngine {
      * - general location
      * - unknown location).
      */
-    private fun reverseGeocode(location: LngLatAlt): List<PositionedString> {
+    private fun reverseGeocode(userGeometry: UserGeometry): List<PositionedString> {
         val results : MutableList<PositionedString> = mutableListOf()
 
         // Check if we're inside a POI
-        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, location, 200.0)
+        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, userGeometry.location, 200.0)
         val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
         for(poi in gridPoiFeatureCollection) {
             // We can only be inside polygons
             if(poi.geometry.type == "Polygon") {
                 val polygon = poi.geometry as Polygon
 
-                if(polygonContainsCoordinates(location, polygon)) {
+                if(polygonContainsCoordinates(userGeometry.location, polygon)) {
                     // We've found a POI that contains our location
                     val name = poi.properties?.get("name")
                     if(name != null) {
@@ -212,7 +223,7 @@ class GeoEngine {
         }
 
         // Check if we're alongside a road/path
-        val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0)
+        val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.location, 100.0)
         if(nearestRoad != null) {
             val properties = nearestRoad.properties
             if (properties != null) {
@@ -237,23 +248,23 @@ class GeoEngine {
         return results
     }
 
-    private fun buildCalloutForRoadSense(location: LngLatAlt): List<PositionedString> {
+    private fun buildCalloutForRoadSense(userGeometry: UserGeometry): List<PositionedString> {
 
         // Check that our location/time has changed enough to generate this callout
-        if (!locationFilter.shouldUpdate(location)) {
+        if (!locationFilter.shouldUpdate(userGeometry)) {
             return emptyList()
         }
 
         // Check that we're in a vehicle
-        if (!inVehicle) {
+        if (!userGeometry.inVehicle) {
             return emptyList()
         }
 
         // Update time/location filter for our new position
-        locationFilter.update(location)
+        locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val results = reverseGeocode(location)
+        val results = reverseGeocode(userGeometry)
 
         // Check that the geocode has changed before returning a callout describing it
 
@@ -263,11 +274,11 @@ class GeoEngine {
     private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionCalloutHistory = CalloutHistory(30000)
 
-    private fun buildCalloutForIntersections(location: LngLatAlt) : List<PositionedString> {
+    private fun buildCalloutForIntersections(userGeometry: UserGeometry) : List<PositionedString> {
         val results : MutableList<PositionedString> = mutableListOf()
 
         // Check that our location/time has changed enough to generate this callout
-        if (!intersectionFilter.shouldUpdate(location)) {
+        if (!intersectionFilter.shouldUpdate(userGeometry)) {
             return emptyList()
         }
 
@@ -277,10 +288,9 @@ class GeoEngine {
         }
 
         // Update time/location filter for our new position
-        intersectionFilter.update(location)
-        intersectionCalloutHistory.trim(location)
+        intersectionFilter.update(userGeometry)
+        intersectionCalloutHistory.trim(userGeometry)
 
-        val userGeometry = getCurrentUserGeometry()
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
             userGeometry,
@@ -295,144 +305,41 @@ class GeoEngine {
     }
 
     private val poiCalloutHistory = CalloutHistory()
-    private fun buildCalloutForNearbyPOI(location: LngLatAlt, speed: Float) : List<PositionedString> {
-        if (!poiFilter.shouldUpdateActivity(location, speed, inVehicle)) {
+    private fun buildCalloutForNearbyPOI(userGeometry: UserGeometry) : List<PositionedString> {
+        if (!poiFilter.shouldUpdateActivity(userGeometry)) {
             return emptyList()
         }
 
         val results: MutableList<PositionedString> = mutableListOf()
 
         // Trim history based on location and current time
-        poiCalloutHistory.trim(location)
+        poiCalloutHistory.trim(userGeometry)
 
-        // Make a list of POIs - this has been copied from the whatsAroundMe code, and it definitely
-        // needs some work.
+        // We want to call out up to the 10 nearest POI that are within 50m range
+        val pois = gridState.getFeatureTree(TreeId.POIS).generateNearestFeatureCollection(
+            userGeometry.location,
+            50.0,
+            10
+        )
 
-        // super categories are "information", "object", "place", "landmark", "mobility", "safety"
-        val placesAndLandmarks = sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)
-        val mobility = sharedPreferences.getBoolean(MOBILITY_KEY, true)
-        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, location, 50.0)
-        val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
-        val settingsFeatureCollection = FeatureCollection()
-        if (gridPoiFeatureCollection.features.isNotEmpty()) {
-            if (placesAndLandmarks) {
-                if (mobility) {
-                    val placeSuperCategory =
-                        getPoiFeatureCollectionBySuperCategory("place", gridPoiFeatureCollection)
-                    val tempFeatureCollection = FeatureCollection()
-                    for (feature in placeSuperCategory.features) {
-                        if (feature.foreign?.get("feature_value") != "house") {
-                            if (feature.properties?.get("name") != null) {
-                                val superCategoryList = getSuperCategoryElements("place")
-                                // We never want to add a feature more than once
-                                var found = false
-                                for (property in feature.properties!!) {
-                                    for (featureType in superCategoryList) {
-                                        if (property.value == featureType) {
-                                            tempFeatureCollection.features.add(feature)
-                                            found = true
-                                        }
-                                        if (found) break
-                                    }
-                                    if (found) break
-                                }
-                            }
-                        }
-                    }
-                    val cleanedPlaceSuperCategory = removeDuplicateOsmIds(tempFeatureCollection)
-                    for (feature in cleanedPlaceSuperCategory.features) {
-                        settingsFeatureCollection.features.add(feature)
-                    }
+        for (feature in pois) {
+            val name = getNameForFeature(feature)
 
-                    val landmarkSuperCategory =
-                        getPoiFeatureCollectionBySuperCategory(
-                            "landmark",
-                            gridPoiFeatureCollection,
-                        )
-                    for (feature in landmarkSuperCategory.features) {
-                        settingsFeatureCollection.features.add(feature)
-                    }
-                    val mobilitySuperCategory =
-                        getPoiFeatureCollectionBySuperCategory(
-                            "mobility",
-                            gridPoiFeatureCollection,
-                        )
-                    for (feature in mobilitySuperCategory.features) {
-                        settingsFeatureCollection.features.add(feature)
-                    }
-                } else {
-                    val placeSuperCategory =
-                        getPoiFeatureCollectionBySuperCategory("place", gridPoiFeatureCollection)
-                    for (feature in placeSuperCategory.features) {
-                        if (feature.foreign?.get("feature_type") != "building" &&
-                            feature.foreign?.get(
-                                "feature_value",
-                            ) != "house"
-                        ) {
-                            settingsFeatureCollection.features.add(feature)
-                        }
-                    }
-                    val landmarkSuperCategory =
-                        getPoiFeatureCollectionBySuperCategory(
-                            "landmark",
-                            gridPoiFeatureCollection,
-                        )
-                    for (feature in landmarkSuperCategory.features) {
-                        settingsFeatureCollection.features.add(feature)
-                    }
-                }
+            // Check the history and if the POI has been called out recently then we skip it
+            val nearestPoint = getDistanceToFeature(userGeometry.location, feature)
+            val callout = TrackedCallout(name.name, nearestPoint.point, feature.geometry.type == "Point", name.generic)
+            if (poiCalloutHistory.find(callout)) {
+                Log.d(TAG, "Discard ${callout.callout}")
             } else {
-                if (mobility) {
-                    // Log.d(TAG, "placesAndLandmarks is false and mobility is true")
-                    val mobilitySuperCategory =
-                        getPoiFeatureCollectionBySuperCategory(
-                            "mobility",
-                            gridPoiFeatureCollection,
-                        )
-                    for (feature in mobilitySuperCategory.features) {
-                        settingsFeatureCollection.features.add(feature)
-                    }
-                } else {
-                    // Not sure what we are supposed to tell the user here?
-                    println("placesAndLandmarks and mobility are both false so what should I tell the user?")
-                }
-            }
-        }
-
-        // Check this type of POI is enabled
-
-        // If the POI is outside the trigger range for that POI category, skip it (see CalloutRangeContext)
-        if (settingsFeatureCollection.features.isNotEmpty()) {
-            // Original Soundscape doesn't work like this as it doesn't order them by distance
-            val sortedByDistanceToFeatureCollection =
-                sortedByDistanceTo(
-                    location,
-                    settingsFeatureCollection,
+                results.add(
+                    PositionedString(
+                        name.name,
+                        nearestPoint.point,
+                        NativeAudioEngine.EARCON_SENSE_POI,
+                    ),
                 )
-            for (feature in sortedByDistanceToFeatureCollection) {
-                val distance = feature.foreign?.get("distance_to") as Double?
-                if (distance != null) {
-                    if (distance < 10.0) {
-                        val name = getNameForFeature(feature)
-
-                        // Check the history and if the POI has been called out recently, skip it (iOS uses 60 seconds)
-                        val nearestPoint = getDistanceToFeature(location, feature)
-                        val callout = TrackedCallout(name.name, nearestPoint.point, feature.geometry.type == "Point", name.generic)
-                        if (poiCalloutHistory.find(callout)) {
-                            Log.d(TAG, "Discard ${callout.callout}")
-                        } else {
-                            results.add(
-                                PositionedString(
-                                    name.name,
-                                    nearestPoint.point,
-                                    NativeAudioEngine.EARCON_SENSE_POI,
-                                ),
-                            )
-                            // Add the entries to the history
-                            poiCalloutHistory.add(callout)
-                        }
-                    }
-                }
+                // Add the entries to the history
+                poiCalloutHistory.add(callout)
             }
         }
 
@@ -442,9 +349,7 @@ class GeoEngine {
     private fun autoCallout(androidLocation: Location) : List<PositionedString> {
 
         // The autoCallout logic comes straight from the iOS app.
-
-        val location = LngLatAlt(androidLocation.longitude, androidLocation.latitude)
-        val speed = androidLocation.speed
+        val userGeometry = getCurrentUserGeometry()
 
         // Check that the callout isn't disabled in the settings
         if (!sharedPreferences.getBoolean(ALLOW_CALLOUTS_KEY, true)) {
@@ -457,23 +362,23 @@ class GeoEngine {
             withContext(gridState.treeContext) {
                 var list = emptyList<PositionedString>()
                 // buildCalloutForRoadSense
-                val roadSenseCallout = buildCalloutForRoadSense(location)
+                val roadSenseCallout = buildCalloutForRoadSense(userGeometry)
                 if (roadSenseCallout.isNotEmpty()) {
                     list = roadSenseCallout
                 } else {
-                    val intersectionCallout = buildCalloutForIntersections(location)
+                    val intersectionCallout = buildCalloutForIntersections(userGeometry)
                     if (intersectionCallout.isNotEmpty()) {
-                        intersectionFilter.update(location)
+                        intersectionFilter.update(userGeometry)
                         list = list + intersectionCallout
                     }
 
 
                     // Get normal callouts for nearby POIs, for the destination, and for beacons
-                    val poiCallout = buildCalloutForNearbyPOI(location, speed)
+                    val poiCallout = buildCalloutForNearbyPOI(userGeometry)
 
                     // Update time/location filter for our new position
                     if (poiCallout.isNotEmpty()) {
-                        poiFilter.update(location)
+                        poiFilter.update(userGeometry)
                         list = list + poiCallout
                     }
                 }
@@ -605,14 +510,8 @@ class GeoEngine {
                         while (direction.hasNext()) {
 
                             val dir = direction.next()
-                            val polygon =
-                                individualRelativePolygons.features[dir].geometry as Polygon
-                            val feature = featureTree.getNearestFeatureWithinTriangle(
-                                polygon.coordinates[0][0],
-                                polygon.coordinates[0][1],
-                                polygon.coordinates[0][2]
-                            )
-
+                            val triangle = getTriangleForDirection(individualRelativePolygons, dir)
+                            val feature = featureTree.getNearestFeatureWithinTriangle(triangle)
                             if (feature != null) {
                                 // We found a feature in this direction, check whether we're already
                                 // calling out e.g. there's an L shaped park wrapping around us
@@ -690,18 +589,18 @@ class GeoEngine {
                         list)
 
                     // Detect if there is a crossing in the FOV
-                    val points = getFovTrianglePoints(userGeometry)
-                    val nearestCrossing = gridState.getNearestFeatureOnRoadInFov(TreeId.CROSSINGS,
-                        userGeometry.location,
-                        points.left,
-                        points.right)
+                    val triangle = getFovTriangle(userGeometry)
+                    val nearestCrossing = gridState.getNearestFeatureOnRoadInFov(
+                        TreeId.CROSSINGS,
+                        triangle
+                    )
                     appendNearestFeatureCallout(nearestCrossing, R.string.osm_tag_crossing, list)
 
                     // Detect if there is a bus_stop in the FOV
-                    val nearestBusStop = gridState.getNearestFeatureOnRoadInFov(TreeId.BUS_STOPS,
-                        userGeometry.location,
-                        points.left,
-                        points.right)
+                    val nearestBusStop = gridState.getNearestFeatureOnRoadInFov(
+                        TreeId.BUS_STOPS,
+                        triangle
+                    )
                     appendNearestFeatureCallout(nearestBusStop, R.string.osm_tag_bus_stop, list)
 
                     if(list.isEmpty()) {

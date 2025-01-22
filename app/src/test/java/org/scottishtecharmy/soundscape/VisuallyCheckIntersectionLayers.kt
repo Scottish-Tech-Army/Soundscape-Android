@@ -13,9 +13,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
@@ -89,11 +89,8 @@ class VisuallyCheckIntersectionLayers {
             (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
         }
 
-        val points = getFovTrianglePoints(userGeometry)
-        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading)
         val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
@@ -121,10 +118,7 @@ class VisuallyCheckIntersectionLayers {
         // a traffic island for the road that we are currently on.
         // Original Soundscape doesn't flag that a crossing is a traffic island
         // or has tactile paving, etc.
-        val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
         // Confirm which road the crossing is on
         val crossingLocation = nearestCrossing!!.geometry as Point
         val nearestRoadToCrossing = getNearestRoad(
@@ -149,11 +143,7 @@ class VisuallyCheckIntersectionLayers {
         // *** Display Field of View triangle ***
 
         // We can now construct our FOV polygon (triangle)
-        val polygonTriangleFOV = createTriangleFOV(
-            points.left,
-            userGeometry.location,
-            points.right
-        )
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()

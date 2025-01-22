@@ -16,14 +16,15 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
-import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
@@ -84,13 +85,10 @@ class RoundaboutsTest {
             FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
         )
 
-        val points = getFovTrianglePoints(userGeometry)
-        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
 
-        val distanceToRoundabout = getDistanceToFeature(userGeometry.location, nearestIntersection)
+        val distanceToRoundabout = getDistanceToFeature(userGeometry.location, nearestIntersection!!)
         // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
         println("Roundabout with ${roundaboutExitRoads.features.size} " +
                 "exits $distanceToRoundabout away")
@@ -145,11 +143,7 @@ class RoundaboutsTest {
         //println("intersections: $intersections")
 
         // We can now construct our FOV polygon (triangle)
-        val polygonTriangleFOV = createTriangleFOV(
-            points.left,
-            userGeometry.location,
-            points.right
-        )
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
@@ -192,11 +186,8 @@ class RoundaboutsTest {
         val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // get the nearest intersection in the FoV and the roads that make up the intersection
-        val points = getFovTrianglePoints(userGeometry)
-        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
 
         // This will remove the duplicate "osm_ids" from the intersection
         val cleanNearestIntersection = removeDuplicates(nearestIntersection)
@@ -263,11 +254,8 @@ class RoundaboutsTest {
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // get the nearest intersection in the FoV
-        val points = getFovTrianglePoints(userGeometry)
-        val testNearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val testNearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
 
         // get the roads that make up the intersection - this is where the road splits into two "oneway" roads
         val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
@@ -346,13 +334,15 @@ class RoundaboutsTest {
                 val allRoadsInRoundabout = FeatureCollection()
                 val allIntersectionsInRoundabout = FeatureCollection()
                 // this is looping through each FoV triangle in the roundabout
-                for (triangle in intersectionRelativeDirectionsPolygons){
+                for (triangleFov in intersectionRelativeDirectionsPolygons){
 
-                    val geometry = triangle.geometry as Geometry<ArrayList<LngLatAlt>>
+                    val geometry = triangleFov.geometry as Geometry<ArrayList<LngLatAlt>>
                     val fovRoundaboutRoadsFeatureCollection = FeatureTree(testRoadsCollectionFromTileFeatureCollection).generateFeatureCollectionWithinTriangle(
-                        geometry.coordinates[0][0],
-                        geometry.coordinates[0][1],
-                        geometry.coordinates[0][2]
+                        Triangle(
+                            geometry.coordinates[0][0],
+                            geometry.coordinates[0][1],
+                            geometry.coordinates[0][2]
+                        )
                     )
                     for (road in fovRoundaboutRoadsFeatureCollection){
                         // roads can span multiple triangles so we need to check for duplicates later
@@ -361,9 +351,11 @@ class RoundaboutsTest {
                         }
                     }
                     val fovRoundaboutIntersectionsFeatureCollection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).generateFeatureCollectionWithinTriangle(
-                        geometry.coordinates[0][0],
-                        geometry.coordinates[0][1],
-                        geometry.coordinates[0][2]
+                        Triangle(
+                            geometry.coordinates[0][0],
+                            geometry.coordinates[0][1],
+                            geometry.coordinates[0][2]
+                        )
                     )
                     for (intersection in fovRoundaboutIntersectionsFeatureCollection){
                         allIntersectionsInRoundabout.addFeature(intersection)
@@ -455,12 +447,7 @@ class RoundaboutsTest {
             }
         }
 
-        val polygonTriangleFOV = createTriangleFOV(
-            points.left,
-            userGeometry.location,
-            points.right
-        )
-
+        val polygonTriangleFOV = createPolygonFromTriangle(triangle)
         val featureFOVTriangle = Feature().also {
             val ars3: HashMap<String, Any?> = HashMap()
             ars3 += Pair("FoV", "45 degrees ~35 meters")

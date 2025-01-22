@@ -1,9 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.app.Application
-import android.content.SharedPreferences
 import android.util.Log
-import androidx.preference.PreferenceManager
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,10 +11,10 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.dto.BoundingBox
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine.Companion
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
@@ -56,17 +54,12 @@ open class GridState {
     internal lateinit var tileClient: TileClient
 
     private var centralBoundingBox = BoundingBox()
-    private var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+    internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
     @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
     val treeContext = newSingleThreadContext("TreeContext")
     var validateContext = true
-    private lateinit var sharedPreferences: SharedPreferences
 
-    open fun start(application: Application, soundscapeService: SoundscapeService) {
-        sharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
-
-    }
+    open fun start(application: Application, soundscapeService: SoundscapeService) {}
     fun stop() {}
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
 
@@ -74,7 +67,7 @@ open class GridState {
      * The tile grid service is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
-    suspend fun locationUpdate(location: LngLatAlt) {
+    suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>) {
         val timeSource = TimeSource.Monotonic
         val gridStartTime = timeSource.markNow()
 
@@ -92,7 +85,7 @@ open class GridState {
                 centralBoundingBox = tileGrid.centralBoundingBox
 
                 fixupCollections(featureCollections)
-                classifyPois(featureCollections)
+                classifyPois(featureCollections, enabledCategories)
 
                 // Create rtrees for each feature collection
                 val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
@@ -147,7 +140,8 @@ open class GridState {
         return false
     }
 
-    private fun classifyPois(featureCollections: Array<FeatureCollection>) {
+    internal fun classifyPois(featureCollections: Array<FeatureCollection>,
+                             enabledCategories: Set<String> = emptySet()) {
         // The FeatureCollection for POIS has been created, but we need to create sub-collections
         // for each of the super-categories along with one for the currently selected super-
         // categories.
@@ -174,7 +168,7 @@ open class GridState {
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
 
         // Create merged collection of currently selected super categories
-        if(sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true)) {
+        if(enabledCategories.contains(PLACES_AND_LANDMARKS_KEY)) {
             featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id].plusAssign(
                 featureCollections[TreeId.PLACE_POIS.id]
             )
@@ -182,13 +176,13 @@ open class GridState {
                 featureCollections[TreeId.LANDMARK_POIS.id]
             )
         }
-        if(sharedPreferences.getBoolean(MOBILITY_KEY, true)) {
+        if(enabledCategories.contains(MOBILITY_KEY)) {
             featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id].plusAssign(
                 featureCollections[TreeId.MOBILITY_POIS.id]
             )
         }
         val gridFinishTime = timeSource.markNow()
-        Log.e(TAG, "Time to classify grid: ${gridFinishTime - gridStartTime}")
+        println("Time to classify grid: ${gridFinishTime - gridStartTime}")
     }
 
     // All functions which access the featureTrees need to be running within the treeContext,
@@ -241,16 +235,11 @@ open class GridState {
                              val road: Feature,
                              val distance: Double = Double.POSITIVE_INFINITY)
     fun getNearestFeatureOnRoadInFov(id: TreeId,
-                                     location: LngLatAlt,
-                                     left: LngLatAlt,
-                                     right: LngLatAlt
+                                     triangle: Triangle
     ): FeatureByRoad? {
 
         checkContext()
-        val nearestFeature = featureTrees[id.id].getNearestFeatureWithinTriangle(
-            location,
-            left,
-            right)
+        val nearestFeature = featureTrees[id.id].getNearestFeatureWithinTriangle(triangle)
         if (nearestFeature != null) {
             val featureLocation = nearestFeature.geometry as Point
 
@@ -261,7 +250,7 @@ open class GridState {
             )
             if(nearestRoad != null) {
                 // We found a feature and the road that it is on
-                val distance = location.distance(featureLocation.coordinates)
+                val distance = triangle.origin.distance(featureLocation.coordinates)
                 return FeatureByRoad(nearestFeature, nearestRoad, distance)
             }
         }
@@ -474,7 +463,7 @@ open class GridState {
         val entrancesFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
             feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "gd_entrance_list") {
+                if (foreign["feature_type"] == "entrance") {
                     entrancesFeatureCollection.addFeature(feature)
                 }
             }
@@ -488,7 +477,7 @@ open class GridState {
      * A FeatureCollection object.
      * @return a Feature collection object that contains only POI.
      */
-    fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
+    private fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
         tileFeatureCollection: FeatureCollection
     ): FeatureCollection {
         val poiFeaturesCollection = FeatureCollection()
@@ -515,9 +504,10 @@ open class GridState {
     companion object {
         fun createFromFeatureCollection(featureCollection: FeatureCollection) : GridState {
 
-            val gridState = GridState()
+            val gridState = ProtomapsGridState()
 
             val collections = gridState.processTileFeatureCollection(featureCollection)
+            gridState.fixupCollections(collections)
             gridState.classifyPois(collections)
             for ((index, collection) in collections.withIndex()) {
                 gridState.featureTrees[index] = FeatureTree(collection)

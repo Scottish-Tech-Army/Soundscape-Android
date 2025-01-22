@@ -8,7 +8,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
-import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfLineString
@@ -22,7 +21,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.getPixelXY
 import org.scottishtecharmy.soundscape.geoengine.utils.getPolygonOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getQuadKey
-import org.scottishtecharmy.soundscape.geoengine.utils.getQuadrants
 import org.scottishtecharmy.soundscape.geoengine.utils.getReferenceCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.groundResolution
 import org.scottishtecharmy.soundscape.geoengine.utils.mapSize
@@ -33,7 +31,9 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.utils.BentleyOttmann
 import org.scottishtecharmy.soundscape.geoengine.utils.BoPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.BoSegment
+import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringsIntersect
 import org.scottishtecharmy.soundscape.geoengine.utils.straightLinesIntersect
@@ -375,10 +375,12 @@ class GeoUtilsTest {
     @Test
     fun createTriangleFOVTest(){
 
-        val polygonTriangleFOV = createTriangleFOV(
-            LngLatAlt(0.0, 1.0),
-            LngLatAlt(0.5, 0.0),
-            LngLatAlt(1.0, 1.0)
+        val polygonTriangleFOV = createPolygonFromTriangle(
+            Triangle(
+                LngLatAlt(0.5, 0.0),    // origin
+                LngLatAlt(0.0, 1.0),    // left
+                LngLatAlt(1.0, 1.0)     // right
+            )
         )
 
         Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][0].longitude, 0.01)
@@ -390,40 +392,6 @@ class GeoUtilsTest {
         // check it is closed
         Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][3].longitude, 0.01)
         Assert.assertEquals(1.0, polygonTriangleFOV.coordinates[0][3].latitude, 0.01)
-    }
-
-    @Test
-    fun getQuadrantsTest() {
-
-        val testQuadrant1 = getQuadrants(0.0)
-        Assert.assertEquals(315.0, testQuadrant1[0].left, 0.01)
-        Assert.assertEquals(45.0, testQuadrant1[0].right, 0.01)
-        Assert.assertEquals(45.0, testQuadrant1[1].left, 0.01)
-        Assert.assertEquals(135.0, testQuadrant1[1].right, 0.01)
-        Assert.assertEquals(135.0, testQuadrant1[2].left, 0.01)
-        Assert.assertEquals(225.0, testQuadrant1[2].right, 0.01)
-        Assert.assertEquals(225.0, testQuadrant1[3].left, 0.01)
-        Assert.assertEquals(315.0, testQuadrant1[3].right, 0.01)
-
-        val testQuadrant2 = getQuadrants(95.0)
-        Assert.assertEquals(320.0, testQuadrant2[0].left, 0.01)
-        Assert.assertEquals(50.0, testQuadrant2[0].right, 0.01)
-        Assert.assertEquals(50.0, testQuadrant2[1].left, 0.01)
-        Assert.assertEquals(140.0, testQuadrant2[1].right, 0.01)
-        Assert.assertEquals(140.0, testQuadrant2[2].left, 0.01)
-        Assert.assertEquals(230.0, testQuadrant2[2].right, 0.01)
-        Assert.assertEquals(230.0, testQuadrant2[3].left, 0.01)
-        Assert.assertEquals(320.0, testQuadrant2[3].right, 0.01)
-
-        val testQuadrant3 = getQuadrants(230.0)
-        Assert.assertEquals(275.0, testQuadrant3[0].left, 0.01)
-        Assert.assertEquals(5.0, testQuadrant3[0].right, 0.01)
-        Assert.assertEquals(5.0, testQuadrant3[1].left, 0.01)
-        Assert.assertEquals(95.0, testQuadrant3[1].right, 0.01)
-        Assert.assertEquals(95.0, testQuadrant3[2].left, 0.01)
-        Assert.assertEquals(185.0, testQuadrant3[2].right, 0.01)
-        Assert.assertEquals(185.0, testQuadrant3[3].left, 0.01)
-        Assert.assertEquals(275.0, testQuadrant3[3].right, 0.01)
     }
 
     @Test
@@ -800,7 +768,7 @@ class GeoUtilsTest {
 
     }
 
-    fun nearestPointOnPolygonSegment(point: LngLatAlt, polygon: Polygon): LngLatAlt? {
+    private fun nearestPointOnPolygonSegment(point: LngLatAlt, polygon: Polygon): LngLatAlt? {
         var nearestPoint: LngLatAlt? = null
         var minDistance = Double.MAX_VALUE
 
@@ -825,7 +793,7 @@ class GeoUtilsTest {
         return nearestPoint
     }
 
-    fun nearestPointOnSegment(point: LngLatAlt, start: LngLatAlt, end: LngLatAlt): LngLatAlt {
+    private fun nearestPointOnSegment(point: LngLatAlt, start: LngLatAlt, end: LngLatAlt): LngLatAlt {
         val segment = subtractLngLatAlt(end, start)
         val segmentLengthSquared = dotProductLngLatAlt(segment, segment)
 
@@ -837,19 +805,19 @@ class GeoUtilsTest {
         return addLngLatAlt(start, multiplyLngLatAltByScalar(segment, t))
     }
 
-    fun subtractLngLatAlt(a: LngLatAlt, b: LngLatAlt): LngLatAlt {
+    private fun subtractLngLatAlt(a: LngLatAlt, b: LngLatAlt): LngLatAlt {
         return LngLatAlt(a.longitude - b.longitude, a.latitude - b.latitude, a.altitude)
     }
 
-    fun addLngLatAlt(a: LngLatAlt, b: LngLatAlt): LngLatAlt {
+    private fun addLngLatAlt(a: LngLatAlt, b: LngLatAlt): LngLatAlt {
         return LngLatAlt(a.longitude + b.longitude, a.latitude + b.latitude, a.altitude)
     }
 
-    fun multiplyLngLatAltByScalar(a: LngLatAlt, scalar: Double): LngLatAlt {
+    private fun multiplyLngLatAltByScalar(a: LngLatAlt, scalar: Double): LngLatAlt {
         return LngLatAlt(a.longitude * scalar, a.latitude * scalar, a.altitude)
     }
 
-    fun dotProductLngLatAlt(a: LngLatAlt, b: LngLatAlt): Double {
+    private fun dotProductLngLatAlt(a: LngLatAlt, b: LngLatAlt): Double {
         return a.longitude * b.longitude + a.latitude * b.latitude
     }
 }

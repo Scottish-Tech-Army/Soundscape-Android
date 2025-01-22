@@ -9,7 +9,6 @@ import com.github.davidmoten.rtree2.geometry.Line
 import com.github.davidmoten.rtree2.geometry.Point
 import com.github.davidmoten.rtree2.geometry.Rectangle
 import com.github.davidmoten.rtree2.internal.EntryDefault
-import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
@@ -25,6 +24,9 @@ import kotlin.math.cos
  * and then call one of generateFeatureCollection, generateNearbyFeatureCollection or
  * generateNearestFeatureCollection to return a FeatureCollection trimmed down by location.
  */
+
+data class Triangle(val origin: LngLatAlt, val left: LngLatAlt, val right: LngLatAlt)
+
 class FeatureTree(featureCollection: FeatureCollection?) {
 
     var tree: RTree<Feature, Geometry?>? = null
@@ -153,29 +155,26 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         return rect
     }
 
-    private fun entryWithinDistance(entry: Entry<Feature, Geometry?>, distance: Double, from: LngLatAlt)  : Boolean {
+    private fun distanceToEntry(entry: Entry<Feature, Geometry?>, from: LngLatAlt) : Double {
         when (val p = entry.geometry()) {
             is Point -> {
                 val position = LngLatAlt(p.x(), p.y())
-                return from.distance(position) < distance
+                return from.distance(position)
             }
 
             is Line -> {
-                val thisDistance =
-                    from.distanceToLine(
-                            LngLatAlt(p.x1(), p.y1()),
-                            LngLatAlt(p.x2(), p.y2())
-                    )
-                return thisDistance < distance
+                return from.distanceToLine(LngLatAlt(p.x1(), p.y1()),LngLatAlt(p.x2(), p.y2()))
             }
 
             is Rectangle -> {
-                val box = BoundingBox(p.x1(), p.y1(), p.x2(), p.y2())
-                val nearestPoint = nearestPointOnBoundingBox(box, from)
-                return from.distance(nearestPoint) < distance
+                return distanceToPolygon(from, entry.value().geometry as Polygon)
             }
         }
-        return false
+        return Double.POSITIVE_INFINITY
+    }
+
+    private fun entryWithinDistance(entry: Entry<Feature, Geometry?>, distance: Double, from: LngLatAlt)  : Boolean {
+        return distanceToEntry(entry, from) < distance
     }
 
     private fun searchWithinDistance(
@@ -290,39 +289,62 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * generateFeatureCollectionWithinFov returns a FeatureCollection containing all members
      * of the rtree that are contained within the supplied triangle
      */
-    private fun createBoundingSquareContainingTriangle(triangle: ArrayList<LngLatAlt>) : Rectangle {
+    private fun createBoundingSquareContainingTriangle(triangle: Triangle) : Rectangle {
 
         // Create a bounding rectangle that contains the triangle
-        val minLatitude = minOf(triangle[0].latitude, triangle[1].latitude, triangle[2].latitude)
-        val maxLatitude = maxOf(triangle[0].latitude, triangle[1].latitude, triangle[2].latitude)
-        val minLongitude = minOf(triangle[0].longitude, triangle[1].longitude, triangle[2].longitude)
-        val maxLongitude = maxOf(triangle[0].longitude, triangle[1].longitude, triangle[2].longitude)
+        val minLatitude = minOf(triangle.origin.latitude, triangle.left.latitude, triangle.right.latitude)
+        val maxLatitude = maxOf(triangle.origin.latitude, triangle.left.latitude, triangle.right.latitude)
+        val minLongitude = minOf(triangle.origin.longitude, triangle.left.longitude, triangle.right.longitude)
+        val maxLongitude = maxOf(triangle.origin.longitude, triangle.left.longitude, triangle.right.longitude)
 
         return Geometries.rectangle(minLongitude,minLatitude,maxLongitude,maxLatitude)
     }
 
     private fun lineSegmentPassesWithinTriangle(p1: LngLatAlt, p2: LngLatAlt,
-                                                triangle: ArrayList<LngLatAlt>): Boolean {
+                                                triangle: Triangle): Boolean {
         // Check if the line segment intersects any of the triangle's edges
-        if (straightLinesIntersect(p1, p2, triangle[0], triangle[1]) ||
-            straightLinesIntersect(p1, p2, triangle[1], triangle[2]) ||
-            straightLinesIntersect(p1, p2, triangle[2], triangle[0])) {
+        if (straightLinesIntersect(p1, p2, triangle.origin, triangle.left) ||
+            straightLinesIntersect(p1, p2, triangle.left, triangle.right) ||
+            straightLinesIntersect(p1, p2, triangle.right, triangle.origin)) {
             return true
         }
 
         // Then check that the line segment isn't completely inside the triangle
-        val polygon = Polygon(arrayListOf(triangle[0], triangle[1], triangle[2], triangle[0]))
+        val polygon = createPolygonFromTriangle(triangle)
         return (polygonContainsCoordinates(p1, polygon) && polygonContainsCoordinates(p2, polygon))
     }
 
+    private fun testPolygonInFov(polygon: Polygon, triangle: Triangle) : Boolean {
+
+        // Test if any of the polygon edges intersect with the triangle or are wholly within it
+        var lastPoint = polygon.coordinates[0][0]
+        for (point in polygon.coordinates[0].drop(1)) {
+            if(lineSegmentPassesWithinTriangle(lastPoint, point, triangle)) {
+                return true
+            }
+            lastPoint = point
+        }
+
+        // Finally check that the triangle isn't wholly inside the polygon
+        return (polygonContainsCoordinates(triangle.origin, polygon) ||
+                polygonContainsCoordinates(triangle.left, polygon) ||
+                polygonContainsCoordinates(triangle.right, polygon))
+    }
+
+    private fun testMultiPolygonInFov(polygon: MultiPolygon, triangle: Triangle) : Boolean {
+
+        // Test only the outer ring of the first polygon
+        return testPolygonInFov(Polygon(polygon.coordinates[0][0]), triangle)
+    }
+
     private fun entryWithinTriangle(entry: Entry<Feature, Geometry?>,
-                                    triangle: ArrayList<LngLatAlt>): Boolean {
+                                    triangle: Triangle): Boolean {
 
         when (val p = entry.geometry()) {
             is Point -> {
                 val testPoint = LngLatAlt(p.x(), p.y())
                 // Create a closed polygon
-                val polygon = Polygon(arrayListOf(triangle[0], triangle[1], triangle[2], triangle[0]))
+                val polygon =createPolygonFromTriangle(triangle)
                 return polygonContainsCoordinates(testPoint, polygon)
             }
 
@@ -334,44 +356,14 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
             is Rectangle -> {
                 // The rtree entry is a bounding box for a more complex polygon. We return true if
-                // any of the polygon coordinates are within the FOV triangle
+                // any of the polygon coordinates are within the FOV triangle or if any of the
+                // FOV triangle coordinates are within the polygon.
                 val feature = entry.value()
                 if(feature.geometry.type == "Polygon") {
-                    for (geometry in (feature.geometry as Polygon).coordinates) {
-                        for (point in geometry) {
-                            val polygonTriangleFOV = Polygon(
-                                arrayListOf(
-                                    triangle[0],
-                                    triangle[1],
-                                    triangle[2],
-                                    triangle[0]
-                                )
-                            )
-                            val containsCoordinate =
-                                polygonContainsCoordinates(point, polygonTriangleFOV)
-                            if (containsCoordinate) {
-                                return true
-                            }
-                        }
-                    }
+                    return testPolygonInFov(feature.geometry as Polygon, triangle)
                 } else if(feature.geometry.type == "MultiPolygon") {
-                    for (geometry in (feature.geometry as MultiPolygon).coordinates[0]) {
-                        for (point in geometry) {
-                            val polygonTriangleFOV = Polygon(
-                                arrayListOf(
-                                    triangle[0],
-                                    triangle[1],
-                                    triangle[2],
-                                    triangle[0]
-                                )
-                            )
-                            val containsCoordinate =
-                                polygonContainsCoordinates(point, polygonTriangleFOV)
-                            if (containsCoordinate) {
-                                return true
-                            }
-                        }
-                    }
+                    // No MultiPolygons exist from MVT translation, so no need to handle
+                    return testMultiPolygonInFov(feature.geometry as MultiPolygon, triangle)
                 }
 
                 return false
@@ -384,89 +376,70 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     }
 
     private fun searchWithinTriangle(
-        triangleCoordinates: ArrayList<LngLatAlt>
+        triangle: Triangle
     ): MutableIterable<Entry<Feature, Geometry?>>? {
 
-        // First we need to calculate an enclosing lat long rectangle for this
-        // triangle then we refine on the exact contents
-        assert(triangleCoordinates.size == 3)
-        val bounds: Rectangle = createBoundingSquareContainingTriangle(triangleCoordinates)
+        // First we need to calculate an enclosing lat long rectangle for this triangle
+        // then we refine on the exact contents
+        val bounds: Rectangle = createBoundingSquareContainingTriangle(triangle)
 
         return Iterables.filter(tree!!.search(bounds))
         { entry ->
-            entryWithinTriangle(entry, triangleCoordinates)
+            entryWithinTriangle(entry, triangle)
         }
     }
 
     private fun nearestWithinTriangle(
-        triangleCoordinates: ArrayList<LngLatAlt>,
+        triangle: Triangle,
         maxCount: Int
-    ): Iterable<Entry<Feature, Geometry?>>? {
+    ): FeatureCollection {
+
+        val results = FeatureCollection()
 
         // First find the features within the triangle
-        val resultsWithinTriangle = searchWithinTriangle(triangleCoordinates) ?: return null
+        val resultsWithinTriangle = searchWithinTriangle(triangle) ?: return results
 
-        // Check if we already have few enough results
-        if(resultsWithinTriangle.count() < maxCount) return resultsWithinTriangle
-
-        // We have too many results, so trim them down to the nearest ones
-        val nearestResults = resultsWithinTriangle.sortedBy {
-            entry ->
-            when (val p = entry.geometry()) {
-                is Point -> {
-                    val position = LngLatAlt(p.x(), p.y())
-                    triangleCoordinates[0].distance(position)
-                }
-
-                is Line -> {
-                    val thisDistance =
-                        triangleCoordinates[0].distanceToLine(
-                            LngLatAlt(p.x1(), p.y1()),
-                            LngLatAlt(p.x2(), p.y2())
-                        )
-                    thisDistance
-                }
-
-                is Rectangle -> {
-                    val box = BoundingBox(p.x1(), p.y1(), p.x2(), p.y2())
-                    val center = getCenterOfBoundingBox(getBoundingBoxCorners(box))
-                    triangleCoordinates[0].distance(center)
-                }
-                else -> Double.POSITIVE_INFINITY
-            }
+        // Sort the results based on the distance. The sortedBy algorithm calls the distance
+        // calculation every time it compares values in the list and as a result is fairly
+        // inefficient. We could either:
+        //
+        //  1. Cache calculations - this could be done inside the Feature, and as we are single
+        //     threaded when using FeatureTree this will be okay, though slightly ugly.
+        //  2. Calculate the distances in advance and sort those instead. We'll take this approach.
+        //
+        data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
+        val unsortedList = emptyList<EntryWithDistance>().toMutableList()
+        for(entry in resultsWithinTriangle) {
+            unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, triangle.origin)))
+        }
+        val sortedList = unsortedList.sortedBy { entryWithinDistance->
+            entryWithinDistance.distance
         }
 
-        return nearestResults.subList(
-            fromIndex = 0,
-            toIndex = maxCount
-        )
+        // Move the sorted items into a FeatureCollection to return, breaking out if we reach the
+        // maximum number requested.
+        for((index, item) in sortedList.withIndex()) {
+            if(index >= maxCount)
+                break
+            results.addFeature(item.entry.value())
+        }
+
+        return results
     }
 
-    fun generateNearestFeatureCollectionWithinTriangle(location: LngLatAlt,
-                                                       left: LngLatAlt,
-                                                       right: LngLatAlt,
+    fun generateNearestFeatureCollectionWithinTriangle(triangle: Triangle,
                                                        maxCount: Int): FeatureCollection {
 
-        val featureCollection = FeatureCollection()
-        if(tree != null) {
+        if(tree == null) return FeatureCollection()
 
-            val results =
-                nearestWithinTriangle(arrayListOf(location, left, right), maxCount) ?: return featureCollection
-
-            for (feature in results) {
-                featureCollection.addFeature(feature.value())
-            }
-        }
-        return featureCollection
+        return nearestWithinTriangle(triangle, maxCount)
     }
 
 
-    fun generateFeatureCollectionWithinTriangle(location: LngLatAlt,
-                                                left: LngLatAlt,
-                                                right: LngLatAlt): FeatureCollection {
+    fun generateFeatureCollectionWithinTriangle(triangle: Triangle): FeatureCollection {
         val featureCollection = FeatureCollection()
         if(tree != null) {
-            val results = Iterables.toList(searchWithinTriangle(arrayListOf(location, left, right)))
+            val results = Iterables.toList(searchWithinTriangle(triangle))
 
             val deduplicationSet = mutableSetOf<Feature>()
             for (feature in results) {
@@ -479,17 +452,14 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         return featureCollection
     }
 
-    fun getNearestFeatureWithinTriangle(location: LngLatAlt,
-                                        left: LngLatAlt,
-                                        right: LngLatAlt): Feature? {
+    fun getNearestFeatureWithinTriangle(triangle: Triangle): Feature? {
 
         if (tree == null)
             return null
 
-        val results =
-            nearestWithinTriangle(arrayListOf(location, left, right), 1) ?: return null
-        if(results.count() == 0) return null
+        val results = nearestWithinTriangle(triangle, 1)
+        if(results.features.isEmpty()) return null
 
-        return results.first().value()
+        return results.features[0]
     }
 }

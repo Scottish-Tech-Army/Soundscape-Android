@@ -71,8 +71,8 @@ class ProtomapsGridState : GridState() {
             joiner.addInterpolatedPoints(ip)
         }
         // merging any overlapping Polygons that are on the tile boundaries
-        val mergedPoi = mergeAllPolygonsInFeatureCollection(featureCollections[TreeId.POIS.id])
-        featureCollections[TreeId.POIS.id] = mergedPoi
+//        val mergedPoi = mergeAllPolygonsInFeatureCollection(featureCollections[TreeId.POIS.id])
+//        featureCollections[TreeId.POIS.id] = mergedPoi
 
         joiner.addJoiningLines(featureCollections[TreeId.ROADS_AND_PATHS.id])
     }

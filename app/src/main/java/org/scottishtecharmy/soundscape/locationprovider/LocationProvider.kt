@@ -24,6 +24,13 @@ abstract class LocationProvider {
         return LngLatAlt(0.0,0.0)
     }
 
+    fun getSpeed(): Double {
+        mutableLocationFlow.value?.let { location ->
+            return location.speed.toDouble()
+        }
+        return 0.0
+    }
+
     // Flow to return Location objects
     val mutableLocationFlow = MutableStateFlow<Location?>(null)
     var locationFlow: StateFlow<Location?> = mutableLocationFlow

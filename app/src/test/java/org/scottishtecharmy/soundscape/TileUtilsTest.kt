@@ -23,14 +23,13 @@ import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.createTriangleFOV
+import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.explodeLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.explodePolygon
-import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
-import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfPolygon
-import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTrianglePoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestFovFeature
@@ -114,9 +113,9 @@ class TileUtilsTest {
         val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
         val testEntrancesCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ENTRANCES)
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("gd_entrance_list", feature.foreign!!["feature_type"])
+            Assert.assertEquals("entrance", feature.foreign!!["feature_type"])
         }
-        Assert.assertEquals(1, testEntrancesCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(8, testEntrancesCollectionFromTileFeatureCollection.features.size)
 
     }
 
@@ -125,9 +124,9 @@ class TileUtilsTest {
         val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        //There are 16 roads, 10 intersections, 0 entrances and 149 Features in total
-        // so there should be 123 POI Features in the POI Feature Collection
-        Assert.assertEquals(123, testPoiCollection.features.size)
+        //There are 14 roads, 10 intersections, 0 entrances and 149 Features in total
+        // so there should be 125 POI Features in the POI Feature Collection
+        Assert.assertEquals(125, testPoiCollection.features.size)
 
     }
 
@@ -140,7 +139,7 @@ class TileUtilsTest {
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
-        Assert.assertEquals(15, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(22, testSuperCategoryPoiCollection.features.size)
 
     }
 
@@ -406,11 +405,8 @@ class TileUtilsTest {
         val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
-        val points = getFovTrianglePoints(userGeometry)
-        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
 
         // Should only be the nearest intersection in this Feature Collection
         assert(nearestIntersection != null)
@@ -489,12 +485,10 @@ class TileUtilsTest {
             FeatureTree(testPoiCollectionFromTileFeatureCollection)
         )
 
-        // The distance is measured to the center of the bounding box
-        val box = getBoundingBoxOfPolygon(nearestPoiFeature!!.geometry as Polygon)
-        val center = getCenterOfBoundingBox(getBoundingBoxCorners(box))
-        val distance = userGeometry.location.distance(center)
+        // The distance is measured to the nearest point on the polygon
+        val distance = distanceToPolygon(userGeometry.location, nearestPoiFeature!!.geometry as Polygon)
 
-        Assert.assertEquals(29.65, distance, 0.01)
+        Assert.assertEquals(19.29, distance, 0.01)
     }
 
     @Test
@@ -652,11 +646,8 @@ class TileUtilsTest {
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Create a FOV triangle to pick up the intersections
-        val points = getFovTrianglePoints(userGeometry)
-        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
-            userGeometry.location,
-            points.left,
-            points.right)
+        val triangle = getFovTriangle(userGeometry)
+        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
         assert(nearestIntersection != null)
 
         // how far away is the intersection?
@@ -751,10 +742,12 @@ class TileUtilsTest {
     @Test
     fun explodePolygonTest(){
         // create a test polygon
-        val polygonTriangleFOV = createTriangleFOV(
-            LngLatAlt(0.0, 1.0),
-            LngLatAlt(0.5, 0.0),
-            LngLatAlt(1.0, 1.0)
+        val polygonTriangleFOV = createPolygonFromTriangle(
+            Triangle(
+                LngLatAlt(0.5, 0.0),
+                LngLatAlt(0.0, 1.0),
+                LngLatAlt(1.0, 1.0)
+            )
         )
 
         Assert.assertEquals(0.0, polygonTriangleFOV.coordinates[0][0].longitude, 0.01)
