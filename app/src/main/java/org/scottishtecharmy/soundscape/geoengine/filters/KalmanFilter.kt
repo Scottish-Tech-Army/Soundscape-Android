@@ -2,7 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.filters
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
-class KalmanFilter(filterSigma : Double = 9.0) {
+open class KalmanFilter(filterSigma : Double = 9.0, private val dimensions : Int = 2) {
 
     /// The minimum allowable accuracy measurement. Input accuracy values are clamped to this
     /// minimum in order to prevent a division by zero in the `process(:)` method.
@@ -21,14 +21,16 @@ class KalmanFilter(filterSigma : Double = 9.0) {
     private var covariance = 0.0
 
     /// Last estimate  computed by the `process(:)` method
-    private var estimate = LngLatAlt()
+    private var estimate = DoubleArray(dimensions) { 0.0 }
 
     /// Timestamp of last estimate
     private var timestamp: Long = 0L
 
-    fun process(newVector: LngLatAlt,
+    fun process(newVector: DoubleArray,
                 newTimestamp: Long,
-                newAccuracy: Double) : LngLatAlt {
+                newAccuracy: Double) : DoubleArray {
+
+        assert(newVector.size == dimensions)
 
         // Ensure `accuracy >= minimumAccuracy`
         val accuracy = maxOf(newAccuracy, minimumAccuracy)
@@ -52,10 +54,12 @@ class KalmanFilter(filterSigma : Double = 9.0) {
 
         // Smooth the input location to estimate the current location
         val kalmanGain = covariance / (covariance + measurementVariance)
-        val filtered = LngLatAlt()
-        filtered.latitude = estimate.latitude + kalmanGain * ((newVector.latitude) - estimate.latitude)
-        filtered.longitude = estimate.longitude + kalmanGain * ((newVector.longitude) - estimate.longitude)
-
+        val filtered = DoubleArray(dimensions)
+        for(entry in filtered.withIndex()) {
+            filtered[entry.index] =
+                estimate[entry.index] +
+                kalmanGain * ((newVector[entry.index]) - estimate[entry.index])
+        }
         estimate = filtered
         timestamp = newTimestamp
         covariance *= (1 - kalmanGain)
@@ -65,7 +69,29 @@ class KalmanFilter(filterSigma : Double = 9.0) {
 
     fun reset() {
         covariance = 0.0
-        estimate = LngLatAlt()
+        estimate = DoubleArray(2) { 0.0 }
         timestamp = 0L
+    }
+}
+
+fun arrayToLngLatAlt(array: DoubleArray) : LngLatAlt {
+    return LngLatAlt(array[0], array[1])
+}
+fun lngLatAltToArray(location: LngLatAlt) : DoubleArray {
+    return doubleArrayOf(location.longitude, location.latitude)
+}
+class KalmanLocationFilter(filterSigma : Double = 6.0) : KalmanFilter(filterSigma, 2) {
+    fun process(newVector: LngLatAlt,
+                newTimestamp: Long,
+                newAccuracy: Double) : LngLatAlt {
+        return arrayToLngLatAlt(super.process(lngLatAltToArray(newVector), newTimestamp, newAccuracy))
+    }
+}
+
+class KalmanHeadingFilter(filterSigma : Double = 9.0) : KalmanFilter(filterSigma, 1) {
+    fun process(newVector: Double,
+                newTimestamp: Long,
+                newAccuracy: Double) : Double {
+        return super.process(doubleArrayOf(newVector), newTimestamp, newAccuracy)[0]
     }
 }

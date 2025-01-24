@@ -2,8 +2,11 @@ package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
 import com.squareup.moshi.JsonClass
 import org.maplibre.android.geometry.LatLng
+import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import java.io.Serializable
+import kotlin.math.min
 
 @JsonClass(generateAdapter = true)
 open class LngLatAlt(
@@ -40,17 +43,22 @@ open class LngLatAlt(
         return LatLng(latitude, longitude)
     }
 
+
     fun distance(other: LngLatAlt): Double {
         return distance(latitude, longitude, other.latitude, other.longitude)
     }
 
-    fun distanceToLine(l1: LngLatAlt,
-                       l2: LngLatAlt,
-                       nearestPoint: LngLatAlt? = null): Double {
-        return distance(l1.latitude, l1.longitude,
+    fun distanceToLine(
+        l1: LngLatAlt,
+        l2: LngLatAlt,
+        nearestPoint: LngLatAlt? = null
+    ): Double {
+        return distance(
+            l1.latitude, l1.longitude,
             l2.latitude, l2.longitude,
             latitude, longitude,
-            nearestPoint)
+            nearestPoint
+        )
     }
 
     /**
@@ -62,29 +70,23 @@ open class LngLatAlt(
      * @return The distance of the point to the LineString
      */
     fun distanceToLineString(
-        lineStringCoordinates: LineString,
-        nearestPoint: LngLatAlt? = null
-    ): Double {
+        lineStringCoordinates: LineString
+    ): PointAndDistanceAndHeading {
 
-        var shortestDistance = Double.MAX_VALUE
-        var bestNearestPoint = LngLatAlt()
-        for(i in 1 until lineStringCoordinates.coordinates.size) {
-            val nearestPointOnSegment = LngLatAlt()
-            val distance = distanceToLine(
-                lineStringCoordinates.coordinates[i-1],
-                lineStringCoordinates.coordinates[i],
-                nearestPointOnSegment)
-
-            if(distance < shortestDistance) {
-                shortestDistance = distance
-                bestNearestPoint = nearestPointOnSegment
+        val result = PointAndDistanceAndHeading()
+        var last = lineStringCoordinates.coordinates[0]
+        for (i in 1 until lineStringCoordinates.coordinates.size) {
+            val current = lineStringCoordinates.coordinates[i]
+            val pointOnLine = LngLatAlt()
+            val distance = distanceToLine(last, current, pointOnLine)
+            if (distance < result.distance) {
+                result.distance = min(result.distance, distance)
+                result.point = pointOnLine
+                result.heading = bearingFromTwoPoints(last, current)
             }
+            last = current
         }
-        if(nearestPoint != null) {
-            nearestPoint.longitude = bestNearestPoint.longitude
-            nearestPoint.latitude = bestNearestPoint.latitude
-        }
-        return shortestDistance
+        return result
     }
 }
 

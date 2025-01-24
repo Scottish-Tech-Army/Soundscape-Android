@@ -10,14 +10,11 @@ import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
@@ -62,19 +59,19 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // Find roads within FOV
     val fovRoads = roadTree.generateFeatureCollectionWithinTriangle(triangle)
-    if(fovRoads.features.isEmpty()) return RoadsDescription()
+    if(fovRoads.features.isEmpty()) return RoadsDescription(nearestRoad = userGeometry.nearestRoad)
 
     // Two roads that we are interested in:
     //  1. The one that we are nearest to. We use this for intersection call outs to decide which
     //     intersection road we're on. This can be slightly behind us, it doesn't have to be in our
     //     FOV.
     //  2. The nearest one in our FOV. We use this to describe 'what's ahead'
-    val nearestRoad = getNearestRoad(userGeometry.location, roadTree)
-    val nearestRoadInFoV = getNearestRoad(userGeometry.location, FeatureTree(fovRoads))
+    val nearestRoad = userGeometry.nearestRoad
+    val nearestRoadInFoV = roadTree.getNearestFeatureWithinTriangle(triangle)
 
     // Find intersections within FOV
     val fovIntersections = intersectionTree.generateFeatureCollectionWithinTriangle(triangle)
-    if(fovIntersections.features.isEmpty()) return RoadsDescription(nearestRoadInFoV, userGeometry)
+    if(fovIntersections.features.isEmpty()) return RoadsDescription(nearestRoad, userGeometry)
 
     // Sort the FOV intersections by distance
     val sortedFovIntersections = sortedByDistanceTo(userGeometry.location, fovIntersections)
@@ -90,7 +87,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         }
     }
     if(nonTrivialIntersections.features.isEmpty()) {
-        return RoadsDescription(nearestRoadInFoV, userGeometry)
+        return RoadsDescription(nearestRoad, userGeometry)
     }
 
     // We have two different approaches to picking the intersection we're interested in
@@ -142,7 +139,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
             )
         )
     }
-    return RoadsDescription(nearestRoadInFoV, userGeometry)
+    return RoadsDescription(nearestRoad, userGeometry)
 }
 
 /**

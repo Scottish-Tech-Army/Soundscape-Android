@@ -1,11 +1,13 @@
 package org.scottishtecharmy.soundscape.geoengine
 
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    var phoneHeading: Double? = null,
                    var fovDistance: Double = 50.0,
                    val speed: Double = 0.0,
+                   val nearestRoad: Feature? = null,
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
                    private var headHeading: Double? = null,

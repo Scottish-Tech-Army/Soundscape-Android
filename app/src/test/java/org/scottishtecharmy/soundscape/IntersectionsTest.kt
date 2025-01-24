@@ -6,6 +6,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 
@@ -18,7 +19,8 @@ class IntersectionsTest {
                           fovDistance: Double) : FeatureCollection {
 
         val gridState = GridState.createFromGeoJson(geoJsonResource)
-        val userGeometry = UserGeometry(currentLocation, deviceHeading, fovDistance)
+        val userGeometry = UserGeometry(currentLocation, deviceHeading, fovDistance,
+            nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(currentLocation))
         return  getRoadsDescriptionFromFov(
                     gridState,
                     userGeometry,

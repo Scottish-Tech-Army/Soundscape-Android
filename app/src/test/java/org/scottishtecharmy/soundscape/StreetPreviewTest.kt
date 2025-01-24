@@ -19,7 +19,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
@@ -32,10 +31,8 @@ class StreetPreviewTest {
         // Start of PoC to track along a road from start to finish and generate field of view triangles
         // as the device moves along the road.
         val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
-        val roadFeatureCollectionTest = gridState.getFeatureCollection(TreeId.ROADS)
-        val nearestRoad = getNearestRoad(
-            LngLatAlt(-2.693002695425122,51.43938442591545),
-            FeatureTree(roadFeatureCollectionTest)
+        val nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
+            LngLatAlt(-2.693002695425122,51.43938442591545)
         )
         val nearestRoadTest = FeatureCollection()
         nearestRoadTest.addFeature(nearestRoad!!)
@@ -82,9 +79,9 @@ class StreetPreviewTest {
         val intersectionsFeatureCollectionTest = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         val crossingsFeatureCollectionTest = gridState.getFeatureCollection(TreeId.CROSSINGS)
         val busStopsGridFeatureCollection = gridState.getFeatureCollection(TreeId.BUS_STOPS)
-        val nearestRoadTest =  getNearestRoad(
-            LngLatAlt(-2.693002695425122,51.43938442591545),
-            FeatureTree(roadFeatureCollectionTest)
+
+        val nearestRoadTest = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
+            LngLatAlt(-2.693002695425122,51.43938442591545)
         )
 
         // trace along the road with equidistant points 30m apart.
@@ -132,9 +129,8 @@ class StreetPreviewTest {
                     )
 
                     if (fovRoadsFeatureCollection.features.size > 0) {
-                        val nearestRoad = getNearestRoad(
-                            userGeometry.location,
-                            FeatureTree(roadFeatureCollectionTest)
+                        val nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
+                            userGeometry.location
                         )
 
                         if (nearestRoad!!.properties?.get("name") != null) {
@@ -155,9 +151,8 @@ class StreetPreviewTest {
                                 fovIntersectionsFeatureCollection
                             )
 
-                            val testNearestRoad = getNearestRoad(
-                                userGeometry.location,
-                                FeatureTree(roadFeatureCollectionTest)
+                            val testNearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
+                                userGeometry.location
                             )
                             val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
 
@@ -228,9 +223,8 @@ class StreetPreviewTest {
                         val crossingLocation = nearestCrossing.geometry as Point
                         val distanceToCrossing = userGeometry.location.distance(crossingLocation.coordinates)
                         // Confirm which road the crossing is on
-                        val nearestRoadToCrossing = getNearestRoad(
-                            crossingLocation.coordinates,
-                            FeatureTree(roadFeatureCollectionTest)
+                        val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
+                            crossingLocation.coordinates
                         )
 
                         val crossingCallout = buildString {
@@ -255,9 +249,8 @@ class StreetPreviewTest {
                             busStopLocation.coordinates
                         )
                         // Confirm which road the crossing is on
-                        val nearestRoadToBus = getNearestRoad(
-                            busStopLocation.coordinates,
-                            FeatureTree(roadFeatureCollectionTest)
+                        val nearestRoadToBus = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
+                            busStopLocation.coordinates
                         )
 
                         val busStopCallout = buildString {

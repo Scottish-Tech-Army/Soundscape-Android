@@ -27,7 +27,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringIsCircular
@@ -100,7 +99,8 @@ class RoundaboutsTest {
         val boundingBoxOfCircle = getBoundingBoxOfLineString(roundaboutCircleRoad.features[0].geometry as LineString)
         val boundingBoxOfCircleCorners = getBoundingBoxCorners(boundingBoxOfCircle)
         val centerOfBoundingBox = getCenterOfBoundingBox(boundingBoxOfCircleCorners)
-        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
+
+        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
         val testNearestRoadBearing =
             getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading()!!)
         val geometry = UserGeometry(centerOfBoundingBox, testNearestRoadBearing, userGeometry.fovDistance)
@@ -191,7 +191,7 @@ class RoundaboutsTest {
         // This will remove the duplicate "osm_ids" from the intersection
         val cleanNearestIntersection = removeDuplicates(nearestIntersection)
 
-        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
+        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
 
         val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, userGeometry.heading()!!)
 
@@ -261,7 +261,7 @@ class RoundaboutsTest {
         println("Number of roads that make up the nearest intersection ${intersectionRoadNames.features.size}")
         // I need to test that the intersection roads have
         // "oneway" and "yes" tags and that the road names are all the same
-        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
+        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
         for (road in intersectionRoadNames) {
             if(testNearestRoad!!.properties?.get("name") == road.properties?.get("name")
                 && road.properties?.get("oneway") == "yes"){
