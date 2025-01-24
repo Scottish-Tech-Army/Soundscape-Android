@@ -14,7 +14,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import org.scottishtecharmy.soundscape.geoengine.filters.KalmanFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.time.Duration.Companion.seconds
 
@@ -25,7 +25,7 @@ class AndroidLocationProvider(context : Context) :
         LocationServices.getFusedLocationProviderClient(context)
     private var locationCallback: LocationCallback
 
-    private val filter = KalmanFilter()
+    private val filter = KalmanLocationFilter()
 
     fun filterLocation(location: Location) : Location {
         // Filter the location through the Kalman filter

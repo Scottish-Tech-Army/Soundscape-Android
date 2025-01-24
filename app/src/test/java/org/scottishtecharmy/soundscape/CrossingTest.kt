@@ -12,7 +12,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 
 class CrossingTest {
 
@@ -31,10 +30,12 @@ class CrossingTest {
         println("Crossings in tile: $crossingString")
 
         // usual fake our device location and heading
+        val location = LngLatAlt(-2.6920313574678403, 51.43745588326692)
         val userGeometry = UserGeometry(
-            LngLatAlt(-2.6920313574678403, 51.43745588326692),
+            location,
             45.0,
-            50.0
+            50.0,
+            nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(location)
         )
 
         // We can reuse the intersection code as crossings are GeoJSON Points just like Intersections
@@ -50,10 +51,7 @@ class CrossingTest {
         val distanceToCrossing = userGeometry.location.distance(crossingLocation.coordinates)
 
         // Confirm which road the crossing is on
-        val nearestRoadToCrossing = getNearestRoad(
-            LngLatAlt(crossingLocation.coordinates.longitude,crossingLocation.coordinates.latitude),
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
-        )
+        val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(crossingLocation.coordinates)
 
         Assert.assertEquals(24.58, distanceToCrossing, 0.1)
         Assert.assertEquals("Belmont Drive", nearestRoadToCrossing!!.properties?.get("name"))

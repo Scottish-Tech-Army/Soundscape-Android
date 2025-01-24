@@ -6,7 +6,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.getTilesForRegion
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
@@ -42,6 +41,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.traceLineString
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+
     @Test
     fun getXYTileTest() {
         val testSlippyMapTileName = getXYTile(LngLatAlt(0.5, 0.5), 16)
@@ -51,7 +51,8 @@ class TileUtilsTest {
 
     @Test
     fun getRoadsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val gridState =
+            createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
@@ -63,9 +64,11 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getBusStopsFeatureCollectionFromTileFeatureCollectionTest(){
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testBusStopFeatureCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.BUS_STOPS)
+    fun getBusStopsFeatureCollectionFromTileFeatureCollectionTest() {
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testBusStopFeatureCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.BUS_STOPS)
 
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
             Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
@@ -74,10 +77,11 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getCrossingsFeatureCollectionFromTileFeatureCollectionTest(){
-        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+    fun getCrossingsFeatureCollectionFromTileFeatureCollectionTest() {
+        val gridState =
+            createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
         val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
-        for (feature in testCrossingsFeatureCollection){
+        for (feature in testCrossingsFeatureCollection) {
             Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
         }
         Assert.assertEquals(2, testCrossingsFeatureCollection.features.size)
@@ -87,20 +91,26 @@ class TileUtilsTest {
     fun getPathsFeatureCollectionFromTileFeatureCollectionTest() {
         // This is the tile from /16/32295/21787.json as it contains footway, cycleway
         val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testPathsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
-        for (feature in testPathsCollectionFromTileFeatureCollection){
+        val testPathsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        val testRoadsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.ROADS)
+        for (feature in testPathsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
         // Check that the number of paths (road_and_paths - roads) is 54
-        Assert.assertEquals(54,
-            testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(
+            54,
+            testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
+        )
     }
 
     @Test
     fun getIntersectionsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
-        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        val gridState =
+            createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
@@ -111,7 +121,8 @@ class TileUtilsTest {
     @Test
     fun getEntrancesFeatureCollectionFromTileFeatureCollectionTest() {
         val gridState = createFromGeoJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
-        val testEntrancesCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ENTRANCES)
+        val testEntrancesCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.ENTRANCES)
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
             Assert.assertEquals("entrance", feature.foreign!!["feature_type"])
         }
@@ -121,7 +132,8 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val gridState =
+            createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         //There are 14 roads, 10 intersections, 0 entrances and 149 Features in total
@@ -209,23 +221,32 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getDistanceToFeatureCollectionTest(){
+    fun getDistanceToFeatureCollectionTest() {
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJsonData.featureCollectionJson)
 
         val currentLat = 0.0
         val currentLon = 0.5
-        val distanceToFeatureCollection = getDistanceToFeatureCollection(LngLatAlt(currentLon, currentLat), featureCollectionTest!!)
+        val distanceToFeatureCollection = getDistanceToFeatureCollection(
+            LngLatAlt(currentLon, currentLat),
+            featureCollectionTest!!
+        )
 
         // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
-        Assert.assertEquals(55659.75, distanceToFeatureCollection.features[0].foreign?.get("distance_to"))
+        Assert.assertEquals(
+            55659.75,
+            distanceToFeatureCollection.features[0].foreign?.get("distance_to")
+        )
         // Current location is on the boundary of the Polygon so distance should be 0.0
-        Assert.assertEquals(0.0, distanceToFeatureCollection.features[1].foreign?.get("distance_to"))
+        Assert.assertEquals(
+            0.0,
+            distanceToFeatureCollection.features[1].foreign?.get("distance_to")
+        )
 
     }
 
     @Test
-    fun getWhatsAroundMeTest(){
+    fun getWhatsAroundMeTest() {
         val gridFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
             .fromJson(GeoJSONData3x3gridnoduplicates.tileGrid)
         val currentLat = 51.43931965688239
@@ -243,9 +264,9 @@ class TileUtilsTest {
                 val tempFeatureCollection = FeatureCollection()
                 for (feature in placeSuperCategory.features) {
                     if (feature.foreign?.get("feature_value") != "house") {
-                        if (feature.properties?.get("name") != null){
+                        if (feature.properties?.get("name") != null) {
                             val superCategoryList = getSuperCategoryElements("place")
-                            for (property in feature.properties!!){
+                            for (property in feature.properties!!) {
                                 for (featureType in superCategoryList) {
                                     if (property.value == featureType) {
                                         tempFeatureCollection.features.add(feature)
@@ -273,19 +294,22 @@ class TileUtilsTest {
                 for (feature in mobilitySuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
-                val settingsString = moshi.adapter(FeatureCollection::class.java).toJson(settingsFeatureCollection)
+                val settingsString =
+                    moshi.adapter(FeatureCollection::class.java).toJson(settingsFeatureCollection)
                 println(settingsString)
 
                 val distanceToFeatureCollection = getDistanceToFeatureCollection(
-                    LngLatAlt(currentLon,currentLat),
+                    LngLatAlt(currentLon, currentLat),
                     settingsFeatureCollection
                 ).sortedBy { feature ->
                     feature.foreign?.get("distance_to") as? Double ?: Double.MAX_VALUE
                 }
-                for (feature in distanceToFeatureCollection){
-                    if (feature.properties?.get("name") != null){
-                            println("Feature: ${feature.properties?.get("name")} " +
-                                    "distance to feature: ${feature.foreign?.get("distance_to")}")
+                for (feature in distanceToFeatureCollection) {
+                    if (feature.properties?.get("name") != null) {
+                        println(
+                            "Feature: ${feature.properties?.get("name")} " +
+                                    "distance to feature: ${feature.foreign?.get("distance_to")}"
+                        )
                     }
                 }
 
@@ -323,7 +347,7 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getIntersectionInFovTest(){
+    fun getIntersectionInFovTest() {
         // Fake device location and pretend the device is pointing East.
         val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
@@ -331,8 +355,10 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
@@ -345,7 +371,7 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getRoadsInFovTest(){
+    fun getRoadsInFovTest() {
         // Fake device location and pretend the device is pointing East.
         val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
@@ -353,8 +379,10 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testRoadsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.ROADS)
 
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
@@ -368,7 +396,7 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getPoiInFovTest(){
+    fun getPoiInFovTest() {
         // Fake device location and pretend the device is pointing East.
         val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
@@ -376,7 +404,8 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
         val testPoiCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // Create a FOV triangle to pick up the Points of interest in the FoV
@@ -392,7 +421,7 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getNearestIntersectionTest(){
+    fun getNearestIntersectionTest() {
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
         val userGeometry = UserGeometry(
@@ -401,19 +430,24 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
         val triangle = getFovTriangle(userGeometry)
-        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
+        val nearestIntersection =
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
+                triangle
+            )
 
         // Should only be the nearest intersection in this Feature Collection
         assert(nearestIntersection != null)
     }
 
     @Test
-    fun sortedByDistanceToTest(){
+    fun sortedByDistanceToTest() {
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
         val userGeometry = UserGeometry(
@@ -422,8 +456,10 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
         val fovIntersectionsFeatureCollection = getFovFeatureCollection(
@@ -443,15 +479,17 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getNearestRoadTest(){
+    fun getNearestRoadTest() {
         // Fake device location and pretend the device is pointing East.
         val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
-            90.0,50.0
+            90.0, 50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testRoadsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.ROADS)
 
         // Create a FOV triangle to pick up the roads
         val fovRoadsFeatureCollection = getFovFeatureCollection(
@@ -460,7 +498,8 @@ class TileUtilsTest {
         )
         // This should pick up three roads in the FoV
         Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
-        val nearestRoad = getNearestRoad(userGeometry.location, FeatureTree(testRoadsCollectionFromTileFeatureCollection))
+        val nearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+            .getNearestFeature(userGeometry.location)
         // Should only be the nearest road in this Feature Collection
         assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
@@ -468,7 +507,7 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getNearestPoiTest(){
+    fun getNearestPoiTest() {
         // Fake device location and pretend the device is pointing East.
         val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
@@ -476,7 +515,8 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
         val testPoiCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // Create a FOV triangle to pick up the poi
@@ -486,7 +526,8 @@ class TileUtilsTest {
         )
 
         // The distance is measured to the nearest point on the polygon
-        val distance = distanceToPolygon(userGeometry.location, nearestPoiFeature!!.geometry as Polygon)
+        val distance =
+            distanceToPolygon(userGeometry.location, nearestPoiFeature!!.geometry as Polygon)
 
         Assert.assertEquals(19.29, distance, 0.01)
     }
@@ -516,35 +557,35 @@ class TileUtilsTest {
     }
 
     @Test
-    fun get3x3TileGridTest(){
+    fun get3x3TileGridTest() {
         // Override Global grid size setting
         GRID_SIZE = 3
 
         var tileGrid = getTileGrid(LngLatAlt(65.0, 0.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
         tileGrid = getTileGrid(LngLatAlt(-65.0, 0.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
         tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
         tileGrid = getTileGrid(LngLatAlt(0.0, 180.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
         tileGrid = getTileGrid(LngLatAlt(0.0, -180.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
     }
 
     @Test
-    fun get2x2TileGridTest(){
+    fun get2x2TileGridTest() {
         // Override Global grid size setting
         GRID_SIZE = 2
 
         var tileGrid = getTileGrid(LngLatAlt(0.001, 0.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
         tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
-        Assert.assertEquals(GRID_SIZE*GRID_SIZE, tileGrid.tiles.size)
+        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
     }
 
     @Test
-    fun getRelativeDirectionsTest(){
+    fun getRelativeDirectionsTest() {
 
         val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
@@ -552,74 +593,82 @@ class TileUtilsTest {
             50.0
         )
 
-        val combinedDirectionPolygons  = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.COMBINED)
+        val combinedDirectionPolygons =
+            getRelativeDirectionsPolygons(userGeometry, RelativeDirections.COMBINED)
 
         // Location to test relative directions. Placed in "Ahead" triangle
-        val testBeaconAhead = LngLatAlt(-2.6572829456840736,51.4307659303868)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere1 = polygonContainsCoordinates(testBeaconAhead, (feature.geometry as Polygon))
-            if (iAmHere1){
+        val testBeaconAhead = LngLatAlt(-2.6572829456840736, 51.4307659303868)
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere1 =
+                polygonContainsCoordinates(testBeaconAhead, (feature.geometry as Polygon))
+            if (iAmHere1) {
                 Assert.assertEquals(4, feature.properties!!["Direction"])
             }
         }
 
         // Location to test relative directions. Placed in "Ahead Right" triangle
-        val testBeaconAheadRight = LngLatAlt(-2.656996677668559,51.43067289460916)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere2 = polygonContainsCoordinates(testBeaconAheadRight, (feature.geometry as Polygon))
-            if (iAmHere2){
+        val testBeaconAheadRight = LngLatAlt(-2.656996677668559, 51.43067289460916)
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere2 =
+                polygonContainsCoordinates(testBeaconAheadRight, (feature.geometry as Polygon))
+            if (iAmHere2) {
                 Assert.assertEquals(5, feature.properties!!["Direction"])
             }
         }
 
         // Location to test relative directions. Placed in "Right" triangle
         val testBeaconRight = LngLatAlt(-2.656649501563379, 51.430464038091515)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere3 = polygonContainsCoordinates(testBeaconRight, (feature.geometry as Polygon))
-            if (iAmHere3){
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere3 =
+                polygonContainsCoordinates(testBeaconRight, (feature.geometry as Polygon))
+            if (iAmHere3) {
                 Assert.assertEquals(6, feature.properties!!["Direction"])
             }
         }
 
         // Location to test relative directions. Placed in "Behind Right" triangle
-        val testBeaconBehindRight = LngLatAlt(-2.6570667219705797,51.43031404054909)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere4 = polygonContainsCoordinates(testBeaconBehindRight, (feature.geometry as Polygon))
-            if (iAmHere4){
+        val testBeaconBehindRight = LngLatAlt(-2.6570667219705797, 51.43031404054909)
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere4 =
+                polygonContainsCoordinates(testBeaconBehindRight, (feature.geometry as Polygon))
+            if (iAmHere4) {
                 Assert.assertEquals(7, feature.properties!!["Direction"])
             }
         }
 
         // Location to test relative directions. Placed in "Behind" triangle
-        val testBeaconBehind = LngLatAlt(-2.6572890364938644,51.430274167701896)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere5 = polygonContainsCoordinates(testBeaconBehind, (feature.geometry as Polygon))
-            if (iAmHere5){
+        val testBeaconBehind = LngLatAlt(-2.6572890364938644, 51.430274167701896)
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere5 =
+                polygonContainsCoordinates(testBeaconBehind, (feature.geometry as Polygon))
+            if (iAmHere5) {
                 Assert.assertEquals(0, feature.properties!!["Direction"])
             }
         }
 
         // Location to test relative directions. Placed in "Behind Left" triangle
-        val testBeaconBehindLeft = LngLatAlt(-2.657806755246213,51.430285559947464)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere6 = polygonContainsCoordinates(testBeaconBehindLeft, (feature.geometry as Polygon))
-            if (iAmHere6){
+        val testBeaconBehindLeft = LngLatAlt(-2.657806755246213, 51.430285559947464)
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere6 =
+                polygonContainsCoordinates(testBeaconBehindLeft, (feature.geometry as Polygon))
+            if (iAmHere6) {
                 Assert.assertEquals(1, feature.properties!!["Direction"])
             }
         }
         // Location to test relative directions. Placed in "Left" triangle
-        val testBeaconLeft = LngLatAlt(-2.6579194352108857,51.43053239123893)
-        for (feature in combinedDirectionPolygons){
+        val testBeaconLeft = LngLatAlt(-2.6579194352108857, 51.43053239123893)
+        for (feature in combinedDirectionPolygons) {
             val iAmHere7 = polygonContainsCoordinates(testBeaconLeft, (feature.geometry as Polygon))
-            if (iAmHere7){
+            if (iAmHere7) {
                 Assert.assertEquals(2, feature.properties!!["Direction"])
             }
         }
         // Location to test relative directions. Placed in "Ahead Left" triangle
-        val testBeaconAheadLeft = LngLatAlt(-2.657566168297052,51.430682388064525)
-        for (feature in combinedDirectionPolygons){
-            val iAmHere8 = polygonContainsCoordinates(testBeaconAheadLeft, (feature.geometry as Polygon))
-            if (iAmHere8){
+        val testBeaconAheadLeft = LngLatAlt(-2.657566168297052, 51.430682388064525)
+        for (feature in combinedDirectionPolygons) {
+            val iAmHere8 =
+                polygonContainsCoordinates(testBeaconAheadLeft, (feature.geometry as Polygon))
+            if (iAmHere8) {
                 Assert.assertEquals(3, feature.properties!!["Direction"])
             }
         }
@@ -627,7 +676,7 @@ class TileUtilsTest {
     }
 
     @Test
-    fun getIntersectionRoadNamesTest(){
+    fun getIntersectionRoadNamesTest() {
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
         val userGeometry = UserGeometry(
@@ -636,23 +685,30 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
-        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        val gridState =
+            createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val testRoadsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.ROADS)
+        val testIntersectionsCollectionFromTileFeatureCollection =
+            gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         // create a FOV triangle to pick up the roads
-        val  fovRoadsFeatureCollection = getFovFeatureCollection(
+        val fovRoadsFeatureCollection = getFovFeatureCollection(
             userGeometry,
             FeatureTree(testRoadsCollectionFromTileFeatureCollection)
         )
         // Create a FOV triangle to pick up the intersections
         val triangle = getFovTriangle(userGeometry)
-        val nearestIntersection = FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(triangle)
+        val nearestIntersection =
+            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection).getNearestFeatureWithinTriangle(
+                triangle
+            )
         assert(nearestIntersection != null)
 
         // how far away is the intersection?
         val nearestIntersectionPoint = nearestIntersection!!.geometry as Point
-        val distanceToNearestIntersection = userGeometry.location.distance(nearestIntersectionPoint.coordinates)
+        val distanceToNearestIntersection =
+            userGeometry.location.distance(nearestIntersectionPoint.coordinates)
         Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
@@ -660,8 +716,14 @@ class TileUtilsTest {
             nearestIntersection,
             fovRoadsFeatureCollection
         )
-        Assert.assertEquals("Long Ashton Road", nearestIntersectionRoadNames.features[1].properties!!["name"])
-        Assert.assertEquals("Weston Road", nearestIntersectionRoadNames.features[0].properties!!["name"])
+        Assert.assertEquals(
+            "Long Ashton Road",
+            nearestIntersectionRoadNames.features[1].properties!!["name"]
+        )
+        Assert.assertEquals(
+            "Weston Road",
+            nearestIntersectionRoadNames.features[0].properties!!["name"]
+        )
     }
 
     private fun roundtripGpsLocation(latitude: Double, longitude: Double) {
@@ -670,6 +732,7 @@ class TileUtilsTest {
         Assert.assertEquals(gps.first, latitude, 0.0000000001)
         Assert.assertEquals(gps.second, longitude, 0.0000000001)
     }
+
     @Test
     fun testNormalizingLocation() {
         // Roundtrip some GPS locations
@@ -686,17 +749,19 @@ class TileUtilsTest {
         roundtripGpsLocation(64.511925, -165.5752794)       // Nome
         roundtripGpsLocation(0.0, -179.0)
         roundtripGpsLocation(0.0, 179.0)
-        roundtripGpsLocation(85.0, -179.0)                  // The projection breaks above 85 degrees
+        roundtripGpsLocation(
+            85.0,
+            -179.0
+        )                  // The projection breaks above 85 degrees
         roundtripGpsLocation(-85.0, 179.0)
     }
 
     @Test
-    fun explodeLineStringTest(){
+    fun explodeLineStringTest() {
         val featureCollection = FeatureCollection().also {
             it.addFeature(
                 Feature().also { feature ->
-                    feature.geometry = LineString().also {
-                            lineString ->
+                    feature.geometry = LineString().also { lineString ->
                         lineString.coordinates = arrayListOf(
                             LngLatAlt(0.0, 0.0),
                             LngLatAlt(1.0, 1.0),
@@ -712,12 +777,11 @@ class TileUtilsTest {
     }
 
     @Test
-    fun traceLineStringTest(){
+    fun traceLineStringTest() {
         val featureCollection = FeatureCollection().also {
             it.addFeature(
                 Feature().also { feature ->
-                    feature.geometry = LineString().also {
-                            lineString ->
+                    feature.geometry = LineString().also { lineString ->
                         lineString.coordinates = arrayListOf(
                             LngLatAlt(0.0, 0.0),
                             LngLatAlt(1.0, 1.0),
@@ -732,15 +796,17 @@ class TileUtilsTest {
         val tracedEvery1000FeatureCollection = traceLineString(featureCollection, 1000.0)
         val tracedEvery10000FeatureCollection = traceLineString(featureCollection, 10000.0)
 
-        val pointEvery1000String = moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery1000FeatureCollection)
-        val pointEvery10000String = moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery10000FeatureCollection)
+        val pointEvery1000String =
+            moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery1000FeatureCollection)
+        val pointEvery10000String =
+            moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery10000FeatureCollection)
         // copy and paste into GeoJSON.io
         println(pointEvery1000String)
         println(pointEvery10000String)
     }
 
     @Test
-    fun explodePolygonTest(){
+    fun explodePolygonTest() {
         // create a test polygon
         val polygonTriangleFOV = createPolygonFromTriangle(
             Triangle(
@@ -783,5 +849,4 @@ class TileUtilsTest {
         Assert.assertEquals(1.0, thirdLineString.coordinates[0].latitude, 0.1)
 
     }
-
 }

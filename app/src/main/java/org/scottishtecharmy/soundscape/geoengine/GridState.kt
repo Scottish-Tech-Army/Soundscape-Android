@@ -15,7 +15,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -261,9 +260,8 @@ open class GridState {
             val featureLocation = nearestFeature.geometry as Point
 
             // Confirm which road the feature is on
-            val nearestRoad = getNearestRoad(
-                featureLocation.coordinates,
-                featureTrees[TreeId.ROADS_AND_PATHS.id]
+            val nearestRoad = featureTrees[TreeId.ROADS_AND_PATHS.id].getNearestFeature(
+                featureLocation.coordinates
             )
             if(nearestRoad != null) {
                 // We found a feature and the road that it is on

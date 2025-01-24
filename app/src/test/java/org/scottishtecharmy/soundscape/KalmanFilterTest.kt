@@ -3,7 +3,7 @@ package org.scottishtecharmy.soundscape
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geoengine.filters.KalmanFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 
@@ -11,7 +11,7 @@ class KalmanFilterTest {
 
     @Test
     fun testFilter() {
-        val filter = KalmanFilter(3.0)
+        val filter = KalmanLocationFilter(3.0)
         filter.reset()
 
         val start = LngLatAlt(10.0, 20.0)
@@ -50,7 +50,7 @@ class KalmanFilterTest {
 
     @Test
     fun testFilter2() {
-        val filter = KalmanFilter(3.0)
+        val filter = KalmanLocationFilter(3.0)
         filter.reset()
 
         val start = LngLatAlt(10.0, 20.0)

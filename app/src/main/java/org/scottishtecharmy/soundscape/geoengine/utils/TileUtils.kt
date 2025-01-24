@@ -331,28 +331,9 @@ fun getIntersectionRoadNames(
     return intersectionRoads
 }
 
-/**
- * Get nearest road from roads Feature Collection.
- * WARNING: It doesn't care which direction the road is.
- * Roads can contain crossings which are Points not LineStrings.
- * @param currentLocation
- * Location of device.
- * @param searchTree
- * The FeatureTree to search for the nearest road.
- * @return A Feature that is the nearest road.
- */
-fun getNearestRoad(
-    currentLocation: LngLatAlt,
-    searchTree: FeatureTree
-): Feature? {
-
-    // This is just the nearest road. In the future, the algorithm will get almost certainly become
-    // more elaborate.
-    val nearestRoad = searchTree.getNearestFeature(currentLocation)
-    return nearestRoad
-}
-
-data class PointAndDistance(val point: LngLatAlt, val distance: Double)
+data class PointAndDistanceAndHeading(var point: LngLatAlt = LngLatAlt(),
+                                      var distance: Double = Double.MAX_VALUE,
+                                      var heading: Double = 0.0)
 
 /**
  * Given a Feature and a location this will calculate the nearest distance to it
@@ -365,14 +346,14 @@ data class PointAndDistance(val point: LngLatAlt, val distance: Double)
 fun getDistanceToFeature(
     currentLocation: LngLatAlt,
     feature: Feature
-): PointAndDistance {
+): PointAndDistanceAndHeading {
     when (feature.geometry.type) {
         "Point" -> {
             val point = feature.geometry as Point
             val distanceToFeaturePoint = currentLocation.distance(
                 LngLatAlt(point.coordinates.longitude, point.coordinates.latitude)
             )
-            return PointAndDistance(point.coordinates, distanceToFeaturePoint)
+            return PointAndDistanceAndHeading(point.coordinates, distanceToFeaturePoint)
         }
 
         "MultiPoint" -> {
@@ -388,36 +369,27 @@ fun getDistanceToFeature(
                 }
             }
             // this is the closest point to the current location from the collection of points
-            return PointAndDistance(nearestPoint, shortestDistance)
+            return PointAndDistanceAndHeading(nearestPoint, shortestDistance)
         }
 
         "LineString" -> {
             val lineString = feature.geometry as LineString
-            val nearestPoint = LngLatAlt()
-            val distanceToFeatureLineString = currentLocation.distanceToLineString(
-                lineString,
-                nearestPoint
-            )
-            return PointAndDistance(nearestPoint, distanceToFeatureLineString)
+            return currentLocation.distanceToLineString(lineString)
         }
 
         "MultiLineString" -> {
             val multiLineString = feature.geometry as MultiLineString
-            var shortestDistance = Double.MAX_VALUE
-            var nearestPoint = LngLatAlt()
+            var nearest = PointAndDistanceAndHeading()
 
             for (arrCoordinates in multiLineString.coordinates) {
-                val pointOnLine = LngLatAlt()
-                val distanceToLine = currentLocation.distanceToLineString(
+                val segmentNearest = currentLocation.distanceToLineString(
                     LineString(arrCoordinates),
-                    pointOnLine
                 )
-                if (distanceToLine < shortestDistance) {
-                    shortestDistance = distanceToLine
-                    nearestPoint = pointOnLine
+                if (segmentNearest.distance < nearest.distance) {
+                    nearest = segmentNearest
                 }
             }
-            return PointAndDistance(nearestPoint, shortestDistance)
+            return nearest
         }
 
         "Polygon" -> {
@@ -434,7 +406,7 @@ fun getDistanceToFeature(
             if(polygonContainsCoordinates(currentLocation, polygon)) {
                 distance = 0.0
             }
-            return PointAndDistance(nearestPoint, distance)
+            return PointAndDistanceAndHeading(nearestPoint, distance)
         }
 
         "MultiPolygon" -> {
@@ -455,13 +427,13 @@ fun getDistanceToFeature(
                 }
             }
             // this is the shortest distance from current location to the collection of Polygons
-            return PointAndDistance(nearestPoint, shortestDistance)
+            return PointAndDistanceAndHeading(nearestPoint, shortestDistance)
         }
 
         else -> {
             println("Unknown type ${feature.geometry.type}")
             assert(false)
-            return PointAndDistance(LngLatAlt(), Double.NaN)
+            return PointAndDistanceAndHeading()
         }
     }
 }

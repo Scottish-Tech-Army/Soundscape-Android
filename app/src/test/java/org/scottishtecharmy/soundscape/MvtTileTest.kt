@@ -1,21 +1,30 @@
 package org.scottishtecharmy.soundscape
 
+import android.location.Location
+import android.location.LocationManager
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 
 private fun vectorTileToGeoJsonFromFile(
@@ -317,6 +326,141 @@ class MvtTileTest {
         }
 
         // Clone is cloning all of the hashmap entries
+    }
+
+
+    @Test
+    fun testRoadBearing(){
+        val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
+        val gridState = getGridStateForLocation(userGeometry.location)
+
+        val roadTree = gridState.getFeatureTree(TreeId.ROADS)
+        val nearestRoad = roadTree.getNearestFeature(userGeometry.location)
+
+        // The distance returned is the shortest distance to the line, but the nearestPoint is the
+        // point on the line that's the nearest.
+        val nearestPoint = getDistanceToFeature(userGeometry.location, nearestRoad!!)
+
+        println(nearestRoad.toString())
+    }
+
+    private fun createLocation(newLocation : LngLatAlt, speed : Float) : Location {
+
+        val location = Location(LocationManager.PASSIVE_PROVIDER)
+        location.latitude = newLocation.latitude
+        location.longitude = newLocation.longitude
+        location.speed = speed
+        location.accuracy = 10.0F
+
+        return location
+    }
+
+    @Test
+    fun testNearestRoadIdeas() {
+
+        val gridState = getGridStateForLocation(LngLatAlt(-4.31029, 55.94583))
+        val geojson = FeatureCollection()
+
+        val heading = 180.0
+        var latitude = 55.945219
+        while(latitude < 55.94583) {
+            var longitude = -4.311362
+            var lastNearestRoad: Feature? = null
+            while(longitude < -4.31029) {
+
+                if(((latitude - 55.9455).absoluteValue < 0.00005) &&
+                    ((longitude + 4.3110).absoluteValue < 0.00005)) {
+                    println("Break!")
+                }
+                val location = LngLatAlt(longitude, latitude)
+                val sensedNearestRoads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+                    .generateNearestFeatureCollection(location, 20.0, 10)
+
+                var bestIndex = -1
+                var bestFitness = 0.0
+                for ((index, sensedRoad) in sensedNearestRoads.withIndex()) {
+                    val sensedRoadInfo = getDistanceToFeature(location, sensedRoad)
+                    var headingOffSensedRoad =
+                        abs((heading % 180) - (sensedRoadInfo.heading % 180))
+                    if(headingOffSensedRoad > 90)
+                        headingOffSensedRoad = 180 - headingOffSensedRoad
+
+                    // We want to decide based on distance and direction. This calculation gives
+                    // a reasonable road as a result from only a point and a heading - no history.
+                    // The actual nearest road function could use the nearest road history to
+                    // decide on whether to stick with the individual road or not.
+                    val w1 = 300.0
+                    val w2 = 100.0
+                    val fitness = (w1 * (10 / (10 + sensedRoadInfo.distance))) +
+                                  (w2 * (30 / (30 + headingOffSensedRoad)))
+                    if(fitness > bestFitness) {
+                        bestFitness = fitness
+                        bestIndex = index
+                    }
+                }
+                if(sensedNearestRoads.features.isNotEmpty()) {
+                    val bestMatch = sensedNearestRoads.features[bestIndex]
+                    if(bestMatch != lastNearestRoad) {
+                        val geoPointFeature = Feature()
+                        val pointGeometry = Point(location.longitude, location.latitude)
+                        geoPointFeature.geometry = pointGeometry
+                        val foreign: HashMap<String, Any?> = hashMapOf()
+                        foreign["nearestRoad"] = bestMatch.properties?.get("name")
+                        foreign["direction"] = heading
+                        geoPointFeature.properties = foreign
+                        geojson.addFeature(geoPointFeature)
+                    }
+
+                    lastNearestRoad = bestMatch
+                }
+
+                longitude += 0.00001
+            }
+            latitude += 0.00001
+        }
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val outputFile = FileOutputStream("nearest.geojson")
+        outputFile.write(adapter.toJson(geojson).toByteArray())
+        outputFile.close()
+    }
+
+
+    @Test
+    fun testNearestRoadFilter(){
+        val locations = arrayOf(
+            arrayOf(-4.31029,  55.94583,  8.0, 210.0, 10.0),
+            arrayOf(-4.310359, 55.945824, 8.0, 205.0, 10.0),
+            arrayOf(-4.310503, 55.945682, 1.0, 190.0, 10.0),
+            arrayOf(-4.310503, 55.945682, 8.0, 185.0, 10.0),
+            arrayOf(-4.310549, 55.945569, 8.0, 180.0, 10.0),
+            arrayOf(-4.310549, 55.945569, 8.0, 180.0, 20.0),
+            arrayOf(-4.310605, 55.945456, 8.0, 180.0, 20.0),
+            arrayOf(-4.310605, 55.945456, 8.0, 180.0, 20.0),
+            arrayOf(-4.310654, 55.945327, 8.0, 180.0, 20.0),
+            arrayOf(-4.310654, 55.945327, 8.0, 200.0, 20.0),
+            arrayOf(-4.310691, 55.945218, 8.0, 270.0, 20.0),
+            arrayOf(-4.310691, 55.945218, 8.0, 270.0, 10.0),
+            arrayOf(-4.310887, 55.945219, 8.0, 270.0, 10.0),
+            arrayOf(-4.310887, 55.945219, 8.0, 270.0, 10.0),
+            arrayOf(-4.311083, 55.945221, 8.0, 270.0, 10.0),
+            arrayOf(-4.311083, 55.945221, 8.0, 270.0, 10.0),
+            arrayOf(-4.311362, 55.945219, 8.0, 270.0, 10.0),
+        )
+
+        val gridState = getGridStateForLocation(LngLatAlt(-4.31029,  55.94583))
+        val filter = NearestRoadFilter()
+
+        var time = 0L
+        for(location in locations) {
+            filter.update(
+                LngLatAlt(location[0], location[1]),
+                location[2],
+                location[3],
+                location[4],
+                time,
+                gridState)
+            time += 1000
+        }
     }
 }
 

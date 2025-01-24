@@ -18,7 +18,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
@@ -74,7 +73,8 @@ class VisuallyCheckIntersectionLayers {
             fovIntersectionsFeatureCollection
         )
         // Get the nearest Road in the FoV
-        val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(testRoadsCollectionFromTileFeatureCollection))
+        val testNearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(userGeometry.location)
+
         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
         for (i in 0 until intersectionsSortedByDistance.features.size) {
             val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[i], fovRoadsFeatureCollection)
@@ -121,10 +121,7 @@ class VisuallyCheckIntersectionLayers {
         val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
         // Confirm which road the crossing is on
         val crossingLocation = nearestCrossing!!.geometry as Point
-        val nearestRoadToCrossing = getNearestRoad(
-            LngLatAlt(crossingLocation.coordinates.longitude,crossingLocation.coordinates.latitude),
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
-        )
+        val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(crossingLocation.coordinates)
         // *** End of Crossing
 
         // Road with nearest crossing

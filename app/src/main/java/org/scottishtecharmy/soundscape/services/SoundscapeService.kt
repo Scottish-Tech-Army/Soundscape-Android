@@ -8,6 +8,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Binder
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
@@ -462,8 +463,13 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun appInForeground(foreground: Boolean) {
-        // Set flag in GeoEngine so that it can adjust it's behaviour
-        geoEngine.appInForeground = foreground
+//  When running in the emulator it's useful to pretend that the phone is locked as that then uses
+//  the GPS heading rather than the non-existent phone heading. Uncomment the check below to enable
+//  that behaviour.
+//        if(Build.DEVICE.contains("generic")) {
+            // Set flag in GeoEngine so that it can adjust it's behaviour
+            geoEngine.appInForeground = foreground
+//        }
     }
 
     companion object {

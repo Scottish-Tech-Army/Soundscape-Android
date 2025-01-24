@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
 class IntersectionsTestMvt {
@@ -14,7 +15,20 @@ class IntersectionsTestMvt {
                           fovDistance: Double) : FeatureCollection {
 
         val gridState = getGridStateForLocation(currentLocation)
-        val userGeometry = UserGeometry(currentLocation, deviceHeading, fovDistance)
+        val nearestRoadFilter = NearestRoadFilter()
+        nearestRoadFilter.update(
+            location = currentLocation,
+            locationAccuracy = 0.1,
+            bearing = deviceHeading,
+            bearingAccuracy = 0.1,
+            timeInMilliseconds = 1000,
+            gridState = gridState
+        )
+        val userGeometry = UserGeometry(
+            location = currentLocation,
+            phoneHeading = deviceHeading,
+            fovDistance = fovDistance,
+            nearestRoad = nearestRoadFilter.get())
         return getRoadsDescriptionFromFov(
                     gridState,
                     userGeometry,
