@@ -5,29 +5,27 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesTabs
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesAppBar
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesTabsVM
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenVM
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenVM
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
 @Composable
 fun MarkersAndRoutesScreen(
-    mainNavController: NavController,
-    selectedTab: String?,
+    navController: NavController,
+    viewModel : HomeViewModel,
     modifier: Modifier
 ) {
-    // Nested navController for the tab navigation inside MarkersAndRoutes
-    val nestedNavController = rememberNavController()
-
-    // Determine if the add icon should be shown based on the current route
-    val currentRoute = nestedNavController.currentBackStackEntryAsState().value?.destination?.route
-    val showAddIcon = currentRoute == ScreensForMarkersAndRoutes.Routes.route
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = modifier,
@@ -35,18 +33,18 @@ fun MarkersAndRoutesScreen(
             Column {
                 MarkersAndRoutesAppBar(
                     onNavigateUp = {
-                        mainNavController.navigateUp()
+                        navController.navigateUp()
                     },
                 )
-                MarkersAndRoutesTabs(navController = nestedNavController)
+                MarkersAndRoutesTabsVM(viewModel)
             }},
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
-            MarkersAndRoutesNavGraph(
-                navController = nestedNavController,
-                homeNavController = mainNavController,
-                startDestination = selectedTab ?: ScreensForMarkersAndRoutes.Markers.route
-            )
+            if(state.routesTabSelected) {
+                RoutesScreenVM(navController)
+            } else {
+                MarkersScreenVM(navController)
+            }
         }
     }
 }
@@ -57,8 +55,8 @@ fun MarkersAndRoutesScreen(
 fun MarkersAndRoutesPreview() {
     SoundscapeTheme {
         MarkersAndRoutesScreen(
-            mainNavController = rememberNavController(),
-            selectedTab = ScreensForMarkersAndRoutes.Markers.route,
+            navController = rememberNavController(),
+            viewModel = viewModel(),
             modifier = Modifier
         )
     }

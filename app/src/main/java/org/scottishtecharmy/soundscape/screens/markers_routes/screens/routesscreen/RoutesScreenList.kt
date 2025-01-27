@@ -32,35 +32,37 @@ fun RouteList(
         modifier = Modifier.fillMaxWidth().heightIn(max = 470.dp)
     ) {
         items(uiState.routes) { route ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primary)
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = route.name,
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                    Text(
-                        text = route.description,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Bold,
+            if(route.name.isNotEmpty()) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.primary)
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = route.name,
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        )
+                        Text(
+                            text = route.description,
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    Icon(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .clickable { navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}") },
+
+                        imageVector = Icons.Default.ChevronRight,
+                        contentDescription = ""
                     )
                 }
-                Icon(
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .clickable {navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}")},
-
-                imageVector = Icons.Default.ChevronRight,
-                    contentDescription = ""
-                )
             }
         }
     }

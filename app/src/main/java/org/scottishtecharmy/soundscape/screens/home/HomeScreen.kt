@@ -14,7 +14,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -79,7 +78,7 @@ fun HomeScreen(
                 getWhatsAroundMe = { viewModel.whatsAroundMe() },
                 searchText = searchText.value,
                 isSearching = state.value.isSearching,
-                onToogleSearch = viewModel::onToogleSearch,
+                onToggleSearch = viewModel::onToggleSearch,
                 onSearchTextChange = viewModel::onSearchTextChange,
                 searchItems = state.value.searchItems.orEmpty(),
                 shareLocation = { viewModel.shareLocation(context) },
@@ -112,11 +111,18 @@ fun HomeScreen(
             LocationDetailsScreen(
                 locationDescription = locationDescription,
                 onNavigateUp = {
-                    navController.navigate(HomeRoutes.Home.route) {
-                        popUpTo(HomeRoutes.Home.route) {
-                            inclusive = false // Ensures Home screen is not popped from the stack
+                    // If the location is a marker, then we're in the routes menu, so just pop back
+                    // up. Otherwise, pop up to Home.
+                    if(locationDescription.marker) {
+                        navController.popBackStack()
+                    } else {
+                        navController.navigate(HomeRoutes.Home.route) {
+                            popUpTo(HomeRoutes.Home.route) {
+                                inclusive =
+                                    false // Ensures Home screen is not popped from the stack
+                            }
+                            launchSingleTop = true // Prevents multiple instances of Home
                         }
-                        launchSingleTop = true // Prevents multiple instances of Home
                     }
                 },
                 latitude = state.value.location?.latitude,
@@ -128,16 +134,11 @@ fun HomeScreen(
         }
 
         // MarkersAndRoutesScreen with tab selection
-        navigation(
-            startDestination = "${HomeRoutes.MarkersAndRoutes.route}/{tab}",
-            route = HomeRoutes.MarkersAndRoutes.route,
-        ) {
-            composable("${HomeRoutes.MarkersAndRoutes.route}/{tab}") { backStackEntry ->
-                val selectedTab = backStackEntry.arguments?.getString("tab")
-                MarkersAndRoutesScreen(mainNavController = navController,
-                    selectedTab = selectedTab,
-                    modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
-            }
+        composable(HomeRoutes.MarkersAndRoutes.route) {
+            MarkersAndRoutesScreen(
+                navController = navController,
+                viewModel = viewModel,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
         }
 
         composable(HomeRoutes.AddRoute.route) {
@@ -148,7 +149,9 @@ fun HomeScreen(
             val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
             RouteDetailsScreenVM(
                 routeName = routeName,
-                navController = navController)
+                navController = navController,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
 
         composable(HomeRoutes.EditRoute.route + "/{routeName}") { backStackEntry ->
@@ -166,7 +169,8 @@ fun HomeScreen(
                 routeName = uiState.name,
                 routeDescription = uiState.description,
                 navController = navController,
-                viewModel = editRouteViewModel
+                viewModel = editRouteViewModel,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
     }

@@ -6,6 +6,7 @@ data class LocationDescription(
     val postcodeAndLocality: String? = null,
     val country: String? = null,
     val distance: String? = null,
-    val latitude: Double,
-    val longitude: Double,
+    val latitude: Double = Double.NaN,
+    val longitude: Double = Double.NaN,
+    val marker: Boolean = false
 )

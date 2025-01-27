@@ -32,7 +32,6 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -83,7 +82,7 @@ fun AddRouteScreen(
     // Observe navigation and trigger it if necessary
     LaunchedEffect(uiState.doneActionCompleted) {
         if (uiState.doneActionCompleted) {
-            navController.navigate(ScreensForMarkersAndRoutes.Routes.route) {
+            navController.navigate(HomeRoutes.MarkersAndRoutes.route) {
                 popUpTo(HomeRoutes.MarkersAndRoutes.route) {
                     inclusive = true
                 }

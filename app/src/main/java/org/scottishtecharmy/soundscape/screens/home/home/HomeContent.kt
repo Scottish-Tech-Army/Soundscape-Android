@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
@@ -57,11 +56,7 @@ fun HomeContent(
             // Markers and routes
             NavigationButton(
                 onClick = {
-                    onNavigate("${HomeRoutes.MarkersAndRoutes.route}/markers")
-                    Log.d(
-                        "Navigation",
-                        "NavController: ${HomeRoutes.MarkersAndRoutes.route}/markers",
-                    )
+                    onNavigate(HomeRoutes.MarkersAndRoutes.route)
                 },
                 text = stringResource(R.string.search_view_markers),
             )

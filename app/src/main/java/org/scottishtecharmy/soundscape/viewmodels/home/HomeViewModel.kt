@@ -152,14 +152,6 @@ class HomeViewModel
             spJob.cancel()
         }
 
-        fun createBeacon(latitudeLongitude: LatLng) {
-            Log.d(TAG, "create beacon")
-            soundscapeServiceConnection.soundscapeService?.createBeacon(
-                latitudeLongitude.latitude,
-                latitudeLongitude.longitude,
-            )
-        }
-
         fun onMarkerClick(marker: Marker): Boolean {
             Log.d(TAG, "marker click")
 
@@ -251,7 +243,7 @@ class HomeViewModel
             }
         }
 
-        fun onToogleSearch() {
+        fun onToggleSearch() {
             _state.update { it.copy(isSearching = !it.isSearching) }
 
             if (!state.value.isSearching) {
@@ -259,7 +251,11 @@ class HomeViewModel
             }
         }
 
-        companion object {
+        fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
+            _state.update { it.copy(routesTabSelected = pickRoutes) }
+        }
+
+    companion object {
             private const val TAG = "HomeViewModel"
         }
     }
