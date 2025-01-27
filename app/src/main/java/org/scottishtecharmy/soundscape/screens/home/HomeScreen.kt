@@ -140,7 +140,6 @@ fun HomeScreen(
             }
         }
 
-        // AddRouteScreen, accessible within the MarkersAndRoutesScreen
         composable(HomeRoutes.AddRoute.route) {
             AddRouteScreen(navController = navController)
         }
@@ -152,8 +151,7 @@ fun HomeScreen(
                 navController = navController)
         }
 
-        // Edit route screen
-        composable("edit_route/{routeName}") { backStackEntry ->
+        composable(HomeRoutes.EditRoute.route + "/{routeName}") { backStackEntry ->
             val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
             val editRouteViewModel: EditRouteViewModel = hiltViewModel()
 

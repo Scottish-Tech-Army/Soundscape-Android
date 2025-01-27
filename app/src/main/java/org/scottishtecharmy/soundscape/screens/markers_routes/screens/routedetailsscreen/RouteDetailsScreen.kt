@@ -133,7 +133,7 @@ fun RouteDetailsScreen(
                                 iconText = "Edit Route",
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
-                                onClick = { navController.navigate("edit_route/${route.name}") })
+                                onClick = { navController.navigate("${HomeRoutes.EditRoute.route}/${route.name}") })
                             IconWithTextButton(
                                 icon = Icons.Default.Share,
                                 iconModifier = Modifier.size(40.dp),

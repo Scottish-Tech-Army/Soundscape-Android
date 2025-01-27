@@ -57,7 +57,8 @@ fun RouteList(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .clickable {navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}")},
-                    imageVector = Icons.Default.ChevronRight,
+
+                imageVector = Icons.Default.ChevronRight,
                     contentDescription = ""
                 )
             }

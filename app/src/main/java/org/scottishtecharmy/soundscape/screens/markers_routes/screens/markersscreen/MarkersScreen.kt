@@ -33,12 +33,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RouteList
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun MarkersScreen(navController: NavController,
+fun MarkersScreen(homeNavController: NavController,
                   viewModel: MarkersViewModel = hiltViewModel()
 ) {
     Column(
@@ -127,7 +125,7 @@ fun MarkersScreen(navController: NavController,
                         // Display the list of routes
                         MarkersList(
                             uiState = uiState,
-                            navController = navController
+                            navController = homeNavController
                         )
                     }
                 }
@@ -141,6 +139,6 @@ fun MarkersScreen(navController: NavController,
 fun MarkersScreenPreview() {
     SoundscapeTheme {
         MarkersScreen(
-            navController = rememberNavController())
+            homeNavController = rememberNavController())
     }
 }
