@@ -19,48 +19,48 @@ class MarkersViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(RoutesUiState())
-    val uiState: StateFlow<RoutesUiState> = _uiState
+    private val _uiState = MutableStateFlow(MarkersUiState())
+    val uiState: StateFlow<MarkersUiState> = _uiState
 
     init {
-        loadRoutes()
+        loadMarkers()
         // Load the saved sort order when initializing the ViewModel
         val isAscending = getSortOrderPreference(context)
         _uiState.value = _uiState.value.copy(isSortByName = isAscending)
-        sortRoutes(isAscending)
+        sortMarkers(isAscending)
     }
 
     fun toggleSortOrder() {
         val isAscending = !_uiState.value.isSortByName
-        sortRoutes(isAscending)
+        sortMarkers(isAscending)
         saveSortOrderPreference(context, isAscending)
     }
 
-    private fun sortRoutes(isAscending: Boolean) {
-        val sortedRoutes = if (isAscending) {
-            _uiState.value.routes.sortedBy { it.name }
+    private fun sortMarkers(isAscending: Boolean) {
+        val sortedMarkers = if (isAscending) {
+            _uiState.value.markers.sortedBy { it.name }
         } else {
-            _uiState.value.routes
+            _uiState.value.markers
         }
-        _uiState.value = _uiState.value.copy(routes = sortedRoutes, isSortByName = isAscending)
+        _uiState.value = _uiState.value.copy(markers = sortedMarkers, isSortByName = isAscending)
     }
 
-    private fun loadRoutes() {
+    private fun loadMarkers() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
 
             try {
-                val routes = routesRepository.getRoutes()
+                val markers = routesRepository.getWaypoints()
                 val isAscending = getSortOrderPreference(context)
-                val sortedRoutes = if (isAscending) {
-                    routes.sortedBy { it.name }
+                val sortedMarkers = if (isAscending) {
+                    markers.sortedBy { it.name }
                 } else {
-                    routes
+                    markers
                 }
-                _uiState.value = _uiState.value.copy(routes = sortedRoutes, isLoading = false, isSortByName = isAscending)
+                _uiState.value = _uiState.value.copy(markers = sortedMarkers, isLoading = false, isSortByName = isAscending)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    errorMessage = "Failed to load routes: ${e.message}",
+                    errorMessage = "Failed to load markers: ${e.message}",
                     isLoading = false
                 )
             }

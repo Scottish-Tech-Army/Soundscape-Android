@@ -31,6 +31,22 @@ class RoutesDao(private val realm: Realm) {
         return success
     }
 
+    suspend fun insertWaypoint(waypoint: RoutePoint) : Boolean
+    {
+        // If we don't catch the exception here, then it prevents write
+        // from completing its transaction logic.
+        var success = true
+        realm.write {
+            try {
+                copyToRealm(waypoint, updatePolicy = UpdatePolicy.ERROR)
+            } catch (e: IllegalArgumentException) {
+                Log.e("realm", e.message.toString())
+                success = false
+            }
+        }
+        return success
+    }
+
     fun getRoute(name: String): RealmResults<RouteData> {
         return realm.query<RouteData>("name == $0", name).find()
     }

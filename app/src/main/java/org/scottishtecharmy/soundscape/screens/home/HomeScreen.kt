@@ -104,7 +104,7 @@ fun HomeScreen(
         // Location details screen
         composable(HomeRoutes.LocationDetails.route + "/{json}") { navBackStackEntry ->
 
-            // Parse the LocationDescription ot of the json provided by the caller
+            // Parse the LocationDescription out of the json provided by the caller
             val gson = GsonBuilder().create()
             val json = navBackStackEntry.arguments?.getString("json")
             val locationDescription = gson.fromJson(json, LocationDescription::class.java)
