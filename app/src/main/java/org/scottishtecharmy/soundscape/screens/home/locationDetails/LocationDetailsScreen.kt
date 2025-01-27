@@ -127,7 +127,7 @@ fun LocationDetails(
             onMapLongClick = { latLong ->
                 val ld =
                     LocationDescription(
-                        adressName ="Selected location",
+                        addressName ="Selected location",
                         latitude = latLong.latitude,
                         longitude = latLong.longitude,
                     )
@@ -198,7 +198,7 @@ private fun LocationDescriptionTextsSection(locationDescription: LocationDescrip
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        locationDescription.adressName?.let {
+        locationDescription.addressName?.let {
             Text(
                 text = it,
                 style = MaterialTheme.typography.titleLarge,
@@ -292,7 +292,7 @@ fun LocationDetailsPreview() {
     SoundscapeTheme {
         LocationDetails(
             LocationDescription(
-                adressName = "Pizza hut",
+                addressName = "Pizza hut",
                 distance = "3,5 km",
                 latitude = 0.0,
                 longitude = 0.0,

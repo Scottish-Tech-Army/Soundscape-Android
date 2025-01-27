@@ -46,7 +46,7 @@ fun HomeContent(
                     // screen which location to provide details of. The JSON is appended to the route.
                     val ld =
                         LocationDescription(
-                            adressName = "Barrowland Ballroom",
+                            addressName = "Barrowland Ballroom",
                             latitude = 55.8552688,
                             longitude = -4.2366753,
                         )
@@ -72,7 +72,7 @@ fun HomeContent(
                         val ld =
                             LocationDescription(
                                 // TODO handle LocationDescription instantiation in viewmodel ?
-                                adressName = "Current location",
+                                addressName = "Current location",
                                 latitude = latitude,
                                 longitude = longitude,
                             )

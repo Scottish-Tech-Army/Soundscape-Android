@@ -64,7 +64,7 @@ fun HomeScreen(
                 onMapLongClick = { latLong ->
                     val ld =
                         LocationDescription(
-                            adressName = "Current location",
+                            addressName = "Current location",
                             latitude =latLong.latitude,
                             longitude = latLong.longitude,
                         )

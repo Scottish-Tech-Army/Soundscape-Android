@@ -149,7 +149,7 @@ fun Home(
                             onNavigate(
                                 generateLocationDetailsRoute(
                                     LocationDescription(
-                                        adressName = item.adressName,
+                                        addressName = item.addressName,
                                         streetNumberAndName = item.streetNumberAndName,
                                         postcodeAndLocality = item.postcodeAndLocality,
                                         country = item.country,

@@ -56,7 +56,7 @@ fun SearchItemButton(
                 modifier = Modifier.padding(start = 18.dp),
                 verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
-                item.adressName?.let {
+                item.addressName?.let {
                     Text(
                         text = it,
                         fontWeight = FontWeight(700),
@@ -98,7 +98,7 @@ fun PreviewSearchItemButton() {
         ) {
             val test =
                 LocationDescription(
-                    adressName = "Bristol",
+                    addressName = "Bristol",
                     streetNumberAndName = "18 Street",
                     postcodeAndLocality = "59000 Lille",
                     distance = "17 Km",
