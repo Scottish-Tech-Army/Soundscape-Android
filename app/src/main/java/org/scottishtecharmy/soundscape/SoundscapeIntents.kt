@@ -45,7 +45,7 @@ class SoundscapeIntents
                             Log.d(TAG, "$address")
                             val ld =
                                 LocationDescription(
-                                    adressName = address.getAddressLine(0),
+                                    addressName = address.getAddressLine(0),
                                     latitude = address.latitude,
                                     longitude = address.longitude,
                                 )
@@ -63,7 +63,7 @@ class SoundscapeIntents
                     Log.d(TAG, "Address: $address")
                     val ld =
                         LocationDescription(
-                            adressName = address.getAddressLine(0),
+                            addressName = address.getAddressLine(0),
                             latitude = address.latitude,
                             longitude = address.longitude,
                         )
@@ -179,7 +179,7 @@ class SoundscapeIntents
                                 // No Geocoder available, so just report the uriData
                                 val ld =
                                     LocationDescription(
-                                        adressName = URLEncoder.encode(uriData, "utf-8"),
+                                        addressName = URLEncoder.encode(uriData, "utf-8"),
                                         latitude = latitude.toDouble(),
                                         longitude = longitude.toDouble(),
                                     )

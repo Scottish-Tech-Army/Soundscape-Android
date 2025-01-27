@@ -13,7 +13,7 @@ fun ArrayList<Feature>.toLocationDescriptions(
     mapNotNull { feature ->
         feature.properties?.let { properties ->
             LocationDescription(
-                adressName = properties["name"]?.toString(),
+                addressName = properties["name"]?.toString(),
                 streetNumberAndName =
                     listOfNotNull(
                         properties["housenumber"],

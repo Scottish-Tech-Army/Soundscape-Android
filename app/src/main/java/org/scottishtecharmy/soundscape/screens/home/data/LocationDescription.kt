@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.data
 
 data class LocationDescription(
-    val adressName: String? = null,
+    val addressName: String? = null,
     val streetNumberAndName: String? = null,
     val postcodeAndLocality: String? = null,
     val country: String? = null,
