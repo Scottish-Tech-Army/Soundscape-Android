@@ -19,7 +19,7 @@ fun CustomTextButton(
     onClick: () -> Unit,
     text: String, // Button text
     contentColor: Color = MaterialTheme.colorScheme.primary,
-    textStyle: TextStyle? = MaterialTheme.typography.labelSmall,
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     fontWeight: FontWeight
 ) {
     TextButton(
@@ -31,7 +31,7 @@ fun CustomTextButton(
     ) {
         Text(
             text = text,
-            style = textStyle ?: MaterialTheme.typography.labelSmall,
+            style = textStyle,
             fontWeight = fontWeight,
             textAlign = TextAlign.Center
         )
