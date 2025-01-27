@@ -7,16 +7,14 @@ sealed class ScreensForMarkersAndRoutes(
     val title: String,
     val iconResId: Int? = null,
 ) {
-    object Home : ScreensForMarkersAndRoutes("home", "Home")
-    object Markers : ScreensForMarkersAndRoutes(
+    data object Markers : ScreensForMarkersAndRoutes(
         route = "markers",
         title = "Markers",
         iconResId = R.drawable.ic_markers,
-        )
-    object Routes : ScreensForMarkersAndRoutes(
+    )
+    data object Routes : ScreensForMarkersAndRoutes(
         route = "routes",
         title = "Routes",
         iconResId = R.drawable.ic_routes,
-        )
-
+    )
 }

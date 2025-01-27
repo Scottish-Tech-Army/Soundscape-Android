@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesTabs
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.MarkersAndRoutesNavGraph
@@ -43,12 +42,9 @@ fun MarkersAndRoutesScreen(
             }},
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
-            // MarkersAndRoutesNavGraph is now responsible for handling navigation
             MarkersAndRoutesNavGraph(
                 navController = nestedNavController,
-                onNavigateToAddRoute = {
-                    mainNavController.navigate(HomeRoutes.AddRoute.route)
-                },
+                homeNavController = mainNavController,
                 startDestination = selectedTab ?: ScreensForMarkersAndRoutes.Markers.route
             )
         }

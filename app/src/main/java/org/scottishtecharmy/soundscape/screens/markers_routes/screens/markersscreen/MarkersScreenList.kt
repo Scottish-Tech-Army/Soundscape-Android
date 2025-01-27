@@ -21,9 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 
 @Composable
 fun MarkersList(
@@ -67,8 +67,8 @@ fun MarkersList(
                                 )
                             // This effectively replaces the current screen with the new one
                             navController.navigate(generateLocationDetailsRoute(ld)) {
-                                popUpTo(HomeRoutes.Home.route) {
-                                    inclusive = false  // Ensures Home screen is not popped from the stack
+                                popUpTo(ScreensForMarkersAndRoutes.Routes.route) {
+                                    inclusive = false  // Ensures Route screen is not popped from the stack
                                 }
                                 launchSingleTop = true  // Prevents multiple instances of Home
                             }

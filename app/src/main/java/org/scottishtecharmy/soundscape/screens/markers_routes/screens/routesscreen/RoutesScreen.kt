@@ -32,6 +32,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -39,8 +40,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun RoutesScreen(
-    navController: NavController,
-    onNavigateToAddRoute: () -> Unit,
+    homeNavController: NavController,
     viewModel: RoutesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -123,13 +123,13 @@ fun RoutesScreen(
                     // Display the list of routes
                     RouteList(
                         uiState = uiState,
-                        navController = navController
+                        navController = homeNavController
                     )
                 }
             }
         }
         CustomFloatingActionButton(
-            onClick = { onNavigateToAddRoute.invoke() },
+            onClick = { homeNavController.navigate(HomeRoutes.AddRoute.route) },
             modifier = Modifier.align(Alignment.BottomCenter),
             icon = Icons.Rounded.AddCircleOutline,
             contentDescription = stringResource(R.string.general_alert_add),
@@ -142,8 +142,7 @@ fun RoutesScreen(
 fun RoutesScreenPreview() {
     SoundscapeTheme {
         RoutesScreen(
-            navController = rememberNavController(),
-            onNavigateToAddRoute = {}
+            homeNavController = rememberNavController()
         )
     }
 }

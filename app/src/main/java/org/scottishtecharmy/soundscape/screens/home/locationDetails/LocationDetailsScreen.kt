@@ -51,7 +51,7 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription): Stri
     // Generate JSON for the LocationDescription and append it to the rout
     val json = GsonBuilder().create().toJson(locationDescription)
 
-    return HomeRoutes.LocationDetails.route + "/" + json
+    return "${HomeRoutes.LocationDetails.route}/$json"
 }
 
 @Composable
