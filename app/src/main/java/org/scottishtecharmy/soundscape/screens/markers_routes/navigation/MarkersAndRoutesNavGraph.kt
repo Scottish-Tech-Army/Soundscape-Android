@@ -5,8 +5,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenVM
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenVM
 
 @Composable
 fun MarkersAndRoutesNavGraph(
@@ -18,10 +18,10 @@ fun MarkersAndRoutesNavGraph(
         startDestination = startDestination
     ) {
         composable(ScreensForMarkersAndRoutes.Markers.route) {
-            MarkersScreen(homeNavController = homeNavController)
+            MarkersScreenVM(homeNavController = homeNavController)
         }
         composable(ScreensForMarkersAndRoutes.Routes.route) {
-            RoutesScreen(homeNavController = homeNavController)
+            RoutesScreenVM(homeNavController = homeNavController)
         }
     }
 }

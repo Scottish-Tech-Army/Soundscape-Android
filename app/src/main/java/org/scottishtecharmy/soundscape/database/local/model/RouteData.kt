@@ -60,10 +60,10 @@ class RoutePoint(var name: String, location: Location) : RealmObject
     }
 }
 
-class RouteData : RealmObject {
-    @PrimaryKey
-    var name : String = ""
-    var description : String = ""
+class RouteData(@PrimaryKey var name: String, var description: String) : RealmObject {
+
+    constructor() : this("", "")
+
     var waypoints : RealmList<RoutePoint> = realmListOf()
 
     override fun equals(other: Any?): Boolean {

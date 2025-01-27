@@ -23,10 +23,10 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDeta
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreenVM
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteScreenVM
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteViewModel
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
@@ -141,12 +141,12 @@ fun HomeScreen(
         }
 
         composable(HomeRoutes.AddRoute.route) {
-            AddRouteScreen(navController = navController)
+            AddRouteScreenVM(navController = navController)
         }
 
         composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->
             val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
-            RouteDetailsScreen(
+            RouteDetailsScreenVM(
                 routeName = routeName,
                 navController = navController)
         }
@@ -162,7 +162,7 @@ fun HomeScreen(
 
             // Pass the route details to the EditRouteScreen composable
             val uiState by editRouteViewModel.uiState.collectAsStateWithLifecycle()
-            EditRouteScreen(
+            EditRouteScreenVM(
                 routeName = uiState.name,
                 routeDescription = uiState.description,
                 navController = navController,

@@ -32,28 +32,42 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.database.local.model.Location
+import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
+fun MarkersScreenVM(homeNavController: NavController,
+                    viewModel: MarkersViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    MarkersScreen(
+        homeNavController,
+        uiState,
+        clearErrorMessage = { viewModel.clearErrorMessage()},
+        onToggleSortOrder = { viewModel.toggleSortOrder() }
+    )
+}
+@Composable
 fun MarkersScreen(homeNavController: NavController,
-                  viewModel: MarkersViewModel = hiltViewModel()
+                  uiState: MarkersUiState,
+                  clearErrorMessage: () -> Unit,
+                  onToggleSortOrder: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
     ) {
-        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
         val context = LocalContext.current
 
         // Display error message if it exists
         LaunchedEffect(uiState.errorMessage) {
             uiState.errorMessage?.let { message ->
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-                viewModel.clearErrorMessage()
+                clearErrorMessage()
             }
         }
 
@@ -119,7 +133,7 @@ fun MarkersScreen(homeNavController: NavController,
                         ) {
                             MarkersAndRoutesListSort(
                                 isSortByName = uiState.isSortByName,
-                                onToggleSortOrder = { viewModel.toggleSortOrder() }
+                                onToggleSortOrder = onToggleSortOrder
                             )
                         }
                         // Display the list of routes
@@ -136,9 +150,32 @@ fun MarkersScreen(homeNavController: NavController,
 
 @Preview(showBackground = true)
 @Composable
+fun MarkersScreenPopulatedPreview() {
+    SoundscapeTheme {
+        MarkersScreen(
+            homeNavController = rememberNavController(),
+            uiState = MarkersUiState(
+                markers = listOf(
+                    RoutePoint("Waypoint 1", Location(Double.NaN, Double.NaN)),
+                    RoutePoint("Waypoint 2", Location(Double.NaN, Double.NaN)),
+                    RoutePoint("Waypoint 3", Location(Double.NaN, Double.NaN))
+                )
+            ),
+            clearErrorMessage = {},
+            onToggleSortOrder = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 fun MarkersScreenPreview() {
     SoundscapeTheme {
         MarkersScreen(
-            homeNavController = rememberNavController())
+            homeNavController = rememberNavController(),
+            uiState = MarkersUiState(),
+            clearErrorMessage = {},
+            onToggleSortOrder = {}
+        )
     }
 }

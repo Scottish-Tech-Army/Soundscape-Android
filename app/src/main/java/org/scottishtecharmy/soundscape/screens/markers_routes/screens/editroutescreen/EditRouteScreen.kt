@@ -25,24 +25,53 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun EditRouteScreen(
+fun EditRouteScreenVM(
     routeName: String,
     routeDescription: String,
     navController: NavController,
     viewModel: EditRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    EditRouteScreen(
+        routeName,
+        routeDescription,
+        navController,
+        uiState,
+        onClearErrorMessage = { viewModel.clearErrorMessage() },
+        onResetDoneAction = { viewModel.resetDoneActionState() },
+        onNameChange = { viewModel.onNameChange(it) },
+        onDescriptionChange = { viewModel.onDescriptionChange(it) },
+        onDeleteRoute = { viewModel.deleteRoute(it) }
+    )
+}
+
+
+@Composable
+fun EditRouteScreen(
+    routeName: String,
+    routeDescription: String,
+    navController: NavController,
+    uiState: EditRouteUiState,
+    onClearErrorMessage: () -> Unit,
+    onResetDoneAction: () -> Unit,
+    onNameChange: (newText: String) -> Unit,
+    onDescriptionChange: (newText: String) -> Unit,
+    onDeleteRoute: (routeName: String) -> Unit,
+) {
     val context = LocalContext.current
 
     var showWaypointDialog by remember { mutableStateOf(false) }
@@ -51,7 +80,7 @@ fun EditRouteScreen(
     LaunchedEffect(uiState.errorMessage) {
         uiState.errorMessage?.let { message ->
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-            viewModel.clearErrorMessage()
+            onClearErrorMessage()
         }
     }
 
@@ -65,7 +94,7 @@ fun EditRouteScreen(
                 }
                 launchSingleTop = true
             }
-            viewModel.resetDoneActionState()
+            onResetDoneAction()
             val message = when (actionType) {
                 ActionType.UPDATE -> context.getString(R.string.route_update_success_title)
                 ActionType.DELETE -> context.getString(R.string.routes_action_deleted)
@@ -113,7 +142,7 @@ fun EditRouteScreen(
                     CustomTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = uiState.name,
-                        onValueChange = { newText -> viewModel.onNameChange(newText) },
+                        onValueChange = onNameChange
                     )
                     Text(
                         modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
@@ -124,7 +153,7 @@ fun EditRouteScreen(
                     CustomTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = uiState.description,
-                        onValueChange = { newText -> viewModel.onDescriptionChange(newText) },
+                        onValueChange = onDescriptionChange
                     )
 
                     HorizontalDivider(
@@ -151,7 +180,7 @@ fun EditRouteScreen(
                         thickness = 1.dp,
                     )
                     CustomButton(
-                        onClick = { viewModel.deleteRoute(routeName) },
+                        onClick = { onDeleteRoute(routeName) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
@@ -168,5 +197,22 @@ fun EditRouteScreen(
 
         }
     )
-//TODO create @Preview that works with viewmodel
+}
+
+@Preview(showBackground = true)
+@Composable
+fun EditRouteScreenPreview() {
+    SoundscapeTheme {
+        EditRouteScreen(
+            routeName = "Route to preview",
+            routeDescription = "Description of route",
+            navController = rememberNavController(),
+            uiState = EditRouteUiState(),
+            onClearErrorMessage = {},
+            onResetDoneAction = {},
+            onNameChange = {},
+            onDescriptionChange = {},
+            onDeleteRoute = {}
+        )
+    }
 }

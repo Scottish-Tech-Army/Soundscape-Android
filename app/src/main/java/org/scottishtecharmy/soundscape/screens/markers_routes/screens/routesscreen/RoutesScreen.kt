@@ -32,25 +32,41 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
-
 @Composable
-fun RoutesScreen(
+fun RoutesScreenVM(
     homeNavController: NavController,
     viewModel: RoutesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    RoutesScreen(
+        homeNavController,
+        uiState,
+        clearErrorMessage = { viewModel.clearErrorMessage()},
+        onToggleSortOrder = { viewModel.toggleSortOrder() }
+    )
+}
+
+
+@Composable
+fun RoutesScreen(
+    homeNavController: NavController,
+    uiState: RoutesUiState,
+    clearErrorMessage: () -> Unit,
+    onToggleSortOrder: () -> Unit
+) {
     val context = LocalContext.current
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
         uiState.errorMessage?.let { message ->
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-            viewModel.clearErrorMessage()
+            clearErrorMessage()
         }
     }
 
@@ -117,7 +133,7 @@ fun RoutesScreen(
                     ) {
                         MarkersAndRoutesListSort(
                             isSortByName = uiState.isSortByName,
-                            onToggleSortOrder = { viewModel.toggleSortOrder() }
+                            onToggleSortOrder = onToggleSortOrder
                         )
                     }
                     // Display the list of routes
@@ -142,7 +158,42 @@ fun RoutesScreen(
 fun RoutesScreenPreview() {
     SoundscapeTheme {
         RoutesScreen(
-            homeNavController = rememberNavController()
+            homeNavController = rememberNavController(),
+            uiState = RoutesUiState(),
+            clearErrorMessage = {},
+            onToggleSortOrder = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RoutesScreenPopulatedPreview() {
+    SoundscapeTheme {
+        RoutesScreen(
+            homeNavController = rememberNavController(),
+            uiState = RoutesUiState(
+                routes = listOf(
+                    RouteData("Route 1", "Description 1"),
+                    RouteData("Route 2", "Description 2"),
+                    RouteData("Route 3", "Description 3"),
+                )
+            ),
+            clearErrorMessage = {},
+            onToggleSortOrder = {}
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RoutesScreenLoadingPreview() {
+    SoundscapeTheme {
+        RoutesScreen(
+            homeNavController = rememberNavController(),
+            uiState = RoutesUiState(isLoading = true),
+            clearErrorMessage = {},
+            onToggleSortOrder = {}
         )
     }
 }
