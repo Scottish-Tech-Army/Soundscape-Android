@@ -21,30 +21,59 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun AddRouteScreen(
+fun AddRouteScreenVM(
     navController: NavController,
     viewModel: AddRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    AddRouteScreen(
+        navController,
+        uiState,
+        onClearErrorMessage = { viewModel.clearErrorMessage() },
+        onResetDoneAction = {
+            viewModel.resetDoneActionState()
+            viewModel.resetNavigationState()
+        },
+        onNameChange = { viewModel.onNameChange(it) },
+        onDescriptionChange = { viewModel.onDescriptionChange(it) },
+        onAddWaypointsClicked = { viewModel.onAddWaypointsClicked() },
+        onDoneClicked = { viewModel.onDoneClicked() }
+    )
+}
+
+@Composable
+fun AddRouteScreen(
+    navController: NavController,
+    uiState: AddRouteUiState,
+    onClearErrorMessage: () -> Unit,
+    onResetDoneAction: () -> Unit,
+    onNameChange: (newText: String) -> Unit,
+    onDescriptionChange: (newText: String) -> Unit,
+    onAddWaypointsClicked: () -> Unit,
+    onDoneClicked: () -> Unit,
+) {
     val context = LocalContext.current
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
         uiState.errorMessage?.let { message ->
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-            viewModel.clearErrorMessage()
+            onClearErrorMessage()
         }
     }
 
@@ -60,8 +89,7 @@ fun AddRouteScreen(
                 }
                 launchSingleTop = true
             }
-            viewModel.resetDoneActionState()
-            viewModel.resetNavigationState()
+            onResetDoneAction()
             Toast.makeText(context, "Route added successfully", Toast.LENGTH_SHORT).show()
         }
     }
@@ -97,7 +125,7 @@ fun AddRouteScreen(
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = uiState.name,
-                    onValueChange = { newText -> viewModel.onNameChange(newText) },
+                    onValueChange = onNameChange
                 )
                 Text(
                     modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
@@ -108,7 +136,7 @@ fun AddRouteScreen(
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = uiState.description,
-                    onValueChange = { newText -> viewModel.onDescriptionChange(newText) },
+                    onValueChange = onDescriptionChange
                 )
 
                 HorizontalDivider(
@@ -120,9 +148,7 @@ fun AddRouteScreen(
                         .fillMaxWidth()
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp, bottom = 10.dp),
-                    onClick = {
-                        viewModel.onAddWaypointsClicked()
-                    },
+                    onClick = onAddWaypointsClicked,
                     buttonColor = MaterialTheme.colorScheme.onPrimary,
                     contentColor = MaterialTheme.colorScheme.onSecondary,
                     shape = RoundedCornerShape(10.dp),
@@ -135,9 +161,7 @@ fun AddRouteScreen(
                         .fillMaxWidth()
                         .align(Alignment.CenterHorizontally)
                         .padding(top = 20.dp, bottom = 10.dp),
-                    onClick = {
-                        viewModel.onDoneClicked()
-                    },
+                    onClick = onDoneClicked,
                     buttonColor = MaterialTheme.colorScheme.onPrimary,
                     contentColor = MaterialTheme.colorScheme.onSecondary,
                     shape = RoundedCornerShape(10.dp),
@@ -151,11 +175,27 @@ fun AddRouteScreen(
                 )
                 // TODO fix the formatting/alignment for the addition of the original iOS text below
             }
-
         }
     )
-//TODO create @Preview that works with viewmodel
 }
 
-
-
+@Preview(showBackground = true)
+@Composable
+fun AddRouteScreenPreview() {
+    SoundscapeTheme {
+        AddRouteScreen(
+            navController = rememberNavController(),
+            AddRouteUiState(
+                name = "Route one",
+                description = "Description of route one",
+                showDoneButton = false
+            ),
+            onClearErrorMessage = {},
+            onResetDoneAction = {},
+            onNameChange = {},
+            onDescriptionChange = {},
+            onAddWaypointsClicked = {},
+            onDoneClicked = {},
+        )
+    }
+}

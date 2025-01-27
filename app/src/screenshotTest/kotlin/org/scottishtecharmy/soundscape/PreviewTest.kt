@@ -6,7 +6,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPopulatedPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RoutesDetailsPopulatedPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
@@ -151,7 +155,47 @@ class MarkersPreviewTestClass {
     @Composable
     fun MarkersPreviewTest() {
         SoundscapeTheme {
-            MarkersScreenPreview()
+            MarkersScreenPopulatedPreview()
+        }
+    }
+}
+
+class AddRouteScreenPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun AddRouteScreenPreviewTest() {
+        SoundscapeTheme {
+            AddRouteScreenPreview()
+        }
+    }
+}
+
+class EditRouteScreenPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun EditRouteScreenPreviewTest() {
+        SoundscapeTheme {
+            EditRouteScreenPreview()
+        }
+    }
+}
+
+class RouteDetailsPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun RouteDetailsPreviewTest() {
+        SoundscapeTheme {
+            RoutesDetailsPopulatedPreview()
+        }
+    }
+}
+
+class RoutesScreenPopulatedPreviewTestClass {
+    @CustomPreviews
+    @Composable
+    fun RoutesScreenPopulatedPreviewTest() {
+        SoundscapeTheme {
+            RoutesScreenPopulatedPreview()
         }
     }
 }
