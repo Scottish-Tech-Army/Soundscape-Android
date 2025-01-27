@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,6 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
@@ -82,7 +84,7 @@ fun RouteDetailsScreen(
     Scaffold(
         topBar = {
             CustomAppBar(
-                title = "Route Details",
+                title = stringResource(R.string.behavior_experiences_route_nav_title),
                 onNavigateUp = {
                     navController.navigate(ScreensForMarkersAndRoutes.Routes.route) {
                         popUpTo(HomeRoutes.MarkersAndRoutes.route) {
@@ -143,7 +145,7 @@ fun RouteDetailsScreen(
                                 icon = Icons.Default.PlayArrow,
                                 iconModifier = Modifier.size(40.dp),
                                 textModifier = Modifier.padding(horizontal = 4.dp),
-                                iconText = "Start Route",
+                                iconText = stringResource(R.string.route_detail_action_start_route),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 onClick = { /*TODO*/ })
@@ -151,7 +153,7 @@ fun RouteDetailsScreen(
                                 icon = Icons.Default.Edit,
                                 iconModifier = Modifier.size(40.dp),
                                 textModifier = Modifier.padding(horizontal = 4.dp),
-                                iconText = "Edit Route",
+                                iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 onClick = { navController.navigate("${HomeRoutes.EditRoute.route}/${route.name}") })
@@ -159,7 +161,7 @@ fun RouteDetailsScreen(
                                 icon = Icons.Default.Share,
                                 iconModifier = Modifier.size(40.dp),
                                 textModifier = Modifier.padding(horizontal = 4.dp),
-                                iconText = "Share Route",
+                                iconText = stringResource(R.string.share_title),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 onClick = { /*TODO*/ })

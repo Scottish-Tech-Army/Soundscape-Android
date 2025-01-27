@@ -17,9 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -42,13 +44,16 @@ fun MarkersAndRoutesListSort(
         Icon(
             modifier = Modifier.size(48.dp),
             imageVector = Icons.Default.SwapVert,
-            contentDescription = if (isSortByName) "Currently sorted by Name" else "Currently sorted by Distance"
+            contentDescription =
+                if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name_voiceover)
+                else stringResource(R.string.markers_sort_button_sort_by_distance_voiceover)
         )
 
         Spacer(modifier = Modifier.width(8.dp))
 
         Text(
-            text = if (isSortByName) "Name" else "Distance",
+            text = if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name)
+                   else stringResource(R.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold
         )
@@ -56,7 +61,8 @@ fun MarkersAndRoutesListSort(
         Spacer(modifier = Modifier.width(8.dp))
 
         Text(
-            text = if (isSortByName) "Sort by Distance" else "Sort by Name",
+            text = if (isSortByName) stringResource(R.string.routes_sort_by_distance)
+                   else stringResource(R.string.routes_sort_by_name),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.surface

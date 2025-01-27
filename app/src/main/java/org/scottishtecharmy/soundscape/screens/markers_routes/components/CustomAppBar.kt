@@ -67,7 +67,7 @@ fun CustomAppBarPreview() {
     SoundscapeTheme {
         CustomAppBar(
             "Test app bar with long title",
-            navigationButtonTitle = "Back",
+            navigationButtonTitle = stringResource(R.string.ui_back_button_title),
             onNavigateUp = {},
         )
     }
@@ -80,7 +80,7 @@ fun CustomAppBarWithActionButtonPreview() {
     SoundscapeTheme {
         CustomAppBar(
             "Test app bar",
-            navigationButtonTitle = "Back",
+            navigationButtonTitle = stringResource(R.string.ui_back_button_title),
             onNavigateUp = {},
         )
     }
