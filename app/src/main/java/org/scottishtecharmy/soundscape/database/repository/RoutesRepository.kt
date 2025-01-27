@@ -5,11 +5,16 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 
 class RoutesRepository(private val routesDao: RoutesDao) {
 
     suspend fun insertRoute(route: RouteData) = withContext(Dispatchers.IO) {
         routesDao.insertRoute(route)
+    }
+
+    suspend fun insertWaypoint(waypoint: RoutePoint) = withContext(Dispatchers.IO) {
+        routesDao.insertWaypoint(waypoint)
     }
 
     suspend fun getRoute(name: String) = withContext(Dispatchers.IO){

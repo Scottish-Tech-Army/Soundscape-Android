@@ -22,16 +22,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Composable
-fun RouteList(
-    uiState: RoutesUiState,
+fun MarkersList(
+    uiState: MarkersUiState,
     navController: NavController,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth().heightIn(max = 470.dp)
     ) {
-        items(uiState.routes) { route ->
+        items(uiState.markers) { marker ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -42,21 +44,35 @@ fun RouteList(
             ) {
                 Column {
                     Text(
-                        text = route.name,
+                        text = marker.name,
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(bottom = 4.dp)
                     )
-                    Text(
-                        text = route.description,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Bold,
-                    )
+//                    Text(
+//                        text = marker.description,
+//                        style = MaterialTheme.typography.bodyLarge,
+//                        fontWeight = FontWeight.Bold,
+//                    )
                 }
                 Icon(
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
-                        .clickable {navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}")},
+                        .clickable {
+                            val ld =
+                                LocationDescription(
+                                    addressName = marker.name,
+                                    latitude = marker.location!!.latitude,
+                                    longitude = marker.location!!.longitude
+                                )
+                            // This effectively replaces the current screen with the new one
+                            navController.navigate(generateLocationDetailsRoute(ld)) {
+                                popUpTo(HomeRoutes.Home.route) {
+                                    inclusive = false  // Ensures Home screen is not popped from the stack
+                                }
+                                launchSingleTop = true  // Prevents multiple instances of Home
+                            }
+                        },
                     imageVector = Icons.Default.ChevronRight,
                     contentDescription = ""
                 )

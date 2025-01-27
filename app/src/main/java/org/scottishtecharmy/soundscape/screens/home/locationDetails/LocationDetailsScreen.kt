@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddLocation
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Navigation
@@ -71,6 +72,9 @@ fun LocationDetailsScreen(
         createBeacon = { lat, lng ->
             viewModel.createBeacon(lat, lng)
         },
+        saveMarker = { description ->
+            viewModel.createMarker(description)
+        },
         enableStreetPreview = { lat, lng ->
             viewModel.enableStreetPreview(lat, lng)
         },
@@ -90,6 +94,7 @@ fun LocationDetails(
                     longitude: Double?,
                     heading: Float,
                     createBeacon: (latitude: Double, longitude: Double) -> Unit,
+                    saveMarker: (description: LocationDescription) -> Unit,
                     enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
                     modifier: Modifier = Modifier) {
 
@@ -111,6 +116,7 @@ fun LocationDetails(
             HorizontalDivider()
             LocationDescriptionButtonsSection(
                 createBeacon = createBeacon,
+                saveMarker = saveMarker,
                 locationDescription = locationDescription,
                 enableStreetPreview = enableStreetPreview,
                 onNavigateUp = onNavigateUp,
@@ -166,6 +172,7 @@ fun LocationDetails(
 @Composable
 private fun LocationDescriptionButtonsSection(
     createBeacon: (latitude: Double, longitude: Double) -> Unit,
+    saveMarker: (description: LocationDescription) -> Unit,
     locationDescription: LocationDescription,
     enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
     onNavigateUp: () -> Unit,
@@ -181,8 +188,15 @@ private fun LocationDescriptionButtonsSection(
         }
 
         IconWithTextButton(
+            icon = Icons.Filled.AddLocation,
+            text = stringResource(R.string.user_activity_save_marker_title),
+        ) {
+            saveMarker(locationDescription)
+        }
+
+        IconWithTextButton(
             icon = Icons.Filled.Navigation,
-            text = stringResource(R.string.enter_street_preview),
+            text = stringResource(R.string.user_activity_street_preview_title),
         ) {
             enableStreetPreview(
                 locationDescription.latitude,
@@ -301,6 +315,8 @@ fun LocationDetailsPreview() {
                 country = "France",
             ),
             createBeacon = { _, _ ->
+            },
+            saveMarker = { _ ->
             },
             enableStreetPreview = { _, _ ->
             },
