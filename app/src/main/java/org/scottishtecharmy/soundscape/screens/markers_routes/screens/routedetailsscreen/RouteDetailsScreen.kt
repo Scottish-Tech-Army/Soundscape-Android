@@ -38,19 +38,20 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun RouteDetailsScreenVM(
     navController: NavController,
     routeName: String,
-    viewModel: RouteDetailsViewModel = hiltViewModel()
+    viewModel: RouteDetailsViewModel = hiltViewModel(),
+    modifier: Modifier
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     RouteDetailsScreen(
         navController,
         routeName,
+        modifier,
         uiState,
         getRouteByName = { viewModel.getRouteByName(routeName) },
         clearErrorMessage = { viewModel.clearErrorMessage() }
@@ -61,6 +62,7 @@ fun RouteDetailsScreenVM(
 fun RouteDetailsScreen(
     navController: NavController,
     routeName: String,
+    modifier: Modifier,
     uiState: RouteDetailsUiState,
     getRouteByName: (routeName: String) -> Unit,
     clearErrorMessage: () -> Unit,
@@ -82,11 +84,12 @@ fun RouteDetailsScreen(
     }
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             CustomAppBar(
                 title = stringResource(R.string.behavior_experiences_route_nav_title),
                 onNavigateUp = {
-                    navController.navigate(ScreensForMarkersAndRoutes.Routes.route) {
+                    navController.navigate(HomeRoutes.MarkersAndRoutes.route) {
                         popUpTo(HomeRoutes.MarkersAndRoutes.route) {
                             inclusive = true
                         }
@@ -189,6 +192,7 @@ fun RoutesDetailsPopulatedPreview() {
         RouteDetailsScreen(
             navController = rememberNavController(),
             routeName = "Route name",
+            modifier = Modifier,
             uiState = RouteDetailsUiState(
                 route = listOf(
                     RouteData("Route 1", "Description 1"),
@@ -211,6 +215,7 @@ fun RoutesDetailsLoadingPreview() {
             navController = rememberNavController(),
             routeName = "Route name",
             uiState = RouteDetailsUiState(isLoading = true),
+            modifier = Modifier,
             getRouteByName = {},
             clearErrorMessage = {}
         )
@@ -224,6 +229,7 @@ fun RoutesDetailsEmptyPreview() {
         RouteDetailsScreen(
             navController = rememberNavController(),
             routeName = "Route name",
+            modifier = Modifier,
             uiState = RouteDetailsUiState(),
             getRouteByName = {},
             clearErrorMessage = {}

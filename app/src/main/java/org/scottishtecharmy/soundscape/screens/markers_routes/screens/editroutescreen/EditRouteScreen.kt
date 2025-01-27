@@ -32,10 +32,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
-import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -43,6 +43,7 @@ fun EditRouteScreenVM(
     routeName: String,
     routeDescription: String,
     navController: NavController,
+    modifier: Modifier,
     viewModel: EditRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -50,6 +51,7 @@ fun EditRouteScreenVM(
         routeName,
         routeDescription,
         navController,
+        modifier,
         uiState,
         onClearErrorMessage = { viewModel.clearErrorMessage() },
         onResetDoneAction = { viewModel.resetDoneActionState() },
@@ -65,6 +67,7 @@ fun EditRouteScreen(
     routeName: String,
     routeDescription: String,
     navController: NavController,
+    modifier: Modifier,
     uiState: EditRouteUiState,
     onClearErrorMessage: () -> Unit,
     onResetDoneAction: () -> Unit,
@@ -88,8 +91,8 @@ fun EditRouteScreen(
     LaunchedEffect(uiState.doneActionCompleted) {
         if (uiState.doneActionCompleted) {
             val actionType = uiState.actionType
-            navController.navigate(ScreensForMarkersAndRoutes.Routes.route) {
-                popUpTo(ScreensForMarkersAndRoutes.Routes.route) {
+            navController.navigate(HomeRoutes.MarkersAndRoutes.route) {
+                popUpTo(HomeRoutes.MarkersAndRoutes.route) {
                     inclusive = true
                 }
                 launchSingleTop = true
@@ -105,6 +108,7 @@ fun EditRouteScreen(
     }
 
     Scaffold(
+        modifier = modifier,
         topBar = {
             CustomAppBar(
                 title = stringResource(R.string.route_detail_action_edit),
@@ -207,6 +211,7 @@ fun EditRouteScreenPreview() {
             routeName = "Route to preview",
             routeDescription = "Description of route",
             navController = rememberNavController(),
+            modifier = Modifier,
             uiState = EditRouteUiState(),
             onClearErrorMessage = {},
             onResetDoneAction = {},

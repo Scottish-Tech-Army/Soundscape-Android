@@ -12,4 +12,5 @@ data class HomeState(
     var tileGridGeoJson: String = "",
     var isSearching: Boolean = false,
     var searchItems: List<LocationDescription>? = null,
+    var routesTabSelected: Boolean = true,
 )

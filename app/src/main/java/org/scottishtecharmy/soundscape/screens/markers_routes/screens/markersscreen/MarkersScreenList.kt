@@ -63,7 +63,8 @@ fun MarkersList(
                                 LocationDescription(
                                     addressName = marker.name,
                                     latitude = marker.location!!.latitude,
-                                    longitude = marker.location!!.longitude
+                                    longitude = marker.location!!.longitude,
+                                    marker = true
                                 )
                             // This effectively replaces the current screen with the new one
                             navController.navigate(generateLocationDetailsRoute(ld)) {

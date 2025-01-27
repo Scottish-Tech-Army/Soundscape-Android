@@ -9,14 +9,15 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
 val items = listOf(
     ScreensForMarkersAndRoutes.Markers,
@@ -24,26 +25,30 @@ val items = listOf(
 )
 
 @Composable
-fun MarkersAndRoutesTabs(navController: NavController,
-) {
-    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+fun MarkersAndRoutesTabsVM(viewModel: HomeViewModel) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    MarkersAndRoutesTabs(
+        state.routesTabSelected,
+        setRoutesAndMarkersTab = { viewModel.setRoutesAndMarkersTab(it) })
+}
+
+@Composable
+fun MarkersAndRoutesTabs(
+    routesTabSelected: Boolean,
+    setRoutesAndMarkersTab: (pickRoutes: Boolean) -> Unit) {
 
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primary
     ) {
         items.forEach { item ->
-            val isSelected = currentRoute == item.route
+            val isSelected =
+                routesTabSelected && (item == ScreensForMarkersAndRoutes.Routes) ||
+                !routesTabSelected  && (item == ScreensForMarkersAndRoutes.Markers)
+
             NavigationBarItem(
                 modifier = Modifier.padding(16.dp),
                 selected = isSelected,
-                onClick = {
-                    if (!isSelected) {
-                        navController.navigate(item.route) {
-                            launchSingleTop = true  // Avoids multiple instances of the same destination
-                            restoreState = true     // Restore state when navigating back
-                        }
-                    }
-                },
+                onClick = { setRoutesAndMarkersTab(item == ScreensForMarkersAndRoutes.Routes) },
                 label = {
                     Text(item.title, style = MaterialTheme.typography.bodyLarge)
                 },
@@ -70,9 +75,10 @@ fun MarkersAndRoutesTabs(navController: NavController,
 @Preview
 @Composable
 fun BottomNavigationBarPreview() {
-    val navController = rememberNavController()
     MaterialTheme {
-        MarkersAndRoutesTabs(navController = navController,
+        MarkersAndRoutesTabs(
+            false,
+            setRoutesAndMarkersTab = {}
         )
     }
 }

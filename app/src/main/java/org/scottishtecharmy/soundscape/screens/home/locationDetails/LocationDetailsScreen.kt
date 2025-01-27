@@ -139,7 +139,9 @@ fun LocationDetails(
                     )
                 // This effectively replaces the current screen with the new one
                 navController.navigate(generateLocationDetailsRoute(ld)) {
-                    popUpTo(HomeRoutes.Home.route) {
+                    var popupDestination = HomeRoutes.Home.route
+                    if(!ld.marker) popupDestination = HomeRoutes.MarkersAndRoutes.route
+                    popUpTo(popupDestination) {
                         inclusive = false  // Ensures Home screen is not popped from the stack
                     }
                     launchSingleTop = true  // Prevents multiple instances of Home

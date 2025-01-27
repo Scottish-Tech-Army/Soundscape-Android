@@ -69,7 +69,7 @@ fun HomePreview() {
         searchText = "Lille",
         isSearching = true,
         onSearchTextChange = {},
-        onToogleSearch = {},
+        onToggleSearch = {},
         searchItems = emptyList(),
     )
 }
@@ -94,7 +94,7 @@ fun Home(
     searchText: String,
     isSearching: Boolean,
     onSearchTextChange: (String) -> Unit,
-    onToogleSearch: () -> Unit,
+    onToggleSearch: () -> Unit,
     searchItems: List<LocationDescription>,
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -144,7 +144,7 @@ fun Home(
                         isSearching = isSearching,
                         itemList = searchItems,
                         onSearchTextChange = onSearchTextChange,
-                        onToggleSearch = onToogleSearch,
+                        onToggleSearch = onToggleSearch,
                         onItemClick = { item ->
                             onNavigate(
                                 generateLocationDetailsRoute(
