@@ -108,7 +108,7 @@ fun MainSearchBar(
             LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
                 itemsIndexed(itemList) { index, item ->
                     Column {
-                        SearchItemButton(
+                        LocationItem(
                             item = item,
                             onClick = {
                                 onItemClick(item)

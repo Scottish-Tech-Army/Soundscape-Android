@@ -32,33 +32,36 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
-fun MarkersScreenVM(homeNavController: NavController,
-                    viewModel: MarkersViewModel = hiltViewModel()
+fun MarkersScreenVM(
+    homeNavController: NavController,
+    viewModel: MarkersViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     MarkersScreen(
         homeNavController,
         uiState,
-        clearErrorMessage = { viewModel.clearErrorMessage()},
-        onToggleSortOrder = { viewModel.toggleSortOrder() }
+        clearErrorMessage = { viewModel.clearErrorMessage() },
+        onToggleSortOrder = { viewModel.toggleSortOrder() },
     )
 }
+
 @Composable
-fun MarkersScreen(homeNavController: NavController,
-                  uiState: MarkersUiState,
-                  clearErrorMessage: () -> Unit,
-                  onToggleSortOrder: () -> Unit
+fun MarkersScreen(
+    homeNavController: NavController,
+    uiState: MarkersUiState,
+    clearErrorMessage: () -> Unit,
+    onToggleSortOrder: () -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         val context = LocalContext.current
@@ -75,25 +78,27 @@ fun MarkersScreen(homeNavController: NavController,
             // Display loading state
             if (uiState.isLoading) {
                 Box(
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     CircularProgressIndicator()
                 }
             } else {
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier =
+                        Modifier
+                            .fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     if (uiState.markers.isEmpty()) {
                         Box(modifier = Modifier.padding(top = 40.dp)) {
                             Icon(
-                                painter = painterResource(
-                                    id = R.drawable.ic_markers
-                                ),
+                                painter =
+                                    painterResource(
+                                        id = R.drawable.ic_markers,
+                                    ),
                                 tint = MaterialTheme.colorScheme.onBackground,
                                 contentDescription = null,
-                                modifier = Modifier.size(60.dp)
+                                modifier = Modifier.size(60.dp),
                             )
                         }
                         Box(modifier = Modifier.padding(top = 10.dp)) {
@@ -125,21 +130,22 @@ fun MarkersScreen(homeNavController: NavController,
                         }
                     } else {
                         Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp),
                             horizontalArrangement = Arrangement.Start,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             MarkersAndRoutesListSort(
                                 isSortByName = uiState.isSortByName,
-                                onToggleSortOrder = onToggleSortOrder
+                                onToggleSortOrder = onToggleSortOrder,
                             )
                         }
                         // Display the list of routes
                         MarkersList(
                             uiState = uiState,
-                            navController = homeNavController
+                            navController = homeNavController,
                         )
                     }
                 }
@@ -154,15 +160,21 @@ fun MarkersScreenPopulatedPreview() {
     SoundscapeTheme {
         MarkersScreen(
             homeNavController = rememberNavController(),
-            uiState = MarkersUiState(
-                markers = listOf(
-                    RoutePoint("Waypoint 1", Location(Double.NaN, Double.NaN)),
-                    RoutePoint("Waypoint 2", Location(Double.NaN, Double.NaN)),
-                    RoutePoint("Waypoint 3", Location(Double.NaN, Double.NaN))
-                )
-            ),
+            uiState =
+                MarkersUiState(
+                    markers =
+                        listOf(
+                            LocationDescription(
+                                "Waypoint 1",
+                                "Street Blabla, Blabla City",
+                                latitude = Double.NaN,
+                                longitude = Double.NaN,
+                                distance = "2 km",
+                            ),
+                        ),
+                ),
             clearErrorMessage = {},
-            onToggleSortOrder = {}
+            onToggleSortOrder = {},
         )
     }
 }
@@ -175,7 +187,7 @@ fun MarkersScreenPreview() {
             homeNavController = rememberNavController(),
             uiState = MarkersUiState(),
             clearErrorMessage = {},
-            onToggleSortOrder = {}
+            onToggleSortOrder = {},
         )
     }
 }

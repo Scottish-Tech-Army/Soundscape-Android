@@ -44,7 +44,6 @@ import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
 import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.utils.buildAddressFormat
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
 
 fun generateLocationDetailsRoute(locationDescription: LocationDescription): String {
@@ -56,14 +55,14 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription): Stri
 
 @Composable
 fun LocationDetailsScreen(
-    locationDescription : LocationDescription,
-    latitude : Double?,
+    locationDescription: LocationDescription,
+    latitude: Double?,
     longitude: Double?,
-    heading : Float,
+    heading: Float,
     onNavigateUp: () -> Unit,
     navController: NavHostController,
     viewModel: LocationDetailsViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LocationDetails(
         onNavigateUp = onNavigateUp,
@@ -81,23 +80,23 @@ fun LocationDetailsScreen(
         latitude = latitude,
         longitude = longitude,
         heading = heading,
-        modifier = modifier
+        modifier = modifier,
     )
 }
 
 @Composable
 fun LocationDetails(
-                    locationDescription : LocationDescription,
-                    onNavigateUp: () -> Unit,
-                    navController: NavHostController,
-                    latitude: Double?,
-                    longitude: Double?,
-                    heading: Float,
-                    createBeacon: (latitude: Double, longitude: Double) -> Unit,
-                    saveMarker: (description: LocationDescription) -> Unit,
-                    enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
-                    modifier: Modifier = Modifier) {
-
+    locationDescription: LocationDescription,
+    onNavigateUp: () -> Unit,
+    navController: NavHostController,
+    latitude: Double?,
+    longitude: Double?,
+    heading: Float,
+    createBeacon: (latitude: Double, longitude: Double) -> Unit,
+    saveMarker: (description: LocationDescription) -> Unit,
+    enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(
         modifier = modifier.fillMaxHeight(),
     ) {
@@ -133,18 +132,18 @@ fun LocationDetails(
             onMapLongClick = { latLong ->
                 val ld =
                     LocationDescription(
-                        addressName ="Selected location",
+                        addressName = "Selected location",
                         latitude = latLong.latitude,
                         longitude = latLong.longitude,
                     )
                 // This effectively replaces the current screen with the new one
                 navController.navigate(generateLocationDetailsRoute(ld)) {
                     var popupDestination = HomeRoutes.Home.route
-                    if(!ld.marker) popupDestination = HomeRoutes.MarkersAndRoutes.route
+                    if (!ld.marker) popupDestination = HomeRoutes.MarkersAndRoutes.route
                     popUpTo(popupDestination) {
-                        inclusive = false  // Ensures Home screen is not popped from the stack
+                        inclusive = false // Ensures Home screen is not popped from the stack
                     }
-                    launchSingleTop = true  // Prevents multiple instances of Home
+                    launchSingleTop = true // Prevents multiple instances of Home
                 }
                 true
             },
@@ -238,7 +237,7 @@ private fun LocationDescriptionTextsSection(locationDescription: LocationDescrip
                 )
             }
         }
-        locationDescription.buildAddressFormat()?.let {
+        locationDescription.fullAddress?.let {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -312,9 +311,7 @@ fun LocationDetailsPreview() {
                 distance = "3,5 km",
                 latitude = 0.0,
                 longitude = 0.0,
-                streetNumberAndName = "139 boulevard gambetta",
-                postcodeAndLocality = "59000 Lille",
-                country = "France",
+                fullAddress = "139 boulevard gambetta \n59000 Lille\nFrance",
             ),
             createBeacon = { _, _ ->
             },

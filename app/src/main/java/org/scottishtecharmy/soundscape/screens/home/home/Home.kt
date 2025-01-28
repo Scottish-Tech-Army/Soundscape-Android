@@ -147,17 +147,7 @@ fun Home(
                         onToggleSearch = onToggleSearch,
                         onItemClick = { item ->
                             onNavigate(
-                                generateLocationDetailsRoute(
-                                    LocationDescription(
-                                        addressName = item.addressName,
-                                        streetNumberAndName = item.streetNumberAndName,
-                                        postcodeAndLocality = item.postcodeAndLocality,
-                                        country = item.country,
-                                        distance = item.distance,
-                                        latitude = item.latitude,
-                                        longitude = item.longitude,
-                                    ),
-                                ),
+                                generateLocationDetailsRoute(item),
                             )
                         },
                     )
@@ -208,7 +198,7 @@ fun HomeTopAppBar(
             IconButton(
                 enabled = streetPreviewEnabled,
                 onClick = {
-                    if(streetPreviewEnabled) {
+                    if (streetPreviewEnabled) {
                         (context as MainActivity).soundscapeServiceConnection.streetPreviewGo()
                     }
                 },
@@ -217,13 +207,13 @@ fun HomeTopAppBar(
                     Icon(
                         Icons.Rounded.PlayCircle,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = "StreetPreview play"
+                        contentDescription = "StreetPreview play",
                     )
                 } else {
                     Icon(
                         Icons.Rounded.PlayCircleOutline,
                         tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = "StreetPreview play disabled"
+                        contentDescription = "StreetPreview play disabled",
                     )
                 }
             }
@@ -242,7 +232,7 @@ fun HomeTopAppBar(
                     Icon(
                         Icons.Rounded.PlayCircle,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = "StreetPreview play"
+                        contentDescription = "StreetPreview play",
                     )
                     Icon(
                         Icons.Rounded.Preview,
@@ -253,7 +243,7 @@ fun HomeTopAppBar(
                     Icon(
                         Icons.Rounded.PlayCircleOutline,
                         tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = "StreetPreview play disabled"
+                        contentDescription = "StreetPreview play disabled",
                     )
                     Icon(
                         painterResource(R.drawable.preview_off),

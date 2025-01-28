@@ -27,10 +27,9 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
-import org.scottishtecharmy.soundscape.utils.buildAddressFormat
 
 @Composable
-fun SearchItemButton(
+fun LocationItem(
     item: LocationDescription,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -71,7 +70,7 @@ fun SearchItemButton(
                         fontWeight = FontWeight(450),
                     )
                 }
-                item.buildAddressFormat()?.let {
+                item.fullAddress?.let {
                     Text(
                         text = it,
                         fontWeight = FontWeight(400),
@@ -99,14 +98,16 @@ fun PreviewSearchItemButton() {
             val test =
                 LocationDescription(
                     addressName = "Bristol",
-                    streetNumberAndName = "18 Street",
-                    postcodeAndLocality = "59000 Lille",
+                    fullAddress = "18 Street \n59000 Lille\nFrance",
                     distance = "17 Km",
-                    country = "France",
                     latitude = 9.55,
                     longitude = 8.00,
                 )
-            SearchItemButton(test, onClick = {}, Modifier.width(200.dp))
+            LocationItem(
+                item = test,
+                onClick = {},
+                Modifier.width(200.dp),
+            )
         }
     }
 }

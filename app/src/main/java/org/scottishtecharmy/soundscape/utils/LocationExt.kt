@@ -12,19 +12,22 @@ fun ArrayList<Feature>.toLocationDescriptions(
 ): List<LocationDescription> =
     mapNotNull { feature ->
         feature.properties?.let { properties ->
+            val streetNumberAndName =
+                listOfNotNull(
+                    properties["housenumber"],
+                    properties["street"],
+                ).joinToString(" ").nullIfEmpty()
+            val postcodeAndLocality =
+                listOfNotNull(
+                    properties["postcode"],
+                    properties["city"],
+                ).joinToString(" ").nullIfEmpty()
+            val country = properties["country"]?.toString()?.nullIfEmpty()
+
+            val fullAddress = buildAddressFormat(streetNumberAndName, postcodeAndLocality, country)
             LocationDescription(
                 addressName = properties["name"]?.toString(),
-                streetNumberAndName =
-                    listOfNotNull(
-                        properties["housenumber"],
-                        properties["street"],
-                    ).joinToString(" ").nullIfEmpty(),
-                postcodeAndLocality =
-                    listOfNotNull(
-                        properties["postcode"],
-                        properties["city"],
-                    ).joinToString(" ").nullIfEmpty(),
-                country = properties["country"]?.toString()?.nullIfEmpty(),
+                fullAddress = fullAddress,
                 distance =
                     formatDistance(
                         calculateDistance(
@@ -40,7 +43,11 @@ fun ArrayList<Feature>.toLocationDescriptions(
         }
     }
 
-fun LocationDescription.buildAddressFormat(): String? {
+fun buildAddressFormat(
+    streetNumberAndName: String?,
+    postcodeAndLocality: String?,
+    country: String?,
+): String? {
     val addressFormat =
         listOfNotNull(
             streetNumberAndName,
@@ -65,6 +72,23 @@ private fun calculateDistance(
 }
 
 private fun formatDistance(distanceInMeters: Float): String {
+    val distanceInKm = distanceInMeters / 1000
+    return String.format(Locale.getDefault(), "%.1f km", distanceInKm)
+}
+
+fun Location.calculateDistanceTo(
+    lat: Double,
+    lon: Double,
+): String {
+    val results = FloatArray(1)
+    Location.distanceBetween(
+        this.latitude,
+        this.longitude,
+        lat,
+        lon,
+        results,
+    )
+    val distanceInMeters = results[0]
     val distanceInKm = distanceInMeters / 1000
     return String.format(Locale.getDefault(), "%.1f km", distanceInKm)
 }
