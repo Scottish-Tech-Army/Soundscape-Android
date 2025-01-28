@@ -5,6 +5,7 @@ import io.realm.kotlin.Realm
 import io.realm.kotlin.Realm.Companion.deleteRealm
 import io.realm.kotlin.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.model.Location
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 
@@ -32,7 +33,8 @@ object RealmConfiguration {
                 schema = setOf(
                     RouteData::class,
                     RoutePoint::class,
-                    Location::class
+                    Location::class,
+                    MarkerData::class,
                 )
             ).name("MarkersAndRoutes").build()
 

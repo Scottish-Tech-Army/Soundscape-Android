@@ -10,16 +10,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
-import org.junit.runner.OrderWith
 import org.junit.runner.RunWith
-import org.junit.runner.manipulation.Alphanumeric
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
-
 
 // The GPX parsing code requires various pieces of Android infrastructure, so
 // this is an Instrumentation test rather than a unit test.
@@ -31,9 +29,8 @@ class GpxTest {
         expectedValues: List<RoutePoint>,
         expectedName: String = "",
         expectedDescription: String = "",
-        name_override: String? = null
+        name_override: String? = null,
     ) {
-
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val input = context.assets.open(filename)
 
@@ -45,7 +42,7 @@ class GpxTest {
         for (point in routeData.waypoints) {
             Log.d(
                 "gpxTest",
-                "Point: " + point.name + " " + point.location?.latitude + " " + point.location?.longitude
+                "Point: " + point.name + " " + point.location?.latitude + " " + point.location?.longitude,
             )
 
             // Lookup the point in the expected values map
@@ -53,19 +50,23 @@ class GpxTest {
             index += 1
         }
 
-        if(name_override != null)
+        if (name_override != null) {
             routeData.name = name_override
+        }
 
         // The parsing has succeeded, write the result to the database
-        val config = RealmConfiguration.Builder(
-            schema = setOf(
-                RouteData::class,
-                RoutePoint::class,
-                Location::class
-            )
-        )
-            .inMemory()
-            .build()
+        val config =
+            RealmConfiguration
+                .Builder(
+                    schema =
+                        setOf(
+                            RouteData::class,
+                            RoutePoint::class,
+                            Location::class,
+                            MarkerData::class,
+                        ),
+                ).inMemory()
+                .build()
         val realm = Realm.open(config)
         Log.d("gpxTest", "Successfully opened an in-memory realm")
 
@@ -87,18 +88,20 @@ class GpxTest {
 
     private fun testDatabase(
         name: String,
-        expectedValues: List<RoutePoint>
+        expectedValues: List<RoutePoint>,
     ) {
         // Open the database
-        val config = RealmConfiguration.Builder(
-            schema = setOf(
-                RouteData::class,
-                RoutePoint::class,
-                Location::class
-            )
-        )
-            .inMemory()
-            .build()
+        val config =
+            RealmConfiguration
+                .Builder(
+                    schema =
+                        setOf(
+                            RouteData::class,
+                            RoutePoint::class,
+                            Location::class,
+                        ),
+                ).inMemory()
+                .build()
         val realm = Realm.open(config)
         Log.d("gpxTest", "Successfully opened an in-memory realm")
 
@@ -184,7 +187,6 @@ class GpxTest {
     }
 
     private fun expectedHandcraftedValues(): List<RoutePoint> {
-
         val waypoint1 = RoutePoint("George Square, Glasgow", Location(55.8610697, -4.2499327))
         val waypoint2 = RoutePoint("Edinburgh Castle", Location(55.9488161, -3.2021476))
         val waypoint3 = RoutePoint("Greenwich Prime Meridian, London", Location(51.4779644, 0.0))
@@ -195,7 +197,6 @@ class GpxTest {
     }
 
     private fun expectedRideWithGpsValues(): List<RoutePoint> {
-
         val waypoint1 = RoutePoint("Slight Left", Location(55.94722, -4.30844))
         val waypoint2 = RoutePoint("Right", Location(55.94628, -4.30901))
         val waypoint3 = RoutePoint("Right", Location(55.9442, -4.31081))
@@ -215,12 +216,11 @@ class GpxTest {
             waypoint6,
             waypoint7,
             waypoint8,
-            waypoint9
+            waypoint9,
         )
     }
 
     private fun expectedSoundscapeValues(): List<RoutePoint> {
-
         val waypoint1 = RoutePoint("Waypoint", Location(55.947256, -4.305852))
         val waypoint2 = RoutePoint("Waypoint", Location(55.946412, -4.305621))
         val waypoint3 = RoutePoint("Waypoint", Location(55.946409, -4.304833))
@@ -238,7 +238,7 @@ class GpxTest {
             waypoint5,
             waypoint6,
             waypoint7,
-            waypoint8
+            waypoint8,
         )
     }
 
@@ -276,18 +276,21 @@ class GpxTest {
         testParsing("gpx/handcrafted.gpx", expectedValues, "Handcrafted", "Handcrafted description")
         testDatabase("Handcrafted", expectedValues)
     }
+
     @Test
     fun rideWithGpsDatabase() {
         val expectedValues = expectedRideWithGpsValues()
         testParsing("gpx/rideWithGps.gpx", expectedValues, "RideWithGps", "")
         testDatabase("RideWithGps", expectedValues)
     }
+
     @Test
     fun soundscapeDatabase() {
         val expectedValues = expectedSoundscapeValues()
         testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
         testDatabase("Soundscape", expectedValues)
     }
+
     @Test
     fun soundscapeDuplicateDatabase() {
         val expectedValues = expectedSoundscapeValues()
