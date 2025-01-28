@@ -144,17 +144,7 @@ fun Home(
                         onToggleSearch = onToggleSearch,
                         onItemClick = { item ->
                             onNavigate(
-                                generateLocationDetailsRoute(
-                                    LocationDescription(
-                                        addressName = item.addressName,
-                                        streetNumberAndName = item.streetNumberAndName,
-                                        postcodeAndLocality = item.postcodeAndLocality,
-                                        country = item.country,
-                                        distance = item.distance,
-                                        latitude = item.latitude,
-                                        longitude = item.longitude,
-                                    ),
-                                ),
+                                generateLocationDetailsRoute(item),
                             )
                         },
                     )
