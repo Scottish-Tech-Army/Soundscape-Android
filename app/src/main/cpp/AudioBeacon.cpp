@@ -50,7 +50,7 @@ void PositionedAudio::InitFmodSound() {
 
         if(!isnan(m_Latitude) && !isnan(m_Longitude)) {
             // Only set the 3D position if the latitude and longitude are valid
-            FMOD_VECTOR pos = {(float) m_Longitude, 0.0f, (float) m_Latitude};
+            FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(m_Longitude, m_Latitude);
             FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
             result = m_pChannel->set3DAttributes(&pos, &vel);
         }
