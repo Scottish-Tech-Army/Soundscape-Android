@@ -30,15 +30,22 @@ namespace soundscape {
         void GetListenerPosition(double &heading, double &latitude, double &longitude) const
         {
             heading = m_LastHeading;
-            latitude = m_LastPos.z;
-            longitude = m_LastPos.x;
+            latitude = m_LastLatitude;
+            longitude = m_LastLongitude;
         }
 
         void ClearQueue();
 
+        FMOD_VECTOR TranslateToFmodVector(double longitude, double latitude);
+        void TranslateFmodVector(FMOD_VECTOR &location);
+
     private:
         FMOD::System * m_pSystem;
-        FMOD_VECTOR m_LastPos = {0.0f, 0.0f, 0.0f};
+        double m_LastLatitude = 0.0;
+        double m_LastLongitude = 0.0;
+
+        double m_FmodOriginLatitude = 0.0;
+        double m_FmodOriginLongitude = 0.0;
 
         double m_LastHeading = 0.0;
         std::chrono::time_point<std::chrono::system_clock> m_LastTime;

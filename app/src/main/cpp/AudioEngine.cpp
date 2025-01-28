@@ -223,24 +223,9 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                                 double listenerHeading) {
         const FMOD_VECTOR up = {0.0f, 1.0f, 0.0f};
 
-        // Set listener position
-        FMOD_VECTOR listener_position;
-        listener_position.x = static_cast<float>(listenerLongitude);
-        listener_position.y = 0.0f;
-        listener_position.z = static_cast<float>(listenerLatitude);
-
-        // vel = how far we moved last FRAME (m/f), then time compensate it to SECONDS (m/s).
-        auto now = std::chrono::system_clock::now();
-        auto ms_diff = std::chrono::duration<double, std::milli>(now - m_LastTime).count();
-        m_LastTime = now;
-
-        FMOD_VECTOR vel;
-        vel.x = static_cast<float>((listener_position.x - m_LastPos.x) * (1000.0 / ms_diff));
-        vel.y = static_cast<float>((listener_position.y - m_LastPos.y) * (1000.0 / ms_diff));
-        vel.z = static_cast<float>((listener_position.z - m_LastPos.z) * (1000.0 / ms_diff));
-
         // store pos for next time
-        m_LastPos = listener_position;
+        m_LastLatitude = listenerLatitude;
+        m_LastLongitude = listenerLongitude;
         m_LastHeading = listenerHeading;
 
         // Set listener direction
@@ -287,6 +272,9 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             }
         }
 
+        // We're not going to include velocity in our audio modelling, set it to 0.0 (no doppler!)
+        FMOD_VECTOR vel = {0.0, 0.0, 0.0};
+        auto listener_position = TranslateToFmodVector(listenerLongitude, listenerLatitude);
         auto result = m_pSystem->set3DListenerAttributes(0, &listener_position, &vel, &forward, &up);
         ERROR_CHECK(result);
 
@@ -351,7 +339,21 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 //        TRACE("RemoveBeacon -> %zu beacons", m_Beacons.size());
     }
 
-
+    FMOD_VECTOR AudioEngine::TranslateToFmodVector(double longitude, double latitude)
+    {
+        // For the translation from longitude/latitude into FMOD coordinates we want the origin to
+        // be close by as that improves accuracy. We're just going to use the first location that
+        // we get.
+        if(m_FmodOriginLatitude == 0.0 && m_FmodOriginLongitude == 0.0) {
+            m_FmodOriginLatitude = latitude;
+            m_FmodOriginLongitude = longitude;
+        }
+        double x, y;
+        translateLocationForFmod(latitude, longitude,
+                                 m_FmodOriginLatitude, m_FmodOriginLongitude,
+                                 x, y);
+        return FMOD_VECTOR{(float)x, 0.0f, (float)y};
+    }
 
 } // soundscape
 
