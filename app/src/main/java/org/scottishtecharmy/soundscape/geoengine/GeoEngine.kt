@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.location.Location
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.ActivityTransition
@@ -18,14 +17,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
-import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
-import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
@@ -38,11 +34,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
-import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
@@ -76,6 +69,8 @@ class GeoEngine {
 
     private var inVehicle = false
     private var inMotion = false
+
+    private lateinit var autoCallout: AutoCallout
 
     private val streetPreview = StreetPreview()
 
@@ -127,6 +122,7 @@ class GeoEngine {
         configuration = Configuration(application.applicationContext.resources.configuration)
         configuration.setLocale(configLocale)
         localizedContext = application.applicationContext.createConfigurationContext(configuration)
+        autoCallout = AutoCallout(localizedContext, sharedPreferences)
 
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
@@ -177,7 +173,7 @@ class GeoEngine {
                     )
 
                     // Run any auto callouts that we need
-                    val callouts = autoCallout(location)
+                    val callouts = autoCallout.updateLocation(getCurrentUserGeometry(), gridState)
                     if (callouts.isNotEmpty()) {
                         // Tell the service that we've got some callouts to tell the user about
                         soundscapeService.speakCallout(callouts)
@@ -185,208 +181,6 @@ class GeoEngine {
                 }
             }
         }
-    }
-
-    private val locationFilter = LocationUpdateFilter(10000, 50.0)
-    private val poiFilter = LocationUpdateFilter(5000, 5.0)
-
-    /** Reverse geocodes a location into 1 of 4 possible states
-     * - within a POI
-     * - alongside a road
-     * - general location
-     * - unknown location).
-     */
-    private fun reverseGeocode(userGeometry: UserGeometry): List<PositionedString> {
-        val results : MutableList<PositionedString> = mutableListOf()
-
-        // Check if we're inside a POI
-        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, userGeometry.location, 200.0)
-        val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
-        for(poi in gridPoiFeatureCollection) {
-            // We can only be inside polygons
-            if(poi.geometry.type == "Polygon") {
-                val polygon = poi.geometry as Polygon
-
-                if(polygonContainsCoordinates(userGeometry.location, polygon)) {
-                    // We've found a POI that contains our location
-                    val name = poi.properties?.get("name")
-                    if(name != null) {
-                        results.add(
-                            PositionedString(
-                                localizedContext.getString(R.string.directions_at_poi).format(name as String)
-                            ),
-                        )
-                        return results
-                    }
-                }
-            }
-        }
-
-        // Check if we're alongside a road/path
-        val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.location, 100.0)
-        if(nearestRoad != null) {
-            val properties = nearestRoad.properties
-            if (properties != null) {
-                val orientation = directionProvider.getCurrentDirection()
-                var roadName = properties["name"]
-                if (roadName == null) {
-                    roadName = properties["highway"]
-                }
-                val facingDirectionAlongRoad =
-                    getCompassLabelFacingDirectionAlong(
-                        localizedContext,
-                        orientation.toInt(),
-                        roadName.toString(),
-                        inMotion,
-                        inVehicle
-                    )
-                results.add(PositionedString(facingDirectionAlongRoad))
-                return results
-            }
-        }
-
-        return results
-    }
-
-    private fun buildCalloutForRoadSense(userGeometry: UserGeometry): List<PositionedString> {
-
-        // Check that our location/time has changed enough to generate this callout
-        if (!locationFilter.shouldUpdate(userGeometry)) {
-            return emptyList()
-        }
-
-        // Check that we're in a vehicle
-        if (!userGeometry.inVehicle) {
-            return emptyList()
-        }
-
-        // Update time/location filter for our new position
-        locationFilter.update(userGeometry)
-
-        // Reverse geocode the current location (this is the iOS name for the function)
-        val results = reverseGeocode(userGeometry)
-
-        // Check that the geocode has changed before returning a callout describing it
-
-        return results
-    }
-
-    private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
-    private val intersectionCalloutHistory = CalloutHistory(30000)
-
-    private fun buildCalloutForIntersections(userGeometry: UserGeometry) : List<PositionedString> {
-        val results : MutableList<PositionedString> = mutableListOf()
-
-        // Check that our location/time has changed enough to generate this callout
-        if (!intersectionFilter.shouldUpdate(userGeometry)) {
-            return emptyList()
-        }
-
-        // Check that we're not in a vehicle
-        if (inVehicle) {
-            return emptyList()
-        }
-
-        // Update time/location filter for our new position
-        intersectionFilter.update(userGeometry)
-        intersectionCalloutHistory.trim(userGeometry)
-
-        val roadsDescription = getRoadsDescriptionFromFov(
-            gridState,
-            userGeometry,
-            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION)
-
-        addIntersectionCalloutFromDescription(roadsDescription,
-                localizedContext,
-                results,
-                intersectionCalloutHistory)
-
-        return results
-    }
-
-    private val poiCalloutHistory = CalloutHistory()
-    private fun buildCalloutForNearbyPOI(userGeometry: UserGeometry) : List<PositionedString> {
-        if (!poiFilter.shouldUpdateActivity(userGeometry)) {
-            return emptyList()
-        }
-
-        val results: MutableList<PositionedString> = mutableListOf()
-
-        // Trim history based on location and current time
-        poiCalloutHistory.trim(userGeometry)
-
-        // We want to call out up to the 10 nearest POI that are within 50m range
-        val pois = gridState.getFeatureTree(TreeId.POIS).generateNearestFeatureCollection(
-            userGeometry.location,
-            50.0,
-            10
-        )
-
-        for (feature in pois) {
-            val name = getTextForFeature(feature)
-
-            // Check the history and if the POI has been called out recently then we skip it
-            val nearestPoint = getDistanceToFeature(userGeometry.location, feature)
-            val callout = TrackedCallout(name.text, nearestPoint.point, feature.geometry.type == "Point", name.generic)
-            if (poiCalloutHistory.find(callout)) {
-                Log.d(TAG, "Discard ${callout.callout}")
-            } else {
-                results.add(
-                    PositionedString(
-                        name.text,
-                        nearestPoint.point,
-                        NativeAudioEngine.EARCON_SENSE_POI,
-                    ),
-                )
-                // Add the entries to the history
-                poiCalloutHistory.add(callout)
-            }
-        }
-
-        return results
-    }
-
-    private fun autoCallout(androidLocation: Location) : List<PositionedString> {
-
-        // The autoCallout logic comes straight from the iOS app.
-        val userGeometry = getCurrentUserGeometry()
-
-        // Check that the callout isn't disabled in the settings
-        if (!sharedPreferences.getBoolean(ALLOW_CALLOUTS_KEY, true)) {
-            return emptyList()
-        }
-
-        // Run the code within the treeContext to protect it from changes to the trees whilst it's
-        // running.
-        val returnList = runBlocking {
-            withContext(gridState.treeContext) {
-                var list = emptyList<PositionedString>()
-                // buildCalloutForRoadSense
-                val roadSenseCallout = buildCalloutForRoadSense(userGeometry)
-                if (roadSenseCallout.isNotEmpty()) {
-                    list = roadSenseCallout
-                } else {
-                    val intersectionCallout = buildCalloutForIntersections(userGeometry)
-                    if (intersectionCallout.isNotEmpty()) {
-                        intersectionFilter.update(userGeometry)
-                        list = list + intersectionCallout
-                    }
-
-
-                    // Get normal callouts for nearby POIs, for the destination, and for beacons
-                    val poiCallout = buildCalloutForNearbyPOI(userGeometry)
-
-                    // Update time/location filter for our new position
-                    if (poiCallout.isNotEmpty()) {
-                        poiFilter.update(userGeometry)
-                        list = list + poiCallout
-                    }
-                }
-
-                list
-            }
-        }
-        return returnList
     }
 
     fun myLocation() : List<PositionedString> {
@@ -538,7 +332,7 @@ class GeoEngine {
 
                         if(feature == null) continue
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature)
-                        val name = getTextForFeature(feature)
+                        val name = getTextForFeature(localizedContext, feature)
                         val text = "${name.text}. ${localizedContext.getString(R.string.distance_format_meters, poiLocation.distance.toString())}"
                         list.add(
                             PositionedString(
@@ -708,53 +502,53 @@ class GeoEngine {
         }
     }
 
-    data class TextForFeature(val text: String = "", val generic: Boolean= false)
-
-    /**
-     * getNameForFeature returns text describing the feature for callouts. Usually it returns a name
-     * or if it doesn't have one then a localized description of the type of feature it is e.g. bike
-     * parking, or style. Some types of Feature have more info e.g. bus stops and railway stations
-     * @param feature to evaluate
-     * @return a NameForFeature object containing the name and a flag indicating if it is a generic
-     * name from the OSM tag rather than an actual name.
-     */
-    private fun getTextForFeature(feature: Feature) : TextForFeature {
-        var generic = false
-        val name = feature.properties?.get("name") as String?
-        val featureValue = feature.foreign?.get("feature_value")
-
-        var text = name
-        when(featureValue) {
-            "bus_stop" -> {
-                text = if (name != null)
-                    localizedContext.getString(R.string.osm_tag_bus_stop_named).format(name)
-                else
-                    localizedContext.getString(R.string.osm_tag_bus_stop)
-            }
-            "station" -> {
-                text = if (name != null)
-                    localizedContext.getString(R.string.osm_tag_train_station_named).format(name)
-                else
-                    localizedContext.getString(R.string.osm_tag_train_station)
-            }
-        }
-        if (text == null) {
-            val osmClass =
-                feature.properties?.get("class") as String? ?: return TextForFeature("", true)
-
-            val id = ResourceMapper.getResourceId(osmClass)
-            text = if (id == null) {
-                osmClass
-            } else {
-                localizedContext.getString(id)
-            }
-            generic = true
-        }
-
-        return TextForFeature(text, generic)
-    }
-
     companion object {
         private const val TAG = "GeoEngine"
     }
+}
+
+data class TextForFeature(val text: String = "", val generic: Boolean= false)
+
+/**
+ * getNameForFeature returns text describing the feature for callouts. Usually it returns a name
+ * or if it doesn't have one then a localized description of the type of feature it is e.g. bike
+ * parking, or style. Some types of Feature have more info e.g. bus stops and railway stations
+ * @param feature to evaluate
+ * @return a NameForFeature object containing the name and a flag indicating if it is a generic
+ * name from the OSM tag rather than an actual name.
+ */
+fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeature {
+    var generic = false
+    val name = feature.properties?.get("name") as String?
+    val featureValue = feature.foreign?.get("feature_value")
+
+    var text = name
+    when(featureValue) {
+        "bus_stop" -> {
+            text = if (name != null)
+                localizedContext.getString(R.string.osm_tag_bus_stop_named).format(name)
+            else
+                localizedContext.getString(R.string.osm_tag_bus_stop)
+        }
+        "station" -> {
+            text = if (name != null)
+                localizedContext.getString(R.string.osm_tag_train_station_named).format(name)
+            else
+                localizedContext.getString(R.string.osm_tag_train_station)
+        }
+    }
+    if (text == null) {
+        val osmClass =
+            feature.properties?.get("class") as String? ?: return TextForFeature("", true)
+
+        val id = ResourceMapper.getResourceId(osmClass)
+        text = if (id == null) {
+            osmClass
+        } else {
+            localizedContext.getString(id)
+        }
+        generic = true
+    }
+
+    return TextForFeature(text, generic)
 }
