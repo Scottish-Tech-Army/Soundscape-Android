@@ -227,11 +227,14 @@ class GeoEngine {
                         createSuperCategoriesSet()
                     )
 
-                    // Run any auto callouts that we need
-                    val callouts = autoCallout.updateLocation(getCurrentUserGeometry(), gridState)
-                    if (callouts.isNotEmpty()) {
-                        // Tell the service that we've got some callouts to tell the user about
-                        soundscapeService.speakCallout(callouts)
+                    // So long as the AudioEngine is not already busy, run any auto callouts that we need
+                    if(!soundscapeService.isAudioEngineBusy()) {
+                        val callouts =
+                            autoCallout.updateLocation(getCurrentUserGeometry(), gridState)
+                        if (callouts.isNotEmpty()) {
+                            // Tell the service that we've got some callouts to tell the user about
+                            soundscapeService.speakCallout(callouts)
+                        }
                     }
                 }
             }
