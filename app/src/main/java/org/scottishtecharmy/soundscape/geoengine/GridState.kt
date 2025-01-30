@@ -44,8 +44,9 @@ enum class TreeId(
     LANDMARK_POIS(11),
     MOBILITY_POIS(12),
     SAFETY_POIS(13),
-    SELECTED_SUPER_CATEGORIES(14),
-    MAX_COLLECTION_ID(15),
+    PLACES_AND_LANDMARKS(14),
+    SELECTED_SUPER_CATEGORIES(15),
+    MAX_COLLECTION_ID(16),
 }
 
 open class GridState {
@@ -166,6 +167,10 @@ open class GridState {
         featureCollections[TreeId.MOBILITY_POIS.id] = category ?: FeatureCollection()
         category = superCategoryCollections["safety"]
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
+
+        // Create a merged collection of places and landmarks, as used by whatsAroundMe
+        featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.PLACE_POIS.id])
+        featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.LANDMARK_POIS.id])
 
         // Create merged collection of currently selected super categories
         if(enabledCategories.contains(PLACES_AND_LANDMARKS_KEY)) {
