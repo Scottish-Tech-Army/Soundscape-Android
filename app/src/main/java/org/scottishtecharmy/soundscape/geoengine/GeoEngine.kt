@@ -342,8 +342,9 @@ class GeoEngine {
                     val featuresByDirection: Array<Feature?> = arrayOfNulls(4)
                     val directionsNeeded = setOf(0, 1, 2, 3).toMutableSet()
 
+                    // We want to use places and landmarks only
                     // We already have a FeatureTree containing the POI that we wish to search on
-                    val featureTree = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES)
+                    val featureTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
                     for (distance in 200..1000 step 200) {
 
                         // Get Polygons for this FOV distance
@@ -360,19 +361,27 @@ class GeoEngine {
 
                             val dir = direction.next()
                             val triangle = getTriangleForDirection(individualRelativePolygons, dir)
-                            val feature = featureTree.getNearestFeatureWithinTriangle(triangle)
-                            if (feature != null) {
-                                // We found a feature in this direction, check whether we're already
-                                // calling out e.g. there's an L shaped park wrapping around us
-                                var duplicate = false
-                                for(otherFeature in featuresByDirection) {
-                                    if(otherFeature == null) continue
-                                    if(feature == otherFeature) duplicate = true
-                                }
-                                if(!duplicate) {
-                                    // Remember it and remove it from the set of directions to search
-                                    featuresByDirection[dir] = feature
-                                    direction.remove()
+                            // Get the 4 nearest features in this direction. This allows us to de-duplicate
+                            // across the other directions.
+                            val featureCollection = featureTree.generateNearestFeatureCollectionWithinTriangle(triangle, 4)
+                            if (featureCollection.features.isNotEmpty()) {
+                                // We found features in this direction, find the nearest one which
+                                // we are not already calling out in another direction.
+                                for(feature in featureCollection) {
+                                    var duplicate = false
+                                    val featureName = getTextForFeature(localizedContext, feature).text
+                                    for (otherFeature in featuresByDirection) {
+                                        if (otherFeature == null) continue
+                                        val otherName = getTextForFeature(localizedContext, otherFeature).text
+                                        if (featureName == otherName) duplicate = true
+                                    }
+                                    if (!duplicate) {
+                                        // We've found a new feature, remember it and remove it from
+                                        // the set of directions to search
+                                        featuresByDirection[dir] = feature
+                                        direction.remove()
+                                        break
+                                    }
                                 }
                             }
                         }
