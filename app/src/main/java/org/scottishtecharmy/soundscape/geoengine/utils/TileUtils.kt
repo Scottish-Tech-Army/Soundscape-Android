@@ -177,6 +177,7 @@ fun getPoiFeatureCollectionBySuperCategory(
             feature.foreign?.let { foreign ->
                 if (foreign["feature_type"] == featureType || foreign["feature_value"] == featureType) {
                     tempFeatureCollection.addFeature(feature)
+                    feature.foreign?.put("category",superCategory)
                 }
             }
         }

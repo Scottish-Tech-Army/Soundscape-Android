@@ -77,12 +77,67 @@ class GeoEngine {
     /** UserGeometry contains all of the data relating to the location and motion of the user. It's
      * aim is simply to reduces the number of arguments to many of the API calls.
      */
-    data class UserGeometry(val location: LngLatAlt = LngLatAlt(),
-                            var heading: Double = 0.0,
-                            val fovDistance: Double = 50.0,
-                            val inVehicle: Boolean = false,
-                            val inMotion: Boolean = false,
-                            val speed: Double = 0.0)
+    class UserGeometry(val location: LngLatAlt = LngLatAlt(),
+                        var heading: Double = 0.0,
+                        val fovDistance: Double = 50.0,
+                        val inVehicle: Boolean = false,
+                        val inMotion: Boolean = false,
+                        val speed: Double = 0.0,
+                        val inStreetPreview: Boolean = false)
+    {
+        private val automotiveRangeMultiplier = 6.0
+        private val streetPreviewRangeIncrement = 10.0
+
+        private fun transform(distance: Double) : Double {
+            if(inVehicle) return distance * automotiveRangeMultiplier
+            if(inStreetPreview) return distance + streetPreviewRangeIncrement
+            return distance
+        }
+
+        /**
+         * getSearchDistance returns the distance to use when searching for POIs
+         */
+        fun getSearchDistance() : Double {
+            return transform(50.0)
+        }
+
+        /**
+         * getTriggerRange returns the distance to use when detecting POIs to call out
+         */
+        fun getTriggerRange(category: String) : Double {
+            return when(category) {
+                "object",
+                "safety" -> transform(10.0)
+
+                "place",
+                "information",
+                "mobility" -> transform(20.0)
+
+                "landmark" -> transform(50.0)
+
+                else -> transform(0.0)
+            }
+        }
+
+        /**
+         * getTriggerRange returns the distance if a POI is still in proximity after a callout
+         */
+        fun getProximityRange(category: String) : Double {
+            return when(category) {
+                "object",
+                "safety" -> transform(20.0)
+
+                "place",
+                "information",
+                "mobility" -> transform(30.0)
+
+                "landmark" -> transform(100.0)
+
+                else -> transform(0.0)
+            }
+        }
+    }
+
     private fun getCurrentUserGeometry() : UserGeometry {
         return UserGeometry(locationProvider.get(),
             directionProvider.getCurrentDirection().toDouble(),
