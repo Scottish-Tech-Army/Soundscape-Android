@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDire
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 
 class AutoCallout(
@@ -160,41 +161,73 @@ class AutoCallout(
         // Trim history based on location and current time
         poiCalloutHistory.trim(userGeometry)
 
-        // We want to call out up to the 10 nearest POI that are within 50m range
-        val pois = gridState.getFeatureTree(TreeId.POIS).generateNearestFeatureCollection(
+        // We want to start off with a list of the 10 nearest POI that are within search range
+        val pois = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES).generateNearestFeatureCollection(
             userGeometry.location,
-            50.0,
+            userGeometry.getSearchDistance(),
             10
         )
 
-        for (feature in pois) {
-            val name = getTextForFeature(localizedContext, feature)
+        val uniquelyNamedPOIs = emptyMap<String,Feature>().toMutableMap()
+        pois.features.filter { feature ->
 
-            // Check the history and if the POI has been called out recently then we skip it
+            // Skip the POI if it's coincident with where the current audio beacon is
+
+            val name = getTextForFeature(localizedContext, feature)
+            val category = feature.foreign?.get("category") as String?
+
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature)
-            val callout = TrackedCallout(name.text, nearestPoint.point, feature.geometry.type == "Point", name.generic)
-            if (poiCalloutHistory.find(callout)) {
-                Log.d(TAG, "Discard ${callout.callout}")
+            if(category == null) {
+                true
             } else {
-                results.add(
-                    PositionedString(
+                if (nearestPoint.distance > userGeometry.getTriggerRange(category)) {
+                    // The POI is farther away than the category allows
+                    true
+                } else {
+                    // Check the history and if the POI has been called out recently then we skip it
+                    val callout = TrackedCallout(
                         name.text,
                         nearestPoint.point,
-                        NativeAudioEngine.EARCON_SENSE_POI,
-                    ),
-                )
-                // Add the entries to the history
-                poiCalloutHistory.add(callout)
+                        feature.geometry.type == "Point",
+                        name.generic
+                    )
+                    if (poiCalloutHistory.find(callout)) {
+                        Log.d(TAG, "Discard ${callout.callout}")
+                        // Filter out
+                        true
+                    } else {
+                        if (!uniquelyNamedPOIs.containsKey(name.text)) {
+                            // Don't filter out
+                            uniquelyNamedPOIs[name.text] = feature
+                            results.add(
+                                PositionedString(
+                                    name.text,
+                                    nearestPoint.point,
+                                    NativeAudioEngine.EARCON_SENSE_POI,
+                                ),
+                            )
+                            poiCalloutHistory.add(callout)
+                            false
+                        } else {
+                            true
+                        }
+                    }
+                }
             }
         }
-
         return results
     }
 
+    /**
+     * updateLocation is called whenever the current location changes. It works through the auto
+     * callout logic to determine which (if any) callouts need to be made. This is based on the iOS
+     * app logic.
+     * @param userGeometry The new state of the user location/speed etc.
+     * @param gridState The current state of the tile data
+     * @return A list of PositionedString callouts to be spoken
+     */
     fun updateLocation(userGeometry: UserGeometry,
                        gridState: GridState) : List<PositionedString> {
-
-        // The autoCallout logic comes straight from the iOS app.
 
         // Check that the callout isn't disabled in the settings
         if (!sharedPreferences.getBoolean(ALLOW_CALLOUTS_KEY, true)) {
@@ -206,9 +239,11 @@ class AutoCallout(
         val returnList = runBlocking {
             withContext(gridState.treeContext) {
                 var list = emptyList<PositionedString>()
-                // buildCalloutForRoadSense
+
+                // buildCalloutForRoadSense builds a callout for
                 val roadSenseCallout = buildCalloutForRoadSense(userGeometry, gridState)
                 if (roadSenseCallout.isNotEmpty()) {
+                    // If we have som
                     list = roadSenseCallout
                 } else {
                     val intersectionCallout = buildCalloutForIntersections(userGeometry, gridState)
