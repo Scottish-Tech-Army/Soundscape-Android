@@ -363,6 +363,16 @@ class SoundscapeService : MediaSessionService() {
 //        routePlayer.setupCurrentRoute()
     }
 
+    /**
+     * isAudioEngineBusy returns true if there is more than one entry in the
+     * audio engine queue. The queue consists of earcons and text-to-speech.
+     */
+    fun isAudioEngineBusy() : Boolean {
+        val depth = audioEngine.getQueueDepth()
+        //Log.d(TAG, "Queue depth: $depth")
+        return (depth > 1)
+    }
+
     fun speakCallout(callouts: List<PositionedString>) {
         audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER)
         for(result in callouts) {

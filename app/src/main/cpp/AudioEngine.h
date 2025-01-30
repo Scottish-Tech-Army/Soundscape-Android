@@ -25,6 +25,8 @@ namespace soundscape {
         void AddBeacon(PositionedAudio *beacon, bool queued = false);
         void RemoveBeacon(PositionedAudio *beacon);
 
+        void Eof(long long id);
+
         const static BeaconDescriptor msc_BeaconDescriptors[];
 
         void GetListenerPosition(double &heading, double &latitude, double &longitude) const
@@ -35,9 +37,9 @@ namespace soundscape {
         }
 
         void ClearQueue();
+        unsigned int GetQueueDepth();
 
         FMOD_VECTOR TranslateToFmodVector(double longitude, double latitude);
-        void TranslateFmodVector(FMOD_VECTOR &location);
 
     private:
         FMOD::System * m_pSystem;

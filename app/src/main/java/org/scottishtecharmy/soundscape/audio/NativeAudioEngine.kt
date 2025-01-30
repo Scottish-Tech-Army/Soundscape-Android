@@ -42,6 +42,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
     private external fun createNativeEarcon(engineHandle: Long, asset:String, latitude: Double, longitude: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
+    private external fun getQueueDepth(engineHandle: Long) : Long
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
@@ -286,6 +287,16 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             }
         }
     }
+
+    override fun getQueueDepth() : Long {
+        synchronized(engineMutex) {
+            if (engineHandle != 0L) {
+                return getQueueDepth(engineHandle)
+            }
+        }
+        return 0
+    }
+
     override fun getAvailableSpeechLanguages() : Set<Locale> {
         if (!textToSpeechInitialized)
             return emptySet()

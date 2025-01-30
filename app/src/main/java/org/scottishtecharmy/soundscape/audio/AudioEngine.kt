@@ -10,6 +10,7 @@ interface AudioEngine {
     fun createTextToSpeech(text: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long
     fun createEarcon(asset: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long
     fun clearTextToSpeechQueue()
+    fun getQueueDepth() : Long
     fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double)
     fun setBeaconType(beaconType: String)
     fun getListOfBeaconTypes() : Array<String>

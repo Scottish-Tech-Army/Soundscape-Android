@@ -255,8 +255,10 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                     }
 
 //                    TRACE("Remove EOF beacon");
+                    auto id = (long long)*it;
                     delete *it;
                     it = m_Beacons.begin();
+                    Eof(id);
                     continue;
                 }
 
@@ -310,6 +312,11 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         m_QueuedBeacons.clear();
     }
 
+    unsigned int AudioEngine::GetQueueDepth() {
+        std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+        return m_QueuedBeacons.size();
+    }
+
     void AudioEngine::AddBeacon(PositionedAudio *beacon, bool queued)
     {
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
@@ -353,6 +360,13 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                                  m_FmodOriginLatitude, m_FmodOriginLongitude,
                                  x, y);
         return FMOD_VECTOR{(float)x, 0.0f, (float)y};
+    }
+
+    void AudioEngine::Eof(long long id) {
+        // This could be used to generate callbacks to the kotlin code
+        // to indicate that some audio has finished. Currently it does
+        // nothing.
+        //TRACE("EOF tts %lld", id);
     }
 
 } // soundscape
@@ -458,6 +472,18 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(
 }
 
 extern "C"
+JNIEXPORT jlong JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_getQueueDepth(JNIEnv *env MAYBE_UNUSED,
+                                                                                jobject thiz MAYBE_UNUSED,
+                                                                                jlong engine_handle) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if(ae) {
+
+        return static_cast<jlong>(ae->GetQueueDepth());
+    }
+    return 0L;
+}
+extern "C"
 JNIEXPORT void JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon(JNIEnv *env MAYBE_UNUSED,
                                                                                 jobject thiz MAYBE_UNUSED,
@@ -482,7 +508,9 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
             TRACE("Failed to create text to speech");
             tts.reset(nullptr);
         }
-        return reinterpret_cast<jlong>(tts.release());
+        auto ret = reinterpret_cast<jlong>(tts.release());
+        //TRACE("Created tts %lld", ret);
+        return ret;
     }
     return 0L;
 }
@@ -518,7 +546,9 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
             TRACE("Failed to create Earcon");
             earcon.reset(nullptr);
         }
-        return reinterpret_cast<jlong>(earcon.release());
+        auto ret = reinterpret_cast<jlong>(earcon.release());
+        //TRACE("Created earcon %lld", ret);
+        return ret;
     }
     return 0L;
 }
