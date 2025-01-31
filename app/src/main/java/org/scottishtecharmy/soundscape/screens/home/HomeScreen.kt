@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
@@ -63,12 +64,8 @@ fun HomeScreen(
                 heading = state.value.heading,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->
-                    val ld =
-                        LocationDescription(
-                            addressName = "Current location",
-                            latitude =latLong.latitude,
-                            longitude = latLong.longitude,
-                        )
+                    val location = LngLatAlt(latLong.longitude, latLong.latitude)
+                    val ld = viewModel.getLocationDescription(location) ?: LocationDescription()
                     navController.navigate(generateLocationDetailsRoute(ld))
                     true
                 },
@@ -78,6 +75,17 @@ fun HomeScreen(
                 getMyLocation = { viewModel.myLocation() },
                 getWhatsAheadOfMe = { viewModel.aheadOfMe() },
                 getWhatsAroundMe = { viewModel.whatsAroundMe() },
+                getCurrentLocationDescription = {
+                    if(state.value.location != null) {
+                        val location = LngLatAlt(
+                            state.value.location!!.longitude,
+                            state.value.location!!.latitude
+                        )
+                        viewModel.getLocationDescription(location) ?: LocationDescription()
+                    } else {
+                        LocationDescription()
+                    }
+                },
                 searchText = searchText.value,
                 isSearching = state.value.isSearching,
                 onToggleSearch = viewModel::onToggleSearch,
