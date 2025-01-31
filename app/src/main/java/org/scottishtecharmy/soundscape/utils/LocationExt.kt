@@ -1,14 +1,15 @@
 package org.scottishtecharmy.soundscape.utils
 
-import android.location.Location
+import android.content.Context
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAsString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import java.util.Locale
 
 fun ArrayList<Feature>.toLocationDescriptions(
-    currentLocationLatitude: Double,
-    currentLocationLongitude: Double,
+    currentLocation: LngLatAlt,
+    localizedContext: Context
 ): List<LocationDescription> =
     mapNotNull { feature ->
         feature.properties?.let { properties ->
@@ -26,16 +27,11 @@ fun ArrayList<Feature>.toLocationDescriptions(
                     ).joinToString(" ").nullIfEmpty(),
                 country = properties["country"]?.toString()?.nullIfEmpty(),
                 distance =
-                    formatDistance(
-                        calculateDistance(
-                            lat1 = currentLocationLatitude,
-                            lon1 = currentLocationLongitude,
-                            lat2 = (feature.geometry as Point).coordinates.latitude,
-                            lon2 = (feature.geometry as Point).coordinates.longitude,
-                        ),
+                    formatDistanceAsString(
+                        currentLocation.distance((feature.geometry as Point).coordinates),
+                        localizedContext
                     ),
-                latitude = (feature.geometry as Point).coordinates.latitude,
-                longitude = (feature.geometry as Point).coordinates.longitude,
+                location = (feature.geometry as Point).coordinates,
             )
         }
     }
@@ -51,20 +47,4 @@ fun LocationDescription.buildAddressFormat(): String? {
         addressFormat.isEmpty() -> null
         else -> addressFormat.joinToString("\n")
     }
-}
-
-private fun calculateDistance(
-    lat1: Double,
-    lon1: Double,
-    lat2: Double,
-    lon2: Double,
-): Float {
-    val results = FloatArray(1)
-    Location.distanceBetween(lat1, lon1, lat2, lon2, results)
-    return results[0]
-}
-
-private fun formatDistance(distanceInMeters: Float): String {
-    val distanceInKm = distanceInMeters / 1000
-    return String.format(Locale.getDefault(), "%.1f km", distanceInKm)
 }

@@ -56,8 +56,7 @@ fun HomeScreen(
         composable(HomeRoutes.Home.route) {
             val context = LocalContext.current
             Home(
-                latitude = state.value.location?.latitude,
-                longitude = state.value.location?.longitude,
+                location = state.value.location,
                 beaconLocation = state.value.beaconLocation,
                 heading = state.value.heading,
                 onNavigate = { dest -> navController.navigate(dest) },
@@ -133,8 +132,7 @@ fun HomeScreen(
                         }
                     }
                 },
-                latitude = state.value.location?.latitude,
-                longitude = state.value.location?.longitude,
+                location = state.value.location,
                 navController = navController,
                 heading = state.value.heading,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),

@@ -11,15 +11,15 @@ import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Composable
 fun HomeContent(
-    latitude: Double?,
-    longitude: Double?,
-    beaconLocation: LatLng?,
+    location: LngLatAlt?,
+    beaconLocation: LngLatAlt?,
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
@@ -47,8 +47,7 @@ fun HomeContent(
                     val ld =
                         LocationDescription(
                             addressName = "Barrowland Ballroom",
-                            latitude = 55.8552688,
-                            longitude = -4.2366753,
+                            location = LngLatAlt(-4.2366753, 55.8552688)
                         )
                     onNavigate(generateLocationDetailsRoute(ld))
                 },
@@ -64,20 +63,20 @@ fun HomeContent(
             // Current location
             NavigationButton(
                 onClick = {
-                    if (latitude != null && longitude != null) {
+                    if (location != null) {
                         val ld = getCurrentLocationDescription()
                         onNavigate(generateLocationDetailsRoute(ld))
                     }
                 },
                 text = stringResource(R.string.search_use_current_location),
             )
-            if (latitude != null && longitude != null) {
+            if (location != null) {
                 MapContainerLibre(
                     beaconLocation = beaconLocation,
-                    mapCenter = LatLng(latitude, longitude),
+                    mapCenter = location,
                     allowScrolling = false,
                     mapViewRotation = 0.0F,
-                    userLocation = LatLng(latitude, longitude),
+                    userLocation = location,
                     userSymbolRotation = heading,
                     onMapLongClick = onMapLongClick,
                     onMarkerClick = onMarkerClick,
@@ -92,8 +91,7 @@ fun HomeContent(
 @Composable
 fun PreviewHomeContent() {
     HomeContent(
-        latitude = null,
-        longitude = null,
+        location = null,
         beaconLocation = null,
         heading = 0.0f,
         onNavigate = {},

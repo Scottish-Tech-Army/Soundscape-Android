@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +24,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
-import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -38,6 +38,7 @@ class HomeViewModel
     @Inject
     constructor(
         private val soundscapeServiceConnection: SoundscapeServiceConnection,
+        @ApplicationContext context: Context
     ) : ViewModel() {
         private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
         val state: StateFlow<HomeState> = _state.asStateFlow()
@@ -49,7 +50,7 @@ class HomeViewModel
 
         init {
             handleMonitoring()
-            fetchSearchResult()
+            fetchSearchResult(context)
         }
 
         private fun handleMonitoring() {
@@ -90,7 +91,7 @@ class HomeViewModel
                 soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
                     if (value != null) {
                         Log.d(TAG, "Location $value")
-                        _state.update { it.copy(location = LatLng(value.latitude, value.longitude)) }
+                        _state.update { it.copy(location = LngLatAlt(value.longitude, value.latitude)) }
                     }
                 }
             }
@@ -109,11 +110,7 @@ class HomeViewModel
                     if (value != null) {
                         _state.update {
                             it.copy(
-                                beaconLocation =
-                                    LatLng(
-                                        value.latitude,
-                                        value.longitude,
-                                    ),
+                                beaconLocation = value
                             )
                         }
                     } else {
@@ -157,7 +154,8 @@ class HomeViewModel
         fun onMarkerClick(marker: Marker): Boolean {
             Log.d(TAG, "marker click")
 
-            if (marker.position == _state.value.beaconLocation) {
+            if ((marker.position.latitude == _state.value.beaconLocation?.latitude) &&
+                (marker.position.longitude == _state.value.beaconLocation?.longitude)){
                 soundscapeServiceConnection.soundscapeService?.destroyBeacon()
                 _state.update { it.copy(beaconLocation = null) }
 
@@ -221,7 +219,7 @@ class HomeViewModel
             _searchText.value = text
         }
 
-        private fun fetchSearchResult() {
+        private fun fetchSearchResult(context: Context) {
             viewModelScope.launch {
                 _searchText
                     .debounce(500)
@@ -237,11 +235,8 @@ class HomeViewModel
                                 it.copy(
                                     searchItems =
                                         result?.toLocationDescriptions(
-                                            currentLocationLatitude = state.value.location?.latitude ?: 0.0,
-                                            currentLocationLongitude =
-                                                state.value.location?.longitude
-                                                    ?: 0.0,
-                                        ),
+                                            state.value.location ?: LngLatAlt(0.0,0.0),
+                                            context),
                                 )
                             }
                         }

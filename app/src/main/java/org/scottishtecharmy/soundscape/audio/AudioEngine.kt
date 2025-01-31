@@ -2,10 +2,11 @@ package org.scottishtecharmy.soundscape.audio
 
 import android.content.SharedPreferences
 import android.speech.tts.Voice
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.Locale
 
 interface AudioEngine {
-    fun createBeacon(latitude: Double, longitude: Double) : Long
+    fun createBeacon(location: LngLatAlt) : Long
     fun destroyBeacon(beaconHandle : Long)
     fun createTextToSpeech(text: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long
     fun createEarcon(asset: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long

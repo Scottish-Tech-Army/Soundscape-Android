@@ -30,6 +30,7 @@ import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -47,12 +48,12 @@ const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
  */
 @Composable
 fun MapContainerLibre(
-    mapCenter: LatLng,
+    mapCenter: LngLatAlt,
     allowScrolling: Boolean,
     mapViewRotation: Float,
-    userLocation: LatLng,
+    userLocation: LngLatAlt,
     userSymbolRotation: Float,
-    beaconLocation: LatLng?,
+    beaconLocation: LngLatAlt?,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
@@ -64,13 +65,13 @@ fun MapContainerLibre(
         // been disallowed
         val cp = CameraPosition.Builder().bearing(mapViewRotation.toDouble())
         if(!allowScrolling)
-            cp.target(mapCenter)
+            cp.target(mapCenter.toLatLng())
         cp.build()
     }
 
     val symbolOptions = remember(userLocation, userSymbolRotation) {
         SymbolOptions()
-            .withLatLng(userLocation)
+            .withLatLng(userLocation.toLatLng())
             .withIconImage(USER_POSITION_MARKER_NAME)
             .withIconAnchor("center")
             .withIconRotate(userSymbolRotation)
@@ -157,7 +158,7 @@ fun MapContainerLibre(
             }
 
             mapLibre.cameraPosition = CameraPosition.Builder()
-                .target(mapCenter)
+                .target(mapCenter.toLatLng())
                 .zoom(15.0) // we set the zoom only at init
                 .bearing(mapViewRotation.toDouble())
                 .build()
@@ -169,7 +170,7 @@ fun MapContainerLibre(
             if (beaconLocation != null && beaconLocationMarker.value == null) {
                 // first time beacon is created
                 val markerOptions = MarkerOptions()
-                    .position(beaconLocation)
+                    .position(beaconLocation.toLatLng())
                 beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
             }
         }
@@ -185,7 +186,7 @@ fun MapContainerLibre(
                     mapLibre.cameraPosition = cameraPosition
                     symbol.value?.let { sym ->
                         // We have a symbol, so update it
-                        sym.latLng = userLocation
+                        sym.latLng = userLocation.toLatLng()
                         sym.iconRotate = userSymbolRotation
                         symbolManager.value?.update(sym)
                     }
@@ -194,13 +195,13 @@ fun MapContainerLibre(
                         // beacon to display
                         beaconLocationMarker.value?.let { currentBeaconMarker ->
                             // update beacon position
-                            currentBeaconMarker.position = beaconLocation
+                            currentBeaconMarker.position = beaconLocation.toLatLng()
                             mapLibre.updateMarker(currentBeaconMarker)
                         } ?: {
                             // new beacon to display
                             val markerOptions =
                                 MarkerOptions()
-                                    .position(beaconLocation)
+                                    .position(beaconLocation.toLatLng())
                             beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
                         }
                     } else {

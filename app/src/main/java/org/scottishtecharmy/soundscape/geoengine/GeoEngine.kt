@@ -608,16 +608,8 @@ class GeoEngine {
             }
         }
         if(geocode != null) {
-            var distance = locationProvider.get().distance(LngLatAlt(geocode.longitude, geocode.latitude))
-            if(distance > 1000) {
-                val km = (distance.toInt() / 100).toFloat() / 10
-                geocode.distance =
-                    localizedContext.getString(R.string.distance_format_km, km.toString())
-            } else {
-                val m = distance.toInt()
-                geocode.distance =
-                    localizedContext.getString(R.string.distance_format_meters, m.toString())
-            }
+            val distance = locationProvider.get().distance(geocode.location)
+            geocode.distance = formatDistanceAsString(distance, localizedContext)
             return geocode
         }
 
@@ -630,15 +622,11 @@ class GeoEngine {
 
                     // The geocode result includes the location for the POI. In the case of something
                     // like a park this could be a long way from the point that was passed in.
-                    val ld = result?.features?.toLocationDescriptions(
-                        currentLocationLatitude = currentLocation.latitude,
-                        currentLocationLongitude = currentLocation.longitude
-                    )
+                    val ld = result?.features?.toLocationDescriptions(currentLocation, localizedContext)
                     if (!ld.isNullOrEmpty()) {
                         if(preserveLocation) {
                             val overwritten = ld.first()
-                            overwritten.latitude = location.latitude
-                            overwritten.longitude = location.longitude
+                            overwritten.location = location
                             if(overwritten.addressName != null) {
                                 overwritten.addressName = localizedContext.getString(R.string.directions_near_name).format(overwritten.addressName)
                                 overwritten
@@ -714,6 +702,16 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
     return TextForFeature(text, generic)
 }
 
+fun formatDistanceAsString(distance: Double, localizedContext: Context) : String {
+
+    if (distance > 1000) {
+        val km = (distance.toInt() / 100).toFloat() / 10
+        return localizedContext.getString(R.string.distance_format_km, km.toString())
+    } else {
+        val m = distance.toInt()
+        return localizedContext.getString(R.string.distance_format_meters, m.toString())
+    }
+}
 
 fun localReverseGeocode(location: LngLatAlt,
                         gridState: GridState,
@@ -735,8 +733,7 @@ fun localReverseGeocode(location: LngLatAlt,
                 if(name != null) {
                     return LocationDescription(
                         addressName = localizedContext.getString(R.string.directions_at_poi).format(name as String),
-                        longitude = location.longitude,
-                        latitude = location.latitude,
+                        location = location,
                     )
                 }
             }
@@ -754,8 +751,7 @@ fun localReverseGeocode(location: LngLatAlt,
             }
             return LocationDescription(
                 addressName = localizedContext.getString(R.string.directions_near_name).format(roadName as String),
-                longitude = location.longitude,
-                latitude = location.latitude
+                location = location,
             )
         }
     }

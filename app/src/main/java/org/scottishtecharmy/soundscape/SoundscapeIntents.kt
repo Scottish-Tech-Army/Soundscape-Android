@@ -12,6 +12,7 @@ import kotlinx.coroutines.runBlocking
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -46,8 +47,7 @@ class SoundscapeIntents
                             val ld =
                                 LocationDescription(
                                     addressName = address.getAddressLine(0),
-                                    latitude = address.latitude,
-                                    longitude = address.longitude,
+                                    location = LngLatAlt(address.longitude, address.latitude)
                                 )
                             navigator.navigate(generateLocationDetailsRoute(ld))
                         }
@@ -64,8 +64,7 @@ class SoundscapeIntents
                     val ld =
                         LocationDescription(
                             addressName = address.getAddressLine(0),
-                            latitude = address.latitude,
-                            longitude = address.longitude,
+                            location = LngLatAlt(address.longitude, address.latitude)
                         )
                     navigator.navigate(generateLocationDetailsRoute(ld))
                 }
@@ -168,8 +167,7 @@ class SoundscapeIntents
                             // Switch to Street Preview mode
                             mainActivity.soundscapeServiceConnection.setStreetPreviewMode(
                                 true,
-                                latitude.toDouble(),
-                                longitude.toDouble(),
+                                LngLatAlt(longitude.toDouble(), latitude.toDouble())
                             )
                         } else {
                             try {
@@ -180,8 +178,7 @@ class SoundscapeIntents
                                 val ld =
                                     LocationDescription(
                                         addressName = URLEncoder.encode(uriData, "utf-8"),
-                                        latitude = latitude.toDouble(),
-                                        longitude = longitude.toDouble(),
+                                        location = LngLatAlt(longitude.toDouble(), latitude.toDouble())
                                     )
                                 mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
                             }

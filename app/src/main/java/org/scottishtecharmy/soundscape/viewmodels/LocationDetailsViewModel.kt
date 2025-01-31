@@ -21,12 +21,12 @@ class LocationDetailsViewModel @Inject constructor(
 
     private var serviceConnection : SoundscapeServiceConnection? = null
 
-    fun createBeacon(latitude: Double, longitude: Double) {
-        soundscapeServiceConnection.soundscapeService?.createBeacon(latitude, longitude)
+    fun createBeacon(location: LngLatAlt) {
+        soundscapeServiceConnection.soundscapeService?.createBeacon(location)
     }
 
-    fun enableStreetPreview(latitude: Double, longitude: Double) {
-        soundscapeServiceConnection.setStreetPreviewMode(true, latitude, longitude)
+    fun enableStreetPreview(location: LngLatAlt) {
+        soundscapeServiceConnection.setStreetPreviewMode(true, location)
 
     }
 
@@ -35,8 +35,13 @@ class LocationDetailsViewModel @Inject constructor(
             var name = locationDescription.addressName
             if(name == null) name = locationDescription.streetNumberAndName
             name = name ?: "Unknown"
-            val marker = RoutePoint(name,
-                                    Location(locationDescription.latitude, locationDescription.longitude))
+            val marker = RoutePoint(
+                name,
+                Location(
+                    locationDescription.location.latitude,
+                    locationDescription.location.longitude
+                )
+            )
             try {
                 routesRepository.insertWaypoint(marker)
                 Log.d("LocationDetailsViewModel", "Marker saved successfully: ${marker.name}")

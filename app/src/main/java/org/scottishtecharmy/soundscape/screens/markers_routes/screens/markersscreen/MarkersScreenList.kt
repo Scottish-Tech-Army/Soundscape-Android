@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
@@ -62,8 +63,10 @@ fun MarkersList(
                             val ld =
                                 LocationDescription(
                                     addressName = marker.name,
-                                    latitude = marker.location!!.latitude,
-                                    longitude = marker.location!!.longitude,
+                                    location = LngLatAlt(
+                                        marker.location!!.longitude,
+                                        marker.location!!.latitude
+                                    ),
                                     marker = true
                                 )
                             // This effectively replaces the current screen with the new one
