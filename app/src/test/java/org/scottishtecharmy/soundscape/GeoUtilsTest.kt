@@ -28,9 +28,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.pixelXYToLatLon
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.utils.BentleyOttmann
-import org.scottishtecharmy.soundscape.geoengine.utils.BoPoint
-import org.scottishtecharmy.soundscape.geoengine.utils.BoSegment
 import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
@@ -720,27 +717,6 @@ class GeoUtilsTest {
 
 
 
-    @Test
-    fun tempIntersectTest(){
-        // Just trying out another line intersection algorithm to see how it works:
-        // https://github.com/valenpe7/bentley-ottmann
-        val point1 = BoPoint(0.0,0.0)
-        val point2 = BoPoint(1.0,1.0)
-        val point3 = BoPoint(1.0,0.0)
-        val point4 = BoPoint(0.0, 1.0)
-
-        val data1 = ArrayList<BoSegment>()
-        data1.add(BoSegment(point1, point2))
-        data1.add(BoSegment(point3, point4))
-        val test1 = BentleyOttmann(data1)
-        test1.findIntersections()
-        val intersectionsTest = test1.getIntersections()
-        // the lines cross diagonally
-        Assert.assertEquals(1, intersectionsTest.size)
-        Assert.assertEquals(0.5, intersectionsTest[0].x_coord, 0.0001)
-        Assert.assertEquals(0.5, intersectionsTest[0].y_coord, 0.0001)
-        test1.printIntersections()
-    }
 
     @Test
     fun nearestCoordinateOnPolygonSegmentTest(){
