@@ -55,6 +55,7 @@ open class GridState {
     internal lateinit var tileClient: TileClient
 
     private var centralBoundingBox = BoundingBox()
+    private var totalBoundingBox = BoundingBox()
     internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
     @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
     val treeContext = newSingleThreadContext("TreeContext")
@@ -63,6 +64,10 @@ open class GridState {
     open fun start(application: Application, soundscapeService: SoundscapeService) {}
     fun stop() {}
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
+
+    fun isLocationWithinGrid(location: LngLatAlt): Boolean {
+        return pointIsWithinBoundingBox(location, totalBoundingBox)
+    }
 
     /**
      * The tile grid service is called each time the location changes. It checks if the location
@@ -84,6 +89,7 @@ open class GridState {
             if (updateTileGrid(tileGrid, featureCollections)) {
                 // We have got a new grid, so create our new central region
                 centralBoundingBox = tileGrid.centralBoundingBox
+                totalBoundingBox = tileGrid.totalBoundingBox
 
                 fixupCollections(featureCollections)
                 classifyPois(featureCollections, enabledCategories)
