@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -45,8 +46,7 @@ import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
 @Composable
 fun HomePreview() {
     Home(
-        latitude = null,
-        longitude = null,
+        location = null,
         beaconLocation = null,
         heading = 0.0f,
         onNavigate = {},
@@ -72,9 +72,8 @@ fun HomePreview() {
 
 @Composable
 fun Home(
-    latitude: Double?,
-    longitude: Double?,
-    beaconLocation: LatLng?,
+    location: LngLatAlt?,
+    beaconLocation: LngLatAlt?,
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
@@ -131,8 +130,7 @@ fun Home(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
             HomeContent(
-                latitude = latitude,
-                longitude = longitude,
+                location = location,
                 beaconLocation = beaconLocation,
                 heading = heading,
                 modifier = Modifier.padding(innerPadding),

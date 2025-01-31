@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +24,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
-import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -38,7 +38,8 @@ class HomeViewModel
     @Inject
     constructor(
         private val soundscapeServiceConnection: SoundscapeServiceConnection,
-) : ViewModel() {
+        @ApplicationContext context: Context
+    ) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
     private val _searchText: MutableStateFlow<String> = MutableStateFlow("")
@@ -49,7 +50,7 @@ class HomeViewModel
 
     init {
         handleMonitoring()
-        fetchSearchResult()
+        fetchSearchResult(context)
     }
 
     private fun handleMonitoring() {
@@ -59,7 +60,7 @@ class HomeViewModel
                 if (serviceBoundState) {
                     // The service has started, so start monitoring the location and heading
                     startMonitoringLocation()
-                    // And start monitoring the street preview mode
+                    // And start monitoring the street preview state
                     startMonitoringStreetPreviewState()
                 } else {
                     // The service has gone away so remove the current location marker
@@ -90,7 +91,7 @@ class HomeViewModel
             soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
                     Log.d(TAG, "Location $value")
-                    _state.update { it.copy(location = LatLng(value.latitude, value.longitude)) }
+                    _state.update { it.copy(location = LngLatAlt(value.longitude, value.latitude)) }
                 }
             }
         }
@@ -110,9 +111,9 @@ class HomeViewModel
                     _state.update {
                         it.copy(
                             beaconLocation =
-                                LatLng(
-                                    value.latitude,
+                                LngLatAlt(
                                     value.longitude,
+                                    value.latitude,
                                 ),
                         )
                     }
@@ -157,7 +158,8 @@ class HomeViewModel
     fun onMarkerClick(marker: Marker): Boolean {
         Log.d(TAG, "marker click")
 
-        if (marker.position == _state.value.beaconLocation) {
+        if ((marker.position.latitude == _state.value.beaconLocation?.latitude) &&
+            (marker.position.longitude == _state.value.beaconLocation?.longitude)){
             soundscapeServiceConnection.soundscapeService?.destroyBeacon()
             _state.update { it.copy(beaconLocation = null) }
 
@@ -235,7 +237,7 @@ class HomeViewModel
         _searchText.value = text
     }
 
-    private fun fetchSearchResult() {
+    private fun fetchSearchResult(context: Context) {
         viewModelScope.launch {
             _searchText
                 .debounce(500)
@@ -251,10 +253,8 @@ class HomeViewModel
                             it.copy(
                                 searchItems =
                                     result?.toLocationDescriptions(
-                                        currentLocationLatitude = state.value.location?.latitude ?: 0.0,
-                                        currentLocationLongitude =
-                                            state.value.location?.longitude
-                                                ?: 0.0,
+                                        currentLocation = state.value.location ?: LngLatAlt(),
+                                        localizedContext = context
                                     ),
                             )
                         }

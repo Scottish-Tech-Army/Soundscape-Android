@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,7 +37,7 @@ class AudioBeaconsViewModel @Inject constructor(@ApplicationContext val context:
         audioEngine.setBeaconType(type)
         if(beacon != 0L)
             audioEngine.destroyBeacon(beacon)
-        beacon = audioEngine.createBeacon(1.0, 0.0)
+        beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
         _state.value = state.value.copy(selectedBeacon = type)
         // Store the preference for future use
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)

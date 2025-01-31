@@ -19,18 +19,13 @@ class LocationDetailsViewModel @Inject constructor(
     private val routesRepository: RoutesRepository
 ): ViewModel() {
 
-    fun createBeacon(
-        latitude: Double,
-        longitude: Double,
-    ) {
-        soundscapeServiceConnection.soundscapeService?.createBeacon(latitude, longitude)
+    fun createBeacon(location: LngLatAlt) {
+        soundscapeServiceConnection.soundscapeService?.createBeacon(location)
     }
 
-    fun enableStreetPreview(
-        latitude: Double,
-        longitude: Double,
-    ) {
-        soundscapeServiceConnection.setStreetPreviewMode(true, latitude, longitude)
+    fun enableStreetPreview(location: LngLatAlt) {
+        soundscapeServiceConnection.setStreetPreviewMode(true, location)
+
     }
 
     fun createMarker(locationDescription: LocationDescription) {
@@ -42,7 +37,7 @@ class LocationDetailsViewModel @Inject constructor(
                 MarkerData(
                     addressName = name,
                     fullAddress = locationDescription.fullAddress ?: "", // TODO Fanny is it possible to get no full address ?
-                    location = Location(latitude = locationDescription.latitude, longitude = locationDescription.longitude),
+                    location = Location(latitude = locationDescription.location.latitude, longitude = locationDescription.location.longitude),
                 )
             try {
                 routesRepository.insertWaypoint(marker)

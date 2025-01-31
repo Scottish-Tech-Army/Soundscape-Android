@@ -8,6 +8,7 @@ import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.Ignore
 import io.realm.kotlin.types.annotations.PrimaryKey
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.Double.Companion.NaN
 
 class Location : EmbeddedRealmObject {
@@ -40,6 +41,8 @@ class Location : EmbeddedRealmObject {
         set(value) {
             coordinates[0] = value
         }
+
+    fun location(): LngLatAlt { return LngLatAlt(longitude, latitude) }
 }
 
 class RouteData(

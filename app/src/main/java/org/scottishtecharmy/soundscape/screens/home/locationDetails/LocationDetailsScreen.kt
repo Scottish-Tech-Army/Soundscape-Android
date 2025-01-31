@@ -34,9 +34,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
-import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
@@ -57,8 +57,7 @@ fun generateLocationDetailsRoute(locationDescription: LocationDescription): Stri
 @Composable
 fun LocationDetailsScreen(
     locationDescription: LocationDescription,
-    latitude: Double?,
-    longitude: Double?,
+    location : LngLatAlt?,
     heading: Float,
     onNavigateUp: () -> Unit,
     navController: NavHostController,
@@ -71,25 +70,23 @@ fun LocationDetailsScreen(
         onNavigateUp = onNavigateUp,
         navController = navController,
         locationDescription = locationDescription,
-        createBeacon = { lat, lng ->
-            viewModel.createBeacon(lat, lng)
+        createBeacon = { loc ->
+            viewModel.createBeacon(loc)
         },
         saveMarker = { description ->
             viewModel.createMarker(description)
         },
-        enableStreetPreview = { lat, lng ->
-            viewModel.enableStreetPreview(lat, lng)
+        enableStreetPreview = { loc ->
+            viewModel.enableStreetPreview(loc)
         },
-        getLocationDescription = { location ->
-            viewModel.getLocationDescription(location) ?:
+        getLocationDescription = { locationForDescription ->
+            viewModel.getLocationDescription(locationForDescription) ?:
                 LocationDescription(
                     addressName = context.getString(R.string.general_error_location_services_find_location_error),
-                    latitude = location.latitude,
-                    longitude = location.longitude
+                    location = locationForDescription
                 )
         },
-        latitude = latitude,
-        longitude = longitude,
+        location = location,
         heading = heading,
         modifier = modifier,
     )
@@ -100,14 +97,14 @@ fun LocationDetails(
     locationDescription : LocationDescription,
     onNavigateUp: () -> Unit,
     navController: NavHostController,
-    latitude: Double?,
-    longitude: Double?,
+    location: LngLatAlt?,
     heading: Float,
-    createBeacon: (latitude: Double, longitude: Double) -> Unit,
+    createBeacon: (location: LngLatAlt) -> Unit,
     saveMarker: (description: LocationDescription) -> Unit,
-    enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
+    enableStreetPreview: (location: LngLatAlt) -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
+
     Column(
         modifier = modifier.fillMaxHeight(),
     ) {
@@ -134,15 +131,11 @@ fun LocationDetails(
         }
 
         MapContainerLibre(
-            beaconLocation =
-                LatLng(
-                    locationDescription.latitude,
-                    locationDescription.longitude,
-                ),
+            beaconLocation = locationDescription.location,
             allowScrolling = true,
             onMapLongClick = { latLong ->
-                val location = LngLatAlt(latLong.longitude, latLong.latitude)
-                val ld = getLocationDescription(location)
+                val clickLocation = fromLatLng(latLong)
+                val ld = getLocationDescription(clickLocation)
 
                 // This effectively replaces the current screen with the new one
                 navController.navigate(generateLocationDetailsRoute(ld)) {
@@ -157,16 +150,8 @@ fun LocationDetails(
             },
             onMarkerClick = { false },
             // Center on the beacon
-            mapCenter =
-                LatLng(
-                    locationDescription.latitude,
-                    locationDescription.longitude,
-                ),
-            userLocation =
-                LatLng(
-                    latitude ?: 0.0,
-                    longitude ?: 0.0,
-                ),
+            mapCenter = locationDescription.location,
+            userLocation = location?:LngLatAlt(),
             mapViewRotation = 0.0F,
             userSymbolRotation = heading,
             modifier =
@@ -180,10 +165,10 @@ fun LocationDetails(
 
 @Composable
 private fun LocationDescriptionButtonsSection(
-    createBeacon: (latitude: Double, longitude: Double) -> Unit,
+    createBeacon: (location: LngLatAlt) -> Unit,
     saveMarker: (description: LocationDescription) -> Unit,
     locationDescription: LocationDescription,
-    enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
+    enableStreetPreview: (location: LngLatAlt) -> Unit,
     onNavigateUp: () -> Unit,
 ) {
     Column(
@@ -193,7 +178,7 @@ private fun LocationDescriptionButtonsSection(
             icon = Icons.Filled.LocationOn,
             text = stringResource(R.string.create_an_audio_beacon),
         ) {
-            createBeacon(locationDescription.latitude, locationDescription.longitude)
+            createBeacon(locationDescription.location)
         }
 
         IconWithTextButton(
@@ -207,10 +192,7 @@ private fun LocationDescriptionButtonsSection(
             icon = Icons.Filled.Navigation,
             text = stringResource(R.string.user_activity_street_preview_title),
         ) {
-            enableStreetPreview(
-                locationDescription.latitude,
-                locationDescription.longitude,
-            )
+            enableStreetPreview(locationDescription.location)
             onNavigateUp()
         }
     }
@@ -317,23 +299,21 @@ fun LocationDetailsPreview() {
             LocationDescription(
                 addressName = "Pizza hut",
                 distance = "3,5 km",
-                latitude = 0.0,
-                longitude = 0.0,
+                location = LngLatAlt(),
                 fullAddress = "139 boulevard gambetta \n59000 Lille\nFrance",
             ),
-            createBeacon = { _, _ ->
+            createBeacon = { _ ->
             },
             saveMarker = { _ ->
             },
-            enableStreetPreview = { _, _ ->
+            enableStreetPreview = { _ ->
             },
             getLocationDescription = { _ ->
                 LocationDescription()
             },
             onNavigateUp = {},
             navController = NavHostController(LocalContext.current),
-            latitude = null,
-            longitude = null,
+            location = null,
             heading = 0.0F,
         )
     }

@@ -32,6 +32,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -167,8 +168,7 @@ fun MarkersScreenPopulatedPreview() {
                             LocationDescription(
                                 "Waypoint 1",
                                 "Street Blabla, Blabla City",
-                                latitude = Double.NaN,
-                                longitude = Double.NaN,
+                                location = LngLatAlt(),
                                 distance = "2 km",
                             ),
                         ),

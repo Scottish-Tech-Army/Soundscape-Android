@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class AudioEngineTest {
 
@@ -60,14 +61,14 @@ class AudioEngineTest {
     fun soundBeacon() {
         val audioEngine = initializeAudioEngine()
 
-        val beacon = audioEngine.createBeacon(1.0, 0.0)
+        val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
         moveListener(audioEngine, 4000)
         audioEngine.destroyBeacon(beacon)
 
         audioEngine.createTextToSpeech("Beacon here!")
         moveListener(audioEngine, 4000)
 
-        val beacon3 = audioEngine.createBeacon(1.0, 0.0)
+        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
         moveListener(audioEngine, 4000)
         audioEngine.destroyBeacon(beacon3)
 
@@ -85,7 +86,7 @@ class AudioEngineTest {
             Log.d(TAG, "Test beacon type $beaconType")
             audioEngine.setBeaconType(beaconType)
 
-            val beacon = audioEngine.createBeacon(1.0, 0.0)
+            val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
             moveListener(audioEngine, 6000)
             audioEngine.destroyBeacon(beacon)
         }
