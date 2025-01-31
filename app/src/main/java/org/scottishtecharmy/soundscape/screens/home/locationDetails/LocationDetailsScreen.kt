@@ -36,6 +36,7 @@ import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
@@ -65,6 +66,8 @@ fun LocationDetailsScreen(
     viewModel: LocationDetailsViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+
     LocationDetails(
         onNavigateUp = onNavigateUp,
         navController = navController,
@@ -77,6 +80,14 @@ fun LocationDetailsScreen(
         },
         enableStreetPreview = { lat, lng ->
             viewModel.enableStreetPreview(lat, lng)
+        },
+        getLocationDescription = { location ->
+            viewModel.getLocationDescription(location) ?:
+                LocationDescription(
+                    addressName = context.getString(R.string.general_error_location_services_find_location_error),
+                    latitude = location.latitude,
+                    longitude = location.longitude
+                )
         },
         latitude = latitude,
         longitude = longitude,
@@ -96,6 +107,7 @@ fun LocationDetails(
                     createBeacon: (latitude: Double, longitude: Double) -> Unit,
                     saveMarker: (description: LocationDescription) -> Unit,
                     enableStreetPreview: (latitude: Double, longitude: Double) -> Unit,
+                    getLocationDescription: (location: LngLatAlt) -> LocationDescription,
                     modifier: Modifier = Modifier) {
 
     Column(
@@ -131,12 +143,9 @@ fun LocationDetails(
                 ),
             allowScrolling = true,
             onMapLongClick = { latLong ->
-                val ld =
-                    LocationDescription(
-                        addressName ="Selected location",
-                        latitude = latLong.latitude,
-                        longitude = latLong.longitude,
-                    )
+                val location = LngLatAlt(latLong.longitude, latLong.latitude)
+                val ld = getLocationDescription(location)
+
                 // This effectively replaces the current screen with the new one
                 navController.navigate(generateLocationDetailsRoute(ld)) {
                     var popupDestination = HomeRoutes.Home.route
@@ -321,6 +330,9 @@ fun LocationDetailsPreview() {
             saveMarker = { _ ->
             },
             enableStreetPreview = { _, _ ->
+            },
+            getLocationDescription = { _ ->
+                LocationDescription()
             },
             onNavigateUp = {},
             navController = NavHostController(LocalContext.current),

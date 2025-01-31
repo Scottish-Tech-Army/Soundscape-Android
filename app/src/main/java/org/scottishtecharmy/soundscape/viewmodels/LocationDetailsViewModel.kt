@@ -9,14 +9,13 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
-import org.scottishtecharmy.soundscape.screens.home.Navigator
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import javax.inject.Inject
 
 @HiltViewModel
 class LocationDetailsViewModel @Inject constructor(
     private val soundscapeServiceConnection : SoundscapeServiceConnection,
-    private val navigator : Navigator,
     private val routesRepository: RoutesRepository
     ): ViewModel() {
 
@@ -47,8 +46,11 @@ class LocationDetailsViewModel @Inject constructor(
         }
     }
 
+    fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
+        return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
+    }
+
     init {
-        navigator.navigate("")
         serviceConnection = soundscapeServiceConnection
         viewModelScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {

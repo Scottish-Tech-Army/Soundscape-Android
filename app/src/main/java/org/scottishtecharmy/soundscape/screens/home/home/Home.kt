@@ -43,6 +43,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
+import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -62,6 +63,7 @@ fun HomePreview() {
         getMyLocation = {},
         getWhatsAroundMe = {},
         getWhatsAheadOfMe = {},
+        getCurrentLocationDescription = { LocationDescription() },
         shareLocation = {},
         rateSoundscape = {},
         streetPreviewEnabled = false,
@@ -86,6 +88,7 @@ fun Home(
     getMyLocation: () -> Unit,
     getWhatsAroundMe: () -> Unit,
     getWhatsAheadOfMe: () -> Unit,
+    getCurrentLocationDescription: () -> LocationDescription,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
     streetPreviewEnabled: Boolean,
@@ -138,6 +141,7 @@ fun Home(
                 heading = heading,
                 modifier = Modifier.padding(innerPadding),
                 onNavigate = onNavigate,
+                getCurrentLocationDescription = getCurrentLocationDescription,
                 searchBar = {
                     MainSearchBar(
                         searchText = searchText,

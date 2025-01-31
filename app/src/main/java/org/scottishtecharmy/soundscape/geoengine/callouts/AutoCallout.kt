@@ -6,7 +6,6 @@ import android.util.Log
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -16,84 +15,19 @@ import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
+import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 
 class AutoCallout(
     private val localizedContext: Context,
     private val sharedPreferences: SharedPreferences
 ) {
-
-
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionCalloutHistory = CalloutHistory(30000)
     private val poiCalloutHistory = CalloutHistory()
-
-
-    /** Reverse geocodes a location into 1 of 4 possible states
-     * - within a POI
-     * - alongside a road
-     * - general location
-     * - unknown location).
-     */
-    private fun reverseGeocode(userGeometry: UserGeometry,
-                               gridState: GridState): List<PositionedString> {
-        val results : MutableList<PositionedString> = mutableListOf()
-
-        // Check if we're inside a POI
-        val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, userGeometry.location, 200.0)
-        val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
-        for(poi in gridPoiFeatureCollection) {
-            // We can only be inside polygons
-            if(poi.geometry.type == "Polygon") {
-                val polygon = poi.geometry as Polygon
-
-                if(polygonContainsCoordinates(userGeometry.location, polygon)) {
-                    // We've found a POI that contains our location
-                    val name = poi.properties?.get("name")
-                    if(name != null) {
-                        results.add(
-                            PositionedString(
-                                localizedContext.getString(R.string.directions_at_poi).format(name as String)
-                            ),
-                        )
-                        return results
-                    }
-                }
-            }
-        }
-
-        // Check if we're alongside a road/path
-        val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.location, 100.0)
-        if(nearestRoad != null) {
-            val properties = nearestRoad.properties
-            if (properties != null) {
-                val orientation = userGeometry.heading
-                var roadName = properties["name"]
-                if (roadName == null) {
-                    roadName = properties["highway"]
-                }
-                val facingDirectionAlongRoad =
-                    getCompassLabelFacingDirectionAlong(
-                        localizedContext,
-                        orientation.toInt(),
-                        roadName.toString(),
-                        userGeometry.inMotion,
-                        userGeometry.inVehicle
-                    )
-                results.add(PositionedString(facingDirectionAlongRoad))
-                return results
-            }
-        }
-
-        return results
-    }
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
                                          gridState: GridState): List<PositionedString> {
@@ -112,11 +46,11 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val results = reverseGeocode(userGeometry, gridState)
+        val geocode = reverseGeocode(userGeometry, gridState, localizedContext)
 
         // Check that the geocode has changed before returning a callout describing it
 
-        return results
+        return listOf(geocode)
     }
 
     private fun buildCalloutForIntersections(userGeometry: UserGeometry,

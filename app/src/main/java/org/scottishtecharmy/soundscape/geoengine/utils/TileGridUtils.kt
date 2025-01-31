@@ -10,10 +10,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 
-class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox) {
+class TileGrid(newTiles : MutableList<Tile>,
+               var centralBoundingBox : BoundingBox,
+               var totalBoundingBox : BoundingBox) {
 
     val tiles : MutableList<Tile> = newTiles
-    var centralBoundingBox : BoundingBox = newCentralBoundingBox
 
     /**
      * Return GeoJSON that describes the tile grid and the central bounding box so that it can be
@@ -98,7 +99,15 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
                     tiles.add(surroundingTile)
                 }
             }
-            return TileGrid(tiles, centralBoundingBox)
+
+            val totalBoundingBox = BoundingBox(
+                southWest.second,
+                southWest.first,
+                northEast.second,
+                northEast.first
+            )
+
+            return TileGrid(tiles, centralBoundingBox, totalBoundingBox)
         }
 
         /**
@@ -155,6 +164,23 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
                 }
             }
 
+            val gridNorthWest = pixelXYToLatLon(
+                (xValues[0] * 256).toDouble(),
+                (yValues[0] * 256).toDouble(),
+                ZOOM_LEVEL
+            )
+            val gridSouthEast = pixelXYToLatLon(
+                ((xValues[1] + 1).mod(maxCoordinate) * 256).toDouble(),
+                ((yValues[1] + 1).mod(maxCoordinate) * 256).toDouble(),
+                ZOOM_LEVEL
+            )
+            val totalBoundingBox = BoundingBox(
+                gridNorthWest.second,
+                gridSouthEast.first,
+                gridSouthEast.second,
+                gridNorthWest.first
+            )
+
             // Center of grid is the top left corner of the bottom right tile
             val centerX = (xValues[1] * 256)
             val centerY = (yValues[1] * 256)
@@ -173,7 +199,7 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
                     tiles.add(surroundingTile)
                 }
             }
-            return TileGrid(tiles, centralBoundingBox)
+            return TileGrid(tiles, centralBoundingBox, totalBoundingBox)
         }
 
         /**
@@ -194,7 +220,7 @@ class TileGrid(newTiles : MutableList<Tile>, newCentralBoundingBox : BoundingBox
                 3 -> return get3x3TileGrid(currentLocation)
             }
             assert(false)
-            return TileGrid(mutableListOf(), BoundingBox())
+            return TileGrid(mutableListOf(), BoundingBox(), BoundingBox())
         }
     }
 }

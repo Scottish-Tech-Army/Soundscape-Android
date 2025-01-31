@@ -25,6 +25,8 @@ import kotlinx.coroutines.launch
 import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.blankOrEmpty
 import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
 import java.net.URLEncoder
@@ -88,7 +90,7 @@ class HomeViewModel
                 soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
                     if (value != null) {
                         Log.d(TAG, "Location $value")
-                        _state.update { it.copy(location = value) }
+                        _state.update { it.copy(location = LatLng(value.latitude, value.longitude)) }
                     }
                 }
             }
@@ -183,6 +185,10 @@ class HomeViewModel
             viewModelScope.launch {
                 soundscapeServiceConnection.soundscapeService?.whatsAroundMe()
             }
+        }
+
+        fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
+            return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
         }
 
         fun shareLocation(context: Context) {

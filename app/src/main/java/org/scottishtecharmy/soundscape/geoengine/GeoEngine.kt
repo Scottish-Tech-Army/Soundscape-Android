@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
@@ -34,14 +35,19 @@ import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
+import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.getOttoBus
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.Duration.Companion.milliseconds
@@ -569,6 +575,94 @@ class GeoEngine {
         }
     }
 
+    private suspend fun reverseGeocodeResult(location: LngLatAlt) =
+        withContext(Dispatchers.IO) {
+            return@withContext PhotonSearchProvider
+                .getInstance()
+                .reverseGeocodeLocation(
+                    latitude = location.latitude,
+                    longitude = location.longitude
+                ).execute()
+                .body()
+        }
+
+    /**
+     * getLocationDescription returns a LocationDescription object for the current location. This
+     * is basically a reverse geocode. It initially tries to generate it from local tile data, but
+     * falls back to geocoding via the Photon server if network is available.
+     * @param location to reverse geocode
+     * @param preserveLocation ensures that the returned LocationDescription contains the passed in
+     * location rather than overwriting it with the location of a POI that it geocded to.
+     * @return a LocationDescription object containing an address of the location
+     */
+    fun getLocationDescription(location: LngLatAlt,
+                               preserveLocation: Boolean = true) : LocationDescription? {
+
+        var geocode: LocationDescription? = null
+        val currentLocation = locationProvider.get()
+        // If the location is within our current TileGrid, then we can make our own description of
+        // the location.
+        geocode = runBlocking {
+            withContext(gridState.treeContext) {
+                localReverseGeocode(location, gridState, localizedContext)
+            }
+        }
+        if(geocode != null) {
+            var distance = locationProvider.get().distance(LngLatAlt(geocode.longitude, geocode.latitude))
+            if(distance > 1000) {
+                val km = (distance.toInt() / 100).toFloat() / 10
+                geocode.distance =
+                    localizedContext.getString(R.string.distance_format_km, km.toString())
+            } else {
+                val m = distance.toInt()
+                geocode.distance =
+                    localizedContext.getString(R.string.distance_format_meters, m.toString())
+            }
+            return geocode
+        }
+
+        // If we have network, then we should be able to do a reverse geocode via the photon server
+        // TODO: Check for network first
+        if(true) {
+            geocode = runBlocking {
+                withContext(Dispatchers.IO) {
+                    val result = reverseGeocodeResult(location)
+
+                    // The geocode result includes the location for the POI. In the case of something
+                    // like a park this could be a long way from the point that was passed in.
+                    val ld = result?.features?.toLocationDescriptions(
+                        currentLocationLatitude = currentLocation.latitude,
+                        currentLocationLongitude = currentLocation.longitude
+                    )
+                    if (!ld.isNullOrEmpty()) {
+                        if(preserveLocation) {
+                            val overwritten = ld.first()
+                            overwritten.latitude = location.latitude
+                            overwritten.longitude = location.longitude
+                            if(overwritten.addressName != null) {
+                                overwritten.addressName = localizedContext.getString(R.string.directions_near_name).format(overwritten.addressName)
+                                overwritten
+                            }
+                            else {
+                                null
+                            }
+                        } else {
+                            ld.first()
+                        }
+                    } else
+                        null
+                }
+            }
+            if (geocode != null)
+                return geocode
+        }
+
+        // If we don't have network, and the location is outside of our current TileGrid, then we
+        // could see if the tiles are cached and we can create a temporary TileGrid just for this
+        // but for now just return null.
+        return null
+    }
+
     companion object {
         private const val TAG = "GeoEngine"
     }
@@ -619,3 +713,72 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
 
     return TextForFeature(text, generic)
 }
+
+
+fun localReverseGeocode(location: LngLatAlt,
+                        gridState: GridState,
+                        localizedContext: Context): LocationDescription? {
+
+    if(!gridState.isLocationWithinGrid(location)) return null
+
+    // Check if we're inside a POI
+    val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, location, 200.0)
+    val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
+    for(poi in gridPoiFeatureCollection) {
+        // We can only be inside polygons
+        if(poi.geometry.type == "Polygon") {
+            val polygon = poi.geometry as Polygon
+
+            if(polygonContainsCoordinates(location, polygon)) {
+                // We've found a POI that contains the location. We could return the c
+                val name = poi.properties?.get("name")
+                if(name != null) {
+                    return LocationDescription(
+                        addressName = localizedContext.getString(R.string.directions_at_poi).format(name as String),
+                        longitude = location.longitude,
+                        latitude = location.latitude,
+                    )
+                }
+            }
+        }
+    }
+
+    // Check if the location is alongside a road/path.
+    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0)
+    if(nearestRoad != null) {
+        val properties = nearestRoad.properties
+        if (properties != null) {
+            var roadName = properties["name"]
+            if (roadName == null) {
+                roadName = properties["highway"]
+            }
+            return LocationDescription(
+                addressName = localizedContext.getString(R.string.directions_near_name).format(roadName as String),
+                longitude = location.longitude,
+                latitude = location.latitude
+            )
+        }
+    }
+
+    return null
+}
+
+/** Reverse geocodes a location into 1 of 4 possible states
+ * - within a POI
+ * - alongside a road
+ * - general location
+ * - unknown location).
+ */
+fun reverseGeocode(userGeometry: UserGeometry,
+                   gridState: GridState,
+                   localizedContext: Context): PositionedString {
+
+    val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
+    location?.let { l ->
+        l.addressName?.let { name ->
+            return PositionedString(name, userGeometry.location)
+        }
+    }
+    return PositionedString(localizedContext.getString(R.string.poi_unknown_place))
+}
+

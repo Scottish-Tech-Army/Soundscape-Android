@@ -1,12 +1,12 @@
 package org.scottishtecharmy.soundscape.screens.home.data
 
 data class LocationDescription(
-    val addressName: String? = null,
+    var addressName: String? = null,
     val streetNumberAndName: String? = null,
     val postcodeAndLocality: String? = null,
     val country: String? = null,
-    val distance: String? = null,
-    val latitude: Double = Double.NaN,
-    val longitude: Double = Double.NaN,
+    var distance: String? = null,
+    var latitude: Double = Double.NaN,
+    var longitude: Double = Double.NaN,
     val marker: Boolean = false
 )
