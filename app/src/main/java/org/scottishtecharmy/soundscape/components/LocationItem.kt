@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
@@ -100,8 +101,7 @@ fun PreviewSearchItemButton() {
                     addressName = "Bristol",
                     fullAddress = "18 Street \n59000 Lille\nFrance",
                     distance = "17 Km",
-                    latitude = 9.55,
-                    longitude = 8.00,
+                    location = LngLatAlt(8.00, 9.55)
                 )
             LocationItem(
                 item = test,

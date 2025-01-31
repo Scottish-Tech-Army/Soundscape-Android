@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class RoutePlayer(val service: SoundscapeService) {
     private var currentRouteData: RouteData? = null
@@ -59,7 +60,7 @@ class RoutePlayer(val service: SoundscapeService) {
             service.audioEngine.clearTextToSpeechQueue()
             service.audioEngine.createTextToSpeech("Move to marker ${index+1}, ${route.waypoints[index].addressName}", location.latitude, location.longitude)
 
-            service.createBeacon(location.latitude, location.longitude)
+            service.createBeacon(LngLatAlt(location.latitude, location.longitude))
 }
     }
 

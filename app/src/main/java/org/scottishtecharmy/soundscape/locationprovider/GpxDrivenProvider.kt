@@ -17,7 +17,7 @@ import java.io.InputStream
 
 class GpxDrivenProvider  {
 
-    var locationProvider = StaticLocationProvider(0.0,0.0)
+    var locationProvider = StaticLocationProvider(LngLatAlt())
     var directionProvider = DirectionProvider()
 
     private var parsedGpx: Gpx? = null

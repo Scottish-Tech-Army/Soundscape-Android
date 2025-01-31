@@ -112,14 +112,16 @@ class SoundscapeService : MediaSessionService() {
         return binder!!
     }
 
-    fun setStreetPreviewMode(on: Boolean, latitude: Double, longitude: Double) {
+    fun setStreetPreviewMode(on: Boolean, location: LngLatAlt?) {
         directionProvider.destroy()
         locationProvider.destroy()
         geoEngine.stop()
         if (on) {
             // Use static location, but phone's direction
-            locationProvider = StaticLocationProvider(latitude, longitude)
-            directionProvider = AndroidDirectionProvider(this)
+            if(location != null) {
+                locationProvider = StaticLocationProvider(location)
+                directionProvider = AndroidDirectionProvider(this)
+            }
         } else {
             // Switch back to phone's location and direction
             locationProvider = AndroidLocationProvider(this)
@@ -317,13 +319,15 @@ class SoundscapeService : MediaSessionService() {
             Realm.deleteRealm(config)
         }*/
 
-    fun createBeacon(latitude: Double, longitude: Double) {
+    fun createBeacon(location: LngLatAlt?) {
+        if(location == null) return
+
         if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
         }
-        audioBeacon = audioEngine.createBeacon(latitude, longitude)
+        audioBeacon = audioEngine.createBeacon(location)
         // Report any change in beacon back to application
-        _beaconFlow.value = LngLatAlt(longitude, latitude)
+        _beaconFlow.value = location
     }
 
     fun destroyBeacon() {
@@ -410,7 +414,7 @@ class SoundscapeService : MediaSessionService() {
 
     /**
      * streetPreviewGo is called when the 'GO' button is pressed when in StreetPreview mode.
-     * It indicates that the user has selected the direction of travel in which they wich to move.
+     * It indicates that the user has selected the direction of travel in which they which to move.
      */
     fun streetPreviewGo() {
         _streetPreviewFlow.value = StreetPreviewState(true, geoEngine.streetPreviewGo())

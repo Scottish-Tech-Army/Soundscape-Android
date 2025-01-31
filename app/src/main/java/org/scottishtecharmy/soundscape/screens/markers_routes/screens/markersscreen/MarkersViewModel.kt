@@ -12,10 +12,11 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.repository.MarkersRepository
+import org.scottishtecharmy.soundscape.geoengine.formatDistance
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortOrderPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortOrderPreference
-import org.scottishtecharmy.soundscape.utils.calculateDistanceTo
 import javax.inject.Inject
 
 @HiltViewModel
@@ -61,17 +62,20 @@ class MarkersViewModel
                     val userLocation = soundscapeServiceConnection.getLocationFlow()?.firstOrNull()
                     val markerVMs =
                         markersRepository.getMarkers().map {
+                            val markerLngLat = LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
                             LocationDescription(
                                 addressName = it.addressName,
                                 fullAddress = it.fullAddress,
-                                latitude = it.location?.latitude ?: 0.0,
-                                longitude = it.location?.longitude ?: 0.0,
+                                location = markerLngLat,
                                 distance =
-                                userLocation?.calculateDistanceTo(
-                                    it.location?.latitude ?: userLocation.latitude,
-                                    it.location?.longitude ?: userLocation.longitude
-                                ),
-                                marker = true,
+                                    if(userLocation == null)
+                                        ""
+                                    else {
+                                        val userLngLat =
+                                            LngLatAlt(userLocation.longitude, userLocation.latitude)
+                                        formatDistance(userLngLat.distance(markerLngLat), context)
+                                    },
+                                marker = true
                             )
                         }
                     val isAscending = getSortOrderPreference(context)

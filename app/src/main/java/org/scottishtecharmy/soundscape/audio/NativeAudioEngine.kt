@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 import javax.inject.Inject
@@ -184,12 +185,12 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         }
     }
 
-    override fun createBeacon(latitude: Double, longitude: Double) : Long
+    override fun createBeacon(location: LngLatAlt) : Long
     {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
                 Log.d(TAG, "Call createNativeBeacon")
-                return createNativeBeacon(engineHandle, latitude, longitude)
+                return createNativeBeacon(engineHandle, location.latitude, location.longitude)
             }
 
             return 0

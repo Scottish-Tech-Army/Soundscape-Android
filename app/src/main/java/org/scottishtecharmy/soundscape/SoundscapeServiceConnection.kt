@@ -38,9 +38,9 @@ class SoundscapeServiceConnection @Inject constructor() {
         return soundscapeService?.streetPreviewFlow
     }
 
-    fun setStreetPreviewMode(on : Boolean, latitude: Double = 0.0, longitude: Double = 0.0) {
+    fun setStreetPreviewMode(on : Boolean, location: LngLatAlt? = null) {
         Log.d(TAG, "setStreetPreviewMode $on")
-        soundscapeService?.setStreetPreviewMode(on, latitude, longitude)
+        soundscapeService?.setStreetPreviewMode(on, location)
     }
 
     fun startRoute(routeName: String) {
