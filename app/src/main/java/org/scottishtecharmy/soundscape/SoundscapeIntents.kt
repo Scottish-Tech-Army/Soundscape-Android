@@ -9,20 +9,28 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.json.JSONObject
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
+import org.scottishtecharmy.soundscape.database.local.model.Location
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
+import java.io.BufferedReader
 import java.io.IOException
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLDecoder
 import java.net.URLEncoder
 import javax.inject.Inject
+
 
 class SoundscapeIntents
     @Inject
@@ -107,6 +115,23 @@ class SoundscapeIntents
                 useGeocoderToGetAddress(redUrl, context)
             }
         }
+
+    private fun inputStreamToJson(inputStream: InputStream): JSONObject? {
+        return try {
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            val stringBuilder = StringBuilder()
+            var line: String? = reader.readLine()
+            while (line != null) {
+                stringBuilder.append(line)
+                line = reader.readLine()
+            }
+            JSONObject(stringBuilder.toString())
+        } catch (e: Exception) {
+            // Handle exceptions like malformed JSON or IO errors
+            e.printStackTrace()
+            null
+        }
+    }
 
         /** There are several different types of Intent that we handle in our app
 
@@ -203,27 +228,64 @@ class SoundscapeIntents
                                                 mainActivity.contentResolver.openInputStream(uri)
 
                                             if (input != null) {
-                                                val routeData = parseGpxFile(input)
+                                                var routeData: RouteData? = null
+                                                if(intent.type == "application/json") {
+                                                    // This might be a saved route shared from iOS.
+                                                    // We want to translate this into a RouteData
+                                                    // format to write to our database.
+                                                    val json = inputStreamToJson(input)
+                                                    if(json == null) throw Exception("Failed to parse JSON")
 
-                                                // The parsing has succeeded, write the result to a
-                                                // new markers database.
-                                                // TODO: This intent should really open up the RouteDetails
-                                                //  page and defer to that the action of inserting the
-                                                //  route into the database. This is a temporary solution
-                                                //  so that we can work on the code that uses the routes.
-                                                val realm = RealmConfiguration.getMarkersInstance(true)
-                                                val routesDao = RoutesDao(realm)
-                                                val routesRepository = RoutesRepository(routesDao)
-                                                runBlocking {
-                                                    launch {
-                                                        // Write the routeData to the database
-                                                        Log.d("gpx", "Inserting route")
-                                                        routesRepository.insertRoute(routeData)
+                                                    routeData = RouteData()
+                                                    val routeName = json.getString("name")
+                                                    routeData.name = routeName
+
+                                                    // Hand crafted decode based on sample file...
+                                                    val waypoints = json.getJSONArray("waypoints")
+                                                    for(i in 0 until waypoints.length()) {
+                                                        val item = waypoints.get(i) as JSONObject
+                                                        val marker = item.get("marker")
+                                                        if(marker is JSONObject) {
+                                                            val location = marker.get("location") as JSONObject
+                                                            val name = location.getString("name")
+                                                            val coordinate = location.get("coordinate") as JSONObject
+                                                            val latitude = coordinate.get("latitude") as Double
+                                                            val longitude = coordinate.get("longitude") as Double
+                                                            val nickname = marker.get("nickname")
+                                                            val estimatedAddress = marker.getString("estimatedAddress")
+
+                                                            routeData.waypoints.add(
+                                                                RoutePoint(name, Location(latitude, longitude))
+                                                            )
+                                                        }
+                                                    }
+
+                                                } else {
+                                                    routeData = parseGpxFile(input)
+                                                }
+                                                if(routeData != null) {
+                                                    // The parsing has succeeded, write the result to a
+                                                    // new markers database.
+                                                    // TODO: This intent should really open up the RouteDetails
+                                                    //  page and defer to that the action of inserting the
+                                                    //  route into the database. This is a temporary solution
+                                                    //  so that we can work on the code that uses the routes.
+                                                    val realm =
+                                                        RealmConfiguration.getMarkersInstance(true)
+                                                    val routesDao = RoutesDao(realm)
+                                                    val routesRepository =
+                                                        RoutesRepository(routesDao)
+                                                    runBlocking {
+                                                        launch {
+                                                            // Write the routeData to the database
+                                                            Log.d("gpx", "Inserting route")
+                                                            routesRepository.insertRoute(routeData)
+                                                        }
                                                     }
                                                 }
                                             }
                                         } catch (e: Exception) {
-                                            Log.e(TAG, "Failed to import GPX from intent: $e")
+                                            Log.e(TAG, "Failed to import file from intent: $e")
                                         }
                                     }
                                 }

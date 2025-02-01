@@ -59,6 +59,14 @@
             </intent-filter>
 
             <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="content"/>
+                <data android:mimeType="application/json" />
+            </intent-filter>
+
+            <intent-filter>
                 <!-- geo intents to set a beacon -->
                 <data android:scheme="geo" />
                 <action android:name="android.intent.action.VIEW"/>
@@ -73,6 +81,21 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
+
+            <!--
+            Once we have share.soundscape.services (or similar) server set up, then we can uncomment
+            this and test deep linking. This is so that iOS shared markers such as:
+                https://share.soundscape.services/v1/sharemarker?nickname=Anderson%20Strathearn&name=&lat=55.9478065&lon=-3.2086401
+            can be supported. It will need some additional parsing in SoundscapeIntents.
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                    android:host="share.soundscape.services"
+                    android:pathPrefix="/v1/sharemarker" />
+            </intent-filter>
+            -->
         </activity>
 
         <service
