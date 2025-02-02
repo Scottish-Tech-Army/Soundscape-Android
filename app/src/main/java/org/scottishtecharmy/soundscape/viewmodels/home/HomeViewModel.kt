@@ -58,11 +58,11 @@ class HomeViewModel
                         // The service has started, so start monitoring the location and heading
                         startMonitoringLocation()
                         // And start monitoring the street preview mode
-                        startMonitoringStreetPreviewMode()
+                        startMonitoringStreetPreviewState()
                     } else {
                         // The service has gone away so remove the current location marker
                         _state.update { it.copy(location = null) }
-                        stopMonitoringStreetPreviewMode()
+                        stopMonitoringStreetPreviewState()
                         stopMonitoringLocation()
                     }
                 }
@@ -71,7 +71,7 @@ class HomeViewModel
 
         override fun onCleared() {
             super.onCleared()
-            stopMonitoringStreetPreviewMode()
+            stopMonitoringStreetPreviewState()
             stopMonitoringLocation()
         }
 
@@ -127,18 +127,18 @@ class HomeViewModel
         }
 
         /**
-         * startMonitoringStreetPreviewMode launches a job to monitor the state of street preview mode.
+         * startMonitoringStreetPreviewState launches a job to monitor the state of street preview mode.
          * When the mode from the service changes then the local flow for the UI is updated and the
          * location and orientation monitoring is turned off and on again so as to use the new providers.
          */
-        private fun startMonitoringStreetPreviewMode() {
-            Log.d(TAG, "startMonitoringStreetPreviewMode")
+        private fun startMonitoringStreetPreviewState() {
+            Log.d(TAG, "startMonitoringStreetPreviewState")
             spJob = Job()
             viewModelScope.launch(spJob) {
                 // Observe street preview mode from the service so we can update state
                 soundscapeServiceConnection.getStreetPreviewModeFlow()?.collect { value ->
                     Log.d(TAG, "Street Preview Mode: $value")
-                    _state.update { it.copy(streetPreviewMode = value) }
+                    _state.update { it.copy(streetPreviewState = value) }
 
                     // Restart location monitoring for new provider
                     stopMonitoringLocation()
@@ -147,8 +147,8 @@ class HomeViewModel
             }
         }
 
-        private fun stopMonitoringStreetPreviewMode() {
-            Log.d(TAG, "stopMonitoringStreetPreviewMode")
+        private fun stopMonitoringStreetPreviewState() {
+            Log.d(TAG, "stopMonitoringStreetPreviewState")
             spJob.cancel()
         }
 
@@ -182,6 +182,20 @@ class HomeViewModel
             // Log.d(TAG, "myLocation() triggered")
             viewModelScope.launch {
                 soundscapeServiceConnection.soundscapeService?.whatsAroundMe()
+            }
+        }
+
+        fun streetPreviewGo() {
+            // Log.d(TAG, "myLocation() triggered")
+            viewModelScope.launch {
+                soundscapeServiceConnection.streetPreviewGo()
+            }
+        }
+
+        fun streetPreviewExit() {
+            // Log.d(TAG, "myLocation() triggered")
+            viewModelScope.launch {
+                soundscapeServiceConnection.setStreetPreviewMode(false)
             }
         }
 

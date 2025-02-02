@@ -84,7 +84,9 @@ fun HomeScreen(
                 searchItems = state.value.searchItems.orEmpty(),
                 shareLocation = { viewModel.shareLocation(context) },
                 rateSoundscape = rateSoundscape,
-                streetPreviewEnabled = state.value.streetPreviewMode,
+                streetPreviewState = state.value.streetPreviewState,
+                streetPreviewGo = { viewModel.streetPreviewGo() },
+                streetPreviewExit = { viewModel.streetPreviewExit() },
                 tileGridGeoJson = state.value.tileGridGeoJson,
             )
         }

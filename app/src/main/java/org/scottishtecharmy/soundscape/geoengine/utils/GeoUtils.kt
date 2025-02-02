@@ -1323,3 +1323,17 @@ fun nearestPointOnBoundingBox(box: BoundingBox, point: LngLatAlt): LngLatAlt {
 
     return LngLatAlt(nearestLng, nearestLat)
 }
+
+/**
+ * calculateHeadingOffset calculates the angle between two headings e.g. the user heading and the
+ * heading of a road.
+ * @param heading1
+ * @param heading2
+ * @return The inner angle between the two headings in degrees.
+ */
+fun calculateHeadingOffset(heading1: Double, heading2: Double): Double {
+    var diff = abs(heading1 - heading2) % 360.0
+    if (diff > 180.0) diff = 360.0 - diff
+
+    return diff
+}

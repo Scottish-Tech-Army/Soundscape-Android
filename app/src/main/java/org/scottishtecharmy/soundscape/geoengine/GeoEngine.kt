@@ -13,7 +13,6 @@ import com.squareup.otto.Subscribe
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -44,7 +43,6 @@ import org.scottishtecharmy.soundscape.services.getOttoBus
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 import kotlin.math.abs
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.TimeSource
 
 data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
@@ -441,18 +439,8 @@ class GeoEngine {
         }
     }
 
-    fun streetPreviewGo() {
-        if(true) {
-            streetPreviewGoInternal()
-        } else {
-            // Random walker for StreetPreview
-            CoroutineScope(Job()).launch {
-                repeat(1000) {
-                    streetPreviewGoWander()
-                    delay(200.milliseconds)
-                }
-            }
-        }
+    fun streetPreviewGo() : List<StreetPreviewChoice> {
+        return streetPreviewGoInternal()
     }
 
     private fun streetPreviewGoWander() {
@@ -473,7 +461,7 @@ class GeoEngine {
                 heading = choices.random().heading
                 if(!lastHeading.isNaN()) {
                     // If we came in on a road, then try and keep going in that direction
-                    val trimmedChoices = mutableListOf<StreetPreview.StreetPreviewChoice>()
+                    val trimmedChoices = mutableListOf<StreetPreviewChoice>()
                     for (choice in choices) {
                         if ((choice.heading != lastHeading) && (!choice.heading.isNaN())) {
                             // Don't add the road we just came in on, or any with a NaN heading.
@@ -499,15 +487,23 @@ class GeoEngine {
         }
     }
 
-    private fun streetPreviewGoInternal() {
+    private fun streetPreviewGoInternal() : List<StreetPreviewChoice> {
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
-        // running.
+        // running.  We want to return the new set of choices so that these can be sent up to the UI.
         val engine = this
-        CoroutineScope(Job()).launch(gridState.treeContext) {
-            // Get our current location and figure out what GO means
-            val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
-            streetPreview.go(userGeometry, engine)
+        val results = runBlocking {
+            withContext(gridState.treeContext) {
+                // Get our current location and figure out what GO means
+                val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
+                val newLocation = streetPreview.go(userGeometry, engine)
+                if(newLocation != null) {
+                    streetPreview.getDirectionChoices(engine, newLocation)
+                } else {
+                    streetPreview.getDirectionChoices(engine, userGeometry.location)
+                }
+            }
         }
+        return results
     }
 
     companion object {

@@ -11,6 +11,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
@@ -33,7 +34,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun getBeaconFlow(): StateFlow<LngLatAlt?>? {
         return soundscapeService?.beaconFlow
     }
-    fun getStreetPreviewModeFlow(): StateFlow<Boolean>? {
+    fun getStreetPreviewModeFlow(): StateFlow<StreetPreviewState>? {
         return soundscapeService?.streetPreviewFlow
     }
 

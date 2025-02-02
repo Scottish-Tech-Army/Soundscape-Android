@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine
 import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.utils.RoadDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.splitRoadAtNode
@@ -11,7 +12,17 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import kotlin.math.abs
+
+data class StreetPreviewChoice(
+    val heading: Double,
+    val name: String,
+    val route: List<LngLatAlt>
+)
+
+data class StreetPreviewState(
+    val enabled: Boolean = false,
+    val choices: List<StreetPreviewChoice> = emptyList()
+)
 
 class StreetPreview {
 
@@ -19,12 +30,6 @@ class StreetPreview {
         INITIAL(0),
         AT_NODE(1)
     }
-
-    data class StreetPreviewChoice(
-        val heading: Double,
-        val name: String,
-        val route: List<LngLatAlt>
-    )
 
     private var previewState = PreviewState.INITIAL
     private var previewRoad: StreetPreviewChoice? = null
@@ -35,13 +40,13 @@ class StreetPreview {
         previewState = PreviewState.INITIAL
     }
 
-    fun go(userGeometry: UserGeometry, engine: GeoEngine) {
+    fun go(userGeometry: UserGeometry, engine: GeoEngine) : LngLatAlt? {
         when (previewState) {
 
             PreviewState.INITIAL -> {
                 // Jump to a node on the nearest road or path
                 val road = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.location, Double.POSITIVE_INFINITY)
-                    ?: return
+                    ?: return null
 
                 var nearestDistance = Double.POSITIVE_INFINITY
                 var nearestPoint = LngLatAlt()
@@ -58,6 +63,7 @@ class StreetPreview {
                     // We've got a location, so jump to it
                     engine.locationProvider.updateLocation(nearestPoint, 0.0F)
                     previewState = PreviewState.AT_NODE
+                    return nearestPoint
                 }
             }
 
@@ -68,28 +74,26 @@ class StreetPreview {
                 var bestHeadingDiff = Double.POSITIVE_INFINITY
 
                 // Find the choice with the closest heading to our own
-                var diff: Double
                 for ((index, choice) in choices.withIndex()) {
-                    diff = abs(choice.heading - userGeometry.heading())
+                    val diff = calculateHeadingOffset(choice.heading, userGeometry.heading())
                     if (diff < bestHeadingDiff) {
                         bestHeadingDiff = diff
                         bestIndex = index
                     }
                     Log.d(TAG, "Choice: ${choice.name} heading: ${choice.heading}")
                 }
-                // Check that the closest heading is close enough
-                if (bestHeadingDiff < 30.0) {
 
-                    // We've got a road - let's head down it
-                    previewRoad = extendChoice(engine, userGeometry.location, choices[bestIndex])
-                    previewRoad?.let { road ->
-                        engine.locationProvider.updateLocation(road.route.last(), 1.0F)
-                        lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
-                    }
-                    previewState = PreviewState.AT_NODE
+                // We've got a road - let's head down it
+                previewRoad = extendChoice(engine, userGeometry.location, choices[bestIndex])
+                previewRoad?.let { road ->
+                    engine.locationProvider.updateLocation(road.route.last(), 1.0F)
+                    lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
+                    return road.route.last()
                 }
+                previewState = PreviewState.AT_NODE
             }
         }
+        return null
     }
 
     private fun bearingOfLineFromEnd(location: LngLatAlt, line: List<LngLatAlt>): Double {

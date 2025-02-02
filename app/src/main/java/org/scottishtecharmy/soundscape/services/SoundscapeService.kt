@@ -37,6 +37,7 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
@@ -87,8 +88,8 @@ class SoundscapeService : MediaSessionService() {
     var beaconFlow: StateFlow<LngLatAlt?> = _beaconFlow
 
     // Flow to return street preview mode
-    private val _streetPreviewFlow = MutableStateFlow(false)
-    var streetPreviewFlow: StateFlow<Boolean> = _streetPreviewFlow
+    private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(false))
+    var streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
 
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
@@ -127,7 +128,11 @@ class SoundscapeService : MediaSessionService() {
         directionProvider.start(audioEngine, locationProvider)
         geoEngine.start(application, locationProvider, directionProvider, this)
 
-        _streetPreviewFlow.value = on
+        if(on) {
+            _streetPreviewFlow.value = StreetPreviewState(true, geoEngine.streetPreviewGo())
+        } else {
+            _streetPreviewFlow.value = StreetPreviewState(false)
+        }
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? =
@@ -403,7 +408,7 @@ class SoundscapeService : MediaSessionService() {
      * It indicates that the user has selected the direction of travel in which they wich to move.
      */
     fun streetPreviewGo() {
-        geoEngine.streetPreviewGo()
+        _streetPreviewFlow.value = StreetPreviewState(true, geoEngine.streetPreviewGo())
     }
 
     companion object {
