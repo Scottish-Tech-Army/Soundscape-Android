@@ -6,9 +6,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Menu
-import androidx.compose.material.icons.rounded.PlayCircle
-import androidx.compose.material.icons.rounded.PlayCircleOutline
-import androidx.compose.material.icons.rounded.Preview
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,7 +28,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -43,6 +39,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -64,7 +61,9 @@ fun HomePreview() {
         getWhatsAheadOfMe = {},
         shareLocation = {},
         rateSoundscape = {},
-        streetPreviewEnabled = false,
+        streetPreviewState = StreetPreviewState(false),
+        streetPreviewExit = {},
+        streetPreviewGo = {},
         tileGridGeoJson = "",
         searchText = "Lille",
         isSearching = true,
@@ -88,7 +87,9 @@ fun Home(
     getWhatsAheadOfMe: () -> Unit,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
-    streetPreviewEnabled: Boolean,
+    streetPreviewState: StreetPreviewState,
+    streetPreviewGo: () -> Unit,
+    streetPreviewExit: () -> Unit,
     modifier: Modifier = Modifier,
     tileGridGeoJson: String,
     searchText: String,
@@ -117,8 +118,7 @@ fun Home(
             topBar = {
                 HomeTopAppBar(
                     drawerState,
-                    coroutineScope,
-                    streetPreviewEnabled,
+                    coroutineScope
                 )
             },
             bottomBar = {
@@ -165,6 +165,9 @@ fun Home(
                 onMapLongClick = onMapLongClick,
                 onMarkerClick = onMarkerClick,
                 tileGridGeoJson = tileGridGeoJson,
+                streetPreviewState = streetPreviewState,
+                streetPreviewGo = streetPreviewGo,
+                streetPreviewExit = streetPreviewExit
             )
         }
     }
@@ -174,8 +177,7 @@ fun Home(
 @Composable
 fun HomeTopAppBar(
     drawerState: DrawerState,
-    coroutineScope: CoroutineScope,
-    streetPreviewEnabled: Boolean,
+    coroutineScope: CoroutineScope
 ) {
     val context = LocalContext.current
     TopAppBar(
@@ -205,63 +207,6 @@ fun HomeTopAppBar(
         },
         actions = {
             var serviceRunning by remember { mutableStateOf(true) }
-            IconButton(
-                enabled = streetPreviewEnabled,
-                onClick = {
-                    if(streetPreviewEnabled) {
-                        (context as MainActivity).soundscapeServiceConnection.streetPreviewGo()
-                    }
-                },
-            ) {
-                if (streetPreviewEnabled) {
-                    Icon(
-                        Icons.Rounded.PlayCircle,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = "StreetPreview play"
-                    )
-                } else {
-                    Icon(
-                        Icons.Rounded.PlayCircleOutline,
-                        tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = "StreetPreview play disabled"
-                    )
-                }
-            }
-            IconToggleButton(
-                checked = streetPreviewEnabled,
-                enabled = true,
-                onCheckedChange = { state ->
-                    if (!state) {
-                        (context as MainActivity).soundscapeServiceConnection.setStreetPreviewMode(
-                            false,
-                        )
-                    }
-                },
-            ) {
-                if (streetPreviewEnabled) {
-                    Icon(
-                        Icons.Rounded.PlayCircle,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = "StreetPreview play"
-                    )
-                    Icon(
-                        Icons.Rounded.Preview,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = stringResource(R.string.street_preview_enabled),
-                    )
-                } else {
-                    Icon(
-                        Icons.Rounded.PlayCircleOutline,
-                        tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = "StreetPreview play disabled"
-                    )
-                    Icon(
-                        painterResource(R.drawable.preview_off),
-                        tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = stringResource(R.string.street_preview_disabled),
-                    )
-                }
-            }
             IconToggleButton(
                 checked = serviceRunning,
                 enabled = true,
