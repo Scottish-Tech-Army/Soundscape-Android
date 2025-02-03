@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -41,6 +40,10 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun setStreetPreviewMode(on : Boolean, latitude: Double = 0.0, longitude: Double = 0.0) {
         Log.d(TAG, "setStreetPreviewMode $on")
         soundscapeService?.setStreetPreviewMode(on, latitude, longitude)
+    }
+
+    fun startRoute(routeName: String) {
+        soundscapeService?.startRoute(routeName)
     }
 
     // needed to communicate with the service.

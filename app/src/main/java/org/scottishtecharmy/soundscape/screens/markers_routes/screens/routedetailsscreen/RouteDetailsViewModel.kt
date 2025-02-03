@@ -7,15 +7,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import javax.inject.Inject
 
 
 @HiltViewModel
 class RouteDetailsViewModel @Inject constructor(
-    private val routesRepository: RoutesRepository
+    private val routesRepository: RoutesRepository,
+    private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow(RouteDetailsUiState())
     val uiState: StateFlow<RouteDetailsUiState> = _uiState.asStateFlow()
 
@@ -59,6 +60,10 @@ class RouteDetailsViewModel @Inject constructor(
                 )
             }
         }
+    }
+
+    fun startRoute(routeName: String) {
+        soundscapeServiceConnection.startRoute(routeName)
     }
 
     fun clearErrorMessage() {
