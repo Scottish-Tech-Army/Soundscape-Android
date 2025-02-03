@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -170,6 +171,24 @@ fun HomeScreen(
                 routeDescription = uiState.description,
                 navController = navController,
                 viewModel = editRouteViewModel,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
+        }
+
+        composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->
+            val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
+            RouteDetailsScreenVM(
+                routeName = routeName,
+                navController = navController,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
+        }
+
+        composable(HomeRoutes.Help.route + "/{topic}") { backStackEntry ->
+            val topic = backStackEntry.arguments?.getString("topic") ?: ""
+            HelpScreen(
+                topic = topic,
+                navController = navController,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }

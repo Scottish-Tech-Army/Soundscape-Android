@@ -76,7 +76,7 @@ fun DrawerContent(
             icon = Icons.Rounded.Settings,
         )
         DrawerMenuItem(
-            onClick = { notAvailableToast() },
+            onClick = { onNavigate(HomeRoutes.Help.route + "/home") },
             label = stringResource(R.string.menu_help_and_tutorials),
             Icons.AutoMirrored.Rounded.HelpOutline,
         )

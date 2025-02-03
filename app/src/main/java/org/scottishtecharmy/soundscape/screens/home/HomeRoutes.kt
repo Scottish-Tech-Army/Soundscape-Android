@@ -32,4 +32,8 @@ sealed class HomeRoutes(
         route = "edit_route_screen",
         title = "EditDetailsScreen",
     )
+    data object Help : HomeRoutes(
+        route = "help_screen",
+        title = "HelpScreen",
+    )
 }
