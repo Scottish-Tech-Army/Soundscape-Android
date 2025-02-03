@@ -150,9 +150,6 @@ class MainActivity : AppCompatActivity() {
                             intent.action = ""
                         }
                     }
-
-                    // Pick the current route
-                    setupCurrentRoute()
                 }
             }
         }
@@ -263,10 +260,6 @@ class MainActivity : AppCompatActivity() {
             startSoundscapeService()
             soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
         }
-    }
-
-    fun setupCurrentRoute() {
-        soundscapeServiceConnection.soundscapeService?.setupCurrentRoute()
     }
 
     /**

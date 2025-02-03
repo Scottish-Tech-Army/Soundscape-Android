@@ -80,7 +80,7 @@ class SoundscapeService : MediaSessionService() {
     private var audioBeacon: Long = 0
 
     // Geo engine
-    var geoEngine = GeoEngine()
+    private var geoEngine = GeoEngine()
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)
@@ -358,9 +358,9 @@ class SoundscapeService : MediaSessionService() {
     }
 
     private lateinit var routePlayer : RoutePlayer
-    fun setupCurrentRoute() {
-//        routePlayer = RoutePlayer(this)
-//        routePlayer.setupCurrentRoute()
+    fun startRoute(routeName: String) {
+        routePlayer = RoutePlayer(this)
+        routePlayer.startRoute(routeName)
     }
 
     /**

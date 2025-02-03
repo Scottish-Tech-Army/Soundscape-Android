@@ -17,14 +17,14 @@ class RoutePlayer(val service: SoundscapeService) {
     private var currentMarker = -1
     private val coroutineScope = CoroutineScope(Job())
 
-    fun setupCurrentRoute() {
+    fun startRoute(routeName: String) {
         val realm = RealmConfiguration.getMarkersInstance()
         val routesDao = RoutesDao(realm)
         val routesRepository = RoutesRepository(routesDao)
 
-        Log.e(TAG, "setupCurrentRoute")
+        Log.e(TAG, "startRoute")
         coroutineScope.launch {
-            val dbRoutes = routesRepository.getRoutes()
+            val dbRoutes = routesRepository.getRoute(routeName)
             if(dbRoutes.isNotEmpty()) {
                 currentRouteData = dbRoutes[0].copyFromRealm()
             }

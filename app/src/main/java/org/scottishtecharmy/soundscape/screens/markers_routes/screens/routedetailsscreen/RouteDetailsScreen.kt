@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
@@ -54,6 +55,7 @@ fun RouteDetailsScreenVM(
         modifier,
         uiState,
         getRouteByName = { viewModel.getRouteByName(routeName) },
+        startRoute = { viewModel.startRoute(routeName) },
         clearErrorMessage = { viewModel.clearErrorMessage() }
     )
 }
@@ -65,6 +67,7 @@ fun RouteDetailsScreen(
     modifier: Modifier,
     uiState: RouteDetailsUiState,
     getRouteByName: (routeName: String) -> Unit,
+    startRoute: (routeName: String) -> Unit,
     clearErrorMessage: () -> Unit,
 ) {
     // Observe the UI state from the ViewModel
@@ -151,7 +154,16 @@ fun RouteDetailsScreen(
                                 iconText = stringResource(R.string.route_detail_action_start_route),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
-                                onClick = { /*TODO*/ })
+                                onClick = {
+                                    startRoute(route.name)
+                                    // Pop up to the home screen
+                                    navController.navigate(HomeRoutes.Home.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            inclusive = true
+                                        }
+                                        launchSingleTop = true
+                                    }
+                                })
                             IconWithTextButton(
                                 icon = Icons.Default.Edit,
                                 iconModifier = Modifier.size(40.dp),
@@ -202,6 +214,7 @@ fun RoutesDetailsPopulatedPreview() {
                 selectedRoute = RouteData("Route 2", "Description 2")
             ),
             getRouteByName = {},
+            startRoute = {},
             clearErrorMessage = {}
         )
     }
@@ -217,6 +230,7 @@ fun RoutesDetailsLoadingPreview() {
             uiState = RouteDetailsUiState(isLoading = true),
             modifier = Modifier,
             getRouteByName = {},
+            startRoute = {},
             clearErrorMessage = {}
         )
     }
@@ -232,6 +246,7 @@ fun RoutesDetailsEmptyPreview() {
             modifier = Modifier,
             uiState = RouteDetailsUiState(),
             getRouteByName = {},
+            startRoute = {},
             clearErrorMessage = {}
         )
     }
