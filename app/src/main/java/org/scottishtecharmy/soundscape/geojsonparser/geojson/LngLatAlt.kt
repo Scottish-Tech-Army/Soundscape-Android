@@ -50,8 +50,6 @@ open class LngLatAlt(
 
     /**
      * Distance to a LineString from current location.
-     * @param pointCoordinates
-     * LngLatAlt of current location
      * @param lineStringCoordinates
      * LineString that we are working out the distance from
      * @return The distance of the point to the LineString
@@ -61,9 +59,24 @@ open class LngLatAlt(
         nearestPoint: LngLatAlt? = null
     ): Double {
 
-        return distanceToLine(
-            lineStringCoordinates.coordinates[0],
-            lineStringCoordinates.coordinates[1],
-            nearestPoint)
+        var shortestDistance = Double.MAX_VALUE
+        var bestNearestPoint = LngLatAlt()
+        for(i in 1 until lineStringCoordinates.coordinates.size - 1) {
+            val nearestPointOnSegment = LngLatAlt()
+            val distance = distanceToLine(
+                lineStringCoordinates.coordinates[i-1],
+                lineStringCoordinates.coordinates[i],
+                nearestPointOnSegment)
+
+            if(distance < shortestDistance) {
+                shortestDistance = distance
+                bestNearestPoint = nearestPointOnSegment
+            }
+        }
+        if(nearestPoint != null) {
+            nearestPoint.longitude = bestNearestPoint.longitude
+            nearestPoint.latitude = bestNearestPoint.latitude
+        }
+        return shortestDistance
     }
 }
