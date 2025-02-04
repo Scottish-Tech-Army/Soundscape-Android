@@ -21,8 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -296,6 +300,35 @@ private val helpPages = listOf(
             Section(R.string.faq_holding_phone_flat_question, SectionType.Faq, faqAnswer = R.string.faq_holding_phone_flat_answer),
             Section(R.string.faq_what_is_osm_question, SectionType.Faq, faqAnswer = R.string.faq_what_is_osm_answer),
         )
+    ),
+    Sections(
+        R.string.settings_about_app,
+        listOf(
+            Section(R.string.settings_about_title_third_party, SectionType.Link),
+        )
+    ),
+    Sections(
+        R.string.settings_about_title_third_party,
+        listOf(
+            Section(R.string.copyright_notices, SectionType.Title),
+            Section(R.string.osm_copyright, SectionType.Paragraph),
+            Section(R.string.openmaptiles_copyright, SectionType.Paragraph),
+            Section(R.string.fmod_copyright, SectionType.Paragraph),
+            Section(R.string.maplibre_copyright, SectionType.Paragraph),
+            Section(R.string.junit_copyright, SectionType.Paragraph),
+
+            Section(R.string.apache_notices, SectionType.Title),
+            Section(R.string.rtree_copyright, SectionType.Paragraph),
+            Section(R.string.realm_copyright, SectionType.Paragraph),
+            Section(R.string.moshi_copyright, SectionType.Paragraph),
+            Section(R.string.retrofit_copyright, SectionType.Paragraph),
+            Section(R.string.okhttp_copyright, SectionType.Paragraph),
+            Section(R.string.otto_copyright, SectionType.Paragraph),
+            Section(R.string.leak_canary_copyright, SectionType.Paragraph),
+            Section(R.string.gpx_parser_copyright, SectionType.Paragraph),
+            Section(R.string.preferences_copyright, SectionType.Paragraph),
+            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph),
+        )
     )
 )
 
@@ -362,7 +395,13 @@ fun HelpScreen(
 
                             SectionType.Paragraph -> {
                                 Text(
-                                    text = AnnotatedString.fromHtml(stringResource(section.textId)),
+                                    text = AnnotatedString.fromHtml(
+                                        stringResource(section.textId),
+                                        linkStyles = TextLinkStyles(
+                                            style = SpanStyle(
+                                                textDecoration = TextDecoration.Underline,
+                                            )
+                                        )                                        ),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = OnSurface,
                                 )
@@ -609,6 +648,18 @@ fun OfflineHelpPreview() {
     SoundscapeTheme {
         HelpScreen(
             topic = "page${R.string.help_offline_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ThirdPartyHelpPreview() {
+    SoundscapeTheme {
+        HelpScreen(
+            topic = "page${R.string.settings_about_title_third_party}",
             navController = rememberNavController(),
             modifier = Modifier
         )

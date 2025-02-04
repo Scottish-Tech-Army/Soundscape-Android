@@ -76,7 +76,7 @@ fun DrawerContent(
             icon = Icons.Rounded.Settings,
         )
         DrawerMenuItem(
-            onClick = { onNavigate(HomeRoutes.Help.route + "/home") },
+            onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help_and_tutorials}") },
             label = stringResource(R.string.menu_help_and_tutorials),
             Icons.AutoMirrored.Rounded.HelpOutline,
         )
@@ -94,6 +94,11 @@ fun DrawerContent(
             onClick = { shareLocation() },
             label = stringResource(R.string.share_title),
             icon = Icons.Rounded.IosShare,
+        )
+        DrawerMenuItem(
+            onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
+            label = stringResource(R.string.settings_about_app),
+            Icons.AutoMirrored.Rounded.HelpOutline,
         )
     }
 }

@@ -1,6 +1,4 @@
 import com.google.protobuf.gradle.id
-import java.io.FileInputStream
-import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -217,8 +215,6 @@ dependencies {
     // GPX parser
     implementation (libs.android.gpx.parser)
 
-    // Open Street Map compose library
-    implementation (libs.mapcompose)
     // MapLibre library
     implementation (libs.maplibre)
     implementation (libs.maplibre.annotations)

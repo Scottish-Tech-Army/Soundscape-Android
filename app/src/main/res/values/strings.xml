@@ -3592,4 +3592,27 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
   <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
 
+  <!-- We need to encode < as &lt; to prevent them being stripped prior to use -->
+  <!-- Licensing strings -->
+  <string name="copyright_notices"  translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
+  <string name="osm_copyright"  translatable="false">&lt;a href="https://www.openstreetmap.org/copyright">&#169;OpenStreetMap contributors&lt;/a> provide all of the geo data for mapping and audio used in Soundscape.</string>
+  <string name="openmaptiles_copyright"  translatable="false">&lt;a href="https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md">&#169;OpenMapTiles&lt;/a> is used to generate the mapping tiles that we use.</string>
+  <string name="fmod_copyright"  translatable="false">&lt;a href="https://www.fmod.com/legal">Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.&lt;/a> takes care of the audio playback.</string>
+  <!-- BSD 2-clause -->
+  <string name="maplibre_copyright"  translatable="false">&lt;a href="https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md">&#169;MapLibre&lt;/a> performs the map rendering for the UI.</string>
+  <!-- Eclipse -->
+  <string name="junit_copyright"  translatable="false">&lt;a href="https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt">junit-team/junit4&lt;/a> for unit testing.</string>
+
+  <!-- Apache 2.0 -->
+  <string name="apache_notices"  translatable="false">The remainder of the licenses are all Apache 2.0:</string>
+  <string name="rtree_copyright"  translatable="false">&lt;a href="https://github.com/davidmoten/rtree2/blob/master/LICENCE">rtree2&lt;/a> makes our local geo-search much more efficient.</string>
+  <string name="realm_copyright"  translatable="false">&lt;a href="https://github.com/realm/realm-kotlin/blob/main/LICENSE">Realm&lt;/a> takes care of our database.</string>
+  <string name="moshi_copyright"  translatable="false">&lt;a href="https://github.com/square/moshi/blob/master/LICENSE.txt">square/moshi&lt;/a> for GeoJSON parsing.</string>
+  <string name="retrofit_copyright"  translatable="false">&lt;a href="https://github.com/square/retrofit/blob/trunk/LICENSE.txt">square/retrofit&lt;/a> HTTP client abstraction.</string>
+  <string name="okhttp_copyright"  translatable="false">&lt;a href="https://github.com/square/okhttp/blob/master/LICENSE.txt">square/okhttp&lt;/a> underlying HTTP client.</string>
+  <string name="otto_copyright"  translatable="false">&lt;a href="https://github.com/square/otto/blob/master/LICENSE.txt">square/otto&lt;/a> to provide an event bus.</string>
+  <string name="leak_canary_copyright"  translatable="false">&lt;a href="https://github.com/square/leakcanary/blob/main/LICENSE.txt">square/leakcanary&lt;/a> for adding mermaid diagrams to Dokka documentation.</string>
+  <string name="gpx_parser_copyright"  translatable="false">&lt;a href="https://github.com/ticofab/android-gpx-parser/blob/master/LICENSE">ticofab/android-gpx-parser&lt;/a> for GPX parsing.</string>
+  <string name="preferences_copyright"  translatable="false">&lt;a href="https://github.com/zhanghai/ComposePreference/blob/master/LICENSE">zhanghai/ComposePreference&lt;/a> for a simple settings UI.</string>
+  <string name="dokka_mermaid_copyright"  translatable="false">&lt;a href="https://github.com/glureau/dokka-mermaid/blob/main/LICENSE">glureau/dokka-mermaid&lt;/a> for adding mermaid diagrams to Dokka documentation.</string>
 </resources>
