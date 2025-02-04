@@ -36,7 +36,6 @@ appcompat = "1.7.0"
 coreKtxVersion = "1.6.1"
 lifecycleViewmodelCompose = "2.8.6"
 loggingInterceptor = "4.10.0"
-mapcompose = "2.12.6"
 moshi = "1.15.1"
 moshiKotlinCodegen = "1.15.0"
 okhttp = "4.12.0"
@@ -96,7 +95,6 @@ composepreferencelibrary = { module = "me.zhanghai.compose.preference:library", 
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroid" }
 library-base = { module = "io.realm.kotlin:library-base", version.ref = "libraryBase" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
-mapcompose = { module = "ovh.plrapps:mapcompose", version.ref = "mapcompose" }
 material3 = { module = "androidx.compose.material3:material3" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
