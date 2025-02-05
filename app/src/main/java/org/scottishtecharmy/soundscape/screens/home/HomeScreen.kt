@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
@@ -194,5 +195,12 @@ fun HomeScreen(
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
+        composable(HomeRoutes.Sleep.route) {
+            SleepScreen(
+                navController = navController,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
+        }
     }
 }
+

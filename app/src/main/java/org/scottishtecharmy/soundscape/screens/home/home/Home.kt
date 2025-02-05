@@ -3,15 +3,13 @@ package org.scottishtecharmy.soundscape.screens.home.home
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.LocationOff
-import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material.icons.rounded.Snooze
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
@@ -20,11 +18,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -41,11 +35,13 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
 
-@Preview(device = "spec:parent=pixel_5,orientation=landscape")
-@Preview
+@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun HomePreview() {
     Home(
@@ -118,7 +114,8 @@ fun Home(
             topBar = {
                 HomeTopAppBar(
                     drawerState,
-                    coroutineScope
+                    coroutineScope,
+                    onNavigate
                 )
             },
             bottomBar = {
@@ -177,7 +174,8 @@ fun Home(
 @Composable
 fun HomeTopAppBar(
     drawerState: DrawerState,
-    coroutineScope: CoroutineScope
+    coroutineScope: CoroutineScope,
+    onNavigate: (String) -> Unit
 ) {
     val context = LocalContext.current
     TopAppBar(
@@ -206,20 +204,16 @@ fun HomeTopAppBar(
             }
         },
         actions = {
-            var serviceRunning by remember { mutableStateOf(true) }
-            IconToggleButton(
-                checked = serviceRunning,
+            IconButton(
                 enabled = true,
-                onCheckedChange = { state ->
-                    serviceRunning = state
-                    (context as MainActivity).toggleServiceState(state)
+                onClick = {
+                    (context as MainActivity).setServiceState(false)
+                    onNavigate(HomeRoutes.Sleep.route)
                 },
             ) {
-                if (serviceRunning) {
-                    Icon(Icons.Rounded.LocationOn, contentDescription = "Service running")
-                } else {
-                    Icon(Icons.Rounded.LocationOff, contentDescription = "Service stopped")
-                }
+                Icon(Icons.Rounded.Snooze,
+                    tint = OnPrimary,
+                    contentDescription = stringResource(R.string.sleep_sleep))
             }
         },
     )

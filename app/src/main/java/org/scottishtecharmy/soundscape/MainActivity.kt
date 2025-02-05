@@ -251,8 +251,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun toggleServiceState(newServiceState: Boolean) {
-
+    fun setServiceState(newServiceState: Boolean) {
         if(!newServiceState) {
             soundscapeServiceConnection.stopService()
         }
