@@ -4,9 +4,9 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.Circle
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -44,7 +44,7 @@ class RoundaboutsTest {
     fun roundaboutsTest() {
         // This is a proof of concept so this is the simplest, cleanest roundabout I could find
         // and is only using a single tile from /16/32267/21812.json
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.747119798700794, 51.43854214667482),
             225.0,
             50.0
@@ -104,7 +104,7 @@ class RoundaboutsTest {
         val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
         val testNearestRoadBearing =
             getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading())
-        val geometry = GeoEngine.UserGeometry(centerOfBoundingBox, testNearestRoadBearing, userGeometry.fovDistance)
+        val geometry = UserGeometry(centerOfBoundingBox, testNearestRoadBearing, userGeometry.fovDistance)
         val roundaboutRoadsRelativeDirections = getRelativeDirectionsPolygons(
             geometry,
             RelativeDirections.COMBINED
@@ -166,7 +166,7 @@ class RoundaboutsTest {
         // Soundscape seems to turn mini roundabouts into intersections so
         // using a single tile from /16/32268/21813.json to test this and the location
         // where there is definitely a mini roundabout
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.7428307423190006,51.43595874012766),
             0.0,
             50.0
@@ -208,7 +208,7 @@ class RoundaboutsTest {
         }
         val intersectionLocation = cleanNearestIntersection!!.geometry as Point
 
-        val geometry = GeoEngine.UserGeometry(
+        val geometry = UserGeometry(
             intersectionLocation.coordinates,
             testNearestRoadBearing,
             userGeometry.fovDistance)
@@ -238,7 +238,7 @@ class RoundaboutsTest {
         // further away  -2.7474554685902604, 51.43822549502224
         // further away -2.7474735115298756, 51.4381923217035
         // closer but not complete -2.7475109456763676,51.43813340231313
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.7474554685902604, 51.43822549502224),
             200.0,
             50.0
@@ -316,7 +316,7 @@ class RoundaboutsTest {
                 //create a relative directions polygon based on our calculated approx center of the roundabout
                 // How big do we want out polygon to be? Ideally we need the radius of the roundabout plus a few meters
                 val intersectionRelativeDirectionsPolygons = getRelativeDirectionsPolygons(
-                    GeoEngine.UserGeometry(
+                    UserGeometry(
                         roundaboutCenter.center,
                         testNearestRoadBearing,
                         // TODO adding 3.0 is a fudge as the roundaboutCenter.center is not 100% accurate

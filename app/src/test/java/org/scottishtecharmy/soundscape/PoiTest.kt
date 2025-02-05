@@ -1,8 +1,8 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
@@ -68,7 +68,7 @@ class PoiTest {
     @Test
     fun testNearestFeature() {
 
-        val userGeometry = GeoEngine.UserGeometry(LngLatAlt(-4.317229, 55.941891),
+        val userGeometry = UserGeometry(LngLatAlt(-4.317229, 55.941891),
             0.0,
             50.0)
         val gridState = getGridStateForLocation(userGeometry.location)
@@ -105,7 +105,7 @@ class PoiTest {
     @Test
     fun testNearestFeatures() {
 
-        val userGeometry = GeoEngine.UserGeometry(LngLatAlt(-4.317229, 55.941891),
+        val userGeometry = UserGeometry(LngLatAlt(-4.317229, 55.941891),
             0.0,
             50.0)
         val gridState = getGridStateForLocation(userGeometry.location)
@@ -152,7 +152,7 @@ class PoiTest {
     @Test
     fun testFeaturesWithinRadius() {
 
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-4.317229, 55.941891),
             0.0,
             50.0
@@ -183,7 +183,7 @@ class PoiTest {
     @Test
     fun testClassification() {
         // A grid-wide test of the POI classification
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-4.317229, 55.941891),
             0.0,
             50.0

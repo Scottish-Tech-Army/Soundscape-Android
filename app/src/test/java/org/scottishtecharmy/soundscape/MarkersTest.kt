@@ -2,7 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -14,7 +14,7 @@ class MarkersTest {
 
     @Test
     fun markersTest() {
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6930121073553437,51.43943095899127),
             10.0,
             50.0

@@ -2,8 +2,8 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
@@ -18,7 +18,7 @@ class ComplexIntersections {
         // multiple gd_intersections detected in the FoV so we need to determine which ones to ignore
         // and which ones are useful to call out to the user
         // Fake location, heading and Field of View for testing
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.697291022799874,51.44378095087524),
             320.0,
             50.0)
@@ -56,7 +56,7 @@ class ComplexIntersections {
         // and which ones are useful to call out to the user
         // https://geojson.io/#map=18.65/51.4405486/-2.6851813
         // Fake location, heading and Field of View for testing
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6854420947740323, 51.44036284885249),
             45.0,
             50.0)

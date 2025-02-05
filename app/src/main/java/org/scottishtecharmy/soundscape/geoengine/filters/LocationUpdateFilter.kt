@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 
 /**
  * This class acts as a filter for throttling the frequency of computation which is initiated by
@@ -9,16 +9,16 @@ import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 
 open class LocationUpdateFilter(private val minTimeMs: Long, private val minDistance: Double) {
 
-    private var lastLocation : GeoEngine.UserGeometry? = null
+    private var lastLocation : UserGeometry? = null
     private var lastTime = 0L
 
-    fun update(userGeometry: GeoEngine.UserGeometry)
+    fun update(userGeometry: UserGeometry)
     {
         lastTime = System.currentTimeMillis()
         lastLocation = userGeometry
     }
 
-    private fun shouldUpdate(userGeometry: GeoEngine.UserGeometry,
+    private fun shouldUpdate(userGeometry: UserGeometry,
                              updateTimeInterval: Long,
                              updateDistanceInterval: Double)
         : Boolean {
@@ -40,12 +40,12 @@ open class LocationUpdateFilter(private val minTimeMs: Long, private val minDist
         return false
     }
 
-    fun shouldUpdate(userGeometry: GeoEngine.UserGeometry) : Boolean {
+    fun shouldUpdate(userGeometry: UserGeometry) : Boolean {
         return shouldUpdate(userGeometry, minTimeMs, minDistance)
     }
 
     private val inVehicleTimeIntervalMultiplier = 4
-    fun shouldUpdateActivity(userGeometry: GeoEngine.UserGeometry) : Boolean {
+    fun shouldUpdateActivity(userGeometry: UserGeometry) : Boolean {
         if(userGeometry.inVehicle) {
             // If travelling in a vehicle then the speed is used to determine how far has to be
             // travelled before updating and the time is increased by a multiplier.

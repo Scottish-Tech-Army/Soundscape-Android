@@ -15,9 +15,9 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -325,7 +325,7 @@ class TileUtilsTest {
     @Test
     fun getIntersectionInFovTest(){
         // Fake device location and pretend the device is pointing East.
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -347,7 +347,7 @@ class TileUtilsTest {
     @Test
     fun getRoadsInFovTest(){
         // Fake device location and pretend the device is pointing East.
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -370,7 +370,7 @@ class TileUtilsTest {
     @Test
     fun getPoiInFovTest(){
         // Fake device location and pretend the device is pointing East.
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -395,7 +395,7 @@ class TileUtilsTest {
     fun getNearestIntersectionTest(){
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0
@@ -416,7 +416,7 @@ class TileUtilsTest {
     fun sortedByDistanceToTest(){
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0
@@ -445,7 +445,7 @@ class TileUtilsTest {
     @Test
     fun getNearestRoadTest(){
         // Fake device location and pretend the device is pointing East.
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,50.0
         )
@@ -470,7 +470,7 @@ class TileUtilsTest {
     @Test
     fun getNearestPoiTest(){
         // Fake device location and pretend the device is pointing East.
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -546,7 +546,7 @@ class TileUtilsTest {
     @Test
     fun getRelativeDirectionsTest(){
 
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             0.0,
             50.0
@@ -630,7 +630,7 @@ class TileUtilsTest {
     fun getIntersectionRoadNamesTest(){
         // Fake device location and pretend the device is pointing East.
         // I've moved the device location so the FoV picks up a couple of intersections
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0

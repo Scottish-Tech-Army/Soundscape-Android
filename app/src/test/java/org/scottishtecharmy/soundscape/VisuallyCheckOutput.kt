@@ -20,9 +20,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 
@@ -334,7 +334,7 @@ class VisuallyCheckOutput {
 
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -384,7 +384,7 @@ class VisuallyCheckOutput {
 
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -435,7 +435,7 @@ class VisuallyCheckOutput {
 
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6573400576040456, 51.430456817236575),
             90.0,
             50.0
@@ -479,7 +479,7 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsCombined(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             0.0,
             50.0
@@ -497,7 +497,7 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsIndividual(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0
@@ -515,7 +515,7 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsAheadBehind(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0
@@ -536,7 +536,7 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsLeftRight(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0
@@ -553,7 +553,7 @@ class VisuallyCheckOutput {
     @Test
     fun relativeDirectionsAll(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.657279900280031, 51.430461188129385),
             90.0,
             50.0

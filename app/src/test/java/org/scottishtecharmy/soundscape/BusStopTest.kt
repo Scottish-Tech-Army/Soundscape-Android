@@ -3,9 +3,9 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -34,7 +34,7 @@ class BusStopTest {
 
         // However we can get some dodgy info for the user so...
         // pretend the device is here, pointing along the road and our field of view
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.655732516651227,51.430910659124464),
             225.0,
             50.0

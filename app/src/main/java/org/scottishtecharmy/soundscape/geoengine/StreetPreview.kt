@@ -35,7 +35,7 @@ class StreetPreview {
         previewState = PreviewState.INITIAL
     }
 
-    fun go(userGeometry: GeoEngine.UserGeometry, engine: GeoEngine) {
+    fun go(userGeometry: UserGeometry, engine: GeoEngine) {
         when (previewState) {
 
             PreviewState.INITIAL -> {
