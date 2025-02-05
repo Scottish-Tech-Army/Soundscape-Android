@@ -103,7 +103,7 @@ class RoundaboutsTest {
         val centerOfBoundingBox = getCenterOfBoundingBox(boundingBoxOfCircleCorners)
         val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
         val testNearestRoadBearing =
-            getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading)
+            getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading())
         val geometry = GeoEngine.UserGeometry(centerOfBoundingBox, testNearestRoadBearing, userGeometry.fovDistance)
         val roundaboutRoadsRelativeDirections = getRelativeDirectionsPolygons(
             geometry,
@@ -194,7 +194,7 @@ class RoundaboutsTest {
 
         val testNearestRoad = getNearestRoad(userGeometry.location, FeatureTree(fovRoadsFeatureCollection))
 
-        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, userGeometry.heading)
+        val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad, userGeometry.heading())
 
         val testIntersectionRoadNames = getIntersectionRoadNames(
             cleanNearestIntersection, fovRoadsFeatureCollection)
@@ -312,7 +312,7 @@ class RoundaboutsTest {
             // if the circle doesn't exist (which it doesn't in this test)
             if (roundaboutCircleRoad.features.size == 0) {
 
-                val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, userGeometry.heading)
+                val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, userGeometry.heading())
                 //create a relative directions polygon based on our calculated approx center of the roundabout
                 // How big do we want out polygon to be? Ideally we need the radius of the roundabout plus a few meters
                 val intersectionRelativeDirectionsPolygons = getRelativeDirectionsPolygons(
