@@ -55,6 +55,7 @@ fun HomePreview() {
         getMyLocation = {},
         getWhatsAroundMe = {},
         getWhatsAheadOfMe = {},
+        getCurrentLocationDescription = { LocationDescription() },
         shareLocation = {},
         rateSoundscape = {},
         streetPreviewState = StreetPreviewState(false),
@@ -81,6 +82,7 @@ fun Home(
     getMyLocation: () -> Unit,
     getWhatsAroundMe: () -> Unit,
     getWhatsAheadOfMe: () -> Unit,
+    getCurrentLocationDescription: () -> LocationDescription,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
     streetPreviewState: StreetPreviewState,
@@ -135,6 +137,7 @@ fun Home(
                 heading = heading,
                 modifier = Modifier.padding(innerPadding),
                 onNavigate = onNavigate,
+                getCurrentLocationDescription = getCurrentLocationDescription,
                 searchBar = {
                     MainSearchBar(
                         searchText = searchText,

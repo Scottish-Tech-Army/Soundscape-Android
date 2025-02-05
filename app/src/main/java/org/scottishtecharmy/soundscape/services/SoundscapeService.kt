@@ -45,6 +45,7 @@ import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -360,6 +361,10 @@ class SoundscapeService : MediaSessionService() {
             val results = geoEngine.aheadOfMe()
             speakCallout(results)
         }
+    }
+
+    fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
+        return geoEngine.getLocationDescription(location)
     }
 
     private lateinit var routePlayer : RoutePlayer

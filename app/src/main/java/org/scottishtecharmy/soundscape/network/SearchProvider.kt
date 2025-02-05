@@ -14,7 +14,6 @@ import retrofit2.http.Headers
 import retrofit2.http.Query
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-import kotlin.time.Duration
 
 const val BASE_URL = "https://photon.komoot.io/"
 
@@ -41,6 +40,17 @@ interface PhotonSearchProvider {
         @Query("lang") language: String = Locale.getDefault().language,
         @Query("limit") limit: UInt = 5U,
         @Query("location_bias_scale") bias: Float = 0.2f
+    ): Call<FeatureCollection>
+
+    @Headers(
+        "Cache-control: max-age=0",
+        "Connection: keep-alive"
+    )
+    @GET("reverse/")
+    fun reverseGeocodeLocation(
+        @Query("lat") latitude: Double? = null,
+        @Query("lon") longitude: Double? = null,
+        @Query("lang") language: String = Locale.getDefault().language,
     ): Call<FeatureCollection>
 
     companion object {

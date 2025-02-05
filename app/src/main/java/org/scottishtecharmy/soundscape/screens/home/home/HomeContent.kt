@@ -25,6 +25,7 @@ fun HomeContent(
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
     onMarkerClick: (Marker) -> Boolean,
+    getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     tileGridGeoJson: String,
@@ -72,14 +73,8 @@ fun HomeContent(
                 NavigationButton(
                     onClick = {
                         if (latitude != null && longitude != null) {
-                            val ld =
-                                LocationDescription(
-                                    // TODO handle LocationDescription instantiation in viewmodel ?
-                                    addressName = "Current location",
-                                    latitude = latitude,
-                                    longitude = longitude,
-                                )
-                            onNavigate(generateLocationDetailsRoute(ld)) // TODO handle at top level the generateLocationDetailsRoute ?
+                            val ld = getCurrentLocationDescription()
+                            onNavigate(generateLocationDetailsRoute(ld))
                         }
                     },
                     text = stringResource(R.string.search_use_current_location),
@@ -117,7 +112,8 @@ fun StreetPreviewHomeContent() {
         tileGridGeoJson = "",
         streetPreviewState = StreetPreviewState(true),
         streetPreviewGo = {},
-        streetPreviewExit = {}
+        streetPreviewExit = {},
+        getCurrentLocationDescription = { LocationDescription() }
     )
 }
 
@@ -136,6 +132,7 @@ fun PreviewHomeContent() {
         tileGridGeoJson = "",
         streetPreviewState = StreetPreviewState(false),
         streetPreviewGo = {},
-        streetPreviewExit = {}
+        streetPreviewExit = {},
+        getCurrentLocationDescription = { LocationDescription() }
     )
 }
