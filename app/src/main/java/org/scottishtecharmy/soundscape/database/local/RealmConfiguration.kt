@@ -7,7 +7,6 @@ import io.realm.kotlin.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 
 object RealmConfiguration {
     private var markersRealm: Realm? = null
@@ -32,9 +31,8 @@ object RealmConfiguration {
             val config = RealmConfiguration.Builder(
                 schema = setOf(
                     RouteData::class,
-                    RoutePoint::class,
                     Location::class,
-                    MarkerData::class,
+                    MarkerData::class
                 )
             ).name("MarkersAndRoutes").build()
 
@@ -44,7 +42,14 @@ object RealmConfiguration {
                 Log.d("RealmConfiguration", "Delete Markers database")
                 deleteRealm(config)
             }
-            markersRealm = Realm.open(config)
+            try {
+                markersRealm = Realm.open(config)
+            } catch (e: Exception) {
+                // Delete and re-open database
+                Log.e("RealmConfiguration", "Failed to open database: ${e.message}")
+                deleteRealm(config)
+                markersRealm = Realm.open(config)
+            }
         }
 
         return markersRealm!!

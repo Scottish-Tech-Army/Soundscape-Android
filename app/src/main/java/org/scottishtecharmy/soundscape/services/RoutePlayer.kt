@@ -57,7 +57,7 @@ class RoutePlayer(val service: SoundscapeService) {
             val location = route.waypoints[index].location!!
 
             service.audioEngine.clearTextToSpeechQueue()
-            service.audioEngine.createTextToSpeech("Move to marker ${index+1}, ${route.waypoints[index].name}", location.latitude, location.longitude)
+            service.audioEngine.createTextToSpeech("Move to marker ${index+1}, ${route.waypoints[index].addressName}", location.latitude, location.longitude)
 
             service.createBeacon(location.latitude, location.longitude)
 }
@@ -92,7 +92,7 @@ class RoutePlayer(val service: SoundscapeService) {
             var state = ""
             state += "Route : ${route.name}\n"
             for((index, waypoint) in route.waypoints.withIndex()) {
-                state += "  ${waypoint.name} at ${waypoint.location?.latitude},${waypoint.location?.longitude}"
+                state += "  ${waypoint.addressName} at ${waypoint.location?.latitude},${waypoint.location?.longitude}"
                 state += if(index == currentMarker) {
                     " <current>\n"
                 } else {

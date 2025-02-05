@@ -42,33 +42,13 @@ class Location : EmbeddedRealmObject {
         }
 }
 
-class RoutePoint(
-    var name: String,
-    location: Location,
-) : RealmObject {
-    constructor() : this("", Location(NaN, NaN))
-
-    var location: Location? = location
-    val route: RealmResults<RouteData> by backlinks(RouteData::waypoints)
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as RoutePoint
-        return (name == other.name) &&
-            (location?.latitude == other.location?.latitude) &&
-            (location?.longitude == other.location?.longitude)
-    }
-}
-
 class RouteData(
     @PrimaryKey var name: String,
     var description: String,
 ) : RealmObject {
     constructor() : this("", "")
 
-    var waypoints: RealmList<RoutePoint> = realmListOf()
+    var waypoints: RealmList<MarkerData> = realmListOf()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

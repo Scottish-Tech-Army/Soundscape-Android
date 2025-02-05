@@ -11,7 +11,7 @@ import io.realm.kotlin.types.geo.GeoCircle
 import io.realm.kotlin.types.geo.GeoPoint
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 
 class RoutesDao(private val realm: Realm) {
 
@@ -31,7 +31,7 @@ class RoutesDao(private val realm: Realm) {
         return success
     }
 
-    suspend fun insertWaypoint(waypoint: RoutePoint) : Boolean
+    suspend fun insertWaypoint(waypoint: MarkerData) : Boolean
     {
         // If we don't catch the exception here, then it prevents write
         // from completing its transaction logic.
@@ -55,20 +55,20 @@ class RoutesDao(private val realm: Realm) {
         return realm.query<RouteData>().find()
     }
 
-    fun getWaypoints(): List<RoutePoint> {
-        return realm.query<RoutePoint>().find()
+    fun getWaypoints(): List<MarkerData> {
+        return realm.query<MarkerData>().find()
     }
 
     @OptIn(ExperimentalGeoSpatialApi::class)
-    fun getWaypointsNear(location: Location?, kilometre: Double): RealmResults<RoutePoint> {
+    fun getWaypointsNear(location: Location?, kilometre: Double): RealmResults<MarkerData> {
         if(location != null) {
             val circle1 = GeoCircle.create(
                 center = GeoPoint.create(location.latitude, location.longitude),
                 radius = Distance.fromKilometers(kilometre)
             )
-            return realm.query<RoutePoint>("location GEOWITHIN $circle1").find()
+            return realm.query<MarkerData>("location GEOWITHIN $circle1").find()
         }
-        return realm.query<RoutePoint>().find()
+        return realm.query<MarkerData>().find()
     }
 
     suspend fun deleteRoute(name: String) = realm.write {
@@ -78,7 +78,7 @@ class RoutesDao(private val realm: Realm) {
         delete(findRoute)
 
         // Clean up all waypoints which have no route
-        val waypoints = query<RoutePoint>("route.@count == 0").find()
+        val waypoints = query<MarkerData>("route.@count == 0").find()
         Log.d("routeDao", "Deleting waypoints with no route" + waypoints.size)
         delete(waypoints)
     }
