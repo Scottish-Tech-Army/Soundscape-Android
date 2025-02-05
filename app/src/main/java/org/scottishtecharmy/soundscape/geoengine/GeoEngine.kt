@@ -341,7 +341,7 @@ class GeoEngine {
                         if(feature == null) continue
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature)
                         val name = getTextForFeature(localizedContext, feature)
-                        val text = "${name.text}. ${localizedContext.getString(R.string.distance_format_meters, poiLocation.distance.toString())}"
+                        val text = "${name.text}. ${formatDistance(poiLocation.distance, localizedContext)}"
                         list.add(
                             PositionedString(
                                 text,
@@ -559,4 +559,14 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
     }
 
     return TextForFeature(text, generic)
+}
+
+fun formatDistance(distance: Double, localizedContext: Context) : String {
+    if(distance > 1000) {
+        val km = (distance.toInt() / 100).toFloat() / 10
+        return localizedContext.getString(R.string.distance_format_km, km.toString())
+    } else {
+        val metres = distance.toInt()
+        return  localizedContext.getString(R.string.distance_format_meters, metres.toString())
+    }
 }

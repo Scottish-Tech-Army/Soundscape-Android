@@ -61,7 +61,7 @@ open class LngLatAlt(
 
         var shortestDistance = Double.MAX_VALUE
         var bestNearestPoint = LngLatAlt()
-        for(i in 1 until lineStringCoordinates.coordinates.size - 1) {
+        for(i in 1 until lineStringCoordinates.coordinates.size) {
             val nearestPointOnSegment = LngLatAlt()
             val distance = distanceToLine(
                 lineStringCoordinates.coordinates[i-1],
