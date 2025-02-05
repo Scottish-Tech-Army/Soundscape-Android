@@ -13,7 +13,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 import java.lang.Math.toDegrees
@@ -231,7 +231,7 @@ fun removeDuplicateOsmIds(
     return tempFeatureCollection
 }
 
-fun getFovTriangle(userGeometry: GeoEngine.UserGeometry) : Triangle {
+fun getFovTriangle(userGeometry: UserGeometry) : Triangle {
     val quadrant = Quadrant(userGeometry.heading())
     return Triangle(userGeometry.location,
         getDestinationCoordinate(
@@ -256,7 +256,7 @@ fun getFovTriangle(userGeometry: GeoEngine.UserGeometry) : Triangle {
  * @return A Feature Collection that contains the Features in the FOV triangle.
  */
 fun getFovFeatureCollection(
-    userGeometry: GeoEngine.UserGeometry,
+    userGeometry: UserGeometry,
     featureTree: FeatureTree
 ): FeatureCollection {
 
@@ -265,7 +265,7 @@ fun getFovFeatureCollection(
 }
 
 fun getNearestFovFeature(
-    userGeometry: GeoEngine.UserGeometry,
+    userGeometry: UserGeometry,
     featureTree: FeatureTree
 ): Feature? {
 
@@ -636,7 +636,7 @@ fun getLeftRightDirectionSegments(
  */
 fun makeTriangles(
     segments: Array<Segment>,
-    userGeometry: GeoEngine.UserGeometry
+    userGeometry: UserGeometry
 ): FeatureCollection{
 
     val newFeatureCollection = FeatureCollection()
@@ -1006,7 +1006,7 @@ fun searchFeaturesByName(featureCollection: FeatureCollection, query: String): F
  * @return a Feature Collection containing triangles for the relative directions.
  */
 fun getRelativeDirectionsPolygons(
-    userGeometry: GeoEngine.UserGeometry,
+    userGeometry: UserGeometry,
     relativeDirectionType: RelativeDirections
 ): FeatureCollection {
 
@@ -2082,7 +2082,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
 }
 
 fun generateDebugFovGeoJson(
-    userGeometry: GeoEngine.UserGeometry,
+    userGeometry: UserGeometry,
     featureCollection: FeatureCollection
 ) {
     val triangle = getFovTriangle(userGeometry)

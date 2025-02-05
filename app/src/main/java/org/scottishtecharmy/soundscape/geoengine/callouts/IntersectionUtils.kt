@@ -2,15 +2,14 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
@@ -32,7 +31,7 @@ enum class ComplexIntersectionApproach {
 }
 
 data class RoadsDescription(val nearestRoad: Feature? = null,
-                            val userGeometry: GeoEngine.UserGeometry = GeoEngine.UserGeometry(),
+                            val userGeometry: UserGeometry = UserGeometry(),
                             val intersection: Feature? = null,
                             val intersectionRoads: FeatureCollection = FeatureCollection())
 
@@ -49,7 +48,7 @@ data class RoadsDescription(val nearestRoad: Feature? = null,
  * intersection.
  */
 fun getRoadsDescriptionFromFov(gridState: GridState,
-                               userGeometry: GeoEngine.UserGeometry,
+                               userGeometry: UserGeometry,
                                approach: ComplexIntersectionApproach
 ) : RoadsDescription {
 
@@ -115,7 +114,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // Create a set of relative direction polygons
     val intersectionLocation = intersection!!.geometry as Point
-    val geometry = GeoEngine.UserGeometry(
+    val geometry = UserGeometry(
         intersectionLocation.coordinates,
         nearestRoadBearing,
         5.0

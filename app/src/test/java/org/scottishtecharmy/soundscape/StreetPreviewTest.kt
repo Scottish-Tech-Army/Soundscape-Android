@@ -2,9 +2,9 @@ package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -60,7 +60,7 @@ class StreetPreviewTest {
             // fake the device heading by "looking" at the next Point
             val deviceHeading = bearingFromTwoPoints(currentLocation, nextLocation.coordinates)
             println("Device Heading: $deviceHeading")
-            val geometry = GeoEngine.UserGeometry(currentLocation, deviceHeading)
+            val geometry = UserGeometry(currentLocation, deviceHeading)
             val fovTriangle = generateFOVTriangle(geometry)
             fovFeatureCollection.addFeature(fovTriangle)
         }
@@ -107,7 +107,7 @@ class StreetPreviewTest {
 
                 val nextLocation = roadTrace.features[i++].geometry as Point
                 // fake the device heading by "looking" at the next Point
-                val userGeometry = GeoEngine.UserGeometry(
+                val userGeometry = UserGeometry(
                     currentPoint.coordinates,
                     bearingFromTwoPoints(currentPoint.coordinates, nextLocation.coordinates),
                     50.0
@@ -179,7 +179,7 @@ class StreetPreviewTest {
                                 )
                                 val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading())
                                 val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
-                                val geometry = GeoEngine.UserGeometry(
+                                val geometry = UserGeometry(
                                     intersectionLocation.coordinates,
                                     nearestRoadBearing,
                                     5.0
@@ -288,7 +288,7 @@ class StreetPreviewTest {
 
 
     private fun generateFOVTriangle(
-        userGeometry: GeoEngine.UserGeometry
+        userGeometry: UserGeometry
     ): Feature {
 
         val triangle = getFovTriangle(userGeometry)

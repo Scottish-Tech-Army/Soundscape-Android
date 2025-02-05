@@ -3,9 +3,9 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -30,7 +30,7 @@ class VisuallyCheckIntersectionLayers {
     fun layeredIntersectionsFieldOfView1(){
 
         // Fake device location and device direction.
-        val userGeometry = GeoEngine.UserGeometry(
+        val userGeometry = UserGeometry(
             LngLatAlt(-2.6972713998905533,51.44374766171788),
             340.0,
             50.0
@@ -94,7 +94,7 @@ class VisuallyCheckIntersectionLayers {
         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading())
         val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
-            GeoEngine.UserGeometry(
+            UserGeometry(
                 LngLatAlt(
                     intersectionLocation.coordinates.longitude,
                     intersectionLocation.coordinates.latitude
