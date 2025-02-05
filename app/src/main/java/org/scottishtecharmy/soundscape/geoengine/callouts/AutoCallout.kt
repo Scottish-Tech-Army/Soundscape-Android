@@ -74,7 +74,7 @@ class AutoCallout(
         if(nearestRoad != null) {
             val properties = nearestRoad.properties
             if (properties != null) {
-                val orientation = userGeometry.heading
+                val orientation = userGeometry.heading()
                 var roadName = properties["name"]
                 if (roadName == null) {
                     roadName = properties["highway"]

@@ -232,7 +232,7 @@ fun removeDuplicateOsmIds(
 }
 
 fun getFovTriangle(userGeometry: GeoEngine.UserGeometry) : Triangle {
-    val quadrant = Quadrant(userGeometry.heading)
+    val quadrant = Quadrant(userGeometry.heading())
     return Triangle(userGeometry.location,
         getDestinationCoordinate(
             userGeometry.location,
@@ -1012,10 +1012,10 @@ fun getRelativeDirectionsPolygons(
 
     val segments =
         when(relativeDirectionType){
-            RelativeDirections.COMBINED -> getCombinedDirectionSegments(userGeometry.heading)
-            RelativeDirections.INDIVIDUAL -> getIndividualDirectionSegments(userGeometry.heading)
-            RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionSegments(userGeometry.heading)
-            RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionSegments(userGeometry.heading)
+            RelativeDirections.COMBINED -> getCombinedDirectionSegments(userGeometry.heading())
+            RelativeDirections.INDIVIDUAL -> getIndividualDirectionSegments(userGeometry.heading())
+            RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionSegments(userGeometry.heading())
+            RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionSegments(userGeometry.heading())
         }
 
     return makeTriangles(segments, userGeometry)

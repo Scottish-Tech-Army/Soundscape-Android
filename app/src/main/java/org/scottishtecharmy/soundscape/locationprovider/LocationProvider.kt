@@ -31,6 +31,13 @@ abstract class LocationProvider {
         return 0.0
     }
 
+    fun getHeading(): Double {
+        mutableLocationFlow.value?.let { location ->
+            return location.bearing.toDouble()
+        }
+        return 0.0
+    }
+
     // Flow to return Location objects
     val mutableLocationFlow = MutableStateFlow<Location?>(null)
     var locationFlow: StateFlow<Location?> = mutableLocationFlow

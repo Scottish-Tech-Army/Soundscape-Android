@@ -111,7 +111,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val nearestIntersection = removeDuplicates(sortedFovIntersections.features[0])
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
-    val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, nearestRoad, userGeometry.heading)
+    val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, nearestRoad, userGeometry.heading())
 
     // Create a set of relative direction polygons
     val intersectionLocation = intersection!!.geometry as Point

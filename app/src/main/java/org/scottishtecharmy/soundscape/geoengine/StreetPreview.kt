@@ -70,7 +70,7 @@ class StreetPreview {
                 // Find the choice with the closest heading to our own
                 var diff: Double
                 for ((index, choice) in choices.withIndex()) {
-                    diff = abs(choice.heading - userGeometry.heading)
+                    diff = abs(choice.heading - userGeometry.heading())
                     if (diff < bestHeadingDiff) {
                         bestHeadingDiff = diff
                         bestIndex = index
