@@ -5,7 +5,7 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 
 class RoutesRepository(private val routesDao: RoutesDao) {
 
@@ -13,7 +13,7 @@ class RoutesRepository(private val routesDao: RoutesDao) {
         routesDao.insertRoute(route)
     }
 
-    suspend fun insertWaypoint(waypoint: RoutePoint) = withContext(Dispatchers.IO) {
+    suspend fun insertWaypoint(waypoint: MarkerData) = withContext(Dispatchers.IO) {
         routesDao.insertWaypoint(waypoint)
     }
 

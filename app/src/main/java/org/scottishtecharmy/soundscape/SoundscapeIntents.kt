@@ -14,7 +14,7 @@ import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -255,7 +255,7 @@ class SoundscapeIntents
                                                             val estimatedAddress = marker.getString("estimatedAddress")
 
                                                             routeData.waypoints.add(
-                                                                RoutePoint(name, Location(latitude, longitude))
+                                                                MarkerData(name, Location(latitude, longitude), estimatedAddress)
                                                             )
                                                         }
                                                     }

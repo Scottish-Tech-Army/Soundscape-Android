@@ -64,12 +64,13 @@ class MarkersViewModel
                             LocationDescription(
                                 addressName = it.addressName,
                                 fullAddress = it.fullAddress,
+                                latitude = it.location?.latitude ?: 0.0,
+                                longitude = it.location?.longitude ?: 0.0,
                                 distance =
-                                    if (userLocation != null && it.location != null) {
-                                        userLocation.calculateDistanceTo(it.location!!.latitude, it.location!!.longitude)
-                                    } else {
-                                        null
-                                    },
+                                userLocation?.calculateDistanceTo(
+                                    it.location?.latitude ?: userLocation.latitude,
+                                    it.location?.longitude ?: userLocation.longitude
+                                ),
                                 marker = true,
                             )
                         }

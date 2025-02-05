@@ -5,7 +5,7 @@ import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
 import java.io.InputStream
@@ -29,14 +29,14 @@ fun parseGpxFile(input : InputStream) : RouteData {
             parsedGpx.routes.forEach { route ->
                 Log.d("gpx", "RoutePoint " + route.routeName)
                 route.routePoints.forEach { waypoint ->
-                    val point = RoutePoint(waypoint.name, Location(waypoint.latitude, waypoint.longitude))
+                    val point = MarkerData(waypoint.name, Location(waypoint.latitude, waypoint.longitude))
                     routeData.waypoints.add(point)
                 }
             }
             if(routeData.waypoints.isEmpty()) {
                 parsedGpx.wayPoints.forEach { waypoint ->
                     Log.d("gpx", "WayPoint " + waypoint.name)
-                    val point = RoutePoint(waypoint.name, Location(waypoint.latitude, waypoint.longitude))
+                    val point = MarkerData(waypoint.name, Location(waypoint.latitude, waypoint.longitude))
                     routeData.waypoints.add(point)
                 }
             }

@@ -15,7 +15,6 @@ import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.RoutePoint
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 
@@ -26,7 +25,7 @@ import org.scottishtecharmy.soundscape.utils.parseGpxFile
 class GpxTest {
     private fun testParsing(
         filename: String,
-        expectedValues: List<RoutePoint>,
+        expectedValues: List<MarkerData>,
         expectedName: String = "",
         expectedDescription: String = "",
         name_override: String? = null,
@@ -42,7 +41,7 @@ class GpxTest {
         for (point in routeData.waypoints) {
             Log.d(
                 "gpxTest",
-                "Point: " + point.name + " " + point.location?.latitude + " " + point.location?.longitude,
+                "Point: " + point.addressName + " " + point.location?.latitude + " " + point.location?.longitude,
             )
 
             // Lookup the point in the expected values map
@@ -61,9 +60,8 @@ class GpxTest {
                     schema =
                         setOf(
                             RouteData::class,
-                            RoutePoint::class,
-                            Location::class,
                             MarkerData::class,
+                            Location::class
                         ),
                 ).inMemory()
                 .build()
@@ -88,7 +86,7 @@ class GpxTest {
 
     private fun testDatabase(
         name: String,
-        expectedValues: List<RoutePoint>,
+        expectedValues: List<MarkerData>,
     ) {
         // Open the database
         val config =
@@ -97,7 +95,7 @@ class GpxTest {
                     schema =
                         setOf(
                             RouteData::class,
-                            RoutePoint::class,
+                            MarkerData::class,
                             Location::class,
                         ),
                 ).inMemory()
@@ -186,26 +184,26 @@ class GpxTest {
         }
     }
 
-    private fun expectedHandcraftedValues(): List<RoutePoint> {
-        val waypoint1 = RoutePoint("George Square, Glasgow", Location(55.8610697, -4.2499327))
-        val waypoint2 = RoutePoint("Edinburgh Castle", Location(55.9488161, -3.2021476))
-        val waypoint3 = RoutePoint("Greenwich Prime Meridian, London", Location(51.4779644, 0.0))
-        val waypoint4 = RoutePoint("Rock of Gibraltar", Location(36.1636308, -5.392716))
-        val waypoint5 = RoutePoint("Inverness", Location(57.4680357, -4.263057))
+    private fun expectedHandcraftedValues(): List<MarkerData> {
+        val waypoint1 = MarkerData("George Square, Glasgow", Location(55.8610697, -4.2499327))
+        val waypoint2 = MarkerData("Edinburgh Castle", Location(55.9488161, -3.2021476))
+        val waypoint3 = MarkerData("Greenwich Prime Meridian, London", Location(51.4779644, 0.0))
+        val waypoint4 = MarkerData("Rock of Gibraltar", Location(36.1636308, -5.392716))
+        val waypoint5 = MarkerData("Inverness", Location(57.4680357, -4.263057))
 
         return listOf(waypoint1, waypoint2, waypoint3, waypoint4, waypoint5)
     }
 
-    private fun expectedRideWithGpsValues(): List<RoutePoint> {
-        val waypoint1 = RoutePoint("Slight Left", Location(55.94722, -4.30844))
-        val waypoint2 = RoutePoint("Right", Location(55.94628, -4.30901))
-        val waypoint3 = RoutePoint("Right", Location(55.9442, -4.31081))
-        val waypoint4 = RoutePoint("Left", Location(55.94245, -4.31335))
-        val waypoint5 = RoutePoint("Right", Location(55.94181, -4.31338))
-        val waypoint6 = RoutePoint("Right", Location(55.94182, -4.31358))
-        val waypoint7 = RoutePoint("Right", Location(55.94198, -4.31612))
-        val waypoint8 = RoutePoint("Left", Location(55.94229, -4.31637))
-        val waypoint9 = RoutePoint("Right", Location(55.94218, -4.31735))
+    private fun expectedRideWithGpsValues(): List<MarkerData> {
+        val waypoint1 = MarkerData("Slight Left", Location(55.94722, -4.30844))
+        val waypoint2 = MarkerData("Right", Location(55.94628, -4.30901))
+        val waypoint3 = MarkerData("Right", Location(55.9442, -4.31081))
+        val waypoint4 = MarkerData("Left", Location(55.94245, -4.31335))
+        val waypoint5 = MarkerData("Right", Location(55.94181, -4.31338))
+        val waypoint6 = MarkerData("Right", Location(55.94182, -4.31358))
+        val waypoint7 = MarkerData("Right", Location(55.94198, -4.31612))
+        val waypoint8 = MarkerData("Left", Location(55.94229, -4.31637))
+        val waypoint9 = MarkerData("Right", Location(55.94218, -4.31735))
 
         return listOf(
             waypoint1,
@@ -220,15 +218,15 @@ class GpxTest {
         )
     }
 
-    private fun expectedSoundscapeValues(): List<RoutePoint> {
-        val waypoint1 = RoutePoint("Waypoint", Location(55.947256, -4.305852))
-        val waypoint2 = RoutePoint("Waypoint", Location(55.946412, -4.305621))
-        val waypoint3 = RoutePoint("Waypoint", Location(55.946409, -4.304833))
-        val waypoint4 = RoutePoint("Waypoint", Location(55.945706, -4.304774))
-        val waypoint5 = RoutePoint("Waypoint", Location(55.945727, -4.307563))
-        val waypoint6 = RoutePoint("Waypoint", Location(55.946424, -4.307574))
-        val waypoint7 = RoutePoint("Waypoint", Location(55.946436, -4.305745))
-        val waypoint8 = RoutePoint("Waypoint", Location(55.947286, -4.305696))
+    private fun expectedSoundscapeValues(): List<MarkerData> {
+        val waypoint1 = MarkerData("Waypoint", Location(55.947256, -4.305852))
+        val waypoint2 = MarkerData("Waypoint", Location(55.946412, -4.305621))
+        val waypoint3 = MarkerData("Waypoint", Location(55.946409, -4.304833))
+        val waypoint4 = MarkerData("Waypoint", Location(55.945706, -4.304774))
+        val waypoint5 = MarkerData("Waypoint", Location(55.945727, -4.307563))
+        val waypoint6 = MarkerData("Waypoint", Location(55.946424, -4.307574))
+        val waypoint7 = MarkerData("Waypoint", Location(55.946436, -4.305745))
+        val waypoint8 = MarkerData("Waypoint", Location(55.947286, -4.305696))
 
         return listOf(
             waypoint1,
