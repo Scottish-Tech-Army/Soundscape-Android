@@ -108,13 +108,13 @@ class GpxTest {
         runBlocking {
             launch {
                 // Query waypoints directly
-                var waypoints = routesRepository.getWaypoints()
+                var waypoints = routesRepository.getMarkers()
                 var waypointCount = waypoints.size
                 Log.d("gpxTest", "Retrieved waypoints: " + waypoints.size)
 
                 // Geospatial test - pick the first waypoint and get waypoints near it. Should
                 // always be greater than 0 as the first waypoint is itself
-                waypoints = routesRepository.getWaypointsNear(waypoints[0].location, 0.1)
+                waypoints = routesRepository.getMarkersNear(waypoints[0].location, 0.1)
                 Log.d("gpxTest", "Retrieved geo waypoints: " + waypoints.size)
                 Assert.assertTrue(waypoints.size > 0)
 
@@ -130,7 +130,7 @@ class GpxTest {
 
                 var routes = routesRepository.getRoute(name)
                 Assert.assertEquals(0, routes.size)
-                waypoints = routesRepository.getWaypoints()
+                waypoints = routesRepository.getMarkers()
                 Log.d("gpxTest", "Post delete waypoints: " + waypoints.size)
                 Assert.assertEquals(waypointCount, waypoints.size)
 
@@ -178,7 +178,7 @@ class GpxTest {
                 routesRepository.deleteRoute(routeData.name)
                 waypointCount -= routeData.waypoints.size
 
-                waypoints = routesRepository.getWaypoints()
+                waypoints = routesRepository.getMarkers()
                 Assert.assertEquals(waypointCount, waypoints.size)
             }
         }

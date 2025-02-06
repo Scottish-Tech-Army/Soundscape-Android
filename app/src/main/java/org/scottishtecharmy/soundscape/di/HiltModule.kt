@@ -9,9 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import io.realm.kotlin.Realm
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.dao.MarkersDao
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
-import org.scottishtecharmy.soundscape.database.repository.MarkersRepository
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import javax.inject.Singleton
@@ -43,9 +41,6 @@ class AppSoundscapeNavigator {
 object RepositoryModule {
     @Provides
     fun provideRoutesRepository(routesDao: RoutesDao): RoutesRepository = RoutesRepository(routesDao)
-
-    @Provides
-    fun provideMarkersRepository(markersDao: MarkersDao): MarkersRepository = MarkersRepository(markersDao)
 }
 
 @Module
@@ -62,11 +57,5 @@ object DataStoreModule {
     fun provideRoutesDao(realm: Realm): RoutesDao {
         // Provides RoutesDao, which depends on Realm
         return RoutesDao(realm)
-    }
-
-    @Provides
-    fun provideMarkersDao(realm: Realm): MarkersDao {
-        // Provides MarkersDao, which depends on Realm
-        return MarkersDao(realm)
     }
 }
