@@ -13,7 +13,7 @@ class RoutesRepository(private val routesDao: RoutesDao) {
         routesDao.insertRoute(route)
     }
 
-    suspend fun insertWaypoint(waypoint: MarkerData) = withContext(Dispatchers.IO) {
+    suspend fun insertMarker(waypoint: MarkerData) = withContext(Dispatchers.IO) {
         routesDao.insertWaypoint(waypoint)
     }
 
@@ -33,11 +33,11 @@ class RoutesRepository(private val routesDao: RoutesDao) {
         routesDao.updateRoute(name)
     }
 
-    suspend fun getWaypoints() = withContext(Dispatchers.IO){
+    suspend fun getMarkers() = withContext(Dispatchers.IO){
         routesDao.getWaypoints()
     }
 
-    suspend fun getWaypointsNear(location: Location?, kilometre: Double) = withContext(Dispatchers.IO){
+    suspend fun getMarkersNear(location: Location?, kilometre: Double) = withContext(Dispatchers.IO){
         routesDao.getWaypointsNear(location, kilometre)
     }
 }

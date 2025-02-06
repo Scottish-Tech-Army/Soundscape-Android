@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
-import org.scottishtecharmy.soundscape.database.repository.MarkersRepository
+import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -23,7 +23,7 @@ import javax.inject.Inject
 class MarkersViewModel
     @Inject
     constructor(
-        private val markersRepository: MarkersRepository,
+        private val routesRepository: RoutesRepository,
         private val soundscapeServiceConnection: SoundscapeServiceConnection,
         @ApplicationContext private val context: Context,
     ) : ViewModel() {
@@ -61,7 +61,7 @@ class MarkersViewModel
                 try {
                     val userLocation = soundscapeServiceConnection.getLocationFlow()?.firstOrNull()
                     val markerVMs =
-                        markersRepository.getMarkers().map {
+                        routesRepository.getMarkers().map {
                             val markerLngLat = LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
                             LocationDescription(
                                 addressName = it.addressName,

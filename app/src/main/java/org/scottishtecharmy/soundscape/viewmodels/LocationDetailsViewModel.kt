@@ -40,7 +40,7 @@ class LocationDetailsViewModel @Inject constructor(
                     location = Location(latitude = locationDescription.location.latitude, longitude = locationDescription.location.longitude),
                 )
             try {
-                routesRepository.insertWaypoint(marker)
+                routesRepository.insertMarker(marker)
 
                 Log.d("LocationDetailsViewModel", "Marker saved successfully: ${marker.addressName}")
             } catch (e: Exception) {
