@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
@@ -30,7 +31,7 @@ enum class ComplexIntersectionApproach {
     NEAREST_NON_TRIVIAL_INTERSECTION
 }
 
-data class RoadsDescription(val nearestRoad: Feature? = null,
+data class RoadsDescription(var nearestRoad: Feature? = null,
                             val userGeometry: UserGeometry = UserGeometry(),
                             val intersection: Feature? = null,
                             val intersectionRoads: FeatureCollection = FeatureCollection())
@@ -162,10 +163,9 @@ fun addIntersectionCalloutFromDescription(
 ) {
 
     // Report nearby road
-    if(description.nearestRoad != null) {
-
-        if (description.nearestRoad.properties?.get("name") != null) {
-            val calloutText = "${localizedContext.getString(R.string.directions_direction_ahead)} ${description.nearestRoad.properties!!["name"]}"
+    description.nearestRoad?.let { nearestRoad ->
+        if (nearestRoad.properties?.get("name") != null) {
+            val calloutText = "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.properties!!["name"]}"
             var skip = false
             calloutHistory?.checkAndAdd(TrackedCallout(calloutText,
                     LngLatAlt(),
@@ -174,7 +174,10 @@ fun addIntersectionCalloutFromDescription(
                 ))?.let { newCallout ->
                     if(!newCallout) skip = true
             }
-            if(!skip) results.add(PositionedString(calloutText))
+            if(skip) {
+            } else {
+                results.add(PositionedString(calloutText))
+            }
         } else {
             // we are detecting an unnamed road here but pretending there is nothing here
             results.add(
@@ -204,16 +207,12 @@ fun addIntersectionCalloutFromDescription(
         if(!success) return
     }
 
-    // Report distance to intersection
+    // Report intersection is coming up
     results.add(
         PositionedString(
-            "${localizedContext.getString(R.string.intersection_approaching_intersection)} ${
-                localizedContext.getString(
-                    R.string.distance_format_meters,
-                    description.userGeometry.location.distance(intersectionLocation).toInt().toString(),
-                )
-            }",
-        ),
+            localizedContext.getString(R.string.intersection_approaching_intersection),
+            null,
+            NativeAudioEngine.EARCON_SENSE_POI)
     )
 
     // Report roads that join the intersection

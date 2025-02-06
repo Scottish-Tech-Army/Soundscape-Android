@@ -405,5 +405,6 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         const val EARCON_SENSE_MOBILITY = "file:///android_asset/earcons/sense_mobility.wav"
         const val EARCON_SENSE_POI = "file:///android_asset/earcons/sense_poi.wav"
         const val EARCON_SENSE_SAFETY = "file:///android_asset/earcons/sense_safety.wav"
+        const val EARCON_INFORMATION_ALERT = "file:///android_asset/earcons/information_alert.wav"
     }
 }
