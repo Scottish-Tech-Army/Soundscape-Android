@@ -11,6 +11,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
@@ -28,7 +29,7 @@ class GpxTest {
         expectedValues: List<MarkerData>,
         expectedName: String = "",
         expectedDescription: String = "",
-        name_override: String? = null,
+        nameOverride: String? = null,
     ) {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val input = context.assets.open(filename)
@@ -49,8 +50,8 @@ class GpxTest {
             index += 1
         }
 
-        if (name_override != null) {
-            routeData.name = name_override
+        if (nameOverride != null) {
+            routeData.name = nameOverride
         }
 
         // The parsing has succeeded, write the result to the database
@@ -78,6 +79,9 @@ class GpxTest {
                 routesRepository.insertRoute(routeData)
                 Log.d("gpxTest", "Retrieving route")
                 val routes = routesRepository.getRoute(routeData.name)
+                if(routes.size != 1) {
+                    Log.e("gpxTest", "Expected 1 route, got ${routes.size}")
+                }
                 Assert.assertEquals(1, routes.size)
                 Assert.assertEquals(routeData, routes[0])
             }
@@ -109,24 +113,26 @@ class GpxTest {
             launch {
                 // Query waypoints directly
                 var waypoints = routesRepository.getMarkers()
-                var waypointCount = waypoints.size
+                val waypointCount = waypoints.size
                 Log.d("gpxTest", "Retrieved waypoints: " + waypoints.size)
 
                 // Geospatial test - pick the first waypoint and get waypoints near it. Should
                 // always be greater than 0 as the first waypoint is itself
                 waypoints = routesRepository.getMarkersNear(waypoints[0].location, 0.1)
                 Log.d("gpxTest", "Retrieved geo waypoints: " + waypoints.size)
-                Assert.assertTrue(waypoints.size > 0)
+                Assert.assertTrue(waypoints.isNotEmpty())
 
                 // Get the route for use later
-                val db_routes = routesRepository.getRoute(name)
-                Assert.assertEquals(1, db_routes.size)
-                val routeData = db_routes[0].copyFromRealm()
+                val dbRoutes = routesRepository.getRoute(name)
+                Assert.assertEquals(1, dbRoutes.size)
+                val routeData = dbRoutes[0].copyFromRealm()
 
                 // Delete the route and check that it's gone
                 Log.d("gpxTest", "Delete route")
-                routesRepository.deleteRoute(name)
-                waypointCount -= routeData.waypoints.size
+                routesRepository.deleteRoute(routeData.objectId)
+
+// Deleting the route no longer deletes the waypoints
+//              waypointCount -= routeData.waypoints.size
 
                 var routes = routesRepository.getRoute(name)
                 Assert.assertEquals(0, routes.size)
@@ -134,16 +140,16 @@ class GpxTest {
                 Log.d("gpxTest", "Post delete waypoints: " + waypoints.size)
                 Assert.assertEquals(waypointCount, waypoints.size)
 
-                // Check that double insertion is rejected
+                // We allow "double insertion" it should update the old route
                 Log.d("gpxTest", "Attempt inserting duplicate route")
                 routesRepository.insertRoute(routeData)
-                waypointCount += routeData.waypoints.size
 
-                if (routesRepository.insertRoute(routeData)) {
-                    Assert.fail("Duplicate insertion should have failed")
-                } else {
-                    Log.d("gpxTest", "Duplicate insertion failed correctly")
-                }
+//              Re-inserting the same route shouldn't change the number of waypoints, as they
+//              should still be present after the first insert/delete
+//              waypointCount += routeData.waypoints.size
+                assert(routesRepository.insertRoute(routeData))
+                waypoints = routesRepository.getMarkers()
+                Assert.assertEquals(waypointCount, waypoints.size)
 
                 // Check there's still a route left
                 routes = routesRepository.getRoute(name)
@@ -155,14 +161,16 @@ class GpxTest {
                 Assert.assertEquals(0, routes.size)
 
                 // Try deleting a non-existent route
-                routesRepository.deleteRoute("non-existent-route")
+                routesRepository.deleteRoute(ObjectId())
+
+                waypoints = routesRepository.getMarkers()
+                Assert.assertEquals(waypointCount, waypoints.size)
 
                 // Update the database route with the waypoints reversed
-                routeData.waypoints.clear()
-                for (point in expectedValues.reversed()) {
-                    routeData.waypoints.add(point)
-                }
+                routeData.waypoints.reverse()
                 routesRepository.updateRoute(routeData)
+                waypoints = routesRepository.getMarkers()
+                Assert.assertEquals(waypointCount, waypoints.size)
 
                 // Get the route back from the database and check that the waypoints are reversed
                 routes = routesRepository.getRoute(name)
@@ -175,8 +183,14 @@ class GpxTest {
                 }
 
                 // Delete that route to leave the database empty for the next test
-                routesRepository.deleteRoute(routeData.name)
-                waypointCount -= routeData.waypoints.size
+                routesRepository.deleteRoute(routeData.objectId)
+
+// Deleting the route no longer deletes the waypoints
+//                waypointCount -= routeData.waypoints.size
+
+                // Check there's no route left
+                routes = routesRepository.getRoute(name)
+                Assert.assertEquals(0, routes.size)
 
                 waypoints = routesRepository.getMarkers()
                 Assert.assertEquals(waypointCount, waypoints.size)
@@ -240,33 +254,6 @@ class GpxTest {
         )
     }
 
-    // The tests are run alphanumerically, so those starting with a are run first
-    @Test
-    fun handcraftedParsing() {
-        val expectedValues = expectedHandcraftedValues()
-        testParsing("gpx/handcrafted.gpx", expectedValues, "Handcrafted", "Handcrafted description")
-    }
-
-    @Test
-    fun rideWithGpsParsing() {
-        val expectedValues = expectedRideWithGpsValues()
-        testParsing("gpx/rideWithGps.gpx", expectedValues, "RideWithGps", "")
-    }
-
-    @Test
-    fun soundscapeParsing() {
-        val expectedValues = expectedSoundscapeValues()
-        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
-    }
-
-    @Test
-    fun soundscapeDuplicateParsing() {
-        // Create a second Soundscape route, the only difference is its name. This is to test
-        // that duplicate waypoints work
-        val expectedValues = expectedSoundscapeValues()
-        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
-    }
-
     // Test the database more thoroughly
     @Test
     fun handcraftedDatabase() {
@@ -292,8 +279,10 @@ class GpxTest {
     @Test
     fun soundscapeDuplicateDatabase() {
         val expectedValues = expectedSoundscapeValues()
+        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
         testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
         testDatabase("Soundscape2", expectedValues)
+        testDatabase("Soundscape", expectedValues)
     }
 
     // Double check multiple routes at once in the database

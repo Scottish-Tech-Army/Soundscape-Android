@@ -27,26 +27,26 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Composable
 fun MarkersAndRoutesListSort(
     isSortByName: Boolean,
-    onToggleSortOrder: () -> Unit
+    isAscending: Boolean,
+    onToggleSortOrder: () -> Unit,
+    onToggleSortByName: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
-            .toggleable(
-                value = isSortByName,
-                role = Role.Button,
-                onValueChange = { onToggleSortOrder() }
-            ),
+            .padding(8.dp),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier.size(48.dp)
+            .toggleable(
+                value = isAscending,
+                role = Role.Button,
+                onValueChange = { onToggleSortOrder() }
+            ),
             imageVector = Icons.Default.SwapVert,
-            contentDescription =
-                if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name_voiceover)
-                else stringResource(R.string.markers_sort_button_sort_by_distance_voiceover)
+            contentDescription = "" // TODO: Add ascending/descending hint
         )
 
         Spacer(modifier = Modifier.width(8.dp))
@@ -55,7 +55,12 @@ fun MarkersAndRoutesListSort(
             text = if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name)
                    else stringResource(R.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.toggleable(
+                value = isSortByName,
+                role = Role.Button,
+                onValueChange = { onToggleSortByName() }
+            )
         )
 
         Spacer(modifier = Modifier.width(8.dp))
@@ -65,7 +70,12 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.routes_sort_by_name),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.surface
+            color = MaterialTheme.colorScheme.surface,
+            modifier = Modifier.toggleable(
+                value = isSortByName,
+                role = Role.Button,
+                onValueChange = { onToggleSortByName() }
+            )
         )
     }
 }
@@ -77,7 +87,9 @@ fun MarkersAndRoutesListSortByNamePreview() {
         // Preview with sorting by name
         MarkersAndRoutesListSort(
             isSortByName = true,
-            onToggleSortOrder = { /* Handle toggle */ }
+            isAscending = true,
+            onToggleSortOrder = { /* Handle toggle */ },
+            onToggleSortByName = { /* Handle toggle */ }
         )
     }
 }
@@ -89,7 +101,9 @@ fun MarkersAndRoutesListSortByDistancePreview() {
         // Preview with sorting by name
         MarkersAndRoutesListSort(
             isSortByName = false,
-            onToggleSortOrder = { /* Handle toggle */ }
+            isAscending = true,
+            onToggleSortOrder = { /* Handle toggle */ },
+            onToggleSortByName = { /* Handle toggle */ }
         )
     }
 }

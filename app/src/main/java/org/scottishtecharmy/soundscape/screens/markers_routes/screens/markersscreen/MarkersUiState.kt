@@ -8,6 +8,7 @@ data class MarkersUiState(
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
     val isSortByName: Boolean = false,
+    val isSortAscending: Boolean = true,
 )
 
 data class MarkerVM(

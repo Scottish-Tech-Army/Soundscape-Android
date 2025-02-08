@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.utils
 
 import android.content.Context
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -34,7 +35,7 @@ fun ArrayList<Feature>.toLocationDescriptions(
                         currentLocation.distance((feature.geometry as Point).coordinates),
                         localizedContext
                     ),
-                location = (feature.geometry as Point).coordinates,
+                location = (feature.geometry as Point).coordinates
             )
         }
     }

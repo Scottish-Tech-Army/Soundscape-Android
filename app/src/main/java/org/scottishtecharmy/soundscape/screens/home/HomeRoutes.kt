@@ -20,17 +20,13 @@ sealed class HomeRoutes(
         route = "location_details",
         title = "LocationDetails",
     )
-    data object AddRoute : HomeRoutes(
-        route = "add_route_screen",
-        title = "AddRouteScreen",
+    data object AddAndEditRoute : HomeRoutes(
+        route = "add_and_edit_route_screen",
+        title = "AddAndEditRouteScreen",
     )
     data object RouteDetails : HomeRoutes(
         route = "route_details_screen",
         title = "RouteDetailsScreen",
-    )
-    data object EditRoute : HomeRoutes(
-        route = "edit_route_screen",
-        title = "EditDetailsScreen",
     )
     data object Help : HomeRoutes(
         route = "help_screen",

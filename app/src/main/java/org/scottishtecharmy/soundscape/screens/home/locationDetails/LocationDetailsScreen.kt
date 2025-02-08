@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddLocation
+import androidx.compose.material.icons.filled.EditLocation
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Navigation
@@ -23,6 +24,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -34,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
@@ -76,6 +81,10 @@ fun LocationDetailsScreen(
         saveMarker = { description ->
             viewModel.createMarker(description)
         },
+        deleteMarker = { id ->
+            viewModel.deleteMarker(id)
+            navController.popBackStack(HomeRoutes.MarkersAndRoutes.route, false)
+        },
         enableStreetPreview = { loc ->
             viewModel.enableStreetPreview(loc)
         },
@@ -101,75 +110,90 @@ fun LocationDetails(
     heading: Float,
     createBeacon: (location: LngLatAlt) -> Unit,
     saveMarker: (description: LocationDescription) -> Unit,
+    deleteMarker: (objectId: ObjectId) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
 
-    Column(
-        modifier = modifier.fillMaxHeight(),
-    ) {
-        CustomAppBar(
-            title = stringResource(R.string.location_detail_title_default),
-            onNavigateUp = onNavigateUp,
-        )
+    val dialogState = remember { mutableStateOf(false) }
+    val description = remember { mutableStateOf(locationDescription) }
+
+    if(dialogState.value) {
+        SaveAndEditMarkerDialog(
+            description.value,
+            location,
+            heading,
+            saveMarker,
+            deleteMarker,
+            modifier,
+            dialogState)
+    } else {
         Column(
-            modifier =
+            modifier = modifier.fillMaxHeight(),
+        ) {
+            CustomAppBar(
+                title = stringResource(R.string.location_detail_title_default),
+                onNavigateUp = onNavigateUp,
+            )
+            Column(
+                modifier =
                 Modifier
                     .padding(horizontal = 15.dp, vertical = 20.dp)
                     .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
-            LocationDescriptionTextsSection(locationDescription = locationDescription)
-            HorizontalDivider()
-            LocationDescriptionButtonsSection(
-                createBeacon = createBeacon,
-                saveMarker = saveMarker,
-                locationDescription = locationDescription,
-                enableStreetPreview = enableStreetPreview,
-                onNavigateUp = onNavigateUp,
-            )
-        }
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+            ) {
+                LocationDescriptionTextsSection(locationDescription = description.value)
+                HorizontalDivider()
+                LocationDescriptionButtonsSection(
+                    createBeacon = createBeacon,
+                    locationDescription = description.value,
+                    enableStreetPreview = enableStreetPreview,
+                    onNavigateUp = onNavigateUp,
+                    dialogState = dialogState
+                )
+            }
 
-        MapContainerLibre(
-            beaconLocation = locationDescription.location,
-            allowScrolling = true,
-            onMapLongClick = { latLong ->
-                val clickLocation = fromLatLng(latLong)
-                val ld = getLocationDescription(clickLocation)
+            MapContainerLibre(
+                beaconLocation = description.value.location,
+                allowScrolling = true,
+                onMapLongClick = { latLong ->
+                    val clickLocation = fromLatLng(latLong)
+                    val ld = getLocationDescription(clickLocation)
 
-                // This effectively replaces the current screen with the new one
-                navController.navigate(generateLocationDetailsRoute(ld)) {
-                    var popupDestination = HomeRoutes.Home.route
-                    if (!ld.marker) popupDestination = HomeRoutes.MarkersAndRoutes.route
-                    popUpTo(popupDestination) {
-                        inclusive = false // Ensures Home screen is not popped from the stack
+                    // This effectively replaces the current screen with the new one
+                    navController.navigate(generateLocationDetailsRoute(ld)) {
+                        var popupDestination = HomeRoutes.Home.route
+                        if (ld.markerObjectId == null) popupDestination = HomeRoutes.MarkersAndRoutes.route
+                        popUpTo(popupDestination) {
+                            inclusive = false // Ensures Home screen is not popped from the stack
+                        }
+                        launchSingleTop = true // Prevents multiple instances of Home
                     }
-                    launchSingleTop = true // Prevents multiple instances of Home
-                }
-                true
-            },
-            onMarkerClick = { false },
-            // Center on the beacon
-            mapCenter = locationDescription.location,
-            userLocation = location?:LngLatAlt(),
-            mapViewRotation = 0.0F,
-            userSymbolRotation = heading,
-            modifier =
+                    true
+                },
+                onMarkerClick = { false },
+                // Center on the beacon
+                mapCenter = description.value.location,
+                userLocation = location ?: LngLatAlt(),
+                mapViewRotation = 0.0F,
+                userSymbolRotation = heading,
+                modifier =
                 modifier
                     .fillMaxWidth()
                     .aspectRatio(1.1F),
-            tileGridGeoJson = "",
-        )
+                tileGridGeoJson = "",
+            )
+        }
     }
 }
 
 @Composable
 private fun LocationDescriptionButtonsSection(
     createBeacon: (location: LngLatAlt) -> Unit,
-    saveMarker: (description: LocationDescription) -> Unit,
     locationDescription: LocationDescription,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     onNavigateUp: () -> Unit,
+    dialogState: MutableState<Boolean>
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -181,11 +205,20 @@ private fun LocationDescriptionButtonsSection(
             createBeacon(locationDescription.location)
         }
 
-        IconWithTextButton(
-            icon = Icons.Filled.AddLocation,
-            text = stringResource(R.string.user_activity_save_marker_title),
-        ) {
-            saveMarker(locationDescription)
+        if(locationDescription.markerObjectId != null) {
+            IconWithTextButton(
+                icon = Icons.Filled.EditLocation,
+                text = stringResource(R.string.markers_edit_screen_title_edit),
+            ) {
+                dialogState.value = true
+            }
+        } else {
+            IconWithTextButton(
+                icon = Icons.Filled.AddLocation,
+                text = stringResource(R.string.user_activity_save_marker_title)
+            ) {
+                dialogState.value = true
+            }
         }
 
         IconWithTextButton(
@@ -304,8 +337,6 @@ fun LocationDetailsPreview() {
             ),
             createBeacon = { _ ->
             },
-            saveMarker = { _ ->
-            },
             enableStreetPreview = { _ ->
             },
             getLocationDescription = { _ ->
@@ -315,6 +346,9 @@ fun LocationDetailsPreview() {
             navController = NavHostController(LocalContext.current),
             location = null,
             heading = 0.0F,
+            saveMarker = {},
+            deleteMarker = {}
+
         )
     }
 }

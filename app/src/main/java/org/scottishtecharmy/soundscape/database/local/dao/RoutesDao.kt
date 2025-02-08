@@ -9,6 +9,9 @@ import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.geo.Distance
 import io.realm.kotlin.types.geo.GeoCircle
 import io.realm.kotlin.types.geo.GeoPoint
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
@@ -22,7 +25,7 @@ class RoutesDao(private val realm: Realm) {
         var success = true
         realm.write {
             try {
-                copyToRealm(route, updatePolicy = UpdatePolicy.ERROR)
+                copyToRealm(route, updatePolicy = UpdatePolicy.ALL)
             } catch (e: IllegalArgumentException) {
                 Log.e("realm", e.message.toString())
                 success = false
@@ -31,7 +34,7 @@ class RoutesDao(private val realm: Realm) {
         return success
     }
 
-    suspend fun insertWaypoint(waypoint: MarkerData) : Boolean
+    suspend fun insertMarker(waypoint: MarkerData) : Boolean
     {
         // If we don't catch the exception here, then it prevents write
         // from completing its transaction logic.
@@ -51,16 +54,24 @@ class RoutesDao(private val realm: Realm) {
         return realm.query<RouteData>("name == $0", name).find()
     }
 
+    fun getRoute(objectId: ObjectId): RealmResults<RouteData> {
+        return realm.query<RouteData>("objectId == $0", objectId).find()
+    }
+
     fun getRoutes(): List<RouteData> {
         return realm.query<RouteData>().find()
     }
 
-    fun getWaypoints(): List<MarkerData> {
+    fun getMarkers(): List<MarkerData> {
         return realm.query<MarkerData>().find()
     }
 
+    fun getMarker(objectId: ObjectId): RealmResults<MarkerData> {
+        return realm.query<MarkerData>("objectId == $0", objectId).find()
+    }
+
     @OptIn(ExperimentalGeoSpatialApi::class)
-    fun getWaypointsNear(location: Location?, kilometre: Double): RealmResults<MarkerData> {
+    fun getMarkersNear(location: Location?, kilometre: Double): RealmResults<MarkerData> {
         if(location != null) {
             val circle1 = GeoCircle.create(
                 center = GeoPoint.create(location.latitude, location.longitude),
@@ -71,24 +82,21 @@ class RoutesDao(private val realm: Realm) {
         return realm.query<MarkerData>().find()
     }
 
-    suspend fun deleteRoute(name: String) = realm.write {
-
-        val findRoute = query<RouteData>("name == $0", name).find()
-        Log.d("routeDao", "Deleting route \"" + name + "\" size " + findRoute.size)
+    suspend fun deleteRoute(objectId: ObjectId) = realm.write {
+        val findRoute = query<RouteData>("objectId == $0", objectId).find()
+        Log.d("routeDao", "Deleting route \"" + objectId.toString() + "\" size " + findRoute.size)
         delete(findRoute)
 
-        // Clean up all waypoints which have no route
-        val waypoints = query<MarkerData>("route.@count == 0").find()
-        Log.d("routeDao", "Deleting waypoints with no route" + waypoints.size)
-        delete(waypoints)
+        // We leave the markers in the database
     }
 
     suspend fun updateRoute(route: RouteData) = realm.write {
-        val findRoute = query<RouteData>("name == $0", route.name).first().find()
+        val findRoute = query<RouteData>("objectId == $0", route.objectId).first().find()
 
         try {
             findRoute?.apply {
-                //name = route.name - not possible to update primary key
+                // objectId = route.objectId - not possible to update primary key
+                name = route.name
                 description = route.description
                 waypoints = route.waypoints
             }
@@ -97,4 +105,46 @@ class RoutesDao(private val realm: Realm) {
         }
     }
 
+    suspend fun deleteMarker(objectId: ObjectId) = realm.write {
+        val findMarker = query<MarkerData>("objectId == $0", objectId).find()
+        Log.d("routeDao", "Deleting marker \"" + objectId.toString() + "\" size " + findMarker.size)
+        if(findMarker.size != 0) {
+            val markers = getMarkers()
+            for(marker in markers) {
+                if(marker.objectId == objectId) {
+                    Log.d("routeDao", "Marker found $objectId")
+                } else {
+                    Log.d("routeDao", "Marker ignored ${marker.addressName}, ${marker.objectId}")
+                }
+            }
+        }
+        delete(findMarker)
+    }
+
+    suspend fun updateMarker(marker: MarkerData) = realm.write {
+        val findMarker = query<MarkerData>("objectId == $0", marker.objectId).first().find()
+
+        try {
+            findMarker?.apply {
+                //objectId = marker.objectId            Not possible to update primary key
+                addressName = marker.addressName
+                fullAddress = marker.fullAddress
+                location = marker.location
+            }
+        } catch (e: IllegalArgumentException) {
+            Log.e("realm", e.message.toString())
+        }
+    }
+
+    fun getRouteFlow() : Flow<List<RouteData>> {
+        return realm.query<RouteData>().asFlow().map { changes ->
+            changes.list
+        }
+    }
+
+    fun getMarkerFlow() : Flow<List<MarkerData>> {
+        return realm.query<MarkerData>().asFlow().map { changes ->
+            changes.list
+        }
+    }
 }

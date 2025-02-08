@@ -25,9 +25,9 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDeta
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreenVM
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteScreenVM
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteViewModel
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteScreenVM
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.newRouteName
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
@@ -124,7 +124,7 @@ fun HomeScreen(
                 onNavigateUp = {
                     // If the location is a marker, then we're in the routes menu, so just pop back
                     // up. Otherwise, pop up to Home.
-                    if(locationDescription.marker) {
+                    if(locationDescription.markerObjectId != null) {
                         navController.popBackStack()
                     } else {
                         navController.navigate(HomeRoutes.Home.route) {
@@ -151,10 +151,6 @@ fun HomeScreen(
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
         }
 
-        composable(HomeRoutes.AddRoute.route) {
-            AddRouteScreenVM(navController = navController)
-        }
-
         composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->
             val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
             RouteDetailsScreenVM(
@@ -164,31 +160,24 @@ fun HomeScreen(
             )
         }
 
-        composable(HomeRoutes.EditRoute.route + "/{routeName}") { backStackEntry ->
-            val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
-            val editRouteViewModel: EditRouteViewModel = hiltViewModel()
+        composable(HomeRoutes.AddAndEditRoute.route + "/{routeName}") { backStackEntry ->
+            val routeName = backStackEntry.arguments?.getString("routeName") ?: newRouteName
+            val addAndEditRouteViewModel: AddAndEditRouteViewModel = hiltViewModel()
 
             // Call the ViewModel's function to initialize the route data
             LaunchedEffect(routeName) {
-                editRouteViewModel.initializeRoute(routeName)
+                addAndEditRouteViewModel.loadMarkers()
+                addAndEditRouteViewModel.initializeRoute(routeName)
             }
 
-            // Pass the route details to the EditRouteScreen composable
-            val uiState by editRouteViewModel.uiState.collectAsStateWithLifecycle()
-            EditRouteScreenVM(
-                routeName = uiState.name,
+            // Pass any route details to the EditRouteScreen composable
+            val uiState by addAndEditRouteViewModel.uiState.collectAsStateWithLifecycle()
+            AddAndEditRouteScreenVM(
+                routeObjectId = uiState.routeObjectId,
+                routeName = routeName,
                 routeDescription = uiState.description,
                 navController = navController,
-                viewModel = editRouteViewModel,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
-            )
-        }
-
-        composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->
-            val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
-            RouteDetailsScreenVM(
-                routeName = routeName,
-                navController = navController,
+                viewModel = addAndEditRouteViewModel,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }

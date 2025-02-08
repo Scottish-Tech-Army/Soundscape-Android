@@ -48,6 +48,7 @@ fun MarkersScreenVM(
         uiState,
         clearErrorMessage = { viewModel.clearErrorMessage() },
         onToggleSortOrder = { viewModel.toggleSortOrder() },
+        onToggleSortByName = { viewModel.toggleSortByName() },
     )
 }
 
@@ -57,6 +58,7 @@ fun MarkersScreen(
     uiState: MarkersUiState,
     clearErrorMessage: () -> Unit,
     onToggleSortOrder: () -> Unit,
+    onToggleSortByName: () -> Unit,
 ) {
     Column(
         modifier =
@@ -140,7 +142,9 @@ fun MarkersScreen(
                         ) {
                             MarkersAndRoutesListSort(
                                 isSortByName = uiState.isSortByName,
+                                isAscending = uiState.isSortAscending,
                                 onToggleSortOrder = onToggleSortOrder,
+                                onToggleSortByName = onToggleSortByName
                             )
                         }
                         // Display the list of routes
@@ -175,6 +179,7 @@ fun MarkersScreenPopulatedPreview() {
                 ),
             clearErrorMessage = {},
             onToggleSortOrder = {},
+            onToggleSortByName = {},
         )
     }
 }
@@ -188,6 +193,7 @@ fun MarkersScreenPreview() {
             uiState = MarkersUiState(),
             clearErrorMessage = {},
             onToggleSortOrder = {},
+            onToggleSortByName = {},
         )
     }
 }
