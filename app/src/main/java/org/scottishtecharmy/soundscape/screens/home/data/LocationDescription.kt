@@ -8,5 +8,6 @@ data class LocationDescription(
     val country: String? = null,
     var distance: String? = null,
     var location: LngLatAlt = LngLatAlt(),
-    val marker: Boolean = false
+    val marker: Boolean = false,
+    var inRoute: Boolean = false
 )

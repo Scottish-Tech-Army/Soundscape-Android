@@ -6,9 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -124,7 +122,6 @@ fun EditRouteScreen(
             ) {
                 Column(
                     modifier = Modifier
-                        .verticalScroll(rememberScrollState())
                         .fillMaxSize()
                         .padding(padding)
                         .padding(16.dp)
@@ -178,6 +175,10 @@ fun EditRouteScreen(
                         text = stringResource(R.string.route_detail_edit_waypoints_button),
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
+                    )
+                    // Display the list of routes
+                    ReorderableLocationList(
+                        locations = uiState.markers
                     )
                     HorizontalDivider(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,

@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape.database.local.model
 
-import io.realm.kotlin.ext.backlinks
 import io.realm.kotlin.ext.realmListOf
-import io.realm.kotlin.query.RealmResults
 import io.realm.kotlin.types.EmbeddedRealmObject
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
@@ -16,6 +14,12 @@ class Location : EmbeddedRealmObject {
         coordinates.apply {
             add(longitude)
             add(latitude)
+        }
+    }
+    constructor(location: LngLatAlt) {
+        coordinates.apply {
+            add(location.longitude)
+            add(location.latitude)
         }
     }
 
