@@ -110,10 +110,16 @@ fun MainSearchBar(
                     Column {
                         LocationItem(
                             item = item,
-                            onClick = {
-                                onItemClick(item)
-                                onToggleSearch()
-                            },
+                            decoration = LocationItemDecoration(
+                                location = true,
+                                details = EnabledFunction(
+                                    true,
+                                    {
+                                        onItemClick(item)
+                                        onToggleSearch()
+                                    }
+                                )
+                            ),
                             modifier =
                                 Modifier.semantics {
                                     this.collectionItemInfo =

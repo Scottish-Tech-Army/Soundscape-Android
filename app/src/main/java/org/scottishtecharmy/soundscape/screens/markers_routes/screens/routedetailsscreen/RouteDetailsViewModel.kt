@@ -20,25 +20,6 @@ class RouteDetailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RouteDetailsUiState())
     val uiState: StateFlow<RouteDetailsUiState> = _uiState.asStateFlow()
 
-    init {
-        loadRoutes()
-    }
-
-    private fun loadRoutes() {
-        viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(isLoading = true)
-            try {
-                val routes = routesRepository.getRoutes()
-                _uiState.value = _uiState.value.copy(route = routes, isLoading = false)
-            } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(
-                    errorMessage = e.message ?: "An error occurred",
-                    isLoading = false
-                )
-            }
-        }
-    }
-
     fun getRouteByName(routeName: String) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
@@ -46,7 +27,9 @@ class RouteDetailsViewModel @Inject constructor(
                 val routeResult = routesRepository.getRoute(routeName)
                 val route = routeResult.firstOrNull() // Extract the first match if it exists
                 if (route != null) {
-                    _uiState.value = _uiState.value.copy(selectedRoute = route, isLoading = false)
+                    _uiState.value = _uiState.value.copy(
+                        route = route,
+                        isLoading = false)
                 } else {
                     _uiState.value = _uiState.value.copy(
                         errorMessage = "Route not found",

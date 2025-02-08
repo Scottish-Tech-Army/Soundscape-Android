@@ -8,8 +8,8 @@ import org.scottishtecharmy.soundscape.screens.home.home.HomeHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addroutescreen.AddRouteScreenPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.EditRouteScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.EditRouteScreenPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.NewRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RoutesDetailsPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenPopulatedPreview
@@ -162,12 +162,12 @@ class MarkersPreviewTestClass {
     }
 }
 
-class AddRouteScreenPreviewTestClass {
+class NewRouteScreenPreviewTestClass {
     @CustomPreviews
     @Composable
-    fun AddRouteScreenPreviewTest() {
+    fun NewRouteScreenPreviewTest() {
         SoundscapeTheme {
-            AddRouteScreenPreview()
+            NewRouteScreenPreview()
         }
     }
 }

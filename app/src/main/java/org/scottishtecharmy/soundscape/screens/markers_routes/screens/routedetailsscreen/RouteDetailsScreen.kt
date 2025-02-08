@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PlayArrow
@@ -35,8 +37,14 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.components.LocationItem
+import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -72,6 +80,7 @@ fun RouteDetailsScreen(
 ) {
     // Observe the UI state from the ViewModel
     val context = LocalContext.current
+    val location = uiState.route?.waypoints?.firstOrNull()?.location?.location() ?: LngLatAlt()
 
     // Fetch the route details when the screen is launched
     LaunchedEffect(routeName) {
@@ -116,8 +125,7 @@ fun RouteDetailsScreen(
                     }
                 }
 
-                uiState.selectedRoute != null -> {
-                    val route = uiState.selectedRoute
+                uiState.route != null -> {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -133,20 +141,20 @@ fun RouteDetailsScreen(
                         ) {
                             Column {
                                 Text(
-                                    text = route.name,
+                                    text = uiState.route.name,
                                     style = MaterialTheme.typography.headlineLarge,
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier.padding(bottom = 4.dp)
                                 )
                                 Text(
-                                    text = route.description,
+                                    text = uiState.route.description,
                                     style = MaterialTheme.typography.bodyLarge,
                                     fontWeight = FontWeight.Bold,
                                 )
                             }
                             // Display additional route details if necessary
                         }
-                        Column {
+                        Column(modifier = Modifier.weight(0.6f)) {
                             IconWithTextButton(
                                 icon = Icons.Default.PlayArrow,
                                 iconModifier = Modifier.size(40.dp),
@@ -155,7 +163,7 @@ fun RouteDetailsScreen(
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 onClick = {
-                                    startRoute(route.name)
+                                    startRoute(uiState.route.name)
                                     // Pop up to the home screen
                                     navController.navigate(HomeRoutes.Home.route) {
                                         popUpTo(navController.graph.findStartDestination().id) {
@@ -171,7 +179,7 @@ fun RouteDetailsScreen(
                                 iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
-                                onClick = { navController.navigate("${HomeRoutes.EditRoute.route}/${route.name}") })
+                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}/${uiState.route.name}") })
                             IconWithTextButton(
                                 icon = Icons.Default.Share,
                                 iconModifier = Modifier.size(40.dp),
@@ -181,9 +189,49 @@ fun RouteDetailsScreen(
                                 fontWeight = FontWeight.Bold,
                                 onClick = { /*TODO*/ })
                         }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                                .weight(0.6f),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            // Small map showing first route point
+                            MapContainerLibre(
+                                beaconLocation = location,
+                                allowScrolling = true,
+                                onMapLongClick = { _ -> false },
+                                onMarkerClick = { false },
+                                // Center on the beacon
+                                mapCenter = location,
+                                userLocation = LngLatAlt(),
+                                mapViewRotation = 0.0F,
+                                userSymbolRotation = 0.0F,
+                                modifier = modifier.fillMaxWidth(),
+                                tileGridGeoJson = "",
+                            )
+                        }
+                        // List of all route points
+                        LazyColumn(
+                            verticalArrangement = Arrangement.spacedBy(2.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            itemsIndexed(uiState.route.waypoints) { index, marker ->
+                                LocationItem(
+                                    item = LocationDescription(
+                                        addressName = marker.addressName,
+                                        fullAddress = marker.fullAddress
+                                    ),
+                                    decoration = LocationItemDecoration(
+                                        location = false,
+                                        index = index
+                                    )
+                                )
+                            }
+                        }
                     }
                 }
-
                 else -> {
                     Box(
                         modifier = Modifier.fillMaxSize(),
@@ -200,18 +248,26 @@ fun RouteDetailsScreen(
 @Preview(showBackground = true)
 @Composable
 fun RoutesDetailsPopulatedPreview() {
+    val routeData = RouteData(
+        name = "Route 1",
+        description = "Description 1"
+    )
+    routeData.waypoints.add(MarkerData("Marker 1", null, "Description 1"))
+    routeData.waypoints.add(MarkerData("Marker 2", null, "Description 2"))
+    routeData.waypoints.add(MarkerData("Marker 3", null, "Description 3"))
+    routeData.waypoints.add(MarkerData("Marker 4", null, "Description 4"))
+    routeData.waypoints.add(MarkerData("Marker 5", null, "Description 5"))
+    routeData.waypoints.add(MarkerData("Marker 6", null, "Description 6"))
+    routeData.waypoints.add(MarkerData("Marker 7", null, "Description 7"))
+    routeData.waypoints.add(MarkerData("Marker 8", null, "Description 8"))
+
     SoundscapeTheme {
         RouteDetailsScreen(
             navController = rememberNavController(),
             routeName = "Route name",
             modifier = Modifier,
             uiState = RouteDetailsUiState(
-                route = listOf(
-                    RouteData("Route 1", "Description 1"),
-                    RouteData("Route 2", "Description 2"),
-                    RouteData("Route 3", "Description 3"),
-                ),
-                selectedRoute = RouteData("Route 2", "Description 2")
+                route = routeData
             ),
             getRouteByName = {},
             startRoute = {},

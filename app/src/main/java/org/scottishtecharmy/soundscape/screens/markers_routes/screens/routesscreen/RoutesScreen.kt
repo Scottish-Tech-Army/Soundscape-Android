@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.newRouteName
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -44,11 +45,13 @@ fun RoutesScreenVM(
     viewModel: RoutesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     RoutesScreen(
         homeNavController,
         uiState,
         clearErrorMessage = { viewModel.clearErrorMessage()},
-        onToggleSortOrder = { viewModel.toggleSortOrder() }
+        onToggleSortOrder = { viewModel.toggleSortOrder() },
+        onToggleSortByName = { viewModel.toggleSortByName() }
     )
 }
 
@@ -58,7 +61,8 @@ fun RoutesScreen(
     homeNavController: NavController,
     uiState: RoutesUiState,
     clearErrorMessage: () -> Unit,
-    onToggleSortOrder: () -> Unit
+    onToggleSortOrder: () -> Unit,
+    onToggleSortByName: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -133,7 +137,9 @@ fun RoutesScreen(
                     ) {
                         MarkersAndRoutesListSort(
                             isSortByName = uiState.isSortByName,
-                            onToggleSortOrder = onToggleSortOrder
+                            isAscending = uiState.isSortAscending,
+                            onToggleSortOrder = onToggleSortOrder,
+                            onToggleSortByName = onToggleSortByName
                         )
                     }
                     // Display the list of routes
@@ -145,7 +151,7 @@ fun RoutesScreen(
             }
         }
         CustomFloatingActionButton(
-            onClick = { homeNavController.navigate(HomeRoutes.AddRoute.route) },
+            onClick = { homeNavController.navigate("${HomeRoutes.AddAndEditRoute.route}/$newRouteName") },
             modifier = Modifier.align(Alignment.BottomCenter),
             icon = Icons.Rounded.AddCircleOutline,
             contentDescription = stringResource(R.string.general_alert_add),
@@ -161,7 +167,8 @@ fun RoutesScreenPreview() {
             homeNavController = rememberNavController(),
             uiState = RoutesUiState(),
             clearErrorMessage = {},
-            onToggleSortOrder = {}
+            onToggleSortOrder = {},
+            onToggleSortByName = {}
         )
     }
 }
@@ -180,7 +187,8 @@ fun RoutesScreenPopulatedPreview() {
                 )
             ),
             clearErrorMessage = {},
-            onToggleSortOrder = {}
+            onToggleSortOrder = {},
+            onToggleSortByName = {}
         )
     }
 }
@@ -193,7 +201,8 @@ fun RoutesScreenLoadingPreview() {
             homeNavController = rememberNavController(),
             uiState = RoutesUiState(isLoading = true),
             clearErrorMessage = {},
-            onToggleSortOrder = {}
+            onToggleSortOrder = {},
+            onToggleSortByName = {}
         )
     }
 }

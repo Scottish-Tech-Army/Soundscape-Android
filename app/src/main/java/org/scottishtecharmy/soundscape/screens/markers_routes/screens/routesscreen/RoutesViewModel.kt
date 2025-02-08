@@ -8,8 +8,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortFieldPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortOrderPreference
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortFieldPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortOrderPreference
 import javax.inject.Inject
 
@@ -23,47 +26,44 @@ class RoutesViewModel @Inject constructor(
     val uiState: StateFlow<RoutesUiState> = _uiState
 
     init {
-        loadRoutes()
-        // Load the saved sort order when initializing the ViewModel
-        val isAscending = getSortOrderPreference(context)
-        _uiState.value = _uiState.value.copy(isSortByName = isAscending)
-        sortRoutes(isAscending)
+        // Load the saved sort orders
+        _uiState.value = _uiState.value.copy(
+            isSortByName = getSortFieldPreference(context),
+            isSortAscending = getSortOrderPreference(context))
+
+        // Collect the flow of routes from the repository so that we update when routes are added
+        // and deleted
+        viewModelScope.launch {
+            routesRepository.getRouteFlow().collect { routes ->
+                _uiState.value =  uiState.value.copy(routes = sortRoutes(routes))
+            }
+        }
     }
 
     fun toggleSortOrder() {
-        val isAscending = !_uiState.value.isSortByName
-        sortRoutes(isAscending)
-        saveSortOrderPreference(context, isAscending)
+        val sortByAscending = !_uiState.value.isSortAscending
+        _uiState.value =  uiState.value.copy(isSortAscending = sortByAscending, routes = sortRoutes(uiState.value.routes))
+        saveSortOrderPreference(context, sortByAscending)
     }
 
-    private fun sortRoutes(isAscending: Boolean) {
-        val sortedRoutes = if (isAscending) {
-            _uiState.value.routes.sortedBy { it.name }
+    fun toggleSortByName() {
+        val sortByName = !_uiState.value.isSortByName
+        _uiState.value =  uiState.value.copy(isSortByName = sortByName, routes = sortRoutes(uiState.value.routes))
+        saveSortFieldPreference(context, sortByName)
+    }
+
+    private fun sortRoutes(routes: List<RouteData>) : List<RouteData> {
+        return if(_uiState.value.isSortByName) {
+            if(_uiState.value.isSortAscending)
+                routes.sortedBy { it.name }
+            else
+                routes.sortedByDescending { it.name }
+
         } else {
-            _uiState.value.routes
-        }
-        _uiState.value = _uiState.value.copy(routes = sortedRoutes, isSortByName = isAscending)
-    }
-
-    private fun loadRoutes() {
-        viewModelScope.launch {
-            _uiState.value = _uiState.value.copy(isLoading = true)
-
-            try {
-                val routes = routesRepository.getRoutes()
-                val isAscending = getSortOrderPreference(context)
-                val sortedRoutes = if (isAscending) {
-                    routes.sortedBy { it.name }
-                } else {
-                    routes
-                }
-                _uiState.value = _uiState.value.copy(routes = sortedRoutes, isLoading = false, isSortByName = isAscending)
-            } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(
-                    errorMessage = "Failed to load routes: ${e.message}",
-                    isLoading = false
-                )
-            }
+            if(_uiState.value.isSortAscending)
+                routes.sortedBy { it.objectId }
+            else
+                routes.sortedByDescending { it.objectId }
         }
     }
 
