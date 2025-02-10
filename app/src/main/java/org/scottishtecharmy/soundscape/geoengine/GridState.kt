@@ -73,7 +73,7 @@ open class GridState {
      * The tile grid service is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
-    suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>) {
+    suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>) : Boolean {
         val timeSource = TimeSource.Monotonic
         val gridStartTime = timeSource.markNow()
 
@@ -114,12 +114,15 @@ open class GridState {
                 val gridFinishTime = timeSource.markNow()
                 Log.e(TAG, "Time to populate grid: ${gridFinishTime - gridStartTime}")
 
+                return true
             } else {
                 // Updating the tile grid failed, due to a lack of cached tile and then
                 // a lack of network/server issue. There's nothing that we can do, so
                 // simply retry on the next location update.
+                return false
             }
         }
+        return true
     }
 
     private suspend fun updateTileGrid(

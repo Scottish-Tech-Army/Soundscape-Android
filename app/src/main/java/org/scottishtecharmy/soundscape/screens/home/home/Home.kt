@@ -33,6 +33,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
@@ -58,7 +59,7 @@ fun HomePreview() {
         getCurrentLocationDescription = { LocationDescription() },
         shareLocation = {},
         rateSoundscape = {},
-        streetPreviewState = StreetPreviewState(false),
+        streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewExit = {},
         streetPreviewGo = {},
         tileGridGeoJson = "",
