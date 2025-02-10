@@ -164,10 +164,16 @@ class GeoEngine {
                 newLocation?.let { location ->
 
                     // Update the grid state
-                    gridState.locationUpdate(
+                    val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
                         createSuperCategoriesSet()
                     )
+
+                    if(updated) {
+                        // The grid updated, if we're in StreetPreview and were initializing, the
+                        // service needs to update the state to ON.
+                        soundscapeService.tileGridUpdated()
+                    }
 
                     // So long as the AudioEngine is not already busy, run any auto callouts that we
                     // need. Auto Callouts use the direction of travel if there is one, otherwise

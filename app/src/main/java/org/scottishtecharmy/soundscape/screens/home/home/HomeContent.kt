@@ -11,6 +11,7 @@ import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
@@ -37,7 +38,7 @@ fun HomeContent(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        if(streetPreviewState.enabled) {
+        if(streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
             StreetPreview(streetPreviewState, heading, streetPreviewGo, streetPreviewExit)
         } else {
             searchBar()
@@ -107,7 +108,7 @@ fun StreetPreviewHomeContent() {
         onMarkerClick = { true },
         searchBar = {},
         tileGridGeoJson = "",
-        streetPreviewState = StreetPreviewState(true),
+        streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
         streetPreviewGo = {},
         streetPreviewExit = {},
         getCurrentLocationDescription = { LocationDescription() }
@@ -126,7 +127,7 @@ fun PreviewHomeContent() {
         onMarkerClick = { true },
         searchBar = {},
         tileGridGeoJson = "",
-        streetPreviewState = StreetPreviewState(false),
+        streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewGo = {},
         streetPreviewExit = {},
         getCurrentLocationDescription = { LocationDescription() }

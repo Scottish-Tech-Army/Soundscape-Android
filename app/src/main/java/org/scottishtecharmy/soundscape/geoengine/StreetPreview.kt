@@ -19,8 +19,11 @@ data class StreetPreviewChoice(
     val route: List<LngLatAlt>
 )
 
+enum class StreetPreviewEnabled {
+    OFF, INITIALIZING, ON
+}
 data class StreetPreviewState(
-    val enabled: Boolean = false,
+    val enabled: StreetPreviewEnabled = StreetPreviewEnabled.OFF,
     val choices: List<StreetPreviewChoice> = emptyList()
 )
 

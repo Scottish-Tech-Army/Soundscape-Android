@@ -37,6 +37,7 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -89,7 +90,7 @@ class SoundscapeService : MediaSessionService() {
     var beaconFlow: StateFlow<LngLatAlt?> = _beaconFlow
 
     // Flow to return street preview mode
-    private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(false))
+    private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
     var streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
 
     // Activity recognition
@@ -131,10 +132,15 @@ class SoundscapeService : MediaSessionService() {
         directionProvider.start(audioEngine, locationProvider)
         geoEngine.start(application, locationProvider, directionProvider, this)
 
-        if(on) {
-            _streetPreviewFlow.value = StreetPreviewState(true, geoEngine.streetPreviewGo())
-        } else {
-            _streetPreviewFlow.value = StreetPreviewState(false)
+        _streetPreviewFlow.value = StreetPreviewState(if(on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
+    }
+
+    fun tileGridUpdated() {
+        if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
+            _streetPreviewFlow.value = StreetPreviewState(
+                StreetPreviewEnabled.ON,
+                geoEngine.streetPreviewGo()
+            )
         }
     }
 
@@ -417,7 +423,7 @@ class SoundscapeService : MediaSessionService() {
      * It indicates that the user has selected the direction of travel in which they which to move.
      */
     fun streetPreviewGo() {
-        _streetPreviewFlow.value = StreetPreviewState(true, geoEngine.streetPreviewGo())
+        _streetPreviewFlow.value = StreetPreviewState(StreetPreviewEnabled.ON, geoEngine.streetPreviewGo())
     }
 
     companion object {
