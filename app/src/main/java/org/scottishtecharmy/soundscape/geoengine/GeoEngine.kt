@@ -186,7 +186,7 @@ class GeoEngine {
                             autoCallout.updateLocation(getCurrentUserGeometry(UserGeometry.HeadingMode.Auto), gridState)
                         if (callouts.isNotEmpty()) {
                             // Tell the service that we've got some callouts to tell the user about
-                            soundscapeService.speakCallout(callouts)
+                            soundscapeService.speakCallout(callouts, false)
                         }
                     }
                 }
@@ -206,7 +206,7 @@ class GeoEngine {
             results.add(PositionedString(noLocationString))
         } else {
             // Check if we have a valid heading
-            val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
+            val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Auto)
             val orientation = userGeometry.heading()
             orientation?.let { heading ->
                 // Run the code within the treeContext to protect it from changes to the trees whilst it's
@@ -300,7 +300,7 @@ class GeoEngine {
             results = runBlocking {
                 withContext(gridState.treeContext) {
 
-                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
+                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Auto)
 
                     // Direction order is: behind(0) left(1) ahead(2) right(3)
                     val featuresByDirection: Array<Feature?> = arrayOfNulls(4)
