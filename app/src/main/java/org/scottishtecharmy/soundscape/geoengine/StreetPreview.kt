@@ -77,23 +77,28 @@ class StreetPreview {
                 var bestHeadingDiff = Double.POSITIVE_INFINITY
 
                 // Find the choice with the closest heading to our own
-                for ((index, choice) in choices.withIndex()) {
-                    val diff = calculateHeadingOffset(choice.heading, userGeometry.heading())
-                    if (diff < bestHeadingDiff) {
-                        bestHeadingDiff = diff
-                        bestIndex = index
+                val heading = userGeometry.heading()
+                if(heading != null) {
+                    for ((index, choice) in choices.withIndex()) {
+                        val diff = calculateHeadingOffset(choice.heading, heading)
+                        if (diff < bestHeadingDiff) {
+                            bestHeadingDiff = diff
+                            bestIndex = index
+                        }
+                        Log.d(TAG, "Choice: ${choice.name} heading: ${choice.heading}")
                     }
-                    Log.d(TAG, "Choice: ${choice.name} heading: ${choice.heading}")
                 }
 
-                // We've got a road - let's head down it
-                previewRoad = extendChoice(engine, userGeometry.location, choices[bestIndex])
-                previewRoad?.let { road ->
-                    engine.locationProvider.updateLocation(road.route.last(), 1.0F)
-                    lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
-                    return road.route.last()
+                if(bestIndex != -1) {
+                    // We've got a road - let's head down it
+                    previewRoad = extendChoice(engine, userGeometry.location, choices[bestIndex])
+                    previewRoad?.let { road ->
+                        engine.locationProvider.updateLocation(road.route.last(), 1.0F)
+                        lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
+                        return road.route.last()
+                    }
+                    previewState = PreviewState.AT_NODE
                 }
-                previewState = PreviewState.AT_NODE
             }
         }
         return null

@@ -110,32 +110,37 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val nearestIntersection = removeDuplicates(sortedFovIntersections.features[0])
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
-    val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, nearestRoad, userGeometry.heading())
+    val heading = userGeometry.heading()
+    if(heading != null) {
+        val nearestRoadBearing =
+            getRoadBearingToIntersection(nearestIntersection, nearestRoad, heading)
 
-    // Create a set of relative direction polygons
-    val intersectionLocation = intersection!!.geometry as Point
-    val geometry = UserGeometry(
-        intersectionLocation.coordinates,
-        nearestRoadBearing,
-        5.0
-    )
-    val relativeDirections = getRelativeDirectionsPolygons(
-        geometry,
-        RelativeDirections.COMBINED
-    )
+        // Create a set of relative direction polygons
+        val intersectionLocation = intersection!!.geometry as Point
+        val geometry = UserGeometry(
+            intersectionLocation.coordinates,
+            nearestRoadBearing,
+            5.0
+        )
+        val relativeDirections = getRelativeDirectionsPolygons(
+            geometry,
+            RelativeDirections.COMBINED
+        )
 
-    // And use the polygons to describe the roads at the intersection
-    val intersectionRoadNames = getIntersectionRoadNames(intersection, fovRoads)
-    return RoadsDescription(
-        nearestRoadInFoV,
-        userGeometry,
-        intersection,
-        getIntersectionRoadNamesRelativeDirections(
+        // And use the polygons to describe the roads at the intersection
+        val intersectionRoadNames = getIntersectionRoadNames(intersection, fovRoads)
+        return RoadsDescription(
+            nearestRoadInFoV,
+            userGeometry,
+            intersection,
+            getIntersectionRoadNamesRelativeDirections(
                 intersectionRoadNames,
                 intersection,
                 relativeDirections
+            )
         )
-    )
+    }
+    return RoadsDescription(nearestRoadInFoV, userGeometry)
 }
 
 /**
