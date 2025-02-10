@@ -12,10 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
@@ -51,12 +52,6 @@ class MainActivity : AppCompatActivity() {
         var orientation : Double,
     )
 
-    private var currentDeviceLocation by mutableStateOf<DeviceLocation?>(null)
-    private var displayableTileString by mutableStateOf<String?>(null)
-
-    //private var location by mutableStateOf<Location?>(null)
-    //private var tileXY by mutableStateOf<Pair<Int, Int>?>(null)
-
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =
         registerForActivityResult(
@@ -80,6 +75,21 @@ class MainActivity : AppCompatActivity() {
                 // No location access granted, service can't be started as it will crash
                 Toast.makeText(this, "Fine Location permission is required.", Toast.LENGTH_SHORT)
                     .show()
+            }
+        }
+    }
+
+    inner class AppLifecycleObserver : LifecycleEventObserver {
+        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+            when (event) {
+                Lifecycle.Event.ON_START -> {
+                    soundscapeServiceConnection.soundscapeService?.appInForeground(true)
+                }
+                Lifecycle.Event.ON_STOP -> {
+                    soundscapeServiceConnection.soundscapeService?.appInForeground(false)
+                }
+                else -> {
+                }
             }
         }
     }
@@ -142,7 +152,12 @@ class MainActivity : AppCompatActivity() {
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
                 if (it) {
-                    // The service has started, so parse the Intent
+                    // The service has started
+
+                    // Update the app state in the service
+                    this@MainActivity.lifecycle.addObserver(AppLifecycleObserver())
+
+                    // Parse any Intent
                     if(intent != null) {
                         if (intent.action != "") {
                             soundscapeIntents.parse(intent, this@MainActivity)

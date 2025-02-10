@@ -73,6 +73,9 @@ class GeoEngine {
     private var inVehicle = false
     private var inMotion = false
 
+    // Flag to indicate that the app is running on screen
+    var appInForeground = false
+
     private lateinit var autoCallout: AutoCallout
 
     private val streetPreview = StreetPreview()
@@ -80,7 +83,7 @@ class GeoEngine {
     private fun getCurrentUserGeometry(headingMode: UserGeometry.HeadingMode) : UserGeometry {
         return UserGeometry(
             location = locationProvider.get(),
-            phoneHeading = directionProvider.getCurrentDirection().toDouble(),
+            phoneHeading = directionProvider.getCurrentDirection(appInForeground),
             fovDistance = 50.0,
             inVehicle = inVehicle,
             inMotion = inMotion,
@@ -202,56 +205,64 @@ class GeoEngine {
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(PositionedString(noLocationString))
         } else {
-            // Run the code within the treeContext to protect it from changes to the trees whilst it's
-            // running.
-            results = runBlocking {
-                withContext(gridState.treeContext) {
-                    val list : MutableList<PositionedString> = mutableListOf()
-                    val location = locationProvider.get()
+            // Check if we have a valid heading
+            val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
+            val orientation = userGeometry.heading()
+            orientation?.let { heading ->
+                // Run the code within the treeContext to protect it from changes to the trees whilst it's
+                // running.
+                results = runBlocking {
+                    withContext(gridState.treeContext) {
 
-                    val roadGridFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS,
-                        location,
-                        100.0
-                    )
+                        val list: MutableList<PositionedString> = mutableListOf()
+                        val location = locationProvider.get()
 
-                    if (roadGridFeatureCollection.features.isNotEmpty()) {
-                        //Log.d(TAG, "Found roads in tile")
-                        val nearestRoad = getNearestRoad(location, gridState.getFeatureTree(TreeId.ROADS_AND_PATHS))
-                        if (nearestRoad != null) {
+                        val roadGridFeatureCollection = gridState.getFeatureCollection(
+                            TreeId.ROADS_AND_PATHS,
+                            location,
+                            100.0
+                        )
 
-                            val properties = nearestRoad.properties
-                            if (properties != null) {
-                                val orientation = directionProvider.getCurrentDirection()
-                                var roadName = properties["name"]
-                                if (roadName == null) {
-                                    roadName = properties["highway"]
-                                }
-                                val facingDirectionAlongRoad =
-                                    getCompassLabelFacingDirectionAlong(
-                                        localizedContext,
-                                        orientation.toInt(),
-                                        roadName.toString(),
-                                        inMotion,
-                                        inVehicle
-                                    )
-                                list.add(PositionedString(facingDirectionAlongRoad))
-                            } else {
-                                Log.e(TAG, "No properties found for road")
-                            }
-                        }
-                    } else {
-                        //Log.d(TAG, "No roads found in tile just give device direction")
-                        val orientation = directionProvider.getCurrentDirection()
-                        val facingDirection =
-                            getCompassLabelFacingDirection(
-                                localizedContext,
-                                orientation.toInt(),
-                                inMotion,
-                                inVehicle
+                        if (roadGridFeatureCollection.features.isNotEmpty()) {
+                            //Log.d(TAG, "Found roads in tile")
+                            val nearestRoad = getNearestRoad(
+                                location,
+                                gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
                             )
-                        results.add(PositionedString(facingDirection))
+                            if (nearestRoad != null) {
+
+                                val properties = nearestRoad.properties
+                                if (properties != null) {
+                                    var roadName = properties["name"]
+                                    if (roadName == null) {
+                                        roadName = properties["highway"]
+                                    }
+                                    val facingDirectionAlongRoad =
+                                        getCompassLabelFacingDirectionAlong(
+                                            localizedContext,
+                                            heading.toInt(),
+                                            roadName.toString(),
+                                            inMotion,
+                                            inVehicle
+                                        )
+                                    list.add(PositionedString(facingDirectionAlongRoad))
+                                } else {
+                                    Log.e(TAG, "No properties found for road")
+                                }
+                            }
+                        } else {
+                            //Log.d(TAG, "No roads found in tile just give device direction")
+                            val facingDirection =
+                                getCompassLabelFacingDirection(
+                                    localizedContext,
+                                    heading.toInt(),
+                                    inMotion,
+                                    inVehicle
+                                )
+                            results.add(PositionedString(facingDirection))
+                        }
+                        list
                     }
-                    list
                 }
             }
         }

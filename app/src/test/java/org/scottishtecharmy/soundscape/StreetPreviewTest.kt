@@ -177,7 +177,7 @@ class StreetPreviewTest {
                                 val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeature(
                                     userGeometry.location
                                 )
-                                val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading())
+                                val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading()!!)
                                 val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
                                 val geometry = UserGeometry(
                                     intersectionLocation.coordinates,

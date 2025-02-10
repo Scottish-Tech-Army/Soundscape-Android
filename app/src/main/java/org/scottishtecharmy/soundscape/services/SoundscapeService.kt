@@ -426,6 +426,11 @@ class SoundscapeService : MediaSessionService() {
         _streetPreviewFlow.value = StreetPreviewState(StreetPreviewEnabled.ON, geoEngine.streetPreviewGo())
     }
 
+    fun appInForeground(foreground: Boolean) {
+        // Set flag in GeoEngine so that it can adjust it's behaviour
+        geoEngine.appInForeground = foreground
+    }
+
     companion object {
         private const val TAG = "SoundscapeService"
 

@@ -232,7 +232,8 @@ fun removeDuplicateOsmIds(
 }
 
 fun getFovTriangle(userGeometry: UserGeometry) : Triangle {
-    val quadrant = Quadrant(userGeometry.heading())
+    val heading = userGeometry.heading() ?: 0.0
+    val quadrant = Quadrant(heading)
     return Triangle(userGeometry.location,
         getDestinationCoordinate(
             userGeometry.location,
@@ -1010,12 +1011,13 @@ fun getRelativeDirectionsPolygons(
     relativeDirectionType: RelativeDirections
 ): FeatureCollection {
 
+    val heading = userGeometry.heading() ?: 0.0
     val segments =
         when(relativeDirectionType){
-            RelativeDirections.COMBINED -> getCombinedDirectionSegments(userGeometry.heading())
-            RelativeDirections.INDIVIDUAL -> getIndividualDirectionSegments(userGeometry.heading())
-            RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionSegments(userGeometry.heading())
-            RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionSegments(userGeometry.heading())
+            RelativeDirections.COMBINED -> getCombinedDirectionSegments(heading)
+            RelativeDirections.INDIVIDUAL -> getIndividualDirectionSegments(heading)
+            RelativeDirections.AHEAD_BEHIND -> getAheadBehindDirectionSegments(heading)
+            RelativeDirections.LEFT_RIGHT -> getLeftRightDirectionSegments(heading)
         }
 
     return makeTriangles(segments, userGeometry)

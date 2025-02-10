@@ -27,14 +27,14 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
  * the phone direction.
  */
 class UserGeometry(val location: LngLatAlt = LngLatAlt(),
-                   var phoneHeading: Double = 0.0,
+                   var phoneHeading: Double? = null,
                    val fovDistance: Double = 50.0,
                    val inVehicle: Boolean = false,
                    val inMotion: Boolean = false,
                    val speed: Double = 0.0,
                    private val headingMode: HeadingMode = HeadingMode.Auto,
-                   private var travelHeading: Double = Double.NaN,
-                   private var headHeading: Double = Double.NaN,
+                   private var travelHeading: Double? = null,
+                   private var headHeading: Double? = null,
                    private val inStreetPreview: Boolean = false)
 {
     private val automotiveRangeMultiplier = 6.0
@@ -46,11 +46,11 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
         return distance
     }
 
-    fun heading() : Double {
+    fun heading() : Double? {
         when(headingMode) {
             HeadingMode.Auto -> {
-                if(speed > 0.2 && !travelHeading.isNaN())
-                    return travelHeading
+                if(speed > 0.2 && (travelHeading != null))
+                    return travelHeading!!
 
                 return phoneHeading
             }
