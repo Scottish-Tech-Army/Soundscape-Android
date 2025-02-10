@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,9 +27,20 @@ class EditRouteViewModel @Inject constructor(
             try {
                 val route = routesRepository.getRoute(routeName).firstOrNull()
                 route?.let {
+                    val markers = emptyList<LocationDescription>().toMutableList()
+                    for(waypoint in it.waypoints) {
+                        markers.add(
+                            LocationDescription(
+                                addressName = waypoint.addressName,
+                                location = waypoint.location?.location() ?: LngLatAlt(),
+                                fullAddress = waypoint.fullAddress
+                            )
+                        )
+                    }
                     _uiState.value = _uiState.value.copy(
                         name = it.name,
-                        description = it.description
+                        description = it.description,
+                        markers = markers
                     )
                 }
             } catch (e: Exception) {

@@ -152,7 +152,10 @@ fun HomeScreen(
         }
 
         composable(HomeRoutes.AddRoute.route) {
-            AddRouteScreenVM(navController = navController)
+            AddRouteScreenVM(
+                navController = navController,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
 
         composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->

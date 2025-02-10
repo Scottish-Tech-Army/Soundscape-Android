@@ -5,17 +5,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -32,16 +30,21 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addwaypointsscreen.AddWaypointsScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addwaypointsscreen.AddWaypointsUiState
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.editroutescreen.ReorderableLocationList
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun AddRouteScreenVM(
     navController: NavController,
+    modifier: Modifier,
     viewModel: AddRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     AddRouteScreen(
         navController,
+        modifier,
         uiState,
         onClearErrorMessage = { viewModel.clearErrorMessage() },
         onResetDoneAction = {
@@ -50,7 +53,6 @@ fun AddRouteScreenVM(
         },
         onNameChange = { viewModel.onNameChange(it) },
         onDescriptionChange = { viewModel.onDescriptionChange(it) },
-        onAddWaypointsClicked = { viewModel.onAddWaypointsClicked() },
         onDoneClicked = { viewModel.onDoneClicked() }
     )
 }
@@ -58,15 +60,16 @@ fun AddRouteScreenVM(
 @Composable
 fun AddRouteScreen(
     navController: NavController,
+    modifier: Modifier,
     uiState: AddRouteUiState,
     onClearErrorMessage: () -> Unit,
     onResetDoneAction: () -> Unit,
     onNameChange: (newText: String) -> Unit,
     onDescriptionChange: (newText: String) -> Unit,
-    onAddWaypointsClicked: () -> Unit,
     onDoneClicked: () -> Unit,
 ) {
     val context = LocalContext.current
+    val addWaypointDialog = remember { mutableStateOf(false) }
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
@@ -76,106 +79,120 @@ fun AddRouteScreen(
         }
     }
 
-    // Determine if the "Done" button should be visible
-    val showDoneButton = uiState.name.isNotBlank()
-
-    // Observe navigation and trigger it if necessary
-    LaunchedEffect(uiState.doneActionCompleted) {
-        if (uiState.doneActionCompleted) {
-            navController.navigate(HomeRoutes.MarkersAndRoutes.route) {
-                popUpTo(HomeRoutes.MarkersAndRoutes.route) {
-                    inclusive = true
-                }
-                launchSingleTop = true
-            }
-            onResetDoneAction()
-            Toast.makeText(context, "Route added successfully", Toast.LENGTH_SHORT).show()
-        }
+    if(addWaypointDialog.value) {
+        val waypointState = AddWaypointsUiState(
+            markers = uiState.markers,
+            route = uiState.routeMembers)
+        AddWaypointsScreen(
+            waypointState,
+            onDone = {
+                addWaypointDialog.value = false
+            },
+            onCancel = { addWaypointDialog.value = false},
+            modifier = modifier
+        )
     }
+    else {
+        // Determine if the "Done" button should be visible
+        val showDoneButton = uiState.name.isNotBlank()
 
-    Scaffold(
-        topBar = {
-            CustomAppBar(
-                title = stringResource(R.string.route_detail_action_create),
-                navigationButtonTitle = stringResource(R.string.general_alert_cancel),
-                onNavigateUp = { navController.popBackStack()},
-            )
-        },
-        content = { padding ->
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
-                    .padding(padding)
-                    .padding(16.dp)
-            ) {
-                Text(
-                    stringResource(R.string.route_no_waypoints_hint_1),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.fillMaxWidth().padding(top = 15.dp),
-                )
-                Text(
-                    modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
-                    text = stringResource(R.string.markers_sort_button_sort_by_name),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.surfaceBright
-                )
-                CustomTextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = uiState.name,
-                    onValueChange = onNameChange
-                )
-                Text(
-                    modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
-                    text = stringResource(R.string.route_detail_edit_description),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.surfaceBright
-                )
-                CustomTextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = uiState.description,
-                    onValueChange = onDescriptionChange
-                )
-
-                HorizontalDivider(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    thickness = 1.dp
-                )
-                CustomButton(
-                    Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 20.dp, bottom = 10.dp),
-                    onClick = onAddWaypointsClicked,
-                    buttonColor = MaterialTheme.colorScheme.onPrimary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary,
-                    shape = RoundedCornerShape(10.dp),
-                    text = stringResource(R.string.route_detail_edit_waypoints_button),
-                    textStyle = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold,
-                )
-                CustomButton(
-                    Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                        .padding(top = 20.dp, bottom = 10.dp),
-                    onClick = onDoneClicked,
-                    buttonColor = MaterialTheme.colorScheme.onPrimary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary,
-                    shape = RoundedCornerShape(10.dp),
-                    text = stringResource(R.string.general_alert_done),
-                    textStyle = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold,
-                )
-                HorizontalDivider(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    thickness = 1.dp,
-                )
-                // TODO fix the formatting/alignment for the addition of the original iOS text below
+        // Observe navigation and trigger it if necessary
+        LaunchedEffect(uiState.doneActionCompleted) {
+            if (uiState.doneActionCompleted) {
+                navController.navigate(HomeRoutes.MarkersAndRoutes.route) {
+                    popUpTo(HomeRoutes.MarkersAndRoutes.route) {
+                        inclusive = true
+                    }
+                    launchSingleTop = true
+                }
+                onResetDoneAction()
+                Toast.makeText(context, "Route added successfully", Toast.LENGTH_SHORT).show()
             }
         }
-    )
+
+        Scaffold(
+            modifier = modifier,
+            topBar = {
+                CustomAppBar(
+                    title = stringResource(R.string.route_detail_action_create),
+                    navigationButtonTitle = stringResource(R.string.general_alert_cancel),
+                    onNavigateUp = { navController.popBackStack() },
+                )
+            },
+            bottomBar = {
+                Column(
+                    modifier = Modifier
+                ) {
+                    CustomButton(
+                        Modifier
+                            .fillMaxWidth(),
+                        onClick = { addWaypointDialog.value = true },
+                        buttonColor = MaterialTheme.colorScheme.onPrimary,
+                        contentColor = MaterialTheme.colorScheme.onSecondary,
+                        shape = RoundedCornerShape(10.dp),
+                        text = stringResource(R.string.route_detail_edit_waypoints_button),
+                        textStyle = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    CustomButton(
+                        Modifier
+                            .fillMaxWidth(),
+                        onClick = onDoneClicked,
+                        buttonColor = MaterialTheme.colorScheme.onPrimary,
+                        contentColor = MaterialTheme.colorScheme.onSecondary,
+                        shape = RoundedCornerShape(10.dp),
+                        text = stringResource(R.string.general_alert_done),
+                        textStyle = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
+            },
+            content = { padding ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        .padding(8.dp)
+                ) {
+                    Text(
+                        stringResource(R.string.route_no_waypoints_hint_1),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                    )
+                    Text(
+                        modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+                        text = stringResource(R.string.markers_sort_button_sort_by_name),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.surfaceBright
+                    )
+                    CustomTextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = uiState.name,
+                        onValueChange = onNameChange
+                    )
+                    Text(
+                        modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+                        text = stringResource(R.string.route_detail_edit_description),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.surfaceBright
+                    )
+                    CustomTextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = uiState.description,
+                        onValueChange = onDescriptionChange
+                    )
+
+                    // Display the list of routes
+                    ReorderableLocationList(
+                        locations = uiState.routeMembers
+                    )
+                }
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
@@ -184,6 +201,7 @@ fun AddRouteScreenPreview() {
     SoundscapeTheme {
         AddRouteScreen(
             navController = rememberNavController(),
+            modifier = Modifier,
             AddRouteUiState(
                 name = "Route one",
                 description = "Description of route one",
@@ -193,7 +211,6 @@ fun AddRouteScreenPreview() {
             onResetDoneAction = {},
             onNameChange = {},
             onDescriptionChange = {},
-            onAddWaypointsClicked = {},
             onDoneClicked = {},
         )
     }
