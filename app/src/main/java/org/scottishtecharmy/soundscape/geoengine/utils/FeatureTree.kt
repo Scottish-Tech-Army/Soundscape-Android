@@ -181,6 +181,10 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         lonLat: Point,
         distance: Double
     ): MutableIterable<Entry<Feature, Geometry?>>? {
+
+        // This should not be called if the tree is null
+        assert(tree != null)
+
         // First we need to calculate an enclosing lat long rectangle for this
         // distance then we refine on the exact distance
         val from = LngLatAlt(lonLat.x(), lonLat.y())
@@ -197,6 +201,10 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         distance: Double,
         maxCount: Int
     ): MutableIterable<Entry<Feature, Geometry?>>? {
+
+        // This should not be called if the tree is null
+        assert(tree != null)
+
         val from = LngLatAlt(lonLat.x(), lonLat.y())
         return Iterables.filter(tree!!.nearest(lonLat, distance, maxCount))
         { entry ->
@@ -259,7 +267,6 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 distance,
                 maxCount))
 
-
             // Deduplicate returned entries and add them to a list ready to sort by distance
             val deduplicationSet = mutableSetOf<Feature>()
             data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
@@ -289,12 +296,17 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * that is also within distance.
      */
     fun getNearestFeature(location: LngLatAlt, distance: Double = Double.POSITIVE_INFINITY): Feature? {
-        val distanceResults = Iterables.toList(nearestWithinDistance(
-            Geometries.pointGeographic(location.longitude, location.latitude),
-            distance,
-            1))
+        if(tree != null) {
+            val distanceResults = Iterables.toList(
+                nearestWithinDistance(
+                    Geometries.pointGeographic(location.longitude, location.latitude),
+                    distance,
+                    1
+                )
+            )
 
-        for (feature in distanceResults) return feature.value()
+            for (feature in distanceResults) return feature.value()
+        }
 
         return null
     }
@@ -393,6 +405,9 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         triangle: Triangle
     ): MutableIterable<Entry<Feature, Geometry?>>? {
 
+        // This should not be called if the tree is null
+        assert(tree != null)
+
         // First we need to calculate an enclosing lat long rectangle for this triangle
         // then we refine on the exact contents
         val bounds: Rectangle = createBoundingSquareContainingTriangle(triangle)
@@ -410,32 +425,35 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
         val results = FeatureCollection()
 
-        // First find the features within the triangle
-        val resultsWithinTriangle = searchWithinTriangle(triangle) ?: return results
+        if(tree != null) {
+            // First find the features within the triangle
+            val resultsWithinTriangle = searchWithinTriangle(triangle) ?: return results
 
-        // Sort the results based on the distance. The sortedBy algorithm calls the distance
-        // calculation every time it compares values in the list and as a result is fairly
-        // inefficient. We could either:
-        //
-        //  1. Cache calculations - this could be done inside the Feature, and as we are single
-        //     threaded when using FeatureTree this will be okay, though slightly ugly.
-        //  2. Calculate the distances in advance and sort those instead. We'll take this approach.
-        //
-        data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
-        val unsortedList = emptyList<EntryWithDistance>().toMutableList()
-        for(entry in resultsWithinTriangle) {
-            unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, triangle.origin)))
-        }
-        val sortedList = unsortedList.sortedBy { entryWithinDistance->
-            entryWithinDistance.distance
-        }
+            // Sort the results based on the distance. The sortedBy algorithm calls the distance
+            // calculation every time it compares values in the list and as a result is fairly
+            // inefficient. We could either:
+            //
+            //  1. Cache calculations - this could be done inside the Feature, and as we are single
+            //     threaded when using FeatureTree this will be okay, though slightly ugly.
+            //  2. Calculate the distances in advance and sort those instead. We'll take this approach.
+            //
+            data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
 
-        // Move the sorted items into a FeatureCollection to return, breaking out if we reach the
-        // maximum number requested.
-        for((index, item) in sortedList.withIndex()) {
-            if(index >= maxCount)
-                break
-            results.addFeature(item.entry.value())
+            val unsortedList = emptyList<EntryWithDistance>().toMutableList()
+            for (entry in resultsWithinTriangle) {
+                unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, triangle.origin)))
+            }
+            val sortedList = unsortedList.sortedBy { entryWithinDistance ->
+                entryWithinDistance.distance
+            }
+
+            // Move the sorted items into a FeatureCollection to return, breaking out if we reach the
+            // maximum number requested.
+            for ((index, item) in sortedList.withIndex()) {
+                if (index >= maxCount)
+                    break
+                results.addFeature(item.entry.value())
+            }
         }
 
         return results
