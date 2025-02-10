@@ -170,6 +170,18 @@ class AudioEngineTest {
 //        tidyUp(audioEngine)
 //    }
 
+    @Test
+    fun earconPosition() {
+        val audioEngine = initializeAudioEngine()
+
+        audioEngine.updateGeometry(1.0, 1.0, 0.0)
+        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_POI, 1.0, 2.0)
+        Thread.sleep(3000)
+
+        tidyUp(audioEngine)
+    }
+
+
     companion object {
         const val TAG : String = "AudioTestEngine"
         init {

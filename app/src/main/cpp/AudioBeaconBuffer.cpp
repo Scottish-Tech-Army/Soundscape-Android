@@ -173,7 +173,7 @@ void TtsAudioSource::CreateSound(FMOD::System *system, FMOD::Sound **sound)
     extra_info.userdata = this;
 
     auto result = system->createSound(nullptr,
-                                      FMOD_OPENUSER | FMOD_LOOP_OFF | FMOD_3D |
+                                      FMOD_OPENUSER | FMOD_LOOP_NORMAL | FMOD_3D |
                                       FMOD_CREATESTREAM,
                                       &extra_info,
                                       sound);
@@ -256,23 +256,23 @@ EarconSource::EarconSource(PositionedAudio *parent, std::string &asset)
 {
 }
 
-
-EarconSource::~EarconSource()
-{
-    m_pSound->release();
-}
-
-void EarconSource::CreateSound(FMOD::System *system, FMOD::Sound **sound)
-{
-    auto result = system->createSound(m_Asset.c_str(), FMOD_DEFAULT, nullptr, &m_pSound);
+void EarconSource::CreateSound(FMOD::System *system, FMOD::Sound **sound) {
+    auto result = system->createSound(
+            m_Asset.c_str(),
+            FMOD_DEFAULT | FMOD_3D,
+            nullptr,
+            sound);
     ERROR_CHECK(result);
-    system->playSound(m_pSound, nullptr, false, nullptr);
+    // Remember sound for checking for completion
+    m_pSound = *sound;
 }
 
 void EarconSource::UpdateGeometry(double degrees_off_axis)
 {
-    FMOD_OPENSTATE state;
-    m_pSound->getOpenState(&state, nullptr, nullptr, nullptr);
-    if(state == FMOD_OPENSTATE_READY)
-        m_pParent->Eof();
+    if(m_pSound != nullptr) {
+        FMOD_OPENSTATE state;
+        m_pSound->getOpenState(&state, nullptr, nullptr, nullptr);
+        if (state == FMOD_OPENSTATE_READY)
+            m_pParent->Eof();
+    }
 }

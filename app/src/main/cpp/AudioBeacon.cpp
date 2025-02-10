@@ -41,20 +41,22 @@ void PositionedAudio::InitFmodSound() {
                                            5000.0f * FMOD_DISTANCE_FACTOR);
     ERROR_CHECK(result);
 
-    result = m_pSound->setMode(FMOD_LOOP_NORMAL);
-    ERROR_CHECK(result);
-
     {
-        result = m_pSystem->playSound(m_pSound, nullptr, false, &m_pChannel);
+        // Create paused sound channel
+        result = m_pSystem->playSound(m_pSound, nullptr, true, &m_pChannel);
         ERROR_CHECK(result);
 
+        // Adjust position of channel in 3D space
         if(!isnan(m_Latitude) && !isnan(m_Longitude)) {
             // Only set the 3D position if the latitude and longitude are valid
             FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(m_Longitude, m_Latitude);
             FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
             result = m_pChannel->set3DAttributes(&pos, &vel);
         }
+        ERROR_CHECK(result);
 
+        // Start the channel playing
+        result = m_pChannel->setPaused(false);
         ERROR_CHECK(result);
     }
 }
