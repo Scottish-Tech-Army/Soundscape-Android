@@ -93,8 +93,7 @@ namespace soundscape {
     class EarconSource : public BeaconAudioSource {
     public:
         EarconSource(PositionedAudio *parent, std::string &asset);
-
-        ~EarconSource() override;
+        ~EarconSource() override = default;
 
         void CreateSound(FMOD::System *system, FMOD::Sound **sound) override;
         void UpdateGeometry(double degrees_off_axis) override;
