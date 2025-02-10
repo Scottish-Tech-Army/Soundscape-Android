@@ -347,30 +347,36 @@ class SoundscapeService : MediaSessionService() {
 
     fun myLocation() {
         coroutineScope.launch {
-            audioEngine.clearTextToSpeechQueue()
             val results = geoEngine.myLocation()
-            speakCallout(results)
+            if(results.isNotEmpty()) {
+                audioEngine.clearTextToSpeechQueue()
+                speakCallout(results, true)
+            }
         }
-    }
-
-    suspend fun searchResult(searchString: String): ArrayList<Feature>? {
-        return geoEngine.searchResult(searchString)?.features
     }
 
     fun whatsAroundMe() {
         coroutineScope.launch {
-            audioEngine.clearTextToSpeechQueue()
             val results = geoEngine.whatsAroundMe()
-            speakCallout(results)
+            if(results.isNotEmpty()) {
+                audioEngine.clearTextToSpeechQueue()
+                speakCallout(results, true)
+            }
         }
     }
 
     fun aheadOfMe() {
         coroutineScope.launch {
-            audioEngine.clearTextToSpeechQueue()
             val results = geoEngine.aheadOfMe()
-            speakCallout(results)
+            if(results.isNotEmpty()) {
+                audioEngine.clearTextToSpeechQueue()
+                speakCallout(results, true)
+            }
         }
+    }
+
+    suspend fun searchResult(searchString: String): ArrayList<Feature>? {
+        return geoEngine.searchResult(searchString)?.features
     }
 
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
@@ -393,8 +399,8 @@ class SoundscapeService : MediaSessionService() {
         return (depth > 1)
     }
 
-    fun speakCallout(callouts: List<PositionedString>) {
-        audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER)
+    fun speakCallout(callouts: List<PositionedString>, addModeEarcon: Boolean) {
+        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER)
         for(result in callouts) {
             if(result.location == null) {
                 if(result.earcon != null) {
@@ -415,7 +421,7 @@ class SoundscapeService : MediaSessionService() {
                 )
             }
         }
-        audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT)
+        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT)
     }
 
     /**
