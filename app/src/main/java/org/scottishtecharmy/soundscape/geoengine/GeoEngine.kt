@@ -271,14 +271,19 @@ class GeoEngine {
 
     suspend fun searchResult(searchString: String) =
         withContext(Dispatchers.IO) {
-            return@withContext PhotonSearchProvider
-                .getInstance()
-                .getSearchResults(
-                    searchString = searchString,
-                    latitude = locationProvider.getCurrentLatitude(),
-                    longitude = locationProvider.getCurrentLongitude(),
-                ).execute()
-                .body()
+            try {
+                return@withContext PhotonSearchProvider
+                    .getInstance()
+                    .getSearchResults(
+                        searchString = searchString,
+                        latitude = locationProvider.getCurrentLatitude(),
+                        longitude = locationProvider.getCurrentLongitude(),
+                    ).execute()
+                    .body()
+            } catch (e: Exception) {
+                Log.e(TAG, "Error getting search results:", e)
+                return@withContext null
+            }
         }
 
     fun whatsAroundMe() : List<PositionedString> {
@@ -530,13 +535,18 @@ class GeoEngine {
 
     private suspend fun reverseGeocodeResult(location: LngLatAlt) =
         withContext(Dispatchers.IO) {
-            return@withContext PhotonSearchProvider
-                .getInstance()
-                .reverseGeocodeLocation(
-                    latitude = location.latitude,
-                    longitude = location.longitude
-                ).execute()
-                .body()
+            try {
+                return@withContext PhotonSearchProvider
+                    .getInstance()
+                    .reverseGeocodeLocation(
+                        latitude = location.latitude,
+                        longitude = location.longitude
+                    ).execute()
+                    .body()
+            } catch(e: Exception) {
+                Log.e(TAG, "Error getting reverse geocode result:", e)
+                return@withContext null
+            }
         }
 
     /**
