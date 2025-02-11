@@ -2,40 +2,35 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
-/** UserGeometry contains all of the data relating to the location and motion of the user. It's
- * aim is to reduces the number of arguments to many of the API calls and to concentrate some of
- * the logic around heading choice.
- *
- * @param phoneHeading is the direction in which the phone is pointing
- * @param travelHeading is the direction in which the phone is moving
- * @param headHeading is the direction in which the head tracking is pointing
- *
- * On iOS there were two types of heading prioritization:
- *  collection: course (travel?), user (phone?), device (head?)
- *  presentation:user (phone?), course (travel?), device (head?)
- *
- * It's very hard to follow the Heading code, but because head tracking isn't always (usually)
- * present and I think `user` must be the phone direction and `device` the head tracking
- * direction.
- *
- *  presentationHeading is used for audio beacons. This makes sense - it's the direction of the
- *  phone that is used, though I'm surprised it ever uses directly of travel.
- *  collectionHeading is used for intersections - the direction of travel is most significant
- *  here.
- *
- * However, if the user has thrown their phone into their bag, we need to detect this and ignore
- * the phone direction.
- */
 class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    var phoneHeading: Double? = null,
                    val fovDistance: Double = 50.0,
                    val inVehicle: Boolean = false,
                    val inMotion: Boolean = false,
                    val speed: Double = 0.0,
-                   private val headingMode: HeadingMode = HeadingMode.Auto,
+                   private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
                    private var headHeading: Double? = null,
                    private val inStreetPreview: Boolean = false)
+/**
+ * UserGeometry contains all of the data relating to the location and motion of the user. It's
+ * aim is to reduces the number of arguments to many of the API calls and to concentrate some of
+ * the logic around heading choice.
+ *
+ * @param phoneHeading is the direction in which the phone is pointing
+ * @param travelHeading is the direction in which the phone is moving
+ * @param headHeading is the direction in which the head tracking is pointing (not currently implemented)
+ *
+ * The heading prioritization comes from iOS - see https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/364
+ *
+ *  collection - used for calculating callouts, two possibilities:
+ *      course (travel), user (head), device (phone), or
+ *      user (head), device (phone), course (travel)
+ *
+ *  presentation - user for audio positioning:
+ *      user (head), course (travel), device (phone)
+ *
+ */
 {
     private val automotiveRangeMultiplier = 6.0
     private val streetPreviewRangeIncrement = 10.0
@@ -46,17 +41,52 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
         return distance
     }
 
+    fun getTravelHeading() : Double? {
+        if(speed > 0.2 && (travelHeading != null))
+            return travelHeading
+        return null
+    }
+
     fun heading() : Double? {
         when(headingMode) {
-            HeadingMode.Auto -> {
-                if(speed > 0.2 && (travelHeading != null))
-                    return travelHeading!!
+            // Priority: travel, head, phone
+            HeadingMode.CourseAuto -> {
+                var heading = getTravelHeading()
+                if(heading == null) {
+                    heading = headHeading
+                    if (heading == null) {
+                        heading = phoneHeading
+                    }
+                }
+                return heading
+            }
 
-                return phoneHeading
+            // Priority: Head, phone, travel
+            HeadingMode.HeadAuto -> {
+                var heading = headHeading
+                if(heading == null) {
+                    heading = phoneHeading
+                    if (heading == null) {
+                        heading = getTravelHeading()
+                    }
+                }
+                return heading
             }
             HeadingMode.Phone -> return phoneHeading
             HeadingMode.Travel -> return travelHeading
         }
+    }
+
+    fun presentationHeading() : Double? {
+        // Priority: Head, travel, phone
+        var heading = headHeading
+        if(heading == null) {
+            heading = getTravelHeading()
+            if (heading == null) {
+                heading = phoneHeading
+            }
+        }
+        return heading
     }
 
     /**
@@ -103,7 +133,8 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
     }
 
     enum class HeadingMode {
-        Auto,
+        CourseAuto,
+        HeadAuto,
         Phone,
         Travel
     }

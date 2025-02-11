@@ -365,10 +365,15 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         return true
     }
 
-    override fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double)
+    override fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?)
     {        synchronized(engineMutex) {
             if(engineHandle != 0L)
-                updateGeometry(engineHandle, listenerLatitude, listenerLongitude, listenerHeading)
+                updateGeometry(
+                    engineHandle,
+                    listenerLatitude,
+                    listenerLongitude,
+                    listenerHeading ?: 50000.0
+                )
         }
     }
     override fun setBeaconType(beaconType: String)

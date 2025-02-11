@@ -4,18 +4,22 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.location.Location
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.ActivityTransition
 import com.google.android.gms.location.ActivityTransitionEvent
 import com.google.android.gms.location.DetectedActivity
+import com.google.android.gms.location.DeviceOrientation
 import com.squareup.otto.Subscribe
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
@@ -40,6 +44,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
@@ -57,6 +62,7 @@ class GeoEngine {
 
     // Location update job
     private var locationMonitoringJob: Job? = null
+    private var audioEngineUpdateJob: Job? = null
 
     val gridState = if(SOUNDSCAPE_TILE_BACKEND) SoundscapeBackendGridState() else ProtomapsGridState()
 
@@ -138,6 +144,7 @@ class GeoEngine {
         getOttoBus().unregister(this)
 
         locationMonitoringJob?.cancel()
+        audioEngineUpdateJob?.cancel()
 
         gridState.stop()
         locationProvider.destroy()
@@ -158,6 +165,20 @@ class GeoEngine {
 
         return enabledCategories
     }
+
+    private fun updateAudioEngineGeometry(
+        soundscapeService: SoundscapeService,
+        userGeometry: UserGeometry
+    ) {
+        // Send the update to the audio engine. This affects the direction and sound
+        // of the audio beacon.
+        soundscapeService.audioEngine.updateGeometry(
+            userGeometry.location.latitude,
+            userGeometry.location.longitude,
+            userGeometry.presentationHeading()
+        )
+    }
+
     private fun startMonitoringLocation(soundscapeService: SoundscapeService) {
         Log.e(TAG, "startTileGridService")
         locationMonitoringJob?.cancel()
@@ -183,12 +204,62 @@ class GeoEngine {
                     // falling back to use the phone direction.
                     if(!soundscapeService.isAudioEngineBusy()) {
                         val callouts =
-                            autoCallout.updateLocation(getCurrentUserGeometry(UserGeometry.HeadingMode.Auto), gridState)
+                            autoCallout.updateLocation(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto), gridState)
                         if (callouts.isNotEmpty()) {
                             // Tell the service that we've got some callouts to tell the user about
                             soundscapeService.speakCallout(callouts, false)
                         }
                     }
+                }
+            }
+        }
+
+        // This job collects the incoming orientation and location flows, combines them into a
+        // UserGeometry and uses it to update the audio engine. If no flow change arrives within
+        // 100ms, then it updates the audio engine with the last values received.
+        audioEngineUpdateJob?.cancel()
+        audioEngineUpdateJob = coroutineScope.launch {
+            var lastGeometry : UserGeometry? = null
+            var phoneHeldFlat = false
+            var lastPhoneHeading : Double? = null
+            while(true) {
+                val geometry = withTimeoutOrNull(100) {
+                    combine(
+                        directionProvider.orientationFlow,
+                        locationProvider.locationFlow,
+
+                        ) { orientation: DeviceOrientation?, location: Location? ->
+
+                        phoneHeldFlat = phoneHeldFlat(orientation)
+                        lastPhoneHeading = orientation?.headingDegrees?.toDouble()
+                        val phoneHeading =
+                            if (appInForeground or phoneHeldFlat)
+                                lastPhoneHeading
+                            else
+                                null
+
+                        UserGeometry(
+                            location = LngLatAlt(location?.longitude ?: 0.0, location?.latitude ?: 0.0),
+                            phoneHeading = phoneHeading,
+                            speed = location?.speed?.toDouble() ?: 0.0,
+                            travelHeading = location?.bearing?.toDouble()
+                        )
+                    }.collect { geometry ->
+                        lastGeometry = geometry
+                        updateAudioEngineGeometry(soundscapeService, geometry)
+                    }
+                }
+                if(geometry == null) {
+                    // Timeout
+                    lastGeometry?.let { last ->
+                        // We may need to overwrite the phone heading if the phone has been locked
+                        // or unlocked but with no heading update.
+                        if (appInForeground or phoneHeldFlat)
+                            last.phoneHeading = lastPhoneHeading
+                        else
+                            last.phoneHeading = null
+
+                        updateAudioEngineGeometry(soundscapeService, last) }
                 }
             }
         }
@@ -206,7 +277,7 @@ class GeoEngine {
             results.add(PositionedString(noLocationString))
         } else {
             // Check if we have a valid heading
-            val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Auto)
+            val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
             val orientation = userGeometry.heading()
             orientation?.let { heading ->
                 // Run the code within the treeContext to protect it from changes to the trees whilst it's
@@ -305,7 +376,7 @@ class GeoEngine {
             results = runBlocking {
                 withContext(gridState.treeContext) {
 
-                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Auto)
+                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
 
                     // Direction order is: behind(0) left(1) ahead(2) right(3)
                     val featuresByDirection: Array<Feature?> = arrayOfNulls(4)
@@ -403,7 +474,7 @@ class GeoEngine {
                     val list: MutableList<PositionedString> = mutableListOf()
 
                     // get device direction
-                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
+                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto)
 
                     // Detect if there is a road or an intersection in the FOV
                     val roadsDescription = getRoadsDescriptionFromFov(

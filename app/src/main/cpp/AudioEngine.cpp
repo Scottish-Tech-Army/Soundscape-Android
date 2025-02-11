@@ -223,6 +223,16 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                                 double listenerHeading) {
         const FMOD_VECTOR up = {0.0f, 1.0f, 0.0f};
 
+        //
+        // What action do we take if we have no heading available? (i.e. locked phone not laying flat)
+        //
+        // Beacons need to be 'dim', but we also need relative positioning of TTS so that we can at
+        // least do some of the callouts. The iOS docs suggest that My Location, Nearby Markers,
+        // Around Me and  Ahead of Me should all still play out.
+        //
+        if(listenerHeading > 10000.0)
+            listenerHeading = NAN;
+
         // store pos for next time
         m_LastLatitude = listenerLatitude;
         m_LastLongitude = listenerLongitude;
