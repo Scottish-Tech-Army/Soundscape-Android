@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
@@ -58,7 +59,9 @@ class RoutePlayer(val service: SoundscapeService) {
             val location = route.waypoints[index].location!!
 
             service.audioEngine.clearTextToSpeechQueue()
-            service.audioEngine.createTextToSpeech("Move to marker ${index+1}, ${route.waypoints[index].addressName}", location.latitude, location.longitude)
+            service.audioEngine.createTextToSpeech(
+                "Move to marker ${index+1}, ${route.waypoints[index].addressName}",
+                AudioType.LOCALIZED, location.latitude, location.longitude, 0.0)
 
             service.createBeacon(LngLatAlt(location.latitude, location.longitude))
 }

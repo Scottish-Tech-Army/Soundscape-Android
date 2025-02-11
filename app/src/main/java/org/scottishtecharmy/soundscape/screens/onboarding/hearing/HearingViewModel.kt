@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.onboarding.hearing
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import javax.inject.Inject
 
@@ -16,7 +17,7 @@ class HearingViewModel @Inject constructor(private val audioEngine : NativeAudio
         //  We should consider another way of doing this.
         audioEngine.clearTextToSpeechQueue()
         audioEngine.updateGeometry(0.0, 0.0,0.0)
-        audioEngine.createTextToSpeech(speechText)
+        audioEngine.createTextToSpeech(speechText, AudioType.LOCALIZED)
     }
 
     fun silenceSpeech() {

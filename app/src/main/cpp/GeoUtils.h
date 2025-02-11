@@ -25,6 +25,30 @@ inline double fromRadians(double degrees)
     return degrees * RADIANS_TO_DEGREES;
 }
 
+inline void getDestinationCoordinate(
+        double start_lat,
+        double start_lon,
+        double bearing,
+        double *end_lat,
+        double *end_lon) {
+
+    auto lat1 = toRadians(start_lat);
+    auto lon1 = toRadians(start_lon);
+
+    auto d = 10000 / EARTH_RADIUS_METERS; // Distance in radians for 10km away
+
+    auto bearingRadians = toRadians(bearing);
+    auto lat2 = asin(
+        sin(lat1) * cos(d) +
+        cos(lat1) * sin(d) * cos(bearingRadians));
+    auto lon2 = lon1 + atan2(
+        sin(bearingRadians) * sin(d) * cos(lat1),
+        cos(d) - sin(lat1) * sin(*end_lat));
+
+    *end_lat = fromRadians(lat2);
+    *end_lon = fromRadians(lon2);
+}
+
 inline double bearingFromTwoPoints(
         double lat1, double lon1,
         double lat2, double lon2)

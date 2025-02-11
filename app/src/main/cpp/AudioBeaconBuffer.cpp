@@ -86,7 +86,7 @@ BeaconBufferGroup::~BeaconBufferGroup()
     TRACE("~BeaconBufferGroup %p", this);
 }
 
-void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound)
+void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode)
 {
     TRACE("BeaconBufferGroup CreateSound %p", this);
 
@@ -102,7 +102,7 @@ void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound)
     extra_info.userdata = this;
 
     auto result = system->createSound(nullptr,
-                                      FMOD_OPENUSER | FMOD_LOOP_NORMAL | FMOD_3D |
+                                      FMOD_OPENUSER | FMOD_LOOP_NORMAL | mode.Get3DFlags() |
                                       FMOD_CREATESTREAM,
                                       &extra_info,
                                       sound);
@@ -156,7 +156,7 @@ TtsAudioSource::~TtsAudioSource()
     close(m_TtsSocket);
 }
 
-void TtsAudioSource::CreateSound(FMOD::System *system, FMOD::Sound **sound)
+void TtsAudioSource::CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode)
 {
     FMOD_CREATESOUNDEXINFO extra_info;
 
@@ -173,7 +173,7 @@ void TtsAudioSource::CreateSound(FMOD::System *system, FMOD::Sound **sound)
     extra_info.userdata = this;
 
     auto result = system->createSound(nullptr,
-                                      FMOD_OPENUSER | FMOD_LOOP_NORMAL | FMOD_3D |
+                                      FMOD_OPENUSER | FMOD_LOOP_NORMAL | mode.Get3DFlags() |
                                       FMOD_CREATESTREAM,
                                       &extra_info,
                                       sound);
@@ -256,10 +256,10 @@ EarconSource::EarconSource(PositionedAudio *parent, std::string &asset)
 {
 }
 
-void EarconSource::CreateSound(FMOD::System *system, FMOD::Sound **sound) {
+void EarconSource::CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) {
     auto result = system->createSound(
             m_Asset.c_str(),
-            FMOD_DEFAULT | FMOD_3D,
+            FMOD_DEFAULT | mode.Get3DFlags(),
             nullptr,
             sound);
     ERROR_CHECK(result);

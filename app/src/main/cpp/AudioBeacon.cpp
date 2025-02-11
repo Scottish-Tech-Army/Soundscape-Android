@@ -7,13 +7,10 @@
 #include "AudioEngine.h"
 using namespace soundscape;
 
-PositionedAudio::PositionedAudio(AudioEngine *engine,
-                                 double latitude, double longitude)
-                :m_Eof(false)
+PositionedAudio::PositionedAudio(AudioEngine *engine, PositioningMode mode)
+                : m_Mode(mode),
+                  m_Eof(false)
 {
-    m_Latitude = latitude;
-    m_Longitude = longitude;
-
     m_pEngine = engine;
     m_pSystem = engine->GetFmodSystem();
 }
@@ -33,7 +30,7 @@ PositionedAudio::~PositionedAudio() {
 void PositionedAudio::InitFmodSound() {
     FMOD_RESULT result;
 
-    m_pAudioSource->CreateSound(m_pSystem, &m_pSound);
+    m_pAudioSource->CreateSound(m_pSystem, &m_pSound, m_Mode);
     if(!m_pSound)
         return;
 
@@ -46,14 +43,42 @@ void PositionedAudio::InitFmodSound() {
         result = m_pSystem->playSound(m_pSound, nullptr, true, &m_pChannel);
         ERROR_CHECK(result);
 
-        // Adjust position of channel in 3D space
-        if(!isnan(m_Latitude) && !isnan(m_Longitude)) {
-            // Only set the 3D position if the latitude and longitude are valid
-            FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(m_Longitude, m_Latitude);
-            FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
-            result = m_pChannel->set3DAttributes(&pos, &vel);
+        switch(m_Mode.m_Type) {
+            default:
+            case PositioningMode::STANDARD:
+                break;
+            case PositioningMode::LOCALIZED:
+                if(!isnan(m_Mode.m_Latitude) && !isnan(m_Mode.m_Longitude)) {
+                    // Only set the 3D position if the latitude and longitude are valid
+                    FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(m_Mode.m_Longitude, m_Mode.m_Latitude);
+                    FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
+                    result = m_pChannel->set3DAttributes(&pos, &vel);
+                }
+                ERROR_CHECK(result);
+                break;
+            case PositioningMode::RELATIVE: {
+                // The position is relative, so use the heading
+                auto radians = toRadians(m_Mode.m_Heading);
+                auto pos = FMOD_VECTOR{(float)sin(radians), 0.0f, (float)cos(radians)};
+                FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
+                result = m_pChannel->set3DAttributes(&pos, &vel);
+                ERROR_CHECK(result);
+                break;
+            }
+            case PositioningMode::COMPASS: {
+                // Make up a position using the current position and the heading
+                double heading, current_latitude, current_longitude;
+                m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
+                double lat, lon;
+                getDestinationCoordinate(current_latitude, current_longitude, m_Mode.m_Heading, &lat, &lon);
+
+                FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(lon, lat);
+                FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
+                result = m_pChannel->set3DAttributes(&pos, &vel);
+                ERROR_CHECK(result);
+                break;
+            }
         }
-        ERROR_CHECK(result);
 
         // Start the channel playing
         result = m_pChannel->setPaused(false);
@@ -82,7 +107,7 @@ double PositionedAudio::GetHeadingOffset(double heading, double latitude, double
     // Calculate how far off axis the beacon is given this new heading
 
     // Calculate the beacon heading
-    auto beacon_heading = bearingFromTwoPoints(m_Latitude, m_Longitude, latitude, longitude);
+    auto beacon_heading = bearingFromTwoPoints(m_Mode.m_Latitude, m_Mode.m_Longitude, latitude, longitude);
     auto degrees_off_axis = beacon_heading - heading;
     if (degrees_off_axis > 180)
         degrees_off_axis -= 360;

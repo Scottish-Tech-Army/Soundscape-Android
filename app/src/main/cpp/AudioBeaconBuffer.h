@@ -40,7 +40,7 @@ namespace soundscape {
 
         virtual ~BeaconAudioSource() = default;
 
-        virtual void CreateSound(FMOD::System *system, FMOD::Sound **sound) = 0;
+        virtual void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) = 0;
 
         virtual FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) { return FMOD_ERR_BADCOMMAND; };
 
@@ -61,7 +61,7 @@ namespace soundscape {
 
         ~BeaconBufferGroup() override;
 
-        void CreateSound(FMOD::System *system, FMOD::Sound **sound) override;
+        void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
 
         FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) override;
 
@@ -80,7 +80,7 @@ namespace soundscape {
 
         ~TtsAudioSource() override;
 
-        void CreateSound(FMOD::System *system, FMOD::Sound **sound) override;
+        void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
 
         FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) override;
 
@@ -95,7 +95,7 @@ namespace soundscape {
         EarconSource(PositionedAudio *parent, std::string &asset);
         ~EarconSource() override = default;
 
-        void CreateSound(FMOD::System *system, FMOD::Sound **sound) override;
+        void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
         void UpdateGeometry(double degrees_off_axis) override;
 
     private:
