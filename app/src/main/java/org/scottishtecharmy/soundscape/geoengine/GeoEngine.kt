@@ -23,6 +23,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
@@ -55,7 +56,13 @@ import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
 
-data class PositionedString(val text : String, val location : LngLatAlt? = null, val earcon : String? = null)
+data class PositionedString(
+    val text : String,
+    val location : LngLatAlt? = null,
+    val earcon : String? = null,
+    val type: AudioType = AudioType.STANDARD,
+    val heading: Double? = null
+)
 
 class GeoEngine {
     private val coroutineScope = CoroutineScope(Job())
@@ -274,7 +281,10 @@ class GeoEngine {
             // Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            results.add(PositionedString(noLocationString))
+            results.add(PositionedString(
+                text = noLocationString,
+                type = AudioType.STANDARD)
+            )
         } else {
             // Check if we have a valid heading
             val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
@@ -316,7 +326,9 @@ class GeoEngine {
                                             inMotion,
                                             inVehicle
                                         )
-                                    list.add(PositionedString(facingDirectionAlongRoad))
+                                    list.add(PositionedString(
+                                        text = facingDirectionAlongRoad,
+                                        type = AudioType.STANDARD))
                                 } else {
                                     Log.e(TAG, "No properties found for road")
                                 }
@@ -330,7 +342,10 @@ class GeoEngine {
                                     inMotion,
                                     inVehicle
                                 )
-                            results.add(PositionedString(facingDirection))
+                            results.add(PositionedString(
+                                text = facingDirection,
+                                type = AudioType.STANDARD)
+                            )
                         }
                         list
                     }
@@ -369,7 +384,10 @@ class GeoEngine {
         if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            results.add(PositionedString(noLocationString))
+            results.add(PositionedString(
+                text = noLocationString,
+                type = AudioType.STANDARD)
+            )
         } else {
             // Run the code within the treeContext to protect it from changes to the trees whilst it's
             // running.
@@ -442,7 +460,8 @@ class GeoEngine {
                             PositionedString(
                                 text,
                                 poiLocation.point,
-                                NativeAudioEngine.EARCON_SENSE_POI
+                                NativeAudioEngine.EARCON_SENSE_POI,
+                                AudioType.LOCALIZED,
                             )
                         )
                     }
@@ -465,7 +484,10 @@ class GeoEngine {
             // Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
-            results.add(PositionedString(noLocationString))
+            results.add(PositionedString(
+                text = noLocationString,
+                type = AudioType.STANDARD)
+            )
         } else {
             // Run the code within the treeContext to protect it from changes to the trees whilst it's
             // running.
@@ -504,7 +526,8 @@ class GeoEngine {
                     if(list.isEmpty()) {
                         list.add(
                             PositionedString(
-                                localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
+                                text = localizedContext.getString(R.string.callouts_nothing_to_call_out_now),
+                                type = AudioType.STANDARD
                             )
                         )
                     }
@@ -533,7 +556,10 @@ class GeoEngine {
                     append(nearestFeature.road.properties?.get("name"))
                 }
             }
-            list.add(PositionedString(text))
+            list.add(PositionedString(
+                text = text,
+                type = AudioType.STANDARD)
+            )
         }
     }
 
@@ -805,8 +831,13 @@ fun reverseGeocode(userGeometry: UserGeometry,
     val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
     location?.let { l ->
         l.addressName?.let { name ->
-            return PositionedString(name, userGeometry.location)
+            return PositionedString(
+                text = name,
+                location = userGeometry.location,
+                type = AudioType.LOCALIZED)
         }
     }
-    return PositionedString(localizedContext.getString(R.string.poi_unknown_place))
+    return PositionedString(
+        text = localizedContext.getString(R.string.poi_unknown_place),
+        type = AudioType.STANDARD)
 }

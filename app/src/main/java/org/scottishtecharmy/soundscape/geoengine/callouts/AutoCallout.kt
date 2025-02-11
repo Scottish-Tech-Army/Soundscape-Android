@@ -6,6 +6,7 @@ import android.util.Log
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -145,9 +146,10 @@ class AutoCallout(
                             }
                             results.add(
                                 PositionedString(
-                                    name.text,
-                                    nearestPoint.point,
-                                    earcon
+                                    text = name.text,
+                                    location = nearestPoint.point,
+                                    earcon = earcon,
+                                    type = AudioType.LOCALIZED
                                 ),
                             )
                             poiCalloutHistory.add(callout)

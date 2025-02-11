@@ -464,14 +464,24 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_getListOfBeacons(JN
 extern "C"
 JNIEXPORT jlong JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(JNIEnv *env MAYBE_UNUSED,
-                                                                               jobject thiz MAYBE_UNUSED,
-                                                                               jlong engine_handle,
-                                                                               jdouble latitude,
-                                                                               jdouble longitude) {
+                                     jobject thiz MAYBE_UNUSED,
+                                     jlong engine_handle,
+                                     jint mode,
+                                     jdouble latitude,
+                                     jdouble longitude,
+                                     jdouble heading) {
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if(ae) {
 
-        auto beacon = std::make_unique<soundscape::Beacon>(ae, latitude, longitude);
+        auto beacon = std::make_unique<soundscape::Beacon>(
+                ae,
+                soundscape::PositioningMode(
+                        static_cast<soundscape::PositioningMode::Type>(mode),
+                        latitude,
+                        longitude,
+                        heading
+                )
+        );
         if (not beacon) {
             TRACE("Failed to create audio beacon");
             beacon.reset(nullptr);
@@ -505,15 +515,25 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon
 extern "C"
 JNIEXPORT jlong JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToSpeech(JNIEnv *env MAYBE_UNUSED,
-                                                                                     jobject thiz MAYBE_UNUSED,
-                                                                                     jlong engine_handle,
-                                                                                     jdouble latitude,
-                                                                                     jdouble longitude,
-                                                                                     jint tts_socket) {
+                                           jobject thiz MAYBE_UNUSED,
+                                           jlong engine_handle,
+                                           jint mode,
+                                           jdouble latitude,
+                                           jdouble longitude,
+                                           jdouble heading,
+                                           jint tts_socket) {
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if(ae) {
 
-        auto tts = std::make_unique<soundscape::TextToSpeech>(ae, latitude, longitude, tts_socket);
+        auto tts = std::make_unique<soundscape::TextToSpeech>(
+                ae,
+                soundscape::PositioningMode(
+                        static_cast<soundscape::PositioningMode::Type>(mode),
+                        latitude,
+                        longitude,
+                        heading),
+                tts_socket
+        );
         if (not tts) {
             TRACE("Failed to create text to speech");
             tts.reset(nullptr);
@@ -543,15 +563,26 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
                                                                                       jobject thiz MAYBE_UNUSED,
                                                                                       jlong engine_handle,
                                                                                       jstring earcon_asset,
+                                                                                      jint mode,
                                                                                       jdouble latitude,
-                                                                                      jdouble longitude) {
+                                                                                      jdouble longitude,
+                                                                                      jdouble heading) {
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if(ae) {
         const char * asset = env->GetStringUTFChars(earcon_asset, nullptr);
         std::string earcon_string(asset);
         env->ReleaseStringUTFChars(earcon_asset, asset);
 
-        auto earcon = std::make_unique<soundscape::Earcon>(ae, asset, latitude, longitude);
+        auto earcon = std::make_unique<soundscape::Earcon>(
+                ae,
+                asset,
+                soundscape::PositioningMode(
+                        static_cast<soundscape::PositioningMode::Type>(mode),
+                        latitude,
+                        longitude,
+                        heading
+                )
+        );
         if (not earcon) {
             TRACE("Failed to create Earcon");
             earcon.reset(nullptr);

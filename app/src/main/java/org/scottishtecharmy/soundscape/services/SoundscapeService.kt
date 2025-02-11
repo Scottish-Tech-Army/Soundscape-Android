@@ -33,6 +33,7 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
@@ -400,28 +401,35 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun speakCallout(callouts: List<PositionedString>, addModeEarcon: Boolean) {
-        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER)
+        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER, AudioType.STANDARD)
         for(result in callouts) {
             if(result.location == null) {
+                var type = result.type
+                if(type == AudioType.LOCALIZED) type = AudioType.STANDARD
                 if(result.earcon != null) {
-                    audioEngine.createEarcon(result.earcon)
+                    audioEngine.createEarcon(result.earcon, type, 0.0, 0.0, result.heading?:0.0)
                 }
-                audioEngine.createTextToSpeech(result.text)
+                audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading?:0.0)
             }
             else {
                 if(result.earcon != null) {
-                    audioEngine.createEarcon(result.earcon,
+                    audioEngine.createEarcon(
+                        result.earcon,
+                        result.type,
                         result.location.latitude,
-                        result.location.longitude)
+                        result.location.longitude,
+                        result.heading?:0.0)
                 }
                 audioEngine.createTextToSpeech(
                     result.text,
+                    result.type,
                     result.location.latitude,
-                    result.location.longitude
+                    result.location.longitude,
+                    result.heading?:0.0
                 )
             }
         }
-        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT)
+        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
     }
 
     /**

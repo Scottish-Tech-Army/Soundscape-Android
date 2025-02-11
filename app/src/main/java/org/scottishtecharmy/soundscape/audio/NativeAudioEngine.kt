@@ -21,6 +21,14 @@ import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
 
+enum class AudioType(val type: Int) {
+    STANDARD(0),
+    LOCALIZED(1),
+    RELATIVE(2),
+    COMPASS(3)
+}
+
+
 @Singleton
 class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitListener {
     private var engineHandle : Long = 0
@@ -38,10 +46,10 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
     private external fun create() : Long
     private external fun destroy(engineHandle: Long)
-    private external fun createNativeBeacon(engineHandle: Long, latitude: Double, longitude: Double) :  Long
+    private external fun createNativeBeacon(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
-    private external fun createNativeTextToSpeech(engineHandle: Long, latitude: Double, longitude: Double, ttsSocket: Int) :  Long
-    private external fun createNativeEarcon(engineHandle: Long, asset:String, latitude: Double, longitude: Double) :  Long
+    private external fun createNativeTextToSpeech(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double, ttsSocket: Int) :  Long
+    private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun getQueueDepth(engineHandle: Long) : Long
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
@@ -100,7 +108,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
                                 clearTextToSpeechQueue()
                                 val testString =
                                     localizedContext.getString(R.string.first_launch_callouts_example_3)
-                                createTextToSpeech(testString)
+                                createTextToSpeech(testString, AudioType.STANDARD)
                             }
                         }
                         if (key == MainActivity.BEACON_TYPE_KEY) {
@@ -190,7 +198,12 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
                 Log.d(TAG, "Call createNativeBeacon")
-                return createNativeBeacon(engineHandle, location.latitude, location.longitude)
+                return createNativeBeacon(
+                    engineHandle,
+                    AudioType.LOCALIZED.type,
+                    location.latitude,
+                    location.longitude,
+                    0.0)
             }
 
             return 0
@@ -221,7 +234,12 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         return true
     }
 
-    override fun createTextToSpeech(text: String, latitude: Double, longitude: Double) : Long
+    override fun createTextToSpeech(
+        text: String,
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double) : Long
     {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
@@ -245,20 +263,31 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
                 ttsSockets[ttsSocket.toString()] = ttsSocketPair
 
                 Log.d(TAG, "Call createNativeTextToSpeech: $text")
-                return createNativeTextToSpeech(engineHandle, latitude, longitude, ttsSocketPair[1].fd)
+                return createNativeTextToSpeech(
+                    engineHandle,
+                    type.type,
+                    latitude,
+                    longitude,
+                    heading,
+                    ttsSocketPair[1].fd)
             }
 
             return 0
         }
     }
 
-    override fun createEarcon(asset: String, latitude: Double, longitude: Double) : Long
+    override fun createEarcon(
+        asset: String,
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double) : Long
     {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
 
                 Log.d(TAG, "Call createNativeEarcon: $asset")
-                return createNativeEarcon(engineHandle, asset, latitude, longitude)
+                return createNativeEarcon(engineHandle, asset, type.type,  latitude, longitude, heading)
             }
 
             return 0

@@ -8,8 +8,8 @@ import java.util.Locale
 interface AudioEngine {
     fun createBeacon(location: LngLatAlt) : Long
     fun destroyBeacon(beaconHandle : Long)
-    fun createTextToSpeech(text: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long
-    fun createEarcon(asset: String, latitude: Double = Double.NaN, longitude: Double = Double.NaN) : Long
+    fun createTextToSpeech(text: String, type: AudioType, latitude: Double = Double.NaN, longitude: Double = Double.NaN, heading: Double = Double.NaN) : Long
+    fun createEarcon(asset: String, type: AudioType, latitude: Double = Double.NaN, longitude: Double = Double.NaN, heading: Double = Double.NaN) : Long
     fun clearTextToSpeechQueue()
     fun getQueueDepth() : Long
     fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?)

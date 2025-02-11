@@ -10,6 +10,57 @@
 
 namespace soundscape {
 
+    /**
+     * iOS Soundscape supports a number of different sound types. Although the terms used are 2D and
+     * 3D audio, we're really dealing with 1D (no positioning) and 2D audio (positioned on a plane).
+     *
+     *  standard - 2D audio
+     *  localized - 3D audio localized to a GPS coordinate e.g. a beacon or a POI
+     *  relative - 3D audio relative to the user's heading e.g. to the left, or to the right
+     *  compass - 3D audio localized to a compass direction e.g. to the north, or to the west
+     *
+     * The initial implementation of PositionedAudio only supported localized, but it's been
+     * extended to support the other modes which become important when we don't have access to a
+     * heading from the device.
+     */
+    class PositioningMode {
+    public:
+        enum Type {
+            STANDARD,
+            LOCALIZED,
+            RELATIVE,
+            COMPASS
+        };
+        Type m_Type = STANDARD;
+        double m_Latitude = 0.0;
+        double m_Longitude = 0.0;
+        double m_Heading = 0.0;
+
+        PositioningMode() = default;
+        PositioningMode(Type audio_type, double latitude, double longitude, double heading) :
+                m_Type(audio_type),
+                m_Latitude(latitude),
+                m_Longitude(longitude),
+                m_Heading(heading) {
+        }
+
+        [[nodiscard]] FMOD_MODE Get3DFlags() const {
+            switch(m_Type) {
+                default:
+                // No positioning
+                case STANDARD: return FMOD_2D;
+                // Positioning based on a LatLngAlt
+                case LOCALIZED: return FMOD_3D;
+                // Positioning based on a heading relative to the head
+                case RELATIVE: return FMOD_3D | FMOD_3D_HEADRELATIVE;
+                // Positioning based on a compass direction. For this we make up a position a long
+                // way away which should remain constant enough for the life of the audio.
+                case COMPASS: return FMOD_3D;
+            }
+        }
+    };
+
+
     class PositionedAudio;
     class AudioEngine {
     public:

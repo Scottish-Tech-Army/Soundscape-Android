@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -176,13 +177,16 @@ fun addIntersectionCalloutFromDescription(
             }
             if(skip) {
             } else {
-                results.add(PositionedString(calloutText))
+                results.add(PositionedString(
+                    text = calloutText,
+                    type = AudioType.STANDARD))
             }
         } else {
             // we are detecting an unnamed road here but pretending there is nothing here
             results.add(
                 PositionedString(
-                    localizedContext.getString(R.string.callouts_nothing_to_call_out_now)
+                    text = localizedContext.getString(R.string.callouts_nothing_to_call_out_now),
+                    type = AudioType.STANDARD
                 )
             )
         }
@@ -210,9 +214,9 @@ fun addIntersectionCalloutFromDescription(
     // Report intersection is coming up
     results.add(
         PositionedString(
-            localizedContext.getString(R.string.intersection_approaching_intersection),
-            null,
-            NativeAudioEngine.EARCON_SENSE_POI)
+            text =localizedContext.getString(R.string.intersection_approaching_intersection),
+            earcon = NativeAudioEngine.EARCON_SENSE_POI,
+            type = AudioType.STANDARD)
     )
 
     // Report roads that join the intersection
@@ -232,7 +236,10 @@ fun addIntersectionCalloutFromDescription(
                         feature.properties?.get("name"),
                         relativeDirectionString,
                     )
-                results.add(PositionedString(intersectionCallout))
+                results.add(PositionedString(
+                    text = intersectionCallout,
+                    type = AudioType.STANDARD)
+                )
             }
         }
     }

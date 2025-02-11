@@ -9,8 +9,7 @@ namespace soundscape {
 
     class PositionedAudio {
     public:
-        PositionedAudio(AudioEngine *engine,
-                        double latitude, double longitude);
+        PositionedAudio(AudioEngine *engine, PositioningMode mode);
 
         virtual ~PositionedAudio();
 
@@ -29,9 +28,7 @@ namespace soundscape {
 
         double GetHeadingOffset(double heading, double latitude, double longitude) const;
 
-        // We're going to assume that the beacons are close enough that the earth is effectively flat
-        double m_Latitude = 0.0;
-        double m_Longitude = 0.0;
+        PositioningMode m_Mode;
 
         std::atomic<bool> m_Eof;
 
@@ -44,8 +41,8 @@ namespace soundscape {
 
     class Beacon : public PositionedAudio {
     public:
-        Beacon(AudioEngine *engine, double latitude, double longitude)
-         : PositionedAudio(engine, latitude, longitude)
+        Beacon(AudioEngine *engine, PositioningMode mode)
+         : PositionedAudio(engine, mode)
         {
             // Get the current position and heading of the listener
             double listener_heading;
@@ -70,9 +67,9 @@ namespace soundscape {
 
     class TextToSpeech : public PositionedAudio {
     public:
-        TextToSpeech(AudioEngine *engine, double latitude, double longitude, int tts_socket)
+        TextToSpeech(AudioEngine *engine, PositioningMode mode, int tts_socket)
                 : m_TtsSocket(tts_socket),
-                  PositionedAudio(engine, latitude, longitude)
+                  PositionedAudio(engine, mode)
         {
             Init(0.0);
         }
@@ -92,9 +89,8 @@ namespace soundscape {
     public:
         Earcon(AudioEngine *engine,
                std::string asset,
-               double latitude,
-               double longitude)
-                : PositionedAudio(engine, latitude, longitude),
+               PositioningMode mode)
+                : PositionedAudio(engine, mode),
                   m_Asset(std::move(asset))
         {
             Init(0.0);
