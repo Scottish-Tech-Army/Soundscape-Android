@@ -61,7 +61,7 @@ open class GridState {
     val treeContext = newSingleThreadContext("TreeContext")
     var validateContext = true
 
-    open fun start(application: Application, soundscapeService: SoundscapeService) {}
+    open fun start(application: Application) {}
     fun stop() {}
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
 
