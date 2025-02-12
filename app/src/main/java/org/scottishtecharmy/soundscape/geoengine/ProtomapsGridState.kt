@@ -7,19 +7,15 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
-import org.scottishtecharmy.soundscape.services.SoundscapeService
 import retrofit2.awaitResponse
 import kotlin.coroutines.cancellation.CancellationException
 
 class ProtomapsGridState : GridState() {
 
-    override fun start(application: Application, soundscapeService: SoundscapeService) {
-        super.start(application, soundscapeService)
+    override fun start(application: Application) {
         tileClient = ProtomapsTileClient(application)
     }
 

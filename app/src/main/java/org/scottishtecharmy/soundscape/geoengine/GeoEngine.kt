@@ -129,7 +129,7 @@ class GeoEngine {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
 
-        gridState.start(application, soundscapeService)
+        gridState.start(application)
 
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)
@@ -675,7 +675,10 @@ class GeoEngine {
 
         // If we have network, then we should be able to do a reverse geocode via the photon server
         // TODO: Check for network first
-        if(true) {
+        // TODO: The geocode result takes too long to have it done inline like this. We need to
+        //  move it into the user of the LocationDescription so that it can update dynamically if
+        //  and when the request succeeds. Disable for now.
+        if(false) {
             geocode = runBlocking {
                 withContext(Dispatchers.IO) {
                     val result = reverseGeocodeResult(location)
@@ -705,10 +708,29 @@ class GeoEngine {
                 return geocode
         }
 
-        // If we don't have network, and the location is outside of our current TileGrid, then we
-        // could see if the tiles are cached and we can create a temporary TileGrid just for this
-        // but for now just return null.
-        return null
+// TODO: If we don't have network, and the location is outside of our current TileGrid, then we could see
+//  if the tiles are cached and we can create a temporary TileGrid, but this needs some debugging
+//
+//        // Rustle up a TileGrid for this location
+//        val tempGrid = if(SOUNDSCAPE_TILE_BACKEND) SoundscapeBackendGridState() else ProtomapsGridState()
+//        geocode = runBlocking {
+//            withContext(tempGrid.treeContext) {
+//                // TODO: Should we create our own tileClient - we'll need an application context
+//                tempGrid.tileClient = gridState.tileClient
+//                tempGrid.locationUpdate(location, createSuperCategoriesSet())
+//                localReverseGeocode(location, tempGrid, localizedContext)
+//            }
+//        }
+//        if(geocode != null) {
+//            val distance = locationProvider.get().distance(geocode.location)
+//            geocode.distance = formatDistance(distance, localizedContext)
+//            return geocode
+//        }
+
+        return LocationDescription(
+            addressName = "New location",
+            location = location
+        )
     }
 
     companion object {
