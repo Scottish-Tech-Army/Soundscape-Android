@@ -41,35 +41,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
-
-@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
-@Preview(showBackground = true)
-@Composable
-fun HomePreview() {
-    Home(
-        location = null,
-        beaconLocation = null,
-        heading = 0.0f,
-        onNavigate = {},
-        onMapLongClick = { false },
-        onMarkerClick = { true },
-        getMyLocation = {},
-        getWhatsAroundMe = {},
-        getWhatsAheadOfMe = {},
-        getCurrentLocationDescription = { LocationDescription() },
-        shareLocation = {},
-        rateSoundscape = {},
-        streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-        streetPreviewExit = {},
-        streetPreviewGo = {},
-        tileGridGeoJson = "",
-        searchText = "Lille",
-        isSearching = true,
-        onSearchTextChange = {},
-        onToggleSearch = {},
-        searchItems = emptyList(),
-    )
-}
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun Home(
@@ -209,4 +181,86 @@ fun HomeTopAppBar(
             }
         },
     )
+}
+
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
+@Preview(showBackground = true)
+@Composable
+fun HomePreview() {
+    SoundscapeTheme {
+        Home(
+            location = null,
+            beaconLocation = null,
+            heading = 0.0f,
+            onNavigate = {},
+            onMapLongClick = { false },
+            onMarkerClick = { true },
+            getMyLocation = {},
+            getWhatsAroundMe = {},
+            getWhatsAheadOfMe = {},
+            getCurrentLocationDescription = { LocationDescription() },
+            shareLocation = {},
+            rateSoundscape = {},
+            streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
+            streetPreviewExit = {},
+            streetPreviewGo = {},
+            tileGridGeoJson = "",
+            searchText = "Lille",
+            isSearching = false,
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            searchItems = emptyList(),
+        )
+    }
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
+@Preview(showBackground = true)
+@Composable
+fun HomeSearchPreview() {
+    SoundscapeTheme {
+        Home(
+            location = null,
+            beaconLocation = null,
+            heading = 0.0f,
+            onNavigate = {},
+            onMapLongClick = { false },
+            onMarkerClick = { true },
+            getMyLocation = {},
+            getWhatsAroundMe = {},
+            getWhatsAheadOfMe = {},
+            getCurrentLocationDescription = { LocationDescription() },
+            shareLocation = {},
+            rateSoundscape = {},
+            streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
+            streetPreviewExit = {},
+            streetPreviewGo = {},
+            tileGridGeoJson = "",
+            searchText = "Lille",
+            isSearching = true,
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            searchItems = listOf(
+                LocationDescription(
+                    addressName = "Barrowland Ballroom",
+                    fullAddress = "Somewhere in Glasgow",
+                    distance = "10 km",
+                    location = LngLatAlt(-4.2366753, 55.8552688)
+                ),
+                LocationDescription(
+                    addressName = "King Tut's Wah Wah Hut",
+                    fullAddress = "Somewhere else in Glasgow",
+                    distance = "999 metres",
+                    location = LngLatAlt(-4.2649646, 55.8626180)
+                ),
+                LocationDescription(
+                    addressName = "St. Lukes and the Winged Ox",
+                    fullAddress = "Where else?",
+                    distance = "12km",
+                    location = LngLatAlt( -4.2347580, 55.8546320)
+                )
+            )
+        )
+    }
 }
