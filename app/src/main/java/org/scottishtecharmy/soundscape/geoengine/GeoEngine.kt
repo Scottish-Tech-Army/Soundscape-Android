@@ -762,13 +762,42 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
     return TextForFeature(text, generic)
 }
 
+/**
+ * We're going to round metric as documented for iOS:
+ *  For metric units, we round all distances less than 1000 meters to the nearest 5 meters and all
+ *  distances over 1000 meters to the nearest 50 meters.
+ *
+ * The iOS imperial docs are wrong, and in fact distances are all in feet and we can round in the
+ * same way as metric.
+ *
+ */
+
 fun formatDistance(distance: Double, localizedContext: Context) : String {
-    if(distance > 1000) {
-        val km = (distance.toInt() / 100).toFloat() / 10
-        return localizedContext.getString(R.string.distance_format_km, km.toString())
+    // TODO - Add setting for imperial/metric
+    val metric = true
+    var units = distance
+    var bigUnitDivisor = 100
+    if(!metric) {
+        // Imperial units used are feet
+        units = (distance * 1.09361 * 3)
+        bigUnitDivisor = (176*3)
+    }
+
+    val roundToNearest = if (units < 1000) 5.0 else 50.0
+    val roundedDistance =
+        ((units + (roundToNearest / 2)) / roundToNearest).toInt() * roundToNearest
+
+    if (roundedDistance < 1000) {
+        return localizedContext.getString(
+            if(metric) R.string.distance_format_meters else R.string.distance_format_feet,
+            roundedDistance.toInt().toString()
+        )
     } else {
-        val metres = distance.toInt()
-        return  localizedContext.getString(R.string.distance_format_meters, metres.toString())
+        val bigUnits = (roundedDistance.toInt() / 10).toFloat() / bigUnitDivisor
+        return localizedContext.getString(
+            if(metric) R.string.distance_format_km else R.string.distance_format_miles,
+            "%.2f".format(bigUnits)
+        )
     }
 }
 
