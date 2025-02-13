@@ -54,17 +54,19 @@ class RoutePlayer(val service: SoundscapeService) {
     }
 
     private fun createBeaconAtWaypoint(index: Int) {
-        currentRouteData?.let {route ->
-            assert(index < route.waypoints.size)
-            val location = route.waypoints[index].location!!
+        currentRouteData?.let { route ->
+            if (index < route.waypoints.size) {
+                val location = route.waypoints[index].location!!
 
-            service.audioEngine.clearTextToSpeechQueue()
-            service.audioEngine.createTextToSpeech(
-                "Move to marker ${index+1}, ${route.waypoints[index].addressName}",
-                AudioType.LOCALIZED, location.latitude, location.longitude, 0.0)
+                service.audioEngine.clearTextToSpeechQueue()
+                service.audioEngine.createTextToSpeech(
+                    "Move to marker ${index + 1}, ${route.waypoints[index].addressName}",
+                    AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
+                )
 
-            service.createBeacon(LngLatAlt(location.latitude, location.longitude))
-}
+                service.createBeacon(LngLatAlt(location.latitude, location.longitude))
+            }
+        }
     }
 
     fun play() {
@@ -73,7 +75,7 @@ class RoutePlayer(val service: SoundscapeService) {
     }
 
     private fun moveToNext() {
-        currentRouteData?.let {route ->
+        currentRouteData?.let { route ->
             if((currentMarker + 1) < route.waypoints.size) {
                 currentMarker++
 
