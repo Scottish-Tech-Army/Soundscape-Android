@@ -40,6 +40,7 @@ import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
@@ -91,7 +92,7 @@ fun LocationDetailsScreen(
         getLocationDescription = { locationForDescription ->
             viewModel.getLocationDescription(locationForDescription) ?:
                 LocationDescription(
-                    addressName = context.getString(R.string.general_error_location_services_find_location_error),
+                    name = context.getString(R.string.general_error_location_services_find_location_error),
                     location = locationForDescription
                 )
         },
@@ -142,7 +143,9 @@ fun LocationDetails(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
-                LocationDescriptionTextsSection(locationDescription = description.value)
+                LocationDescriptionTextsSection(
+                    locationDescription = description.value,
+                    userLocation = location)
                 HorizontalDivider()
                 LocationDescriptionButtonsSection(
                     createBeacon = createBeacon,
@@ -232,18 +235,30 @@ private fun LocationDescriptionButtonsSection(
 }
 
 @Composable
-private fun LocationDescriptionTextsSection(locationDescription: LocationDescription) {
+private fun LocationDescriptionTextsSection(
+    locationDescription: LocationDescription,
+    userLocation: LngLatAlt?
+) {
+    val context = LocalContext.current
+    val distanceString = remember(userLocation) {
+        // If the location changes, recalculate the distance string
+        if(userLocation == null) return@remember ""
+        return@remember formatDistance(
+            userLocation.distance(locationDescription.location),
+            context)
+    }
+
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        locationDescription.addressName?.let {
+        locationDescription.name?.let {
             Text(
                 text = it,
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onBackground,
             )
         }
-        locationDescription.distance?.let {
+        if(distanceString.isNotEmpty()) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -254,7 +269,7 @@ private fun LocationDescriptionTextsSection(locationDescription: LocationDescrip
                     tint = Foreground2,
                 )
                 Text(
-                    text = it,
+                    text = distanceString,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Foreground2,
                 )
@@ -330,8 +345,7 @@ fun LocationDetailsPreview() {
     SoundscapeTheme {
         LocationDetails(
             LocationDescription(
-                addressName = "Pizza hut",
-                distance = "3,5 km",
+                name = "Pizza hut",
                 location = LngLatAlt(),
                 fullAddress = "139 boulevard gambetta \n59000 Lille\nFrance",
             ),
@@ -340,7 +354,7 @@ fun LocationDetailsPreview() {
             enableStreetPreview = { _ ->
             },
             getLocationDescription = { _ ->
-                LocationDescription()
+                LocationDescription("Current location", LngLatAlt())
             },
             onNavigateUp = {},
             navController = NavHostController(LocalContext.current),

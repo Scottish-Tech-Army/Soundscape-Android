@@ -7,11 +7,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortFieldPreference
@@ -25,7 +22,6 @@ class MarkersViewModel
     @Inject
     constructor(
         private val routesRepository: RoutesRepository,
-        private val soundscapeServiceConnection: SoundscapeServiceConnection,
         @ApplicationContext private val context: Context,
     ) : ViewModel() {
         private val _uiState = MutableStateFlow(MarkersUiState())
@@ -35,28 +31,20 @@ class MarkersViewModel
             // Load the saved sort orders
             _uiState.value = _uiState.value.copy(
                 isSortByName = getSortFieldPreference(context),
-                isSortAscending = getSortOrderPreference(context))
+                isSortAscending = getSortOrderPreference(context)
+            )
 
             // Collect the flow of routes from the repository so that we update when routes are added
             // and deleted
             viewModelScope.launch {
                 routesRepository.getMarkerFlow().collect { markers ->
-                    val userLocation = soundscapeServiceConnection.getLocationFlow()?.firstOrNull()
                     val locations = markers.map {
                         val markerLngLat =
                             LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
                         LocationDescription(
-                            addressName = it.addressName,
+                            name = it.addressName,
                             fullAddress = it.fullAddress,
                             location = markerLngLat,
-                            distance =
-                            if (userLocation == null)
-                                ""
-                            else {
-                                val userLngLat =
-                                    LngLatAlt(userLocation.longitude, userLocation.latitude)
-                                formatDistance(userLngLat.distance(markerLngLat), context)
-                            },
                             markerObjectId = it.objectId
                         )
                     }
@@ -80,15 +68,14 @@ class MarkersViewModel
         private fun sortMarkers(markers: List<LocationDescription>) : List<LocationDescription> {
             return if(_uiState.value.isSortByName) {
                 if(_uiState.value.isSortAscending)
-                    markers.sortedBy { it.addressName }
+                    markers.sortedBy { it.name }
                 else
-                    markers.sortedByDescending { it.addressName }
-
+                    markers.sortedByDescending { it.name }
             } else {
                 if(_uiState.value.isSortAscending)
-                    markers.sortedBy { it.distance }
+                    markers.sortedBy { _uiState.value.userLocation?.distance(it.location) }
                 else
-                    markers.sortedByDescending { it.distance }
+                    markers.sortedByDescending { _uiState.value.userLocation?.distance(it.location) }
             }
         }
 

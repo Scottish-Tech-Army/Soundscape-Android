@@ -54,7 +54,7 @@ fun HomeContent(
                         // screen which location to provide details of. The JSON is appended to the route.
                         val ld =
                             LocationDescription(
-                                addressName = "Barrowland Ballroom",
+                                name = "Barrowland Ballroom",
                                 location = LngLatAlt(-4.2366753, 55.8552688)
                             )
                         onNavigate(generateLocationDetailsRoute(ld))
@@ -111,7 +111,7 @@ fun StreetPreviewHomeContent() {
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
         streetPreviewGo = {},
         streetPreviewExit = {},
-        getCurrentLocationDescription = { LocationDescription() }
+        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
     )
 }
 
@@ -130,6 +130,6 @@ fun PreviewHomeContent() {
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewGo = {},
         streetPreviewExit = {},
-        getCurrentLocationDescription = { LocationDescription() }
+        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
     )
 }

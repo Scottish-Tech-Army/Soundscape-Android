@@ -31,7 +31,7 @@ class LocationDetailsViewModel @Inject constructor(
 
     fun createMarker(locationDescription: LocationDescription) {
         viewModelScope.launch {
-            var name = locationDescription.addressName
+            var name = locationDescription.name
             if (name == null) name = locationDescription.fullAddress
             name = name ?: "Unknown"
 

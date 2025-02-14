@@ -43,7 +43,7 @@ fun MarkersAndRoutesScreen(
             if(state.routesTabSelected) {
                 RoutesScreenVM(navController)
             } else {
-                MarkersScreenVM(navController)
+                MarkersScreenVM(navController, state.location)
             }
         }
     }

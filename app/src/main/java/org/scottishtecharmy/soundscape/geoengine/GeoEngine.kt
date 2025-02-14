@@ -659,7 +659,6 @@ class GeoEngine {
                                preserveLocation: Boolean = true) : LocationDescription? {
 
         var geocode: LocationDescription?
-        val currentLocation = locationProvider.get()
         // If the location is within our current TileGrid, then we can make our own description of
         // the location.
         geocode = runBlocking {
@@ -667,11 +666,7 @@ class GeoEngine {
                 localReverseGeocode(location, gridState, localizedContext)
             }
         }
-        if(geocode != null) {
-            val distance = locationProvider.get().distance(geocode.location)
-            geocode.distance = formatDistance(distance, localizedContext)
-            return geocode
-        }
+        if(geocode != null) return geocode
 
         // If we have network, then we should be able to do a reverse geocode via the photon server
         // TODO: Check for network first
@@ -685,13 +680,13 @@ class GeoEngine {
 
                     // The geocode result includes the location for the POI. In the case of something
                     // like a park this could be a long way from the point that was passed in.
-                    val ld = result?.features?.toLocationDescriptions(currentLocation, localizedContext)
+                    val ld = result?.features?.toLocationDescriptions()
                     if (!ld.isNullOrEmpty()) {
                         if(preserveLocation) {
                             val overwritten = ld.first()
                             overwritten.location = location
-                            if(overwritten.addressName != null) {
-                                overwritten.addressName = localizedContext.getString(R.string.directions_near_name).format(overwritten.addressName)
+                            if(overwritten.name != null) {
+                                overwritten.name = localizedContext.getString(R.string.directions_near_name).format(overwritten.name)
                                 overwritten
                             }
                             else {
@@ -721,14 +716,10 @@ class GeoEngine {
 //                localReverseGeocode(location, tempGrid, localizedContext)
 //            }
 //        }
-//        if(geocode != null) {
-//            val distance = locationProvider.get().distance(geocode.location)
-//            geocode.distance = formatDistance(distance, localizedContext)
-//            return geocode
-//        }
+//        if(geocode != null) return geocode
 
         return LocationDescription(
-            addressName = "New location",
+            name = "New location",
             location = location
         )
     }
@@ -842,7 +833,7 @@ fun localReverseGeocode(location: LngLatAlt,
                 val name = poi.properties?.get("name")
                 if(name != null) {
                     return LocationDescription(
-                        addressName = localizedContext.getString(R.string.directions_at_poi).format(name as String),
+                        name = localizedContext.getString(R.string.directions_at_poi).format(name as String),
                         location = location,
                     )
                 }
@@ -860,7 +851,7 @@ fun localReverseGeocode(location: LngLatAlt,
                 roadName = properties["highway"]
             }
             return LocationDescription(
-                addressName = localizedContext.getString(R.string.directions_near_name).format(roadName as String),
+                name = localizedContext.getString(R.string.directions_near_name).format(roadName as String),
                 location = location,
             )
         }
@@ -881,7 +872,7 @@ fun reverseGeocode(userGeometry: UserGeometry,
 
     val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
     location?.let { l ->
-        l.addressName?.let { name ->
+        l.name?.let { name ->
             return PositionedString(
                 text = name,
                 location = userGeometry.location,

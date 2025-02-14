@@ -16,13 +16,16 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
@@ -45,9 +48,18 @@ data class LocationItemDecoration(
 @Composable
 fun LocationItem(
     item: LocationDescription,
+    userLocation: LngLatAlt?,
     modifier: Modifier = Modifier,
     decoration: LocationItemDecoration = LocationItemDecoration(),
 ) {
+    val context = LocalContext.current
+    var distanceString = ""
+    if(userLocation != null) {
+        distanceString = formatDistance(
+            userLocation.distance(item.location),
+            context
+        )
+    }
     Row(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -70,7 +82,7 @@ fun LocationItem(
             modifier = Modifier.padding(start = 18.dp),
             verticalArrangement = Arrangement.spacedBy(5.dp),
         ) {
-            item.addressName?.let {
+            item.name?.let {
                 Text(
                     text = it,
                     fontWeight = FontWeight(700),
@@ -78,9 +90,9 @@ fun LocationItem(
                     color = Color.White,
                 )
             }
-            item.distance?.let {
+            if(distanceString.isNotEmpty()) {
                 Text(
-                    text = it,
+                    text = distanceString,
                     color = Foreground2,
                     fontWeight = FontWeight(450),
                     fontSize = 12.sp,
@@ -107,7 +119,7 @@ fun LocationItem(
         } else if(decoration.details.enabled) {
             Button(
                 onClick = {
-                    decoration.details.functionString(item.addressName!!)
+                    decoration.details.functionString(item.name!!)
                 },
             ) {
                 Icon(
@@ -134,13 +146,13 @@ fun PreviewSearchItemButton() {
         ) {
             val test =
                 LocationDescription(
-                    addressName = "Bristol",
+                    name = "Bristol",
                     fullAddress = "18 Street \n59000 Lille\nFrance",
-                    distance = "17 Km",
                     location = LngLatAlt(8.00, 9.55)
                 )
             LocationItem(
                 item = test,
+                userLocation = LngLatAlt(9.00, 9.55),
                 decoration = LocationItemDecoration(
                     location = true,
                     editRoute = EnabledFunction(true, {}, {}, true),
@@ -166,8 +178,7 @@ fun PreviewCompactSearchItemButton() {
         ) {
             val test =
                 LocationDescription(
-                    addressName = "Bristol",
-                    distance = "17 Km",
+                    name = "Bristol",
                     location = LngLatAlt(8.00, 9.55)
                 )
             LocationItem(
@@ -178,6 +189,7 @@ fun PreviewCompactSearchItemButton() {
                     details = EnabledFunction(true),
                 ),
                 modifier = Modifier.width(200.dp),
+                userLocation = LngLatAlt(8.00, 10.55)
             )
         }
     }
@@ -197,8 +209,7 @@ fun PreviewOrderedItemButton() {
         ) {
             val test =
                 LocationDescription(
-                    addressName = "Bristol",
-                    distance = "17 Km",
+                    name = "Bristol",
                     location = LngLatAlt(8.00, 9.55)
                 )
             LocationItem(
@@ -207,6 +218,7 @@ fun PreviewOrderedItemButton() {
                     index = 2,
                 ),
                 modifier = Modifier.width(200.dp),
+                userLocation = LngLatAlt(8.20, 9.55)
             )
         }
     }

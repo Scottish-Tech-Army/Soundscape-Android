@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationListShort
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
@@ -40,16 +41,15 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 fun AddAndEditRouteScreenVM(
     routeObjectId: ObjectId?,
     routeName: String,
-    routeDescription: String,
     navController: NavController,
     modifier: Modifier,
+    userLocation: LngLatAlt?,
     viewModel: AddAndEditRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     AddAndEditRouteScreen(
         routeObjectId,
         routeName,
-        routeDescription,
         navController,
         modifier,
         uiState,
@@ -58,7 +58,8 @@ fun AddAndEditRouteScreenVM(
         onNameChange = { viewModel.onNameChange(it) },
         onDescriptionChange = { viewModel.onDescriptionChange(it) },
         onDeleteRoute = { viewModel.deleteRoute(it) },
-        onDoneClicked = { viewModel.onDoneClicked() }
+        onDoneClicked = { viewModel.onDoneClicked() },
+        userLocation = userLocation
     )
 }
 
@@ -67,10 +68,10 @@ fun AddAndEditRouteScreenVM(
 fun AddAndEditRouteScreen(
     routeObjectId: ObjectId?,
     routeName: String,
-    routeDescription: String,
     navController: NavController,
     modifier: Modifier,
     uiState: AddAndEditRouteUiState,
+    userLocation: LngLatAlt?,
     onClearErrorMessage: () -> Unit,
     onResetDoneAction: () -> Unit,
     onNameChange: (newText: String) -> Unit,
@@ -122,7 +123,8 @@ fun AddAndEditRouteScreen(
                 addWaypointDialog.value = false
             },
             onCancel = { addWaypointDialog.value = false },
-            modifier = modifier
+            modifier = modifier,
+            userLocation = userLocation
         )
     }
     else {
@@ -233,7 +235,8 @@ fun AddAndEditRouteScreen(
                             )
                         } else {
                             ReorderableLocationList(
-                                locations = uiState.routeMembers
+                                locations = uiState.routeMembers,
+                                userLocation = userLocation
                             )
                         }
                     }
@@ -250,7 +253,6 @@ fun NewRouteScreenPreview() {
         AddAndEditRouteScreen(
             routeObjectId = ObjectId(),
             routeName = newRouteName,
-            routeDescription = "Description of route",
             navController = rememberNavController(),
             modifier = Modifier,
             uiState = AddAndEditRouteUiState(),
@@ -259,7 +261,8 @@ fun NewRouteScreenPreview() {
             onNameChange = {},
             onDescriptionChange = {},
             onDeleteRoute = {},
-            onDoneClicked = {}
+            onDoneClicked = {},
+            userLocation = LngLatAlt()
         )
     }
 }
@@ -271,7 +274,6 @@ fun EditRouteScreenPreview() {
         AddAndEditRouteScreen(
             routeObjectId = ObjectId(),
             routeName = "Route to preview",
-            routeDescription = "Description of route",
             navController = rememberNavController(),
             modifier = Modifier,
             uiState = AddAndEditRouteUiState(
@@ -282,7 +284,8 @@ fun EditRouteScreenPreview() {
             onNameChange = {},
             onDescriptionChange = {},
             onDeleteRoute = {},
-            onDoneClicked = {}
+            onDoneClicked = {},
+            userLocation = LngLatAlt()
         )
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
@@ -27,7 +28,8 @@ fun AddWaypointsDialog(
     uiState: AddAndEditRouteUiState,
     modifier: Modifier,
     onDone: () -> Unit,
-    onCancel: () -> Unit
+    onCancel: () -> Unit,
+    userLocation: LngLatAlt?
 ) {
     Scaffold(
         modifier = modifier,
@@ -65,7 +67,8 @@ fun AddWaypointsDialog(
             ) {
                 // Display the list of routes
                 AddWaypointsList(
-                    uiState = uiState
+                    uiState = uiState,
+                    userLocation = userLocation
                 )
             }
         }
@@ -80,29 +83,30 @@ fun AddWaypointsScreenPopulatedPreview() {
             modifier = Modifier,
             onCancel = {},
             onDone = { },
+            userLocation = null,
             uiState =
                 AddAndEditRouteUiState(
                     routeMembers =
                     mutableListOf(
-                        LocationDescription("Route point 1"),
-                        LocationDescription("Route point 2"),
-                        LocationDescription("Route point 3"),
-                        LocationDescription("Route point 4"),
-                        LocationDescription("Route point 5"),
-                        LocationDescription("Route point 6"),
-                        LocationDescription("Route point 7"),
-                        LocationDescription("Route point 8"),
+                        LocationDescription(name = "Route point 1", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 2", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 3", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 4", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 5", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 6", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 7", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 8", location = LngLatAlt()),
                     ),
                     markers =
                     mutableListOf(
-                        LocationDescription("Waypoint 1"),
-                        LocationDescription("Waypoint 2"),
-                        LocationDescription("Waypoint 3"),
-                        LocationDescription("Waypoint 4"),
-                        LocationDescription("Waypoint 5"),
-                        LocationDescription("Waypoint 6"),
-                        LocationDescription("Waypoint 7"),
-                        LocationDescription("Waypoint 8"),
+                        LocationDescription(name = "Waypoint 1", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 2", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 3", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 4", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 5", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 6", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 7", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 8", location = LngLatAlt()),
                     )
                 )
         )
@@ -118,6 +122,7 @@ fun AddWaypointsScreenPreview() {
             onCancel = {},
             onDone = {},
             uiState = AddAndEditRouteUiState(),
+            userLocation = null
         )
     }
 }
