@@ -54,7 +54,7 @@ class SoundscapeIntents
                             Log.d(TAG, "$address")
                             val ld =
                                 LocationDescription(
-                                    addressName = address.getAddressLine(0),
+                                    name = address.getAddressLine(0),
                                     location = LngLatAlt(address.longitude, address.latitude)
                                 )
                             navigator.navigate(generateLocationDetailsRoute(ld))
@@ -71,7 +71,7 @@ class SoundscapeIntents
                     Log.d(TAG, "Address: $address")
                     val ld =
                         LocationDescription(
-                            addressName = address.getAddressLine(0),
+                            name = address.getAddressLine(0),
                             location = LngLatAlt(address.longitude, address.latitude)
                         )
                     navigator.navigate(generateLocationDetailsRoute(ld))
@@ -202,7 +202,7 @@ class SoundscapeIntents
                                 // No Geocoder available, so just report the uriData
                                 val ld =
                                     LocationDescription(
-                                        addressName = URLEncoder.encode(uriData, "utf-8"),
+                                        name = URLEncoder.encode(uriData, "utf-8"),
                                         location = LngLatAlt(longitude.toDouble(), latitude.toDouble())
                                     )
                                 mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
@@ -225,7 +225,7 @@ class SoundscapeIntents
                                                 mainActivity.contentResolver.openInputStream(uri)
 
                                             if (input != null) {
-                                                var routeData: RouteData? = null
+                                                val routeData: RouteData?
                                                 if(intent.type == "application/json") {
                                                     // This might be a saved route shared from iOS.
                                                     // We want to translate this into a RouteData

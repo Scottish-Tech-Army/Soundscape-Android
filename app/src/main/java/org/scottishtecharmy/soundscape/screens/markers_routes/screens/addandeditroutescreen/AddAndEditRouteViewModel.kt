@@ -1,22 +1,17 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.mongodb.kbson.ObjectId
-import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import javax.inject.Inject
@@ -26,8 +21,6 @@ const val newRouteName = "***NEW-ROUTE***"
 @HiltViewModel
 class AddAndEditRouteViewModel @Inject constructor(
     private val routesRepository: RoutesRepository,
-    private val soundscapeServiceConnection: SoundscapeServiceConnection,
-    @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AddAndEditRouteUiState())
@@ -36,22 +29,13 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun loadMarkers() {
         viewModelScope.launch {
             try {
-                val userLocation = soundscapeServiceConnection.getLocationFlow()?.firstOrNull()
                 val markerVMs =
                     routesRepository.getMarkers().map {
                         val markerLngLat = LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
                         LocationDescription(
-                            addressName = it.addressName,
+                            name = it.addressName,
                             fullAddress = it.fullAddress,
                             location = markerLngLat,
-                            distance =
-                            if(userLocation == null)
-                                ""
-                            else {
-                                val userLngLat =
-                                    LngLatAlt(userLocation.longitude, userLocation.latitude)
-                                formatDistance(userLngLat.distance(markerLngLat), context)
-                            },
                             markerObjectId = it.objectId
                         )
                     }
@@ -73,7 +57,7 @@ class AddAndEditRouteViewModel @Inject constructor(
                         for (waypoint in it.waypoints) {
                             routeMembers.add(
                                 LocationDescription(
-                                    addressName = waypoint.addressName,
+                                    name = waypoint.addressName,
                                     location = waypoint.location?.location() ?: LngLatAlt(),
                                     fullAddress = waypoint.fullAddress,
                                     markerObjectId = waypoint.objectId
@@ -152,7 +136,7 @@ class AddAndEditRouteViewModel @Inject constructor(
             _uiState.value.routeMembers.forEach {
                 routeData.waypoints.add(
                     MarkerData(
-                        addressName = it.addressName ?: "",
+                        addressName = it.name ?: "",
                         location = Location(it.location),
                         fullAddress = it.fullAddress ?: "",
                         objectId = it.markerObjectId!!

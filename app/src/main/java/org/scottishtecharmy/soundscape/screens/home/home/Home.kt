@@ -121,6 +121,7 @@ fun Home(
                                 generateLocationDetailsRoute(item),
                             )
                         },
+                        userLocation = location
                     )
                 },
                 onMapLongClick = onMapLongClick,
@@ -199,7 +200,7 @@ fun HomePreview() {
             getMyLocation = {},
             getWhatsAroundMe = {},
             getWhatsAheadOfMe = {},
-            getCurrentLocationDescription = { LocationDescription() },
+            getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
             shareLocation = {},
             rateSoundscape = {},
             streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
@@ -230,7 +231,7 @@ fun HomeSearchPreview() {
             getMyLocation = {},
             getWhatsAroundMe = {},
             getWhatsAheadOfMe = {},
-            getCurrentLocationDescription = { LocationDescription() },
+            getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
             shareLocation = {},
             rateSoundscape = {},
             streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
@@ -248,33 +249,33 @@ fun HomeSearchPreview() {
 
 val previewLocationList = listOf(
     LocationDescription(
-        addressName = "Barrowland Ballroom",
+        name = "Barrowland Ballroom",
         fullAddress = "Somewhere in Glasgow",
-        distance = "10 km",
         location = LngLatAlt(-4.2366753, 55.8552688)
     ),
     LocationDescription(
-        addressName = "King Tut's Wah Wah Hut",
+        name = "King Tut's Wah Wah Hut",
         fullAddress = "Somewhere else in Glasgow",
-        distance = "999 metres",
         location = LngLatAlt(-4.2649646, 55.8626180)
     ),
     LocationDescription(
-        addressName = "St. Lukes and the Winged Ox",
+        name = "St. Lukes and the Winged Ox",
         fullAddress = "Where else?",
-        distance = "12km",
         location = LngLatAlt( -4.2347580, 55.8546320)
     )
 )
 
 val previewLocationListShort = listOf(
     LocationDescription(
-        addressName = "Barrowland Ballroom"
+        name = "Barrowland Ballroom",
+        location = LngLatAlt(-4.2366753, 55.8552688)
     ),
     LocationDescription(
-        addressName = "King Tut's Wah Wah Hut"
+        name = "King Tut's Wah Wah Hut",
+        location = LngLatAlt(-4.2649646, 55.8626180)
     ),
     LocationDescription(
-        addressName = "St. Lukes and the Winged Ox"
+        name = "St. Lukes and the Winged Ox",
+        location = LngLatAlt( -4.2347580, 55.8546320)
     )
 )

@@ -64,7 +64,7 @@ fun HomeScreen(
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->
                     val location = LngLatAlt(latLong.longitude, latLong.latitude)
-                    val ld = viewModel.getLocationDescription(location) ?: LocationDescription()
+                    val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
                     navController.navigate(generateLocationDetailsRoute(ld))
                     true
                 },
@@ -80,9 +80,9 @@ fun HomeScreen(
                             state.value.location!!.longitude,
                             state.value.location!!.latitude
                         )
-                        viewModel.getLocationDescription(location) ?: LocationDescription()
+                        viewModel.getLocationDescription(location) ?: LocationDescription("", location)
                     } else {
-                        LocationDescription()
+                        LocationDescription("", LngLatAlt())
                     }
                 },
                 searchText = searchText.value,
@@ -156,7 +156,8 @@ fun HomeScreen(
             RouteDetailsScreenVM(
                 routeName = routeName,
                 navController = navController,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                userLocation = state.value.location
             )
         }
 
@@ -175,10 +176,10 @@ fun HomeScreen(
             AddAndEditRouteScreenVM(
                 routeObjectId = uiState.routeObjectId,
                 routeName = routeName,
-                routeDescription = uiState.description,
                 navController = navController,
                 viewModel = addAndEditRouteViewModel,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                userLocation = state.value.location
             )
         }
 

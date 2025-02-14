@@ -13,11 +13,13 @@ import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
 @Composable
 fun AddWaypointsList(
-    uiState: AddAndEditRouteUiState
+    uiState: AddAndEditRouteUiState,
+    userLocation: LngLatAlt?,
 ) {
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState) {
@@ -62,7 +64,8 @@ fun AddWaypointsList(
                         },
                         value = routeMember[locationDescription] ?: false
                     )
-                )
+                ),
+                userLocation = userLocation
             )
         }
     }

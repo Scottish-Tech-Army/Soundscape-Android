@@ -12,12 +12,14 @@ import androidx.navigation.NavController
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 
 @Composable
 fun MarkersList(
     uiState: MarkersUiState,
+    userLocation: LngLatAlt?,
     navController: NavController,
 ) {
     LazyColumn(
@@ -42,6 +44,7 @@ fun MarkersList(
                         }
                     )
                 ),
+                userLocation = userLocation
             )
         }
     }

@@ -40,7 +40,7 @@ fun SaveAndEditMarkerDialog(
     modifier: Modifier = Modifier,
     dialogState: MutableState<Boolean>
 ) {
-    var name by rememberSaveable { mutableStateOf(locationDescription.addressName ?: "") }
+    var name by rememberSaveable { mutableStateOf(locationDescription.name ?: "") }
     var annotation by rememberSaveable { mutableStateOf(locationDescription.fullAddress ?: "") }
     val objectId = locationDescription.markerObjectId
 
@@ -80,7 +80,7 @@ fun SaveAndEditMarkerDialog(
                     Modifier
                         .fillMaxWidth(),
                     onClick = {
-                        locationDescription.addressName = name
+                        locationDescription.name = name
                         locationDescription.fullAddress = annotation
                         saveMarker(locationDescription)
                         dialogState.value = false
@@ -153,8 +153,7 @@ fun AddRouteScreenPreview() {
     SoundscapeTheme {
         SaveAndEditMarkerDialog(
             locationDescription = LocationDescription(
-                addressName = "Pizza hut",
-                distance = "3,5 km",
+                name = "Pizza hut",
                 location = LngLatAlt(),
                 fullAddress = "139 boulevard gambetta",
             ),

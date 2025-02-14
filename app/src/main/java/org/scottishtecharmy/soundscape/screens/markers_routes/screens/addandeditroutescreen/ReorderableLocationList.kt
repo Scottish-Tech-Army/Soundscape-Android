@@ -24,12 +24,14 @@ import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.components.SlideState
 import org.scottishtecharmy.soundscape.components.dragToReorder
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun ReorderableLocationList(
-    locations: MutableList<LocationDescription>
+    locations: MutableList<LocationDescription>,
+    userLocation: LngLatAlt?
 )
 {
     val listState = rememberLazyListState()
@@ -117,6 +119,7 @@ fun ReorderableLocationList(
                         decoration = LocationItemDecoration(
                             index = idx
                         ),
+                        userLocation = userLocation
                     )
                 }
             }
@@ -132,12 +135,13 @@ fun PreviewReorderableLocationList() {
     SoundscapeTheme {
         ReorderableLocationList(
             locations = mutableListOf(
-                LocationDescription("Marker1", fullAddress = "111 A street"),
-                LocationDescription("Marker2", fullAddress = "111 B street"),
-                LocationDescription("Marker3", fullAddress = "111 C street"),
-                LocationDescription("Marker4", fullAddress = "111 D street"),
-                LocationDescription("Marker5", fullAddress = "111 E street")
-            )
+                LocationDescription(name ="Marker1", location = LngLatAlt(), fullAddress = "111 A street"),
+                LocationDescription(name ="Marker2", location = LngLatAlt(), fullAddress = "111 B street"),
+                LocationDescription(name ="Marker3", location = LngLatAlt(), fullAddress = "111 C street"),
+                LocationDescription(name ="Marker4", location = LngLatAlt(), fullAddress = "111 D street"),
+                LocationDescription(name ="Marker5", location = LngLatAlt(), fullAddress = "111 E street"),
+            ),
+            userLocation = LngLatAlt(1.0, 0.0)
         )
     }
 }

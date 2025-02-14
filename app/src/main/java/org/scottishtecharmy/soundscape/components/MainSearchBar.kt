@@ -30,6 +30,7 @@ import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,6 +42,7 @@ fun MainSearchBar(
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
     onItemClick: (LocationDescription) -> Unit,
+    userLocation: LngLatAlt?
 ) {
     SearchBar(
         modifier =
@@ -130,6 +132,7 @@ fun MainSearchBar(
                                             columnIndex = 0,
                                         )
                                 },
+                            userLocation = userLocation
                         )
                         HorizontalDivider(color = Color.White)
                     }

@@ -40,15 +40,18 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Composable
 fun MarkersScreenVM(
     homeNavController: NavController,
+    userLocation: LngLatAlt?,
     viewModel: MarkersViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    uiState.userLocation = userLocation
     MarkersScreen(
         homeNavController,
         uiState,
         clearErrorMessage = { viewModel.clearErrorMessage() },
         onToggleSortOrder = { viewModel.toggleSortOrder() },
         onToggleSortByName = { viewModel.toggleSortByName() },
+        userLocation = userLocation
     )
 }
 
@@ -59,6 +62,7 @@ fun MarkersScreen(
     clearErrorMessage: () -> Unit,
     onToggleSortOrder: () -> Unit,
     onToggleSortByName: () -> Unit,
+    userLocation: LngLatAlt?
 ) {
     Column(
         modifier =
@@ -151,6 +155,7 @@ fun MarkersScreen(
                         MarkersList(
                             uiState = uiState,
                             navController = homeNavController,
+                            userLocation = userLocation
                         )
                     }
                 }
@@ -171,15 +176,15 @@ fun MarkersScreenPopulatedPreview() {
                         listOf(
                             LocationDescription(
                                 "Waypoint 1",
-                                "Street Blabla, Blabla City",
                                 location = LngLatAlt(),
-                                distance = "2 km",
+                                "Street Blabla, Blabla City",
                             ),
                         ),
                 ),
             clearErrorMessage = {},
             onToggleSortOrder = {},
             onToggleSortByName = {},
+            userLocation = null
         )
     }
 }
@@ -194,6 +199,7 @@ fun MarkersScreenPreview() {
             clearErrorMessage = {},
             onToggleSortOrder = {},
             onToggleSortByName = {},
+            userLocation = null
         )
     }
 }

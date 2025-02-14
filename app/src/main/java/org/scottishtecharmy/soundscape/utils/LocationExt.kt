@@ -1,17 +1,10 @@
 package org.scottishtecharmy.soundscape.utils
 
-import android.content.Context
-import org.mongodb.kbson.ObjectId
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
-fun ArrayList<Feature>.toLocationDescriptions(
-    currentLocation: LngLatAlt,
-    localizedContext: Context
-): List<LocationDescription> =
+fun ArrayList<Feature>.toLocationDescriptions(): List<LocationDescription> =
     mapNotNull { feature ->
         feature.properties?.let { properties ->
             val streetNumberAndName =
@@ -28,13 +21,8 @@ fun ArrayList<Feature>.toLocationDescriptions(
 
             val fullAddress = buildAddressFormat(streetNumberAndName, postcodeAndLocality, country)
             LocationDescription(
-                addressName = properties["name"]?.toString(),
+                name = properties["name"]?.toString(),
                 fullAddress = fullAddress,
-                distance =
-                    formatDistance(
-                        currentLocation.distance((feature.geometry as Point).coordinates),
-                        localizedContext
-                    ),
                 location = (feature.geometry as Point).coordinates
             )
         }

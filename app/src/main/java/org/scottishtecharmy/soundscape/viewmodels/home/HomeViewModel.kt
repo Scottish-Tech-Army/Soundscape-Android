@@ -12,7 +12,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,7 +37,6 @@ class HomeViewModel
     @Inject
     constructor(
         private val soundscapeServiceConnection: SoundscapeServiceConnection,
-        @ApplicationContext context: Context
     ) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
@@ -50,7 +48,7 @@ class HomeViewModel
 
     init {
         handleMonitoring()
-        fetchSearchResult(context)
+        fetchSearchResult()
     }
 
     private fun handleMonitoring() {
@@ -237,7 +235,7 @@ class HomeViewModel
         _searchText.value = text
     }
 
-    private fun fetchSearchResult(context: Context) {
+    private fun fetchSearchResult() {
         viewModelScope.launch {
             _searchText
                 .debounce(500)
@@ -251,11 +249,7 @@ class HomeViewModel
 
                         _state.update {
                             it.copy(
-                                searchItems =
-                                    result?.toLocationDescriptions(
-                                        currentLocation = state.value.location ?: LngLatAlt(),
-                                        localizedContext = context
-                                    ),
+                                searchItems = result?.toLocationDescriptions(),
                             )
                         }
                     }
