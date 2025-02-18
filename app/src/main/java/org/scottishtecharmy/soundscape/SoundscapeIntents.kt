@@ -223,7 +223,7 @@ class SoundscapeIntents
 
                                             if (input != null) {
                                                 val routeData: RouteData?
-                                                if(intent.type == "application/json") {
+                                                if((intent.type == "application/json") or (intent.type == "application/octet-stream")) {
                                                     // This might be a saved route shared from iOS.
                                                     // We want to translate this into a RouteData
                                                     // format to write to our database.
@@ -245,9 +245,11 @@ class SoundscapeIntents
                                                             val coordinate = location.get("coordinate") as JSONObject
                                                             val latitude = coordinate.get("latitude") as Double
                                                             val longitude = coordinate.get("longitude") as Double
-                                                            val nickname = marker.get("nickname")
-                                                            val estimatedAddress = marker.getString("estimatedAddress")
-
+                                                            // Soundscape community doesn't have estimatedAddress,
+                                                            // but STA iOS Soundscape does
+                                                            var estimatedAddress = ""
+                                                            if(marker.has("estimatedAddress"))
+                                                                estimatedAddress = marker.getString("estimatedAddress")
                                                             routeData.waypoints.add(
                                                                 MarkerData(name, Location(latitude, longitude), estimatedAddress)
                                                             )
