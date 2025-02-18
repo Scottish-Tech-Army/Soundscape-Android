@@ -447,7 +447,7 @@
   <string name="search_searching">"Ricerca in corso"</string>
   <string name="search_searching_with_punctuation">"Ricerca in corso…"</string>
   <string name="search_choose_destination">"Scegli la destinazione"</string>
-  <string name="search_results_found_first_result">"%s risultati trovati. Primo risultato: %s"</string>
+  <string name="search_results_found_first_result">%1$s risultati trovati. Primo risultato: %2$s</string>
   <string name="search_no_results_found_error">"A quanto pare non ci sono luoghi nelle vicinanze. Se stai cercando un luogo specifico, puoi provare a cercarne il nome o l'indirizzo."</string>
   <string name="search_use_current_location">"Posizione attuale"</string>
   <string name="search_nearby_screen_title">"Luoghi nelle vicinanze"</string>
@@ -489,7 +489,7 @@
   <string name="callouts_no_nearby_markers_to_call_out_now">"Non ci sono indicatori nelle vicinanze da notificare in questo momento."</string>
   <string name="callouts_action_repeat">"Ripeti"</string>
   <string name="callouts_action_more_info">"Ulteriori informazioni"</string>
-  <string name="callouts_hardware_low_battery">"%1$s ha solo il %2$s% di batteria rimanente."</string>
+  <string name="callouts_hardware_low_battery">%1$s ha solo il %2$s%% di batteria rimanente.</string>
   <string name="callouts_departure">"Notifica di partenza"</string>
   <string name="callouts_arrival">"Notifica di arrivo"</string>
   <string name="sleep_snoozing">"In modalità Posponi"</string>

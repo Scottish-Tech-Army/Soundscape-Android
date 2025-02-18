@@ -447,7 +447,7 @@
   <string name="search_searching">"Söker"</string>
   <string name="search_searching_with_punctuation">"Söker ..."</string>
   <string name="search_choose_destination">"Välj mål"</string>
-  <string name="search_results_found_first_result">"%s resultat hittades. Första resultat: %s"</string>
+  <string name="search_results_found_first_result">%1$s resultat hittades. Första resultat: %2$s</string>
   <string name="search_no_results_found_error">"Det verkar som om det inte finns några platser i närheten. Om du letar efter en viss plats kan du försöka med att söka utifrån namn eller adress."</string>
   <string name="search_use_current_location">"Aktuell plats"</string>
   <string name="search_nearby_screen_title">"Platser i närheten"</string>

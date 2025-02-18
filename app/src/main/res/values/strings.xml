@@ -1497,7 +1497,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="search_choose_destination">"Choose destination"</string>
 
 <!-- Search result, %@ results found. First result: %@ -->
-  <string name="search_results_found_first_result">"%s results found. First result: %s"</string>
+  <string name="search_results_found_first_result">%1$s results found. First result: %2$s</string>
 
 <!-- Error Message, e there are any places nearby. If you're looking for a specific place, you can try searching by name or address -->
   <string name="search_no_results_found_error">"It doesn't look like there are any places nearby. If you're looking for a specific place, you can try searching by name or address."</string>
