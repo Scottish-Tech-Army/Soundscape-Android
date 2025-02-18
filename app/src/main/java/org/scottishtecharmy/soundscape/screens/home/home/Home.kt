@@ -54,6 +54,7 @@ fun Home(
     getMyLocation: () -> Unit,
     getWhatsAroundMe: () -> Unit,
     getWhatsAheadOfMe: () -> Unit,
+    getNearbyMarkers: () -> Unit,
     getCurrentLocationDescription: () -> LocationDescription,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
@@ -97,6 +98,7 @@ fun Home(
                     getMyLocation = getMyLocation,
                     getWhatsAroundMe = getWhatsAroundMe,
                     getWhatsAheadOfMe = getWhatsAheadOfMe,
+                    getNearbyMarkers = getNearbyMarkers
                 )
             },
             floatingActionButton = {},
@@ -200,6 +202,7 @@ fun HomePreview() {
             getMyLocation = {},
             getWhatsAroundMe = {},
             getWhatsAheadOfMe = {},
+            getNearbyMarkers = {},
             getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
             shareLocation = {},
             rateSoundscape = {},
@@ -231,6 +234,7 @@ fun HomeSearchPreview() {
             getMyLocation = {},
             getWhatsAroundMe = {},
             getWhatsAheadOfMe = {},
+            getNearbyMarkers = {},
             getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
             shareLocation = {},
             rateSoundscape = {},

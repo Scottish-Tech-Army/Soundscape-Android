@@ -77,6 +77,7 @@ fun HomeScreen(
                 getMyLocation = { viewModel.myLocation() },
                 getWhatsAheadOfMe = { viewModel.aheadOfMe() },
                 getWhatsAroundMe = { viewModel.whatsAroundMe() },
+                getNearbyMarkers = { viewModel.nearbyMarkers() },
                 getCurrentLocationDescription = {
                     if(state.value.location != null) {
                         val location = LngLatAlt(
