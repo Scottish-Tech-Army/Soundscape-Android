@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -61,8 +62,13 @@ fun LocationItem(
         )
     }
     Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.fillMaxWidth()
+                           .clickable {
+           if(decoration.details.enabled) {
+               decoration.details.functionString(item.name!!)
+           }
+       },
+        verticalAlignment = Alignment.CenterVertically
     ) {
         if(decoration.location) {
             Icon(
@@ -117,17 +123,11 @@ fun LocationItem(
                 )
             )
         } else if(decoration.details.enabled) {
-            Button(
-                onClick = {
-                    decoration.details.functionString(item.name!!)
-                },
-            ) {
-                Icon(
-                    Icons.Rounded.ChevronRight,
-                    contentDescription = null,
-                    tint = Color.White,
-                )
-            }
+            Icon(
+                Icons.Rounded.ChevronRight,
+                contentDescription = null,
+                tint = Color.White,
+            )
         }
     }
 }

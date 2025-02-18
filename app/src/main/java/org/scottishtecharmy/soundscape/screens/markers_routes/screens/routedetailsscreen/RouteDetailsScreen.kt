@@ -159,6 +159,7 @@ fun RouteDetailsScreen(
                         }
                         Column(modifier = Modifier.weight(0.6f)) {
                             IconWithTextButton(
+                                modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.PlayArrow,
                                 iconModifier = Modifier.size(40.dp),
                                 textModifier = Modifier.padding(horizontal = 4.dp),
@@ -176,14 +177,16 @@ fun RouteDetailsScreen(
                                     }
                                 })
                             IconWithTextButton(
+                                modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Edit,
                                 iconModifier = Modifier.size(40.dp),
                                 textModifier = Modifier.padding(horizontal = 4.dp),
                                 iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
-                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}/${uiState.route.name}") })
+                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.name}") })
                             IconWithTextButton(
+                                modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
                                 iconModifier = Modifier.size(40.dp),
                                 textModifier = Modifier.padding(horizontal = 4.dp),
@@ -227,6 +230,9 @@ fun RouteDetailsScreen(
                                         location = marker.location?.location() ?: LngLatAlt(),
                                         fullAddress = marker.fullAddress
                                     ),
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .background(MaterialTheme.colorScheme.primary),
                                     decoration = LocationItemDecoration(
                                         location = false,
                                         index = index,

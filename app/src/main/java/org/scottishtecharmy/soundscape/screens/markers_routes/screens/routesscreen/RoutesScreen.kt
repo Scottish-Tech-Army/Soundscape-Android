@@ -36,7 +36,6 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.newRouteName
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -151,7 +150,7 @@ fun RoutesScreen(
             }
         }
         CustomFloatingActionButton(
-            onClick = { homeNavController.navigate("${HomeRoutes.AddAndEditRoute.route}/$newRouteName") },
+            onClick = { homeNavController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=new") },
             modifier = Modifier.align(Alignment.BottomCenter),
             icon = Icons.Rounded.AddCircleOutline,
             contentDescription = stringResource(R.string.general_alert_add),

@@ -27,8 +27,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.gson.GsonBuilder
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.database.local.model.Location
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationListShort
@@ -37,22 +41,75 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomB
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
+private data class SimpleMarkerData(
+    var addressName: String = "",
+    var location: LngLatAlt = LngLatAlt(),
+    var fullAddress: String = "",
+)
+private data class SimpleRouteData(
+    var name: String = "",
+    var description: String = "",
+    var waypoints: MutableList<SimpleMarkerData> = emptyList<SimpleMarkerData>().toMutableList()
+)
+
+fun generateRouteDetailsRoute(routeData: RouteData): String {
+
+    // Generate JSON for the RouteData and append it to the route
+    val simpleRouteData = SimpleRouteData()
+    simpleRouteData.name = routeData.name
+    simpleRouteData.description = routeData.description
+    for (waypoint in routeData.waypoints) {
+        simpleRouteData.waypoints.add(
+            SimpleMarkerData(
+                waypoint.addressName,
+                waypoint.location!!.location(),
+                waypoint.fullAddress
+            )
+        )
+    }
+
+    val json = GsonBuilder().create().toJson(simpleRouteData)
+    return "${HomeRoutes.AddAndEditRoute.route}?command=import&data=$json"
+}
+
+fun parseSimpleRouteData(jsonData: String): RouteData {
+
+    // Parse JSON
+    val gson = GsonBuilder().create()
+    val simpleRouteData = gson.fromJson(jsonData, SimpleRouteData::class.java)
+
+    val routeData = RouteData(
+        name = simpleRouteData.name,
+        description = simpleRouteData.description,
+    )
+    for (waypoint in simpleRouteData.waypoints) {
+        routeData.waypoints.add(
+            MarkerData(
+                waypoint.addressName,
+                Location(waypoint.location),
+                waypoint.fullAddress
+            )
+        )
+    }
+    return routeData
+}
+
 @Composable
 fun AddAndEditRouteScreenVM(
     routeObjectId: ObjectId?,
-    routeName: String,
     navController: NavController,
     modifier: Modifier,
     userLocation: LngLatAlt?,
+    editRoute: Boolean,
     viewModel: AddAndEditRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     AddAndEditRouteScreen(
         routeObjectId,
-        routeName,
         navController,
         modifier,
         uiState,
+        editRoute,
         onClearErrorMessage = { viewModel.clearErrorMessage() },
         onResetDoneAction = { viewModel.resetDoneActionState() },
         onNameChange = { viewModel.onNameChange(it) },
@@ -67,10 +124,10 @@ fun AddAndEditRouteScreenVM(
 @Composable
 fun AddAndEditRouteScreen(
     routeObjectId: ObjectId?,
-    routeName: String,
     navController: NavController,
     modifier: Modifier,
     uiState: AddAndEditRouteUiState,
+    editRoute: Boolean,
     userLocation: LngLatAlt?,
     onClearErrorMessage: () -> Unit,
     onResetDoneAction: () -> Unit,
@@ -81,7 +138,6 @@ fun AddAndEditRouteScreen(
 ) {
     val context = LocalContext.current
     val addWaypointDialog = remember { mutableStateOf(false) }
-    val editExistingRoute = remember { mutableStateOf(routeName != newRouteName) }
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
@@ -133,7 +189,7 @@ fun AddAndEditRouteScreen(
             topBar = {
                 CustomAppBar(
                     title = stringResource(
-                        if(editExistingRoute.value) (R.string.route_detail_action_edit)
+                        if(editRoute) (R.string.route_detail_action_edit)
                         else  (R.string.route_detail_action_create)
                     ),
                     navigationButtonTitle = stringResource(R.string.general_alert_cancel),
@@ -144,7 +200,7 @@ fun AddAndEditRouteScreen(
                 Column(
                     modifier = Modifier
                 ) {
-                    if(editExistingRoute.value) {
+                    if(editRoute) {
                         CustomButton(
                             onClick = {
                                 onDeleteRoute(routeObjectId!!)
@@ -188,13 +244,13 @@ fun AddAndEditRouteScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp)
+                        .padding(4.dp)
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(padding)
-                            .padding(16.dp)
+                            .padding(4.dp)
                     ) {
                         Text(
                             modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
@@ -208,7 +264,7 @@ fun AddAndEditRouteScreen(
                             onValueChange = onNameChange
                         )
                         Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
+                            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp),
                             text = stringResource(R.string.route_detail_edit_description),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.surfaceBright
@@ -252,10 +308,10 @@ fun NewRouteScreenPreview() {
     SoundscapeTheme {
         AddAndEditRouteScreen(
             routeObjectId = ObjectId(),
-            routeName = newRouteName,
             navController = rememberNavController(),
             modifier = Modifier,
             uiState = AddAndEditRouteUiState(),
+            editRoute = false,
             onClearErrorMessage = {},
             onResetDoneAction = {},
             onNameChange = {},
@@ -273,12 +329,12 @@ fun EditRouteScreenPreview() {
     SoundscapeTheme {
         AddAndEditRouteScreen(
             routeObjectId = ObjectId(),
-            routeName = "Route to preview",
             navController = rememberNavController(),
             modifier = Modifier,
             uiState = AddAndEditRouteUiState(
                 routeMembers = previewLocationListShort.toMutableList()
             ),
+            editRoute = true,
             onClearErrorMessage = {},
             onResetDoneAction = {},
             onNameChange = {},

@@ -16,8 +16,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import javax.inject.Inject
 
-const val newRouteName = "***NEW-ROUTE***"
-
 @HiltViewModel
 class AddAndEditRouteViewModel @Inject constructor(
     private val routesRepository: RoutesRepository,
@@ -46,36 +44,39 @@ class AddAndEditRouteViewModel @Inject constructor(
         }
     }
 
+    // Function to initialize an importedRoute
+    fun initializeRoute(routeData: RouteData) {
+        val routeMembers = emptyList<LocationDescription>().toMutableList()
+        for (waypoint in routeData.waypoints) {
+            routeMembers.add(
+                LocationDescription(
+                    name = waypoint.addressName,
+                    location = waypoint.location?.location() ?: LngLatAlt(),
+                    fullAddress = waypoint.fullAddress,
+                    markerObjectId = waypoint.objectId
+                )
+            )
+        }
+        _uiState.value = _uiState.value.copy(
+            name = routeData.name,
+            description = routeData.description,
+            routeMembers = routeMembers,
+            routeObjectId = routeData.objectId
+        )
+    }
+
     // Function to initialize the editing route
-    fun initializeRoute(routeName: String) {
-        if(routeName != newRouteName) {
-            viewModelScope.launch {
-                try {
-                    val route = routesRepository.getRoute(routeName).firstOrNull()
-                    route?.let {
-                        val routeMembers = emptyList<LocationDescription>().toMutableList()
-                        for (waypoint in it.waypoints) {
-                            routeMembers.add(
-                                LocationDescription(
-                                    name = waypoint.addressName,
-                                    location = waypoint.location?.location() ?: LngLatAlt(),
-                                    fullAddress = waypoint.fullAddress,
-                                    markerObjectId = waypoint.objectId
-                                )
-                            )
-                        }
-                        _uiState.value = _uiState.value.copy(
-                            name = it.name,
-                            description = it.description,
-                            routeMembers = routeMembers,
-                            routeObjectId = it.objectId
-                        )
-                    }
-                } catch (e: Exception) {
-                    Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
-                    _uiState.value =
-                        _uiState.value.copy(errorMessage = "Failed to load route: ${e.message}")
+    fun initializeRouteFromDatabase(routeName: String) {
+        viewModelScope.launch {
+            try {
+                val route = routesRepository.getRoute(routeName).firstOrNull()
+                route?.let {
+                    initializeRoute(route)
                 }
+            } catch (e: Exception) {
+                Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
+                _uiState.value =
+                    _uiState.value.copy(errorMessage = "Failed to load route: ${e.message}")
             }
         }
     }
