@@ -65,7 +65,6 @@ fun LocationDetailsScreen(
     locationDescription: LocationDescription,
     location : LngLatAlt?,
     heading: Float,
-    onNavigateUp: () -> Unit,
     navController: NavHostController,
     viewModel: LocationDetailsViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
@@ -73,7 +72,6 @@ fun LocationDetailsScreen(
     val context = LocalContext.current
 
     LocationDetails(
-        onNavigateUp = onNavigateUp,
         navController = navController,
         locationDescription = locationDescription,
         createBeacon = { loc ->
@@ -105,7 +103,6 @@ fun LocationDetailsScreen(
 @Composable
 fun LocationDetails(
     locationDescription : LocationDescription,
-    onNavigateUp: () -> Unit,
     navController: NavHostController,
     location: LngLatAlt?,
     heading: Float,
@@ -134,7 +131,7 @@ fun LocationDetails(
         ) {
             CustomAppBar(
                 title = stringResource(R.string.location_detail_title_default),
-                onNavigateUp = onNavigateUp,
+                onNavigateUp = { navController.popBackStack() },
             )
             Column(
                 modifier =
@@ -151,7 +148,7 @@ fun LocationDetails(
                     createBeacon = createBeacon,
                     locationDescription = description.value,
                     enableStreetPreview = enableStreetPreview,
-                    onNavigateUp = onNavigateUp,
+                    onNavigateUp = { navController.popBackStack() },
                     dialogState = dialogState
                 )
             }
@@ -165,10 +162,9 @@ fun LocationDetails(
 
                     // This effectively replaces the current screen with the new one
                     navController.navigate(generateLocationDetailsRoute(ld)) {
-                        var popupDestination = HomeRoutes.Home.route
-                        if (ld.markerObjectId == null) popupDestination = HomeRoutes.MarkersAndRoutes.route
-                        popUpTo(popupDestination) {
-                            inclusive = false // Ensures Home screen is not popped from the stack
+                        println("entry: ${navController.currentBackStackEntry?.destination?.route}")
+                        popUpTo(navController.currentBackStackEntry?.destination?.route ?: return@navigate) {
+                            inclusive = true
                         }
                         launchSingleTop = true // Prevents multiple instances of Home
                     }
@@ -356,7 +352,6 @@ fun LocationDetailsPreview() {
             getLocationDescription = { _ ->
                 LocationDescription("Current location", LngLatAlt())
             },
-            onNavigateUp = {},
             navController = NavHostController(LocalContext.current),
             location = null,
             heading = 0.0F,
