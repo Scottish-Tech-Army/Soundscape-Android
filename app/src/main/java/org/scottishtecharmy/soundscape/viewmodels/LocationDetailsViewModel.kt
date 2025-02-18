@@ -73,6 +73,7 @@ class LocationDetailsViewModel @Inject constructor(
                     )
                 try {
                     routesRepository.insertMarker(marker)
+                    locationDescription.markerObjectId = marker.objectId
 
                     Log.d(
                         "LocationDetailsViewModel",
