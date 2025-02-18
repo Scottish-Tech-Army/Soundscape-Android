@@ -447,7 +447,7 @@
   <string name="search_searching">"Zoeken"</string>
   <string name="search_searching_with_punctuation">"Zoeken..."</string>
   <string name="search_choose_destination">"Bestemming kiezen"</string>
-  <string name="search_results_found_first_result">"%s resultaten gevonden. Eerste resultaat: %s"</string>
+  <string name="search_results_found_first_result">%1$s resultaten gevonden. Eerste resultaat: %2$s</string>
   <string name="search_no_results_found_error">"Het ziet ernaar uit dat er geen plaatsen in de buurt zijn. Als u een specifieke plaats zoekt, kunt u zoeken op naam of adres."</string>
   <string name="search_use_current_location">"Huidige locatie"</string>
   <string name="search_nearby_screen_title">"Plaatsen in de buurt"</string>

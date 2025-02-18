@@ -447,7 +447,7 @@
   <string name="search_searching">"Αναζήτηση"</string>
   <string name="search_searching_with_punctuation">"Αναζήτηση…"</string>
   <string name="search_choose_destination">"Επιλέξτε προορισμό"</string>
-  <string name="search_results_found_first_result">"%s αποτελέσματα βρέθηκαν. Πρώτο αποτέλεσμα: %s"</string>
+  <string name="search_results_found_first_result">%1$s αποτελέσματα βρέθηκαν. Πρώτο αποτέλεσμα: %2$s</string>
   <string name="search_no_results_found_error">"Δεν φαίνεται να υπάρχουν μέρη κοντά. Αν ψάχνετε για ένα συγκεκριμένο μέρος, μπορείτε να δοκιμάσετε να το αναζητήσετε με το όνομα ή τη διεύθυνσή του."</string>
   <string name="search_use_current_location">"Τρέχουσα τοποθεσία"</string>
   <string name="search_nearby_screen_title">"Κοντινές τοποθεσίες"</string>

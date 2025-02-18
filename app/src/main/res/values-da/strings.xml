@@ -447,7 +447,7 @@
   <string name="search_searching">"Søger"</string>
   <string name="search_searching_with_punctuation">"Søger…"</string>
   <string name="search_choose_destination">"Vælg destination"</string>
-  <string name="search_results_found_first_result">"Der blev fundet %s resultater. Første resultat: %s"</string>
+  <string name="search_results_found_first_result">Der blev fundet %1$s resultater. Første resultat: %2$s</string>
   <string name="search_no_results_found_error">"Det ser ikke ud som om der er nogen steder i nærheden. Hvis du leder efter et bestemt sted, kan du prøve at søge efter navn eller adresse."</string>
   <string name="search_use_current_location">"Aktuel placering"</string>
   <string name="search_nearby_screen_title">"Steder i nærheden"</string>

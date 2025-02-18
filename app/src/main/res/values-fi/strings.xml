@@ -447,7 +447,7 @@
   <string name="search_searching">"Haetaan"</string>
   <string name="search_searching_with_punctuation">"Haetaan..."</string>
   <string name="search_choose_destination">"Valitse määränpää"</string>
-  <string name="search_results_found_first_result">"%s tulosta löytyi. Ensimmäinen tulos: %s"</string>
+  <string name="search_results_found_first_result">%1$s tulosta löytyi. Ensimmäinen tulos: %2$s</string>
   <string name="search_no_results_found_error">"Lähistöllä ei vaikuttaisi olevan paikkoja. Jos etsit tiettyä paikkaa, voit yrittää etsiä sitä nimen tai osoitteen avulla."</string>
   <string name="search_use_current_location">"Nykyinen sijainti"</string>
   <string name="search_nearby_screen_title">"Lähiympäristön paikat"</string>

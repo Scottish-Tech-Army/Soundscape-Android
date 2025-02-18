@@ -447,7 +447,7 @@
   <string name="search_searching">"検索中"</string>
   <string name="search_searching_with_punctuation">"検索中..."</string>
   <string name="search_choose_destination">"目的地を選択"</string>
-  <string name="search_results_found_first_result">"検索結果: %s 件。最初の結果: %s"</string>
+  <string name="search_results_found_first_result">検索結果: %1$s 件。最初の結果: %2$s</string>
   <string name="search_no_results_found_error">"近くの場所は見つかりませんでした。特定の場所を探している場合は、名前または住所で検索してみてください。"</string>
   <string name="search_use_current_location">"現在地"</string>
   <string name="search_nearby_screen_title">"近くの場所"</string>

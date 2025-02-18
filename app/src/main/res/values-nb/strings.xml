@@ -447,7 +447,7 @@
   <string name="search_searching">"Søker"</string>
   <string name="search_searching_with_punctuation">"Søker ..."</string>
   <string name="search_choose_destination">"Velg destinasjon"</string>
-  <string name="search_results_found_first_result">"Fant %s resultater. Første resultat: %s"</string>
+  <string name="search_results_found_first_result">Fant %1$s resultater. Første resultat: %2$s</string>
   <string name="search_no_results_found_error">"Det ser ikke ut til at det er noen steder i nærheten. Hvis du ser etter et spesielt sted, kan du prøve å søke etter navnet eller adressen."</string>
   <string name="search_use_current_location">"Nåværende posisjon"</string>
   <string name="search_nearby_screen_title">"Steder i nærheten"</string>

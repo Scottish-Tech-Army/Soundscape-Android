@@ -447,7 +447,7 @@
   <string name="search_searching">"Buscando"</string>
   <string name="search_searching_with_punctuation">"Buscando…"</string>
   <string name="search_choose_destination">"Elegir destino"</string>
-  <string name="search_results_found_first_result">"%s resultados encontrados. Primer resultado: %s"</string>
+  <string name="search_results_found_first_result">%1$s resultados encontrados. Primer resultado: %2$s</string>
   <string name="search_no_results_found_error">"No parece que haya lugares cerca. Si busca un lugar específico, puede intentar buscar por nombre o dirección."</string>
   <string name="search_use_current_location">"Ubicación actual"</string>
   <string name="search_nearby_screen_title">"Lugares cercanos"</string>
