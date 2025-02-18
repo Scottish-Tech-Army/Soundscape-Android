@@ -25,6 +25,9 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMAR
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
+import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
+import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
@@ -34,6 +37,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDire
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
@@ -41,7 +45,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
@@ -70,6 +76,7 @@ class GeoEngine {
     // Location update job
     private var locationMonitoringJob: Job? = null
     private var audioEngineUpdateJob: Job? = null
+    private var markerMonitoringJob: Job? = null
 
     val gridState = if(SOUNDSCAPE_TILE_BACKEND) SoundscapeBackendGridState() else ProtomapsGridState()
 
@@ -92,6 +99,8 @@ class GeoEngine {
     private lateinit var autoCallout: AutoCallout
 
     private val streetPreview = StreetPreview()
+
+    private var markerTree : FeatureTree? = null
 
     private fun getCurrentUserGeometry(headingMode: UserGeometry.HeadingMode) : UserGeometry {
         return UserGeometry(
@@ -144,6 +153,35 @@ class GeoEngine {
 
         streetPreview.start()
 
+        // Monitor markers in the database so we can create a tree to search
+        markerMonitoringJob?.cancel()
+        markerMonitoringJob = coroutineScope.launch {
+
+            val realm = RealmConfiguration.getMarkersInstance()
+            val routesDao = RoutesDao(realm)
+            val routesRepository = RoutesRepository(routesDao)
+            routesRepository.getMarkerFlow().collect { markers ->
+
+                val featureCollection = FeatureCollection()
+                for (marker in markers) {
+                    val geoFeature = Feature()
+                    geoFeature.geometry =
+                        Point(marker.location!!.longitude, marker.location!!.latitude)
+                    val properties : HashMap<String, Any?> = hashMapOf()
+                    properties["name"] = marker.addressName
+                    properties["description"] = marker.fullAddress
+                    geoFeature.properties = properties
+                    featureCollection.addFeature(geoFeature)
+                }
+                runBlocking {
+                    withContext(gridState.treeContext) {
+                        markerTree = FeatureTree(featureCollection)
+                        Log.e(TAG, "Marker tree size ${featureCollection.features.size}")
+                    }
+                }
+            }
+        }
+
         getOttoBus().register(this)
     }
 
@@ -152,6 +190,7 @@ class GeoEngine {
 
         locationMonitoringJob?.cancel()
         audioEngineUpdateJob?.cancel()
+        markerMonitoringJob?.cancel()
 
         gridState.stop()
         locationProvider.destroy()
@@ -535,6 +574,66 @@ class GeoEngine {
                 }
             }
         }
+        return results
+    }
+
+    fun nearbyMarkers() : List<PositionedString> {
+
+        // Search database for nearby markers and call them out
+        var results : MutableList<PositionedString> = mutableListOf()
+        val timeSource = TimeSource.Monotonic
+        val gridStartTime = timeSource.markNow()
+
+        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+            val noLocationString =
+                localizedContext.getString(R.string.general_error_location_services_find_location_error)
+            results.add(PositionedString(
+                text = noLocationString,
+                type = AudioType.STANDARD)
+            )
+        } else {
+            // Run the code within the treeContext to protect it from changes to the trees whilst it's
+            // running.
+            results = runBlocking {
+                withContext(gridState.treeContext) {
+
+                    val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+
+                    // Simply get 4 nearest markers
+                    val nearestMarkers = markerTree?.generateNearestFeatureCollection(
+                        userGeometry.location,
+                        2000.0,
+                        4
+                    )
+
+                    val list: MutableList<PositionedString> = mutableListOf()
+                    if(nearestMarkers != null) {
+                        for (feature in nearestMarkers.features) {
+                            val markerLocation = getDistanceToFeature(userGeometry.location, feature)
+                            val name = feature.properties?.get("name")
+                            val text = "$name. ${
+                                formatDistance(
+                                    markerLocation.distance,
+                                    localizedContext
+                                )
+                            }"
+                            list.add(
+                                PositionedString(
+                                    text,
+                                    markerLocation.point,
+                                    NativeAudioEngine.EARCON_SENSE_POI,
+                                    AudioType.LOCALIZED,
+                                )
+                            )
+                        }
+                    }
+                    list
+                }
+            }
+        }
+        val gridFinishTime = timeSource.markNow()
+        Log.e(GridState.TAG, "Time to calculate NearbyMarkers: ${gridFinishTime - gridStartTime}")
+
         return results
     }
 

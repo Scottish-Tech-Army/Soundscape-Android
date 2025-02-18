@@ -376,6 +376,16 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
+    fun nearbyMarkers() {
+        coroutineScope.launch {
+            val results = geoEngine.nearbyMarkers()
+            if(results.isNotEmpty()) {
+                audioEngine.clearTextToSpeechQueue()
+                speakCallout(results, true)
+            }
+        }
+    }
+
     suspend fun searchResult(searchString: String): ArrayList<Feature>? {
         return geoEngine.searchResult(searchString)?.features
     }

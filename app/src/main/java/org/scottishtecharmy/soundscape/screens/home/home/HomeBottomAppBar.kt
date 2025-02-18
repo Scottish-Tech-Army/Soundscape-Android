@@ -40,15 +40,9 @@ fun HomeBottomAppBar(
     getMyLocation: () -> Unit,
     getWhatsAroundMe: () -> Unit,
     getWhatsAheadOfMe: () -> Unit,
+    getNearbyMarkers: () -> Unit,
     modifier : Modifier = Modifier
 ) {
-    val context = LocalContext.current
-    val notAvailableText = "This is not implemented yet."
-    val notAvailableToast = {
-        Toast.makeText(context, notAvailableText, Toast.LENGTH_SHORT).show()
-    }
-
-
     Surface(
         modifier = modifier
             .clip(RoundedCornerShape(4.dp, 4.dp, 0.dp, 0.dp)),
@@ -101,7 +95,7 @@ fun HomeBottomAppBar(
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.nearby_markers_24px),
                     text = stringResource(R.string.ui_action_button_nearby_markers),
-                    onClick = notAvailableToast,
+                    onClick = getNearbyMarkers,
                     modifier = Modifier.weight(1f).fillMaxHeight()
                 )
             }
@@ -157,7 +151,8 @@ fun PreviewHomeBottomAppBar(){
         HomeBottomAppBar(
             getMyLocation = {},
             getWhatsAheadOfMe = {},
-            getWhatsAroundMe = {}
+            getWhatsAroundMe = {},
+            getNearbyMarkers = {}
         )
     }
 }
@@ -169,7 +164,8 @@ fun PreviewHomeBottomAppBarLarge(){
         HomeBottomAppBar(
             getMyLocation = {},
             getWhatsAheadOfMe = {},
-            getWhatsAroundMe = {}
+            getWhatsAroundMe = {},
+            getNearbyMarkers = {}
         )
     }
 }

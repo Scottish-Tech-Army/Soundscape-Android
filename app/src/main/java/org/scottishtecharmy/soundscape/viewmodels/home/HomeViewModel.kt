@@ -187,6 +187,13 @@ class HomeViewModel
         }
     }
 
+    fun nearbyMarkers() {
+        // Log.d(TAG, "nearbyMarkers() triggered")
+        viewModelScope.launch {
+            soundscapeServiceConnection.soundscapeService?.nearbyMarkers()
+        }
+    }
+
     fun streetPreviewGo() {
         // Log.d(TAG, "myLocation() triggered")
         viewModelScope.launch {
