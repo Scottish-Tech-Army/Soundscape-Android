@@ -8,18 +8,15 @@ import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
-import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.generateRouteDetailsRoute
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 import java.io.BufferedReader
 import java.io.IOException
@@ -261,24 +258,9 @@ class SoundscapeIntents
                                                     routeData = parseGpxFile(input)
                                                 }
                                                 if(routeData != null) {
-                                                    // The parsing has succeeded, write the result to a
-                                                    // new markers database.
-                                                    // TODO: This intent should really open up the RouteDetails
-                                                    //  page and defer to that the action of inserting the
-                                                    //  route into the database. This is a temporary solution
-                                                    //  so that we can work on the code that uses the routes.
-                                                    val realm =
-                                                        RealmConfiguration.getMarkersInstance(true)
-                                                    val routesDao = RoutesDao(realm)
-                                                    val routesRepository =
-                                                        RoutesRepository(routesDao)
-                                                    runBlocking {
-                                                        launch {
-                                                            // Write the routeData to the database
-                                                            Log.d("gpx", "Inserting route")
-                                                            routesRepository.insertRoute(routeData)
-                                                        }
-                                                    }
+                                                    // The parsing has succeeded, pass the data to
+                                                    // the new route screen.
+                                                    mainActivity.navigator.navigate(generateRouteDetailsRoute(routeData))
                                                 }
                                             }
                                         } catch (e: Exception) {

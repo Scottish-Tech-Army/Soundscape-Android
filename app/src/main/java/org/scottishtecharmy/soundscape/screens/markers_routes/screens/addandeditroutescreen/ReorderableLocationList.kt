@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.key
@@ -89,7 +91,6 @@ fun ReorderableLocationList(
                 Box(
                     modifier = Modifier
                         .fillParentMaxWidth()
-                        .padding(horizontal = 12.dp)
                         .offset { IntOffset(0, verticalTranslation) }
                         .onGloballyPositioned {
                             // This is called to update our array of list item heights. That's then
@@ -116,6 +117,9 @@ fun ReorderableLocationList(
                 ) {
                     LocationItem(
                         item = locationDescription,
+                        modifier = Modifier
+                            .padding(4.dp)
+                            .background(MaterialTheme.colorScheme.primary),
                         decoration = LocationItemDecoration(
                             index = idx
                         ),

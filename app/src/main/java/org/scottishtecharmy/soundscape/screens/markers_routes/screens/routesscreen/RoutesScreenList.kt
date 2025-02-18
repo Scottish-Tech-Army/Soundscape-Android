@@ -37,7 +37,8 @@ fun RouteList(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.primary)
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .clickable { navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}") },
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -56,9 +57,7 @@ fun RouteList(
                     }
                     Icon(
                         modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .clickable { navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}") },
-
+                            .align(Alignment.CenterVertically),
                         imageVector = Icons.Default.ChevronRight,
                         contentDescription = ""
                     )
