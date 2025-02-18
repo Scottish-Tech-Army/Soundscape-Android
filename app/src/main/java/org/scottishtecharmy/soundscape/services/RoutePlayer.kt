@@ -64,7 +64,7 @@ class RoutePlayer(val service: SoundscapeService) {
                     AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
                 )
 
-                service.createBeacon(LngLatAlt(location.latitude, location.longitude))
+                service.createBeacon(location.location())
             }
         }
     }
