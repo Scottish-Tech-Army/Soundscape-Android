@@ -125,21 +125,6 @@ fun HomeScreen(
 
             LocationDetailsScreen(
                 locationDescription = locationDescription,
-                onNavigateUp = {
-                    // If the location is a marker, then we're in the routes menu, so just pop back
-                    // up. Otherwise, pop up to Home.
-                    if(locationDescription.markerObjectId != null) {
-                        navController.popBackStack()
-                    } else {
-                        navController.navigate(HomeRoutes.Home.route) {
-                            popUpTo(HomeRoutes.Home.route) {
-                                inclusive =
-                                    false // Ensures Home screen is not popped from the stack
-                            }
-                            launchSingleTop = true // Prevents multiple instances of Home
-                        }
-                    }
-                },
                 location = state.value.location,
                 navController = navController,
                 heading = state.value.heading,
