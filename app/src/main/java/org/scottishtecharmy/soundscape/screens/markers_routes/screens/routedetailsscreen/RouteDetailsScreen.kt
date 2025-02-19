@@ -208,7 +208,6 @@ fun RouteDetailsScreen(
                                 beaconLocation = location,
                                 allowScrolling = true,
                                 onMapLongClick = { _ -> false },
-                                onMarkerClick = { false },
                                 // Center on the beacon
                                 mapCenter = location,
                                 userLocation = LngLatAlt(),

@@ -71,9 +71,6 @@ fun HomeScreen(
                     navController.navigate(generateLocationDetailsRoute(ld))
                     true
                 },
-                onMarkerClick = { marker ->
-                    viewModel.onMarkerClick(marker)
-                },
                 getMyLocation = { viewModel.myLocation() },
                 getWhatsAheadOfMe = { viewModel.aheadOfMe() },
                 getWhatsAroundMe = { viewModel.whatsAroundMe() },
