@@ -1,7 +1,15 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Log
+import android.view.Gravity
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -13,11 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.maplibre.android.annotations.Marker
-import org.maplibre.android.annotations.MarkerOptions
 import org.maplibre.android.camera.CameraPosition
 import org.maplibre.android.geometry.LatLng
 import org.maplibre.android.maps.MapView
@@ -35,6 +42,58 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
+const val LOCATION_MARKER_NAME = "LOCATION-%d"
+
+/**
+ * Create a location marker drawable which has location_marker as it's background, and an integer
+ * in the foreground. These are to mark on the map locations of waypoints within a route.
+ * @param context The context to use
+ * @param number The number to display within the drawable
+ * @return A composited drawable
+ */
+fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
+    // Create a FrameLayout to hold the marker components
+    val frameLayout = FrameLayout(context)
+    frameLayout.layoutParams = FrameLayout.LayoutParams(
+        FrameLayout.LayoutParams.WRAP_CONTENT,
+        FrameLayout.LayoutParams.WRAP_CONTENT
+    )
+
+    // Create the background drawable
+    val backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.location_marker)
+    backgroundDrawable?.let {
+        frameLayout.background = it
+    }
+
+    // Create the TextView for the number
+    val numberTextView = TextView(context)
+    numberTextView.apply {
+        text = number.toString()
+        setTextColor(android.graphics.Color.WHITE)
+        textSize = 11f
+        gravity = Gravity.CENTER
+        setPadding(10, 10, 10, 40)
+    }
+
+    // Add the TextView to the FrameLayout
+    frameLayout.addView(numberTextView)
+
+    // Measure and layout the FrameLayout
+    frameLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    frameLayout.layout(0, 0, frameLayout.measuredWidth, frameLayout.measuredHeight)
+
+    // Create a Bitmap from the FrameLayout
+    val bitmap = Bitmap.createBitmap(
+        frameLayout.measuredWidth,
+        frameLayout.measuredHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = android.graphics.Canvas(bitmap)
+    frameLayout.draw(canvas)
+
+    // Create a Drawable from the Bitmap
+    return BitmapDrawable(context.resources, bitmap)
+}
 
 /**
  * A map disable component that uses maplibre.
@@ -57,9 +116,10 @@ fun MapContainerLibre(
     beaconLocation: LngLatAlt?,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Boolean,
-    onMarkerClick: (Marker) -> Boolean,
     tileGridGeoJson: String
 ) {
+    val context = LocalContext.current
+
     // We don't run the map code when in a Preview as it does not render
     if(!LocalInspectionMode.current) {
         val cameraPosition = remember(mapCenter, mapViewRotation, allowScrolling) {
@@ -80,20 +140,26 @@ fun MapContainerLibre(
                 .withIconRotate(userSymbolRotation)
         }
 
-        val beaconLocationMarker = remember { mutableStateOf<Marker?>(null) }
+        val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
         val symbol = remember { mutableStateOf<Symbol?>(null) }
         val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
-        val filesDir = LocalContext.current.filesDir.toString()
+        val filesDir = context.filesDir.toString()
         var lastTileGridGeoJson by remember { mutableStateOf(tileGridGeoJson)}
 
-        val res = LocalContext.current.resources
-        val drawable = remember {
+        val res = context.resources
+        val userPositionDrawable = remember {
             ResourcesCompat.getDrawable(
                 res,
                 R.drawable.navigation,
                 null
             )
         }
+        val markerDrawables = remember {
+            Array(100) { index ->
+                createLocationMarkerDrawable(context, index + 1)
+            }
+        }
+
         val coroutineScope = rememberCoroutineScope()
         val map = rememberMapViewWithLifecycle { mapView: MapView ->
             // This code will be run just before the MapView is destroyed to tidy up any map
@@ -106,11 +172,10 @@ fun MapContainerLibre(
                 mapView.getMapAsync { map ->
                     Log.d("MapContainer", "MapView is being disposed, tidy up")
                     beaconLocationMarker.value?.let { currentBeacon ->
-                        map.removeMarker(currentBeacon)
+                        symbolManager.value?.delete(currentBeacon)
                         beaconLocationMarker.value = null
                     }
                     map.removeOnMapLongClickListener(onMapLongClick)
-                    map.setOnMarkerClickListener(null)
 
                     symbol.value?.let { sym ->
                         symbolManager.value?.delete(sym)
@@ -128,7 +193,14 @@ fun MapContainerLibre(
                 // val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
                 val styleUrl = Uri.fromFile(File("$filesDir/osm-bright-gl-style/processedstyle.json")).toString()
                 mapLibre.setStyle(styleUrl) { style ->
-                    style.addImage(USER_POSITION_MARKER_NAME, drawable!!)
+
+                    // Add the icons we might need to the style
+                    //  - user location
+                    //  - numbered location markers
+                    style.addImage(USER_POSITION_MARKER_NAME, userPositionDrawable!!)
+                    for(i in 0 .. 99) {
+                        style.addImage(LOCATION_MARKER_NAME.format(i), markerDrawables[i])
+                    }
 
                     val sm = SymbolManager(map, mapLibre, style)
                     // Disable symbol collisions
@@ -157,7 +229,6 @@ fun MapContainerLibre(
                     mapLibre.uiSettings.isAttributionEnabled = true
 
                     mapLibre.addOnMapLongClickListener(onMapLongClick)
-                    mapLibre.setOnMarkerClickListener(onMarkerClick)
                 }
 
                 mapLibre.cameraPosition = CameraPosition.Builder()
@@ -165,17 +236,6 @@ fun MapContainerLibre(
                     .zoom(15.0) // we set the zoom only at init
                     .bearing(mapViewRotation.toDouble())
                     .build()
-            }
-        }
-
-        LaunchedEffect(beaconLocation) {
-            map.getMapAsync { mapLibre ->
-                if (beaconLocation != null && beaconLocationMarker.value == null) {
-                    // first time beacon is created
-                    val markerOptions = MarkerOptions()
-                        .position(beaconLocation.toLatLng())
-                    beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
-                }
             }
         }
 
@@ -194,25 +254,16 @@ fun MapContainerLibre(
                             symbolManager.value?.update(sym)
                         }
 
-                        if (beaconLocation != null) {
-                            // beacon to display
-                            beaconLocationMarker.value?.let { currentBeaconMarker ->
-                                // update beacon position
-                                currentBeaconMarker.position = beaconLocation.toLatLng()
-                                mapLibre.updateMarker(currentBeaconMarker)
-                            } ?: {
-                                // new beacon to display
-                                val markerOptions =
-                                    MarkerOptions()
-                                        .position(beaconLocation.toLatLng())
-                                beaconLocationMarker.value = mapLibre.addMarker(markerOptions)
-                            }
-                        } else {
-                            // if beacon is present we should remove it
-                            beaconLocationMarker.value?.let { currentBeacon ->
-                                mapLibre.removeMarker(currentBeacon)
-                                beaconLocationMarker.value = null
-                            }
+                        if((symbolManager.value != null) and
+                           (beaconLocation != null) and
+                           ( beaconLocationMarker.value == null)) {
+                            val markerOptions = SymbolOptions()
+                                .withLatLng(beaconLocation!!.toLatLng())
+                                .withIconImage(LOCATION_MARKER_NAME.format(0))
+                                .withIconAnchor("bottom")
+                            val sym = symbolManager.value?.create(markerOptions)
+                            symbolManager.value?.update(sym)
+                            beaconLocationMarker.value = sym
                         }
 
                         if (BuildConfig.DEBUG && tileGridGeoJson.isNotEmpty()) {

@@ -1,9 +1,3 @@
-// The code for Marker manipulation in maplibre has been moved into an annotations plugin.
-// However, this doesn't appear to be supported in Kotlin yet. There's talk of un-deprecating those
-// functions in the next release if support isn't added. In the meantime we use the deprecated
-// functions and suppress the warnings here.
-@file:Suppress("DEPRECATION")
-
 package org.scottishtecharmy.soundscape.viewmodels.home
 
 import android.content.Context
@@ -22,7 +16,6 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.maplibre.android.annotations.Marker
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -153,18 +146,22 @@ class HomeViewModel
         spJob.cancel()
     }
 
-    fun onMarkerClick(marker: Marker): Boolean {
-        Log.d(TAG, "marker click")
-
-        if ((marker.position.latitude == _state.value.beaconLocation?.latitude) &&
-            (marker.position.longitude == _state.value.beaconLocation?.longitude)){
-            soundscapeServiceConnection.soundscapeService?.destroyBeacon()
-            _state.update { it.copy(beaconLocation = null) }
-
-            return true
-        }
-        return false
-    }
+//
+// We moved from the deprecated MapLibre Marker API to using the Symbol API instead. We don't yet
+// have a listener for a click on symbols.
+//
+//    fun onMarkerClick(marker: Marker): Boolean {
+//        Log.d(TAG, "marker click")
+//
+//        if ((marker.position.latitude == _state.value.beaconLocation?.latitude) &&
+//            (marker.position.longitude == _state.value.beaconLocation?.longitude)){
+//            soundscapeServiceConnection.soundscapeService?.destroyBeacon()
+//            _state.update { it.copy(beaconLocation = null) }
+//
+//            return true
+//        }
+//        return false
+//    }
 
     fun myLocation() {
         // Log.d(TAG, "myLocation() triggered")

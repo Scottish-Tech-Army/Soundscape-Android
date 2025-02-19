@@ -28,7 +28,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
@@ -50,7 +49,6 @@ fun Home(
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
-    onMarkerClick: (Marker) -> Boolean,
     getMyLocation: () -> Unit,
     getWhatsAroundMe: () -> Unit,
     getWhatsAheadOfMe: () -> Unit,
@@ -127,7 +125,6 @@ fun Home(
                     )
                 },
                 onMapLongClick = onMapLongClick,
-                onMarkerClick = onMarkerClick,
                 tileGridGeoJson = tileGridGeoJson,
                 streetPreviewState = streetPreviewState,
                 streetPreviewGo = streetPreviewGo,
@@ -198,7 +195,6 @@ fun HomePreview() {
             heading = 0.0f,
             onNavigate = {},
             onMapLongClick = { false },
-            onMarkerClick = { true },
             getMyLocation = {},
             getWhatsAroundMe = {},
             getWhatsAheadOfMe = {},
@@ -230,7 +226,6 @@ fun HomeSearchPreview() {
             heading = 0.0f,
             onNavigate = {},
             onMapLongClick = { false },
-            onMarkerClick = { true },
             getMyLocation = {},
             getWhatsAroundMe = {},
             getWhatsAheadOfMe = {},

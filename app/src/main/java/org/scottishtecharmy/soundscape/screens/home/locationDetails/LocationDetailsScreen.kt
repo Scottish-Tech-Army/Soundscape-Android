@@ -170,7 +170,6 @@ fun LocationDetails(
                     }
                     true
                 },
-                onMarkerClick = { false },
                 // Center on the beacon
                 mapCenter = description.value.location,
                 userLocation = location ?: LngLatAlt(),

@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.maplibre.android.annotations.Marker
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
@@ -25,7 +24,6 @@ fun HomeContent(
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
-    onMarkerClick: (Marker) -> Boolean,
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
@@ -89,7 +87,6 @@ fun HomeContent(
                 userLocation = location,
                 userSymbolRotation = heading,
                 onMapLongClick = onMapLongClick,
-                onMarkerClick = onMarkerClick,
                 tileGridGeoJson = tileGridGeoJson,
             )
         }
@@ -105,7 +102,6 @@ fun StreetPreviewHomeContent() {
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = { false },
-        onMarkerClick = { true },
         searchBar = {},
         tileGridGeoJson = "",
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
@@ -124,7 +120,6 @@ fun PreviewHomeContent() {
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = { false },
-        onMarkerClick = { true },
         searchBar = {},
         tileGridGeoJson = "",
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
