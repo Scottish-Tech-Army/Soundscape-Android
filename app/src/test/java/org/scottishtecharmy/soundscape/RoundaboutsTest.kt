@@ -34,7 +34,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.lineStringIsCircular
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Geometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
 
 class RoundaboutsTest {
@@ -336,7 +335,7 @@ class RoundaboutsTest {
                 // this is looping through each FoV triangle in the roundabout
                 for (triangleFov in intersectionRelativeDirectionsPolygons){
 
-                    val geometry = triangleFov.geometry as Geometry<ArrayList<LngLatAlt>>
+                    val geometry = triangleFov.geometry as Polygon
                     val fovRoundaboutRoadsFeatureCollection = FeatureTree(testRoadsCollectionFromTileFeatureCollection).generateFeatureCollectionWithinTriangle(
                         Triangle(
                             geometry.coordinates[0][0],

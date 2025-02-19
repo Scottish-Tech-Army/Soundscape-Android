@@ -34,7 +34,7 @@ private fun parseGeometry(
     var x = 0
     var y = 0
     val results = mutableListOf(arrayListOf<Pair<Int,Int>>())
-    var id = 0
+    var id : Int
     var count = 0
     var deltaX = 0
     var deltaY: Int
@@ -403,6 +403,8 @@ fun vectorTileToGeoJson(tileX: Int,
                     }
                 }
 
+                // Assert on all other geometry enum values
+                null,
                 VectorTile.Tile.GeomType.UNKNOWN -> {
                     assert(false)
                 }

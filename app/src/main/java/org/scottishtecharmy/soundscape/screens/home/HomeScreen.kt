@@ -161,7 +161,6 @@ fun HomeScreen(
         ) { backStackEntry ->
             val command = backStackEntry.arguments?.getString("command") ?: ""
             val data = backStackEntry.arguments?.getString("data") ?: ""
-            var routeName : String
 
             var routeData : RouteData? = null
             when(command) {
@@ -181,12 +180,8 @@ fun HomeScreen(
                 addAndEditRouteViewModel.loadMarkers()
                 if(routeData != null) {
                     addAndEditRouteViewModel.initializeRoute(routeData)
-                    routeName = routeData.name
                 } else if(command == "edit") {
                     addAndEditRouteViewModel.initializeRouteFromDatabase(data)
-                    routeName = data
-                } else {
-                    routeName = "New route"
                 }
             }
 
