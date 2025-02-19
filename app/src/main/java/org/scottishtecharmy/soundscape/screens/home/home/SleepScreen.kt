@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,7 +40,7 @@ private fun exitSleep(context: MainActivity, navController: NavHostController) {
 @Composable
 fun SleepScreen(navController: NavHostController,
                 modifier: Modifier) {
-    val context = LocalContext.current as MainActivity
+    val context = LocalActivity.current as MainActivity
 
     BackHandler(enabled = true) {
         // If the user presses the back button come out of sleep
