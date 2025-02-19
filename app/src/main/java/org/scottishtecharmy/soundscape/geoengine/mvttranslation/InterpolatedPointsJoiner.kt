@@ -4,9 +4,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Geometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 
 class InterpolatedPointsJoiner {
 
@@ -16,7 +16,7 @@ class InterpolatedPointsJoiner {
         // We add all edgePoint coordinates to our HashMap of interpolated points by OSM id
         if (feature.properties?.containsKey("class")!!) {
             if (feature.properties!!["class"] == "edgePoint") {
-                val geometry = feature.geometry as Geometry<LngLatAlt>
+                val geometry = feature.geometry as MultiPoint
                 val osmId = feature.foreign!!["osm_id"] as Double
                 if (!interpolatedPoints.containsKey(osmId)) {
                     interpolatedPoints[osmId] = mutableListOf()

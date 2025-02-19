@@ -227,8 +227,7 @@ class SoundscapeIntents
                                                     // This might be a saved route shared from iOS.
                                                     // We want to translate this into a RouteData
                                                     // format to write to our database.
-                                                    val json = inputStreamToJson(input)
-                                                    if(json == null) throw Exception("Failed to parse JSON")
+                                                    val json = inputStreamToJson(input) ?: throw Exception("Failed to parse JSON")
 
                                                     routeData = RouteData()
                                                     val routeName = json.getString("name")
@@ -259,11 +258,9 @@ class SoundscapeIntents
                                                 } else {
                                                     routeData = parseGpxFile(input)
                                                 }
-                                                if(routeData != null) {
-                                                    // The parsing has succeeded, pass the data to
-                                                    // the new route screen.
-                                                    mainActivity.navigator.navigate(generateRouteDetailsRoute(routeData))
-                                                }
+                                                // If no exception was thrown, then the parsing has
+                                                // succeeded, pass the data to the new route screen.
+                                                mainActivity.navigator.navigate(generateRouteDetailsRoute(routeData))
                                             }
                                         } catch (e: Exception) {
                                             Log.e(TAG, "Failed to import file from intent: $e")
