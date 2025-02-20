@@ -38,7 +38,9 @@ fun RouteList(
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.primary)
                         .padding(16.dp)
-                        .clickable { navController.navigate("${HomeRoutes.RouteDetails.route}/${route.name}") },
+                        .clickable {
+                            navController.navigate("${HomeRoutes.RouteDetails.route}/${route.objectId.toHexString()}")
+                        },
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {

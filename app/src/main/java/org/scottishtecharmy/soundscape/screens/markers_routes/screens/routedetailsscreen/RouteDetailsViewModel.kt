@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import javax.inject.Inject
-
 
 @HiltViewModel
 class RouteDetailsViewModel @Inject constructor(
@@ -20,11 +20,11 @@ class RouteDetailsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RouteDetailsUiState())
     val uiState: StateFlow<RouteDetailsUiState> = _uiState.asStateFlow()
 
-    fun getRouteByName(routeName: String) {
+    fun getRouteById(routeId: ObjectId) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
-                val routeResult = routesRepository.getRoute(routeName)
+                val routeResult = routesRepository.getRoute(routeId)
                 val route = routeResult.firstOrNull() // Extract the first match if it exists
                 if (route != null) {
                     _uiState.value = _uiState.value.copy(
@@ -45,8 +45,12 @@ class RouteDetailsViewModel @Inject constructor(
         }
     }
 
-    fun startRoute(routeName: String) {
-        soundscapeServiceConnection.startRoute(routeName)
+    fun startRoute(routeId: ObjectId) {
+        soundscapeServiceConnection.startRoute(routeId)
+    }
+
+    fun stopRoute() {
+        soundscapeServiceConnection.stopRoute()
     }
 
     fun clearErrorMessage() {

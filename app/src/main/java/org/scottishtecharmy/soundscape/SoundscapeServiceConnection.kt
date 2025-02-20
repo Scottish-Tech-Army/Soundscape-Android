@@ -6,14 +6,18 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.location.DeviceOrientation
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import javax.inject.Inject
@@ -38,7 +42,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun getStreetPreviewModeFlow(): StateFlow<StreetPreviewState>? {
         return soundscapeService?.streetPreviewFlow
     }
-    fun getCurrentRouteFlow(): StateFlow<RouteData?>? {
+    fun getCurrentRouteFlow(): StateFlow<RoutePlayerState>? {
         return soundscapeService?.routePlayer?.currentRouteFlow
     }
 
@@ -47,8 +51,21 @@ class SoundscapeServiceConnection @Inject constructor() {
         soundscapeService?.setStreetPreviewMode(on, location)
     }
 
-    fun startRoute(routeName: String) {
-        soundscapeService?.startRoute(routeName)
+    fun startRoute(routeId: ObjectId) {
+        soundscapeService?.startRoute(routeId)
+    }
+
+    fun routeSkipPrevious() {
+        soundscapeService?.routeSkipPrevious()
+    }
+    fun routeSkipNext() {
+        soundscapeService?.routeSkipNext()
+    }
+    fun routeMute() {
+        soundscapeService?.routeMute()
+    }
+    fun stopRoute() {
+        soundscapeService?.stopRoute()
     }
 
     // needed to communicate with the service.

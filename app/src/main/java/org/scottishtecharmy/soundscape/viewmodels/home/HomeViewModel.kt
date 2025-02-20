@@ -211,6 +211,22 @@ class HomeViewModel
         }
     }
 
+    fun routeSkipPrevious() {
+        viewModelScope.launch {
+            soundscapeServiceConnection.routeSkipPrevious()
+        }
+    }
+    fun routeSkipNext() {
+        viewModelScope.launch {
+            soundscapeServiceConnection.routeSkipNext()
+        }
+    }
+    fun routeMute() {
+        viewModelScope.launch {
+            soundscapeServiceConnection.routeMute()
+        }
+    }
+
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
     }

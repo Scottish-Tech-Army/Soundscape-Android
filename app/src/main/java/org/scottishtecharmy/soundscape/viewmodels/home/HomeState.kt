@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
 
 data class HomeState(
     var heading: Float = 0.0f,
@@ -15,5 +16,5 @@ data class HomeState(
     var isSearching: Boolean = false,
     var searchItems: List<LocationDescription>? = null,
     var routesTabSelected: Boolean = true,
-    var currentRouteData: RouteData? = null,
+    var currentRouteData: RoutePlayerState = RoutePlayerState()
 )

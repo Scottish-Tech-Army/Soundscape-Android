@@ -7,14 +7,17 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+
+data class RoutePlayerState(val routeData: RouteData? = null, val currentWaypoint: Int = 0)
 
 class RoutePlayer(val service: SoundscapeService) {
     private var currentRouteData: RouteData? = null
@@ -22,23 +25,25 @@ class RoutePlayer(val service: SoundscapeService) {
     private val coroutineScope = CoroutineScope(Job())
 
     // Flow to return current route data
-    private val _currentRouteFlow = MutableStateFlow<RouteData?>(null)
-    var currentRouteFlow: StateFlow<RouteData?> = _currentRouteFlow
+    private val _currentRouteFlow = MutableStateFlow<RoutePlayerState>(RoutePlayerState())
+    var currentRouteFlow: StateFlow<RoutePlayerState> = _currentRouteFlow
 
-
-    fun startRoute(routeName: String) {
+    fun startRoute(routeId: ObjectId) {
         val realm = RealmConfiguration.getMarkersInstance()
         val routesDao = RoutesDao(realm)
         val routesRepository = RoutesRepository(routesDao)
 
         Log.e(TAG, "startRoute")
         coroutineScope.launch {
-            val dbRoutes = routesRepository.getRoute(routeName)
+            val dbRoutes = routesRepository.getRoute(routeId)
+            currentMarker = 0
             if(dbRoutes.isNotEmpty()) {
                 currentRouteData = dbRoutes[0].copyFromRealm()
-                _currentRouteFlow.value = currentRouteData
+                _currentRouteFlow.update { it.copy(
+                    routeData = currentRouteData,
+                    currentWaypoint = currentMarker
+                )}
             }
-            currentMarker = 0
             play()
             Log.d(TAG, toString())
         }
@@ -77,15 +82,24 @@ class RoutePlayer(val service: SoundscapeService) {
         }
     }
 
+    fun stopRoute() {
+        service.destroyBeacon()
+        _currentRouteFlow.update { it.copy(
+            routeData = null,
+            currentWaypoint = 0
+        )}
+    }
+
     fun play() {
         createBeaconAtWaypoint(currentMarker)
         Log.d(TAG, toString())
     }
 
-    private fun moveToNext() {
+    fun moveToNext() {
         currentRouteData?.let { route ->
             if((currentMarker + 1) < route.waypoints.size) {
                 currentMarker++
+                _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
 
                 createBeaconAtWaypoint(currentMarker)
             }
@@ -96,9 +110,14 @@ class RoutePlayer(val service: SoundscapeService) {
     fun moveToPrevious() {
         if(currentMarker > 0) {
             currentMarker--
+            _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
             createBeaconAtWaypoint(currentMarker)
         }
         Log.d(TAG, toString())
+    }
+
+    fun mute() {
+
     }
 
     override fun toString(): String {
