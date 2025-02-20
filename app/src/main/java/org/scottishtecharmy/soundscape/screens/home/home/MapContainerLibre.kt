@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,14 +33,15 @@ import org.maplibre.android.plugins.annotation.Symbol
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
 import org.maplibre.android.style.layers.LineLayer
-import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.android.style.layers.Property
+import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
+
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
 const val LOCATION_MARKER_NAME = "LOCATION-%d"
@@ -59,10 +61,11 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
         FrameLayout.LayoutParams.WRAP_CONTENT
     )
 
-    // Create the background drawable
     val backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.location_marker)
     backgroundDrawable?.let {
-        frameLayout.background = it
+        val imageView = ImageView(context)
+        imageView.setImageDrawable(it)
+        frameLayout.addView(imageView)
     }
 
     // Create the TextView for the number
@@ -72,7 +75,7 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
         setTextColor(android.graphics.Color.WHITE)
         textSize = 11f
         gravity = Gravity.CENTER
-        setPadding(10, 10, 10, 40)
+        setPadding(10, 20, 10, 40)
     }
 
     // Add the TextView to the FrameLayout
