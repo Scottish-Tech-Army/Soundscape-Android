@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -21,6 +22,7 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLoca
 fun HomeContent(
     location: LngLatAlt?,
     beaconLocation: LngLatAlt?,
+    routeData : RouteData?,
     heading: Float,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
@@ -80,7 +82,7 @@ fun HomeContent(
         if (location != null) {
             MapContainerLibre(
                 beaconLocation = beaconLocation,
-                routeData = null,
+                routeData = routeData,
                 mapCenter = location,
                 allowScrolling = false,
                 mapViewRotation = 0.0F,
@@ -98,6 +100,7 @@ fun StreetPreviewHomeContent() {
     HomeContent(
         location = null,
         beaconLocation = null,
+        routeData = null,
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = { false },
@@ -115,6 +118,7 @@ fun PreviewHomeContent() {
     HomeContent(
         location = null,
         beaconLocation = null,
+        routeData = null,
         heading = 0.0f,
         onNavigate = {},
         onMapLongClick = { false },

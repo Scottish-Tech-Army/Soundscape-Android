@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
@@ -394,9 +395,8 @@ class SoundscapeService : MediaSessionService() {
         return geoEngine.getLocationDescription(location)
     }
 
-    private lateinit var routePlayer : RoutePlayer
+    val routePlayer = RoutePlayer(this)
     fun startRoute(routeName: String) {
-        routePlayer = RoutePlayer(this)
         routePlayer.startRoute(routeName)
     }
 

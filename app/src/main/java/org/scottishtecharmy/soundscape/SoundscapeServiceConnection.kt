@@ -11,6 +11,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
@@ -36,6 +37,9 @@ class SoundscapeServiceConnection @Inject constructor() {
     }
     fun getStreetPreviewModeFlow(): StateFlow<StreetPreviewState>? {
         return soundscapeService?.streetPreviewFlow
+    }
+    fun getCurrentRouteFlow(): StateFlow<RouteData?>? {
+        return soundscapeService?.routePlayer?.currentRouteFlow
     }
 
     fun setStreetPreviewMode(on : Boolean, location: LngLatAlt? = null) {

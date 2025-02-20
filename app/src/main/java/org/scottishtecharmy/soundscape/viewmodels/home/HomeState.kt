@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.viewmodels.home
 
 import org.maplibre.android.geometry.LatLng
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -14,4 +15,5 @@ data class HomeState(
     var isSearching: Boolean = false,
     var searchItems: List<LocationDescription>? = null,
     var routesTabSelected: Boolean = true,
+    var currentRouteData: RouteData? = null,
 )

@@ -4,6 +4,8 @@ import android.util.Log
 import io.realm.kotlin.ext.copyFromRealm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioType
@@ -19,6 +21,11 @@ class RoutePlayer(val service: SoundscapeService) {
     private var currentMarker = -1
     private val coroutineScope = CoroutineScope(Job())
 
+    // Flow to return current route data
+    private val _currentRouteFlow = MutableStateFlow<RouteData?>(null)
+    var currentRouteFlow: StateFlow<RouteData?> = _currentRouteFlow
+
+
     fun startRoute(routeName: String) {
         val realm = RealmConfiguration.getMarkersInstance()
         val routesDao = RoutesDao(realm)
@@ -29,6 +36,7 @@ class RoutePlayer(val service: SoundscapeService) {
             val dbRoutes = routesRepository.getRoute(routeName)
             if(dbRoutes.isNotEmpty()) {
                 currentRouteData = dbRoutes[0].copyFromRealm()
+                _currentRouteFlow.value = currentRouteData
             }
             currentMarker = 0
             play()

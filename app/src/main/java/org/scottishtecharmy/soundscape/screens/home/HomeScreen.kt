@@ -63,6 +63,7 @@ fun HomeScreen(
             Home(
                 location = state.value.location,
                 beaconLocation = state.value.beaconLocation,
+                routeData = state.value.currentRouteData,
                 heading = state.value.heading,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->
