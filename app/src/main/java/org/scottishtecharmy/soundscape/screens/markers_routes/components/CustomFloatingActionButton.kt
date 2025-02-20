@@ -16,10 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -112,7 +114,7 @@ fun SmallCustomFloatingActionButtonWithTextPreview() {
                 iconSize = 48.dp // Example of customizing the icon size
             )
             CustomTextButton(
-                text = "Add Route",
+                text = stringResource(R.string.route_detail_action_create),
                 modifier = Modifier,
                 onClick = { },
                 contentColor = MaterialTheme.colorScheme.onPrimary,

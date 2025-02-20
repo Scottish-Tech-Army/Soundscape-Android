@@ -329,7 +329,7 @@ fun IconWithTextButton(
 fun IconsWithTextActionsPreview() {
     IconWithTextButton(
         icon = Icons.Filled.LocationOn,
-        text = "Start Audio Beacon",
+        text = stringResource(R.string.location_detail_action_beacon),
         action = {},
     )
 }

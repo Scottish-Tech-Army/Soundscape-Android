@@ -3573,7 +3573,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="faq_tip_two_finger_double_tap">"Tapping the screen twice with two fingers will silence any active callouts."</string>
 
   <!-- New language strings since iOS -->
-  <string name="no_language_selected">Ingen sprog valgt</string>
+  <string name="no_language_selected">No language selected</string>
   <string name="street_preview_enabled">Street Preview enabled</string>
   <string name="street_preview_disabled">Street Preview disabled</string>
 
@@ -3591,6 +3591,8 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="enter_street_preview"  translatable="false">Enter Street Preview</string>
   <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
   <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
+  <string name="menu_manage_audio" translatable="false">"Manage Audio"</string>
+  <string name="street_preview_exit" translatable="false">"Exit Street Preview"</string>
 
   <!-- We need to encode < as &lt; to prevent them being stripped prior to use -->
   <!-- Licensing strings -->
