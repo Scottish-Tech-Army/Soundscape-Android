@@ -19,8 +19,8 @@ class RoutesRepository(private val routesDao: RoutesDao) {
         routesDao.insertMarker(markerData)
     }
 
-    suspend fun getRoute(name: String) = withContext(Dispatchers.IO){
-        routesDao.getRoute(name)
+    suspend fun getRoute(id: ObjectId) = withContext(Dispatchers.IO){
+        routesDao.getRoute(id)
     }
 
     suspend fun getRoutes() = withContext(Dispatchers.IO){

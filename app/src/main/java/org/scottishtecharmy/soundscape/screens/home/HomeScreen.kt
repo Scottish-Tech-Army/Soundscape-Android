@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -63,7 +64,7 @@ fun HomeScreen(
             Home(
                 location = state.value.location,
                 beaconLocation = state.value.beaconLocation,
-                routeData = state.value.currentRouteData,
+                routePlayerState = state.value.currentRouteData,
                 heading = state.value.heading,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->
@@ -96,7 +97,11 @@ fun HomeScreen(
                 rateSoundscape = rateSoundscape,
                 streetPreviewState = state.value.streetPreviewState,
                 streetPreviewGo = { viewModel.streetPreviewGo() },
-                streetPreviewExit = { viewModel.streetPreviewExit() }
+                streetPreviewExit = { viewModel.streetPreviewExit() },
+                routeSkipPrevious = { viewModel.routeSkipPrevious() },
+                routeSkipNext = { viewModel.routeSkipNext() },
+                routeMute = { viewModel.routeMute() },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
 
@@ -137,14 +142,15 @@ fun HomeScreen(
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
         }
 
-        composable(HomeRoutes.RouteDetails.route + "/{routeName}") { backStackEntry ->
-            val routeName = backStackEntry.arguments?.getString("routeName") ?: ""
+        composable(HomeRoutes.RouteDetails.route + "/{routeId}") { backStackEntry ->
+            val routeId = backStackEntry.arguments?.getString("routeId") ?: ""
             RouteDetailsScreenVM(
-                routeName = routeName,
+                routeId = ObjectId(routeId),
                 navController = navController,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 userLocation = state.value.location,
                 heading = state.value.heading,
+                routePlayerState = state.value.currentRouteData
             )
         }
 
@@ -182,7 +188,7 @@ fun HomeScreen(
                 if(routeData != null) {
                     addAndEditRouteViewModel.initializeRoute(routeData)
                 } else if(command == "edit") {
-                    addAndEditRouteViewModel.initializeRouteFromDatabase(data)
+                    addAndEditRouteViewModel.initializeRouteFromDatabase(ObjectId(data))
                 }
             }
 

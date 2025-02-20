@@ -66,10 +66,10 @@ class AddAndEditRouteViewModel @Inject constructor(
     }
 
     // Function to initialize the editing route
-    fun initializeRouteFromDatabase(routeName: String) {
+    fun initializeRouteFromDatabase(routeId: ObjectId) {
         viewModelScope.launch {
             try {
-                val route = routesRepository.getRoute(routeName).firstOrNull()
+                val route = routesRepository.getRoute(routeId).firstOrNull()
                 route?.let {
                     initializeRoute(route)
                 }

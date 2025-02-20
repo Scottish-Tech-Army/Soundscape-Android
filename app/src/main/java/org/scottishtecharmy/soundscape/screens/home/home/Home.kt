@@ -32,7 +32,6 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -40,6 +39,7 @@ import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -60,13 +60,16 @@ fun Home(
     streetPreviewState: StreetPreviewState,
     streetPreviewGo: () -> Unit,
     streetPreviewExit: () -> Unit,
+    routeSkipPrevious:  () -> Unit,
+    routeSkipNext:  () -> Unit,
+    routeMute:  () -> Unit,
     modifier: Modifier = Modifier,
     searchText: String,
     isSearching: Boolean,
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
     searchItems: List<LocationDescription>,
-    routeData: RouteData?,
+    routePlayerState: RoutePlayerState,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -106,9 +109,9 @@ fun Home(
             HomeContent(
                 location = location,
                 beaconLocation = beaconLocation,
-                routeData = routeData,
+                routePlayerState = routePlayerState,
                 heading = heading,
-                modifier = Modifier.padding(innerPadding),
+                modifier = modifier.padding(innerPadding),
                 onNavigate = onNavigate,
                 getCurrentLocationDescription = getCurrentLocationDescription,
                 searchBar = {
@@ -129,7 +132,10 @@ fun Home(
                 onMapLongClick = onMapLongClick,
                 streetPreviewState = streetPreviewState,
                 streetPreviewGo = streetPreviewGo,
-                streetPreviewExit = streetPreviewExit
+                streetPreviewExit = streetPreviewExit,
+                routeSkipPrevious  = routeSkipPrevious,
+                routeSkipNext = routeSkipNext,
+                routeMute = routeMute,
             )
         }
     }
@@ -211,7 +217,10 @@ fun HomePreview() {
             onSearchTextChange = {},
             onToggleSearch = {},
             searchItems = emptyList(),
-            routeData = null
+            routePlayerState = RoutePlayerState(),
+            routeSkipPrevious = {},
+            routeSkipNext = {},
+            routeMute = {}
         )
     }
 }
@@ -242,7 +251,10 @@ fun HomeSearchPreview() {
             onSearchTextChange = {},
             onToggleSearch = {},
             searchItems = previewLocationList,
-            routeData = null
+            routePlayerState = RoutePlayerState(),
+            routeSkipPrevious = {},
+            routeSkipNext = {},
+            routeMute = {}
         )
     }
 }

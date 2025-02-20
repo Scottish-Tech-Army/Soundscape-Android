@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -36,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -47,25 +49,29 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun RouteDetailsScreenVM(
     navController: NavController,
-    routeName: String,
+    routeId: ObjectId,
     viewModel: RouteDetailsViewModel = hiltViewModel(),
     modifier: Modifier,
     userLocation: LngLatAlt?,
-    heading: Float
+    heading: Float,
+    routePlayerState: RoutePlayerState
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     RouteDetailsScreen(
         navController,
-        routeName,
+        routeId,
         modifier,
         uiState,
-        getRouteByName = { viewModel.getRouteByName(routeName) },
-        startRoute = { viewModel.startRoute(routeName) },
+        routePlayerState,
+        getRouteById = { viewModel.getRouteById(routeId) },
+        startRoute = { viewModel.startRoute(routeId) },
+        stopRoute = { viewModel.stopRoute() },
         clearErrorMessage = { viewModel.clearErrorMessage() },
         userLocation = userLocation,
         heading = heading
@@ -75,11 +81,13 @@ fun RouteDetailsScreenVM(
 @Composable
 fun RouteDetailsScreen(
     navController: NavController,
-    routeName: String,
+    routeId: ObjectId,
     modifier: Modifier,
     uiState: RouteDetailsUiState,
-    getRouteByName: (routeName: String) -> Unit,
-    startRoute: (routeName: String) -> Unit,
+    routePlayerState: RoutePlayerState,
+    getRouteById: (routeId: ObjectId) -> Unit,
+    startRoute: (routeId: ObjectId) -> Unit,
+    stopRoute: () -> Unit,
     clearErrorMessage: () -> Unit,
     userLocation: LngLatAlt?,
     heading: Float
@@ -87,10 +95,11 @@ fun RouteDetailsScreen(
     // Observe the UI state from the ViewModel
     val context = LocalContext.current
     val location = uiState.route?.waypoints?.firstOrNull()?.location?.location() ?: LngLatAlt()
+    val thisRoutePlaying = (routePlayerState.routeData?.objectId == routeId)
 
     // Fetch the route details when the screen is launched
-    LaunchedEffect(routeName) {
-        getRouteByName(routeName)
+    LaunchedEffect(routeId) {
+        getRouteById(routeId)
     }
 
     // Display error message if it exists
@@ -107,11 +116,7 @@ fun RouteDetailsScreen(
             CustomAppBar(
                 title = stringResource(R.string.behavior_experiences_route_nav_title),
                 onNavigateUp = {
-                    navController.navigate(HomeRoutes.MarkersAndRoutes.route) {
-                        popUpTo(HomeRoutes.MarkersAndRoutes.route) {
-                            inclusive = true
-                        }
-                    }
+                    navController.popBackStack()
                 }
             )
         }
@@ -161,24 +166,40 @@ fun RouteDetailsScreen(
                             // Display additional route details if necessary
                         }
                         Column(modifier = Modifier.weight(0.6f)) {
-                            IconWithTextButton(
-                                modifier = Modifier.fillMaxWidth(),
-                                icon = Icons.Default.PlayArrow,
-                                iconModifier = Modifier.size(40.dp),
-                                textModifier = Modifier.padding(horizontal = 4.dp),
-                                iconText = stringResource(R.string.route_detail_action_start_route),
-                                fontSize = 28.sp,
-                                fontWeight = FontWeight.Bold,
-                                onClick = {
-                                    startRoute(uiState.route.name)
-                                    // Pop up to the home screen
-                                    navController.navigate(HomeRoutes.Home.route) {
-                                        popUpTo(navController.graph.findStartDestination().id) {
-                                            inclusive = true
-                                        }
-                                        launchSingleTop = true
+                            if(thisRoutePlaying) {
+                                IconWithTextButton(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    icon = Icons.Default.Stop,
+                                    iconModifier = Modifier.size(40.dp),
+                                    textModifier = Modifier.padding(horizontal = 4.dp),
+                                    iconText = stringResource(R.string.route_detail_action_stop_route),
+                                    fontSize = 28.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    onClick = {
+                                        stopRoute()
                                     }
-                                })
+                                )
+
+                            } else {
+                                IconWithTextButton(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    icon = Icons.Default.PlayArrow,
+                                    iconModifier = Modifier.size(40.dp),
+                                    textModifier = Modifier.padding(horizontal = 4.dp),
+                                    iconText = stringResource(R.string.route_detail_action_start_route),
+                                    fontSize = 28.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    onClick = {
+                                        startRoute(uiState.route.objectId)
+                                        // Pop up to the home screen
+                                        navController.navigate(HomeRoutes.Home.route) {
+                                            popUpTo(navController.graph.findStartDestination().id) {
+                                                inclusive = true
+                                            }
+                                            launchSingleTop = true
+                                        }
+                                    })
+                            }
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Edit,
@@ -187,7 +208,7 @@ fun RouteDetailsScreen(
                                 iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
-                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.name}") })
+                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId}") })
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
@@ -277,16 +298,18 @@ fun RoutesDetailsPopulatedPreview() {
     SoundscapeTheme {
         RouteDetailsScreen(
             navController = rememberNavController(),
-            routeName = "Route name",
+            routeId = ObjectId(),
             modifier = Modifier,
             uiState = RouteDetailsUiState(
                 route = routeData
             ),
-            getRouteByName = {},
+            getRouteById = {},
             startRoute = {},
+            stopRoute = {},
             clearErrorMessage = {},
             userLocation = null,
-            heading = 0.0F
+            heading = 0.0F,
+            routePlayerState = RoutePlayerState()
         )
     }
 }
@@ -297,14 +320,16 @@ fun RoutesDetailsLoadingPreview() {
     SoundscapeTheme {
         RouteDetailsScreen(
             navController = rememberNavController(),
-            routeName = "Route name",
+            routeId = ObjectId(),
             uiState = RouteDetailsUiState(isLoading = true),
             modifier = Modifier,
-            getRouteByName = {},
+            getRouteById = {},
             startRoute = {},
+            stopRoute = {},
             clearErrorMessage = {},
             userLocation = null,
-            heading = 0.0F
+            heading = 0.0F,
+            routePlayerState = RoutePlayerState()
         )
     }
 }
@@ -315,14 +340,16 @@ fun RoutesDetailsEmptyPreview() {
     SoundscapeTheme {
         RouteDetailsScreen(
             navController = rememberNavController(),
-            routeName = "Route name",
+            routeId = ObjectId(),
             modifier = Modifier,
             uiState = RouteDetailsUiState(),
-            getRouteByName = {},
+            getRouteById = {},
             startRoute = {},
+            stopRoute = {},
             clearErrorMessage = {},
             userLocation = null,
-            heading = 0.0F
+            heading = 0.0F,
+            routePlayerState = RoutePlayerState()
         )
     }
 }

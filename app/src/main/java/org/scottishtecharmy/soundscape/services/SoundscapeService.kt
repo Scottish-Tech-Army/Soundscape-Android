@@ -30,13 +30,13 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
@@ -396,10 +396,21 @@ class SoundscapeService : MediaSessionService() {
     }
 
     val routePlayer = RoutePlayer(this)
-    fun startRoute(routeName: String) {
-        routePlayer.startRoute(routeName)
+    fun startRoute(routeId: ObjectId) {
+        routePlayer.startRoute(routeId)
     }
-
+    fun stopRoute() {
+        routePlayer.stopRoute()
+    }
+    fun routeSkipPrevious() {
+        routePlayer.moveToPrevious()
+    }
+    fun routeSkipNext() {
+        routePlayer.moveToNext()
+    }
+    fun routeMute() {
+        routePlayer.mute()
+    }
     /**
      * isAudioEngineBusy returns true if there is more than one entry in the
      * audio engine queue. The queue consists of earcons and text-to-speech.

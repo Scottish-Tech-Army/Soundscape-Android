@@ -50,7 +50,7 @@ fun MainSearchBar(
                 .fillMaxWidth()
                 .then(
                     if (!isSearching) {
-                        Modifier.padding(horizontal = 16.dp)
+                        Modifier.padding(horizontal = 8.dp)
                     } else {
                         Modifier.padding(horizontal = 0.dp)
                     },
