@@ -48,7 +48,7 @@ bool BeaconBuffer::CheckIsActive(double degrees_off_axis) const
     return false;
 }
 
-unsigned int BeaconBuffer::Read(void *data, unsigned int data_length, unsigned long pos) {
+unsigned int BeaconBuffer::Read(void *data, unsigned int data_length, unsigned long pos, bool pad_with_silence) {
     unsigned int remainder = 0;
     auto *dest =(unsigned char *)data;
     pos %= m_BufferSize;
@@ -57,8 +57,15 @@ unsigned int BeaconBuffer::Read(void *data, unsigned int data_length, unsigned l
         data_length = m_BufferSize - pos;
     }
     memcpy(dest, m_pBuffer.get() + pos, data_length);
-    if(remainder)
-        memcpy(dest + data_length, m_pBuffer.get() + pos + data_length, remainder);
+    if(remainder) {
+        if(pad_with_silence) {
+            // Set the remainder of the buffer to 0 (silence)
+            memset(dest + data_length, 0, remainder);
+        } else {
+            // Loop and copy from the start of the buffer
+            memcpy(dest + data_length, m_pBuffer.get(), remainder);
+        }
+    }
 
     return data_length;
 }
@@ -79,11 +86,23 @@ BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae, PositionedAudio *par
                                                                  asset.m_MaxAngle);
         m_pBuffers.push_back(std::move(buffer));
     }
+
+    m_pIntro = std::make_unique<BeaconBuffer>(system,
+                                              "file:///android_asset/Route/Route_Start.wav",
+                                              180.0);
+    m_pOutro = std::make_unique<BeaconBuffer>(system,
+                                              "file:///android_asset/Route/Route_End.wav",
+                                              180.0);
 }
 
 BeaconBufferGroup::~BeaconBufferGroup()
 {
     TRACE("~BeaconBufferGroup %p", this);
+}
+
+void BeaconBufferGroup::Stop() {
+    // TODO: Call this to play the outro and then stop.
+    m_PlayState = PLAYING_OUTRO;
 }
 
 void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode)
@@ -111,6 +130,14 @@ void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound, c
 
 void BeaconBufferGroup::UpdateCurrentBufferFromHeading()
 {
+    if(m_PlayState == PLAYING_INTRO) {
+        m_pCurrentBuffer = m_pIntro.get();
+        return;
+    } else if (m_PlayState == PLAYING_OUTRO) {
+        m_pCurrentBuffer = m_pOutro.get();
+        return;
+    }
+
     for(const auto &buffer: m_pBuffers)
     {
         if(buffer->CheckIsActive(m_DegreesOffAxis)) {
@@ -124,11 +151,24 @@ void BeaconBufferGroup::UpdateCurrentBufferFromHeading()
 
 FMOD_RESULT F_CALLBACK BeaconBufferGroup::PcmReadCallback(void *data, unsigned int data_length)
 {
+    if(m_PlayState == PLAYING_COMPLETE) {
+        return FMOD_ERR_FILE_EOF;
+    }
     UpdateCurrentBufferFromHeading();
 
-    unsigned int bytes_read = m_pCurrentBuffer->Read(data, data_length, m_BytePos);
+    unsigned int bytes_read = m_pCurrentBuffer->Read(data, data_length, m_BytePos, m_PlayState != PLAYING_BEACON);
     m_BytePos += bytes_read;
-    //TRACE("BBG callback %d: %u @ %lu", m_CurrentBuffer, bytes_read, m_BytePos);
+    if(m_PlayState == PLAYING_INTRO) {
+        if(m_BytePos >= m_pIntro->GetBufferSize()) {
+            m_PlayState = PLAYING_BEACON;
+            m_BytePos = 0;
+        }
+    } else if(m_PlayState == PLAYING_OUTRO) {
+        if(m_BytePos >= m_pIntro->GetBufferSize()) {
+            m_PlayState = PLAYING_COMPLETE;
+        }
+    }
+    // TRACE("BBG callback %p: %u @ %lu into %u", m_pCurrentBuffer, bytes_read, m_BytePos, data_length);
 
     return FMOD_OK;
 }
