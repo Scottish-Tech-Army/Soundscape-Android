@@ -95,8 +95,7 @@ fun HomeScreen(
                 rateSoundscape = rateSoundscape,
                 streetPreviewState = state.value.streetPreviewState,
                 streetPreviewGo = { viewModel.streetPreviewGo() },
-                streetPreviewExit = { viewModel.streetPreviewExit() },
-                tileGridGeoJson = state.value.tileGridGeoJson,
+                streetPreviewExit = { viewModel.streetPreviewExit() }
             )
         }
 

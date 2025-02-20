@@ -27,7 +27,6 @@ fun HomeContent(
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    tileGridGeoJson: String,
     streetPreviewState: StreetPreviewState,
     streetPreviewGo: () -> Unit,
     streetPreviewExit: () -> Unit,
@@ -87,7 +86,6 @@ fun HomeContent(
                 userLocation = location,
                 userSymbolRotation = heading,
                 onMapLongClick = onMapLongClick,
-                tileGridGeoJson = tileGridGeoJson,
             )
         }
     }
@@ -103,7 +101,6 @@ fun StreetPreviewHomeContent() {
         onNavigate = {},
         onMapLongClick = { false },
         searchBar = {},
-        tileGridGeoJson = "",
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
         streetPreviewGo = {},
         streetPreviewExit = {},
@@ -121,7 +118,6 @@ fun PreviewHomeContent() {
         onNavigate = {},
         onMapLongClick = { false },
         searchBar = {},
-        tileGridGeoJson = "",
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewGo = {},
         streetPreviewExit = {},

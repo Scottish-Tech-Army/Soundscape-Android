@@ -138,8 +138,7 @@ fun SaveAndEditMarkerDialog(
                     mapViewRotation = 0.0F,
                     userLocation = location ?: LngLatAlt(),
                     userSymbolRotation = heading,
-                    onMapLongClick = { false },
-                    tileGridGeoJson = "",
+                    onMapLongClick = { false }
                 )
             }
         }

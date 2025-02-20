@@ -60,7 +60,6 @@ fun Home(
     streetPreviewGo: () -> Unit,
     streetPreviewExit: () -> Unit,
     modifier: Modifier = Modifier,
-    tileGridGeoJson: String,
     searchText: String,
     isSearching: Boolean,
     onSearchTextChange: (String) -> Unit,
@@ -125,7 +124,6 @@ fun Home(
                     )
                 },
                 onMapLongClick = onMapLongClick,
-                tileGridGeoJson = tileGridGeoJson,
                 streetPreviewState = streetPreviewState,
                 streetPreviewGo = streetPreviewGo,
                 streetPreviewExit = streetPreviewExit
@@ -205,7 +203,6 @@ fun HomePreview() {
             streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
             streetPreviewExit = {},
             streetPreviewGo = {},
-            tileGridGeoJson = "",
             searchText = "Lille",
             isSearching = false,
             onSearchTextChange = {},
@@ -236,7 +233,6 @@ fun HomeSearchPreview() {
             streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
             streetPreviewExit = {},
             streetPreviewGo = {},
-            tileGridGeoJson = "",
             searchText = "Lille",
             isSearching = true,
             onSearchTextChange = {},

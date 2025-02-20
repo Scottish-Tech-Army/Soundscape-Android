@@ -213,8 +213,7 @@ fun RouteDetailsScreen(
                                 userLocation = LngLatAlt(),
                                 mapViewRotation = 0.0F,
                                 userSymbolRotation = 0.0F,
-                                modifier = modifier.fillMaxWidth(),
-                                tileGridGeoJson = "",
+                                modifier = modifier.fillMaxWidth()
                             )
                         }
                         // List of all route points
