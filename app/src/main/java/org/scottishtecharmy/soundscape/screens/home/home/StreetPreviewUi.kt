@@ -74,7 +74,7 @@ fun StreetPreview(
                 exit()
             },
             // TODO: Internationalization
-            text = "Exit street preview"
+            text = stringResource(R.string.street_preview_exit)
         )
     }
 }

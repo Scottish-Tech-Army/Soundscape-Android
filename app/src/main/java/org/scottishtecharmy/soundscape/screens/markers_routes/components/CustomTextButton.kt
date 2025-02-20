@@ -7,10 +7,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
@@ -47,7 +49,7 @@ fun CustomTextButtonPreview() {
         // Default preview
         CustomTextButton(
             onClick = { /*TODO*/ },
-            text = "Done",
+            text = stringResource(R.string.general_alert_done),
             contentColor = MaterialTheme.colorScheme.onPrimary,
             textStyle = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold

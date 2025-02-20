@@ -89,7 +89,7 @@ fun Settings(
 
             item {
                 Text(
-                    text = "Manage Audio Engine",
+                    text = stringResource(R.string.menu_manage_audio),
                     color = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.semantics { heading() },
                     )
@@ -98,7 +98,7 @@ fun Settings(
                 key = MainActivity.BEACON_TYPE_KEY,
                 defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
                 values = beaconTypes,
-                title = { Text(text = "Beacon type") },
+                title = { Text(text = stringResource(R.string.beacon_settings_style)) },
                 summary = { Text(text = it, color = MaterialTheme.colorScheme.onPrimary) },
             )
 
@@ -106,14 +106,14 @@ fun Settings(
                 key = MainActivity.VOICE_TYPE_KEY,
                 defaultValue = MainActivity.VOICE_TYPE_DEFAULT,
                 values = uiState.voiceTypes,
-                title = { Text(text = "Voice type") },
+                title = { Text(text = stringResource(R.string.voice_voices)) },
                 summary = { Text(text = it, color = MaterialTheme.colorScheme.onPrimary) },
             )
 
             sliderPreference(
                 key = MainActivity.SPEECH_RATE_KEY,
                 defaultValue = MainActivity.SPEECH_RATE_DEFAULT,
-                title = { Text(text = "Speech rate") },
+                title = { Text(text = stringResource(R.string.voice_settings_speaking_rate)) },
                 valueRange = 0.5f..2.0f,
                 valueSteps = 10,
                 valueText = { Text(text = "%.1fx".format(it), color = MaterialTheme.colorScheme.onPrimary) },
