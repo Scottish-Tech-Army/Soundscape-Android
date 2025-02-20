@@ -36,6 +36,26 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 
+fun getBeaconResourceId(beaconName: String) : Int {
+    when (beaconName) {
+        "Original" -> return R.string.beacon_styles_original
+        "Current" -> return R.string.beacon_styles_current
+        "Tactile" -> return R.string.beacon_styles_tactile
+        "Flare" -> return R.string.beacon_styles_flare
+        "Shimmer" -> return R.string.beacon_styles_shimmer
+        "Ping" -> return R.string.beacon_styles_ping
+        "Drop" -> return R.string.beacon_styles_drop
+        "Signal" -> return R.string.beacon_styles_signal
+        "Signal Slow" -> return R.string.beacon_styles_signal_slow
+        "Signal Very Slow" -> return R.string.beacon_styles_signal_very_slow
+        "Mallet" -> return R.string.beacon_styles_mallet
+        "Mallet Slow" -> return R.string.beacon_styles_mallet_slow
+        "Mallet Very Slow" -> return R.string.beacon_styles_mallet_very_slow
+        else -> assert(false)
+    }
+    return 0
+}
+
 @Composable
 fun AudioBeaconsScreen(
     onNavigate: () -> Unit,
@@ -124,7 +144,7 @@ fun AudioBeacons(
             ) {
                 items(beacons) { beacon ->
                     AudioBeaconItem(
-                        text = beacon,
+                        text = stringResource(getBeaconResourceId(beacon)),
                         isSelected = beacon == selectedBeacon,
                         onSelect = {
                             onBeaconSelected(beacon)

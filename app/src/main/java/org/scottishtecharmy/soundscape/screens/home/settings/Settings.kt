@@ -40,6 +40,8 @@ fun Settings(
     modifier: Modifier = Modifier,
 )
 {
+    val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
+
     ProvidePreferenceLocals {
         LazyColumn (modifier = modifier){
             stickyHeader {
@@ -95,7 +97,7 @@ fun Settings(
             listPreference(
                 key = MainActivity.BEACON_TYPE_KEY,
                 defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
-                values = uiState.beaconTypes,
+                values = beaconTypes,
                 title = { Text(text = "Beacon type") },
                 summary = { Text(text = it, color = MaterialTheme.colorScheme.onPrimary) },
             )
