@@ -239,10 +239,14 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         m_LastHeading = listenerHeading;
 
         // Set listener direction
-        auto rads = static_cast<float>((listenerHeading * M_PI) / 180.0);
-        FMOD_VECTOR forward = {sin(rads), 0.0f, cos(rads)};
-
+        FMOD_VECTOR forward = {0.0f, 0.0f, 1.0f};
+        if(!isnan(listenerHeading))
+        {
+            auto rads = static_cast<float>((listenerHeading * M_PI) / 180.0);
+            forward = {sin(rads), 0.0f, cos(rads)};
+        }
         //TRACE("heading: %d %f, %f %f", heading, rads, forward.x, forward.z)
+
         {
             // Each time through we need to:
             //
