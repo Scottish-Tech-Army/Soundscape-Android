@@ -142,7 +142,8 @@ fun HomeScreen(
                 routeName = routeName,
                 navController = navController,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-                userLocation = state.value.location
+                userLocation = state.value.location,
+                heading = state.value.heading,
             )
         }
 

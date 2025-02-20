@@ -31,6 +31,7 @@ import org.maplibre.android.plugins.annotation.Symbol
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
 
@@ -106,9 +107,10 @@ fun MapContainerLibre(
     mapCenter: LngLatAlt,
     allowScrolling: Boolean,
     mapViewRotation: Float,
-    userLocation: LngLatAlt,
+    userLocation: LngLatAlt?,
     userSymbolRotation: Float,
     beaconLocation: LngLatAlt?,
+    routeData: RouteData?,
     modifier: Modifier = Modifier,
     onMapLongClick: (LatLng) -> Boolean,
 ) {
@@ -128,12 +130,13 @@ fun MapContainerLibre(
 
         val symbolOptions = remember(userLocation, userSymbolRotation) {
             SymbolOptions()
-                .withLatLng(userLocation.toLatLng())
+                .withLatLng(userLocation?.toLatLng())
                 .withIconImage(USER_POSITION_MARKER_NAME)
                 .withIconAnchor("center")
                 .withIconRotate(userSymbolRotation)
         }
 
+        val routeMarkers = remember { mutableStateOf<List<Symbol>?>(null) }
         val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
         val symbol = remember { mutableStateOf<Symbol?>(null) }
         val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
@@ -167,6 +170,13 @@ fun MapContainerLibre(
                     beaconLocationMarker.value?.let { currentBeacon ->
                         symbolManager.value?.delete(currentBeacon)
                         beaconLocationMarker.value = null
+                    }
+
+                    routeMarkers.value?.let { markers ->
+                        for(marker in markers) {
+                            symbolManager.value?.delete(marker)
+                        }
+                        routeMarkers.value = null
                     }
                     map.removeOnMapLongClickListener(onMapLongClick)
 
@@ -241,10 +251,12 @@ fun MapContainerLibre(
 
                         mapLibre.cameraPosition = cameraPosition
                         symbol.value?.let { sym ->
-                            // We have a symbol, so update it
-                            sym.latLng = userLocation.toLatLng()
-                            sym.iconRotate = userSymbolRotation
-                            symbolManager.value?.update(sym)
+                            if(userLocation != null) {
+                                // We have a symbol, so update it
+                                sym.latLng = userLocation.toLatLng()
+                                sym.iconRotate = userSymbolRotation
+                                symbolManager.value?.update(sym)
+                            }
                         }
 
                         if((symbolManager.value != null) and
@@ -257,6 +269,27 @@ fun MapContainerLibre(
                             val sym = symbolManager.value?.create(markerOptions)
                             symbolManager.value?.update(sym)
                             beaconLocationMarker.value = sym
+                        }
+
+                        if((symbolManager.value != null) and
+                            (routeData != null) and
+                            ( routeMarkers.value == null)) {
+
+                            if(routeData?.waypoints != null) {
+                                val markersList = emptyList<Symbol>().toMutableList()
+                                for ((index, waypoint) in routeData.waypoints.withIndex()) {
+                                    val markerOptions = SymbolOptions()
+                                        .withLatLng(waypoint.location!!.location().toLatLng())
+                                        .withIconImage(LOCATION_MARKER_NAME.format(index))
+                                        .withIconAnchor("bottom")
+                                    val sym = symbolManager.value?.create(markerOptions)
+                                    if(sym != null) {
+                                        symbolManager.value?.update(sym)
+                                        markersList.add(sym)
+                                    }
+                                }
+                                routeMarkers.value = markersList
+                            }
                         }
                     }
                 }

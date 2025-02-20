@@ -138,6 +138,7 @@ fun SaveAndEditMarkerDialog(
                     mapViewRotation = 0.0F,
                     userLocation = location ?: LngLatAlt(),
                     userSymbolRotation = heading,
+                    routeData = null,
                     onMapLongClick = { false }
                 )
             }
