@@ -80,6 +80,7 @@ fun HomeContent(
         if (location != null) {
             MapContainerLibre(
                 beaconLocation = beaconLocation,
+                routeData = null,
                 mapCenter = location,
                 allowScrolling = false,
                 mapViewRotation = 0.0F,

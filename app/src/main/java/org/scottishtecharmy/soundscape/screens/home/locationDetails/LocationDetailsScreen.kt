@@ -175,6 +175,7 @@ fun LocationDetails(
                 userLocation = location ?: LngLatAlt(),
                 mapViewRotation = 0.0F,
                 userSymbolRotation = heading,
+                routeData = null,
                 modifier =
                 modifier
                     .fillMaxWidth()

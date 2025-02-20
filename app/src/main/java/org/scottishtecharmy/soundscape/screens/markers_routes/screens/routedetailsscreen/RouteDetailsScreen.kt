@@ -55,7 +55,8 @@ fun RouteDetailsScreenVM(
     routeName: String,
     viewModel: RouteDetailsViewModel = hiltViewModel(),
     modifier: Modifier,
-    userLocation: LngLatAlt?
+    userLocation: LngLatAlt?,
+    heading: Float
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     RouteDetailsScreen(
@@ -66,7 +67,8 @@ fun RouteDetailsScreenVM(
         getRouteByName = { viewModel.getRouteByName(routeName) },
         startRoute = { viewModel.startRoute(routeName) },
         clearErrorMessage = { viewModel.clearErrorMessage() },
-        userLocation = userLocation
+        userLocation = userLocation,
+        heading = heading
     )
 }
 
@@ -79,7 +81,8 @@ fun RouteDetailsScreen(
     getRouteByName: (routeName: String) -> Unit,
     startRoute: (routeName: String) -> Unit,
     clearErrorMessage: () -> Unit,
-    userLocation: LngLatAlt?
+    userLocation: LngLatAlt?,
+    heading: Float
 ) {
     // Observe the UI state from the ViewModel
     val context = LocalContext.current
@@ -205,14 +208,15 @@ fun RouteDetailsScreen(
                         ) {
                             // Small map showing first route point
                             MapContainerLibre(
-                                beaconLocation = location,
+                                beaconLocation = null,
+                                routeData = uiState.route,
                                 allowScrolling = true,
                                 onMapLongClick = { _ -> false },
                                 // Center on the beacon
                                 mapCenter = location,
-                                userLocation = LngLatAlt(),
+                                userLocation = userLocation,
                                 mapViewRotation = 0.0F,
-                                userSymbolRotation = 0.0F,
+                                userSymbolRotation = heading,
                                 modifier = modifier.fillMaxWidth()
                             )
                         }
@@ -281,7 +285,8 @@ fun RoutesDetailsPopulatedPreview() {
             getRouteByName = {},
             startRoute = {},
             clearErrorMessage = {},
-            userLocation = null
+            userLocation = null,
+            heading = 0.0F
         )
     }
 }
@@ -298,7 +303,8 @@ fun RoutesDetailsLoadingPreview() {
             getRouteByName = {},
             startRoute = {},
             clearErrorMessage = {},
-            userLocation = null
+            userLocation = null,
+            heading = 0.0F
         )
     }
 }
@@ -315,7 +321,8 @@ fun RoutesDetailsEmptyPreview() {
             getRouteByName = {},
             startRoute = {},
             clearErrorMessage = {},
-            userLocation = null
+            userLocation = null,
+            heading = 0.0F
         )
     }
 }
