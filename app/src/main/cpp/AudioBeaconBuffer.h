@@ -18,7 +18,7 @@ namespace soundscape {
 
         virtual ~BeaconBuffer();
 
-        unsigned int Read(void *data, unsigned int data_length, unsigned long pos);
+        unsigned int Read(void *data, unsigned int data_length, unsigned long pos, bool pad_with_silence);
 
         [[nodiscard]] unsigned int GetBufferSize() const { return m_BufferSize; }
 
@@ -62,13 +62,24 @@ namespace soundscape {
         ~BeaconBufferGroup() override;
 
         void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
+        void Stop();
 
         FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) override;
 
     private:
         void UpdateCurrentBufferFromHeading();
 
+        enum PlayState {
+            PLAYING_INTRO,
+            PLAYING_BEACON,
+            PLAYING_OUTRO,
+            PLAYING_COMPLETE
+        };
+        PlayState m_PlayState = PLAYING_INTRO;
+
         const BeaconDescriptor *m_pDescription;
+        std::unique_ptr<BeaconBuffer> m_pIntro;
+        std::unique_ptr<BeaconBuffer> m_pOutro;
         std::vector<std::unique_ptr<BeaconBuffer> > m_pBuffers;
         BeaconBuffer *m_pCurrentBuffer = nullptr;
         unsigned long m_BytePos = 0;
