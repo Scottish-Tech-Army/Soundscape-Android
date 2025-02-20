@@ -178,8 +178,7 @@ fun LocationDetails(
                 modifier =
                 modifier
                     .fillMaxWidth()
-                    .aspectRatio(1.1F),
-                tileGridGeoJson = "",
+                    .aspectRatio(1.1F)
             )
         }
     }

@@ -11,7 +11,6 @@ data class HomeState(
     var location: LngLatAlt? = null,
     var beaconLocation: LngLatAlt? = null,
     var streetPreviewState: StreetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-    var tileGridGeoJson: String = "",
     var isSearching: Boolean = false,
     var searchItems: List<LocationDescription>? = null,
     var routesTabSelected: Boolean = true,
