@@ -113,6 +113,12 @@ class HomeViewModel
                 }
             }
         }
+        viewModelScope.launch(job) {
+            // Observe current route from the service so we can show it on the map
+            soundscapeServiceConnection.getCurrentRouteFlow()?.collectLatest { value ->
+                _state.update { it.copy(currentRouteData = value) }
+            }
+        }
     }
 
     private fun stopMonitoringLocation() {

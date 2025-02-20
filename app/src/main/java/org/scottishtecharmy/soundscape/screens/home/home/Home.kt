@@ -32,6 +32,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -65,6 +66,7 @@ fun Home(
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
     searchItems: List<LocationDescription>,
+    routeData: RouteData?,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -104,6 +106,7 @@ fun Home(
             HomeContent(
                 location = location,
                 beaconLocation = beaconLocation,
+                routeData = routeData,
                 heading = heading,
                 modifier = Modifier.padding(innerPadding),
                 onNavigate = onNavigate,
@@ -201,13 +204,14 @@ fun HomePreview() {
             shareLocation = {},
             rateSoundscape = {},
             streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-            streetPreviewExit = {},
             streetPreviewGo = {},
+            streetPreviewExit = {},
             searchText = "Lille",
             isSearching = false,
             onSearchTextChange = {},
             onToggleSearch = {},
             searchItems = emptyList(),
+            routeData = null
         )
     }
 }
@@ -231,13 +235,14 @@ fun HomeSearchPreview() {
             shareLocation = {},
             rateSoundscape = {},
             streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-            streetPreviewExit = {},
             streetPreviewGo = {},
+            streetPreviewExit = {},
             searchText = "Lille",
             isSearching = true,
             onSearchTextChange = {},
             onToggleSearch = {},
-            searchItems = previewLocationList
+            searchItems = previewLocationList,
+            routeData = null
         )
     }
 }
