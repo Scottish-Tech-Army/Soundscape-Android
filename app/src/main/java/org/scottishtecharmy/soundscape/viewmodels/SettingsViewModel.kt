@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
     data class SettingsUiState(
         // Data for the ViewMode that affects the UI
-        var beaconTypes : List<String> = emptyList(),
+        var beaconTypes : List<Int> = emptyList(),
         var voiceTypes : List<String> = emptyList()
     )
 
@@ -70,9 +71,9 @@ class SettingsViewModel @Inject constructor(
                                 }
 
                                 val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
-                                val beaconTypes = mutableListOf<String>()
+                                val beaconTypes = mutableListOf<Int>()
                                 for (type in audioEngineBeaconTypes) {
-                                    beaconTypes.add(type)
+                                    beaconTypes.add(getBeaconResourceId(type))
                                 }
                                 _state.value = SettingsUiState(
                                     beaconTypes = beaconTypes,
