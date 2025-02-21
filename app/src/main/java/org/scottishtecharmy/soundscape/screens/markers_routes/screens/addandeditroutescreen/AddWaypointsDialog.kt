@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -63,7 +64,7 @@ fun AddWaypointsDialog(
             Column(
                 modifier = modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround
+                verticalArrangement = Arrangement.Top
             ) {
                 // Display the list of routes
                 AddWaypointsList(
@@ -88,25 +89,25 @@ fun AddWaypointsScreenPopulatedPreview() {
                 AddAndEditRouteUiState(
                     routeMembers =
                     mutableListOf(
-                        LocationDescription(name = "Route point 1", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 2", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 3", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 4", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 5", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 6", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 7", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 8", location = LngLatAlt()),
+                        LocationDescription(name = "Long named route point as if we need one", location = LngLatAlt()),
+                        LocationDescription(name = "Route point 2", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Route point 3", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Route point 4", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Route point 5", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Route point 6", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Route point 7", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Route point 8", location = LngLatAlt(), markerObjectId = ObjectId()),
                     ),
                     markers =
                     mutableListOf(
-                        LocationDescription(name = "Waypoint 1", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 2", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 3", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 4", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 5", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 6", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 7", location = LngLatAlt()),
-                        LocationDescription(name = "Waypoint 8", location = LngLatAlt()),
+                        LocationDescription(name = "Waypoint 1", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 3", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 4", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 5", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 6", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 7", location = LngLatAlt(), markerObjectId = ObjectId()),
+                        LocationDescription(name = "Waypoint 8", location = LngLatAlt(), markerObjectId = ObjectId()),
                     )
                 )
         )

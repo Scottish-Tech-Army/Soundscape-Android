@@ -11,13 +11,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -75,6 +73,7 @@ fun LocationItem(
                 Icons.Rounded.LocationOn,
                 contentDescription = null,
                 tint = Color.White,
+                modifier = Modifier.width(20.dp)
             )
         } else if (decoration.index != -1) {
             Text(
@@ -82,11 +81,11 @@ fun LocationItem(
                 fontWeight = FontWeight(700),
                 fontSize = 22.sp,
                 color = Color.White,
+                modifier = Modifier.width(40.dp).align(Alignment.CenterVertically)
             )
         }
         Column(
-            modifier = Modifier.padding(start = 18.dp),
-            verticalArrangement = Arrangement.spacedBy(5.dp),
+            modifier = Modifier.padding(start = 8.dp).weight(1F),
         ) {
             item.name?.let {
                 Text(
@@ -120,13 +119,15 @@ fun LocationItem(
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.Green,
                     uncheckedThumbColor = Color.Red,
-                )
+                ),
+                modifier = Modifier.padding(5.dp)
             )
         } else if(decoration.details.enabled) {
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
                 tint = Color.White,
+                modifier = Modifier.width(20.dp)
             )
         }
     }
@@ -187,6 +188,17 @@ fun PreviewCompactSearchItemButton() {
                     location = true,
                     editRoute = EnabledFunction(false),
                     details = EnabledFunction(true),
+                ),
+                modifier = Modifier.width(200.dp),
+                userLocation = LngLatAlt(8.00, 10.55)
+            )
+            LocationItem(
+                item = test,
+                decoration = LocationItemDecoration(
+                    location = false,
+                    editRoute = EnabledFunction(false),
+                    details = EnabledFunction(false),
+                    index = 99,
                 ),
                 modifier = Modifier.width(200.dp),
                 userLocation = LngLatAlt(8.00, 10.55)

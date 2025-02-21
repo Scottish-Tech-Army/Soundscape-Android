@@ -43,8 +43,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 private data class SimpleMarkerData(
     var addressName: String = "",
-    var location: LngLatAlt = LngLatAlt(),
-    var fullAddress: String = "",
+    var location: LngLatAlt = LngLatAlt()
 )
 private data class SimpleRouteData(
     var name: String = "",
@@ -62,8 +61,7 @@ fun generateRouteDetailsRoute(routeData: RouteData): String {
         simpleRouteData.waypoints.add(
             SimpleMarkerData(
                 waypoint.addressName,
-                waypoint.location!!.location(),
-                waypoint.fullAddress
+                waypoint.location!!.location()
             )
         )
     }
@@ -86,8 +84,7 @@ fun parseSimpleRouteData(jsonData: String): RouteData {
         routeData.waypoints.add(
             MarkerData(
                 waypoint.addressName,
-                Location(waypoint.location),
-                waypoint.fullAddress
+                Location(waypoint.location)
             )
         )
     }
@@ -253,7 +250,7 @@ fun AddAndEditRouteScreen(
                             .padding(4.dp)
                     ) {
                         Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
+                            modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
                             text = stringResource(R.string.markers_sort_button_sort_by_name),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.surfaceBright
@@ -264,20 +261,20 @@ fun AddAndEditRouteScreen(
                             onValueChange = onNameChange
                         )
                         Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 20.dp),
+                            modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
                             text = stringResource(R.string.route_detail_edit_description),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.surfaceBright
                         )
                         CustomTextField(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp),
                             value = uiState.description,
                             onValueChange = onDescriptionChange
                         )
 
                         HorizontalDivider(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            thickness = 1.dp
+                            thickness = 2.dp
                         )
                         // Display the list of markers in the route
                         if(uiState.routeMembers.isEmpty()) {

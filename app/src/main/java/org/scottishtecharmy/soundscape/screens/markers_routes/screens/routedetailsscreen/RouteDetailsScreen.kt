@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -141,12 +142,12 @@ fun RouteDetailsScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .background(MaterialTheme.colorScheme.background)
-                            .padding(16.dp)
+                            .padding(8.dp)
                     ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp),
+                                .padding(8.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -157,15 +158,17 @@ fun RouteDetailsScreen(
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier.padding(bottom = 4.dp)
                                 )
-                                Text(
-                                    text = uiState.route.description,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    fontWeight = FontWeight.Bold,
-                                )
+                                if(uiState.route.description.isNotEmpty()) {
+                                    Text(
+                                        text = uiState.route.description,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        fontWeight = FontWeight.Bold,
+                                    )
+                                }
                             }
                             // Display additional route details if necessary
                         }
-                        Column(modifier = Modifier.weight(0.6f)) {
+                        Column(modifier = Modifier.height(150.dp)) {
                             if(thisRoutePlaying) {
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
@@ -208,7 +211,7 @@ fun RouteDetailsScreen(
                                 iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
-                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId}") })
+                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId.toHexString()}") })
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
@@ -222,8 +225,8 @@ fun RouteDetailsScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp)
-                                .weight(0.6f),
+                                .padding(8.dp)
+                                .weight(1f),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -244,14 +247,13 @@ fun RouteDetailsScreen(
                         // List of all route points
                         LazyColumn(
                             verticalArrangement = Arrangement.spacedBy(2.dp),
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(2f)
                         ) {
                             itemsIndexed(uiState.route.waypoints) { index, marker ->
                                 LocationItem(
                                     item = LocationDescription(
                                         name = marker.addressName,
                                         location = marker.location?.location() ?: LngLatAlt(),
-                                        fullAddress = marker.fullAddress
                                     ),
                                     modifier = Modifier
                                         .padding(4.dp)
