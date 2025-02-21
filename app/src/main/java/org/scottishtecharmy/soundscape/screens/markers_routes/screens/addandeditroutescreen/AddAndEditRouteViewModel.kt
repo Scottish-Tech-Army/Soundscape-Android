@@ -32,7 +32,6 @@ class AddAndEditRouteViewModel @Inject constructor(
                         val markerLngLat = LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
                         LocationDescription(
                             name = it.addressName,
-                            fullAddress = it.fullAddress,
                             location = markerLngLat,
                             markerObjectId = it.objectId
                         )
@@ -52,7 +51,6 @@ class AddAndEditRouteViewModel @Inject constructor(
                 LocationDescription(
                     name = waypoint.addressName,
                     location = waypoint.location?.location() ?: LngLatAlt(),
-                    fullAddress = waypoint.fullAddress,
                     markerObjectId = waypoint.objectId
                 )
             )
@@ -139,7 +137,6 @@ class AddAndEditRouteViewModel @Inject constructor(
                     MarkerData(
                         addressName = it.name ?: "",
                         location = Location(it.location),
-                        fullAddress = it.fullAddress ?: "",
                         objectId = it.markerObjectId!!
                     )
                 )
