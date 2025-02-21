@@ -152,10 +152,10 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="general_alert_error_message">"Please try again later."</string>
 
 <!-- Text displayed while we are doing work to start an experience -->
-  <string name="general_loading_start">"Getting things ready..."</string>
+  <string name="general_loading_start">"Getting things ready&#8230;"</string>
 
 <!-- Text displayed while we are doing work to end an experience -->
-  <string name="general_loading_end">"Cleaning things up..."</string>
+  <string name="general_loading_end">"Cleaning things up&#8230;"</string>
 
 <!-- VoiceOver label for a button that mutes the audio when it is tapped -->
   <string name="general_mute">"Mute"</string>
@@ -555,10 +555,10 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="troubleshooting_gps_status">"Location Accuracy"</string>
 
 <!-- Preserve meters units - Do not convert. Explanation of how to interpret the location accuracy (i.e. from GPS) displayed in this section of the Troubleshooting screen (using meters for the units). {NumberedPlaceholder="Soundscape","10","20"} -->
-  <string name="troubleshooting_gps_status_explanation_meters">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±10 meters is good. Less than ±20 meters is ok. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
+  <string name="troubleshooting_gps_status_explanation_meters">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±10 meters is good. Less than ±20 meters is OK. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
 
 <!-- Preserve feet units - Do not convert. Explanation of how to interpret the location accuracy (i.e. from GPS) displayed in this section of the Troubleshooting screen (using feet for the units). {NumberedPlaceholder="Soundscape","30","60"} -->
-  <string name="troubleshooting_gps_status_explanation_feet">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±30 feet is good. Less than ±60 feet is ok. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
+  <string name="troubleshooting_gps_status_explanation_feet">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±30 feet is good. Less than ±60 feet is OK. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
 
 <!-- Preserve meters units - Do not convert. Label containing the current GPS accuracy of the phone in meters, %@ is accuracy value, "±12 meters" {NumberedPlaceholder="%@"} -->
   <string name="troubleshooting_gps_status_meters">"±%s meters"</string>
@@ -1101,7 +1101,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="route_detail_action_next_hint">"Double tap to set the beacon on the next waypoint"</string>
 
 <!-- Text displayed in cluster annotations on the map. %@ is the index of the first clustered annotation and the +... indicates that there are additional annotations in that cluster {NumberedPlaceholder="%@"} -->
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
 
 <!-- Label for the description edit field -->
   <string name="route_detail_edit_description">"Description"</string>
@@ -2240,7 +2240,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="devices_explain_ar_paired">"Soundscape is not currently connected to your %s. Please ensure your headphones are turned on and near your phone."</string>
 
 <!-- Message indicating that the app is connecting to head tracking headphones, %@ headphones name, "Soundscape is connecting to your AirPods. One moment...",  {NumberedPlaceholder="Soundscape"} -->
-  <string name="devices_explain_ar_connecting">"Soundscape is connecting to your %s. One moment..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape is connecting to your %s. One moment&#8230;"</string>
 
 <!-- Label for a button that starts the process for connecting a bluetooth head tracking headset to the app -->
   <string name="devices_connect_headset">"Connect Headphones"</string>
@@ -2294,7 +2294,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="devices_test_headset_continue">"Return to Soundscape"</string>
 
 <!-- Announcement that occurs when the user presses the "Check Your Headphones" button -->
-  <string name="devices_test_headset_callout">"We've placed an audio beacon to your right. Listen where it is, and turn your head towards it... Notice how you can do this even when your phone is in your pocket."</string>
+  <string name="devices_test_headset_callout">"We've placed an audio beacon to your right. Listen where it is, and turn your head towards it&#8230; Notice how you can do this even when your phone is in your pocket."</string>
 
 <!-- Title of a prompt that is presented to users when they tap the "Forget This Device" button to disconnect and forget a head tracking headset -->
   <string name="devices_forget_headset_prompt_forget">"Are you sure you wish to forget these headphones?"</string>

@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Quando o Soundscape está a trabalhar offline, a pesquisa está desativada. Dispense esta mensagem para voltar ao ecrã anterior"</string>
   <string name="general_alert_offline_learn_more">"Mais informações"</string>
   <string name="general_alert_error_message">"Tente novamente mais tarde."</string>
-  <string name="general_loading_start">"A preparar tudo..."</string>
-  <string name="general_loading_end">"A limpar tudo..."</string>
+  <string name="general_loading_start">"A preparar tudo&#8230;"</string>
+  <string name="general_loading_end">"A limpar tudo&#8230;"</string>
   <string name="general_mute">"Desativar Som"</string>
   <string name="general_volume">"Volume"</string>
   <string name="general_tabs">"%1$s, separador, %2$s de %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Faça duplo toque para definir o sinal no ponto de passagem anterior"</string>
   <string name="route_detail_action_next">"Ponto de Passagem Seguinte"</string>
   <string name="route_detail_action_next_hint">"Faça duplo toque para definir o sinal no ponto de passagem seguinte"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Descrição"</string>
   <string name="route_detail_edit_description_default">"Adicione uma descrição da sua rota"</string>
   <string name="route_detail_edit_waypoints_button">"Adicionar Pontos de Passagem"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Auscultadores com deteção do movimento da cabeça são auscultadores Bluetooth equipados com sensores que indicam ao Soundscape a direção em que está virado. Isto ajuda o Soundscape a melhorar a sua experiência de áudio, tornando-a mais natural à medida que se desloca.\n\nToque no botão para ligar um dispositivo."</string>
   <string name="devices_explain_ar_connected_airpods">"Os AirPods estão prontos para utilização. Pode guardar o telemóvel no bolso e seguir viagem! O Soundscape está a detetar a direção da sua cabeça, pelo que não necessita de levar o telemóvel na mão."</string>
   <string name="devices_explain_ar_paired">"O Soundscape não está atualmente ligado aos %s. Certifique-se de que os auscultadores estão ligados e perto do dispositivo."</string>
-  <string name="devices_explain_ar_connecting">"O Soundscape está a estabelecer ligação aos %s. Um momento..."</string>
+  <string name="devices_explain_ar_connecting">"O Soundscape está a estabelecer ligação aos %s. Um momento&#8230;"</string>
   <string name="devices_connect_headset">"Ligar Auscultadores"</string>
   <string name="devices_connect_headset_calibrate_button">"Iniciar Calibragem"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Os auscultadores foram ligados ao Soundscape com êxito, mas têm de ser calibrados antes de serem utilizados. O Soundscape irá informá-lo sempre que for necessário calibrar os auscultadores (por exemplo, sempre que os ligar)."</string>

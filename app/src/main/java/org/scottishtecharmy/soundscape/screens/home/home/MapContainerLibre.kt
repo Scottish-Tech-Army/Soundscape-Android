@@ -64,7 +64,7 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
     // Create the TextView for the number
     val numberTextView = TextView(context)
     numberTextView.apply {
-        text = number.toString()
+        text = "$number"
         setTextColor(android.graphics.Color.WHITE)
         textSize = 11f
         gravity = Gravity.CENTER

@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Når Soundscape kjører i frakoblet modus, er søk deaktivert. Lukk for å gå tilbake til forrige skjerm"</string>
   <string name="general_alert_offline_learn_more">"Finn ut mer"</string>
   <string name="general_alert_error_message">"Prøv på nytt senere."</string>
-  <string name="general_loading_start">"Gjør alt klart ..."</string>
-  <string name="general_loading_end">"Rydder opp ..."</string>
+  <string name="general_loading_start">"Gjør alt klart &#8230;"</string>
+  <string name="general_loading_end">"Rydder opp &#8230;"</string>
   <string name="general_mute">"Slå av"</string>
   <string name="general_volume">"Volum"</string>
   <string name="general_tabs">"%1$s, fane, %2$s av %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Dobbelttrykk for å angi lydsignalet på forrige veipunkt"</string>
   <string name="route_detail_action_next">"Neste veipunkt"</string>
   <string name="route_detail_action_next_hint">"Dobbelttrykk for å angi lydsignalet på neste veipunkt"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s ..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s &#8230;"</string>
   <string name="route_detail_edit_description">"Beskrivelse"</string>
   <string name="route_detail_edit_description_default">"Legg til en beskrivelse av ruten"</string>
   <string name="route_detail_edit_waypoints_button">"Legg til veipunkter"</string>
@@ -445,7 +445,7 @@
   <string name="searching_offline">"Søk er deaktivert i frakoblet modus"</string>
   <string name="search_search_for">"Søk etter %s"</string>
   <string name="search_searching">"Søker"</string>
-  <string name="search_searching_with_punctuation">"Søker ..."</string>
+  <string name="search_searching_with_punctuation">"Søker &#8230;"</string>
   <string name="search_choose_destination">"Velg destinasjon"</string>
   <string name="search_results_found_first_result">Fant %1$s resultater. Første resultat: %2$s</string>
   <string name="search_no_results_found_error">"Det ser ikke ut til at det er noen steder i nærheten. Hvis du ser etter et spesielt sted, kan du prøve å søke etter navnet eller adressen."</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Hodetelefoner med hodesporing er Bluetooth-hodetelefoner med sensorer som forteller Soundscape hvilken retning du er vendt mot. Dette hjelper Soundscape med å forbedre lydopplevelsen din, noe som gjør den mer naturlig når du beveger deg rundt i verden.\n\nTrykk på knappen nedenfor for å koble til en enhet."</string>
   <string name="devices_explain_ar_connected_airpods">"AirPods er klare til bruk, og du kan legge telefonen i lomma og gå. Soundscape sporer nå retningen på hodet ditt slik at du ikke trenger å holde telefonen i hånden."</string>
   <string name="devices_explain_ar_paired">"Soundscape er for øyeblikket ikke koblet til %s. Pass på at hodetelefonene er slått på og i nærheten av telefonen."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape kobler seg til %s. Vent litt ..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape kobler seg til %s. Vent litt &#8230;"</string>
   <string name="devices_connect_headset">"Koble til hodetelefoner"</string>
   <string name="devices_connect_headset_calibrate_button">"Start kalibrering"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Hodetelefonene er koblet til Soundscape, men de må kalibreres før bruk. Soundscape varsler deg når det er nødvendig å kalibrere hodetelefonene, for eksempel hver gang du slår dem på."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Hodetelefonkontroll"</string>
   <string name="devices_test_headset_explanation">"Vi har plassert et lydsignal til høyre for deg. Lytt til hvor det er, og snu hodet mot det. Legg merke til at du kan gjøre dette selv om telefonen ligger i lomma. Når du er ferdig, trykker du på knappen nedenfor for å gå tilbake til Soundscape og nyte neste spasertur med de nye hodetelefonene med hodesporing."</string>
   <string name="devices_test_headset_continue">"Gå tilbake til Soundscape"</string>
-  <string name="devices_test_headset_callout">"Vi har plassert et lydsignal til høyre for deg. Lytt til hvor det er, og snu hodet mot det ... Legg merke til at du kan gjøre dette selv om telefonen er i lomma."</string>
+  <string name="devices_test_headset_callout">"Vi har plassert et lydsignal til høyre for deg. Lytt til hvor det er, og snu hodet mot det &#8230; Legg merke til at du kan gjøre dette selv om telefonen er i lomma."</string>
   <string name="devices_forget_headset_prompt_forget">"Er du sikker på at du vil glemme disse hodetelefonene?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Dette kobler hodetelefonene fra Soundscape. Du kan koble deg til Soundscape på nytt herfra."</string>
   <string name="devices_callouts_connected">"%s er koblet til."</string>
@@ -764,7 +764,7 @@
   <string name="poi_unknown_place">"Ukjent sted"</string>
   <string name="audio_player_action_play_again">"Spill av på nytt"</string>
   <string name="text_coming_soon">"Kommer snart …"</string>
-  <string name="text_cleaning_things">"Rydder opp ..."</string>
+  <string name="text_cleaning_things">"Rydder opp &#8230;"</string>
   <string name="action_double_tap_to_repeat">"Dobbelttrykk for å gjenta"</string>
   <string name="location">"Posisjon"</string>
   <string name="text_oops">"Au da!"</string>

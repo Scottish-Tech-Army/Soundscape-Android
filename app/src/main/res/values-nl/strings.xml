@@ -33,7 +33,7 @@
   <string name="general_alert_discard">"Wissen"</string>
   <string name="general_text_clear_text">"Tekst wissen"</string>
   <string name="general_text_clear">"Wissen"</string>
-  <string name="general_loading_almost_ready">"Bijna klaar..."</string>
+  <string name="general_loading_almost_ready">"Bijna klaar&#8230;"</string>
   <string name="general_loading_loading">"Laden…"</string>
   <string name="general_loading_no_punctuation">"Laden"</string>
   <string name="general_percentage">"%s%%"</string>
@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Wanneer Soundscape offline werkt, is de zoekfunctie uitgeschakeld. Sluit om terug te gaan naar het vorige scherm"</string>
   <string name="general_alert_offline_learn_more">"Meer informatie"</string>
   <string name="general_alert_error_message">"Probeer het later opnieuw."</string>
-  <string name="general_loading_start">"Alles voorbereiden..."</string>
-  <string name="general_loading_end">"Alles opschonen..."</string>
+  <string name="general_loading_start">"Alles voorbereiden&#8230;"</string>
+  <string name="general_loading_end">"Alles opschonen&#8230;"</string>
   <string name="general_mute">"Dempen"</string>
   <string name="general_volume">"Volume"</string>
   <string name="general_tabs">"%1$s, tabblad, %2$s van %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Dubbeltik om het baken op het vorige routepunt in te stellen"</string>
   <string name="route_detail_action_next">"Volgende routepunt"</string>
   <string name="route_detail_action_next_hint">"Dubbeltik om het baken op het volgende routepunt in te stellen"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Beschrijving"</string>
   <string name="route_detail_edit_description_default">"Een beschrijving van uw route toevoegen"</string>
   <string name="route_detail_edit_waypoints_button">"Routepunten toevoegen"</string>
@@ -445,7 +445,7 @@
   <string name="searching_offline">"Zoeken is uitgeschakeld als u offline bent"</string>
   <string name="search_search_for">"Zoeken naar \"%s\""</string>
   <string name="search_searching">"Zoeken"</string>
-  <string name="search_searching_with_punctuation">"Zoeken..."</string>
+  <string name="search_searching_with_punctuation">"Zoeken&#8230;"</string>
   <string name="search_choose_destination">"Bestemming kiezen"</string>
   <string name="search_results_found_first_result">%1$s resultaten gevonden. Eerste resultaat: %2$s</string>
   <string name="search_no_results_found_error">"Het ziet ernaar uit dat er geen plaatsen in de buurt zijn. Als u een specifieke plaats zoekt, kunt u zoeken op naam of adres."</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"'Head tracking'-koptelefoons zijn Bluetooth-koptelefoons met sensoren die aan Soundscape doorgeven in welke richting u kijkt. Zo kan Soundscape uw audiobeleving verbeteren en kunt u zich gemakkelijker verplaatsen.\n\nTik op de knop hieronder om een apparaat te verbinden."</string>
   <string name="devices_explain_ar_connected_airpods">"Uw AirPods zijn gereed voor gebruik. Plaats uw telefoon in uw zak en ga op weg. Soundscape volgt nu de kijkrichting van uw hoofd zodat u de telefoon niet in uw hand hoeft te houden."</string>
   <string name="devices_explain_ar_paired">"Soundscape is momenteel niet verbonden met uw %s. Controleer of uw koptelefoon is ingeschakeld en zich in de buurt van uw telefoon bevindt."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape maakt verbinding met uw %s. Even wachten..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape maakt verbinding met uw %s. Even wachten&#8230;"</string>
   <string name="devices_connect_headset">"Koptelefoon verbinden"</string>
   <string name="devices_connect_headset_calibrate_button">"Kalibratie starten"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Uw koptelefoon is verbonden met Soundscape maar moet worden gekalibreerd voor gebruik. Soundscape laat het weten wanneer de koptelefoon moet worden gekalibreerd, bijvoorbeeld elke keer wanneer u deze aanzet."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Koptelefoon controleren"</string>
   <string name="devices_test_headset_explanation">"We hebben rechts van u een audiobaken geplaatst. Luister waar het zich bevindt en draai uw hoofd in die richting. U kunt dit ook doen terwijl uw telefoon in uw zak zit. Als u klaar bent, tikt u op de knop hieronder om terug te gaan naar Soundscape. Geniet van uw wandeling met uw nieuwe head tracking-koptelefoon."</string>
   <string name="devices_test_headset_continue">"Terug naar Soundscape"</string>
-  <string name="devices_test_headset_callout">"We hebben rechts van u een audiobaken geplaatst. Luister waar het zich bevindt en draai uw hoofd in die richting... U kunt dit ook doen terwijl uw telefoon in uw zak zit."</string>
+  <string name="devices_test_headset_callout">"We hebben rechts van u een audiobaken geplaatst. Luister waar het zich bevindt en draai uw hoofd in die richting&#8230; U kunt dit ook doen terwijl uw telefoon in uw zak zit."</string>
   <string name="devices_forget_headset_prompt_forget">"Weet u zeker dat u deze koptelefoon wilt verwijderen?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Hierdoor wordt de verbinding van uw koptelefoon met Soundscape verbroken. U kunt in de toekomst weer verbinden met Soundscape vanaf hier."</string>
   <string name="devices_callouts_connected">"%s verbonden."</string>
@@ -763,8 +763,8 @@
   <string name="poi_unknown">"Onbekend"</string>
   <string name="poi_unknown_place">"Onbekende plek"</string>
   <string name="audio_player_action_play_again">"Opnieuw afspelen"</string>
-  <string name="text_coming_soon">"Binnenkort beschikbaar..."</string>
-  <string name="text_cleaning_things">"Alles opschonen...…"</string>
+  <string name="text_coming_soon">"Binnenkort beschikbaar&#8230;"</string>
+  <string name="text_cleaning_things">"Alles opschonen&#8230;"</string>
   <string name="action_double_tap_to_repeat">"Dubbeltik om te herhalen"</string>
   <string name="location">"Locatie"</string>
   <string name="text_oops">"Oeps!"</string>

@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Kun Soundscape toimii offline-tilassa, haku on pois käytöstä. Hylkää palataksesi edelliselle näytölle"</string>
   <string name="general_alert_offline_learn_more">"Lisätietoja"</string>
   <string name="general_alert_error_message">"Yritä myöhemmin uudelleen."</string>
-  <string name="general_loading_start">"Kohta on valmista..."</string>
-  <string name="general_loading_end">"Siivotaan..."</string>
+  <string name="general_loading_start">"Kohta on valmista&#8230;"</string>
+  <string name="general_loading_end">"Siivotaan&#8230;"</string>
   <string name="general_mute">"Hiljennä"</string>
   <string name="general_volume">"Äänenvoimakkuus"</string>
   <string name="general_tabs">"%1$s, välilehti, %2$s/%3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Kaksoisnapauta määrittääksesi majakan edelliseen reittipisteeseen"</string>
   <string name="route_detail_action_next">"Seuraava reittipiste"</string>
   <string name="route_detail_action_next_hint">"Kaksoisnapauta määrittääksesi majakan seuraavaan reittipisteeseen"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Kuvaus"</string>
   <string name="route_detail_edit_description_default">"Lisää kuvaus reittiisi"</string>
   <string name="route_detail_edit_waypoints_button">"Lisää reittipisteitä"</string>
@@ -445,7 +445,7 @@
   <string name="searching_offline">"Haku on pois käytöstä offline-tilassa"</string>
   <string name="search_search_for">"Hae kohdetta \"%s\""</string>
   <string name="search_searching">"Haetaan"</string>
-  <string name="search_searching_with_punctuation">"Haetaan..."</string>
+  <string name="search_searching_with_punctuation">"Haetaan&#8230;"</string>
   <string name="search_choose_destination">"Valitse määränpää"</string>
   <string name="search_results_found_first_result">%1$s tulosta löytyi. Ensimmäinen tulos: %2$s</string>
   <string name="search_no_results_found_error">"Lähistöllä ei vaikuttaisi olevan paikkoja. Jos etsit tiettyä paikkaa, voit yrittää etsiä sitä nimen tai osoitteen avulla."</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Päätä seuraavat kuulokkeet ovat Bluetooth-kuulokkeita, joissa on tunnistimet, jotka kertovat Soundscapelle, mihin suuntaan olet kääntyneenä. Tämä auttaa Soundscapea parantamaan äänikokemustasi tehden siitä luonnollisemman, kun liikut maailmassa ympäriinsä.\n\nNapauta alla olevaa painiketta yhdistääksesi laitteen."</string>
   <string name="devices_explain_ar_connected_airpods">"AirPods-kuulokkeesi ovat valmiit käyttöön, joten voit laittaa puhelimen taskuusi ja lähteä! Soundscape seuraa pääsi suuntaa, joten sinun ei tarvitse pidellä puhelinta kädessäsi."</string>
   <string name="devices_explain_ar_paired">"Soundscapea ei ole yhdistetty %s -kuulokkeisiisi. Varmista, että kuulokkeesi ovat päällä ja lähellä puhelintasi."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape muodostaa yhteyttä %s -kuulokkeisiisi. Pieni hetki..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape muodostaa yhteyttä %s -kuulokkeisiisi. Pieni hetki&#8230;"</string>
   <string name="devices_connect_headset">"Yhdistä kuulokkeet"</string>
   <string name="devices_connect_headset_calibrate_button">"Aloita kalibrointi"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Kuulokkeesi yhdistyivät Soundscapeen onnistuneesti, mutta ne on kalibroitava ennen käyttöä. Soundscape ilmoittaa, kun kuulokkeiden kalibrointi on tarpeen, esimerkiksi joka kerta, kun käynnistät sen."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Kuulokkeiden tarkistus"</string>
   <string name="devices_test_headset_explanation">"Olemme sijoittaneet äänimajakan oikealle puolellesi. Kuuntele, missä se on ja käännä pääsi sitä kohti. Huomaa, kuinka voit tehdä tämän jopa silloin, kun puhelin on taskussasi. Kun olet valmis, napauta alla olevaa painiketta palataksesi Soundscapeen ja nauttiaksesi seuraavasta kävelystäsi uusien päätä seuraavien kuulokkeidesi kanssa."</string>
   <string name="devices_test_headset_continue">"Palaa Soundscapeen"</string>
-  <string name="devices_test_headset_callout">"Olemme sijoittaneet äänimajakan oikealle puolellesi. Kuuntele, missä se on, ja käännä pääsi sitä kohti... Huomaa, kuinka voit tehdä tämän jopa silloin, kun puhelin on taskussasi."</string>
+  <string name="devices_test_headset_callout">"Olemme sijoittaneet äänimajakan oikealle puolellesi. Kuuntele, missä se on, ja käännä pääsi sitä kohti&#8230; Huomaa, kuinka voit tehdä tämän jopa silloin, kun puhelin on taskussasi."</string>
   <string name="devices_forget_headset_prompt_forget">"Oletko varma, että haluat unohtaa nämä kuulokkeet?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Tämä katkaisee yhteyden kuulokkeidesi ja Soundscapen välillä. Voit yhdistää Soundscapeen uudelleen täältä tulevaisuudessa."</string>
   <string name="devices_callouts_connected">"%s yhdistetty."</string>
@@ -763,8 +763,8 @@
   <string name="poi_unknown">"Tuntematon"</string>
   <string name="poi_unknown_place">"Tuntematon paikka"</string>
   <string name="audio_player_action_play_again">"Toista uudelleen"</string>
-  <string name="text_coming_soon">"Tulossa pian..."</string>
-  <string name="text_cleaning_things">"Siivotaan..."</string>
+  <string name="text_coming_soon">"Tulossa pian&#8230;"</string>
+  <string name="text_cleaning_things">"Siivotaan&#8230;"</string>
   <string name="action_double_tap_to_repeat">"Kaksoisnapauta toistaaksesi"</string>
   <string name="location">"Sijainti"</string>
   <string name="text_oops">"Hups!"</string>

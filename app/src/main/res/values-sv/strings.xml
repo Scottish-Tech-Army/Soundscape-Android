@@ -33,7 +33,7 @@
   <string name="general_alert_discard">"Ignorera"</string>
   <string name="general_text_clear_text">"Rensa text"</string>
   <string name="general_text_clear">"Rensa"</string>
-  <string name="general_loading_almost_ready">"Nästan klart ..."</string>
+  <string name="general_loading_almost_ready">"Nästan klart &#8230;"</string>
   <string name="general_loading_loading">"Läser in …"</string>
   <string name="general_loading_no_punctuation">"Läser in"</string>
   <string name="general_percentage">"%s%%"</string>
@@ -44,7 +44,7 @@
   <string name="general_alert_offline_search_message">"När Soundscape är offline är sökfunktionen inaktiverad. Stäng om du vill gå tillbaka till föregående skärm."</string>
   <string name="general_alert_offline_learn_more">"Mer information"</string>
   <string name="general_alert_error_message">"Försök igen senare."</string>
-  <string name="general_loading_start">"Förbereder en del saker ..."</string>
+  <string name="general_loading_start">"Förbereder en del saker &#8230;"</string>
   <string name="general_loading_end">"Rensar …"</string>
   <string name="general_mute">"Stäng av ljud"</string>
   <string name="general_volume">"Volym"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Dubbelknacka om du vill ställa in ljudfyren på föregående brytpunkt"</string>
   <string name="route_detail_action_next">"Nästa brytpunkt"</string>
   <string name="route_detail_action_next_hint">"Dubbelknacka om du vill ställa in ljudfyren på nästa brytpunkt"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s, ..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s, &#8230;"</string>
   <string name="route_detail_edit_description">"Beskrivning"</string>
   <string name="route_detail_edit_description_default">"Lägg till en beskrivning av din rutt"</string>
   <string name="route_detail_edit_waypoints_button">"Lägg till brytpunkter"</string>
@@ -445,7 +445,7 @@
   <string name="searching_offline">"Sökning inaktiveras när du är offline"</string>
   <string name="search_search_for">"Sök efter \"%s\""</string>
   <string name="search_searching">"Söker"</string>
-  <string name="search_searching_with_punctuation">"Söker ..."</string>
+  <string name="search_searching_with_punctuation">"Söker &#8230;"</string>
   <string name="search_choose_destination">"Välj mål"</string>
   <string name="search_results_found_first_result">%1$s resultat hittades. Första resultat: %2$s</string>
   <string name="search_no_results_found_error">"Det verkar som om det inte finns några platser i närheten. Om du letar efter en viss plats kan du försöka med att söka utifrån namn eller adress."</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Hörlurar med huvudspårning är Bluetooth-hörlurar med sensorer som anger för Soundscape vilken riktning du står i. På så sätt kan Soundscape förbättra ljudupplevelsen, och göra den mer naturlig när du rör dig i omgivningen.\n\nKnacka på knappen nedan om du vill ansluta enheten."</string>
   <string name="devices_explain_ar_connected_airpods">"Du kan nu börja använda dina AirPods. Stoppa undan telefonen i fickan och ge dig av! Soundscape spårar nu huvudets riktning så du behöver inte hålla telefonen i handen."</string>
   <string name="devices_explain_ar_paired">"Soundscape är inte anslutet till ditt %s. Kontrollera att dina hörlurar är aktiverade och finns i närheten av telefonen."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape ansluter dig till %s. Ett ögonblick ..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape ansluter dig till %s. Ett ögonblick &#8230;"</string>
   <string name="devices_connect_headset">"Anslut hörlurar"</string>
   <string name="devices_connect_headset_calibrate_button">"Starta kalibrering"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Dina hörlurar har anslutits till Soundscape men måste kalibreras innan du kan använda dem. Du får information från Soundscape varje gång dina hörlurar måste kalibreras, till exempel varje gång du aktiverar dem."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Kontroll av hörlurar"</string>
   <string name="devices_test_headset_explanation">"Vi har placerat en ljudfyr på din högra sida. Lyssna var den finns och vrid huvudet i den riktningen. Du kan göra det här även om du har telefonen i fickan. När du har gjort detta trycker du på knappen nedan för att gå tillbaka till Soundscape. Nu kan du njuta av din promenad med hjälp av dina nya hörlurar med huvudspårning."</string>
   <string name="devices_test_headset_continue">"Gå tillbaka till Soundscape"</string>
-  <string name="devices_test_headset_callout">"Vi har placerat en ljudfyr på din högra sida. Lyssna var den finns och vrid huvudet i den riktningen ... Du kan göra det här även om du har telefonen i fickan."</string>
+  <string name="devices_test_headset_callout">"Vi har placerat en ljudfyr på din högra sida. Lyssna var den finns och vrid huvudet i den riktningen &#8230; Du kan göra det här även om du har telefonen i fickan."</string>
   <string name="devices_forget_headset_prompt_forget">"Vill du glömma dessa hörlurar?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Den här åtgärden kopplar från dina hörlurar från Soundscape. Du kan ansluta dem igen till Soundscape härifrån."</string>
   <string name="devices_callouts_connected">"%s har anslutits."</string>

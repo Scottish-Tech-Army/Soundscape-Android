@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Quando Soundscape è offline, la ricerca è disabilitata. Chiudi per tornare alla schermata precedente"</string>
   <string name="general_alert_offline_learn_more">"Altre informazioni"</string>
   <string name="general_alert_error_message">"Riprova più tardi."</string>
-  <string name="general_loading_start">"Preparazione in corso..."</string>
-  <string name="general_loading_end">"Cancellazione in corso..."</string>
+  <string name="general_loading_start">"Preparazione in corso&#8230;"</string>
+  <string name="general_loading_end">"Cancellazione in corso&#8230;"</string>
   <string name="general_mute">"Disattiva audio"</string>
   <string name="general_volume">"Volume"</string>
   <string name="general_tabs">"%1$s, scheda, %2$s di %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Tocca due volte per impostare l'audiofaro sul waypoint precedente"</string>
   <string name="route_detail_action_next">"Waypoint successivo"</string>
   <string name="route_detail_action_next_hint">"Tocca due volte per impostare l'audiofaro sul waypoint successivo"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Descrizione"</string>
   <string name="route_detail_edit_description_default">"Aggiungi una descrizione del percorso"</string>
   <string name="route_detail_edit_waypoints_button">"Aggiungi waypoint"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Gli auricolari con tracciamento della testa sono auricolari Bluetooth con sensori che indicano a Soundscape la direzione verso cui è rivolta la testa. In tal modo Soundscape può migliorare la tua esperienza audio rendendola più naturale mentre ti muovi nell'ambiente.\n\nTocca il pulsante in basso per connettere un dispositivo."</string>
   <string name="devices_explain_ar_connected_airpods">"I tuoi AirPods sono pronti per l'uso, quindi puoi mettere il telefono in tasca e uscire! Soundscape ora seguirà la direzione della tua testa, quindi non devi tenere il telefono in mano."</string>
   <string name="devices_explain_ar_paired">"Soundscape non è attualmente connesso ai tuoi auricolari %s. Assicurati che gli auricolari siano accesi e vicini al telefono."</string>
-  <string name="devices_explain_ar_connecting">"Connessione di Soundscape al tuo dispositivo %s in corso. Attendi un attimo..."</string>
+  <string name="devices_explain_ar_connecting">"Connessione di Soundscape al tuo dispositivo %s in corso. Attendi un attimo&#8230;"</string>
   <string name="devices_connect_headset">"Connetti auricolari"</string>
   <string name="devices_connect_headset_calibrate_button">"Inizia calibrazione"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Gli auricolari sono connessi correttamente a Soundscape ma devono essere calibrati prima dell'uso. Soundscape ti informerà ogni volta che è necessaria la calibrazione degli auricolari, ad esempio ogni volta che li accendi."</string>
