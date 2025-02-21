@@ -34,7 +34,7 @@
   <string name="general_text_clear_text">"Text löschen"</string>
   <string name="general_text_clear">"Löschen"</string>
   <string name="general_loading_almost_ready">"Fast fertig …"</string>
-  <string name="general_loading_loading">"Wird geladen ..."</string>
+  <string name="general_loading_loading">"Wird geladen &#8230;"</string>
   <string name="general_loading_no_punctuation">"Wird geladen"</string>
   <string name="general_percentage">"%s%%"</string>
   <string name="general_percentage_complete">"%s%% abgeschlossen"</string>
@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Wenn Soundscape offline ausgeführt wird, ist die Suchfunktion deaktiviert. Verwerfen, um zum vorherigen Bildschirm zurückzukehren"</string>
   <string name="general_alert_offline_learn_more">"Weitere Informationen"</string>
   <string name="general_alert_error_message">"Bitte versuchen Sie es später noch einmal."</string>
-  <string name="general_loading_start">"Vorbereitung..."</string>
-  <string name="general_loading_end">"Bereinigen ..."</string>
+  <string name="general_loading_start">"Vorbereitung&#8230;"</string>
+  <string name="general_loading_end">"Bereinigen &#8230;"</string>
   <string name="general_mute">"Stummschalten"</string>
   <string name="general_volume">"Lautstärke"</string>
   <string name="general_tabs">"%1$s, Registerkarte, %2$s von %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Tippen Sie doppelt, um das Beacon auf dem vorherigen Wegpunkt zu platzieren"</string>
   <string name="route_detail_action_next">"Nächster Wegpunkt"</string>
   <string name="route_detail_action_next_hint">"Tippen Sie doppelt, um das Beacon auf dem nächsten Wegpunkt zu platzieren"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Beschreibung"</string>
   <string name="route_detail_edit_description_default">"Fügen Sie eine Beschreibung Ihrer Route hinzu"</string>
   <string name="route_detail_edit_waypoints_button">"Wegpunkte hinzufügen"</string>
@@ -445,7 +445,7 @@
   <string name="searching_offline">"Die Suche ist im Offlinemodus deaktiviert"</string>
   <string name="search_search_for">"Nach „%s“ suchen"</string>
   <string name="search_searching">"Suchen"</string>
-  <string name="search_searching_with_punctuation">"Suchen ..."</string>
+  <string name="search_searching_with_punctuation">"Suchen &#8230;"</string>
   <string name="search_choose_destination">"Ziel auswählen"</string>
   <string name="search_results_found_first_result">%1$s Ergebnisse gefunden. Erstes Ergebnis: %2$s</string>
   <string name="search_no_results_found_error">"Anscheinend gibt es keine Orte in der Nähe. Wenn Sie nach einem bestimmten Ort suchen, versuchen Sie, nach dem Namen oder der Adresse zu suchen."</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Head Tracking-Kopfhörer sind Bluetooth-Kopfhörer mit Sensoren, anhand derer Soundscape erkennt, in welche Richtung Sie schauen. Dadurch kann Soundscape Ihre Audioerfahrung verbessern, sodass sie natürlicher klingt, während Sie unterwegs sind.\n\nTippen Sie auf die Schaltfläche unten, um eine Verbindung mit einem Gerät herzustellen."</string>
   <string name="devices_explain_ar_connected_airpods">"Ihre AirPods sind bereit für den Einsatz. Sie können Ihr Telefon nun in die Tasche einstecken. Soundscape verfolgt Ihre Blickrichtung nach, sodass Sie das Telefon nicht in der Hand halten müssen."</string>
   <string name="devices_explain_ar_paired">"Soundscape ist derzeit nicht mit %s verbunden. Stellen Sie sicher, dass Ihre Kopfhörer aktiviert sind und sich in der Nähe Ihres Telefons befindet."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape stellt eine Verbindung mit %s her. Bitte warten ..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape stellt eine Verbindung mit %s her. Bitte warten &#8230;"</string>
   <string name="devices_connect_headset">"Kopfhörer verbinden"</string>
   <string name="devices_connect_headset_calibrate_button">"Kalibrierung starten"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Ihre Kopfhörer wurden erfolgreich mit Soundscape verbunden, müssen aber vor der Verwendung kalibriert werden. Soundscape informiert Sie immer dann, wenn eine Kopfhörer-Kalibrierung erforderlich ist, z. B. jedes Mal, wenn Sie sie einschalten."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Kopfhörer überprüfen"</string>
   <string name="devices_test_headset_explanation">"Es wurde ein Audiobeacon rechts von Ihnen platziert. Orten Sie es, und drehen Sie den Kopf in dessen Richtung. Sie können das Audiobeacon auch hören, wenn Ihr Telefon in der Tasche ist. Wenn Sie fertig sind, tippen Sie auf die Schaltfläche unten, um zu Soundscape zurückzukehren. Genießen Sie den nächsten Spaziergang mit Ihren neuen Head Tracking-Kopfhörern."</string>
   <string name="devices_test_headset_continue">"Zu Soundscape zurückkehren"</string>
-  <string name="devices_test_headset_callout">"Es wurde ein Audiobeacon rechts von Ihnen platziert. Orten Sie es, und drehen Sie den Kopf in dessen Richtung .... Sie können das Audiobeacon auch hören, wenn Ihr Telefon eingesteckt ist."</string>
+  <string name="devices_test_headset_callout">"Es wurde ein Audiobeacon rechts von Ihnen platziert. Orten Sie es, und drehen Sie den Kopf in dessen Richtung &#8230; Sie können das Audiobeacon auch hören, wenn Ihr Telefon eingesteckt ist."</string>
   <string name="devices_forget_headset_prompt_forget">"Möchten Sie diese Kopfhörer wirklich vergessen?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Dadurch werden Ihre Kopfhörer von Soundscape getrennt. Sie können später erneut eine Verbindung mit Soundscape herstellen."</string>
   <string name="devices_callouts_connected">"%s verbunden."</string>
@@ -1033,7 +1033,7 @@
   <string name="faq_tips_title">"Tipps"</string>
   <string name="faq_section_what_is_soundscape">"Was ist Soundscape, und wie wird es verwendet?"</string>
   <string name="faq_when_to_use_soundscape_question">"Wann sollte ich Soundscape verwenden?"</string>
-  <string name="faq_when_to_use_soundscape_answer">"Soundscape hat Funktionen und Vorteile, die eine Vielzahl von Szenarien und Zeitskalen umfassen. Darüber hinaus kann sich der Wert von Soundscape für Sie im Laufe der Zeit ändern, sodass die Art und Weise, wie Sie es heute nutzen, sich von der Art und Weise unterscheiden kann, wie Sie es in drei Monaten nutzen werden. Die Leute denken bei Apps oft im Sinne von „Welches Problem kann diese App gut lösen?“. Soundscape kann von Fall zu Fall verwendet werden, wenn Sie einen bestimmten Informationsbedarf haben, zum Beispiel, um ein Ziel unterwegs im Auge zu behalten, um sich zu orientieren, wenn Sie aus einer U-Bahn-Station kommen oder aus dem Auto aussteigen, oder um die Straßennamen und die Entfernung zur nächsten Kreuzung zu finden. Die Philosophie, die hinter Soundscape steckt, ist jedoch eine andere: „Vertonen Sie Ihre Welt“. Soundscape ist so konzipiert, dass Sie es jederzeit nutzen können, wenn Sie unterwegs sind, um sich Ihrer Umgebung bewusst zu werden, z. B. um sich die Namen der Straßen, auf denen Sie sich befinden, die Richtung, in die Sie gehen, und die Namen der Geschäfte, an denen Sie vorbeikommen, zu merken. In diesem Nutzungsmodus haben unsere Nutzer Soundscape als eine „nette Begleit-App“ bezeichnet, die „Entdeckungen“ bietet, um die „Lücken auf Ihrer mentalen Karte zu füllen“ und mehr „Konfidenz beim Gehen“ zu schaffen. Hier sind einige weitere Beispiele dafür, wie unsere Nutzer Soundscape in ihr Leben einbeziehen:\n\n„Soundscape hat mir geholfen, wieder den richtigen Weg zu finden, nachdem ich aus dem Bus ausgestiegen und in die falsche Richtung gegangen war.“\n\n„Sogar in der Stadt, in der ich seit 3 Jahren lebe, habe ich Neues darüber erfahren, was um mich herum ist [mit Soundscape]“\n\n„Der 3D-Sound verbessert meine Spaziergänge, da ich mich mehr mit meiner Umgebung verbunden fühle ... Jetzt, da ich die App nutze, bin ich eher geneigt, eine neue Route auszuprobieren“\n\n„Mir fehlt die Erfahrung, durch die Gegend zu laufen und Dinge zu entdecken. Es ist schön, Soundscape zu haben – es ist jetzt so einfach, etwas über meine Umgebung zu erfahren. Die Informationen sind nützlich, und es ist eine großartige App für die Erkundung.“\n\n„[Ich habe Soundscape] verwendet, um einen Pub mitten in York zu finden. [Ich] nutzte eine Reihe von Optionen, um das Lokal zunächst zu lokalisieren und dann tatsächlich zu finden. Es hat mich bis auf 3 Meter an die Tür herangeführt – genial!“"</string>
+  <string name="faq_when_to_use_soundscape_answer">"Soundscape hat Funktionen und Vorteile, die eine Vielzahl von Szenarien und Zeitskalen umfassen. Darüber hinaus kann sich der Wert von Soundscape für Sie im Laufe der Zeit ändern, sodass die Art und Weise, wie Sie es heute nutzen, sich von der Art und Weise unterscheiden kann, wie Sie es in drei Monaten nutzen werden. Die Leute denken bei Apps oft im Sinne von „Welches Problem kann diese App gut lösen?“. Soundscape kann von Fall zu Fall verwendet werden, wenn Sie einen bestimmten Informationsbedarf haben, zum Beispiel, um ein Ziel unterwegs im Auge zu behalten, um sich zu orientieren, wenn Sie aus einer U-Bahn-Station kommen oder aus dem Auto aussteigen, oder um die Straßennamen und die Entfernung zur nächsten Kreuzung zu finden. Die Philosophie, die hinter Soundscape steckt, ist jedoch eine andere: „Vertonen Sie Ihre Welt“. Soundscape ist so konzipiert, dass Sie es jederzeit nutzen können, wenn Sie unterwegs sind, um sich Ihrer Umgebung bewusst zu werden, z. B. um sich die Namen der Straßen, auf denen Sie sich befinden, die Richtung, in die Sie gehen, und die Namen der Geschäfte, an denen Sie vorbeikommen, zu merken. In diesem Nutzungsmodus haben unsere Nutzer Soundscape als eine „nette Begleit-App“ bezeichnet, die „Entdeckungen“ bietet, um die „Lücken auf Ihrer mentalen Karte zu füllen“ und mehr „Konfidenz beim Gehen“ zu schaffen. Hier sind einige weitere Beispiele dafür, wie unsere Nutzer Soundscape in ihr Leben einbeziehen:\n\n„Soundscape hat mir geholfen, wieder den richtigen Weg zu finden, nachdem ich aus dem Bus ausgestiegen und in die falsche Richtung gegangen war.“\n\n„Sogar in der Stadt, in der ich seit 3 Jahren lebe, habe ich Neues darüber erfahren, was um mich herum ist [mit Soundscape]“\n\n„Der 3D-Sound verbessert meine Spaziergänge, da ich mich mehr mit meiner Umgebung verbunden fühle &#8230; Jetzt, da ich die App nutze, bin ich eher geneigt, eine neue Route auszuprobieren“\n\n„Mir fehlt die Erfahrung, durch die Gegend zu laufen und Dinge zu entdecken. Es ist schön, Soundscape zu haben – es ist jetzt so einfach, etwas über meine Umgebung zu erfahren. Die Informationen sind nützlich, und es ist eine großartige App für die Erkundung.“\n\n„[Ich habe Soundscape] verwendet, um einen Pub mitten in York zu finden. [Ich] nutzte eine Reihe von Optionen, um das Lokal zunächst zu lokalisieren und dann tatsächlich zu finden. Es hat mich bis auf 3 Meter an die Tür herangeführt – genial!“"</string>
   <string name="faq_markers_function_question">"Was sind Markierungen, und wie nutze ich sie optimal?"</string>
   <string name="faq_markers_function_answer">"Markierungen sind Positionen, die Sie gespeichert haben. Es können Plätze sein, die innerhalb der App gefunden werden können, oder gänzlich neue Plätze, die Sie selbst hinzufügen. Sie können Ihren aktuellen Standort als eine Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche „Aktuellen Standort verwenden“ antippen, und dann „Als Markierung speichern“ auswählen. Sie können weitere Positionen als Markierungen speichern, indem Sie auf dem Soundscape-Startbildschirm nach dem Platz über die Suchleiste suchen, oder die Option „Orte in der Nähe“ verwenden. Sobald Sie den gewünschten Ort gefunden und ihn ausgewählt haben, wird die Seite „Standortdetails“ angezeigt. Tippen Sie hier auf die Schaltfläche „Als Markierung speichern“."</string>
   <string name="faq_section_getting_the_best_experience">"Wie nutze ich Soundscape optimal?"</string>

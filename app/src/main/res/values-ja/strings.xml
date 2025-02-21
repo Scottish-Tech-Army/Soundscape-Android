@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Soundscape がオフラインの場合、検索は無効になります。閉じると、前の画面に戻ります"</string>
   <string name="general_alert_offline_learn_more">"詳細"</string>
   <string name="general_alert_error_message">"後ほど再度お試しください。"</string>
-  <string name="general_loading_start">"準備しています..."</string>
-  <string name="general_loading_end">"クリーンアップしています..."</string>
+  <string name="general_loading_start">"準備しています&#8230;"</string>
+  <string name="general_loading_end">"クリーンアップしています&#8230;"</string>
   <string name="general_mute">"ミュート"</string>
   <string name="general_volume">"音量"</string>
   <string name="general_tabs">"%1$s、タブ、%3$s のうち %2$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"ダブル タップすると、以前のウェイポイントにビーコンを設定します"</string>
   <string name="route_detail_action_next">"次のウェイポイント"</string>
   <string name="route_detail_action_next_hint">"ダブル タップすると、次のウェイポイントにビーコンを設定します"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s&#8230;"</string>
   <string name="route_detail_edit_description">"説明"</string>
   <string name="route_detail_edit_description_default">"ルートの説明を追加"</string>
   <string name="route_detail_edit_waypoints_button">"ウェイポイントを追加"</string>
@@ -445,7 +445,7 @@
   <string name="searching_offline">"オフラインでは検索できません"</string>
   <string name="search_search_for">"「%s」を検索"</string>
   <string name="search_searching">"検索中"</string>
-  <string name="search_searching_with_punctuation">"検索中..."</string>
+  <string name="search_searching_with_punctuation">"検索中&#8230;"</string>
   <string name="search_choose_destination">"目的地を選択"</string>
   <string name="search_results_found_first_result">検索結果: %1$s 件。最初の結果: %2$s</string>
   <string name="search_no_results_found_error">"近くの場所は見つかりませんでした。特定の場所を探している場合は、名前または住所で検索してみてください。"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"ヘッド トラッキング機能搭載ヘッドホンは、センサー搭載の Bluetooth ヘッドホンで、ユーザーの顔の方向を Soundscape に伝えることができます。そのため、Soundscape ではユーザーの動きに合わせた自然な音声の再生ができます。\n\nデバイスを接続するには下のボタンをタップしてください。"</string>
   <string name="devices_explain_ar_connected_airpods">"AirPods を使用する準備ができました。スマートフォンをポケットに入れて出かけることができます。Soundscape で頭の方向がトラッキングされるので、スマートフォンを手に持つ必要はありません。"</string>
   <string name="devices_explain_ar_paired">"Soundscape は現在 %s に接続されていません。ヘッドホンの電源が入っていること、スマートフォンの近くにあることを確認してください。"</string>
-  <string name="devices_explain_ar_connecting">"Soundscape が %s と接続中です。少しお待ちください..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape が %s と接続中です。少しお待ちください&#8230;"</string>
   <string name="devices_connect_headset">"ヘッドホンを接続する"</string>
   <string name="devices_connect_headset_calibrate_button">"調整を開始する"</string>
   <string name="devices_connect_headset_calibrate_explanation">"ヘッドホンは正常に Soundscape に接続されていますが、使用前に調整が必要です。ヘッドホンをオンにしたときなど、ヘッドホンの調整が必要な場合には、Soundscape から通知されます。"</string>

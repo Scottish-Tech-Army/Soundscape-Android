@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"When Soundscape is working offline, search is disabled. Dismiss to return to the previous screen"</string>
   <string name="general_alert_offline_learn_more">"Learn more"</string>
   <string name="general_alert_error_message">"Please try again later."</string>
-  <string name="general_loading_start">"Getting things ready..."</string>
-  <string name="general_loading_end">"Cleaning things up..."</string>
+  <string name="general_loading_start">"Getting things ready&#8230;"</string>
+  <string name="general_loading_end">"Cleaning things up&#8230;"</string>
   <string name="general_mute">"Mute"</string>
   <string name="general_volume">"Volume"</string>
   <string name="general_tabs">"%1$s, tab, %2$s of %3$s"</string>
@@ -153,8 +153,8 @@
   <string name="beacon_settings_explanation">"In choosing a beacon style, select a style that is comfortable to listen to and is easily heard outdoors and in noisy surroundings. Make sure you can easily determine its direction through your preferred listening device (headphones or phone speaker)."</string>
   <string name="settings_bluetooth_forget">"Forget This Device"</string>
   <string name="troubleshooting_gps_status">"Location Accuracy"</string>
-  <string name="troubleshooting_gps_status_explanation_meters">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±10 metres is good. Less than ±20 metres is ok. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
-  <string name="troubleshooting_gps_status_explanation_feet">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±30 feet is good. Less than ±60 feet is ok. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
+  <string name="troubleshooting_gps_status_explanation_meters">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±10 metres is good. Less than ±20 metres is OK. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
+  <string name="troubleshooting_gps_status_explanation_feet">"This value is an estimate of how accurately Soundscape knows where you are located. Less than ±30 feet is good. Less than ±60 feet is OK. Anything else is poor. Location data is most accurate when outside and not under any structures."</string>
   <string name="troubleshooting_gps_status_meters">"±%s metres"</string>
   <string name="troubleshooting_gps_status_feet">"±%s feet"</string>
   <string name="troubleshooting_check_audio">"Check Audio"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Double tap to set the beacon on the previous waypoint"</string>
   <string name="route_detail_action_next">"Next Waypoint"</string>
   <string name="route_detail_action_next_hint">"Double tap to set the beacon on the next waypoint"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Description"</string>
   <string name="route_detail_edit_description_default">"Add a description of your route"</string>
   <string name="route_detail_edit_waypoints_button">"Add Waypoints"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Head tracking headphones are Bluetooth headphones with sensors that tell Soundscape where you are facing. This helps Soundscape to improve your audio experience, making it more natural as you move around in the world.\n\nTap the button below to connect a device."</string>
   <string name="devices_explain_ar_connected_airpods">"Your AirPods are ready for use, so you can put your phone in your pocket and go! Soundscape is tracking the direction of your head so you do not need to hold the phone in your hand."</string>
   <string name="devices_explain_ar_paired">"Soundscape is not currently connected to your %s. Please ensure your headphones are turned on and near your phone."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape is connecting to your %s. One moment..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape is connecting to your %s. One moment&#8230;"</string>
   <string name="devices_connect_headset">"Connect Headphones"</string>
   <string name="devices_connect_headset_calibrate_button">"Start Calibration"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Your headphones connected successfully to Soundscape but must be calibrated before use. Soundscape will inform you whenever headphones calibration is needed, for example each time you turn it on."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Headphones Check"</string>
   <string name="devices_test_headset_explanation">"We've placed an audio beacon to your right. Listen where it is, and turn your head towards it. Notice how you can do this even when your phone is in your pocket. When you are done, Tap the button below to return to Soundscape, and enjoy your next walk with your new head tracking headphones."</string>
   <string name="devices_test_headset_continue">"Return to Soundscape"</string>
-  <string name="devices_test_headset_callout">"We've placed an audio beacon to your right. Listen where it is, and turn your head towards it... Notice how you can do this even when your phone is in your pocket."</string>
+  <string name="devices_test_headset_callout">"We've placed an audio beacon to your right. Listen where it is, and turn your head towards it&#8230; Notice how you can do this even when your phone is in your pocket."</string>
   <string name="devices_forget_headset_prompt_forget">"Are you sure you wish to forget these headphones?"</string>
   <string name="devices_forget_headset_prompt_explanation">"This will disconnect your headphones from Soundscape. You can connect to Soundscape again in the future from here."</string>
   <string name="devices_callouts_connected">"%s connected."</string>

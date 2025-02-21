@@ -66,8 +66,8 @@ fun LocationDetailsScreen(
     location : LngLatAlt?,
     heading: Float,
     navController: NavHostController,
-    viewModel: LocationDetailsViewModel = hiltViewModel(),
     modifier: Modifier = Modifier,
+    viewModel: LocationDetailsViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
 

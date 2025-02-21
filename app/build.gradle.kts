@@ -21,6 +21,12 @@ android {
         buildConfig = true
     }
 
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
     signingConfigs {
         create("release") {
             storeFile = file("keystore.jks")

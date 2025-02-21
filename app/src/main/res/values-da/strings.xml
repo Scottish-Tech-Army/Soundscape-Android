@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Når Soundscape arbejder offline, er søgning deaktiveret. Afvis for at vende tilbage til det forrige skærmbillede"</string>
   <string name="general_alert_offline_learn_more">"Få mere at vide"</string>
   <string name="general_alert_error_message">"Prøv igen senere."</string>
-  <string name="general_loading_start">"Gør tingene klar..."</string>
-  <string name="general_loading_end">"Rydder op i ting..."</string>
+  <string name="general_loading_start">"Gør tingene klar&#8230;"</string>
+  <string name="general_loading_end">"Rydder op i ting&#8230;"</string>
   <string name="general_mute">"Slå fra"</string>
   <string name="general_volume">"Lydstyrke"</string>
   <string name="general_tabs">"%1$s, fane, %2$s af %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Dobbelttryk for at indstille lydfyret på forrige waypoint"</string>
   <string name="route_detail_action_next">"Næste waypoint"</string>
   <string name="route_detail_action_next_hint">"Dobbelttryk for at indstille lydfyret på næste waypoint"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Beskrivelse"</string>
   <string name="route_detail_edit_description_default">"Tilføj en beskrivelse af ruten"</string>
   <string name="route_detail_edit_waypoints_button">"Tilføj vejpunkter"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Hovedsporingshovedtelefonerne er Bluetooth-hovedtelefoner med sensorer, der fortæller Soundscape, hvilken retning du vender i. Dette hjælper Soundscape med at forbedre din lydoplevelse, så den bliver mere naturlig, i takt med at du bevæger dig rundt i verden.\n\nTryk på knappen nedenfor for at oprette forbindelse til en enhed."</string>
   <string name="devices_explain_ar_connected_airpods">"Dine AirPods er klar til brug, så du kan lægge telefonen i lommen og gå! Soundscape sporer retningen af dit hoved, så du ikke behøver at holde telefonen i hånden."</string>
   <string name="devices_explain_ar_paired">"Soundscape har i øjeblikket ikke forbindelse til din %s. Kontrollér, at hovedtelefonerne er tændt og i nærheden af telefonen."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape opretter forbindelse til %s. Et øjeblik..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape opretter forbindelse til %s. Et øjeblik&#8230;"</string>
   <string name="devices_connect_headset">"Opret forbindelse til hovedtelefoner"</string>
   <string name="devices_connect_headset_calibrate_button">"Start kalibrering"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Der blev oprettet forbindelse fra dine hovedtelefoner til Soundscape, men de skal kalibreres før brug. Soundscape giver dig besked, hvis der er behov for kalibrering af hovedtelefoner, f.eks. hver gang du tænder for programmet."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Kontrol af hovedtelefoner"</string>
   <string name="devices_test_headset_explanation">"Vi har placeret et lydfyr til højre for dig. Lyt efter, hvor det er, og drej hovedet mod det. Bemærk, hvordan du kan gøre dette, selv når din telefon er i lommen. Når du er færdig, skal du trykke på knappen nedenfor for at vende tilbage til Soundscape og nyde din næste tur med dit nye hovedsporingshovedtelefoner."</string>
   <string name="devices_test_headset_continue">"Vend tilbage til Soundscape"</string>
-  <string name="devices_test_headset_callout">"Vi har placeret et lydfyr til højre for dig. Lyt efter, hvor det er, og drej hovedet mod det... Bemærk, hvordan du kan gøre dette, selv når din telefon er i lommen."</string>
+  <string name="devices_test_headset_callout">"Vi har placeret et lydfyr til højre for dig. Lyt efter, hvor det er, og drej hovedet mod det&#8230; Bemærk, hvordan du kan gøre dette, selv når din telefon er i lommen."</string>
   <string name="devices_forget_headset_prompt_forget">"Er du sikker på, at du vil glemme disse hovedtelefoner?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Dette afbryder forbindelsen til hovedtelefonerne fra Soundscape. Du kan oprette forbindelse til Soundscape igen i fremtiden herfra."</string>
   <string name="devices_callouts_connected">"%s er forbundet."</string>

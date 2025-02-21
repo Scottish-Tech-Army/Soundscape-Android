@@ -44,7 +44,7 @@
   <string name="general_alert_offline_search_message">"Cuando Soundscape está funcionando sin conexión, la búsqueda está deshabilitada. Descarte para regresar a la pantalla anterior"</string>
   <string name="general_alert_offline_learn_more">"Más información"</string>
   <string name="general_alert_error_message">"Inténtelo de nuevo más tarde."</string>
-  <string name="general_loading_start">"Preparando todo..."</string>
+  <string name="general_loading_start">"Preparando todo&#8230;"</string>
   <string name="general_loading_end">"Poniendo todo en orden…"</string>
   <string name="general_mute">"Silenciar"</string>
   <string name="general_volume">"Volumen"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Pulse dos veces para establecer la señal en el punto de ruta anterior"</string>
   <string name="route_detail_action_next">"Siguiente punto de ruta"</string>
   <string name="route_detail_action_next_hint">"Pulse dos veces para establecer la señal en el siguiente punto de ruta"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Descripción"</string>
   <string name="route_detail_edit_description_default">"Agregar una descripción de la ruta"</string>
   <string name="route_detail_edit_waypoints_button">"Agregar puntos de ruta"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Los auriculares con seguimiento de cabeza son auriculares Bluetooth con sensores que indican a Soundscape el lugar frente al cual se encuentra. Esto ayuda a Soundscape a mejorar su experiencia de audio, lo que hace que su desplazamiento por el mundo sea más natural.\n\nPulse en el botón siguiente para conectar un dispositivo."</string>
   <string name="devices_explain_ar_connected_airpods">"Sus AirPods están listos para usarse. Guarde el teléfono en el bolsillo y empiece a moverse. Soundscape está realizando ahora el seguimiento de la dirección de su cabeza, por lo que no tiene que llevar el teléfono en la mano."</string>
   <string name="devices_explain_ar_paired">"Soundscape no está conectado actualmente a %s. Compruebe que los auriculares están activados y que se encuentran cerca del teléfono."</string>
-  <string name="devices_explain_ar_connecting">"Soundscape se está conectando a su %s. Un momento..."</string>
+  <string name="devices_explain_ar_connecting">"Soundscape se está conectando a su %s. Un momento&#8230;"</string>
   <string name="devices_connect_headset">"Conectar auriculares"</string>
   <string name="devices_connect_headset_calibrate_button">"Iniciar calibración"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Los auriculares se han conectado correctamente a Soundscape, pero tiene que calibrarlos para poder usarlos. Soundscape le informará siempre que sea necesaria la calibración de los auriculares, como cada vez que los active."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Comprobación de auriculares"</string>
   <string name="devices_test_headset_explanation">"Hemos colocado una señal de audio a su derecha. Escuche dónde se encuentra y gire la cabeza hacia ella. Observe cómo puede hacer esto incluso con el teléfono en el bolsillo. Cuando haya terminado, pulse en el botón siguiente para volver a Soundscape y disfrute de su próximo paseo con sus nuevos auriculares con seguimiento de cabeza."</string>
   <string name="devices_test_headset_continue">"Volver a Soundscape"</string>
-  <string name="devices_test_headset_callout">"Hemos colocado una señal de audio a su derecha. Escuche dónde se encuentra y gire la cabeza hacia ella... Observe cómo puede hacer esto incluso con el teléfono en el bolsillo."</string>
+  <string name="devices_test_headset_callout">"Hemos colocado una señal de audio a su derecha. Escuche dónde se encuentra y gire la cabeza hacia ella&#8230; Observe cómo puede hacer esto incluso con el teléfono en el bolsillo."</string>
   <string name="devices_forget_headset_prompt_forget">"¿Seguro que desea olvidar estos auriculares?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Esto desconectará los auriculares de Soundscape. Puede conectarse a Soundscape de nuevo en el futuro desde aquí."</string>
   <string name="devices_callouts_connected">"%s conectados."</string>

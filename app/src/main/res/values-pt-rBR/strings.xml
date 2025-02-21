@@ -44,8 +44,8 @@
   <string name="general_alert_offline_search_message">"Quando o Soundscape estiver funcionando offline, a pesquisa será desabilitada. Ignore para retornar à tela anterior"</string>
   <string name="general_alert_offline_learn_more">"Saiba mais"</string>
   <string name="general_alert_error_message">"Tente mais tarde."</string>
-  <string name="general_loading_start">"Preparando tudo..."</string>
-  <string name="general_loading_end">"Limpando..."</string>
+  <string name="general_loading_start">"Preparando tudo&#8230;"</string>
+  <string name="general_loading_end">"Limpando&#8230;"</string>
   <string name="general_mute">"Mudo"</string>
   <string name="general_volume">"Volume"</string>
   <string name="general_tabs">"%1$s, guia, %2$s de %3$s"</string>
@@ -327,7 +327,7 @@
   <string name="route_detail_action_previous_hint">"Dê um toque duplo para definir o sinalizador no localizador anterior"</string>
   <string name="route_detail_action_next">"Próximo Localizador"</string>
   <string name="route_detail_action_next_hint">"Dê um toque duplo para definir o sinalizador no próximo localizador"</string>
-  <string name="waypoint_detail_annotation_cluster_title">"%s,..."</string>
+  <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Descrição"</string>
   <string name="route_detail_edit_description_default">"Adicione uma descrição da sua rota"</string>
   <string name="route_detail_edit_waypoints_button">"Adicionar Localizadores"</string>
@@ -680,7 +680,7 @@
   <string name="devices_explain_ar_disconnected">"Os fones de ouvido Head Tracking são fones Bluetooth com sensores que informam ao Soundscape para que lado sua cabeça está voltada. Isso ajuda o Soundscape a aprimorar sua experiência de áudio, tornando-a mais natural conforme você se move.\n\nToque no botão abaixo para conectar o dispositivo."</string>
   <string name="devices_explain_ar_connected_airpods">"Os AirPods estão prontos para uso. Portanto, você pode colocar o telefone no bolso e começar a usá-los! O Soundscape rastreia a direção da sua cabeça para que você não precise ficar com o telefone na mão."</string>
   <string name="devices_explain_ar_paired">"O Soundscape não está conectado ao seu %s. Verifique se seus fones de ouvido estão ligados e próximos ao telefone."</string>
-  <string name="devices_explain_ar_connecting">"O Soundscape está se conectando a %s. Aguarde..."</string>
+  <string name="devices_explain_ar_connecting">"O Soundscape está se conectando a %s. Aguarde&#8230;"</string>
   <string name="devices_connect_headset">"Conectar Fones de Ouvido"</string>
   <string name="devices_connect_headset_calibrate_button">"Iniciar Calibragem"</string>
   <string name="devices_connect_headset_calibrate_explanation">"Seus fones de ouvido foram conectados com êxito ao Soundscape, mas devem ser calibrados antes do uso. O Soundscape informará você sempre que a calibragem dos fones de ouvido for necessária, por exemplo, sempre que você os ligar."</string>
@@ -698,7 +698,7 @@
   <string name="devices_test_headset_title">"Verificação dos Fones de Ouvido"</string>
   <string name="devices_test_headset_explanation">"Emitimos um sinalizador sonoro à sua direita. Identifique de onde ele vem e volte a cabeça na direção dele. Observe que você pode fazer isso mesmo quando seu telefone está no bolso. Quando terminar, toque no botão abaixo para retornar ao Soundscape e aproveite sua próxima caminhada com os novos Fones de Ouvido Head Tracking."</string>
   <string name="devices_test_headset_continue">"Voltar ao Soundscape"</string>
-  <string name="devices_test_headset_callout">"Nós colocamos um sinalizador sonoro à sua direita. Ouça onde ele está e vire sua cabeça na direção dele... Observe que você poderá fazer isso mesmo quando o telefone estiver em seu bolso."</string>
+  <string name="devices_test_headset_callout">"Nós colocamos um sinalizador sonoro à sua direita. Ouça onde ele está e vire sua cabeça na direção dele&#8230; Observe que você poderá fazer isso mesmo quando o telefone estiver em seu bolso."</string>
   <string name="devices_forget_headset_prompt_forget">"Tem certeza de que deseja esquecer estes fones de ouvido?"</string>
   <string name="devices_forget_headset_prompt_explanation">"Isso desconectará seus fones de ouvido do Soundscape. Você poderá se conectar ao Soundscape novamente no futuro a partir daqui."</string>
   <string name="devices_callouts_connected">"%s conectado."</string>
