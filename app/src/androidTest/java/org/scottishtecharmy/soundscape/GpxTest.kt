@@ -30,7 +30,7 @@ class GpxTest {
         expectedName: String = "",
         expectedDescription: String = "",
         nameOverride: String? = null,
-    ) {
+    ) : ObjectId {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val input = context.assets.open(filename)
 
@@ -78,7 +78,7 @@ class GpxTest {
                 Log.d("gpxTest", "Inserting route")
                 routesRepository.insertRoute(routeData)
                 Log.d("gpxTest", "Retrieving route")
-                val routes = routesRepository.getRoute(routeData.name)
+                val routes = routesRepository.getRoute(routeData.objectId)
                 if(routes.size != 1) {
                     Log.e("gpxTest", "Expected 1 route, got ${routes.size}")
                 }
@@ -86,10 +86,12 @@ class GpxTest {
                 Assert.assertEquals(routeData, routes[0])
             }
         }
+
+        return routeData.objectId
     }
 
     private fun testDatabase(
-        name: String,
+        id: ObjectId,
         expectedValues: List<MarkerData>,
     ) {
         // Open the database
@@ -123,7 +125,7 @@ class GpxTest {
                 Assert.assertTrue(waypoints.isNotEmpty())
 
                 // Get the route for use later
-                val dbRoutes = routesRepository.getRoute(name)
+                val dbRoutes = routesRepository.getRoute(id)
                 Assert.assertEquals(1, dbRoutes.size)
                 val routeData = dbRoutes[0].copyFromRealm()
 
@@ -134,7 +136,7 @@ class GpxTest {
 // Deleting the route no longer deletes the waypoints
 //              waypointCount -= routeData.waypoints.size
 
-                var routes = routesRepository.getRoute(name)
+                var routes = routesRepository.getRoute(id)
                 Assert.assertEquals(0, routes.size)
                 waypoints = routesRepository.getMarkers()
                 Log.d("gpxTest", "Post delete waypoints: " + waypoints.size)
@@ -152,12 +154,12 @@ class GpxTest {
                 Assert.assertEquals(waypointCount, waypoints.size)
 
                 // Check there's still a route left
-                routes = routesRepository.getRoute(name)
+                routes = routesRepository.getRoute(id)
                 Assert.assertEquals(1, routes.size)
                 Assert.assertEquals(routeData, routes[0])
 
                 // Check that we can't get a non-existent route
-                routes = routesRepository.getRoute("non-existent-route")
+                routes = routesRepository.getRoute(ObjectId())
                 Assert.assertEquals(0, routes.size)
 
                 // Try deleting a non-existent route
@@ -173,7 +175,7 @@ class GpxTest {
                 Assert.assertEquals(waypointCount, waypoints.size)
 
                 // Get the route back from the database and check that the waypoints are reversed
-                routes = routesRepository.getRoute(name)
+                routes = routesRepository.getRoute(id)
                 Assert.assertEquals(1, routes.size)
                 Assert.assertEquals(expectedValues.size, routes[0].waypoints.size)
                 var index = 0
@@ -189,7 +191,7 @@ class GpxTest {
 //                waypointCount -= routeData.waypoints.size
 
                 // Check there's no route left
-                routes = routesRepository.getRoute(name)
+                routes = routesRepository.getRoute(id)
                 Assert.assertEquals(0, routes.size)
 
                 waypoints = routesRepository.getMarkers()
@@ -258,31 +260,31 @@ class GpxTest {
     @Test
     fun handcraftedDatabase() {
         val expectedValues = expectedHandcraftedValues()
-        testParsing("gpx/handcrafted.gpx", expectedValues, "Handcrafted", "Handcrafted description")
-        testDatabase("Handcrafted", expectedValues)
+        val id = testParsing("gpx/handcrafted.gpx", expectedValues, "Handcrafted", "Handcrafted description")
+        testDatabase(id, expectedValues)
     }
 
     @Test
     fun rideWithGpsDatabase() {
         val expectedValues = expectedRideWithGpsValues()
-        testParsing("gpx/rideWithGps.gpx", expectedValues, "RideWithGps", "")
-        testDatabase("RideWithGps", expectedValues)
+        val id = testParsing("gpx/rideWithGps.gpx", expectedValues, "RideWithGps", "")
+        testDatabase(id, expectedValues)
     }
 
     @Test
     fun soundscapeDatabase() {
         val expectedValues = expectedSoundscapeValues()
-        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
-        testDatabase("Soundscape", expectedValues)
+        val id = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
+        testDatabase(id, expectedValues)
     }
 
     @Test
     fun soundscapeDuplicateDatabase() {
         val expectedValues = expectedSoundscapeValues()
-        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
-        testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
-        testDatabase("Soundscape2", expectedValues)
-        testDatabase("Soundscape", expectedValues)
+        val id1 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
+        val id2 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
+        testDatabase(id2, expectedValues)
+        testDatabase(id1, expectedValues)
     }
 
     // Double check multiple routes at once in the database
@@ -290,17 +292,17 @@ class GpxTest {
     fun allRoutes() {
         // Put multiple routes into the database
         val handcraftedExpectedValues = expectedHandcraftedValues()
-        testParsing("gpx/handcrafted.gpx", handcraftedExpectedValues, "Handcrafted", "Handcrafted description")
+        val id1 = testParsing("gpx/handcrafted.gpx", handcraftedExpectedValues, "Handcrafted", "Handcrafted description")
         val rideWithGpsExpectedValues = expectedRideWithGpsValues()
-        testParsing("gpx/rideWithGps.gpx", rideWithGpsExpectedValues, "RideWithGps", "")
+        val id2 = testParsing("gpx/rideWithGps.gpx", rideWithGpsExpectedValues, "RideWithGps", "")
         val soundscapeExpectedValues = expectedSoundscapeValues()
-        testParsing("gpx/soundscape.gpx", soundscapeExpectedValues, "Soundscape", "Soundscape description")
-        testParsing("gpx/soundscape.gpx", soundscapeExpectedValues, "Soundscape", "Soundscape description", "Soundscape2")
+        val id3 = testParsing("gpx/soundscape.gpx", soundscapeExpectedValues, "Soundscape", "Soundscape description")
+        val id4 = testParsing("gpx/soundscape.gpx", soundscapeExpectedValues, "Soundscape", "Soundscape description", "Soundscape2")
 
         // And test each of them
-        testDatabase("Soundscape", soundscapeExpectedValues)
-        testDatabase("RideWithGps", rideWithGpsExpectedValues)
-        testDatabase("Handcrafted", handcraftedExpectedValues)
-        testDatabase("Soundscape2", soundscapeExpectedValues)
+        testDatabase(id4, soundscapeExpectedValues)
+        testDatabase(id2, rideWithGpsExpectedValues)
+        testDatabase(id1, handcraftedExpectedValues)
+        testDatabase(id3, soundscapeExpectedValues)
     }
 }
