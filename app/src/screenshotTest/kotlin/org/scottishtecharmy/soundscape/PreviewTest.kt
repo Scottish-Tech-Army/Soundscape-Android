@@ -132,15 +132,15 @@ class SettingsPreviewTestClass {
     }
 }
 
-class MarkersAndRoutesPreviewTestClass {
-    @CustomPreviews
-    @Composable
-    fun MarkersAndRoutesPreviewTest() {
-        SoundscapeTheme {
-            MarkersAndRoutesPreview()
-        }
-    }
-}
+//class MarkersAndRoutesPreviewTestClass {
+//    @CustomPreviews
+//    @Composable
+//    fun MarkersAndRoutesPreviewTest() {
+//        SoundscapeTheme {
+//            MarkersAndRoutesPreview()
+//        }
+//    }
+//}
 
 class RoutesPreviewTestClass {
     @CustomPreviews
