@@ -18,6 +18,6 @@ data class AddAndEditRouteUiState(
     val errorMessage: String? = null,
     val showDoneButton: Boolean = false,
     val actionType: ActionType = ActionType.NONE,
-    val routeMembers: MutableList<LocationDescription> = emptyList<LocationDescription>().toMutableList(),
-    val markers: MutableList<LocationDescription> = emptyList<LocationDescription>().toMutableList()
+    var routeMembers: List<LocationDescription> = emptyList(),
+    val markers: List<LocationDescription> = emptyList()
 )
