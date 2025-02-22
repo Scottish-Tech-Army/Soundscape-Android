@@ -64,10 +64,12 @@ fun AddWaypointsList(
                         enabled = true,
                         functionBoolean = {
                             routeMember[locationDescription] = it
+                            val updatedList = uiState.routeMembers.toMutableList()
                             if(it)
-                                uiState.routeMembers.add(locationDescription)
+                                updatedList.add(locationDescription)
                             else
-                                uiState.routeMembers.remove(locationDescription)
+                                updatedList.remove(locationDescription)
+                            uiState.routeMembers = updatedList
                         },
                         value = routeMember[locationDescription] ?: false
                     )

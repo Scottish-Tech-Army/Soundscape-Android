@@ -1,13 +1,23 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.DragIndicator
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -16,7 +26,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,6 +43,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.components.LocationItem
+import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
@@ -40,6 +55,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import sh.calvin.reorderable.ReorderableItem
+import sh.calvin.reorderable.rememberReorderableLazyListState
 
 private data class SimpleMarkerData(
     var addressName: String = "",
@@ -134,7 +151,19 @@ fun AddAndEditRouteScreen(
     onDoneClicked: () -> Unit,
 ) {
     val context = LocalContext.current
-    val addWaypointDialog = remember { mutableStateOf(false) }
+    var addWaypointDialog by remember { mutableStateOf(false) }
+    var routeMembers by remember(uiState.routeMembers) {
+        mutableStateOf(uiState.routeMembers.toList())
+    }
+    val lazyListState = rememberLazyListState()
+    val location by remember(userLocation) {mutableStateOf(userLocation)}
+    val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
+        // Update the list when an item is dragging
+        routeMembers = routeMembers.toMutableList().apply {
+            add(to.index, removeAt(from.index))
+        }
+    }
+
 
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
@@ -169,15 +198,15 @@ fun AddAndEditRouteScreen(
         }
     }
 
-    if(addWaypointDialog.value) {
+    if(addWaypointDialog) {
         AddWaypointsDialog(
             uiState,
             onDone = {
-                addWaypointDialog.value = false
+                addWaypointDialog = false
             },
-            onCancel = { addWaypointDialog.value = false },
+            onCancel = { addWaypointDialog = false },
             modifier = modifier,
-            userLocation = userLocation
+            userLocation = location
         )
     }
     else {
@@ -216,7 +245,7 @@ fun AddAndEditRouteScreen(
                     CustomButton(
                         Modifier
                             .fillMaxWidth(),
-                        onClick = { addWaypointDialog.value = true },
+                        onClick = { addWaypointDialog = true },
                         buttonColor = MaterialTheme.colorScheme.onPrimary,
                         contentColor = MaterialTheme.colorScheme.onSecondary,
                         shape = RoundedCornerShape(10.dp),
@@ -227,7 +256,10 @@ fun AddAndEditRouteScreen(
                     CustomButton(
                         Modifier
                             .fillMaxWidth(),
-                        onClick = onDoneClicked,
+                        onClick = {
+                            uiState.routeMembers = routeMembers
+                            onDoneClicked()
+                        },
                         buttonColor = MaterialTheme.colorScheme.onPrimary,
                         contentColor = MaterialTheme.colorScheme.onSecondary,
                         shape = RoundedCornerShape(10.dp),
@@ -267,7 +299,9 @@ fun AddAndEditRouteScreen(
                             color = MaterialTheme.colorScheme.surfaceBright
                         )
                         CustomTextField(
-                            modifier = Modifier.fillMaxWidth().padding(bottom = 5.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 5.dp),
                             value = uiState.description,
                             onValueChange = onDescriptionChange
                         )
@@ -277,7 +311,7 @@ fun AddAndEditRouteScreen(
                             thickness = 2.dp
                         )
                         // Display the list of markers in the route
-                        if(uiState.routeMembers.isEmpty()) {
+                        if(routeMembers.isEmpty()) {
                             Text(
                                 stringResource(R.string.route_detail_action_start_route_disabled_hint),
                                 textAlign = TextAlign.Center,
@@ -287,10 +321,39 @@ fun AddAndEditRouteScreen(
                                     .padding(top = 15.dp),
                             )
                         } else {
-                            ReorderableLocationList(
-                                locations = uiState.routeMembers,
-                                userLocation = userLocation
-                            )
+                            LazyColumn(state = lazyListState) {
+                                itemsIndexed(routeMembers, key = { _,item -> item.markerObjectId!!.toString() }) { index, item ->
+                                    ReorderableItem(reorderableLazyListState, item.markerObjectId.toString()) { _ ->
+                                        Row(modifier = Modifier
+                                            .padding(4.dp)
+                                            .background(MaterialTheme.colorScheme.primary)
+                                        ) {
+                                            LocationItem(
+                                                item = item,
+                                                modifier = Modifier.weight(1f),
+                                                decoration = LocationItemDecoration(
+                                                    index = index
+                                                ),
+                                                userLocation = location
+                                            )
+
+                                            IconButton(
+                                                modifier = Modifier
+                                                    .draggableHandle()
+                                                    .width(30.dp)
+                                                    .align(Alignment.CenterVertically),
+                                                onClick = {}
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Rounded.DragIndicator,
+                                                    contentDescription = "",
+                                                    tint = Color.White,
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -328,9 +391,7 @@ fun EditRouteScreenPreview() {
             routeObjectId = ObjectId(),
             navController = rememberNavController(),
             modifier = Modifier,
-            uiState = AddAndEditRouteUiState(
-                routeMembers = previewLocationListShort.toMutableList()
-            ),
+            uiState = AddAndEditRouteUiState(),
             editRoute = true,
             onClearErrorMessage = {},
             onResetDoneAction = {},

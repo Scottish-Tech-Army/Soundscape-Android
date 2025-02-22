@@ -251,4 +251,6 @@ dependencies {
 
     // Leak canary
     debugImplementation(libs.leakcanary.android)
+
+    implementation(libs.reorderable)
 }
