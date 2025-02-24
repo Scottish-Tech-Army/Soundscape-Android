@@ -6,15 +6,13 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
-import androidx.lifecycle.viewModelScope
 import com.google.android.gms.location.DeviceOrientation
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 import org.mongodb.kbson.ObjectId
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
@@ -44,6 +42,10 @@ class SoundscapeServiceConnection @Inject constructor() {
     }
     fun getCurrentRouteFlow(): StateFlow<RoutePlayerState>? {
         return soundscapeService?.routePlayer?.currentRouteFlow
+    }
+
+    fun getGridStateFlow(): StateFlow<GridState?>? {
+        return soundscapeService?.gridStateFlow
     }
 
     fun setStreetPreviewMode(on : Boolean, location: LngLatAlt? = null) {

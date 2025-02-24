@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteScreenVM
@@ -36,7 +37,6 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetai
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
-import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 class Navigator {
@@ -220,6 +220,12 @@ fun HomeScreen(
         composable(HomeRoutes.Sleep.route) {
             SleepScreen(
                 navController = navController,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
+        }
+        composable(HomeRoutes.PlacesNearby.route) {
+            PlacesNearbyScreenVM(
+                homeNavController = navController,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }

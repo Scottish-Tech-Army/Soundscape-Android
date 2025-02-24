@@ -69,15 +69,7 @@ fun HomeContent(
                 // Places Nearby
                 NavigationButton(
                     onClick = {
-                        // This isn't the final code, just an example of how the LocationDetails could work
-                        // The LocationDetails screen takes some JSON as an argument which tells the
-                        // screen which location to provide details of. The JSON is appended to the route.
-                        val ld =
-                            LocationDescription(
-                                name = "Barrowland Ballroom",
-                                location = LngLatAlt(-4.2366753, 55.8552688)
-                            )
-                        onNavigate(generateLocationDetailsRoute(ld))
+                        onNavigate(HomeRoutes.PlacesNearby.route)
                     },
                     text = stringResource(R.string.search_nearby_screen_title),
                     horizontalPadding = 8.dp

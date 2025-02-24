@@ -864,14 +864,20 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
 
         val id = ResourceMapper.getResourceId(osmClass)
         text = if (id == null) {
-            osmClass
+            osmClass.replace("_", " ")
         } else {
             localizedContext.getString(id)
         }
         generic = true
     }
+    val capitalizedText = text.replaceFirstChar {
+        if (it.isLowerCase())
+            it.titlecase(localizedContext.resources.configuration.getLocales().get(0))
+        else
+            it.toString()
+    }
 
-    return TextForFeature(text, generic)
+    return TextForFeature(capitalizedText, generic)
 }
 
 /**

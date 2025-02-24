@@ -28,6 +28,10 @@ sealed class HomeRoutes(
         route = "route_details_screen",
         title = "RouteDetailsScreen",
     )
+    data object PlacesNearby : HomeRoutes(
+        route = "places_nearby_screen",
+        title = "PlacesNearbyScreen",
+    )
     data object Help : HomeRoutes(
         route = "help_screen",
         title = "HelpScreen",
