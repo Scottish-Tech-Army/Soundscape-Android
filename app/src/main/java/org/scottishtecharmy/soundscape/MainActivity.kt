@@ -133,6 +133,15 @@ class MainActivity : AppCompatActivity() {
             installSplashScreen()
         }
 
+        // When opening a JSON file containing a route from Android File we can end up with two
+        // instances of the app running. This check ensures that we have only one instance.
+        if (!isTaskRoot) {
+            val newIntent = Intent(intent)
+            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(newIntent)
+            finish()
+        }
+
         if (isFirstLaunch) {
             // On the first launch, we want to take the user through the OnboardingActivity so
             // switch to it immediately.
