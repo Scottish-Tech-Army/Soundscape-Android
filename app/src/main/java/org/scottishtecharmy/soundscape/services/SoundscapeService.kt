@@ -38,6 +38,7 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
@@ -95,6 +96,10 @@ class SoundscapeService : MediaSessionService() {
     private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
     var streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
 
+    // Flow to return nearby places
+    private val _gridStateFlow = MutableStateFlow<GridState?>(null)
+    var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
+
     // Activity recognition
     private lateinit var activityTransition: ActivityTransition
 
@@ -144,6 +149,7 @@ class SoundscapeService : MediaSessionService() {
                 geoEngine.streetPreviewGo()
             )
         }
+        _gridStateFlow.value = geoEngine.gridState
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? =
