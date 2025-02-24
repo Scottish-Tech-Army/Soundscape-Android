@@ -227,6 +227,12 @@ class SoundscapeIntents
                                                     // This might be a saved route shared from iOS.
                                                     // We want to translate this into a RouteData
                                                     // format to write to our database.
+
+                                                    // Limit the size of routes to 1MB which would
+                                                    // be several thousand markers.
+                                                    if(input.available() > 1000000) {
+                                                        throw Exception("File too large")
+                                                    }
                                                     val json = inputStreamToJson(input) ?: throw Exception("Failed to parse JSON")
 
                                                     routeData = RouteData()
