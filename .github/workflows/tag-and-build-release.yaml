@@ -1,4 +1,4 @@
-name: Tag, build and upload release (not yet working)
+name: Tag and build release
 
 env:
   # The name of the main module repository
