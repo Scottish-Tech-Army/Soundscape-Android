@@ -52,12 +52,13 @@ import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
 import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 fun generateLocationDetailsRoute(locationDescription: LocationDescription): String {
     // Generate JSON for the LocationDescription and append it to the route
     val json = GsonBuilder().create().toJson(locationDescription)
-
-    return "${HomeRoutes.LocationDetails.route}/$json"
+    return "${HomeRoutes.LocationDetails.route}/${URLEncoder.encode(json, StandardCharsets.UTF_8.toString())}"
 }
 
 @Composable
