@@ -35,6 +35,9 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
+import java.net.URLDecoder
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 class Navigator {
     var destination = MutableStateFlow(HomeRoutes.Home.route)
@@ -122,7 +125,8 @@ fun HomeScreen(
 
             // Parse the LocationDescription out of the json provided by the caller
             val gson = GsonBuilder().create()
-            val json = navBackStackEntry.arguments?.getString("json")
+            val urlEncodedJson = navBackStackEntry.arguments?.getString("json")
+            val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
             val locationDescription = gson.fromJson(json, LocationDescription::class.java)
 
             LocationDetailsScreen(
@@ -173,7 +177,8 @@ fun HomeScreen(
             when(command) {
                 "import" -> {
                     try {
-                        routeData = parseSimpleRouteData(data)
+                        val json = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())
+                        routeData = parseSimpleRouteData(json)
                     } catch(e: Exception) {
                         Log.e("RouteDetailsScreen", "Error parsing route data: $e")
                     }

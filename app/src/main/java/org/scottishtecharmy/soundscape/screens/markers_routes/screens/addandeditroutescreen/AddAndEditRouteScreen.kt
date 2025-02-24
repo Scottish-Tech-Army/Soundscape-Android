@@ -57,6 +57,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomT
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 private data class SimpleMarkerData(
     var addressName: String = "",
@@ -84,7 +86,8 @@ fun generateRouteDetailsRoute(routeData: RouteData): String {
     }
 
     val json = GsonBuilder().create().toJson(simpleRouteData)
-    return "${HomeRoutes.AddAndEditRoute.route}?command=import&data=$json"
+    val urlEncodedJson = URLEncoder.encode(json, StandardCharsets.UTF_8.toString())
+    return "${HomeRoutes.AddAndEditRoute.route}?command=import&data=$urlEncodedJson"
 }
 
 fun parseSimpleRouteData(jsonData: String): RouteData {
