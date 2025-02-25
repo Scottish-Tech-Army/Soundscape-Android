@@ -130,7 +130,7 @@ fun MapContainerLibre(
 
         val symbolOptions = remember(userLocation, userSymbolRotation) {
             SymbolOptions()
-                .withLatLng(userLocation?.toLatLng())
+                .withLatLng(userLocation?.toLatLng() ?: LatLng())
                 .withIconImage(USER_POSITION_MARKER_NAME)
                 .withIconAnchor("center")
                 .withIconRotate(userSymbolRotation)
