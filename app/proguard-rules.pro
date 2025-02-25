@@ -21,3 +21,7 @@
 
 # Preserve protobuf generated classes (for MVT vector_tiles)
 -keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
+
+# Fix SimpleRouteData GSON generation and parsing
+-keep class org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.*  { *; }
+-keep class com.google.gson.internal.LinkedTreeMap  { *; }
