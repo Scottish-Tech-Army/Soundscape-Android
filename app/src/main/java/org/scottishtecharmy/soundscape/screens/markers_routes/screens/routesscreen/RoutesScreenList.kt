@@ -37,7 +37,7 @@ fun RouteList(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.primary)
-                        .padding(16.dp)
+                        .padding(8.dp)
                         .clickable {
                             navController.navigate("${HomeRoutes.RouteDetails.route}/${route.objectId.toHexString()}")
                         },

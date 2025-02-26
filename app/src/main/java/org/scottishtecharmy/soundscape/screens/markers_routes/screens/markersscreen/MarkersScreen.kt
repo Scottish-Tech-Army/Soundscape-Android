@@ -33,7 +33,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
@@ -66,9 +66,7 @@ fun MarkersScreen(
 ) {
     Column(
         modifier =
-            Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
+            Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         val context = LocalContext.current
@@ -155,7 +153,8 @@ fun MarkersScreen(
                         MarkersList(
                             uiState = uiState,
                             navController = homeNavController,
-                            userLocation = userLocation
+                            userLocation = userLocation,
+                            modifier = Modifier.weight(1f)
                         )
                     }
                 }
@@ -172,14 +171,7 @@ fun MarkersScreenPopulatedPreview() {
             homeNavController = rememberNavController(),
             uiState =
                 MarkersUiState(
-                    markers =
-                        listOf(
-                            LocationDescription(
-                                "Waypoint 1",
-                                location = LngLatAlt(),
-                                "Street Blabla, Blabla City",
-                            ),
-                        ),
+                    markers = previewLocationList
                 ),
             clearErrorMessage = {},
             onToggleSortOrder = {},
