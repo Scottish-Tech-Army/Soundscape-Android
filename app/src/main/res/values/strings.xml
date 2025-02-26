@@ -1512,13 +1512,13 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="search_view_markers">"Markers &amp; Routes"</string>
 
 <!-- Accessibility hint when the user selects the markers button on the home screen -->
-  <string name="search_button_markers_accessibility_hint">"Double tap to select or edit markers you have saved"</string>
+  <string name="search_button_markers_accessibility_hint">"select or edit markers you have saved"</string>
 
 <!-- Accessibility hint when the user selects the nearby places button on the home screen -->
-  <string name="search_button_nearby_accessibility_hint">"Double tap to explore nearby restaurants, transit stops and more"</string>
+  <string name="search_button_nearby_accessibility_hint">"explore nearby restaurants, transit stops and more"</string>
 
 <!-- Accessibility hint when the user selects the current location button on the home screen -->
-  <string name="search_button_current_location_accessibility_hint">"Double tap to preview, mark, or share your current location with a friend"</string>
+  <string name="search_button_current_location_accessibility_hint">"preview, mark, or share your current location with a friend"</string>
 
 <!-- Search filter alert title -->
   <string name="filter_alert_title">"Filter places by category"</string>
@@ -1647,7 +1647,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="sleep_sleeping_message">"Soundscape is currently sleeping. This prevents Soundscape from using Location Services or downloading data. This conserves battery when you are not using Soundscape. Tap the button below to wake up Soundscape."</string>
 
 <!-- Sleep Notification, Double tap to put Soundscape to sleep. Putting the app in an idle state for a period of time. {NumberedPlaceholder="Soundscape"} -->
-  <string name="sleep_sleep_acc_hint">"Double tap to put Soundscape to sleep"</string>
+  <string name="sleep_sleep_acc_hint">"put Soundscape to sleep"</string>
 
 <!-- Sleep Button, restore the app from a sleep (idle) state when a user leaves his location. -->
   <string name="sleep_wake_up_when_i_leave">"Wake Up When I Leave"</string>
@@ -2098,31 +2098,31 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="ui_action_button_my_location">"My\nLocation"</string>
 
 <!-- Accessibility Notification, Double tap to hear about your current location. -->
-  <string name="ui_action_button_my_location_acc_hint">"Double tap to hear about your current location"</string>
+  <string name="ui_action_button_my_location_acc_hint">"hear about your current location"</string>
 
 <!-- Similar to `callouts.nearby_markers`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_nearby_markers">"Nearby\nMarkers"</string>
 
 <!-- Accessibility Notification, Double tap to hear about nearby places that you have marked -->
-  <string name="ui_action_button_nearby_markers_acc_hint">"Double tap to hear about nearby places that you have marked"</string>
+  <string name="ui_action_button_nearby_markers_acc_hint">"about nearby places that you have marked"</string>
 
 <!-- Similar to `help.orient.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_around_me">"Around\nMe"</string>
 
 <!-- Accessibility Notification, Double tap to hear about places in the four quadrants around you -->
-  <string name="ui_action_button_around_me_acc_hint">"Double tap to hear about places in the four quadrants around you"</string>
+  <string name="ui_action_button_around_me_acc_hint">"hear about places in the four quadrants around you"</string>
 
 <!-- Similar to `help.explore.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_ahead_of_me">"Ahead\nof Me"</string>
 
 <!-- Accessibility Notification, Double tap to hear about places in front of you -->
-  <string name="ui_action_button_ahead_of_me_acc_hint">"Double tap to hear about places in front of you"</string>
+  <string name="ui_action_button_ahead_of_me_acc_hint">"hear about places in front of you"</string>
 
 <!-- Title, Menu -->
   <string name="ui_menu">"Menu"</string>
 
 <!-- VoiceOver hint for the menu button -->
-  <string name="ui_menu_hint">"Double tap to open the menu"</string>
+  <string name="ui_menu_hint">"open the menu"</string>
 
 <!-- Button title, Close Menu -->
   <string name="ui_menu_close">"Close Menu"</string>
