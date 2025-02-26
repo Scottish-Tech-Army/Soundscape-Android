@@ -40,8 +40,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 35
-        versionCode = 54
-        versionName = "0.0.53"
+        versionCode = 55
+        versionName = "0.0.54"
 
 //  We don't currently require a Tile provider API key
 //
