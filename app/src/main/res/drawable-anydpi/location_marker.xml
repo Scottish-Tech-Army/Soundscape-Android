@@ -2,11 +2,12 @@
     android:width="24dp"
     android:height="24dp"
     android:viewportWidth="245.21"
-    android:viewportHeight="245.3"
+    android:viewportHeight="280.3"
     android:tint="#EF0000"
     android:alpha="0.8">
   <group android:scaleX="0.9996331"
-      android:translateX="0.04498349">
+      android:translateX="0.04498349"
+      android:translateY="35">
     <path
         android:pathData="M0,94.76a122.6,94.76 0,1 0,245.21 0a122.6,94.76 0,1 0,-245.21 0z"
         android:strokeWidth="2.82405"
