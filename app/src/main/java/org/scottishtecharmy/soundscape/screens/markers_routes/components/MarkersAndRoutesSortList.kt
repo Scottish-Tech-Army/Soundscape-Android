@@ -19,6 +19,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
@@ -31,10 +34,19 @@ fun MarkersAndRoutesListSort(
     onToggleSortOrder: () -> Unit,
     onToggleSortByName: () -> Unit
 ) {
+    val sortOrderState =
+        if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name_voiceover)
+        else stringResource(R.string.markers_sort_button_sort_by_distance_voiceover)
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp)
+            .clearAndSetSemantics {
+                //contentDescription = ""
+                stateDescription = sortOrderState
+                role = Role.Button
+            },
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {

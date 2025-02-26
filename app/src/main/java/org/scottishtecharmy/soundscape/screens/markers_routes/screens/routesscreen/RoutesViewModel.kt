@@ -35,32 +35,52 @@ class RoutesViewModel @Inject constructor(
         // and deleted
         viewModelScope.launch {
             routesRepository.getRouteFlow().collect { routes ->
-                _uiState.value =  uiState.value.copy(routes = sortRoutes(routes))
+                _uiState.value =  uiState.value.copy(
+                    routes = sortRoutes(
+                        routes,
+                        _uiState.value.isSortByName,
+                        _uiState.value.isSortAscending))
             }
         }
     }
 
     fun toggleSortOrder() {
         val sortByAscending = !_uiState.value.isSortAscending
-        _uiState.value =  uiState.value.copy(isSortAscending = sortByAscending, routes = sortRoutes(uiState.value.routes))
+        _uiState.value =  uiState.value.copy(
+            isSortAscending = sortByAscending,
+            routes = sortRoutes(
+                uiState.value.routes,
+                _uiState.value.isSortByName,
+                sortByAscending
+            )
+        )
         saveSortOrderPreference(context, sortByAscending)
     }
 
     fun toggleSortByName() {
         val sortByName = !_uiState.value.isSortByName
-        _uiState.value =  uiState.value.copy(isSortByName = sortByName, routes = sortRoutes(uiState.value.routes))
+        _uiState.value =  uiState.value.copy(
+            isSortByName = sortByName,
+            routes = sortRoutes(
+                uiState.value.routes,
+                sortByName,
+                _uiState.value.isSortAscending
+            )
+        )
         saveSortFieldPreference(context, sortByName)
     }
 
-    private fun sortRoutes(routes: List<RouteData>) : List<RouteData> {
-        return if(_uiState.value.isSortByName) {
-            if(_uiState.value.isSortAscending)
+    private fun sortRoutes(routes: List<RouteData>,
+                           sortByName: Boolean,
+                           sortAscending: Boolean) : List<RouteData> {
+        return if(sortByName) {
+            if(sortAscending)
                 routes.sortedBy { it.name }
             else
                 routes.sortedByDescending { it.name }
 
         } else {
-            if(_uiState.value.isSortAscending)
+            if(sortAscending)
                 routes.sortedBy { it.objectId }
             else
                 routes.sortedByDescending { it.objectId }

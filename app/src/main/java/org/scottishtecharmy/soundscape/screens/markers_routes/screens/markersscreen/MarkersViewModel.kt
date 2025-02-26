@@ -48,31 +48,39 @@ class MarkersViewModel
                             markerObjectId = it.objectId
                         )
                     }
-                    _uiState.value =  uiState.value.copy(markers = sortMarkers(locations))
+                    _uiState.value =  uiState.value.copy(
+                        markers = sortMarkers(locations, _uiState.value.isSortByName, _uiState.value.isSortAscending))
                 }
             }
         }
 
         fun toggleSortByName() {
             val sortByName = !_uiState.value.isSortByName
-            _uiState.value =  uiState.value.copy(isSortByName = sortByName, markers = sortMarkers(uiState.value.markers))
             saveSortFieldPreference(context, sortByName)
+            _uiState.value =  uiState.value.copy(
+                isSortByName = sortByName,
+                markers = sortMarkers(uiState.value.markers,sortByName, _uiState.value.isSortAscending))
         }
 
         fun toggleSortOrder() {
             val sortAscending = !_uiState.value.isSortAscending
-            _uiState.value =  uiState.value.copy(isSortAscending = sortAscending, markers = sortMarkers(uiState.value.markers))
             saveSortOrderPreference(context, sortAscending)
+            _uiState.value =  uiState.value.copy(
+                isSortAscending = sortAscending,
+                markers = sortMarkers(uiState.value.markers, _uiState.value.isSortByName, sortAscending))
         }
 
-        private fun sortMarkers(markers: List<LocationDescription>) : List<LocationDescription> {
-            return if(_uiState.value.isSortByName) {
-                if(_uiState.value.isSortAscending)
+        private fun sortMarkers(
+            markers: List<LocationDescription>,
+            sortByName: Boolean,
+            sortAscending: Boolean) : List<LocationDescription> {
+            return if(sortByName) {
+                if(sortAscending)
                     markers.sortedBy { it.name }
                 else
                     markers.sortedByDescending { it.name }
             } else {
-                if(_uiState.value.isSortAscending)
+                if(sortAscending)
                     markers.sortedBy { _uiState.value.userLocation?.distance(it.location) }
                 else
                     markers.sortedByDescending { _uiState.value.userLocation?.distance(it.location) }
