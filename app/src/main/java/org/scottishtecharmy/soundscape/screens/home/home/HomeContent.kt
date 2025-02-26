@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -56,6 +57,10 @@ fun HomeContent(
     routeSkipNext: () -> Unit,
     routeMute: () -> Unit,
 ) {
+    val markersHint = stringResource(R.string.search_button_markers_accessibility_hint)
+    val placesNearbyHint = stringResource(R.string.search_button_nearby_accessibility_hint)
+    val currentLocationHint = stringResource(R.string.search_button_current_location_accessibility_hint)
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -75,7 +80,10 @@ fun HomeContent(
                     },
                     text = stringResource(R.string.search_nearby_screen_title),
                     horizontalPadding = 8.dp,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier.semantics {
+                        heading()
+                        onClick(label = placesNearbyHint, action = { false })
+                    },
                 )
                 // Markers and routes
                 NavigationButton(
@@ -83,7 +91,9 @@ fun HomeContent(
                         onNavigate(HomeRoutes.MarkersAndRoutes.route)
                     },
                     text = stringResource(R.string.search_view_markers),
-                    horizontalPadding = 8.dp
+                    horizontalPadding = 8.dp,
+                    modifier = Modifier
+                        .semantics { onClick(label = markersHint, action = { false }) }
                 )
                 // Current location
                 NavigationButton(
@@ -94,7 +104,9 @@ fun HomeContent(
                         }
                     },
                     text = stringResource(R.string.search_use_current_location),
-                    horizontalPadding = 8.dp
+                    horizontalPadding = 8.dp,
+                    modifier = Modifier
+                        .semantics { onClick(label = currentLocationHint, action = { false }) }
                 )
             }
         }

@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,6 +44,11 @@ fun HomeBottomAppBar(
     getNearbyMarkers: () -> Unit,
     modifier : Modifier = Modifier
 ) {
+    val myLocationHint = stringResource(R.string.ui_action_button_my_location_acc_hint)
+    val nearbyMarkersHint = stringResource(R.string.ui_action_button_nearby_markers_acc_hint)
+    val aroundMeHint = stringResource(R.string.ui_action_button_around_me_acc_hint)
+    val aheadOfMeHint = stringResource(R.string.ui_action_button_ahead_of_me_acc_hint)
+
     Surface(
         modifier = modifier
             .clip(RoundedCornerShape(4.dp, 4.dp, 0.dp, 0.dp)),
@@ -76,6 +82,7 @@ fun HomeBottomAppBar(
                     text = stringResource(R.string.ui_action_button_my_location),
                     onClick = getMyLocation,
                     modifier = Modifier.weight(1f).fillMaxHeight()
+                        .semantics { onClick(label = myLocationHint, action = { false }) }
                 )
 
                 HomeBottomAppBarButton(
@@ -83,6 +90,7 @@ fun HomeBottomAppBar(
                     text = stringResource(R.string.ui_action_button_around_me),
                     onClick = getWhatsAroundMe,
                     modifier = Modifier.weight(1f).fillMaxHeight()
+                        .semantics { onClick(label = aroundMeHint, action = { false }) }
                 )
 
                 HomeBottomAppBarButton(
@@ -90,6 +98,7 @@ fun HomeBottomAppBar(
                     text = stringResource(R.string.ui_action_button_ahead_of_me),
                     onClick = getWhatsAheadOfMe,
                     modifier = Modifier.weight(1f).fillMaxHeight()
+                        .semantics { onClick(label = aheadOfMeHint, action = { false }) }
                 )
 
                 HomeBottomAppBarButton(
@@ -97,6 +106,7 @@ fun HomeBottomAppBar(
                     text = stringResource(R.string.ui_action_button_nearby_markers),
                     onClick = getNearbyMarkers,
                     modifier = Modifier.weight(1f).fillMaxHeight()
+                        .semantics { onClick(label = nearbyMarkersHint, action = { false }) }
                 )
             }
         }

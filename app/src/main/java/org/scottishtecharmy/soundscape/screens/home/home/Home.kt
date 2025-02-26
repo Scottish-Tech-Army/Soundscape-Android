@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
@@ -150,6 +151,9 @@ fun HomeTopAppBar(
     onNavigate: (String) -> Unit
 ) {
     val context = LocalContext.current
+    val sleepHint = stringResource(R.string.sleep_sleep_acc_hint)
+    val menuHint = stringResource(R.string.ui_menu_hint)
+
     TopAppBar(
         colors =
             TopAppBarDefaults.topAppBarColors(
@@ -167,6 +171,8 @@ fun HomeTopAppBar(
                 onClick = {
                     coroutineScope.launch { drawerState.open() }
                 },
+                modifier = Modifier
+                    .semantics { onClick(label = menuHint, action = { false }) }
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Menu,
@@ -183,6 +189,8 @@ fun HomeTopAppBar(
                     (context as MainActivity).setServiceState(false)
                     onNavigate(HomeRoutes.Sleep.route)
                 },
+                modifier = Modifier
+                    .semantics { onClick(label = sleepHint, action = { false }) }
             ) {
                 Icon(Icons.Rounded.Snooze,
                     tint = OnPrimary,
