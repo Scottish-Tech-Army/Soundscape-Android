@@ -11,13 +11,13 @@ import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 
 @Composable
 fun StreetPreview(
     state: StreetPreviewState,
     heading: Float,
-    go: () -> Unit,
-    exit: () -> Unit
+    streetPreviewFunctions: StreetPreviewFunctions
 ) {
     if(state.enabled == StreetPreviewEnabled.INITIALIZING) {
         Text(text = stringResource(R.string.general_loading_start),
@@ -65,13 +65,13 @@ fun StreetPreview(
         }
         NavigationButton(
             onClick = {
-                go()
+                streetPreviewFunctions.go()
             },
             text = text
         )
         NavigationButton(
             onClick = {
-                exit()
+                streetPreviewFunctions.exit()
             },
             // TODO: Internationalization
             text = stringResource(R.string.street_preview_exit)

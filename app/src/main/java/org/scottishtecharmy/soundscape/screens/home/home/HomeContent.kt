@@ -35,6 +35,8 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
+import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
@@ -51,11 +53,8 @@ fun HomeContent(
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     streetPreviewState: StreetPreviewState,
-    streetPreviewGo: () -> Unit,
-    streetPreviewExit: () -> Unit,
-    routeSkipPrevious: () -> Unit,
-    routeSkipNext: () -> Unit,
-    routeMute: () -> Unit,
+    streetPreviewFunctions: StreetPreviewFunctions,
+    routeFunctions: RouteFunctions
 ) {
     val markersHint = stringResource(R.string.search_button_markers_accessibility_hint)
     val placesNearbyHint = stringResource(R.string.search_button_nearby_accessibility_hint)
@@ -66,7 +65,7 @@ fun HomeContent(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         if(streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
-            StreetPreview(streetPreviewState, heading, streetPreviewGo, streetPreviewExit)
+            StreetPreview(streetPreviewState, heading, streetPreviewFunctions)
         } else {
             searchBar()
 
@@ -137,7 +136,7 @@ fun HomeContent(
                         Row(modifier = Modifier.fillMaxWidth().height(40.dp),
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = androidx.compose.ui.Alignment.Bottom) {
-                            Button(onClick = routeSkipPrevious)
+                            Button(onClick = { routeFunctions.skipPrevious() })
                             {
                                 Icon(
                                     modifier = Modifier,
@@ -146,7 +145,7 @@ fun HomeContent(
                                     contentDescription = "",
                                 )
                             }
-                            Button(onClick = routeSkipNext)
+                            Button(onClick = { routeFunctions.skipNext() })
                             {
                                 Icon(
                                     modifier = Modifier,
@@ -166,7 +165,7 @@ fun HomeContent(
                                     contentDescription = "",
                                 )
                             }
-                            Button(onClick = routeMute)
+                            Button(onClick = { routeFunctions.mute() })
                             {
                                 Icon(
                                     modifier = Modifier,
@@ -205,11 +204,8 @@ fun StreetPreviewHomeContent() {
         onMapLongClick = { false },
         searchBar = {},
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
-        streetPreviewGo = {},
-        streetPreviewExit = {},
-        routeSkipPrevious = {},
-        routeSkipNext = {},
-        routeMute = {},
+        streetPreviewFunctions = StreetPreviewFunctions(null),
+        routeFunctions = RouteFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
     )
 }
@@ -237,11 +233,8 @@ fun PreviewHomeContent() {
         onMapLongClick = { false },
         searchBar = {},
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-        streetPreviewGo = {},
-        streetPreviewExit = {},
-        routeSkipPrevious = {},
-        routeSkipNext = {},
-        routeMute = {},
+        streetPreviewFunctions = StreetPreviewFunctions(null),
+        routeFunctions = RouteFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
     )
 }

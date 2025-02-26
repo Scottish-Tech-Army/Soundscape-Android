@@ -34,44 +34,33 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
-import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
-import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
+import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
+import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
-import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 
 @Composable
 fun Home(
-    location: LngLatAlt?,
-    beaconLocation: LngLatAlt?,
-    heading: Float,
+    state: HomeState,
     onNavigate: (String) -> Unit,
     onMapLongClick: (LatLng) -> Boolean,
-    getMyLocation: () -> Unit,
-    getWhatsAroundMe: () -> Unit,
-    getWhatsAheadOfMe: () -> Unit,
-    getNearbyMarkers: () -> Unit,
+    bottomButtonFunctions: BottomButtonFunctions,
     getCurrentLocationDescription: () -> LocationDescription,
     shareLocation: () -> Unit,
     rateSoundscape: () -> Unit,
-    streetPreviewState: StreetPreviewState,
-    streetPreviewGo: () -> Unit,
-    streetPreviewExit: () -> Unit,
-    routeSkipPrevious:  () -> Unit,
-    routeSkipNext:  () -> Unit,
-    routeMute:  () -> Unit,
+    routeFunctions: RouteFunctions,
+    streetPreviewFunctions : StreetPreviewFunctions,
     modifier: Modifier = Modifier,
     searchText: String,
-    isSearching: Boolean,
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
-    searchItems: List<LocationDescription>,
-    routePlayerState: RoutePlayerState,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -98,29 +87,24 @@ fun Home(
                 )
             },
             bottomBar = {
-                HomeBottomAppBar(
-                    getMyLocation = getMyLocation,
-                    getWhatsAroundMe = getWhatsAroundMe,
-                    getWhatsAheadOfMe = getWhatsAheadOfMe,
-                    getNearbyMarkers = getNearbyMarkers
-                )
+                HomeBottomAppBar(bottomButtonFunctions)
             },
             floatingActionButton = {},
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
             HomeContent(
-                location = location,
-                beaconLocation = beaconLocation,
-                routePlayerState = routePlayerState,
-                heading = heading,
+                location = state.location,
+                beaconLocation = state.beaconLocation,
+                routePlayerState = state.currentRouteData,
+                heading = state.heading,
                 modifier = modifier.padding(innerPadding),
                 onNavigate = onNavigate,
                 getCurrentLocationDescription = getCurrentLocationDescription,
                 searchBar = {
                     MainSearchBar(
                         searchText = searchText,
-                        isSearching = isSearching,
-                        itemList = searchItems,
+                        isSearching = state.isSearching,
+                        itemList = state.searchItems.orEmpty(),
                         onSearchTextChange = onSearchTextChange,
                         onToggleSearch = onToggleSearch,
                         onItemClick = { item ->
@@ -128,16 +112,13 @@ fun Home(
                                 generateLocationDetailsRoute(item),
                             )
                         },
-                        userLocation = location
+                        userLocation = state.location
                     )
                 },
                 onMapLongClick = onMapLongClick,
-                streetPreviewState = streetPreviewState,
-                streetPreviewGo = streetPreviewGo,
-                streetPreviewExit = streetPreviewExit,
-                routeSkipPrevious  = routeSkipPrevious,
-                routeSkipNext = routeSkipNext,
-                routeMute = routeMute,
+                streetPreviewState = state.streetPreviewState,
+                routeFunctions = routeFunctions,
+                streetPreviewFunctions = streetPreviewFunctions
             )
         }
     }
@@ -207,30 +188,18 @@ fun HomeTopAppBar(
 fun HomePreview() {
     SoundscapeTheme {
         Home(
-            location = null,
-            beaconLocation = null,
-            heading = 0.0f,
+            state = HomeState(),
             onNavigate = {},
             onMapLongClick = { false },
-            getMyLocation = {},
-            getWhatsAroundMe = {},
-            getWhatsAheadOfMe = {},
-            getNearbyMarkers = {},
+            bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
             shareLocation = {},
             rateSoundscape = {},
-            streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-            streetPreviewGo = {},
-            streetPreviewExit = {},
             searchText = "Lille",
-            isSearching = false,
             onSearchTextChange = {},
             onToggleSearch = {},
-            searchItems = emptyList(),
-            routePlayerState = RoutePlayerState(),
-            routeSkipPrevious = {},
-            routeSkipNext = {},
-            routeMute = {}
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
         )
     }
 }
@@ -241,30 +210,18 @@ fun HomePreview() {
 fun HomeSearchPreview() {
     SoundscapeTheme {
         Home(
-            location = null,
-            beaconLocation = null,
-            heading = 0.0f,
+            state = HomeState(),
             onNavigate = {},
             onMapLongClick = { false },
-            getMyLocation = {},
-            getWhatsAroundMe = {},
-            getWhatsAheadOfMe = {},
-            getNearbyMarkers = {},
+            bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
             shareLocation = {},
             rateSoundscape = {},
-            streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-            streetPreviewGo = {},
-            streetPreviewExit = {},
             searchText = "Lille",
-            isSearching = true,
             onSearchTextChange = {},
             onToggleSearch = {},
-            searchItems = previewLocationList,
-            routePlayerState = RoutePlayerState(),
-            routeSkipPrevious = {},
-            routeSkipNext = {},
-            routeMute = {}
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
         )
     }
 }

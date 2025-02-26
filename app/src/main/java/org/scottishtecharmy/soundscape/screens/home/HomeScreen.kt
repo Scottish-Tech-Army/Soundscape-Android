@@ -48,6 +48,26 @@ class Navigator {
     }
 }
 
+// To reduce the number of viewmodel functions passed around, use these data classes instead. They
+// still provide insulation from the viewmodel so that they can be used in Preview.
+data class BottomButtonFunctions(val viewModel: HomeViewModel? = null) {
+    val myLocation = { viewModel?.myLocation() }
+    val aheadOfMe = { viewModel?.aheadOfMe() }
+    val aroundMe = { viewModel?.whatsAroundMe() }
+    val nearbyMarkers = { viewModel?.nearbyMarkers() }
+}
+
+data class RouteFunctions(val viewModel: HomeViewModel? = null) {
+    val skipPrevious = { viewModel?.routeSkipPrevious() }
+    val skipNext = { viewModel?.routeSkipNext() }
+    val mute = { viewModel?.routeMute() }
+}
+
+data class StreetPreviewFunctions(val viewModel: HomeViewModel? = null) {
+    val go = { viewModel?.streetPreviewGo() }
+    val exit = { viewModel?.streetPreviewExit() }
+}
+
 @Composable
 fun HomeScreen(
     navController: NavHostController,
@@ -65,10 +85,7 @@ fun HomeScreen(
         composable(HomeRoutes.Home.route) {
             val context = LocalContext.current
             Home(
-                location = state.value.location,
-                beaconLocation = state.value.beaconLocation,
-                routePlayerState = state.value.currentRouteData,
-                heading = state.value.heading,
+                state = state.value,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onMapLongClick = { latLong ->
                     val location = LngLatAlt(latLong.longitude, latLong.latitude)
@@ -76,10 +93,7 @@ fun HomeScreen(
                     navController.navigate(generateLocationDetailsRoute(ld))
                     true
                 },
-                getMyLocation = { viewModel.myLocation() },
-                getWhatsAheadOfMe = { viewModel.aheadOfMe() },
-                getWhatsAroundMe = { viewModel.whatsAroundMe() },
-                getNearbyMarkers = { viewModel.nearbyMarkers() },
+                bottomButtonFunctions = BottomButtonFunctions(viewModel),
                 getCurrentLocationDescription = {
                     if(state.value.location != null) {
                         val location = LngLatAlt(
@@ -92,18 +106,12 @@ fun HomeScreen(
                     }
                 },
                 searchText = searchText.value,
-                isSearching = state.value.isSearching,
                 onToggleSearch = viewModel::onToggleSearch,
                 onSearchTextChange = viewModel::onSearchTextChange,
-                searchItems = state.value.searchItems.orEmpty(),
-                shareLocation = { viewModel.shareLocation(context) },
                 rateSoundscape = rateSoundscape,
-                streetPreviewState = state.value.streetPreviewState,
-                streetPreviewGo = { viewModel.streetPreviewGo() },
-                streetPreviewExit = { viewModel.streetPreviewExit() },
-                routeSkipPrevious = { viewModel.routeSkipPrevious() },
-                routeSkipNext = { viewModel.routeSkipNext() },
-                routeMute = { viewModel.routeMute() },
+                shareLocation = { viewModel.shareLocation(context) },
+                routeFunctions = RouteFunctions(),
+                streetPreviewFunctions = StreetPreviewFunctions(viewModel),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
