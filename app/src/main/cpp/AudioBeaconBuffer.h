@@ -75,7 +75,7 @@ namespace soundscape {
             PLAYING_OUTRO,
             PLAYING_COMPLETE
         };
-        PlayState m_PlayState = PLAYING_INTRO;
+        PlayState m_PlayState = PLAYING_BEACON;     // TODO: Switch to allow playing Intro
 
         const BeaconDescriptor *m_pDescription;
         std::unique_ptr<BeaconBuffer> m_pIntro;
