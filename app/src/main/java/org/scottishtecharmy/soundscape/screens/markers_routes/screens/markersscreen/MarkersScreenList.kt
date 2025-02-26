@@ -24,9 +24,10 @@ fun MarkersList(
     uiState: MarkersUiState,
     userLocation: LngLatAlt?,
     navController: NavController,
+    modifier: Modifier = Modifier
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxWidth().heightIn(max = 470.dp),
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         items(uiState.markers) { locationDescription ->
