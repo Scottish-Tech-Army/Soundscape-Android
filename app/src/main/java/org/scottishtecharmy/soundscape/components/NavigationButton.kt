@@ -29,11 +29,12 @@ fun NavigationButton(
     onClick: () -> Unit = {},
     text: String,
     icon: ImageVector? = null,
-    horizontalPadding: Dp = 16.dp
+    horizontalPadding: Dp = 16.dp,
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = { onClick() },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = horizontalPadding),
         shape = RoundedCornerShape(0.dp),
