@@ -39,6 +39,8 @@ import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.OnSurface
 import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import kotlin.text.split
+import kotlin.text.startsWith
 
 private enum class SectionType{
     Title,          // A non-clickable title of a group of other text
@@ -350,9 +352,15 @@ fun HelpScreen(
             }
         }
     } else if(topic.startsWith("faq")) {
-        // Parse faq answer id from route
-        val id = topic.substring(3).toInt()
-        sections = Sections(R.string.faq_title_abbreviated, listOf(Section(id, SectionType.Paragraph)))
+        // Parse faq ids from route
+        val ids = topic.substring(3).split(".")
+        // We want to display the question and answer
+        sections = Sections(R.string.faq_title_abbreviated,
+            listOf(
+                Section(ids[0].toInt(), SectionType.Title),
+                Section(ids[1].toInt(), SectionType.Paragraph)
+            )
+        )
     } else {
         // Default to home
         for (page in helpPages) {
@@ -413,7 +421,7 @@ fun HelpScreen(
                                 Button(
                                     onClick = {
                                         if (section.type == SectionType.Faq) {
-                                            navController.navigate("${HomeRoutes.Help.route}/faq${section.faqAnswer}")
+                                            navController.navigate("${HomeRoutes.Help.route}/faq${section.textId}.${section.faqAnswer}")
                                         } else {
                                             navController.navigate("${HomeRoutes.Help.route}/page${section.textId}")
                                         }
