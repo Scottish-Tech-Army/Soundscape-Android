@@ -73,7 +73,7 @@ fun TermsScreen(
                 modifier = Modifier
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.onBackground)
                     .verticalScroll(rememberScrollState())
             ) {
                 TermsItem(stringResource(R.string.terms_of_use_message))

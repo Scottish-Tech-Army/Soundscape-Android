@@ -72,14 +72,14 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.LocationOn,
                 contentDescription = null,
-                tint = Color.White,
+                tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.width(spacing.icon)
             )
         } else if (decoration.index != -1) {
             Text(
                 text = (decoration.index + 1).toString(),
                 style = MaterialTheme.typography.titleLarge,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.width(spacing.targetSize).align(Alignment.CenterVertically)
             )
         }
@@ -90,7 +90,7 @@ fun LocationItem(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.titleLarge,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
             if(distanceString.isNotEmpty()) {
@@ -122,7 +122,7 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
-                tint = Color.White,
+                tint = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.width(spacing.icon)
             )
         }

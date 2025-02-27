@@ -21,7 +21,6 @@ import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CollectionInfo
 import androidx.compose.ui.semantics.CollectionItemInfo
@@ -56,7 +55,7 @@ fun MainSearchBar(
                     },
                 ),
         shape = RoundedCornerShape(spacing.small),
-        colors = SearchBarDefaults.colors(containerColor = Color.White),
+        colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.surface),
         inputField = {
             SearchBarDefaults.InputField(
                 query = searchText,
@@ -71,7 +70,7 @@ fun MainSearchBar(
                             Icon(
                                 imageVector = Icons.Rounded.Search,
                                 contentDescription = null,
-                                tint = Color.Gray,
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
 
@@ -83,13 +82,13 @@ fun MainSearchBar(
                                     Icons.AutoMirrored.Rounded.ArrowBack,
                                     contentDescription =
                                         stringResource(R.string.cancel_search_contentDescription),
-                                    tint = Color.Gray,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
                             }
                         }
                     }
                 },
-                colors = SearchBarDefaults.inputFieldColors(focusedTextColor = Color.Black),
+                colors = SearchBarDefaults.inputFieldColors(focusedTextColor = MaterialTheme.colorScheme.onSurface),
             )
         },
         expanded = isSearching,
@@ -134,7 +133,7 @@ fun MainSearchBar(
                                 },
                             userLocation = userLocation
                         )
-                        HorizontalDivider(color = Color.White)
+                        HorizontalDivider(color = MaterialTheme.colorScheme.onPrimary)
                     }
                 }
             }

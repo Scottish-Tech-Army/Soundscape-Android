@@ -133,7 +133,7 @@ fun Navigating(
                     Icon(
                         Icons.Rounded.LocationOn,
                         contentDescription = null,
-                        tint = Color.White
+                        tint = MaterialTheme.colorScheme.onBackground
                     )
                     Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
@@ -162,7 +162,7 @@ fun Navigating(
                         Icon(
                             Icons.Rounded.Notifications,
                             contentDescription = null,
-                            tint = Color.White
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                         Spacer(modifier = Modifier.width(spacing.extraSmall))
                         Column(
@@ -195,7 +195,7 @@ fun Navigating(
                         Icons.AutoMirrored.Rounded.DirectionsRun,
                         //Icons.Rounded.FitnessCenter,
                         contentDescription = null,
-                        tint = Color.White
+                        tint = MaterialTheme.colorScheme.onBackground
                     )
                     Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
