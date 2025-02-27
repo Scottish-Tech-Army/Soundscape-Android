@@ -34,6 +34,7 @@ import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
+import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
@@ -42,6 +43,7 @@ import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
@@ -211,6 +213,39 @@ fun HomeSearchPreview() {
     SoundscapeTheme {
         Home(
             state = HomeState(),
+            onNavigate = {},
+            onMapLongClick = { false },
+            bottomButtonFunctions = BottomButtonFunctions(null),
+            getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
+            shareLocation = {},
+            rateSoundscape = {},
+            searchText = "Lille",
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
+        )
+    }
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
+@Preview(showBackground = true)
+@Composable
+fun HomeRoutePreview() {
+    val routePlayerState = RoutePlayerState(
+        routeData = RouteData(
+            name = "Route 1",
+            description = "Description 1"
+        ),
+        currentWaypoint = 0
+    )
+    SoundscapeTheme {
+        Home(
+            state = HomeState(
+                heading = 90f,
+                location = LngLatAlt(10.0, 10.0),
+                currentRouteData = routePlayerState
+            ),
             onNavigate = {},
             onMapLongClick = { false },
             bottomButtonFunctions = BottomButtonFunctions(null),
