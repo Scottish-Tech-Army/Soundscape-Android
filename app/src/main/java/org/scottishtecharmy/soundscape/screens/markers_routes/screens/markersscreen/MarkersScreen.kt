@@ -26,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -36,6 +35,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun MarkersScreenVM(
@@ -95,7 +95,7 @@ fun MarkersScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     if (uiState.markers.isEmpty()) {
-                        Box(modifier = Modifier.padding(top = 40.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.large)) {
                             Icon(
                                 painter =
                                     painterResource(
@@ -103,10 +103,10 @@ fun MarkersScreen(
                                     ),
                                 tint = MaterialTheme.colorScheme.onBackground,
                                 contentDescription = null,
-                                modifier = Modifier.size(60.dp),
+                                modifier = Modifier.size(spacing.extraLarge),
                             )
                         }
-                        Box(modifier = Modifier.padding(top = 10.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.small)) {
                             Text(
                                 stringResource(R.string.markers_no_markers_title),
                                 style = MaterialTheme.typography.titleLarge,
@@ -115,7 +115,7 @@ fun MarkersScreen(
                                 fontWeight = FontWeight.Bold,
                             )
                         }
-                        Box(modifier = Modifier.padding(top = 10.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.small)) {
                             Text(
                                 stringResource(R.string.markers_no_markers_hint_1),
                                 style = MaterialTheme.typography.bodyMedium,
@@ -124,7 +124,7 @@ fun MarkersScreen(
                                 fontWeight = FontWeight.Bold,
                             )
                         }
-                        Box(modifier = Modifier.padding(top = 10.dp, bottom = 40.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.small, bottom = spacing.large)) {
                             Text(
                                 stringResource(R.string.markers_no_markers_hint_2),
                                 style = MaterialTheme.typography.bodyMedium,
@@ -138,7 +138,7 @@ fun MarkersScreen(
                             modifier =
                                 Modifier
                                     .fillMaxWidth()
-                                    .padding(8.dp),
+                                    .padding(spacing.small),
                             horizontalArrangement = Arrangement.Start,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {

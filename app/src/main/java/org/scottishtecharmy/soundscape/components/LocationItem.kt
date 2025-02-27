@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -30,6 +29,8 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
 import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 data class EnabledFunction(
     var enabled: Boolean = false,
@@ -73,7 +74,7 @@ fun LocationItem(
                 Icons.Rounded.LocationOn,
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.width(20.dp)
+                modifier = Modifier.width(spacing.icon)
             )
         } else if (decoration.index != -1) {
             Text(
@@ -81,11 +82,11 @@ fun LocationItem(
                 fontWeight = FontWeight(700),
                 fontSize = 22.sp,
                 color = Color.White,
-                modifier = Modifier.width(40.dp).align(Alignment.CenterVertically)
+                modifier = Modifier.width(spacing.targetSize).align(Alignment.CenterVertically)
             )
         }
         Column(
-            modifier = Modifier.padding(start = 8.dp).weight(1F),
+            modifier = Modifier.padding(start = spacing.small).weight(1F),
         ) {
             item.name?.let {
                 Text(
@@ -120,14 +121,14 @@ fun LocationItem(
                     checkedThumbColor = Color.Green,
                     uncheckedThumbColor = Color.Red,
                 ),
-                modifier = Modifier.padding(5.dp)
+                modifier = Modifier.extraSmallPadding()
             )
         } else if(decoration.details.enabled) {
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.width(20.dp)
+                modifier = Modifier.width(spacing.icon)
             )
         }
     }
@@ -159,7 +160,7 @@ fun PreviewSearchItemButton() {
                     editRoute = EnabledFunction(true, {}, {}, true),
                     details = EnabledFunction(false),
                 ),
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(spacing.preview),
             )
         }
     }
@@ -189,7 +190,7 @@ fun PreviewCompactSearchItemButton() {
                     editRoute = EnabledFunction(false),
                     details = EnabledFunction(true),
                 ),
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(spacing.preview),
                 userLocation = LngLatAlt(8.00, 10.55)
             )
             LocationItem(
@@ -200,7 +201,7 @@ fun PreviewCompactSearchItemButton() {
                     details = EnabledFunction(false),
                     index = 99,
                 ),
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(spacing.preview),
                 userLocation = LngLatAlt(8.00, 10.55)
             )
         }
@@ -229,7 +230,7 @@ fun PreviewOrderedItemButton() {
                 decoration = LocationItemDecoration(
                     index = 2,
                 ),
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(spacing.preview),
                 userLocation = LngLatAlt(8.20, 9.55)
             )
         }

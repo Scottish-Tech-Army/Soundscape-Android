@@ -21,8 +21,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun CustomTextField(
@@ -30,7 +30,7 @@ fun CustomTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
-    shape: Shape = RoundedCornerShape(5.dp),
+    shape: Shape = RoundedCornerShape(spacing.extraSmall),
     focusedBgColor: Color = MaterialTheme.colorScheme.onPrimary, // Default colour of white for TextField
     unfocusedBgColor: Color = MaterialTheme.colorScheme.onPrimary, // Default colour of white for TextField
     focusedTextColor: Color = MaterialTheme.colorScheme.onSecondary, // Default color of black
@@ -73,7 +73,7 @@ fun CustomTextFieldPreview() {
         value = textValue,
         onValueChange = { textValue = it },
         textStyle = TextStyle(fontSize = 18.sp),
-        shape = RoundedCornerShape(5.dp),
+        shape = RoundedCornerShape(spacing.extraSmall),
         focusedBgColor = MaterialTheme.colorScheme.onPrimary,
         unfocusedBgColor = MaterialTheme.colorScheme.onPrimary,
         focusedTextColor = MaterialTheme.colorScheme.onSecondary,

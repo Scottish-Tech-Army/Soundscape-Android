@@ -1,9 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.finish
 
-import android.content.Context
-import android.content.ContextWrapper
 import android.content.res.Configuration
-import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,18 +25,12 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-
-fun Context.getActivity(): ComponentActivity? = when (this) {
-    is ComponentActivity -> this
-    is ContextWrapper -> baseContext.getActivity()
-    else -> null
-}
-
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun FinishScreen(
@@ -77,11 +68,11 @@ fun FinishScreen(
             ) {
                 if (!landscape) {
                     LocalImage()
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(spacing.extraLarge))
                 }
 
                 Column(
-                    modifier = Modifier.padding(horizontal = 50.dp)
+                    modifier = Modifier.padding(horizontal = spacing.large)
                 ) {
                     Text(
                         text = stringResource(R.string.first_launch_prompt_title),
@@ -93,7 +84,7 @@ fun FinishScreen(
                         }
                     )
 
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(spacing.large))
 
                     Text(
                         text = stringResource(R.string.first_launch_prompt_message),
@@ -103,7 +94,7 @@ fun FinishScreen(
                         modifier = Modifier.fillMaxWidth()
                     )
 
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(spacing.extraLarge))
 
                     OnboardButton(
                         text = stringResource(R.string.first_launch_prompt_button),
@@ -137,7 +128,7 @@ private fun LocalImage() {
         painter = painterResource(R.drawable.ic_finish),
         contentDescription = null,
         modifier = Modifier
-            .padding(24.dp)
-            .clip(RoundedCornerShape(90.dp))
+            .mediumPadding()
+            .clip(RoundedCornerShape(spacing.extraLarge))
     )
 }

@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
@@ -14,7 +13,6 @@ import androidx.compose.material.icons.filled.SwapVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.res.stringResource
@@ -26,6 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun MarkersAndRoutesListSort(
@@ -41,7 +41,7 @@ fun MarkersAndRoutesListSort(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .smallPadding()
             .clearAndSetSemantics {
                 //contentDescription = ""
                 stateDescription = sortOrderState
@@ -51,7 +51,7 @@ fun MarkersAndRoutesListSort(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier.size(spacing.targetSize)
             .toggleable(
                 value = isAscending,
                 role = Role.Button,
@@ -61,7 +61,7 @@ fun MarkersAndRoutesListSort(
             contentDescription = "" // TODO: Add ascending/descending hint
         )
 
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(spacing.small))
 
         Text(
             text = if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name)
@@ -75,7 +75,7 @@ fun MarkersAndRoutesListSort(
             )
         )
 
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(spacing.small))
 
         Text(
             text = if (isSortByName) stringResource(R.string.routes_sort_by_distance)

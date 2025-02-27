@@ -14,9 +14,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun CustomButton(
@@ -56,7 +56,7 @@ SoundscapeTheme {
         buttonColor = MaterialTheme.colorScheme.onPrimary,
         contentColor = MaterialTheme.colorScheme.onSecondary,
         fontWeight = FontWeight.Bold,
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(spacing.small),
         text = stringResource(R.string.route_detail_edit_waypoints_button),
         textStyle = MaterialTheme.typography.titleLarge
     )

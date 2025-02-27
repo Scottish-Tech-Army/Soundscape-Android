@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -32,6 +31,9 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun SaveAndEditMarkerDialog(
@@ -69,10 +71,10 @@ fun SaveAndEditMarkerDialog(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
+                            .mediumPadding(),
                         buttonColor = MaterialTheme.colorScheme.errorContainer,
                         contentColor = MaterialTheme.colorScheme.onPrimary,
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.markers_action_delete),
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
@@ -90,7 +92,7 @@ fun SaveAndEditMarkerDialog(
                     },
                     buttonColor = MaterialTheme.colorScheme.onPrimary,
                     contentColor = MaterialTheme.colorScheme.onSecondary,
-                    shape = RoundedCornerShape(10.dp),
+                    shape = RoundedCornerShape(spacing.small),
                     text = stringResource(R.string.general_alert_done),
                     textStyle = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
@@ -102,11 +104,11 @@ fun SaveAndEditMarkerDialog(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-                    .padding(8.dp)
+                    .smallPadding()
                     .verticalScroll(rememberScrollState())
             ) {
                 Text(
-                    modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+                    modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
                     text = stringResource(R.string.markers_sort_button_sort_by_name),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.surfaceBright
@@ -121,7 +123,7 @@ fun SaveAndEditMarkerDialog(
                     }
                 )
                 Text(
-                    modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
+                    modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
                     text = stringResource(R.string.markers_annotation),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.surfaceBright

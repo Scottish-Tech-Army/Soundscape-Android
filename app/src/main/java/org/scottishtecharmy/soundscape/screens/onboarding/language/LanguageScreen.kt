@@ -22,12 +22,12 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun LanguageScreen(
@@ -67,7 +67,7 @@ fun LanguageComposable(
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 20.dp, vertical = 50.dp)
+                .padding(horizontal = spacing.medium, vertical = spacing.large)
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .verticalScroll(rememberScrollState()),
@@ -83,7 +83,7 @@ fun LanguageComposable(
                     heading()
                 },
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = stringResource(R.string.first_launch_soundscape_language_text),
                 style = MaterialTheme.typography.bodyMedium,
@@ -91,7 +91,7 @@ fun LanguageComposable(
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
 
             LanguageDropDownMenu(
                 allLanguages = supportedLanguages,
@@ -99,7 +99,7 @@ fun LanguageComposable(
                 selectedLanguageIndex = selectedLanguageIndex
             )
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
 
             //val selectedLocale = AppCompatDelegate.getApplicationLocales()[0]
             //Log.d("Locales", "Locale is set to: $selectedLocale")
@@ -110,7 +110,7 @@ fun LanguageComposable(
                 }
             }
 
-            Column(modifier = Modifier.padding(horizontal = 50.dp)) {
+            Column(modifier = Modifier.padding(horizontal = spacing.large)) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
                     onClick = {

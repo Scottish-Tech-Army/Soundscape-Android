@@ -18,8 +18,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.ui.theme.Primary
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun AudioBeaconItem(
@@ -30,7 +30,7 @@ fun AudioBeaconItem(
     Row(
         modifier = Modifier
             // Accessibility recommendation for the size of a clickable thing
-            .padding(horizontal = 10.dp, vertical = 17.dp)
+            .padding(horizontal = spacing.small, vertical = spacing.medium)
             .fillMaxWidth()
             .selectable(
                 selected = isSelected
@@ -44,31 +44,31 @@ fun AudioBeaconItem(
                 contentDescription = null,
                 tint = Primary,
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(spacing.icon)
             )
         }
-        Spacer(modifier = Modifier.width(20.dp))
+        Spacer(modifier = Modifier.width(spacing.medium))
         Text(text = text, style = MaterialTheme.typography.bodyMedium, color = Primary)
         Row(
             horizontalArrangement = Arrangement.End,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(end = 10.dp)
+                .padding(end = spacing.small)
         ) {
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
                 tint = Primary,
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(spacing.icon)
             )
         }
     }
 
     HorizontalDivider(
         modifier = Modifier
-            .padding(horizontal = 10.dp, vertical = 2.dp),
-        thickness = 0.8.dp,
+            .padding(horizontal = spacing.small, vertical = spacing.tiny),
+        thickness = spacing.tiny,
         color = Primary
     )
 }

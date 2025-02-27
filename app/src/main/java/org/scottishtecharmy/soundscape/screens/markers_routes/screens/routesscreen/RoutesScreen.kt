@@ -26,7 +26,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -37,6 +36,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun RoutesScreenVM(
@@ -89,17 +89,17 @@ fun RoutesScreen(
             ) {
                 if (uiState.routes.isEmpty()) {
                     // Display UI when no routes are available
-                        Box(modifier = Modifier.padding(top = 40.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.large)) {
                             Icon(
                                 painter = painterResource(
                                     id = R.drawable.ic_routes
                                 ),
                                 tint = MaterialTheme.colorScheme.onPrimary,
                                 contentDescription = null,
-                                modifier = Modifier.size(80.dp)
+                                modifier = Modifier.size(spacing.targetSize * 2)
                             )
                         }
-                        Box(modifier = Modifier.padding(top = 10.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.small)) {
                             Text(
                                 stringResource(R.string.routes_no_routes_title),
                                 style = MaterialTheme.typography.titleLarge,
@@ -108,7 +108,7 @@ fun RoutesScreen(
                                 fontWeight = FontWeight.Bold,
                             )
                         }
-                        Box(modifier = Modifier.padding(top = 10.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.small)) {
                             Text(
                                 stringResource(R.string.routes_no_routes_hint_1),
                                 color = MaterialTheme.colorScheme.onBackground,
@@ -117,7 +117,7 @@ fun RoutesScreen(
                                 fontWeight = FontWeight.Bold,
                             )
                         }
-                        Box(modifier = Modifier.padding(top = 10.dp, bottom = 40.dp)) {
+                        Box(modifier = Modifier.padding(top = spacing.small, bottom = spacing.large)) {
                             Text(
                                 stringResource(R.string.routes_no_routes_hint_2),
                                 color = MaterialTheme.colorScheme.onBackground,
@@ -130,7 +130,7 @@ fun RoutesScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp),
+                            .padding(spacing.small),
                         horizontalArrangement = Arrangement.Start,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -180,9 +180,19 @@ fun RoutesScreenPopulatedPreview() {
             homeNavController = rememberNavController(),
             uiState = RoutesUiState(
                 routes = listOf(
-                    RouteData("Route 1", "Description 1"),
-                    RouteData("Route 2", "Description 2"),
-                    RouteData("Route 3", "Description 3"),
+                    RouteData("Route 1", "Description A"),
+                    RouteData("Route 2", "Description B"),
+                    RouteData("Route 3", "Description C"),
+                    RouteData("Route 4", "Description D"),
+                    RouteData("Route 5", "Description E"),
+                    RouteData("Route 6", "Description F"),
+                    RouteData("Route 7", "Description G"),
+                    RouteData("Route 8", "Description H"),
+                    RouteData("Route 9", "Description I"),
+                    RouteData("Route 10", "Description J"),
+                    RouteData("Route 11", "Description K"),
+                    RouteData("Route 12", "Description L"),
+                    RouteData("Route 13", "Description M"),
                 )
             ),
             clearErrorMessage = {},

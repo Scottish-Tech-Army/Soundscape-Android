@@ -33,7 +33,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
@@ -50,6 +49,7 @@ import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
 import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -136,9 +136,9 @@ fun LocationDetails(
             Column(
                 modifier =
                 Modifier
-                    .padding(horizontal = 15.dp, vertical = 10.dp)
+                    .padding(horizontal = spacing.medium, vertical = spacing.small)
                     .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+                verticalArrangement = Arrangement.spacedBy(spacing.small),
             ) {
                 LocationDescriptionTextsSection(
                     locationDescription = description.value,
@@ -198,7 +198,7 @@ private fun LocationDescriptionButtonsSection(
     dialogState: MutableState<Boolean>
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(0.dp),
+        verticalArrangement = Arrangement.spacedBy(spacing.none),
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
@@ -248,7 +248,7 @@ private fun LocationDescriptionTextsSection(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(spacing.small),
     ) {
         locationDescription.name?.let {
             Text(
@@ -260,7 +260,7 @@ private fun LocationDescriptionTextsSection(
         if(distanceString.isNotEmpty()) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                horizontalArrangement = Arrangement.spacedBy(spacing.small),
             ) {
                 Icon(
                     imageVector = Icons.Filled.Map,
@@ -277,7 +277,7 @@ private fun LocationDescriptionTextsSection(
         locationDescription.fullAddress?.let {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                horizontalArrangement = Arrangement.spacedBy(spacing.small),
             ) {
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
@@ -317,7 +317,7 @@ fun IconWithTextButton(
                 contentDescription = null,
                 tint = IntroPrimary,
             )
-            Spacer(modifier = Modifier.width(15.dp)) // Space between icon and text
+            Spacer(modifier = Modifier.width(spacing.medium)) // Space between icon and text
             Text(
                 text = text,
                 textAlign = TextAlign.Start, // Aligns text to start within the Row

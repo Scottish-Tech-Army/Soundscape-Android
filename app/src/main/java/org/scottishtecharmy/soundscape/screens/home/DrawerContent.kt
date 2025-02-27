@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun DrawerContent(
@@ -58,8 +58,8 @@ fun DrawerContent(
                 Icons.AutoMirrored.Rounded.ArrowBack,
                 modifier =
                     Modifier
-                        .size(32.dp)
-                        .padding(start = 4.dp),
+                        .size(spacing.targetSize)
+                        .padding(start = spacing.extraSmall),
                 contentDescription = stringResource(R.string.ui_menu_close),
                 tint = Color.White,
             )

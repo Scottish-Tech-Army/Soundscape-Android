@@ -27,7 +27,6 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.maplibre.android.geometry.LatLng
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
@@ -43,6 +42,9 @@ import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
 
 @Composable
 fun HomeContent(
@@ -64,7 +66,7 @@ fun HomeContent(
     val currentLocationHint = stringResource(R.string.search_button_current_location_accessibility_hint)
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(spacing.small),
         modifier = modifier.verticalScroll(rememberScrollState()),
     ) {
         if(streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
@@ -78,7 +80,7 @@ fun HomeContent(
                     onNavigate(HomeRoutes.PlacesNearby.route)
                 },
                 text = stringResource(R.string.search_nearby_screen_title),
-                horizontalPadding = 8.dp,
+                horizontalPadding = spacing.small,
                 modifier = Modifier.semantics {
                     heading()
                     onClick(label = placesNearbyHint, action = { false })
@@ -90,7 +92,7 @@ fun HomeContent(
                     onNavigate(HomeRoutes.MarkersAndRoutes.route)
                 },
                 text = stringResource(R.string.search_view_markers),
-                horizontalPadding = 8.dp,
+                horizontalPadding = spacing.small,
                 modifier = Modifier
                     .semantics { onClick(label = markersHint, action = { false }) }
             )
@@ -103,21 +105,21 @@ fun HomeContent(
                     }
                 },
                 text = stringResource(R.string.search_use_current_location),
-                horizontalPadding = 8.dp,
+                horizontalPadding = spacing.small,
                 modifier = Modifier
                     .semantics { onClick(label = currentLocationHint, action = { false }) }
             )
         }
         if (location != null) {
             if(routePlayerState.routeData != null) {
-                Card(modifier = Modifier.padding(8.dp)) {
+                Card(modifier = Modifier.smallPadding()) {
 //                    Column {
-                        Row(modifier = Modifier.height(40.dp)) {
+                        Row(modifier = Modifier.height(spacing.large)) {
                             Column {
                                 Text(
                                     text = "${routePlayerState.routeData.name} - ${routePlayerState.currentWaypoint + 1}/${routePlayerState.routeData.waypoints.size}",
                                     style = MaterialTheme.typography.labelLarge,
-                                    modifier = Modifier.padding(8.dp)
+                                    modifier = Modifier.smallPadding()
                                 )
                             }
                         }
@@ -133,7 +135,7 @@ fun HomeContent(
                                 onMapLongClick = onMapLongClick,
                             )
                         }
-                        Row(modifier = Modifier.fillMaxWidth().height(60.dp).padding(3.dp),
+                        Row(modifier = Modifier.fillMaxWidth().height(spacing.targetSize).tinyPadding(),
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = androidx.compose.ui.Alignment.Bottom) {
                             Button(onClick = { routeFunctions.skipPrevious() })

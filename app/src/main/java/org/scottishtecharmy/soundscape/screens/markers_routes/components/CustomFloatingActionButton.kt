@@ -20,9 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun CustomFloatingActionButton(
@@ -32,12 +32,12 @@ fun CustomFloatingActionButton(
     modifier: Modifier = Modifier,
     containerColor: Color = MaterialTheme.colorScheme.surfaceDim,
     iconTint: Color = MaterialTheme.colorScheme.onBackground,
-    iconSize: Dp = 80.dp
+    iconSize: Dp = spacing.targetSize * 2
 ) {
     FloatingActionButton(
         onClick = { onClick.invoke() },
         modifier = modifier
-            .padding(bottom = 16.dp),
+            .padding(bottom = spacing.medium),
         containerColor = containerColor
     ) {
         Icon(
@@ -56,7 +56,7 @@ fun LargeCustomFloatingActionButtonPreview() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(100.dp),
+                .height(spacing.preview),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -65,7 +65,7 @@ fun LargeCustomFloatingActionButtonPreview() {
                 icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
                 contentDescription = "Add Item",
                 iconTint = MaterialTheme.colorScheme.onPrimary,
-                iconSize = 80.dp // Example of customizing the icon size
+                iconSize = spacing.targetSize * 2 // Example of customizing the icon size
             )
         } }
 
@@ -79,7 +79,7 @@ fun SmallCustomFloatingActionButtonPreview() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(100.dp),
+                .height(spacing.preview),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -88,7 +88,7 @@ fun SmallCustomFloatingActionButtonPreview() {
                 icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
                 contentDescription = "Add Item",
                 iconTint = MaterialTheme.colorScheme.onPrimary,
-                iconSize = 48.dp // Example of customizing the icon size
+                iconSize = spacing.targetSize // Example of customizing the icon size
             )
 
         } }
@@ -102,7 +102,7 @@ fun SmallCustomFloatingActionButtonWithTextPreview() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp),
+                .height(spacing.preview),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -111,7 +111,7 @@ fun SmallCustomFloatingActionButtonWithTextPreview() {
                 icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
                 contentDescription = "Add Route",
                 iconTint = MaterialTheme.colorScheme.onPrimary,
-                iconSize = 48.dp // Example of customizing the icon size
+                iconSize = spacing.targetSize // Example of customizing the icon size
             )
             CustomTextButton(
                 text = stringResource(R.string.route_detail_action_create),

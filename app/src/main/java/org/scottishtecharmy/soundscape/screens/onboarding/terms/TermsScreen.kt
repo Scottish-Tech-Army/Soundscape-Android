@@ -7,11 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,11 +31,11 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.Primary
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 
 @Composable
@@ -46,14 +43,13 @@ fun TermsScreen(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val terms = getAllTerms()
     val checkedState = remember { mutableStateOf(false) }
     BoxWithGradientBackground(
         modifier = modifier
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 20.dp, vertical = 30.dp)
+                .padding(horizontal = spacing.medium, vertical = spacing.large)
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .verticalScroll(rememberScrollState()),
@@ -67,29 +63,26 @@ fun TermsScreen(
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 20.dp)
+                    .padding(bottom = spacing.medium)
                     .semantics {
                         heading()
                     },
             )
 
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(5.dp))
+                    .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .height(400.dp)
                     .background(Color.White)
+                    .verticalScroll(rememberScrollState())
             ) {
-                items(terms) { term ->
-                    TermsItem(
-                        term.name
-                    )
-                }
+                TermsItem(stringResource(R.string.terms_of_use_message))
+                TermsItem(stringResource(R.string.terms_of_use_medical_safety_disclaimer))
             }
 
             Row(
                 modifier = Modifier
-                    .padding(top = 40.dp)
+                    .padding(top = spacing.large)
                     .fillMaxWidth()
                     .toggleable( // This give the toggleable behaviour to the entire row, providing a better UX with alpha() Screen reader
                         value = checkedState.value,
@@ -118,7 +111,7 @@ fun TermsScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 30.dp)
+                    .padding(top = spacing.large)
             ) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
@@ -139,34 +132,21 @@ fun TermsScreen(
 fun TermsItem(text: String) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 10.dp, vertical = 17.dp)
+            .padding(horizontal = spacing.small, vertical = spacing.medium)
             .fillMaxWidth()
 
     ) {
-        Spacer(modifier = Modifier.width(20.dp))
+        Spacer(modifier = Modifier.width(spacing.medium))
         Text(text = text, style = MaterialTheme.typography.bodyMedium, color = Primary)
     }
 
     HorizontalDivider(
         modifier = Modifier
-            .padding(horizontal = 10.dp, vertical = 2.dp),
-        thickness = 0.8.dp,
+            .padding(horizontal = spacing.small, vertical = spacing.tiny),
+        thickness = spacing.tiny,
         color = Primary
     )
 }
-
-@Composable
-fun getAllTerms(): List<Terms> {
-    return listOf(
-        Terms(
-            name = stringResource(R.string.terms_of_use_message)
-        ),
-        Terms(
-            name = stringResource(R.string.terms_of_use_medical_safety_disclaimer)
-        )
-    )
-}
-
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview

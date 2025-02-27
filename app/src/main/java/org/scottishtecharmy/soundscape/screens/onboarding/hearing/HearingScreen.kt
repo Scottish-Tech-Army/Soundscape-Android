@@ -32,11 +32,11 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 
 @Composable
@@ -103,11 +103,11 @@ fun Hearing(
             {
                 if (!landscape) {
                     LocalImage()
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(spacing.extraLarge))
                 }
 
                 Column(
-                    modifier = Modifier.padding(horizontal = 50.dp)
+                    modifier = Modifier.padding(horizontal = spacing.large)
                 ) {
                     Text(
                         text = stringResource(R.string.first_launch_callouts_title),
@@ -118,7 +118,7 @@ fun Hearing(
                             heading()
                         },
                     )
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(spacing.extraLarge))
                     Text(
                         text = stringResource(R.string.first_launch_callouts_message),
                         style = MaterialTheme.typography.bodyMedium,
@@ -126,14 +126,14 @@ fun Hearing(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(spacing.large))
                     Text(
                         text = stringResource(R.string.first_launch_callouts_listen),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onPrimary,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(spacing.small))
 
                     // <string name="first_launch_callouts_example_1">Cafe</string>
                     // <string name="first_launch_callouts_example_3">Main Street goes left</string>
@@ -150,7 +150,7 @@ fun Hearing(
                         },
                         modifier = Modifier
                             .fillMaxWidth(),
-                        shape = RoundedCornerShape(3.dp),
+                        shape = RoundedCornerShape(spacing.tiny),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Black.copy(
                                 alpha = 0.2f
@@ -164,14 +164,14 @@ fun Hearing(
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Icon(Icons.Rounded.PlayArrow, contentDescription = null)
-                            Spacer(modifier = Modifier.width(10.dp))
+                            Spacer(modifier = Modifier.width(spacing.small))
                             Text(
                                 text = stringResource(R.string.first_launch_callouts_listen_accessibility_label),
                                 color = MaterialTheme.colorScheme.onPrimary,
                                 )
                         }
                     }
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(spacing.medium))
 
                     OnboardButton(
                         text = stringResource(R.string.ui_continue),

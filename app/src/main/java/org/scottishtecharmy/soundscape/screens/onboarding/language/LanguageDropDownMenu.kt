@@ -35,9 +35,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.TestTags
 
 @Composable
@@ -61,7 +61,7 @@ fun LanguageDropDownMenu(
                 .fillMaxWidth()
                 .background(
                     color = MaterialTheme.colorScheme.surface,
-                    shape = RoundedCornerShape(4.dp)
+                    shape = RoundedCornerShape(spacing.extraSmall)
                 ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -140,10 +140,10 @@ private fun DropdownItemContent(
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
-                    .size(20.dp)
+                    .size(spacing.icon)
             )
         } else {
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(spacing.medium))
         }
     }
 }
