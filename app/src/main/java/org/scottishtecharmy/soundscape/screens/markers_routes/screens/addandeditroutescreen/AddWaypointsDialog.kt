@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -23,6 +22,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun AddWaypointsDialog(
@@ -47,13 +47,13 @@ fun AddWaypointsDialog(
             CustomButton(
                 Modifier
                     .fillMaxWidth()
-                    .padding(top = 20.dp, bottom = 10.dp),
+                    .padding(top = spacing.medium, bottom = spacing.small),
                 onClick = {
                     onDone()
                 },
                 buttonColor = MaterialTheme.colorScheme.onPrimary,
                 contentColor = MaterialTheme.colorScheme.onSecondary,
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(spacing.small),
                 text = stringResource(R.string.general_alert_done),
                 textStyle = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,

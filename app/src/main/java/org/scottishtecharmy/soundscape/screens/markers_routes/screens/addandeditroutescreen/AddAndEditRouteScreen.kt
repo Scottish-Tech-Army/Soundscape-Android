@@ -35,7 +35,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -50,11 +49,13 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
-import org.scottishtecharmy.soundscape.screens.home.home.previewLocationListShort
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 import java.net.URLEncoder
@@ -236,10 +237,10 @@ fun AddAndEditRouteScreen(
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(16.dp),
+                                .mediumPadding(),
                             buttonColor = MaterialTheme.colorScheme.errorContainer,
                             contentColor = MaterialTheme.colorScheme.onPrimary,
-                            shape = RoundedCornerShape(10.dp),
+                            shape = RoundedCornerShape(spacing.small),
                             text = stringResource(R.string.route_detail_edit_delete),
                             textStyle = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
@@ -251,7 +252,7 @@ fun AddAndEditRouteScreen(
                         onClick = { addWaypointDialog = true },
                         buttonColor = MaterialTheme.colorScheme.onPrimary,
                         contentColor = MaterialTheme.colorScheme.onSecondary,
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.route_detail_edit_waypoints_button),
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
@@ -265,7 +266,7 @@ fun AddAndEditRouteScreen(
                         },
                         buttonColor = MaterialTheme.colorScheme.onPrimary,
                         contentColor = MaterialTheme.colorScheme.onSecondary,
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.general_alert_done),
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
@@ -276,16 +277,16 @@ fun AddAndEditRouteScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(4.dp)
+                        .extraSmallPadding()
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(padding)
-                            .padding(4.dp)
+                            .extraSmallPadding()
                     ) {
                         Text(
-                            modifier = Modifier.padding(top = 10.dp, bottom = 5.dp),
+                            modifier = Modifier.padding(top = spacing.small, bottom = spacing.extraSmall),
                             text = stringResource(R.string.markers_sort_button_sort_by_name),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.surfaceBright
@@ -296,7 +297,7 @@ fun AddAndEditRouteScreen(
                             onValueChange = onNameChange
                         )
                         Text(
-                            modifier = Modifier.padding(top = 20.dp, bottom = 5.dp),
+                            modifier = Modifier.padding(top = spacing.medium, bottom = spacing.extraSmall),
                             text = stringResource(R.string.route_detail_edit_description),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.surfaceBright
@@ -304,14 +305,14 @@ fun AddAndEditRouteScreen(
                         CustomTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(bottom = 5.dp),
+                                .padding(bottom = spacing.extraSmall),
                             value = uiState.description,
                             onValueChange = onDescriptionChange
                         )
 
                         HorizontalDivider(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            thickness = 2.dp
+                            thickness = spacing.tiny
                         )
                         // Display the list of markers in the route
                         if(routeMembers.isEmpty()) {
@@ -321,14 +322,14 @@ fun AddAndEditRouteScreen(
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(top = 15.dp),
+                                    .padding(top = spacing.medium),
                             )
                         } else {
                             LazyColumn(state = lazyListState) {
                                 itemsIndexed(routeMembers, key = { _,item -> item.markerObjectId!!.toString() }) { index, item ->
                                     ReorderableItem(reorderableLazyListState, item.markerObjectId.toString()) { _ ->
                                         Row(modifier = Modifier
-                                            .padding(4.dp)
+                                            .extraSmallPadding()
                                             .background(MaterialTheme.colorScheme.primary)
                                         ) {
                                             LocationItem(
@@ -343,7 +344,7 @@ fun AddAndEditRouteScreen(
                                             IconButton(
                                                 modifier = Modifier
                                                     .draggableHandle()
-                                                    .width(30.dp)
+                                                    .width(spacing.targetSize)
                                                     .align(Alignment.CenterVertically),
                                                 onClick = {}
                                             ) {

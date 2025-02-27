@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -17,11 +16,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.MainActivity
@@ -31,6 +28,8 @@ import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.OnSurface
 import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.largePadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 private fun exitSleep(context: MainActivity, navController: NavHostController) {
     context.setServiceState(true)
@@ -57,7 +56,7 @@ fun SleepScreen(navController: NavHostController,
                 text = stringResource(R.string.sleep_sleeping),
                 style = MaterialTheme.typography.titleLarge,
                 color = Foreground2,
-                modifier = modifier.padding(40.dp)
+                modifier = modifier.largePadding()
             )
         }
         Row {
@@ -65,7 +64,7 @@ fun SleepScreen(navController: NavHostController,
                 text = stringResource(R.string.sleep_sleeping_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = OnSurface,
-                modifier = modifier.padding(40.dp)
+                modifier = modifier.largePadding()
             )
         }
         Row {
@@ -73,8 +72,8 @@ fun SleepScreen(navController: NavHostController,
                 onClick = {
                     exitSleep(context, navController)
                 },
-                modifier = modifier.fillMaxWidth().height(200.dp),
-                shape = RoundedCornerShape(2.dp),
+                modifier = modifier.fillMaxWidth().height(spacing.targetSize * 2),
+                shape = RoundedCornerShape(spacing.tiny),
             ) {
                 Text(
                     text = stringResource(R.string.sleep_wake_up_now),

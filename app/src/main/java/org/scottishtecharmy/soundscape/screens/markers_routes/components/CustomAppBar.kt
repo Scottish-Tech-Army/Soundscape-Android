@@ -19,10 +19,10 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun CustomAppBar(title : String,
@@ -35,10 +35,10 @@ fun CustomAppBar(title : String,
         Row(
             modifier  = Modifier.height(IntrinsicSize.Min).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(spacing.small)
         ) {
             IconWithTextButton(
-                iconModifier = Modifier.size(40.dp),
+                iconModifier = Modifier.size(spacing.targetSize),
                 onClick = {
                     onNavigateUp()
                 },

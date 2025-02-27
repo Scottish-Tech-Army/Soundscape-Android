@@ -34,7 +34,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -55,6 +54,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun RouteDetailsScreenVM(
@@ -145,13 +146,13 @@ fun RouteDetailsScreen(
                         modifier = Modifier
                             .fillMaxSize()
                             .background(MaterialTheme.colorScheme.background)
-                            .padding(8.dp)
+                            .smallPadding()
                             .verticalScroll(rememberScrollState())
                     ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(8.dp),
+                                .smallPadding(),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -160,7 +161,7 @@ fun RouteDetailsScreen(
                                     text = uiState.route.name,
                                     style = MaterialTheme.typography.headlineLarge,
                                     fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.padding(bottom = 4.dp)
+                                    modifier = Modifier.padding(bottom = spacing.extraSmall)
                                 )
                                 if(uiState.route.description.isNotEmpty()) {
                                     Text(
@@ -172,13 +173,13 @@ fun RouteDetailsScreen(
                             }
                             // Display additional route details if necessary
                         }
-                        Column(modifier = Modifier.height(150.dp)) {
+                        Column {
                             if(thisRoutePlaying) {
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.Stop,
-                                    iconModifier = Modifier.size(40.dp),
-                                    textModifier = Modifier.padding(horizontal = 4.dp),
+                                    iconModifier = Modifier.size(spacing.targetSize),
+                                    textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_stop_route),
                                     fontSize = 28.sp,
                                     fontWeight = FontWeight.Bold,
@@ -191,8 +192,8 @@ fun RouteDetailsScreen(
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.PlayArrow,
-                                    iconModifier = Modifier.size(40.dp),
-                                    textModifier = Modifier.padding(horizontal = 4.dp),
+                                    iconModifier = Modifier.size(spacing.targetSize),
+                                    textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_start_route),
                                     fontSize = 28.sp,
                                     fontWeight = FontWeight.Bold,
@@ -210,8 +211,8 @@ fun RouteDetailsScreen(
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Edit,
-                                iconModifier = Modifier.size(40.dp),
-                                textModifier = Modifier.padding(horizontal = 4.dp),
+                                iconModifier = Modifier.size(spacing.targetSize),
+                                textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
@@ -219,8 +220,8 @@ fun RouteDetailsScreen(
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
-                                iconModifier = Modifier.size(40.dp),
-                                textModifier = Modifier.padding(horizontal = 4.dp),
+                                iconModifier = Modifier.size(spacing.targetSize),
+                                textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 iconText = stringResource(R.string.share_title),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
@@ -237,11 +238,11 @@ fun RouteDetailsScreen(
                             userLocation = userLocation,
                             mapViewRotation = 0.0F,
                             userSymbolRotation = heading,
-                            modifier = modifier.fillMaxWidth().aspectRatio(1f)
+                            modifier = modifier.fillMaxWidth().weight(1f)
                         )
                         // List of all route points
                         LazyColumn(
-                            verticalArrangement = Arrangement.spacedBy(2.dp),
+                            verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                             modifier = Modifier.weight(2f)
                         ) {
                             itemsIndexed(uiState.route.waypoints) { index, marker ->
@@ -251,7 +252,7 @@ fun RouteDetailsScreen(
                                         location = marker.location?.location() ?: LngLatAlt(),
                                     ),
                                     modifier = Modifier
-                                        .padding(4.dp)
+                                        .padding(spacing.extraSmall)
                                         .background(MaterialTheme.colorScheme.primary),
                                     decoration = LocationItemDecoration(
                                         location = false,

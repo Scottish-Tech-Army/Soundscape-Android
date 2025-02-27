@@ -29,12 +29,12 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 fun getBeaconResourceId(beaconName: String) : Int {
     when (beaconName) {
@@ -94,8 +94,8 @@ fun AudioBeacons(
     BoxWithGradientBackground(modifier = modifier){
         Column(
             modifier = Modifier
-                .padding(horizontal = 30.dp)
-                .padding(top = 30.dp)
+                .padding(horizontal = spacing.large)
+                .padding(top = spacing.large)
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .verticalScroll(rememberScrollState()),
@@ -112,34 +112,34 @@ fun AudioBeacons(
                     heading()
                 }
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_1),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_2),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_3),
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
 
             LazyColumn(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(5.dp))
+                    .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .heightIn(100.dp, 300.dp)
+                    .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
                     .background(Color.White)
             ) {
                 items(beacons) { beacon ->
@@ -155,8 +155,8 @@ fun AudioBeacons(
 
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 60.dp)
-                    .requiredHeight(40.dp)
+                    .padding(horizontal = spacing.medium, vertical = spacing.extraLarge)
+                    .requiredHeight(spacing.targetSize)
             ) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),

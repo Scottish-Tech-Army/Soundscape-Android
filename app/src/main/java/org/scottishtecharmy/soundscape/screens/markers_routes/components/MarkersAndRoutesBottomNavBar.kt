@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -13,10 +12,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
 val items = listOf(
@@ -46,7 +45,7 @@ fun MarkersAndRoutesTabs(
                 !routesTabSelected  && (item == ScreensForMarkersAndRoutes.Markers)
 
             NavigationBarItem(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.mediumPadding(),
                 selected = isSelected,
                 onClick = { setRoutesAndMarkersTab(item == ScreensForMarkersAndRoutes.Routes) },
                 label = {
@@ -56,7 +55,7 @@ fun MarkersAndRoutesTabs(
                     item.iconResId?.let {
                         Icon(painter = painterResource(it),
                             contentDescription = null, // No need of contentDescription as text is below,
-                            modifier = Modifier.size(64.dp)
+                            modifier = Modifier.size(spacing.extraLarge)
                         )
                     }
 

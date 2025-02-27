@@ -29,7 +29,6 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
@@ -39,6 +38,8 @@ import org.scottishtecharmy.soundscape.ui.theme.Foreground2
 import org.scottishtecharmy.soundscape.ui.theme.OnSurface
 import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import kotlin.text.split
 import kotlin.text.startsWith
 
@@ -389,8 +390,8 @@ fun HelpScreen(
                     modifier = modifier
                         .fillMaxWidth()
                         .background(PurpleGradientDark)
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                        .mediumPadding(),
+                    verticalArrangement = Arrangement.spacedBy(spacing.medium),
                 ) {
                     items(sections.sections) { section ->
                         when (section.type) {
@@ -428,7 +429,7 @@ fun HelpScreen(
                                     },
                                     modifier = Modifier
                                         .fillMaxWidth(),
-                                    shape = RoundedCornerShape(2.dp),
+                                    shape = RoundedCornerShape(spacing.tiny),
                                 ) {
                                     Box(
                                         Modifier.weight(6f)

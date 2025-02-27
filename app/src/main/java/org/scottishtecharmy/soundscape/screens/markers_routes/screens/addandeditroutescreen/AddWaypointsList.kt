@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -12,12 +11,13 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun AddWaypointsList(
@@ -49,13 +49,13 @@ fun AddWaypointsList(
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(2.dp),
+        verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
         items(locations) { locationDescription ->
             LocationItem(
                 item = locationDescription,
                 modifier = Modifier
-                    .padding(4.dp)
+                    .extraSmallPadding()
                     .background(MaterialTheme.colorScheme.primary)
                     .fillMaxWidth(),
                 decoration = LocationItemDecoration(

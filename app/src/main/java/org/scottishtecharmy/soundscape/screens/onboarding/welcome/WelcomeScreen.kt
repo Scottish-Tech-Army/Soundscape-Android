@@ -24,11 +24,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun Welcome(
@@ -61,12 +61,12 @@ fun Welcome(
                 if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT) {
                     LocalImage()
 
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(spacing.large))
                 }
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 30.dp)
+                    modifier = Modifier.padding(horizontal = spacing.large)
                 ) {
                     Text(
                         text = stringResource(R.string.first_launch_welcome_title),
@@ -74,7 +74,7 @@ fun Welcome(
                         color = MaterialTheme.colorScheme.onPrimary,
                         textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(spacing.small))
                     Text(
                         text = stringResource(R.string.first_launch_welcome_description),
                         style = MaterialTheme.typography.bodyMedium,
@@ -82,9 +82,9 @@ fun Welcome(
                         textAlign = TextAlign.Center
                     )
 
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(spacing.large))
 
-                    Column(modifier = Modifier.padding(horizontal = 50.dp)) {
+                    Column(modifier = Modifier.padding(horizontal = spacing.large)) {
                         OnboardButton(
                             text = stringResource(R.string.first_launch_welcome_button),
                             onClick = { onNavigate() },
@@ -104,7 +104,7 @@ private fun LocalImage() {
         painter = painterResource(R.drawable.soundscape_alpha_1024),
         contentDescription = null,
         modifier = Modifier
-            .clip(RoundedCornerShape(90.dp))
+            .clip(RoundedCornerShape(spacing.extraLarge))
     )
 }
 

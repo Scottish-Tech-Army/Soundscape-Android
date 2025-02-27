@@ -19,9 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun RouteList(
@@ -29,7 +30,7 @@ fun RouteList(
     navController: NavController,
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxWidth().heightIn(max = 470.dp)
+        modifier = Modifier.fillMaxWidth()
     ) {
         items(uiState.routes) { route ->
             if(route.name.isNotEmpty()) {
@@ -37,7 +38,7 @@ fun RouteList(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(MaterialTheme.colorScheme.primary)
-                        .padding(8.dp)
+                        .smallPadding()
                         .clickable {
                             navController.navigate("${HomeRoutes.RouteDetails.route}/${route.objectId.toHexString()}")
                         },
@@ -49,7 +50,7 @@ fun RouteList(
                             text = route.name,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(bottom = 4.dp)
+                            modifier = Modifier.padding(bottom = spacing.extraSmall)
                         )
                         Text(
                             text = route.description,

@@ -30,10 +30,10 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun HomeBottomAppBar(
@@ -47,18 +47,24 @@ fun HomeBottomAppBar(
 
     Surface(
         modifier = modifier
-            .clip(RoundedCornerShape(4.dp, 4.dp, 0.dp, 0.dp)),
+            .clip(RoundedCornerShape(
+                    spacing.extraSmall,
+                    spacing.extraSmall,
+                    spacing.none,
+                    spacing.extraSmall
+                )
+            ),
         color = MaterialTheme.colorScheme.primary
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.padding(bottom = 8.dp)
+            verticalArrangement = Arrangement.spacedBy(spacing.small),
+            modifier = Modifier.padding(bottom = spacing.small)
         ) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(R.string.callouts_panel_title).uppercase(),
                 modifier = Modifier
-                    .padding(start = 16.dp, end = 8.dp)
+                    .padding(start = spacing.medium, end = spacing.small)
                     .semantics {
                         heading()
                     }
@@ -122,7 +128,7 @@ private fun HomeBottomAppBarButton(
         },
         shape = RectangleShape,
         modifier = modifier,
-        contentPadding = PaddingValues(4.dp)
+        contentPadding = PaddingValues(spacing.extraSmall)
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
@@ -134,11 +140,11 @@ private fun HomeBottomAppBarButton(
                 contentDescription = null,
                 modifier =
                 Modifier
-                    .size(24.dp)
+                    .size(spacing.icon)
                     .align(Alignment.CenterHorizontally),
             )
             Spacer(
-                modifier = Modifier.height(8.dp)
+                modifier = Modifier.height(spacing.small)
             )
             Text(
                 text = text,

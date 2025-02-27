@@ -11,9 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun OnboardButton(
@@ -30,7 +30,7 @@ fun OnboardButton(
                 containerColor = MaterialTheme.colorScheme.surface,
                 disabledContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.6f)
             ),
-        shape = RoundedCornerShape(3.dp),
+        shape = RoundedCornerShape(spacing.tiny),
         modifier = modifier,
         enabled = enabled
     ) {
@@ -46,9 +46,9 @@ fun OnboardButton(
 fun PreviewButton() {
     SoundscapeTheme {
         BoxWithGradientBackground(
-            modifier = Modifier.size(300.dp)
+            modifier = Modifier.size(spacing.preview)
         ) {
-            OnboardButton(text = "Hello", onClick = {}, Modifier.width(200.dp))
+            OnboardButton(text = "Hello", onClick = {}, Modifier.width(spacing.preview))
 
         }
     }
@@ -59,11 +59,11 @@ fun PreviewButton() {
 fun PreviewDisabledButton() {
     SoundscapeTheme {
         BoxWithGradientBackground(
-            modifier = Modifier.size(300.dp)
+            modifier = Modifier.size(spacing.preview)
         ) {
             OnboardButton(
                 text = "Hello", onClick = {},
-                modifier = Modifier.width(200.dp),
+                modifier = Modifier.width(spacing.preview),
                 enabled = false
             )
         }

@@ -28,10 +28,10 @@ import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,12 +50,12 @@ fun MainSearchBar(
                 .fillMaxWidth()
                 .then(
                     if (!isSearching) {
-                        Modifier.padding(horizontal = 8.dp)
+                        Modifier.padding(horizontal = spacing.small)
                     } else {
-                        Modifier.padding(horizontal = 0.dp)
+                        Modifier.padding(horizontal = spacing.none)
                     },
                 ),
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(spacing.small),
         colors = SearchBarDefaults.colors(containerColor = Color.White),
         inputField = {
             SearchBarDefaults.InputField(
@@ -107,7 +107,7 @@ fun MainSearchBar(
                     }.fillMaxSize()
                     .background(MaterialTheme.colorScheme.background),
         ) {
-            LazyColumn(modifier = Modifier.padding(top = 16.dp)) {
+            LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {
                 itemsIndexed(itemList) { index, item ->
                     Column {
                         LocationItem(

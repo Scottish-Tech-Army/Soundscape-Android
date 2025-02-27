@@ -34,11 +34,12 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun NavigatingScreen(
@@ -46,21 +47,21 @@ fun NavigatingScreen(
     modifier: Modifier = Modifier,
     viewModel: PermissionsViewModel = viewModel()
 ) {
-    var permissionsToRequest : Array<String>
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        permissionsToRequest = arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-            Manifest.permission.ACTIVITY_RECOGNITION,
-            Manifest.permission.POST_NOTIFICATIONS
-        )
-    } else {
-            permissionsToRequest = arrayOf(
+    val permissionsToRequest : Array<String> =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                Manifest.permission.ACTIVITY_RECOGNITION,
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+        } else {
+            arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                 Manifest.permission.ACTIVITY_RECOGNITION,
             )
-    }
+        }
     val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
         onResult = {
@@ -90,7 +91,7 @@ fun Navigating(
     BoxWithGradientBackground(modifier = modifier) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 30.dp, vertical = 30.dp)
+                .padding(horizontal = spacing.large, vertical = spacing.large)
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .verticalScroll(rememberScrollState()),
@@ -107,25 +108,25 @@ fun Navigating(
                     heading()
                 },
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(id = R.string.first_launch_permissions_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
 
             Column(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(5.dp))
+                    .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
                     .background(Color.Black.copy(alpha = 0.4f))
             )
             {
                 Row(
                     modifier = Modifier
-                        .padding(20.dp)
+                        .mediumPadding()
                         .fillMaxWidth(),
                 )
                 {
@@ -134,7 +135,7 @@ fun Navigating(
                         contentDescription = null,
                         tint = Color.White
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
                         modifier = Modifier.semantics(mergeDescendants = true) {},
                     ) {
@@ -154,7 +155,7 @@ fun Navigating(
                 if (Build.VERSION.SDK_INT >= 33){
                     Row(
                         modifier = Modifier
-                            .padding(horizontal = 20.dp)
+                            .mediumPadding()
                             .fillMaxWidth(),
                     )
                     {
@@ -163,7 +164,7 @@ fun Navigating(
                             contentDescription = null,
                             tint = Color.White
                         )
-                        Spacer(modifier = Modifier.width(10.dp))
+                        Spacer(modifier = Modifier.width(spacing.extraSmall))
                         Column(
                             modifier = Modifier.semantics(mergeDescendants = true) {},
                         ) {
@@ -186,7 +187,7 @@ fun Navigating(
 
                 Row(
                     modifier = Modifier
-                        .padding(20.dp)
+                        .mediumPadding()
                         .fillMaxWidth(),
                 )
                 {
@@ -196,7 +197,7 @@ fun Navigating(
                         contentDescription = null,
                         tint = Color.White
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
                         modifier = Modifier.semantics(mergeDescendants = true) {},
                     ) {
@@ -218,9 +219,9 @@ fun Navigating(
                 }
             }
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(spacing.large))
 
-            Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+            Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
                     // just bodging this at the moment as having problems with rationales
