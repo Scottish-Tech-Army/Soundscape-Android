@@ -158,29 +158,27 @@ fun RouteDetailsScreen(
                             Column {
                                 Text(
                                     text = uiState.route.name,
-                                    style = MaterialTheme.typography.headlineLarge,
-                                    fontWeight = FontWeight.Bold,
+                                    style = MaterialTheme.typography.headlineMedium,
                                     modifier = Modifier.padding(bottom = spacing.extraSmall)
                                 )
                                 if(uiState.route.description.isNotEmpty()) {
                                     Text(
                                         text = uiState.route.description,
-                                        style = MaterialTheme.typography.bodyLarge,
-                                        fontWeight = FontWeight.Bold,
+                                        style = MaterialTheme.typography.bodyMedium,
                                     )
                                 }
                             }
                             // Display additional route details if necessary
                         }
-                        Column {
+                        Column(modifier = Modifier.smallPadding()) {
                             if(thisRoutePlaying) {
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.Stop,
-                                    iconModifier = Modifier.size(spacing.targetSize),
+                                    iconModifier = Modifier.size(spacing.icon).smallPadding(),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_stop_route),
-                                    fontSize = 28.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold,
                                     onClick = {
                                         stopRoute()
@@ -191,10 +189,10 @@ fun RouteDetailsScreen(
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.PlayArrow,
-                                    iconModifier = Modifier.size(spacing.targetSize),
+                                    iconModifier = Modifier.size(spacing.icon),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_start_route),
-                                    fontSize = 28.sp,
+                                    fontSize = 24.sp,
                                     fontWeight = FontWeight.Bold,
                                     onClick = {
                                         startRoute(uiState.route.objectId)
@@ -210,19 +208,19 @@ fun RouteDetailsScreen(
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Edit,
-                                iconModifier = Modifier.size(spacing.targetSize),
+                                iconModifier = Modifier.size(spacing.icon),
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 iconText = stringResource(R.string.route_detail_action_edit),
-                                fontSize = 28.sp,
+                                fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold,
                                 onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId.toHexString()}") })
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
-                                iconModifier = Modifier.size(spacing.targetSize),
+                                iconModifier = Modifier.size(spacing.icon),
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 iconText = stringResource(R.string.share_title),
-                                fontSize = 28.sp,
+                                fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold,
                                 onClick = { /*TODO*/ })
                         }
@@ -237,7 +235,7 @@ fun RouteDetailsScreen(
                             userLocation = userLocation,
                             mapViewRotation = 0.0F,
                             userSymbolRotation = heading,
-                            modifier = modifier.fillMaxWidth().weight(1f)
+                            modifier = modifier.fillMaxWidth().weight(1f).smallPadding()
                         )
                         Spacer(modifier = Modifier.size(spacing.medium))
 
@@ -253,8 +251,8 @@ fun RouteDetailsScreen(
                                         location = marker.location?.location() ?: LngLatAlt(),
                                     ),
                                     modifier = Modifier
-                                        .padding(spacing.extraSmall)
-                                        .background(MaterialTheme.colorScheme.primary),
+                                        .background(MaterialTheme.colorScheme.primary)
+                                        .smallPadding(),
                                     decoration = LocationItemDecoration(
                                         location = false,
                                         index = index,

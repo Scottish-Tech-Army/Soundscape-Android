@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedi
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -49,12 +50,14 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
@@ -325,16 +328,21 @@ fun AddAndEditRouteScreen(
                                     .padding(top = spacing.medium),
                             )
                         } else {
-                            LazyColumn(state = lazyListState) {
+                            LazyColumn(
+                                state = lazyListState,
+                                verticalArrangement = Arrangement.spacedBy(spacing.tiny),
+                            ) {
                                 itemsIndexed(routeMembers, key = { _,item -> item.markerObjectId!!.toString() }) { index, item ->
                                     ReorderableItem(reorderableLazyListState, item.markerObjectId.toString()) { _ ->
                                         Row(modifier = Modifier
-                                            .extraSmallPadding()
                                             .background(MaterialTheme.colorScheme.primary)
                                         ) {
                                             LocationItem(
                                                 item = item,
-                                                modifier = Modifier.weight(1f),
+                                                modifier = Modifier
+                                                    .weight(1f)
+                                                    .smallPadding()
+                                                    .fillMaxWidth(),
                                                 decoration = LocationItemDecoration(
                                                     index = index
                                                 ),
@@ -395,7 +403,9 @@ fun EditRouteScreenPreview() {
             routeObjectId = ObjectId(),
             navController = rememberNavController(),
             modifier = Modifier,
-            uiState = AddAndEditRouteUiState(),
+            uiState = AddAndEditRouteUiState(
+                routeMembers = previewLocationList
+            ),
             editRoute = true,
             onClearErrorMessage = {},
             onResetDoneAction = {},

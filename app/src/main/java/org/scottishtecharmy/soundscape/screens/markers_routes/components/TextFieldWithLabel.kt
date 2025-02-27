@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -64,7 +63,7 @@ fun TextFieldWithLabelPreview() {
             label = "Name",
             value = textValue,
             onValueChange = { textValue = it },
-            textStyle = TextStyle(fontSize = 18.sp),
+            textStyle = MaterialTheme.typography.bodyLarge,
             shape = RoundedCornerShape(spacing.extraSmall),
             focusedBgColor = MaterialTheme.colorScheme.onPrimary,
             unfocusedBgColor = MaterialTheme.colorScheme.onPrimary,

@@ -16,7 +16,7 @@ import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -55,8 +55,8 @@ fun AddWaypointsList(
             LocationItem(
                 item = locationDescription,
                 modifier = Modifier
-                    .extraSmallPadding()
                     .background(MaterialTheme.colorScheme.primary)
+                    .smallPadding()
                     .fillMaxWidth(),
                 decoration = LocationItemDecoration(
                     location = false,
