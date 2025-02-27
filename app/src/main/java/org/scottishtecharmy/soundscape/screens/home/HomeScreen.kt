@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -50,20 +51,20 @@ class Navigator {
 
 // To reduce the number of viewmodel functions passed around, use these data classes instead. They
 // still provide insulation from the viewmodel so that they can be used in Preview.
-data class BottomButtonFunctions(val viewModel: HomeViewModel? = null) {
+data class BottomButtonFunctions(val viewModel: HomeViewModel?) {
     val myLocation = { viewModel?.myLocation() }
     val aheadOfMe = { viewModel?.aheadOfMe() }
     val aroundMe = { viewModel?.whatsAroundMe() }
     val nearbyMarkers = { viewModel?.nearbyMarkers() }
 }
 
-data class RouteFunctions(val viewModel: HomeViewModel? = null) {
+data class RouteFunctions(val viewModel: HomeViewModel?) {
     val skipPrevious = { viewModel?.routeSkipPrevious() }
     val skipNext = { viewModel?.routeSkipNext() }
     val mute = { viewModel?.routeMute() }
 }
 
-data class StreetPreviewFunctions(val viewModel: HomeViewModel? = null) {
+data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {
     val go = { viewModel?.streetPreviewGo() }
     val exit = { viewModel?.streetPreviewExit() }
 }
@@ -76,6 +77,9 @@ fun HomeScreen(
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
     val searchText = viewModel.searchText.collectAsStateWithLifecycle()
+    val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
+    val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
+    val bottomButtonFunctions = remember(viewModel) { BottomButtonFunctions(viewModel) }
 
     NavHost(
         navController = navController,
@@ -93,7 +97,7 @@ fun HomeScreen(
                     navController.navigate(generateLocationDetailsRoute(ld))
                     true
                 },
-                bottomButtonFunctions = BottomButtonFunctions(viewModel),
+                bottomButtonFunctions = bottomButtonFunctions,
                 getCurrentLocationDescription = {
                     if(state.value.location != null) {
                         val location = LngLatAlt(
@@ -110,8 +114,8 @@ fun HomeScreen(
                 onSearchTextChange = viewModel::onSearchTextChange,
                 rateSoundscape = rateSoundscape,
                 shareLocation = { viewModel.shareLocation(context) },
-                routeFunctions = RouteFunctions(),
-                streetPreviewFunctions = StreetPreviewFunctions(viewModel),
+                routeFunctions = routeFunctions,
+                streetPreviewFunctions = streetPreviewFunctions,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
