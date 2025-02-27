@@ -25,6 +25,7 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.ui.theme.Foreground2
+import org.scottishtecharmy.soundscape.ui.theme.OnBackground
 import org.scottishtecharmy.soundscape.ui.theme.OnSurface
 import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -63,7 +64,7 @@ fun SleepScreen(navController: NavHostController,
             Text(
                 text = stringResource(R.string.sleep_sleeping_message),
                 style = MaterialTheme.typography.bodyMedium,
-                color = OnSurface,
+                color = MaterialTheme.colorScheme.onPrimary,
                 modifier = modifier.largePadding()
             )
         }
@@ -79,7 +80,7 @@ fun SleepScreen(navController: NavHostController,
                     text = stringResource(R.string.sleep_wake_up_now),
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.titleMedium,
-                    color = OnSurface,
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
         }

@@ -20,7 +20,6 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -45,7 +44,6 @@ import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
-import org.scottishtecharmy.soundscape.ui.theme.OnPrimary
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 
@@ -161,7 +159,7 @@ fun HomeTopAppBar(
                 Icon(
                     imageVector = Icons.Rounded.Menu,
                     contentDescription = stringResource(R.string.ui_menu),
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.semantics { heading() },
                 )
             }
@@ -177,7 +175,7 @@ fun HomeTopAppBar(
                     .semantics { onClick(label = sleepHint, action = { false }) }
             ) {
                 Icon(Icons.Rounded.Snooze,
-                    tint = OnPrimary,
+                    tint = MaterialTheme.colorScheme.onPrimary,
                     contentDescription = stringResource(R.string.sleep_sleep))
             }
         },

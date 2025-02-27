@@ -175,7 +175,7 @@ fun RouteDetailsScreen(
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.Stop,
-                                    iconModifier = Modifier.size(spacing.icon).smallPadding(),
+                                    iconModifier = Modifier.size(spacing.icon),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_stop_route),
                                     fontSize = 24.sp,

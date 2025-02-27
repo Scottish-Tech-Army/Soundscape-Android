@@ -23,7 +23,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -140,7 +139,7 @@ fun AudioBeacons(
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
                     .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.onBackground)
             ) {
                 items(beacons) { beacon ->
                     AudioBeaconItem(
