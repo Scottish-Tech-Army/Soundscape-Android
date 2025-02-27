@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -29,7 +30,9 @@ fun PlacesNearbyList(
             LocationItem(
                 item = locationDescription,
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primary),
+                    .background(MaterialTheme.colorScheme.primary)
+                    .smallPadding()
+                    .fillMaxWidth(),
                 decoration = LocationItemDecoration(
                     location = true,
                     details = EnabledFunction(

@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -20,9 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -79,8 +78,7 @@ fun LocationItem(
         } else if (decoration.index != -1) {
             Text(
                 text = (decoration.index + 1).toString(),
-                fontWeight = FontWeight(700),
-                fontSize = 22.sp,
+                style = MaterialTheme.typography.titleLarge,
                 color = Color.White,
                 modifier = Modifier.width(spacing.targetSize).align(Alignment.CenterVertically)
             )
@@ -91,8 +89,7 @@ fun LocationItem(
             item.name?.let {
                 Text(
                     text = it,
-                    fontWeight = FontWeight(700),
-                    fontSize = 22.sp,
+                    style = MaterialTheme.typography.titleLarge,
                     color = Color.White,
                 )
             }
@@ -100,15 +97,13 @@ fun LocationItem(
                 Text(
                     text = distanceString,
                     color = Foreground2,
-                    fontWeight = FontWeight(450),
-                    fontSize = 12.sp,
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
             item.fullAddress?.let {
                 Text(
                     text = it,
-                    fontWeight = FontWeight(400),
-                    fontSize = 18.sp,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = PaleBlue,
                 )
             }
