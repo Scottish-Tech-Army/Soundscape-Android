@@ -1,10 +1,13 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -100,6 +103,7 @@ fun SaveAndEditMarkerDialog(
                     .fillMaxSize()
                     .padding(padding)
                     .padding(8.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 Text(
                     modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
@@ -139,7 +143,10 @@ fun SaveAndEditMarkerDialog(
                     userLocation = location ?: LngLatAlt(),
                     userSymbolRotation = heading,
                     routeData = null,
-                    onMapLongClick = { false }
+                    onMapLongClick = { false },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
                 )
             }
         }

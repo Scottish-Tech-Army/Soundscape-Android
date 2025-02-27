@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -128,7 +127,7 @@ fun LocationDetails(
             dialogState)
     } else {
         Column(
-            modifier = modifier.fillMaxHeight(),
+            modifier = modifier.fillMaxHeight()
         ) {
             CustomAppBar(
                 title = stringResource(R.string.location_detail_title_default),
@@ -137,13 +136,14 @@ fun LocationDetails(
             Column(
                 modifier =
                 Modifier
-                    .padding(horizontal = 15.dp, vertical = 20.dp)
+                    .padding(horizontal = 15.dp, vertical = 10.dp)
                     .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 LocationDescriptionTextsSection(
                     locationDescription = description.value,
-                    userLocation = location)
+                    userLocation = location
+                )
                 HorizontalDivider()
                 LocationDescriptionButtonsSection(
                     createBeacon = createBeacon,
@@ -152,36 +152,39 @@ fun LocationDetails(
                     onNavigateUp = { navController.popBackStack() },
                     dialogState = dialogState
                 )
-            }
 
-            MapContainerLibre(
-                beaconLocation = description.value.location,
-                allowScrolling = true,
-                onMapLongClick = { latLong ->
-                    val clickLocation = fromLatLng(latLong)
-                    val ld = getLocationDescription(clickLocation)
+                MapContainerLibre(
+                    beaconLocation = description.value.location,
+                    allowScrolling = true,
+                    onMapLongClick = { latLong ->
+                        val clickLocation = fromLatLng(latLong)
+                        val ld = getLocationDescription(clickLocation)
 
-                    // This effectively replaces the current screen with the new one
-                    navController.navigate(generateLocationDetailsRoute(ld)) {
-                        println("entry: ${navController.currentBackStackEntry?.destination?.route}")
-                        popUpTo(navController.currentBackStackEntry?.destination?.route ?: return@navigate) {
-                            inclusive = true
+                        // This effectively replaces the current screen with the new one
+                        navController.navigate(generateLocationDetailsRoute(ld)) {
+                            println("entry: ${navController.currentBackStackEntry?.destination?.route}")
+                            popUpTo(
+                                navController.currentBackStackEntry?.destination?.route
+                                    ?: return@navigate
+                            ) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true // Prevents multiple instances of Home
                         }
-                        launchSingleTop = true // Prevents multiple instances of Home
-                    }
-                    true
-                },
-                // Center on the beacon
-                mapCenter = description.value.location,
-                userLocation = location ?: LngLatAlt(),
-                mapViewRotation = 0.0F,
-                userSymbolRotation = heading,
-                routeData = null,
-                modifier =
-                modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.1F)
-            )
+                        true
+                    },
+                    // Center on the beacon
+                    mapCenter = description.value.location,
+                    userLocation = location ?: LngLatAlt(),
+                    mapViewRotation = 0.0F,
+                    userSymbolRotation = heading,
+                    routeData = null,
+                    modifier =
+                    modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                )
+            }
         }
     }
 }
@@ -195,7 +198,7 @@ private fun LocationDescriptionButtonsSection(
     dialogState: MutableState<Boolean>
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(0.dp),
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
@@ -245,7 +248,7 @@ private fun LocationDescriptionTextsSection(
     }
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(20.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         locationDescription.name?.let {
             Text(
@@ -300,8 +303,7 @@ fun IconWithTextButton(
     TextButton(
         modifier =
             Modifier
-                .fillMaxWidth()
-                .height(50.dp),
+                .fillMaxWidth(),
         onClick = {
             action()
         },

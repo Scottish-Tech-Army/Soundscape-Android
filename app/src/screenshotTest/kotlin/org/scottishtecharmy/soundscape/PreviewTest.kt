@@ -6,8 +6,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.screens.home.home.FaqHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomeHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
+import org.scottishtecharmy.soundscape.screens.home.home.HomeRoutePreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.EditRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.NewRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPopulatedPreview
@@ -120,7 +120,16 @@ class HomePreviewTestClass {
             HomePreview()
         }
     }
+
+    @CustomPreviews
+    @Composable
+    fun HomeRoutePreviewTest() {
+        SoundscapeTheme {
+            HomeRoutePreview()
+        }
+    }
 }
+
 
 class SettingsPreviewTestClass {
     @CustomPreviews

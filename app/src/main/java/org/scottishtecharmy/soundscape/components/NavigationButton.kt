@@ -1,9 +1,8 @@
 package org.scottishtecharmy.soundscape.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -20,9 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun NavigationButton(
@@ -39,40 +40,40 @@ fun NavigationButton(
             .padding(horizontal = horizontalPadding),
         shape = RoundedCornerShape(0.dp),
     ) {
-        Row(
+        Row(verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 10.dp, vertical = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .padding(horizontal = 10.dp, vertical = 4.dp),
         ) {
             if (icon != null) {
-                Box {
-                    Icon(
-                        icon,
-                        null,
-                        tint = Color.White
-                    )
-                }
+                Icon(
+                    icon,
+                    null,
+                    tint = Color.White
+                )
                 Spacer(modifier = Modifier.width(12.dp))
             }
-            Box(
-                Modifier.weight(6f)
-            ) {
-                Text(
-                    text, fontSize = 16.sp, fontWeight = FontWeight(400),
-                    textAlign = TextAlign.Start
-                )
-            }
-            Box(
-                Modifier.weight(1f)
-            ) {
-                Icon(
-                    Icons.Rounded.ChevronRight,
-                    null,
-                    tint = Color.White,
-                    modifier = Modifier.align(Alignment.CenterEnd)
-                )
-            }
+            Text(
+                text,
+                fontSize = 16.sp,
+                fontWeight = FontWeight(400),
+                textAlign = TextAlign.Start,
+                modifier = Modifier.weight(1f)
+            )
+            Icon(
+                Icons.Rounded.ChevronRight,
+                null,
+                tint = Color.White,
+                modifier = Modifier.defaultMinSize(40.dp)
+            )
         }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewNavigationButton() {
+    SoundscapeTheme {
+        NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
     }
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -13,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PlayArrow
@@ -143,6 +146,7 @@ fun RouteDetailsScreen(
                             .fillMaxSize()
                             .background(MaterialTheme.colorScheme.background)
                             .padding(8.dp)
+                            .verticalScroll(rememberScrollState())
                     ) {
                         Row(
                             modifier = Modifier
@@ -222,28 +226,19 @@ fun RouteDetailsScreen(
                                 fontWeight = FontWeight.Bold,
                                 onClick = { /*TODO*/ })
                         }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .weight(1f),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            // Small map showing first route point
-                            MapContainerLibre(
-                                beaconLocation = null,
-                                routeData = uiState.route,
-                                allowScrolling = true,
-                                onMapLongClick = { _ -> false },
-                                // Center on the beacon
-                                mapCenter = location,
-                                userLocation = userLocation,
-                                mapViewRotation = 0.0F,
-                                userSymbolRotation = heading,
-                                modifier = modifier.fillMaxWidth()
-                            )
-                        }
+                        // Small map showing first route point
+                        MapContainerLibre(
+                            beaconLocation = null,
+                            routeData = uiState.route,
+                            allowScrolling = true,
+                            onMapLongClick = { _ -> false },
+                            // Center on the beacon
+                            mapCenter = location,
+                            userLocation = userLocation,
+                            mapViewRotation = 0.0F,
+                            userSymbolRotation = heading,
+                            modifier = modifier.fillMaxWidth().aspectRatio(1f)
+                        )
                         // List of all route points
                         LazyColumn(
                             verticalArrangement = Arrangement.spacedBy(2.dp),

@@ -3,9 +3,12 @@ package org.scottishtecharmy.soundscape.screens.home.home
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeMute
 import androidx.compose.material.icons.filled.Info
@@ -61,67 +64,64 @@ fun HomeContent(
     val currentLocationHint = stringResource(R.string.search_button_current_location_accessibility_hint)
 
     Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier.verticalScroll(rememberScrollState()),
     ) {
         if(streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
             StreetPreview(streetPreviewState, heading, streetPreviewFunctions)
         } else {
             searchBar()
 
-            Column(
-                verticalArrangement = Arrangement.spacedBy((1).dp),
-            ) {
-                // Places Nearby
-                NavigationButton(
-                    onClick = {
-                        onNavigate(HomeRoutes.PlacesNearby.route)
-                    },
-                    text = stringResource(R.string.search_nearby_screen_title),
-                    horizontalPadding = 8.dp,
-                    modifier = Modifier.semantics {
-                        heading()
-                        onClick(label = placesNearbyHint, action = { false })
-                    },
-                )
-                // Markers and routes
-                NavigationButton(
-                    onClick = {
-                        onNavigate(HomeRoutes.MarkersAndRoutes.route)
-                    },
-                    text = stringResource(R.string.search_view_markers),
-                    horizontalPadding = 8.dp,
-                    modifier = Modifier
-                        .semantics { onClick(label = markersHint, action = { false }) }
-                )
-                // Current location
-                NavigationButton(
-                    onClick = {
-                        if (location != null) {
-                            val ld = getCurrentLocationDescription()
-                            onNavigate(generateLocationDetailsRoute(ld))
-                        }
-                    },
-                    text = stringResource(R.string.search_use_current_location),
-                    horizontalPadding = 8.dp,
-                    modifier = Modifier
-                        .semantics { onClick(label = currentLocationHint, action = { false }) }
-                )
-            }
+            // Places Nearby
+            NavigationButton(
+                onClick = {
+                    onNavigate(HomeRoutes.PlacesNearby.route)
+                },
+                text = stringResource(R.string.search_nearby_screen_title),
+                horizontalPadding = 8.dp,
+                modifier = Modifier.semantics {
+                    heading()
+                    onClick(label = placesNearbyHint, action = { false })
+                },
+            )
+            // Markers and routes
+            NavigationButton(
+                onClick = {
+                    onNavigate(HomeRoutes.MarkersAndRoutes.route)
+                },
+                text = stringResource(R.string.search_view_markers),
+                horizontalPadding = 8.dp,
+                modifier = Modifier
+                    .semantics { onClick(label = markersHint, action = { false }) }
+            )
+            // Current location
+            NavigationButton(
+                onClick = {
+                    if (location != null) {
+                        val ld = getCurrentLocationDescription()
+                        onNavigate(generateLocationDetailsRoute(ld))
+                    }
+                },
+                text = stringResource(R.string.search_use_current_location),
+                horizontalPadding = 8.dp,
+                modifier = Modifier
+                    .semantics { onClick(label = currentLocationHint, action = { false }) }
+            )
         }
         if (location != null) {
             if(routePlayerState.routeData != null) {
-                Card(modifier = Modifier.padding(8.dp).weight(1F)) {
-                    Column {
+                Card(modifier = Modifier.padding(8.dp)) {
+//                    Column {
                         Row(modifier = Modifier.height(40.dp)) {
                             Column {
                                 Text(
                                     text = "${routePlayerState.routeData.name} - ${routePlayerState.currentWaypoint + 1}/${routePlayerState.routeData.waypoints.size}",
-                                    style = MaterialTheme.typography.bodyMedium,
+                                    style = MaterialTheme.typography.labelLarge,
+                                    modifier = Modifier.padding(8.dp)
                                 )
                             }
                         }
-                        Row(modifier = Modifier.weight(1F)) {
+                        Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
                             MapContainerLibre(
                                 beaconLocation = beaconLocation,
                                 routeData = routePlayerState.routeData,
@@ -133,7 +133,7 @@ fun HomeContent(
                                 onMapLongClick = onMapLongClick,
                             )
                         }
-                        Row(modifier = Modifier.fillMaxWidth().height(40.dp),
+                        Row(modifier = Modifier.fillMaxWidth().height(60.dp).padding(3.dp),
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = androidx.compose.ui.Alignment.Bottom) {
                             Button(onClick = { routeFunctions.skipPrevious() })
@@ -173,7 +173,7 @@ fun HomeContent(
                                     contentDescription = "",
                                 )
                             }
-                        }
+//                        }
                     }
                 }
             } else  {
@@ -186,6 +186,9 @@ fun HomeContent(
                     userLocation = location,
                     userSymbolRotation = heading,
                     onMapLongClick = onMapLongClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
                 )
             }
         }
