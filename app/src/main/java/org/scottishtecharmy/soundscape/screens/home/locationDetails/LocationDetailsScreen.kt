@@ -182,7 +182,7 @@ fun LocationDetails(
                     modifier =
                     modifier
                         .fillMaxWidth()
-                        .aspectRatio(1f)
+                        .aspectRatio(1.7f)
                 )
             }
         }

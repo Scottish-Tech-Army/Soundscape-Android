@@ -42,6 +42,7 @@ import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
@@ -115,13 +116,11 @@ fun HomeContent(
                 Card(modifier = Modifier.smallPadding()) {
 //                    Column {
                         Row(modifier = Modifier.height(spacing.large)) {
-                            Column {
-                                Text(
-                                    text = "${routePlayerState.routeData.name} - ${routePlayerState.currentWaypoint + 1}/${routePlayerState.routeData.waypoints.size}",
-                                    style = MaterialTheme.typography.labelLarge,
-                                    modifier = Modifier.smallPadding()
-                                )
-                            }
+                            Text(
+                                text = "${routePlayerState.routeData.name} - ${routePlayerState.currentWaypoint + 1}/${routePlayerState.routeData.waypoints.size}",
+                                style = MaterialTheme.typography.labelLarge,
+                                modifier = Modifier.smallPadding()
+                            )
                         }
                         Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
                             MapContainerLibre(
@@ -133,9 +132,9 @@ fun HomeContent(
                                 userLocation = location,
                                 userSymbolRotation = heading,
                                 onMapLongClick = onMapLongClick,
-                            )
+                                modifier = Modifier.fillMaxWidth()                            )
                         }
-                        Row(modifier = Modifier.fillMaxWidth().height(spacing.targetSize).tinyPadding(),
+                        Row(modifier = Modifier.fillMaxWidth().height(spacing.targetSize).extraSmallPadding(),
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = androidx.compose.ui.Alignment.Bottom) {
                             Button(onClick = { routeFunctions.skipPrevious() })
