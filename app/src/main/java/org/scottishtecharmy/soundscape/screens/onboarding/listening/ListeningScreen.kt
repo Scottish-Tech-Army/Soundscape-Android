@@ -50,7 +50,10 @@ fun Listening(
     else
         Alignment.Top
 
-    BoxWithGradientBackground(modifier = modifier) {
+    BoxWithGradientBackground(
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surface
+    ) {
         Row(
             verticalAlignment = alignment,
             modifier = Modifier
@@ -78,7 +81,7 @@ fun Listening(
                     Text(
                         text = stringResource(R.string.first_launch_headphones_title),
                         style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.semantics {
                             heading()
@@ -88,14 +91,14 @@ fun Listening(
                     Text(
                         text = stringResource(R.string.first_launch_headphones_message_1),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
                     Text(
                         text = stringResource(R.string.first_launch_headphones_message_2),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(spacing.extraLarge))

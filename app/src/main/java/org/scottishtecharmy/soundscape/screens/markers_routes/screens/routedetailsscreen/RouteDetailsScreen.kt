@@ -52,7 +52,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -175,7 +174,7 @@ fun RouteDetailsScreen(
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.Stop,
-                                    iconModifier = Modifier.size(spacing.icon),
+                                    iconModifier = Modifier.size(spacing.targetSize),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_stop_route),
                                     fontSize = 24.sp,
@@ -189,7 +188,7 @@ fun RouteDetailsScreen(
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.PlayArrow,
-                                    iconModifier = Modifier.size(spacing.icon),
+                                    iconModifier = Modifier.size(spacing.targetSize),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     iconText = stringResource(R.string.route_detail_action_start_route),
                                     fontSize = 24.sp,
@@ -208,7 +207,7 @@ fun RouteDetailsScreen(
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Edit,
-                                iconModifier = Modifier.size(spacing.icon),
+                                iconModifier = Modifier.size(spacing.targetSize),
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 iconText = stringResource(R.string.route_detail_action_edit),
                                 fontSize = 24.sp,
@@ -217,7 +216,7 @@ fun RouteDetailsScreen(
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
-                                iconModifier = Modifier.size(spacing.icon),
+                                iconModifier = Modifier.size(spacing.targetSize),
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 iconText = stringResource(R.string.share_title),
                                 fontSize = 24.sp,
@@ -292,61 +291,55 @@ fun RoutesDetailsPopulatedPreview() {
     routeData.waypoints.add(MarkerData("Marker 7", null, "Description 7"))
     routeData.waypoints.add(MarkerData("Marker 8", null, "Description 8"))
 
-    SoundscapeTheme {
-        RouteDetailsScreen(
-            navController = rememberNavController(),
-            routeId = ObjectId(),
-            modifier = Modifier,
-            uiState = RouteDetailsUiState(
-                route = routeData
-            ),
-            getRouteById = {},
-            startRoute = {},
-            stopRoute = {},
-            clearErrorMessage = {},
-            userLocation = null,
-            heading = 0.0F,
-            routePlayerState = RoutePlayerState()
-        )
-    }
+    RouteDetailsScreen(
+        navController = rememberNavController(),
+        routeId = ObjectId(),
+        modifier = Modifier,
+        uiState = RouteDetailsUiState(
+            route = routeData
+        ),
+        getRouteById = {},
+        startRoute = {},
+        stopRoute = {},
+        clearErrorMessage = {},
+        userLocation = null,
+        heading = 0.0F,
+        routePlayerState = RoutePlayerState()
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesDetailsLoadingPreview() {
-    SoundscapeTheme {
-        RouteDetailsScreen(
-            navController = rememberNavController(),
-            routeId = ObjectId(),
-            uiState = RouteDetailsUiState(isLoading = true),
-            modifier = Modifier,
-            getRouteById = {},
-            startRoute = {},
-            stopRoute = {},
-            clearErrorMessage = {},
-            userLocation = null,
-            heading = 0.0F,
-            routePlayerState = RoutePlayerState()
-        )
-    }
+    RouteDetailsScreen(
+        navController = rememberNavController(),
+        routeId = ObjectId(),
+        uiState = RouteDetailsUiState(isLoading = true),
+        modifier = Modifier,
+        getRouteById = {},
+        startRoute = {},
+        stopRoute = {},
+        clearErrorMessage = {},
+        userLocation = null,
+        heading = 0.0F,
+        routePlayerState = RoutePlayerState()
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesDetailsEmptyPreview() {
-    SoundscapeTheme {
-        RouteDetailsScreen(
-            navController = rememberNavController(),
-            routeId = ObjectId(),
-            modifier = Modifier,
-            uiState = RouteDetailsUiState(),
-            getRouteById = {},
-            startRoute = {},
-            stopRoute = {},
-            clearErrorMessage = {},
-            userLocation = null,
-            heading = 0.0F,
-            routePlayerState = RoutePlayerState()
-        )
-    }
+    RouteDetailsScreen(
+        navController = rememberNavController(),
+        routeId = ObjectId(),
+        modifier = Modifier,
+        uiState = RouteDetailsUiState(),
+        getRouteById = {},
+        startRoute = {},
+        stopRoute = {},
+        clearErrorMessage = {},
+        userLocation = null,
+        heading = 0.0F,
+        routePlayerState = RoutePlayerState()
+    )
 }

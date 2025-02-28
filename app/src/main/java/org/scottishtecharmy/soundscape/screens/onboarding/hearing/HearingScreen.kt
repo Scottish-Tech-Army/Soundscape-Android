@@ -24,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -79,7 +78,10 @@ fun Hearing(
     else
         Alignment.Top
 
-    BoxWithGradientBackground(modifier = modifier) {
+    BoxWithGradientBackground(
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surface
+    ) {
         Row(
             verticalAlignment = alignment,
             modifier = Modifier
@@ -112,7 +114,7 @@ fun Hearing(
                     Text(
                         text = stringResource(R.string.first_launch_callouts_title),
                         style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().semantics {
                             heading()
@@ -122,7 +124,7 @@ fun Hearing(
                     Text(
                         text = stringResource(R.string.first_launch_callouts_message),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -130,7 +132,7 @@ fun Hearing(
                     Text(
                         text = stringResource(R.string.first_launch_callouts_listen),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
@@ -152,9 +154,8 @@ fun Hearing(
                             .fillMaxWidth(),
                         shape = RoundedCornerShape(spacing.tiny),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.Black.copy(
-                                alpha = 0.2f
-                            )
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                     )
                     {
@@ -163,11 +164,15 @@ fun Hearing(
                             horizontalArrangement = Arrangement.Start,
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            Icon(Icons.Rounded.PlayArrow, contentDescription = null)
+                            Icon(
+                                Icons.Rounded.PlayArrow,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
                             Spacer(modifier = Modifier.width(spacing.small))
                             Text(
                                 text = stringResource(R.string.first_launch_callouts_listen_accessibility_label),
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
                                 )
                         }
                     }

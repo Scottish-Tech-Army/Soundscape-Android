@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +14,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
@@ -55,7 +53,6 @@ fun MainSearchBar(
                     },
                 ),
         shape = RoundedCornerShape(spacing.small),
-        colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.surface),
         inputField = {
             SearchBarDefaults.InputField(
                 query = searchText,
@@ -70,7 +67,6 @@ fun MainSearchBar(
                             Icon(
                                 imageVector = Icons.Rounded.Search,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
 
@@ -82,13 +78,11 @@ fun MainSearchBar(
                                     Icons.AutoMirrored.Rounded.ArrowBack,
                                     contentDescription =
                                         stringResource(R.string.cancel_search_contentDescription),
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
                             }
                         }
                     }
                 },
-                colors = SearchBarDefaults.inputFieldColors(focusedTextColor = MaterialTheme.colorScheme.onSurface),
             )
         },
         expanded = isSearching,
@@ -104,7 +98,6 @@ fun MainSearchBar(
                                 columnCount = 1, // Single-column list
                             )
                     }.fillMaxSize()
-                    .background(MaterialTheme.colorScheme.background),
         ) {
             LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {
                 itemsIndexed(itemList) { index, item ->
@@ -133,7 +126,7 @@ fun MainSearchBar(
                                 },
                             userLocation = userLocation
                         )
-                        HorizontalDivider(color = MaterialTheme.colorScheme.onPrimary)
+                        HorizontalDivider()
                     }
                 }
             }

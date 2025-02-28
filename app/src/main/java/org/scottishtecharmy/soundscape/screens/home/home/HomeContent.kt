@@ -1,12 +1,12 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -16,7 +16,6 @@ import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -43,6 +42,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -118,12 +118,6 @@ fun HomeContent(
                 if (routePlayerState.routeData != null) {
                     Card(modifier = Modifier
                         .smallPadding(),
-                        colors = CardColors(
-                            contentColor = MaterialTheme.colorScheme.onPrimary,
-                            containerColor = MaterialTheme.colorScheme.primary,
-                            disabledContentColor = MaterialTheme.colorScheme.onPrimary,
-                            disabledContainerColor = MaterialTheme.colorScheme.primary,
-                        )
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(spacing.small)) {
                             Row {
@@ -143,11 +137,14 @@ fun HomeContent(
                                     userLocation = location,
                                     userSymbolRotation = heading,
                                     onMapLongClick = onMapLongClick,
-                                    modifier = Modifier.fillMaxWidth()
+                                    modifier = Modifier.fillMaxWidth().extraSmallPadding()
                                 )
                             }
                             Row(
-                                modifier = Modifier.fillMaxWidth().height(spacing.targetSize),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(spacing.targetSize)
+                                    .padding(bottom = spacing.extraSmall),
                                 horizontalArrangement = Arrangement.SpaceEvenly,
                                 verticalAlignment = androidx.compose.ui.Alignment.Bottom
                             ) {
@@ -156,7 +153,10 @@ fun HomeContent(
                                     Icon(
                                         modifier = Modifier,
                                         imageVector = Icons.Filled.SkipPrevious,
-                                        tint = if (routePlayerState.currentWaypoint == 0) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onPrimary,
+                                        tint = if (routePlayerState.currentWaypoint == 0)
+                                                   MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f)
+                                               else
+                                                   MaterialTheme.colorScheme.onPrimary,
                                         contentDescription = "",
                                     )
                                 }
@@ -165,7 +165,10 @@ fun HomeContent(
                                     Icon(
                                         modifier = Modifier,
                                         imageVector = Icons.Filled.SkipNext,
-                                        tint = if (routePlayerState.currentWaypoint < routePlayerState.routeData.waypoints.size - 1) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+                                        tint = if (routePlayerState.currentWaypoint < routePlayerState.routeData.waypoints.size - 1)
+                                                   MaterialTheme.colorScheme.onPrimary
+                                               else
+                                                   MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f),
                                         contentDescription = "",
                                     )
                                 }
@@ -204,6 +207,7 @@ fun HomeContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f)
+                            .mediumPadding()
                     )
                 }
             }

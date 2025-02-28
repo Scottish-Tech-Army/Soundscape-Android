@@ -28,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -45,7 +44,8 @@ fun FinishScreen(
         Alignment.Top
 
     BoxWithGradientBackground(
-        modifier = modifier
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surface
     ) {
         Row(
             verticalAlignment = alignment,
@@ -77,7 +77,7 @@ fun FinishScreen(
                     Text(
                         text = stringResource(R.string.first_launch_prompt_title),
                         style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().semantics {
                             heading()
@@ -89,7 +89,7 @@ fun FinishScreen(
                     Text(
                         text = stringResource(R.string.first_launch_prompt_message),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -113,12 +113,10 @@ fun FinishScreen(
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
-private fun PreviewFinishScreen(){
-    SoundscapeTheme {
-        FinishScreen(
-            onFinish = {}
-        )
-    }
+fun PreviewFinishScreen(){
+    FinishScreen(
+        onFinish = {}
+    )
 }
 
 

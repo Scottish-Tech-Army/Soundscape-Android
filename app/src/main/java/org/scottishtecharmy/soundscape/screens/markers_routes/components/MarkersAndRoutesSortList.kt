@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +24,6 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -46,7 +46,8 @@ fun MarkersAndRoutesListSort(
                 //contentDescription = ""
                 stateDescription = sortOrderState
                 role = Role.Button
-            },
+            }
+            .background(color = MaterialTheme.colorScheme.secondaryContainer),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -58,6 +59,7 @@ fun MarkersAndRoutesListSort(
                 onValueChange = { onToggleSortOrder() }
             ),
             imageVector = Icons.Default.SwapVert,
+            tint = MaterialTheme.colorScheme.onSecondaryContainer,
             contentDescription = "" // TODO: Add ascending/descending hint
         )
 
@@ -68,6 +70,7 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
             modifier = Modifier.toggleable(
                 value = isSortByName,
                 role = Role.Button,
@@ -82,7 +85,7 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.routes_sort_by_name),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.surface,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
             modifier = Modifier.toggleable(
                 value = isSortByName,
                 role = Role.Button,
@@ -95,27 +98,23 @@ fun MarkersAndRoutesListSort(
 @Preview(showBackground = true)
 @Composable
 fun MarkersAndRoutesListSortByNamePreview() {
-    SoundscapeTheme {
-        // Preview with sorting by name
-        MarkersAndRoutesListSort(
-            isSortByName = true,
-            isAscending = true,
-            onToggleSortOrder = { /* Handle toggle */ },
-            onToggleSortByName = { /* Handle toggle */ }
-        )
-    }
+    // Preview with sorting by name
+    MarkersAndRoutesListSort(
+        isSortByName = true,
+        isAscending = true,
+        onToggleSortOrder = { /* Handle toggle */ },
+        onToggleSortByName = { /* Handle toggle */ }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MarkersAndRoutesListSortByDistancePreview() {
-    SoundscapeTheme {
-        // Preview with sorting by name
-        MarkersAndRoutesListSort(
-            isSortByName = false,
-            isAscending = true,
-            onToggleSortOrder = { /* Handle toggle */ },
-            onToggleSortByName = { /* Handle toggle */ }
-        )
-    }
+    // Preview with sorting by distance
+    MarkersAndRoutesListSort(
+        isSortByName = false,
+        isAscending = true,
+        onToggleSortOrder = { /* Handle toggle */ },
+        onToggleSortByName = { /* Handle toggle */ }
+    )
 }

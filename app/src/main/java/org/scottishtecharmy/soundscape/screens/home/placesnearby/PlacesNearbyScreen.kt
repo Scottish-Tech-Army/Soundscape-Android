@@ -13,10 +13,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Composable
 fun PlacesNearbyScreenVM(
@@ -66,31 +64,20 @@ fun PlacesNearbyScreen(
 @Preview(showBackground = true)
 @Composable
 fun PlacesNearbyPreview() {
-    SoundscapeTheme {
-        PlacesNearbyScreen(
-            homeNavController = rememberNavController(),
-            uiState =
-                PlacesNearbyUiState(
-                    locations =
-                        listOf(
-                            LocationDescription(
-                                "Waypoint 1",
-                                location = LngLatAlt(),
-                                "Street Blabla, Blabla City",
-                            ),
-                        ),
-                ),
-        )
-    }
+    PlacesNearbyScreen(
+        homeNavController = rememberNavController(),
+        uiState =
+            PlacesNearbyUiState(
+                locations = previewLocationList
+            ),
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MarkersScreenPreview() {
-    SoundscapeTheme {
-        PlacesNearbyScreen(
-            homeNavController = rememberNavController(),
-            uiState = PlacesNearbyUiState(),
-        )
-    }
+    PlacesNearbyScreen(
+        homeNavController = rememberNavController(),
+        uiState = PlacesNearbyUiState(),
+    )
 }

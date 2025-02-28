@@ -19,7 +19,6 @@ import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
@@ -33,7 +32,6 @@ fun SettingsPreview() {
     Settings({}, SettingsViewModel.SettingsUiState())
 }
 
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Settings(
@@ -43,9 +41,11 @@ fun Settings(
 )
 {
     val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
+    val backgroundColor = MaterialTheme.colorScheme.background
+    val textColor = MaterialTheme.colorScheme.onBackground
 
     ProvidePreferenceLocals {
-        LazyColumn (modifier = modifier.background(PurpleGradientDark)){
+        LazyColumn (modifier = modifier.background(backgroundColor)){
             stickyHeader {
                 Surface {
                     CustomAppBar(stringResource(R.string.general_alert_settings),
@@ -55,11 +55,11 @@ fun Settings(
                 }
             }
 
-            // TODO : Add strings translations and use them
             item {
                 Text(
                     text = stringResource(R.string.menu_manage_callouts),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = textColor,
+                    style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.semantics { heading() },
                 )
             }
@@ -69,7 +69,7 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.callouts_allow_callouts),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
             )
@@ -79,7 +79,7 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.callouts_places_and_landmarks),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
             )
@@ -88,7 +88,7 @@ fun Settings(
                 defaultValue = MainActivity.MOBILITY_DEFAULT,
                 title = {
                     Text(text = stringResource(R.string.callouts_mobility),
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = textColor
                     )
                 },
             )
@@ -98,7 +98,7 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.callouts_audio_beacon),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
             )
@@ -108,7 +108,7 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.preview_include_unnamed_roads_title),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
             )
@@ -116,9 +116,10 @@ fun Settings(
             item {
                 Text(
                     text = stringResource(R.string.menu_manage_audio),
-                    color = MaterialTheme.colorScheme.onBackground,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = textColor,
                     modifier = Modifier.semantics { heading() },
-                    )
+                )
             }
             listPreference(
                 key = MainActivity.BEACON_TYPE_KEY,
@@ -127,10 +128,10 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.beacon_settings_style),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
-                summary = { Text(text = it, color = MaterialTheme.colorScheme.onBackground) },
+                summary = { Text(text = it, color = textColor) },
             )
 
             listPreference(
@@ -140,10 +141,10 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.voice_voices),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
-                summary = { Text(text = it, color = MaterialTheme.colorScheme.onBackground) },
+                summary = { Text(text = it, color = textColor) },
             )
 
             sliderPreference(
@@ -152,12 +153,12 @@ fun Settings(
                 title = {
                     Text(
                         text = stringResource(R.string.voice_settings_speaking_rate),
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = textColor
                     )
                 },
                 valueRange = 0.5f..2.0f,
                 valueSteps = 10,
-                valueText = { Text(text = "%.1fx".format(it), color = MaterialTheme.colorScheme.onBackground) },
+                valueText = { Text(text = "%.1fx".format(it), color = textColor) },
             )
         }
     }

@@ -3,11 +3,18 @@ package org.scottishtecharmy.soundscape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.screens.home.PreviewDrawerContent
 import org.scottishtecharmy.soundscape.screens.home.home.FaqHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomeHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomePreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomeRoutePreview
+import org.scottishtecharmy.soundscape.screens.home.home.HomeSearchPreview
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenPreview
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.AddRouteScreenPreview
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsPreview
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyPreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddWaypointsScreenPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.EditRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.NewRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPopulatedPreview
@@ -19,7 +26,6 @@ import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguagePreview
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningPreview
-import org.scottishtecharmy.soundscape.screens.onboarding.welcome.PreviewWelcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Preview(name = "Dansk", locale = "da", group = "Language", showBackground = true, device = "id:small_phone")
@@ -50,73 +56,60 @@ annotation class DevicePreviews
 @DevicePreviews
 annotation class CustomPreviews
 
-class AudioBeaconsPreviewTestClass {
+/**
+ * This test is designed to spot theme issues where text or icons are set to the wrong color.In
+ * that case, the previews will have visible text or icons. To enable that test, set testTheme to
+ * true.
+ */
+const val testTheme = false
+class ThemeTestClass {
+
     @CustomPreviews
     @Composable
     fun AudioBeaconsPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             AudioBeaconPreview()
         }
     }
-}
 
-class FinishPreviewTestClass {
     @CustomPreviews
     @Composable
     fun FinishPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             FinishScreen(
                 onFinish = {}
             )
         }
     }
-}
 
-class HearingPreviewTestClass {
     @CustomPreviews
     @Composable
     fun HearingPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             HearingPreview()
         }
     }
-}
 
-class LanguagePreviewTestClass {
     @CustomPreviews
     @Composable
     fun LanguagePreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             LanguagePreview()
         }
     }
-}
 
-class ListeningPreviewTestClass {
     @CustomPreviews
     @Composable
     fun ListeningPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             ListeningPreview()
         }
     }
-}
 
-class WelcomePreviewTestClass {
-    @CustomPreviews
-    @Composable
-    fun WelcomePreviewTest() {
-        SoundscapeTheme {
-            PreviewWelcome()
-        }
-    }
-}
-
-class HomePreviewTestClass {
     @CustomPreviews
     @Composable
     fun HomePreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             HomePreview()
         }
     }
@@ -124,109 +117,135 @@ class HomePreviewTestClass {
     @CustomPreviews
     @Composable
     fun HomeRoutePreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             HomeRoutePreview()
         }
     }
-}
 
+    @CustomPreviews
+    @Composable
+    fun HomeSearchPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            HomeSearchPreview()
+        }
+    }
 
-class SettingsPreviewTestClass {
     @CustomPreviews
     @Composable
     fun SettingsPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             SettingsPreview()
         }
     }
-}
 
-//class MarkersAndRoutesPreviewTestClass {
-//    @CustomPreviews
-//    @Composable
-//    fun MarkersAndRoutesPreviewTest() {
-//        SoundscapeTheme {
-//            MarkersAndRoutesPreview()
-//        }
-//    }
-//}
-
-class RoutesPreviewTestClass {
     @CustomPreviews
     @Composable
     fun RoutesPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             RoutesScreenPreview()
         }
     }
-}
 
-class MarkersPreviewTestClass {
     @CustomPreviews
     @Composable
     fun MarkersPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             MarkersScreenPopulatedPreview()
         }
     }
-}
 
-class NewRouteScreenPreviewTestClass {
     @CustomPreviews
     @Composable
     fun NewRouteScreenPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             NewRouteScreenPreview()
         }
     }
-}
 
-class EditRouteScreenPreviewTestClass {
     @CustomPreviews
     @Composable
     fun EditRouteScreenPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             EditRouteScreenPreview()
         }
     }
-}
 
-class RouteDetailsPreviewTestClass {
     @CustomPreviews
     @Composable
     fun RouteDetailsPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             RoutesDetailsPopulatedPreview()
         }
     }
-}
 
-class RoutesScreenPopulatedPreviewTestClass {
     @CustomPreviews
     @Composable
     fun RoutesScreenPopulatedPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             RoutesScreenPopulatedPreview()
         }
     }
-}
 
-class HelpScreenPreviewTestClass {
     @CustomPreviews
     @Composable
     fun HelpScreenPreviewTest() {
-        SoundscapeTheme {
+        SoundscapeTheme(testTheme = testTheme) {
             HomeHelpPreview()
         }
     }
-}
-
-class FaqPreviewTestClass {
     @CustomPreviews
     @Composable
-    fun FaqPreviewTest() {
-        SoundscapeTheme {
+    fun FaqHelpPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
             FaqHelpPreview()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    fun SleepScreenPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SleepScreenPreview()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    fun LocationDetailsPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            LocationDetailsPreview()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    fun AddRouteScreenPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            AddRouteScreenPreview()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    fun PlacesNearbyPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            PlacesNearbyPreview()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    fun PreviewDrawerContentTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            PreviewDrawerContent()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    fun AddWaypointsScreenPopulatedPreviewText() {
+        SoundscapeTheme(testTheme = testTheme) {
+            AddWaypointsScreenPopulatedPreview()
         }
     }
 }

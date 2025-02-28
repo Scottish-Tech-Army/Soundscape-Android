@@ -32,7 +32,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -63,7 +62,7 @@ fun SaveAndEditMarkerDialog(
         },
         bottomBar = {
             Column(
-                modifier = Modifier
+                modifier = Modifier.smallPadding()
             ) {
                 if(objectId != null) {
                     CustomButton(
@@ -75,7 +74,7 @@ fun SaveAndEditMarkerDialog(
                             .fillMaxWidth()
                             .mediumPadding(),
                         buttonColor = MaterialTheme.colorScheme.errorContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
                         shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.markers_action_delete),
                         textStyle = MaterialTheme.typography.bodyLarge,
@@ -92,8 +91,8 @@ fun SaveAndEditMarkerDialog(
                         saveMarker(locationDescription)
                         dialogState.value = false
                     },
-                    buttonColor = MaterialTheme.colorScheme.onPrimary,
-                    contentColor = MaterialTheme.colorScheme.onSecondary,
+                    buttonColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
                     shape = RoundedCornerShape(spacing.small),
                     text = stringResource(R.string.general_alert_done),
                     textStyle = MaterialTheme.typography.bodyLarge,
@@ -113,7 +112,6 @@ fun SaveAndEditMarkerDialog(
                     modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
                     text = stringResource(R.string.markers_sort_button_sort_by_name),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.surfaceBright
                 )
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
@@ -128,7 +126,6 @@ fun SaveAndEditMarkerDialog(
                     modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
                     text = stringResource(R.string.markers_annotation),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.surfaceBright
                 )
                 CustomTextField(
                     modifier = Modifier.fillMaxWidth(),
@@ -153,6 +150,7 @@ fun SaveAndEditMarkerDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(1.7f)
+                        .smallPadding()
                 )
             }
         }
@@ -162,19 +160,18 @@ fun SaveAndEditMarkerDialog(
 @Preview(showBackground = true)
 @Composable
 fun AddRouteScreenPreview() {
-    SoundscapeTheme {
-        SaveAndEditMarkerDialog(
-            locationDescription = LocationDescription(
-                name = "Pizza hut",
-                location = LngLatAlt(),
-                fullAddress = "139 boulevard gambetta",
-            ),
-            location = null,
-            heading = 45.0F,
-            saveMarker = {},
-            deleteMarker = {},
-            modifier = Modifier,
-            dialogState = remember { mutableStateOf(false) }
-        )
-    }
+    SaveAndEditMarkerDialog(
+        locationDescription = LocationDescription(
+            name = "Pizza hut",
+            location = LngLatAlt(),
+            fullAddress = "139 boulevard gambetta",
+            markerObjectId = ObjectId()
+        ),
+        location = null,
+        heading = 45.0F,
+        saveMarker = {},
+        deleteMarker = {},
+        modifier = Modifier,
+        dialogState = remember { mutableStateOf(false) }
+    )
 }

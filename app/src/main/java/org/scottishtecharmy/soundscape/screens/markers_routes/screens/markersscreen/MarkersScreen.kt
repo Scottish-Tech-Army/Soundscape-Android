@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,8 +33,8 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
 
 @Composable
 fun MarkersScreenVM(
@@ -64,96 +65,112 @@ fun MarkersScreen(
 ) {
     Column(
         modifier =
-            Modifier.fillMaxSize(),
+        Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .tinyPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val context = LocalContext.current
+        Column(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.secondaryContainer),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            val context = LocalContext.current
 
-        // Display error message if it exists
-        LaunchedEffect(uiState.errorMessage) {
-            uiState.errorMessage?.let { message ->
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-                clearErrorMessage()
-            }
-        }
-
-        Box(modifier = Modifier.fillMaxSize()) {
-            // Display loading state
-            if (uiState.isLoading) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                ) {
-                    CircularProgressIndicator()
+            // Display error message if it exists
+            LaunchedEffect(uiState.errorMessage) {
+                uiState.errorMessage?.let { message ->
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                    clearErrorMessage()
                 }
-            } else {
-                Column(
-                    modifier =
+            }
+
+            Box(modifier = Modifier.fillMaxSize()) {
+                // Display loading state
+                if (uiState.isLoading) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else {
+                    Column(
+                        modifier =
                         Modifier
                             .fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    if (uiState.markers.isEmpty()) {
-                        Box(modifier = Modifier.padding(top = spacing.large)) {
-                            Icon(
-                                painter =
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        if (uiState.markers.isEmpty()) {
+                            Box(modifier = Modifier.padding(top = spacing.large)) {
+                                Icon(
+                                    painter =
                                     painterResource(
                                         id = R.drawable.ic_markers,
                                     ),
-                                tint = MaterialTheme.colorScheme.onBackground,
-                                contentDescription = null,
-                                modifier = Modifier.size(spacing.extraLarge),
-                            )
-                        }
-                        Box(modifier = Modifier.padding(top = spacing.small)) {
-                            Text(
-                                stringResource(R.string.markers_no_markers_title),
-                                style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onBackground,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                        Box(modifier = Modifier.padding(top = spacing.small)) {
-                            Text(
-                                stringResource(R.string.markers_no_markers_hint_1),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onBackground,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                        Box(modifier = Modifier.padding(top = spacing.small, bottom = spacing.large)) {
-                            Text(
-                                stringResource(R.string.markers_no_markers_hint_2),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onBackground,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                    } else {
-                        Row(
-                            modifier =
+                                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(spacing.extraLarge),
+                                )
+                            }
+                            Box(modifier = Modifier.padding(top = spacing.small)) {
+                                Text(
+                                    stringResource(R.string.markers_no_markers_title),
+                                    style = MaterialTheme.typography.titleLarge,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                            }
+                            Box(modifier = Modifier.padding(top = spacing.small)) {
+                                Text(
+                                    stringResource(R.string.markers_no_markers_hint_1),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.padding(
+                                    top = spacing.small,
+                                    bottom = spacing.large
+                                )
+                            ) {
+                                Text(
+                                    stringResource(R.string.markers_no_markers_hint_2),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                            }
+                        } else {
+                            Row(
+                                modifier =
                                 Modifier
                                     .fillMaxWidth()
                                     .padding(spacing.small),
-                            horizontalArrangement = Arrangement.Start,
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            MarkersAndRoutesListSort(
-                                isSortByName = uiState.isSortByName,
-                                isAscending = uiState.isSortAscending,
-                                onToggleSortOrder = onToggleSortOrder,
-                                onToggleSortByName = onToggleSortByName
+                                horizontalArrangement = Arrangement.Start,
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                MarkersAndRoutesListSort(
+                                    isSortByName = uiState.isSortByName,
+                                    isAscending = uiState.isSortAscending,
+                                    onToggleSortOrder = onToggleSortOrder,
+                                    onToggleSortByName = onToggleSortByName
+                                )
+                            }
+                            // Display the list of routes
+                            MarkersList(
+                                uiState = uiState,
+                                navController = homeNavController,
+                                userLocation = userLocation,
+                                modifier = Modifier.weight(1f)
                             )
                         }
-                        // Display the list of routes
-                        MarkersList(
-                            uiState = uiState,
-                            navController = homeNavController,
-                            userLocation = userLocation,
-                            modifier = Modifier.weight(1f)
-                        )
                     }
                 }
             }
@@ -164,32 +181,28 @@ fun MarkersScreen(
 @Preview(showBackground = true)
 @Composable
 fun MarkersScreenPopulatedPreview() {
-    SoundscapeTheme {
-        MarkersScreen(
-            homeNavController = rememberNavController(),
-            uiState =
-                MarkersUiState(
-                    markers = previewLocationList
-                ),
-            clearErrorMessage = {},
-            onToggleSortOrder = {},
-            onToggleSortByName = {},
-            userLocation = null
-        )
-    }
+    MarkersScreen(
+        homeNavController = rememberNavController(),
+        uiState =
+            MarkersUiState(
+                markers = previewLocationList
+            ),
+        clearErrorMessage = {},
+        onToggleSortOrder = {},
+        onToggleSortByName = {},
+        userLocation = null
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MarkersScreenPreview() {
-    SoundscapeTheme {
-        MarkersScreen(
-            homeNavController = rememberNavController(),
-            uiState = MarkersUiState(),
-            clearErrorMessage = {},
-            onToggleSortOrder = {},
-            onToggleSortByName = {},
-            userLocation = null
-        )
-    }
+    MarkersScreen(
+        homeNavController = rememberNavController(),
+        uiState = MarkersUiState(),
+        clearErrorMessage = {},
+        onToggleSortOrder = {},
+        onToggleSortByName = {},
+        userLocation = null
+    )
 }

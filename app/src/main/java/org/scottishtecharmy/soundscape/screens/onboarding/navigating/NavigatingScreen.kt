@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -88,7 +87,10 @@ fun Navigating(
     onContinue: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    BoxWithGradientBackground(modifier = modifier) {
+    BoxWithGradientBackground(
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surface
+    ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = spacing.large, vertical = spacing.large)
@@ -102,7 +104,7 @@ fun Navigating(
             Text(
                 text = stringResource(id = R.string.first_launch_permissions_title),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
@@ -112,7 +114,7 @@ fun Navigating(
             Text(
                 text = stringResource(id = R.string.first_launch_permissions_message),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.large))
@@ -121,7 +123,7 @@ fun Navigating(
                 modifier = Modifier
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .background(Color.Black.copy(alpha = 0.4f))
+                    .background(MaterialTheme.colorScheme.primaryContainer)
             )
             {
                 Row(
@@ -133,7 +135,7 @@ fun Navigating(
                     Icon(
                         Icons.Rounded.LocationOn,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
@@ -142,12 +144,12 @@ fun Navigating(
                         Text(
                             text = stringResource(R.string.first_launch_permissions_location),
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimary,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimary,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                     }
                 }
@@ -162,7 +164,7 @@ fun Navigating(
                         Icon(
                             Icons.Rounded.Notifications,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onBackground
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         Spacer(modifier = Modifier.width(spacing.extraSmall))
                         Column(
@@ -173,12 +175,12 @@ fun Navigating(
                                 // original iOS Soundscape didn't have this
                                 text = stringResource(R.string.first_launch_permissions_notification),
                                 style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
                             )
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
                             )
                         }
                     }
@@ -195,7 +197,7 @@ fun Navigating(
                         Icons.AutoMirrored.Rounded.DirectionsRun,
                         //Icons.Rounded.FitnessCenter,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                     Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
@@ -206,12 +208,12 @@ fun Navigating(
                             // I'm reusing the original translation strings
                             text = stringResource(R.string.first_launch_permissions_motion),
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimary,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimary,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                             textAlign = TextAlign.Center
                         )
                     }

@@ -4,7 +4,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -44,12 +42,6 @@ fun TextFieldWithLabel(
                 style = MaterialTheme.typography.bodyMedium,
             )
         },
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = focusedBgColor,
-            unfocusedContainerColor = unfocusedBgColor,
-            focusedTextColor = focusedTextColor,
-            unfocusedTextColor = unfocusedTextColor
-        ),
         modifier = modifier
     )
 }
@@ -58,21 +50,18 @@ fun TextFieldWithLabel(
 @Composable
 fun TextFieldWithLabelPreview() {
     var textValue by remember { mutableStateOf("Dave") }
-    SoundscapeTheme {
-        TextFieldWithLabel(
-            label = "Name",
-            value = textValue,
-            onValueChange = { textValue = it },
-            textStyle = MaterialTheme.typography.bodyLarge,
-            shape = RoundedCornerShape(spacing.extraSmall),
-            focusedBgColor = MaterialTheme.colorScheme.onPrimary,
-            unfocusedBgColor = MaterialTheme.colorScheme.onPrimary,
-            focusedTextColor = MaterialTheme.colorScheme.onSecondary,
-            unfocusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            isSingleLine = true
-        )
-    }
-
+    TextFieldWithLabel(
+        label = "Name",
+        value = textValue,
+        onValueChange = { textValue = it },
+        textStyle = MaterialTheme.typography.bodyLarge,
+        shape = RoundedCornerShape(spacing.extraSmall),
+        focusedBgColor = MaterialTheme.colorScheme.onPrimary,
+        unfocusedBgColor = MaterialTheme.colorScheme.onPrimary,
+        focusedTextColor = MaterialTheme.colorScheme.onSecondary,
+        unfocusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        isSingleLine = true
+    )
 }
 
 

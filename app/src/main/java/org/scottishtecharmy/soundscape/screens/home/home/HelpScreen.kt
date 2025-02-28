@@ -33,10 +33,6 @@ import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.ui.theme.Foreground2
-import org.scottishtecharmy.soundscape.ui.theme.OnSurface
-import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import kotlin.text.split
@@ -388,9 +384,9 @@ fun HelpScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .background(PurpleGradientDark)
+                        .background(MaterialTheme.colorScheme.surface)
                         .mediumPadding(),
-                    verticalArrangement = Arrangement.spacedBy(spacing.medium),
+                    verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
                     items(sections.sections) { section ->
                         when (section.type) {
@@ -398,8 +394,10 @@ fun HelpScreen(
                                 Text(
                                     text = stringResource(section.textId),
                                     style = MaterialTheme.typography.titleMedium,
-                                    color = Foreground2,
-                                    modifier = Modifier.semantics { heading() }
+                                    modifier = Modifier
+                                        .padding(top = spacing.medium)
+                                        .semantics { heading() },
+                                    color = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
 
@@ -411,9 +409,10 @@ fun HelpScreen(
                                             style = SpanStyle(
                                                 textDecoration = TextDecoration.Underline,
                                             )
-                                        )                                        ),
+                                        )
+                                    ),
                                     style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    color = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
 
@@ -428,7 +427,7 @@ fun HelpScreen(
                                     },
                                     modifier = Modifier
                                         .fillMaxWidth(),
-                                    shape = RoundedCornerShape(spacing.tiny),
+                                    shape = RoundedCornerShape(spacing.extraSmall),
                                 ) {
                                     Box(
                                         Modifier.weight(6f)
@@ -437,7 +436,6 @@ fun HelpScreen(
                                             text = stringResource(section.textId),
                                             textAlign = TextAlign.Start,
                                             style = MaterialTheme.typography.titleMedium,
-                                            color = MaterialTheme.colorScheme.onPrimary,
                                         )
                                     }
                                     Box(
@@ -446,7 +444,6 @@ fun HelpScreen(
                                         Icon(
                                             Icons.Rounded.ChevronRight,
                                             null,
-                                            tint = MaterialTheme.colorScheme.onPrimary,
                                             modifier = Modifier.align(Alignment.CenterEnd)
                                         )
                                     }
@@ -463,215 +460,179 @@ fun HelpScreen(
 @Preview(showBackground = true)
 @Composable
 fun HomeHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.menu_help_and_tutorials}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.menu_help_and_tutorials}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BeaconHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.beacon_audio_beacon}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.beacon_audio_beacon}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun VoicesHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.voice_voices}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.voice_voices}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RemoteHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.help_remote_page_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.help_remote_page_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AheadOfMeHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.help_explore_page_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.help_explore_page_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AroundMeHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.help_orient_page_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.help_orient_page_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AutomaticCalloutsHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.callouts_automatic_callouts}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.callouts_automatic_callouts}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MyLocationHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.directions_my_location}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.directions_my_location}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesContentHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.routes_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.routes_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MarkersHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.markers_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.markers_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun CreatingMarkersHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.help_creating_markers_page_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.help_creating_markers_page_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun NearbyMarkersHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.callouts_nearby_markers}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.callouts_nearby_markers}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun EditingMarkersHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.help_edit_markers_page_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.help_edit_markers_page_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun FaqHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.faq_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.faq_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun FaqAnswerHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun TipsHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.faq_tips_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.faq_tips_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun OfflineHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.help_offline_page_title}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.help_offline_page_title}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ThirdPartyHelpPreview() {
-    SoundscapeTheme {
-        HelpScreen(
-            topic = "page${R.string.settings_about_title_third_party}",
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    HelpScreen(
+        topic = "page${R.string.settings_about_title_third_party}",
+        navController = rememberNavController(),
+        modifier = Modifier
+    )
 }

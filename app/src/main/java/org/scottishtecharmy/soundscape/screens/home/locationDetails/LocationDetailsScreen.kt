@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,10 +46,6 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.ui.theme.Foreground2
-import org.scottishtecharmy.soundscape.ui.theme.IntroPrimary
-import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
 import java.net.URLEncoder
@@ -127,7 +124,9 @@ fun LocationDetails(
             dialogState)
     } else {
         Column(
-            modifier = modifier.fillMaxHeight()
+            modifier = modifier
+                .fillMaxHeight()
+                .background(MaterialTheme.colorScheme.surface)
         ) {
             CustomAppBar(
                 title = stringResource(R.string.location_detail_title_default),
@@ -254,7 +253,7 @@ private fun LocationDescriptionTextsSection(
             Text(
                 text = it,
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
         if(distanceString.isNotEmpty()) {
@@ -265,12 +264,12 @@ private fun LocationDescriptionTextsSection(
                 Icon(
                     imageVector = Icons.Filled.Map,
                     contentDescription = null,
-                    tint = Foreground2,
+                    tint = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
                     text = distanceString,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Foreground2,
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
         }
@@ -282,12 +281,12 @@ private fun LocationDescriptionTextsSection(
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
                     contentDescription = null,
-                    tint = PaleBlue,
+                    tint = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = PaleBlue,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
@@ -315,13 +314,13 @@ fun IconWithTextButton(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = IntroPrimary,
+                tint = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.width(spacing.medium)) // Space between icon and text
             Text(
                 text = text,
                 textAlign = TextAlign.Start, // Aligns text to start within the Row
-                color = IntroPrimary,
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
@@ -340,26 +339,23 @@ fun IconsWithTextActionsPreview() {
 @Preview(showBackground = true)
 @Composable
 fun LocationDetailsPreview() {
-    SoundscapeTheme {
-        LocationDetails(
-            LocationDescription(
-                name = "Pizza hut",
-                location = LngLatAlt(),
-                fullAddress = "139 boulevard gambetta \n59000 Lille\nFrance",
-            ),
-            createBeacon = { _ ->
-            },
-            enableStreetPreview = { _ ->
-            },
-            getLocationDescription = { _ ->
-                LocationDescription("Current location", LngLatAlt())
-            },
-            navController = NavHostController(LocalContext.current),
-            location = null,
-            heading = 0.0F,
-            saveMarker = {},
-            deleteMarker = {}
-
-        )
-    }
+    LocationDetails(
+        LocationDescription(
+            name = "Pizza hut",
+            location = LngLatAlt(),
+            fullAddress = "139 boulevard gambetta \n59000 Lille\nFrance",
+        ),
+        createBeacon = { _ ->
+        },
+        enableStreetPreview = { _ ->
+        },
+        getLocationDescription = { _ ->
+            LocationDescription("Current location", LngLatAlt())
+        },
+        navController = NavHostController(LocalContext.current),
+        location = null,
+        heading = 0.0F,
+        saveMarker = {},
+        deleteMarker = {}
+    )
 }

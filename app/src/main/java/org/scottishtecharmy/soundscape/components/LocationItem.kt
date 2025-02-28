@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,10 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.ui.theme.Foreground2
-import org.scottishtecharmy.soundscape.ui.theme.IntroductionTheme
-import org.scottishtecharmy.soundscape.ui.theme.PaleBlue
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 data class EnabledFunction(
@@ -61,6 +60,9 @@ fun LocationItem(
     }
     Row(
         modifier = modifier.fillMaxWidth()
+                           .background(MaterialTheme.colorScheme.primaryContainer)
+                           .smallPadding()
+                           .fillMaxWidth()
                            .clickable {
            if(decoration.details.enabled) {
                decoration.details.functionString(item.name!!)
@@ -72,14 +74,14 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.LocationOn,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onBackground,
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.width(spacing.icon)
             )
         } else if (decoration.index != -1) {
             Text(
                 text = (decoration.index + 1).toString(),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.width(spacing.targetSize).align(Alignment.CenterVertically)
             )
         }
@@ -90,22 +92,24 @@ fun LocationItem(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
             }
             if(distanceString.isNotEmpty()) {
                 Text(
                     text = distanceString,
-                    color = Foreground2,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
-            item.fullAddress?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = PaleBlue,
-                )
+            if(item.fullAddress?.isNotEmpty() == true) {
+                item.fullAddress?.let {
+                    Text(
+                        text = it,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
             }
         }
         if(decoration.editRoute.enabled) {
@@ -122,7 +126,7 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onBackground,
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.width(spacing.icon)
             )
         }
@@ -132,102 +136,92 @@ fun LocationItem(
 @Preview(name = "Light Mode")
 @Composable
 fun PreviewSearchItemButton() {
-    IntroductionTheme {
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            val test =
-                LocationDescription(
-                    name = "Bristol",
-                    fullAddress = "18 Street \n59000 Lille\nFrance",
-                    location = LngLatAlt(8.00, 9.55)
-                )
-            LocationItem(
-                item = test,
-                userLocation = LngLatAlt(9.00, 9.55),
-                decoration = LocationItemDecoration(
-                    location = true,
-                    editRoute = EnabledFunction(true, {}, {}, true),
-                    details = EnabledFunction(false),
-                ),
-                modifier = Modifier.width(spacing.preview),
+    Column(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        val test =
+            LocationDescription(
+                name = "Bristol",
+                fullAddress = "18 Street \n59000 Lille\nFrance",
+                location = LngLatAlt(8.00, 9.55)
             )
-        }
+        LocationItem(
+            item = test,
+            userLocation = LngLatAlt(9.00, 9.55),
+            decoration = LocationItemDecoration(
+                location = true,
+                editRoute = EnabledFunction(true, {}, {}, true),
+                details = EnabledFunction(false),
+            ),
+        )
     }
 }
 
 @Preview(name = "Compact")
 @Composable
 fun PreviewCompactSearchItemButton() {
-    IntroductionTheme {
-        Column(
-            modifier =
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            val test =
-                LocationDescription(
-                    name = "Bristol",
-                    location = LngLatAlt(8.00, 9.55)
-                )
-            LocationItem(
-                item = test,
-                decoration = LocationItemDecoration(
-                    location = true,
-                    editRoute = EnabledFunction(false),
-                    details = EnabledFunction(true),
-                ),
-                modifier = Modifier.width(spacing.preview),
-                userLocation = LngLatAlt(8.00, 10.55)
+    Column(
+        modifier =
+        Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        val test =
+            LocationDescription(
+                name = "Bristol",
+                location = LngLatAlt(8.00, 9.55)
             )
-            LocationItem(
-                item = test,
-                decoration = LocationItemDecoration(
-                    location = false,
-                    editRoute = EnabledFunction(false),
-                    details = EnabledFunction(false),
-                    index = 99,
-                ),
-                modifier = Modifier.width(spacing.preview),
-                userLocation = LngLatAlt(8.00, 10.55)
-            )
-        }
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                location = true,
+                editRoute = EnabledFunction(false),
+                details = EnabledFunction(true),
+            ),
+            userLocation = LngLatAlt(8.00, 10.55)
+        )
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                location = false,
+                editRoute = EnabledFunction(false),
+                details = EnabledFunction(false),
+                index = 99,
+            ),
+            userLocation = LngLatAlt(8.00, 10.55)
+        )
     }
 }
 
 @Preview(name = "Compact")
 @Composable
 fun PreviewOrderedItemButton() {
-    IntroductionTheme {
-        Column(
-            modifier =
-            Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            val test =
-                LocationDescription(
-                    name = "Bristol",
-                    location = LngLatAlt(8.00, 9.55)
-                )
-            LocationItem(
-                item = test,
-                decoration = LocationItemDecoration(
-                    index = 2,
-                ),
-                modifier = Modifier.width(spacing.preview),
-                userLocation = LngLatAlt(8.20, 9.55)
+    Column(
+        modifier =
+        Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        val test =
+            LocationDescription(
+                name = "Bristol",
+                location = LngLatAlt(8.00, 9.55)
             )
-        }
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                index = 2,
+            ),
+            userLocation = LngLatAlt(8.20, 9.55)
+        )
     }
 }

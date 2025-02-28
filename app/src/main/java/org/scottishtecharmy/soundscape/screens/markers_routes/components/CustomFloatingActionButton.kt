@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -38,7 +37,7 @@ fun CustomFloatingActionButton(
         onClick = { onClick.invoke() },
         modifier = modifier
             .padding(bottom = spacing.medium),
-        containerColor = containerColor
+//        containerColor = containerColor
     ) {
         Icon(
             imageVector = icon,
@@ -52,75 +51,69 @@ fun CustomFloatingActionButton(
 @Preview(showBackground = true)
 @Composable
 fun LargeCustomFloatingActionButtonPreview() {
-    SoundscapeTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(spacing.preview),
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            CustomFloatingActionButton(
-                onClick = { /* Handle click */ },
-                icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-                contentDescription = "Add Item",
-                iconTint = MaterialTheme.colorScheme.onPrimary,
-                iconSize = spacing.targetSize * 2 // Example of customizing the icon size
-            )
-        } }
-
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(spacing.preview),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CustomFloatingActionButton(
+            onClick = { /* Handle click */ },
+            icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
+            contentDescription = "Add Item",
+//                iconTint = MaterialTheme.colorScheme.onPrimary,
+            iconSize = spacing.targetSize * 2 // Example of customizing the icon size
+        )
+    }
 }
 
 
 @Preview(showBackground = true)
 @Composable
 fun SmallCustomFloatingActionButtonPreview() {
-    SoundscapeTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(spacing.preview),
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            CustomFloatingActionButton(
-                onClick = { /* Handle click */ },
-                icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-                contentDescription = "Add Item",
-                iconTint = MaterialTheme.colorScheme.onPrimary,
-                iconSize = spacing.targetSize // Example of customizing the icon size
-            )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(spacing.preview),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CustomFloatingActionButton(
+            onClick = { /* Handle click */ },
+            icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
+            contentDescription = "Add Item",
+//                iconTint = MaterialTheme.colorScheme.onPrimary,
+            iconSize = spacing.targetSize // Example of customizing the icon size
+        )
 
-        } }
-
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun SmallCustomFloatingActionButtonWithTextPreview() {
-    SoundscapeTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(spacing.preview),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            CustomFloatingActionButton(
-                onClick = { /* Handle click */ },
-                icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-                contentDescription = "Add Route",
-                iconTint = MaterialTheme.colorScheme.onPrimary,
-                iconSize = spacing.targetSize // Example of customizing the icon size
-            )
-            CustomTextButton(
-                text = stringResource(R.string.route_detail_action_create),
-                modifier = Modifier,
-                onClick = { },
-                contentColor = MaterialTheme.colorScheme.onPrimary,
-                textStyle = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold
-            )
-        } }
-
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(spacing.preview),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CustomFloatingActionButton(
+            onClick = { /* Handle click */ },
+            icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
+            contentDescription = "Add Route",
+//                iconTint = MaterialTheme.colorScheme.onPrimary,
+            iconSize = spacing.targetSize // Example of customizing the icon size
+        )
+        CustomTextButton(
+            text = stringResource(R.string.route_detail_action_create),
+            modifier = Modifier,
+            onClick = { },
+//                contentColor = MaterialTheme.colorScheme.onPrimary,
+            textStyle = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }

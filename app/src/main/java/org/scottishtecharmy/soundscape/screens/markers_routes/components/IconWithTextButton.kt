@@ -18,7 +18,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -49,13 +48,11 @@ fun IconWithTextButton(
             modifier = iconModifier, // Only modifies the set Icon
             imageVector = icon,
             contentDescription = contentDescription,
-            tint = iconTint,
         )
         if (iconText.isNotEmpty()) {
             Text(
                 modifier = textModifier,
                 text = iconText,
-                color = textColor,
                 style = textStyle.copy(
                     fontWeight = fontWeight,
                     fontSize = fontSize
@@ -70,12 +67,9 @@ fun IconWithTextButton(
 @Preview(showBackground = true)
 @Composable
 fun CustomIconButtonPreview(){
-    SoundscapeTheme {
-        IconWithTextButton(
-            iconText = "Back",
-            onClick = { /*TODO*/ }
+    IconWithTextButton(
+        iconText = "Back",
+        onClick = { /*TODO*/ }
 
-        )
-
-    }
+    )
 }

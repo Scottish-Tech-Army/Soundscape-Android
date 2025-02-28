@@ -20,7 +20,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -49,21 +48,19 @@ fun NavigationButton(
             if (icon != null) {
                 Icon(
                     icon,
-                    null,
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    null
                 )
                 Spacer(modifier = Modifier.width(spacing.small))
             }
             Text(
                 text,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Start,
                 modifier = Modifier.weight(1f)
             )
             Icon(
                 Icons.Rounded.ChevronRight,
                 null,
-                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.defaultMinSize(spacing.targetSize)
             )
         }
@@ -73,7 +70,5 @@ fun NavigationButton(
 @Preview
 @Composable
 fun PreviewNavigationButton() {
-    SoundscapeTheme {
-        NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
-    }
+    NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
 }
