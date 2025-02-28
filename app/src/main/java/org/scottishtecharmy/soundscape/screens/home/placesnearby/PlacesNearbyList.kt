@@ -1,11 +1,9 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -13,7 +11,6 @@ import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
-import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -30,8 +27,6 @@ fun PlacesNearbyList(
             LocationItem(
                 item = locationDescription,
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primary)
-                    .smallPadding()
                     .fillMaxWidth(),
                 decoration = LocationItemDecoration(
                     location = true,

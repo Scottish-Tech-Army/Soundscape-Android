@@ -15,7 +15,6 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -44,7 +43,6 @@ import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 
 @Composable
@@ -72,7 +70,6 @@ fun Home(
             DrawerContent(
                 onNavigate = onNavigate,
                 drawerState = drawerState,
-                shareLocation = shareLocation,
                 rateSoundscape = rateSoundscape,
             )
         },
@@ -137,11 +134,6 @@ fun HomeTopAppBar(
     val menuHint = stringResource(R.string.ui_menu_hint)
 
     TopAppBar(
-        colors =
-            TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.background,
-                titleContentColor = MaterialTheme.colorScheme.onBackground,
-            ),
         title = {
             Text(
                 text = stringResource(R.string.app_name),
@@ -159,7 +151,6 @@ fun HomeTopAppBar(
                 Icon(
                     imageVector = Icons.Rounded.Menu,
                     contentDescription = stringResource(R.string.ui_menu),
-                    tint = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier.semantics { heading() },
                 )
             }
@@ -175,8 +166,8 @@ fun HomeTopAppBar(
                     .semantics { onClick(label = sleepHint, action = { false }) }
             ) {
                 Icon(Icons.Rounded.Snooze,
-                    tint = MaterialTheme.colorScheme.onPrimary,
-                    contentDescription = stringResource(R.string.sleep_sleep))
+                    contentDescription = stringResource(R.string.sleep_sleep),
+                    tint = MaterialTheme.colorScheme.onSurface,)
             }
         },
     )
@@ -187,44 +178,40 @@ fun HomeTopAppBar(
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
-    SoundscapeTheme {
-        Home(
-            state = HomeState(),
-            onNavigate = {},
-            onMapLongClick = { false },
-            bottomButtonFunctions = BottomButtonFunctions(null),
-            getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
-            shareLocation = {},
-            rateSoundscape = {},
-            searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
-            routeFunctions = RouteFunctions(null),
-            streetPreviewFunctions = StreetPreviewFunctions(null),
-        )
-    }
+    Home(
+        state = HomeState(),
+        onNavigate = {},
+        onMapLongClick = { false },
+        bottomButtonFunctions = BottomButtonFunctions(null),
+        getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
+        shareLocation = {},
+        rateSoundscape = {},
+        searchText = "Lille",
+        onSearchTextChange = {},
+        onToggleSearch = {},
+        routeFunctions = RouteFunctions(null),
+        streetPreviewFunctions = StreetPreviewFunctions(null),
+    )
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
 @Preview(showBackground = true)
 @Composable
 fun HomeSearchPreview() {
-    SoundscapeTheme {
-        Home(
-            state = HomeState(),
-            onNavigate = {},
-            onMapLongClick = { false },
-            bottomButtonFunctions = BottomButtonFunctions(null),
-            getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
-            shareLocation = {},
-            rateSoundscape = {},
-            searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
-            routeFunctions = RouteFunctions(null),
-            streetPreviewFunctions = StreetPreviewFunctions(null),
-        )
-    }
+    Home(
+        state = HomeState(),
+        onNavigate = {},
+        onMapLongClick = { false },
+        bottomButtonFunctions = BottomButtonFunctions(null),
+        getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
+        shareLocation = {},
+        rateSoundscape = {},
+        searchText = "Lille",
+        onSearchTextChange = {},
+        onToggleSearch = {},
+        routeFunctions = RouteFunctions(null),
+        streetPreviewFunctions = StreetPreviewFunctions(null),
+    )
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
@@ -238,26 +225,24 @@ fun HomeRoutePreview() {
         ),
         currentWaypoint = 0
     )
-    SoundscapeTheme {
-        Home(
-            state = HomeState(
-                heading = 90f,
-                location = LngLatAlt(10.0, 10.0),
-                currentRouteData = routePlayerState
-            ),
-            onNavigate = {},
-            onMapLongClick = { false },
-            bottomButtonFunctions = BottomButtonFunctions(null),
-            getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
-            shareLocation = {},
-            rateSoundscape = {},
-            searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
-            routeFunctions = RouteFunctions(null),
-            streetPreviewFunctions = StreetPreviewFunctions(null),
-        )
-    }
+    Home(
+        state = HomeState(
+            heading = 90f,
+            location = LngLatAlt(10.0, 10.0),
+            currentRouteData = routePlayerState
+        ),
+        onNavigate = {},
+        onMapLongClick = { false },
+        bottomButtonFunctions = BottomButtonFunctions(null),
+        getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
+        shareLocation = {},
+        rateSoundscape = {},
+        searchText = "Lille",
+        onSearchTextChange = {},
+        onToggleSearch = {},
+        routeFunctions = RouteFunctions(null),
+        streetPreviewFunctions = StreetPreviewFunctions(null),
+    )
 }
 
 val previewLocationList = listOf(

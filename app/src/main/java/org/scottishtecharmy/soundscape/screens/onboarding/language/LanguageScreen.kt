@@ -63,7 +63,8 @@ fun LanguageComposable(
     }*/
 
     BoxWithGradientBackground(
-        modifier = modifier
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surface
     ) {
         Column(
             modifier = Modifier
@@ -77,7 +78,7 @@ fun LanguageComposable(
             Text(
                 text = stringResource(R.string.first_launch_soundscape_language),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
@@ -87,7 +88,7 @@ fun LanguageComposable(
             Text(
                 text = stringResource(R.string.first_launch_soundscape_language_text),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
 

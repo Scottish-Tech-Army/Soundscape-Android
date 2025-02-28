@@ -18,14 +18,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.scottishtecharmy.soundscape.ui.theme.Primary
+import androidx.compose.ui.graphics.Color
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun AudioBeaconItem(
     text: String,
     isSelected: Boolean,
-    onSelect: () -> Unit
+    onSelect: () -> Unit,
+    foregroundColor: Color
 ) {
     Row(
         modifier = Modifier
@@ -42,13 +43,17 @@ fun AudioBeaconItem(
             Icon(
                 Icons.Rounded.Done,
                 contentDescription = null,
-                tint = Primary,
+                tint = foregroundColor,
                 modifier = Modifier
                     .size(spacing.icon)
             )
         }
         Spacer(modifier = Modifier.width(spacing.medium))
-        Text(text = text, style = MaterialTheme.typography.bodyMedium, color = Primary)
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = foregroundColor
+        )
         Row(
             horizontalArrangement = Arrangement.End,
             modifier = Modifier
@@ -58,7 +63,7 @@ fun AudioBeaconItem(
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
-                tint = Primary,
+                tint = foregroundColor,
                 modifier = Modifier
                     .size(spacing.icon)
             )
@@ -69,6 +74,6 @@ fun AudioBeaconItem(
         modifier = Modifier
             .padding(horizontal = spacing.small, vertical = spacing.tiny),
         thickness = spacing.tiny,
-        color = Primary
+        color = foregroundColor
     )
 }

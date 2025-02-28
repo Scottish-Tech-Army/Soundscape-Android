@@ -25,7 +25,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
-import org.scottishtecharmy.soundscape.screens.home.home.SleepScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
@@ -230,7 +230,7 @@ fun HomeScreen(
             )
         }
         composable(HomeRoutes.Sleep.route) {
-            SleepScreen(
+            SleepScreenVM(
                 navController = navController,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )

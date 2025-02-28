@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,15 +21,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
-import org.scottishtecharmy.soundscape.ui.theme.Foreground2
-import org.scottishtecharmy.soundscape.ui.theme.OnBackground
-import org.scottishtecharmy.soundscape.ui.theme.OnSurface
-import org.scottishtecharmy.soundscape.ui.theme.PurpleGradientDark
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.largePadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -38,8 +33,10 @@ private fun exitSleep(context: MainActivity, navController: NavHostController) {
 }
 
 @Composable
-fun SleepScreen(navController: NavHostController,
-                modifier: Modifier) {
+fun SleepScreenVM(
+    navController: NavHostController,
+    modifier: Modifier
+) {
     val context = LocalActivity.current as MainActivity
 
     BackHandler(enabled = true) {
@@ -47,8 +44,17 @@ fun SleepScreen(navController: NavHostController,
         exitSleep(context, navController)
     }
 
+    SleepScreen( { exitSleep(context, navController) } , modifier)
+}
+
+@Composable
+fun SleepScreen(exitSleep: () -> Unit = {},
+                modifier: Modifier
+) {
     Column(
-        modifier = modifier.background(PurpleGradientDark).fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surface),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
@@ -56,31 +62,34 @@ fun SleepScreen(navController: NavHostController,
             Text(
                 text = stringResource(R.string.sleep_sleeping),
                 style = MaterialTheme.typography.titleLarge,
-                color = Foreground2,
-                modifier = modifier.largePadding()
+                modifier = modifier.largePadding(),
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
         Row {
             Text(
                 text = stringResource(R.string.sleep_sleeping_message),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = modifier.largePadding()
             )
         }
         Row {
             Button(
-                onClick = {
-                    exitSleep(context, navController)
-                },
-                modifier = modifier.fillMaxWidth().height(spacing.targetSize * 2),
+                onClick = { exitSleep() },
+                modifier = modifier.fillMaxWidth().height(spacing.targetSize * 4),
                 shape = RoundedCornerShape(spacing.tiny),
+                colors = ButtonColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    disabledContainerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.38f),
+                    disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.38f)
+                )
             ) {
                 Text(
                     text = stringResource(R.string.sleep_wake_up_now),
                     textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimary,
+                    style = MaterialTheme.typography.displaySmall,
                 )
             }
         }
@@ -90,10 +99,7 @@ fun SleepScreen(navController: NavHostController,
 @Preview(showBackground = true)
 @Composable
 fun SleepScreenPreview() {
-    SoundscapeTheme {
-        SleepScreen(
-            navController = rememberNavController(),
-            modifier = Modifier
-        )
-    }
+    SleepScreen(
+        modifier = Modifier
+    )
 }

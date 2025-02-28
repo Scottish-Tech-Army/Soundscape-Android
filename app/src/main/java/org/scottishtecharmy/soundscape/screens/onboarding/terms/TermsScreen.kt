@@ -14,7 +14,6 @@ import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
@@ -34,7 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
-import org.scottishtecharmy.soundscape.ui.theme.Primary
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 
@@ -45,7 +42,8 @@ fun TermsScreen(
 ) {
     val checkedState = remember { mutableStateOf(false) }
     BoxWithGradientBackground(
-        modifier = modifier
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.surface
     ) {
         Column(
             modifier = Modifier
@@ -59,7 +57,7 @@ fun TermsScreen(
             Text(
                 text = stringResource(R.string.terms_of_use_title),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -73,8 +71,7 @@ fun TermsScreen(
                 modifier = Modifier
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.onBackground)
-                    .verticalScroll(rememberScrollState())
+                    .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
                 TermsItem(stringResource(R.string.terms_of_use_message))
                 TermsItem(stringResource(R.string.terms_of_use_medical_safety_disclaimer))
@@ -97,14 +94,11 @@ fun TermsScreen(
                 Checkbox(
                     checked = checkedState.value,
                     onCheckedChange = null,
-                    colors = CheckboxDefaults.colors(
-                        uncheckedColor = MaterialTheme.colorScheme.onPrimary,
-                    )
                 )
                 Text(
                     text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
 
@@ -137,14 +131,16 @@ fun TermsItem(text: String) {
 
     ) {
         Spacer(modifier = Modifier.width(spacing.medium))
-        Text(text = text, style = MaterialTheme.typography.bodyMedium, color = Primary)
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onPrimaryContainer)
     }
 
     HorizontalDivider(
         modifier = Modifier
             .padding(horizontal = spacing.small, vertical = spacing.tiny),
         thickness = spacing.tiny,
-        color = Primary
     )
 }
 

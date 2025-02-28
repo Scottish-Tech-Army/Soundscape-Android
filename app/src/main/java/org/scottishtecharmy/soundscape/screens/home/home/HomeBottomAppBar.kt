@@ -32,7 +32,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -54,7 +53,6 @@ fun HomeBottomAppBar(
                     spacing.extraSmall
                 )
             ),
-        color = MaterialTheme.colorScheme.primary
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
@@ -64,7 +62,7 @@ fun HomeBottomAppBar(
                 textAlign = TextAlign.Start,
                 text = stringResource(R.string.callouts_panel_title).uppercase(),
                 modifier = Modifier
-                    .padding(start = spacing.medium, end = spacing.small)
+                    .padding(start = spacing.medium, top = spacing.medium)
                     .semantics {
                         heading()
                     }
@@ -159,19 +157,15 @@ private fun HomeBottomAppBarButton(
 @Preview
 @Composable
 fun PreviewHomeBottomAppBar(){
-    SoundscapeTheme {
-        HomeBottomAppBar(
-            BottomButtonFunctions(null)
-        )
-    }
+    HomeBottomAppBar(
+        BottomButtonFunctions(null)
+    )
 }
 
 @Preview(fontScale = 2.0f)
 @Composable
 fun PreviewHomeBottomAppBarLarge(){
-    SoundscapeTheme {
-        HomeBottomAppBar(
-            BottomButtonFunctions(null)
-        )
-    }
+    HomeBottomAppBar(
+        BottomButtonFunctions(null)
+    )
 }

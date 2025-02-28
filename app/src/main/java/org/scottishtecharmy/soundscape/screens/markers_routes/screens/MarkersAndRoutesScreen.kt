@@ -16,7 +16,6 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.Markers
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesTabsVM
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenVM
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenVM
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 
 @Composable
@@ -53,11 +52,9 @@ fun MarkersAndRoutesScreen(
 @Preview(showBackground = true)
 @Composable
 fun MarkersAndRoutesPreview() {
-    SoundscapeTheme {
-        MarkersAndRoutesScreen(
-            navController = rememberNavController(),
-            viewModel = viewModel(),
-            modifier = Modifier
-        )
-    }
+    MarkersAndRoutesScreen(
+        navController = rememberNavController(),
+        viewModel = viewModel(),
+        modifier = Modifier
+    )
 }

@@ -78,7 +78,6 @@ fun AudioBeaconsScreen(
                 "Audio beacon category changed to $beacon")
 
         },
-        modifier = modifier,
     )
 }
 
@@ -88,9 +87,11 @@ fun AudioBeacons(
     onBeaconSelected: (String) -> Unit,
     selectedBeacon: String?,
     onContinue: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
-    BoxWithGradientBackground(modifier = modifier){
+    BoxWithGradientBackground(
+        modifier = Modifier,
+        color = MaterialTheme.colorScheme.surface
+    ){
         Column(
             modifier = Modifier
                 .padding(horizontal = spacing.large)
@@ -105,7 +106,7 @@ fun AudioBeacons(
             Text(
                 text = stringResource(R.string.first_launch_beacon_title),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
@@ -115,21 +116,21 @@ fun AudioBeacons(
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_1),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_2),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_3),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.large))
@@ -139,11 +140,12 @@ fun AudioBeacons(
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
                     .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
-                    .background(MaterialTheme.colorScheme.onBackground)
+                    .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
                 items(beacons) { beacon ->
                     AudioBeaconItem(
                         text = stringResource(getBeaconResourceId(beacon)),
+                        foregroundColor = MaterialTheme.colorScheme.onPrimaryContainer,
                         isSelected = beacon == selectedBeacon,
                         onSelect = {
                             onBeaconSelected(beacon)

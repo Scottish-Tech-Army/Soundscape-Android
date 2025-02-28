@@ -36,7 +36,6 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.TestTags
 
@@ -60,7 +59,7 @@ fun LanguageDropDownMenu(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = MaterialTheme.colorScheme.surface,
+                    color = MaterialTheme.colorScheme.primaryContainer,
                     shape = RoundedCornerShape(spacing.extraSmall)
                 ),
             verticalAlignment = Alignment.CenterVertically,
@@ -81,9 +80,14 @@ fun LanguageDropDownMenu(
                         } else {
                             stringResource(R.string.no_language_selected) // TODO localize
                         },
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                         modifier = Modifier.weight(1f)
                     )
-                    Icon(Icons.Default.Edit, contentDescription = null)
+                    Icon(
+                        Icons.Default.Edit,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
 
                 }
 
@@ -132,13 +136,13 @@ private fun DropdownItemContent(
         Text(
             text = language.name,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.onSurface
         )
         if (isSelected) {
             Icon(
                 Icons.Rounded.Done,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .size(spacing.icon)
             )
@@ -151,12 +155,10 @@ private fun DropdownItemContent(
 @Preview
 @Composable
 fun LanguageDropDownMenuPreview(){
-    SoundscapeTheme {
-        LanguageDropDownMenu(
-            allLanguages = MockLanguagePreviewData.languages,
-            onLanguageSelected = {},
-            selectedLanguageIndex = -1,
+    LanguageDropDownMenu(
+        allLanguages = MockLanguagePreviewData.languages,
+        onLanguageSelected = {},
+        selectedLanguageIndex = -1,
 
-        )
-    }
+    )
 }

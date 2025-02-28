@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +20,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -29,9 +27,7 @@ fun CustomAppBar(title : String,
                  onNavigateUp: () -> Unit,
                  navigationButtonTitle: String = stringResource(R.string.ui_back_button_title),
                  ) {
-    Surface(
-        color = MaterialTheme.colorScheme.primary
-    ) {
+    Surface {
         Row(
             modifier  = Modifier.height(IntrinsicSize.Min).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -64,24 +60,20 @@ fun CustomAppBar(title : String,
 @Preview(showBackground = true)
 @Composable
 fun CustomAppBarPreview() {
-    SoundscapeTheme {
-        CustomAppBar(
-            "Test app bar with long title",
-            navigationButtonTitle = stringResource(R.string.ui_back_button_title),
-            onNavigateUp = {},
-        )
-    }
+    CustomAppBar(
+        "Test app bar with long title",
+        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+        onNavigateUp = {},
+    )
 }
 
 @Preview(showBackground = true, fontScale = 2f)
 @Preview(showBackground = true)
 @Composable
 fun CustomAppBarWithActionButtonPreview() {
-    SoundscapeTheme {
-        CustomAppBar(
-            "Test app bar",
-            navigationButtonTitle = stringResource(R.string.ui_back_button_title),
-            onNavigateUp = {},
-        )
-    }
+    CustomAppBar(
+        "Test app bar",
+        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+        onNavigateUp = {},
+    )
 }

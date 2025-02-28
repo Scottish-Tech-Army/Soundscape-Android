@@ -27,7 +27,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -35,7 +34,9 @@ fun Welcome(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    BoxWithGradientBackground {
+    BoxWithGradientBackground(
+        color = MaterialTheme.colorScheme.surface
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
@@ -71,14 +72,14 @@ fun Welcome(
                     Text(
                         text = stringResource(R.string.first_launch_welcome_title),
                         style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
                     Text(
                         text = stringResource(R.string.first_launch_welcome_description),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
 
@@ -114,7 +115,5 @@ private fun LocalImage() {
 @Preview(fontScale = 2.0f)
 @Composable
 fun PreviewWelcome() {
-    SoundscapeTheme {
-        Welcome(onNavigate = {})
-    }
+    Welcome(onNavigate = {})
 }

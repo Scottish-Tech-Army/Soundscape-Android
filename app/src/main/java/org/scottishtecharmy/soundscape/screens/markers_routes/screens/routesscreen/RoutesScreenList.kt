@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,14 +29,15 @@ fun RouteList(
     navController: NavController,
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
         items(uiState.routes) { route ->
             if(route.name.isNotEmpty()) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.primary)
+                        .background(MaterialTheme.colorScheme.primaryContainer)
                         .smallPadding()
                         .clickable {
                             navController.navigate("${HomeRoutes.RouteDetails.route}/${route.objectId.toHexString()}")
@@ -50,11 +50,13 @@ fun RouteList(
                             text = route.name,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                             modifier = Modifier.padding(bottom = spacing.extraSmall)
                         )
                         Text(
                             text = route.description,
                             style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                             fontWeight = FontWeight.Bold,
                         )
                     }
@@ -62,6 +64,7 @@ fun RouteList(
                         modifier = Modifier
                             .align(Alignment.CenterVertically),
                         imageVector = Icons.Default.ChevronRight,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
                         contentDescription = ""
                     )
                 }

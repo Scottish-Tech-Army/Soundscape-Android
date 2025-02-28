@@ -21,7 +21,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -51,8 +50,8 @@ fun AddWaypointsDialog(
                 onClick = {
                     onDone()
                 },
-                buttonColor = MaterialTheme.colorScheme.onPrimary,
-                contentColor = MaterialTheme.colorScheme.onSecondary,
+                buttonColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
                 shape = RoundedCornerShape(spacing.small),
                 text = stringResource(R.string.general_alert_done),
                 textStyle = MaterialTheme.typography.bodyLarge,
@@ -79,51 +78,47 @@ fun AddWaypointsDialog(
 @Preview(showBackground = true)
 @Composable
 fun AddWaypointsScreenPopulatedPreview() {
-    SoundscapeTheme {
-        AddWaypointsDialog(
-            modifier = Modifier,
-            onCancel = {},
-            onDone = { },
-            userLocation = null,
-            uiState =
-                AddAndEditRouteUiState(
-                    routeMembers =
-                    mutableListOf(
-                        LocationDescription(name = "Long named route point as if we need one", location = LngLatAlt()),
-                        LocationDescription(name = "Route point 2", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Route point 3", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Route point 4", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Route point 5", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Route point 6", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Route point 7", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Route point 8", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    ),
-                    markers =
-                    mutableListOf(
-                        LocationDescription(name = "Waypoint 1", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 3", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 4", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 5", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 6", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 7", location = LngLatAlt(), markerObjectId = ObjectId()),
-                        LocationDescription(name = "Waypoint 8", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    )
+    AddWaypointsDialog(
+        modifier = Modifier,
+        onCancel = {},
+        onDone = { },
+        userLocation = null,
+        uiState =
+            AddAndEditRouteUiState(
+                routeMembers =
+                mutableListOf(
+                    LocationDescription(name = "Long named route point as if we need one", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 2", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 3", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 4", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 5", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 6", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 7", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 8", location = LngLatAlt(), markerObjectId = ObjectId()),
+                ),
+                markers =
+                mutableListOf(
+                    LocationDescription(name = "Waypoint 1", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 2", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 4", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 5", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 6", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 7", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 8", location = LngLatAlt(), markerObjectId = ObjectId()),
                 )
-        )
-    }
+            )
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AddWaypointsScreenPreview() {
-    SoundscapeTheme {
-        AddWaypointsDialog(
-            modifier = Modifier,
-            onCancel = {},
-            onDone = {},
-            uiState = AddAndEditRouteUiState(),
-            userLocation = null
-        )
-    }
+    AddWaypointsDialog(
+        modifier = Modifier,
+        onCancel = {},
+        onDone = {},
+        uiState = AddAndEditRouteUiState(),
+        userLocation = null
+    )
 }

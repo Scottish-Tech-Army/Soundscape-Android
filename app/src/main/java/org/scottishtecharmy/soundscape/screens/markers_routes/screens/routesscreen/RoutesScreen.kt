@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,8 +36,9 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomFloatingActionButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
 
 @Composable
 fun RoutesScreenVM(
@@ -65,6 +67,21 @@ fun RoutesScreen(
 ) {
     val context = LocalContext.current
 
+    Column(
+        modifier =
+        Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .tinyPadding(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Column(
+            modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.secondaryContainer),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
     // Display error message if it exists
     LaunchedEffect(uiState.errorMessage) {
         uiState.errorMessage?.let { message ->
@@ -73,7 +90,7 @@ fun RoutesScreen(
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
         // Display loading state
         if (uiState.isLoading) {
             Box(
@@ -84,7 +101,14 @@ fun RoutesScreen(
         } else {
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surface),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.secondaryContainer),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 if (uiState.routes.isEmpty()) {
@@ -94,36 +118,36 @@ fun RoutesScreen(
                                 painter = painterResource(
                                     id = R.drawable.ic_routes
                                 ),
-                                tint = MaterialTheme.colorScheme.onPrimary,
                                 contentDescription = null,
-                                modifier = Modifier.size(spacing.targetSize * 2)
+                                modifier = Modifier.size(spacing.targetSize * 2),
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer
                             )
                         }
-                        Box(modifier = Modifier.padding(top = spacing.small)) {
+                        Box(modifier = Modifier.mediumPadding()) {
                             Text(
                                 stringResource(R.string.routes_no_routes_title),
                                 style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onBackground,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
                         }
-                        Box(modifier = Modifier.padding(top = spacing.small)) {
+                        Box(modifier = Modifier.mediumPadding()) {
                             Text(
                                 stringResource(R.string.routes_no_routes_hint_1),
-                                color = MaterialTheme.colorScheme.onBackground,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyLarge,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
                         }
-                        Box(modifier = Modifier.padding(top = spacing.small, bottom = spacing.large)) {
+                        Box(modifier = Modifier.mediumPadding()) {
                             Text(
                                 stringResource(R.string.routes_no_routes_hint_2),
-                                color = MaterialTheme.colorScheme.onBackground,
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyLarge,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
                             )
                     }
                 } else {
@@ -149,6 +173,7 @@ fun RoutesScreen(
                 }
             }
         }
+            }
         CustomFloatingActionButton(
             onClick = { homeNavController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=new") },
             modifier = Modifier.align(Alignment.BottomCenter),
@@ -156,62 +181,58 @@ fun RoutesScreen(
             contentDescription = stringResource(R.string.general_alert_add),
         )
     }
+            }
+        }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesScreenPreview() {
-    SoundscapeTheme {
-        RoutesScreen(
-            homeNavController = rememberNavController(),
-            uiState = RoutesUiState(),
-            clearErrorMessage = {},
-            onToggleSortOrder = {},
-            onToggleSortByName = {}
-        )
-    }
+    RoutesScreen(
+        homeNavController = rememberNavController(),
+        uiState = RoutesUiState(),
+        clearErrorMessage = {},
+        onToggleSortOrder = {},
+        onToggleSortByName = {}
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesScreenPopulatedPreview() {
-    SoundscapeTheme {
-        RoutesScreen(
-            homeNavController = rememberNavController(),
-            uiState = RoutesUiState(
-                routes = listOf(
-                    RouteData("Route 1", "Description A"),
-                    RouteData("Route 2", "Description B"),
-                    RouteData("Route 3", "Description C"),
-                    RouteData("Route 4", "Description D"),
-                    RouteData("Route 5", "Description E"),
-                    RouteData("Route 6", "Description F"),
-                    RouteData("Route 7", "Description G"),
-                    RouteData("Route 8", "Description H"),
-                    RouteData("Route 9", "Description I"),
-                    RouteData("Route 10", "Description J"),
-                    RouteData("Route 11", "Description K"),
-                    RouteData("Route 12", "Description L"),
-                    RouteData("Route 13", "Description M"),
-                )
-            ),
-            clearErrorMessage = {},
-            onToggleSortOrder = {},
-            onToggleSortByName = {}
-        )
-    }
+    RoutesScreen(
+        homeNavController = rememberNavController(),
+        uiState = RoutesUiState(
+            routes = listOf(
+                RouteData("Route 1", "Description A"),
+                RouteData("Route 2", "Description B"),
+                RouteData("Route 3", "Description C"),
+                RouteData("Route 4", "Description D"),
+                RouteData("Route 5", "Description E"),
+                RouteData("Route 6", "Description F"),
+                RouteData("Route 7", "Description G"),
+                RouteData("Route 8", "Description H"),
+                RouteData("Route 9", "Description I"),
+                RouteData("Route 10", "Description J"),
+                RouteData("Route 11", "Description K"),
+                RouteData("Route 12", "Description L"),
+                RouteData("Route 13", "Description M"),
+            )
+        ),
+        clearErrorMessage = {},
+        onToggleSortOrder = {},
+        onToggleSortByName = {}
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesScreenLoadingPreview() {
-    SoundscapeTheme {
-        RoutesScreen(
-            homeNavController = rememberNavController(),
-            uiState = RoutesUiState(isLoading = true),
-            clearErrorMessage = {},
-            onToggleSortOrder = {},
-            onToggleSortByName = {}
-        )
-    }
+    RoutesScreen(
+        homeNavController = rememberNavController(),
+        uiState = RoutesUiState(isLoading = true),
+        clearErrorMessage = {},
+        onToggleSortOrder = {},
+        onToggleSortByName = {}
+    )
 }

@@ -5,7 +5,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,7 +36,8 @@ fun MarkersAndRoutesTabs(
     setRoutesAndMarkersTab: (pickRoutes: Boolean) -> Unit) {
 
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.primary
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
     ) {
         items.forEach { item ->
             val isSelected =
@@ -49,7 +49,11 @@ fun MarkersAndRoutesTabs(
                 selected = isSelected,
                 onClick = { setRoutesAndMarkersTab(item == ScreensForMarkersAndRoutes.Routes) },
                 label = {
-                    Text(item.title, style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        item.title,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
                 },
                 icon = {
                     item.iconResId?.let {
@@ -60,12 +64,6 @@ fun MarkersAndRoutesTabs(
                     }
 
                 },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.onPrimary,
-                    unselectedIconColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
-                    selectedTextColor = MaterialTheme.colorScheme.onPrimary,
-                    unselectedTextColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
-                )
             )
         }
     }
