@@ -24,10 +24,6 @@ fun TextFieldWithLabel(
     modifier: Modifier = Modifier,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     shape: Shape = RoundedCornerShape(spacing.extraSmall),
-    focusedBgColor: Color = MaterialTheme.colorScheme.onPrimary, // Default colour of white for TextField
-    unfocusedBgColor: Color = MaterialTheme.colorScheme.onPrimary, // Default colour of white for TextField
-    focusedTextColor: Color = MaterialTheme.colorScheme.onSecondary, // Default color of black
-    unfocusedTextColor: Color = MaterialTheme.colorScheme.onSurfaceVariant, // Default color of grey
     isSingleLine: Boolean = true  // Optional single-line behavior
 ) {
     TextField(
@@ -56,10 +52,6 @@ fun TextFieldWithLabelPreview() {
         onValueChange = { textValue = it },
         textStyle = MaterialTheme.typography.bodyLarge,
         shape = RoundedCornerShape(spacing.extraSmall),
-        focusedBgColor = MaterialTheme.colorScheme.onPrimary,
-        unfocusedBgColor = MaterialTheme.colorScheme.onPrimary,
-        focusedTextColor = MaterialTheme.colorScheme.onSecondary,
-        unfocusedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
         isSingleLine = true
     )
 }

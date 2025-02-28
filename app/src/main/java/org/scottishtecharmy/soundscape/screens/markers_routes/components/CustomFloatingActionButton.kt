@@ -30,14 +30,14 @@ fun CustomFloatingActionButton(
     contentDescription: String,
     modifier: Modifier = Modifier,
     containerColor: Color = MaterialTheme.colorScheme.surfaceDim,
-    iconTint: Color = MaterialTheme.colorScheme.onBackground,
+    iconTint: Color = MaterialTheme.colorScheme.onSurface,
     iconSize: Dp = spacing.targetSize * 2
 ) {
     FloatingActionButton(
         onClick = { onClick.invoke() },
         modifier = modifier
             .padding(bottom = spacing.medium),
-//        containerColor = containerColor
+        containerColor = containerColor
     ) {
         Icon(
             imageVector = icon,
@@ -62,7 +62,6 @@ fun LargeCustomFloatingActionButtonPreview() {
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
             contentDescription = "Add Item",
-//                iconTint = MaterialTheme.colorScheme.onPrimary,
             iconSize = spacing.targetSize * 2 // Example of customizing the icon size
         )
     }
@@ -83,7 +82,6 @@ fun SmallCustomFloatingActionButtonPreview() {
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
             contentDescription = "Add Item",
-//                iconTint = MaterialTheme.colorScheme.onPrimary,
             iconSize = spacing.targetSize // Example of customizing the icon size
         )
 
@@ -104,14 +102,12 @@ fun SmallCustomFloatingActionButtonWithTextPreview() {
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
             contentDescription = "Add Route",
-//                iconTint = MaterialTheme.colorScheme.onPrimary,
             iconSize = spacing.targetSize // Example of customizing the icon size
         )
         CustomTextButton(
             text = stringResource(R.string.route_detail_action_create),
             modifier = Modifier,
             onClick = { },
-//                contentColor = MaterialTheme.colorScheme.onPrimary,
             textStyle = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold
         )
