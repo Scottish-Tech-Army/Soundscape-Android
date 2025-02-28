@@ -58,7 +58,6 @@ fun getBeaconResourceId(beaconName: String) : Int {
 @Composable
 fun AudioBeaconsScreen(
     onNavigate: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: AudioBeaconsViewModel = hiltViewModel()
 ) {
     val uiState: AudioBeaconsViewModel.AudioBeaconsUiState by viewModel.state.collectAsStateWithLifecycle()
