@@ -884,22 +884,22 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="location_detail_action_beacon">"Start Audio Beacon"</string>
 
 <!-- Voiceover hint for the action to set a beacon -->
-  <string name="location_detail_action_beacon_hint">"Double tap to set an audio beacon at this location"</string>
+  <string name="location_detail_action_beacon_hint">"set an audio beacon at this location"</string>
 
 <!-- Text displayed when audio beacon action is disabled -->
   <string name="location_detail_action_beacon_hint_disabled">"Setting a new audio beacon is disabled while route guidance is active"</string>
 
 <!-- Voiceover hint for the action to save marker -->
-  <string name="location_detail_action_save_hint">"Double tap to save this location as a marker"</string>
+  <string name="location_detail_action_save_hint">"save this location as a marker"</string>
 
 <!-- Voiceover hint for the action to edit marker -->
-  <string name="location_detail_action_edit_hint">"Double tap to edit marker"</string>
+  <string name="location_detail_action_edit_hint">"edit marker"</string>
 
 <!-- Voiceover hint for the action to share -->
-  <string name="location_detail_action_share_hint">"Double tap to share this location"</string>
+  <string name="location_detail_action_share_hint">"share this location"</string>
 
 <!-- Voiceover hint for the action to preview -->
-  <string name="location_detail_action_preview_hint">"Double tap to start previewing at this location"</string>
+  <string name="location_detail_action_preview_hint">"start previewing at this location"</string>
 
 <!-- Text displayed when street preview is disabled -->
   <string name="location_detail_action_preview_hint_disabled">"Street Preview is disabled while route guidance is active"</string>
@@ -1011,13 +1011,13 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="route_detail_action_edit">"Edit Route"</string>
 
 <!-- Voiceover hint for the action to start the route -->
-  <string name="route_detail_action_start_route_hint">"Double tap to start this route"</string>
+  <string name="route_detail_action_start_route_hint">"start this route"</string>
 
 <!-- Voiceover hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
   <string name="route_detail_action_start_route_disabled_hint">"Add waypoints before starting the route"</string>
 
 <!-- Voiceover hint for the action to stop the route -->
-  <string name="route_detail_action_stop_route_hint">"Double tap to stop this route"</string>
+  <string name="route_detail_action_stop_route_hint">"stop this route"</string>
 
 <!-- Voiceover hint for the action to start the recreational activity. In this context, "activity" is referring to outdoor recreational activities like hiking, kayaking, snoeshoeing, etc. -->
   <string name="route_detail_action_start_event_hint">"Double tap to start this activity"</string>
@@ -1029,10 +1029,10 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="route_detail_action_reset_hint">"Double tap to reset this activity and download any available updates"</string>
 
 <!-- Voiceover hint for the action to share -->
-  <string name="route_detail_action_share_hint">"Double tap to share this route"</string>
+  <string name="route_detail_action_share_hint">"share this route"</string>
 
 <!-- Accessibility hint for the edit button on the Route Detail screen -->
-  <string name="route_detail_action_edit_hint">"Double tap to edit this route"</string>
+  <string name="route_detail_action_edit_hint">"edit this route"</string>
 
 <!-- Add button on the Route list screen -->
   <string name="route_detail_action_create">"New Route"</string>
@@ -1426,8 +1426,8 @@ Alternatively, you may continue previewing the app with a predefined test locati
 <!-- Title, Edit Marker -->
   <string name="markers_edit_screen_title_edit">"Edit Marker"</string>
 
-<!-- Notification, Double tap to save this marker -->
-  <string name="markers_edit_screen_done_button_acc_hint">"Double tap to save this marker"</string>
+<!-- Notification, ...save this marker -->
+  <string name="markers_edit_screen_done_button_acc_hint">"save this marker"</string>
 
 <!-- This is a label that is displayed on the Save Marker screen when the user is saving a new marker and adding it to a route. %@ is the name of the route. Example: "Saving to Route: Home to Grocery Store" (where "Home to Grocery Store" is the name of a route the user created {NumberedPlaceholder="%@"} -->
   <string name="markers_edit_screen_route">"Saving to Route: %s"</string>
@@ -1646,7 +1646,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
 <!-- Sleep Notification, the app is currently in sleep mode. This prevents Soundscape from using your location information or downloading data. This conserves battery when you are not using the app. Tap the button below to wake the app. "Location Services" refers to the feature of the same name in iOS. It should be translated in the same manner that it is in the Settings app under Settings > Privacy > Location Services. {NumberedPlaceholder="Soundscape"} -->
   <string name="sleep_sleeping_message">"Soundscape is currently sleeping. This prevents Soundscape from using Location Services or downloading data. This conserves battery when you are not using Soundscape. Tap the button below to wake up Soundscape."</string>
 
-<!-- Sleep Notification, Double tap to put Soundscape to sleep. Putting the app in an idle state for a period of time. {NumberedPlaceholder="Soundscape"} -->
+<!-- Sleep Notification, ...put Soundscape to sleep. Putting the app in an idle state for a period of time. {NumberedPlaceholder="Soundscape"} -->
   <string name="sleep_sleep_acc_hint">"put Soundscape to sleep"</string>
 
 <!-- Sleep Button, restore the app from a sleep (idle) state when a user leaves his location. -->
@@ -2097,25 +2097,25 @@ Alternatively, you may continue previewing the app with a predefined test locati
 <!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_my_location">"My\nLocation"</string>
 
-<!-- Accessibility Notification, Double tap to hear about your current location. -->
+<!-- Accessibility Notification, ...hear about your current location. -->
   <string name="ui_action_button_my_location_acc_hint">"hear about your current location"</string>
 
 <!-- Similar to `callouts.nearby_markers`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_nearby_markers">"Nearby\nMarkers"</string>
 
-<!-- Accessibility Notification, Double tap to hear about nearby places that you have marked -->
+<!-- Accessibility Notification, ...hear about nearby places that you have marked -->
   <string name="ui_action_button_nearby_markers_acc_hint">"about nearby places that you have marked"</string>
 
 <!-- Similar to `help.orient.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_around_me">"Around\nMe"</string>
 
-<!-- Accessibility Notification, Double tap to hear about places in the four quadrants around you -->
+<!-- Accessibility Notification, ...hear about places in the four quadrants around you -->
   <string name="ui_action_button_around_me_acc_hint">"hear about places in the four quadrants around you"</string>
 
 <!-- Similar to `help.explore.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. {NumberedPlaceholder="\n"} -->
   <string name="ui_action_button_ahead_of_me">"Ahead\nof Me"</string>
 
-<!-- Accessibility Notification, Double tap to hear about places in front of you -->
+<!-- Accessibility Notification, ...hear about places in front of you -->
   <string name="ui_action_button_ahead_of_me_acc_hint">"hear about places in front of you"</string>
 
 <!-- Title, Menu -->
@@ -3590,6 +3590,10 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
   <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
   <string name="menu_manage_audio" translatable="false">"Manage Audio"</string>
+  <string name="menu_manage_accessibility" translatable="false">"Manage Accessibility"</string>
+  <string name="settings_hints" translatable="false">"Enable TalkBack hints"</string>
+  <string name="settings_theme_is_light" translatable="false">"Use light theme"</string>
+  <string name="settings_theme_contrast" translatable="false">"Theme contrast"</string>
   <string name="street_preview_exit" translatable="false">"Exit Street Preview"</string>
 
   <!-- We need to encode < as &lt; to prevent them being stripped prior to use -->

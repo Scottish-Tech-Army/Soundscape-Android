@@ -31,9 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -174,54 +172,50 @@ fun RouteDetailsScreen(
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.Stop,
-                                    iconModifier = Modifier.size(spacing.targetSize),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    iconText = stringResource(R.string.route_detail_action_stop_route),
-                                    fontSize = 24.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    onClick = {
-                                        stopRoute()
-                                    }
-                                )
+                                    text = stringResource(R.string.route_detail_action_stop_route),
+                                    talkbackHint = stringResource(R.string.route_detail_action_stop_route_hint),
+                                ) {
+                                    stopRoute()
+                                }
+
 
                             } else {
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.PlayArrow,
-                                    iconModifier = Modifier.size(spacing.targetSize),
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    iconText = stringResource(R.string.route_detail_action_start_route),
-                                    fontSize = 24.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    onClick = {
-                                        startRoute(uiState.route.objectId)
-                                        // Pop up to the home screen
-                                        navController.navigate(HomeRoutes.Home.route) {
-                                            popUpTo(navController.graph.findStartDestination().id) {
-                                                inclusive = true
-                                            }
-                                            launchSingleTop = true
+                                    talkbackHint = stringResource(R.string.route_detail_action_start_route_hint),
+                                    text = stringResource(R.string.route_detail_action_start_route),
+                                ) {
+                                    startRoute(uiState.route.objectId)
+                                    // Pop up to the home screen
+                                    navController.navigate(HomeRoutes.Home.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            inclusive = true
                                         }
-                                    })
+                                        launchSingleTop = true
+                                    }
+                                }
                             }
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Edit,
-                                iconModifier = Modifier.size(spacing.targetSize),
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                iconText = stringResource(R.string.route_detail_action_edit),
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold,
-                                onClick = { navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId.toHexString()}") })
+                                text = stringResource(R.string.route_detail_action_edit),
+                                talkbackHint = stringResource(R.string.route_detail_action_edit_hint)
+                            ) {
+                                navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId.toHexString()}")
+                            }
                             IconWithTextButton(
                                 modifier = Modifier.fillMaxWidth(),
                                 icon = Icons.Default.Share,
-                                iconModifier = Modifier.size(spacing.targetSize),
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                iconText = stringResource(R.string.share_title),
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold,
-                                onClick = { /*TODO*/ })
+                                text = stringResource(R.string.share_title),
+                                talkbackHint = stringResource(R.string.route_detail_action_share_hint)
+                            ) {
+                                /*TODO*/
+                            }
                         }
                         // Small map showing first route point
                         MapContainerLibre(

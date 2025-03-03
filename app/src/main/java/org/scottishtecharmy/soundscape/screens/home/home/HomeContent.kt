@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import org.maplibre.android.geometry.LatLng
@@ -41,6 +40,7 @@ import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
@@ -63,10 +63,6 @@ fun HomeContent(
     streetPreviewFunctions: StreetPreviewFunctions,
     routeFunctions: RouteFunctions
 ) {
-    val markersHint = stringResource(R.string.search_button_markers_accessibility_hint)
-    val placesNearbyHint = stringResource(R.string.search_button_nearby_accessibility_hint)
-    val currentLocationHint = stringResource(R.string.search_button_current_location_accessibility_hint)
-
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
         modifier = modifier
@@ -87,10 +83,9 @@ fun HomeContent(
                     },
                     text = stringResource(R.string.search_nearby_screen_title),
                     horizontalPadding = spacing.small,
-                    modifier = Modifier.semantics {
-                        heading()
-                        onClick(label = placesNearbyHint, action = { false })
-                    },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .talkbackHint(stringResource(R.string.search_button_nearby_accessibility_hint)),
                 )
                 // Markers and routes
                 NavigationButton(
@@ -99,8 +94,7 @@ fun HomeContent(
                     },
                     text = stringResource(R.string.search_view_markers),
                     horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .semantics { onClick(label = markersHint, action = { false }) }
+                    modifier = Modifier.talkbackHint(stringResource(R.string.search_button_markers_accessibility_hint)),
                 )
                 // Current location
                 NavigationButton(
@@ -112,8 +106,7 @@ fun HomeContent(
                     },
                     text = stringResource(R.string.search_use_current_location),
                     horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .semantics { onClick(label = currentLocationHint, action = { false }) }
+                    modifier = Modifier.talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint)),
                 )
             }
             if (location != null) {

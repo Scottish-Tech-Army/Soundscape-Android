@@ -1,15 +1,26 @@
 package org.scottishtecharmy.soundscape.ui.theme
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.ThemeState
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -281,23 +292,42 @@ private val testColorTheme = darkColorScheme(
     surfaceContainerHighest = Color(0xFFFF8080),
 )
 
+var LocalHintsEnabled = compositionLocalOf { true }
+
 @Composable
 fun SoundscapeTheme(
-    darkTheme: Boolean = false,         // Default to light color scheme and leave choice to caller
-    testTheme: Boolean = false,         // Test mode only, for checking color usage
+    themeStateFlow: StateFlow<ThemeState>? = null,
+    testTheme: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        testTheme -> testColorTheme     // For checking color usage
-        darkTheme -> mediumContrastDarkColorScheme
-        else -> mediumContrastLightColorScheme
+    val themeState = themeStateFlow?.collectAsState()
+    val hintsEnabled = remember(themeState?.value) { themeState?.value?.hintsEnabled ?: true }
+    var colorScheme = remember(themeState?.value) {
+        if (themeState?.value?.themeIsLight == true) {
+            when (themeState.value.themeContrast) {
+                "Regular" -> lightScheme
+                "Medium" -> mediumContrastLightColorScheme
+                else -> highContrastLightColorScheme
+            }
+        } else {
+            when (themeState?.value?.themeContrast) {
+                "Regular" -> darkScheme
+                "Medium" -> mediumContrastDarkColorScheme
+                else -> highContrastDarkColorScheme
+            }
+        }
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    if(testTheme) {
+        // Override theme for checking color usage
+        colorScheme = testColorTheme
+    }
+    CompositionLocalProvider(LocalHintsEnabled provides hintsEnabled) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
 }
 
 /**

@@ -4,12 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -23,17 +21,14 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -47,6 +42,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
 import java.net.URLEncoder
@@ -210,6 +206,7 @@ private fun LocationDescriptionButtonsSection(
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
             text = stringResource(R.string.location_detail_action_beacon),
+            talkbackHint = stringResource(R.string.location_detail_action_beacon_hint),
         ) {
             createBeacon(locationDescription.location)
         }
@@ -218,13 +215,15 @@ private fun LocationDescriptionButtonsSection(
             IconWithTextButton(
                 icon = Icons.Filled.EditLocation,
                 text = stringResource(R.string.markers_edit_screen_title_edit),
+                talkbackHint = stringResource(R.string.location_detail_action_edit_hint)
             ) {
                 dialogState.value = true
             }
         } else {
             IconWithTextButton(
                 icon = Icons.Filled.AddLocation,
-                text = stringResource(R.string.universal_links_alert_action_marker)
+                text = stringResource(R.string.universal_links_alert_action_marker),
+                talkbackHint = stringResource(R.string.location_detail_action_save_hint)
             ) {
                 dialogState.value = true
             }
@@ -233,6 +232,7 @@ private fun LocationDescriptionButtonsSection(
         IconWithTextButton(
             icon = Icons.Filled.Navigation,
             text = stringResource(R.string.preview_title),
+            talkbackHint = stringResource(R.string.location_detail_action_preview_hint)
         ) {
             enableStreetPreview(locationDescription.location)
             onNavigateUp()
@@ -241,6 +241,7 @@ private fun LocationDescriptionButtonsSection(
         IconWithTextButton(
             icon = Icons.Filled.ShareLocation,
             text = stringResource(R.string.share_title),
+            talkbackHint = stringResource(R.string.location_detail_action_share_hint)
         ) {
             shareLocation(shareMessage, locationDescription)
             onNavigateUp()
@@ -307,49 +308,6 @@ private fun LocationDescriptionTextsSection(
             }
         }
     }
-}
-
-@Composable
-fun IconWithTextButton(
-    icon: ImageVector,
-    text: String,
-    action: () -> (Unit),
-) {
-    TextButton(
-        modifier =
-            Modifier
-                .fillMaxWidth(),
-        onClick = {
-            action()
-        },
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically, // Aligns icon and text vertically
-            modifier = Modifier.fillMaxWidth(), // Ensures the content inside aligns properly
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface
-            )
-            Spacer(modifier = Modifier.width(spacing.medium)) // Space between icon and text
-            Text(
-                text = text,
-                textAlign = TextAlign.Start, // Aligns text to start within the Row
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun IconsWithTextActionsPreview() {
-    IconWithTextButton(
-        icon = Icons.Filled.LocationOn,
-        text = stringResource(R.string.location_detail_action_beacon),
-        action = {},
-    )
 }
 
 @Preview(showBackground = true)
