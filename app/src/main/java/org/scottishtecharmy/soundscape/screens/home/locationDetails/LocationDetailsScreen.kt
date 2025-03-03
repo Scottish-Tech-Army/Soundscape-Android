@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.EditLocation
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Navigation
+import androidx.compose.material.icons.filled.ShareLocation
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -91,6 +92,9 @@ fun LocationDetailsScreen(
                     location = locationForDescription
                 )
         },
+        shareLocation = { message, description ->
+            viewModel.shareLocation(context, message, description)
+        },
         location = location,
         heading = heading,
         modifier = modifier,
@@ -107,6 +111,7 @@ fun LocationDetails(
     saveMarker: (description: LocationDescription) -> Unit,
     deleteMarker: (objectId: ObjectId) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
+    shareLocation: (message: String, description : LocationDescription) -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
 
@@ -148,6 +153,7 @@ fun LocationDetails(
                     createBeacon = createBeacon,
                     locationDescription = description.value,
                     enableStreetPreview = enableStreetPreview,
+                    shareLocation = shareLocation,
                     onNavigateUp = { navController.popBackStack() },
                     dialogState = dialogState
                 )
@@ -193,15 +199,17 @@ private fun LocationDescriptionButtonsSection(
     createBeacon: (location: LngLatAlt) -> Unit,
     locationDescription: LocationDescription,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
+    shareLocation: (message: String, locationDescription : LocationDescription) -> Unit,
     onNavigateUp: () -> Unit,
     dialogState: MutableState<Boolean>
 ) {
+    val shareMessage = stringResource(R.string.universal_links_marker_share_message)
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
-            text = stringResource(R.string.create_an_audio_beacon),
+            text = stringResource(R.string.location_detail_action_beacon),
         ) {
             createBeacon(locationDescription.location)
         }
@@ -216,7 +224,7 @@ private fun LocationDescriptionButtonsSection(
         } else {
             IconWithTextButton(
                 icon = Icons.Filled.AddLocation,
-                text = stringResource(R.string.user_activity_save_marker_title)
+                text = stringResource(R.string.universal_links_alert_action_marker)
             ) {
                 dialogState.value = true
             }
@@ -224,9 +232,17 @@ private fun LocationDescriptionButtonsSection(
 
         IconWithTextButton(
             icon = Icons.Filled.Navigation,
-            text = stringResource(R.string.user_activity_street_preview_title),
+            text = stringResource(R.string.preview_title),
         ) {
             enableStreetPreview(locationDescription.location)
+            onNavigateUp()
+        }
+
+        IconWithTextButton(
+            icon = Icons.Filled.ShareLocation,
+            text = stringResource(R.string.share_title),
+        ) {
+            shareLocation(shareMessage, locationDescription)
             onNavigateUp()
         }
     }
@@ -356,6 +372,7 @@ fun LocationDetailsPreview() {
         location = null,
         heading = 0.0F,
         saveMarker = {},
-        deleteMarker = {}
+        deleteMarker = {},
+        shareLocation = {_,_ ->}
     )
 }
