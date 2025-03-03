@@ -336,14 +336,11 @@ fun AddAndEditRouteScreen(
                                 itemsIndexed(routeMembers, key = { _,item -> item.markerObjectId!!.toString() }) { index, item ->
                                     ReorderableItem(reorderableLazyListState, item.markerObjectId.toString()) { _ ->
                                         Row(modifier = Modifier
-                                            .background(MaterialTheme.colorScheme.primary)
+                                            .background(MaterialTheme.colorScheme.primaryContainer)
                                         ) {
                                             LocationItem(
                                                 item = item,
-                                                modifier = Modifier
-                                                    .weight(1f)
-                                                    .smallPadding()
-                                                    .fillMaxWidth(),
+                                                modifier = Modifier.weight(1f),
                                                 decoration = LocationItemDecoration(
                                                     index = index
                                                 ),
@@ -361,7 +358,7 @@ fun AddAndEditRouteScreen(
                                                     imageVector = Icons.Rounded.DragIndicator,
                                                     contentDescription = "",
                                                     modifier = Modifier.size(spacing.targetSize),
-                                                    tint = MaterialTheme.colorScheme.onPrimary,
+                                                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
                                                 )
                                             }
                                         }

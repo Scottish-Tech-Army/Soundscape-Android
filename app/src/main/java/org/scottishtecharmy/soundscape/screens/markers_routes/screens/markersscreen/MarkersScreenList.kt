@@ -32,9 +32,6 @@ fun MarkersList(
         items(uiState.markers) { locationDescription ->
             LocationItem(
                 item = locationDescription,
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primary)
-                    .smallPadding(),
                 decoration = LocationItemDecoration(
                     location = true,
                     details = EnabledFunction(

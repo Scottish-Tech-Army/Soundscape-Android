@@ -243,9 +243,6 @@ fun RouteDetailsScreen(
                                         name = marker.addressName,
                                         location = marker.location?.location() ?: LngLatAlt(),
                                     ),
-                                    modifier = Modifier
-                                        .background(MaterialTheme.colorScheme.primary)
-                                        .smallPadding(),
                                     decoration = LocationItemDecoration(
                                         location = false,
                                         index = index,
