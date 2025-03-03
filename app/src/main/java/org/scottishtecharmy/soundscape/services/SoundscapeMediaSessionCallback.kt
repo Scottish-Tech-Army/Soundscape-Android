@@ -44,33 +44,49 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
         // KEYCODE_MEDIA_NEXT, though that may be specific to my phone. The only event actually
         // handled for now is KEYCODE_MEDIA_NEXT.
 
+        // The behaviour of the media buttons changes when a route is being played back. In that
+        // case the buttons map to next/previous waypoint and muting audio.
+
         keyEvent?.let { event ->
             val decodedKey = when(event.keyCode) {
                 KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
-                    // TODO: ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
-                    service.whatsAroundMe()
+                    // ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
+                    service.routeMute()
                     "Play/Pause"
                 }
                 KeyEvent.KEYCODE_MEDIA_SKIP_FORWARD -> {
-                    // TODO: ⏩ Skip Forward: Toggle callouts On and Off.
+                    // ⏩ Skip Forward
+                    if(!service.routeSkipNext()) {
+                        // If there's no route playing, toggle auto callouts.
+                        service.toggleAutoCallouts()
+                    }
                     "Skip forward"
                 }
-                KeyEvent.KEYCODE_MEDIA_SKIP_BACKWARD -> {
-                    // ⏪ Skip Backward: Callout "Around Me".
-                    "Skip backward"
-                }
-                KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
-                    // TODO: ⏮ Previous: Repeat last callout.
-                    //  For now play out what's ahead of me - this is to aid testing as I wander
-                    //  around!
-                    service.aheadOfMe()
-                    "Previous"
-                }
                 KeyEvent.KEYCODE_MEDIA_NEXT -> {
-                    // ⏭ Next: Callout "My Location".
-                    service.myLocation()
+                    // ⏭ Next
+                    if(!service.routeSkipNext()) {
+                        // If there's no route playing, callout My Location.
+                        service.myLocation()
+                    }
                     "Next"
                 }
+
+                KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
+                    // ⏮ Previous
+                    if(!service.routeSkipPrevious()) {
+                        // TODO: : Repeat last callout.
+                    }
+                    "Previous"
+                }
+                KeyEvent.KEYCODE_MEDIA_SKIP_BACKWARD -> {
+                    // ⏪ Skip Backward
+                    if(!service.routeSkipPrevious()) {
+                        // If there's no route playing, callout around me
+                        service.whatsAroundMe()
+                    }
+                    "Skip backward"
+                }
+
                 KeyEvent.KEYCODE_MEDIA_PLAY -> "Play"
                 KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> "Fast forward"
                 KeyEvent.KEYCODE_MEDIA_REWIND -> "Rewind"
