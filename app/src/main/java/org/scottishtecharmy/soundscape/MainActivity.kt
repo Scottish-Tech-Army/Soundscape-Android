@@ -158,13 +158,13 @@ class MainActivity : AppCompatActivity() {
 
         // Extract the maplibre style assets
         Log.d("ExtractAssets", "Start extraction")
-        extractAssets(applicationContext, "osm-bright-gl-style","osm-bright-gl-style")
+        extractAssets(applicationContext, "osm-liberty-accessible","osm-liberty-accessible")
         Log.d("ExtractAssets", "Completed extraction")
 
         // Update extracted style.json with protomaps server URI
         val filesDir = applicationContext.filesDir.toString()
-        val outputStyleStream = File("$filesDir/osm-bright-gl-style/processedStyle.json").outputStream()
-        val inputStyleStream = File("$filesDir/osm-bright-gl-style/style.json").inputStream()
+        val outputStyleStream = File("$filesDir/osm-liberty-accessible/processedStyle.json").outputStream()
+        val inputStyleStream = File("$filesDir/osm-liberty-accessible/style.json").inputStream()
         inputStyleStream.bufferedReader().useLines { lines ->
             lines.forEach { line ->
                 if(line.contains("PROTOMAPS_SERVER_URL")) {
