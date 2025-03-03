@@ -15,6 +15,7 @@ import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
@@ -34,7 +35,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun getOrientationFlow() : StateFlow<DeviceOrientation?>? {
         return soundscapeService?.directionProvider?.orientationFlow
     }
-    fun getBeaconFlow(): StateFlow<LngLatAlt?>? {
+    fun getBeaconFlow(): StateFlow<BeaconState>? {
         return soundscapeService?.beaconFlow
     }
     fun getStreetPreviewModeFlow(): StateFlow<StreetPreviewState>? {

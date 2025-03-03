@@ -92,7 +92,7 @@ fun Home(
         ) { innerPadding ->
             HomeContent(
                 location = state.location,
-                beaconLocation = state.beaconLocation,
+                beaconState = state.beaconState,
                 routePlayerState = state.currentRouteData,
                 heading = state.heading,
                 modifier = modifier.padding(innerPadding),

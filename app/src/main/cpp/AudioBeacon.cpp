@@ -122,3 +122,7 @@ void PositionedAudio::UpdateGeometry(double heading, double latitude, double lon
 
     //TRACE("%f %f -> %f (%f %f), %dm", heading, beacon_heading, degrees_off_axis, lat_delta, long_delta, dist)
 }
+
+void PositionedAudio::Mute(bool mute) {
+    m_pChannel->setMute(mute);
+}

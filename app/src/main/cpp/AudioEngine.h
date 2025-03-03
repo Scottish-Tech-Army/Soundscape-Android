@@ -75,6 +75,7 @@ namespace soundscape {
 
         void AddBeacon(PositionedAudio *beacon, bool queued = false);
         void RemoveBeacon(PositionedAudio *beacon);
+        bool ToggleBeaconMute();
 
         void Eof(long long id);
 
@@ -108,6 +109,8 @@ namespace soundscape {
         std::recursive_mutex m_BeaconsMutex;
         std::set<PositionedAudio *> m_Beacons;
         std::list<PositionedAudio *> m_QueuedBeacons;
+
+        bool m_BeaconMute = false;
     };
 
 } // soundscape

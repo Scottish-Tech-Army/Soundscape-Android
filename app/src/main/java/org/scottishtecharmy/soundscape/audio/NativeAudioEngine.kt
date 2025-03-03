@@ -48,6 +48,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private external fun destroy(engineHandle: Long)
     private external fun createNativeBeacon(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
+    private external fun toggleNativeBeaconMute(engineHandle: Long) : Boolean
     private external fun createNativeTextToSpeech(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double, ttsSocket: Int) :  Long
     private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
@@ -58,7 +59,6 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
     private var _textToSpeechRunning = MutableStateFlow(false)
     val textToSpeechRunning = _textToSpeechRunning.asStateFlow()
-
 
     fun destroy()
     {
@@ -219,6 +219,17 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             }
         }
     }
+
+    override fun toggleBeaconMute() : Boolean
+    {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L) {
+                return toggleNativeBeaconMute(engineHandle)
+            }
+        }
+        return false
+    }
+
     private fun awaitTextToSpeechInitialization() : Boolean {
         // Block waiting for the TextToSpeech to initialize before using it. Timeout after
         // waiting for 2 seconds and in that case return false

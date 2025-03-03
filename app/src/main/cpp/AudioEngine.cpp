@@ -346,6 +346,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         }
         else
         {
+            beacon->Mute(m_BeaconMute);
             m_Beacons.insert(beacon);
             TRACE("AddBeacon -> %zu beacons", m_Beacons.size());
 
@@ -358,6 +359,19 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         m_Beacons.erase(beacon);
 
 //        TRACE("RemoveBeacon -> %zu beacons", m_Beacons.size());
+    }
+
+    bool AudioEngine::ToggleBeaconMute() {
+        // Toggle the mute state
+        m_BeaconMute ^= true;
+
+        // Update beacons
+        std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+        for(const auto &beacon: m_Beacons) {
+            beacon->Mute(m_BeaconMute);
+        }
+
+        return m_BeaconMute;
     }
 
     FMOD_VECTOR AudioEngine::TranslateToFmodVector(double longitude, double latitude)
@@ -514,6 +528,18 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon
                                                                                 jlong beacon_handle) {
     auto beacon = reinterpret_cast<soundscape::Beacon*>(beacon_handle);
     delete beacon;
+}
+
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_toggleNativeBeaconMute(JNIEnv *env MAYBE_UNUSED,
+                                                                                 jobject thiz MAYBE_UNUSED,
+                                                                                 jlong engine_handle) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if(ae) {
+        return ae->ToggleBeaconMute();
+    }
+    return false;
 }
 
 extern "C"

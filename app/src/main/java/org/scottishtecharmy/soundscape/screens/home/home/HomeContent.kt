@@ -11,6 +11,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.VolumeMute
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
@@ -40,6 +41,7 @@ import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
@@ -49,7 +51,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 @Composable
 fun HomeContent(
     location: LngLatAlt?,
-    beaconLocation: LngLatAlt?,
+    beaconState: BeaconState?,
     routePlayerState: RoutePlayerState,
     heading: Float,
     onNavigate: (String) -> Unit,
@@ -129,7 +131,7 @@ fun HomeContent(
                             }
                             Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
                                 MapContainerLibre(
-                                    beaconLocation = beaconLocation,
+                                    beaconLocation = beaconState?.location,
                                     routeData = routePlayerState.routeData,
                                     mapCenter = location,
                                     allowScrolling = false,
@@ -187,7 +189,10 @@ fun HomeContent(
                                 {
                                     Icon(
                                         modifier = Modifier,
-                                        imageVector = Icons.AutoMirrored.Filled.VolumeMute,
+                                        imageVector = if (beaconState?.muteState == true)
+                                            Icons.AutoMirrored.Filled.VolumeOff
+                                        else
+                                            Icons.AutoMirrored.Filled.VolumeMute,
                                         contentDescription = "",
                                     )
                                 }
@@ -196,7 +201,7 @@ fun HomeContent(
                     }
                 } else {
                     MapContainerLibre(
-                        beaconLocation = beaconLocation,
+                        beaconLocation = beaconState?.location,
                         routeData = null,
                         mapCenter = location,
                         allowScrolling = false,
@@ -220,7 +225,7 @@ fun HomeContent(
 fun StreetPreviewHomeContent() {
     HomeContent(
         location = null,
-        beaconLocation = null,
+        beaconState = null,
         routePlayerState = RoutePlayerState(),
         heading = 0.0f,
         onNavigate = {},
@@ -249,7 +254,7 @@ fun PreviewHomeContent() {
 
     HomeContent(
         location = LngLatAlt(),
-        beaconLocation = LngLatAlt(),
+        beaconState = null,
         routePlayerState = routePlayerState,
         heading = 0.0f,
         onNavigate = {},

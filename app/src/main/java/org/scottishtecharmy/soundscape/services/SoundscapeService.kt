@@ -70,6 +70,8 @@ fun getOttoBus() : Bus {
  * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
  * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
+data class BeaconState(val location: LngLatAlt? = null, val muteState: Boolean = false)
+
 @AndroidEntryPoint
 class SoundscapeService : MediaSessionService() {
 
@@ -89,8 +91,8 @@ class SoundscapeService : MediaSessionService() {
     private var geoEngine = GeoEngine()
 
     // Flow to return beacon location
-    private val _beaconFlow = MutableStateFlow<LngLatAlt?>(null)
-    var beaconFlow: StateFlow<LngLatAlt?> = _beaconFlow
+    private val _beaconFlow = MutableStateFlow(BeaconState())
+    var beaconFlow: StateFlow<BeaconState> = _beaconFlow
 
     // Flow to return street preview mode
     private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
@@ -341,7 +343,7 @@ class SoundscapeService : MediaSessionService() {
         }
         audioBeacon = audioEngine.createBeacon(location)
         // Report any change in beacon back to application
-        _beaconFlow.value = location
+        _beaconFlow.value = _beaconFlow.value.copy(location = location)
     }
 
     fun destroyBeacon() {
@@ -350,7 +352,7 @@ class SoundscapeService : MediaSessionService() {
             audioBeacon = 0L
         }
         // Report any change in beacon back to application
-        _beaconFlow.value = LngLatAlt(0.0, 0.0)
+        _beaconFlow.value = _beaconFlow.value.copy(location = null)
     }
 
     fun myLocation() {
@@ -415,7 +417,13 @@ class SoundscapeService : MediaSessionService() {
         routePlayer.moveToNext()
     }
     fun routeMute() {
-        routePlayer.mute()
+        // Silence any current text-to-speech output
+        audioEngine.clearTextToSpeechQueue()
+
+        // Toggle the beacon mute
+        val muteState = audioEngine.toggleBeaconMute()
+        // Update the beacon flow with the new mute state
+        _beaconFlow.value = _beaconFlow.value.copy(muteState = muteState)
     }
     /**
      * isAudioEngineBusy returns true if there is more than one entry in the
