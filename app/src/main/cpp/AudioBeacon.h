@@ -21,6 +21,7 @@ namespace soundscape {
         bool IsEof() { return m_Eof; }
         void Eof() { m_Eof = true; }
         void PlayNow();
+        void Mute(bool mute);
 
     protected:
         void Init(double degrees_off_axis);

@@ -116,10 +116,6 @@ class RoutePlayer(val service: SoundscapeService) {
         Log.d(TAG, toString())
     }
 
-    fun mute() {
-
-    }
-
     override fun toString(): String {
         currentRouteData?.let { route ->
             var state = ""

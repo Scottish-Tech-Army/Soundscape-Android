@@ -98,18 +98,10 @@ class HomeViewModel
             // Observe beacon location update from the service so we can show it on the map
             soundscapeServiceConnection.getBeaconFlow()?.collectLatest { value ->
                 Log.d(TAG, "beacon collected $value")
-                if (value != null) {
-                    _state.update {
-                        it.copy(
-                            beaconLocation =
-                                LngLatAlt(
-                                    value.longitude,
-                                    value.latitude,
-                                ),
-                        )
-                    }
-                } else {
-                    _state.update { it.copy(beaconLocation = null) }
+                _state.update {
+                    it.copy(
+                        beaconState = value
+                    )
                 }
             }
         }
