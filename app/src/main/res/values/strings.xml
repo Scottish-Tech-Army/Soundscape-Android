@@ -3587,8 +3587,6 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string>
   <string name="search_hint_input" translatable="false">Search for an address</string>
   <string name="cancel_search_contentDescription" translatable="false">Cancel search</string>
-  <string name="create_an_audio_beacon"  translatable="false">Create an audio beacon</string>
-  <string name="enter_street_preview"  translatable="false">Enter Street Preview</string>
   <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
   <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
   <string name="menu_manage_audio" translatable="false">"Manage Audio"</string>

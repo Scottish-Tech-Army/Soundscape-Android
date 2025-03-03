@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,6 +14,7 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import java.net.URLEncoder
 import javax.inject.Inject
 
 @HiltViewModel
@@ -95,6 +98,30 @@ class LocationDetailsViewModel @Inject constructor(
                 Log.e("LocationDetailsViewModel", "Error deleting marker: ${e.message}")
             }
         }
+    }
+
+    fun shareLocation(context: Context, message: String, locationDescription: LocationDescription) {
+        // Share the current location using standard Android sharing mechanism. It's shared as a
+        //
+        //  geo://latitude,longitude
+        //
+        // URI, with the , encoded. This shows up in Slack as a clickable link which is the main
+        // usefulness for now
+        val location = locationDescription.location
+        val sendIntent: Intent =
+            Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TITLE, locationDescription.name)
+                val latitude = location.latitude
+                val longitude = location.longitude
+                val uriData: String =
+                    URLEncoder.encode("$latitude,$longitude", Charsets.UTF_8.name())
+                putExtra(Intent.EXTRA_TEXT, "${message.format(locationDescription.name)}:\n geo://$uriData")
+                type = "text/plain"
+            }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        context.startActivity(shareIntent)
     }
 
     init {

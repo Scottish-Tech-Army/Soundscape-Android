@@ -113,7 +113,6 @@ fun HomeScreen(
                 onToggleSearch = viewModel::onToggleSearch,
                 onSearchTextChange = viewModel::onSearchTextChange,
                 rateSoundscape = rateSoundscape,
-                shareLocation = { viewModel.shareLocation(context) },
                 routeFunctions = routeFunctions,
                 streetPreviewFunctions = streetPreviewFunctions,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
