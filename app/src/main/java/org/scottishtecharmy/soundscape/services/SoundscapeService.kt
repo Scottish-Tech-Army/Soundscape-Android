@@ -410,20 +410,25 @@ class SoundscapeService : MediaSessionService() {
     fun stopRoute() {
         routePlayer.stopRoute()
     }
-    fun routeSkipPrevious() {
-        routePlayer.moveToPrevious()
+    fun routeSkipPrevious(): Boolean {
+        return routePlayer.moveToPrevious()
     }
-    fun routeSkipNext() {
-        routePlayer.moveToNext()
+    fun routeSkipNext(): Boolean {
+        return routePlayer.moveToNext()
     }
-    fun routeMute() {
-        // Silence any current text-to-speech output
-        audioEngine.clearTextToSpeechQueue()
+    fun routeMute(): Boolean {
+        if(routePlayer.isPlaying()) {
+            // Silence any current text-to-speech output
+            audioEngine.clearTextToSpeechQueue()
 
-        // Toggle the beacon mute
-        val muteState = audioEngine.toggleBeaconMute()
-        // Update the beacon flow with the new mute state
-        _beaconFlow.value = _beaconFlow.value.copy(muteState = muteState)
+            // Toggle the beacon mute
+            val muteState = audioEngine.toggleBeaconMute()
+            // Update the beacon flow with the new mute state
+            _beaconFlow.value = _beaconFlow.value.copy(muteState = muteState)
+
+            return true
+        }
+        return false
     }
     /**
      * isAudioEngineBusy returns true if there is more than one entry in the
@@ -465,6 +470,10 @@ class SoundscapeService : MediaSessionService() {
             }
         }
         if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
+    }
+
+    fun toggleAutoCallouts() {
+        geoEngine.toggleAutoCallouts()
     }
 
     /**

@@ -97,7 +97,10 @@ class GeoEngine {
     var appInForeground = false
 
     private lateinit var autoCallout: AutoCallout
-
+    private var autoCalloutDisabled = false
+    fun toggleAutoCallouts() {
+        autoCalloutDisabled.xor(true)
+    }
     private val streetPreview = StreetPreview()
 
     private var markerTree : FeatureTree? = null
@@ -248,7 +251,7 @@ class GeoEngine {
                     // So long as the AudioEngine is not already busy, run any auto callouts that we
                     // need. Auto Callouts use the direction of travel if there is one, otherwise
                     // falling back to use the phone direction.
-                    if(!soundscapeService.isAudioEngineBusy()) {
+                    if(!soundscapeService.isAudioEngineBusy() && !autoCalloutDisabled) {
                         val callouts =
                             autoCallout.updateLocation(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto), gridState)
                         if (callouts.isNotEmpty()) {
