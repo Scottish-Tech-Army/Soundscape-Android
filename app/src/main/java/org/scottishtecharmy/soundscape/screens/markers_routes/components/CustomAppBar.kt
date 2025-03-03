@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,14 +33,10 @@ fun CustomAppBar(title : String,
             horizontalArrangement = Arrangement.spacedBy(spacing.small)
         ) {
             IconWithTextButton(
-                iconModifier = Modifier.size(spacing.targetSize),
-                onClick = {
-                    onNavigateUp()
-                },
-                iconText = navigationButtonTitle,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            )
+                text = navigationButtonTitle
+            ) {
+                onNavigateUp()
+            }
 
             Box(
                 modifier = Modifier.fillMaxHeight().weight(1f),

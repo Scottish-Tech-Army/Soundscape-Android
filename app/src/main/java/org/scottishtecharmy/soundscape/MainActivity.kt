@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import android.Manifest
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -24,18 +25,26 @@ import com.google.android.play.core.review.ReviewException
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.model.ReviewErrorCode
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_BASE
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
+import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
 import javax.inject.Inject
 
+data class ThemeState(
+    val hintsEnabled: Boolean = false,
+    val themeIsLight: Boolean = true,
+    val themeContrast: String = "High")
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -94,6 +103,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
+
+    private val _themeStateFlow = MutableStateFlow(ThemeState())
+    private var themeStateFlow: StateFlow<ThemeState> = _themeStateFlow
+
+    private fun handlePreferenceChange(key: String?, preferences: SharedPreferences) {
+        when (key) {
+            THEME_IS_LIGHT_KEY -> {
+                val themeIsLight = preferences.getBoolean(
+                    THEME_IS_LIGHT_KEY,
+                    THEME_IS_LIGHT_DEFAULT
+                )
+
+                // The state of the theme light/dark setting has changed, so update the UI
+                _themeStateFlow.value = themeStateFlow.value.copy(themeIsLight = themeIsLight)
+
+                Log.e(TAG, "themeIsLight $themeIsLight")
+            }
+
+            THEME_CONTRAST_KEY -> {
+                val contrast = preferences.getString(THEME_CONTRAST_KEY, "High")!!
+                _themeStateFlow.value = themeStateFlow.value.copy(themeContrast = contrast)
+                Log.e(TAG, "themeContrast $contrast")
+            }
+
+            HINTS_KEY -> {
+                _themeStateFlow.value = themeStateFlow.value.copy(
+                    hintsEnabled = preferences.getBoolean(HINTS_KEY, HINTS_DEFAULT)
+                )
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -121,10 +164,18 @@ class MainActivity : AppCompatActivity() {
         outputStyleStream.close()
 
         // Debug - dump preferences
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         for (pref in sharedPreferences.all) {
             Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
+        sharedPreferencesListener =
+            SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
+                handlePreferenceChange(key, preferences)
+            }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
+        // Get starting values
+        handlePreferenceChange(THEME_IS_LIGHT_KEY, sharedPreferences)
+        handlePreferenceChange(THEME_CONTRAST_KEY, sharedPreferences)
 
         val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
 
@@ -179,7 +230,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContent {
-            SoundscapeTheme {
+            SoundscapeTheme(themeStateFlow = themeStateFlow) {
                 val navController = rememberNavController()
                 val destination by navigator.destination.collectAsState()
                 LaunchedEffect(destination) {
@@ -197,6 +248,11 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    override fun onDestroy() {
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
+        super.onDestroy()
     }
 
     private fun rateSoundscape() {
@@ -315,6 +371,12 @@ class MainActivity : AppCompatActivity() {
         const val VOICE_TYPE_KEY = "VoiceType"
         const val SPEECH_RATE_DEFAULT = 1.0f
         const val SPEECH_RATE_KEY = "SpeechRate"
+        const val HINTS_DEFAULT = true
+        const val HINTS_KEY = "Hints"
+        const val THEME_IS_LIGHT_DEFAULT = true
+        const val THEME_IS_LIGHT_KEY = "ThemeIsLight"
+        const val THEME_CONTRAST_DEFAULT = "High"
+        const val THEME_CONTRAST_KEY = "ThemeContrast"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }

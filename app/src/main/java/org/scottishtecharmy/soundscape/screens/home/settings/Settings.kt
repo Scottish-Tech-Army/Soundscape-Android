@@ -115,6 +115,50 @@ fun Settings(
 
             item {
                 Text(
+                    text = stringResource(R.string.menu_manage_accessibility),
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = textColor,
+                    modifier = Modifier.semantics { heading() },
+                )
+            }
+            switchPreference(
+                key = MainActivity.THEME_IS_LIGHT_KEY,
+                defaultValue = MainActivity.THEME_IS_LIGHT_DEFAULT,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_theme_is_light),
+                        color = textColor
+                    )
+                },
+            )
+            listPreference(
+                key = MainActivity.THEME_CONTRAST_KEY,
+                defaultValue = MainActivity.THEME_CONTRAST_DEFAULT,
+                values = listOf("Regular", "Medium", "High"),
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_theme_contrast),
+                        color = textColor
+                    )
+                },
+                summary = { Text(text = it, color = textColor) },
+            )
+
+//          Disabling hints just results in the Android default "Double tap to Activate" being read
+//          out instead. Our hints are better, so don't allow disabling them.
+//            switchPreference(
+//                key = MainActivity.HINTS_KEY,
+//                defaultValue = MainActivity.HINTS_DEFAULT,
+//                title = {
+//                    Text(
+//                        text = stringResource(R.string.settings_hints),
+//                        color = textColor
+//                    )
+//                },
+//            )
+
+            item {
+                Text(
                     text = stringResource(R.string.menu_manage_audio),
                     style = MaterialTheme.typography.headlineSmall,
                     color = textColor,
