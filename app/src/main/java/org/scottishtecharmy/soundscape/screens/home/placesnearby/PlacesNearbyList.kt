@@ -26,8 +26,6 @@ fun PlacesNearbyList(
         items(uiState.locations) { locationDescription ->
             LocationItem(
                 item = locationDescription,
-                modifier = Modifier
-                    .fillMaxWidth(),
                 decoration = LocationItemDecoration(
                     location = true,
                     details = EnabledFunction(
