@@ -18,9 +18,9 @@ fun rememberMapViewWithLifecycle(disposeCode : (map : MapView) -> Unit): MapView
     val mapView = remember {
         MapLibre.getInstance(context)
         val options = createFromAttributes(context)
-        options.apply {
-            pixelRatio(4.0F)
-        }
+//        options.apply {
+//            pixelRatio(4.0F)
+//        }
         return@remember MapView(context, options)
     }
 

@@ -189,7 +189,7 @@ fun MapContainerLibre(
             // init map first time it is displayed
             map.getMapAsync { mapLibre ->
                 // val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
-                val styleUrl = Uri.fromFile(File("$filesDir/osm-bright-gl-style/processedStyle.json")).toString()
+                val styleUrl = Uri.fromFile(File("$filesDir/osm-liberty-accessible/processedStyle.json")).toString()
                 mapLibre.setStyle(styleUrl) { style ->
 
                     // Add the icons we might need to the style
@@ -220,6 +220,8 @@ fun MapContainerLibre(
                     // When allowScrolling is false, the centering of the map is set by the location
                     // provider, and in that case we disable scrolling from the UI
                     mapLibre.uiSettings.isScrollGesturesEnabled = allowScrolling
+                    // Disable tilting of the map - keep it 2D
+                    mapLibre.uiSettings.isTiltGesturesEnabled = false
 
                     // Disable the mapLibre logo as there's not enough screen estate for it
                     mapLibre.uiSettings.isLogoEnabled = false
