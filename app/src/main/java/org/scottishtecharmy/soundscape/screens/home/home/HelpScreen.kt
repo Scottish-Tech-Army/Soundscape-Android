@@ -303,12 +303,6 @@ private val helpPages = listOf(
     Sections(
         R.string.settings_about_app,
         listOf(
-            Section(R.string.settings_about_title_third_party, SectionType.Link),
-        )
-    ),
-    Sections(
-        R.string.settings_about_title_third_party,
-        listOf(
             Section(R.string.copyright_notices, SectionType.Title),
             Section(R.string.osm_copyright, SectionType.Paragraph),
             Section(R.string.openmaptiles_copyright, SectionType.Paragraph),
@@ -629,9 +623,9 @@ fun OfflineHelpPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun ThirdPartyHelpPreview() {
+fun AboutHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.settings_about_title_third_party}",
+        topic = "page${R.string.settings_about_app}",
         navController = rememberNavController(),
         modifier = Modifier
     )
