@@ -47,7 +47,7 @@ jobs:
 
       - name: Dokka build
         run: |
-          ./gradlew dokkaHtml
+          ./gradlew dokkaGenerate
           mkdir ./docs/dokka
           cp -rf app/build/dokka/html/* ./docs/dokka 
 

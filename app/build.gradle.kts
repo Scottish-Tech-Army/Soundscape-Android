@@ -1,15 +1,16 @@
 import com.google.protobuf.gradle.id
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.protobuf)
     alias(libs.plugins.screenshot)
-    id("com.google.protobuf")
-    id("org.jetbrains.dokka")
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.jetbrains.dokka)
 }
 
 android {
@@ -25,6 +26,8 @@ android {
             enableSplit = false
         }
     }
+
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
         create("release") {
@@ -104,10 +107,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
-        experimentalProperties["android.experimental.enableScreenshotTest"] = true
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -121,9 +120,14 @@ android {
     }
 }
 
+composeCompiler {
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+    //stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
+}
+
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:4.28.0"
+        artifact = "com.google.protobuf:protoc:4.29.3"
     }
 
     generateProtoTasks {
@@ -212,6 +216,9 @@ dependencies {
     // LiveData
     implementation(libs.androidx.runtime.livedata)
 
+    // Realm for Kotlin
+    implementation(libs.kotlinx.coroutines.core)
+
     // Datastore for onboarding and settings
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore)
@@ -230,6 +237,7 @@ dependencies {
     // MapLibre library
     implementation (libs.maplibre)
     implementation (libs.maplibre.annotations)
+    implementation (libs.maplibre.compose.material3)
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
