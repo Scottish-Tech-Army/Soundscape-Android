@@ -5,6 +5,7 @@
         <item name="android:windowSplashScreenBackground">#604696</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_skyscrapers</item>
         <item name="android:windowSplashScreenBrandingImage">@drawable/ic_licenses</item>
+        <item name="android:windowSplashScreenBehavior">icon_preferred</item>
         <item name="postSplashScreenTheme">@style/Theme.SoundscapeAlpha</item>
     </style>
 </resources>

@@ -193,7 +193,7 @@ fun MapContainerLibre(
             // init map first time it is displayed
             map.getMapAsync { mapLibre ->
                 // val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
-                val styleUrl = Uri.fromFile(File("$filesDir/osm-bright-gl-style/processedstyle.json")).toString()
+                val styleUrl = Uri.fromFile(File("$filesDir/osm-bright-gl-style/processedStyle.json")).toString()
                 mapLibre.setStyle(styleUrl) { style ->
 
                     // Add the icons we might need to the style
@@ -227,8 +227,10 @@ fun MapContainerLibre(
 
                     // Disable the mapLibre logo as there's not enough screen estate for it
                     mapLibre.uiSettings.isLogoEnabled = false
-                    // Enable the attribution so that we can still get to see who provided the maps
-                    mapLibre.uiSettings.isAttributionEnabled = true
+                    // Disable attribution as it is awkward for Talkback. In its place we provide
+                    // full attribution on app startup as per the OpenStreetMap guidelines:
+                    // https://osmfoundation.org/wiki/Licence/Attribution_Guidelines#Interactive_maps
+                    mapLibre.uiSettings.isAttributionEnabled = false
 
                     mapLibre.addOnMapLongClickListener(onMapLongClick)
                 }
