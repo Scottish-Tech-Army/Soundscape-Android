@@ -117,8 +117,17 @@ double PositionedAudio::GetHeadingOffset(double heading, double latitude, double
     return degrees_off_axis;
 }
 void PositionedAudio::UpdateGeometry(double heading, double latitude, double longitude) {
-    auto degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
-    m_pAudioSource->UpdateGeometry(degrees_off_axis);
+    if(isnan(heading)) {
+        // We don't currently have a heading, so we want to make the beacon more quiet and play
+        // the sound it makes if it's behind us
+        m_pChannel->setVolume(0.1);
+        m_pAudioSource->UpdateGeometry(180.0);
+    } else {
+        m_pChannel->setVolume(1.0);
+        auto degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
+        m_pAudioSource->UpdateGeometry(degrees_off_axis);
+    }
+
 
     //TRACE("%f %f -> %f (%f %f), %dm", heading, beacon_heading, degrees_off_axis, lat_delta, long_delta, dist)
 }
