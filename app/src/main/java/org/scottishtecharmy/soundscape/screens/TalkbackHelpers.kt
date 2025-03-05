@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
-import org.scottishtecharmy.soundscape.ui.theme.LocalHintsEnabled
 
 /**
  * talkbackHint adds a string which describes what the element does on a double click

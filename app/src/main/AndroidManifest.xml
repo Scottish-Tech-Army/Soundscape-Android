@@ -37,10 +37,8 @@
             android:launchMode="singleTask"
             android:theme="@style/SplashTheme.Soundscape">
 
-            <!-- android:theme="@style/Theme.AppCompat.DayNight"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -52,6 +50,7 @@
             </intent-filter>
 
             <intent-filter>
+                <!-- intents to load route from GPX file -->
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -60,6 +59,7 @@
             </intent-filter>
 
             <intent-filter>
+                <!-- intents to load route from JSON file -->
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -76,7 +76,7 @@
             </intent-filter>
 
             <intent-filter>
-                <!-- soundscape intents to set a fake location -->
+                <!-- soundscape intents to set a street preview location -->
                 <data android:scheme="soundscape" />
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>

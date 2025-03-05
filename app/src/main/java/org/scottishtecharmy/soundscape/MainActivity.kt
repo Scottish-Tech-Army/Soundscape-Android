@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,13 +30,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_BASE
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
-import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.extractAssets
@@ -54,12 +54,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var navigator : Navigator
     @Inject
     lateinit var soundscapeIntents : SoundscapeIntents
-
-    data class DeviceLocation(
-        var latitude : Double,
-        var longitude : Double,
-        var orientation : Double,
-    )
 
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =
@@ -138,6 +132,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val timeNow = System.currentTimeMillis()
+            installSplashScreen()
+
+            // Keep the splash screen visible to allow time to see the attribution acknowledgements
+            val attributionDelay = 3000
+            val content: View = findViewById(android.R.id.content)
+            content.viewTreeObserver.addOnPreDrawListener(
+                object : ViewTreeObserver.OnPreDrawListener {
+                    override fun onPreDraw(): Boolean {
+                        return if((System.currentTimeMillis() - timeNow) > attributionDelay) {
+                            content.viewTreeObserver.removeOnPreDrawListener(this)
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                }
+            )
+        }
+
         super.onCreate(savedInstanceState)
 
         // Extract the maplibre style assets
@@ -147,7 +162,7 @@ class MainActivity : AppCompatActivity() {
 
         // Update extracted style.json with protomaps server URI
         val filesDir = applicationContext.filesDir.toString()
-        val outputStyleStream = File("$filesDir/osm-bright-gl-style/processedstyle.json").outputStream()
+        val outputStyleStream = File("$filesDir/osm-bright-gl-style/processedStyle.json").outputStream()
         val inputStyleStream = File("$filesDir/osm-bright-gl-style/style.json").inputStream()
         inputStyleStream.bufferedReader().useLines { lines ->
             lines.forEach { line ->
@@ -177,13 +192,6 @@ class MainActivity : AppCompatActivity() {
         handlePreferenceChange(THEME_IS_LIGHT_KEY, sharedPreferences)
         handlePreferenceChange(THEME_CONTRAST_KEY, sharedPreferences)
 
-        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
-
-        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            installSplashScreen()
-        }
-
         // When opening a JSON file containing a route from Android File we can end up with two
         // instances of the app running. This check ensures that we have only one instance.
         if (!isTaskRoot) {
@@ -192,6 +200,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(newIntent)
             finish()
         }
+
+        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
+        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
 
         if (isFirstLaunch) {
             // On the first launch, we want to take the user through the OnboardingActivity so

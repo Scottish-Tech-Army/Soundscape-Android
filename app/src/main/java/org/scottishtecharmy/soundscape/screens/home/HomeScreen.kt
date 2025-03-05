@@ -9,7 +9,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -87,7 +86,6 @@ fun HomeScreen(
     ) {
         // Main navigation
         composable(HomeRoutes.Home.route) {
-            val context = LocalContext.current
             Home(
                 state = state.value,
                 onNavigate = { dest -> navController.navigate(dest) },
