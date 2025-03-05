@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 
@@ -20,3 +21,13 @@ fun Modifier.talkbackHint(hint: String) =
 //    else {
 //        semantics {}
 //    }
+
+/**
+ * talkbackDescription replaces the default content description string.
+ * @param contentDescription String that is read out by talkback
+ */
+@Composable
+fun Modifier.talkbackDescription(contentDescription: String) =
+    semantics {
+        this.contentDescription = contentDescription
+    }
