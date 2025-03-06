@@ -72,7 +72,6 @@ fun Home(
                 rateSoundscape = rateSoundscape,
             )
         },
-        gesturesEnabled = false,
         modifier = modifier,
     ) {
         Scaffold(
