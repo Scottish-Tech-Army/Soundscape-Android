@@ -9,12 +9,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.R
 
 @Composable
 fun AddWaypointsList(
@@ -64,7 +66,9 @@ fun AddWaypointsList(
                                 updatedList.remove(locationDescription)
                             uiState.routeMembers = updatedList
                         },
-                        value = routeMember[locationDescription] ?: false
+                        value = routeMember[locationDescription] == true,
+                        hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),
+                        hintWhenOff = stringResource(R.string.location_detail_add_waypoint_new_hint)
                     )
                 ),
                 userLocation = userLocation
