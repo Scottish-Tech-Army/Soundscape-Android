@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.invisibleToUser
 
 /**
  * talkbackHint adds a string which describes what the element does on a double click
@@ -30,4 +31,13 @@ fun Modifier.talkbackHint(hint: String) =
 fun Modifier.talkbackDescription(contentDescription: String) =
     semantics {
         this.contentDescription = contentDescription
+    }
+
+/**
+ * talkbackHidden hides the composable from talkback
+ */
+@Composable
+fun Modifier.talkbackHidden() =
+    semantics {
+        invisibleToUser()
     }
