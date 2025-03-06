@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Log
@@ -34,6 +32,8 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.drawable.toDrawable
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -78,16 +78,12 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
     frameLayout.layout(0, 0, frameLayout.measuredWidth, frameLayout.measuredHeight)
 
     // Create a Bitmap from the FrameLayout
-    val bitmap = Bitmap.createBitmap(
-        frameLayout.measuredWidth,
-        frameLayout.measuredHeight,
-        Bitmap.Config.ARGB_8888
-    )
+    val bitmap = createBitmap(frameLayout.measuredWidth, frameLayout.measuredHeight)
     val canvas = android.graphics.Canvas(bitmap)
     frameLayout.draw(canvas)
 
     // Create a Drawable from the Bitmap
-    return BitmapDrawable(context.resources, bitmap)
+    return bitmap.toDrawable(context.resources)
 }
 
 /**
