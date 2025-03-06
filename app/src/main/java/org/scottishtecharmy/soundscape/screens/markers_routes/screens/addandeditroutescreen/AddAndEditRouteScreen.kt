@@ -343,7 +343,29 @@ fun AddAndEditRouteScreen(
                                                 modifier = Modifier.weight(1f),
                                                 decoration = LocationItemDecoration(
                                                     index = index,
-                                                    indexDescription = stringResource(R.string.waypoint_title)
+                                                    indexDescription = stringResource(R.string.waypoint_title),
+                                                    reorderable = true,
+                                                    moveDown = { i ->
+                                                        if (i < routeMembers.size - 1) {
+                                                            routeMembers = routeMembers.toMutableList().apply {
+                                                                add(i + 1, removeAt(i))
+                                                            }
+                                                            true
+                                                        } else {
+                                                            false
+                                                        }
+                                                    },
+                                                    moveUp = { i ->
+                                                        if (i > 0) {
+                                                            routeMembers = routeMembers.toMutableList().apply {
+                                                                add(i - 1, removeAt(i))
+                                                            }
+                                                            true
+                                                        } else {
+                                                            false
+                                                        }
+                                                    }
+
                                                 ),
                                                 userLocation = location
                                             )

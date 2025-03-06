@@ -22,8 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
@@ -46,7 +48,10 @@ data class LocationItemDecoration(
     val index: Int = -1,
     val editRoute: EnabledFunction = EnabledFunction(),
     val details: EnabledFunction = EnabledFunction(),
-    var indexDescription: String = ""
+    var indexDescription: String = "",
+    var reorderable: Boolean = false,
+    var moveUp: (Int) -> Boolean = { false },
+    var moveDown: (Int) -> Boolean = { false }
 )
 
 @Composable
@@ -97,6 +102,18 @@ fun LocationItem(
                     } else {
                         item.name!!
                     }
+                }
+                if(decoration.reorderable) {
+                    customActions = listOf(
+                        CustomAccessibilityAction(
+                            label = "Move Up",
+                            action = { decoration.moveUp(decoration.index) }
+                        ),
+                        CustomAccessibilityAction(
+                            label = "Move Down",
+                            action = { decoration.moveDown(decoration.index) }
+                        ),
+                    )
                 }
             },
         verticalAlignment = Alignment.CenterVertically
