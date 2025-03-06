@@ -60,7 +60,7 @@ fun MainSearchBar(
                 onSearch = onSearchTextChange,
                 expanded = isSearching,
                 onExpandedChange = { onToggleSearch() },
-                placeholder = { Text(stringResource(id = R.string.search_hint_input)) },
+                placeholder = { Text(stringResource(id = R.string.search_choose_destination)) },
                 leadingIcon = {
                     when {
                         !isSearching -> {
