@@ -983,10 +983,10 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="location_detail_waypoint">"Waypoint %s"</string>
 
 <!-- Accessibility hint for markers in a list which has already been added to a route -->
-  <string name="location_detail_add_waypoint_existing_hint">"Double tap to remove this marker from your route."</string>
+  <string name="location_detail_add_waypoint_existing_hint">"remove this marker from your route."</string>
 
 <!-- Accessibility hint for markers in a list that can be added to a list -->
-  <string name="location_detail_add_waypoint_new_hint">"Double tap to add this marker to your route."</string>
+  <string name="location_detail_add_waypoint_new_hint">"add this marker to your route."</string>
 
 <!-- Accessibility hint for markers in a list that can be created abd added to a list -->
   <string name="location_detail_add_waypoint_marker_hint">"Double tap to create a marker and add it as a waypoint"</string>

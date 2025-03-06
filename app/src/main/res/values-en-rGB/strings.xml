@@ -289,8 +289,8 @@
   <string name="location_detail_map_edit_accessibility_action_current_location">"Move to current location"</string>
   <string name="location_detail_map_edit_accessibility_beacon_callout">"Starting beacon to track marker location. Nudging, %s of original location."</string>
   <string name="location_detail_waypoint">"Waypoint %s"</string>
-  <string name="location_detail_add_waypoint_existing_hint">"Double tap to remove this marker from your route."</string>
-  <string name="location_detail_add_waypoint_new_hint">"Double tap to add this marker to your route."</string>
+  <string name="location_detail_add_waypoint_existing_hint">"remove this marker from your route."</string>
+  <string name="location_detail_add_waypoint_new_hint">"add this marker to your route."</string>
   <string name="location_detail_add_waypoint_marker_hint">"Double tap to create a marker and add it as a waypoint"</string>
   <string name="route_detail_action_start_route">"Start Route"</string>
   <string name="route_detail_action_stop_route">"Stop Route"</string>

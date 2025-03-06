@@ -22,6 +22,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -35,6 +38,8 @@ data class EnabledFunction(
     var functionString: (String) -> Unit = {},
     var functionBoolean: (Boolean) -> Unit = {},
     var value: Boolean = false,
+    var hintWhenOn: String = "",
+    var hintWhenOff: String = ""
 )
 data class LocationItemDecoration(
     val location: Boolean = false,
@@ -63,11 +68,31 @@ fun LocationItem(
                            .background(MaterialTheme.colorScheme.primaryContainer)
                            .smallPadding()
                            .fillMaxWidth()
-                           .clickable {
-           if(decoration.details.enabled) {
-               decoration.details.functionString(item.name!!)
-           }
-       },
+                           .clickable{
+                               if (decoration.details.enabled) {
+                                   decoration.details.functionString(item.name!!)
+                               } else if (decoration.editRoute.enabled) {
+                                   decoration.editRoute.functionBoolean(!decoration.editRoute.value)
+                               }
+                           }
+                           .clearAndSetSemantics() {
+                               if (decoration.editRoute.enabled) {
+                                   // Provide a clearer description of the current state and what
+                                   // happens when the user double taps.
+                                   contentDescription = if (decoration.editRoute.value)
+                                       "Selected. ${item.name!!}"
+                                   else
+                                       "Not selected. ${item.name!!}"
+                                   onClick(
+                                       label =
+                                           if (decoration.editRoute.value) decoration.editRoute.hintWhenOn
+                                           else decoration.editRoute.hintWhenOff,
+                                       action = { false }
+                                   )
+                               } else {
+                                   contentDescription = item.name!!
+                               }
+                           },
         verticalAlignment = Alignment.CenterVertically
     ) {
         if(decoration.location) {
@@ -115,7 +140,7 @@ fun LocationItem(
         if(decoration.editRoute.enabled) {
             Switch(
                 checked = decoration.editRoute.value,
-                onCheckedChange = decoration.editRoute.functionBoolean,
+                onCheckedChange = null,                     // Handled by the row
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = Color.Green,
                     uncheckedThumbColor = Color.Red,
