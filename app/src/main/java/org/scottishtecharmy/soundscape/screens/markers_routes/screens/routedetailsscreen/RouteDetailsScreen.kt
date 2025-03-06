@@ -246,6 +246,7 @@ fun RouteDetailsScreen(
                                     decoration = LocationItemDecoration(
                                         location = false,
                                         index = index,
+                                        indexDescription = stringResource(R.string.waypoint_title),
                                     ),
                                     userLocation = userLocation
                                 )

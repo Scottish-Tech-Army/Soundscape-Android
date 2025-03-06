@@ -45,7 +45,8 @@ data class LocationItemDecoration(
     val location: Boolean = false,
     val index: Int = -1,
     val editRoute: EnabledFunction = EnabledFunction(),
-    val details: EnabledFunction = EnabledFunction()
+    val details: EnabledFunction = EnabledFunction(),
+    var indexDescription: String = ""
 )
 
 @Composable
@@ -64,35 +65,40 @@ fun LocationItem(
         )
     }
     Row(
-        modifier = modifier.fillMaxWidth()
-                           .background(MaterialTheme.colorScheme.primaryContainer)
-                           .smallPadding()
-                           .fillMaxWidth()
-                           .clickable{
-                               if (decoration.details.enabled) {
-                                   decoration.details.functionString(item.name!!)
-                               } else if (decoration.editRoute.enabled) {
-                                   decoration.editRoute.functionBoolean(!decoration.editRoute.value)
-                               }
-                           }
-                           .clearAndSetSemantics() {
-                               if (decoration.editRoute.enabled) {
-                                   // Provide a clearer description of the current state and what
-                                   // happens when the user double taps.
-                                   contentDescription = if (decoration.editRoute.value)
-                                       "Selected. ${item.name!!}"
-                                   else
-                                       "Not selected. ${item.name!!}"
-                                   onClick(
-                                       label =
-                                           if (decoration.editRoute.value) decoration.editRoute.hintWhenOn
-                                           else decoration.editRoute.hintWhenOff,
-                                       action = { false }
-                                   )
-                               } else {
-                                   contentDescription = item.name!!
-                               }
-                           },
+        modifier = modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.primaryContainer)
+            .smallPadding()
+            .fillMaxWidth()
+            .clickable{
+                if (decoration.details.enabled) {
+                    decoration.details.functionString(item.name!!)
+                } else if (decoration.editRoute.enabled) {
+                   decoration.editRoute.functionBoolean(!decoration.editRoute.value)
+                }
+            }
+            .clearAndSetSemantics() {
+                if (decoration.editRoute.enabled) {
+                    // Provide a clearer description of the current state and what
+                    // happens when the user double taps.
+                    contentDescription = if (decoration.editRoute.value)
+                       "Selected. ${item.name!!}"
+                    else
+                       "Not selected. ${item.name!!}"
+                    onClick(
+                        label =
+                            if(decoration.editRoute.value) decoration.editRoute.hintWhenOn
+                            else decoration.editRoute.hintWhenOff,
+                        action = { false }
+                    )
+                } else {
+                    contentDescription = if(decoration.index != -1) {
+                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name!!}"
+                    } else {
+                        item.name!!
+                    }
+                }
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         if(decoration.location) {

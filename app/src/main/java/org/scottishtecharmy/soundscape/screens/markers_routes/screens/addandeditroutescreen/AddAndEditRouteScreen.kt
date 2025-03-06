@@ -342,7 +342,8 @@ fun AddAndEditRouteScreen(
                                                 item = item,
                                                 modifier = Modifier.weight(1f),
                                                 decoration = LocationItemDecoration(
-                                                    index = index
+                                                    index = index,
+                                                    indexDescription = stringResource(R.string.waypoint_title)
                                                 ),
                                                 userLocation = location
                                             )
