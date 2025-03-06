@@ -344,8 +344,8 @@ data class Spacing(
     val extraLarge: Dp = 64.dp,
     val default: Dp = small,
 
-    val icon: Dp = 20.dp,
-    val targetSize: Dp = 40.dp,
+    val icon: Dp = 24.dp,
+    val targetSize: Dp = 48.dp,
 
     val preview: Dp = 200.dp
 )
