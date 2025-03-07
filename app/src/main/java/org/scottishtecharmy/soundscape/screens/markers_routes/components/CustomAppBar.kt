@@ -1,54 +1,48 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.clickable
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
 @Composable
 fun CustomAppBar(title : String,
                  onNavigateUp: () -> Unit,
                  navigationButtonTitle: String = stringResource(R.string.ui_back_button_title),
+                 onRightButton: () -> Unit = {},
+                 rightButtonTitle: String = ""
                  ) {
-    Surface {
-        Row(
-            modifier  = Modifier.height(IntrinsicSize.Min).fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(spacing.small)
-        ) {
+    FlexibleAppBar(
+        title = title,
+        leftSide = {
             IconWithTextButton(
-                text = navigationButtonTitle
+                text = navigationButtonTitle,
+                color = MaterialTheme.colorScheme.onSurface
             ) {
                 onNavigateUp()
             }
-
-            Box(
-                modifier = Modifier.fillMaxHeight().weight(1f),
-                contentAlignment = Alignment.CenterStart
-            ) {
+        },
+        rightSide = {
+            if(rightButtonTitle.isNotEmpty()) {
                 Text(
-                    text = title,
-                    modifier = Modifier.semantics { heading() }
+                    modifier = Modifier
+                        .clickable { onRightButton() }
+                        .extraSmallPadding(),
+                    text = rightButtonTitle,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 22.sp
                 )
             }
-        }
-    }
+        },
+    )
 }
 
 @Preview(showBackground = true, fontScale = 2f)
@@ -70,5 +64,18 @@ fun CustomAppBarWithActionButtonPreview() {
         "Test app bar",
         navigationButtonTitle = stringResource(R.string.ui_back_button_title),
         onNavigateUp = {},
+    )
+}
+
+@Preview(showBackground = true, fontScale = 2f)
+@Preview(showBackground = true)
+@Composable
+fun CustomAppBarWithRightButtonPreview() {
+    CustomAppBar(
+        "Test app bar",
+        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+        onNavigateUp = {},
+        rightButtonTitle = stringResource(R.string.general_alert_done),
+        onRightButton = {},
     )
 }

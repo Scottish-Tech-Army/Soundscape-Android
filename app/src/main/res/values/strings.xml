@@ -1038,7 +1038,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="route_detail_action_create">"New Route"</string>
 
 <!-- VoiceOver hint for the add button on the Route list screen -->
-  <string name="route_detail_action_create_hint">"Double tap to create a new route"</string>
+  <string name="route_detail_action_create_hint">"create a new route"</string>
 
 <!-- Accessbility label for the index of a waypoint in a route and an indication that the audio beacon is currently playing on this waypoint's location, %@ is the index, "Waypoint 2. Current beacon." {NumberedPlaceholder="%@"} -->
   <string name="route_detail_waypoint_current_beacon">"Waypoint %s. Current beacon."</string>

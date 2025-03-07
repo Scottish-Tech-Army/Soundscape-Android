@@ -51,9 +51,9 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -210,7 +210,6 @@ fun AddAndEditRouteScreen(
             onDone = {
                 addWaypointDialog = false
             },
-            onCancel = { addWaypointDialog = false },
             modifier = modifier,
             userLocation = location
         )
@@ -219,13 +218,18 @@ fun AddAndEditRouteScreen(
         Scaffold(
             modifier = modifier,
             topBar = {
-                CustomAppBar(
+                TextOnlyAppBar(
                     title = stringResource(
                         if(editRoute) (R.string.route_detail_action_edit)
                         else  (R.string.route_detail_action_create)
                     ),
-                    navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                     onNavigateUp = { navController.popBackStack() },
+                    navigationButtonTitle = stringResource(R.string.general_alert_cancel),
+                    onRightButton = {
+                        uiState.routeMembers = routeMembers
+                        onDoneClicked()
+                    },
+                    rightButtonTitle = stringResource(R.string.general_alert_done)
                 )
             },
             bottomBar = {
@@ -260,21 +264,6 @@ fun AddAndEditRouteScreen(
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
                     )
-                    CustomButton(
-                        Modifier
-                            .fillMaxWidth()
-                            .smallPadding(),
-                        onClick = {
-                            uiState.routeMembers = routeMembers
-                            onDoneClicked()
-                        },
-                        buttonColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
-                        shape = RoundedCornerShape(spacing.small),
-                        text = stringResource(R.string.general_alert_done),
-                        textStyle = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.Bold,
-                    )
                 }
             },
             content = { padding ->
@@ -295,7 +284,9 @@ fun AddAndEditRouteScreen(
                             style = MaterialTheme.typography.bodyMedium,
                         )
                         CustomTextField(
-                            modifier = Modifier.fillMaxWidth().extraSmallPadding(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .extraSmallPadding(),
                             value = uiState.name,
                             onValueChange = onNameChange
                         )
@@ -315,8 +306,8 @@ fun AddAndEditRouteScreen(
                         HorizontalDivider(
                             thickness = spacing.tiny,
                             modifier = Modifier
-                                    .fillMaxWidth()
-                                    .smallPadding(),
+                                .fillMaxWidth()
+                                .smallPadding(),
                         )
                         // Display the list of markers in the route
                         if(routeMembers.isEmpty()) {
