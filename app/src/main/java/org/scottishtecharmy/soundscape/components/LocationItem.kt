@@ -72,7 +72,7 @@ fun LocationItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.primary)
             .smallPadding()
             .fillMaxWidth()
             .clickable{
@@ -122,14 +122,14 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.LocationOn,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.width(spacing.icon)
             )
         } else if (decoration.index != -1) {
             Text(
                 text = (decoration.index + 1).toString(),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.width(spacing.targetSize).align(Alignment.CenterVertically)
             )
         }
@@ -140,13 +140,13 @@ fun LocationItem(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
             if(distanceString.isNotEmpty()) {
                 Text(
                     text = distanceString,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
@@ -155,7 +155,7 @@ fun LocationItem(
                     Text(
                         text = it,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        color = MaterialTheme.colorScheme.onPrimary,
                     )
                 }
             }
@@ -174,7 +174,7 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.width(spacing.icon)
             )
         }

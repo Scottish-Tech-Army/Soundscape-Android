@@ -37,7 +37,7 @@ fun RouteList(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.primaryContainer)
+                        .background(MaterialTheme.colorScheme.primary)
                         .smallPadding()
                         .clickable {
                             navController.navigate("${HomeRoutes.RouteDetails.route}/${route.objectId.toHexString()}")
@@ -50,21 +50,23 @@ fun RouteList(
                             text = route.name,
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier.padding(bottom = spacing.extraSmall)
                         )
-                        Text(
-                            text = route.description,
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            fontWeight = FontWeight.Bold,
-                        )
+                        if(route.description.isNotEmpty()) {
+                            Text(
+                                text = route.description,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
                     }
                     Icon(
                         modifier = Modifier
                             .align(Alignment.CenterVertically),
                         imageVector = Icons.Default.ChevronRight,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        tint = MaterialTheme.colorScheme.onPrimary,
                         contentDescription = ""
                     )
                 }

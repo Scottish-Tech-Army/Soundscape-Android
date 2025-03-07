@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -141,7 +142,7 @@ fun RouteDetailsScreen(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.background)
+                            .background(MaterialTheme.colorScheme.surface)
                             .smallPadding()
                             .verticalScroll(rememberScrollState())
                     ) {
@@ -156,12 +157,14 @@ fun RouteDetailsScreen(
                                 Text(
                                     text = uiState.route.name,
                                     style = MaterialTheme.typography.headlineMedium,
-                                    modifier = Modifier.padding(bottom = spacing.extraSmall)
+                                    modifier = Modifier.padding(bottom = spacing.extraSmall),
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 if(uiState.route.description.isNotEmpty()) {
                                     Text(
                                         text = uiState.route.description,
                                         style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                             }
@@ -175,6 +178,7 @@ fun RouteDetailsScreen(
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     text = stringResource(R.string.route_detail_action_stop_route),
                                     talkbackHint = stringResource(R.string.route_detail_action_stop_route_hint),
+                                    color = MaterialTheme.colorScheme.onSurface
                                 ) {
                                     stopRoute()
                                 }
@@ -187,6 +191,7 @@ fun RouteDetailsScreen(
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     talkbackHint = stringResource(R.string.route_detail_action_start_route_hint),
                                     text = stringResource(R.string.route_detail_action_start_route),
+                                    color = MaterialTheme.colorScheme.onSurface
                                 ) {
                                     startRoute(uiState.route.objectId)
                                     // Pop up to the home screen
@@ -199,11 +204,12 @@ fun RouteDetailsScreen(
                                 }
                             }
                             IconWithTextButton(
-                                modifier = Modifier.fillMaxWidth(),
+                                modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = spacing.targetSize),
                                 icon = Icons.Default.Edit,
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 text = stringResource(R.string.route_detail_action_edit),
-                                talkbackHint = stringResource(R.string.route_detail_action_edit_hint)
+                                talkbackHint = stringResource(R.string.route_detail_action_edit_hint),
+                                color = MaterialTheme.colorScheme.onSurface
                             ) {
                                 navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId.toHexString()}")
                             }
@@ -212,7 +218,8 @@ fun RouteDetailsScreen(
                                 icon = Icons.Default.Share,
                                 textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                 text = stringResource(R.string.share_title),
-                                talkbackHint = stringResource(R.string.route_detail_action_share_hint)
+                                talkbackHint = stringResource(R.string.route_detail_action_share_hint),
+                                color = MaterialTheme.colorScheme.onSurface
                             ) {
                                 /*TODO*/
                             }

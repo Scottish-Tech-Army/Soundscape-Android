@@ -67,108 +67,83 @@ fun RoutesScreen(
         modifier =
         Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-            .tinyPadding(),
+            .background(MaterialTheme.colorScheme.surface),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Column(
-            modifier =
-            Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.secondaryContainer),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            // Display error message if it exists
-            LaunchedEffect(uiState.errorMessage) {
-                uiState.errorMessage?.let { message ->
-                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-                    clearErrorMessage()
-                }
+        // Display error message if it exists
+        LaunchedEffect(uiState.errorMessage) {
+            uiState.errorMessage?.let { message ->
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                clearErrorMessage()
             }
+        }
 
-            Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
-                // Display loading state
-                if (uiState.isLoading) {
-                    Box(
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
+        // Display loading state
+        if (uiState.isLoading) {
+            Box(
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surface),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (uiState.routes.isEmpty()) {
+                    // Display UI when no routes are available
+                        Box(modifier = Modifier.padding(top = spacing.large)) {
+                            Icon(
+                                painter = painterResource(
+                                    id = R.drawable.ic_routes
+                                ),
+                                contentDescription = null,
+                                modifier = Modifier.size(spacing.targetSize * 2),
+                                tint = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                        Box(modifier = Modifier.mediumPadding()) {
+                            Text(
+                                stringResource(R.string.routes_no_routes_title),
+                                style = MaterialTheme.typography.titleLarge,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                        Box(modifier = Modifier.mediumPadding()) {
+                            Text(
+                                stringResource(R.string.routes_no_routes_hint_1),
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                        Box(modifier = Modifier.mediumPadding()) {
+                            Text(
+                                stringResource(R.string.routes_no_routes_hint_2),
+                                style = MaterialTheme.typography.bodyLarge,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
                     }
                 } else {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(MaterialTheme.colorScheme.surface),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(MaterialTheme.colorScheme.secondaryContainer),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            if (uiState.routes.isEmpty()) {
-                                // Display UI when no routes are available
-                                    Box(modifier = Modifier.padding(top = spacing.large)) {
-                                        Icon(
-                                            painter = painterResource(
-                                                id = R.drawable.ic_routes
-                                            ),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(spacing.targetSize * 2),
-                                            tint = MaterialTheme.colorScheme.onSecondaryContainer
-                                        )
-                                    }
-                                    Box(modifier = Modifier.mediumPadding()) {
-                                        Text(
-                                            stringResource(R.string.routes_no_routes_title),
-                                            style = MaterialTheme.typography.titleLarge,
-                                            textAlign = TextAlign.Center,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                        )
-                                    }
-                                    Box(modifier = Modifier.mediumPadding()) {
-                                        Text(
-                                            stringResource(R.string.routes_no_routes_hint_1),
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            textAlign = TextAlign.Center,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                        )
-                                    }
-                                    Box(modifier = Modifier.mediumPadding()) {
-                                        Text(
-                                            stringResource(R.string.routes_no_routes_hint_2),
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            textAlign = TextAlign.Center,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                        )
-                                }
-                            } else {
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(spacing.small),
-                                    horizontalArrangement = Arrangement.Start,
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    MarkersAndRoutesListSort(
-                                        isSortByName = uiState.isSortByName,
-                                        isAscending = uiState.isSortAscending,
-                                        onToggleSortOrder = onToggleSortOrder,
-                                        onToggleSortByName = onToggleSortByName
-                                    )
-                                }
-                                // Display the list of routes
-                                RouteList(
-                                    uiState = uiState,
-                                    navController = homeNavController
-                                )
-                            }
-                        }
-                    }
+                    MarkersAndRoutesListSort(
+                        isSortByName = uiState.isSortByName,
+                        isAscending = uiState.isSortAscending,
+                        onToggleSortOrder = onToggleSortOrder,
+                        onToggleSortByName = onToggleSortByName
+                    )
+
+                    // Display the list of routes
+                    RouteList(
+                        uiState = uiState,
+                        navController = homeNavController
+                    )
                 }
             }
         }
