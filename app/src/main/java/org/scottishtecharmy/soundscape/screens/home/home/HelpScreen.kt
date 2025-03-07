@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -33,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import kotlin.text.split
@@ -47,6 +49,7 @@ private enum class SectionType{
 private data class Section(
     val textId: Int,                      // There's always text, this is the resource id for it
     val type: SectionType,
+    val skipTalkback: Boolean = false,
     val faqAnswer: Int = -1             // The resource id of the answer to a FAQ question
 )
 private data class Sections(
@@ -303,24 +306,25 @@ private val helpPages = listOf(
     Sections(
         R.string.settings_about_app,
         listOf(
-            Section(R.string.copyright_notices, SectionType.Title),
-            Section(R.string.osm_copyright, SectionType.Paragraph),
-            Section(R.string.openmaptiles_copyright, SectionType.Paragraph),
-            Section(R.string.fmod_copyright, SectionType.Paragraph),
-            Section(R.string.maplibre_copyright, SectionType.Paragraph),
-            Section(R.string.junit_copyright, SectionType.Paragraph),
+            Section(R.string.about_soundscape, SectionType.Title, skipTalkback = false),
+            Section(R.string.copyright_notices, SectionType.Title, skipTalkback = true),
+            Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.maplibre_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.junit_copyright, SectionType.Paragraph, skipTalkback = true),
 
-            Section(R.string.apache_notices, SectionType.Title),
-            Section(R.string.rtree_copyright, SectionType.Paragraph),
-            Section(R.string.realm_copyright, SectionType.Paragraph),
-            Section(R.string.moshi_copyright, SectionType.Paragraph),
-            Section(R.string.retrofit_copyright, SectionType.Paragraph),
-            Section(R.string.okhttp_copyright, SectionType.Paragraph),
-            Section(R.string.otto_copyright, SectionType.Paragraph),
-            Section(R.string.leak_canary_copyright, SectionType.Paragraph),
-            Section(R.string.gpx_parser_copyright, SectionType.Paragraph),
-            Section(R.string.preferences_copyright, SectionType.Paragraph),
-            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph),
+            Section(R.string.apache_notices, SectionType.Title, skipTalkback = true),
+            Section(R.string.rtree_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.realm_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.moshi_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.retrofit_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.okhttp_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.otto_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.leak_canary_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.gpx_parser_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.preferences_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph, skipTalkback = true),
         )
     )
 )
@@ -390,7 +394,11 @@ fun HelpScreen(
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier
                                         .padding(top = spacing.medium)
-                                        .semantics { heading() },
+                                        .semantics {
+                                            heading()
+                                            if(section.skipTalkback)
+                                                invisibleToUser()
+                                        },
                                     color = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
@@ -407,6 +415,11 @@ fun HelpScreen(
                                     ),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurface,
+                                    modifier = Modifier
+                                        .semantics {
+                                            if(section.skipTalkback)
+                                                invisibleToUser()
+                                        }
                                 )
                             }
 
