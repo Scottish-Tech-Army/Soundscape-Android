@@ -306,7 +306,7 @@
   <string name="route_detail_action_share_hint">"share this route"</string>
   <string name="route_detail_action_edit_hint">"edit this route"</string>
   <string name="route_detail_action_create">"New Route"</string>
-  <string name="route_detail_action_create_hint">"Double tap to create a new route"</string>
+  <string name="route_detail_action_create_hint">"create a new route"</string>
   <string name="route_detail_waypoint_current_beacon">"Waypoint %s. Current beacon."</string>
   <string name="route_detail_name_default">"Route"</string>
   <string name="route_title_time">"%s elapsed"</string>

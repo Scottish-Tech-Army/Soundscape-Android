@@ -29,9 +29,9 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -53,11 +53,18 @@ fun SaveAndEditMarkerDialog(
     Scaffold(
         modifier = modifier,
         topBar = {
-            CustomAppBar(
+            TextOnlyAppBar(
                 title = if(locationDescription.markerObjectId != null) stringResource(R.string.markers_edit_screen_title_edit)
                         else  stringResource(R.string.user_activity_save_marker_title),
                 navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                 onNavigateUp = { dialogState.value = false },
+                rightButtonTitle = stringResource(R.string.general_alert_done),
+                onRightButton = {
+                    locationDescription.name = name
+                    locationDescription.fullAddress = annotation
+                    saveMarker(locationDescription)
+                    dialogState.value = false
+                }
             )
         },
         bottomBar = {
@@ -81,23 +88,6 @@ fun SaveAndEditMarkerDialog(
                         fontWeight = FontWeight.Bold,
                     )
                 }
-
-                CustomButton(
-                    Modifier
-                        .fillMaxWidth(),
-                    onClick = {
-                        locationDescription.name = name
-                        locationDescription.fullAddress = annotation
-                        saveMarker(locationDescription)
-                        dialogState.value = false
-                    },
-                    buttonColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                    shape = RoundedCornerShape(spacing.small),
-                    text = stringResource(R.string.general_alert_done),
-                    textStyle = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Bold,
-                )
             }
         },
         content = { padding ->

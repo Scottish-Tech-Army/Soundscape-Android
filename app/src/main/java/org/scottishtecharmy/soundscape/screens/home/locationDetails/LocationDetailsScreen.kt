@@ -207,6 +207,7 @@ private fun LocationDescriptionButtonsSection(
             icon = Icons.Filled.LocationOn,
             text = stringResource(R.string.location_detail_action_beacon),
             talkbackHint = stringResource(R.string.location_detail_action_beacon_hint),
+            color = MaterialTheme.colorScheme.onSurface
         ) {
             createBeacon(locationDescription.location)
         }
@@ -215,7 +216,8 @@ private fun LocationDescriptionButtonsSection(
             IconWithTextButton(
                 icon = Icons.Filled.EditLocation,
                 text = stringResource(R.string.markers_edit_screen_title_edit),
-                talkbackHint = stringResource(R.string.location_detail_action_edit_hint)
+                talkbackHint = stringResource(R.string.location_detail_action_edit_hint),
+                color = MaterialTheme.colorScheme.onSurface
             ) {
                 dialogState.value = true
             }
@@ -223,7 +225,8 @@ private fun LocationDescriptionButtonsSection(
             IconWithTextButton(
                 icon = Icons.Filled.AddLocation,
                 text = stringResource(R.string.universal_links_alert_action_marker),
-                talkbackHint = stringResource(R.string.location_detail_action_save_hint)
+                talkbackHint = stringResource(R.string.location_detail_action_save_hint),
+                color = MaterialTheme.colorScheme.onSurface
             ) {
                 dialogState.value = true
             }
@@ -232,7 +235,8 @@ private fun LocationDescriptionButtonsSection(
         IconWithTextButton(
             icon = Icons.Filled.Navigation,
             text = stringResource(R.string.preview_title),
-            talkbackHint = stringResource(R.string.location_detail_action_preview_hint)
+            talkbackHint = stringResource(R.string.location_detail_action_preview_hint),
+            color = MaterialTheme.colorScheme.onSurface
         ) {
             enableStreetPreview(locationDescription.location)
             onNavigateUp()
@@ -241,7 +245,8 @@ private fun LocationDescriptionButtonsSection(
         IconWithTextButton(
             icon = Icons.Filled.ShareLocation,
             text = stringResource(R.string.share_title),
-            talkbackHint = stringResource(R.string.location_detail_action_share_hint)
+            talkbackHint = stringResource(R.string.location_detail_action_share_hint),
+            color = MaterialTheme.colorScheme.onSurface
         ) {
             shareLocation(shareMessage, locationDescription)
             onNavigateUp()
