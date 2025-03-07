@@ -193,9 +193,9 @@
   <string name="beacon_action_remove_beacon">"Remove Beacon"</string>
   <string name="beacon_action_remove_beacon_double_tap_acc_hint">"Double tap this button to remove the current audio beacon"</string>
   <string name="beacon_action_mute_beacon">"Mute Beacon"</string>
-  <string name="beacon_action_mute_beacon_acc_hint">"Double tap to mute the audio beacon."</string>
+  <string name="beacon_action_mute_beacon_acc_hint">"mute the audio beacon."</string>
   <string name="beacon_action_unmute_beacon">"Unmute Beacon"</string>
-  <string name="beacon_action_unmute_beacon_acc_hint">"Double tap to unmute the audio beacon."</string>
+  <string name="beacon_action_unmute_beacon_acc_hint">"unmute the audio beacon."</string>
   <string name="beacon_action_mute_unmute_beacon">"Mute or Unmute Beacon"</string>
   <string name="beacon_action_callout_beacon">"Call out Beacon"</string>
   <string name="beacon_action_mute_unmute_beacon_acc_hint">"Double tap to mute or unmute the audio beacon"</string>
@@ -324,9 +324,9 @@
   <string name="route_end_not_completed_summary_accessibility">"%1$s of %2$s Waypoints Reached, %3$s Remaining"</string>
   <string name="route_title_accessibility_label">"%1$s, Waypoint %2$s of %3$s"</string>
   <string name="route_detail_action_previous">"Previous Waypoint"</string>
-  <string name="route_detail_action_previous_hint">"Double tap to set the beacon on the previous waypoint"</string>
+  <string name="route_detail_action_previous_hint">"set the beacon on the previous waypoint"</string>
   <string name="route_detail_action_next">"Next Waypoint"</string>
-  <string name="route_detail_action_next_hint">"Double tap to set the beacon on the next waypoint"</string>
+  <string name="route_detail_action_next_hint">"set the beacon on the next waypoint"</string>
   <string name="waypoint_detail_annotation_cluster_title">"%s,&#8230;"</string>
   <string name="route_detail_edit_description">"Description"</string>
   <string name="route_detail_edit_description_default">"Add a description of your route"</string>

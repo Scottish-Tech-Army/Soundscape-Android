@@ -135,8 +135,7 @@ fun HomeContent(
                                     modifier = Modifier.fillMaxWidth().extraSmallPadding()
                                 )
                             }
-                            Row(
-                                modifier = Modifier
+                            Row(modifier = Modifier
                                     .fillMaxWidth()
                                     .height(spacing.targetSize)
                                     .padding(bottom = spacing.extraSmall),
@@ -146,47 +145,59 @@ fun HomeContent(
                                 Button(onClick = { routeFunctions.skipPrevious() })
                                 {
                                     Icon(
-                                        modifier = Modifier,
+                                        modifier = Modifier.talkbackHint(
+                                            stringResource(R.string.route_detail_action_previous_hint)
+                                        ),
                                         imageVector = Icons.Filled.SkipPrevious,
                                         tint = if (routePlayerState.currentWaypoint == 0)
                                                    MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f)
                                                else
                                                    MaterialTheme.colorScheme.onPrimary,
-                                        contentDescription = "",
+                                        contentDescription = stringResource(R.string.route_detail_action_previous)
                                     )
                                 }
                                 Button(onClick = { routeFunctions.skipNext() })
                                 {
                                     Icon(
-                                        modifier = Modifier,
+                                        modifier = Modifier.talkbackHint(
+                                            stringResource(R.string.route_detail_action_next_hint)
+                                        ),
                                         imageVector = Icons.Filled.SkipNext,
                                         tint = if (routePlayerState.currentWaypoint < routePlayerState.routeData.waypoints.size - 1)
                                                    MaterialTheme.colorScheme.onPrimary
                                                else
                                                    MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f),
-                                        contentDescription = "",
+                                        contentDescription = stringResource(R.string.route_detail_action_next)
                                     )
                                 }
                                 Button(onClick = {
-                                    onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.objectId.toHexString()}")
-                                }
+                                        onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.objectId.toHexString()}")
+                                    }
                                 )
                                 {
                                     Icon(
                                         modifier = Modifier,
                                         imageVector = Icons.Filled.Info,
-                                        contentDescription = "",
+                                        contentDescription = stringResource(R.string.behavior_experiences_route_nav_title),
                                     )
                                 }
                                 Button(onClick = { routeFunctions.mute() })
                                 {
                                     Icon(
-                                        modifier = Modifier,
+                                        modifier = Modifier.talkbackHint(
+                                            if (beaconState?.muteState == true)
+                                                stringResource(R.string.beacon_action_unmute_beacon_acc_hint)
+                                            else
+                                                stringResource(R.string.beacon_action_mute_beacon_acc_hint)
+                                        ),
                                         imageVector = if (beaconState?.muteState == true)
                                             Icons.AutoMirrored.Filled.VolumeOff
                                         else
                                             Icons.AutoMirrored.Filled.VolumeMute,
-                                        contentDescription = "",
+                                        contentDescription = if (beaconState?.muteState == true)
+                                            stringResource(R.string.beacon_action_unmute_beacon)
+                                        else
+                                            stringResource(R.string.beacon_action_mute_beacon),
                                     )
                                 }
                             }

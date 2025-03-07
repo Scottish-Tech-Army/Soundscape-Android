@@ -687,13 +687,13 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="beacon_action_mute_beacon">"Mute Beacon"</string>
 
 <!-- Notification, Double tap to mute the audio beacon -->
-  <string name="beacon_action_mute_beacon_acc_hint">"Double tap to mute the audio beacon."</string>
+  <string name="beacon_action_mute_beacon_acc_hint">"mute the audio beacon."</string>
 
 <!-- Button, Unmute Beacon -->
   <string name="beacon_action_unmute_beacon">"Unmute Beacon"</string>
 
 <!-- Notification, Double tap to unmute the audio beacon -->
-  <string name="beacon_action_unmute_beacon_acc_hint">"Double tap to unmute the audio beacon."</string>
+  <string name="beacon_action_unmute_beacon_acc_hint">"unmute the audio beacon."</string>
 
 <!-- Button, Mute or Unmute Beacon -->
   <string name="beacon_action_mute_unmute_beacon">"Mute or Unmute Beacon"</string>
