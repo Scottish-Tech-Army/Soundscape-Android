@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.toggleable
@@ -24,7 +25,6 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -41,13 +41,13 @@ fun MarkersAndRoutesListSort(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .smallPadding()
+            .padding(top = spacing.small, bottom = spacing.tiny)
             .clearAndSetSemantics {
                 //contentDescription = ""
                 stateDescription = sortOrderState
                 role = Role.Button
             }
-            .background(color = MaterialTheme.colorScheme.secondaryContainer),
+            .background(color = MaterialTheme.colorScheme.primaryContainer),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -59,7 +59,7 @@ fun MarkersAndRoutesListSort(
                 onValueChange = { onToggleSortOrder() }
             ),
             imageVector = Icons.Default.SwapVert,
-            tint = MaterialTheme.colorScheme.onSecondaryContainer,
+            tint = MaterialTheme.colorScheme.onPrimaryContainer,
             contentDescription = "" // TODO: Add ascending/descending hint
         )
 
@@ -70,7 +70,7 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
             modifier = Modifier.toggleable(
                 value = isSortByName,
                 role = Role.Button,
@@ -85,7 +85,7 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.routes_sort_by_name),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
             modifier = Modifier.toggleable(
                 value = isSortByName,
                 role = Role.Button,

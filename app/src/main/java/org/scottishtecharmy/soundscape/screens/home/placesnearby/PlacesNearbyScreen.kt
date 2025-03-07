@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -15,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
 @Composable
 fun PlacesNearbyScreenVM(
@@ -51,12 +53,14 @@ fun PlacesNearbyScreen(
             }
         },
     ) { innerPadding ->
-        // Display the list of routes
-        PlacesNearbyList(
-            uiState = uiState,
-            navController = homeNavController,
-            modifier = modifier.padding(innerPadding)
-        )
+        Box(Modifier.extraSmallPadding()) {
+            // Display the list of routes
+            PlacesNearbyList(
+                uiState = uiState,
+                navController = homeNavController,
+                modifier = modifier.padding(innerPadding)
+            )
+        }
     }
 }
 
