@@ -2,12 +2,9 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.markerssc
 
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
@@ -32,9 +29,11 @@ import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesList
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
 
 @Composable
 fun MarkersScreenVM(
@@ -57,7 +56,7 @@ fun MarkersScreenVM(
 @Composable
 fun MarkersScreen(
     homeNavController: NavController,
-    uiState: MarkersUiState,
+    uiState: MarkersAndRoutesUiState,
     clearErrorMessage: () -> Unit,
     onToggleSortOrder: () -> Unit,
     onToggleSortByName: () -> Unit,
@@ -95,7 +94,7 @@ fun MarkersScreen(
                         .fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    if (uiState.markers.isEmpty()) {
+                    if (uiState.entries.isEmpty()) {
                         Box(modifier = Modifier.padding(top = spacing.large)) {
                             Icon(
                                 painter =
@@ -148,11 +147,13 @@ fun MarkersScreen(
                         )
 
                         // Display the list of routes
-                        MarkersList(
+                        MarkersAndRoutesList(
                             uiState = uiState,
-                            navController = homeNavController,
                             userLocation = userLocation,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            onSelect = { desc ->
+                                homeNavController.navigate(generateLocationDetailsRoute(desc))
+                            }
                         )
                     }
                 }
@@ -167,8 +168,8 @@ fun MarkersScreenPopulatedPreview() {
     MarkersScreen(
         homeNavController = rememberNavController(),
         uiState =
-            MarkersUiState(
-                markers = previewLocationList
+            MarkersAndRoutesUiState(
+                entries = previewLocationList
             ),
         clearErrorMessage = {},
         onToggleSortOrder = {},
@@ -182,7 +183,7 @@ fun MarkersScreenPopulatedPreview() {
 fun MarkersScreenPreview() {
     MarkersScreen(
         homeNavController = rememberNavController(),
-        uiState = MarkersUiState(),
+        uiState = MarkersAndRoutesUiState(),
         clearErrorMessage = {},
         onToggleSortOrder = {},
         onToggleSortByName = {},

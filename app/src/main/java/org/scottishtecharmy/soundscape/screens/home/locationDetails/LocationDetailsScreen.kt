@@ -212,7 +212,7 @@ private fun LocationDescriptionButtonsSection(
             createBeacon(locationDescription.location)
         }
 
-        if(locationDescription.markerObjectId != null) {
+        if(locationDescription.databaseId != null) {
             IconWithTextButton(
                 icon = Icons.Filled.EditLocation,
                 text = stringResource(R.string.markers_edit_screen_title_edit),
@@ -295,7 +295,7 @@ private fun LocationDescriptionTextsSection(
                 )
             }
         }
-        locationDescription.fullAddress?.let {
+        locationDescription.description?.let {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
@@ -322,7 +322,7 @@ fun LocationDetailsPreview() {
         LocationDescription(
             name = "Pizza hut",
             location = LngLatAlt(),
-            fullAddress = "139 boulevard gambetta \n59000 Lille\nFrance",
+            description = "139 boulevard gambetta \n59000 Lille\nFrance",
         ),
         createBeacon = { _ ->
         },

@@ -324,8 +324,8 @@ fun AddAndEditRouteScreen(
                                 state = lazyListState,
                                 verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                             ) {
-                                itemsIndexed(routeMembers, key = { _,item -> item.markerObjectId!!.toString() }) { index, item ->
-                                    ReorderableItem(reorderableLazyListState, item.markerObjectId.toString()) { _ ->
+                                itemsIndexed(routeMembers, key = { _,item -> item.databaseId!!.toString() }) { index, item ->
+                                    ReorderableItem(reorderableLazyListState, item.databaseId.toString()) { _ ->
                                         Row(modifier = Modifier
                                             .background(MaterialTheme.colorScheme.primaryContainer)
                                         ) {

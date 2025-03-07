@@ -2,12 +2,9 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscr
 
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
@@ -30,23 +27,29 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.MarkersAndRoutesListSort
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesList
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
 
 @Composable
 fun RoutesScreenVM(
     homeNavController: NavController,
+    userLocation: LngLatAlt?,
     viewModel: RoutesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    uiState.userLocation = userLocation
 
     RoutesScreen(
         homeNavController,
         uiState,
-        clearErrorMessage = { viewModel.clearErrorMessage()},
+        userLocation,
+    clearErrorMessage = { viewModel.clearErrorMessage()},
         onToggleSortOrder = { viewModel.toggleSortOrder() },
         onToggleSortByName = { viewModel.toggleSortByName() }
     )
@@ -56,7 +59,8 @@ fun RoutesScreenVM(
 @Composable
 fun RoutesScreen(
     homeNavController: NavController,
-    uiState: RoutesUiState,
+    uiState: MarkersAndRoutesUiState,
+    userLocation: LngLatAlt?,
     clearErrorMessage: () -> Unit,
     onToggleSortOrder: () -> Unit,
     onToggleSortByName: () -> Unit
@@ -92,7 +96,7 @@ fun RoutesScreen(
                     .background(MaterialTheme.colorScheme.surface),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (uiState.routes.isEmpty()) {
+                if (uiState.entries.isEmpty()) {
                     // Display UI when no routes are available
                         Box(modifier = Modifier.padding(top = spacing.large)) {
                             Icon(
@@ -140,9 +144,13 @@ fun RoutesScreen(
                     )
 
                     // Display the list of routes
-                    RouteList(
+                    MarkersAndRoutesList(
                         uiState = uiState,
-                        navController = homeNavController
+                        userLocation = userLocation,
+                        modifier = Modifier.weight(1f),
+                        onSelect = { desc ->
+                            homeNavController.navigate("${HomeRoutes.RouteDetails.route}/${desc.databaseId!!.toHexString()}")
+                        }
                     )
                 }
             }
@@ -155,7 +163,8 @@ fun RoutesScreen(
 fun RoutesScreenPreview() {
     RoutesScreen(
         homeNavController = rememberNavController(),
-        uiState = RoutesUiState(),
+        uiState = MarkersAndRoutesUiState(),
+        userLocation = null,
         clearErrorMessage = {},
         onToggleSortOrder = {},
         onToggleSortByName = {}
@@ -167,26 +176,13 @@ fun RoutesScreenPreview() {
 fun RoutesScreenPopulatedPreview() {
     RoutesScreen(
         homeNavController = rememberNavController(),
-        uiState = RoutesUiState(
-            routes = listOf(
-                RouteData("Route 1", "Description A"),
-                RouteData("Route 2", "Description B"),
-                RouteData("Route 3", "Description C"),
-                RouteData("Route 4", "Description D"),
-                RouteData("Route 5", "Description E"),
-                RouteData("Route 6", "Description F"),
-                RouteData("Route 7", "Description G"),
-                RouteData("Route 8", "Description H"),
-                RouteData("Route 9", "Description I"),
-                RouteData("Route 10", "Description J"),
-                RouteData("Route 11", "Description K"),
-                RouteData("Route 12", "Description L"),
-                RouteData("Route 13", "Description M"),
-            )
+        uiState = MarkersAndRoutesUiState(
+            entries = previewLocationList
         ),
         clearErrorMessage = {},
         onToggleSortOrder = {},
-        onToggleSortByName = {}
+        onToggleSortByName = {},
+        userLocation = null
     )
 }
 
@@ -195,9 +191,10 @@ fun RoutesScreenPopulatedPreview() {
 fun RoutesScreenLoadingPreview() {
     RoutesScreen(
         homeNavController = rememberNavController(),
-        uiState = RoutesUiState(isLoading = true),
+        uiState = MarkersAndRoutesUiState(isLoading = true),
         clearErrorMessage = {},
         onToggleSortOrder = {},
-        onToggleSortByName = {}
+        onToggleSortByName = {},
+        userLocation = null
     )
 }

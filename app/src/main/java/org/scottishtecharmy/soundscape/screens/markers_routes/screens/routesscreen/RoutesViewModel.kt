@@ -8,12 +8,15 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortFieldPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortOrderPreference
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortFieldPreference
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortOrderPreference
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.sortMarkers
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.toggleSortByName
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.toggleSortOrder
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,8 +25,8 @@ class RoutesViewModel @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(RoutesUiState())
-    val uiState: StateFlow<RoutesUiState> = _uiState
+    private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = false))
+    val uiState: StateFlow<MarkersAndRoutesUiState> = _uiState
 
     init {
         // Load the saved sort orders
@@ -32,59 +35,40 @@ class RoutesViewModel @Inject constructor(
             isSortAscending = getSortOrderPreference(context))
 
         // Collect the flow of routes from the repository so that we update when routes are added
-        // and deleted
+        // and deleted. We turn the routes into LocationDescriptions so that they can be displayed
+        // using common code with Markers.
         viewModelScope.launch {
             routesRepository.getRouteFlow().collect { routes ->
                 _uiState.value =  uiState.value.copy(
-                    routes = sortRoutes(
-                        routes,
+                    entries = sortMarkers(
+                        routes.map {
+                            // Turn RouteData into LocationDescription
+                            LocationDescription(
+                                name = it.name,
+                                location =
+                                    if(it.waypoints.isNotEmpty())
+                                        it.waypoints[0].location!!.location()
+                                    else
+                                        LngLatAlt(),
+                                description = it.description,
+                                databaseId = it.objectId
+                            )
+                        },
                         _uiState.value.isSortByName,
-                        _uiState.value.isSortAscending))
+                        _uiState.value.isSortAscending,
+                        _uiState.value.userLocation
+                    )
+                )
             }
         }
     }
 
-    fun toggleSortOrder() {
-        val sortByAscending = !_uiState.value.isSortAscending
-        _uiState.value =  uiState.value.copy(
-            isSortAscending = sortByAscending,
-            routes = sortRoutes(
-                uiState.value.routes,
-                _uiState.value.isSortByName,
-                sortByAscending
-            )
-        )
-        saveSortOrderPreference(context, sortByAscending)
-    }
-
     fun toggleSortByName() {
-        val sortByName = !_uiState.value.isSortByName
-        _uiState.value =  uiState.value.copy(
-            isSortByName = sortByName,
-            routes = sortRoutes(
-                uiState.value.routes,
-                sortByName,
-                _uiState.value.isSortAscending
-            )
-        )
-        saveSortFieldPreference(context, sortByName)
+        _uiState.value = toggleSortByName(_uiState.value, context)
     }
 
-    private fun sortRoutes(routes: List<RouteData>,
-                           sortByName: Boolean,
-                           sortAscending: Boolean) : List<RouteData> {
-        return if(sortByName) {
-            if(sortAscending)
-                routes.sortedBy { it.name }
-            else
-                routes.sortedByDescending { it.name }
-
-        } else {
-            if(sortAscending)
-                routes.sortedBy { it.objectId }
-            else
-                routes.sortedByDescending { it.objectId }
-        }
+    fun toggleSortOrder() {
+        _uiState.value = toggleSortOrder(_uiState.value, context)
     }
 
     fun clearErrorMessage() {

@@ -33,7 +33,7 @@ class AddAndEditRouteViewModel @Inject constructor(
                         LocationDescription(
                             name = it.addressName,
                             location = markerLngLat,
-                            markerObjectId = it.objectId
+                            databaseId = it.objectId
                         )
                     }
                 _uiState.value = _uiState.value.copy(markers = markerVMs.toMutableList())
@@ -51,7 +51,7 @@ class AddAndEditRouteViewModel @Inject constructor(
                 LocationDescription(
                     name = waypoint.addressName,
                     location = waypoint.location?.location() ?: LngLatAlt(),
-                    markerObjectId = waypoint.objectId
+                    databaseId = waypoint.objectId
                 )
             )
         }
@@ -137,7 +137,7 @@ class AddAndEditRouteViewModel @Inject constructor(
                     MarkerData(
                         addressName = it.name ?: "",
                         location = Location(it.location),
-                        objectId = it.markerObjectId!!
+                        objectId = it.databaseId!!
                     )
                 )
             }

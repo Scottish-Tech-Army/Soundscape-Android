@@ -69,9 +69,9 @@ fun MarkersAndRoutesScreen(
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             if(state.routesTabSelected) {
-                RoutesScreenVM(navController)
+                RoutesScreenVM(navController, userLocation = state.location)
             } else {
-                MarkersScreenVM(navController, state.location)
+                MarkersScreenVM(navController, userLocation = state.location)
             }
         }
     }

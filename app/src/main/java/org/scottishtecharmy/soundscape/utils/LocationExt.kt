@@ -22,7 +22,7 @@ fun ArrayList<Feature>.toLocationDescriptions(): List<LocationDescription> =
             val fullAddress = buildAddressFormat(streetNumberAndName, postcodeAndLocality, country)
             LocationDescription(
                 name = properties["name"]?.toString(),
-                fullAddress = fullAddress,
+                description = fullAddress,
                 location = (feature.geometry as Point).coordinates
             )
         }

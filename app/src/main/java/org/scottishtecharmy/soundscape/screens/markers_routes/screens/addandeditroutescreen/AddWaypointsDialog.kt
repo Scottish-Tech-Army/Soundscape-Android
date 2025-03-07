@@ -56,24 +56,24 @@ fun AddWaypointsScreenPopulatedPreview() {
                 routeMembers =
                 mutableListOf(
                     LocationDescription(name = "Long named route point as if we need one", location = LngLatAlt()),
-                    LocationDescription(name = "Route point 2", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Route point 3", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Route point 4", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Route point 5", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Route point 6", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Route point 7", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Route point 8", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Route point 2", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 3", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 4", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 5", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 6", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 7", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 8", location = LngLatAlt(), databaseId = ObjectId()),
                 ),
                 markers =
                 mutableListOf(
-                    LocationDescription(name = "Waypoint 1", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 2", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 4", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 5", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 6", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 7", location = LngLatAlt(), markerObjectId = ObjectId()),
-                    LocationDescription(name = "Waypoint 8", location = LngLatAlt(), markerObjectId = ObjectId()),
+                    LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 4", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 6", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = ObjectId()),
                 )
             )
     )

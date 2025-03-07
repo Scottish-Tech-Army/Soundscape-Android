@@ -47,21 +47,21 @@ fun SaveAndEditMarkerDialog(
     dialogState: MutableState<Boolean>
 ) {
     var name by rememberSaveable { mutableStateOf(locationDescription.name ?: "") }
-    var annotation by rememberSaveable { mutableStateOf(locationDescription.fullAddress ?: "") }
-    val objectId = locationDescription.markerObjectId
+    var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
+    val objectId = locationDescription.databaseId
 
     Scaffold(
         modifier = modifier,
         topBar = {
             TextOnlyAppBar(
-                title = if(locationDescription.markerObjectId != null) stringResource(R.string.markers_edit_screen_title_edit)
+                title = if(locationDescription.databaseId != null) stringResource(R.string.markers_edit_screen_title_edit)
                         else  stringResource(R.string.user_activity_save_marker_title),
                 navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                 onNavigateUp = { dialogState.value = false },
                 rightButtonTitle = stringResource(R.string.general_alert_done),
                 onRightButton = {
                     locationDescription.name = name
-                    locationDescription.fullAddress = annotation
+                    locationDescription.description = annotation
                     saveMarker(locationDescription)
                     dialogState.value = false
                 }
@@ -154,8 +154,8 @@ fun AddRouteScreenPreview() {
         locationDescription = LocationDescription(
             name = "Pizza hut",
             location = LngLatAlt(),
-            fullAddress = "139 boulevard gambetta",
-            markerObjectId = ObjectId()
+            description = "139 boulevard gambetta",
+            databaseId = ObjectId()
         ),
         location = null,
         heading = 45.0F,
