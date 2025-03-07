@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortFieldPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortOrderPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortFieldPreference
@@ -24,8 +25,8 @@ class MarkersViewModel
         private val routesRepository: RoutesRepository,
         @ApplicationContext private val context: Context,
     ) : ViewModel() {
-        private val _uiState = MutableStateFlow(MarkersUiState())
-        val uiState: StateFlow<MarkersUiState> = _uiState
+        private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = true))
+        val uiState: StateFlow<MarkersAndRoutesUiState> = _uiState
 
         init {
             // Load the saved sort orders
@@ -43,51 +44,75 @@ class MarkersViewModel
                             LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
                         LocationDescription(
                             name = it.addressName,
-                            fullAddress = it.fullAddress,
+                            description = it.fullAddress,
                             location = markerLngLat,
-                            markerObjectId = it.objectId
+                            databaseId = it.objectId
                         )
                     }
                     _uiState.value =  uiState.value.copy(
-                        markers = sortMarkers(locations, _uiState.value.isSortByName, _uiState.value.isSortAscending))
+                        entries = sortMarkers(
+                            locations,
+                            _uiState.value.isSortByName,
+                            _uiState.value.isSortAscending,
+                            _uiState.value.userLocation)
+                    )
                 }
             }
         }
-
         fun toggleSortByName() {
-            val sortByName = !_uiState.value.isSortByName
-            saveSortFieldPreference(context, sortByName)
-            _uiState.value =  uiState.value.copy(
-                isSortByName = sortByName,
-                markers = sortMarkers(uiState.value.markers,sortByName, _uiState.value.isSortAscending))
+            _uiState.value = toggleSortByName(_uiState.value, context)
         }
 
         fun toggleSortOrder() {
-            val sortAscending = !_uiState.value.isSortAscending
-            saveSortOrderPreference(context, sortAscending)
-            _uiState.value =  uiState.value.copy(
-                isSortAscending = sortAscending,
-                markers = sortMarkers(uiState.value.markers, _uiState.value.isSortByName, sortAscending))
-        }
-
-        private fun sortMarkers(
-            markers: List<LocationDescription>,
-            sortByName: Boolean,
-            sortAscending: Boolean) : List<LocationDescription> {
-            return if(sortByName) {
-                if(sortAscending)
-                    markers.sortedBy { it.name }
-                else
-                    markers.sortedByDescending { it.name }
-            } else {
-                if(sortAscending)
-                    markers.sortedBy { _uiState.value.userLocation?.distance(it.location) }
-                else
-                    markers.sortedByDescending { _uiState.value.userLocation?.distance(it.location) }
-            }
+            _uiState.value = toggleSortOrder(_uiState.value, context)
         }
 
         fun clearErrorMessage() {
             _uiState.value = _uiState.value.copy(errorMessage = null)
         }
     }
+
+fun toggleSortByName(uiState: MarkersAndRoutesUiState, context: Context) : MarkersAndRoutesUiState {
+    val sortByName = !uiState.isSortByName
+    saveSortFieldPreference(context, sortByName)
+    return uiState.copy(
+        isSortByName = sortByName,
+        entries = sortMarkers(
+            uiState.entries,
+            sortByName,
+            uiState.isSortAscending,
+            uiState.userLocation)
+    )
+}
+
+fun toggleSortOrder(uiState: MarkersAndRoutesUiState, context: Context) : MarkersAndRoutesUiState  {
+    val sortAscending = !uiState.isSortAscending
+    saveSortOrderPreference(context, sortAscending)
+    return uiState.copy(
+        isSortAscending = sortAscending,
+        entries = sortMarkers(
+            uiState.entries,
+            uiState.isSortByName,
+            sortAscending,
+            uiState.userLocation)
+    )
+}
+
+fun sortMarkers(
+    markers: List<LocationDescription>,
+    sortByName: Boolean,
+    sortAscending: Boolean,
+    userLocation: LngLatAlt?) : List<LocationDescription> {
+    val sortedMarkers = if(sortByName) {
+        if(sortAscending)
+            markers.sortedBy { it.name }
+        else
+            markers.sortedByDescending { it.name }
+    } else {
+        if(sortAscending)
+            markers.sortedBy { userLocation?.distance(it.location) }
+        else
+            markers.sortedByDescending { userLocation?.distance(it.location) }
+    }
+    return sortedMarkers
+}

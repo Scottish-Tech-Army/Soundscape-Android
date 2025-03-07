@@ -6,6 +6,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 data class LocationDescription(
     var name: String? = null,
     var location: LngLatAlt,
-    var fullAddress: String? = null,
-    var markerObjectId: ObjectId? = null
+    var description: String? = null,
+    var databaseId: ObjectId? = null
 )

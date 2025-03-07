@@ -35,15 +35,15 @@ class LocationDetailsViewModel @Inject constructor(
     fun createMarker(locationDescription: LocationDescription) {
         viewModelScope.launch {
             var name = locationDescription.name
-            if (name == null) name = locationDescription.fullAddress
+            if (name == null) name = locationDescription.description
             name = name ?: "Unknown"
 
-            val updated = locationDescription.markerObjectId?.let { objectId ->
+            val updated = locationDescription.databaseId?.let { objectId ->
                 // We are updating an existing marker
                 val markerData = MarkerData(
                     objectId = objectId,
                     addressName = name,
-                    fullAddress = locationDescription.fullAddress
+                    fullAddress = locationDescription.description
                         ?: "", // TODO Fanny is it possible to get no full address ?
                     location = Location(
                         latitude = locationDescription.location.latitude,
@@ -67,7 +67,7 @@ class LocationDetailsViewModel @Inject constructor(
                 val marker =
                     MarkerData(
                         addressName = name,
-                        fullAddress = locationDescription.fullAddress
+                        fullAddress = locationDescription.description
                             ?: "", // TODO Fanny is it possible to get no full address ?
                         location = Location(
                             latitude = locationDescription.location.latitude,
@@ -76,7 +76,7 @@ class LocationDetailsViewModel @Inject constructor(
                     )
                 try {
                     routesRepository.insertMarker(marker)
-                    locationDescription.markerObjectId = marker.objectId
+                    locationDescription.databaseId = marker.objectId
 
                     Log.d(
                         "LocationDetailsViewModel",

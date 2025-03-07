@@ -30,7 +30,7 @@ fun AddWaypointsList(
                 addAll(uiState.routeMembers)
                 addAll(uiState.markers.filter { marker ->
                     uiState.routeMembers.none { routeMember ->
-                        routeMember.markerObjectId == marker.markerObjectId
+                        routeMember.databaseId == marker.databaseId
                     }
                 }
             )

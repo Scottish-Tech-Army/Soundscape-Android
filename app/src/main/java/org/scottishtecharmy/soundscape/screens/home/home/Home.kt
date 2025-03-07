@@ -238,20 +238,20 @@ fun HomeRoutePreview() {
 val previewLocationList = listOf(
     LocationDescription(
         name = "Barrowland Ballroom",
-        fullAddress = "Somewhere in Glasgow",
+        description = "Somewhere in Glasgow",
         location = LngLatAlt(-4.2366753, 55.8552688),
-        markerObjectId = ObjectId()
+        databaseId = ObjectId()
     ),
     LocationDescription(
         name = "King Tut's Wah Wah Hut",
-        fullAddress = "Somewhere else in Glasgow",
+        description = "Somewhere else in Glasgow",
         location = LngLatAlt(-4.2649646, 55.8626180),
-        markerObjectId = ObjectId()
+        databaseId = ObjectId()
     ),
     LocationDescription(
         name = "St. Lukes and the Winged Ox",
-        fullAddress = "Where else?",
+        description = "Where else?",
         location = LngLatAlt( -4.2347580, 55.8546320),
-        markerObjectId = ObjectId()
+        databaseId = ObjectId()
     )
 )

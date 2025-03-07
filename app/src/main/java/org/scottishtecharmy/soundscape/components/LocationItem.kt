@@ -37,7 +37,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 data class EnabledFunction(
     var enabled: Boolean = false,
-    var functionString: (String) -> Unit = {},
+    var functionLocation: (LocationDescription) -> Unit = {},
     var functionBoolean: (Boolean) -> Unit = {},
     var value: Boolean = false,
     var hintWhenOn: String = "",
@@ -77,7 +77,7 @@ fun LocationItem(
             .fillMaxWidth()
             .clickable{
                 if (decoration.details.enabled) {
-                    decoration.details.functionString(item.name!!)
+                    decoration.details.functionLocation(item)
                 } else if (decoration.editRoute.enabled) {
                    decoration.editRoute.functionBoolean(!decoration.editRoute.value)
                 }
@@ -150,8 +150,8 @@ fun LocationItem(
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
-            if(item.fullAddress?.isNotEmpty() == true) {
-                item.fullAddress?.let {
+            if(item.description?.isNotEmpty() == true) {
+                item.description?.let {
                     Text(
                         text = it,
                         style = MaterialTheme.typography.bodyMedium,
@@ -195,7 +195,7 @@ fun PreviewSearchItemButton() {
         val test =
             LocationDescription(
                 name = "Bristol",
-                fullAddress = "18 Street \n59000 Lille\nFrance",
+                description = "18 Street \n59000 Lille\nFrance",
                 location = LngLatAlt(8.00, 9.55)
             )
         LocationItem(
