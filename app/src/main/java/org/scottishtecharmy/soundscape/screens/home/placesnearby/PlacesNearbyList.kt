@@ -3,13 +3,15 @@ package org.scottishtecharmy.soundscape.screens.home.placesnearby
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.ControlCamera
 import androidx.compose.material.icons.rounded.DirectionsBus
 import androidx.compose.material.icons.rounded.Fastfood
 import androidx.compose.material.icons.rounded.LocalGroceryStore
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -40,7 +42,7 @@ data class Folder(
 fun PlacesNearbyList(
     uiState: PlacesNearbyUiState,
     navController: NavController,
-    onClickFolder: (String) -> Unit,
+    onClickFolder: (String, String) -> Unit,
     modifier: Modifier
 ) {
     val folders = listOf(
@@ -83,17 +85,29 @@ fun PlacesNearbyList(
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
         if(uiState.topLevel) {
-            items(folders) { folderItem ->
+            itemsIndexed(folders) { index, folderItem ->
+                if(index == 0) {
+                    HorizontalDivider(
+                        thickness = spacing.tiny,
+                        color = MaterialTheme.colorScheme.outlineVariant
+                    )
+                }
                 FolderItem(
                     name = folderItem.name,
                     icon = folderItem.icon,
                     onClick = {
-                        onClickFolder(folderItem.filter)
+                        onClickFolder(folderItem.filter, folderItem.name)
                     }
                 )
             }
         } else {
-            items(locations) { locationDescription ->
+            itemsIndexed(locations) { index, locationDescription ->
+                if(index == 0) {
+                    HorizontalDivider(
+                        thickness = spacing.tiny,
+                        color = MaterialTheme.colorScheme.outlineVariant
+                    )
+                }
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(

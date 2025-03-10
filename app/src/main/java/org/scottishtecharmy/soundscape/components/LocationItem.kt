@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.LocationOn
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -73,7 +74,7 @@ fun LocationItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary)
+            .background(MaterialTheme.colorScheme.surface)
             .smallPadding()
             .fillMaxWidth()
             .clickable{
@@ -123,14 +124,14 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.LocationOn,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.width(spacing.icon)
             )
         } else if (decoration.index != -1) {
             Text(
                 text = (decoration.index + 1).toString(),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.width(spacing.targetSize).align(Alignment.CenterVertically)
             )
         }
@@ -140,14 +141,14 @@ fun LocationItem(
             item.name?.let {
                 Text(
                     text = it,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
             if(distanceString.isNotEmpty()) {
                 Text(
                     text = distanceString,
-                    color = MaterialTheme.colorScheme.onPrimary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
@@ -155,8 +156,8 @@ fun LocationItem(
                 item.description?.let {
                     Text(
                         text = it,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimary,
                     )
                 }
             }
@@ -175,10 +176,16 @@ fun LocationItem(
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.width(spacing.icon)
             )
         }
+    }
+    if(!decoration.reorderable) {
+        HorizontalDivider(
+            thickness = spacing.tiny,
+            color = MaterialTheme.colorScheme.outlineVariant
+        )
     }
 }
 
@@ -192,7 +199,7 @@ fun FolderItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary)
+            .background(MaterialTheme.colorScheme.surface)
             .smallPadding()
             .fillMaxWidth()
             .clickable{
@@ -203,7 +210,7 @@ fun FolderItem(
         Icon(
             icon,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimary,
+            tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.width(spacing.icon)
         )
         Column(
@@ -212,16 +219,20 @@ fun FolderItem(
             Text(
                 text = name,
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
         Icon(
             Icons.Rounded.ChevronRight,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimary,
+            tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.width(spacing.icon)
         )
     }
+    HorizontalDivider(
+        thickness = spacing.tiny,
+        color = MaterialTheme.colorScheme.outlineVariant
+    )
 }
 
 @Preview(name = "Light Mode")
