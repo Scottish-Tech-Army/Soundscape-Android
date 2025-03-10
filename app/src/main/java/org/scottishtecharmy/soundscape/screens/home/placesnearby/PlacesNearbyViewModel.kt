@@ -89,8 +89,8 @@ class PlacesNearbyViewModel
         _uiState.value = uiState.value.copy(topLevel = true)
     }
 
-    fun onClickFolder(filter: String) {
+    fun onClickFolder(filter: String, title: String) {
         // Apply the filter
-        _uiState.value = uiState.value.copy(topLevel = false, filter = filter)
+        _uiState.value = uiState.value.copy(topLevel = false, filter = filter, title = title)
     }
 }

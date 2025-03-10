@@ -28,8 +28,8 @@ fun PlacesNearbyScreenVM(
     PlacesNearbyScreen(
         homeNavController,
         uiState,
-        onClickFolder = { folder ->
-            viewModel.onClickFolder(folder)
+        onClickFolder = { folder, title ->
+            viewModel.onClickFolder(folder, title)
         },
         onClickBack = {
             if(uiState.topLevel)
@@ -45,7 +45,7 @@ fun PlacesNearbyScreenVM(
 fun PlacesNearbyScreen(
     homeNavController: NavController,
     uiState: PlacesNearbyUiState,
-    onClickFolder: (String) -> Unit = {},
+    onClickFolder: (String, String) -> Unit = {_,_ -> true},
     onClickBack: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
@@ -55,7 +55,9 @@ fun PlacesNearbyScreen(
         topBar = {
             Column {
                 CustomAppBar(
-                    title = stringResource(R.string.search_nearby_screen_title),
+                    title =
+                        if(uiState.topLevel) stringResource(R.string.search_nearby_screen_title)
+                        else uiState.title,
                     navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                     onNavigateUp = {
                         onClickBack()

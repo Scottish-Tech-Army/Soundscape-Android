@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -56,11 +57,15 @@ fun HomeBottomAppBar(
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
-            modifier = Modifier.padding(bottom = spacing.small)
+            modifier = Modifier
+                .padding(bottom = spacing.small)
+                .background(MaterialTheme.colorScheme.primary),
+
         ) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(R.string.callouts_panel_title).uppercase(),
+                color = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier
                     .padding(start = spacing.medium, top = spacing.medium)
                     .semantics {

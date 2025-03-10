@@ -327,7 +327,7 @@ fun AddAndEditRouteScreen(
                                 itemsIndexed(routeMembers, key = { _,item -> item.databaseId!!.toString() }) { index, item ->
                                     ReorderableItem(reorderableLazyListState, item.databaseId.toString()) { _ ->
                                         Row(modifier = Modifier
-                                            .background(MaterialTheme.colorScheme.primaryContainer)
+                                            .background(MaterialTheme.colorScheme.surface)
                                         ) {
                                             LocationItem(
                                                 item = item,
@@ -372,10 +372,14 @@ fun AddAndEditRouteScreen(
                                                     imageVector = Icons.Rounded.DragIndicator,
                                                     contentDescription = "",
                                                     modifier = Modifier.size(spacing.targetSize),
-                                                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                                                    tint = MaterialTheme.colorScheme.onSurface,
                                                 )
                                             }
                                         }
+                                        HorizontalDivider(
+                                            thickness = spacing.tiny,
+                                            color = MaterialTheme.colorScheme.outlineVariant
+                                        )
                                     }
                                 }
                             }
