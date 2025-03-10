@@ -1,10 +1,8 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,18 +14,15 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import javax.inject.Inject
 
 @HiltViewModel
 class PlacesNearbyViewModel
     @Inject
     constructor(
-        private val soundscapeServiceConnection: SoundscapeServiceConnection,
-        @ApplicationContext private val context: Context,
+        private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(PlacesNearbyUiState())
     val uiState: StateFlow<PlacesNearbyUiState> = _uiState
@@ -83,35 +78,19 @@ class PlacesNearbyViewModel
                             )
                         }
                     }
-                    val osmSet = mutableSetOf<Any>()
-                    val locations = nearbyPlaces.features.filter { feature ->
-
-                        // TODO: This simple deduplication based on OSM id is a workaround. We
-                        //  really want polygons to be merged and de-duplicated at the point that
-                        //  the GridState is updated.
-                        val osmId = feature.foreign?.get("osm_ids")
-                        if (osmId != null) {
-                            if (osmSet.contains(osmId)) {
-                                false
-                            } else {
-                                osmSet.add(osmId)
-                                true
-                            }
-                        } else {
-                            true
-                        }
-                    }.map { feature ->
-                        LocationDescription(
-                            name = getTextForFeature(context, feature).text,
-                            location = getDistanceToFeature(LngLatAlt(), feature).point
-                        )
-                    }.sortedBy { _uiState.value.userLocation?.distance(it.location) }
-
-                    _uiState.value = uiState.value.copy(locations = locations)
+                    _uiState.value = uiState.value.copy(nearbyPlaces = nearbyPlaces)
                 } else {
-                    _uiState.value = uiState.value.copy(locations = emptyList())
+                    _uiState.value = uiState.value.copy(nearbyPlaces = FeatureCollection())
                 }
             }
         }
+    }
+    fun onClickBack() {
+        _uiState.value = uiState.value.copy(topLevel = true)
+    }
+
+    fun onClickFolder(filter: String) {
+        // Apply the filter
+        _uiState.value = uiState.value.copy(topLevel = false, filter = filter)
     }
 }

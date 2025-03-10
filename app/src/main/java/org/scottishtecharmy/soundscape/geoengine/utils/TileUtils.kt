@@ -185,6 +185,32 @@ fun getPoiFeatureCollectionBySuperCategory(
     return tempFeatureCollection
 }
 
+fun featureIsInFilterGroup(feature: Feature, filter: String): Boolean {
+
+    val tags = when(filter) {
+        "transit" -> listOf("bus_stop")
+        "food_and_drink" -> listOf(
+            "restaurant", "fast_food", "cafe", "bar", "ice_cream", "pub", "coffee_shop")
+        "parks" -> listOf(
+            "park", "garden", "green_space", "recreation_area", "playground", "nature_reserve",
+            "botanical_garden", "public_garden", "field", "reserve"
+        )
+        "groceries" -> listOf("supermarket", "convenience", "grocery")
+        "banks" -> listOf("bank", "atm")
+        else -> emptyList()
+    }
+    if(tags.isEmpty()) return true
+
+    for (tag in tags) {
+        feature.foreign?.let { foreign ->
+            if (foreign["feature_value"] == tag) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
 
 /** isDuplicateByOsmId returns true if the OSM id for the feature has already been entered into
  * the existingSet. It returns false if it's the first time, or there's no OSM id.
