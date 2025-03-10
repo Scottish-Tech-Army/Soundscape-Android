@@ -14,7 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
@@ -28,6 +28,15 @@ fun PlacesNearbyScreenVM(
     PlacesNearbyScreen(
         homeNavController,
         uiState,
+        onClickFolder = { folder ->
+            viewModel.onClickFolder(folder)
+        },
+        onClickBack = {
+            if(uiState.topLevel)
+                homeNavController.navigateUp()
+            else
+                viewModel.onClickBack()
+        },
         modifier = modifier
     )
 }
@@ -36,6 +45,8 @@ fun PlacesNearbyScreenVM(
 fun PlacesNearbyScreen(
     homeNavController: NavController,
     uiState: PlacesNearbyUiState,
+    onClickFolder: (String) -> Unit = {},
+    onClickBack: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
 
@@ -47,7 +58,7 @@ fun PlacesNearbyScreen(
                     title = stringResource(R.string.search_nearby_screen_title),
                     navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                     onNavigateUp = {
-                        homeNavController.navigateUp()
+                        onClickBack()
                     },
                 )
             }
@@ -58,6 +69,7 @@ fun PlacesNearbyScreen(
             PlacesNearbyList(
                 uiState = uiState,
                 navController = homeNavController,
+                onClickFolder = onClickFolder,
                 modifier = modifier.padding(innerPadding)
             )
         }
@@ -72,7 +84,7 @@ fun PlacesNearbyPreview() {
         homeNavController = rememberNavController(),
         uiState =
             PlacesNearbyUiState(
-                locations = previewLocationList
+                nearbyPlaces = FeatureCollection()
             ),
     )
 }
