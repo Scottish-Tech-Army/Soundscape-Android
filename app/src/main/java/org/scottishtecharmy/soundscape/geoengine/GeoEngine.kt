@@ -320,7 +320,7 @@ class GeoEngine {
                         UserGeometry(
                             location = LngLatAlt(location?.longitude ?: 0.0, location?.latitude ?: 0.0),
                             phoneHeading = phoneHeading,
-                            speed = location?.speed?.toDouble() ?: 0.0,
+                            speed = speed,
                             travelHeading = travelHeading
                         )
                     }.collect { geometry ->

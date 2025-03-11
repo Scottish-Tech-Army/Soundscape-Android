@@ -136,8 +136,9 @@ class MainActivity : AppCompatActivity() {
             val timeNow = System.currentTimeMillis()
             installSplashScreen()
 
-            // Keep the splash screen visible to allow time to see the attribution acknowledgements
-            val attributionDelay = 3000
+            // Keep the splash screen visible to allow time to see the attribution acknowledgements,
+            // But not too long as this delay happens coming out of sleep too.
+            val attributionDelay = 2000
             val content: View = findViewById(android.R.id.content)
             content.viewTreeObserver.addOnPreDrawListener(
                 object : ViewTreeObserver.OnPreDrawListener {

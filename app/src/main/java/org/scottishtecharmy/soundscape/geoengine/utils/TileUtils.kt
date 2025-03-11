@@ -1262,74 +1262,74 @@ fun interpolate(
     return LngLatAlt(lon, lat)
 }
 
+fun polygonFeaturesOverlap(feature1: Feature, feature2: Feature): Boolean {
+    for(point in (feature1.geometry as Polygon).coordinates[0]) {
+        if(polygonContainsCoordinates(point, (feature2.geometry as Polygon)))
+            return true
+    }
+    return false
+}
+
+
 fun mergeAllPolygonsInFeatureCollection(
     polygonFeatureCollection: FeatureCollection
 ): FeatureCollection{
-    val processOsmIds = mutableSetOf<Any>()
-    val notDuplicateFeaturesFeatureCollection = FeatureCollection()
-    val duplicateFeaturesFeatureCollection = FeatureCollection()
 
+    // We return a FeatureCollection which contains all the points and lines in the original,
+    // but with any duplicated polygons merged.
+    val resultantFeatureCollection = FeatureCollection()
+
+    // Create a HashMap of any polygons with the same osm_ids. Each hash map entry contains a List
+    // of FeatureCollections. Each FeatureCollections contains one or more polygons. When there's
+    // more than one, they've been tested to see if they overlap.
+    val features = hashMapOf<Any, MutableList<FeatureCollection> >()
     for (feature in polygonFeatureCollection.features) {
-        if (!isDuplicateByOsmId(processOsmIds, feature)) {
-            notDuplicateFeaturesFeatureCollection.features.add(feature)
-        } else {
-            duplicateFeaturesFeatureCollection.features.add(feature)
-        }
-    }
-
-    val mergedPolygonsFeatureCollection = FeatureCollection()
-    val duplicateLineStringsAndPoints = FeatureCollection()
-    val originalPolygonsUsedInMerge = mutableSetOf<Any>() // Track original polygons
-
-    for (duplicate in duplicateFeaturesFeatureCollection) {
-        // Find the original Feature
-        val originalFeature = notDuplicateFeaturesFeatureCollection.features.find {
-            it.foreign?.get("osm_ids") == duplicate.foreign?.get("osm_ids")
-        }
-
-        // Merge duplicate polygons
-        if (originalFeature != null && originalFeature.geometry.type == "Polygon" && duplicate.geometry.type == "Polygon") {
-            mergedPolygonsFeatureCollection.features.add(mergePolygons(originalFeature, duplicate))
-            // Add to the set
-            originalFeature.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
-            // Add to the set
-            duplicate.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
-        } else {
-            // TODO Merge the linestrings so we get a contiguous road/path
-            if (duplicate.geometry.type == "LineString" || duplicate.geometry.type == "Point"){
-                duplicateLineStringsAndPoints.features.add(duplicate)
+        if(feature.geometry.type == "Polygon") {
+            val osmId = feature.foreign?.get("osm_ids")
+            if (osmId != null) {
+                if (!features.containsKey(osmId)) {
+                    // This is the first feature with this osm_id
+                    features[osmId] = emptyList<FeatureCollection>().toMutableList()
+                }
+                var foundOverlap = false
+                for(featureCollection in features[osmId]!!) {
+                    for(existingFeature in featureCollection) {
+                        if(polygonFeaturesOverlap(feature, existingFeature)) {
+                            featureCollection.addFeature(feature)
+                            foundOverlap = true
+                            break
+                        }
+                    }
+                }
+                if(!foundOverlap) {
+                    // We found no overlap, so create a new FeatureCollection for this feature
+                    val newFeatureCollection = FeatureCollection()
+                    newFeatureCollection.addFeature(feature)
+                    features[osmId]!!.add(newFeatureCollection)
+                }
             }
-        }
-    }
-
-    val finalFeatureCollection = FeatureCollection()
-
-    // Add merged Polygons
-    finalFeatureCollection.features.addAll(mergedPolygonsFeatureCollection.features)
-
-
-    // Add original Features but excluding the Polygons that were merged
-    for (feature in notDuplicateFeaturesFeatureCollection.features) {
-        if (!isDuplicateByOsmId(originalPolygonsUsedInMerge, feature)) { // Check object identity
-            finalFeatureCollection.features.add(feature)
-        }
-    }
-
-    // Add the duplicate linestrings and points back in... need to sort out/merge the linestrings at later date
-    finalFeatureCollection.features.addAll(duplicateLineStringsAndPoints)
-
-    //TODO: figure out why the MVT tile has a linestring with only one coordinate? GeoJSON has a huff about it
-    val thisIsTheFinalFeatureCollectionHonest = FeatureCollection()
-    for (feature in finalFeatureCollection) {
-        if (feature.geometry.type == "LineString" && (feature.geometry as LineString).coordinates.size < 2 ){
-            println("Bug: This is a linestring with only one coordinate")
         } else {
-            thisIsTheFinalFeatureCollectionHonest.features.add(feature)
+            // Not a polygon, so just copy it over to our results
+            resultantFeatureCollection.addFeature(feature)
         }
     }
 
-    return thisIsTheFinalFeatureCollectionHonest
-
+    for(featureCollectionList in features) {
+        // For each FeatureCollection merge any overlapping polygons. If there are no duplicates,
+        // then the only Feature in the collection is returned.
+        for(featureCollection in featureCollectionList.value) {
+            var mergedFeature: Feature? = null
+            for ((index, feature) in featureCollection.features.withIndex()) {
+                mergedFeature = if (index == 0) {
+                    feature
+                } else {
+                    mergePolygons(mergedFeature!!, feature)
+                }
+            }
+            resultantFeatureCollection.addFeature(mergedFeature!!)
+        }
+    }
+    return resultantFeatureCollection
 }
 
 fun isPolygonClockwise(
