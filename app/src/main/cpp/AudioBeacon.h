@@ -9,7 +9,7 @@ namespace soundscape {
 
     class PositionedAudio {
     public:
-        PositionedAudio(AudioEngine *engine, PositioningMode mode);
+        PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable = false);
 
         virtual ~PositionedAudio();
 
@@ -38,12 +38,13 @@ namespace soundscape {
         FMOD::Sound *m_pSound = nullptr;
         FMOD::Channel *m_pChannel = nullptr;
         AudioEngine *m_pEngine;
+        bool m_Dimmable = false;
     };
 
     class Beacon : public PositionedAudio {
     public:
         Beacon(AudioEngine *engine, PositioningMode mode)
-         : PositionedAudio(engine, mode)
+         : PositionedAudio(engine, mode, true)
         {
             // Get the current position and heading of the listener
             double listener_heading;

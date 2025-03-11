@@ -170,6 +170,13 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
         result = m_pSystem->set3DSettings(1.0, FMOD_DISTANCE_FACTOR, 1.0f);
         ERROR_CHECK(result);
+
+        // Create the channel groups
+        result = system->createChannelGroup("beacons", &m_pBeaconChannelGroup);
+        ERROR_CHECK(result);
+        result = system->createChannelGroup("speech", &m_pSpeechChannelGroup);
+        ERROR_CHECK(result);
+
 #if 0
         int numdrivers = 0;
         result = m_pSystem->getNumDrivers(&numdrivers);
@@ -212,6 +219,10 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             }
         }
 
+        TRACE("Release groups");
+        m_pBeaconChannelGroup->release();
+        m_pSpeechChannelGroup->release();
+
         TRACE("System release");
         auto result = m_pSystem->release();
         ERROR_CHECK(result);
@@ -230,8 +241,12 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         // least do some of the callouts. The iOS docs suggest that My Location, Nearby Markers,
         // Around Me and  Ahead of Me should all still play out.
         //
-        if(listenerHeading > 10000.0)
+        if(listenerHeading > 10000.0) {
             listenerHeading = NAN;
+            m_pBeaconChannelGroup->setVolume(0.2);
+        } else {
+            m_pBeaconChannelGroup->setVolume(1.0);
+        }
 
         // store pos for next time
         m_LastLatitude = listenerLatitude;

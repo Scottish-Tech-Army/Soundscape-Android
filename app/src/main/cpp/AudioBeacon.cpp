@@ -7,9 +7,10 @@
 #include "AudioEngine.h"
 using namespace soundscape;
 
-PositionedAudio::PositionedAudio(AudioEngine *engine, PositioningMode mode)
+PositionedAudio::PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable)
                 : m_Mode(mode),
-                  m_Eof(false)
+                  m_Eof(false),
+                  m_Dimmable(dimmable)
 {
     m_pEngine = engine;
     m_pSystem = engine->GetFmodSystem();
@@ -34,13 +35,22 @@ void PositionedAudio::InitFmodSound() {
     if(!m_pSound)
         return;
 
+    double heading, current_latitude, current_longitude;
+    m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
+
     result = m_pSound->set3DMinMaxDistance(10.0f * FMOD_DISTANCE_FACTOR,
                                            5000.0f * FMOD_DISTANCE_FACTOR);
     ERROR_CHECK(result);
 
     {
-        // Create paused sound channel
-        result = m_pSystem->playSound(m_pSound, nullptr, true, &m_pChannel);
+        // Create paused sound channel using appropriate channel group
+        FMOD::ChannelGroup *channelGroup;
+        if(m_Dimmable)
+            channelGroup = m_pEngine->GetBeaconGroup();
+        else
+            channelGroup = m_pEngine->GetSpeechGroup();
+
+        result = m_pSystem->playSound(m_pSound, channelGroup, true, &m_pChannel);
         ERROR_CHECK(result);
 
         switch(m_Mode.m_Type) {
@@ -67,8 +77,6 @@ void PositionedAudio::InitFmodSound() {
             }
             case PositioningMode::COMPASS: {
                 // Make up a position using the current position and the heading
-                double heading, current_latitude, current_longitude;
-                m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
                 double lat, lon;
                 getDestinationCoordinate(current_latitude, current_longitude, m_Mode.m_Heading, &lat, &lon);
 
@@ -118,17 +126,12 @@ double PositionedAudio::GetHeadingOffset(double heading, double latitude, double
 }
 void PositionedAudio::UpdateGeometry(double heading, double latitude, double longitude) {
     if(isnan(heading)) {
-        // We don't currently have a heading, so we want to make the beacon more quiet and play
-        // the sound it makes if it's behind us
-        m_pChannel->setVolume(0.1);
-        m_pAudioSource->UpdateGeometry(180.0);
+        // If dimmable, the audio is placed behind us if there's no heading
+        m_pAudioSource->UpdateGeometry(m_Dimmable ? 180.0 : 0.0);
     } else {
-        m_pChannel->setVolume(1.0);
         auto degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
         m_pAudioSource->UpdateGeometry(degrees_off_axis);
     }
-
-
     //TRACE("%f %f -> %f (%f %f), %dm", heading, beacon_heading, degrees_off_axis, lat_delta, long_delta, dist)
 }
 
