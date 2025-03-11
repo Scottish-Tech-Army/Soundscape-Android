@@ -163,7 +163,7 @@ class PoiTest {
         val featuresToDraw = FeatureCollection()
         val features = poi.generateNearbyFeatureCollection(userGeometry.location, 50.0)
         featuresToDraw.plusAssign(features)
-        assert(features.features.size == 49)
+        assert(features.features.size == 39)
 
         val circle = Feature()
         circle.geometry = circleToPolygon(

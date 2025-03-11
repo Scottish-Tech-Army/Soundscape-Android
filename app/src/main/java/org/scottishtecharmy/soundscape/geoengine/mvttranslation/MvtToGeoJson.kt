@@ -255,6 +255,23 @@ fun vectorTileToGeoJson(tileX: Int,
                         false,
                         feature.geometryList
                     )
+
+                    // If all of the polygon points are outside the tile, then we can immediately
+                    // discard it
+                    var allOutside = true
+                    for (polygon in polygons) {
+                        for(point in polygon) {
+                            if(!pointIsOffTile(point.first, point.second)) {
+                                allOutside = false
+                                break
+                            }
+                        }
+                        if(!allOutside)
+                            break
+                    }
+                    if(allOutside)
+                        continue
+
                     // The polygon geometry encoding has some subtleties:
                     //
                     // A Polygon in MVT can consist of multiple polygons. If each polygon has a
