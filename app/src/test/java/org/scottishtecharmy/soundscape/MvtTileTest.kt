@@ -7,6 +7,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJ
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -185,16 +186,18 @@ class MvtTileTest {
         // Add lines to connect all of the interpolated points
         joiner.addJoiningLines(featureCollection)
 
+        val mergedCollection = mergeAllPolygonsInFeatureCollection(featureCollection)
+
         val adapter = GeoJsonObjectMoshiAdapter()
 
         // Check that the de-duplication of the points worked (without that there are two points
         // for Graeme Pharmacy, one each from two separate tiles).
-        val searchResults = searchFeaturesByName(featureCollection, "Graeme")
+        val searchResults = searchFeaturesByName(mergedCollection, "Graeme")
         println(adapter.toJson(searchResults))
         assert(searchResults.features.size == 1)
 
         val outputFile = FileOutputStream("2x2.geojson")
-        outputFile.write(adapter.toJson(featureCollection).toByteArray())
+        outputFile.write(adapter.toJson(mergedCollection).toByteArray())
         outputFile.close()
     }
 
