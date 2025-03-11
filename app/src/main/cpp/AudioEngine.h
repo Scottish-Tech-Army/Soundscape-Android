@@ -69,6 +69,8 @@ namespace soundscape {
 
         void UpdateGeometry(double listenerLatitude, double listenerLongitude, double listenerHeading);
         FMOD::System * GetFmodSystem() const { return m_pSystem; };
+        FMOD::ChannelGroup * GetBeaconGroup() const { return m_pBeaconChannelGroup; };
+        FMOD::ChannelGroup * GetSpeechGroup() const { return m_pSpeechChannelGroup; };
 
         void SetBeaconType(int beaconType);
         const BeaconDescriptor *GetBeaconDescriptor() const;
@@ -95,6 +97,9 @@ namespace soundscape {
 
     private:
         FMOD::System * m_pSystem;
+        FMOD::ChannelGroup *m_pBeaconChannelGroup = nullptr;
+        FMOD::ChannelGroup *m_pSpeechChannelGroup = nullptr;
+
         double m_LastLatitude = 0.0;
         double m_LastLongitude = 0.0;
 

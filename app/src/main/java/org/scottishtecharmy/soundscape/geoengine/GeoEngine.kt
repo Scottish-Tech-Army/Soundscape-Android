@@ -114,7 +114,8 @@ class GeoEngine {
             inMotion = inMotion,
             speed = locationProvider.getSpeed(),
             headingMode = headingMode,
-            travelHeading = locationProvider.getHeading())
+            travelHeading = locationProvider.getHeading()
+        )
     }
 
     @Subscribe
@@ -287,11 +288,40 @@ class GeoEngine {
                             else
                                 null
 
+                        // TODO: The travelHeading and speed calculations are important when trying
+                        //  to work out if the phone is moving or not. With these changes, there are
+                        //  still times when the phone is deemed to be moving, purely due to GPS
+                        //  jumps causing a "speed" and a "heading". It may be possible to Kalman
+                        // filter these, a better method is required.
+                        var travelHeading: Double? = null
+                        if(location?.bearing != null) {
+                            if(location.hasBearingAccuracy()) {
+                                if(location.bearingAccuracyDegrees < 45.0)
+                                    travelHeading = location.bearing.toDouble()
+                            } else {
+                                travelHeading = location.bearing.toDouble()
+                            }
+                        }
+
+                        var speed = 0.0
+                        if(location?.speed != null) {
+                            if(location.hasSpeedAccuracy()) {
+                                 // If the accuracy range encompasses zero, then we can't use it.
+                                val lowestSpeed = location.speed - location.speedAccuracyMetersPerSecond
+                                if(lowestSpeed > 0.1) {
+                                    speed = location.speed.toDouble()
+                                }
+                            } else {
+                                // No accuracy available
+                                speed = location.speed.toDouble()
+                            }
+                        }
+
                         UserGeometry(
                             location = LngLatAlt(location?.longitude ?: 0.0, location?.latitude ?: 0.0),
                             phoneHeading = phoneHeading,
                             speed = location?.speed?.toDouble() ?: 0.0,
-                            travelHeading = location?.bearing?.toDouble()
+                            travelHeading = travelHeading
                         )
                     }.collect { geometry ->
                         lastGeometry = geometry
