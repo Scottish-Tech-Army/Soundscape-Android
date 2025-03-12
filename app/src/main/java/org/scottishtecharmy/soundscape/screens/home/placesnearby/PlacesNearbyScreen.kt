@@ -24,7 +24,7 @@ fun PlacesNearbyScreenVM(
     modifier: Modifier = Modifier,
     viewModel: PlacesNearbyViewModel =  hiltViewModel(),
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
     PlacesNearbyScreen(
         homeNavController,
         uiState,
