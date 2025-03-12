@@ -1,6 +1,6 @@
 # Release notes
 
-## 0.0.56
+## 0.0.59
 
 This release has many of the main features at least partially implemented. The maps from the cloud cover the whole world which means that the app can be tested anywhere.
 
@@ -29,8 +29,8 @@ Clickable items on the home screen that are implemented are:
 
   * **My Location, Around Me and Nearby Markers support** Tapping the icons at the bottom of the screen will describe the location of the device via voice using a similar algorithm to Soundscape iOS. 
   * _**Ahead of Me** behaviour doesn't currently match iOS and will be updated soon._
-  * **Places Nearby** lists all of the POI within the local area. It doesn't yet have the filtering by category available in iOS. Clicking on an entry in the list brings up the Location Details screen.
-  * **Markers and Routes** brings up the UI for marker editing and route creation/editing. This is similar to iOS though the **Places Nearby** lists need to be added to **Add Waypoint** dialog which is currently Markers only.
+  * **Places Nearby** lists either all of the POI within the local area, or a filtered subset depending on the selection chosen. Clicking on an entry in the list brings up the Location Details screen.
+  * **Markers and Routes** brings up the UI for marker editing and route creation/editing. It includes the Places Nearby lists so that Markers can be created as Waypoints are added.
   * **Current Location** brings up the Location Details screen for the current location.
   * **Sleep mode** Clicking on that will disable the Soundscape service and bring up the full screen sleep screen. This is similar to the very simplest iOS sleep mode, wake on leave is not yet implemented.
   * **Street Preview** This is getting closer to how the iOS app works. When Street Preview is entered via the Location Details screen the GPS location is replaced with the static location provided by the user. The Home screen will display that location is if the phone was there. If Street Preview mode is running then buttons appear at the top of the home screen showing the options available.
@@ -70,9 +70,6 @@ Features currently in progress:
  * Improving the audio callouts
  * Improving the graphical map style to be higher contrast and more accessible
  * Adding callouts for Markers and de-duplicating their callout with any POIs that they might be coincident with.
- * Improving the Places Nearby list and adding it to the Add Waypoints list.
- * Improving Talkback behaviour especially hints which were present in iOS.
- * Add the ability to switch between color themes.
  * In vehicle mode needs some attention, we've focussed mostly on audio callouts whilst walking.
 
 ## Testing guidance
