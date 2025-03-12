@@ -8,21 +8,27 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.mongodb.kbson.ObjectId
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbySharedLogic
+import org.scottishtecharmy.soundscape.viewmodels.createMarker
 import javax.inject.Inject
 
 @HiltViewModel
 class AddAndEditRouteViewModel @Inject constructor(
     private val routesRepository: RoutesRepository,
+    soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AddAndEditRouteUiState())
     val uiState: StateFlow<AddAndEditRouteUiState> = _uiState
+
+    val logic = PlacesNearbySharedLogic(soundscapeServiceConnection, viewModelScope)
 
     fun loadMarkers() {
         viewModelScope.launch {
@@ -125,7 +131,7 @@ class AddAndEditRouteViewModel @Inject constructor(
     }
 
     // Add/Edit has been completed
-    fun onDoneClicked() {
+    fun editComplete() {
         viewModelScope.launch {
             val routeData = RouteData().apply {
                 name = _uiState.value.name
@@ -154,5 +160,35 @@ class AddAndEditRouteViewModel @Inject constructor(
                 _uiState.value = _uiState.value.copy(errorMessage = "Error saving route: ${e.message}")
             }
         }
+    }
+
+    fun onClickBack() {
+        var newLevel = logic.uiState.value.level
+        if(newLevel > 0) newLevel = newLevel - 1
+        logic._uiState.value = logic.uiState.value.copy(level = newLevel)
+    }
+    fun onSelectLocation(location: LocationDescription) {
+        logic._uiState.value = logic.uiState.value.copy(markerDescription = location)
+    }
+
+    fun onClickFolder(filter: String, title: String) {
+        // Apply the filter
+        val newLevel = logic.uiState.value.level + 1
+        logic._uiState.value = logic.uiState.value.copy(level = newLevel, filter = filter, title = title)
+    }
+
+    fun createAndAddMarker(locationDescription: LocationDescription) {
+        createMarker(locationDescription, routesRepository, viewModelScope)
+
+        // Update our list of markers
+        val updatedList = uiState.value.routeMembers.toMutableList()
+        updatedList.add(locationDescription)
+        _uiState.value = _uiState.value.copy(routeMembers = updatedList)
+
+        // And ensure we're on the top level
+        logic._uiState.value = logic.uiState.value.copy(
+            markerDescription = null,
+            level = 0
+        )
     }
 }

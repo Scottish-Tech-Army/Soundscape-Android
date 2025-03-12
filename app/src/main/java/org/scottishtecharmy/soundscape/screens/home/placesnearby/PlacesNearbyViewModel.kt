@@ -10,16 +10,16 @@ import javax.inject.Inject
 class PlacesNearbyViewModel
     @Inject
     constructor(
-        private val soundscapeServiceConnection: SoundscapeServiceConnection
+        soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
 
     val logic = PlacesNearbySharedLogic(soundscapeServiceConnection, viewModelScope)
     fun onClickBack() {
-        logic._uiState.value = logic.uiState.value.copy(topLevel = true)
+        logic._uiState.value = logic.uiState.value.copy(level = 0)
     }
 
     fun onClickFolder(filter: String, title: String) {
         // Apply the filter
-        logic._uiState.value = logic.uiState.value.copy(topLevel = false, filter = filter, title = title)
+        logic._uiState.value = logic.uiState.value.copy(level = 1, filter = filter, title = title)
     }
 }

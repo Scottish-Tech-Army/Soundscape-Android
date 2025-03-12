@@ -70,7 +70,7 @@ fun PlacesNearbyList(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
-        if(uiState.topLevel) {
+        if(uiState.level  == 0) {
             itemsIndexed(folders) { index, folderItem ->
                 if(index == 0) {
                     HorizontalDivider(
