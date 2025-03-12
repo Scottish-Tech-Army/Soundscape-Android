@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -15,16 +17,25 @@ import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.SaveAndEditMarkerDialog
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
 @Composable
 fun AddWaypointsDialog(
     uiState: AddAndEditRouteUiState,
+    placesNearbyUiState: PlacesNearbyUiState,
     modifier: Modifier,
-    onDone: () -> Unit,
+    onAddWaypointComplete: () -> Unit,
+    onClickFolder: (String, String) -> Unit,
+    onClickBack: () -> Unit,
+    onSelectLocation: (LocationDescription) -> Unit,
+    createAndAddMarker: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?
 ) {
+    val saveMarkerDialog = remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -32,19 +43,40 @@ fun AddWaypointsDialog(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        TextOnlyAppBar(
-            title = stringResource(R.string.route_detail_edit_waypoints_button),
-            onRightButton = onDone,
-            rightButtonTitle = stringResource(R.string.general_alert_done)
-        )
+        if (saveMarkerDialog.value) {
+            SaveAndEditMarkerDialog(
+                locationDescription = placesNearbyUiState.markerDescription!!,
+                location = placesNearbyUiState.userLocation,
+                heading = 0.0F,
+                saveMarker = { description ->
+                    createAndAddMarker(description)
+                },
+                deleteMarker = {},
+                dialogState = saveMarkerDialog
+            )
+        } else {
+            TextOnlyAppBar(
+                title = stringResource(R.string.route_detail_edit_waypoints_button),
+                onNavigateUp = { onClickBack() },
+                navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+                onRightButton = onAddWaypointComplete,
+                rightButtonTitle = stringResource(R.string.general_alert_done)
+            )
 
-        Spacer(modifier = Modifier.extraSmallPadding())
+            Spacer(modifier = Modifier.extraSmallPadding())
 
-        // Display the list of routes
-        AddWaypointsList(
-            uiState = uiState,
-            userLocation = userLocation
-        )
+            // Display the list of routes
+            AddWaypointsList(
+                uiState = uiState,
+                placesNearbyUiState = placesNearbyUiState,
+                onClickFolder = onClickFolder,
+                onSelectLocation = { location ->
+                    saveMarkerDialog.value = true
+                    onSelectLocation(location)
+                },
+                userLocation = userLocation
+            )
+        }
     }
 }
 
@@ -53,7 +85,7 @@ fun AddWaypointsDialog(
 fun AddWaypointsScreenPopulatedPreview() {
     AddWaypointsDialog(
         modifier = Modifier,
-        onDone = { },
+        onAddWaypointComplete = { },
         userLocation = null,
         uiState =
             AddAndEditRouteUiState(
@@ -79,7 +111,12 @@ fun AddWaypointsScreenPopulatedPreview() {
                     LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = ObjectId()),
                     LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = ObjectId()),
                 )
-            )
+            ),
+        placesNearbyUiState = PlacesNearbyUiState(),
+        onClickFolder = {_,_ -> true },
+        onClickBack = {},
+        onSelectLocation = {_ -> },
+        createAndAddMarker = {_ -> }
     )
 }
 
@@ -88,8 +125,13 @@ fun AddWaypointsScreenPopulatedPreview() {
 fun AddWaypointsScreenPreview() {
     AddWaypointsDialog(
         modifier = Modifier,
-        onDone = {},
+        onAddWaypointComplete = {},
         uiState = AddAndEditRouteUiState(),
-        userLocation = null
+        userLocation = null,
+        placesNearbyUiState = PlacesNearbyUiState(),
+        onClickFolder = {_,_ -> true },
+        onClickBack = {},
+        onSelectLocation = {_ -> },
+        createAndAddMarker = {_ -> }
     )
 }

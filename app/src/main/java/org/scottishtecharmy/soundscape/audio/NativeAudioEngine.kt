@@ -371,27 +371,33 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
 
         // Check for change in voice type preference
         val voiceType = sharedPreferences.getString(MainActivity.VOICE_TYPE_KEY, MainActivity.VOICE_TYPE_DEFAULT)!!
-        for (voice in textToSpeech.voices) {
-            if (voice.name == voiceType) {
-                if(textToSpeechVoiceType != voice.name) {
-                    textToSpeech.voice = voice
-                    Log.d(TAG, "Voice changed from $textToSpeechVoiceType to ${voice.name} on $this")
-                    textToSpeechVoiceType = voice.name
-                    change = true
+        if(textToSpeech.voices != null) {
+            for (voice in textToSpeech.voices) {
+                if (voice.name == voiceType) {
+                    if (textToSpeechVoiceType != voice.name) {
+                        textToSpeech.voice = voice
+                        Log.d(
+                            TAG,
+                            "Voice changed from $textToSpeechVoiceType to ${voice.name} on $this"
+                        )
+                        textToSpeechVoiceType = voice.name
+                        change = true
+                    }
+                    break
                 }
-                break
             }
         }
-
         // Check for change in rate preference
-        val rate = sharedPreferences.getFloat(MainActivity.SPEECH_RATE_KEY, MainActivity.SPEECH_RATE_DEFAULT)
+        val rate = sharedPreferences.getFloat(
+            MainActivity.SPEECH_RATE_KEY,
+            MainActivity.SPEECH_RATE_DEFAULT
+        )
         if (rate != textToSpeechRate) {
             textToSpeech.setSpeechRate(rate)
             Log.d(TAG, "Speech rate changed from $textToSpeechRate to $rate on $this")
             textToSpeechRate = rate
             change = change.or(true)
         }
-
         return change
     }
 

@@ -50,7 +50,9 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
@@ -124,19 +126,27 @@ fun AddAndEditRouteScreenVM(
     viewModel: AddAndEditRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val placesNearbyUiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
     AddAndEditRouteScreen(
-        routeObjectId,
-        navController,
-        modifier,
-        uiState,
-        editRoute,
+        routeObjectId = routeObjectId,
+        navController = navController,
+        modifier = modifier,
+        uiState = uiState,
+        placesNearbyUiState = placesNearbyUiState,
+        editRoute = editRoute,
         onClearErrorMessage = { viewModel.clearErrorMessage() },
         onResetDoneAction = { viewModel.resetDoneActionState() },
         onNameChange = { viewModel.onNameChange(it) },
         onDescriptionChange = { viewModel.onDescriptionChange(it) },
         onDeleteRoute = { viewModel.deleteRoute(it) },
-        onDoneClicked = { viewModel.onDoneClicked() },
-        userLocation = userLocation
+        onEditComplete = { viewModel.editComplete() },
+        onClickFolder = { folder, title ->
+            viewModel.onClickFolder(folder, title)
+        },
+        onClickBack = { viewModel.onClickBack() },
+        userLocation = userLocation,
+        onSelectLocation = { location -> viewModel.onSelectLocation(location) },
+        createAndAddMarker = { location -> viewModel.createAndAddMarker(location) }
     )
 }
 
@@ -147,6 +157,7 @@ fun AddAndEditRouteScreen(
     navController: NavController,
     modifier: Modifier,
     uiState: AddAndEditRouteUiState,
+    placesNearbyUiState: PlacesNearbyUiState,
     editRoute: Boolean,
     userLocation: LngLatAlt?,
     onClearErrorMessage: () -> Unit,
@@ -154,7 +165,11 @@ fun AddAndEditRouteScreen(
     onNameChange: (newText: String) -> Unit,
     onDescriptionChange: (newText: String) -> Unit,
     onDeleteRoute: (objectId: ObjectId) -> Unit,
-    onDoneClicked: () -> Unit,
+    onEditComplete: () -> Unit,
+    onClickFolder: (String, String) -> Unit,
+    onClickBack: () -> Unit,
+    onSelectLocation: (LocationDescription) -> Unit,
+    createAndAddMarker: (LocationDescription) -> Unit
 ) {
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
@@ -206,10 +221,20 @@ fun AddAndEditRouteScreen(
 
     if(addWaypointDialog) {
         AddWaypointsDialog(
-            uiState,
-            onDone = {
+            uiState = uiState,
+            placesNearbyUiState = placesNearbyUiState,
+            onAddWaypointComplete = {
                 addWaypointDialog = false
             },
+            onClickFolder = onClickFolder,
+            onClickBack = {
+                if(placesNearbyUiState.level == 0)
+                    addWaypointDialog = false
+                else
+                    onClickBack()
+            },
+            onSelectLocation = onSelectLocation,
+            createAndAddMarker = createAndAddMarker,
             modifier = modifier,
             userLocation = location
         )
@@ -227,7 +252,7 @@ fun AddAndEditRouteScreen(
                     navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                     onRightButton = {
                         uiState.routeMembers = routeMembers
-                        onDoneClicked()
+                        onEditComplete()
                     },
                     rightButtonTitle = stringResource(R.string.general_alert_done)
                 )
@@ -399,13 +424,18 @@ fun NewRouteScreenPreview() {
         navController = rememberNavController(),
         modifier = Modifier,
         uiState = AddAndEditRouteUiState(),
+        placesNearbyUiState = PlacesNearbyUiState(),
         editRoute = false,
         onClearErrorMessage = {},
         onResetDoneAction = {},
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onDoneClicked = {},
+        onEditComplete = {},
+        onClickFolder = {_,_ -> true},
+        onClickBack = {},
+        onSelectLocation = {_ ->},
+        createAndAddMarker = {_ ->},
         userLocation = LngLatAlt()
     )
 }
@@ -420,13 +450,18 @@ fun EditRouteScreenPreview() {
         uiState = AddAndEditRouteUiState(
             routeMembers = previewLocationList
         ),
+        placesNearbyUiState = PlacesNearbyUiState(),
         editRoute = true,
         onClearErrorMessage = {},
         onResetDoneAction = {},
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onDoneClicked = {},
+        onEditComplete = {},
+        onClickFolder = {_,_ -> true},
+        onClickBack = {},
+        onSelectLocation = {_ ->},
+        createAndAddMarker = {_ ->},
         userLocation = LngLatAlt()
     )
 }

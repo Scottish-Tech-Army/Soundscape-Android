@@ -4,21 +4,24 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.ControlCamera
 import androidx.compose.material.icons.rounded.DirectionsBus
 import androidx.compose.material.icons.rounded.Fastfood
 import androidx.compose.material.icons.rounded.LocalGroceryStore
-import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.Place
+import androidx.compose.material.icons.rounded.LocationSearching
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -27,11 +30,19 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.FolderItem
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.Folder
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 
 @Composable
 fun AddWaypointsList(
     uiState: AddAndEditRouteUiState,
+    placesNearbyUiState: PlacesNearbyUiState,
+    onClickFolder: (String, String) -> Unit,
     userLocation: LngLatAlt?,
+    onSelectLocation: (LocationDescription) -> Unit
 ) {
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState) {
@@ -55,33 +66,105 @@ fun AddWaypointsList(
             }
     }
 
+    // Add PlacesNearby entries
+    val levelZeroFolders = listOf(
+        Folder(stringResource(R.string.search_nearby_screen_title), Icons.Rounded.LocationSearching, ""),
+    )
+    val levelOneFolders = listOf(
+        Folder(stringResource(R.string.filter_all), Icons.Rounded.ControlCamera, ""),
+        Folder(stringResource(R.string.filter_transit), Icons.Rounded.DirectionsBus, "transit"),
+        Folder(stringResource(R.string.filter_food_drink), Icons.Rounded.Fastfood, "food_and_drink"),
+        Folder(stringResource(R.string.filter_groceries), Icons.Rounded.LocalGroceryStore, "groceries"),
+        Folder(stringResource(R.string.filter_banks), Icons.Rounded.AttachMoney, "banks"),
+    )
+    val context = LocalContext.current
+    val nearbyLocations = remember(placesNearbyUiState) {
+        placesNearbyUiState.nearbyPlaces.features.filter { feature ->
+            // Filter based on any folder selected
+            featureIsInFilterGroup(feature, placesNearbyUiState.filter)
+
+        }.map { feature ->
+            LocationDescription(
+                name = getTextForFeature(context, feature).text,
+                location = getDistanceToFeature(LngLatAlt(), feature).point
+            )
+        }.sortedBy { placesNearbyUiState.userLocation?.distance(it.location) }
+    }
+
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
-        items(locations) { locationDescription ->
-            LocationItem(
-                item = locationDescription,
-                decoration = LocationItemDecoration(
-                    location = false,
-                    editRoute = EnabledFunction(
-                        enabled = true,
-                        functionBoolean = {
-                            routeMember[locationDescription] = it
-                            val updatedList = uiState.routeMembers.toMutableList()
-                            if(it)
-                                updatedList.add(locationDescription)
-                            else
-                                updatedList.remove(locationDescription)
-                            uiState.routeMembers = updatedList
-                        },
-                        value = routeMember[locationDescription] == true,
-                        hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),
-                        hintWhenOff = stringResource(R.string.location_detail_add_waypoint_new_hint)
+        val folders = when (placesNearbyUiState.level) {
+            0 -> levelZeroFolders
+            1 -> levelOneFolders
+            else -> emptyList()
+        }
+        if (placesNearbyUiState.level <= 1) {
+            itemsIndexed(folders) { index, folderItem ->
+                if (index == 0) {
+                    HorizontalDivider(
+                        thickness = spacing.tiny,
+                        color = MaterialTheme.colorScheme.outlineVariant
                     )
-                ),
-                userLocation = userLocation
-            )
+                }
+                FolderItem(
+                    name = folderItem.name,
+                    icon = folderItem.icon,
+                    onClick = {
+                        onClickFolder(folderItem.filter, folderItem.name)
+                    }
+                )
+            }
+        } else {
+            itemsIndexed(nearbyLocations) { index, locationDescription ->
+                if (index == 0) {
+                    HorizontalDivider(
+                        thickness = spacing.tiny,
+                        color = MaterialTheme.colorScheme.outlineVariant
+                    )
+                }
+                LocationItem(
+                    item = locationDescription,
+                    decoration = LocationItemDecoration(
+                        location = true,
+                        details = EnabledFunction(
+                            true,
+                            {
+                                onSelectLocation(locationDescription)
+                            }
+                        )
+                    ),
+                    userLocation = placesNearbyUiState.userLocation
+                )
+            }
+        }
+
+        if (placesNearbyUiState.level == 0) {
+            items(locations) { locationDescription ->
+                LocationItem(
+                    item = locationDescription,
+                    decoration = LocationItemDecoration(
+                        location = false,
+                        editRoute = EnabledFunction(
+                            enabled = true,
+                            functionBoolean = {
+                                routeMember[locationDescription] = it
+                                val updatedList = uiState.routeMembers.toMutableList()
+                                if (it)
+                                    updatedList.add(locationDescription)
+                                else
+                                    updatedList.remove(locationDescription)
+                                uiState.routeMembers = updatedList
+                            },
+                            value = routeMember[locationDescription] == true,
+                            hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),
+                            hintWhenOff = stringResource(R.string.location_detail_add_waypoint_new_hint)
+                        )
+                    ),
+                    userLocation = userLocation
+                )
+            }
         }
     }
 }

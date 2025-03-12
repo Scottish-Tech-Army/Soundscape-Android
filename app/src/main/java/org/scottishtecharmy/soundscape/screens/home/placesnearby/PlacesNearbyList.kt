@@ -53,22 +53,8 @@ fun PlacesNearbyList(
         Folder(stringResource(R.string.filter_banks), Icons.Rounded.AttachMoney, "banks"),
     )
     val context = LocalContext.current
-    val osmSet = mutableSetOf<Any>()
     val locations = remember(uiState) {
         uiState.nearbyPlaces.features.filter { feature ->
-
-            // TODO: This simple deduplication based on OSM id is a workaround. We
-            //  really want polygons to be merged and de-duplicated at the point that
-            //  the GridState is updated.
-            val osmId = feature.foreign?.get("osm_ids")
-            if (osmId != null) {
-                if (osmSet.contains(osmId)) {
-                    false
-                } else {
-                    osmSet.add(osmId)
-                }
-            }
-
             // Filter based on any folder selected
             featureIsInFilterGroup(feature, uiState.filter)
 
@@ -84,7 +70,7 @@ fun PlacesNearbyList(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
-        if(uiState.topLevel) {
+        if(uiState.level  == 0) {
             itemsIndexed(folders) { index, folderItem ->
                 if(index == 0) {
                     HorizontalDivider(
