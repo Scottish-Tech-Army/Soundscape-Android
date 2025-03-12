@@ -12,13 +12,17 @@ most important goal for this initial release.
 
 We're going to use Slack for all initial feedback. 
 
+## Requirements
+The app currently requires Android 11 (API 30 - see [https://apilevels.com/](https://apilevels.com/)). We are hoping to drop this to Android 9 with some more work, but for now we only support Android 11 and later.
+We don't know of any other requirements, but that's one of the thing this testing should help us understand.
+
 ## Installing the app
 Because it's currently in _Internal Testing_, to get access to the app you need added to a list 
 on the PlayStore. Message Dave Craig on Slack and ask to be added to the list and include the 
 email address that you use on the PlayStore. He'll add it to the list and then you can go to 
 this link:
 
-https://play.google.com/apps/internaltest/4701298622029271713
+[https://play.google.com/apps/internaltest/4701298622029271713](https://play.google.com/apps/internaltest/4701298622029271713)
 
 Follow the instructions there for how to download and install the app. Any problems, message 
 Dave Craig.
