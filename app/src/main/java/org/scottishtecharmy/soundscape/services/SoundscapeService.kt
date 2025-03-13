@@ -137,15 +137,18 @@ class SoundscapeService : MediaSessionService() {
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
         }
+
+        // Set the StreetPreview state prior to starting the location provider. Otherwise there's a
+        // race in the tileGridUpdated callback.
+        _streetPreviewFlow.value = StreetPreviewState(if(on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
+
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
         geoEngine.start(application, locationProvider, directionProvider, this)
-
-        _streetPreviewFlow.value = StreetPreviewState(if(on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
     }
 
     fun tileGridUpdated() {
-        if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
+        if(_streetPreviewFlow.value.enabled != StreetPreviewEnabled.OFF) {
             _streetPreviewFlow.value = StreetPreviewState(
                 StreetPreviewEnabled.ON,
                 geoEngine.streetPreviewGo()
@@ -481,7 +484,7 @@ class SoundscapeService : MediaSessionService() {
      * It indicates that the user has selected the direction of travel in which they which to move.
      */
     fun streetPreviewGo() {
-        _streetPreviewFlow.value = StreetPreviewState(StreetPreviewEnabled.ON, geoEngine.streetPreviewGo())
+        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = geoEngine.streetPreviewGo())
     }
 
     fun appInForeground(foreground: Boolean) {

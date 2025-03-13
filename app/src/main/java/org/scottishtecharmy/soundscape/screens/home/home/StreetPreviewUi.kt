@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,6 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun StreetPreview(
@@ -66,7 +68,8 @@ fun StreetPreview(
             onClick = {
                 streetPreviewFunctions.go()
             },
-            text = text
+            text = text,
+            modifier = Modifier.defaultMinSize(minHeight = spacing.targetSize * 3)
         )
     }
     NavigationButton(
@@ -74,6 +77,7 @@ fun StreetPreview(
             streetPreviewFunctions.exit()
         },
         // TODO: Internationalization
-        text = stringResource(R.string.street_preview_exit)
+        text = stringResource(R.string.street_preview_exit),
+        horizontalPadding = spacing.large
     )
 }
