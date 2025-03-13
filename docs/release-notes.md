@@ -28,7 +28,7 @@ Unlike iOS, a long press on the map brings up the Location Details screen which 
 Clickable items on the home screen that are implemented are:
 
   * **My Location, Around Me and Nearby Markers support** Tapping the icons at the bottom of the screen will describe the location of the device via voice using a similar algorithm to Soundscape iOS. 
-  * _**Ahead of Me** behaviour doesn't currently match iOS and will be updated soon._
+  * **Ahead of Me** lists the first 5 POI in the direction the user is heading.
   * **Places Nearby** lists either all of the POI within the local area, or a filtered subset depending on the selection chosen. Clicking on an entry in the list brings up the Location Details screen.
   * **Markers and Routes** brings up the UI for marker editing and route creation/editing. It includes the Places Nearby lists so that Markers can be created as Waypoints are added.
   * **Current Location** brings up the Location Details screen for the current location.
@@ -43,11 +43,7 @@ Clickable items on the home screen that are implemented are:
 This runs even when the phone is locked. It means that a beacon can be set or a route played and then the phone locked. The audio beacon will continue to sound. The service can be stopped and restarted by entering and exiting Sleep mode. The service is responsible for the audio beacon play out and the audio callouts. The heading logic is similar to iOS which means that when the phone is locked the heading is based on the current direction of travel. If the phone is unlocked - or is locked and held flat in front of the user - then the heading used is the direction that the phone is pointing in.
 
 * **Initial Auto callout support** These are enabled by default and announce upcoming intersections and nearby points of interest.
-* **Media Playback** controls now work allowing headphone or other Bluetooth triggering of some types of callout. They aren't currently mapped the same as on iOS, though we will change this.
-  Instead they're mapped like this:
-  * ⏯ Around Me
-  * ⏮ Ahead of Me
-  * ⏭ My Location
+* **Media Playback** controls now work allowing headphone or other Bluetooth triggering of some types of callout. They work the same as iOS.
 
 #### Menu
 Some of the options within the Menu have been implemented:
@@ -66,7 +62,6 @@ The main way that a user might open the app is by tapping on its icon. However, 
 
 ### Work in progress
 Features currently in progress:
- * Ahead of Me
  * Improving the audio callouts
  * Improving the graphical map style to be higher contrast and more accessible
  * Adding callouts for Markers and de-duplicating their callout with any POIs that they might be coincident with.

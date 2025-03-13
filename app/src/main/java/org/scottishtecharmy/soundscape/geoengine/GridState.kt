@@ -24,7 +24,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.network.TileClient
-import org.scottishtecharmy.soundscape.services.SoundscapeService
 import kotlin.time.TimeSource
 
 enum class TreeId(
@@ -177,7 +176,7 @@ open class GridState {
         category = superCategoryCollections["safety"]
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
 
-        // Create a merged collection of places and landmarks, as used by whatsAroundMe
+        // Create a merged collection of places and landmarks, as used by whatsAroundMe and aheadOfMe
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.PLACE_POIS.id])
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.LANDMARK_POIS.id])
 

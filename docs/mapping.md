@@ -102,6 +102,6 @@ java -Xmx30g -jar target/planetiler-openmaptiles-3.15.1-SNAPSHOT-with-deps.jar -
 
 
 ### Limitations
-`planetiler` is limited to a maximum zoom level of 15. Tiles at that zoom level are 1222 metres x 1222 metres and with `extents` set to 4096 have a resolution of 30cm. MapLibre can still zoom in further, and although the rendering is done at the higher zoom the data used will be from the zoom level 15 tile. Soundscape iOS GeoJSON tiles were at zoom level 16 so some care will have to be taken with style and configuration to ensure that we have the same data available.
+`planetiler` is limited to a maximum zoom level of 15. Tiles at that zoom level are 1222 metres x 1222 metres (at the equator) and with `extents` set to 4096 have a resolution of 30cm. MapLibre can still zoom in further, and although the rendering is done at the higher zoom the data used will be from the zoom level 15 tile. Soundscape iOS GeoJSON tiles were at zoom level 16 so some care will have to be taken with style and configuration to ensure that we have the same data available.
 
 `planetiler` cannot do incremental tile generation, it always starts from scratch. The `planet.osm.pbf` can be updated incrementally, but the main time sink is the tile generation. However, this could be argued to be a benefit as any issues creating tiles in one build would hopefully be gone by the next build rather than slowly accruing problems.
