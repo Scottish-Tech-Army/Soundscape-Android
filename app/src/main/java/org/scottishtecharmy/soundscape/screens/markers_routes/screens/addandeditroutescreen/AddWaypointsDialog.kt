@@ -113,7 +113,7 @@ fun AddWaypointsScreenPopulatedPreview() {
                 )
             ),
         placesNearbyUiState = PlacesNearbyUiState(),
-        onClickFolder = {_,_ -> true },
+        onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
         createAndAddMarker = {_ -> }
@@ -129,7 +129,7 @@ fun AddWaypointsScreenPreview() {
         uiState = AddAndEditRouteUiState(),
         userLocation = null,
         placesNearbyUiState = PlacesNearbyUiState(),
-        onClickFolder = {_,_ -> true },
+        onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
         createAndAddMarker = {_ -> }
