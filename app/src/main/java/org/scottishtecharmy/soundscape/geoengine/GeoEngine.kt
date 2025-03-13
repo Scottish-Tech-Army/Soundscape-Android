@@ -7,11 +7,7 @@ import android.content.res.Configuration
 import android.location.Location
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.google.android.gms.location.ActivityTransition
-import com.google.android.gms.location.ActivityTransitionEvent
-import com.google.android.gms.location.DetectedActivity
 import com.google.android.gms.location.DeviceOrientation
-import com.squareup.otto.Subscribe
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -55,7 +51,6 @@ import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.services.getOttoBus
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
 import java.util.Locale
@@ -110,27 +105,10 @@ class GeoEngine {
             location = locationProvider.get(),
             phoneHeading = directionProvider.getCurrentDirection(appInForeground),
             fovDistance = 50.0,
-            inVehicle = inVehicle,
-            inMotion = inMotion,
             speed = locationProvider.getSpeed(),
             headingMode = headingMode,
             travelHeading = locationProvider.getHeading()
         )
-    }
-
-    @Subscribe
-    fun onActivityTransitionEvent(event: ActivityTransitionEvent) {
-        if (event.transitionType == ActivityTransition.ACTIVITY_TRANSITION_ENTER) {
-            inVehicle =
-                when (event.activityType) {
-                    DetectedActivity.ON_BICYCLE,
-                    DetectedActivity.IN_VEHICLE,
-                    -> true
-
-                    else -> false
-                }
-            inMotion = (event.activityType != DetectedActivity.STILL)
-        }
     }
 
     fun start(
@@ -185,13 +163,9 @@ class GeoEngine {
                 }
             }
         }
-
-        getOttoBus().register(this)
     }
 
     fun stop() {
-        getOttoBus().unregister(this)
-
         locationMonitoringJob?.cancel()
         audioEngineUpdateJob?.cancel()
         markerMonitoringJob?.cancel()

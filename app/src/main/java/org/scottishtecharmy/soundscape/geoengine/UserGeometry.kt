@@ -5,8 +5,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    var phoneHeading: Double? = null,
                    val fovDistance: Double = 50.0,
-                   val inVehicle: Boolean = false,
-                   val inMotion: Boolean = false,
                    val speed: Double = 0.0,
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
@@ -35,8 +33,15 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
     private val automotiveRangeMultiplier = 6.0
     private val streetPreviewRangeIncrement = 10.0
 
+    fun inVehicle() : Boolean {
+        // The Activity Recognition seemed unreliable, and so we use the current speed instead.
+        // Travelling at over 5m/s (10mph) assumes we're in a vehicle. When the vehicle stops at
+        // junctions it will switch to non-vehicle mode.
+        return speed > 5.0
+    }
+
     private fun transform(distance: Double) : Double {
-        if(inVehicle) return distance * automotiveRangeMultiplier
+        if(inVehicle()) return distance * automotiveRangeMultiplier
         if(inStreetPreview) return distance + streetPreviewRangeIncrement
         return distance
     }

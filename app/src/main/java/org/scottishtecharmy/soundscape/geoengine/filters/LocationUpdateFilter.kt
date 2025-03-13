@@ -46,7 +46,7 @@ open class LocationUpdateFilter(private val minTimeMs: Long, private val minDist
 
     private val inVehicleTimeIntervalMultiplier = 4
     fun shouldUpdateActivity(userGeometry: UserGeometry) : Boolean {
-        if(userGeometry.inVehicle) {
+        if(userGeometry.inVehicle()) {
             // If travelling in a vehicle then the speed is used to determine how far has to be
             // travelled before updating and the time is increased by a multiplier.
             val timeInterval = minTimeMs * inVehicleTimeIntervalMultiplier

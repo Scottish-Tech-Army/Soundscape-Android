@@ -17,7 +17,6 @@ import androidx.core.app.ServiceCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
-import com.squareup.otto.Bus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +32,6 @@ import kotlinx.coroutines.withContext
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.activityrecognition.ActivityTransition
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
@@ -54,16 +52,6 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 
-/**
- * Publish/Subscribe Otto bus used for some types of communication within the service.
- */
-private var ottoBus : Bus? = null
-fun getOttoBus() : Bus {
-    if(ottoBus == null) {
-        ottoBus = Bus()
-    }
-    return ottoBus!!
-}
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles,
@@ -101,9 +89,6 @@ class SoundscapeService : MediaSessionService() {
     // Flow to return nearby places
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
-
-    // Activity recognition
-    private lateinit var activityTransition: ActivityTransition
 
     // Media control button code
     private var mediaSession: MediaSession? = null
@@ -192,15 +177,6 @@ class SoundscapeService : MediaSessionService() {
             // create new RealmDB or open existing
             startRealms()
 
-            // Activity Recognition
-            // test
-            activityTransition = ActivityTransition()
-            activityTransition.startVehicleActivityTracking(
-                applicationContext,
-                onSuccess = { },
-                onFailure = { },
-            )
-
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setCallback(SoundscapeMediaSessionCallback(this))
                 .build()
@@ -234,8 +210,6 @@ class SoundscapeService : MediaSessionService() {
         geoEngine.stop()
 
         coroutineScope.coroutineContext.cancelChildren()
-
-        activityTransition.stopVehicleActivityTracking(applicationContext)
 
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()

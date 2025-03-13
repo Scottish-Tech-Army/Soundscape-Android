@@ -39,7 +39,7 @@ class AutoCallout(
         }
 
         // Check that we're in a vehicle
-        if (!userGeometry.inVehicle) {
+        if (!userGeometry.inVehicle()) {
             return emptyList()
         }
 
@@ -64,7 +64,7 @@ class AutoCallout(
         }
 
         // Check that we're not in a vehicle
-        if (userGeometry.inVehicle) {
+        if (userGeometry.inVehicle()) {
             return emptyList()
         }
 
