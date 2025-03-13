@@ -202,9 +202,7 @@ dependencies {
 
     // GeoJSON parsing
     implementation(libs.moshi)
-    //kapt("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
     ksp(libs.moshi.kotlin.codegen)
-    implementation(libs.otto)
 
     // Dependency injection
     implementation(libs.androidx.hilt.navigation.compose)
