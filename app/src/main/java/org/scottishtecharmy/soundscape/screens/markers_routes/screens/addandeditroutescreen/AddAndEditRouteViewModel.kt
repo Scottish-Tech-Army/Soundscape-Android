@@ -27,24 +27,48 @@ class AddAndEditRouteViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(AddAndEditRouteUiState())
     val uiState: StateFlow<AddAndEditRouteUiState> = _uiState
-
     val logic = PlacesNearbySharedLogic(soundscapeServiceConnection, viewModelScope)
-
+    var postInit = false
     fun loadMarkers() {
+        // Monitor the markers in the database
         viewModelScope.launch {
-            try {
-                val markerVMs =
-                    routesRepository.getMarkers().map {
-                        val markerLngLat = LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
-                        LocationDescription(
-                            name = it.addressName,
-                            location = markerLngLat,
-                            databaseId = it.objectId
-                        )
+            routesRepository.getMarkerFlow().collect { markers ->
+                val markerVMs = markers.map {
+                    val markerLngLat =
+                        LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
+                    LocationDescription(
+                        name = it.addressName,
+                        location = markerLngLat,
+                        databaseId = it.objectId
+                    )
+                }
+
+                // If the marker has appeared after the initial list of markers from the database,
+                // then a new marker was just  created. In that case we need to find out which one
+                // it was so that we can add it to the route as well as the list of markers.
+                if(postInit) {
+                    var newMarker: LocationDescription? = null
+                    for(marker in markerVMs) {
+                        if(!_uiState.value.markers.contains(marker)) {
+                            // This marker wasn't in our old list of markers so it's new
+                            newMarker = marker
+                        }
                     }
+                    if(newMarker != null) {
+                        // Add the new marker to our route
+                        val updatedList = uiState.value.routeMembers.toMutableList()
+                        updatedList.add(newMarker)
+                        _uiState.value = _uiState.value.copy(
+                            markers = markerVMs.toMutableList(),
+                            routeMembers = updatedList
+                        )
+                        return@collect
+                    }
+                }
                 _uiState.value = _uiState.value.copy(markers = markerVMs.toMutableList())
-            } catch (e: Exception) {
-                Log.e("MarkersViewModel", "Failed to load markers: ${e.message}")
+
+                // Initialization complete
+                postInit = true
             }
         }
     }
@@ -178,12 +202,8 @@ class AddAndEditRouteViewModel @Inject constructor(
     }
 
     fun createAndAddMarker(locationDescription: LocationDescription) {
+        // Kick off adding the marker to the database
         createMarker(locationDescription, routesRepository, viewModelScope)
-
-        // Update our list of markers
-        val updatedList = uiState.value.routeMembers.toMutableList()
-        updatedList.add(locationDescription)
-        _uiState.value = _uiState.value.copy(routeMembers = updatedList)
 
         // And ensure we're on the top level
         logic._uiState.value = logic.uiState.value.copy(
