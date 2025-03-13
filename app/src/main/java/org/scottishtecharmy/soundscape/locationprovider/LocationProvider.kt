@@ -11,31 +11,8 @@ abstract class LocationProvider {
     abstract fun destroy()
     open fun updateLocation(newLocation: LngLatAlt, speed: Float) { }
 
-    fun getCurrentLatitude() : Double? {
-        return mutableLocationFlow.value?.latitude
-    }
-    fun getCurrentLongitude() : Double? {
-        return mutableLocationFlow.value?.longitude
-    }
-    fun get() : LngLatAlt {
-        mutableLocationFlow.value?.let { location ->
-            return LngLatAlt(location.longitude, location.latitude)
-        }
-        return LngLatAlt(0.0,0.0)
-    }
-
-    fun getSpeed(): Double {
-        mutableLocationFlow.value?.let { location ->
-            return location.speed.toDouble()
-        }
-        return 0.0
-    }
-
-    fun getHeading(): Double {
-        mutableLocationFlow.value?.let { location ->
-            return location.bearing.toDouble()
-        }
-        return 0.0
+    fun hasValidLocation(): Boolean{
+        return mutableLocationFlow.value != null
     }
 
     // Flow to return Location objects

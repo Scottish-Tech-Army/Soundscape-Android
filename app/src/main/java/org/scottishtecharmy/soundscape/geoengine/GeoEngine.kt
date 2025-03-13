@@ -100,14 +100,79 @@ class GeoEngine {
 
     private var markerTree : FeatureTree? = null
 
-    private fun getCurrentUserGeometry(headingMode: UserGeometry.HeadingMode) : UserGeometry {
+    var phoneHeldFlat = false
+    var lastPhoneHeading : Double? = null
+
+    /**
+     * Create a UserGeometry data object using the passed in location and orientation values
+     * @param location The Android location to use
+     * @param orientation The Android DeviceOrientation to use
+     */
+    private fun createUserGeometry(
+        headingMode: UserGeometry.HeadingMode,
+        orientation: DeviceOrientation? = null,
+        location: Location? = null
+    ) : UserGeometry {
+
+        var latLng = LngLatAlt(0.0, 0.0)
+        if(location != null) {
+            latLng = LngLatAlt(location.longitude, location.latitude)
+        }
+
+        phoneHeldFlat = phoneHeldFlat(orientation)
+        lastPhoneHeading = orientation?.headingDegrees?.toDouble()
+        val phoneHeading =
+            if (appInForeground or phoneHeldFlat)
+                lastPhoneHeading
+            else
+                null
+
+        // TODO: The travelHeading and speed calculations are important when trying
+        //  to work out if the phone is moving or not. With these changes, there are
+        //  still times when the phone is deemed to be moving, purely due to GPS
+        //  jumps causing a "speed" and a "heading". It may be possible to Kalman
+        // filter these, a better method is required.
+        var travelHeading: Double? = null
+        if(location?.bearing != null) {
+            if(location.hasBearingAccuracy()) {
+                if(location.bearingAccuracyDegrees < 45.0)
+                    travelHeading = location.bearing.toDouble()
+            } else {
+                travelHeading = location.bearing.toDouble()
+            }
+        }
+
+        var speed = 0.0
+        if(location?.speed != null) {
+            if(location.hasSpeedAccuracy()) {
+                // If the accuracy range encompasses zero, then we can't use it.
+                val lowestSpeed = location.speed - location.speedAccuracyMetersPerSecond
+                if(lowestSpeed > 0.1) {
+                    speed = location.speed.toDouble()
+                }
+            } else {
+                // No accuracy available
+                speed = location.speed.toDouble()
+            }
+        }
+
         return UserGeometry(
-            location = locationProvider.get(),
-            phoneHeading = directionProvider.getCurrentDirection(appInForeground),
+            location = latLng,
+            phoneHeading = phoneHeading,
             fovDistance = 50.0,
-            speed = locationProvider.getSpeed(),
+            speed = speed,
             headingMode = headingMode,
-            travelHeading = locationProvider.getHeading()
+            travelHeading = travelHeading,
+        )
+    }
+
+    private fun getCurrentUserGeometry(
+        headingMode: UserGeometry.HeadingMode
+    ) : UserGeometry {
+        return createUserGeometry(
+            headingMode,
+            directionProvider.orientationFlow.value,
+            locationProvider.locationFlow.value
         )
     }
 
@@ -244,8 +309,6 @@ class GeoEngine {
         audioEngineUpdateJob?.cancel()
         audioEngineUpdateJob = coroutineScope.launch {
             var lastGeometry : UserGeometry? = null
-            var phoneHeldFlat = false
-            var lastPhoneHeading : Double? = null
             while(true) {
                 val geometry = withTimeoutOrNull(100) {
                     combine(
@@ -254,49 +317,11 @@ class GeoEngine {
 
                         ) { orientation: DeviceOrientation?, location: Location? ->
 
-                        phoneHeldFlat = phoneHeldFlat(orientation)
-                        lastPhoneHeading = orientation?.headingDegrees?.toDouble()
-                        val phoneHeading =
-                            if (appInForeground or phoneHeldFlat)
-                                lastPhoneHeading
-                            else
-                                null
+                            createUserGeometry(
+                                UserGeometry.HeadingMode.CourseAuto,
+                                orientation,
+                                location)
 
-                        // TODO: The travelHeading and speed calculations are important when trying
-                        //  to work out if the phone is moving or not. With these changes, there are
-                        //  still times when the phone is deemed to be moving, purely due to GPS
-                        //  jumps causing a "speed" and a "heading". It may be possible to Kalman
-                        // filter these, a better method is required.
-                        var travelHeading: Double? = null
-                        if(location?.bearing != null) {
-                            if(location.hasBearingAccuracy()) {
-                                if(location.bearingAccuracyDegrees < 45.0)
-                                    travelHeading = location.bearing.toDouble()
-                            } else {
-                                travelHeading = location.bearing.toDouble()
-                            }
-                        }
-
-                        var speed = 0.0
-                        if(location?.speed != null) {
-                            if(location.hasSpeedAccuracy()) {
-                                 // If the accuracy range encompasses zero, then we can't use it.
-                                val lowestSpeed = location.speed - location.speedAccuracyMetersPerSecond
-                                if(lowestSpeed > 0.1) {
-                                    speed = location.speed.toDouble()
-                                }
-                            } else {
-                                // No accuracy available
-                                speed = location.speed.toDouble()
-                            }
-                        }
-
-                        UserGeometry(
-                            location = LngLatAlt(location?.longitude ?: 0.0, location?.latitude ?: 0.0),
-                            phoneHeading = phoneHeading,
-                            speed = speed,
-                            travelHeading = travelHeading
-                        )
                     }.collect { geometry ->
                         lastGeometry = geometry
                         updateAudioEngineGeometry(soundscapeService, geometry)
@@ -322,9 +347,7 @@ class GeoEngine {
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
         var results : MutableList<PositionedString> = mutableListOf()
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
-            // Should be null but let's check
-            // Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
+        if (!locationProvider.hasValidLocation()) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(PositionedString(
@@ -342,7 +365,7 @@ class GeoEngine {
                     withContext(gridState.treeContext) {
 
                         val list: MutableList<PositionedString> = mutableListOf()
-                        val location = locationProvider.get()
+                        val location = userGeometry.location
 
                         val roadGridFeatureCollection = gridState.getFeatureCollection(
                             TreeId.ROADS_AND_PATHS,
@@ -403,13 +426,14 @@ class GeoEngine {
 
     suspend fun searchResult(searchString: String) =
         withContext(Dispatchers.IO) {
+            val location = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
             try {
                 return@withContext PhotonSearchProvider
                     .getInstance()
                     .getSearchResults(
                         searchString = searchString,
-                        latitude = locationProvider.getCurrentLatitude(),
-                        longitude = locationProvider.getCurrentLongitude(),
+                        latitude = location.latitude,
+                        longitude = location.longitude,
                     ).execute()
                     .body()
             } catch (e: Exception) {
@@ -427,7 +451,7 @@ class GeoEngine {
         val timeSource = TimeSource.Monotonic
         val gridStartTime = timeSource.markNow()
 
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+        if (!locationProvider.hasValidLocation()) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(PositionedString(
@@ -525,7 +549,7 @@ class GeoEngine {
         // TODO This is just a rough POC at the moment. Lots more to do...
         var results : MutableList<PositionedString> = mutableListOf()
 
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+        if (!locationProvider.hasValidLocation()) {
             // Should be null but let's check
             // Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
@@ -591,7 +615,7 @@ class GeoEngine {
         val timeSource = TimeSource.Monotonic
         val gridStartTime = timeSource.markNow()
 
-        if (locationProvider.getCurrentLatitude() == null || locationProvider.getCurrentLongitude() == null) {
+        if (!locationProvider.hasValidLocation()) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(PositionedString(
