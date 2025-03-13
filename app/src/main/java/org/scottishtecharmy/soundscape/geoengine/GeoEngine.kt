@@ -10,6 +10,7 @@ import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -25,14 +26,11 @@ import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
-import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
-import org.scottishtecharmy.soundscape.geoengine.callouts.addIntersectionCalloutFromDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getNearestRoad
-import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -176,6 +174,7 @@ class GeoEngine {
         )
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun start(
         application: Application,
         newLocationProvider: LocationProvider,
@@ -343,6 +342,7 @@ class GeoEngine {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun myLocation() : List<PositionedString> {
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
@@ -442,6 +442,7 @@ class GeoEngine {
             }
         }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun whatsAroundMe() : List<PositionedString> {
         // Duplicate original Soundscape behaviour:
         //   In findCalloutsFor it tries to get a POI in each quadrant. It starts off searching
@@ -545,13 +546,11 @@ class GeoEngine {
         return results
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun aheadOfMe() : List<PositionedString> {
-        // TODO This is just a rough POC at the moment. Lots more to do...
         var results : MutableList<PositionedString> = mutableListOf()
 
         if (!locationProvider.hasValidLocation()) {
-            // Should be null but let's check
-            // Log.d(TAG, "Airplane mode On and GPS off. Current location: ${locationProvider.getCurrentLatitude()} , ${locationProvider.getCurrentLongitude()}")
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
             results.add(PositionedString(
@@ -559,40 +558,31 @@ class GeoEngine {
                 type = AudioType.STANDARD)
             )
         } else {
-            // Run the code within the treeContext to protect it from changes to the trees whilst it's
-            // running.
             results = runBlocking {
                 withContext(gridState.treeContext) {
-                    val list: MutableList<PositionedString> = mutableListOf()
 
-                    // get device direction
+                    // Return the nearest 5 POI within 1000m in the direction that we are heading
                     val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto)
-
-                    // Detect if there is a road or an intersection in the FOV
-                    val roadsDescription = getRoadsDescriptionFromFov(
-                        gridState,
-                        userGeometry,
-                        ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
-                    )
-                    addIntersectionCalloutFromDescription(roadsDescription,
-                        localizedContext,
-                        list)
-
-                    // Detect if there is a crossing in the FOV
+                    userGeometry.fovDistance = 1000.0
                     val triangle = getFovTriangle(userGeometry)
-                    val nearestCrossing = gridState.getNearestFeatureOnRoadInFov(
-                        TreeId.CROSSINGS,
-                        triangle
-                    )
-                    appendNearestFeatureCallout(nearestCrossing, R.string.osm_tag_crossing, list)
+                    val featureTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
 
-                    // Detect if there is a bus_stop in the FOV
-                    val nearestBusStop = gridState.getNearestFeatureOnRoadInFov(
-                        TreeId.BUS_STOPS,
-                        triangle
-                    )
-                    appendNearestFeatureCallout(nearestBusStop, R.string.osm_tag_bus_stop, list)
+                    val featuresAhead = featureTree.generateNearestFeatureCollectionWithinTriangle(triangle, 5)
+                    val list: MutableList<PositionedString> = mutableListOf()
+                    for (feature in featuresAhead) {
 
+                        val poiLocation = getDistanceToFeature(userGeometry.location, feature)
+                        val name = getTextForFeature(localizedContext, feature)
+                        val text = "${name.text}. ${formatDistance(poiLocation.distance, localizedContext)}"
+                        list.add(
+                            PositionedString(
+                                text,
+                                poiLocation.point,
+                                NativeAudioEngine.EARCON_SENSE_POI,
+                                AudioType.LOCALIZED,
+                            )
+                        )
+                    }
                     if(list.isEmpty()) {
                         list.add(
                             PositionedString(
@@ -608,6 +598,7 @@ class GeoEngine {
         return results
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun nearbyMarkers() : List<PositionedString> {
 
         // Search database for nearby markers and call them out
@@ -668,35 +659,11 @@ class GeoEngine {
         return results
     }
 
-    private fun appendNearestFeatureCallout(nearestFeature: GridState.FeatureByRoad?,
-                                            osmTagType: Int,
-                                            list: MutableList<PositionedString>) {
-        if(nearestFeature != null) {
-            val text = buildString {
-                append(localizedContext.getString(osmTagType))
-                append(". ")
-                append(
-                    localizedContext.getString(
-                        R.string.distance_format_meters,
-                        nearestFeature.distance.toInt().toString()
-                    )
-                )
-                append(". ")
-                if (nearestFeature.road.properties?.get("name") != null) {
-                    append(nearestFeature.road.properties?.get("name"))
-                }
-            }
-            list.add(PositionedString(
-                text = text,
-                type = AudioType.STANDARD)
-            )
-        }
-    }
-
     fun streetPreviewGo() : List<StreetPreviewChoice> {
         return streetPreviewGoInternal()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun streetPreviewGoWander() {
 
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
@@ -741,6 +708,7 @@ class GeoEngine {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun streetPreviewGoInternal() : List<StreetPreviewChoice> {
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.  We want to return the new set of choices so that these can be sent up to the UI.
@@ -782,9 +750,10 @@ class GeoEngine {
      * falls back to geocoding via the Photon server if network is available.
      * @param location to reverse geocode
      * @param preserveLocation ensures that the returned LocationDescription contains the passed in
-     * location rather than overwriting it with the location of a POI that it geocded to.
+     * location rather than overwriting it with the location of a POI that it geocoded to.
      * @return a LocationDescription object containing an address of the location
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun getLocationDescription(location: LngLatAlt,
                                preserveLocation: Boolean = true) : LocationDescription? {
 

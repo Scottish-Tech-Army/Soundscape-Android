@@ -4,7 +4,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    var phoneHeading: Double? = null,
-                   val fovDistance: Double = 50.0,
+                   var fovDistance: Double = 50.0,
                    val speed: Double = 0.0,
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
