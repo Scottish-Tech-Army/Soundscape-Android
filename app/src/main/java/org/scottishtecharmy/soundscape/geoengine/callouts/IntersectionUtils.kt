@@ -160,6 +160,7 @@ fun addIntersectionCalloutFromDescription(
     description: RoadsDescription,
     localizedContext: Context,
     results: MutableList<PositionedString>,
+    userGeometry: UserGeometry,
     calloutHistory: CalloutHistory? = null
 ) {
 
@@ -225,20 +226,31 @@ fun addIntersectionCalloutFromDescription(
 
         // Don't call out the road we are on (0) as part of the intersection
         if (direction != null && direction != 0) {
-            val relativeDirectionString = getRelativeDirectionLabel(
-                localizedContext,
-                direction
-            )
             if (feature.properties?.get("name") != null) {
+                val roadDirectionId = when(direction) {
+                    1,2,3 -> R.string.directions_name_goes_left
+                    5,6,7 -> R.string.directions_name_goes_right
+                    else -> R.string.directions_name_continues_ahead
+                }
+
+                var heading = userGeometry.presentationHeading()
+                if(heading == null)
+                    heading = 0.0
+
+                heading += when(direction) {
+                    1,2,3 -> -90.0
+                    5,6,7 -> 90.0
+                    else -> 0.0
+                }
+
                 val intersectionCallout =
-                    localizedContext.getString(
-                        R.string.directions_intersection_with_name_direction,
-                        feature.properties?.get("name"),
-                        relativeDirectionString,
+                    localizedContext.getString(roadDirectionId, feature.properties?.get("name"))
+                results.add(
+                    PositionedString(
+                        text = intersectionCallout,
+                        type = AudioType.COMPASS,
+                        heading = heading
                     )
-                results.add(PositionedString(
-                    text = intersectionCallout,
-                    type = AudioType.STANDARD)
                 )
             }
         }
