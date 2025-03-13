@@ -68,12 +68,12 @@ fun StreetPreview(
             },
             text = text
         )
-        NavigationButton(
-            onClick = {
-                streetPreviewFunctions.exit()
-            },
-            // TODO: Internationalization
-            text = stringResource(R.string.street_preview_exit)
-        )
     }
+    NavigationButton(
+        onClick = {
+            streetPreviewFunctions.exit()
+        },
+        // TODO: Internationalization
+        text = stringResource(R.string.street_preview_exit)
+    )
 }
