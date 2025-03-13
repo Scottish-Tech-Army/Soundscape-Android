@@ -46,7 +46,7 @@ fun PlacesNearbyScreen(
     homeNavController: NavController,
     uiState: PlacesNearbyUiState,
     modifier: Modifier = Modifier,
-    onClickFolder: (String, String) -> Unit = {_,_ -> true},
+    onClickFolder: (String, String) -> Unit = {_,_ ->},
     onClickBack: () -> Unit = {},
 ) {
 
