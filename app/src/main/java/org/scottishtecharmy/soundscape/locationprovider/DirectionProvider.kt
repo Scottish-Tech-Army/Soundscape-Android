@@ -15,15 +15,6 @@ open class DirectionProvider {
     }
     open fun destroy() {}
 
-    fun getCurrentDirection(appUiActive: Boolean) : Double? {
-        mutableOrientationFlow.value?.let {
-            // We want to use the heading if the UI is in use or if the phone is flat.
-            if (appUiActive or phoneHeldFlat(it))
-                return it.headingDegrees.toDouble()
-        }
-        return null
-    }
-
     // Flow to return DeviceOrientation objects
     val mutableOrientationFlow = MutableStateFlow<DeviceOrientation?>(null)
     var orientationFlow: StateFlow<DeviceOrientation?> = mutableOrientationFlow
