@@ -133,7 +133,7 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun tileGridUpdated() {
-        if(_streetPreviewFlow.value.enabled != StreetPreviewEnabled.OFF) {
+        if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
             _streetPreviewFlow.value = StreetPreviewState(
                 StreetPreviewEnabled.ON,
                 geoEngine.streetPreviewGo()
