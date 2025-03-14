@@ -59,16 +59,29 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         addIfSpeechSupports(allLanguages, Language("日本語", "ja", "JP"))
         addIfSpeechSupports(allLanguages, Language("Norsk", "nb", "NO"))
         addIfSpeechSupports(allLanguages, Language("Nederlands", "nl", "NL"))
-        addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt", "BR"))
         addIfSpeechSupports(allLanguages, Language("Português (Portugal)", "pt", "PT"))
+        addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt", "BR"))
         addIfSpeechSupports(allLanguages, Language("Svenska", "sv", "SE"))
 
         return allLanguages
     }
 
     private fun List<Language>.indexOfLanguageMatchingDeviceLanguage(): Int {
-        val deviceLanguage = Locale.getDefault().language
-        return this.indexOfFirst { it.code == deviceLanguage }
+        val phoneLocale = Locale.getDefault()
+        val deviceLanguage = phoneLocale.language
+        val deviceRegion = phoneLocale.country
+        var bestIndex = -1
+        for (language in this) {
+            if (language.code == deviceLanguage && language.region == deviceRegion) {
+                return this.indexOf(language)
+            }
+            else if (language.code == deviceLanguage) {
+                if(bestIndex == -1) {
+                    bestIndex = this.indexOf(language)
+                }
+            }
+        }
+        return bestIndex
     }
 
     fun updateLanguage(selectedLanguage: Language): Boolean {
