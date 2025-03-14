@@ -1,6 +1,6 @@
 # Release notes
 
-## 0.0.59
+## 0.0.62
 
 This release has many of the main features at least partially implemented. The maps from the cloud cover the whole world which means that the app can be tested anywhere.
 
@@ -23,12 +23,11 @@ Unlike iOS, a long press on the map brings up the Location Details screen which 
 - creation of an audio beacon at the location
 - saving the location as a marker
 - entering Street Preview mode at the location
-- _Sharing of the location will be added soon_
+- sharing of the location to another app e.g. to email it, or send it on Slack
 
 Clickable items on the home screen that are implemented are:
 
-  * **My Location, Around Me and Nearby Markers support** Tapping the icons at the bottom of the screen will describe the location of the device via voice using a similar algorithm to Soundscape iOS. 
-  * **Ahead of Me** lists the first 5 POI in the direction the user is heading.
+  * **My Location, Around Me, Ahead of Me and Nearby Markers support** Tapping the icons at the bottom of the screen will describe the location of the device via voice using a similar algorithm to Soundscape iOS. 
   * **Places Nearby** lists either all of the POI within the local area, or a filtered subset depending on the selection chosen. Clicking on an entry in the list brings up the Location Details screen.
   * **Markers and Routes** brings up the UI for marker editing and route creation/editing. It includes the Places Nearby lists so that Markers can be created as Waypoints are added.
   * **Current Location** brings up the Location Details screen for the current location.
@@ -64,7 +63,7 @@ The main way that a user might open the app is by tapping on its icon. However, 
 Features currently in progress:
  * Improving the audio callouts
  * Improving the graphical map style to be higher contrast and more accessible
- * Adding callouts for Markers and de-duplicating their callout with any POIs that they might be coincident with.
+ * De-duplicating marker callouts with any POIs that they might be coincident with.
  * In vehicle mode needs some attention, we've focussed mostly on audio callouts whilst walking.
 
 ## Testing guidance
