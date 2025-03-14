@@ -18,7 +18,8 @@ class TrackedCallout(
             if(isGeneric && other.isGeneric) {
                 // If the POIs are both generic OSM POIs and are within the appropriate proximity
                 // range+ of each other, treat them as a match
-                // TODO: Don't hard code the distance here
+                // TODO: Don't hard code the distance here - also, we need to compare more than
+                //  just isGeneric as that would match benches with top up taps etc.
                 return location.distance(other.location) < 20.0
             }
             // If the TrackedCallout isn't for a point i.e. it's a Polygon, then we can't compare

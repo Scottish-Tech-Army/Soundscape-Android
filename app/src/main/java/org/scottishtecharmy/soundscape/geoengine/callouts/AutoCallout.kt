@@ -102,17 +102,25 @@ class AutoCallout(
         // Trim history based on location and current time
         poiCalloutHistory.trim(userGeometry)
 
-        // We want to start off with a list of the 10 nearest POI that are within search range
+        // Get nearby markers
+        val markers = gridState.markerTree?.generateNearestFeatureCollection(
+            userGeometry.location,
+            userGeometry.getSearchDistance(),
+            5
+        )
+
+        // Get a list of the 10 nearest POI that are within search range, adding in the markers
         val pois = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES).generateNearestFeatureCollection(
             userGeometry.location,
             userGeometry.getSearchDistance(),
-            10
+            10,
+            markers
         )
 
         val uniquelyNamedPOIs = emptyMap<String,Feature>().toMutableMap()
         pois.features.filter { feature ->
 
-            // Skip the POI if it's coincident with where the current audio beacon is
+            // TODO: Skip the POI if it's coincident with where the current audio beacon is
 
             val name = getTextForFeature(localizedContext, feature)
             val category = feature.foreign?.get("category") as String?
