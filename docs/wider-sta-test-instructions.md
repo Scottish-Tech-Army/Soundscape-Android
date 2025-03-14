@@ -11,7 +11,7 @@ Whilst we're interested in improving the UI in the long term, matching the iOS b
 most important goal for this initial release.
 
 We're going to use Slack for all initial feedback, here's the channel link:
-[https://scottishtecharmy.slack.com/archives/C08HJBFPN8N](https://scottishtecharmy.slack.com/archives/C08HJBFPN8N)
+[#soundscape-android-testing-feedback](https://scottishtecharmy.slack.com/archives/C08HJBFPN8N)
 
 ## Requirements
 The app currently requires Android 11 (API 30 - see [https://apilevels.com/](https://apilevels.com/)). We are hoping to drop this to Android 9 with some more work, but for now we only support Android 11 and later.
