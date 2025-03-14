@@ -96,8 +96,6 @@ class GeoEngine {
     }
     private val streetPreview = StreetPreview()
 
-    private var markerTree : FeatureTree? = null
-
     var phoneHeldFlat = false
     var lastPhoneHeading : Double? = null
 
@@ -217,11 +215,14 @@ class GeoEngine {
                     properties["name"] = marker.addressName
                     properties["description"] = marker.fullAddress
                     geoFeature.properties = properties
+                    val foreign : HashMap<String, Any?> = hashMapOf()
+                    foreign["category"] ="marker"
+                    geoFeature.foreign = foreign
                     featureCollection.addFeature(geoFeature)
                 }
                 runBlocking {
                     withContext(gridState.treeContext) {
-                        markerTree = FeatureTree(featureCollection)
+                        gridState.markerTree = FeatureTree(featureCollection)
                         Log.e(TAG, "Marker tree size ${featureCollection.features.size}")
                     }
                 }
@@ -622,7 +623,7 @@ class GeoEngine {
                     val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
 
                     // Simply get 4 nearest markers
-                    val nearestMarkers = markerTree?.generateNearestFeatureCollection(
+                    val nearestMarkers = gridState.markerTree?.generateNearestFeatureCollection(
                         userGeometry.location,
                         2000.0,
                         4
@@ -842,6 +843,16 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
     var generic = false
     val name = feature.properties?.get("name") as String?
     val featureValue = feature.foreign?.get("feature_value")
+    val isMarker = feature.foreign?.get("category") == "marker"
+
+    if(isMarker) {
+        // If the feature is a Marker, return the unadulterated name along with prefix indicating
+        // that it's a Marker.
+        return if(name != null)
+                TextForFeature(localizedContext.getString(R.string.markers_marker_with_name, name), false)
+            else
+                TextForFeature(localizedContext.getString(R.string.markers_generic_name), false)
+    }
 
     var text = name
     when(featureValue) {

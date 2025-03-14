@@ -60,6 +60,10 @@ open class GridState {
     val treeContext = newSingleThreadContext("TreeContext")
     var validateContext = true
 
+    // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
+    // a tree of Markers from the database.
+    internal var markerTree : FeatureTree? = null
+
     open fun start(application: Application) {}
     fun stop() {}
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}

@@ -115,6 +115,8 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
 
             "landmark" -> transform(50.0)
 
+            "marker" -> transform(50.0)
+
             else -> transform(0.0)
         }
     }
