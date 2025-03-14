@@ -257,9 +257,18 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     /**
      * generateNearestFeatureCollection returns a FeatureCollection containing the nearest members
      * of the rtree that are also within distance.
+     * @param location Location to calculate distance from
+     * @param distance Maximum distance to return results for
+     * @param maxCount Maximum number of results to return
+     * @param initialCollection A FeatureCollection to add to the results. This must be sorted by
+     * distance and is useful when  combining the results of searches in two separate trees e.g. POI
+     * and markers.
      */
 
-    fun generateNearestFeatureCollection(location: LngLatAlt, distance: Double, maxCount: Int): FeatureCollection {
+    fun generateNearestFeatureCollection(location: LngLatAlt,
+                                         distance: Double,
+                                         maxCount: Int,
+                                         initialCollection: FeatureCollection? = null): FeatureCollection {
         val featureCollection = FeatureCollection()
         if(tree != null) {
             val distanceResults = Iterables.toList(nearestWithinDistance(
@@ -283,9 +292,24 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 entryWithinDistance.distance
             }
 
-            // Move the sorted items into a FeatureCollection to return
-            for(item in sortedList) {
-                featureCollection.addFeature(item.entry.value())
+            // Merge the sorted initial list into the sorted list that we just generated
+            var initialItemIterator = initialCollection?.features?.iterator()
+            var newItemIterator = sortedList.iterator()
+
+            var initialItem: Feature? = if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
+            var newItem: EntryWithDistance? = if (newItemIterator.hasNext()) newItemIterator.next() else null
+
+            while((initialItem != null) or (newItem != null)) {
+                if (initialItem != null) {
+                    if ((newItem == null) or
+                        (getDistanceToFeature(location, initialItem).distance < newItem!!.distance)) {
+                        featureCollection.addFeature(initialItem)
+                        initialItem = if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
+                        continue
+                    }
+                }
+                featureCollection.addFeature(newItem!!.entry.value())
+                newItem = if (newItemIterator.hasNext()) newItemIterator.next() else null
             }
         }
         return featureCollection
