@@ -301,8 +301,10 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
             while((initialItem != null) or (newItem != null)) {
                 if (initialItem != null) {
-                    if ((newItem == null) or
-                        (getDistanceToFeature(location, initialItem).distance < newItem!!.distance)) {
+                    var addInitial = false
+                    if (newItem == null) addInitial = true
+                    if(!addInitial) addInitial = getDistanceToFeature(location, initialItem).distance < newItem!!.distance
+                    if(addInitial) {
                         featureCollection.addFeature(initialItem)
                         initialItem = if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
                         continue
