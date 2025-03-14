@@ -10,7 +10,8 @@ The app is a port of the Soundscape iOS app and the UI is designed to be pretty 
 Whilst we're interested in improving the UI in the long term, matching the iOS behaviour is the 
 most important goal for this initial release.
 
-We're going to use Slack for all initial feedback. 
+We're going to use Slack for all initial feedback, here's the channel link:
+[https://scottishtecharmy.slack.com/archives/C08HJBFPN8N](https://scottishtecharmy.slack.com/archives/C08HJBFPN8N)
 
 ## Requirements
 The app currently requires Android 11 (API 30 - see [https://apilevels.com/](https://apilevels.com/)). We are hoping to drop this to Android 9 with some more work, but for now we only support Android 11 and later.
@@ -18,7 +19,7 @@ We don't know of any other requirements, but that's one of the thing this testin
 
 ## Installing the app
 Because it's currently in _Internal Testing_, to get access to the app you need added to a list 
-on the PlayStore. Message Dave Craig on Slack and ask to be added to the list and include the 
+on the PlayStore. Message Dave Craig directly on Slack and ask to be added to the list and include the 
 email address that you use on the PlayStore. He'll add it to the list and then you can go to 
 this link:
 
