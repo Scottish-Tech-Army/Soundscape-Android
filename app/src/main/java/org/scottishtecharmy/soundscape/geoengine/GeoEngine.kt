@@ -966,10 +966,13 @@ fun localReverseGeocode(location: LngLatAlt,
             if (roadName == null) {
                 roadName = properties["highway"]
             }
-            return LocationDescription(
-                name = localizedContext.getString(R.string.directions_near_name).format(roadName as String),
-                location = location,
-            )
+            if(roadName != null) {
+                return LocationDescription(
+                    name = localizedContext.getString(R.string.directions_near_name)
+                        .format(roadName as String),
+                    location = location,
+                )
+            }
         }
     }
 
