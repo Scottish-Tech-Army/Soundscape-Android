@@ -50,8 +50,10 @@ class AutoCallout(
         val geocode = reverseGeocode(userGeometry, gridState, localizedContext)
 
         // Check that the geocode has changed before returning a callout describing it
-
-        return listOf(geocode)
+        return if(geocode != null) {
+            listOf(geocode)
+        } else
+            emptyList()
     }
 
     private fun buildCalloutForIntersections(userGeometry: UserGeometry,
