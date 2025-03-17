@@ -983,11 +983,11 @@ fun localReverseGeocode(location: LngLatAlt,
  * - within a POI
  * - alongside a road
  * - general location
- * - unknown location).
+ * - unknown location.
  */
 fun reverseGeocode(userGeometry: UserGeometry,
                    gridState: GridState,
-                   localizedContext: Context): PositionedString {
+                   localizedContext: Context): PositionedString? {
 
     val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
     location?.let { l ->
@@ -998,7 +998,6 @@ fun reverseGeocode(userGeometry: UserGeometry,
                 type = AudioType.LOCALIZED)
         }
     }
-    return PositionedString(
-        text = localizedContext.getString(R.string.poi_unknown_place),
-        type = AudioType.STANDARD)
+    // We don't want to call out "Unknown place", so return null and skip this callout
+    return null
 }
