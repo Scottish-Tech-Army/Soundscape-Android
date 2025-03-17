@@ -8,6 +8,9 @@ do
   done
 done
 
+# West End of Glasgow - to test private gardens and footways marked as sidewalks
+wget $protomaps_server/15/15992/10223.pbf -O 15992x10223.mvt
+
 # Tiles for intersectionsStraightAheadType (-2.6577997643930757, 51.43041390383118)
 # and for intersectionsSideRoadRight (-2.656109007812404,51.43079699441145)
 # and for intersectionsSideRoadLeft (-2.656530323429564,51.43065207103919)

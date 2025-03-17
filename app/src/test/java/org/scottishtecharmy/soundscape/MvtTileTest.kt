@@ -149,6 +149,16 @@ class MvtTileTest {
         outputFile.close()
     }
 
+    @Test
+    fun testVectorToGeoJsonByresRoad() {
+        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, "15992x10223.mvt")
+        val adapter = GeoJsonObjectMoshiAdapter()
+
+        val outputFile = FileOutputStream("byresroad.geojson")
+        outputFile.write(adapter.toJson(geojson).toByteArray())
+        outputFile.close()
+    }
+
     /** This test reads in a 2x2 array of vector tiles and merges them into a single GeoJSON.
      * That's then saved off to a file for a visual check. There's no joining up of lines but
      * because there are no intersections between the roads from separate tiles the GeoJSON
