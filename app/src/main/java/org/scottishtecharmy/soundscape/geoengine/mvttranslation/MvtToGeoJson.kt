@@ -443,6 +443,11 @@ fun vectorTileToGeoJson(tileX: Int,
                 if(foreign.isNotEmpty()) {
                     geoFeature.foreign = foreign
                     if (layer.name == "poi") {
+                        // If this is an un-named garden, then we can discard it
+                        if(foreign["feature_value"] == "garden") {
+                            if(!properties.containsKey("name"))
+                                continue
+                        }
                         if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
                             if(!mapPolygonFeatures.contains(id)) {
                                 mapPolygonFeatures[id] = MutableList(1){ geoFeature }
