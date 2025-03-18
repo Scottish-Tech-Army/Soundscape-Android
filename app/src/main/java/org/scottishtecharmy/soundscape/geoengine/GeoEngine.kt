@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.location.Location
 import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
 import kotlinx.coroutines.CoroutineScope
@@ -80,7 +82,7 @@ class GeoEngine {
     // Resource string locale configuration
     private lateinit var configLocale: Locale
     private lateinit var configuration: Configuration
-    private lateinit var localizedContext: Context
+    lateinit var localizedContext: Context
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -100,6 +102,11 @@ class GeoEngine {
     var phoneHeldFlat = false
     var lastPhoneHeading : Double? = null
 
+    var beaconLocation: LngLatAlt? = null
+    fun updateBeaconLocation(location: LngLatAlt?) {
+        beaconLocation = location
+    }
+
     /**
      * Create a UserGeometry data object using the passed in location and orientation values
      * @param location The Android location to use
@@ -109,7 +116,7 @@ class GeoEngine {
         headingMode: UserGeometry.HeadingMode,
         orientation: DeviceOrientation? = null,
         location: Location? = null,
-        nearestRoad: Feature? = null
+        nearestRoad: Feature? = null,
     ) : UserGeometry {
 
         var latLng = LngLatAlt(0.0, 0.0)
@@ -161,7 +168,8 @@ class GeoEngine {
             speed = speed,
             headingMode = headingMode,
             travelHeading = travelHeading,
-            nearestRoad = nearestRoad
+            nearestRoad = nearestRoad,
+            currentBeacon = beaconLocation
         )
     }
 

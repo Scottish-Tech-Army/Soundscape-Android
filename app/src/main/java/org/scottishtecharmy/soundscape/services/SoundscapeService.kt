@@ -68,6 +68,7 @@ class SoundscapeService : MediaSessionService() {
 
     lateinit var locationProvider: LocationProvider
     lateinit var directionProvider: DirectionProvider
+    lateinit var routePlayer: RoutePlayer
 
     // secondary service
     private var timerJob: Job? = null
@@ -171,6 +172,8 @@ class SoundscapeService : MediaSessionService() {
 
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
+
+            routePlayer = RoutePlayer(this, applicationContext)
 
             locationProvider = AndroidLocationProvider(this)
             directionProvider = AndroidDirectionProvider(this)
@@ -322,6 +325,7 @@ class SoundscapeService : MediaSessionService() {
         audioBeacon = audioEngine.createBeacon(location)
         // Report any change in beacon back to application
         _beaconFlow.value = _beaconFlow.value.copy(location = location)
+        geoEngine.updateBeaconLocation(location)
     }
 
     fun destroyBeacon() {
@@ -331,6 +335,7 @@ class SoundscapeService : MediaSessionService() {
         }
         // Report any change in beacon back to application
         _beaconFlow.value = _beaconFlow.value.copy(location = null)
+        geoEngine.updateBeaconLocation(null)
     }
 
     fun myLocation() {
@@ -381,7 +386,6 @@ class SoundscapeService : MediaSessionService() {
         return geoEngine.getLocationDescription(location)
     }
 
-    val routePlayer = RoutePlayer(this)
     fun startRoute(routeId: ObjectId) {
         routePlayer.startRoute(routeId)
     }

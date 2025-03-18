@@ -1,6 +1,10 @@
 package org.scottishtecharmy.soundscape.services
 
+import android.content.Context
+import android.content.res.Configuration
+import android.location.Location
 import android.util.Log
+import androidx.compose.runtime.currentComposer
 import io.realm.kotlin.ext.copyFromRealm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -9,20 +13,33 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.maplibre.android.geometry.LatLng
 import org.mongodb.kbson.ObjectId
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 data class RoutePlayerState(val routeData: RouteData? = null, val currentWaypoint: Int = 0)
 
-class RoutePlayer(val service: SoundscapeService) {
+class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteData? = null
     private var currentMarker = -1
     private val coroutineScope = CoroutineScope(Job())
+    private var localizedContext: Context
+    init {
+        val configLocale = getCurrentLocale()
+        val configuration = Configuration(context.applicationContext.resources.configuration)
+        configuration.setLocale(configLocale)
+        localizedContext = context.applicationContext.createConfigurationContext(configuration)
+    }
 
     // Flow to return current route data
     private val _currentRouteFlow = MutableStateFlow<RoutePlayerState>(RoutePlayerState())
@@ -50,14 +67,29 @@ class RoutePlayer(val service: SoundscapeService) {
 
         coroutineScope.launch {
             // Observe location updates from the service
-            service.locationProvider.locationFlow.collectLatest { value ->
+            service.locationProvider.locationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
                         if(currentMarker < route.waypoints.size) {
                             val location = route.waypoints[currentMarker].location!!
-                            if(distance(location.latitude, location.longitude, value.latitude, value.longitude) < 10) {
-                                // We're within 10m of the marker, move on to the next one
-                                moveToNext()
+                            if(distance(location.latitude, location.longitude, value.latitude, value.longitude) < 15.0) {
+                                if((currentMarker + 1) < route.waypoints.size) {
+                                    // We're within 15m of the marker, move on to the next one
+                                    moveToNext()
+                                } else {
+                                    // We've reached the end of the route
+                                    // Announce the end of the route
+                                    val endOfRouteText = localizedContext.getString(
+                                        R.string.route_end_completed_accessibility,
+                                        route.name)
+                                    service.audioEngine.clearTextToSpeechQueue()
+                                    service.audioEngine.createTextToSpeech(
+                                        endOfRouteText,
+                                        AudioType.STANDARD)
+
+                                    // Stop the beacon
+                                    stopRoute()
+                                }
                             }
                         }
                     }
@@ -71,11 +103,26 @@ class RoutePlayer(val service: SoundscapeService) {
             if (index < route.waypoints.size) {
                 val location = route.waypoints[index].location!!
 
-                service.audioEngine.clearTextToSpeechQueue()
-                service.audioEngine.createTextToSpeech(
-                    "Move to marker ${index + 1}, ${route.waypoints[index].addressName}",
-                    AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
-                )
+                val currentLocation = service.locationProvider.locationFlow.value
+                if(currentLocation != null) {
+                    val distance =
+                        LngLatAlt(currentLocation.longitude, currentLocation.latitude).distance(
+                            location.location()
+                        )
+                    val beaconSetText = localizedContext.getString(
+                        R.string.behavior_scavenger_hunt_callout_next_flag,
+                        route.waypoints[index].addressName,
+                        formatDistance(distance, localizedContext),
+                        (index + 1).toString(),
+                        (route.waypoints.size).toString()
+                    )
+
+                    service.audioEngine.clearTextToSpeechQueue()
+                    service.audioEngine.createTextToSpeech(
+                        beaconSetText,
+                        AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
+                    )
+                }
 
                 service.createBeacon(location.location())
             }
@@ -88,6 +135,7 @@ class RoutePlayer(val service: SoundscapeService) {
             routeData = null,
             currentWaypoint = 0
         )}
+        currentRouteData = null
     }
 
     fun play() {
