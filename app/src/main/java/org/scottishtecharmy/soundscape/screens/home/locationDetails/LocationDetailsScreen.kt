@@ -72,8 +72,11 @@ fun LocationDetailsScreen(
         createBeacon = { loc ->
             viewModel.createBeacon(loc)
         },
-        saveMarker = { description ->
-            viewModel.createMarker(description)
+        saveMarker = { description, successMessage, failureMessage ->
+            viewModel.createMarker(
+                description,
+                successMessage,
+                failureMessage)
         },
         deleteMarker = { id ->
             viewModel.deleteMarker(id)
@@ -105,7 +108,10 @@ fun LocationDetails(
     location: LngLatAlt?,
     heading: Float,
     createBeacon: (location: LngLatAlt) -> Unit,
-    saveMarker: (description: LocationDescription) -> Unit,
+    saveMarker: (
+        description: LocationDescription,
+        successMessage: String,
+        failureMessage: String) -> Unit,
     deleteMarker: (objectId: ObjectId) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
@@ -340,7 +346,7 @@ fun LocationDetailsPreview() {
         navController = NavHostController(LocalContext.current),
         location = null,
         heading = 0.0F,
-        saveMarker = {},
+        saveMarker = {_,_,_ ->},
         deleteMarker = {},
         shareLocation = {_,_ ->}
     )

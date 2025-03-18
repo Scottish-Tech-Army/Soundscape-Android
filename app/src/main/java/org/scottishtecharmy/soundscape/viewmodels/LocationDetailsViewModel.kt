@@ -10,9 +10,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import java.net.URLEncoder
@@ -30,11 +32,32 @@ class LocationDetailsViewModel @Inject constructor(
 
     fun enableStreetPreview(location: LngLatAlt) {
         soundscapeServiceConnection.setStreetPreviewMode(true, location)
-
     }
 
-    fun createMarker(locationDescription: LocationDescription) {
-        createMarker(locationDescription, routesRepository, viewModelScope)
+    fun createMarker(
+        locationDescription: LocationDescription,
+        successMessage: String,
+        failureMessage: String
+    ) {
+        createMarker(
+            locationDescription = locationDescription,
+            routesRepository = routesRepository,
+            viewModelScope = viewModelScope,
+            onSuccess = {
+                Log.d("LocationDetailsViewModel", successMessage)
+                soundscapeServiceConnection.soundscapeService?.speakCallout(
+                    listOf(PositionedString(text = successMessage, type = AudioType.STANDARD)),
+                    false
+                )
+            },
+            onFailure = {
+                Log.e("LocationDetailsViewModel", failureMessage)
+                soundscapeServiceConnection.soundscapeService?.speakCallout(
+                    listOf(PositionedString(text = failureMessage, type = AudioType.STANDARD)),
+                    false
+                )
+            }
+        )
     }
 
     fun deleteMarker(objectId: ObjectId) {
@@ -92,7 +115,9 @@ class LocationDetailsViewModel @Inject constructor(
 fun createMarker(
     locationDescription: LocationDescription,
     routesRepository: RoutesRepository,
-    viewModelScope: CoroutineScope
+    viewModelScope: CoroutineScope,
+    onSuccess: () -> Unit,
+    onFailure: () -> Unit,
 ) {
     viewModelScope.launch {
         var name = locationDescription.name
@@ -113,14 +138,10 @@ fun createMarker(
             )
             try {
                 routesRepository.updateMarker(markerData)
-
-                Log.d(
-                    "LocationDetailsViewModel",
-                    "Marker saved successfully: ${markerData.addressName}"
-                )
+                onSuccess()
                 true
             } catch (e: Exception) {
-                Log.e("LocationDetailsViewModel", "Error saving route: ${e.message}")
+                onFailure()
                 null
             }
         }
@@ -138,13 +159,9 @@ fun createMarker(
             try {
                 routesRepository.insertMarker(marker)
                 locationDescription.databaseId = marker.objectId
-
-                Log.d(
-                    "LocationDetailsViewModel",
-                    "Marker saved successfully: ${marker.addressName}"
-                )
+                onSuccess()
             } catch (e: Exception) {
-                Log.e("LocationDetailsViewModel", "Error saving route: ${e.message}")
+                onFailure()
             }
         }
     }

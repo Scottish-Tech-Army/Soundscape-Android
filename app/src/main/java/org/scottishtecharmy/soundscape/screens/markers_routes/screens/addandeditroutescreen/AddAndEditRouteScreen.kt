@@ -146,7 +146,9 @@ fun AddAndEditRouteScreenVM(
         onClickBack = { viewModel.onClickBack() },
         userLocation = userLocation,
         onSelectLocation = { location -> viewModel.onSelectLocation(location) },
-        createAndAddMarker = { location -> viewModel.createAndAddMarker(location) }
+        createAndAddMarker = { location, successMessage, failureMessage ->
+            viewModel.createAndAddMarker(location, successMessage, failureMessage)
+        }
     )
 }
 
@@ -169,7 +171,7 @@ fun AddAndEditRouteScreen(
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
-    createAndAddMarker: (LocationDescription) -> Unit
+    createAndAddMarker: (LocationDescription, String, String) -> Unit
 ) {
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
@@ -435,7 +437,7 @@ fun NewRouteScreenPreview() {
         onClickFolder = {_,_ ->},
         onClickBack = {},
         onSelectLocation = {_ ->},
-        createAndAddMarker = {_ ->},
+        createAndAddMarker = {_,_,_ ->},
         userLocation = LngLatAlt()
     )
 }
@@ -461,7 +463,7 @@ fun EditRouteScreenPreview() {
         onClickFolder = {_,_ ->},
         onClickBack = {},
         onSelectLocation = {_ ->},
-        createAndAddMarker = {_ ->},
+        createAndAddMarker = {_,_,_ ->},
         userLocation = LngLatAlt()
     )
 }
