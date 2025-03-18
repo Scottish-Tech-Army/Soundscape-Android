@@ -122,7 +122,12 @@ class AutoCallout(
         val uniquelyNamedPOIs = emptyMap<String,Feature>().toMutableMap()
         pois.features.filter { feature ->
 
-            // TODO: Skip the POI if it's coincident with where the current audio beacon is
+            if(userGeometry.currentBeacon != null) {
+                // If the feature is within 1m of the current beacon, don't call it out
+                if(getDistanceToFeature(userGeometry.currentBeacon, feature).distance < 1.0) {
+                    true
+                }
+            }
 
             val name = getTextForFeature(localizedContext, feature)
             val category = feature.foreign?.get("category") as String?
