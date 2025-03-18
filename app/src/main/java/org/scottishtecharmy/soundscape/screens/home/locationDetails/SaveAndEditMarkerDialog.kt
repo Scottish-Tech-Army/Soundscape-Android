@@ -41,7 +41,10 @@ fun SaveAndEditMarkerDialog(
     locationDescription: LocationDescription,
     location: LngLatAlt?,
     heading: Float,
-    saveMarker: (description: LocationDescription) -> Unit,
+    saveMarker: (
+        description: LocationDescription,
+        successMessage: String,
+        failureMessage: String) -> Unit,
     deleteMarker: (objectId: ObjectId) -> Unit,
     modifier: Modifier = Modifier,
     dialogState: MutableState<Boolean>
@@ -50,6 +53,8 @@ fun SaveAndEditMarkerDialog(
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val objectId = locationDescription.databaseId
 
+    val successMessage = stringResource(R.string.markers_marker_created)
+    val failureMessage = stringResource(R.string.general_error_add_marker_error)
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -62,7 +67,7 @@ fun SaveAndEditMarkerDialog(
                 onRightButton = {
                     locationDescription.name = name
                     locationDescription.description = annotation
-                    saveMarker(locationDescription)
+                    saveMarker(locationDescription, successMessage, failureMessage)
                     dialogState.value = false
                 }
             )
@@ -159,7 +164,7 @@ fun AddRouteScreenPreview() {
         ),
         location = null,
         heading = 45.0F,
-        saveMarker = {},
+        saveMarker = {_,_,_ ->},
         deleteMarker = {},
         modifier = Modifier,
         dialogState = remember { mutableStateOf(false) }

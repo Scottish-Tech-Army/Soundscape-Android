@@ -31,7 +31,7 @@ fun AddWaypointsDialog(
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
-    createAndAddMarker: (LocationDescription) -> Unit,
+    createAndAddMarker: (LocationDescription, String, String) -> Unit,
     userLocation: LngLatAlt?
 ) {
     val saveMarkerDialog = remember { mutableStateOf(false) }
@@ -48,8 +48,8 @@ fun AddWaypointsDialog(
                 locationDescription = placesNearbyUiState.markerDescription!!,
                 location = placesNearbyUiState.userLocation,
                 heading = 0.0F,
-                saveMarker = { description ->
-                    createAndAddMarker(description)
+                saveMarker = { description, success, failure ->
+                    createAndAddMarker(description, success, failure)
                 },
                 deleteMarker = {},
                 dialogState = saveMarkerDialog
@@ -116,7 +116,7 @@ fun AddWaypointsScreenPopulatedPreview() {
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
-        createAndAddMarker = {_ -> }
+        createAndAddMarker = {_,_,_ -> }
     )
 }
 
@@ -132,6 +132,6 @@ fun AddWaypointsScreenPreview() {
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
-        createAndAddMarker = {_ -> }
+        createAndAddMarker = {_,_,_ -> }
     )
 }

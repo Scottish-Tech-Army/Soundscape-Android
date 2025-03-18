@@ -9,10 +9,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.model.Location
 import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbySharedLogic
@@ -22,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddAndEditRouteViewModel @Inject constructor(
     private val routesRepository: RoutesRepository,
-    soundscapeServiceConnection: SoundscapeServiceConnection
+    private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AddAndEditRouteUiState())
@@ -201,9 +203,26 @@ class AddAndEditRouteViewModel @Inject constructor(
         logic._uiState.value = logic.uiState.value.copy(level = newLevel, filter = filter, title = title)
     }
 
-    fun createAndAddMarker(locationDescription: LocationDescription) {
+    fun createAndAddMarker(
+        locationDescription: LocationDescription,
+        successMessage: String,
+        failureMessage: String
+    ) {
         // Kick off adding the marker to the database
-        createMarker(locationDescription, routesRepository, viewModelScope)
+        createMarker(locationDescription, routesRepository, viewModelScope,
+            onSuccess = {
+                soundscapeServiceConnection.soundscapeService?.speakCallout(
+                    listOf(PositionedString(text = successMessage, type = AudioType.STANDARD)),
+                    false
+                )
+            },
+            onFailure = {
+                soundscapeServiceConnection.soundscapeService?.speakCallout(
+                    listOf(PositionedString(text = failureMessage, type = AudioType.STANDARD)),
+                    false
+                )
+            }
+        )
 
         // And ensure we're on the top level
         logic._uiState.value = logic.uiState.value.copy(
