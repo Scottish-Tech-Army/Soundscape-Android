@@ -79,6 +79,13 @@ jobs:
       - name: Run gradle tests
         run: ./gradlew test
 
+      # The HelpGenerationTest may have updated docs/help.md. If it has, then commit it into git
+      - name: Commit new Help.md
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs/help.md auto update from resource strings"
+          skip_dirty_check: false
+
       # Generate the screenshots from the Preview code
       - name: Generate screenshots
         run : ./gradlew  updateDebugScreenshotTest
