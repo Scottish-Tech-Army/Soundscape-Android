@@ -17,6 +17,9 @@ See the document [here](mapping.md) for information about how we configure and u
 ## Release notes
 [Here](release-notes.md) are the latest release notes.
 
+## App Help
+[This page](help.md) is auto-generated from the same source as the app Help screen. Currently we're just generating the English (US) version.
+
 ## Testing resources
 [A document](tricky-locations.md) containing locations which cause particular issues in Soundscape. 
 
