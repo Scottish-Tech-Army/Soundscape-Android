@@ -368,10 +368,6 @@ class MvtTileTest {
             var lastNearestRoad: Feature? = null
             while(longitude < -4.31029) {
 
-                if(((latitude - 55.9455).absoluteValue < 0.00005) &&
-                    ((longitude + 4.3110).absoluteValue < 0.00005)) {
-                    println("Break!")
-                }
                 val location = LngLatAlt(longitude, latitude)
                 val sensedNearestRoads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
                     .generateNearestFeatureCollection(location, 20.0, 10)
