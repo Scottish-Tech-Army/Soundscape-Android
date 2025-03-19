@@ -70,9 +70,23 @@ class PlacesNearbySharedLogic(
                             )
                         }
                     }
-                    _uiState.value = uiState.value.copy(nearbyPlaces = nearbyPlaces)
+                    val nearbyIntersections = runBlocking {
+                        withContext(locationAndGrid.gridState.treeContext) {
+                            locationAndGrid.gridState.getFeatureCollection(
+                                TreeId.INTERSECTIONS
+                            )
+                        }
+                    }
+
+                    _uiState.value = uiState.value.copy(
+                        nearbyPlaces = nearbyPlaces,
+                        nearbyIntersections = nearbyIntersections
+                    )
                 } else {
-                    _uiState.value = uiState.value.copy(nearbyPlaces = FeatureCollection())
+                    _uiState.value = uiState.value.copy(
+                        nearbyPlaces = FeatureCollection(),
+                        nearbyIntersections = FeatureCollection()
+                    )
                 }
             }
         }

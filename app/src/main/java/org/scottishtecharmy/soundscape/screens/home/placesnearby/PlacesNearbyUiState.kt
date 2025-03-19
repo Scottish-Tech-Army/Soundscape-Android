@@ -8,6 +8,7 @@ data class PlacesNearbyUiState(
     var userLocation: LngLatAlt? = null,
     var level: Int = 0,
     var nearbyPlaces: FeatureCollection = FeatureCollection(),
+    var nearbyIntersections: FeatureCollection = FeatureCollection(),
     var filter: String = "",
     var title: String = "",
     var markerDescription: LocationDescription? = null
