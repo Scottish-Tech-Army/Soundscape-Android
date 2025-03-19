@@ -3589,6 +3589,12 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="cancel_search_contentDescription" translatable="false">Cancel search</string>
   <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
   <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
+  <string name="osm_tag_tram_stop"  translatable="false">"Tram stop"</string>
+  <string name="osm_tag_tram_stop_named"  translatable="false">"%s tram stop"</string>
+  <string name="osm_tag_subway"  translatable="false">"Subway station"</string>
+  <string name="osm_tag_subway_named"  translatable="false">"%s subway station"</string>
+  <string name="osm_tag_ferry_terminal"  translatable="false">"Ferry_terminal"</string>
+  <string name="osm_tag_ferry_terminal_named"  translatable="false">"%s ferry_terminal"</string>
   <string name="menu_manage_audio" translatable="false">"Manage Audio"</string>
   <string name="menu_manage_accessibility" translatable="false">"Manage Accessibility"</string>
   <string name="settings_hints" translatable="false">"Enable TalkBack hints"</string>

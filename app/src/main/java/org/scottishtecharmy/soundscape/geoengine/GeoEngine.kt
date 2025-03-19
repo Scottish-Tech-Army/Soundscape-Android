@@ -861,20 +861,22 @@ fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeat
     }
 
     var text = name
-    when(featureValue) {
-        "bus_stop" -> {
-            text = if (name != null)
-                localizedContext.getString(R.string.osm_tag_bus_stop_named).format(name)
-            else
-                localizedContext.getString(R.string.osm_tag_bus_stop)
-        }
-        "station" -> {
-            text = if (name != null)
-                localizedContext.getString(R.string.osm_tag_train_station_named).format(name)
-            else
-                localizedContext.getString(R.string.osm_tag_train_station)
-        }
+
+    val namedTransit = when (featureValue) {
+        "bus_stop" -> Pair(R.string.osm_tag_bus_stop_named, R.string.osm_tag_bus_stop)
+        "station" -> Pair(R.string.osm_tag_train_station_named, R.string.osm_tag_train_station)
+        "tram_stop" -> Pair(R.string.osm_tag_tram_stop_named, R.string.osm_tag_tram_stop)
+        "subway" -> Pair(R.string.osm_tag_subway_named, R.string.osm_tag_subway)
+        "ferry_terminal" -> Pair(R.string.osm_tag_ferry_terminal_named, R.string.osm_tag_ferry_terminal)
+        else -> null
     }
+    if(namedTransit != null) {
+        text = if (name != null)
+            localizedContext.getString(namedTransit.first, name)
+        else
+            localizedContext.getString(namedTransit.second)
+    }
+
     if (text == null) {
         val osmClass =
             feature.properties?.get("class") as String? ?: return TextForFeature("", true)
