@@ -10,6 +10,7 @@ import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.ControlCamera
 import androidx.compose.material.icons.rounded.DirectionsBus
 import androidx.compose.material.icons.rounded.Fastfood
+import androidx.compose.material.icons.rounded.ForkLeft
 import androidx.compose.material.icons.rounded.LocalGroceryStore
 import androidx.compose.material.icons.rounded.LocationSearching
 import androidx.compose.material3.HorizontalDivider
@@ -76,6 +77,7 @@ fun AddWaypointsList(
         Folder(stringResource(R.string.filter_food_drink), Icons.Rounded.Fastfood, "food_and_drink"),
         Folder(stringResource(R.string.filter_groceries), Icons.Rounded.LocalGroceryStore, "groceries"),
         Folder(stringResource(R.string.filter_banks), Icons.Rounded.AttachMoney, "banks"),
+        Folder(stringResource(R.string.osm_tag_intersection), Icons.Rounded.ForkLeft, "intersections"),
     )
     val context = LocalContext.current
     val nearbyLocations = remember(placesNearbyUiState) {

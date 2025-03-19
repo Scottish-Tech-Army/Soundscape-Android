@@ -9,6 +9,7 @@ import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.ControlCamera
 import androidx.compose.material.icons.rounded.DirectionsBus
 import androidx.compose.material.icons.rounded.Fastfood
+import androidx.compose.material.icons.rounded.ForkLeft
 import androidx.compose.material.icons.rounded.LocalGroceryStore
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -51,19 +52,30 @@ fun PlacesNearbyList(
         Folder(stringResource(R.string.filter_food_drink), Icons.Rounded.Fastfood, "food_and_drink"),
         Folder(stringResource(R.string.filter_groceries), Icons.Rounded.LocalGroceryStore, "groceries"),
         Folder(stringResource(R.string.filter_banks), Icons.Rounded.AttachMoney, "banks"),
+        Folder(stringResource(R.string.osm_tag_intersection), Icons.Rounded.ForkLeft, "intersections"),
     )
     val context = LocalContext.current
     val locations = remember(uiState) {
-        uiState.nearbyPlaces.features.filter { feature ->
-            // Filter based on any folder selected
-            featureIsInFilterGroup(feature, uiState.filter)
+        if(uiState.filter == "intersections") {
+            uiState.nearbyIntersections.features.map { feature ->
+                LocationDescription(
+                    name = feature.properties?.get("name").toString(),
+                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                )
+            }.sortedBy { uiState.userLocation?.distance(it.location) }
 
-        }.map { feature ->
-            LocationDescription(
-                name = getTextForFeature(context, feature).text,
-                location = getDistanceToFeature(LngLatAlt(), feature).point
-            )
-        }.sortedBy { uiState.userLocation?.distance(it.location) }
+        } else {
+            uiState.nearbyPlaces.features.filter { feature ->
+                // Filter based on any folder selected
+                featureIsInFilterGroup(feature, uiState.filter)
+
+            }.map { feature ->
+                LocationDescription(
+                    name = getTextForFeature(context, feature).text,
+                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                )
+            }.sortedBy { uiState.userLocation?.distance(it.location) }
+        }
     }
 
     LazyColumn(
