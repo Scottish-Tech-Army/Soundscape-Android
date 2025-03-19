@@ -87,8 +87,6 @@ private fun copyAssetFile(applicationContext: Context, assetFilePath:String, des
         val inputStream: InputStream = applicationContext.assets.open(assetFilePath)
         val outputStream: OutputStream = FileOutputStream(destinationFilePath)
 
-        Log.e("ExtractAssets", "writing asset $assetFilePath")
-
         val buf = ByteArray(1024)
         var len: Int
         while ((inputStream.read(buf).also { len = it }) > 0) outputStream.write(buf, 0, len)
