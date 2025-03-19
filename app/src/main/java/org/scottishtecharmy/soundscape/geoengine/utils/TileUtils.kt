@@ -188,7 +188,7 @@ fun getPoiFeatureCollectionBySuperCategory(
 fun featureIsInFilterGroup(feature: Feature, filter: String): Boolean {
 
     val tags = when(filter) {
-        "transit" -> listOf("bus_stop")
+        "transit" -> listOf("bus_stop", "train_station", "tram_stop", "ferry_terminal", "subway")
         "food_and_drink" -> listOf(
             "restaurant", "fast_food", "cafe", "bar", "ice_cream", "pub", "coffee_shop")
         "parks" -> listOf(
@@ -2032,6 +2032,8 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "bicycle_rental",
             "bicycle_parking",
             "bus_stop",
+            "tram_stop",
+            "subway",
             "hampshire_gate",
             "full-height_turnstile",
             "boat_sharing",

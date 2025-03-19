@@ -20,7 +20,7 @@ class BusStopTest {
         val gridState = createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
 
         // extract bus stops for tile
-        val busStopFeatureCollection = gridState.getFeatureCollection(TreeId.BUS_STOPS)
+        val busStopFeatureCollection = gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
         // There are only two bus stops in this tile
         Assert.assertEquals(2, busStopFeatureCollection.features.size)
 

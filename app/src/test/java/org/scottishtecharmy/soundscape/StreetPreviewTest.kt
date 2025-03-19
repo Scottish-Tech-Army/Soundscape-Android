@@ -78,7 +78,7 @@ class StreetPreviewTest {
         val roadFeatureCollectionTest = gridState.getFeatureCollection(TreeId.ROADS)
         val intersectionsFeatureCollectionTest = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         val crossingsFeatureCollectionTest = gridState.getFeatureCollection(TreeId.CROSSINGS)
-        val busStopsGridFeatureCollection = gridState.getFeatureCollection(TreeId.BUS_STOPS)
+        val busStopsGridFeatureCollection = gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
 
         val nearestRoadTest = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
             LngLatAlt(-2.693002695425122,51.43938442591545)

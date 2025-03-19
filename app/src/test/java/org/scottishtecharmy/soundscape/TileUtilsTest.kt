@@ -68,7 +68,7 @@ class TileUtilsTest {
         val gridState =
             createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
         val testBusStopFeatureCollectionFromTileFeatureCollection =
-            gridState.getFeatureCollection(TreeId.BUS_STOPS)
+            gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
 
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
             Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])

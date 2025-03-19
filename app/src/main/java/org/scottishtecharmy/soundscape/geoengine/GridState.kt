@@ -34,7 +34,7 @@ enum class TreeId(
     ENTRANCES(3),
     CROSSINGS(4),
     POIS(5),
-    BUS_STOPS(6),
+    TRANSIT_STOPS(6),
     INTERPOLATIONS(7),
     INFORMATION_POIS(8),
     OBJECT_POIS(9),
@@ -301,12 +301,12 @@ open class GridState {
         tileData[TreeId.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-        tileData[TreeId.BUS_STOPS.id] = getBusStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.TRANSIT_STOPS.id] = getTransitStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.CROSSINGS.id] = getCrossingsFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
 
         // POIS includes bus stops and crossings
-        tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.BUS_STOPS.id])
+        tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.TRANSIT_STOPS.id])
         tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.CROSSINGS.id])
 
         return  tileData
@@ -360,19 +360,17 @@ open class GridState {
      * A FeatureCollection object.
      * @return A FeatureCollection object that contains only bus stops.
      */
-    private fun getBusStopsFeatureCollectionFromTileFeatureCollection(
+    private fun getTransitStopsFeatureCollectionFromTileFeatureCollection(
         tileFeatureCollection: FeatureCollection
     ): FeatureCollection{
-        val busStopFeatureCollection = FeatureCollection()
+        val transitStopFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "bus_stop") {
-                    busStopFeatureCollection.addFeature(feature)
-                }
+            val featureValue = feature.foreign?.get("feature_value")
+            when(featureValue) {
+                "bus_stop","tram_stop","subway","train_station","ferry_terminal" -> transitStopFeatureCollection.addFeature(feature)
             }
         }
-
-        return busStopFeatureCollection
+        return transitStopFeatureCollection
     }
 
     /**
