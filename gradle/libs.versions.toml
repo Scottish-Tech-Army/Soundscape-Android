@@ -5,7 +5,6 @@ androidGpxParser = "2.3.1"
 composePreferenceLibrary = "1.1.1"
 converterMoshi = "2.11.0"
 converterProtobuf = "2.11.0"
-core = "1.6.1"
 htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
 leakcanaryAndroid = "2.14"
@@ -57,7 +56,6 @@ lifecycleProcess = "2.8.7"
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 android-gpx-parser = { module = "com.github.ticofab:android-gpx-parser", version.ref = "androidGpxParser" }
-androidx-core = { module = "androidx.test:core", version.ref = "core" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
