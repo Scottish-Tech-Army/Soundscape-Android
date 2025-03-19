@@ -33,8 +33,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringsIntersect
+import org.scottishtecharmy.soundscape.geoengine.utils.mergePolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.straightLinesIntersect
 import org.scottishtecharmy.soundscape.geoengine.utils.straightLinesIntersectLngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 
 
 class GeoUtilsTest {
@@ -796,4 +798,121 @@ class GeoUtilsTest {
     private fun dotProductLngLatAlt(a: LngLatAlt, b: LngLatAlt): Double {
         return a.longitude * b.longitude + a.latitude * b.latitude
     }
+
+
+    @Test
+    fun mergePolygonsTest1() {
+
+        // Merge polygons to create a hole
+
+        // Rectangle
+        val polygon1 = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 2.0),
+                    LngLatAlt(1.0, 2.0),
+                    LngLatAlt(1.0, 0.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(0.0, 2.0),
+                )
+            )
+        }
+
+        // Reversed C that overlaps with the Rectangle
+        val polygon2 = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.5, 2.0),
+                    LngLatAlt(4.0, 2.0),
+                    LngLatAlt(4.0, 0.0),
+                    LngLatAlt(0.5, 0.0),
+                    LngLatAlt(0.5, 0.5),
+                    LngLatAlt(3.0, 0.5),
+                    LngLatAlt(3.0, 1.5),
+                    LngLatAlt(0.5, 1.5),
+                    LngLatAlt(0.5, 2.0),
+                )
+            )
+        }
+
+        val feature1 = Feature()
+        val feature2 = Feature()
+        feature1.geometry = polygon1
+        feature2.geometry = polygon2
+
+        val mergedFeature = mergePolygons(feature1, feature2)
+        val mergedPolygon = mergedFeature.geometry as Polygon
+        // Check we have one outer and one inner ring
+        assert(mergedPolygon.coordinates.size == 2)
+
+        // Merge a polygon which covers both of the previous polygons. This isn't like any that we will
+        // merge from a tile, but it should get rid of the inner ring.
+        val bigPolygon = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 2.0),
+                    LngLatAlt(4.0, 2.0),
+                    LngLatAlt(4.0, 0.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(0.0, 2.0),
+                )
+            )
+        }
+        val bigFeature = Feature()
+        bigFeature.geometry = bigPolygon
+
+        val secondMergedFeature = mergePolygons(mergedFeature, bigFeature)
+        val secondMergedPolygon = secondMergedFeature.geometry as Polygon
+        // Check we have just one outer ring
+        assert(secondMergedPolygon.coordinates.size == 1)
+    }
+
+    @Test
+    fun mergePolygonsTest2() {
+
+        // Divide a square donut into two polygons and then merge them and ensure that the donut
+        // remains whole
+        val polygon1 = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(0.0, 3.0),
+                    LngLatAlt(3.0, 3.0),
+                    LngLatAlt(3.0, 0.0),
+                    LngLatAlt(0.0, 0.0),
+                    LngLatAlt(0.0, 3.0),
+                )
+            )
+            it.addInteriorRing(
+                arrayListOf(
+                    LngLatAlt(1.0, 1.0),
+                    LngLatAlt(1.0, 2.0),
+                    LngLatAlt(2.0, 2.0),
+                    LngLatAlt(2.0, 1.0),
+                    LngLatAlt(1.0, 1.0),
+                )
+            )
+        }
+
+        val polygon2 = Polygon().also {
+            it.coordinates = arrayListOf(
+                arrayListOf(
+                    LngLatAlt(2.0, 3.0),
+                    LngLatAlt(3.0, 3.0),
+                    LngLatAlt(3.0, 0.0),
+                    LngLatAlt(2.0, 0.0),
+                    LngLatAlt(2.0, 3.0),
+                )
+            )
+        }
+
+        val feature1 = Feature()
+        val feature2 = Feature()
+        feature1.geometry = polygon1
+        feature2.geometry = polygon2
+
+        val mergedFeature = mergePolygons(feature1, feature2)
+        val mergedPolygon = mergedFeature.geometry as Polygon
+        // Check we have one outer and one inner ring
+        assert(mergedPolygon.coordinates.size == 2)
+   }
 }

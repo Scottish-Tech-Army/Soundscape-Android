@@ -12,11 +12,14 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.locationtech.jts.geom.Coordinate
+import org.locationtech.jts.geom.Polygon as JtsPolygon
 import org.locationtech.jts.geom.GeometryFactory
+import org.locationtech.jts.geom.LinearRing
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 import java.lang.Math.toDegrees
+import kotlin.collections.toTypedArray
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.asinh
@@ -1319,25 +1322,52 @@ fun isPolygonClockwise(
     return area > 0
 }
 
+fun polygonOuterRingToCoordinateArray(polygon: Polygon?, geometryFactory: GeometryFactory) : LinearRing? {
+    return geometryFactory.createLinearRing(
+        polygon?.coordinates?.firstOrNull()
+            ?.map {
+                position -> Coordinate(position.longitude, position.latitude)
+            }?.toTypedArray()
+    )
+}
+
+fun polygonInteriorRingsToCoordinateArray(polygon: Polygon?, geometryFactory: GeometryFactory) : Array<LinearRing>? {
+    if(polygon == null) return null
+
+    val result: MutableList<LinearRing> = emptyList<LinearRing>().toMutableList()
+    val innerRings = polygon.getInteriorRings()
+    for(ring in innerRings) {
+        result.add(geometryFactory.createLinearRing(
+                ring.map {
+                    position -> Coordinate(position.longitude, position.latitude)
+                }.toTypedArray()
+            )
+        )
+    }
+    return result.toTypedArray()
+}
+
+fun createJtsPolygonFromPolygon(polygon: Polygon?): JtsPolygon? {
+
+    if(polygon == null) return null
+
+    val geometryFactory = GeometryFactory()
+    val outerRing = polygonOuterRingToCoordinateArray(polygon, geometryFactory)
+    val innerRings = polygonInteriorRingsToCoordinateArray(polygon, geometryFactory)
+
+    return geometryFactory.createPolygon(outerRing, innerRings)
+}
+
 fun mergePolygons(
     polygon1: Feature,
     polygon2: Feature
 ): Feature {
 
-    val geometryFactory = GeometryFactory()
-    val feature1Coordinates = (polygon1.geometry as? Polygon)?.coordinates?.firstOrNull()
-        ?.map {
-                position -> Coordinate(position.longitude, position.latitude)
-        }?.toTypedArray()
-    val feature2Coordinates = (polygon2.geometry as? Polygon)?.coordinates?.firstOrNull()
-        ?.map {
-                position -> Coordinate(position.longitude, position.latitude)
-        }?.toTypedArray()
+    val polygon1GeometryJTS = createJtsPolygonFromPolygon(polygon1.geometry as? Polygon)
+    val polygon2GeometryJTS = createJtsPolygonFromPolygon(polygon2.geometry as? Polygon)
 
-    val polygon1GeometryJTS = feature1Coordinates?.let { geometryFactory.createPolygon(it)}
-    val polygon2GeometryJTS = feature2Coordinates?.let { geometryFactory.createPolygon(it)}
     // merge/union the polygons
-    val mergedGeometryJTS = polygon1GeometryJTS?.union(polygon2GeometryJTS)
+    val mergedGeometryJTS = polygon1GeometryJTS?.union(polygon2GeometryJTS) as JtsPolygon
     // create a new Polygon with a single outer ring using the coordinates from the JTS merged geometry
     val mergedPolygon = Feature().also { feature ->
         feature.properties = polygon1.properties
@@ -1345,12 +1375,26 @@ fun mergePolygons(
         feature.type = "Feature"
         feature.geometry = Polygon().also { polygon ->
             //Convert JTS to GeoJSON coordinates
-            val geoJsonCoordinates = mergedGeometryJTS?.coordinates?.map { coordinate ->
-                LngLatAlt(coordinate.x, coordinate.y )
+            // Start with exterior ring
+            val outerRing = mergedGeometryJTS.exteriorRing.coordinates?.map { coordinate ->
+                LngLatAlt(coordinate.x, coordinate.y)
             }?.let {
                 arrayListOf(arrayListOf(*it.toTypedArray()))
             }
-            polygon.coordinates = geoJsonCoordinates ?: arrayListOf()
+            polygon.coordinates = outerRing ?: arrayListOf()
+
+            // Now process interior rings
+            val ringCount = mergedGeometryJTS.numInteriorRing
+            for(ring in 0 until ringCount) {
+                val innerRing = mergedGeometryJTS.getInteriorRingN(ring).coordinates?.map { coordinate ->
+                    LngLatAlt(coordinate.x, coordinate.y)
+                }?.let {
+                    arrayListOf(*it.toTypedArray())
+                }
+                if(innerRing != null) {
+                    polygon.addInteriorRing(innerRing)
+                }
+            }
         }
     }
     return mergedPolygon
