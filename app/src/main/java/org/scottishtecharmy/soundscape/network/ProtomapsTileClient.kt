@@ -1,11 +1,11 @@
 package org.scottishtecharmy.soundscape.network
 
-import android.app.Application
+import android.content.Context
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_BASE
 import retrofit2.Retrofit
 import retrofit2.converter.protobuf.ProtoConverterFactory
 
-class ProtomapsTileClient(application: Application) : TileClient(application) {
+class ProtomapsTileClient(applicationContext: Context) : TileClient(applicationContext) {
 
     override fun buildRetrofit() : Retrofit {
         return Retrofit.Builder()

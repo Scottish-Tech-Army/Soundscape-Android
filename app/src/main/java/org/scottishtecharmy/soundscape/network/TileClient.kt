@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.network
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -15,18 +14,18 @@ import java.util.concurrent.TimeUnit
 // https://stackoverflow.com/questions/70711512/context-getapplicationcontext-on-a-null-object-when-using-okhttp-cache
 // https://proandroiddev.com/increase-performance-of-your-app-by-caching-api-calls-using-okhttp-1384a621c51f
 // https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
-abstract class TileClient(val application: Application) {
+abstract class TileClient(val applicationContext: Context) {
 
     private val connectivityManager: ConnectivityManager
     init {
         connectivityManager =
-            application.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
     private var retrofit : Retrofit? = null
 
     private val cacheSize = (100 * 1024 * 1024).toLong() //100MB cache size
-    private val myCache = Cache(application.applicationContext.cacheDir, cacheSize)
+    private val myCache = Cache(applicationContext.cacheDir, cacheSize)
 
     protected val okHttpClient = OkHttpClient.Builder()
         .cache(myCache)

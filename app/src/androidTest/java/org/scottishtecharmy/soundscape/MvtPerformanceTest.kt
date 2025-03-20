@@ -1,8 +1,12 @@
 package org.scottishtecharmy.soundscape
 
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.github.davidmoten.rtree2.Iterables
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -61,6 +65,36 @@ class MvtPerformanceTest {
         println("Search result in ${end-start}ms")
         for(dResult in distanceResults) {
             println(dResult.properties?.get("name"))
+        }
+    }
+
+    fun downloadAndParseTile(x: Int, y: Int, gridState: ProtomapsGridState) {
+        println("Testing tile $x,$y")
+        runBlocking {
+            val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+            gridState.updateTile(x, y, featureCollections)
+        }
+    }
+    @Test
+    fun testParsing() {
+
+        val gridState = ProtomapsGridState()
+        gridState.start(ApplicationProvider.getApplicationContext())
+
+        // Test Edinburgh, because that's where many of our testers are!
+        println("Test Edinburgh")
+        for(x in 16090 until 16095) {
+            for(y in 10207 until 10212) {
+                downloadAndParseTile(x, y, gridState)
+            }
+        }
+
+        // Test the capital of Cameroon because it's dense
+        println("Test Yaoundé")
+        for(x in 17430 until 17437) {
+            for(y in 16029 until 16034) {
+                downloadAndParseTile(x, y, gridState)
+            }
         }
     }
 }

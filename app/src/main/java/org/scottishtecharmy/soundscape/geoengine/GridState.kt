@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.app.Application
+import android.content.Context
 import android.util.Log
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -63,7 +63,7 @@ open class GridState {
     // a tree of Markers from the database.
     internal var markerTree : FeatureTree? = null
 
-    open fun start(application: Application) {}
+    open fun start(applicationContext: Context) {}
     fun stop() {}
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
 
