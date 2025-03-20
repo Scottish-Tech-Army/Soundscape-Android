@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.app.Application
+import android.content.Context
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -17,8 +17,8 @@ import kotlin.time.TimeSource
 
 class ProtomapsGridState : GridState() {
 
-    override fun start(application: Application) {
-        tileClient = ProtomapsTileClient(application)
+    override fun start(applicationContext: Context) {
+        tileClient = ProtomapsTileClient(applicationContext)
     }
 
     /**

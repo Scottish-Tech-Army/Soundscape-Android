@@ -1,10 +1,10 @@
 package org.scottishtecharmy.soundscape.network
 
-import android.app.Application
+import android.content.Context
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class SoundscapeBackendTileClient(application: Application) : TileClient(application) {
+class SoundscapeBackendTileClient(applicationContext: Context) : TileClient(applicationContext) {
 
     override fun buildRetrofit() : Retrofit {
         return Retrofit.Builder()

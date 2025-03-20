@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.app.Application
+import android.content.Context
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -15,8 +15,8 @@ import kotlin.coroutines.cancellation.CancellationException
 
 class SoundscapeBackendGridState : GridState() {
 
-    override fun start(application: Application) {
-        tileClient = SoundscapeBackendTileClient(application)
+    override fun start(applicationContext: Context) {
+        tileClient = SoundscapeBackendTileClient(applicationContext)
     }
 
     override suspend fun updateTile(
