@@ -520,4 +520,32 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
         return results.features[0]
     }
+
+    /**
+     * For a given point, this returns any features which contain it.
+     * @param location Point to search for
+     * @result FeatureCollection containing all features which contain the point
+     */
+    fun getContainingPolygons(location: LngLatAlt): FeatureCollection {
+
+        if (tree == null)
+            return FeatureCollection()
+
+        val possiblePolygons = Iterables.filter(
+            tree!!.search(
+                Geometries.pointGeographic(
+                    location.longitude,
+                    location.latitude
+                )
+            )
+        ) { entry ->
+            polygonContainsCoordinates(location, entry.value().geometry as Polygon)
+        }
+
+        val result = FeatureCollection()
+        for(feature in possiblePolygons) {
+            result.addFeature(feature.value())
+        }
+        return result
+    }
 }

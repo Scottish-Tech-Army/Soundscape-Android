@@ -215,6 +215,21 @@ class MvtTileTest {
         println(adapter.toJson(searchResults))
         assert(searchResults.features.size == 1)
 
+        // Check that we can find the containing polygons for a point
+        val tree = FeatureTree(mergedCollection)
+        val fc1 = tree.getContainingPolygons(LngLatAlt(-4.316401, 55.939941))
+        assert(fc1.features.size == 1)
+        assert(fc1.features[0].properties?.get("name") == "Tesco Customer Car Park")
+
+        val fc2 = tree.getContainingPolygons(LngLatAlt(-4.312885, 55.942237))
+        assert(fc2.features.size == 1)
+        assert(fc2.features[0].properties?.get("name") == "Milngavie Town Hall")
+
+        val fc3 = tree.getContainingPolygons(LngLatAlt(-4.296998, 55.948270))
+        assert(fc3.features.size == 2)
+        assert(fc3.features[0].properties?.get("name") == "Milngavie Fitness & Wellbeing Gym")
+        assert(fc3.features[1].properties?.get("class") == "parking")
+
         val outputFile = FileOutputStream("2x2.geojson")
         outputFile.write(adapter.toJson(mergedCollection).toByteArray())
         outputFile.close()
