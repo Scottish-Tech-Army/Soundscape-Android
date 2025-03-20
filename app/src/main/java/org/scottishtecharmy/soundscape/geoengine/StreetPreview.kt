@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getDirectionAtIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
+import org.scottishtecharmy.soundscape.geoengine.utils.normaliseHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.splitRoadAtNode
 import org.scottishtecharmy.soundscape.geoengine.utils.splitRoadByIntersection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -62,7 +63,9 @@ class StreetPreview {
                 }
                 if (nearestDistance != Double.POSITIVE_INFINITY) {
                     // We've got a location, so jump to it
-                    engine.locationProvider.updateLocation(nearestPoint, 0.0F)
+                    var heading = userGeometry.phoneHeading
+                    if(heading == null) heading = 0.0
+                    engine.locationProvider.updateLocation(nearestPoint, heading.toFloat(), 0.0F)
                     previewState = PreviewState.AT_NODE
                     return nearestPoint
                 }
@@ -91,8 +94,11 @@ class StreetPreview {
                     // We've got a road - let's head down it
                     previewRoad = extendChoice(engine, userGeometry.location, choices[bestIndex])
                     previewRoad?.let { road ->
-                        engine.locationProvider.updateLocation(road.route.last(), 1.0F)
-                        lastHeading = bearingOfLineFromEnd(road.route.last(), road.route)
+                        // We want the heading to be the angle of the road we're coming in on
+                        lastHeading = normaliseHeading(
+                            bearingOfLineFromEnd(road.route.last(), road.route) - 180.0
+                        )
+                        engine.locationProvider.updateLocation(road.route.last(), lastHeading.toFloat(), 1.0F)
                         return road.route.last()
                     }
                     previewState = PreviewState.AT_NODE

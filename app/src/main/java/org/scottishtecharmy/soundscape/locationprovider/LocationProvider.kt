@@ -9,7 +9,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 abstract class LocationProvider {
     abstract fun start(context : Context)
     abstract fun destroy()
-    open fun updateLocation(newLocation: LngLatAlt, speed: Float) { }
+    open fun updateLocation(newLocation: LngLatAlt, heading: Float, speed: Float) { }
 
     fun hasValidLocation(): Boolean{
         return mutableLocationFlow.value != null

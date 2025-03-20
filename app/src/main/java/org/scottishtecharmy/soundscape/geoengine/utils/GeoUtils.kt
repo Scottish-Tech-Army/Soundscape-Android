@@ -1337,3 +1337,12 @@ fun calculateHeadingOffset(heading1: Double, heading2: Double): Double {
 
     return diff
 }
+
+/**
+ * normaliseHeading turns a possibly negative heading into a heading between 0 and 360 degrees
+ * @param heading
+ * @return A heading between 0 and 360 degrees
+ */
+fun normaliseHeading(heading: Double): Double {
+    return (heading + 3600.0) % 360.0
+}
