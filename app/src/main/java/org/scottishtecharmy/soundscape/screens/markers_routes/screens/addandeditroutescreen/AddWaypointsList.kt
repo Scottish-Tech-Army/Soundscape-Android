@@ -81,16 +81,29 @@ fun AddWaypointsList(
     )
     val context = LocalContext.current
     val nearbyLocations = remember(placesNearbyUiState) {
-        placesNearbyUiState.nearbyPlaces.features.filter { feature ->
-            // Filter based on any folder selected
-            featureIsInFilterGroup(feature, placesNearbyUiState.filter)
+        if(placesNearbyUiState.filter == "intersections") {
+            placesNearbyUiState.nearbyIntersections.features.filter { feature ->
+                // Filter out un-named intersections
+                feature.properties?.get("name").toString().isNotEmpty()
+            }.map { feature ->
+                LocationDescription(
+                    name = feature.properties?.get("name").toString(),
+                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                )
+            }.sortedBy { placesNearbyUiState.userLocation?.distance(it.location) }
 
-        }.map { feature ->
-            LocationDescription(
-                name = getTextForFeature(context, feature).text,
-                location = getDistanceToFeature(LngLatAlt(), feature).point
-            )
-        }.sortedBy { placesNearbyUiState.userLocation?.distance(it.location) }
+        } else {
+            placesNearbyUiState.nearbyPlaces.features.filter { feature ->
+                // Filter based on any folder selected
+                featureIsInFilterGroup(feature, placesNearbyUiState.filter)
+
+            }.map { feature ->
+                LocationDescription(
+                    name = getTextForFeature(context, feature).text,
+                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                )
+            }.sortedBy { placesNearbyUiState.userLocation?.distance(it.location) }
+        }
     }
 
     LazyColumn(
