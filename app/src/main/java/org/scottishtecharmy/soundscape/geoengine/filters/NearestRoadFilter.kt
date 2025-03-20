@@ -74,17 +74,24 @@ class NearestRoadFilter {
                     bestFitness = fitness
                     bestIndex = index
                 }
-//                println("fitness: ${fitness} for ${sensedRoad.properties?.get("name")} (${sensedRoadInfo.distance}m, ${headingOffSensedRoad}deg -> $currentHeading vs. ${sensedRoadInfo.heading}")
+                println("fitness: ${fitness} for ${sensedRoad.properties?.get("name")} (${sensedRoadInfo.distance}m, ${headingOffSensedRoad}deg -> $currentHeading vs. ${sensedRoadInfo.heading}")
             }
             val bestMatch = sensedNearestRoads.features[bestIndex]
             nearestRoad?.let { road ->
                 if (road != bestMatch) {
-                    // It needs to be easier to stay on the current road than to switch to the new one
-                    // so make sure it calculates it more than once.
-                    debounceCount--
-                    if (debounceCount == 0) {
+                    if(locationAccuracy == 0.0) {
+                        // The static location provider sets the location accuracy to 0.0 and in
+                        // this case we can trust the calculation without debounce
                         nearestRoad = bestMatch
-                        debounceCount = 2
+                    }
+                    else {
+                        // It needs to be easier to stay on the current road than to switch to the new one
+                        // so make sure it calculates it more than once.
+                        debounceCount--
+                        if (debounceCount == 0) {
+                            nearestRoad = bestMatch
+                            debounceCount = 2
+                        }
                     }
                     return
                 } else {

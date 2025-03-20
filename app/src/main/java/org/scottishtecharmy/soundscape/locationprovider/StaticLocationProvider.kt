@@ -12,20 +12,22 @@ class StaticLocationProvider(private var location: LngLatAlt) :
     }
 
     override fun start(context : Context){
-        // Simply set our flow source as the passed in location with 10m accuracy so that it's not ignored
+        // Simply set our flow source as the passed in location with 0.0m accuracy so that it's not ignored
         val passiveLocation = Location(LocationManager.PASSIVE_PROVIDER)
         passiveLocation.latitude = location.latitude
         passiveLocation.longitude = location.longitude
-        passiveLocation.accuracy = 10.0F
+        passiveLocation.accuracy = 0.0F
         mutableLocationFlow.value = passiveLocation
     }
 
-    override fun updateLocation(newLocation: LngLatAlt, speed: Float) {
+    override fun updateLocation(newLocation: LngLatAlt, heading: Float, speed: Float) {
         val passiveLocation = Location(LocationManager.PASSIVE_PROVIDER)
         passiveLocation.latitude = newLocation.latitude
         passiveLocation.longitude = newLocation.longitude
+        passiveLocation.accuracy = 0.0F
+        passiveLocation.bearing = heading
+        passiveLocation.bearingAccuracyDegrees = 10.0F
         passiveLocation.speed = speed
-        passiveLocation.accuracy = 10.0F
         mutableLocationFlow.value = passiveLocation
     }
 

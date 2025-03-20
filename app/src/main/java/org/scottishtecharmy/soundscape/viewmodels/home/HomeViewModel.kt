@@ -130,11 +130,14 @@ class HomeViewModel
             // Observe street preview mode from the service so we can update state
             soundscapeServiceConnection.getStreetPreviewModeFlow()?.collect { value ->
                 Log.d(TAG, "Street Preview Mode: $value")
+                val enabled = state.value.streetPreviewState.enabled
                 _state.update { it.copy(streetPreviewState = value) }
 
-                // Restart location monitoring for new provider
-                stopMonitoringLocation()
-                startMonitoringLocation()
+                if(enabled != value.enabled) {
+                    // Restart location monitoring for new provider
+                    stopMonitoringLocation()
+                    startMonitoringLocation()
+                }
             }
         }
     }

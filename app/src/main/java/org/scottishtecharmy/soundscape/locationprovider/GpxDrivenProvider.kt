@@ -77,7 +77,9 @@ class GpxDrivenProvider  {
                         LngLatAlt(
                             interpolatedPoint.longitude,
                             interpolatedPoint.latitude
-                        ), walkingSpeed.toFloat()
+                        ),
+                        heading.toFloat(),
+                        walkingSpeed.toFloat()
                     )
                     directionProvider.audioEngine?.updateGeometry(
                         interpolatedPoint.latitude,
