@@ -352,11 +352,13 @@ fun vectorTileToGeoJson(tileX: Int,
                     )
 
                     var name : Any? = null
+                    var initialName : Any? = null
                     var type = ""
                     var subclass = ""
                     var brunnel = ""
                     properties?.let {
-                        name = properties["name"]
+                        initialName = properties["name"]
+                        name = initialName
                         if(name == null) {
                             // This is nameless, so use the class to describe it
                             name = properties["class"].toString()
@@ -374,7 +376,7 @@ fun vectorTileToGeoJson(tileX: Int,
                                 println("Feature ID is zero for ${name.toString()}")
                             }
                             val details = IntersectionDetails(
-                                name.toString(),
+                                (initialName ?: "").toString(),
                                 type,
                                 subclass,
                                 brunnel,

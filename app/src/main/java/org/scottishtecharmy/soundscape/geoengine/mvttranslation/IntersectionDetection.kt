@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import kotlin.String
 
 class IntersectionDetection {
 
@@ -93,24 +94,40 @@ class IntersectionDetection {
                 intersection.foreign = HashMap()
                 intersection.foreign!!["feature_type"] = "highway"
                 intersection.foreign!!["feature_value"] = "gd_intersection"
-                var name = ""
                 val osmIds = arrayListOf<Double>()
+                val names = setOf<String>().toMutableSet()
+                var namedRoadPresent = false
                 for (road in intersections) {
-                    if(name.isNotEmpty()) {
-                        name += "/"
-                    }
                     if (road.brunnel != "null")
-                        name += road.brunnel
+                        names.add(road.brunnel)
                     else if (road.subClass != "null")
-                        name += road.subClass
-                    else
-                        name += road.name
+                        names.add(road.subClass)
+                    else if(road.name.isNotEmpty()){
+                        names.add(road.name)
+                        namedRoadPresent = true
+                    }
+                    else {
+                        names.add(road.type)
+                    }
 
                     osmIds.add(road.id)
                 }
+                // Sort our names alphabetically with capitalized names first
+                val sortedNames = ArrayList(names.sortedWith(
+                    compareBy<String> { it.first().isLowerCase() }.thenBy { it.lowercase() }))
+
+                val name = StringBuilder()
+                if(namedRoadPresent) {
+                    for (namePart in sortedNames) {
+                        if (name.isNotEmpty()) {
+                            name.append("/")
+                        }
+                        name.append(namePart)
+                    }
+                }
                 intersection.foreign!!["osm_ids"] = osmIds
                 intersection.properties = HashMap()
-                intersection.properties!!["name"] = name
+                intersection.properties!!["name"] = name.toString()
                 collection.addFeature(intersection)
             }
         }
