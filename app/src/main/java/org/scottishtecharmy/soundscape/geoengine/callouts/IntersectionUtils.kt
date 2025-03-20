@@ -54,7 +54,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     // Create FOV triangle
     val triangle = getFovTriangle(userGeometry)
 
-    val roadTree = gridState.getFeatureTree(TreeId.ROADS)
+    val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
     val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
     // Find roads within FOV
