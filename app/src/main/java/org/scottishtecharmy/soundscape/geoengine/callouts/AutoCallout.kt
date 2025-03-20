@@ -6,6 +6,7 @@ import android.util.Log
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -161,14 +162,24 @@ class AutoCallout(
                                 "mobility" -> NativeAudioEngine.EARCON_SENSE_MOBILITY
                                 else -> NativeAudioEngine.EARCON_SENSE_POI
                             }
-                            results.add(
-                                PositionedString(
-                                    text = name.text,
-                                    location = nearestPoint.point,
-                                    earcon = earcon,
-                                    type = AudioType.LOCALIZED
-                                ),
-                            )
+                            if(nearestPoint.distance == 0.0) {
+                                results.add(
+                                    PositionedString(
+                                        text = localizedContext.getString(R.string.directions_at_poi, name.text),
+                                        earcon = earcon,
+                                        type = AudioType.STANDARD
+                                    ),
+                                )
+                            } else {
+                                results.add(
+                                    PositionedString(
+                                        text = name.text,
+                                        location = nearestPoint.point,
+                                        earcon = earcon,
+                                        type = AudioType.LOCALIZED
+                                    ),
+                                )
+                            }
                             poiCalloutHistory.add(callout)
                             false
                         } else {
