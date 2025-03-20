@@ -57,7 +57,10 @@ fun PlacesNearbyList(
     val context = LocalContext.current
     val locations = remember(uiState) {
         if(uiState.filter == "intersections") {
-            uiState.nearbyIntersections.features.map { feature ->
+            uiState.nearbyIntersections.features.filter { feature ->
+                // Filter out un-named intersections
+                feature.properties?.get("name").toString().isNotEmpty()
+            }.map { feature ->
                 LocationDescription(
                     name = feature.properties?.get("name").toString(),
                     location = getDistanceToFeature(LngLatAlt(), feature).point
