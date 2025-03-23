@@ -7,7 +7,6 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 
 
@@ -23,8 +22,7 @@ class IntersectionsTest {
             nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(currentLocation))
         return  getRoadsDescriptionFromFov(
                     gridState,
-                    userGeometry,
-                    ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+                    userGeometry
                 ).intersectionRoads
     }
 

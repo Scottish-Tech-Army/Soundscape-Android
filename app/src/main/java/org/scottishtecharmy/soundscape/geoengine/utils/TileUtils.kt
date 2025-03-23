@@ -1027,28 +1027,27 @@ fun getRelativeDirectionsPolygons(
 fun checkWhetherIntersectionIsOfInterest(
     intersectionRoadNames: FeatureCollection,
     testNearestRoad:Feature?
-): Boolean {
+): Int {
     //println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
     if(testNearestRoad == null)
-        return false
+        return 0
 
-    var needsFurtherChecking = true
+    var needsFurtherChecking = 0
+    val setofNames = emptySet<String>().toMutableSet()
     for (road in intersectionRoadNames) {
         val roadName = road.properties?.get("name")
-        val isOneWay = road.properties?.get("oneway") == "yes"
         val isMatch = testNearestRoad.properties?.get("name") == roadName
 
-        //println("The road name is: $roadName")
-        if (isMatch && isOneWay) {
-            //println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
-            needsFurtherChecking = false
-        } else if (isMatch) {
-            //println("Intersection $intersectionNumber is probably a compound roundabout or compound intersection and we don't want to call it out.")
-            needsFurtherChecking = false
-        } else {
-            //println("Intersection $intersectionNumber is probably NOT a compound roundabout or compound intersection and we DO want to call it out.")
-            needsFurtherChecking = true
-            break
+        if (isMatch) {
+            // Ignore the road we're on
+        } else if(roadName != null) {
+            val name = roadName.toString()
+            if(setofNames.contains(name)) {
+                // Don't increment the priority if the name is here for the second time
+            } else {
+                needsFurtherChecking++
+                setofNames.add(name)
+            }
         }
     }
     return needsFurtherChecking

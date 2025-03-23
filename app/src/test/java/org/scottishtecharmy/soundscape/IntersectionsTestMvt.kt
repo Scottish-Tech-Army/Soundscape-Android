@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.callouts.ComplexIntersectionApproach
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
@@ -31,8 +30,7 @@ class IntersectionsTestMvt {
             nearestRoad = nearestRoadFilter.get())
         return getRoadsDescriptionFromFov(
                     gridState,
-                    userGeometry,
-                    ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION
+                    userGeometry
                 ).intersectionRoads
     }
     @Test
