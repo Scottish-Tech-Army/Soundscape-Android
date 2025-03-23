@@ -24,11 +24,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 
-enum class ComplexIntersectionApproach {
-    INTERSECTION_WITH_MOST_OSM_IDS,
-    NEAREST_NON_TRIVIAL_INTERSECTION
-}
-
 data class RoadsDescription(var nearestRoad: Feature? = null,
                             val userGeometry: UserGeometry = UserGeometry(),
                             val intersection: Feature? = null,
@@ -47,8 +42,7 @@ data class RoadsDescription(var nearestRoad: Feature? = null,
  * intersection.
  */
 fun getRoadsDescriptionFromFov(gridState: GridState,
-                               userGeometry: UserGeometry,
-                               approach: ComplexIntersectionApproach
+                               userGeometry: UserGeometry
 ) : RoadsDescription {
 
     // Create FOV triangle
@@ -77,34 +71,27 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val sortedFovIntersections = sortedByDistanceTo(userGeometry.location, fovIntersections)
 
     // Inspect each intersection so as to skip trivial ones
-    val nonTrivialIntersections = FeatureCollection()
+    val nonTrivialIntersections = emptyList<Pair<Int, Feature>>().toMutableList()
     for (i in 0 until sortedFovIntersections.features.size) {
         // Get the roads for the intersection
         val intersectionRoads = getIntersectionRoadNames(sortedFovIntersections.features[i], fovRoads)
         // Skip 'simple' intersections e.g. ones where the only roads involved have the same name
-        if(checkWhetherIntersectionIsOfInterest(intersectionRoads, nearestRoad)) {
-            nonTrivialIntersections.addFeature(sortedFovIntersections.features[i])
-        }
+        val priority = checkWhetherIntersectionIsOfInterest(intersectionRoads, nearestRoad)
+        nonTrivialIntersections.add(Pair(priority, sortedFovIntersections.features[i]))
     }
-    if(nonTrivialIntersections.features.isEmpty()) {
+    if(nonTrivialIntersections.isEmpty()) {
         return RoadsDescription(nearestRoad, userGeometry)
     }
 
-    // We have two different approaches to picking the intersection we're interested in
-    val intersection: Feature? = when(approach) {
-        ComplexIntersectionApproach.INTERSECTION_WITH_MOST_OSM_IDS -> {
-            // Pick the intersection feature with the most osm_ids and describe that.
-            nonTrivialIntersections.features.maxByOrNull { feature ->
-                (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
-            }
-        }
-
-        ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION -> {
-            // Use the nearest "checked" intersection to the device location?
-            nonTrivialIntersections.features[0]
-        }
+    var intersection: Feature? = nonTrivialIntersections.firstOrNull { prioritised ->
+                prioritised.first > 0
+            }?.second
+    if(intersection == null) {
+        // No intersection with a priority greater than zero, so just pick the highest
+        intersection = nonTrivialIntersections.maxByOrNull { prioritised ->
+            prioritised.first
+        }?.second
     }
-
     // Use the nearest intersection, but remove duplicated OSM ids from it (those which loop back)
     val nearestIntersection = removeDuplicates(sortedFovIntersections.features[0])
 

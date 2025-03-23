@@ -77,8 +77,7 @@ class AutoCallout(
 
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
-            userGeometry,
-            ComplexIntersectionApproach.NEAREST_NON_TRIVIAL_INTERSECTION)
+            userGeometry)
 
         // Don't describe the road we're on if there's an intersection
         if(roadsDescription.intersection != null) roadsDescription.nearestRoad = null
