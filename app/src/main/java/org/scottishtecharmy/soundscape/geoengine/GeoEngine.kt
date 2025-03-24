@@ -73,7 +73,7 @@ class GeoEngine {
     private var audioEngineUpdateJob: Job? = null
     private var markerMonitoringJob: Job? = null
 
-    val gridState = if(SOUNDSCAPE_TILE_BACKEND) SoundscapeBackendGridState() else ProtomapsGridState()
+    val gridState = ProtomapsGridState()
 
     internal lateinit var locationProvider : LocationProvider
     private lateinit var directionProvider : DirectionProvider
