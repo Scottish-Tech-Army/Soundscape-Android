@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import androidx.collection.emptyLongSet
 import com.github.davidmoten.rtree2.Entry
 import com.github.davidmoten.rtree2.Iterables
 import com.github.davidmoten.rtree2.RTree
@@ -558,7 +559,11 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 )
             )
         ) { entry ->
-            polygonContainsCoordinates(location, entry.value().geometry as Polygon)
+            // We can get here if the point is in a line, so we need to double check it's a polygon
+            if(entry.value().geometry.type == "Polygon")
+                polygonContainsCoordinates(location, entry.value().geometry as Polygon)
+            else
+                false
         }
 
         val result = FeatureCollection()
