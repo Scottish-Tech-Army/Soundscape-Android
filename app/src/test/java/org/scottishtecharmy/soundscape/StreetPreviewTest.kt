@@ -2,14 +2,12 @@ package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
@@ -22,8 +20,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPoly
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geoengine.utils.traceLineString
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONStreetPreviewTest
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonDataReal
 
 class StreetPreviewTest {
 
@@ -31,10 +27,8 @@ class StreetPreviewTest {
     fun streetPreviewTest1() {
         // Start of PoC to track along a road from start to finish and generate field of view triangles
         // as the device moves along the road.
-        val gridState = createFromGeoJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
-        val nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
-            LngLatAlt(-2.693002695425122,51.43938442591545)
-        )
+        val gridState = getGridStateForLocation(sixtyAcresCloseTestLocation, 1)
+        val nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(sixtyAcresCloseTestLocation)
         val nearestRoadTest = FeatureCollection()
         nearestRoadTest.addFeature(nearestRoad!!)
 
@@ -73,7 +67,7 @@ class StreetPreviewTest {
         // Start of PoC to track along a road from start to finish and generate field of view triangles
         // as the device moves along the road and print the Callouts to the console
 
-        val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.STREET_PREVIEW_TEST)
+        val gridState = getGridStateForLocation(sixtyAcresCloseTestLocation, 1)
 
         // Pull out the data layers that we would need for Ahead Of Me
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
@@ -81,9 +75,7 @@ class StreetPreviewTest {
         val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)
         val busStopsTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
 
-        val nearestRoadTest = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
-            LngLatAlt(-2.693002695425122,51.43938442591545)
-        )
+        val nearestRoadTest = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(sixtyAcresCloseTestLocation)
 
         // trace along the road with equidistant points 30m apart.
         val roadTrace = nearestRoadTest?.let {

@@ -66,3 +66,33 @@ do
 done
 
 wget $protomaps_server/15/16093/10211.pbf -O 16093x10211.mvt
+
+# Roundabout and intersection test tiles
+wget $protomaps_server/15/16133/10906.pbf -O 16133x10906.mvt
+wget $protomaps_server/15/16134/10906.pbf -O 16134x10906.mvt
+wget $protomaps_server/15/16138/10905.pbf -O 16138x10905.mvt
+wget $protomaps_server/15/16139/10905.pbf -O 16139x10905.mvt
+wget $protomaps_server/15/16138/10906.pbf -O 16138x10906.mvt
+
+# Central Manchester
+wget $protomaps_server/15/16180/10601.pbf -O 16180x10601.mvt
+
+# Tiles for merging polygons
+for x in $(seq 16143 16144);
+do
+  for y in $(seq 10890 10891);
+  do
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+  done
+done
+
+wget $protomaps_server/15/21066/16629.pbf -O 21066x16629.mvt
+
+# Tiles for Failand
+for x in $(seq 16139 16140);
+do
+  for y in $(seq 10906 10907);
+  do
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+  done
+done

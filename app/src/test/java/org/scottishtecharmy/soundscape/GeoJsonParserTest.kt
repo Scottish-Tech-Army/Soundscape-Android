@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.geojsontestdata
+package org.scottishtecharmy.soundscape
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.*
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.*

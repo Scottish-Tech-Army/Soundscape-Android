@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -12,13 +11,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonDataReal
 
 class CrossingTest {
 
     @Test
     fun simpleCrossingTest(){
-        val gridState = createFromGeoJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
+        val location = LngLatAlt(-2.6920313574678403, 51.43745588326692)
+        val gridState = getGridStateForLocation(location, 1)
 
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)
@@ -29,7 +28,6 @@ class CrossingTest {
         println("Crossings in tile: $crossingString")
 
         // usual fake our device location and heading
-        val location = LngLatAlt(-2.6920313574678403, 51.43745588326692)
         val userGeometry = UserGeometry(
             location,
             45.0,

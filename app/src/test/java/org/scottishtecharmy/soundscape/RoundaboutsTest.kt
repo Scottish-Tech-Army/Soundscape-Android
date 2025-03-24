@@ -4,7 +4,6 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.Circle
-import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.createFromGeoJson
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -33,8 +32,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONRoundabout
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONRoundaboutMini
 
 class RoundaboutsTest {
     //TODO There are a lot of different types of roundabouts so this might take me a while to work out
@@ -48,8 +45,7 @@ class RoundaboutsTest {
             225.0,
             50.0
         )
-
-        val gridState = createFromGeoJson(GeoJSONRoundabout.FEATURE_COLLECTION_ROUNDABOUT)
+        val gridState = getGridStateForLocation(userGeometry.location, 1)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionsTree  = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
@@ -165,8 +161,7 @@ class RoundaboutsTest {
             0.0,
             50.0
         )
-
-        val gridState = createFromGeoJson(GeoJSONRoundaboutMini.FEATURE_COLLECTION_MINI_ROUNDABOUT)
+        val gridState = getGridStateForLocation(userGeometry.location, 1)
 
         // create FOV to pickup the roads
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
@@ -234,7 +229,7 @@ class RoundaboutsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJSONRoundabout.FEATURE_COLLECTION_ROUNDABOUT)
+        val gridState = getGridStateForLocation(userGeometry.location, 1)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
