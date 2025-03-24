@@ -362,6 +362,7 @@ fun vectorTileToGeoJson(tileX: Int,
                         if(name == null) {
                             // This is nameless, so use the class to describe it
                             name = properties["class"].toString()
+                            properties["default_name"] = "1"
                         }
                         properties["name"] = name
                         type = properties["class"].toString()

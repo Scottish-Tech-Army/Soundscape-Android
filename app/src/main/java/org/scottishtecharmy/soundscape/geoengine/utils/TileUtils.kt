@@ -1011,10 +1011,14 @@ fun checkWhetherIntersectionIsOfInterest(
     for (road in intersectionRoadNames) {
         val roadName = road.properties?.get("name")
         val isMatch = testNearestRoad.properties?.get("name") == roadName
+        val nameIsDefault = road.properties?.get("default_name") != null
 
         if (isMatch) {
             // Ignore the road we're on
-        } else if(roadName != null) {
+        } else if(nameIsDefault) {
+            // Give no points to ways named from their type
+        }
+        else if(roadName != null) {
             val name = roadName.toString()
             if(setofNames.contains(name)) {
                 // Don't increment the priority if the name is here for the second time

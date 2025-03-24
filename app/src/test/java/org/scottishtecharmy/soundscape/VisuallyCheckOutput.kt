@@ -7,7 +7,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
-import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
@@ -18,15 +17,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONData3x3gridnoduplicates
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonDataReal
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonEntrancesEtcData
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonIntersectionStraight
 
 // Functions to output GeoJSON strings that can be put into the very useful Geojson.io
 // for a visual check. The GeoJSON parser that they use is also handy to make sure output
@@ -122,80 +116,10 @@ class VisuallyCheckOutput {
     }
 
     @Test
-    fun grid3x3WithPoisTest(){
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        // convert coordinates to tile
-        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
-        val tileBoundingBox = tileToBoundingBox(tileXY.first, tileXY.second, 16)
-        val tileBoundingBoxCorners = getBoundingBoxCorners(tileBoundingBox)
-        val tileBoundingBoxCenter = getCenterOfBoundingBox(tileBoundingBoxCorners)
-
-        val surroundingTiles = getTilesForRegion(
-            tileBoundingBoxCenter.latitude, tileBoundingBoxCenter.longitude, 200.0, 16 )
-
-        val newFeatureCollection = FeatureCollection()
-        // Create a bounding box/Polygon for each tile in the grid
-        for(tile in surroundingTiles){
-            val surroundingTileBoundingBox = tileToBoundingBox(tile.tileX, tile.tileY, 16)
-            val polygonBoundingBox = getPolygonOfBoundingBox(surroundingTileBoundingBox)
-            val boundingBoxFeature = Feature().also {
-                val ars3: HashMap<String, Any?> = HashMap()
-                ars3 += Pair("Tile X", tile.tileX)
-                ars3 += Pair("Tile Y", tile.tileY)
-                ars3 += Pair("quadKey", tile.quadkey)
-                it.properties = ars3
-                it.type = "Feature"
-            }
-            boundingBoxFeature.geometry = polygonBoundingBox
-            newFeatureCollection.addFeature(boundingBoxFeature)
-        }
-        val gridFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONData3x3gridnoduplicates.TILE_GRID)
-        for (feature in gridFeatureCollectionTest!!.features){
-            newFeatureCollection.addFeature(feature)
-        }
-        val grid3x3PoiString = moshi.adapter(FeatureCollection::class.java).toJson(newFeatureCollection)
-        // copy and paste into GeoJSON.io
-        println(grid3x3PoiString)
-    }
-
-    @Test
-    fun entireTileFeatureCollection(){
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        // convert coordinates to tile
-        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
-        // Get the data for the entire tile
-        val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            tileXY.first,
-            tileXY.second,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(featureCollectionTest)
-        )
-        // copy and paste into GeoJSON.io
-        println(cleanTileFeatureCollection)
-    }
-
-    @Test
     fun roadsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
-        // Get the data for the entire tile
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            tileXY.first,
-            tileXY.second,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
-        )
-        // get the roads Feature Collection.
-        // Crossings are counted as roads by original Soundscape
-        val gridState = GridState.createFromGeoJson(cleanTileFeatureCollection)
+        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), 1)
         val testRoadsCollection = gridState.getFeatureCollection(TreeId.ROADS)
         val roads = moshi.adapter(FeatureCollection::class.java).toJson(testRoadsCollection)
         // copy and paste into GeoJSON.io
@@ -206,19 +130,8 @@ class VisuallyCheckOutput {
     fun intersectionsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
-        // Get the data for the entire tile
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            tileXY.first,
-            tileXY.second,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
-        )
+        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), 1)
         // get the Intersections Feature Collection.
-        val gridState = GridState.createFromGeoJson(cleanTileFeatureCollection)
         val testIntersectionsCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
         val intersections = moshi.adapter(FeatureCollection::class.java).toJson(testIntersectionsCollection)
@@ -230,19 +143,8 @@ class VisuallyCheckOutput {
     fun poiFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
-        // Get the data for the entire tile
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            tileXY.first,
-            tileXY.second,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
-        )
+        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), 1)
         // get the POI Feature Collection.
-        val gridState = GridState.createFromGeoJson(cleanTileFeatureCollection)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         val poi = moshi.adapter(FeatureCollection::class.java).toJson(testPoiCollection)
@@ -255,18 +157,8 @@ class VisuallyCheckOutput {
         // The tile that I've been using above doesn't have any paths mapped in it
         // so I'm swapping to a different tile.
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        // Get the data for the entire tile
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.FEATURE_COLLECTION_WITH_ENTRANCES)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            32295,
-            21787,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
-        )
-        // get the paths Feature Collection.
-        val gridState = GridState.createFromGeoJson(cleanTileFeatureCollection)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+
         val testPathCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
 
         val paths = moshi.adapter(FeatureCollection::class.java).toJson(testPathCollection)
@@ -277,20 +169,7 @@ class VisuallyCheckOutput {
     @Test
     fun entrancesFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        // Get the data for the entire tile
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.FEATURE_COLLECTION_WITH_ENTRANCES)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            32295,
-            21787,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
-        )
-        // get the entrances Feature Collection.
-        // Entrances are weird as it is a single Feature made up of MultiPoints and osm_ids
-        // I'm assuming osm_ids correlate to the polygon which has the entrance but haven't checked this yet
-        val gridState = GridState.createFromGeoJson(cleanTileFeatureCollection)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
         val testEntrancesCollection = gridState.getFeatureCollection(TreeId.ENTRANCES)
 
         val entrances = moshi.adapter(FeatureCollection::class.java).toJson(testEntrancesCollection)
@@ -301,18 +180,7 @@ class VisuallyCheckOutput {
     @Test
     fun poiSuperCategory(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        // Get the data for the entire tile
-        val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.FEATURE_COLLECTION_WITH_ENTRANCES)
-        // clean it
-        val cleanTileFeatureCollection = cleanTileGeoJSON(
-            32295,
-            21787,
-            16,
-            moshi.adapter(FeatureCollection::class.java).toJson(entireFeatureCollectionTest)
-        )
-        // get the poi Feature Collection.
-        val gridState = GridState.createFromGeoJson(cleanTileFeatureCollection)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select super category
@@ -337,12 +205,12 @@ class VisuallyCheckOutput {
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
         val userGeometry = UserGeometry(
-            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            longAshtonRoadTestLocation,
             90.0,
             50.0
         )
 
-        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.INTERSECTION_STRAIGHT_AHEAD_FEATURE_COLLECTION)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // ********* This is the only line that is useful. The rest of it is
@@ -385,12 +253,12 @@ class VisuallyCheckOutput {
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
         val userGeometry = UserGeometry(
-            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            longAshtonRoadTestLocation,
             90.0,
             50.0
         )
 
-        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.INTERSECTION_STRAIGHT_AHEAD_FEATURE_COLLECTION)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // ********* This is the only line that is useful. The rest of it is
@@ -433,12 +301,12 @@ class VisuallyCheckOutput {
         // Fake device location and pretend the device is pointing East.
         // -2.6577997643930757, 51.43041390383118
         val userGeometry = UserGeometry(
-            LngLatAlt(-2.6573400576040456, 51.430456817236575),
+            longAshtonRoadTestLocation,
             90.0,
             50.0
         )
 
-        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.INTERSECTION_STRAIGHT_AHEAD_FEATURE_COLLECTION)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // ********* This is the only line that is useful. The rest of it is

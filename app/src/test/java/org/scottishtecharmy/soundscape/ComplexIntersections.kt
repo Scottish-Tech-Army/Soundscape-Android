@@ -2,13 +2,10 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
 import org.junit.Test
-import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONDataComplexIntersection
-import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONDataComplexIntersection1
 
 class ComplexIntersections {
 
@@ -20,9 +17,10 @@ class ComplexIntersections {
         // multiple gd_intersections detected in the FoV so we need to determine which ones to ignore
         // and which ones are useful to call out to the user
         // Fake location, heading and Field of View for testing
-        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.COMPLEX_INTERSECTION1_JSON)
+        val location = LngLatAlt(-2.697291022799874,51.44378095087524)
+        val gridState = getGridStateForLocation(location, 1)
         val userGeometry = UserGeometry(
-            LngLatAlt(-2.697291022799874,51.44378095087524),
+            location,
             320.0,
             50.0,
             nearestRoad = gridState.getNearestFeature(TreeId.ROADS, LngLatAlt(-2.697291022799874,51.44378095087524)))
@@ -58,12 +56,13 @@ class ComplexIntersections {
         // and which ones are useful to call out to the user
         // https://geojson.io/#map=18.65/51.4405486/-2.6851813
         // Fake location, heading and Field of View for testing
-        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection.COMPLEX_INTERSECTION_JSON)
+        val location = LngLatAlt(-2.6854420947740323, 51.44036284885249)
+        val gridState = getGridStateForLocation(location, 1)
         val userGeometry = UserGeometry(
-            LngLatAlt(-2.6854420947740323, 51.44036284885249),
+            location,
             45.0,
             50.0,
-            nearestRoad = gridState.getNearestFeature(TreeId.ROADS, LngLatAlt(-2.697291022799874,51.44378095087524))
+            nearestRoad = gridState.getNearestFeature(TreeId.ROADS, location)
         )
 
         val roadRelativeDirections = getRoadsDescriptionFromFov(
