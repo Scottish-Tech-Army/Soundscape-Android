@@ -105,14 +105,14 @@ class AutoCallout(
         poiCalloutHistory.trim(userGeometry)
 
         // Get nearby markers
-        val markers = gridState.markerTree?.generateNearestFeatureCollection(
+        val markers = gridState.markerTree?.getNearestCollection(
             userGeometry.location,
             userGeometry.getSearchDistance(),
             5
         )
 
         // Get a list of the 10 nearest POI that are within search range, adding in the markers
-        val pois = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES).generateNearestFeatureCollection(
+        val pois = gridState.getFeatureTree(TreeId.SELECTED_SUPER_CATEGORIES).getNearestCollection(
             userGeometry.location,
             userGeometry.getSearchDistance(),
             10,

@@ -203,7 +203,33 @@ class TileGrid(newTiles : MutableList<Tile>,
         }
 
         /**
-         * Given a location and a grid size it creates either a 2x2 or a 3x3 grid of tiles
+         * This is only for use by tests as we need mode than just the tile that the location is
+         * within, we need the adjacent tile so that we can move seamlessly into it.
+         */
+        private fun get1x1TileGrid(
+            currentLocation: LngLatAlt
+        ) : TileGrid {
+
+            // Get tile that contains current location
+            val tileXY = getXYTile(currentLocation, ZOOM_LEVEL)
+            val southWest = pixelXYToLatLon((tileXY.first * 256).toDouble(), (tileXY.second * 256).toDouble(), ZOOM_LEVEL)
+            val northEast = pixelXYToLatLon(((tileXY.first + 1) * 256).toDouble(), ((tileXY.second + 1) * 256).toDouble(), ZOOM_LEVEL)
+            val centralBoundingBox = BoundingBox(
+                southWest.second,
+                southWest.first,
+                northEast.second,
+                northEast.first)
+
+            val tiles: MutableList<Tile> = mutableListOf()
+            val surroundingTile = Tile("", tileXY.first, tileXY.second, ZOOM_LEVEL)
+            surroundingTile.quadkey = getQuadKey(tileXY.first, tileXY.second, ZOOM_LEVEL)
+            tiles.add(surroundingTile)
+
+            return TileGrid(tiles, centralBoundingBox, centralBoundingBox)
+        }
+
+        /**
+         * Given a location and a grid size it creates either a 1x1, 2x2 or a 3x3 grid of tiles
          * (VectorTiles) to cover that location.
          * @param currentLocation
          * The current location of the device.
@@ -216,6 +242,7 @@ class TileGrid(newTiles : MutableList<Tile>,
             gridSize : Int = GRID_SIZE
         ): TileGrid {
             when(gridSize) {
+                1 -> return get1x1TileGrid(currentLocation)
                 2 -> return get2x2TileGrid(currentLocation)
                 3 -> return get3x3TileGrid(currentLocation)
             }

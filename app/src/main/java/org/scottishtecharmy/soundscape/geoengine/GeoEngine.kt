@@ -6,8 +6,6 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.location.Location
 import android.util.Log
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
 import kotlinx.coroutines.CoroutineScope
@@ -499,7 +497,7 @@ class GeoEngine {
                             val triangle = getTriangleForDirection(individualRelativePolygons, dir)
                             // Get the 4 nearest features in this direction. This allows us to de-duplicate
                             // across the other directions.
-                            val featureCollection = featureTree.generateNearestFeatureCollectionWithinTriangle(triangle, 4)
+                            val featureCollection = featureTree.getNearestCollectionWithinTriangle(triangle, 4)
                             if (featureCollection.features.isNotEmpty()) {
                                 // We found features in this direction, find the nearest one which
                                 // we are not already calling out in another direction.
@@ -574,7 +572,7 @@ class GeoEngine {
                     val triangle = getFovTriangle(userGeometry)
                     val featureTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
 
-                    val featuresAhead = featureTree.generateNearestFeatureCollectionWithinTriangle(triangle, 5)
+                    val featuresAhead = featureTree.getNearestCollectionWithinTriangle(triangle, 5)
                     val list: MutableList<PositionedString> = mutableListOf()
                     for (feature in featuresAhead) {
 
@@ -629,7 +627,7 @@ class GeoEngine {
                     val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
 
                     // Simply get 4 nearest markers
-                    val nearestMarkers = gridState.markerTree?.generateNearestFeatureCollection(
+                    val nearestMarkers = gridState.markerTree?.getNearestCollection(
                         userGeometry.location,
                         2000.0,
                         4

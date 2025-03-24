@@ -5,13 +5,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.cleanTileGeoJSON
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.getPolygonOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
@@ -341,20 +339,18 @@ class VisuallyCheckOutput {
         )
 
         val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testIntersectionsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // ********* This is the only line that is useful. The rest of it is
         // ********* outputting the triangle that represents the FoV
         //
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
         // Weston Road to Long Ashton Road)
-        val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-            userGeometry,
-            FeatureTree(testIntersectionsCollectionFromTileFeatureCollection)
-        )
+        val triangle = getFovTriangle(userGeometry)
+        val fovIntersectionsFeatureCollection = intersectionTree.getAllWithinTriangle(triangle)
+
         // *************************************************************
 
-        val triangle = getFovTriangle(userGeometry)
         val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
@@ -391,20 +387,17 @@ class VisuallyCheckOutput {
         )
 
         val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+        val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // ********* This is the only line that is useful. The rest of it is
         // ********* outputting the triangle that represents the FoV
         //
         // Create a FOV triangle to pick up the roads in the FoV roads.
         // In this case Weston Road and Long Ashton Road
-        val fovRoadsFeatureCollection = getFovFeatureCollection(
-            userGeometry,
-            FeatureTree(testRoadsCollectionFromTileFeatureCollection)
-        )
-        // *************************************************************
-
         val triangle = getFovTriangle(userGeometry)
+        val fovRoadsFeatureCollection = roadsTree.getAllWithinTriangle(triangle)
+
+        // *************************************************************
         val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {
@@ -442,20 +435,18 @@ class VisuallyCheckOutput {
         )
 
         val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
-        val testPoiCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.POIS)
+        val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // ********* This is the only line that is useful. The rest of it is
         // ********* outputting the triangle that represents the FoV
         //
         // Create a FOV triangle to pick up the poi in the FoV.
         // In this case a couple of buildings
-        val fovPoiFeatureCollection = getFovFeatureCollection(
-            userGeometry,
-            FeatureTree(testPoiCollectionFromTileFeatureCollection)
-        )
+        val triangle = getFovTriangle(userGeometry)
+        val fovPoiFeatureCollection = poiTree.getAllWithinTriangle(triangle)
+
         // *************************************************************
 
-        val triangle = getFovTriangle(userGeometry)
         val polygonTriangleFOV = createPolygonFromTriangle(triangle)
 
         val featureFOVTriangle = Feature().also {

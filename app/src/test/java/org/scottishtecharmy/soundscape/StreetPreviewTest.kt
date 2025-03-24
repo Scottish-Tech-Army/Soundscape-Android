@@ -15,7 +15,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
@@ -75,10 +74,10 @@ class StreetPreviewTest {
         val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.streetPreviewTest)
 
         // Pull out the data layers that we would need for Ahead Of Me
-        val roadFeatureCollectionTest = gridState.getFeatureCollection(TreeId.ROADS)
-        val intersectionsFeatureCollectionTest = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
-        val crossingsFeatureCollectionTest = gridState.getFeatureCollection(TreeId.CROSSINGS)
-        val busStopsGridFeatureCollection = gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
+        val roadTree = gridState.getFeatureTree(TreeId.ROADS)
+        val intersectionsTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
+        val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)
+        val busStopsTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
 
         val nearestRoadTest = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
             LngLatAlt(-2.693002695425122,51.43938442591545)
@@ -110,25 +109,14 @@ class StreetPreviewTest {
                     50.0
                 )
 
-                if (roadFeatureCollectionTest.features.size > 0) {
-                    val fovRoadsFeatureCollection = getFovFeatureCollection(
-                        userGeometry,
-                        FeatureTree(roadFeatureCollectionTest)
-                    )
-                    val fovIntersectionsFeatureCollection = getFovFeatureCollection(
-                        userGeometry,
-                        FeatureTree(intersectionsFeatureCollectionTest)
-                    )
-                    val fovCrossingsFeatureCollection = getFovFeatureCollection(
-                        userGeometry,
-                        FeatureTree(crossingsFeatureCollectionTest)
-                    )
-                    val fovBusStopsFeatureCollection = getFovFeatureCollection(
-                        userGeometry,
-                        FeatureTree(busStopsGridFeatureCollection)
-                    )
+                val triangle = getFovTriangle(userGeometry)
+                if (roadTree.tree!!.size() > 0) {
+                    val fovRoadsFeatureCollection = roadTree.getAllWithinTriangle(triangle)
+                    val fovIntersectionsFeatureCollection = intersectionsTree.getAllWithinTriangle(triangle)
+                    val fovCrossingsFeatureCollection = crossingsTree.getAllWithinTriangle(triangle)
+                    val fovBusStopsFeatureCollection = busStopsTree.getAllWithinTriangle(triangle)
 
-                    if (fovRoadsFeatureCollection.features.size > 0) {
+                    if (fovRoadsFeatureCollection.features.isNotEmpty()) {
                         val nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
                             userGeometry.location
                         )
@@ -144,7 +132,7 @@ class StreetPreviewTest {
                             )
                         }
 
-                        if (fovIntersectionsFeatureCollection.features.size > 0) {
+                        if (fovIntersectionsFeatureCollection.features.isNotEmpty()) {
 
                             val intersectionsSortedByDistance = sortedByDistanceTo(
                                 userGeometry.location,
@@ -163,7 +151,7 @@ class StreetPreviewTest {
                                     intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[y])
                                 }
                             }
-                            if (intersectionsNeedsFurtherCheckingFC.features.size > 0) {
+                            if (intersectionsNeedsFurtherCheckingFC.features.isNotEmpty()) {
                                 // Approach 1: find the intersection feature with the most osm_ids and use that?
                                 val featureWithMostOsmIds: Feature? = intersectionsNeedsFurtherCheckingFC.features.maxByOrNull { intersectionFeature ->
                                     (intersectionFeature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
@@ -296,24 +284,6 @@ class StreetPreviewTest {
         }
         featureFOVTriangle.geometry = polygonTriangleFOV
         return featureFOVTriangle
-    }
-
-    // Putting the two functions below as the real app code uses context to get locale and I don't want
-    // to use instrumented tests to get to context as they run quite slowly.
-    fun getCompassLabelFacingDirectionAlong(degrees: Int, placeholder: String): String {
-        val directionString: String = when (degrees) {
-            in 338..360, in 0..22 -> "Facing north along $placeholder"
-            in 23..67 -> "Facing northeast along $placeholder"
-            in 68..112 -> "Facing east along $placeholder"
-            in 113..157 -> "Facing southeast along $placeholder"
-            in 158..202 -> "Facing south along $placeholder"
-            in 203..247 -> "Facing southwest along $placeholder"
-            in 248..292 -> "Facing west along $placeholder"
-            in 293..337 -> "Facing northwest along $placeholder"
-            else -> 0.toString()
-        }
-
-        return directionString
     }
 
     private fun getRelativeDirectionLabelStreetPreview(relativeDirection: Int): String {

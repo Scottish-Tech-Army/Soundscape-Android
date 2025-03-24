@@ -11,7 +11,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 
 class CrossingTest {
 
@@ -19,14 +19,12 @@ class CrossingTest {
     fun simpleCrossingTest(){
         val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
 
-        // Get all the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
-        // extract crossings for tile
-        val crossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
-        Assert.assertEquals(2, crossingsFeatureCollection.features.size)
+        val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
+        val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)
+        Assert.assertEquals(2, crossingsTree.tree!!.size())
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val crossingString = moshi.adapter(FeatureCollection::class.java).toJson(crossingsFeatureCollection)
+        val crossingString = moshi.adapter(FeatureCollection::class.java).toJson(crossingsTree.getAllCollection())
         println("Crossings in tile: $crossingString")
 
         // usual fake our device location and heading
@@ -40,10 +38,8 @@ class CrossingTest {
 
         // We can reuse the intersection code as crossings are GeoJSON Points just like Intersections
         //  but there will be more complex crossings so I'll need to check some other tiles
-        val fovCrossingFeatureCollection = getFovFeatureCollection(
-            userGeometry,
-            FeatureTree(crossingsFeatureCollection)
-        )
+        val triangle = getFovTriangle(userGeometry)
+        val fovCrossingFeatureCollection = crossingsTree.getAllWithinTriangle(triangle)
         Assert.assertEquals(1, fovCrossingFeatureCollection.features.size)
 
         val nearestCrossing = FeatureTree(fovCrossingFeatureCollection).getNearestFeature(userGeometry.location)
@@ -51,7 +47,7 @@ class CrossingTest {
         val distanceToCrossing = userGeometry.location.distance(crossingLocation.coordinates)
 
         // Confirm which road the crossing is on
-        val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(crossingLocation.coordinates)
+        val nearestRoadToCrossing = roadsTree.getNearestFeature(crossingLocation.coordinates)
 
         Assert.assertEquals(24.58, distanceToCrossing, 0.1)
         Assert.assertEquals("Belmont Drive", nearestRoadToCrossing!!.properties?.get("name"))

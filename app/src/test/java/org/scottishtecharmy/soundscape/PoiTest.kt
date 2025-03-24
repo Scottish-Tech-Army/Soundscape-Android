@@ -116,7 +116,7 @@ class PoiTest {
         val featuresToDraw = FeatureCollection()
         for((index, polygon) in polygons.features.withIndex()) {
 
-            val poiFeatures = poi.generateNearestFeatureCollectionWithinTriangle(
+            val poiFeatures = poi.getNearestCollectionWithinTriangle(
                 getTriangleForDirection(polygons, index),
                 10
             )
@@ -161,7 +161,7 @@ class PoiTest {
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val featuresToDraw = FeatureCollection()
-        val features = poi.generateNearbyFeatureCollection(userGeometry.location, 50.0)
+        val features = poi.getNearbyCollection(userGeometry.location, 50.0)
         featuresToDraw.plusAssign(features)
         assert(features.features.size == 39)
 
@@ -190,15 +190,15 @@ class PoiTest {
         )
         val gridState = getGridStateForLocation(userGeometry.location)
         val poi = gridState.getFeatureTree(TreeId.POIS)
-        val features = poi.generateFeatureCollection()
+        val features = poi.getAllCollection()
 
-        val info = gridState.getFeatureTree(TreeId.INFORMATION_POIS).generateFeatureCollection()
-        val objects = gridState.getFeatureTree(TreeId.OBJECT_POIS).generateFeatureCollection()
-        val places = gridState.getFeatureTree(TreeId.PLACE_POIS).generateFeatureCollection()
-        val landmarks = gridState.getFeatureTree(TreeId.LANDMARK_POIS).generateFeatureCollection()
-        val mobility = gridState.getFeatureTree(TreeId.MOBILITY_POIS).generateFeatureCollection()
-        val safety = gridState.getFeatureTree(TreeId.SAFETY_POIS).generateFeatureCollection()
-        val entrances = gridState.getFeatureTree(TreeId.ENTRANCES).generateFeatureCollection()
+        val info = gridState.getFeatureTree(TreeId.INFORMATION_POIS).getAllCollection()
+        val objects = gridState.getFeatureTree(TreeId.OBJECT_POIS).getAllCollection()
+        val places = gridState.getFeatureTree(TreeId.PLACE_POIS).getAllCollection()
+        val landmarks = gridState.getFeatureTree(TreeId.LANDMARK_POIS).getAllCollection()
+        val mobility = gridState.getFeatureTree(TreeId.MOBILITY_POIS).getAllCollection()
+        val safety = gridState.getFeatureTree(TreeId.SAFETY_POIS).getAllCollection()
+        val entrances = gridState.getFeatureTree(TreeId.ENTRANCES).getAllCollection()
 
         // Make a FeatureCollection containing all of the super category Features. If the
         // classification hasn't missed anything, then this should include all the POIs.

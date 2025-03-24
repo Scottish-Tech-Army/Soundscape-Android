@@ -52,7 +52,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
     // Find roads within FOV
-    val fovRoads = roadTree.generateFeatureCollectionWithinTriangle(triangle)
+    val fovRoads = roadTree.getAllWithinTriangle(triangle)
     if(fovRoads.features.isEmpty()) return RoadsDescription(nearestRoad = userGeometry.nearestRoad)
 
     // Two roads that we are interested in:
@@ -64,7 +64,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val nearestRoadInFoV = roadTree.getNearestFeatureWithinTriangle(triangle)
 
     // Find intersections within FOV
-    val fovIntersections = intersectionTree.generateFeatureCollectionWithinTriangle(triangle)
+    val fovIntersections = intersectionTree.getAllWithinTriangle(triangle)
     if(fovIntersections.features.isEmpty()) return RoadsDescription(nearestRoad, userGeometry)
 
     // Sort the FOV intersections by distance
