@@ -1,7 +1,7 @@
-package org.scottishtecharmy.soundscape
+package org.scottishtecharmy.soundscape.geojsontestdata
 
 object GeoJSONMarkers {
-    val markersFeatureCollection = "{\n" +
+    const val MARKERS_FEATURE_COLLECTION = "{\n" +
             "  \"type\": \"FeatureCollection\",\n" +
             "  \"features\": [\n" +
             "    {\n" +

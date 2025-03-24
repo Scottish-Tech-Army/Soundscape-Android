@@ -22,6 +22,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPoly
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geoengine.utils.traceLineString
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONStreetPreviewTest
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonDataReal
 
 class StreetPreviewTest {
 
@@ -29,7 +31,7 @@ class StreetPreviewTest {
     fun streetPreviewTest1() {
         // Start of PoC to track along a road from start to finish and generate field of view triangles
         // as the device moves along the road.
-        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val gridState = createFromGeoJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
         val nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(
             LngLatAlt(-2.693002695425122,51.43938442591545)
         )
@@ -71,7 +73,7 @@ class StreetPreviewTest {
         // Start of PoC to track along a road from start to finish and generate field of view triangles
         // as the device moves along the road and print the Callouts to the console
 
-        val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.streetPreviewTest)
+        val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.STREET_PREVIEW_TEST)
 
         // Pull out the data layers that we would need for Ahead Of Me
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)

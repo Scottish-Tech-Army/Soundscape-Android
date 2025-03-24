@@ -23,6 +23,10 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONData3x3gridnoduplicates
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonDataReal
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonEntrancesEtcData
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonIntersectionStraight
 
 // Functions to output GeoJSON strings that can be put into the very useful Geojson.io
 // for a visual check. The GeoJSON parser that they use is also handy to make sure output
@@ -146,7 +150,7 @@ class VisuallyCheckOutput {
             newFeatureCollection.addFeature(boundingBoxFeature)
         }
         val gridFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONData3x3gridnoduplicates.tileGrid)
+            .fromJson(GeoJSONData3x3gridnoduplicates.TILE_GRID)
         for (feature in gridFeatureCollectionTest!!.features){
             newFeatureCollection.addFeature(feature)
         }
@@ -162,7 +166,7 @@ class VisuallyCheckOutput {
         val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val featureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
@@ -181,7 +185,7 @@ class VisuallyCheckOutput {
         val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
@@ -205,7 +209,7 @@ class VisuallyCheckOutput {
         val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
@@ -229,7 +233,7 @@ class VisuallyCheckOutput {
         val tileXY = getXYTile(LngLatAlt(51.43860066718254, -2.69439697265625), 16 )
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+            .fromJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             tileXY.first,
@@ -253,7 +257,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+            .fromJson(GeoJsonEntrancesEtcData.FEATURE_COLLECTION_WITH_ENTRANCES)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             32295,
@@ -275,7 +279,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+            .fromJson(GeoJsonEntrancesEtcData.FEATURE_COLLECTION_WITH_ENTRANCES)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             32295,
@@ -299,7 +303,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // Get the data for the entire tile
         val entireFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonEntrancesEtcData.featureCollectionWithEntrances)
+            .fromJson(GeoJsonEntrancesEtcData.FEATURE_COLLECTION_WITH_ENTRANCES)
         // clean it
         val cleanTileFeatureCollection = cleanTileGeoJSON(
             32295,
@@ -338,7 +342,7 @@ class VisuallyCheckOutput {
             50.0
         )
 
-        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.INTERSECTION_STRAIGHT_AHEAD_FEATURE_COLLECTION)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // ********* This is the only line that is useful. The rest of it is
@@ -386,7 +390,7 @@ class VisuallyCheckOutput {
             50.0
         )
 
-        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.INTERSECTION_STRAIGHT_AHEAD_FEATURE_COLLECTION)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // ********* This is the only line that is useful. The rest of it is
@@ -434,7 +438,7 @@ class VisuallyCheckOutput {
             50.0
         )
 
-        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.intersectionStraightAheadFeatureCollection)
+        val gridState = GridState.createFromGeoJson(GeoJsonIntersectionStraight.INTERSECTION_STRAIGHT_AHEAD_FEATURE_COLLECTION)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // ********* This is the only line that is useful. The rest of it is

@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraWithLoops
 import org.scottishtecharmy.soundscape.geoengine.utils.featureCollectionToGraphWithNodeMap
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONStreetPreviewTest
 
 
 class DijkstraTest {
@@ -127,7 +128,7 @@ class DijkstraTest {
     @Test
     fun testDijkstra2(){
         // Get the data for the entire tile
-        val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.streetPreviewTest)
+        val gridState = createFromGeoJson(GeoJSONStreetPreviewTest.STREET_PREVIEW_TEST)
         val startLocation = LngLatAlt( -2.695517313268283,
             51.44082881061331)
         val endLocation = LngLatAlt(-2.6930021169370093,51.43942502273583)
