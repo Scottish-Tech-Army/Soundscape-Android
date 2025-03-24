@@ -24,7 +24,6 @@ import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import kotlin.math.abs
-import kotlin.math.absoluteValue
 
 
 private fun vectorTileToGeoJsonFromFile(
@@ -71,21 +70,14 @@ private fun vectorTileToGeoJsonFromFile(
 
 fun getGridStateForLocation(
     location: LngLatAlt,
-    soundscapeBackend: Boolean = false
+    gridSize: Int = 2
 ): GridState {
 
-    var gridSize = 2
-    if (soundscapeBackend) {
-        gridSize = 3
-    }
     // Get a grid around the location
     val grid = getTileGrid(location, gridSize)
     for (tile in grid.tiles) {
         println("Need tile ${tile.tileX}x${tile.tileY}")
     }
-
-    // This isn't implemented for the soundscape-backend yet, so assert to make that clear
-    assert(!soundscapeBackend)
 
     // Read in the files
     val joiner = InterpolatedPointsJoiner()
@@ -274,7 +266,7 @@ class MvtTileTest {
         //tree.tree!!.visualize(4096,4096).save("tree.png");
 
         start = System.currentTimeMillis()
-        val distanceFc = tree.generateNearbyFeatureCollection(LngLatAlt(-4.3058322, 55.9473305), 20.0)
+        val distanceFc = tree.getNearbyCollection(LngLatAlt(-4.3058322, 55.9473305), 20.0)
         end = System.currentTimeMillis()
         println("Search (${end-start}ms):")
         for(feature in distanceFc) {
@@ -385,7 +377,7 @@ class MvtTileTest {
 
                 val location = LngLatAlt(longitude, latitude)
                 val sensedNearestRoads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-                    .generateNearestFeatureCollection(location, 20.0, 10)
+                    .getNearestCollection(location, 20.0, 10)
 
                 var bestIndex = -1
                 var bestFitness = 0.0

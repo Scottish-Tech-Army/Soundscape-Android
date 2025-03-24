@@ -14,14 +14,12 @@ import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.network.TileClient
 import kotlin.time.TimeSource
 
@@ -224,15 +222,15 @@ open class GridState {
                                       maxCount : Int = 0): FeatureCollection {
         checkContext()
         val result = if(distance == Double.POSITIVE_INFINITY) {
-            featureTrees[id.id].generateFeatureCollection()
+            featureTrees[id.id].getAllCollection()
         } else {
             if(maxCount == 0) {
-                featureTrees[id.id].generateNearbyFeatureCollection(location, distance)
+                featureTrees[id.id].getNearbyCollection(location, distance)
             } else {
                 if (maxCount == 0) {
-                    featureTrees[id.id].generateNearbyFeatureCollection(location, distance)
+                    featureTrees[id.id].getNearbyCollection(location, distance)
                 } else {
-                    featureTrees[id.id].generateNearestFeatureCollection(location, distance, maxCount)
+                    featureTrees[id.id].getNearestCollection(location, distance, maxCount)
                 }
             }
         }
@@ -245,47 +243,6 @@ open class GridState {
     ): Feature? {
         checkContext()
         return featureTrees[id.id].getNearestFeature(location, distance)
-    }
-
-    data class FeatureByRoad(val feature: Feature,
-                             val road: Feature,
-                             val distance: Double = Double.POSITIVE_INFINITY)
-    fun getNearestFeatureOnRoadInFov(id: TreeId,
-                                     triangle: Triangle
-    ): FeatureByRoad? {
-
-        checkContext()
-        val nearestFeature = featureTrees[id.id].getNearestFeatureWithinTriangle(triangle)
-        if (nearestFeature != null) {
-            val featureLocation = nearestFeature.geometry as Point
-
-            // Confirm which road the feature is on
-            val nearestRoad = featureTrees[TreeId.ROADS_AND_PATHS.id].getNearestFeature(
-                featureLocation.coordinates
-            )
-            if(nearestRoad != null) {
-                // We found a feature and the road that it is on
-                val distance = triangle.origin.distance(featureLocation.coordinates)
-                return FeatureByRoad(nearestFeature, nearestRoad, distance)
-            }
-        }
-
-        return null
-    }
-
-    /**
-     * Parses out roads, paths, intersections, entrances, pois, bus stops and crossings from a tile string.
-     * @return a TileData object with the string parsed into separate strings.
-     */
-
-    internal fun processTileString(tileString: String): Array<FeatureCollection> {
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val tileFeatureCollection = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(tileString)
-        if(tileFeatureCollection == null)
-            return emptyArray()
-
-        return processTileFeatureCollection(tileFeatureCollection)
     }
 
     internal fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Array<FeatureCollection> {

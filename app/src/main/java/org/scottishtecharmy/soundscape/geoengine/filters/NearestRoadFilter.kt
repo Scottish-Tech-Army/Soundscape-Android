@@ -50,7 +50,7 @@ class NearestRoadFilter {
         // Find all roads within 20m, and then get a fitness value based on how far the current
         // location is from a road, and how closely aligned the direction of movement is with it.
         val sensedNearestRoads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-            .generateNearestFeatureCollection(location, 20.0, 10)
+            .getNearestCollection(location, 20.0, 10)
         var bestFitness = 0.0
         var bestIndex = -1
         if(sensedNearestRoads.features.isNotEmpty()) {

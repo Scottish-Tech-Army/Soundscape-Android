@@ -60,7 +60,7 @@ class MvtPerformanceTest {
         println("Tree size: ${tree.tree!!.size()} - ${end-start}ms")
 
         start = System.currentTimeMillis()
-        val distanceResults = Iterables.toList(tree.generateNearbyFeatureCollection(LngLatAlt(-4.316914, 55.941861), 10.0))
+        val distanceResults = Iterables.toList(tree.getNearbyCollection(LngLatAlt(-4.316914, 55.941861), 10.0))
         end = System.currentTimeMillis()
         println("Search result in ${end-start}ms")
         for(dResult in distanceResults) {

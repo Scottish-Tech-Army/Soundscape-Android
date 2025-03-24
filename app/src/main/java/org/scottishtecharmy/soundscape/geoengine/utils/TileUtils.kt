@@ -278,32 +278,6 @@ fun getFovTriangle(userGeometry: UserGeometry) : Triangle {
 }
 
 /**
- * Return a Feature Collection that contains the Features within the "field of view" triangle.
- * @param userGeometry
- * Location, heading an FOV distance
- * @param featureTree
- * The feature tree that we want to filter.
- * @return A Feature Collection that contains the Features in the FOV triangle.
- */
-fun getFovFeatureCollection(
-    userGeometry: UserGeometry,
-    featureTree: FeatureTree
-): FeatureCollection {
-
-    val triangle = getFovTriangle(userGeometry)
-    return featureTree.generateFeatureCollectionWithinTriangle(triangle)
-}
-
-fun getNearestFovFeature(
-    userGeometry: UserGeometry,
-    featureTree: FeatureTree
-): Feature? {
-
-    val triangle = getFovTriangle(userGeometry)
-    return featureTree.getNearestFeatureWithinTriangle(triangle)
-}
-
-/**
  * Get the road names/ref/road type that make up the intersection. Intersection objects only
  * contain "osm_ids" so we need to hook the osm_ids up with the information from the roads
  * feature collection
