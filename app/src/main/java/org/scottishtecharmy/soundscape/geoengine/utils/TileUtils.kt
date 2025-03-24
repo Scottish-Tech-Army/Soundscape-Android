@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import android.util.Log
 import org.scottishtecharmy.soundscape.dto.IntersectionRelativeDirections
 import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -15,6 +16,9 @@ import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.Polygon as JtsPolygon
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.LinearRing
+import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.TAG
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
@@ -28,6 +32,7 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.sinh
 import kotlin.math.tan
+import kotlin.time.TimeSource
 
 
 /**
@@ -2109,6 +2114,170 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
         )
 
         else -> mutableListOf("Unknown category")
+    }
+}
+
+
+fun addSidewalk(currentRoad: Feature,
+                start: LngLatAlt,
+                end: LngLatAlt,
+                roadTree: FeatureTree) : Boolean {
+
+    if(currentRoad.properties?.get("footway") == "sidewalk") {
+        val startRoads = roadTree.generateNearestFeatureCollection(
+            location = start,
+            distance = 15.0,
+            maxCount = 10
+        )
+        val endRoads = roadTree.generateNearestFeatureCollection(
+            location = end,
+            distance = 15.0,
+            maxCount = 10
+        )
+        // Find common road that's near the start and the end of our road
+        var name: Any? = null
+        var found = false
+        for(road in startRoads) {
+            name = road.properties?.get("name")
+            if(name != null) {
+                for (road2 in endRoads) {
+                    if (road2.properties?.get("name") == name) {
+                        found = true
+                        break
+                    }
+                }
+                if(found)
+                    break
+            }
+        }
+
+        if (found and (name != null)) {
+            currentRoad.properties?.set("name", "Pavement next to $name")
+            return true
+        } else {
+            currentRoad.properties?.set("name", "Pavement")
+            return true
+        }
+    }
+    return false
+}
+
+
+fun addRoadDestination(currentRoad: Feature,
+                       location: LngLatAlt,
+                       start: Boolean,
+                       roadTree: FeatureTree) : Boolean {
+    val roads = roadTree.generateNearestFeatureCollection(
+        location = location,
+        distance = 1.0,
+        maxCount = 10
+    )
+    for (road in roads) {
+        val name = road.properties?.get("name")
+        if (name != null) {
+            if(start)
+                currentRoad.properties?.set("destination:backward", name)
+            else
+                currentRoad.properties?.set("destination:forward", name)
+
+            return true
+        }
+    }
+    return false
+}
+
+fun addDeadEnd(currentRoad: Feature,
+               location: LngLatAlt,
+               start: Boolean,
+               roadTree: FeatureTree) : Boolean {
+    val roads = roadTree.generateNearestFeatureCollection(
+        location = location,
+        distance = 1.0,
+        maxCount = 10
+    )
+    if(roads.features.size == 1) {
+        if(start)
+            currentRoad.properties?.set("destination:backward", "Dead end")
+        else
+            currentRoad.properties?.set("destination:forward", "Dead end")
+
+        return true
+    }
+    return false
+}
+
+fun addPoiDestination(currentRoad: Feature,
+                      location: LngLatAlt,
+                      start: Boolean,
+                      poiTree: FeatureTree,
+                      safetyTree: FeatureTree) : Boolean {
+    var poi = poiTree.getNearestFeature(
+        location = location,
+        distance = 20.0
+    )
+    if(poi == null) {
+        // See if it ends at a car park
+        poi = safetyTree.getContainingPolygons(location).features.firstOrNull()
+    }
+    val name = poi?.properties?.get("name")
+    if (name != null) {
+        if(start)
+            currentRoad.properties?.set("destination:backward", name)
+        else
+            currentRoad.properties?.set("destination:forward", name)
+
+        return true
+    }
+    return false
+}
+
+fun confectNamesForRoad(road: Feature, gridState: GridState) {
+
+    val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+    val poiTree = gridState.featureTrees[TreeId.LANDMARK_POIS.id]
+    val safetyTree = gridState.featureTrees[TreeId.SAFETY_POIS.id]
+
+    if (road.properties?.get("name") == null) {
+
+        val timeSource = TimeSource.Monotonic
+        val confectionStart = timeSource.markNow()
+
+        // Find the start and end of the road. If we can extend those to a further
+        // intersection, then do. Whilst extending, we should note steps any steps or
+        // brunnels e.g. Path via steps to Mugdock Road.
+        val line = road.geometry as LineString
+        val start = line.coordinates.first()
+        val end = line.coordinates.last()
+
+        if (addSidewalk(road, start, end, roadTree)) {
+            return
+        }
+        // Name the feature after its class
+        road.properties?.set("name", road.properties?.get("class"))
+
+        // Add in destinations tag if they don't already exist
+        var startDestinationAdded = road.properties?.get("destination:backward") != null
+        var endDestinationAdded = road.properties?.get("destination:backward") != null
+
+        // Does the unnamed way start or end at a named way?
+        if (!startDestinationAdded)
+            addRoadDestination(road, start, true, roadTree)
+        if(!endDestinationAdded)
+            addRoadDestination(road, end, false, roadTree)
+
+        // Does the unnamed way start or end near a POI?
+        if (!startDestinationAdded)
+            startDestinationAdded = addPoiDestination(road, start, true, poiTree, safetyTree)
+        if (!endDestinationAdded)
+            endDestinationAdded = addPoiDestination(road, end, false, poiTree, safetyTree)
+
+        // Does the unnamed way dead-end?
+        if (!startDestinationAdded)
+            startDestinationAdded = addDeadEnd(road, start, true, roadTree)
+        if (!endDestinationAdded)
+            endDestinationAdded = addDeadEnd(road, end, false, roadTree)
+
+        Log.e(TAG, "Time to confect: ${timeSource.markNow() - confectionStart}")
     }
 }
 

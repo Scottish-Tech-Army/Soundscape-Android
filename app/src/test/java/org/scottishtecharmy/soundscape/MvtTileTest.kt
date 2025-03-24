@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFraction
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
@@ -39,35 +40,7 @@ private fun vectorTileToGeoJsonFromFile(
     val remoteTile = FileInputStream(path + filename)
     val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
 
-    val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
-
-//            // We want to check that all of the coordinates generated are within the buffered
-//            // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.
-//            val nwPoint = getLatLonTileWithOffset(tileX, tileY, 15, -4 / 256.0, -4 / 256.0)
-//            val sePoint = getLatLonTileWithOffset(tileX + 1, tileY + 1, 15, 4 / 256.0, 4 / 256.0)
-//            for (feature in featureCollection) {
-//                var box = BoundingBox()
-//                when (feature.geometry.type) {
-//                    "Point" -> box = getBoundingBoxOfPoint(feature.geometry as Point)
-//                    "MultiPoint" -> box = getBoundingBoxOfMultiPoint(feature.geometry as MultiPoint)
-//                    "LineString" -> box = getBoundingBoxOfLineString(feature.geometry as LineString)
-//                    "MultiLineString" -> box =
-//                        getBoundingBoxOfMultiLineString(feature.geometry as MultiLineString)
-//
-//                    "Polygon" -> box = getBoundingBoxOfPolygon(feature.geometry as Polygon)
-//                    "MultiPolygon" -> box =
-//                        getBoundingBoxOfMultiPolygon(feature.geometry as MultiPolygon)
-//
-//                    else -> assert(false)
-//                }
-//                // Check that the feature bounding box is within the tileBoundingBox. This has been
-//                // broken by the addition of POI polygons which go beyond tile boundaries.
-//                assert(box.westLongitude >= nwPoint.longitude) { "${box.westLongitude} vs. ${nwPoint.longitude}" }
-//                assert(box.eastLongitude <= sePoint.longitude) { "${box.eastLongitude} vs. ${sePoint.longitude}" }
-//                assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
-//                assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
-//            }
-    return featureCollection
+    return vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
 }
 
 fun getGridStateForLocation(
@@ -224,8 +197,39 @@ class MvtTileTest {
         assert(fc3.features[0].properties?.get("name") == "Milngavie Fitness & Wellbeing Gym")
         assert(fc3.features[1].properties?.get("class") == "parking")
 
+        val fc4 = tree.getContainingPolygons(LngLatAlt(-4.316641241312027,55.94160200415631))
+        assert(fc4.features.size == 1)
+
         val outputFile = FileOutputStream("2x2.geojson")
         outputFile.write(adapter.toJson(mergedCollection).toByteArray())
+        outputFile.close()
+    }
+
+    /**
+     * This test generates a FeatureCollection containing un-named roads and paths that we managed
+     * to generate our own names for. The priority for naming is:
+     *  1. Sidewalks
+     *  2. Road destinations
+     *  3. POI destinations
+     *  4. Dead ends
+     *
+     * Once we add water and railways, we can consider adding 'along canal' and 'along railway' type
+     * descriptions too.
+     */
+    @Test
+    fun testNameConfection() {
+        val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
+        val gridState = getGridStateForLocation(userGeometry.location)
+
+        var roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        for(road in roads) {
+            confectNamesForRoad(road, gridState)
+        }
+
+        roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val outputFile = FileOutputStream("confected-names.geojson")
+        outputFile.write(adapter.toJson(roads).toByteArray())
         outputFile.close()
     }
 
