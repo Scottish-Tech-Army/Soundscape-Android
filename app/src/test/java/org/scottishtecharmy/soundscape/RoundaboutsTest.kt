@@ -33,6 +33,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONRoundabout
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONRoundaboutMini
 
 class RoundaboutsTest {
     //TODO There are a lot of different types of roundabouts so this might take me a while to work out
@@ -47,7 +49,7 @@ class RoundaboutsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJSONRoundabout.featureCollectionRoundabout)
+        val gridState = createFromGeoJson(GeoJSONRoundabout.FEATURE_COLLECTION_ROUNDABOUT)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionsTree  = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
@@ -164,10 +166,7 @@ class RoundaboutsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJSONRoundaboutMini.featureCollectionRoundaboutMini)
-
-        // Get the roads from the tile
-        val testRoadsCollectionFromTileFeatureCollection = gridState.getFeatureCollection(TreeId.ROADS)
+        val gridState = createFromGeoJson(GeoJSONRoundaboutMini.FEATURE_COLLECTION_MINI_ROUNDABOUT)
 
         // create FOV to pickup the roads
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
@@ -235,7 +234,7 @@ class RoundaboutsTest {
             50.0
         )
 
-        val gridState = createFromGeoJson(GeoJSONRoundabout.featureCollectionRoundabout)
+        val gridState = createFromGeoJson(GeoJSONRoundabout.FEATURE_COLLECTION_ROUNDABOUT)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
@@ -299,7 +298,7 @@ class RoundaboutsTest {
                 }
             }
             // if the circle doesn't exist (which it doesn't in this test)
-            if (roundaboutCircleRoad.features.size == 0) {
+            if (roundaboutCircleRoad.features.isEmpty()) {
 
                 val testNearestRoadBearing = getRoadBearingToIntersection(testNearestIntersection, testNearestRoad, userGeometry.heading()!!)
                 //create a relative directions polygon based on our calculated approx center of the roundabout

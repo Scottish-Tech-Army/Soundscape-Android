@@ -7,6 +7,8 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONDataComplexIntersection
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONDataComplexIntersection1
 
 class ComplexIntersections {
 
@@ -18,7 +20,7 @@ class ComplexIntersections {
         // multiple gd_intersections detected in the FoV so we need to determine which ones to ignore
         // and which ones are useful to call out to the user
         // Fake location, heading and Field of View for testing
-        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
+        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.COMPLEX_INTERSECTION1_JSON)
         val userGeometry = UserGeometry(
             LngLatAlt(-2.697291022799874,51.44378095087524),
             320.0,
@@ -56,7 +58,7 @@ class ComplexIntersections {
         // and which ones are useful to call out to the user
         // https://geojson.io/#map=18.65/51.4405486/-2.6851813
         // Fake location, heading and Field of View for testing
-        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection.complexIntersectionGeoJSON)
+        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection.COMPLEX_INTERSECTION_JSON)
         val userGeometry = UserGeometry(
             LngLatAlt(-2.6854420947740323, 51.44036284885249),
             45.0,

@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONMarkers
 
 class MarkersTest {
 
@@ -22,7 +23,7 @@ class MarkersTest {
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val markersFeatureCollectionTest = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJSONMarkers.markersFeatureCollection)
+            .fromJson(GeoJSONMarkers.MARKERS_FEATURE_COLLECTION)
         val markersTree = FeatureTree(markersFeatureCollectionTest)
 
         // I'm just reusing the Intersection functions here for the markers test

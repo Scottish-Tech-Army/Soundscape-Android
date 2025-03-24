@@ -1,10 +1,11 @@
-package org.scottishtecharmy.soundscape
+package org.scottishtecharmy.soundscape.geojsontestdata
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.*
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.*
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import kotlin.collections.get
 
 class GeoJsonParserTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -12,7 +13,7 @@ class GeoJsonParserTest {
     @Test
     fun testFeatureCollectionNullProperties() {
         val collection = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonData.featureCollectionNullPropertiesTestJson)
+            .fromJson(GeoJsonData.FEATURE_COLLECTION_NULL_PROPERTIES_TEST_JSON)
         Assert.assertNotNull(collection)
         Assert.assertNull(collection!!.features.first().properties)
     }
@@ -20,48 +21,48 @@ class GeoJsonParserTest {
     @Test
     @Throws(Exception::class)
     fun testIntelligentDeserialization() {
-        val point = moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.pointJson)
+        val point = moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.POINT_JSON)
         Assert.assertTrue(point is Point)
 
         val multiPoint =
-            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.multiPointJson)
+            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.MULTI_POINT_JSON)
         Assert.assertTrue(multiPoint is MultiPoint)
 
         val lineString =
-            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.lineStringJson)
+            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.LINE_STRING_JSON)
         Assert.assertTrue(lineString is LineString)
 
         val multiLineString =
-            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.multiLineStringJson)
+            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.MULTI_LINE_STRING_JSON)
         Assert.assertTrue(multiLineString is MultiLineString)
 
-        val polygon = moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.polygonJson)
+        val polygon = moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.POLYGON_JSON)
         Assert.assertTrue(polygon is Polygon)
 
         val multiPolygon =
-            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.multiPolygonJson)
+            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.MULTI_POLYGON_JSON)
         Assert.assertTrue(multiPolygon is MultiPolygon)
 
-        val feature = moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.featureJson)
+        val feature = moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.FEATURE_JSON)
         Assert.assertTrue(feature is Feature)
 
         val featureCollection =
-            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.featureCollectionJson)
+            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.FEATURE_COLLECTION_JSON)
         Assert.assertTrue(featureCollection is FeatureCollection)
 
         val emptyFeatureCollection = moshi.adapter(GeoJsonObject::class.java)
-            .fromJson(GeoJsonData.emptyFeatureCollectionJson)
+            .fromJson(GeoJsonData.EMPTY_FEATURE_COLLECTION_JSON)
         Assert.assertTrue(emptyFeatureCollection is FeatureCollection)
 
         val geometryCollection =
-            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.geometryCollectionJson)
+            moshi.adapter(GeoJsonObject::class.java).fromJson(GeoJsonData.GEOMETRY_COLLECTION_JSON)
         Assert.assertTrue(geometryCollection is GeometryCollection)
     }
 
     @Test
     fun testEmptyFeatureCollection() {
         val feature = moshi.adapter(FeatureCollection::class.java)
-            .fromJson(GeoJsonData.emptyFeatureCollectionJson)
+            .fromJson(GeoJsonData.EMPTY_FEATURE_COLLECTION_JSON)
 
         Assert.assertNotNull(feature)
         Assert.assertTrue(feature is FeatureCollection)
@@ -135,7 +136,7 @@ class GeoJsonParserTest {
     @Test
     @Throws(Exception::class)
     fun itShouldDeserializeAPoint() {
-        val value = moshi.adapter(Point::class.java).fromJson(GeoJsonData.pointJson)
+        val value = moshi.adapter(Point::class.java).fromJson(GeoJsonData.POINT_JSON)
         Assert.assertNotNull(value)
         Assert.assertTrue(value is Point)
         val point2 = value as Point
@@ -146,7 +147,7 @@ class GeoJsonParserTest {
     @Throws(Exception::class)
     fun itShouldSerializeAPoint() {
         Assert.assertEquals(
-            GeoJsonData.pointJson,
+            GeoJsonData.POINT_JSON,
             moshi.adapter(GeoJsonObject::class.java).toJson(GeoJsonData.pointObject)
         )
     }
@@ -187,7 +188,7 @@ class GeoJsonParserTest {
     @Test
     @Throws(Exception::class)
     fun itShouldDeserializeLineString() {
-        val lineString = moshi.adapter(LineString::class.java).fromJson(GeoJsonData.lineStringJson)
+        val lineString = moshi.adapter(LineString::class.java).fromJson(GeoJsonData.LINE_STRING_JSON)
         Assert.assertNotNull(lineString)
         Assert.assertTrue(lineString is LineString)
 
@@ -202,7 +203,7 @@ class GeoJsonParserTest {
     @Throws(Exception::class)
     fun itShouldSerializeLineString() {
         Assert.assertEquals(
-            GeoJsonData.lineStringJson,
+            GeoJsonData.LINE_STRING_JSON,
             moshi.adapter(GeoJsonObject::class.java).toJson(GeoJsonData.lineStringObject)
         )
     }
@@ -211,7 +212,7 @@ class GeoJsonParserTest {
     @Throws(Exception::class)
     fun itShouldDeserializeMultiLineString() {
         val multiLineString =
-            moshi.adapter(MultiLineString::class.java).fromJson(GeoJsonData.multiLineStringJson)
+            moshi.adapter(MultiLineString::class.java).fromJson(GeoJsonData.MULTI_LINE_STRING_JSON)
         Assert.assertNotNull(multiLineString)
         Assert.assertTrue(multiLineString is MultiLineString)
 
@@ -224,7 +225,7 @@ class GeoJsonParserTest {
     @Throws(Exception::class)
     fun itShouldSerializeMultiLineString() {
         Assert.assertEquals(
-            GeoJsonData.multiLineStringJson,
+            GeoJsonData.MULTI_LINE_STRING_JSON,
             moshi.adapter(GeoJsonObject::class.java).toJson(GeoJsonData.multiLineStringObject)
         )
     }
@@ -232,7 +233,7 @@ class GeoJsonParserTest {
     @Test
     @Throws(Exception::class)
     fun itShouldDeserializeMultiPoint() {
-        val multiPoint = moshi.adapter(MultiPoint::class.java).fromJson(GeoJsonData.multiPointJson)
+        val multiPoint = moshi.adapter(MultiPoint::class.java).fromJson(GeoJsonData.MULTI_POINT_JSON)
         Assert.assertTrue(multiPoint is MultiPoint)
         Assert.assertNotNull(multiPoint)
         val coordinates = multiPoint!!.coordinates
@@ -244,7 +245,7 @@ class GeoJsonParserTest {
     @Throws(Exception::class)
     fun itShouldSerializeMultiPoint() {
         Assert.assertEquals(
-            GeoJsonData.multiPointJson,
+            GeoJsonData.MULTI_POINT_JSON,
             moshi.adapter(GeoJsonObject::class.java).toJson(GeoJsonData.multiPointObject)
         )
     }
@@ -253,7 +254,7 @@ class GeoJsonParserTest {
     @Throws(Exception::class)
     fun itShouldDeserializeMultiPolygon() {
         val multiPolygon =
-            moshi.adapter(MultiPolygon::class.java).fromJson(GeoJsonData.multiPolygonJson)
+            moshi.adapter(MultiPolygon::class.java).fromJson(GeoJsonData.MULTI_POLYGON_JSON)
         Assert.assertNotNull(multiPolygon)
         Assert.assertTrue(multiPolygon is MultiPolygon)
 
@@ -277,11 +278,11 @@ class GeoJsonParserTest {
         assert(one != two)
     }
 
-    private fun roundtripOsmId(osm_id : Long) : Double {
+    private fun roundtripOsmId(osmId : Long) : Double {
 
         val feature = Feature()
         val foreign: HashMap<String, Any?> = hashMapOf()
-        foreign["osm_id"] = osm_id.toDouble()
+        foreign["osm_id"] = osmId.toDouble()
         feature.foreign = foreign
         feature.geometry = Point(0.0, 0.0)
         feature.properties = hashMapOf()

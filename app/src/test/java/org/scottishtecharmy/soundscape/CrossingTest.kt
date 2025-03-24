@@ -12,12 +12,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJsonDataReal
 
 class CrossingTest {
 
     @Test
     fun simpleCrossingTest(){
-        val gridState = createFromGeoJson(GeoJsonDataReal.featureCollectionJsonRealSoundscapeGeoJson)
+        val gridState = createFromGeoJson(GeoJsonDataReal.FEATURE_COLLECTION_JSON_REAL_SOUNDSCAPE)
 
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)

@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesR
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.geojsontestdata.GeoJSONDataComplexIntersection1
 
 class VisuallyCheckIntersectionLayers {
 
@@ -35,7 +36,7 @@ class VisuallyCheckIntersectionLayers {
         )
 
         // Get the tile feature collection from the GeoJSON
-        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.complexintersection1GeoJSON)
+        val gridState = GridState.createFromGeoJson(GeoJSONDataComplexIntersection1.COMPLEX_INTERSECTION1_JSON)
 
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
