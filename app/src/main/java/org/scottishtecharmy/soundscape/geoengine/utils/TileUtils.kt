@@ -659,16 +659,23 @@ fun makeTriangles(
 fun getDirectionAtIntersection(intersection: Feature, road: Feature): RoadDirectionAtIntersection {
     val roadCoordinates = (road.geometry as LineString).coordinates
     val intersectionCoordinate = (intersection.geometry as Point).coordinates
-    val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
 
     return if (intersectionCoordinate.longitude == roadCoordinates.first().longitude && intersectionCoordinate.latitude == roadCoordinates.first().latitude) {
         RoadDirectionAtIntersection.LEADING
     } else if (intersectionCoordinate.longitude == roadCoordinates.last().longitude && intersectionCoordinate.latitude == roadCoordinates.last().latitude) {
         RoadDirectionAtIntersection.TRAILING
-    } else if (coordinateFound) {
-        RoadDirectionAtIntersection.LEADING_AND_TRAILING
     } else {
-        RoadDirectionAtIntersection.NONE
+        val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
+        if (coordinateFound) {
+            // Now that we have split all of the roads/paths at intersections as we parse them in, we
+            // should never reach this code where the intersection is in the middle of a road
+            assert(false)
+            RoadDirectionAtIntersection.LEADING_AND_TRAILING
+        } else {
+            // Why would we ever hit this code?
+            assert(false)
+            RoadDirectionAtIntersection.NONE
+        }
     }
 }
 
@@ -881,20 +888,21 @@ fun getIntersectionRoadNamesRelativeDirections(
         val testRoadDirectionAtIntersection =
             getDirectionAtIntersection(nearestIntersection, road)
         //println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
-        if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
-            // split the road into two
-            val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
-                nearestIntersection,
-                road
-            )
-            // for each split road work out the relative direction from the intersection
-            for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(splitRoad, intersectionRelativeDirections))
-            }
-        }
-        else{
+        // Our roads are all now pre-split when we parse them in from MVT
+//        if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
+//            // split the road into two
+//            val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
+//                nearestIntersection,
+//                road
+//            )
+//            // for each split road work out the relative direction from the intersection
+//            for (splitRoad in roadCoordinatesSplitIntoTwo) {
+//                newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(splitRoad, intersectionRelativeDirections))
+//            }
+//        }
+//        else{
             newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(road, intersectionRelativeDirections))
-        }
+//        }
     }
 
     return sortFeatureCollectionByDirectionProperty(newFeatureCollection)
