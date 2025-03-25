@@ -230,27 +230,7 @@ class StreetPreview {
                 val testRoadDirectionAtIntersection =
                     getDirectionAtIntersection(nearestIntersection, road)
 
-                if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING) {
-                    // split the road into two
-                    val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
-                        nearestIntersection,
-                        road
-                    )
-
-                    for (splitRoad in roadCoordinatesSplitIntoTwo) {
-                        road.properties?.get("name")?.let { choice ->
-                            val line = splitRoad.geometry as LineString
-                            val heading = bearingOfLineFromEnd(location, line.coordinates)
-                            choices.add(
-                                StreetPreviewChoice(
-                                    heading,
-                                    choice.toString(),
-                                    line.coordinates
-                                )
-                            )
-                        }
-                    }
-                } else if (testRoadDirectionAtIntersection != RoadDirectionAtIntersection.NONE) {
+                if (testRoadDirectionAtIntersection != RoadDirectionAtIntersection.NONE) {
                     road.properties?.get("name")?.let { choice ->
                         val line = road.geometry as LineString
                         val heading = bearingOfLineFromEnd(location, line.coordinates)

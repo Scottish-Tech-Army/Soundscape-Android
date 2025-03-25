@@ -8,6 +8,8 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -132,7 +134,7 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonMilngavie() {
-        val geojson = vectorTileToGeoJsonFromFile(15992, 10212, "15992x10212.mvt")
+        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212.mvt")
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("milngavie.geojson")
@@ -463,6 +465,29 @@ class MvtTileTest {
                 time,
                 gridState)
             time += 1000
+        }
+    }
+
+    @Test fun testConvertBackToTileCoordinates() {
+
+        val tileX = 10000
+        val tileY = 16000
+        val tileZoom = 15
+
+        for(testX in 0 until 4096) {
+            for (testY in 0 until 4096) {
+                val location = getLatLonTileWithOffset(
+                    tileX,
+                    tileY,
+                    tileZoom,
+                    sampleToFractionOfTile(testX),
+                    sampleToFractionOfTile(testY)
+                )
+
+                val result = convertBackToTileCoordinates(location, tileX, tileY, tileZoom)
+                assert(result.first ==testX)
+                assert(result.second ==testY)
+            }
         }
     }
 }

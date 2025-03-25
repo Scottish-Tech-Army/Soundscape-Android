@@ -168,7 +168,113 @@ fun areCoordinatesClockwise(
  * added in our custom map.
  * 2. `poi` contains points of interest.
  *
+ *
+ *
+ * Future plans:
+ * A Feature is generated for every geometry within a line. There are multiple geometries when a
+ * line goes off tile and then comes back on again. All Features for the line have the same contents
+ * other than their geometry. The intersections only contain IntersectionDetails which contains
+ *
+ *     val name : String,
+ *     val type : String,
+ *     val subClass : String,
+ *     val brunnel : String,
+ *     val id : Double,
+ *     var lineEnd : Boolean
+ *
+ * which is all that's required for determining if it classifies as an intersection, otherwise it's
+ * just a meeting of two segments. When an intersection is created, it has a location and a list of
+ * OSM ids. What we really want is:
+ *
+ *  - Every line between intersections can be a list of Features
+ *  - No Feature contains more than 2 intersections i.e. one at each end. Any line which has more
+ *  than one intersection is split into multiple Features.
+ *
+ *  If I'm at an intersection, the Features that connect to it should all be traversable to get to
+ *  the next intersection and either the first of last of their string list coordinates should be
+ *  the current intersection. The intersection should never be part way along a string - as it
+ *  should have been split.
+ *
+ *  class FeatureMetadata {
+ *      // The contents of properties/foreign, but not in a hash map, instead stored in sensible
+ *      // format
+ *  }
+ *
+ *  class Way {
+ *      val segment: Feature                    // List of Features that make up the way (often just 1)
+ *      val length: Double                      // We could easily calculate this from the segments.
+ *                                              // It could be useful for context, or for navigation.
+ *      val nextIntersection: Intersection      // Link to the intersection at the other end of the
+ *                                              // segments
+ *
+ *      fun getMetadata() : FeatureMetadata     // Returns the metadata for the way, taken from the
+ *                                              // first segment. Anything needing OSM ids needs to
+ *                                              // be traversing the segments anyway.
+ *  }
+ *
+ *  Should segments contain a List<LineString> rather than Feature and have all the data for Feature
+ *  inside the Way instead? If a road is extended with a new OSM id then this would be a problem as
+ *  each segment would have a different OSM id. We could merge the segments in the list if the data
+ *  is the same, but unsure if that helps much.
+ *
+ *  class Intersection {
+ *      val members: List<Ways>                 // Ways that make up this intersection
+ *      val name: String                        // Name of the intersection
+ *      val location: LngLatAlt                 // Location of the intersection
+ *      val type: Enum                          // Type of intersection:
+ *                                              //  REGULAR - a real intersection like we hav now
+ *                                              //  JOINER - joins two segments together, skip over
+ *                                              //  TILE_EDGE - joins two tiles together, skip over
+ *  }
+ *
+ *  Tile joining. We should have special tile joining intersections. These are like normal
+ *  intersections except they are marked to ignore when traversing to the next intersection. The
+ *  data in the Features being joined can be slightly tweaked - just moving the coordinates so that
+ *  they match i.e. avoiding the 15cm long roads that we currently use to join tiles. When the tile
+ *  grid is changed, we can throw away all of these tile joining intersections and recalculate new
+ *  ones (some may still be required, so this behaviour could be improved).
+ *
+ *  Street Preview - this should remove the searching and extending of road lines to find the next
+ *  intersection. We should just be able to:
+ *  1. Jump immediately to the next intersection or the end of the line (dead-end or tile boundary
+ *  that hasn't been joined)
+ *  2. If it's a tile joiner, jump through it to the next intersection.
+ *  3. Creating the list of ways will be much easier
+ *
+ *  Name confection - jump through the nextIntersection until we have a REGULAR one and pick a name
+ *  from there if there is one.
+ *
+ *  Routing - We could do routing between intersections fairly easily with all of this data. Instead
+ *  of exploding every line into segments as per `explodeLineString` and using every line node,
+ *  we can use the intersections as the nodes instead. We can pre-calculate their lengths and store
+ *  it in the Way (NOTE: calculating the distance using the tile x/y integer coordinates is likely
+ *  accurate enough and more efficient than full blown LngLat calculation). The routing algorithm
+ *  can then use the Ways with their length as weights which should be fairly efficient. Most of the
+ *  time the user will not be at an intersection and neither will the destination be. But we can
+ *  do the calculation from either end of the current Way that we're on and then figure out which
+ *  is the shortest route when including the distance to the intersection.
+ *
+ *  NearestRoad - This data means that we could do a better job via something like this:
+ *  https://medium.com/@jabrioussama1/how-to-match-gps-positions-to-roads-b6b13a5e6c20
+ *  A good introduction video here https://www.youtube.com/watch?v=ChtumoDfZXI
+ *  We could keep a short history of GPS locations with their hidden markov states (nearest roads)
+ *  and run viterbi on them to find the most likely path that we're on. This relies on the routing
+ *  algorithm to give the shortest navigable route between hidden states which is then compared
+ *  with the haversine distance. https://github.com/bmwcarit/offline-map-matching/tree/master has
+ *  an example implementation.
+ *
+ *
+ *  Implementation - create Features for lines as we do now, but add them to a list inside the
+ *  intersection detection class (new addFeature function). The original addLine only has to
+ *  increment a node use count, no other details required.
+ *  Inside generateIntersections, first traverse every line that was added and generate a new
+ *  segment Feature at every intersection that we hit. Add these to Ways as we go. Intersections are spotted using the
+ *  coordinate key (x + shr(y)). Put those features in two HashMaps a 'start' an 'end' one, again
+ *  keyed by the coordinate key. Once we've traversed all of the lines we should have a Way for
+ *  every segment between intersections. Now we generate the intersections and add the Ways directly
+ *  to them. Let's do this in a separate class for now so that we can test it.
  */
+
 fun vectorTileToGeoJson(tileX: Int,
                         tileY: Int,
                         mvt: VectorTile.Tile,
@@ -177,6 +283,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
     val collection = FeatureCollection()
     val intersectionDetection = IntersectionDetection()
+    val wayGenerator = WayGenerator()
     val entranceMatching = EntranceMatching()
 
     val layerIds = arrayOf("transportation", "poi", "building")
@@ -384,6 +491,7 @@ fun vectorTileToGeoJson(tileX: Int,
                                 id
                             )
                             intersectionDetection.addLine(line, details)
+                            wayGenerator.addLine(line)
                             val interpolatedNodes : MutableList<LngLatAlt> = mutableListOf()
                             val clippedLines = convertGeometryAndClipLineToTile(tileX,
                                                                                 tileY,
@@ -461,7 +569,11 @@ fun vectorTileToGeoJson(tileX: Int,
                             mapPointFeatures[id] = geoFeature
                         }
                     } else if (layer.name == "transportation") {
-                        collection.addFeature(geoFeature)
+                        if(geoFeature.geometry.type != "LineString") {
+                            collection.addFeature(geoFeature)
+                        } else {
+                            wayGenerator.addFeature(geoFeature)
+                        }
                     } else {
                         mapBuildingFeatures[id] = geoFeature
                     }
@@ -498,7 +610,9 @@ fun vectorTileToGeoJson(tileX: Int,
         collection.addFeature(feature.value)
     }
     // Add intersections
-    intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
+    //intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
+
+    wayGenerator.generateWays(collection, collection, tileX, tileY, tileZoom)
 
     return collection
 }
