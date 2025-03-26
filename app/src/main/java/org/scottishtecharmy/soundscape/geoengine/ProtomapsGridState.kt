@@ -6,13 +6,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
 import retrofit2.awaitResponse
 import kotlin.coroutines.cancellation.CancellationException
+import kotlin.system.measureTimeMillis
 import kotlin.time.TimeSource
 
 class ProtomapsGridState : GridState() {
@@ -29,24 +32,40 @@ class ProtomapsGridState : GridState() {
         x: Int,
         y: Int,
         featureCollections: Array<FeatureCollection>,
+        intersectionMap: HashMap<LngLatAlt, Intersection>
     ): Boolean {
         var ret = false
         withContext(Dispatchers.IO) {
             try {
+                val startTime = System.currentTimeMillis()
                 val service =
                     tileClient.retrofitInstance?.create(ITileDAO::class.java)
                 val tileReq =
                     async {
                         service?.getVectorTileWithCache(x, y, ZOOM_LEVEL)
                     }
-                val result = tileReq.await()?.awaitResponse()?.body()
+                var result = tileReq.await()?.awaitResponse()?.body()
                 if (result != null) {
+                    val requestTime = System.currentTimeMillis() - startTime
                     Log.e(TAG, "Tile size ${result.serializedSize}")
-                    val tileFeatureCollection = vectorTileToGeoJson(x, y, result)
-                    val collections = processTileFeatureCollection(tileFeatureCollection)
-                    for ((index, collection) in collections.withIndex()) {
-                        featureCollections[index].plusAssign(collection)
+                    var tileFeatureCollection: FeatureCollection? = null
+                    val mvtParseTime = measureTimeMillis {
+                        tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
                     }
+                    var collections: Array<FeatureCollection>? = null
+                    val processTime = measureTimeMillis {
+                        collections = processTileFeatureCollection(tileFeatureCollection!!)
+                    }
+                    val addTime = measureTimeMillis {
+                        for ((index, collection) in collections!!.withIndex()) {
+                            featureCollections[index].plusAssign(collection)
+                        }
+                    }
+
+                    Log.e(TAG, "Request time $requestTime")
+                    Log.e(TAG, "MVT parse time $mvtParseTime")
+                    Log.e(TAG, "processTileFeatureCollection $processTime")
+                    Log.e(TAG, "Add to FeatureCollection time $addTime")
 
                     ret = true
                 } else {
