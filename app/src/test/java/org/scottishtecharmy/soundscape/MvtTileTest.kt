@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
@@ -16,8 +17,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTil
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
+import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -27,12 +30,14 @@ import vector_tile.VectorTile
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import kotlin.math.abs
+import kotlin.system.measureTimeMillis
 
 
 private fun vectorTileToGeoJsonFromFile(
     tileX: Int,
     tileY: Int,
     filename: String,
+    intersectionMap:  HashMap<LngLatAlt, Intersection>,
     cropPoints: Boolean = true
 ): FeatureCollection {
 
@@ -40,12 +45,13 @@ private fun vectorTileToGeoJsonFromFile(
     val remoteTile = FileInputStream(path + filename)
     val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
 
-    return vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
+    return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 }
 
 fun getGridStateForLocation(
     location: LngLatAlt,
-    gridSize: Int = 2
+    gridSize: Int = 2,
+    gridIntersections: HashMap<LngLatAlt, Intersection> = hashMapOf()
 ): GridState {
 
     // Get a grid around the location
@@ -58,16 +64,21 @@ fun getGridStateForLocation(
     val joiner = InterpolatedPointsJoiner()
     val featureCollection = FeatureCollection()
     for (tile in grid.tiles) {
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val geojson = vectorTileToGeoJsonFromFile(
             tile.tileX,
             tile.tileY,
-            "${tile.tileX}x${tile.tileY}.mvt"
+            "${tile.tileX}x${tile.tileY}.mvt",
+            intersectionMap
         )
         for (feature in geojson) {
             val addFeature = joiner.addInterpolatedPoints(feature)
             if (addFeature) {
                 featureCollection.addFeature(feature)
             }
+        }
+        for(intersection in intersectionMap) {
+            gridIntersections[intersection.key] = intersection.value
         }
     }
     return GridState.createFromFeatureCollection(featureCollection)
@@ -107,7 +118,8 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonMilngavie() {
-        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212.mvt")
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212.mvt", intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("milngavie.geojson")
@@ -117,7 +129,8 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonEdinburgh() {
-        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, "16093x10211.mvt")
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, "16093x10211.mvt", intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("edinburgh.geojson")
@@ -127,7 +140,8 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonByresRoad() {
-        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, "15992x10223.mvt")
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, "15992x10223.mvt", intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("byresroad.geojson")
@@ -160,7 +174,8 @@ class MvtTileTest {
         val featureCollection = FeatureCollection()
         for (x in 15990..15992) {
             for (y in 10212..10213) {
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+                val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt", intersectionMap)
                 for (feature in geojson) {
                     val addFeature = joiner.addInterpolatedPoints(feature)
                     if (addFeature) {
@@ -219,12 +234,21 @@ class MvtTileTest {
     @Test
     fun testNameConfection() {
         val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
-        val gridState = getGridStateForLocation(userGeometry.location)
+        val gridIntersections: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val gridState = getGridStateForLocation(userGeometry.location, 2, gridIntersections)
+
+        val confectionTime = measureTimeMillis {
+            traverseIntersectionsConfectingNames(gridIntersections)
+        }
 
         var roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
-        for(road in roads) {
-            confectNamesForRoad(road, gridState)
+        val confectionTime2 = measureTimeMillis {
+            for (road in roads) {
+                confectNamesForRoad(road, gridState.featureTrees)
+            }
         }
+        println("Confection time: $confectionTime ms")
+        println("Confection time2: $confectionTime2 ms")
 
         roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -242,7 +266,8 @@ class MvtTileTest {
         val featureCollection = FeatureCollection()
         for (x in 15990..15992) {
             for (y in 10212..10213) {
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+                val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt", intersectionMap)
                 for (feature in geojson) {
                     val addFeature = joiner.addInterpolatedPoints(feature)
                     if (addFeature) {
@@ -299,7 +324,8 @@ class MvtTileTest {
         // underlying them are the same ones. So long as they are not changed then this isn't a
         // problem, but we do add "distance_to".
 
-        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, "15990x10212.mvt")
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, "15990x10212.mvt", intersectionMap)
         println(featureCollection.features[0].id)
         val newFeatureCollection = FeatureCollection()
         newFeatureCollection.plusAssign(featureCollection)
@@ -488,7 +514,7 @@ class MvtTileTest {
                     sampleToFractionOfTile(testY)
                 )
 
-                val result = convertBackToTileCoordinates(location, tileX, tileY, tileZoom)
+                val result = convertBackToTileCoordinates(location, tileZoom)
                 assert(result.first ==testX)
                 assert(result.second ==testY)
             }

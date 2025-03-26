@@ -12,7 +12,6 @@ import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
-import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
@@ -22,7 +21,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 
@@ -56,11 +54,6 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     // Find roads within FOV
     val fovRoads = roadTree.getAllWithinTriangle(triangle)
     if(fovRoads.features.isEmpty()) return RoadsDescription(nearestRoad = userGeometry.nearestRoad)
-
-    // Ensure that we have up to date names for any un-named roads
-    for(road in fovRoads) {
-        confectNamesForRoad(road, gridState)
-    }
 
     // Two roads that we are interested in:
     //  1. The one that we are nearest to. We use this for intersection call outs to decide which
@@ -234,16 +227,16 @@ fun addIntersectionCalloutFromDescription(
                     else -> 0.0
                 }
 
-                var destinationModifier: String? = null
+                var destinationModifier: Any? = null
 //                if(line.coordinates.first() == intersectionLocation)
-//                    destinationModifier = feature.properties?.get("destination:forward").toString()
+                destinationModifier = feature.properties?.get("destination:forward")
 //                else if(line.coordinates.last() == intersectionLocation)
 //                    destinationModifier = feature.properties?.get("destination:backward").toString()
 
                 val name = feature.properties?.get("name")
                 val destinationText =
                     if(destinationModifier != null)
-                        "$name to $destinationModifier"
+                        "$name to ${destinationModifier.toString()}"
                     else
                         name
 
