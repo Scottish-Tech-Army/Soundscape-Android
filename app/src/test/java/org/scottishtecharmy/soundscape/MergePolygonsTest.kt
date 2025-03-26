@@ -5,6 +5,7 @@ import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.isDuplicateByOsmId
@@ -245,13 +246,15 @@ class MergePolygonsTest {
         assert(!soundscapeBackend)
 
         // Read in the files
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val joiner = InterpolatedPointsJoiner()
         val featureCollection = FeatureCollection()
         for (tile in grid.tiles) {
             val geojson = vectorTileToGeoJsonFromFile(
                 tile.tileX,
                 tile.tileY,
-                "${tile.tileX}x${tile.tileY}.mvt"
+                "${tile.tileX}x${tile.tileY}.mvt",
+                intersectionMap
             )
             for (feature in geojson) {
                 val addFeature = joiner.addInterpolatedPoints(feature)
@@ -275,6 +278,7 @@ class MergePolygonsTest {
         tileX: Int,
         tileY: Int,
         filename: String,
+        intersectionMap:  HashMap<LngLatAlt, Intersection>,
         cropPoints: Boolean = true
     ): FeatureCollection {
 
@@ -282,7 +286,7 @@ class MergePolygonsTest {
         val remoteTile = FileInputStream(path + filename)
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
 
-        val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
+        val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 
 //            // We want to check that all of the coordinates generated are within the buffered
 //            // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.

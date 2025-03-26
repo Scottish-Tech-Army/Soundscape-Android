@@ -278,6 +278,7 @@ fun areCoordinatesClockwise(
 fun vectorTileToGeoJson(tileX: Int,
                         tileY: Int,
                         mvt: VectorTile.Tile,
+                        intersectionMap:  HashMap<LngLatAlt, Intersection>,
                         cropPoints: Boolean = true,
                         tileZoom: Int = ZOOM_LEVEL): FeatureCollection {
 
@@ -605,7 +606,7 @@ fun vectorTileToGeoJson(tileX: Int,
     // Add intersections
     //intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
 
-    wayGenerator.generateWays(collection, collection, tileX, tileY, tileZoom)
+    wayGenerator.generateWays(collection, collection, intersectionMap, tileZoom)
 
     return collection
 }
