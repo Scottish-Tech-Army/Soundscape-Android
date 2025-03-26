@@ -11,16 +11,20 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.dto.BoundingBox
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
+import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.TileClient
+import kotlin.system.measureTimeMillis
 import kotlin.time.TimeSource
 
 enum class TreeId(
@@ -86,18 +90,41 @@ open class GridState {
 
             // We have a new centralBoundingBox, so update the tiles
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-            if (updateTileGrid(tileGrid, featureCollections)) {
+            val gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
+                emptyList<HashMap<LngLatAlt, Intersection>>().toMutableList()
+            if (updateTileGrid(tileGrid, featureCollections, gridIntersections)) {
                 // We have got a new grid, so create our new central region
                 centralBoundingBox = tileGrid.centralBoundingBox
                 totalBoundingBox = tileGrid.totalBoundingBox
 
-                fixupCollections(featureCollections)
-                classifyPois(featureCollections, enabledCategories)
+                val fixupTime = measureTimeMillis {
+                    fixupCollections(featureCollections)
+                }
+                val classifyPoiTime = measureTimeMillis {
+                    classifyPois(featureCollections, enabledCategories)
+                }
 
-                // Create rtrees for each feature collection
                 val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-                for ((index, fc) in featureCollections.withIndex()) {
-                    localTrees[index] = FeatureTree(fc)
+                val createRtreeTime = measureTimeMillis {
+                    // Create rtrees for each feature collection
+                    for ((index, fc) in featureCollections.withIndex()) {
+                        localTrees[index] = FeatureTree(fc)
+                    }
+                }
+
+                //
+                // Confect names for un-named ways
+                //
+                // Start by traversing the way graph which is efficient
+                for(hashmap in gridIntersections) {
+                    traverseIntersectionsConfectingNames(hashmap)
+                }
+
+                // And then fill in any remaining names using rtree searches
+                val confectionTime = measureTimeMillis {
+                    for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
+                        confectNamesForRoad(road, featureTrees)
+                    }
                 }
 
                 // Assign rtrees to our shared trees from within the treeContext. All
@@ -112,6 +139,10 @@ open class GridState {
                 }
 
                 val gridFinishTime = timeSource.markNow()
+                Log.e(TAG, "FixupTime: $fixupTime")
+                Log.e(TAG, "classifyPoiTime: $classifyPoiTime")
+                Log.e(TAG, "createRtreeTime: $createRtreeTime")
+                Log.e(TAG, "confectionTime: $confectionTime")
                 Log.e(TAG, "Time to populate grid: ${gridFinishTime - gridStartTime}")
 
                 return true
@@ -128,12 +159,14 @@ open class GridState {
     private suspend fun updateTileGrid(
         tileGrid: TileGrid,
         featureCollections: Array<FeatureCollection>,
+        gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>
     ): Boolean {
         for (tile in tileGrid.tiles) {
             Log.d(TAG, "Tile quad key: ${tile.quadkey}")
             var ret = false
+            val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
             for (retry in 1..5) {
-                ret = updateTile(tile.tileX, tile.tileY, featureCollections)
+                ret = updateTile(tile.tileX, tile.tileY, featureCollections, intersectionMap)
                 if (ret) {
                     break
                 }
@@ -141,11 +174,15 @@ open class GridState {
             if (!ret) {
                 return false
             }
+            gridIntersections.add(intersectionMap)
         }
         return true
     }
 
-    internal open suspend fun updateTile(x: Int, y: Int, featureCollections: Array<FeatureCollection>): Boolean {
+    internal open suspend fun updateTile(x: Int,
+                                         y: Int,
+                                         featureCollections: Array<FeatureCollection>,
+                                         intersectionMap: HashMap<LngLatAlt, Intersection>): Boolean {
         assert(false)
         return false
     }

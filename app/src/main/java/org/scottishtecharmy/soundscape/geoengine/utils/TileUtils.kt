@@ -20,9 +20,11 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.TAG
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 import java.lang.Math.toDegrees
+import kotlin.collections.iterator
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
 import kotlin.math.abs
@@ -32,6 +34,7 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.sinh
 import kotlin.math.tan
+import kotlin.system.measureTimeMillis
 import kotlin.time.TimeSource
 
 
@@ -2124,12 +2127,12 @@ fun addSidewalk(currentRoad: Feature,
                 roadTree: FeatureTree) : Boolean {
 
     if(currentRoad.properties?.get("footway") == "sidewalk") {
-        val startRoads = roadTree.generateNearestFeatureCollection(
+        val startRoads = roadTree.getNearestCollection(
             location = start,
             distance = 15.0,
             maxCount = 10
         )
-        val endRoads = roadTree.generateNearestFeatureCollection(
+        val endRoads = roadTree.getNearestCollection(
             location = end,
             distance = 15.0,
             maxCount = 10
@@ -2162,50 +2165,6 @@ fun addSidewalk(currentRoad: Feature,
     return false
 }
 
-
-fun addRoadDestination(currentRoad: Feature,
-                       location: LngLatAlt,
-                       start: Boolean,
-                       roadTree: FeatureTree) : Boolean {
-    val roads = roadTree.generateNearestFeatureCollection(
-        location = location,
-        distance = 1.0,
-        maxCount = 10
-    )
-    for (road in roads) {
-        val name = road.properties?.get("name")
-        if (name != null) {
-            if(start)
-                currentRoad.properties?.set("destination:backward", name)
-            else
-                currentRoad.properties?.set("destination:forward", name)
-
-            return true
-        }
-    }
-    return false
-}
-
-fun addDeadEnd(currentRoad: Feature,
-               location: LngLatAlt,
-               start: Boolean,
-               roadTree: FeatureTree) : Boolean {
-    val roads = roadTree.generateNearestFeatureCollection(
-        location = location,
-        distance = 1.0,
-        maxCount = 10
-    )
-    if(roads.features.size == 1) {
-        if(start)
-            currentRoad.properties?.set("destination:backward", "Dead end")
-        else
-            currentRoad.properties?.set("destination:forward", "Dead end")
-
-        return true
-    }
-    return false
-}
-
 fun addPoiDestination(currentRoad: Feature,
                       location: LngLatAlt,
                       start: Boolean,
@@ -2231,16 +2190,15 @@ fun addPoiDestination(currentRoad: Feature,
     return false
 }
 
-fun confectNamesForRoad(road: Feature, gridState: GridState) {
+fun confectNamesForRoad(road: Feature,
+                        featureTrees: Array<FeatureTree>) {
 
-    val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
-    val poiTree = gridState.featureTrees[TreeId.LANDMARK_POIS.id]
-    val safetyTree = gridState.featureTrees[TreeId.SAFETY_POIS.id]
+    // rtree searches take time and so we should avoid them where possible.
 
+    val roadTree = featureTrees[TreeId.ROADS_AND_PATHS.id]
+    val poiTree = featureTrees[TreeId.LANDMARK_POIS.id]
+    val safetyTree = featureTrees[TreeId.SAFETY_POIS.id]
     if (road.properties?.get("name") == null) {
-
-        val timeSource = TimeSource.Monotonic
-        val confectionStart = timeSource.markNow()
 
         // Find the start and end of the road. If we can extend those to a further
         // intersection, then do. Whilst extending, we should note steps any steps or
@@ -2252,6 +2210,7 @@ fun confectNamesForRoad(road: Feature, gridState: GridState) {
         if (addSidewalk(road, start, end, roadTree)) {
             return
         }
+
         // Name the feature after its class
         road.properties?.set("name", road.properties?.get("class"))
 
@@ -2259,28 +2218,57 @@ fun confectNamesForRoad(road: Feature, gridState: GridState) {
         var startDestinationAdded = road.properties?.get("destination:backward") != null
         var endDestinationAdded = road.properties?.get("destination:backward") != null
 
-        // Does the unnamed way start or end at a named way?
-        if (!startDestinationAdded)
-            addRoadDestination(road, start, true, roadTree)
-        if(!endDestinationAdded)
-            addRoadDestination(road, end, false, roadTree)
-
         // Does the unnamed way start or end near a POI?
         if (!startDestinationAdded)
             startDestinationAdded = addPoiDestination(road, start, true, poiTree, safetyTree)
         if (!endDestinationAdded)
             endDestinationAdded = addPoiDestination(road, end, false, poiTree, safetyTree)
-
-        // Does the unnamed way dead-end?
-        if (!startDestinationAdded)
-            startDestinationAdded = addDeadEnd(road, start, true, roadTree)
-        if (!endDestinationAdded)
-            endDestinationAdded = addDeadEnd(road, end, false, roadTree)
-
-        Log.e(TAG, "Time to confect: ${timeSource.markNow() - confectionStart}")
     }
 }
 
+fun setDestinationTag(properties: HashMap<String, Any?>?, forwards: Boolean, tagValue: String) {
+    properties?.set("destination:${if (forwards) "backward" else "forward"}", tagValue)
+}
+
+fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, Intersection>) {
+    // Go through every intersection and for any which have at least one named way, add
+    // "destination tag" on it's un-named ways to indicate that they arrive there.
+    for (intersection in gridIntersections) {
+        // TODO: Perhaps we could use an intersection name here if there is more than one
+        //  named way? e.g. Path to junction of Moor Road and Buchanan Street
+        // Does the intersection have any named members?
+        var namedRoadToUse: String? = null
+        for (road in intersection.value.members) {
+            if (namedRoadToUse == null) {
+                road.segment[0].properties?.get("name")?.let { name ->
+                    namedRoadToUse = name.toString()
+                }
+            }
+            // Check for dead ends
+            var forwards = (road.startIntersection == intersection.value)
+            if ((forwards and (road.endIntersection == null)) or
+                (!forwards and (road.startIntersection == null))
+            ) {
+                // We currently label all roads, even named ones, with Dead End
+                setDestinationTag(road.segment[0].properties, forwards, "Dead End")
+            }
+        }
+        // We've got a named road at this junction, so use if for any un-named roads
+        if (namedRoadToUse != null) {
+            for (road in intersection.value.members) {
+                // Skip if the road is named
+                if (road.segment[0].properties?.get("name") == null) {
+                    var forwards = (road.startIntersection == intersection.value)
+                    setDestinationTag(
+                        road.segment[0].properties,
+                        forwards,
+                        namedRoadToUse.toString()
+                    )
+                }
+            }
+        }
+    }
+}
 fun generateDebugFovGeoJson(
     userGeometry: UserGeometry,
     featureCollection: FeatureCollection

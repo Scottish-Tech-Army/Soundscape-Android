@@ -6,8 +6,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import java.io.FileOutputStream
 import kotlin.collections.set
 import kotlin.math.PI
 import kotlin.math.abs
@@ -24,10 +22,21 @@ enum class IntersectionType(
 }
 
 class Intersection {
-    var members: MutableList<Way> = emptyList<Way>().toMutableList()    // Ways that make up this intersection
+    var members: MutableList<Way> =
+        emptyList<Way>().toMutableList()    // Ways that make up this intersection
     var name = ""                                                       // Name of the intersection
-    var location = LngLatAlt()                                          // Location of the intersection
+    var location =
+        LngLatAlt()                                          // Location of the intersection
     var type = IntersectionType.REGULAR
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        if (other is Intersection) {
+            return other.location == location
+        }
+        return false
+    }
 }
 
 class Way {
@@ -39,12 +48,9 @@ class Way {
 }
 
 fun convertBackToTileCoordinates(location: LngLatAlt,
-                                 tileX : Int,
-                                 tileY : Int,
                                  tileZoom : Int) : Pair<Int, Int> {
 
 
-    val latRad = toRadians(location.latitude)
     var x = ((location.longitude + 180.0) / 360.0) * (1 shl tileZoom)
     var y = (1 shl tileZoom) * (1.0 - asinh(tan(toRadians(location.latitude))) / PI) / 2
 
@@ -67,7 +73,8 @@ class WayGenerator {
 
     private val ways : MutableList<Way> = emptyList<Way>().toMutableList()
 
-    private val intersections : HashMap<Int, Intersection> = hashMapOf()
+    //private val intersections : HashMap<Int, Intersection> = hashMapOf()
+    private val intersections : HashMap<LngLatAlt, Intersection> = hashMapOf()
 
     /**
      * addLine is called for any line feature that is being added to the FeatureCollection.
@@ -131,7 +138,8 @@ class WayGenerator {
 
     fun generateWays(intersectionCollection: FeatureCollection,
                      waysCollection: FeatureCollection,
-                     tileX : Int, tileY : Int, tileZoom : Int) {
+                     intersectionMap:  HashMap<LngLatAlt, Intersection>,
+                     tileZoom : Int) {
 
         for(feature in wayFeatures) {
             if(feature.geometry.type == "LineString") {
@@ -146,18 +154,18 @@ class WayGenerator {
 
                     // Is this coordinate at an intersection?
                     val tileCoordinates =
-                        convertBackToTileCoordinates(coordinate, tileX, tileY, tileZoom)
+                        convertBackToTileCoordinates(coordinate, tileZoom)
                     coordinateKey = tileCoordinates.first.shl(12) + tileCoordinates.second
                     highwayNodes[coordinateKey]?.let {
                         if (it > 1) {
                             // Create an intersection if we don't have one already
-                            var intersection = intersections.get(coordinateKey)
+                            var intersection = intersections.get(coordinate)
                             if(intersection == null) {
                                 intersection = Intersection()
                                 intersection.name = ""
                                 intersection.location = coordinate
                                 intersection.type = IntersectionType.REGULAR
-                                intersections[coordinateKey] = intersection
+                                intersections[coordinate] = intersection
                             }
 
                             if(currentSegment.coordinates.size > 1) {
@@ -235,14 +243,8 @@ class WayGenerator {
             feature.foreign?.set("feature_value", "gd_intersection")
             feature.foreign?.set("osm_ids", osmIds)
             intersectionCollection.addFeature(feature)
-        }
 
-//        val fc = FeatureCollection()
-//        fc.features.addAll(waysCollection.features)
-//        fc.features.addAll(intersectionCollection.features)
-//        val adapter = GeoJsonObjectMoshiAdapter()
-//        val outputFile = FileOutputStream("graph.geojson")
-//        outputFile.write(adapter.toJson(fc).toByteArray())
-//        outputFile.close()
+            intersectionMap[intersection.key] = intersection.value
+        }
     }
 }
