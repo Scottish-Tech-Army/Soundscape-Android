@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
@@ -54,6 +55,7 @@ import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
+import kotlin.time.measureTime
 
 data class PositionedString(
     val text : String,
@@ -76,6 +78,7 @@ class GeoEngine {
     internal lateinit var locationProvider : LocationProvider
     private lateinit var directionProvider : DirectionProvider
     private var nearestRoadFilter = NearestRoadFilter()
+    private var mapMatchFilter = MapMatchFilter()
 
     // Resource string locale configuration
     private lateinit var configLocale: Locale
@@ -296,6 +299,14 @@ class GeoEngine {
                         withContext(gridState.treeContext) {
                             // Update the nearest road filter with our new location
                             nearestRoadFilter.update(location, gridState)
+                            val mapMatchTime = measureTime {
+                                mapMatchFilter.filter(
+                                    LngLatAlt(location.longitude, location.latitude),
+                                    gridState,
+                                    FeatureCollection()
+                                )
+                            }
+                            println("MapMatch time: $mapMatchTime")
                         }
                     }
 

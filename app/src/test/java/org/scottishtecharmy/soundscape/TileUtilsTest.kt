@@ -53,8 +53,8 @@ class TileUtilsTest {
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
-        // The tile contains 23 roads
-        Assert.assertEquals(23, testRoadsCollectionFromTileFeatureCollection.features.size)
+        // The tile contains 37 road segments
+        Assert.assertEquals(37, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -89,9 +89,9 @@ class TileUtilsTest {
         for (feature in testPathsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
-        // Check that the number of paths (road_and_paths - roads) is 54
+        // Check that the number of path segments (road_and_paths - roads) is 1570
         Assert.assertEquals(
-            925,
+            1570,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -104,7 +104,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(1242, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(1870, testIntersectionsCollectionFromTileFeatureCollection.features.size)
 
     }
 
@@ -124,7 +124,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(1171, testPoiCollection.features.size)
+        Assert.assertEquals(1227, testPoiCollection.features.size)
 
     }
 
@@ -465,8 +465,8 @@ class TileUtilsTest {
         val fovRoadsFeatureCollection =
             roadTree.getAllWithinTriangle(triangle)
 
-        // This should pick up three roads in the FoV
-        Assert.assertEquals(3, fovRoadsFeatureCollection.features.size)
+        // This should pick up four road segments in the FoV
+        Assert.assertEquals(4, fovRoadsFeatureCollection.features.size)
         val nearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
             .getNearestFeature(userGeometry.location)
         // Should only be the nearest road in this Feature Collection
@@ -681,7 +681,7 @@ class TileUtilsTest {
         )
         Assert.assertEquals(
             "Weston Road",
-            nearestIntersectionRoadNames.features[1].properties!!["name"]
+            nearestIntersectionRoadNames.features[2].properties!!["name"]
         )
     }
 

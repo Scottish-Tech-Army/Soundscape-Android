@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
 import android.util.Log
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
@@ -12,19 +11,22 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.TileClient
-import kotlin.system.measureTimeMillis
 import kotlin.time.TimeSource
 
 enum class TreeId(
@@ -57,6 +59,8 @@ open class GridState {
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
     internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+    internal var gridIntersections: HashMap<LngLatAlt, Intersection> =HashMap<LngLatAlt, Intersection>()
+
     @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
     val treeContext = newSingleThreadContext("TreeContext")
     var validateContext = true
@@ -71,6 +75,131 @@ open class GridState {
 
     fun isLocationWithinGrid(location: LngLatAlt): Boolean {
         return pointIsWithinBoundingBox(location, totalBoundingBox)
+    }
+
+    fun processGridState(
+        featureCollections: Array<FeatureCollection>,
+        enabledCategories: Set<String>,
+        newGridIntersections: List<HashMap<LngLatAlt, Intersection>>,
+        localTrees: Array<FeatureTree>,
+        intersectionAccumulator: HashMap<LngLatAlt, Intersection>,
+        grid: TileGrid
+    ) {
+
+        fixupCollections(featureCollections)
+
+        classifyPois(featureCollections, enabledCategories)
+
+        // Create rtrees for each feature collection
+        for ((index, fc) in featureCollections.withIndex()) {
+            localTrees[index] = FeatureTree(fc)
+        }
+
+        // We want to join up Ways that cross tile boundaries
+        //
+        // In our initial parsing we created Intersections at every line ending that is at the
+        // tile boundary. Now that we have our grid, we can match up pairs of these intersections
+        // in the same way that the InterpolatedPointsJoiner does - searching by distance. We add
+        // a Way between each pair which is marked as a 'Tile Joiner'. These Ways can be followed
+        // between the tiles, but are otherwise transparent. We should make it easy to dispose of
+        // them when a new grid is made so that we can reuse the Tiles themselves for the new grid.
+
+        // Make list of intersections to join
+        if(grid.tiles.size > 1) {
+            assert(grid.tiles.size == 4)
+
+            // Center of grid is bottom right of first tile
+            val gridCenter = getLatLonTileWithOffset(
+                grid.tiles[0].tileX,
+                grid.tiles[0].tileY,
+                ZOOM_LEVEL,
+                1.0, 1.0)
+
+            val tileEdgeList = emptyList<Intersection>().toMutableList()
+            for(intersectionList in newGridIntersections) {
+                for(intersection in intersectionList) {
+                    if(intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
+                        // We have an edge - check if it's an internal edge to the grid
+                        if (
+                            (intersection.value.location.longitude == gridCenter.longitude) or
+                            (intersection.value.location.latitude == gridCenter.latitude)
+                        ) {
+                            // This intersection needs joining, so put add it to our list
+                            tileEdgeList.add(intersection.value)
+                        }
+                    }
+                }
+            }
+
+            // We have our list of intersections to join, so join them
+            for(intersection1 in tileEdgeList) {
+                for(intersection2 in tileEdgeList) {
+                    // Don't join to ourselves
+                    if(intersection1 != intersection2) {
+                        // Don't join if already joined
+                        if(intersection1.members.size > 1) {
+                            continue
+                        }
+                        // Join if within 1.0m
+                        val distance = intersection1.location.distance(intersection2.location)
+                        if (distance < 1.0) {
+                            // Join the intersections together
+                            val way = Way()
+                            way.wayType = WayType.JOINER
+                            way.intersections[WayEnd.START.id] = intersection1
+                            way.intersections[WayEnd.END.id] = intersection2
+                            intersection1.members.add(way)
+                            intersection2.members.add(way)
+                        }
+                    }
+                }
+            }
+        }
+
+        //
+        // Confect names for un-named ways
+        //
+        // Start by traversing the way graph which is efficient and adds cut-through and
+        // dead-end modifiers to the ways
+        for (hashmap in newGridIntersections) {
+            traverseIntersectionsConfectingNames(hashmap, intersectionAccumulator)
+        }
+
+        // And then fill in any remaining names using rtree searches - this is slower and
+        // adds POIs and co-linear names
+        for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
+            confectNamesForRoad(road, featureTrees)
+        }
+    }
+
+    /** initializeFromFeatureCollection is used by unit tests when creating a GridState object from
+     * a set of saved tiles.
+     */
+    fun initializeFromFeatureCollection(
+        featureCollection: FeatureCollection,
+        tileIntersections: List<HashMap<LngLatAlt, Intersection>>,
+        grid: TileGrid
+    ) {
+
+        // Because the gridState is static and is not being updated by another thread, we don't
+        // need to run it in a separate context, so disable checking.
+        validateContext = false
+
+        val collections = processTileFeatureCollection(featureCollection)
+
+        val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+        val intersectionAccumulator = HashMap<LngLatAlt, Intersection>()
+        processGridState(collections,
+            emptySet<String>(),
+            tileIntersections.toList(),
+            localTrees,
+            intersectionAccumulator,
+            grid
+        )
+        for (fc in collections.withIndex()) {
+            featureTrees[fc.index] = localTrees[fc.index]
+        }
+        gridIntersections = intersectionAccumulator
     }
 
     /**
@@ -90,42 +219,23 @@ open class GridState {
 
             // We have a new centralBoundingBox, so update the tiles
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-            val gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
+            val newGridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
                 emptyList<HashMap<LngLatAlt, Intersection>>().toMutableList()
-            if (updateTileGrid(tileGrid, featureCollections, gridIntersections)) {
+            if (updateTileGrid(tileGrid, featureCollections, newGridIntersections)) {
                 // We have got a new grid, so create our new central region
                 centralBoundingBox = tileGrid.centralBoundingBox
                 totalBoundingBox = tileGrid.totalBoundingBox
 
-                val fixupTime = measureTimeMillis {
-                    fixupCollections(featureCollections)
-                }
-                val classifyPoiTime = measureTimeMillis {
-                    classifyPois(featureCollections, enabledCategories)
-                }
-
                 val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-                val createRtreeTime = measureTimeMillis {
-                    // Create rtrees for each feature collection
-                    for ((index, fc) in featureCollections.withIndex()) {
-                        localTrees[index] = FeatureTree(fc)
-                    }
-                }
-
-                //
-                // Confect names for un-named ways
-                //
-                // Start by traversing the way graph which is efficient
-                for(hashmap in gridIntersections) {
-                    traverseIntersectionsConfectingNames(hashmap)
-                }
-
-                // And then fill in any remaining names using rtree searches
-                val confectionTime = measureTimeMillis {
-                    for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
-                        confectNamesForRoad(road, featureTrees)
-                    }
-                }
+                val intersectionAccumulator = HashMap<LngLatAlt, Intersection>()
+                processGridState(
+                    featureCollections,
+                    enabledCategories,
+                    newGridIntersections,
+                    localTrees,
+                    intersectionAccumulator,
+                    tileGrid
+                )
 
                 // Assign rtrees to our shared trees from within the treeContext. All
                 // other accesses of featureTrees needs to be from within the same
@@ -135,15 +245,11 @@ open class GridState {
                         for (fc in featureCollections.withIndex()) {
                             featureTrees[fc.index] = localTrees[fc.index]
                         }
+                        gridIntersections = intersectionAccumulator
                     }
                 }
 
-                val gridFinishTime = timeSource.markNow()
-                Log.e(TAG, "FixupTime: $fixupTime")
-                Log.e(TAG, "classifyPoiTime: $classifyPoiTime")
-                Log.e(TAG, "createRtreeTime: $createRtreeTime")
-                Log.e(TAG, "confectionTime: $confectionTime")
-                Log.e(TAG, "Time to populate grid: ${gridFinishTime - gridStartTime}")
+                Log.e(TAG, "Time to populate grid: ${timeSource.markNow() - gridStartTime}")
 
                 return true
             } else {
@@ -509,32 +615,6 @@ open class GridState {
     }
 
     companion object {
-        fun createFromFeatureCollection(featureCollection: FeatureCollection) : GridState {
-
-            val gridState = ProtomapsGridState()
-
-            val collections = gridState.processTileFeatureCollection(featureCollection)
-            gridState.fixupCollections(collections)
-            gridState.classifyPois(collections)
-            for ((index, collection) in collections.withIndex()) {
-                gridState.featureTrees[index] = FeatureTree(collection)
-            }
-            // Because the gridState is static and is not being updated by another thread, we don't
-            // need to run it in a separate context, so disable checking.
-            gridState.validateContext = false
-
-            return gridState
-        }
-
-        fun createFromGeoJson(geoJson: String) : GridState {
-
-            val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-            val featureCollection = moshi.adapter(FeatureCollection::class.java)
-                .fromJson(geoJson)
-
-            return createFromFeatureCollection(featureCollection!!)
-        }
-
         internal const val TAG = "GridState"
     }
 }

@@ -2,10 +2,14 @@ package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
 import com.squareup.moshi.JsonClass
 import org.maplibre.android.geometry.LatLng
+import org.scottishtecharmy.soundscape.geoengine.utils.EARTH_RADIUS_METERS
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
+import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
 import java.io.Serializable
+import java.lang.Math.toDegrees
+import kotlin.math.cos
 import kotlin.math.min
 
 @JsonClass(generateAdapter = true)
@@ -15,6 +19,10 @@ open class LngLatAlt(
     var altitude: Double? = null
 ) : Serializable {
     fun hasAltitude(): Boolean = altitude != null && altitude?.isNaN() == false
+
+    fun clone() : LngLatAlt {
+        return LngLatAlt(longitude, latitude, altitude)
+    }
 
     // Problems with array of LngLatAlt comparisons. Attempting to fix here:
     override fun equals(other: Any?): Boolean {
@@ -48,17 +56,50 @@ open class LngLatAlt(
         return distance(latitude, longitude, other.latitude, other.longitude)
     }
 
+    fun project(location: LngLatAlt, reference: LngLatAlt): LngLatAlt {
+        val dLat = toRadians(location.latitude - reference.latitude)
+        val dLon = toRadians(location.longitude - reference.longitude)
+
+        val x = EARTH_RADIUS_METERS * dLon * cos(toRadians(reference.latitude))
+        val y = EARTH_RADIUS_METERS * dLat
+
+        return LngLatAlt(x, y)
+    }
+
+    fun unproject(projected: LngLatAlt, reference: LngLatAlt): LngLatAlt {
+        val dLat = projected.latitude / EARTH_RADIUS_METERS
+        val dLon = projected.longitude / (EARTH_RADIUS_METERS * cos(toRadians(reference.latitude)))
+
+        val lat = reference.latitude + toDegrees(dLat)
+        val lon = reference.longitude + toDegrees(dLon)
+
+        return LngLatAlt(lon, lat)
+    }
     fun distanceToLine(
         l1: LngLatAlt,
         l2: LngLatAlt,
         nearestPoint: LngLatAlt? = null
     ): Double {
-        return distance(
-            l1.latitude, l1.longitude,
-            l2.latitude, l2.longitude,
-            latitude, longitude,
-            nearestPoint
+
+        // Use l1 as our reference point
+        val l1Projected = project(l1, l1)
+        val l2Projected = project(l2, l1)
+        val thisProjected = project(this, l1)
+        val nearestPointProjected = LngLatAlt()
+        val result = distance(
+            l1Projected.latitude, l1Projected.longitude,
+            l2Projected.latitude, l2Projected.longitude,
+            thisProjected.latitude, thisProjected.longitude,
+            nearestPointProjected
         )
+
+        if(nearestPoint != null) {
+            val np = unproject(nearestPointProjected, l1)
+
+            nearestPoint.latitude = np.latitude
+            nearestPoint.longitude = np.longitude
+        }
+        return result
     }
 
     /**
