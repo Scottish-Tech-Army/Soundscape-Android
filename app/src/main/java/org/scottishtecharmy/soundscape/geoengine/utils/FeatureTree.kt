@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
-import androidx.collection.emptyLongSet
 import com.github.davidmoten.rtree2.Entry
 import com.github.davidmoten.rtree2.Iterables
 import com.github.davidmoten.rtree2.RTree

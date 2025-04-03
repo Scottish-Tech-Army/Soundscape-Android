@@ -604,9 +604,7 @@ fun vectorTileToGeoJson(tileX: Int,
         collection.addFeature(feature.value)
     }
     // Add intersections
-    //intersectionDetection.generateIntersections(collection, tileX, tileY, tileZoom)
-
-    wayGenerator.generateWays(collection, collection, intersectionMap, tileZoom)
+    wayGenerator.generateWays(collection, collection, intersectionMap, tileX, tileY, tileZoom)
 
     return collection
 }

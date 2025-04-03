@@ -739,8 +739,9 @@ class GeoUtilsTest {
         val nearestDistance1 = distanceToPolygon(currentLocation1, polygon1)
         val nearestPoint1 = nearestPointOnPolygonSegment(currentLocation1, polygon1)
 
-        // distance to midpoint of hypotenuse
-        Assert.assertEquals(78714.27, nearestDistance1, 0.0001)
+        // distance to midpoint of hypotenuse (large error used is because the distance doesn't use
+        // haversine calculation and so over 78km is off by a large amount)
+        Assert.assertEquals(78714.27, nearestDistance1, 0.6)
         // midpoint of hypotenuse
         Assert.assertEquals(LngLatAlt(0.5, 0.5), nearestPoint1)
 

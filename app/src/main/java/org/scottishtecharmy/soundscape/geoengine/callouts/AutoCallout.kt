@@ -86,7 +86,7 @@ class AutoCallout(
             roadsDescription,
             localizedContext,
             results,
-            userGeometry,
+            gridState,
             intersectionCalloutHistory
         )
 
