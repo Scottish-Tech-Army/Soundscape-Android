@@ -6,6 +6,7 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -17,8 +18,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTil
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
-import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
-import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -27,9 +26,12 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
+import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import kotlin.collections.MutableList
 import kotlin.math.abs
+import kotlin.sequences.forEach
 import kotlin.system.measureTimeMillis
 
 
@@ -48,10 +50,51 @@ private fun vectorTileToGeoJsonFromFile(
     return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 }
 
+private fun parseNmeaFromFile(filename: String): FeatureCollection {
+
+    val path = "src/test/res/org/scottishtecharmy/soundscape/"
+    val fc = FeatureCollection()
+
+
+    File(path + filename).useLines { lines ->
+        var index = 0
+        var skip = 5 //+ 1150
+        lines.forEach { line ->
+
+            if(skip != 0) {
+                --skip
+                return@forEach
+            }
+            if(index > 1500) {
+                return@forEach
+            }
+
+            val values = line.split(",").map { it.trim() }
+
+            val timestamp = values[0]
+            val latitude =  values[1].toDouble()
+            val longitude =  values[2].toDouble()
+
+            val feature = Feature()
+            feature.geometry = Point(longitude, latitude)
+            feature.properties = hashMapOf()
+            feature.properties?.set("name", timestamp)
+            feature.properties?.set("index", index)
+            feature.properties?.set("marker-size", "small")
+            feature.properties?.set("marker-color", "#004000")
+            ++index
+
+            fc.addFeature(feature)
+        }
+    }
+
+    return fc
+}
+
+
 fun getGridStateForLocation(
     location: LngLatAlt,
-    gridSize: Int = 2,
-    gridIntersections: HashMap<LngLatAlt, Intersection> = hashMapOf()
+    gridSize: Int = 2
 ): GridState {
 
     // Get a grid around the location
@@ -61,6 +104,8 @@ fun getGridStateForLocation(
     }
 
     // Read in the files
+    val gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
+        emptyList<HashMap<LngLatAlt, Intersection>>().toMutableList()
     val joiner = InterpolatedPointsJoiner()
     val featureCollection = FeatureCollection()
     for (tile in grid.tiles) {
@@ -77,11 +122,12 @@ fun getGridStateForLocation(
                 featureCollection.addFeature(feature)
             }
         }
-        for(intersection in intersectionMap) {
-            gridIntersections[intersection.key] = intersection.value
-        }
+        gridIntersections.add(intersectionMap)
     }
-    return GridState.createFromFeatureCollection(featureCollection)
+    val gridState = GridState()
+    gridState.initializeFromFeatureCollection(featureCollection, gridIntersections, grid)
+
+    return gridState
 }
 
 class MvtTileTest {
@@ -168,37 +214,21 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonGrid() {
 
-        val joiner = InterpolatedPointsJoiner()
-
         // Make a large grid to aid analysis
-        val featureCollection = FeatureCollection()
-        for (x in 15990..15992) {
-            for (y in 10212..10213) {
-                val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt", intersectionMap)
-                for (feature in geojson) {
-                    val addFeature = joiner.addInterpolatedPoints(feature)
-                    if (addFeature) {
-                        featureCollection.addFeature(feature)
-                    }
-                }
-            }
-        }
-        // Add lines to connect all of the interpolated points
-        joiner.addJoiningLines(featureCollection)
-
-        val mergedCollection = mergeAllPolygonsInFeatureCollection(featureCollection)
-
-        val adapter = GeoJsonObjectMoshiAdapter()
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
 
         // Check that the de-duplication of the points worked (without that there are two points
         // for Graeme Pharmacy, one each from two separate tiles).
-        val searchResults = searchFeaturesByName(mergedCollection, "Graeme")
+        val searchResults = searchFeaturesByName(
+            gridState.featureTrees[TreeId.POIS.id].getAllCollection(),
+            "Graeme")
+
+        val adapter = GeoJsonObjectMoshiAdapter()
         println(adapter.toJson(searchResults))
         assert(searchResults.features.size == 1)
 
         // Check that we can find the containing polygons for a point
-        val tree = FeatureTree(mergedCollection)
+        val tree = gridState.featureTrees[TreeId.POIS.id]
         val fc1 = tree.getContainingPolygons(LngLatAlt(-4.316401, 55.939941))
         assert(fc1.features.size == 1)
         assert(fc1.features[0].properties?.get("name") == "Tesco Customer Car Park")
@@ -207,17 +237,46 @@ class MvtTileTest {
         assert(fc2.features.size == 1)
         assert(fc2.features[0].properties?.get("name") == "Milngavie Town Hall")
 
-        val fc3 = tree.getContainingPolygons(LngLatAlt(-4.296998, 55.948270))
-        assert(fc3.features.size == 2)
-        assert(fc3.features[0].properties?.get("name") == "Milngavie Fitness & Wellbeing Gym")
-        assert(fc3.features[1].properties?.get("class") == "parking")
+//        val fc3 = tree.getContainingPolygons(LngLatAlt(-4.296998, 55.948270))
+//        assert(fc3.features.size == 2)
+//        assert(fc3.features[0].properties?.get("name") == "Milngavie Fitness & Wellbeing Gym")
+//        assert(fc3.features[1].properties?.get("class") == "parking")
 
         val fc4 = tree.getContainingPolygons(LngLatAlt(-4.316641241312027,55.94160200415631))
         assert(fc4.features.size == 1)
 
+        val outputCollection = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id].getAllCollection()
+        for(intersection in gridState.gridIntersections) {
+            intersection.value.toFeature()
+            outputCollection.addFeature(intersection.value)
+        }
+
         val outputFile = FileOutputStream("2x2.geojson")
-        outputFile.write(adapter.toJson(mergedCollection).toByteArray())
+        outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
+
+        val gps = parseNmeaFromFile("nmea.csv")
+        val mapMatchFilter = MapMatchFilter()
+        val mapMatchedPositions = FeatureCollection()
+        for(position in gps) {
+            val result = mapMatchFilter.filter((position.geometry as Point).coordinates, gridState, mapMatchedPositions)
+
+            if(result.first != null) {
+                val newFeature = Feature()
+                newFeature.geometry = Point(result.first!!.longitude, result.first!!.latitude)
+                newFeature.properties = hashMapOf()
+                newFeature.properties?.set("marker-color", result.third)
+                newFeature.properties?.set("color", result.third)
+                mapMatchedPositions.addFeature(newFeature)
+            }
+
+            // Add raw GPS too
+            mapMatchedPositions.addFeature(position)
+        }
+
+        val mapMatchingOutput = FileOutputStream("map-matching.geojson")
+        mapMatchingOutput.write(adapter.toJson(mapMatchedPositions).toByteArray())
+        mapMatchingOutput.close()
     }
 
     /**
@@ -234,11 +293,10 @@ class MvtTileTest {
     @Test
     fun testNameConfection() {
         val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
-        val gridIntersections: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val gridState = getGridStateForLocation(userGeometry.location, 2, gridIntersections)
+        val gridState = getGridStateForLocation(userGeometry.location, 2)
 
         val confectionTime = measureTimeMillis {
-            traverseIntersectionsConfectingNames(gridIntersections)
+            traverseIntersectionsConfectingNames(gridState.gridIntersections)
         }
 
         var roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)

@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
-import android.util.Log
 import org.scottishtecharmy.soundscape.dto.IntersectionRelativeDirections
 import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -16,11 +15,12 @@ import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.Polygon as JtsPolygon
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.LinearRing
-import org.scottishtecharmy.soundscape.geoengine.GridState
-import org.scottishtecharmy.soundscape.geoengine.GridState.Companion.TAG
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 import java.lang.Math.toDegrees
@@ -34,8 +34,6 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.sinh
 import kotlin.math.tan
-import kotlin.system.measureTimeMillis
-import kotlin.time.TimeSource
 
 
 /**
@@ -319,6 +317,11 @@ fun getIntersectionRoadNames(
 data class PointAndDistanceAndHeading(var point: LngLatAlt = LngLatAlt(),
                                       var distance: Double = Double.MAX_VALUE,
                                       var heading: Double = 0.0)
+
+
+fun PointAndDistanceAndHeading.clone(): PointAndDistanceAndHeading {
+    return PointAndDistanceAndHeading(point.clone(), distance, heading)
+}
 
 /**
  * Given a Feature and a location this will calculate the nearest distance to it
@@ -761,7 +764,6 @@ fun splitRoadAtNode(
 fun getRoadBearingToIntersection(
     intersection: Feature?,
     road: Feature?,
-    deviceHeading: Double
 ): Double {
 
     if((road == null) || (intersection == null))
@@ -769,41 +771,6 @@ fun getRoadBearingToIntersection(
 
     val roadCoordinates = (road.geometry as LineString).coordinates
     val intersectionCoordinate = (intersection.geometry as Point).coordinates
-
-    // if the intersection location doesn't match the start/finish location of the road
-    // then we are dealing with a LEADING_AND_TRAILING road. We need to split the road into two
-    // where the intersection coordinate is on the road
-    if (roadCoordinates.first() != intersectionCoordinate && roadCoordinates.last() != intersectionCoordinate){
-        val splitRoads = splitRoadByIntersection(intersection, road)
-        // we've got two split roads but which one do we want the bearing for?
-        // get the bearing for both
-
-        val bearingArray: MutableList<Double> = mutableListOf()
-
-        for(splitRoad in splitRoads){
-            val indexOfIntersection = (splitRoad.geometry as LineString).coordinates.indexOfFirst { it == intersectionCoordinate }
-            val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
-                getReferenceCoordinate(
-                    splitRoad.geometry as LineString,
-                    3.0,
-                    false
-                )
-            } else {
-                getReferenceCoordinate(
-                    splitRoad.geometry as LineString,
-                    3.0,
-                    true
-                )
-            }
-            val bearing = bearingFromTwoPoints(testReferenceCoordinate, intersectionCoordinate)
-            bearingArray.add(bearing)
-        }
-        if(bearingArray.size >= 2)
-            return findClosestDirection(deviceHeading, bearingArray[0], bearingArray[1])
-
-        return 0.0
-    }
-
     val indexOfIntersection = roadCoordinates.indexOfFirst { it == intersectionCoordinate }
 
     val testReferenceCoordinate: LngLatAlt = if (indexOfIntersection == 0) {
@@ -1015,7 +982,7 @@ fun getRelativeDirectionsPolygons(
 }
 
 fun checkWhetherIntersectionIsOfInterest(
-    intersectionRoadNames: FeatureCollection,
+    intersection: Intersection,
     testNearestRoad:Feature?
 ): Int {
     //println("Number of roads that make up intersection ${intersectionNumber}: ${intersectionRoadNames.features.size}")
@@ -1023,11 +990,11 @@ fun checkWhetherIntersectionIsOfInterest(
         return 0
 
     var needsFurtherChecking = 0
-    val setofNames = emptySet<String>().toMutableSet()
-    for (road in intersectionRoadNames) {
-        val roadName = road.properties?.get("name")
+    val setOfNames = emptySet<String>().toMutableSet()
+    for (way in intersection.members) {
+        val roadName = way.properties?.get("name")
         val isMatch = testNearestRoad.properties?.get("name") == roadName
-        val nameIsDefault = road.properties?.get("default_name") != null
+        val nameIsDefault = way.properties?.get("default_name") != null
 
         if (isMatch) {
             // Ignore the road we're on
@@ -1036,11 +1003,11 @@ fun checkWhetherIntersectionIsOfInterest(
         }
         else if(roadName != null) {
             val name = roadName.toString()
-            if(setofNames.contains(name)) {
+            if(setOfNames.contains(name)) {
                 // Don't increment the priority if the name is here for the second time
             } else {
                 needsFurtherChecking++
-                setofNames.add(name)
+                setOfNames.add(name)
             }
         }
     }
@@ -2216,7 +2183,7 @@ fun confectNamesForRoad(road: Feature,
 
         // Add in destinations tag if they don't already exist
         var startDestinationAdded = road.properties?.get("destination:backward") != null
-        var endDestinationAdded = road.properties?.get("destination:backward") != null
+        var endDestinationAdded = road.properties?.get("destination:forward") != null
 
         // Does the unnamed way start or end near a POI?
         if (!startDestinationAdded)
@@ -2230,40 +2197,58 @@ fun setDestinationTag(properties: HashMap<String, Any?>?, forwards: Boolean, tag
     properties?.set("destination:${if (forwards) "backward" else "forward"}", tagValue)
 }
 
-fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, Intersection>) {
+fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, Intersection>,
+                                         intersectionAccumulator:  HashMap<LngLatAlt, Intersection> = hashMapOf()) {
     // Go through every intersection and for any which have at least one named way, add
     // "destination tag" on it's un-named ways to indicate that they arrive there.
     for (intersection in gridIntersections) {
+        // Add intersection to accumulator map
+        intersectionAccumulator[intersection.key] = intersection.value
+
         // TODO: Perhaps we could use an intersection name here if there is more than one
         //  named way? e.g. Path to junction of Moor Road and Buchanan Street
+
         // Does the intersection have any named members?
         var namedRoadToUse: String? = null
         for (road in intersection.value.members) {
             if (namedRoadToUse == null) {
-                road.segment[0].properties?.get("name")?.let { name ->
+                road.properties?.get("name")?.let { name ->
                     namedRoadToUse = name.toString()
                 }
             }
+
             // Check for dead ends
-            var forwards = (road.startIntersection == intersection.value)
-            if ((forwards and (road.endIntersection == null)) or
-                (!forwards and (road.startIntersection == null))
+            val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+            road.followWays(intersection.value, ways)
+            val way = ways.last()
+            if ((way.first and (way.second.intersections[WayEnd.START.id] == null)) or
+                (!way.first and (way.second.intersections[WayEnd.END.id] == null))
             ) {
-                // We currently label all roads, even named ones, with Dead End
-                setDestinationTag(road.segment[0].properties, forwards, "Dead End")
+                for(eachWay in ways) {
+                    // We currently label all roads, even named ones, with Dead End
+                    setDestinationTag(eachWay.second.properties, eachWay.first, "Dead End")
+                }
             }
         }
         // We've got a named road at this junction, so use if for any un-named roads
         if (namedRoadToUse != null) {
             for (road in intersection.value.members) {
                 // Skip if the road is named
-                if (road.segment[0].properties?.get("name") == null) {
-                    var forwards = (road.startIntersection == intersection.value)
-                    setDestinationTag(
-                        road.segment[0].properties,
-                        forwards,
-                        namedRoadToUse.toString()
-                    )
+                if (road.properties?.get("name") == null) {
+
+                    val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+                    road.followWays(intersection.value, ways) { way->
+                        // Break out when the way has a name
+                        (way.properties?.get("name") != null)
+                    }
+
+                    for(way in ways) {
+                        setDestinationTag(
+                            way.second.properties,
+                            way.first,
+                            namedRoadToUse.toString()
+                        )
+                    }
                 }
             }
         }

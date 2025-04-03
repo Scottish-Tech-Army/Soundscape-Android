@@ -745,7 +745,9 @@ fun distanceToPolygon(
 }
 
 /**
- * Calculate distance of a point (pLat,pLon) to a line defined by two other points (lat1,lon1) and (lat2,lon2)
+ * Calculate distance of a point (pLat,pLon) to a line defined by two other points (lat1,lon1) and
+ * (lat2,lon2). This is only valid for lines that are 'near' each other as we're using straight
+ * lines and not following the curve of the earth.
  * @param x1 double
  * @param y1 double
  * @param x2 double
@@ -763,6 +765,7 @@ fun distance(x1: Double,
              nearestPoint: LngLatAlt? = null): Double {
     val xx: Double
     val yy: Double
+
     when {
         y1 == y2 -> {
             // horizontal line
@@ -791,20 +794,23 @@ fun distance(x1: Double,
         }
     }
 
-    // Set nearestPoint to be the nearest node in the line
-    val distance1 = distance(x, y, x1, y1)
-    val distance2 = distance(x, y, x2, y2)
-    if(distance1 < distance2) {
-        nearestPoint?.latitude = x1
-        nearestPoint?.longitude = y1
-    } else {
-        nearestPoint?.latitude = x2
-        nearestPoint?.longitude = y2
-    }
+    nearestPoint?.latitude = xx
+    nearestPoint?.longitude = yy
 
     return if (onSegment(xx, yy, x1, y1, x2, y2)) {
-        distance(x, y, xx, yy)
+        sqrt((x - xx) * (x - xx) + (y - yy) * (y - yy))
     } else {
+        val distance1 = sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1))
+        val distance2 = sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2))
+
+        // Set nearestPoint to be the nearest location on the line
+        if(distance1 < distance2) {
+            nearestPoint?.latitude = x1
+            nearestPoint?.longitude = y1
+        } else {
+            nearestPoint?.latitude = x2
+            nearestPoint?.longitude = y2
+        }
         min(distance1, distance2)
     }
 }

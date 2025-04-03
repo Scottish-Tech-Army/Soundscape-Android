@@ -76,7 +76,7 @@ class VisuallyCheckIntersectionLayers {
         }
 
         val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
-        val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad, userGeometry.heading()!!)
+        val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad)
         val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
             UserGeometry(
