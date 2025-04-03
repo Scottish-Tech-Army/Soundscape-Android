@@ -1,5 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -12,22 +15,22 @@ import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.tan
 import kotlin.math.truncate
+import kotlin.text.replaceFirstChar
 
 enum class IntersectionType(
     val id: Int,
 ) {
     REGULAR(0),
-    JOINER(1),
-    TILE_EDGE(2)
+    TILE_EDGE(1)
 }
 
-class Intersection {
+class Intersection : Feature() {
     var members: MutableList<Way> =
         emptyList<Way>().toMutableList()    // Ways that make up this intersection
     var name = ""                                                       // Name of the intersection
     var location =
         LngLatAlt()                                          // Location of the intersection
-    var type = IntersectionType.REGULAR
+    var intersectionType = IntersectionType.REGULAR
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -37,14 +40,121 @@ class Intersection {
         }
         return false
     }
+
+    fun toFeature() {
+        geometry = Point(location.longitude, location.latitude)
+        properties = hashMapOf<String, Any?>()
+        properties?.set("name", name)
+        properties?.set("members", members.size)
+        properties?.set("type", if(intersectionType == IntersectionType.TILE_EDGE) "tile_edge" else "intersection")
+    }
 }
 
-class Way {
-    var segment: List<Feature> = emptyList()    // List of Features that make up the way (often just 1)
+enum class WayType(
+    val id: Int,
+) {
+    REGULAR(0),
+    JOINER(1)
+}
+
+enum class WayEnd(
+    val id: Int,
+) {
+    START(0),
+    END(1)
+}
+
+class Way : Feature() {
     var length = 0.0                            // We could easily calculate this from the segments.
 
-    var startIntersection: Intersection? = null // Intersections at either end
-    var endIntersection: Intersection? = null
+    var intersections = arrayOf<Intersection?>(null, null)  // Intersections at either end
+
+    var wayType = WayType.REGULAR
+
+    fun doesIntersect(other: Way) : Intersection? {
+        for(ours in intersections) {
+            for(theirs in other.intersections) {
+                if(ours == theirs)
+                    return ours
+            }
+        }
+        return null
+    }
+
+    fun followWays(fromIntersection: Intersection,
+                   ways: MutableList<Pair<Boolean, Way>>,
+                   optionalEarlyPredicate: ((Way) -> Boolean)? = null) {
+
+        if(optionalEarlyPredicate != null) {
+            if(optionalEarlyPredicate(this))
+                return
+        }
+
+        // Add this way
+        val forwards = (fromIntersection == intersections[WayEnd.START.id])
+        ways += Pair(forwards, this)
+
+        // See if we can go further along the way. We can only go further if we have a series of
+        // Intersections with only 2 Ways each and we haven't hit a named one yet.
+        val nextIntersection = if (fromIntersection  == intersections[WayEnd.START.id])
+            intersections[WayEnd.END.id]
+        else
+            intersections[WayEnd.START.id]
+
+        if(nextIntersection?.members?.size == 2) {
+            // We have a next intersection and it's only got 2 ways, so follow it onwards
+            for(way in nextIntersection.members) {
+                if(way != this) {
+                    way.followWays(nextIntersection, ways)
+                }
+            }
+        }
+    }
+
+    /** isLoopedBack is used to determine if a Way starts and ends at the same intersection.
+     * @return true if the Way starts and ends at the same intersection, false otherwise
+     */
+    fun isLoopedBack() : Boolean {
+        return (intersections[WayEnd.START.id] == intersections[WayEnd.END.id])
+    }
+
+    /** direction returns the integer direction (0-7) indicating which direction the way is relative
+     * to the device heading.
+     * @param fromIntersection is the intersection which the way is part of and from which we want
+     * the direction to be calculated
+     * @param deviceHeading is the heading relative to which the direction is calculated
+     * @return the integer direction (0-7) indicating which direction the way is relative to the
+     * device heading
+     */
+    fun direction(fromIntersection: Intersection, deviceHeading: Double) : Int {
+        val directions = getCombinedDirectionSegments(deviceHeading)
+        val heading = heading(fromIntersection)
+
+        return directions.indexOfFirst { directionSegment ->
+            directionSegment.contains(heading)
+        }
+    }
+
+    /**
+     * heading returns the heading of the way as it leaves the intersection
+     * @param fromIntersection is the intersection which the way is part of and from which we want
+     * the heading to be calculated
+     * @return the absolute heading of the way as it leaves the intersection
+     */
+    fun heading(fromIntersection: Intersection) : Double
+    {
+        try {
+            val nextLocation = if (fromIntersection == intersections[WayEnd.START.id])
+                (geometry as LineString).coordinates.drop(1).first()
+            else
+                (geometry as LineString).coordinates.dropLast(1).last()
+
+            return bearingFromTwoPoints(fromIntersection.location, nextLocation)
+        } catch(e: Exception) {
+            return 0.0
+        }
+    }
+
 }
 
 fun convertBackToTileCoordinates(location: LngLatAlt,
@@ -133,13 +243,22 @@ class WayGenerator {
             }
         }
         newFeature.geometry = currentSegment
-        way.segment = listOf(newFeature)
+        way.properties = newFeature.properties
+        way.foreign = newFeature.foreign
+        way.type = newFeature.type
+        way.geometry = newFeature.geometry
     }
 
     fun generateWays(intersectionCollection: FeatureCollection,
                      waysCollection: FeatureCollection,
                      intersectionMap:  HashMap<LngLatAlt, Intersection>,
+                     xTile: Int,
+                     yTile: Int,
                      tileZoom : Int) {
+
+        // Calculated tile limits
+        val topLeft = getLatLonTileWithOffset(xTile, yTile, tileZoom, 0.0, 0.0)
+        val bottomRight = getLatLonTileWithOffset(xTile, yTile, tileZoom, 1.0, 1.0)
 
         for(feature in wayFeatures) {
             if(feature.geometry.type == "LineString") {
@@ -147,8 +266,28 @@ class WayGenerator {
                 var currentWay = Way()
                 var currentSegment = LineString()
                 var segmentIndex = 0
-                var coordinateKey : Int = 0
+                var coordinateKey : Int
+                var tileEdge = false
                 for (coordinate in line.coordinates) {
+
+                    tileEdge =
+                        (coordinate.latitude == topLeft.latitude) or
+                        (coordinate.longitude == topLeft.longitude) or
+                        (coordinate.latitude == bottomRight.latitude) or
+                        (coordinate.longitude == bottomRight.longitude)
+
+                    if(tileEdge and (currentSegment.coordinates.isEmpty())) {
+                        // We're starting at a tile edge, so create an intersection that we can
+                        // join to other tiles later
+                        val intersection = Intersection()
+                        intersection.name = ""
+                        intersection.location = coordinate
+                        intersection.intersectionType = IntersectionType.TILE_EDGE
+
+                        // The current way starts here
+                        currentWay.intersections[WayEnd.START.id] = intersection
+                        intersections[intersection.location] = intersection
+                    }
 
                     currentSegment.coordinates.add(coordinate)
 
@@ -164,7 +303,7 @@ class WayGenerator {
                                 intersection = Intersection()
                                 intersection.name = ""
                                 intersection.location = coordinate
-                                intersection.type = IntersectionType.REGULAR
+                                intersection.intersectionType = IntersectionType.REGULAR
                                 intersections[coordinate] = intersection
                             }
 
@@ -176,12 +315,12 @@ class WayGenerator {
                                     currentWay
                                 )
                                 ++segmentIndex
-                                currentWay.endIntersection = intersection
+                                currentWay.intersections[WayEnd.END.id] = intersection
                                 ways.add(currentWay)
 
                                 // Add completed way to intersection at end and at start if there is one
                                 intersection.members.add(currentWay)
-                                currentWay.startIntersection?.members?.add(currentWay)
+                                currentWay.intersections[WayEnd.START.id]?.members?.add(currentWay)
 
                                 // Reset the segment accumulator
                                 currentSegment = LineString()
@@ -190,7 +329,7 @@ class WayGenerator {
 
                             // Create a new Way feature for the upcoming segment
                             currentWay = Way().also { way ->
-                                way.startIntersection = intersection
+                                way.intersections[WayEnd.START.id] = intersection
                             }
                         }
                     }
@@ -200,16 +339,27 @@ class WayGenerator {
                     addSegmentFeatureToWay(feature, currentSegment, segmentIndex, currentWay)
                     ways.add(currentWay)
                     // Add completed way to intersection at start if there is one
-                    if(currentWay.startIntersection != null) {
-                        currentWay.startIntersection!!.members.add(currentWay)
+                    if(currentWay.intersections[WayEnd.START.id] != null) {
+                        currentWay.intersections[WayEnd.START.id]!!.members.add(currentWay)
+                    }
+                    if(tileEdge) {
+                        // We're ending at a tile edge, so create an intersection that we can
+                        // join to other tiles later
+                        val intersection = Intersection()
+                        intersection.name = ""
+                        intersection.location = currentSegment.coordinates.last()
+                        intersection.intersectionType = IntersectionType.TILE_EDGE
+
+                        // The current way ends here
+                        currentWay.intersections[WayEnd.END.id] = intersection
+                        intersection.members.add(currentWay)
+                        intersections[intersection.location] = intersection
                     }
                 }
             }
         }
         for(way in ways) {
-            for (segment in way.segment) {
-                waysCollection.addFeature(segment)
-            }
+            waysCollection.addFeature(way)
         }
 
         for(intersection in intersections) {
@@ -217,32 +367,44 @@ class WayGenerator {
             // Name the intersection
             val name = StringBuilder()
             val osmIds = arrayListOf<Double>()
+            val namesUsed = emptySet<String>().toMutableSet()
             for(way in intersection.value.members) {
-                if(name.isNotEmpty()) {
-                    name.append("/")
-                }
-                val segment = way.segment[0]
-                var segmentName = segment.properties?.get("name")
+                var segmentName = way.properties?.get("name")
                 if(segmentName == null) {
-                    segmentName = segment.properties?.get("subClass")
+                    segmentName = way.properties?.get("class")
+                    if(segmentName != null) {
+                        val str = segmentName.toString()
+                        if(str.isNotEmpty()) {
+                            str.replaceFirstChar { it.uppercaseChar() }
+                        }
+                        if(name.isNotEmpty()) {
+                            name.append("/")
+                        }
+                        name.append(str)
+                    }
+                } else {
+                    if(!namesUsed.contains(segmentName.toString())) {
+                        if(name.isNotEmpty()) {
+                            name.append("/")
+                        }
+                        name.append("$segmentName")
+                        namesUsed.add(segmentName.toString())
+                    }
                 }
-                val segmentIndex = segment.properties?.get("segmentIndex")
-                name.append("$segmentName $segmentIndex")
 
-                val id = segment.properties?.get("osm_ids").toString().toDouble()
+                val id = way.properties?.get("osm_ids").toString().toDouble()
                 osmIds.add(id)
             }
             intersection.value.name = name.toString()
 
-            val feature = Feature()
-            feature.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
-            feature.properties = hashMapOf<String, Any?>()
-            feature.properties?.set("name", intersection.value.name)
-            feature.foreign = hashMapOf<String, Any?>()
-            feature.foreign?.set("feature_type", "highway")
-            feature.foreign?.set("feature_value", "gd_intersection")
-            feature.foreign?.set("osm_ids", osmIds)
-            intersectionCollection.addFeature(feature)
+            intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
+            intersection.value.properties = hashMapOf<String, Any?>()
+            intersection.value.properties?.set("name", intersection.value.name)
+            intersection.value.foreign = hashMapOf<String, Any?>()
+            intersection.value.foreign?.set("feature_type", "highway")
+            intersection.value.foreign?.set("feature_value", "gd_intersection")
+            intersection.value.foreign?.set("osm_ids", osmIds)
+            intersectionCollection.addFeature(intersection.value)
 
             intersectionMap[intersection.key] = intersection.value
         }

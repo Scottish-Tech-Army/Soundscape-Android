@@ -10,24 +10,21 @@ import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
+import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNamesRelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getRoadBearingToIntersection
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicates
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 
-data class RoadsDescription(var nearestRoad: Feature? = null,
-                            val userGeometry: UserGeometry = UserGeometry(),
-                            val intersection: Feature? = null,
-                            val intersectionRoads: FeatureCollection = FeatureCollection())
+data class IntersectionDescription(var nearestRoad: Feature? = null,
+                                   val userGeometry: UserGeometry = UserGeometry(),
+                                   val intersection: Intersection? = null,
+)
 
 /**
  * getRoadsDescriptionFromFov returns a description of the nearestRoad and also the 'best'
@@ -43,7 +40,7 @@ data class RoadsDescription(var nearestRoad: Feature? = null,
  */
 fun getRoadsDescriptionFromFov(gridState: GridState,
                                userGeometry: UserGeometry
-) : RoadsDescription {
+) : IntersectionDescription {
 
     // Create FOV triangle
     val triangle = getFovTriangle(userGeometry)
@@ -53,7 +50,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // Find roads within FOV
     val fovRoads = roadTree.getAllWithinTriangle(triangle)
-    if(fovRoads.features.isEmpty()) return RoadsDescription(nearestRoad = userGeometry.nearestRoad)
+    if(fovRoads.features.isEmpty()) return IntersectionDescription(nearestRoad = userGeometry.nearestRoad)
 
     // Two roads that we are interested in:
     //  1. The one that we are nearest to. We use this for intersection call outs to decide which
@@ -65,25 +62,28 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // Find intersections within FOV
     val fovIntersections = intersectionTree.getAllWithinTriangle(triangle)
-    if(fovIntersections.features.isEmpty()) return RoadsDescription(nearestRoad, userGeometry)
+    if(fovIntersections.features.isEmpty()) return IntersectionDescription(nearestRoad, userGeometry)
 
     // Sort the FOV intersections by distance
     val sortedFovIntersections = sortedByDistanceTo(userGeometry.location, fovIntersections)
 
     // Inspect each intersection so as to skip trivial ones
-    val nonTrivialIntersections = emptyList<Pair<Int, Feature>>().toMutableList()
-    for (i in 0 until sortedFovIntersections.features.size) {
-        // Get the roads for the intersection
-        val intersectionRoads = getIntersectionRoadNames(sortedFovIntersections.features[i], fovRoads)
-        // Skip 'simple' intersections e.g. ones where the only roads involved have the same name
-        val priority = checkWhetherIntersectionIsOfInterest(intersectionRoads, nearestRoad)
-        nonTrivialIntersections.add(Pair(priority, sortedFovIntersections.features[i]))
+    val nonTrivialIntersections = emptyList<Pair<Int, Intersection>>().toMutableList()
+
+    for (intersection in sortedFovIntersections.features) {
+        val intersectionLocation = (intersection.geometry as Point).coordinates
+        val graphIntersection = gridState.gridIntersections[intersectionLocation]
+        if(graphIntersection != null) {
+            // We skip 'simple' intersections e.g. ones where the only roads involved have the same name
+            val priority = checkWhetherIntersectionIsOfInterest(graphIntersection, nearestRoad)
+            nonTrivialIntersections.add(Pair(priority, graphIntersection))
+        }
     }
     if(nonTrivialIntersections.isEmpty()) {
-        return RoadsDescription(nearestRoad, userGeometry)
+        return IntersectionDescription(nearestRoad, userGeometry)
     }
 
-    var intersection: Feature? = nonTrivialIntersections.firstOrNull { prioritised ->
+    var intersection: Intersection? = nonTrivialIntersections.firstOrNull { prioritised ->
                 prioritised.first > 0
             }?.second
     if(intersection == null) {
@@ -98,35 +98,14 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     // Find the bearing that we're coming in at - measured to the nearest intersection
     val heading = userGeometry.heading()
     if(heading != null) {
-        val nearestRoadBearing =
-            getRoadBearingToIntersection(nearestIntersection, nearestRoad, heading)
-
-        // Create a set of relative direction polygons
-        val intersectionLocation = intersection!!.geometry as Point
-        val geometry = UserGeometry(
-            intersectionLocation.coordinates,
-            nearestRoadBearing,
-            5.0
-        )
-        val relativeDirections = getRelativeDirectionsPolygons(
-            geometry,
-            RelativeDirections.COMBINED
-        )
-
         // And use the polygons to describe the roads at the intersection
-        val intersectionRoadNames = getIntersectionRoadNames(intersection, fovRoads)
-        return RoadsDescription(
+        return IntersectionDescription(
             nearestRoadInFoV,
             userGeometry,
-            intersection,
-            getIntersectionRoadNamesRelativeDirections(
-                intersectionRoadNames,
-                intersection,
-                relativeDirections
-            )
+            intersection
         )
     }
-    return RoadsDescription(nearestRoad, userGeometry)
+    return IntersectionDescription(nearestRoad, userGeometry)
 }
 
 /**
@@ -141,10 +120,10 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
  * callouts
  */
 fun addIntersectionCalloutFromDescription(
-    description: RoadsDescription,
+    description: IntersectionDescription,
     localizedContext: Context,
     results: MutableList<PositionedString>,
-    userGeometry: UserGeometry,
+    gridState: GridState,
     calloutHistory: CalloutHistory? = null
 ) {
 
@@ -179,15 +158,10 @@ fun addIntersectionCalloutFromDescription(
 
     if(description.intersection == null) return
 
-    val intersectionNameProperty = description.intersection.properties?.get("name")
-    val intersectionName = if(intersectionNameProperty == null)
-        ""
-    else
-        intersectionNameProperty as String
-
+    val intersectionName = description.intersection.name
 
     // Check if we should be filtering out this callout
-    val intersectionLocation = (description.intersection.geometry as Point).coordinates
+    val intersectionLocation = description.intersection.location
     calloutHistory?.checkAndAdd(TrackedCallout(intersectionName,
         intersectionLocation,
         isPoint = true,
@@ -205,51 +179,59 @@ fun addIntersectionCalloutFromDescription(
     )
 
     // Report roads that join the intersection
-    for (feature in description.intersectionRoads.features) {
-        val direction = feature.properties?.get("Direction").toString().toIntOrNull()
+    val heading = description.userGeometry.heading()
+    if(heading == null)
+        return
+
+    val directions = getCombinedDirectionSegments(heading)
+    for (way in description.intersection.members) {
+
+        val heading = way.heading(description.intersection)
+        val direction = directions.indexOfFirst { segment ->
+            segment.contains(heading)
+        }
 
         // Don't call out the road we are on (0) as part of the intersection
-        if (direction != null && direction != 0) {
-            if (feature.properties?.get("name") != null) {
-                val roadDirectionId = when(direction) {
-                    1,2,3 -> R.string.directions_name_goes_left
-                    5,6,7 -> R.string.directions_name_goes_right
-                    else -> R.string.directions_name_continues_ahead
-                }
-
-                var heading = userGeometry.presentationHeading()
-                if(heading == null)
-                    heading = 0.0
-
-                heading += when(direction) {
-                    1,2,3 -> -90.0
-                    5,6,7 -> 90.0
-                    else -> 0.0
-                }
-
-                var destinationModifier: Any? = null
-//                if(line.coordinates.first() == intersectionLocation)
-                destinationModifier = feature.properties?.get("destination:forward")
-//                else if(line.coordinates.last() == intersectionLocation)
-//                    destinationModifier = feature.properties?.get("destination:backward").toString()
-
-                val name = feature.properties?.get("name")
-                val destinationText =
-                    if(destinationModifier != null)
-                        "$name to ${destinationModifier.toString()}"
-                    else
-                        name
-
-                val intersectionCallout =
-                    localizedContext.getString(roadDirectionId, destinationText)
-                results.add(
-                    PositionedString(
-                        text = intersectionCallout,
-                        type = AudioType.COMPASS,
-                        heading = heading
-                    )
-                )
+        if (direction != 0) {
+            val roadDirectionId = when(direction) {
+                1,2,3 -> R.string.directions_name_goes_left
+                5,6,7 -> R.string.directions_name_goes_right
+                else -> R.string.directions_name_continues_ahead
             }
+
+            var heading = description.userGeometry.presentationHeading()
+            if(heading == null)
+                heading = 0.0
+
+            heading += when(direction) {
+                1,2,3 -> -90.0
+                5,6,7 -> 90.0
+                else -> 0.0
+            }
+
+            var destinationModifier: Any? = null
+            var forwards = (way.intersections[WayEnd.START.id] == description.intersection)
+            destinationModifier = if (forwards)
+                way.properties?.get("destination:forward")
+            else
+                way.properties?.get("destination:backward")
+
+            val name = way.properties?.get("name")
+            val destinationText =
+                if(destinationModifier != null)
+                    "$name to ${destinationModifier.toString()}"
+                else
+                    name
+
+            val intersectionCallout =
+                localizedContext.getString(roadDirectionId, destinationText)
+            results.add(
+                PositionedString(
+                    text = intersectionCallout,
+                    type = AudioType.COMPASS,
+                    heading = heading
+                )
+            )
         }
     }
 }
