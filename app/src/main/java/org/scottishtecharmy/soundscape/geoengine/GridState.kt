@@ -137,19 +137,19 @@ open class GridState {
                     // Don't join to ourselves
                     if(intersection1 != intersection2) {
                         // Don't join if already joined
-                        if(intersection1.members.size > 1) {
-                            continue
-                        }
-                        // Join if within 1.0m
-                        val distance = intersection1.location.distance(intersection2.location)
-                        if (distance < 1.0) {
-                            // Join the intersections together
-                            val way = Way()
-                            way.wayType = WayType.JOINER
-                            way.intersections[WayEnd.START.id] = intersection1
-                            way.intersections[WayEnd.END.id] = intersection2
-                            intersection1.members.add(way)
-                            intersection2.members.add(way)
+                        if(intersection1.members.size < 2) {
+                            // Join if within 1.0m
+                            val distance = intersection1.location.distance(intersection2.location)
+                            if (distance < 1.0) {
+                                // Join the intersections together
+                                val way = Way()
+                                way.wayType = WayType.JOINER
+                                way.intersections[WayEnd.START.id] = intersection1
+                                way.intersections[WayEnd.END.id] = intersection2
+                                intersection1.members.add(way)
+                                intersection2.members.add(way)
+                                break
+                            }
                         }
                     }
                 }
@@ -206,6 +206,7 @@ open class GridState {
      * The tile grid service is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>) : Boolean {
         val timeSource = TimeSource.Monotonic
         val gridStartTime = timeSource.markNow()
@@ -268,7 +269,6 @@ open class GridState {
         gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>
     ): Boolean {
         for (tile in tileGrid.tiles) {
-            Log.d(TAG, "Tile quad key: ${tile.quadkey}")
             var ret = false
             val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
             for (retry in 1..5) {
@@ -553,11 +553,15 @@ open class GridState {
         tileFeatureCollection: FeatureCollection
     ): FeatureCollection {
         val intersectionsFeatureCollection = FeatureCollection()
-        // split out the intersections into their own intersections FeatureCollection
+        // Split out the intersections into their own intersections FeatureCollection
         for (feature in tileFeatureCollection) {
             feature.foreign?.let { foreign ->
                 if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "gd_intersection") {
-                    intersectionsFeatureCollection.addFeature(feature)
+                    val intersection = feature as Intersection
+                    if(intersection.intersectionType != IntersectionType.TILE_EDGE) {
+                        // Only add intersections that are not tile edges
+                        intersectionsFeatureCollection.addFeature(feature)
+                    }
                 }
             }
         }

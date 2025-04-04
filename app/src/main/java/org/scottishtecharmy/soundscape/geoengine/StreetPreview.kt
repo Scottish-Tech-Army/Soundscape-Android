@@ -5,7 +5,6 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
-import org.scottishtecharmy.soundscape.geoengine.utils.normaliseHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 data class StreetPreviewChoice(
@@ -103,7 +102,26 @@ class StreetPreview {
                             // next intersection.
                             val ways: MutableList<Pair<Boolean, Way>> =
                                 emptyList<Pair<Boolean, Way>>().toMutableList()
-                            road.way.followWays(thisIntersection, ways)
+                            road.way.followWays(thisIntersection, ways) { way, previousWay ->
+                                if(previousWay != null) {
+                                    // We want to ignore intersections which are just a way continuing.
+                                    (
+                                        (
+                                            (way.properties?.get("brunnel")) ==
+                                            (previousWay.properties?.get("brunnel"))
+                                        ) or
+                                        (
+                                            (way.properties?.get("name")) ==
+                                            (previousWay.properties?.get("name"))
+                                        ) or
+                                        (
+                                             (way.properties?.get("class")) ==
+                                             (previousWay.properties?.get("class"))
+                                        )
+                                    )
+                                } else
+                                    false
+                            }
                             var nextIntersection:Intersection? = null
                             nextIntersection = if(ways.last().first)
                                 ways.last().second.intersections[WayEnd.END.id]
@@ -144,7 +162,7 @@ class StreetPreview {
                 choices.add(
                     StreetPreviewChoice(
                         heading = member.heading(nearestIntersection),
-                        name = member.properties?.get("name").toString(),
+                        name = member.getName(member.intersections[WayEnd.START.id] == nearestIntersection),
                         way = member
                     )
                 )

@@ -32,14 +32,9 @@ class Intersection : Feature() {
         LngLatAlt()                                          // Location of the intersection
     var intersectionType = IntersectionType.REGULAR
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        if (other is Intersection) {
-            return other.location == location
-        }
-        return false
-    }
+    // We don't allow comparison of Intersections by data because we can have two TILE_EDGE
+    // intersections at exactly the same point which are joined by a JOINER way and we can't have
+    // them be declared to be the same as then we can't tell the direction of the JOINER.
 
     fun toFeature() {
         geometry = Point(location.longitude, location.latitude)
@@ -71,6 +66,53 @@ class Way : Feature() {
 
     var wayType = WayType.REGULAR
 
+    fun getName(direction: Boolean? = null) : String {
+
+        var destinationModifier: Any? = null
+        var name = properties?.get("name")
+
+        if(name == null) {
+            // Un-named way, so use "class" property
+            name = properties?.get("class").toString()
+
+            if (direction != null) {
+                // Describe as 'towards'
+                destinationModifier = if (direction)
+                    properties?.get("destination:forward")
+                else
+                    properties?.get("destination:backward")
+
+                if (destinationModifier == null) {
+                    destinationModifier = if (direction)
+                        properties?.get("dead-end:forward")
+                    else
+                        properties?.get("dead-end:backward")
+                }
+
+                if (destinationModifier != null) {
+                    return "$name to $destinationModifier"
+                }
+            } else {
+                val start = properties?.get("destination:backward")
+                val end = properties?.get("destination:forward")
+
+                if ((end != null) and (start != null)) {
+                    return "$name that joins $start and $end"
+                }
+            }
+        }
+        if (direction != null) {
+            destinationModifier = if (direction)
+                properties?.get("dead-end:forward")
+            else
+                properties?.get("dead-end:backward")
+        }
+        if (destinationModifier != null) {
+            return "$name to $destinationModifier"
+        }
+            return name.toString()
+    }
+
     fun doesIntersect(other: Way) : Intersection? {
         for(ours in intersections) {
             for(theirs in other.intersections) {
@@ -83,20 +125,20 @@ class Way : Feature() {
 
     fun followWays(fromIntersection: Intersection,
                    ways: MutableList<Pair<Boolean, Way>>,
-                   optionalEarlyPredicate: ((Way) -> Boolean)? = null) {
+                   depth: Int = 0,
+                   optionalEarlyPredicate: ((Way, Way?) -> Boolean)? = null) {
 
         if(optionalEarlyPredicate != null) {
-            if(optionalEarlyPredicate(this))
+            if(optionalEarlyPredicate(this, ways.lastOrNull()?.second))
                 return
         }
-
         // Add this way
         val forwards = (fromIntersection == intersections[WayEnd.START.id])
         ways += Pair(forwards, this)
 
         // See if we can go further along the way. We can only go further if we have a series of
         // Intersections with only 2 Ways each and we haven't hit a named one yet.
-        val nextIntersection = if (fromIntersection  == intersections[WayEnd.START.id])
+        val nextIntersection = if (forwards)
             intersections[WayEnd.END.id]
         else
             intersections[WayEnd.START.id]
@@ -105,7 +147,7 @@ class Way : Feature() {
             // We have a next intersection and it's only got 2 ways, so follow it onwards
             for(way in nextIntersection.members) {
                 if(way != this) {
-                    way.followWays(nextIntersection, ways)
+                    way.followWays(nextIntersection, ways, depth + 1, optionalEarlyPredicate)
                 }
             }
         }
@@ -143,16 +185,12 @@ class Way : Feature() {
      */
     fun heading(fromIntersection: Intersection) : Double
     {
-        try {
-            val nextLocation = if (fromIntersection == intersections[WayEnd.START.id])
-                (geometry as LineString).coordinates.drop(1).first()
-            else
-                (geometry as LineString).coordinates.dropLast(1).last()
+        val nextLocation = if (fromIntersection == intersections[WayEnd.START.id])
+            (geometry as LineString).coordinates.drop(1).first()
+        else
+            (geometry as LineString).coordinates.dropLast(1).last()
 
-            return bearingFromTwoPoints(fromIntersection.location, nextLocation)
-        } catch(e: Exception) {
-            return 0.0
-        }
+        return bearingFromTwoPoints(fromIntersection.location, nextLocation)
     }
 
 }
@@ -183,7 +221,6 @@ class WayGenerator {
 
     private val ways : MutableList<Way> = emptyList<Way>().toMutableList()
 
-    //private val intersections : HashMap<Int, Intersection> = hashMapOf()
     private val intersections : HashMap<LngLatAlt, Intersection> = hashMapOf()
 
     /**
@@ -224,6 +261,7 @@ class WayGenerator {
     */
     fun addSegmentFeatureToWay(feature: Feature,
                                currentSegment: LineString,
+                               currentSegmentLength: Double,
                                segmentIndex: Int,
                                way: Way) {
         // Add feature with the segment up until this point
@@ -247,6 +285,7 @@ class WayGenerator {
         way.foreign = newFeature.foreign
         way.type = newFeature.type
         way.geometry = newFeature.geometry
+        way.length = currentSegmentLength
     }
 
     fun generateWays(intersectionCollection: FeatureCollection,
@@ -265,6 +304,7 @@ class WayGenerator {
                 val line = feature.geometry as LineString
                 var currentWay = Way()
                 var currentSegment = LineString()
+                var currentSegmentLength = 0.0
                 var segmentIndex = 0
                 var coordinateKey : Int
                 var tileEdge = false
@@ -289,6 +329,10 @@ class WayGenerator {
                         intersections[intersection.location] = intersection
                     }
 
+                    if(currentSegment.coordinates.isNotEmpty()) {
+                        // Add the length of the new segment
+                        currentSegmentLength += currentSegment.coordinates.last().distance(coordinate)
+                    }
                     currentSegment.coordinates.add(coordinate)
 
                     // Is this coordinate at an intersection?
@@ -311,6 +355,7 @@ class WayGenerator {
                                 addSegmentFeatureToWay(
                                     feature,
                                     currentSegment,
+                                    currentSegmentLength,
                                     segmentIndex,
                                     currentWay
                                 )
@@ -324,6 +369,7 @@ class WayGenerator {
 
                                 // Reset the segment accumulator
                                 currentSegment = LineString()
+                                currentSegmentLength = 0.0
                                 currentSegment.coordinates.add(coordinate)
                             }
 
@@ -336,7 +382,13 @@ class WayGenerator {
                 }
 
                 if(currentSegment.coordinates.size > 1) {
-                    addSegmentFeatureToWay(feature, currentSegment, segmentIndex, currentWay)
+                    addSegmentFeatureToWay(
+                        feature,
+                        currentSegment,
+                        currentSegmentLength,
+                        segmentIndex,
+                        currentWay
+                    )
                     ways.add(currentWay)
                     // Add completed way to intersection at start if there is one
                     if(currentWay.intersections[WayEnd.START.id] != null) {

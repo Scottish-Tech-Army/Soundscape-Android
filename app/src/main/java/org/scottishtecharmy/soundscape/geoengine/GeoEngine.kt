@@ -31,7 +31,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -77,7 +77,6 @@ class GeoEngine {
 
     internal lateinit var locationProvider : LocationProvider
     private lateinit var directionProvider : DirectionProvider
-    private var nearestRoadFilter = NearestRoadFilter()
     private var mapMatchFilter = MapMatchFilter()
 
     // Resource string locale configuration
@@ -114,10 +113,10 @@ class GeoEngine {
      * @param orientation The Android DeviceOrientation to use
      */
     private fun createUserGeometry(
+        location: Location?,
+        orientation: DeviceOrientation?,
         headingMode: UserGeometry.HeadingMode,
-        orientation: DeviceOrientation? = null,
-        location: Location? = null,
-        nearestRoad: Feature? = null,
+        mapMatchFilter: MapMatchFilter? = null,
     ) : UserGeometry {
 
         var latLng = LngLatAlt(0.0, 0.0)
@@ -169,7 +168,8 @@ class GeoEngine {
             speed = speed,
             headingMode = headingMode,
             travelHeading = travelHeading,
-            nearestRoad = nearestRoad,
+            mapMatchedWay = mapMatchFilter?.matchedWay,
+            mapMatchedLocation = mapMatchFilter?.matchedLocation,
             currentBeacon = beaconLocation
         )
     }
@@ -178,10 +178,10 @@ class GeoEngine {
         headingMode: UserGeometry.HeadingMode
     ) : UserGeometry {
         return createUserGeometry(
-            headingMode,
-            directionProvider.orientationFlow.value,
-            locationProvider.locationFlow.value,
-            nearestRoadFilter.get()
+            location = locationProvider.locationFlow.value,
+            orientation = directionProvider.orientationFlow.value,
+            headingMode = headingMode,
+            mapMatchFilter = mapMatchFilter
         )
     }
 
@@ -281,6 +281,7 @@ class GeoEngine {
         )
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation(soundscapeService: SoundscapeService) {
         Log.e(TAG, "startTileGridService")
         locationMonitoringJob?.cancel()
@@ -298,7 +299,6 @@ class GeoEngine {
                     runBlocking {
                         withContext(gridState.treeContext) {
                             // Update the nearest road filter with our new location
-                            nearestRoadFilter.update(location, gridState)
                             val mapMatchTime = measureTime {
                                 mapMatchFilter.filter(
                                     LngLatAlt(location.longitude, location.latitude),
@@ -346,9 +346,10 @@ class GeoEngine {
                         ) { orientation: DeviceOrientation?, location: Location? ->
 
                             createUserGeometry(
-                                UserGeometry.HeadingMode.CourseAuto,
-                                orientation,
-                                location)
+                                location = location,
+                                orientation = orientation,
+                                headingMode = UserGeometry.HeadingMode.CourseAuto
+                            )
 
                     }.collect { geometry ->
                         lastGeometry = geometry
@@ -395,31 +396,21 @@ class GeoEngine {
 
                         val list: MutableList<PositionedString> = mutableListOf()
 
-                        val nearestRoad = userGeometry.nearestRoad
+                        val nearestRoad = userGeometry.mapMatchedWay
                         if (nearestRoad != null) {
-
-                            val properties = nearestRoad.properties
-                            if (properties != null) {
-                                var roadName = properties["name"]
-                                if (roadName == null) {
-                                    roadName = properties["highway"]
-                                }
-                                val facingDirectionAlongRoad =
-                                    getCompassLabelFacingDirectionAlong(
-                                        localizedContext,
-                                        heading.toInt(),
-                                        roadName.toString(),
-                                        inMotion,
-                                        inVehicle
-                                    )
-                                list.add(PositionedString(
-                                    text = facingDirectionAlongRoad,
-                                    type = AudioType.STANDARD))
-                            } else {
-                                Log.e(TAG, "No properties found for road")
-                            }
+                            var roadName = nearestRoad.getName()
+                            val facingDirectionAlongRoad =
+                                getCompassLabelFacingDirectionAlong(
+                                    localizedContext,
+                                    heading.toInt(),
+                                    roadName.toString(),
+                                    inMotion,
+                                    inVehicle
+                                )
+                            list.add(PositionedString(
+                                text = facingDirectionAlongRoad,
+                                type = AudioType.STANDARD))
                         } else {
-                            //Log.d(TAG, "No nearest road found, so just give device direction")
                             val facingDirection =
                                 getCompassLabelFacingDirection(
                                     localizedContext,
@@ -975,22 +966,14 @@ fun localReverseGeocode(location: LngLatAlt,
     }
 
     // Check if the location is alongside a road/path.
-    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0)
+    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0) as Way?
     if(nearestRoad != null) {
-        val properties = nearestRoad.properties
-        if (properties != null) {
-            var roadName = properties["name"]
-            if (roadName == null) {
-                roadName = properties["highway"]
-            }
-            if(roadName != null) {
-                return LocationDescription(
-                    name = localizedContext.getString(R.string.directions_near_name)
-                        .format(roadName as String),
-                    location = location,
-                )
-            }
-        }
+        val roadName = nearestRoad.getName()
+        return LocationDescription(
+            name = localizedContext.getString(R.string.directions_near_name)
+                .format(roadName),
+            location = location,
+        )
     }
 
     return null

@@ -1,13 +1,10 @@
 package org.scottishtecharmy.soundscape
 
-import android.location.Location
-import android.location.LocationManager
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
-import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
@@ -434,22 +431,7 @@ class MvtTileTest {
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
         val nearestRoad = roadTree.getNearestFeature(userGeometry.location)
 
-        // The distance returned is the shortest distance to the line, but the nearestPoint is the
-        // point on the line that's the nearest.
-        val nearestPoint = getDistanceToFeature(userGeometry.location, nearestRoad!!)
-
         println(nearestRoad.toString())
-    }
-
-    private fun createLocation(newLocation : LngLatAlt, speed : Float) : Location {
-
-        val location = Location(LocationManager.PASSIVE_PROVIDER)
-        location.latitude = newLocation.latitude
-        location.longitude = newLocation.longitude
-        location.speed = speed
-        location.accuracy = 10.0F
-
-        return location
     }
 
     @Test
@@ -515,45 +497,6 @@ class MvtTileTest {
         val outputFile = FileOutputStream("nearest.geojson")
         outputFile.write(adapter.toJson(geojson).toByteArray())
         outputFile.close()
-    }
-
-
-    @Test
-    fun testNearestRoadFilter(){
-        val locations = arrayOf(
-            arrayOf(-4.31029,  55.94583,  8.0, 210.0, 10.0),
-            arrayOf(-4.310359, 55.945824, 8.0, 205.0, 10.0),
-            arrayOf(-4.310503, 55.945682, 1.0, 190.0, 10.0),
-            arrayOf(-4.310503, 55.945682, 8.0, 185.0, 10.0),
-            arrayOf(-4.310549, 55.945569, 8.0, 180.0, 10.0),
-            arrayOf(-4.310549, 55.945569, 8.0, 180.0, 20.0),
-            arrayOf(-4.310605, 55.945456, 8.0, 180.0, 20.0),
-            arrayOf(-4.310605, 55.945456, 8.0, 180.0, 20.0),
-            arrayOf(-4.310654, 55.945327, 8.0, 180.0, 20.0),
-            arrayOf(-4.310654, 55.945327, 8.0, 200.0, 20.0),
-            arrayOf(-4.310691, 55.945218, 8.0, 270.0, 20.0),
-            arrayOf(-4.310691, 55.945218, 8.0, 270.0, 10.0),
-            arrayOf(-4.310887, 55.945219, 8.0, 270.0, 10.0),
-            arrayOf(-4.310887, 55.945219, 8.0, 270.0, 10.0),
-            arrayOf(-4.311083, 55.945221, 8.0, 270.0, 10.0),
-            arrayOf(-4.311083, 55.945221, 8.0, 270.0, 10.0),
-            arrayOf(-4.311362, 55.945219, 8.0, 270.0, 10.0),
-        )
-
-        val gridState = getGridStateForLocation(LngLatAlt(-4.31029,  55.94583))
-        val filter = NearestRoadFilter()
-
-        var time = 0L
-        for(location in locations) {
-            filter.update(
-                LngLatAlt(location[0], location[1]),
-                location[2],
-                location[3],
-                location[4],
-                time,
-                gridState)
-            time += 1000
-        }
     }
 
     @Test fun testConvertBackToTileCoordinates() {

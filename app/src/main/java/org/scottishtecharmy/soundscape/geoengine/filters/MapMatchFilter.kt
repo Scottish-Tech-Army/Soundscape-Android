@@ -269,48 +269,44 @@ class MapMatchFilter {
         var roads = roadTree.getNearestCollection(location, 20.0, 4)
         var found = false
         for (road in roads) {
-            try {
-                val way = road as Way
+            val way = road as Way
 
-                for (follower in followerList) {
-                    if ((follower.currentNearestRoad == way) or
-                        (follower.nextRoad == way)
-                    ) {
-                        // Don't re-add the current follower
-                        found = true
-                    }
+            for (follower in followerList) {
+                if ((follower.currentNearestRoad == way) or
+                    (follower.nextRoad == way)
+                ) {
+                    // Don't re-add the current follower
+                    found = true
                 }
+            }
 
-                if (!found) {
-                    val intersection = matchedWay?.doesIntersect(way)
-                    if (intersection != null) {
-                        // This road meets our currently matched way, add all of the roads from the same
-                        // intersection
-                        for (member in intersection.members.withIndex()) {
-                            var intersectionFound = false
-                            for (follower in followerList) {
-                                if ((follower.currentNearestRoad == member.value) or
-                                    (follower.nextRoad == member.value)
-                                ) {
-                                    // Don't re-add the current follower
-                                    intersectionFound = true
-                                }
+            if (!found) {
+                val intersection = matchedWay?.doesIntersect(way)
+                if (intersection != null) {
+                    // This road meets our currently matched way, add all of the roads from the same
+                    // intersection
+                    for (member in intersection.members.withIndex()) {
+                        var intersectionFound = false
+                        for (follower in followerList) {
+                            if ((follower.currentNearestRoad == member.value) or
+                                (follower.nextRoad == member.value)
+                            ) {
+                                // Don't re-add the current follower
+                                intersectionFound = true
                             }
-                            if (!intersectionFound)
-                                followerList.add(
-                                    matchedFollower!!.extendToNewWay(
-                                        member.value,
-                                        member.index + 1
-                                    )
-                                )
                         }
-                    } else {
-                        followerList.add(RoadFollower(this, way, lastLocation, colorIndex))
-                        ++colorIndex
+                        if (!intersectionFound)
+                            followerList.add(
+                                matchedFollower!!.extendToNewWay(
+                                    member.value,
+                                    member.index + 1
+                                )
+                            )
                     }
+                } else {
+                    followerList.add(RoadFollower(this, way, lastLocation, colorIndex))
+                    ++colorIndex
                 }
-            } catch(e:Exception) {
-                println("!")
             }
         }
         var lowestFrechet = Double.MAX_VALUE

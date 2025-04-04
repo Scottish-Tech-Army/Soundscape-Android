@@ -4,56 +4,13 @@ import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 
 class TileGrid(newTiles : MutableList<Tile>,
                var centralBoundingBox : BoundingBox,
                var totalBoundingBox : BoundingBox) {
 
     val tiles : MutableList<Tile> = newTiles
-
-    /**
-     * Return GeoJSON that describes the tile grid and the central bounding box so that it can be
-     * rendered over our map for debug.
-     */
-    fun generateGeoJson() : String {
-        val featureCollection = FeatureCollection()
-
-        if(true) {
-            val feature = Feature()
-            // Add central bounding box
-            val coordinates = arrayListOf<LngLatAlt>()
-            coordinates.add(LngLatAlt(centralBoundingBox.westLongitude, centralBoundingBox.northLatitude))
-            coordinates.add(LngLatAlt(centralBoundingBox.eastLongitude, centralBoundingBox.northLatitude))
-            coordinates.add(LngLatAlt(centralBoundingBox.eastLongitude, centralBoundingBox.southLatitude))
-            coordinates.add(LngLatAlt(centralBoundingBox.westLongitude, centralBoundingBox.southLatitude))
-            coordinates.add(LngLatAlt(centralBoundingBox.westLongitude, centralBoundingBox.northLatitude))
-            feature.geometry = Polygon(coordinates)
-            feature.properties = hashMapOf()
-            featureCollection.addFeature(feature)
-        }
-
-        for(tile in tiles) {
-            val feature = Feature()
-            val box = tileToBoundingBox(tile.tileX, tile.tileY, tile.zoom)
-            val coordinates = arrayListOf<LngLatAlt>()
-            coordinates.add(LngLatAlt(box.westLongitude, box.northLatitude))
-            coordinates.add(LngLatAlt(box.eastLongitude, box.northLatitude))
-            coordinates.add(LngLatAlt(box.eastLongitude, box.southLatitude))
-            coordinates.add(LngLatAlt(box.westLongitude, box.southLatitude))
-            coordinates.add(LngLatAlt(box.westLongitude, box.northLatitude))
-            feature.geometry = Polygon(coordinates)
-            feature.properties = hashMapOf()
-            featureCollection.addFeature(feature)
-        }
-
-        val adapter = GeoJsonObjectMoshiAdapter()
-        return adapter.toJson(featureCollection).toString()
-    }
 
     companion object {
         /**
@@ -94,8 +51,7 @@ class TileGrid(newTiles : MutableList<Tile>,
             val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
                 for (x in xValues) {
-                    val surroundingTile = Tile("", x, y, ZOOM_LEVEL)
-                    surroundingTile.quadkey = getQuadKey(x, y, ZOOM_LEVEL)
+                    val surroundingTile = Tile(x, y, ZOOM_LEVEL)
                     tiles.add(surroundingTile)
                 }
             }
@@ -194,8 +150,7 @@ class TileGrid(newTiles : MutableList<Tile>,
             val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
                 for (x in xValues) {
-                    val surroundingTile = Tile("", x, y, ZOOM_LEVEL)
-                    surroundingTile.quadkey = getQuadKey(x, y, ZOOM_LEVEL)
+                    val surroundingTile = Tile(x, y, ZOOM_LEVEL)
                     tiles.add(surroundingTile)
                 }
             }
@@ -221,8 +176,7 @@ class TileGrid(newTiles : MutableList<Tile>,
                 northEast.first)
 
             val tiles: MutableList<Tile> = mutableListOf()
-            val surroundingTile = Tile("", tileXY.first, tileXY.second, ZOOM_LEVEL)
-            surroundingTile.quadkey = getQuadKey(tileXY.first, tileXY.second, ZOOM_LEVEL)
+            val surroundingTile = Tile(tileXY.first, tileXY.second, ZOOM_LEVEL)
             tiles.add(surroundingTile)
 
             return TileGrid(tiles, centralBoundingBox, centralBoundingBox)

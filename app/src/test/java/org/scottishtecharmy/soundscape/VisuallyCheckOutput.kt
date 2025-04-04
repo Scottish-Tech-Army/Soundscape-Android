@@ -86,7 +86,6 @@ class VisuallyCheckOutput {
                 val ars3: HashMap<String, Any?> = HashMap()
                 ars3 += Pair("Tile X", tile.tileX)
                 ars3 += Pair("Tile Y", tile.tileY)
-                ars3 += Pair("quadKey", tile.quadkey)
                 it.properties = ars3
                 it.type = "Feature"
             }
