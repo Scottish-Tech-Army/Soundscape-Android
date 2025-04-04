@@ -14,4 +14,4 @@ open class Segment(heading: Double, width: Double) {
     }
 }
 
-class Quadrant(private val heading: Double) : Segment(heading, 90.0)
+class Quadrant(heading: Double) : Segment(heading, 90.0)

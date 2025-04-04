@@ -20,18 +20,13 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import java.io.FileOutputStream
 import java.lang.Math.toDegrees
 import kotlin.collections.iterator
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
-import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.atan
 import kotlin.math.floor
-import kotlin.math.min
 import kotlin.math.sinh
 import kotlin.math.tan
 
@@ -42,29 +37,29 @@ import kotlin.math.tan
  * Location in LngLatAlt
  * @param zoom
  * The zoom level.
- * @return a Pair(xtile, ytile).
+ * @return a Pair(xTile, yTile).
  */
 fun getXYTile(
     location: LngLatAlt,
     zoom: Int = 16
 ): Pair<Int, Int> {
     val latRad = toRadians(location.latitude)
-    var xtile = floor((location.longitude + 180) / 360 * (1 shl zoom)).toInt()
-    var ytile = floor((1.0 - asinh(tan(latRad)) / PI) / 2 * (1 shl zoom)).toInt()
+    var xTile = floor((location.longitude + 180) / 360 * (1 shl zoom)).toInt()
+    var yTile = floor((1.0 - asinh(tan(latRad)) / PI) / 2 * (1 shl zoom)).toInt()
 
-    if (xtile < 0) {
-        xtile = 0
+    if (xTile < 0) {
+        xTile = 0
     }
-    if (xtile >= (1 shl zoom)) {
-        xtile = (1 shl zoom) - 1
+    if (xTile >= (1 shl zoom)) {
+        xTile = (1 shl zoom) - 1
     }
-    if (ytile < 0) {
-        ytile = 0
+    if (yTile < 0) {
+        yTile = 0
     }
-    if (ytile >= (1 shl zoom)) {
-        ytile = (1 shl zoom) - 1
+    if (yTile >= (1 shl zoom)) {
+        yTile = (1 shl zoom) - 1
     }
-    return Pair(xtile, ytile)
+    return Pair(xTile, yTile)
 }
 
 fun getLatLonTileWithOffset(
@@ -86,7 +81,7 @@ fun getLatLonTileWithOffset(
 /**
  * Gets map coordinates from X and Y GPS coordinates. This is the same calculation as above
  * but returns normalised x and y values scaled between 0 and 1.0. These are what are required
- * by the mapcompose library to set markers/positions.
+ * by the map-compose library to set markers/positions.
  * @param lat
  * Latitude in decimal degrees.
  * @param lon
@@ -113,10 +108,6 @@ fun getGpsFromNormalizedMapCoordinates(
     x: Double,
     y: Double
 ): Pair<Double, Double> {
-
-//    val latRad = toRadians(lat)
-//    var x = (lon + 180.0) / 360.0
-//    var y = (1.0 - asinh(tan(latRad)) / PI) / 2
 
     val latitude = toDegrees(atan(sinh((1.0 - (2 * y)) * PI)))
     val longitude = (360.0 * x) - 180.0
@@ -157,8 +148,7 @@ fun getTilesForRegion(
 
     for (y in startTileY..endTileY) {
         for (x in startTileX..endTileX) {
-            val surroundingTile = Tile("", x, y, zoom)
-            surroundingTile.quadkey = getQuadKey(x, y, zoom)
+            val surroundingTile = Tile(x, y, zoom)
             tiles.add(surroundingTile)
         }
     }
@@ -179,15 +169,13 @@ fun getPoiFeatureCollectionBySuperCategory(
 ): FeatureCollection {
 
     val tempFeatureCollection = FeatureCollection()
-    val superCategoryList = getSuperCategoryElements(superCategory)
+    val superCategorySet = getSuperCategoryElements(superCategory)
 
     for (feature in poiFeatureCollection) {
-        for (featureType in superCategoryList) {
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == featureType || foreign["feature_value"] == featureType) {
-                    tempFeatureCollection.addFeature(feature)
-                    feature.foreign?.put("category",superCategory)
-                }
+        feature.foreign?.let { foreign ->
+            if (superCategorySet.contains(foreign["feature_type"]) or superCategorySet.contains(foreign["feature_value"])) {
+                tempFeatureCollection.addFeature(feature)
+                feature.foreign?.put("category", superCategory)
             }
         }
     }
@@ -648,111 +636,6 @@ fun makeTriangles(
 }
 
 /**
- * Returns a road direction type in relation to the intersection:
- * The road is leading up to an intersection - LEADING
- *        →
- * --------------⦿
- * The road starts from an intersection - TRAILING
- *        →
- * ⦿--------------
- * The road is leading up to and continues on from an intersection - LEADING_AND_TRAILING
- *    →       →
- * -------⦿-------
- * The road is not part of the intersection - NONE
- *        ⦿
- * --------------
- * @param intersection
- * The intersection as a Feature
- * @param road
- * The road as a Feature
- * @return A RoadDirectionAtIntersection
- */
-fun getDirectionAtIntersection(intersection: Feature, road: Feature): RoadDirectionAtIntersection {
-    val roadCoordinates = (road.geometry as LineString).coordinates
-    val intersectionCoordinate = (intersection.geometry as Point).coordinates
-
-    return if (intersectionCoordinate.longitude == roadCoordinates.first().longitude && intersectionCoordinate.latitude == roadCoordinates.first().latitude) {
-        RoadDirectionAtIntersection.LEADING
-    } else if (intersectionCoordinate.longitude == roadCoordinates.last().longitude && intersectionCoordinate.latitude == roadCoordinates.last().latitude) {
-        RoadDirectionAtIntersection.TRAILING
-    } else {
-        val coordinateFound = roadCoordinates.any{ it.latitude == intersectionCoordinate.latitude && it.longitude == intersectionCoordinate.longitude}
-        if (coordinateFound) {
-            // Now that we have split all of the roads/paths at intersections as we parse them in, we
-            // should never reach this code where the intersection is in the middle of a road
-            assert(false)
-            RoadDirectionAtIntersection.LEADING_AND_TRAILING
-        } else {
-            // Why would we ever hit this code?
-            assert(false)
-            RoadDirectionAtIntersection.NONE
-        }
-    }
-}
-
-
-/**
- * Given an intersection Feature and a road Feature will split the road into two based on the
- * coordinate of the intersection.
- * @param intersection
- * intersection Feature that is used to split the road using the intersection coordinates.
- * @param road
- * The road that is being split into two
- * @return a Feature Collection containing two roads. One road will contain the intersection
- * coordinates at the "end" and the second road will contain the intersection coordinates at the "start"
- */
-fun splitRoadByIntersection(
-    intersection: Feature,
-    road: Feature
-): FeatureCollection {
-    val intersectionCoordinate = (intersection.geometry as Point).coordinates
-    return splitRoadAtNode(intersectionCoordinate, road)
-}
-fun splitRoadAtNode(
-    node: LngLatAlt,
-    road: Feature
-): FeatureCollection {
-    val roadCoordinates = (road.geometry as LineString).coordinates
-
-    val coordinateFound = roadCoordinates.any{ it.latitude == node.latitude && it.longitude == node.longitude}
-    if (!coordinateFound) {
-        // Intersection not found, return empty
-        return FeatureCollection()
-    }
-
-    val indexOfIntersection = roadCoordinates.indexOfFirst { it == node }
-    val part1 = roadCoordinates.subList(0, indexOfIntersection + 1)
-    val part2 = roadCoordinates.subList(indexOfIntersection, roadCoordinates.size)
-
-    val roadLineString1 = LineString(*part1.toTypedArray())
-    val roadLineString2 = LineString(*part2.toTypedArray())
-    val newFeatureCollection = FeatureCollection()
-
-    val featureRoad1 = Feature()
-    @Suppress("unchecked_cast") // Suppress warning
-    val clonedProperties = road.properties?.clone() as? HashMap<String, Any?> // Safe cast and null check
-    featureRoad1.properties = clonedProperties
-    @Suppress("unchecked_cast") // Suppress warning
-    road.foreign?.clone().also { featureRoad1.foreign = it as? HashMap<String, Any?> } // Safe cast and null check
-
-    featureRoad1.geometry = roadLineString1
-    newFeatureCollection.addFeature(featureRoad1)
-
-    val featureRoad2 = Feature()
-    @Suppress("unchecked_cast") // Suppress warning
-    val clonedProperties2 = road.properties?.clone() as? HashMap<String, Any?> // Safe cast and null check
-    featureRoad2.properties = clonedProperties2
-    @Suppress("unchecked_cast") // Suppress warning
-    road.foreign?.clone().also { featureRoad2.foreign = it as java.util.HashMap<String, Any?>? }
-
-    featureRoad2.geometry = roadLineString2
-    newFeatureCollection.addFeature(featureRoad2)
-
-    return newFeatureCollection
-}
-
-
-/**
  * Given an intersection Feature and a road Feature will return the bearing of the road to the
  * intersection
  * @param intersection
@@ -860,24 +743,8 @@ fun getIntersectionRoadNamesRelativeDirections(
         return newFeatureCollection
 
     for (road in intersectionRoadNames) {
-        val testRoadDirectionAtIntersection =
-            getDirectionAtIntersection(nearestIntersection, road)
-        //println("Road name: ${road.properties!!["name"]} and $testRoadDirectionAtIntersection")
         // Our roads are all now pre-split when we parse them in from MVT
-//        if (testRoadDirectionAtIntersection == RoadDirectionAtIntersection.LEADING_AND_TRAILING){
-//            // split the road into two
-//            val roadCoordinatesSplitIntoTwo = splitRoadByIntersection(
-//                nearestIntersection,
-//                road
-//            )
-//            // for each split road work out the relative direction from the intersection
-//            for (splitRoad in roadCoordinatesSplitIntoTwo) {
-//                newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(splitRoad, intersectionRelativeDirections))
-//            }
-//        }
-//        else{
-            newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(road, intersectionRelativeDirections))
-//        }
+        newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(road, intersectionRelativeDirections))
     }
 
     return sortFeatureCollectionByDirectionProperty(newFeatureCollection)
@@ -933,17 +800,6 @@ fun mergeRoadAndDirectionFeatures(
     return newFeature
 }
 
-fun findClosestDirection(reference: Double, option1: Double, option2: Double): Double {
-    val distance1 = abs(reference - option1)
-    val distance2 = abs(reference - option2)
-
-    // Handle cases where directions wrap around the circle (0 to 360 degrees)
-    val adjustedDistance1 = min(distance1, 360 - distance1)
-    val adjustedDistance2 = min(distance2, 360 - distance2)
-
-    return if (adjustedDistance1 < adjustedDistance2) option1 else option2
-}
-
 fun searchFeaturesByName(featureCollection: FeatureCollection, query: String): FeatureCollection {
     val results = FeatureCollection()
     for (feature in featureCollection) {
@@ -994,14 +850,16 @@ fun checkWhetherIntersectionIsOfInterest(
     for (way in intersection.members) {
         val roadName = way.properties?.get("name")
         val isMatch = testNearestRoad.properties?.get("name") == roadName
-        val nameIsDefault = way.properties?.get("default_name") != null
 
         if (isMatch) {
             // Ignore the road we're on
-        } else if(nameIsDefault) {
+        } else if(roadName == null) {
             // Give no points to ways named from their type
+            // TODO: give negative points if it's also a dead end i.e. don't call out dead-end
+            //  service roads? The current 'priority' isn't good enough, need a better way of
+            //  classifying.
         }
-        else if(roadName != null) {
+        else {
             val name = roadName.toString()
             if(setOfNames.contains(name)) {
                 // Don't increment the priority if the name is here for the second time
@@ -1267,21 +1125,6 @@ fun mergeAllPolygonsInFeatureCollection(
     return resultantFeatureCollection
 }
 
-fun isPolygonClockwise(
-    feature: Feature
-): Boolean {
-    // get outer ring coordinates (don't care about inner rings at the moment)
-    val coordinates = (feature.geometry as Polygon).coordinates[0]
-    var area = 0.0
-    val n = coordinates.size
-    for(i in 0 until n) {
-        val j = (i + 1) % n
-        area += (coordinates[j].longitude - coordinates[i].longitude) * (coordinates[j].latitude + coordinates[i].latitude)
-
-    }
-    return area > 0
-}
-
 fun polygonOuterRingToCoordinateArray(polygon: Polygon?, geometryFactory: GeometryFactory) : LinearRing? {
     return geometryFactory.createLinearRing(
         polygon?.coordinates?.firstOrNull()
@@ -1367,9 +1210,9 @@ fun mergePolygons(
  * String for super category. Options are "information", "object", "place", "landmark", "mobility", "safety"
  * @return a mutable list of things in the super category.
  */
-fun getSuperCategoryElements(category: String): MutableList<String> {
+fun getSuperCategoryElements(category: String): Set<String> {
     return when (category) {
-        "information" -> mutableListOf(
+        "information" -> setOf(
             "information",
             "assembly_point",
             "fire_extinguisher",
@@ -1386,7 +1229,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "generic_info"
         )
 
-        "object" -> mutableListOf(
+        "object" -> setOf(
             "turntable",
             "survey_point",
             "snow_net",
@@ -1448,7 +1291,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "telephone"
         )
 
-        "place" -> mutableListOf(
+        "place" -> setOf(
             "shop",
             "newsagent",
             "anime",
@@ -1858,7 +1701,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "food"
         )
 
-        "landmark" -> mutableListOf(
+        "landmark" -> setOf(
             "waterfall",
             "boatyard",
             "theme_park",
@@ -1997,7 +1840,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "station"
         )
 
-        "mobility" -> mutableListOf(
+        "mobility" -> setOf(
             "toll_booth",
             "lift_gate",
             "lift",
@@ -2049,7 +1892,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "gate"
         )
 
-        "safety" -> mutableListOf(
+        "safety" -> setOf(
             "motorcycle_barrier",
             "kent_carriage_gap",
             "shared_space",
@@ -2083,7 +1926,7 @@ fun getSuperCategoryElements(category: String): MutableList<String> {
             "motorcycle_parking"
         )
 
-        else -> mutableListOf("Unknown category")
+        else -> setOf("Unknown category")
     }
 }
 
@@ -2178,9 +2021,6 @@ fun confectNamesForRoad(road: Feature,
             return
         }
 
-        // Name the feature after its class
-        road.properties?.set("name", road.properties?.get("class"))
-
         // Add in destinations tag if they don't already exist
         var startDestinationAdded = road.properties?.get("destination:backward") != null
         var endDestinationAdded = road.properties?.get("destination:forward") != null
@@ -2193,8 +2033,13 @@ fun confectNamesForRoad(road: Feature,
     }
 }
 
-fun setDestinationTag(properties: HashMap<String, Any?>?, forwards: Boolean, tagValue: String) {
-    properties?.set("destination:${if (forwards) "backward" else "forward"}", tagValue)
+fun setDestinationTag(
+    properties: HashMap<String, Any?>?,
+    forwards: Boolean,
+    tagValue: String,
+    deadEnd: Boolean = false) {
+
+    properties?.set("${if (deadEnd) "dead-end" else "destination"}:${if (forwards) "backward" else "forward"}", tagValue)
 }
 
 fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, Intersection>,
@@ -2216,19 +2061,6 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
                     namedRoadToUse = name.toString()
                 }
             }
-
-            // Check for dead ends
-            val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
-            road.followWays(intersection.value, ways)
-            val way = ways.last()
-            if ((way.first and (way.second.intersections[WayEnd.START.id] == null)) or
-                (!way.first and (way.second.intersections[WayEnd.END.id] == null))
-            ) {
-                for(eachWay in ways) {
-                    // We currently label all roads, even named ones, with Dead End
-                    setDestinationTag(eachWay.second.properties, eachWay.first, "Dead End")
-                }
-            }
         }
         // We've got a named road at this junction, so use if for any un-named roads
         if (namedRoadToUse != null) {
@@ -2237,8 +2069,8 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
                 if (road.properties?.get("name") == null) {
 
                     val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
-                    road.followWays(intersection.value, ways) { way->
-                        // Break out when the way has a name
+                    road.followWays(intersection.value, ways) { way, _ ->
+                        // Break out when the next way has a name
                         (way.properties?.get("name") != null)
                     }
 
@@ -2252,31 +2084,22 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
                 }
             }
         }
+        // Check for dead ends
+        for (road in intersection.value.members) {
+            val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+            if(intersection.value.location.longitude == -2.688494771718979) {
+                println("!")
+            }
+            road.followWays(intersection.value, ways)
+            val way = ways.last()
+            if ((way.first and (way.second.intersections[WayEnd.END.id] == null)) or
+                (!way.first and (way.second.intersections[WayEnd.START.id] == null))
+            ) {
+                for (eachWay in ways) {
+                    // We currently label all roads, even named ones, with Dead End
+                    setDestinationTag(eachWay.second.properties, !eachWay.first, "Dead End", true)
+                }
+            }
+        }
     }
-}
-fun generateDebugFovGeoJson(
-    userGeometry: UserGeometry,
-    featureCollection: FeatureCollection
-) {
-    val triangle = getFovTriangle(userGeometry)
-
-    // Take care not to add the triangle to the passed in collection
-    val mapCollection = FeatureCollection()
-    mapCollection.plusAssign(featureCollection)
-
-    val triangleFeature = Feature()
-    triangleFeature.geometry = Polygon(
-        arrayListOf(
-            triangle.origin,
-            triangle.left,
-            triangle.right,
-            userGeometry.location
-        )
-    )
-    mapCollection.addFeature(triangleFeature)
-
-    val outputFile = FileOutputStream("markers.geojson")
-    val adapter = GeoJsonObjectMoshiAdapter()
-    outputFile.write(adapter.toJson(mapCollection).toByteArray())
-    outputFile.close()
 }

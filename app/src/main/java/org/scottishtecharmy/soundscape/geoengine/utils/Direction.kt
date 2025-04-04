@@ -11,5 +11,4 @@ enum class Direction(val value: Int) {
     RIGHT(6),
     BEHIND_RIGHT(7),
     UNKNOWN(8);
-
 }

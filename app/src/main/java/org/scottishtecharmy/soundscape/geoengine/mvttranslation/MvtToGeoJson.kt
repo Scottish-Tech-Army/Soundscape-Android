@@ -283,7 +283,6 @@ fun vectorTileToGeoJson(tileX: Int,
                         tileZoom: Int = ZOOM_LEVEL): FeatureCollection {
 
     val collection = FeatureCollection()
-    val intersectionDetection = IntersectionDetection()
     val wayGenerator = WayGenerator()
     val entranceMatching = EntranceMatching()
 
@@ -477,14 +476,6 @@ fun vectorTileToGeoJson(tileX: Int,
                             if(feature.id == 0L) {
                                 println("Feature ID is zero for ${name.toString()}")
                             }
-                            val details = IntersectionDetails(
-                                (name ?: "").toString(),
-                                type,
-                                subclass,
-                                brunnel,
-                                id
-                            )
-                            intersectionDetection.addLine(line, details)
                             wayGenerator.addLine(line)
                             val interpolatedNodes : MutableList<LngLatAlt> = mutableListOf()
                             val clippedLines = convertGeometryAndClipLineToTile(tileX,

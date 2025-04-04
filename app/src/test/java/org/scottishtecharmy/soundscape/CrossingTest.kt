@@ -5,6 +5,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -32,7 +33,7 @@ class CrossingTest {
             location,
             45.0,
             50.0,
-            nearestRoad = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(location)
+            mapMatchedWay = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(location) as Way
         )
 
         // We can reuse the intersection code as crossings are GeoJSON Points just like Intersections

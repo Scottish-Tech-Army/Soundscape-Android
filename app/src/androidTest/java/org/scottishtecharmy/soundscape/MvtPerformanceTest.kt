@@ -8,6 +8,7 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -26,8 +27,9 @@ class MvtPerformanceTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val remoteTile = context.assets.open(filename)
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
+        val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
 
-        return vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
+        return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
     }
 
     @Test
@@ -72,7 +74,8 @@ class MvtPerformanceTest {
         println("Testing tile $x,$y")
         runBlocking {
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-            gridState.updateTile(x, y, featureCollections)
+            val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
+            gridState.updateTile(x, y, featureCollections, intersectionMap)
         }
     }
     @Test

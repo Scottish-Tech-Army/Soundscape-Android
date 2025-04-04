@@ -104,7 +104,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(1870, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(1706, testIntersectionsCollectionFromTileFeatureCollection.features.size)
 
     }
 
@@ -173,7 +173,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(563, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(446, testSuperCategoryPoiCollection.features.size)
 
     }
 
@@ -185,7 +185,7 @@ class TileUtilsTest {
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
-        Assert.assertEquals(71, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(68, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -245,12 +245,10 @@ class TileUtilsTest {
                 for (feature in placeSuperCategory.features) {
                     if (feature.foreign?.get("feature_value") != "house") {
                         if (feature.properties?.get("name") != null) {
-                            val superCategoryList = getSuperCategoryElements("place")
+                            val superCategorySet = getSuperCategoryElements("place")
                             for (property in feature.properties!!) {
-                                for (featureType in superCategoryList) {
-                                    if (property.value == featureType) {
-                                        tempFeatureCollection.features.add(feature)
-                                    }
+                                if (superCategorySet.contains(property.value)) {
+                                    tempFeatureCollection.features.add(feature)
                                 }
                             }
                         }

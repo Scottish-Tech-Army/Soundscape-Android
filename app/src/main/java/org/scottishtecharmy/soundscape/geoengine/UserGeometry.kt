@@ -1,26 +1,26 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
-class UserGeometry(val location: LngLatAlt = LngLatAlt(),
-                   var phoneHeading: Double? = null,
-                   var fovDistance: Double = 50.0,
-                   val speed: Double = 0.0,
-                   val nearestRoad: Feature? = null,
-                   val currentBeacon: LngLatAlt? = null,
-                   private val headingMode: HeadingMode = HeadingMode.CourseAuto,
-                   private var travelHeading: Double? = null,
-                   private var headHeading: Double? = null,
-                   private val inStreetPreview: Boolean = false)
 /**
  * UserGeometry contains all of the data relating to the location and motion of the user. It's
  * aim is to reduces the number of arguments to many of the API calls and to concentrate some of
  * the logic around heading choice.
  *
+ * @param location is the current location of the user from the location provider
  * @param phoneHeading is the direction in which the phone is pointing
  * @param travelHeading is the direction in which the phone is moving
  * @param headHeading is the direction in which the head tracking is pointing (not currently implemented)
+ * @param fovDistance is the distance in which the user can see, used when searching for POI
+ * @param speed is the speed of the user (currently straight from the location provider)
+ * @param mapMatchedWay is the Way that has been map matched to the location
+ * @param mapMatchedLocation os the location that has been map matched to the location, it will be a
+ * point on the mapMatchedWay
+ * @param currentBeacon is the location of any current audio beacon. This affects various callouts
+ * which is why it's a property of the UserGeometry class.
+ * @param headingMode is the method used to calculate the heading
+ * @param inStreetPreview is true if the user is in StreetPreview mode
  *
  * The heading prioritization comes from iOS - see https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/364
  *
@@ -32,6 +32,17 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
  *      user (head), course (travel), device (phone)
  *
  */
+class UserGeometry(val location: LngLatAlt = LngLatAlt(),
+                   var phoneHeading: Double? = null,
+                   var fovDistance: Double = 50.0,
+                   val speed: Double = 0.0,
+                   val mapMatchedWay: Way? = null,
+                   val mapMatchedLocation: LngLatAlt? = null,
+                   val currentBeacon: LngLatAlt? = null,
+                   private val headingMode: HeadingMode = HeadingMode.CourseAuto,
+                   private var travelHeading: Double? = null,
+                   private var headHeading: Double? = null,
+                   private val inStreetPreview: Boolean = false)
 {
     private val automotiveRangeMultiplier = 6.0
     private val streetPreviewRangeIncrement = 10.0

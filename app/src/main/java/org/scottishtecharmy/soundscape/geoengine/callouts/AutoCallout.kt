@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
@@ -86,7 +87,6 @@ class AutoCallout(
             roadsDescription,
             localizedContext,
             results,
-            gridState,
             intersectionCalloutHistory
         )
 
@@ -125,7 +125,7 @@ class AutoCallout(
             if(userGeometry.currentBeacon != null) {
                 // If the feature is within 1m of the current beacon, don't call it out
                 if(getDistanceToFeature(userGeometry.currentBeacon, feature).distance < 1.0) {
-                    true
+                    return@filter true
                 }
             }
 
@@ -199,6 +199,7 @@ class AutoCallout(
      * @param gridState The current state of the tile data
      * @return A list of PositionedString callouts to be spoken
      */
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun updateLocation(userGeometry: UserGeometry,
                        gridState: GridState) : List<PositionedString> {
 
