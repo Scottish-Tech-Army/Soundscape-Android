@@ -5,8 +5,10 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
-import org.scottishtecharmy.soundscape.geoengine.filters.NearestRoadFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
 class IntersectionsTestMvt {
     private fun setupTest(currentLocation: LngLatAlt,
@@ -14,20 +16,18 @@ class IntersectionsTestMvt {
                           fovDistance: Double) : Intersection? {
 
         val gridState = getGridStateForLocation(currentLocation)
-        val nearestRoadFilter = NearestRoadFilter()
-        nearestRoadFilter.update(
+        val mapMatchFilter = MapMatchFilter()
+        mapMatchFilter.filter(
             location = currentLocation,
-            locationAccuracy = 0.1,
-            bearing = deviceHeading,
-            bearingAccuracy = 0.1,
-            timeInMilliseconds = 1000,
-            gridState = gridState
+            gridState = gridState,
+            collection = FeatureCollection()
         )
         val userGeometry = UserGeometry(
             location = currentLocation,
             phoneHeading = deviceHeading,
             fovDistance = fovDistance,
-            nearestRoad = nearestRoadFilter.get())
+            mapMatchedWay = mapMatchFilter.matchedWay
+        )
 
         return getRoadsDescriptionFromFov(
                     gridState,

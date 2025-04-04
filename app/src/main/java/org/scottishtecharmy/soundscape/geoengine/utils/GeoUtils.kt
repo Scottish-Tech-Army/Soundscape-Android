@@ -118,35 +118,6 @@ fun groundResolution(latitude: Double, zoom: Int): Double {
 fun getTileXY(pixelX: Int, pixelY: Int) = Pair(pixelX / 256, pixelY / 256)
 
 /**
- * Generates a quad key string from the tile X, Y coordinates and zoom level provided.
- * Here's the Microsoft info: https://learn.microsoft.com/en-us/bingmaps/articles/bing-maps-tile-system
- * @param tileX
- * X coordinate of a tile.
- * @param tileY
- * Y coordinate of the tile.
- * @param zoomLevel
- * Zoom level of the tile.
- * @return A quad key String.
- */
-fun getQuadKey(tileX: Int, tileY: Int, zoomLevel: Int): String {
-
-    var quadKey = ""
-
-    for (level in zoomLevel downTo 1) {
-        var digit = 0
-        val mask = 1 shl (level - 1)
-        if (tileX and mask != 0) {
-            digit += 1
-        }
-        if (tileY and mask != 0) {
-            digit += 2
-        }
-        quadKey += digit.toString()
-    }
-    return quadKey
-}
-
-/**
  * Calculates the pixel coordinate of the provided latitude and longitude location at the given zoom level.
  * @param latitude
  * Current Latitude.
@@ -512,27 +483,27 @@ fun getReferenceCoordinate(path: LineString, targetDistance: Double, reverseLine
         var totalDistance = 0.0
         // work our way along the linestring to check the distance
         for (i in 0 until reversedPath.coordinates.lastIndex) {
-            val coord1 = reversedPath.coordinates[i]
-            val coord2 = reversedPath.coordinates[i + 1]
+            val c1 = reversedPath.coordinates[i]
+            val c2 = reversedPath.coordinates[i + 1]
 
-            val coordDistance = distance(
-                coord1.latitude,
-                coord1.longitude,
-                coord2.latitude,
-                coord2.longitude
+            val cDistance = distance(
+                c1.latitude,
+                c1.longitude,
+                c2.latitude,
+                c2.longitude
             )
-            totalDistance += coordDistance
+            totalDistance += cDistance
 
             if (totalDistance == targetDistance) {
-                return coord2
+                return c2
             }
 
             if (totalDistance > targetDistance) {
                 // Target coordinate is between two coordinates so synthesize it
-                val prevTotalDistance = totalDistance - coordDistance
+                val prevTotalDistance = totalDistance - cDistance
                 val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
-                val bearing = bearingFromTwoPoints(coord1, coord2)
-                return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
+                val bearing = bearingFromTwoPoints(c1, c2)
+                return getDestinationCoordinate(c1, bearing, prevTotalDistanceToTargetDistance)
             }
         }
 
@@ -540,27 +511,27 @@ fun getReferenceCoordinate(path: LineString, targetDistance: Double, reverseLine
         var totalDistance = 0.0
         // work our way along the linestring to check the distance
         for (i in 0 until path.coordinates.lastIndex) {
-            val coord1 = path.coordinates[i]
-            val coord2 = path.coordinates[i + 1]
+            val c1 = path.coordinates[i]
+            val c2 = path.coordinates[i + 1]
 
-            val coordDistance = distance(
-                coord1.latitude,
-                coord1.longitude,
-                coord2.latitude,
-                coord2.longitude
+            val cDistance = distance(
+                c1.latitude,
+                c1.longitude,
+                c2.latitude,
+                c2.longitude
             )
-            totalDistance += coordDistance
+            totalDistance += cDistance
 
             if (totalDistance == targetDistance) {
-                return coord2
+                return c2
             }
 
             if (totalDistance > targetDistance) {
                 // Target coordinate is between two coordinates so synthesize it
-                val prevTotalDistance = totalDistance - coordDistance
+                val prevTotalDistance = totalDistance - cDistance
                 val prevTotalDistanceToTargetDistance = targetDistance - prevTotalDistance
-                val bearing = bearingFromTwoPoints(coord1, coord2)
-                return getDestinationCoordinate(coord1, bearing, prevTotalDistanceToTargetDistance)
+                val bearing = bearingFromTwoPoints(c1, c2)
+                return getDestinationCoordinate(c1, bearing, prevTotalDistanceToTargetDistance)
             }
         }
 
@@ -816,13 +787,13 @@ fun distance(x1: Double,
 }
 
 fun onSegment(x: Double, y: Double, x1: Double, y1: Double, x2: Double, y2: Double): Boolean {
-    val minx = min(x1, x2)
-    val maxx = max(x1, x2)
+    val minX = min(x1, x2)
+    val maxX = max(x1, x2)
 
     val miny = min(y1, y2)
     val maxy = max(y1, y2)
 
-    return x in minx..maxx && y >= miny && y <= maxy
+    return x in minX..maxX && y >= miny && y <= maxy
 }
 
 fun toRadians(degrees: Double): Double {
@@ -912,11 +883,10 @@ fun calculateCenter(
     // calculate radius
     val radius = calculateRadius(chordLength, arcMidPoint, chordMidpoint)
     // is the chord midpoint to the right or left of the segment?
-    val chordBearing: Double
-    if(pointOnRightSide(start, arcMidPoint, end)){
-        chordBearing = bearingFromTwoPoints(end, start)
+    val chordBearing = if(pointOnRightSide(start, arcMidPoint, end)){
+        bearingFromTwoPoints(end, start)
     } else {
-        chordBearing = bearingFromTwoPoints(start, end)
+        bearingFromTwoPoints(start, end)
     }
 
     // Calculate chord bearing
@@ -991,7 +961,7 @@ fun calculateCenterOfCircle(
  * Line1 as LineString.
  * @param lineString2
  * Line2 as LineString.
- * @return true if the linestrings intersect each other.
+ * @return true if the line strings intersect each other.
  */
 fun lineStringsIntersect(
     lineString1: LineString,
@@ -1314,22 +1284,6 @@ fun pointIsWithinBoundingBox(point: LngLatAlt?, box: BoundingBox) : Boolean {
             isBetween(box.southLatitude, box.northLatitude, point.latitude))
 }
 
-fun nearestPointOnBoundingBox(box: BoundingBox, point: LngLatAlt): LngLatAlt {
-
-    // If the point is inside the bounding box, return our current location as
-    // that will give a distance of zero.
-    if(pointIsWithinBoundingBox(point, box))
-        return point
-
-    // If outside of the box, then the nearest point is either one of the corners of the box,
-    // or if the point is within the range of box latitude/longitude it's on the side nearest.
-    // The quickest way to find it is to clamp the point's coordinates to the square's boundaries.
-    val nearestLat = clip(point.latitude, box.southLatitude, box.northLatitude)
-    val nearestLng = clip(point.longitude, box.westLongitude, box.eastLongitude)
-
-    return LngLatAlt(nearestLng, nearestLat)
-}
-
 /**
  * calculateHeadingOffset calculates the angle between two headings e.g. the user heading and the
  * heading of a road.
@@ -1342,13 +1296,4 @@ fun calculateHeadingOffset(heading1: Double, heading2: Double): Double {
     if (diff > 180.0) diff = 360.0 - diff
 
     return diff
-}
-
-/**
- * normaliseHeading turns a possibly negative heading into a heading between 0 and 360 degrees
- * @param heading
- * @return A heading between 0 and 360 degrees
- */
-fun normaliseHeading(heading: Double): Double {
-    return (heading + 3600.0) % 360.0
 }

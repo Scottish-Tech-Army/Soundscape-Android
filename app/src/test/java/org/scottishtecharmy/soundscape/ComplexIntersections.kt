@@ -1,11 +1,11 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
-import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 
 class ComplexIntersections {
 
@@ -23,7 +23,8 @@ class ComplexIntersections {
             location,
             320.0,
             50.0,
-            nearestRoad = gridState.getNearestFeature(TreeId.ROADS, LngLatAlt(-2.697291022799874,51.44378095087524)))
+            mapMatchedWay = gridState.getNearestFeature(TreeId.ROADS, LngLatAlt(-2.697291022799874,51.44378095087524)) as Way
+        )
 
         val intersection = getRoadsDescriptionFromFov(
             gridState,
@@ -66,7 +67,7 @@ class ComplexIntersections {
             location,
             45.0,
             50.0,
-            nearestRoad = gridState.getNearestFeature(TreeId.ROADS, location)
+            mapMatchedWay = gridState.getNearestFeature(TreeId.ROADS, location) as Way
         )
 
         val intersection = getRoadsDescriptionFromFov(
