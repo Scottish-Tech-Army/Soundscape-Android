@@ -164,19 +164,3 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
         }
     }
 }
-
-fun getRelativeDirectionLabel(localizedContext: Context,
-                              relativeDirection: Int): String{
-    return when (relativeDirection) {
-        0 -> localizedContext.getString(R.string.directions_direction_behind)
-        1 -> localizedContext.getString(R.string.directions_direction_behind_to_the_left)
-        2 -> localizedContext.getString(R.string.directions_direction_to_the_left)
-        3 -> localizedContext.getString(R.string.directions_direction_ahead_to_the_left)
-        4 -> localizedContext.getString(R.string.directions_direction_ahead)
-        5 -> localizedContext.getString(R.string.directions_direction_ahead_to_the_right)
-        6 -> localizedContext.getString(R.string.directions_direction_to_the_right)
-        7 -> localizedContext.getString(R.string.directions_direction_behind_to_the_right)
-        else -> "Unknown"
-    }
-}
-

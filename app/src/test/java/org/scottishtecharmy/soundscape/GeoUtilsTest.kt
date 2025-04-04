@@ -20,7 +20,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.getPixelXY
 import org.scottishtecharmy.soundscape.geoengine.utils.getPolygonOfBoundingBox
-import org.scottishtecharmy.soundscape.geoengine.utils.getQuadKey
 import org.scottishtecharmy.soundscape.geoengine.utils.getReferenceCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.groundResolution
 import org.scottishtecharmy.soundscape.geoengine.utils.mapSize
@@ -66,16 +65,6 @@ class GeoUtilsTest {
         // test ground resolution in meter per pixel at the equator
         val testGroundResolution = groundResolution(0.0, 16)
         Assert.assertEquals(2.38, testGroundResolution, 0.01)
-    }
-
-    @Test
-    fun getQuadKeyTest() {
-        val testQuadKey1 = getQuadKey(3, 5, 3)
-        Assert.assertEquals("213", testQuadKey1)
-        val testQuadKey2 = getQuadKey(8619, 5859, 14)
-        Assert.assertEquals("12022132301033", testQuadKey2)
-        val testQuadKey3 = getQuadKey(32277, 21812, 16)
-        Assert.assertEquals("0313131200230301", testQuadKey3)
     }
 
     @Test
