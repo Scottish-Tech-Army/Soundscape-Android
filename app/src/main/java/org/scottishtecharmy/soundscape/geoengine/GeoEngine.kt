@@ -257,7 +257,7 @@ class GeoEngine {
      * The gridState is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
-    private fun createSuperCategoriesSet() : Set<String> {
+    fun createSuperCategoriesSet() : Set<String> {
         val enabledCategories = emptySet<String>().toMutableSet()
         if (sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
             enabledCategories.add(PLACES_AND_LANDMARKS_KEY)

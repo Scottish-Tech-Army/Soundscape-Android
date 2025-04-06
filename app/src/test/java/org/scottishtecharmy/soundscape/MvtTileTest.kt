@@ -1,36 +1,74 @@
 package org.scottishtecharmy.soundscape
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import kotlin.collections.MutableList
 import kotlin.math.abs
 import kotlin.sequences.forEach
 import kotlin.system.measureTimeMillis
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
+/**
+ * FileGridState overrides ProtomapsGridState to get tiles from test resources instead of over the
+ * network.
+ */
+class FileGridState : ProtomapsGridState() {
+
+    init {
+        validateContext = false
+    }
+    override suspend fun updateTile(
+        x: Int,
+        y: Int,
+        featureCollections: Array<FeatureCollection>,
+        intersectionMap: HashMap<LngLatAlt, Intersection>
+    ): Boolean {
+        var ret = false
+        val path = "src/test/res/org/scottishtecharmy/soundscape/"
+        val remoteTile = FileInputStream(path + "${x}x${y}.mvt")
+        val result = VectorTile.Tile.parseFrom(remoteTile)
+        if (result != null) {
+            var tileFeatureCollection: FeatureCollection? = null
+            tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
+
+            var collections: Array<FeatureCollection>? = null
+            collections = processTileFeatureCollection(tileFeatureCollection)
+
+            for ((index, collection) in collections.withIndex()) {
+                featureCollections[index].plusAssign(collection)
+            }
+
+            ret = true
+        } else {
+            println("Failed to load tile from file")
+        }
+        return ret
+    }
+}
 
 private fun vectorTileToGeoJsonFromFile(
     tileX: Int,
@@ -88,42 +126,20 @@ private fun parseNmeaFromFile(filename: String): FeatureCollection {
     return fc
 }
 
-
 fun getGridStateForLocation(
     location: LngLatAlt,
     gridSize: Int = 2
 ): GridState {
 
-    // Get a grid around the location
-    val grid = getTileGrid(location, gridSize)
-    for (tile in grid.tiles) {
-        println("Need tile ${tile.tileX}x${tile.tileY}")
-    }
-
-    // Read in the files
-    val gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
-        emptyList<HashMap<LngLatAlt, Intersection>>().toMutableList()
-    val joiner = InterpolatedPointsJoiner()
-    val featureCollection = FeatureCollection()
-    for (tile in grid.tiles) {
-        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(
-            tile.tileX,
-            tile.tileY,
-            "${tile.tileX}x${tile.tileY}.mvt",
-            intersectionMap
+    GRID_SIZE = gridSize
+    val gridState = FileGridState()
+    runBlocking {
+        // Update the grid state
+        gridState.locationUpdate(
+            LngLatAlt(location.longitude, location.latitude),
+            emptySet()
         )
-        for (feature in geojson) {
-            val addFeature = joiner.addInterpolatedPoints(feature)
-            if (addFeature) {
-                featureCollection.addFeature(feature)
-            }
-        }
-        gridIntersections.add(intersectionMap)
     }
-    val gridState = GridState()
-    gridState.initializeFromFeatureCollection(featureCollection, gridIntersections, grid)
-
     return gridState
 }
 
@@ -315,8 +331,6 @@ class MvtTileTest {
     @Test
     fun testRtree() {
 
-        val joiner = InterpolatedPointsJoiner()
-
         // Make a large grid to aid analysis
         val featureCollection = FeatureCollection()
         for (x in 15990..15992) {
@@ -324,15 +338,10 @@ class MvtTileTest {
                 val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
                 val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt", intersectionMap)
                 for (feature in geojson) {
-                    val addFeature = joiner.addInterpolatedPoints(feature)
-                    if (addFeature) {
-                        featureCollection.addFeature(feature)
-                    }
+                    featureCollection.addFeature(feature)
                 }
             }
         }
-        // Add lines to connect all of the interpolated points
-        joiner.addJoiningLines(featureCollection)
 
         // Iterate through all of the features and add them to an Rtree
         var start = System.currentTimeMillis()
@@ -521,5 +530,45 @@ class MvtTileTest {
             }
         }
     }
-}
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testMovingGrid() {
+
+        val gridState = FileGridState()
+        val mapMatchFilter = MapMatchFilter()
+        val gps = parseNmeaFromFile("nmea.csv")
+        val mapMatchedPositions = FeatureCollection()
+        for(position in gps) {
+            val location = (position.geometry as Point).coordinates
+            runBlocking {
+                // Update the grid state
+                gridState.locationUpdate(
+                    LngLatAlt(location.longitude, location.latitude),
+                    emptySet()
+                )
+
+                // Update the nearest road filter with our new location
+                val mapMatchedResult = mapMatchFilter.filter(
+                    LngLatAlt(location.longitude, location.latitude),
+                    gridState,
+                    mapMatchedPositions
+                )
+                if(mapMatchedResult.first != null) {
+                    val newFeature = Feature()
+                    newFeature.geometry = Point(mapMatchedResult.first!!.longitude, mapMatchedResult.first!!.latitude)
+                    newFeature.properties = hashMapOf()
+                    newFeature.properties?.set("marker-color", mapMatchedResult.third)
+                    newFeature.properties?.set("color", mapMatchedResult.third)
+                    mapMatchedPositions.addFeature(newFeature)
+                }
+                // Add raw GPS too
+                mapMatchedPositions.addFeature(position)
+            }
+        }
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("map-matching.geojson")
+        mapMatchingOutput.write(adapter.toJson(mapMatchedPositions).toByteArray())
+        mapMatchingOutput.close()
+    }
+}
