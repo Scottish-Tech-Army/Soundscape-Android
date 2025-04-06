@@ -7,7 +7,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -35,23 +34,16 @@ class MvtPerformanceTest {
     @Test
     fun testRtree() {
 
-        val joiner = InterpolatedPointsJoiner()
-
         // Make a large grid to aid analysis
         val featureCollection = FeatureCollection()
         for (x in 15990..15992) {
             for (y in 10212..10213) {
                 val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
                 for (feature in geojson) {
-                    val addFeature = joiner.addInterpolatedPoints(feature)
-                    if (addFeature) {
-                        featureCollection.addFeature(feature)
-                    }
+                    featureCollection.addFeature(feature)
                 }
             }
         }
-        // Add lines to connect all of the interpolated points
-        joiner.addJoiningLines(featureCollection)
 
         // Iterate through all of the features and add them to an Rtree
         var start = System.currentTimeMillis()

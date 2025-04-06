@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
-import android.util.Log
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
@@ -172,36 +171,6 @@ open class GridState {
         }
     }
 
-    /** initializeFromFeatureCollection is used by unit tests when creating a GridState object from
-     * a set of saved tiles.
-     */
-    fun initializeFromFeatureCollection(
-        featureCollection: FeatureCollection,
-        tileIntersections: List<HashMap<LngLatAlt, Intersection>>,
-        grid: TileGrid
-    ) {
-
-        // Because the gridState is static and is not being updated by another thread, we don't
-        // need to run it in a separate context, so disable checking.
-        validateContext = false
-
-        val collections = processTileFeatureCollection(featureCollection)
-
-        val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-        val intersectionAccumulator = HashMap<LngLatAlt, Intersection>()
-        processGridState(collections,
-            emptySet<String>(),
-            tileIntersections.toList(),
-            localTrees,
-            intersectionAccumulator,
-            grid
-        )
-        for (fc in collections.withIndex()) {
-            featureTrees[fc.index] = localTrees[fc.index]
-        }
-        gridIntersections = intersectionAccumulator
-    }
-
     /**
      * The tile grid service is called each time the location changes. It checks if the location
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
@@ -213,7 +182,7 @@ open class GridState {
 
         // Check if we're still within the central area of our grid
         if (!pointIsWithinBoundingBox(location, centralBoundingBox)) {
-            Log.d(TAG, "Update central grid area")
+            println("Update central grid area")
             // The current location has moved from within the central area, so get the
             // new grid and the new central area.
             val tileGrid = getTileGrid(location)
@@ -250,7 +219,7 @@ open class GridState {
                     }
                 }
 
-                Log.e(TAG, "Time to populate grid: ${timeSource.markNow() - gridStartTime}")
+                println("Time to populate grid: ${timeSource.markNow() - gridStartTime}")
 
                 return true
             } else {

@@ -4,7 +4,6 @@ import com.squareup.moshi.Moshi
 import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -247,7 +246,6 @@ class MergePolygonsTest {
 
         // Read in the files
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val joiner = InterpolatedPointsJoiner()
         val featureCollection = FeatureCollection()
         for (tile in grid.tiles) {
             val geojson = vectorTileToGeoJsonFromFile(
@@ -257,15 +255,9 @@ class MergePolygonsTest {
                 intersectionMap
             )
             for (feature in geojson) {
-                val addFeature = joiner.addInterpolatedPoints(feature)
-                if (addFeature) {
-                    featureCollection.addFeature(feature)
-                }
+                featureCollection.addFeature(feature)
             }
         }
-        // Add lines to connect all of the interpolated points
-        joiner.addJoiningLines(featureCollection)
-
         val adapter = GeoJsonObjectMoshiAdapter()
         val outputFile = FileOutputStream("${grid.tiles[0].tileX}-${grid.tiles[1].tileX}x${grid.tiles[0].tileY}-${grid.tiles[3].tileY}.geojson")
         outputFile.write(adapter.toJson(featureCollection).toByteArray())

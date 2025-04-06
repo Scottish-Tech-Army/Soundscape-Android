@@ -5,7 +5,6 @@ import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.InterpolatedPointsJoiner
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
@@ -18,7 +17,7 @@ import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 import kotlin.time.TimeSource
 
-class ProtomapsGridState : GridState() {
+open class ProtomapsGridState : GridState() {
 
     override fun start(applicationContext: Context) {
         tileClient = ProtomapsTileClient(applicationContext)
@@ -82,11 +81,6 @@ class ProtomapsGridState : GridState() {
     }
 
     override fun fixupCollections(featureCollections: Array<FeatureCollection>) {
-        // Join up roads/paths at the tile boundary
-        val joiner = InterpolatedPointsJoiner()
-        for (ip in featureCollections[TreeId.INTERPOLATIONS.id]) {
-            joiner.addInterpolatedPoints(ip)
-        }
         val timeSource = TimeSource.Monotonic
         val mergeStartTime = timeSource.markNow()
 
@@ -96,7 +90,5 @@ class ProtomapsGridState : GridState() {
 
         val mergeFinishTime = timeSource.markNow()
         println("Time taken to merge polygons: ${mergeFinishTime - mergeStartTime}")
-
-        joiner.addJoiningLines(featureCollections[TreeId.ROADS_AND_PATHS.id])
     }
 }
