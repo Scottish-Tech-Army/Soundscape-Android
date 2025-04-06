@@ -4,6 +4,7 @@ import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
@@ -104,21 +105,21 @@ class StreetPreview {
                                 emptyList<Pair<Boolean, Way>>().toMutableList()
                             road.way.followWays(thisIntersection, ways) { way, previousWay ->
                                 if(previousWay != null) {
-                                    // We want to ignore intersections which are just a way continuing.
-                                    (
+                                    if((way.wayType == WayType.JOINER) ||
+                                       (previousWay.wayType == WayType.JOINER)) {
+                                        false
+                                    } else {
                                         (
-                                            (way.properties?.get("brunnel")) ==
-                                            (previousWay.properties?.get("brunnel"))
-                                        ) or
-                                        (
-                                            (way.properties?.get("name")) ==
-                                            (previousWay.properties?.get("name"))
-                                        ) or
-                                        (
-                                             (way.properties?.get("class")) ==
-                                             (previousWay.properties?.get("class"))
+                                            way.properties?.get("brunnel") !=
+                                            previousWay.properties?.get("brunnel")
+                                        ) or (
+                                            way.properties?.get("name") !=
+                                            previousWay.properties?.get("name")
+                                        ) or (
+                                            way.properties?.get("class") !=
+                                            previousWay.properties?.get("class")
                                         )
-                                    )
+                                    }
                                 } else
                                     false
                             }

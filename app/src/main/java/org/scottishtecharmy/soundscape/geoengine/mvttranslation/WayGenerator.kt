@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
@@ -10,6 +11,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import kotlin.collections.set
+import kotlin.collections.toTypedArray
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.asinh
@@ -59,6 +61,7 @@ enum class WayEnd(
     END(1)
 }
 
+private val DirectionLookup = Direction.entries.toTypedArray()
 class Way : Feature() {
     var length = 0.0                            // We could easily calculate this from the segments.
 
@@ -165,16 +168,15 @@ class Way : Feature() {
      * @param fromIntersection is the intersection which the way is part of and from which we want
      * the direction to be calculated
      * @param deviceHeading is the heading relative to which the direction is calculated
-     * @return the integer direction (0-7) indicating which direction the way is relative to the
-     * device heading
+     * @return the Direction indicating which direction the way is relative to the device heading
      */
-    fun direction(fromIntersection: Intersection, deviceHeading: Double) : Int {
+    fun direction(fromIntersection: Intersection, deviceHeading: Double) : Direction {
         val directions = getCombinedDirectionSegments(deviceHeading)
         val heading = heading(fromIntersection)
-
-        return directions.indexOfFirst { directionSegment ->
+        val index = directions.indexOfFirst { directionSegment ->
             directionSegment.contains(heading)
         }
+        return DirectionLookup[index]
     }
 
     /**

@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFro
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
 class IntersectionsTestMvt {
@@ -66,9 +67,9 @@ class IntersectionsTestMvt {
         // they are Weston Road and Long Ashton Road and should be behind (0) and the other ahead (4)
         val indexWR = 1
         val indexLA = 0
-        Assert.assertEquals(0, intersection.members[indexWR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexWR].direction(intersection, deviceHeading))
         Assert.assertEquals("Weston Road", intersection.members[indexWR].properties!!["name"])
-        Assert.assertEquals(3, intersection.members[indexLA].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD_LEFT, intersection.members[indexLA].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA].properties!!["name"])
 
     }
@@ -100,9 +101,9 @@ class IntersectionsTestMvt {
         // they are Belgrave Place and Codrington Place and should be behind (0) and right (6)
         val indexBP = 0
         val indexCP = 1
-        Assert.assertEquals(0, intersection.members[indexBP].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexBP].direction(intersection, deviceHeading))
         Assert.assertEquals("Belgrave Place", intersection.members[indexBP].properties!!["name"])
-        Assert.assertEquals(6, intersection.members[indexCP].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexCP].direction(intersection, deviceHeading))
         Assert.assertEquals("Codrington Place", intersection.members[indexCP].properties!!["name"])
 
     }
@@ -134,9 +135,9 @@ class IntersectionsTestMvt {
         // they are Codrington Place and Belgrave Place and should be behind (0) and left (2)
         val indexBP = 0
         val indexCP = 1
-        Assert.assertEquals(0, intersection.members[indexCP].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexCP].direction(intersection, deviceHeading))
         Assert.assertEquals("Codrington Place", intersection.members[indexCP].properties!!["name"])
-        Assert.assertEquals(2, intersection.members[indexBP].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexBP].direction(intersection, deviceHeading))
         Assert.assertEquals("Belgrave Place", intersection.members[indexBP].properties!!["name"])
 
     }
@@ -176,11 +177,11 @@ class IntersectionsTestMvt {
         val indexLA1 = 1
         val indexLA2 = 2
         val indexSM = 0
-        Assert.assertEquals(0, intersection.members[indexLA1].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexLA1].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA1].properties!!["name"])
-        Assert.assertEquals(4, intersection.members[indexLA2].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexLA2].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA2].properties!!["name"])
-        Assert.assertEquals(6, intersection.members[indexSM].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexSM].direction(intersection, deviceHeading))
         Assert.assertEquals("St Martins", intersection.members[indexSM].properties!!["name"])
 
     }
@@ -219,11 +220,11 @@ class IntersectionsTestMvt {
         val indexLA1 = 2
         val indexLA2 = 0
         val indexSM = 1
-        Assert.assertEquals(0, intersection.members[indexLA1].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexLA1].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA1].properties!!["name"])
-        Assert.assertEquals(2, intersection.members[indexLA2].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexLA2].direction(intersection, deviceHeading))
         Assert.assertEquals("St Martins", intersection.members[indexLA2].properties!!["name"])
-        Assert.assertEquals(4, intersection.members[indexSM].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexSM].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexSM].properties!!["name"])
 
     }
@@ -261,11 +262,11 @@ class IntersectionsTestMvt {
         val indexLA1 = 1
         val indexLA2 = 2
         val indexSM = 0
-        Assert.assertEquals(0, intersection.members[indexSM].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexSM].direction(intersection, deviceHeading))
         Assert.assertEquals("St Martins", intersection.members[indexSM].properties?.get("name") ?: "No idea")
-        Assert.assertEquals(2, intersection.members[indexLA1].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexLA1].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA1].properties?.get("name") ?: "No idea")
-        Assert.assertEquals(6, intersection.members[indexLA2].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexLA2].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA2].properties?.get("name") ?: "No idea")
     }
 
@@ -297,11 +298,11 @@ class IntersectionsTestMvt {
         val indexGR = 0
         val indexSR = 2
         val indexKH = 1
-        Assert.assertEquals(0, intersection.members[indexGR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexGR].direction(intersection, deviceHeading))
         Assert.assertEquals("Goodeve Road", intersection.members[indexGR].properties!!["name"])
-        Assert.assertEquals(2, intersection.members[indexSR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexSR].direction(intersection, deviceHeading))
         Assert.assertEquals("Seawalls Road", intersection.members[indexSR].properties!!["name"])
-        Assert.assertEquals(6, intersection.members[indexKH].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexKH].direction(intersection, deviceHeading))
         Assert.assertEquals("Knoll Hill", intersection.members[indexKH].properties!!["name"])
     }
 
@@ -336,13 +337,13 @@ class IntersectionsTestMvt {
         val indexGR2 = 1
         val indexMR1 = 2
         val indexMR2 = 3
-        Assert.assertEquals(0, intersection.members[indexGR1].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexGR1].direction(intersection, deviceHeading))
         Assert.assertEquals("Grange Road", intersection.members[indexGR1].properties!!["name"])
-        Assert.assertEquals(2, intersection.members[indexMR1].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexMR1].direction(intersection, deviceHeading))
         Assert.assertEquals("Manilla Road", intersection.members[indexMR1].properties!!["name"])
-        Assert.assertEquals(4, intersection.members[indexGR2].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexGR2].direction(intersection, deviceHeading))
         Assert.assertEquals("Grange Road", intersection.members[indexGR2].properties!!["name"])
-        Assert.assertEquals(6, intersection.members[indexMR2].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexMR2].direction(intersection, deviceHeading))
         Assert.assertEquals("Manilla Road", intersection.members[indexMR2].properties!!["name"])
 
     }
@@ -382,13 +383,13 @@ class IntersectionsTestMvt {
         val indexLR2 = 0
         val indexMR = 3
         val indexVR = 2
-        Assert.assertEquals(0, intersection.members[indexLR1].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexLR1].direction(intersection, deviceHeading))
         Assert.assertEquals("Lansdown Road", intersection.members[indexLR1].properties!!["name"])
-        Assert.assertEquals(2, intersection.members[indexMR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexMR].direction(intersection, deviceHeading))
         Assert.assertEquals("Manilla Road", intersection.members[indexMR].properties!!["name"])
-        Assert.assertEquals(4, intersection.members[indexLR2].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexLR2].direction(intersection, deviceHeading))
         Assert.assertEquals("Lansdown Road", intersection.members[indexLR2].properties!!["name"])
-        Assert.assertEquals(6, intersection.members[indexVR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexVR].direction(intersection, deviceHeading))
         Assert.assertEquals("Vyvyan Road", intersection.members[indexVR].properties!!["name"])
 
     }
@@ -424,13 +425,13 @@ class IntersectionsTestMvt {
         val indexOR = 3
         val indexWS = 1
         val indexBS = 0
-        Assert.assertEquals(0, intersection.members[indexSMB].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexSMB].direction(intersection, deviceHeading))
         Assert.assertEquals("St Mary's Butts", intersection.members[indexSMB].properties!!["name"])
-        Assert.assertEquals(3, intersection.members[indexOR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD_LEFT, intersection.members[indexOR].direction(intersection, deviceHeading))
         Assert.assertEquals("Oxford Road", intersection.members[indexOR].properties!!["name"])
-        Assert.assertEquals(4, intersection.members[indexWS].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexWS].direction(intersection, deviceHeading))
         Assert.assertEquals("West Street", intersection.members[indexWS].properties!!["name"])
-        Assert.assertEquals(7, intersection.members[indexBS].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND_RIGHT, intersection.members[indexBS].direction(intersection, deviceHeading))
         Assert.assertEquals("Broad Street", intersection.members[indexBS].properties!!["name"])
 
     }
@@ -453,7 +454,7 @@ class IntersectionsTestMvt {
         val indexKC = 2
         val indexS1 = 1
         val indexS2 = 0
-        Assert.assertEquals(0, intersection.members[indexKC].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexKC].direction(intersection, deviceHeading))
         Assert.assertEquals("Kodiak Court", intersection.members[indexKC].properties!!["name"])
 //        Assert.assertEquals(3, intersection.members[indexS1].direction(intersection, deviceHeading))
 //        Assert.assertEquals("service", intersection.members[indexS1].properties!!["name"])
