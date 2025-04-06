@@ -33,14 +33,20 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 /**
- * FileGridState overrides ProtomapsGridState to get tiles from test resources instead of over the
- * network.
+ * FileGridState overrides ProtomapsGridState updateTile to get tiles from test resources instead of
+ * over the network. It also sets validateContext to false as it assumes that the tests are all
+ * running in a single context.
  */
 class FileGridState : ProtomapsGridState() {
 
     init {
         validateContext = false
     }
+
+    /**
+     * updateTile is overrider in FileGridState to get the tile data from the unit test resources
+     * directory.
+     */
     override suspend fun updateTile(
         x: Int,
         y: Int,
