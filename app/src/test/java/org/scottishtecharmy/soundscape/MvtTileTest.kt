@@ -1,6 +1,11 @@
 package org.scottishtecharmy.soundscape
 
+import com.google.android.gms.location.DeviceOrientation
+import io.realm.kotlin.internal.interop.realm_sync_file_action_e
+import io.ticofab.androidgpxparser.parser.GPXParser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
@@ -29,8 +34,10 @@ import kotlin.math.abs
 import kotlin.sequences.forEach
 import kotlin.system.measureTimeMillis
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import java.io.InputStream
 
 /**
  * FileGridState overrides ProtomapsGridState updateTile to get tiles from test resources instead of
@@ -91,11 +98,44 @@ private fun vectorTileToGeoJsonFromFile(
     return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 }
 
+private fun parseGpxFromFile(filename: String): FeatureCollection {
+    val path = "src/test/res/org/scottishtecharmy/soundscape/"
+    val fc = FeatureCollection()
+
+    File(path + filename).useLines { lines ->
+        lines.forEach { line ->
+
+            if(line.trim().startsWith("<trkpt")) {
+                // Get the location
+                val regex = Regex("/*<trkpt.*lat=\"(.*)\" lon=\"(.*)\".*")
+                val matchResult = regex.find(line)
+                if (matchResult != null) {
+                    // We have a match on the link
+                    val latitudeString = matchResult.groupValues[1]
+                    val longitudeString = matchResult.groupValues[2]
+
+                    val latitude = latitudeString.toDouble()
+                    val longitude = longitudeString.toDouble()
+
+                    val feature = Feature()
+                    feature.geometry = Point(longitude, latitude)
+                    feature.properties = hashMapOf()
+                    feature.properties?.set("marker-size", "small")
+                    feature.properties?.set("marker-color", "#004000")
+
+                    fc.addFeature(feature)
+                }
+            }
+        }
+    }
+
+    return fc
+}
+
 private fun parseNmeaFromFile(filename: String): FeatureCollection {
 
     val path = "src/test/res/org/scottishtecharmy/soundscape/"
     val fc = FeatureCollection()
-
 
     File(path + filename).useLines { lines ->
         var index = 0
@@ -543,7 +583,8 @@ class MvtTileTest {
 
         val gridState = FileGridState()
         val mapMatchFilter = MapMatchFilter()
-        val gps = parseNmeaFromFile("nmea.csv")
+        //val gps = parseNmeaFromFile("nmea.csv")
+        val gps = parseGpxFromFile("edinburgh-test2.gpx")
         val mapMatchedPositions = FeatureCollection()
         for(position in gps) {
             val location = (position.geometry as Point).coordinates

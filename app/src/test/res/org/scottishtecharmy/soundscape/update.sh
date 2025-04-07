@@ -1,4 +1,13 @@
 protomaps_server=https://d1wzlzgah5gfol.cloudfront.net/protomaps
+
+for x in $(seq 16092 16096);
+do
+  for y in $(seq 10209 10214);
+  do
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+  done
+done
+
 # Tiles for testVectorToGeoJsonGrid
 for x in $(seq 15990 15992);
 do
