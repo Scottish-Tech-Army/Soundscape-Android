@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.TileClient
 import kotlin.time.TimeSource
@@ -142,6 +143,7 @@ open class GridState {
                             if (distance < 1.0) {
                                 // Join the intersections together
                                 val way = Way()
+                                way.geometry = LineString(intersection1.location, intersection2.location)
                                 way.wayType = WayType.JOINER
                                 way.intersections[WayEnd.START.id] = intersection1
                                 way.intersections[WayEnd.END.id] = intersection2

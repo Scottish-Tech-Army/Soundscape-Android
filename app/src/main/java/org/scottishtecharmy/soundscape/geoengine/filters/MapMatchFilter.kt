@@ -2,7 +2,9 @@ package org.scottishtecharmy.soundscape.geoengine.filters
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
@@ -24,6 +26,8 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 private const val FRECHET_QUEUE_SIZE = 4 // The size of this queue doesn't make a lot of difference!
+
+data class RoadFollowerStatus(val frechetAverage: Double, val confidence: Int)
 
 class RoadFollower(val parent: MapMatchFilter,
                    var currentNearestRoad: Way,
@@ -78,13 +82,21 @@ class RoadFollower(val parent: MapMatchFilter,
     }
 
 
-    fun update(gpsLocation: LngLatAlt, overallLastMatchedLocation: LngLatAlt?, collection: FeatureCollection) : Double {
+    fun update(gpsLocation: LngLatAlt, overallLastMatchedLocation: LngLatAlt?, collection: FeatureCollection) : RoadFollowerStatus {
 
         // Update radius
         var gpsHeading = Double.NaN
         var pointGap = 0.0
         var dMin = 0.0
         lastGpsLocation?.let { lastLocation ->
+
+            if(lastLocation == gpsLocation) {
+                if (frechetQueue.size == FRECHET_QUEUE_SIZE) {
+                    return RoadFollowerStatus(frechetQueue.average(), 1)
+                }
+                return RoadFollowerStatus(Double.MAX_VALUE, 0)
+            }
+
             // Get the shortest D min value (distance from new location to previous chord ends)
             dMin = min(
                 gpsLocation.distance(lastChordPoints[0]),
@@ -121,7 +133,7 @@ class RoadFollower(val parent: MapMatchFilter,
 
                 // Dispose of this if we're a long way away
                 if(nearestPoint.distance > 30.0) {
-                    return Double.MAX_VALUE
+                    return RoadFollowerStatus(Double.MAX_VALUE, -1)
                 }
 
                 val roadHeading = nearestPoint.heading
@@ -133,10 +145,11 @@ class RoadFollower(val parent: MapMatchFilter,
                     if (cosHeadingDifference < 0.730) {
                         // Unreliable GPS heading - the GPS is moving in a different direction to
                         // the road
-                        frechetQueue.addLast(50.0)
-                        if(frechetQueue.size > FRECHET_QUEUE_SIZE)
+                        if (frechetQueue.size > FRECHET_QUEUE_SIZE) {
                             frechetQueue.removeFirst()
-                        return (frechetQueue.average())
+                            return RoadFollowerStatus(frechetQueue.average(), 0)
+                        }
+                        return RoadFollowerStatus(Double.MAX_VALUE, -1)
                     }
                 }
 
@@ -161,7 +174,7 @@ class RoadFollower(val parent: MapMatchFilter,
                     radius = matchedPoint.distance * 1.2
 
                 if(radius > 30.0) {
-                    return Double.MAX_VALUE
+                    return RoadFollowerStatus(Double.MAX_VALUE, -1)
                 }
 
                 var directionToNearestPoint = bearingFromTwoPoints(center, matchedPoint.point)
@@ -205,10 +218,11 @@ class RoadFollower(val parent: MapMatchFilter,
             }
             lastGpsLocation = gpsLocation
         }
-        if (frechetQueue.isNotEmpty())
-            return frechetQueue.average()
+        if (frechetQueue.size == FRECHET_QUEUE_SIZE) {
+            return RoadFollowerStatus(frechetQueue.average(), 1)
+        }
 
-        return Double.MAX_VALUE
+        return RoadFollowerStatus(Double.MAX_VALUE, 0)
     }
 
     fun chosen(collection: FeatureCollection): LngLatAlt? {
@@ -248,17 +262,31 @@ class MapMatchFilter {
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
 
-    fun nearestIntersection(way: Way, location: LngLatAlt) : Double {
+    fun nearestIntersection(way: Way, location: LngLatAlt) : Intersection? {
         var distanceToNearestIntersection = Double.MAX_VALUE
+        var nearestIntersection : Intersection? = null
+
         for(wayEnd in way.intersections) {
             if (wayEnd != null) {
-                distanceToNearestIntersection = min(
-                    distanceToNearestIntersection,
-                    location.distance(wayEnd.location)
-                )
+                // Follow way from intersection to avoid TILE_EDGE intersections
+                val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+                way.followWays(wayEnd, ways)
+
+                val intersection = if (ways.last().first)
+                    ways.last().second.intersections[WayEnd.START.id]
+                else
+                    ways.last().second.intersections[WayEnd.END.id]
+
+                if (intersection != null) {
+                    val distance = location.distance(intersection.location)
+                    if (distance < distanceToNearestIntersection) {
+                        distanceToNearestIntersection = distance
+                        nearestIntersection = intersection
+                    }
+                }
             }
         }
-        return distanceToNearestIntersection
+        return nearestIntersection
     }
 
     var colorIndex = 0
@@ -311,18 +339,18 @@ class MapMatchFilter {
         }
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
-        var freshetList = emptyList<Pair<Double, String>>().toMutableList()
+        var freshetList = emptyList<Pair<RoadFollowerStatus, String>>().toMutableList()
         val followerIterator = followerList.listIterator()
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
-            val frechetAverage = follower.update(location, matchedLocation, collection)
-            freshetList.add(Pair(frechetAverage, follower.color))
-            if(frechetAverage > 20.0) {
+            val frechetStatus = follower.update(location, matchedLocation, collection)
+            freshetList.add(Pair(frechetStatus, follower.color))
+            if(frechetStatus.confidence < 0) {
                 followerIterator.remove()
                 continue
             }
             val way = follower.currentNearestRoad
-            if(frechetAverage < lowestFrechet) {
+            if((frechetStatus.frechetAverage < lowestFrechet) and (frechetStatus.confidence > 0)) {
                 var skip = false
                 if(matchedWay != null) {
                     if (matchedWay != way) {
@@ -358,16 +386,20 @@ class MapMatchFilter {
                                     val nearestToNew =
                                         nearestIntersection(way, newMatchedLocation)
 
-                                    val nearest = nearestToNew + nearestToMatched
-                                    if (nearest > (follower.averagePointGap * 4))
-                                        skip = true
+                                    if((nearestToNew != null) && (nearestToMatched != null)) {
+                                        val nearest =
+                                            nearestToNew.location.distance(location) +
+                                            nearestToMatched.location.distance(location)
+                                        if (nearest > (follower.averagePointGap * 3))
+                                            skip = true
+                                    }
                                 }
                             }
                         }
                     }
                 }
                 if(!skip) {
-                    lowestFrechet = frechetAverage
+                    lowestFrechet = frechetStatus.frechetAverage
                     lowestFollower = follower
                 }
             }

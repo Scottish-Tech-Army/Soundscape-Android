@@ -4,6 +4,8 @@ import com.squareup.moshi.Moshi
 import org.junit.Test
 import org.junit.Assert
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraOnWaysWithLoops
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -12,7 +14,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraWithLoops
 import org.scottishtecharmy.soundscape.geoengine.utils.featureCollectionToGraphWithNodeMap
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
 import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import java.io.FileOutputStream
+import kotlin.time.measureTime
 
 
 class DijkstraTest {
@@ -141,5 +147,57 @@ class DijkstraTest {
 
     }
 
+    @Test
+    fun testMvtDijkstra(){
 
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
+
+        val testRoadsCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        val intersectionsTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
+
+//        val startLocation = LngLatAlt(-4.3187203, 55.9425631)
+//        val startLocation = LngLatAlt(-4.3173752, 55.9402158)
+        val startLocation = LngLatAlt(-4.3174425, 55.9397239)
+        val endLocation = LngLatAlt(-4.3166694, 55.9391411)
+
+
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
+
+        val shortestRoutes = FeatureCollection()
+        val timeTakenUsingOldAlgorithm = measureTime {
+            val shortestRoute = getShortestRoute(startLocation, endLocation, testRoadsCollection)
+//            shortestRoutes.features.plusAssign(shortestRoute.features)
+        }
+
+        // We should already have these values in the real code, so don't time them
+        val startIntersection = intersectionsTree.getNearestFeature(startLocation) as Intersection
+        val endIntersection = intersectionsTree.getNearestFeature(endLocation) as Intersection
+        var shortestPath = 0.0
+        val timeTakenUsingNewAlgorithm = measureTime {
+            /**
+             * We already have a Way/Intersection graph which has all of the lines segmented at
+             * intersections and with a length value for each Way. We don't have a node ID, but
+             * the intersections are all unique objects, so that should be enough.
+             */
+            val (shortestPathDistance, previousNodes) =
+                dijkstraOnWaysWithLoops(startIntersection, endIntersection)
+            val ways = getPathWays(
+                endIntersection,
+                startIntersection,
+                previousNodes
+            )
+            for(way in ways) {
+                shortestRoutes.addFeature(way as Feature)
+            }
+            shortestPath = shortestPathDistance
+        }
+
+
+        // Visualise the shortest routes
+        mapMatchingOutput.write(adapter.toJson(shortestRoutes).toByteArray())
+        mapMatchingOutput.close()
+        println("getShortestRoute time taken: $timeTakenUsingOldAlgorithm")
+        println("NEW getShortestRoute time taken: $timeTakenUsingNewAlgorithm, distance $shortestPath")
+    }
 }

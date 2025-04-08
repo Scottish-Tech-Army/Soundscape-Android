@@ -1,5 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
@@ -36,6 +39,57 @@ fun dijkstraWithLoops(
     return Pair(distances, previousNodes)
 }
 
+fun dijkstraOnWaysWithLoops(
+    start: Intersection,
+    end: Intersection,
+    maxDistance: Double = Double.MAX_VALUE
+): Pair<Double, Map<Intersection, Intersection>> {
+    // Return distances and previous nodes
+    val distances = mutableMapOf<Intersection, Double>().withDefault { Double.MAX_VALUE }
+    val previousNodes = mutableMapOf<Intersection, Intersection>()
+    val priorityQueue = PriorityQueue<Pair<Intersection, Double>>(compareBy { it.second })
+    val visited = mutableSetOf<Pair<Intersection, Double>>()
+    var distanceToEnd = maxDistance
+
+    priorityQueue.add(start to 0.0)
+    distances[start] = 0.0
+
+    while (priorityQueue.isNotEmpty()) {
+        val (node, currentDist) = priorityQueue.poll()!!
+        if (visited.add(node to currentDist)) {
+            node.members.sortedBy { way ->
+                way.length
+            }.forEach { way ->
+                val weight = way.length
+                val adjacent = if (node == way.intersections[WayEnd.START.id])
+                    way.intersections[WayEnd.END.id]
+                else
+                    way.intersections[WayEnd.START.id]
+
+                if (adjacent != null) {
+                    val totalDist = currentDist + weight
+                    // If the distance + the shortest direct distance to the end is more than the
+                    // current shortest distance to the end, then we don't need to process this
+                    // option. This is A* rather than Djikstra
+                    val directDistanceToEnd = adjacent.location.distance(end.location)
+                    if ((totalDist + directDistanceToEnd) < distanceToEnd) {
+                        if (totalDist < distances.getValue(adjacent)) {
+                            distances[adjacent] = totalDist
+                            previousNodes[adjacent] = node
+                            priorityQueue.add(adjacent to totalDist)
+                            if (adjacent == end)
+                                distanceToEnd = totalDist
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return Pair(distanceToEnd, previousNodes)
+}
+
+
 fun getPathCoordinates(
     endNode: Int,
     startNode: Int,
@@ -55,6 +109,37 @@ fun getPathCoordinates(
     startCoordinate?.let { pathCoordinates.add(0, it) }
 
     return pathCoordinates
+}
+
+fun getPathWays(
+    endNode: Intersection,
+    startNode: Intersection,
+    previousNodes: Map<Intersection, Intersection>
+): List<Way> {
+    val ways = mutableListOf<Way>()
+    var currentNode = endNode
+
+    while (previousNodes.containsKey(currentNode)) {
+        val previousNode = previousNodes.getValue(currentNode)
+        // Add Way which connects the two nodes
+        for(member in currentNode.members){
+            if(
+                (
+                    (member.intersections[WayEnd.START.id] == currentNode) and
+                    (member.intersections[WayEnd.END.id] == previousNode)
+                ) or
+                (
+                    (member.intersections[WayEnd.END.id] == currentNode) and
+                    (member.intersections[WayEnd.START.id] == previousNode)
+                )
+            ) {
+                ways.add(member)
+            }
+        }
+        currentNode = previousNode
+    }
+
+    return ways
 }
 
 fun featureCollectionToGraphWithNodeMap(
