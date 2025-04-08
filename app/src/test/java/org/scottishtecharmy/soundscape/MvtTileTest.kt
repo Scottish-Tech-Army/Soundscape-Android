@@ -139,14 +139,11 @@ private fun parseNmeaFromFile(filename: String): FeatureCollection {
 
     File(path + filename).useLines { lines ->
         var index = 0
-        var skip = 5 //+ 1150
+        var skip = 5
         lines.forEach { line ->
 
             if(skip != 0) {
                 --skip
-                return@forEach
-            }
-            if(index > 1500) {
                 return@forEach
             }
 
@@ -586,7 +583,12 @@ class MvtTileTest {
         //val gps = parseNmeaFromFile("nmea.csv")
         val gps = parseGpxFromFile("edinburgh-test2.gpx")
         val mapMatchedPositions = FeatureCollection()
-        for(position in gps) {
+//        gps.features.take(gps.features.size / 2).forEach { position ->
+        val startIndex = 0
+        val endIndex = gps.features.size
+        gps.features.filterIndexed {
+                index, _ -> (index > startIndex) and (index < endIndex)
+        }.forEachIndexed { index, position ->
             val location = (position.geometry as Point).coordinates
             runBlocking {
                 // Update the grid state
@@ -607,6 +609,7 @@ class MvtTileTest {
                     newFeature.properties = hashMapOf()
                     newFeature.properties?.set("marker-color", mapMatchedResult.third)
                     newFeature.properties?.set("color", mapMatchedResult.third)
+                    newFeature.properties?.set("index", index + startIndex)
                     mapMatchedPositions.addFeature(newFeature)
                 }
                 // Add raw GPS too
