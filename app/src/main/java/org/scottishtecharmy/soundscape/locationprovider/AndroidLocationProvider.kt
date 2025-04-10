@@ -25,20 +25,20 @@ class AndroidLocationProvider(context : Context) :
         LocationServices.getFusedLocationProviderClient(context)
     private var locationCallback: LocationCallback
 
-    private val filter = KalmanLocationFilter()
+//    private val filter = KalmanLocationFilter()
 
-    fun filterLocation(location: Location) : Location {
-        // Filter the location through the Kalman filter
-        val filteredLocation = filter.process(
-            LngLatAlt(location.longitude, location.latitude),
-            System.currentTimeMillis(),
-            location.accuracy.toDouble()
-        )
-        location.latitude = filteredLocation.latitude
-        location.longitude = filteredLocation.longitude
-
-        return location
-    }
+//    fun filterLocation(location: Location) : Location {
+//        // Filter the location through the Kalman filter
+//        val filteredLocation = filter.process(
+//            LngLatAlt(location.longitude, location.latitude),
+//            System.currentTimeMillis(),
+//            location.accuracy.toDouble()
+//        )
+//        location.latitude = filteredLocation.latitude
+//        location.longitude = filteredLocation.longitude
+//
+//        return location
+//    }
 
     init {
         if (ActivityCompat.checkSelfPermission(
@@ -51,7 +51,7 @@ class AndroidLocationProvider(context : Context) :
                 .addOnSuccessListener { location: Location? ->
                     // Handle the retrieved location here
                     if (location != null) {
-                        mutableLocationFlow.value = filterLocation(location)
+                        mutableLocationFlow.value = location // filterLocation(location)
                     }
                 }
                 .addOnFailureListener { _: Exception ->
@@ -60,7 +60,7 @@ class AndroidLocationProvider(context : Context) :
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
-                    mutableLocationFlow.value = filterLocation(location)
+                    mutableLocationFlow.value = location // filterLocation(location)
                 }
             }
         }

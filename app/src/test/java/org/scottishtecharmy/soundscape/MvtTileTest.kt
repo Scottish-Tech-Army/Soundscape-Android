@@ -580,8 +580,8 @@ class MvtTileTest {
 
         val gridState = FileGridState()
         val mapMatchFilter = MapMatchFilter()
-        //val gps = parseNmeaFromFile("nmea.csv")
-        val gps = parseGpxFromFile("edinburgh-test2.gpx")
+        val gps = parseNmeaFromFile("nmea.csv")
+//        val gps = parseGpxFromFile("edinburgh-test2.gpx")
         val mapMatchedPositions = FeatureCollection()
 //        gps.features.take(gps.features.size / 2).forEach { position ->
         val startIndex = 0
@@ -611,8 +611,11 @@ class MvtTileTest {
                     newFeature.properties?.set("color", mapMatchedResult.third)
                     newFeature.properties?.set("index", index + startIndex)
                     mapMatchedPositions.addFeature(newFeature)
+                } else {
+//                    println("No map match found - index $index")
                 }
                 // Add raw GPS too
+                position.properties?.set("index", index + startIndex)
                 mapMatchedPositions.addFeature(position)
             }
         }

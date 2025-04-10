@@ -195,6 +195,28 @@ class Way : Feature() {
         return bearingFromTwoPoints(fromIntersection.location, nextLocation)
     }
 
+    /**
+     * @param location is where the distance is calculated from.
+     * @return the distance along the Way from location to the START intersection. It's measured
+     * from the nearest point on the Way.
+     */
+    fun distanceToStart(location: LngLatAlt) : Double {
+        val nearestPoint = location.distanceToLineString(geometry as LineString)
+        val lineCoordinates = (geometry as LineString).coordinates
+        var accumulatedDistance = 0.0
+        for(index in 0 until lineCoordinates.size - 1) {
+            val distanceToSegment = nearestPoint.point.distanceToLine(lineCoordinates[index], lineCoordinates[index+1])
+            if(distanceToSegment < 1.0)
+            {
+                // We're on this segment, return our accumulated distance plus the distance to the
+                // start of the segment.
+                return accumulatedDistance + nearestPoint.point.distance(lineCoordinates[index])
+            }
+            accumulatedDistance += lineCoordinates[index].distance(lineCoordinates[index + 1])
+        }
+
+        return 0.0
+    }
 }
 
 fun convertBackToTileCoordinates(location: LngLatAlt,
@@ -417,6 +439,12 @@ class WayGenerator {
         }
 
         for(intersection in intersections) {
+
+            // Sort the members by length of the Way, shortest first. This is important for when we
+            // traverse the graph using the Dijkstra algorithm.
+            intersection.value.members = intersection.value.members.sortedBy { way ->
+                way.length
+            }.toMutableList()
 
             // Name the intersection
             val name = StringBuilder()
