@@ -16,9 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
-import java.io.FileOutputStream
 import kotlin.time.measureTime
 
 class MvtPerformanceTest {
@@ -142,7 +140,7 @@ class MvtPerformanceTest {
             for (way in ways) {
                 shortestRoutes.addFeature(way as Feature)
             }
-            shortestPath = shortestPathDistance
+            shortestPath = shortestPathDistance.getValue(endIntersection)
         }
 
         println("getShortestRoute time taken: $timeTakenUsingOldAlgorithm")

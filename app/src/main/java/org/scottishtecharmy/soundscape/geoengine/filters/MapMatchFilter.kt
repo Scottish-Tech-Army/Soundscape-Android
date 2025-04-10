@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.clone
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.fromRadians
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
@@ -38,6 +39,7 @@ class RoadFollower(val parent: MapMatchFilter,
     var lastChordPoints: Array<LngLatAlt> = arrayOf(LngLatAlt(), LngLatAlt())
     var nearestPoint: PointAndDistanceAndHeading? = null
     var lastMatchedLocation: LngLatAlt? = null
+    var lastCenter = LngLatAlt()
     val frechetQueue = ArrayDeque<Double>(FRECHET_QUEUE_SIZE)
     var nextRoad: Way? = null
 
@@ -154,16 +156,16 @@ class RoadFollower(val parent: MapMatchFilter,
                 }
 
                 // Last point
-                var center = gpsLocation
+                lastCenter = gpsLocation
                 var matchedPoint = nearestPoint
                 if ((lastGpsLocation != null) and (lastMatchedLocation != null)) {
                     val c1 = bearingFromTwoPoints(lastGpsLocation!!, lastMatchedLocation!!)
                     val d1 = lastGpsLocation!!.distance(lastMatchedLocation!!)
                     var ar = k.pow(pointGap / averagePointGap)
                     if (ar.isNaN()) ar = 1.0
-                    center = getDestinationCoordinate(gpsLocation, c1, d1 * ar)
+                    lastCenter = getDestinationCoordinate(gpsLocation, c1, d1 * ar)
                     matchedPoint =
-                        center.distanceToLineString(currentNearestRoad.geometry as LineString)
+                        lastCenter.distanceToLineString(currentNearestRoad.geometry as LineString)
                     radius = max(dMin, gpsLocation.distance(lastGpsLocation!!) * ar)
                 }
                 // Check if we can actually get to this new point from the last point
@@ -177,7 +179,7 @@ class RoadFollower(val parent: MapMatchFilter,
                     return RoadFollowerStatus(Double.MAX_VALUE, -1)
                 }
 
-                var directionToNearestPoint = bearingFromTwoPoints(center, matchedPoint.point)
+                var directionToNearestPoint = bearingFromTwoPoints(lastCenter, matchedPoint.point)
                 val chordLength = sqrt(
                     (radius * radius) - (matchedPoint.distance * matchedPoint.distance)
                 ) * 2
@@ -196,25 +198,17 @@ class RoadFollower(val parent: MapMatchFilter,
 
                 val chordAngle = asin(chordLength / (2 * radius))
                 lastChordPoints[0] = getDestinationCoordinate(
-                    center,
+                    lastCenter,
                     directionToNearestPoint + fromRadians(chordAngle),
                     radius
                 )
                 lastChordPoints[1] = getDestinationCoordinate(
-                    center,
+                    lastCenter,
                     directionToNearestPoint - fromRadians(chordAngle),
                     radius
                 )
 
                 lastMatchedLocation = matchedPoint.point
-
-                val circle = Feature()
-                circle.geometry = circleToPolygon(32, center.latitude, center.longitude, radius)
-                circle.properties = hashMapOf()
-                circle.properties?.set("fill-opacity", 0.0)
-                circle.properties?.set("stroke", color)
-                circle.properties?.set("radius", radius)
-                collection.addFeature(circle)
             }
             lastGpsLocation = gpsLocation
         }
@@ -354,48 +348,18 @@ class MapMatchFilter {
                 var skip = false
                 if(matchedWay != null) {
                     if (matchedWay != way) {
-                        val currentLayer = matchedWay?.properties?.get("layer")
-                        val newRoadLayer = way.properties?.get("layer")
-                        if((currentLayer != null) or (newRoadLayer != null)) {
-                            var currentLayerInt = 0
-                            var newRoadLayerInt = 0
-                            if(currentLayer != null) currentLayerInt = currentLayer.toString().toInt()
-                            if(newRoadLayer != null) newRoadLayerInt = newRoadLayer.toString().toInt()
-                            if(currentLayerInt != newRoadLayerInt) {
-                                // The current tracked way is on a different layer. Do they have a
-                                // direct intersection that allows moving between layers? If they
-                                // do not, then we skip this way.
-                                skip = true
-                                matchedWay?.let {
-                                    if (way.doesIntersect(it) != null) {
-                                        skip = false
-                                    }
-                                }
-                            }
-                        }
-                        if(!skip) {
-                            // The matched road is on the same Layer as the new road, but could they
-                            // be connected?
-                            matchedLocation?.let { location ->
-
-                                val nearestToMatched =
-                                    nearestIntersection(matchedWay!!, location)
-
-                                val newMatchedLocation = follower.chosen(collection)
-                                if (newMatchedLocation != null) {
-                                    val nearestToNew =
-                                        nearestIntersection(way, newMatchedLocation)
-
-                                    if((nearestToNew != null) && (nearestToMatched != null)) {
-                                        val nearest =
-                                            nearestToNew.location.distance(location) +
-                                            nearestToMatched.location.distance(location)
-                                        if (nearest > (follower.averagePointGap * 3))
-                                            skip = true
-                                    }
-                                }
-                            }
-                        }
+                        // Can we get to this followers matched location from the last matched
+                        // location via the road/path network?
+                        val shortestDistance = findShortestDistance(
+                            matchedLocation!!,
+                            follower.chosen(collection)!!,
+                            matchedWay!!,
+                            way,
+                            null,
+                            100.0
+                        )
+                        if (shortestDistance > (follower.averagePointGap * 3))
+                            skip = true
                     }
                 }
                 if(!skip) {
@@ -420,6 +384,14 @@ class MapMatchFilter {
                 }
                 collection.addFeature(choiceFeature)
             }
+            val circle = Feature()
+            circle.geometry = circleToPolygon(32, lowestFollower.lastCenter.latitude, lowestFollower.lastCenter.longitude, lowestFollower.radius)
+            circle.properties = hashMapOf()
+            circle.properties?.set("fill-opacity", 0.0)
+            circle.properties?.set("stroke", lowestFollower.color)
+            circle.properties?.set("radius", lowestFollower.radius)
+            collection.addFeature(circle)
+
             matchedWay = matchedFollower!!.currentNearestRoad
             val color = matchedFollower!!.color
             matchedLocation?.let { matchedLocation ->
