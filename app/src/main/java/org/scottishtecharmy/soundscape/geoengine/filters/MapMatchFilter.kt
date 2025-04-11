@@ -40,7 +40,7 @@ class RoadFollower(val parent: MapMatchFilter,
     var radius = 2.0
     var lastChordPoints: Array<LngLatAlt> = arrayOf(LngLatAlt(), LngLatAlt())
     var nearestPoint: PointAndDistanceAndHeading? = null
-    var lastMatchedLocation: LngLatAlt? = null
+    var lastMatchedLocation: PointAndDistanceAndHeading? = null
     var lastCenter = LngLatAlt()
     val frechetQueue = ArrayDeque<Double>(FRECHET_QUEUE_SIZE)
     var nextRoad: Way? = null
@@ -177,8 +177,8 @@ class RoadFollower(val parent: MapMatchFilter,
                 lastCenter = gpsLocation
                 var matchedPoint = nearestPoint
                 if ((lastGpsLocation != null) and (lastMatchedLocation != null)) {
-                    val c1 = bearingFromTwoPoints(lastGpsLocation!!, lastMatchedLocation!!)
-                    val d1 = lastGpsLocation!!.distance(lastMatchedLocation!!)
+                    val c1 = bearingFromTwoPoints(lastGpsLocation!!, lastMatchedLocation!!.point)
+                    val d1 = lastGpsLocation!!.distance(lastMatchedLocation!!.point)
                     var ar = k.pow(pointGap / averagePointGap)
                     if (ar.isNaN()) ar = 1.0
                     lastCenter = getDestinationCoordinate(gpsLocation, c1, d1 * ar)
@@ -237,7 +237,7 @@ class RoadFollower(val parent: MapMatchFilter,
                     radius
                 )
 
-                lastMatchedLocation = matchedPoint.point
+                lastMatchedLocation = matchedPoint
             }
             lastGpsLocation = gpsLocation
         }
@@ -248,9 +248,9 @@ class RoadFollower(val parent: MapMatchFilter,
         return RoadFollowerStatus(Double.MAX_VALUE, 0)
     }
 
-    fun chosen(collection: FeatureCollection): LngLatAlt? {
+    fun chosen(collection: FeatureCollection): PointAndDistanceAndHeading? {
         nearestPoint?.let { nearestPoint ->
-            return nearestPoint.point
+            return nearestPoint
         }
         return null
     }
@@ -272,7 +272,7 @@ class MapMatchFilter {
 
 
     val followerList: MutableList<RoadFollower> = emptyList<RoadFollower>().toMutableList()
-    var matchedLocation: LngLatAlt? = null
+    var matchedLocation: PointAndDistanceAndHeading? = null
     var matchedWay: Way? = null
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
@@ -358,7 +358,7 @@ class MapMatchFilter {
         val followerIterator = followerList.listIterator()
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
-            val frechetStatus = follower.update(location, matchedLocation, collection)
+            val frechetStatus = follower.update(location, matchedLocation?.point, collection)
             freshetList.add(Pair(frechetStatus, follower.color))
             if(frechetStatus.confidence < 0) {
                 followerIterator.remove()
@@ -374,8 +374,8 @@ class MapMatchFilter {
                         val testDistance = (follower.averagePointGap * 3) + 10.0
                         val timeDijkstra = measureTime {
                             val shortestDistance = findShortestDistance(
-                                matchedLocation!!,
-                                follower.chosen(collection)!!,
+                                matchedLocation!!.point,
+                                follower.chosen(collection)!!.point,
                                 matchedWay!!,
                                 way,
                                 null,
@@ -384,7 +384,7 @@ class MapMatchFilter {
                             if (shortestDistance >= testDistance)
                                 skip = true
                         }
-                        println("Time Dijkstra: $timeDijkstra")
+                        //println("Time Dijkstra: $timeDijkstra")
                     }
                 }
                 if(!skip) {
@@ -402,7 +402,7 @@ class MapMatchFilter {
                 if (matchedWay != matchedFollower!!.currentNearestRoad) {
                     val choiceFeature = Feature()
                     choiceFeature.geometry =
-                        Point(matchedLocation!!.longitude, matchedLocation!!.latitude)
+                        Point(matchedLocation!!.point.longitude, matchedLocation!!.point.latitude)
                     choiceFeature.properties = hashMapOf()
                     choiceFeature.properties?.set("marker-size", "large")
                     choiceFeature.properties?.set("marker-color", "#000000")
@@ -416,7 +416,7 @@ class MapMatchFilter {
             matchedWay = matchedFollower!!.currentNearestRoad
             val color = matchedFollower!!.color
             matchedLocation?.let { matchedLocation ->
-                return Triple(matchedLocation, matchedWay, color)
+                return Triple(matchedLocation.point, matchedWay, color)
             }
         } else {
             matchedLocation = null

@@ -24,6 +24,7 @@ import java.lang.Math.toDegrees
 import kotlin.collections.iterator
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
+import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.atan
 import kotlin.math.floor
@@ -255,9 +256,9 @@ fun removeDuplicateOsmIds(
 }
 
 fun getFovTriangle(userGeometry: UserGeometry) : Triangle {
-    val heading = userGeometry.heading() ?: 0.0
+    var heading = userGeometry.snappedHeading() ?: 0.0
     val quadrant = Quadrant(heading)
-    val location = userGeometry.mapMatchedLocation ?: userGeometry.location
+    val location = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
     return Triangle(location,
         getDestinationCoordinate(
             location,

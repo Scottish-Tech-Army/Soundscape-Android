@@ -1,19 +1,15 @@
 package org.scottishtecharmy.soundscape
 
-import android.os.Build
-import com.google.android.gms.location.DeviceOrientation
-import io.realm.kotlin.internal.interop.realm_sync_file_action_e
-import io.ticofab.androidgpxparser.parser.GPXParser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
@@ -35,10 +31,10 @@ import kotlin.math.abs
 import kotlin.sequences.forEach
 import kotlin.system.measureTimeMillis
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
-import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import java.io.InputStream
 
 /**
  * FileGridState overrides ProtomapsGridState updateTile to get tiles from test resources instead of
@@ -103,28 +99,46 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
     val path = "src/test/res/org/scottishtecharmy/soundscape/"
     val fc = FeatureCollection()
 
+    var currentFeature = Feature()
     File(path + filename).useLines { lines ->
         lines.forEach { line ->
 
-            if(line.trim().startsWith("<trkpt")) {
-                // Get the location
-                val regex = Regex("/*<trkpt.*lat=\"(.*)\" lon=\"(.*)\".*")
+            // Get the location
+            val regex = Regex("/*<trkpt.*lat=\"(.*)\" lon=\"(.*)\".*")
+            val matchResult = regex.find(line)
+            if (matchResult != null) {
+                // We have a match on the link
+                val latitudeString = matchResult.groupValues[1]
+                val longitudeString = matchResult.groupValues[2]
+
+                val latitude = latitudeString.toDouble()
+                val longitude = longitudeString.toDouble()
+
+                if(currentFeature.properties != null) {
+                    fc.addFeature(currentFeature)
+                }
+
+                currentFeature = Feature()
+                currentFeature.geometry = Point(longitude, latitude)
+                currentFeature.properties = hashMapOf()
+                currentFeature.properties?.set("marker-size", "small")
+                currentFeature.properties?.set("marker-color", "#004000")
+
+            } else {
+                val regex = Regex("/*<bearing>(.*)</bearing>.*")
                 val matchResult = regex.find(line)
                 if (matchResult != null) {
-                    // We have a match on the link
-                    val latitudeString = matchResult.groupValues[1]
-                    val longitudeString = matchResult.groupValues[2]
-
-                    val latitude = latitudeString.toDouble()
-                    val longitude = longitudeString.toDouble()
-
-                    val feature = Feature()
-                    feature.geometry = Point(longitude, latitude)
-                    feature.properties = hashMapOf()
-                    feature.properties?.set("marker-size", "small")
-                    feature.properties?.set("marker-color", "#004000")
-
-                    fc.addFeature(feature)
+                    currentFeature.properties?.set("heading", matchResult.groupValues[1].toDouble())
+                }
+                else {
+                    val regex = Regex("/*<speed>(.*)</speed>.*")
+                    val matchResult = regex.find(line)
+                    if (matchResult != null) {
+                        currentFeature.properties?.set(
+                            "speed",
+                            matchResult.groupValues[1].toDouble()
+                        )
+                    }
                 }
             }
         }
@@ -575,6 +589,20 @@ class MvtTileTest {
         }
     }
 
+    fun compareCallouts(callout1: List<PositionedString>?, callout2: List<PositionedString>?) : Boolean
+    {
+        if(callout1 == null || callout2 == null) return true
+        if(callout1.size != callout2.size) return false
+        if(callout1.isEmpty()) return true
+
+        val iterator1 = callout1.listIterator()
+        val iterator2 = callout2.listIterator()
+        while(iterator1.hasNext()) {
+            if(iterator1.next().text != iterator2.next().text) return false
+        }
+        return true
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testMovingGrid() {
@@ -584,10 +612,12 @@ class MvtTileTest {
 //        val gps = parseNmeaFromFile("nmea.csv")
 //        val gps = parseGpxFromFile("edinburgh-test2.gpx")
         val gps = parseGpxFromFile("travel.gpx")
-        val mapMatchedPositions = FeatureCollection()
-//        gps.features.take(gps.features.size / 2).forEach { position ->
+        val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
+        val autoCallout = AutoCallout(null, null)
+        var lastCallout : List<PositionedString> = emptyList()
+
         gps.features.filterIndexed {
                 index, _ -> (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
@@ -603,7 +633,7 @@ class MvtTileTest {
                 val mapMatchedResult = mapMatchFilter.filter(
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
-                    mapMatchedPositions
+                    collection
                 )
                 if(mapMatchedResult.first != null) {
                     val newFeature = Feature()
@@ -612,18 +642,43 @@ class MvtTileTest {
                     newFeature.properties?.set("marker-color", mapMatchedResult.third)
                     newFeature.properties?.set("color", mapMatchedResult.third)
                     newFeature.properties?.set("index", index + startIndex)
-                    mapMatchedPositions.addFeature(newFeature)
-                } else {
-//                    println("No map match found - index $index")
+                    collection.addFeature(newFeature)
                 }
                 // Add raw GPS too
                 position.properties?.set("index", index + startIndex)
-                mapMatchedPositions.addFeature(position)
+                collection.addFeature(position)
+
+                val userGeometry = UserGeometry(
+                    location = LngLatAlt(location.longitude, location.latitude),
+                    travelHeading = position.properties?.get("heading") as Double?,
+                    speed = position.properties?.get("speed") as Double,
+                    mapMatchedWay = mapMatchFilter.matchedWay,
+                    mapMatchedLocation = mapMatchFilter.matchedLocation
+                )
+                val intersectionCallout = autoCallout.buildCalloutForIntersections(userGeometry, gridState)
+                if(intersectionCallout.isNotEmpty()) {
+                    if (!compareCallouts(lastCallout, intersectionCallout)) {
+                        // We've got a new callout, so add it to our geoJSON as a triangle for the
+                        // FOV that was used to create it, along with the text from the callouts.
+                        val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry))
+                        val fovFeature = Feature()
+                        fovFeature.geometry = polygon
+                        fovFeature.properties = hashMapOf()
+                        for (callout in intersectionCallout.withIndex()) {
+                            fovFeature.properties?.set(
+                                "Callout ${callout.index}",
+                                callout.value.text
+                            )
+                        }
+                        collection.addFeature(fovFeature)
+                        lastCallout = intersectionCallout
+                    }
+                }
             }
         }
         val adapter = GeoJsonObjectMoshiAdapter()
         val mapMatchingOutput = FileOutputStream("map-matching.geojson")
-        mapMatchingOutput.write(adapter.toJson(mapMatchedPositions).toByteArray())
+        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
     }
 }

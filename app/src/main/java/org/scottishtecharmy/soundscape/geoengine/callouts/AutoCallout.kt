@@ -23,8 +23,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 
 class AutoCallout(
-    private val localizedContext: Context,
-    private val sharedPreferences: SharedPreferences
+    private val localizedContext: Context?,
+    private val sharedPreferences: SharedPreferences?
 ) {
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
@@ -58,7 +58,7 @@ class AutoCallout(
             emptyList()
     }
 
-    private fun buildCalloutForIntersections(userGeometry: UserGeometry,
+    fun buildCalloutForIntersections(userGeometry: UserGeometry,
                                              gridState: GridState) : List<PositionedString> {
         val results : MutableList<PositionedString> = mutableListOf()
 
@@ -87,7 +87,7 @@ class AutoCallout(
             userGeometry)
 
         // Don't describe the road we're on if there's an intersection
-        if(roadsDescription.intersection != null) roadsDescription.nearestRoad = null
+        //if(roadsDescription.intersection != null) roadsDescription.nearestRoad = null
 
         addIntersectionCalloutFromDescription(
             roadsDescription,
@@ -170,7 +170,7 @@ class AutoCallout(
                             if(nearestPoint.distance == 0.0) {
                                 results.add(
                                     PositionedString(
-                                        text = localizedContext.getString(R.string.directions_at_poi, name.text),
+                                        text = localizedContext?.getString(R.string.directions_at_poi, name.text) ?: name.text,
                                         earcon = earcon,
                                         type = AudioType.STANDARD
                                     ),
@@ -210,7 +210,7 @@ class AutoCallout(
                        gridState: GridState) : List<PositionedString> {
 
         // Check that the callout isn't disabled in the settings
-        if (!sharedPreferences.getBoolean(ALLOW_CALLOUTS_KEY, true)) {
+        if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) == false) {
             return emptyList()
         }
 
