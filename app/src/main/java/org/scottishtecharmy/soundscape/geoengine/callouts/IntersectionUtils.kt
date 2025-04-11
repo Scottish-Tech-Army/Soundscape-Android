@@ -52,13 +52,9 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val fovRoads = roadTree.getAllWithinTriangle(triangle)
     if(fovRoads.features.isEmpty()) return IntersectionDescription(nearestRoad = userGeometry.mapMatchedWay)
 
-    // Two roads that we are interested in:
-    //  1. The one that we are nearest to. We use this for intersection call outs to decide which
-    //     intersection road we're on. This can be slightly behind us, it doesn't have to be in our
-    //     FOV.
-    //  2. The nearest one in our FOV. We use this to describe 'what's ahead'
-    val nearestRoad = userGeometry.mapMatchedWay
-    val nearestRoadInFoV = roadTree.getNearestFeatureWithinTriangle(triangle)
+    var nearestRoad = userGeometry.mapMatchedWay
+    if(nearestRoad == null)
+        nearestRoad = roadTree.getNearestFeatureWithinTriangle(triangle) as Way?
 
     // Find intersections within FOV
     val fovIntersections = intersectionTree.getAllWithinTriangle(triangle)
@@ -93,9 +89,6 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
             prioritised.first
         }?.second
     }
-
-    // Use the nearest intersection, but remove duplicated OSM ids from it (those which loop back)
-//    val nearestIntersection = removeDuplicates(sortedFovIntersections.features[0])
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
     val heading = nearestRoad?.heading(intersection!!)
