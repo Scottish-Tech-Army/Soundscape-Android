@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
+import android.os.Build
 import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -37,10 +38,18 @@ class TrackedCallout(
     }
 }
 
-class CalloutHistory(private val expiryPeriod : Long = 60000) {
+class CalloutHistory(expiryPeriodMilliseconds : Long = 60000) {
 
     // List of recent history
     private val history = mutableListOf<TrackedCallout>()
+
+    private var expiryPeriod : Long = 0
+    init {
+        // Unit tests must have a zero expiryPeriod as they don't run in realtime
+        if(Build.VERSION.SDK_INT != 0) {
+            expiryPeriod = expiryPeriodMilliseconds
+        }
+    }
 
     fun add(callout: TrackedCallout) {
         history.add(callout)
@@ -72,7 +81,7 @@ class CalloutHistory(private val expiryPeriod : Long = 60000) {
      */
     fun checkAndAdd(callout: TrackedCallout) : Boolean {
         if (find(callout)) {
-            Log.d("TrackedCallout", "Discard ${callout.callout} as in history")
+            println("Discard ${callout.callout} as in history")
             return false
         } else {
             add(callout)
@@ -82,8 +91,5 @@ class CalloutHistory(private val expiryPeriod : Long = 60000) {
     }
     fun size() : Int {
         return history.size
-    }
-    companion object {
-        private const val TAG = "TrackedCallout"
     }
 }

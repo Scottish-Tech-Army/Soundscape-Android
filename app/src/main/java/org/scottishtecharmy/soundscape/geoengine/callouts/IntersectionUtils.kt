@@ -22,7 +22,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 
-data class IntersectionDescription(var nearestRoad: Feature? = null,
+data class IntersectionDescription(var nearestRoad: Way? = null,
                                    val userGeometry: UserGeometry = UserGeometry(),
                                    val intersection: Intersection? = null,
 )
@@ -98,7 +98,8 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 //    val nearestIntersection = removeDuplicates(sortedFovIntersections.features[0])
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
-    val heading = userGeometry.heading()
+    val heading = nearestRoad?.heading(intersection!!)
+    //val heading = userGeometry.heading()
     if(heading != null) {
         // And use the polygons to describe the roads at the intersection
         return IntersectionDescription(
@@ -123,14 +124,31 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
  */
 fun addIntersectionCalloutFromDescription(
     description: IntersectionDescription,
-    localizedContext: Context,
+    localizedContext: Context?,
     results: MutableList<PositionedString>,
     calloutHistory: CalloutHistory? = null
 ) {
 
     // Report nearby road
     description.nearestRoad?.let { nearestRoad ->
-        val calloutText = "${localizedContext.getString(R.string.directions_direction_ahead)} ${(nearestRoad as Way).getName()}}"
+
+        // Figure out which direction we're travelling along the way
+        var direction : Boolean? = null
+        if(description.userGeometry.mapMatchedLocation != null) {
+            direction = when (description.userGeometry.snappedHeading()) {
+                description.userGeometry.mapMatchedLocation.heading ->
+                    true
+                (description.userGeometry.mapMatchedLocation.heading + 180.0) % 360.0 ->
+                    false
+                else ->
+                    null
+            }
+        }
+        val calloutText = if(localizedContext == null)
+            "Ahead ${(nearestRoad).getName(direction)}"
+        else
+            "${localizedContext.getString(R.string.directions_direction_ahead)} ${(nearestRoad).getName(direction)}}"
+
         var skip = false
         calloutHistory?.checkAndAdd(TrackedCallout(calloutText,
                 LngLatAlt(),
@@ -161,20 +179,24 @@ fun addIntersectionCalloutFromDescription(
         if(!success) return
     }
 
+    val heading = description.nearestRoad?.heading(description.intersection)
+    if(heading == null)
+        return
+    if(description.intersection.members.size <= 2)
+        return
+
     // Report intersection is coming up
     results.add(
         PositionedString(
-            text =localizedContext.getString(R.string.intersection_approaching_intersection),
+            text = localizedContext?.getString(R.string.intersection_approaching_intersection) ?: "Approaching intersection",
             earcon = NativeAudioEngine.EARCON_SENSE_POI,
             type = AudioType.STANDARD)
     )
 
     // Report roads that join the intersection
-    val heading = description.userGeometry.heading()
-    if(heading == null)
-        return
+    val incomingHeading = (heading.toDouble() + 180.0) % 360.0
 
-    val directions = getCombinedDirectionSegments(heading)
+    val directions = getCombinedDirectionSegments(incomingHeading)
     for (way in description.intersection.members) {
 
         val wayHeading = way.heading(description.intersection)
@@ -193,11 +215,7 @@ fun addIntersectionCalloutFromDescription(
                     R.string.directions_name_continues_ahead
             }
 
-            var presentationHeading = description.userGeometry.presentationHeading()
-            if(presentationHeading == null)
-                presentationHeading = 0.0
-
-            presentationHeading += when(direction) {
+            val presentationHeading = incomingHeading + when(direction) {
                 Direction.BEHIND_LEFT.value,Direction.LEFT.value,Direction.AHEAD_LEFT.value -> -90.0
                 Direction.BEHIND_RIGHT.value,Direction.RIGHT.value,Direction.AHEAD_RIGHT.value -> 90.0
                 else -> 0.0
@@ -205,7 +223,7 @@ fun addIntersectionCalloutFromDescription(
 
             var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection)
             val intersectionCallout =
-                localizedContext.getString(roadDirectionId, destinationText)
+                localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText direction $direction"
             results.add(
                 PositionedString(
                     text = intersectionCallout,

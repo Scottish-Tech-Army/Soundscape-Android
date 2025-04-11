@@ -900,11 +900,15 @@ data class TextForFeature(val text: String = "", val generic: Boolean= false)
  * @return a NameForFeature object containing the name and a flag indicating if it is a generic
  * name from the OSM tag rather than an actual name.
  */
-fun getTextForFeature(localizedContext: Context, feature: Feature) : TextForFeature {
+fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFeature {
     var generic = false
     val name = feature.properties?.get("name") as String?
     val featureValue = feature.foreign?.get("feature_value")
     val isMarker = feature.foreign?.get("category") == "marker"
+
+    if(localizedContext == null) {
+        return TextForFeature(name.toString(), false)
+    }
 
     if(isMarker) {
         // If the feature is a Marker, return the unadulterated name along with prefix indicating
@@ -995,7 +999,7 @@ fun formatDistance(distance: Double, localizedContext: Context) : String {
 
 fun localReverseGeocode(location: LngLatAlt,
                         gridState: GridState,
-                        localizedContext: Context): LocationDescription? {
+                        localizedContext: Context?): LocationDescription? {
 
     if(!gridState.isLocationWithinGrid(location)) return null
 
@@ -1012,7 +1016,7 @@ fun localReverseGeocode(location: LngLatAlt,
                 val name = poi.properties?.get("name")
                 if(name != null) {
                     return LocationDescription(
-                        name = localizedContext.getString(R.string.directions_at_poi).format(name as String),
+                        name = localizedContext?.getString(R.string.directions_at_poi)?.format(name as String),
                         location = location,
                     )
                 }
@@ -1025,8 +1029,8 @@ fun localReverseGeocode(location: LngLatAlt,
     if(nearestRoad != null) {
         val roadName = nearestRoad.getName()
         return LocationDescription(
-            name = localizedContext.getString(R.string.directions_near_name)
-                .format(roadName),
+            name = localizedContext?.getString(R.string.directions_near_name)
+                ?.format(roadName),
             location = location,
         )
     }
@@ -1042,7 +1046,7 @@ fun localReverseGeocode(location: LngLatAlt,
  */
 fun reverseGeocode(userGeometry: UserGeometry,
                    gridState: GridState,
-                   localizedContext: Context): PositionedString? {
+                   localizedContext: Context?): PositionedString? {
 
     val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
     location?.let { l ->

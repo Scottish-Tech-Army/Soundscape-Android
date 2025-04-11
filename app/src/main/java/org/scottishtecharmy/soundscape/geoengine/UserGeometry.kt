@@ -1,7 +1,9 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import kotlin.math.abs
 
 /**
  * UserGeometry contains all of the data relating to the location and motion of the user. It's
@@ -37,7 +39,7 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    var fovDistance: Double = 50.0,
                    val speed: Double = 0.0,
                    val mapMatchedWay: Way? = null,
-                   val mapMatchedLocation: LngLatAlt? = null,
+                   val mapMatchedLocation: PointAndDistanceAndHeading? = null,
                    val currentBeacon: LngLatAlt? = null,
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
@@ -66,6 +68,23 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
         return null
     }
 
+    fun snappedHeading() : Double? {
+        var heading = heading()
+        if(heading != null) {
+            // Snap heading to matched way heading if we're close to it
+            val wayHeading = mapMatchedLocation?.heading
+            if (wayHeading != null) {
+                val headingOffset = abs(heading - wayHeading)
+                if (headingOffset < 30.0)
+                    heading = wayHeading
+                else if ((headingOffset > 150.0) && ((headingOffset < 210.0)))
+                    heading = (wayHeading + 180.0) % 360.0
+                else if (headingOffset > 330.0)
+                    heading = wayHeading
+            }
+        }
+        return heading
+    }
     fun heading() : Double? {
         when(headingMode) {
             // Priority: travel, head, phone
