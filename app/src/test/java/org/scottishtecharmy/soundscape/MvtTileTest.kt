@@ -609,8 +609,6 @@ class MvtTileTest {
 
         val gridState = FileGridState()
         val mapMatchFilter = MapMatchFilter()
-//        val gps = parseNmeaFromFile("nmea.csv")
-//        val gps = parseGpxFromFile("edinburgh-test2.gpx")
         val gps = parseGpxFromFile("travel.gpx")
         val collection = FeatureCollection()
         val startIndex = 0
