@@ -72,7 +72,7 @@ data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {
 fun HomeScreen(
     navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
-    rateSoundscape: () -> Unit,
+    rateSoundscape: () -> Unit
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
     val searchText = viewModel.searchText.collectAsStateWithLifecycle()

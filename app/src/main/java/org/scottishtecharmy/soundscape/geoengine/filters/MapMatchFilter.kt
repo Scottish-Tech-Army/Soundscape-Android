@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
+import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -25,6 +26,7 @@ import kotlin.math.min
 import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.sqrt
+import kotlin.time.measureTime
 
 private const val FRECHET_QUEUE_SIZE = 4 // The size of this queue doesn't make a lot of difference!
 
@@ -147,9 +149,25 @@ class RoadFollower(val parent: MapMatchFilter,
                     if (cosHeadingDifference < 0.730) {
                         // Unreliable GPS heading - the GPS is moving in a different direction to
                         // the road
-                        if (frechetQueue.size > FRECHET_QUEUE_SIZE) {
+                        if(Build.VERSION.SDK_INT == 0) {
+                            val circle = Feature()
+                            circle.geometry = circleToPolygon(
+                                32,
+                                gpsLocation.latitude,
+                                gpsLocation.longitude,
+                                radius
+                            )
+                            circle.properties = hashMapOf()
+                            circle.properties?.set("fill-opacity", 0.0)
+                            circle.properties?.set("stroke", color)
+                            circle.properties?.set("radius", radius)
+                            collection.addFeature(circle)
+                        }
+
+                        if (frechetQueue.isNotEmpty()) {
                             frechetQueue.removeFirst()
-                            return RoadFollowerStatus(frechetQueue.average(), 0)
+                            if(frechetQueue.size > (FRECHET_QUEUE_SIZE / 2))
+                                return RoadFollowerStatus(frechetQueue.average(), 0)
                         }
                         return RoadFollowerStatus(Double.MAX_VALUE, -1)
                     }
@@ -177,6 +195,17 @@ class RoadFollower(val parent: MapMatchFilter,
 
                 if(radius > 30.0) {
                     return RoadFollowerStatus(Double.MAX_VALUE, -1)
+                }
+
+                if(Build.VERSION.SDK_INT == 0) {
+                    val circle = Feature()
+                    circle.geometry =
+                        circleToPolygon(32, lastCenter.latitude, lastCenter.longitude, radius)
+                    circle.properties = hashMapOf()
+                    circle.properties?.set("fill-opacity", 0.0)
+                    circle.properties?.set("stroke", color)
+                    circle.properties?.set("radius", radius)
+                    collection.addFeature(circle)
                 }
 
                 var directionToNearestPoint = bearingFromTwoPoints(lastCenter, matchedPoint.point)
@@ -221,14 +250,6 @@ class RoadFollower(val parent: MapMatchFilter,
 
     fun chosen(collection: FeatureCollection): LngLatAlt? {
         nearestPoint?.let { nearestPoint ->
-//            val mapMatched = Feature()
-//            mapMatched.geometry = Point(nearestPoint.point.longitude, nearestPoint.point.latitude)
-//            mapMatched.properties = hashMapOf()
-//            mapMatched.properties?.set("name", currentNearestRoad.properties?.get("name"))
-//            mapMatched.properties?.set("marker-size", "small")
-//            mapMatched.properties?.set("marker-color", "#f00000")
-//            collection.addFeature(mapMatched)
-
             return nearestPoint.point
         }
         return null
@@ -344,22 +365,26 @@ class MapMatchFilter {
                 continue
             }
             val way = follower.currentNearestRoad
-            if((frechetStatus.frechetAverage < lowestFrechet) and (frechetStatus.confidence > 0)) {
+            if(frechetStatus.frechetAverage < lowestFrechet) {
                 var skip = false
                 if(matchedWay != null) {
                     if (matchedWay != way) {
                         // Can we get to this followers matched location from the last matched
                         // location via the road/path network?
-                        val shortestDistance = findShortestDistance(
-                            matchedLocation!!,
-                            follower.chosen(collection)!!,
-                            matchedWay!!,
-                            way,
-                            null,
-                            100.0
-                        )
-                        if (shortestDistance > (follower.averagePointGap * 3))
-                            skip = true
+                        val testDistance = (follower.averagePointGap * 3) + 10.0
+                        val timeDijkstra = measureTime {
+                            val shortestDistance = findShortestDistance(
+                                matchedLocation!!,
+                                follower.chosen(collection)!!,
+                                matchedWay!!,
+                                way,
+                                null,
+                                testDistance
+                            )
+                            if (shortestDistance >= testDistance)
+                                skip = true
+                        }
+                        println("Time Dijkstra: $timeDijkstra")
                     }
                 }
                 if(!skip) {
@@ -373,24 +398,20 @@ class MapMatchFilter {
         if(lowestFollower != null) {
             matchedLocation = lowestFollower.chosen(collection)
             matchedFollower = lowestFollower
-            if (matchedWay != matchedFollower!!.currentNearestRoad) {
-                val choiceFeature = Feature()
-                choiceFeature.geometry = Point(matchedLocation!!.longitude, matchedLocation!!.latitude)
-                choiceFeature.properties = hashMapOf()
-                choiceFeature.properties?.set("marker-size", "large")
-                choiceFeature.properties?.set("marker-color", "#000000")
-                for (choices in freshetList) {
-                    choiceFeature.properties?.set(choices.second, choices.first.toString())
+            if(Build.VERSION.SDK_INT == 0) {
+                if (matchedWay != matchedFollower!!.currentNearestRoad) {
+                    val choiceFeature = Feature()
+                    choiceFeature.geometry =
+                        Point(matchedLocation!!.longitude, matchedLocation!!.latitude)
+                    choiceFeature.properties = hashMapOf()
+                    choiceFeature.properties?.set("marker-size", "large")
+                    choiceFeature.properties?.set("marker-color", "#000000")
+                    for (choices in freshetList) {
+                        choiceFeature.properties?.set(choices.second, choices.first.toString())
+                    }
+                    collection.addFeature(choiceFeature)
                 }
-                collection.addFeature(choiceFeature)
             }
-            val circle = Feature()
-            circle.geometry = circleToPolygon(32, lowestFollower.lastCenter.latitude, lowestFollower.lastCenter.longitude, lowestFollower.radius)
-            circle.properties = hashMapOf()
-            circle.properties?.set("fill-opacity", 0.0)
-            circle.properties?.set("stroke", lowestFollower.color)
-            circle.properties?.set("radius", lowestFollower.radius)
-            collection.addFeature(circle)
 
             matchedWay = matchedFollower!!.currentNearestRoad
             val color = matchedFollower!!.color

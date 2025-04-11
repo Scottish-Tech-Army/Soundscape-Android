@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.location.Location
+import android.net.Uri
+import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
@@ -28,14 +30,15 @@ import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
+import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
@@ -59,6 +62,9 @@ import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
+import kotlin.toString
+import androidx.core.content.edit
+
 
 data class PositionedString(
     val text : String,
@@ -189,6 +195,24 @@ class GeoEngine {
         )
     }
 
+    fun updateRecordingState(recordState: Boolean, context: Context) {
+        if(recordState) {
+            gpxRecorder = GpxRecorder(context)
+        } else {
+            gpxRecorder?.close()
+            gpxRecorder = null
+        }
+    }
+
+    fun getRecordingShareUri(context: Context) : Uri? {
+        gpxRecorder?.close()
+        val ret = gpxRecorder?.getShareUri(context)
+        gpxRecorder = null
+        sharedPreferences.edit(commit = true) { putBoolean(MainActivity.RECORD_TRAVEL_KEY, false) }
+
+        return ret
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     fun start(
         application: Application,
@@ -198,18 +222,25 @@ class GeoEngine {
     ) {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
+        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
+        updateRecordingState(recordTravel, application.applicationContext)
+
         sharedPreferencesListener =
             SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
                 if (sharedPreferences == preferences) {
                     if(key == MainActivity.RECORD_TRAVEL_KEY) {
                         Log.e(TAG, "RECORD_TRAVEL_KEY changed")
                         recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
+                        updateRecordingState(recordTravel, application.applicationContext)
                     }
                 }
             }
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
-        application.applicationContext
-        travelFile = File(application.applicationContext.filesDir, "travel.json")
+        val recordingsStoragePath = application.applicationContext.filesDir.toString() + "/recordings/"
+        val recordingsStorageDir = File(recordingsStoragePath)
+        if (!recordingsStorageDir.exists()) {
+            recordingsStorageDir.mkdirs()
+        }
 
         gridState.start(application)
 
@@ -218,6 +249,7 @@ class GeoEngine {
         configuration.setLocale(configLocale)
         localizedContext = application.applicationContext.createConfigurationContext(configuration)
         autoCallout = AutoCallout(localizedContext, sharedPreferences)
+
 
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
@@ -270,26 +302,7 @@ class GeoEngine {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
    }
     private var recordTravel = false
-    private var travelFile: File? = null
-
-    private fun writeLocationToFile(location: Location, heading: Float) {
-
-        val jsonString =
-            "\"location\": {\n" +
-            "\"latitude\": \"${location.latitude}\",\n" +
-            "\"longitude\": \"${location.longitude}\",\n" +
-            "\"altitude\": \"${location.altitude}\",\n" +
-            "\"accuracy\": \"${location.accuracy}\",\n" +
-            "\"speed\": \"${location.speed}\",\n" +
-            "\"bearing\": \"${location.bearing}\",\n" +
-            "\"bearingAccuracyDegrees\": \"${location.bearingAccuracyDegrees}\",\n" +
-            "\"time\": \"${location.time}\"\n" +
-            "\"heading\": \"${heading}\"\n" +
-            "},\n"
-        FileOutputStream(travelFile, true).use { outputStream ->
-            outputStream.write(jsonString.toByteArray())
-        }
-    }
+    private var gpxRecorder: GpxRecorder? = null
 
     /**
      * The gridState is called each time the location changes. It checks if the location
@@ -344,7 +357,8 @@ class GeoEngine {
                                     FeatureCollection()
                                 )
                             }
-                            println("MapMatch time: $mapMatchTime")
+                            val matchedWay = mapMatchFilter.matchedWay
+                            println("MapMatch: $mapMatchTime to get ${matchedWay?.getName()}")
                         }
                     }
 
@@ -366,9 +380,7 @@ class GeoEngine {
                         }
 
                         // Save the location data to a file if enabled
-                        if(recordTravel) {
-                            writeLocationToFile(location, directionProvider.orientationFlow.value?.headingDegrees ?: 0.0F)
-                        }
+                        gpxRecorder?.write(location)
                     }
                 }
             }
@@ -461,7 +473,7 @@ class GeoEngine {
                                     inMotion,
                                     inVehicle
                                 )
-                            results.add(PositionedString(
+                            list.add(PositionedString(
                                 text = facingDirection,
                                 type = AudioType.STANDARD)
                             )

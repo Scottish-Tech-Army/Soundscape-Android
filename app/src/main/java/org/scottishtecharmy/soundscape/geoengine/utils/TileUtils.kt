@@ -257,14 +257,15 @@ fun removeDuplicateOsmIds(
 fun getFovTriangle(userGeometry: UserGeometry) : Triangle {
     val heading = userGeometry.heading() ?: 0.0
     val quadrant = Quadrant(heading)
-    return Triangle(userGeometry.location,
+    val location = userGeometry.mapMatchedLocation ?: userGeometry.location
+    return Triangle(location,
         getDestinationCoordinate(
-            userGeometry.location,
+            location,
             quadrant.left,
             userGeometry.fovDistance
         ),
         getDestinationCoordinate(
-            userGeometry.location,
+            location,
             quadrant.right,
             userGeometry.fovDistance
         )
