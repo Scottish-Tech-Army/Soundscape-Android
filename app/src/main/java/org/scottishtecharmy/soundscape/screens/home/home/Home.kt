@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -60,6 +61,7 @@ fun Home(
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
 ) {
+    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
@@ -70,6 +72,7 @@ fun Home(
                 onNavigate = onNavigate,
                 drawerState = drawerState,
                 rateSoundscape = rateSoundscape,
+                shareRecording = { (context as MainActivity).shareRecording() }
             )
         },
         modifier = modifier,

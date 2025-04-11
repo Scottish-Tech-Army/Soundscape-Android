@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
@@ -101,7 +102,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     if(heading != null) {
         // And use the polygons to describe the roads at the intersection
         return IntersectionDescription(
-            nearestRoadInFoV,
+            nearestRoad,
             userGeometry,
             intersection
         )
@@ -129,30 +130,20 @@ fun addIntersectionCalloutFromDescription(
 
     // Report nearby road
     description.nearestRoad?.let { nearestRoad ->
-        if (nearestRoad.properties?.get("name") != null) {
-            val calloutText = "${localizedContext.getString(R.string.directions_direction_ahead)} ${nearestRoad.properties!!["name"]}"
-            var skip = false
-            calloutHistory?.checkAndAdd(TrackedCallout(calloutText,
-                    LngLatAlt(),
-                    isPoint = false,
-                    isGeneric = false
-                ))?.let { newCallout ->
-                    if(!newCallout) skip = true
-            }
-            if(skip) {
-            } else {
-                results.add(PositionedString(
-                    text = calloutText,
-                    type = AudioType.STANDARD))
-            }
+        val calloutText = "${localizedContext.getString(R.string.directions_direction_ahead)} ${(nearestRoad as Way).getName()}}"
+        var skip = false
+        calloutHistory?.checkAndAdd(TrackedCallout(calloutText,
+                LngLatAlt(),
+                isPoint = false,
+                isGeneric = false
+            ))?.let { newCallout ->
+                if(!newCallout) skip = true
+        }
+        if(skip) {
         } else {
-            // we are detecting an unnamed road here but pretending there is nothing here
-            results.add(
-                PositionedString(
-                    text = localizedContext.getString(R.string.callouts_nothing_to_call_out_now),
-                    type = AudioType.STANDARD
-                )
-            )
+            results.add(PositionedString(
+                text = calloutText,
+                type = AudioType.STANDARD))
         }
     }
 

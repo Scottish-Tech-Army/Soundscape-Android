@@ -39,6 +39,7 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
+import java.net.URLEncoder
 import javax.inject.Inject
 
 data class ThemeState(
@@ -286,6 +287,23 @@ class MainActivity : AppCompatActivity() {
                 @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
                 Log.e(TAG, "Error requesting review: $reviewErrorCode")
             }
+        }
+    }
+
+    fun shareRecording() {
+        val shareUri = soundscapeServiceConnection.soundscapeService?.getRecordingShareUri(applicationContext)
+        if(shareUri != null) {
+            val sendIntent: Intent =
+                Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TITLE, "Recorded GPX")
+                    putExtra(Intent.EXTRA_STREAM, shareUri)
+                    type = "text/plain"
+                    flags += Intent.FLAG_GRANT_READ_URI_PERMISSION
+                }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 

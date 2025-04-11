@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import android.os.Build
 import com.google.android.gms.location.DeviceOrientation
 import io.realm.kotlin.internal.interop.realm_sync_file_action_e
 import io.ticofab.androidgpxparser.parser.GPXParser
@@ -580,8 +581,9 @@ class MvtTileTest {
 
         val gridState = FileGridState()
         val mapMatchFilter = MapMatchFilter()
-        val gps = parseNmeaFromFile("nmea.csv")
+//        val gps = parseNmeaFromFile("nmea.csv")
 //        val gps = parseGpxFromFile("edinburgh-test2.gpx")
+        val gps = parseGpxFromFile("travel.gpx")
         val mapMatchedPositions = FeatureCollection()
 //        gps.features.take(gps.features.size / 2).forEach { position ->
         val startIndex = 0

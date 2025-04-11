@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -28,6 +29,7 @@ fun DrawerContent(
     drawerState: DrawerState,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
+    shareRecording: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     ModalDrawerSheet(
@@ -92,6 +94,12 @@ fun DrawerContent(
 //            icon = Icons.Rounded.IosShare,
 //        )
         DrawerMenuItem(
+            onClick = { shareRecording() },
+            label = "Share recorded route",
+            icon = Icons.Rounded.Share,
+        )
+
+        DrawerMenuItem(
             onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
             label = stringResource(R.string.settings_about_app),
             Icons.AutoMirrored.Rounded.HelpOutline,
@@ -105,5 +113,6 @@ fun PreviewDrawerContent() {
         DrawerState(DrawerValue.Open) { true },
         { },
         { },
+        { }
     )
 }

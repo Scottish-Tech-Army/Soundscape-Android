@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.services
 
+import android.content.Context
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
@@ -7,6 +8,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.net.Uri
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -474,6 +476,10 @@ class SoundscapeService : MediaSessionService() {
             // Set flag in GeoEngine so that it can adjust it's behaviour
             geoEngine.appInForeground = foreground
 //        }
+    }
+
+    fun getRecordingShareUri(context: Context): Uri? {
+        return geoEngine.getRecordingShareUri(context)
     }
 
     companion object {
