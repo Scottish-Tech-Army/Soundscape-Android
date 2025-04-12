@@ -18,6 +18,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
+import android.os.Debug
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 
 class MvtPerformanceTest {
 
@@ -101,6 +104,9 @@ class MvtPerformanceTest {
     @Test
     fun testRouting() {
         val gridState = ProtomapsGridState()
+
+        val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
+        println(directory)
         gridState.validateContext = false
         gridState.start(ApplicationProvider.getApplicationContext())
         val location = LngLatAlt(-4.317357, 55.942527)
@@ -111,39 +117,26 @@ class MvtPerformanceTest {
             )
         }
 
-        val testRoadsCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
-        val intersectionsTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
+        val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val startLocation = LngLatAlt(-4.317351, 55.939856)
+        val endLocation = LngLatAlt(-4.316699, 55.939225)
 
-        //val startLocation = LngLatAlt(-4.3187203, 55.9425631)
-        //val startLocation = LngLatAlt(-4.3173752, 55.9402158)
-        val startLocation = LngLatAlt(-4.3174425, 55.9397239)
-        val endLocation = LngLatAlt(-4.3166694, 55.9391411)
+        // Find the nearest ways to each location
+        val startWay = roadTree.getNearestFeature(startLocation) as Way
+        val endWay = roadTree.getNearestFeature(endLocation) as Way
 
+        Debug.startMethodTracing("Predict")
 
-        val timeTakenUsingOldAlgorithm = measureTime {
-            getShortestRoute(startLocation, endLocation, testRoadsCollection)
-        }
+        val shortestPath = findShortestDistance(
+            startLocation,
+            endLocation,
+            startWay,
+            endWay,
+            null,
+            200.0
+        )
+        println("Shortest path: $shortestPath")
 
-        // We should already have these values in the real code, so don't time them
-        val startIntersection = intersectionsTree.getNearestFeature(startLocation) as Intersection
-        val endIntersection = intersectionsTree.getNearestFeature(endLocation) as Intersection
-        val shortestRoutes = FeatureCollection()
-        var shortestPath = 0.0
-        val timeTakenUsingNewAlgorithm = measureTime {
-            val (shortestPathDistance, previousNodes) =
-                dijkstraOnWaysWithLoops(startIntersection, endIntersection, 200.0)
-            val ways = getPathWays(
-                endIntersection,
-                startIntersection,
-                previousNodes
-            )
-            for (way in ways) {
-                shortestRoutes.addFeature(way as Feature)
-            }
-            shortestPath = shortestPathDistance.getValue(endIntersection)
-        }
-
-        println("getShortestRoute time taken: $timeTakenUsingOldAlgorithm")
-        println("NEW getShortestRoute time taken: $timeTakenUsingNewAlgorithm, distance $shortestPath vs. ${startIntersection.location.distance(endIntersection.location)}, ways ${shortestRoutes.features.size}")
+        Debug.stopMethodTracing()
     }
 }

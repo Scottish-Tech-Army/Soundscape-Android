@@ -64,7 +64,7 @@ fun distance(lat1: Double, long1: Double, lat2: Double, long2: Double): Double {
 
     val c = 2 * asin(sqrt(a))
 
-    return (EARTH_RADIUS_METERS * c).round(2)
+    return (EARTH_RADIUS_METERS * c)//.round(2)
 }
 
 /**
