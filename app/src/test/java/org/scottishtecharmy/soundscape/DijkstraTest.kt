@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraWithLoops
 import org.scottishtecharmy.soundscape.geoengine.utils.featureCollectionToGraphWithNodeMap
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance2
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
 import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
@@ -181,17 +182,15 @@ class DijkstraTest {
              * intersections and with a length value for each Way. We don't have a node ID, but
              * the intersections are all unique objects, so that should be enough.
              */
-            val (shortestPathDistance, previousNodes) =
-                dijkstraOnWaysWithLoops(startIntersection, endIntersection)
+            val shortestPathDistance = dijkstraOnWaysWithLoops(startIntersection, endIntersection)
             val ways = getPathWays(
                 endIntersection,
-                startIntersection,
-                previousNodes
+                startIntersection
             )
             for(way in ways) {
                 shortestRoutes.addFeature(way as Feature)
             }
-            shortestPath = shortestPathDistance.getValue(endIntersection)
+            shortestPath = shortestPathDistance
         }
 
 
@@ -219,9 +218,9 @@ class DijkstraTest {
         // each Way, adding on the distances to each node in each case. The lowest distance wins.
         // We can just run the search 2 times, if we let it find both end nodes in one pass.
 
-//        val startLocation = LngLatAlt(-4.3187203, 55.9425631)
+        val startLocation = LngLatAlt(-4.3187203, 55.9425631)
 //        val startLocation = LngLatAlt(-4.3173752, 55.9402158)
-        val startLocation = LngLatAlt(-4.317351, 55.939856)
+//        val startLocation = LngLatAlt(-4.317351, 55.939856)
         val endLocation = LngLatAlt(-4.316699, 55.939225)
 
         // Find the nearest ways to each location
@@ -229,7 +228,7 @@ class DijkstraTest {
         val endWay = roadTree.getNearestFeature(endLocation) as Way
 
         var shortestPath = 0.0
-        val shortestRoute : FeatureCollection? = null //FeatureCollection()
+        val shortestRoute = FeatureCollection()
         val timeTaken = measureTime {
             shortestPath = findShortestDistance(startLocation, endLocation, startWay, endWay, shortestRoute)
         }
@@ -237,11 +236,39 @@ class DijkstraTest {
         println("time taken: $timeTaken, distance $shortestPath")
 
         // Visualise the shortest routes
-        if(shortestRoute != null) {
-            val adapter = GeoJsonObjectMoshiAdapter()
-            val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
-            mapMatchingOutput.write(adapter.toJson(shortestRoute).toByteArray())
-            mapMatchingOutput.close()
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
+        mapMatchingOutput.write(adapter.toJson(shortestRoute).toByteArray())
+        mapMatchingOutput.close()
+    }
+    @Test
+    fun testMvtArbitraryDijkstra2(){
+
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
+
+        val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+
+        val startLocation = LngLatAlt(-4.3187203, 55.9425631)
+//        val startLocation = LngLatAlt(-4.3173752, 55.9402158)
+//        val startLocation = LngLatAlt(-4.317351, 55.939856)
+        val endLocation = LngLatAlt(-4.316699, 55.939225)
+
+        // Find the nearest ways to each location
+        val startWay = roadTree.getNearestFeature(startLocation) as Way
+        val endWay = roadTree.getNearestFeature(endLocation) as Way
+
+        var shortestPath = 0.0
+        val shortestRoute = FeatureCollection()
+        val timeTaken = measureTime {
+            shortestPath = findShortestDistance2(startLocation, endLocation, startWay, endWay, shortestRoute)
         }
+
+        println("time taken: $timeTaken, distance $shortestPath")
+
+        // Visualise the shortest routes
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
+        mapMatchingOutput.write(adapter.toJson(shortestRoute).toByteArray())
+        mapMatchingOutput.close()
     }
 }

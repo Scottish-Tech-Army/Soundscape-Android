@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import android.os.Debug
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -39,6 +40,8 @@ fun dijkstraWithLoops(
     return Pair(distances, previousNodes)
 }
 
+var dijkstraRunCount = 0
+
 fun dijkstraOnWaysWithLoops(
     start: Intersection,
     end: Intersection,
@@ -49,11 +52,13 @@ fun dijkstraOnWaysWithLoops(
     //  TRICKIER - WE WOULD HAVE UP TO TWO HARD CODED INTERSECTIONS WITH NEW WAYS THAT LINK TO THE
     //  MADE UP END INTERSECTION.
     maxDistance: Double = Double.MAX_VALUE
-): Pair<Map<Intersection, Double>, Map<Intersection, Intersection>> {
+): Double {
 
-    // Return distances and previous nodes
-    val distances = mutableMapOf<Intersection, Double>().withDefault { Double.MAX_VALUE }
-    val previousNodes = mutableMapOf<Intersection, Intersection>()
+    val cheapRuler = CheapRuler(start.location.latitude, meters)
+
+    dijkstraRunCount++
+
+    // Return distances, previous nodes are in the Intersection internal data
     // The priority queue is sorted by the closest node to the target, but also contains the current
     // accumulated distance to that node
     val priorityQueue = PriorityQueue<Triple<Intersection, Double, Double>>(compareBy { it.third })
@@ -61,7 +66,12 @@ fun dijkstraOnWaysWithLoops(
     var distanceToEnd = maxDistance
 
     priorityQueue.add(Triple(start,0.0,0.0))
-    distances[start] = 0.0
+    start.dijkstraRunCount = dijkstraRunCount
+    start.dijkstraDistance = 0.0
+    start.dijkstraPrevious = null
+    end.dijkstraRunCount = dijkstraRunCount
+    end.dijkstraDistance = Double.MAX_VALUE
+    end.dijkstraPrevious = null
 
     while (priorityQueue.isNotEmpty()) {
         val (node, currentDist) = priorityQueue.poll()!!
@@ -75,15 +85,22 @@ fun dijkstraOnWaysWithLoops(
 
                 if (adjacent != null) {
                     val totalDist = currentDist + weight
-                    val directDistanceToEnd = adjacent.location.distance(end.location)
+                    val directDistanceToEnd = cheapRuler.distance(adjacent.location, end.location)
                     if ((totalDist + directDistanceToEnd) < distanceToEnd) {
-                        if (totalDist < distances.getValue(adjacent)) {
-                            distances[adjacent] = totalDist
-                            previousNodes[adjacent] = node
+                        if(adjacent.dijkstraRunCount != dijkstraRunCount) {
+                            // Lazy initialization of internal distance
+                            adjacent.dijkstraRunCount = dijkstraRunCount
+                            adjacent.dijkstraDistance = Double.MAX_VALUE
+                            adjacent.dijkstraPrevious = null
+                        }
+                        if (totalDist < adjacent.dijkstraDistance) {
+
+                            adjacent.dijkstraDistance = totalDist
+                            adjacent.dijkstraPrevious = node
                             priorityQueue.add(Triple(adjacent, totalDist, (totalDist + directDistanceToEnd)))
                             if(adjacent == end)
                             {
-                                return Pair(distances, previousNodes)
+                                return end.dijkstraDistance
                             }
                         }
                     }
@@ -91,7 +108,7 @@ fun dijkstraOnWaysWithLoops(
             }
         }
     }
-    return Pair(distances, previousNodes)
+    return end.dijkstraDistance
 }
 
 fun findShortestDistance(
@@ -102,6 +119,7 @@ fun findShortestDistance(
     debugFeatureCollection: FeatureCollection?,
     maxDistance: Double = Double.MAX_VALUE,
 ) : Double {
+
     // Find the distance to the START intersection of each way
     val startDistance = startWay.distanceToStart(startLocation)
     val endDistance = endWay.distanceToStart(endLocation)
@@ -109,6 +127,8 @@ fun findShortestDistance(
     // Find the shortest path
     val startIntersections = startWay.intersections
     val endIntersections = endWay.intersections
+
+//    Debug.startMethodTracing("Predict2")
 
     // Run through all the combinations of intersections and find the shortest distance. There are
     // a couple of ways that we could do this:
@@ -127,23 +147,22 @@ fun findShortestDistance(
             val startIntersection = startIntersections[startI]
             val endIntersection = endIntersections[endI]
             if((startIntersection != null) && (endIntersection != null)) {
-                val (shortestPathDistance, previousNodes) = dijkstraOnWaysWithLoops(
+                val shortestPathDistance = dijkstraOnWaysWithLoops(
                     startIntersection,
                     endIntersection,
                     maxDistance
                 )
-                val totalDistance =
-                    shortestPathDistance.getValue(endIntersections[endI]!!) + addOnStartDistance + addOnEndDistance
+                val totalDistance = shortestPathDistance + addOnStartDistance + addOnEndDistance
                 if (totalDistance < shortestDistance) {
                     shortestDistance = totalDistance
                     shortestIndex = (startI * 2) + endI
-                    val ways = getPathWays(
-                        endIntersections[endI]!!,
-                        startIntersections[startI]!!,
-                        previousNodes
-                    )
+
                     if (debugFeatureCollection != null) {
                         debugFeatureCollection.features.clear()
+                        val ways = getPathWays(
+                            endIntersections[endI]!!,
+                            startIntersections[startI]!!
+                        )
                         for (way in ways) {
                             debugFeatureCollection.addFeature(way as Feature)
                         }
@@ -162,6 +181,112 @@ fun findShortestDistance(
             }
         }
     }
+//    Debug.stopMethodTracing()
+    return shortestDistance
+}
+
+
+fun dijkstraOnWaysWithLoops2(
+    start: Intersection,
+    end: Intersection,
+    maxDistance: Double = Double.MAX_VALUE
+): Double {
+
+    val cheapRuler = CheapRuler(start.location.latitude, meters)
+
+    dijkstraRunCount++
+
+    // Return distances, previous nodes are in the Intersection internal data
+    // The priority queue is sorted by the closest node to the target, but also contains the current
+    // accumulated distance to that node
+    val priorityQueue = PriorityQueue<Triple<Intersection, Double, Double>>(compareBy { it.third })
+    val visited = mutableSetOf<Pair<Intersection, Double>>()
+    var distanceToEnd = maxDistance
+
+    priorityQueue.add(Triple(start,0.0,0.0))
+    start.dijkstraRunCount = dijkstraRunCount
+    start.dijkstraDistance = 0.0
+    start.dijkstraPrevious = null
+    end.dijkstraRunCount = dijkstraRunCount
+    end.dijkstraDistance = Double.MAX_VALUE
+    end.dijkstraPrevious = null
+
+    while (priorityQueue.isNotEmpty()) {
+        val (node, currentDist) = priorityQueue.poll()!!
+        if (visited.add(node to currentDist)) {
+            node.members.forEach { way ->
+                val weight = way.length
+                val adjacent = if (node == way.intersections[WayEnd.START.id])
+                    way.intersections[WayEnd.END.id]
+                else
+                    way.intersections[WayEnd.START.id]
+
+                if (adjacent != null) {
+                    val totalDist = currentDist + weight
+                    val directDistanceToEnd = cheapRuler.distance(adjacent.location, end.location)
+                    if ((totalDist + directDistanceToEnd) < distanceToEnd) {
+                        if(adjacent.dijkstraRunCount != dijkstraRunCount) {
+                            // Lazy initialization of internal distance
+                            adjacent.dijkstraRunCount = dijkstraRunCount
+                            adjacent.dijkstraDistance = Double.MAX_VALUE
+                            adjacent.dijkstraPrevious = null
+                        }
+                        if (totalDist < adjacent.dijkstraDistance) {
+
+                            adjacent.dijkstraDistance = totalDist
+                            adjacent.dijkstraPrevious = node
+                            priorityQueue.add(Triple(adjacent, totalDist, (totalDist + directDistanceToEnd)))
+                            if(adjacent == end)
+                            {
+                                return end.dijkstraDistance
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return end.dijkstraDistance
+}
+
+/**
+ * findShortestDistance2 inserts the start and end locations as connected nodes in the graph so that
+ * it only needs to call dijkstraOnWaysWithLoops2 a single time.
+ * TODO: Investigate whether we can improve "members" speed as toMutableList seems expensive.
+ */
+fun findShortestDistance2(
+    startLocation: LngLatAlt,
+    endLocation: LngLatAlt,
+    startWay: Way,
+    endWay: Way,
+    debugFeatureCollection: FeatureCollection?,
+    maxDistance: Double = Double.MAX_VALUE,
+) : Double {
+
+    val newStartIntersection = startWay.createTemporaryIntersectionAndWays(startLocation)
+    val newEndIntersection = endWay.createTemporaryIntersectionAndWays(endLocation)
+
+    val shortestDistance = dijkstraOnWaysWithLoops2(
+        newStartIntersection,
+        newEndIntersection,
+        maxDistance
+    )
+
+    if (debugFeatureCollection != null) {
+        debugFeatureCollection.features.clear()
+        val ways = getPathWays(
+            newEndIntersection,
+            newStartIntersection
+        )
+        for (way in ways) {
+            debugFeatureCollection.addFeature(way as Feature)
+        }
+    }
+
+    // TODO: We can't remove these yet as they are in the returned debugFeatureCollection
+    startWay.removeTemporaryIntersection(newStartIntersection)
+    endWay.removeTemporaryIntersection(newEndIntersection)
+
     return shortestDistance
 }
 
@@ -190,13 +315,12 @@ fun getPathCoordinates(
 fun getPathWays(
     endNode: Intersection,
     startNode: Intersection,
-    previousNodes: Map<Intersection, Intersection>
 ): List<Way> {
     val ways = mutableListOf<Way>()
-    var currentNode = endNode
+    var currentNode : Intersection? = endNode
 
-    while (previousNodes.containsKey(currentNode)) {
-        val previousNode = previousNodes.getValue(currentNode)
+    while (currentNode?.dijkstraPrevious != null) {
+        val previousNode = currentNode.dijkstraPrevious
         // Add Way which connects the two nodes
         for(member in currentNode.members){
             if(

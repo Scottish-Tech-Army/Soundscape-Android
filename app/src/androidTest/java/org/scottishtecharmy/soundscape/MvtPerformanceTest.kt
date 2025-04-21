@@ -21,6 +21,7 @@ import kotlin.time.measureTime
 import android.os.Debug
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance2
 
 class MvtPerformanceTest {
 
@@ -125,18 +126,22 @@ class MvtPerformanceTest {
         val startWay = roadTree.getNearestFeature(startLocation) as Way
         val endWay = roadTree.getNearestFeature(endLocation) as Way
 
-        Debug.startMethodTracing("Predict")
+        Debug.startMethodTracing("Test2")
 
-        val shortestPath = findShortestDistance(
-            startLocation,
-            endLocation,
-            startWay,
-            endWay,
-            null,
-            200.0
-        )
-        println("Shortest path: $shortestPath")
+        var shortestPath = 0.0
+        val measureTime = measureTime {
+            shortestPath = findShortestDistance2(
+                startLocation,
+                endLocation,
+                startWay,
+                endWay,
+                null,
+                200.0
+            )
+        }
 
         Debug.stopMethodTracing()
+
+        println("shortestPath2: $shortestPath, $measureTime")
     }
 }

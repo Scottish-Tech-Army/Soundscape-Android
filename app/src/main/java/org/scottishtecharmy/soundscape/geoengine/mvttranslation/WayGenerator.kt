@@ -1,9 +1,11 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.utils.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.meters
 import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -33,6 +35,11 @@ class Intersection : Feature() {
     var location =
         LngLatAlt()                                          // Location of the intersection
     var intersectionType = IntersectionType.REGULAR
+
+    // Dijkstra variables
+    var dijkstraRunCount = 0
+    var dijkstraDistance = Double.MAX_VALUE
+    var dijkstraPrevious : Intersection? = null
 
     // We don't allow comparison of Intersections by data because we can have two TILE_EDGE
     // intersections at exactly the same point which are joined by a JOINER way and we can't have
@@ -216,6 +223,93 @@ class Way : Feature() {
         }
 
         return 0.0
+    }
+
+    /**
+     * @param location is where the distance is calculated from.
+     * @return the distance along the Way from location to the START intersection. It's measured
+     * from the nearest point on the Way.
+     */
+    fun createTemporaryIntersectionAndWays(location: LngLatAlt) : Intersection {
+        val newIntersection = Intersection()
+        newIntersection.location = location
+
+        val cheapRuler = CheapRuler(location.latitude, meters)
+        val point = cheapRuler.pointOnLine(geometry as LineString, location)
+
+        // Create two line strings out of the original line, adding in the location in the middle
+        val line1 = LineString()
+        val line2 = LineString()
+        line2.coordinates.add(location)
+        var length1 = 0.0
+        var length2 = 0.0
+        for(coordinate in (geometry as LineString).coordinates.withIndex()) {
+            if(coordinate.index <= point.second) {
+                if(coordinate.index > 0) {
+                    length1 += cheapRuler.distance(line1.coordinates.last(), coordinate.value)
+                }
+                line1.coordinates.add(coordinate.value)
+            }
+            else {
+                length2 += cheapRuler.distance(line2.coordinates.last(), coordinate.value)
+                line2.coordinates.add(coordinate.value)
+            }
+        }
+        length1 += cheapRuler.distance(line1.coordinates.last(), location)
+        line1.coordinates.add(location)
+
+        val newWay1 = Way()
+        newWay1.intersections[0] = intersections[0]
+        newWay1.intersections[1] = newIntersection
+        newWay1.geometry = line1
+        newWay1.length = length1
+
+        val newWay2 = Way()
+        newWay2.intersections[0] = intersections[1]
+        newWay2.intersections[1] = newIntersection
+        newWay2.geometry = line2
+        newWay2.length = length2
+
+        if(length1 > length2) {
+            newIntersection.members.add(newWay2)
+            newIntersection.members.add(newWay1)        // Sort these based on length
+        } else {
+            newIntersection.members.add(newWay1)
+            newIntersection.members.add(newWay2)        // Sort these based on length
+        }
+
+        if(intersections[WayEnd.START.id] != null) {
+            intersections[WayEnd.START.id]!!.members.add(newWay1)
+            intersections[WayEnd.START.id]!!.members =
+                intersections[WayEnd.START.id]!!.members.sortedBy { way ->
+                    way.length
+                }.toMutableList()
+        }
+
+        if(intersections[WayEnd.END.id] != null) {
+            intersections[WayEnd.END.id]!!.members.add(newWay2)
+            intersections[WayEnd.END.id]!!.members =
+                intersections[WayEnd.END.id]!!.members.sortedBy { way ->
+                    way.length
+                }.toMutableList()
+        }
+
+        return newIntersection
+    }
+
+    fun removeTemporaryIntersection(intersection: Intersection) {
+        // The passed in intersection has two member ways - one in each direction. Remove them from
+        // the intersection at the other end.
+        if(intersections[WayEnd.START.id] != null) {
+            intersections[WayEnd.START.id]!!.members.remove(intersection.members[0])
+            intersections[WayEnd.START.id]!!.members.remove(intersection.members[1])
+        }
+
+        if(intersections[WayEnd.END.id] != null) {
+            intersections[WayEnd.END.id]!!.members.remove(intersection.members[0])
+            intersections[WayEnd.END.id]!!.members.remove(intersection.members[1])
+        }
+        intersection.members.clear()
     }
 }
 
