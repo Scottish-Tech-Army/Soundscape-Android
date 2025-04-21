@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.clone
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance2
 import org.scottishtecharmy.soundscape.geoengine.utils.fromRadians
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
@@ -373,6 +374,8 @@ class MapMatchFilter {
                         // location via the road/path network?
                         val testDistance = (follower.averagePointGap * 3) + 10.0
                         val timeDijkstra = measureTime {
+                            // TODO: Switch to faster findShortestDistance2 once it cleans up after
+                            //  itself.
                             val shortestDistance = findShortestDistance(
                                 matchedLocation!!.point,
                                 follower.chosen(collection)!!.point,
@@ -384,7 +387,7 @@ class MapMatchFilter {
                             if (shortestDistance >= testDistance)
                                 skip = true
                         }
-                        //println("Time Dijkstra: $timeDijkstra")
+                        println("Time Dijkstra: $timeDijkstra")
                     }
                 }
                 if(!skip) {
