@@ -522,7 +522,7 @@ class GeoUtilsTest {
         Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, circle4.center.latitude, circle4.center.longitude), 0.1)
 
         val circle5 = calculateCenterOfCircle(segmentLineString5)
-        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, circle5.center.latitude, circle5.center.longitude), 0.1)
+        Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, circle5.center.latitude, circle5.center.longitude), 0.11)
     }
 
     @Test

@@ -298,7 +298,7 @@ fun vectorTileToGeoJson(tileX: Int,
         if(!layerIds.contains(layer.name)) {
             continue
         }
-        println("Process layer: " + layer.name)
+        //println("Process layer: " + layer.name)
 
         val mapInterpolatedNodes : HashMap<Double, Feature> = hashMapOf()
         for (feature in layer.featuresList) {

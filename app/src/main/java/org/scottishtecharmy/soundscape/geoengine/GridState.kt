@@ -17,7 +17,6 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
-import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
@@ -59,7 +58,7 @@ open class GridState {
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
     internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-    internal var gridIntersections: HashMap<LngLatAlt, Intersection> =HashMap<LngLatAlt, Intersection>()
+    internal var gridIntersections: HashMap<LngLatAlt, Intersection> = HashMap<LngLatAlt, Intersection>()
 
     @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
     val treeContext = newSingleThreadContext("TreeContext")
@@ -70,13 +69,44 @@ open class GridState {
     internal var markerTree : FeatureTree? = null
 
     open fun start(applicationContext: Context) {}
-    fun stop() {}
+    fun stop() {
+        // Clean up tile cache and feature trees
+        clearTileCache()
+        for(tree in featureTrees) {
+            tree.tree = null
+        }
+    }
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
 
     fun isLocationWithinGrid(location: LngLatAlt): Boolean {
         return pointIsWithinBoundingBox(location, totalBoundingBox)
     }
 
+    /** clearTileConnectionsFromGrid removes all joining ways from the grid.
+     *
+     */
+    fun clearTileConnectionsFromGrid() {
+        // Find all ways with type WayType.JOINER, remove them from their intersections at either
+        // end and remove their intersection references. The result should be that they have no
+        // remaining references and can be garbage collected.
+        for(intersection in gridIntersections.values) {
+            val iterator = intersection.members.listIterator()
+            while(iterator.hasNext()) {
+                val way = iterator.next()
+                if(way.wayType == WayType.JOINER) {
+                    way.intersections[WayEnd.START.id] = null
+                    way.intersections[WayEnd.END.id] = null
+                    iterator.remove()
+                }
+            }
+        }
+    }
+
+    /**
+     * processGridState is now called from within the single thread that can access the tile grid.
+     * This makes it somewhat performance critical. However, by doing this it allows us to
+     * disconnect and reconnect the tile grid
+     */
     fun processGridState(
         featureCollections: Array<FeatureCollection>,
         enabledCategories: Set<String>,
@@ -168,9 +198,9 @@ open class GridState {
 
         // And then fill in any remaining names using rtree searches - this is slower and
         // adds POIs and co-linear names
-        for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
-            confectNamesForRoad(road, featureTrees)
-        }
+//        for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
+//            confectNamesForRoad(road, featureTrees)
+//        }
     }
 
     /**
@@ -179,12 +209,9 @@ open class GridState {
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>) : Boolean {
-        val timeSource = TimeSource.Monotonic
-        val gridStartTime = timeSource.markNow()
-
         // Check if we're still within the central area of our grid
         if (!pointIsWithinBoundingBox(location, centralBoundingBox)) {
-            println("Update central grid area")
+            //println("Update central grid area")
             // The current location has moved from within the central area, so get the
             // new grid and the new central area.
             val tileGrid = getTileGrid(location)
@@ -198,31 +225,28 @@ open class GridState {
                 centralBoundingBox = tileGrid.centralBoundingBox
                 totalBoundingBox = tileGrid.totalBoundingBox
 
-                val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-                val intersectionAccumulator = HashMap<LngLatAlt, Intersection>()
-                processGridState(
-                    featureCollections,
-                    enabledCategories,
-                    newGridIntersections,
-                    localTrees,
-                    intersectionAccumulator,
-                    tileGrid
-                )
-
                 // Assign rtrees to our shared trees from within the treeContext. All
                 // other accesses of featureTrees needs to be from within the same
                 // context.
                 runBlocking {
                     withContext(treeContext) {
-                        for (fc in featureCollections.withIndex()) {
-                            featureTrees[fc.index] = localTrees[fc.index]
-                        }
-                        gridIntersections = intersectionAccumulator
+                        val timeSource = TimeSource.Monotonic
+                        val gridStartTime = timeSource.markNow()
+
+                        clearTileConnectionsFromGrid()
+
+                        processGridState(
+                            featureCollections,
+                            enabledCategories,
+                            newGridIntersections,
+                            featureTrees,
+                            gridIntersections,
+                            tileGrid
+                        )
+
+                        println("Time to process grid: ${timeSource.markNow() - gridStartTime}")
                     }
                 }
-
-                println("Time to populate grid: ${timeSource.markNow() - gridStartTime}")
-
                 return true
             } else {
                 // Updating the tile grid failed, due to a lack of cached tile and then
@@ -234,22 +258,103 @@ open class GridState {
         return true
     }
 
+    // We keep a small cache of the FeatureCollections for the most recently used tiles. The main
+    // aim of this is to re-use tiles which are shared between the old and new 2x2 grid. There is
+    // almost always at least 1 tile shared, and often 2.
+    val maxCachedTiles = 10
+    data class CachedTile(
+        var tileCollections: Array<FeatureCollection>,
+        var intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf(),
+        var lastUsed: Long)
+    val cachedTiles: HashMap<Pair<Int,Int>, CachedTile> = HashMap()
+
+    fun clearTileCache() {
+        for(tile in cachedTiles) {
+            clearTile(tile.value)
+        }
+        cachedTiles.clear()
+    }
+    fun clearCachedTile(key: Pair<Int, Int>) {
+        val data = cachedTiles.remove(key)!!
+        clearTile(data)
+    }
+
+    fun clearTile(tile: CachedTile) {
+        for(fc in tile.tileCollections) {
+            fc.features.clear()
+        }
+        tile.tileCollections = emptyArray()
+
+        // Remove intersection refs in every Way that makes up the
+        // intersection (up to two)
+        for(intersection in tile.intersectionMap.values) {
+            // Remove all Way end references
+            for(member in intersection.members) {
+                member.intersections[WayEnd.START.id] = null
+                member.intersections[WayEnd.END.id] = null
+            }
+            // Remove all Ways from this intersection
+            intersection.members.clear()
+        }
+        tile.intersectionMap.clear()
+    }
+
     private suspend fun updateTileGrid(
         tileGrid: TileGrid,
         featureCollections: Array<FeatureCollection>,
         gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>
     ): Boolean {
         for (tile in tileGrid.tiles) {
-            var ret = false
-            val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-            for (retry in 1..5) {
-                ret = updateTile(tile.tileX, tile.tileY, featureCollections, intersectionMap)
-                if (ret) {
-                    break
+
+            var tileCollections: Array<FeatureCollection>? = null
+            var intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+            val key = Pair(tile.tileX, tile.tileY)
+            if(cachedTiles.contains(key)) {
+                val cachedTile = cachedTiles[key]!!
+                tileCollections = cachedTile.tileCollections
+                intersectionMap = cachedTile.intersectionMap
+                cachedTile.lastUsed = System.currentTimeMillis()
+                //println("Using cached value for ${tile.tileX},${tile.tileY}")
+            } else {
+                var ret = false
+                tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                for (retry in 1..5) {
+                    ret = updateTile(tile.tileX, tile.tileY, tileCollections, intersectionMap)
+                    if (ret) {
+                        // Add new tile to the cache
+                        cachedTiles[key] = CachedTile(
+                            tileCollections,
+                            intersectionMap,
+                            System.currentTimeMillis()
+                        )
+                        //println("Adding ${tile.tileX},${tile.tileY} to cache")
+
+                        if(cachedTiles.size > maxCachedTiles) {
+                            // Remove the least recently used tile
+                            var leastRecentlyUsed = Long.MAX_VALUE
+                            var leastRecentlyUsedKey = Pair(0, 0)
+                            for (tile in cachedTiles) {
+                                if (tile.value.lastUsed < leastRecentlyUsed) {
+                                    leastRecentlyUsed = tile.value.lastUsed
+                                    leastRecentlyUsedKey = tile.key
+                                }
+                            }
+                            if (leastRecentlyUsedKey != Pair(0, 0)) {
+                                //println("Removing ${leastRecentlyUsedKey.first},${leastRecentlyUsedKey.second} from cache")
+                                clearCachedTile(leastRecentlyUsedKey)
+                            }
+                            assert(cachedTiles.size <= maxCachedTiles)
+                        }
+                        break
+                    }
+                }
+                if (!ret) {
+                    return false
                 }
             }
-            if (!ret) {
-                return false
+            // Add the tile FeatureCollections into the grid
+            for ((index, collection) in tileCollections.withIndex()) {
+                featureCollections[index].plusAssign(collection)
             }
             gridIntersections.add(intersectionMap)
         }
@@ -269,9 +374,6 @@ open class GridState {
         // The FeatureCollection for POIS has been created, but we need to create sub-collections
         // for each of the super-categories along with one for the currently selected super-
         // categories.
-        val timeSource = TimeSource.Monotonic
-        val gridStartTime = timeSource.markNow()
-
         val superCategories = listOf("information", "object", "place", "landmark", "mobility", "safety")
         val superCategoryCollections = superCategories.associateWith { superCategory ->
             getPoiFeatureCollectionBySuperCategory(superCategory, featureCollections[TreeId.POIS.id])
@@ -309,8 +411,6 @@ open class GridState {
                 featureCollections[TreeId.MOBILITY_POIS.id]
             )
         }
-        val gridFinishTime = timeSource.markNow()
-        println("Time to classify grid: ${gridFinishTime - gridStartTime}")
     }
 
     // All functions which access the featureTrees need to be running within the treeContext,

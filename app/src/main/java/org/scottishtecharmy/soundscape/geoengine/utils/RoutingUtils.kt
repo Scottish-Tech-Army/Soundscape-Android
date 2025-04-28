@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
-import android.os.Debug
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -284,8 +283,8 @@ fun findShortestDistance2(
     }
 
     // TODO: We can't remove these yet as they are in the returned debugFeatureCollection
-    startWay.removeTemporaryIntersection(newStartIntersection)
-    endWay.removeTemporaryIntersection(newEndIntersection)
+    startWay.removeIntersection(newStartIntersection)
+    endWay.removeIntersection(newEndIntersection)
 
     return shortestDistance
 }
