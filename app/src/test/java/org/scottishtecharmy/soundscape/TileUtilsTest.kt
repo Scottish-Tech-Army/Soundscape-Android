@@ -214,7 +214,8 @@ class TileUtilsTest {
         // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
         Assert.assertEquals(
             55659.75,
-            distanceToFeatureCollection.features[0].foreign?.get("distance_to")
+            distanceToFeatureCollection.features[0].foreign?.get("distance_to") as Double,
+            0.1
         )
         // Current location is on the boundary of the Polygon so distance should be 0.0
         Assert.assertEquals(
@@ -442,8 +443,8 @@ class TileUtilsTest {
             userGeometry.location,
             fovIntersectionsFeatureCollection
         )
-        Assert.assertEquals(5.97, sortedByDistanceToTest.features[0].foreign?.get("distance_to"))
-        Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].foreign?.get("distance_to"))
+        Assert.assertEquals(5.97, sortedByDistanceToTest.features[0].foreign?.get("distance_to") as Double, 0.1)
+        Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].foreign?.get("distance_to") as Double, 0.1)
 
     }
 

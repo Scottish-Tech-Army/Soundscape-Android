@@ -10,18 +10,15 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraOnWaysWithLoops
-import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
-import org.scottishtecharmy.soundscape.geoengine.utils.getShortestRoute
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
+import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
-import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance2
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 
 class MvtPerformanceTest {
 
@@ -143,5 +140,82 @@ class MvtPerformanceTest {
         Debug.stopMethodTracing()
 
         println("shortestPath2: $shortestPath, $measureTime")
+    }
+
+
+    @Test
+    fun testGridCache() {
+
+        // This test 'moves' from the center of one tile to the center of the next to see how tile
+        // caching behaves. We're using Edinburgh which we already have tile from 16092-16096 and
+        // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
+
+        println("Start test")
+        Thread.sleep(10000)
+
+        val gridState = ProtomapsGridState()
+        val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
+        println(directory)
+        gridState.validateContext = false
+        gridState.start(ApplicationProvider.getApplicationContext())
+
+//        Debug.startMethodTracing("Memory")
+
+        // The center of each grid
+        for(loop in 1 until 10) {
+            println(">>>>>>>>> LOOP $loop")
+            for (x in 16093 until 16096) {
+                for (y in 10210 until 10214) {
+
+                    // Get top left of tile
+                    val location = getLatLonTileWithOffset(x, y, ZOOM_LEVEL, 0.0, 0.0)
+
+                    println("Moving grid to $location")
+
+                    runBlocking {
+                        // Update the grid state
+                        gridState.locationUpdate(
+                            LngLatAlt(location.longitude, location.latitude),
+                            emptySet()
+                        )
+                    }
+                }
+            }
+        }
+        gridState.stop()
+//        Debug.stopMethodTracing()
+        Thread.sleep(10000)
+    }
+    @Test
+    fun testSingleGridCache() {
+
+        println("Start test")
+
+        Thread.sleep(10000)
+
+        val gridState = ProtomapsGridState()
+        gridState.validateContext = false
+        gridState.start(ApplicationProvider.getApplicationContext())
+
+//        Debug.startMethodTracing("Memory")
+
+        // The center of each grid
+        // Get top left of tile
+        val location = getLatLonTileWithOffset(16093, 10210, ZOOM_LEVEL, 0.0, 0.0)
+
+        println("Moving grid to $location")
+
+        runBlocking {
+            // Update the grid state
+            gridState.locationUpdate(
+                LngLatAlt(location.longitude, location.latitude),
+                emptySet()
+            )
+        }
+
+//        Debug.stopMethodTracing()
+        gridState.stop()
+
+        Thread.sleep(10000)
     }
 }

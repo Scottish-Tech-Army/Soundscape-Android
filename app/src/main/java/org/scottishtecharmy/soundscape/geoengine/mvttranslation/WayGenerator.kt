@@ -297,7 +297,7 @@ class Way : Feature() {
         return newIntersection
     }
 
-    fun removeTemporaryIntersection(intersection: Intersection) {
+    fun removeIntersection(intersection: Intersection) {
         // The passed in intersection has two member ways - one in each direction. Remove them from
         // the intersection at the other end.
         if(intersections[WayEnd.START.id] != null) {

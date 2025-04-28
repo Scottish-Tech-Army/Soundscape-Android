@@ -15,7 +15,6 @@ import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
 import retrofit2.awaitResponse
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
-import kotlin.time.TimeSource
 
 open class ProtomapsGridState : GridState() {
 
@@ -81,14 +80,8 @@ open class ProtomapsGridState : GridState() {
     }
 
     override fun fixupCollections(featureCollections: Array<FeatureCollection>) {
-        val timeSource = TimeSource.Monotonic
-        val mergeStartTime = timeSource.markNow()
-
         // Merge any overlapping Polygons that are on the tile boundaries
         val mergedPoi = mergeAllPolygonsInFeatureCollection(featureCollections[TreeId.POIS.id])
         featureCollections[TreeId.POIS.id] = mergedPoi
-
-        val mergeFinishTime = timeSource.markNow()
-        println("Time taken to merge polygons: ${mergeFinishTime - mergeStartTime}")
     }
 }

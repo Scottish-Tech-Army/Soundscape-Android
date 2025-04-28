@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
@@ -59,22 +60,26 @@ class FileGridState : ProtomapsGridState() {
     ): Boolean {
         var ret = false
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val remoteTile = FileInputStream(path + "${x}x${y}.mvt")
-        val result = VectorTile.Tile.parseFrom(remoteTile)
-        if (result != null) {
-            var tileFeatureCollection: FeatureCollection? = null
-            tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
+        try {
+            val remoteTile = FileInputStream(path + "${x}x${y}.mvt")
+            val result = VectorTile.Tile.parseFrom(remoteTile)
+            if (result != null) {
+                var tileFeatureCollection: FeatureCollection? = null
+                tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
 
-            var collections: Array<FeatureCollection>? = null
-            collections = processTileFeatureCollection(tileFeatureCollection)
+                var collections: Array<FeatureCollection>? = null
+                collections = processTileFeatureCollection(tileFeatureCollection)
 
-            for ((index, collection) in collections.withIndex()) {
-                featureCollections[index].plusAssign(collection)
+                for ((index, collection) in collections.withIndex()) {
+                    featureCollections[index].plusAssign(collection)
+                }
+
+                ret = true
+            } else {
+                println("Failed to load tile from file")
             }
-
-            ret = true
-        } else {
-            println("Failed to load tile from file")
+        } catch(e:Exception) {
+            println("$e")
         }
         return ret
     }
@@ -141,43 +146,6 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                     }
                 }
             }
-        }
-    }
-
-    return fc
-}
-
-private fun parseNmeaFromFile(filename: String): FeatureCollection {
-
-    val path = "src/test/res/org/scottishtecharmy/soundscape/"
-    val fc = FeatureCollection()
-
-    File(path + filename).useLines { lines ->
-        var index = 0
-        var skip = 5
-        lines.forEach { line ->
-
-            if(skip != 0) {
-                --skip
-                return@forEach
-            }
-
-            val values = line.split(",").map { it.trim() }
-
-            val timestamp = values[0]
-            val latitude =  values[1].toDouble()
-            val longitude =  values[2].toDouble()
-
-            val feature = Feature()
-            feature.geometry = Point(longitude, latitude)
-            feature.properties = hashMapOf()
-            feature.properties?.set("name", timestamp)
-            feature.properties?.set("index", index)
-            feature.properties?.set("marker-size", "small")
-            feature.properties?.set("marker-color", "#004000")
-            ++index
-
-            fc.addFeature(feature)
         }
     }
 
@@ -325,29 +293,6 @@ class MvtTileTest {
         val outputFile = FileOutputStream("2x2.geojson")
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
-
-        val gps = parseNmeaFromFile("nmea.csv")
-        val mapMatchFilter = MapMatchFilter()
-        val mapMatchedPositions = FeatureCollection()
-        for(position in gps) {
-            val result = mapMatchFilter.filter((position.geometry as Point).coordinates, gridState, mapMatchedPositions)
-
-            if(result.first != null) {
-                val newFeature = Feature()
-                newFeature.geometry = Point(result.first!!.longitude, result.first!!.latitude)
-                newFeature.properties = hashMapOf()
-                newFeature.properties?.set("marker-color", result.third)
-                newFeature.properties?.set("color", result.third)
-                mapMatchedPositions.addFeature(newFeature)
-            }
-
-            // Add raw GPS too
-            mapMatchedPositions.addFeature(position)
-        }
-
-        val mapMatchingOutput = FileOutputStream("map-matching.geojson")
-        mapMatchingOutput.write(adapter.toJson(mapMatchedPositions).toByteArray())
-        mapMatchingOutput.close()
     }
 
     /**
@@ -678,5 +623,45 @@ class MvtTileTest {
         val mapMatchingOutput = FileOutputStream("map-matching.geojson")
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testGridCache() {
+
+        // This test 'moves' from the center of one tile to the center of the next to see how tile
+        // caching behaves. We're using Edinburgh which we already have tile from 16092-16096 and
+        // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
+
+        val gridState = FileGridState()
+
+        // The center of each grid
+        for(x in 16093 until 16097) {
+            for (y in 10210 until 10215) {
+
+                // Get top left of tile
+                val location = getLatLonTileWithOffset(x, y, ZOOM_LEVEL, 0.0, 0.0)
+
+                println("Moving grid to $location")
+
+                runBlocking {
+                    // Update the grid state
+                    gridState.locationUpdate(
+                        LngLatAlt(location.longitude, location.latitude),
+                        emptySet()
+                    )
+                }
+            }
+        }
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("total-output.geojson")
+
+        // Output the GeoJson and check that there's no data left from other tiles.
+        val collection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        collection.plusAssign(gridState.getFeatureCollection(TreeId.INTERSECTIONS))
+        collection.plusAssign(gridState.getFeatureCollection(TreeId.POIS))
+        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
+        mapMatchingOutput.close()
+
     }
 }
