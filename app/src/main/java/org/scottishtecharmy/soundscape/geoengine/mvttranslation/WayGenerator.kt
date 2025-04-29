@@ -82,7 +82,9 @@ class Way : Feature() {
                 featureTrees: Array<FeatureTree>? = null) : String {
 
         var destinationModifier: Any? = null
+        var passesModifier: Any? = null
         var name = properties?.get("name")
+        var passesString = ""
 
         if(name == null) {
             // Un-named way, so use "class" property
@@ -99,6 +101,12 @@ class Way : Feature() {
                 else
                     properties?.get("destination:backward")
 
+                passesModifier = if(direction)
+                    properties?.get("passes:forward")
+                else
+                    properties?.get("passes:backward")
+                passesString = passesModifier?.toString() ?: ""
+
                 if (destinationModifier == null) {
                     destinationModifier = if (direction)
                         properties?.get("dead-end:forward")
@@ -107,7 +115,11 @@ class Way : Feature() {
                 }
 
                 if (destinationModifier != null) {
-                    return "$name to $destinationModifier"
+                    return if(passesString.isNotEmpty()) {
+                        "$name to $destinationModifier via $passesString"
+                    } else {
+                        "$name to $destinationModifier"
+                    }
                 }
             } else {
                 val start = properties?.get("destination:backward")
@@ -125,9 +137,19 @@ class Way : Feature() {
                 properties?.get("dead-end:backward")
         }
         if (destinationModifier != null) {
-            return "$name to $destinationModifier"
+            return if(passesString.isNotEmpty()) {
+                "$name to $destinationModifier via $passesString"
+            } else {
+                "$name to $destinationModifier"
+            }
         }
-            return name.toString()
+        else {
+            return if (passesString.isNotEmpty()) {
+                "$name via $passesString"
+            } else {
+                return name.toString()
+            }
+        }
     }
 
     fun doesIntersect(other: Way) : Intersection? {
@@ -146,8 +168,10 @@ class Way : Feature() {
                    optionalEarlyPredicate: ((Way, Way?) -> Boolean)? = null) {
 
         if(optionalEarlyPredicate != null) {
-            if(optionalEarlyPredicate(this, ways.lastOrNull()?.second))
-                return
+            if(wayType != WayType.JOINER) {
+                if (optionalEarlyPredicate(this, ways.lastOrNull()?.second))
+                    return
+            }
         }
         // Add this way
         val forwards = (fromIntersection == intersections[WayEnd.START.id])

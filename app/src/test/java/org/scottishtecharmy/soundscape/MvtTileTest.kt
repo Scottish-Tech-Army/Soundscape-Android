@@ -551,7 +551,7 @@ class MvtTileTest {
 
         val gridState = FileGridState()
         val mapMatchFilter = MapMatchFilter()
-        val gps = parseGpxFromFile("travel.gpx")
+        val gps = parseGpxFromFile("travel-2.gpx")
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size

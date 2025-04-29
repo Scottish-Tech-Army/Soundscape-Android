@@ -1941,6 +1941,9 @@ fun addSidewalk(currentRoad: Feature,
                 roadTree: FeatureTree) : Boolean {
 
     if(currentRoad.properties?.get("footway") == "sidewalk") {
+        if(currentRoad.properties?.containsKey("pavement") == true)
+            return true
+
         val startRoads = roadTree.getNearestCollection(
             location = start,
             distance = 15.0,
@@ -1970,9 +1973,11 @@ fun addSidewalk(currentRoad: Feature,
 
         if (found and (name != null)) {
             currentRoad.properties?.set("name", "Pavement next to $name")
+            currentRoad.properties?.set("pavement", true)
             return true
         } else {
             currentRoad.properties?.set("name", "Pavement")
+            currentRoad.properties?.set("pavement", true)
             return true
         }
     }
@@ -1980,28 +1985,43 @@ fun addSidewalk(currentRoad: Feature,
 }
 
 fun addPoiDestination(currentRoad: Feature,
-                      location: LngLatAlt,
-                      start: Boolean,
+                      startLocation: LngLatAlt,
+                      endLocation: LngLatAlt,
                       poiTree: FeatureTree,
                       safetyTree: FeatureTree) : Boolean {
-    var poi = poiTree.getNearestFeature(
-        location = location,
+    var startPoi = poiTree.getNearestFeature(
+        location = startLocation,
         distance = 20.0
     )
-    if(poi == null) {
-        // See if it ends at a car park
-        poi = safetyTree.getContainingPolygons(location).features.firstOrNull()
-    }
-    val name = poi?.properties?.get("name")
-    if (name != null) {
-        if(start)
-            currentRoad.properties?.set("destination:backward", name)
-        else
-            currentRoad.properties?.set("destination:forward", name)
+    var endPoi = poiTree.getNearestFeature(
+        location = endLocation,
+        distance = 20.0
+    )
 
-        return true
+    if(startPoi == null) {
+        // See if it ends at a car park
+        startPoi = safetyTree.getContainingPolygons(startLocation).features.firstOrNull()
     }
-    return false
+    if(endPoi == null) {
+        // See if it ends at a car park
+        endPoi = safetyTree.getContainingPolygons(endLocation).features.firstOrNull()
+    }
+
+    var addedDestinations = false
+    if(startPoi != endPoi) {
+        // There's no point in describing a path that starts and ends at the same place
+        val startName = startPoi?.properties?.get("name")
+        if (startName != null) {
+            currentRoad.properties?.set("destination:backward", startName)
+            addedDestinations = true
+        }
+        val endName = endPoi?.properties?.get("name")
+        if (endName != null) {
+            currentRoad.properties?.set("destination:forward", endName)
+            addedDestinations = true
+        }
+    }
+    return addedDestinations
 }
 
 fun confectNamesForRoad(road: Feature,
@@ -2030,10 +2050,8 @@ fun confectNamesForRoad(road: Feature,
         val endDestinationAdded = road.properties?.get("destination:forward") != null
 
         // Does the unnamed way start or end near a POI?
-        if (!startDestinationAdded)
-            addPoiDestination(road, start, true, poiTree, safetyTree)
-        if (!endDestinationAdded)
-            addPoiDestination(road, end, false, poiTree, safetyTree)
+        if (!startDestinationAdded || !endDestinationAdded)
+            addPoiDestination(road, start, end, poiTree, safetyTree)
     }
 }
 
@@ -2041,9 +2059,13 @@ fun setDestinationTag(
     properties: HashMap<String, Any?>?,
     forwards: Boolean,
     tagValue: String,
-    deadEnd: Boolean = false) {
+    deadEnd: Boolean = false,
+    brunnelOrStepsValue: String) {
 
-    properties?.set("${if (deadEnd) "dead-end" else "destination"}:${if (forwards) "backward" else "forward"}", tagValue)
+    if(tagValue.isNotEmpty())
+        properties?.set("${if (deadEnd) "dead-end" else "destination"}:${if (forwards) "backward" else "forward"}", tagValue)
+    if(brunnelOrStepsValue.isNotEmpty())
+        properties?.set("passes:${if (forwards) "backward" else "forward"}", brunnelOrStepsValue)
 }
 
 fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, Intersection>,
@@ -2067,24 +2089,32 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
             }
         }
         // We've got a named road at this junction, so use if for any un-named roads
-        if (namedRoadToUse != null) {
-            for (road in intersection.value.members) {
-                // Skip if the road is named
-                if (road.properties?.get("name") == null) {
+        for (road in intersection.value.members) {
+            // Skip if the road is named
+            if (road.properties?.get("name") == null) {
 
-                    val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
-                    road.followWays(intersection.value, ways) { way, _ ->
-                        // Break out when the next way has a name
-                        (way.properties?.get("name") != null)
+                val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+                var brunnelOrStepsValue = ""
+                road.followWays(intersection.value, ways) { way, _ ->
+                    // Break out when the next way has a name and note if it passes a bridge,
+                    // steps or a tunnel
+                    if(way.properties?.get("subclass") == "steps") {
+                        brunnelOrStepsValue = "steps"
+                    } else if(way.properties?.get("brunnel") != null) {
+                        brunnelOrStepsValue = way.properties?.get("brunnel").toString()
                     }
 
-                    for(way in ways) {
-                        setDestinationTag(
-                            way.second.properties,
-                            way.first,
-                            namedRoadToUse.toString()
-                        )
-                    }
+                    (way.properties?.get("name") != null)
+                }
+
+                for(way in ways) {
+                    setDestinationTag(
+                        way.second.properties,
+                        way.first,
+                        namedRoadToUse?.toString() ?: "",
+                        false,
+                        brunnelOrStepsValue
+                    )
                 }
             }
         }
@@ -2101,7 +2131,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
             ) {
                 for (eachWay in ways) {
                     // We currently label all roads, even named ones, with Dead End
-                    setDestinationTag(eachWay.second.properties, !eachWay.first, "Dead End", true)
+                    setDestinationTag(eachWay.second.properties, !eachWay.first, "Dead End", true, "")
                 }
             }
         }
