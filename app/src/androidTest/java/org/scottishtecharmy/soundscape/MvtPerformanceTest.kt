@@ -15,9 +15,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
+import hilt_aggregated_deps._org_scottishtecharmy_soundscape_OnboardingActivity_GeneratedInjector
 import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
-import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance2
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 
 class MvtPerformanceTest {
@@ -127,7 +128,7 @@ class MvtPerformanceTest {
 
         var shortestPath = 0.0
         val measureTime = measureTime {
-            shortestPath = findShortestDistance2(
+            val result = findShortestDistance(
                 startLocation,
                 endLocation,
                 startWay,
@@ -135,6 +136,7 @@ class MvtPerformanceTest {
                 null,
                 200.0
             )
+            shortestPath = result.distance
         }
 
         Debug.stopMethodTracing()
