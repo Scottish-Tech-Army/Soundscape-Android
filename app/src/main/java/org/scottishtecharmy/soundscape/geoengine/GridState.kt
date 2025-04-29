@@ -196,8 +196,9 @@ open class GridState {
             traverseIntersectionsConfectingNames(hashmap, intersectionAccumulator)
         }
 
-        // And then fill in any remaining names using rtree searches - this is slower and
-        // adds POIs and co-linear names
+// The other confection is done lazily as it's relatively time consuming to do the whole tile at once
+//        //And then fill in any remaining names using rtree searches - this is slower and
+//        // adds POIs and co-linear names
 //        for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
 //            confectNamesForRoad(road, featureTrees)
 //        }

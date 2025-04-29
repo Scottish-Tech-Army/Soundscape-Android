@@ -2,7 +2,9 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.utils.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.meters
@@ -76,7 +78,8 @@ class Way : Feature() {
 
     var wayType = WayType.REGULAR
 
-    fun getName(direction: Boolean? = null) : String {
+    fun getName(direction: Boolean? = null,
+                featureTrees: Array<FeatureTree>? = null) : String {
 
         var destinationModifier: Any? = null
         var name = properties?.get("name")
@@ -84,6 +87,10 @@ class Way : Feature() {
         if(name == null) {
             // Un-named way, so use "class" property
             name = properties?.get("class").toString()
+
+            if(featureTrees != null) {
+                confectNamesForRoad(this, featureTrees)
+            }
 
             if (direction != null) {
                 // Describe as 'towards'

@@ -14,9 +14,12 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
+import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
+import org.scottishtecharmy.soundscape.geoengine.utils.getPathWays
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -70,6 +73,53 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         val intersectionLocation = (intersection.geometry as Point).coordinates
         val graphIntersection = gridState.gridIntersections[intersectionLocation]
         if(graphIntersection != null) {
+            if(userGeometry.mapMatchedLocation != null) {
+                // If our current matched way ends at this intersection, then we don't need to use
+                // more elaborate (Dijkstra) pathfinding to check the connection.
+                if(!userGeometry.mapMatchedWay!!.intersections.contains(graphIntersection)) {
+
+                    // Check if we can get to the intersection from our current location within a
+                    // short distance. If we can, check that we don't go through any other valid
+                    // intersections first.
+                    val shortestDistanceResults = findShortestDistance(
+                        userGeometry.mapMatchedLocation.point,
+                        intersectionLocation,
+                        userGeometry.mapMatchedWay,
+                        (intersection as Intersection).members.first(),
+                        null,
+                        50.0
+                    )
+                    if (shortestDistanceResults.distance < 50.0) {
+                        var skip = false
+                        val ways = getPathWays(graphIntersection)
+                        var nextIntersection = graphIntersection
+                        for(way in ways) {
+                            nextIntersection = if(nextIntersection == way.intersections[WayEnd.START.id]) {
+                                way.intersections[WayEnd.END.id]
+                            } else {
+                                way.intersections[WayEnd.START.id]
+                            }
+                            nextIntersection?.let { intersection ->
+                                if(intersection.members.size > 2) {
+                                    skip = true
+                                    return@let
+                                }
+                            }
+                            if(skip)
+                                break
+                        }
+                        if(skip) {
+                            // Skip this intersection, as it's not the nearest one of interest
+                            shortestDistanceResults.tidy()
+                            continue
+                        }
+                    } else {
+                        shortestDistanceResults.tidy()
+                        continue
+                    }
+                }
+            }
+
             // We aim to skip 'simple' intersections e.g. ones where the only roads involved have
             // the same name.
             val priority = checkWhetherIntersectionIsOfInterest(graphIntersection, nearestRoad)
@@ -119,46 +169,66 @@ fun addIntersectionCalloutFromDescription(
     description: IntersectionDescription,
     localizedContext: Context?,
     results: MutableList<PositionedString>,
-    calloutHistory: CalloutHistory? = null
+    calloutHistory: CalloutHistory? = null,
+    featureTrees: Array<FeatureTree>
 ) {
 
     // Report nearby road
-    description.nearestRoad?.let { nearestRoad ->
+    if(description.intersection == null) {
+        description.nearestRoad?.let { nearestRoad ->
 
-        // Figure out which direction we're travelling along the way
-        var direction : Boolean? = null
-        if(description.userGeometry.mapMatchedLocation != null) {
-            direction = when (description.userGeometry.snappedHeading()) {
-                description.userGeometry.mapMatchedLocation.heading ->
-                    true
-                (description.userGeometry.mapMatchedLocation.heading + 180.0) % 360.0 ->
-                    false
-                else ->
-                    null
+            // Figure out which direction we're travelling along the way
+            var direction: Boolean? = null
+            if (description.userGeometry.mapMatchedLocation != null) {
+                direction = when (description.userGeometry.snappedHeading()) {
+                    description.userGeometry.mapMatchedLocation.heading ->
+                        true
+
+                    (description.userGeometry.mapMatchedLocation.heading + 180.0) % 360.0 ->
+                        false
+
+                    else ->
+                        // If the direction of travel is more 'across' than 'along' then skip the
+                        // description this time. Once the direction is better aligned we can call it
+                        // out. This avoids calling out roads that the user is crossing over as
+                        // 'ahead'.
+                        null
+                }
+            }
+            if (direction != null) {
+                val calloutText = if (localizedContext == null)
+                    "Ahead ${(nearestRoad).getName(direction, featureTrees)}"
+                else
+                    "${localizedContext.getString(R.string.directions_direction_ahead)} ${
+                        (nearestRoad).getName(
+                            direction,
+                            featureTrees
+                        )
+                    }}"
+
+                var skip = false
+                calloutHistory?.checkAndAdd(
+                    TrackedCallout(
+                        calloutText,
+                        LngLatAlt(),
+                        isPoint = false,
+                        isGeneric = false
+                    )
+                )?.let { newCallout ->
+                    if (!newCallout) skip = true
+                }
+                if (!skip) {
+                    results.add(
+                        PositionedString(
+                            text = calloutText,
+                            type = AudioType.STANDARD
+                        )
+                    )
+                }
             }
         }
-        val calloutText = if(localizedContext == null)
-            "Ahead ${(nearestRoad).getName(direction)}"
-        else
-            "${localizedContext.getString(R.string.directions_direction_ahead)} ${(nearestRoad).getName(direction)}}"
-
-        var skip = false
-        calloutHistory?.checkAndAdd(TrackedCallout(calloutText,
-                LngLatAlt(),
-                isPoint = false,
-                isGeneric = false
-            ))?.let { newCallout ->
-                if(!newCallout) skip = true
-        }
-        if(skip) {
-        } else {
-            results.add(PositionedString(
-                text = calloutText,
-                type = AudioType.STANDARD))
-        }
+        return
     }
-
-    if(description.intersection == null) return
 
     val intersectionName = description.intersection.name
 
@@ -214,7 +284,7 @@ fun addIntersectionCalloutFromDescription(
                 else -> 0.0
             }
 
-            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection)
+            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, featureTrees)
             val intersectionCallout =
                 localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText direction $direction"
             results.add(

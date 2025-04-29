@@ -163,7 +163,10 @@ class StreetPreview {
                 choices.add(
                     StreetPreviewChoice(
                         heading = member.heading(nearestIntersection),
-                        name = member.getName(member.intersections[WayEnd.START.id] == nearestIntersection),
+                        name = member.getName(
+                            member.intersections[WayEnd.START.id] == nearestIntersection,
+                            engine.gridState.featureTrees
+                        ),
                         way = member
                     )
                 )
