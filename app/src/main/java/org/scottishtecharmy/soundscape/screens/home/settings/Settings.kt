@@ -274,7 +274,8 @@ fun Settings(
             item {
                 Text(
                     text = "Developer settings",
-                    color = MaterialTheme.colorScheme.onPrimary,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = textColor,
                     modifier = Modifier.semantics { heading() },
                     )
             }
