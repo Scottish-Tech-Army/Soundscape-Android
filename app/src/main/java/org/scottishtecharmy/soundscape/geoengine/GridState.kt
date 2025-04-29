@@ -75,6 +75,7 @@ open class GridState {
         for(tree in featureTrees) {
             tree.tree = null
         }
+        centralBoundingBox = BoundingBox()
     }
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
 
@@ -256,7 +257,7 @@ open class GridState {
                 return false
             }
         }
-        return true
+        return false
     }
 
     // We keep a small cache of the FeatureCollections for the most recently used tiles. The main
