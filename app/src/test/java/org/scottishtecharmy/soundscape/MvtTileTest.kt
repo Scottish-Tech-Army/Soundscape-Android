@@ -603,7 +603,7 @@ class MvtTileTest {
                     if (!compareCallouts(lastCallout, intersectionCallout)) {
                         // We've got a new callout, so add it to our geoJSON as a triangle for the
                         // FOV that was used to create it, along with the text from the callouts.
-                        val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry))
+                        val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
                         val fovFeature = Feature()
                         fovFeature.geometry = polygon
                         fovFeature.properties = hashMapOf()

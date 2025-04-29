@@ -255,10 +255,13 @@ fun removeDuplicateOsmIds(
     return tempFeatureCollection
 }
 
-fun getFovTriangle(userGeometry: UserGeometry) : Triangle {
+fun getFovTriangle(userGeometry: UserGeometry, forceLocation: Boolean = false) : Triangle {
     var heading = userGeometry.snappedHeading() ?: 0.0
     val quadrant = Quadrant(heading)
-    val location = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
+    val location = if(forceLocation) userGeometry.location
+        else if(userGeometry.mapMatchedLocation != null) userGeometry.mapMatchedLocation.point
+        else userGeometry.location
+
     return Triangle(location,
         getDestinationCoordinate(
             location,

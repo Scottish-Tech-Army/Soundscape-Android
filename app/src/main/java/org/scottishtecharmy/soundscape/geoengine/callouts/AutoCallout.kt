@@ -87,13 +87,12 @@ class AutoCallout(
             userGeometry)
 
         // Don't describe the road we're on if there's an intersection
-        //if(roadsDescription.intersection != null) roadsDescription.nearestRoad = null
-
         addIntersectionCalloutFromDescription(
             roadsDescription,
             localizedContext,
             results,
-            intersectionCalloutHistory
+            intersectionCalloutHistory,
+            gridState.featureTrees
         )
 
         return results
