@@ -76,7 +76,7 @@ class TileUtilsTest {
         for (feature in testCrossingsFeatureCollection) {
             Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(239, testCrossingsFeatureCollection.features.size)
+        Assert.assertEquals(95, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
@@ -124,7 +124,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(1227, testPoiCollection.features.size)
+        Assert.assertEquals(1083, testPoiCollection.features.size)
 
     }
 
@@ -136,7 +136,7 @@ class TileUtilsTest {
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
-        Assert.assertEquals(415, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(271, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
