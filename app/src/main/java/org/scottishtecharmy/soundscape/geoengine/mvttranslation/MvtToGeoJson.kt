@@ -636,8 +636,19 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                     "path_construction",
                     "service_construction",
                     "track_construction",
-                    "raceway_construction",
+                    "raceway_construction" -> {
+                        foreign["feature_type"] = "highway"
+                        foreign["feature_value"] = property.value
+                    }
+
                     "crossing" -> {
+                        if(properties["crossing"] == "unmarked") {
+                            if((properties["tactile_paving"] == "no") || (!properties.containsKey("tactile_paving"))) {
+                                // Unmarked crossings without tactile paving should be ignored.
+                                return hashMapOf()
+                            }
+                        }
+
                         foreign["feature_type"] = "highway"
                         foreign["feature_value"] = property.value
                     }
