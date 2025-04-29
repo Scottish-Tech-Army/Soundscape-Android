@@ -84,7 +84,7 @@ fun LocationItem(
                    decoration.editRoute.functionBoolean(!decoration.editRoute.value)
                 }
             }
-            .clearAndSetSemantics() {
+            .clearAndSetSemantics {
                 if (decoration.editRoute.enabled) {
                     // Provide a clearer description of the current state and what
                     // happens when the user double taps.

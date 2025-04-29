@@ -248,7 +248,7 @@ class RoadFollower(val parent: MapMatchFilter,
         return RoadFollowerStatus(Double.MAX_VALUE, 0)
     }
 
-    fun chosen(collection: FeatureCollection): PointAndDistanceAndHeading? {
+    fun chosen(): PointAndDistanceAndHeading? {
         nearestPoint?.let { nearestPoint ->
             return nearestPoint
         }
@@ -375,7 +375,7 @@ class MapMatchFilter {
                         val timeDijkstra = measureTime {
                             val shortestDistance = findShortestDistance(
                                 matchedLocation!!.point,
-                                follower.chosen(collection)!!.point,
+                                follower.chosen()!!.point,
                                 matchedWay!!,
                                 way,
                                 null,
@@ -397,7 +397,7 @@ class MapMatchFilter {
 
         lastLocation = location
         if(lowestFollower != null) {
-            matchedLocation = lowestFollower.chosen(collection)
+            matchedLocation = lowestFollower.chosen()
             matchedFollower = lowestFollower
             if(Build.VERSION.SDK_INT == 0) {
                 if (matchedWay != matchedFollower!!.currentNearestRoad) {

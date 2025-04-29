@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DataStoreManager @Inject constructor(private val context: Context) {
-    private val android.content.Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
         name = "preferences"
     )
 

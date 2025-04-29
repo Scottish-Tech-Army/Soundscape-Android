@@ -459,15 +459,9 @@ fun vectorTileToGeoJson(tileX: Int,
                     )
 
                     var name : Any? = null
-                    var type = ""
-                    var subclass = ""
-                    var brunnel = ""
                     properties?.let {
                         name = properties["name"]
                         properties["name"] = name
-                        type = properties["class"].toString()
-                        subclass = properties["subclass"].toString()
-                        brunnel = properties["brunnel"].toString()
                     }
 
                     if(layer.name == "transportation")

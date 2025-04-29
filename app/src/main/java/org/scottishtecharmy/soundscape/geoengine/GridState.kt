@@ -307,7 +307,7 @@ open class GridState {
     ): Boolean {
         for (tile in tileGrid.tiles) {
 
-            var tileCollections: Array<FeatureCollection>? = null
+            var tileCollections: Array<FeatureCollection>?
             var intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
             val key = Pair(tile.tileX, tile.tileY)
             if(cachedTiles.contains(key)) {
@@ -334,10 +334,10 @@ open class GridState {
                             // Remove the least recently used tile
                             var leastRecentlyUsed = Long.MAX_VALUE
                             var leastRecentlyUsedKey = Pair(0, 0)
-                            for (tile in cachedTiles) {
-                                if (tile.value.lastUsed < leastRecentlyUsed) {
-                                    leastRecentlyUsed = tile.value.lastUsed
-                                    leastRecentlyUsedKey = tile.key
+                            for (cachedTile in cachedTiles) {
+                                if (cachedTile.value.lastUsed < leastRecentlyUsed) {
+                                    leastRecentlyUsed = cachedTile.value.lastUsed
+                                    leastRecentlyUsedKey = cachedTile.key
                                 }
                             }
                             if (leastRecentlyUsedKey != Pair(0, 0)) {

@@ -99,8 +99,8 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                             } else {
                                 way.intersections[WayEnd.START.id]
                             }
-                            nextIntersection?.let { intersection ->
-                                if(intersection.members.size > 2) {
+                            nextIntersection?.let { next ->
+                                if(next.members.size > 2) {
                                     skip = true
                                     return@let
                                 }

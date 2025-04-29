@@ -452,8 +452,8 @@ class IntersectionsTestMvt {
         Assert.assertEquals(3, intersection.members.size )
 
         val indexKC = 0
-        val indexS1 = 1
-        val indexS2 = 2
+//        val indexS1 = 1
+//        val indexS2 = 2
         Assert.assertEquals(Direction.BEHIND, intersection.members[indexKC].direction(intersection, deviceHeading))
         Assert.assertEquals("Kodiak Court", intersection.members[indexKC].properties!!["name"])
 //        Assert.assertEquals(3, intersection.members[indexS1].direction(intersection, deviceHeading))

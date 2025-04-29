@@ -24,7 +24,6 @@ import java.lang.Math.toDegrees
 import kotlin.collections.iterator
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
-import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.atan
 import kotlin.math.floor
@@ -2027,14 +2026,14 @@ fun confectNamesForRoad(road: Feature,
         }
 
         // Add in destinations tag if they don't already exist
-        var startDestinationAdded = road.properties?.get("destination:backward") != null
-        var endDestinationAdded = road.properties?.get("destination:forward") != null
+        val startDestinationAdded = road.properties?.get("destination:backward") != null
+        val endDestinationAdded = road.properties?.get("destination:forward") != null
 
         // Does the unnamed way start or end near a POI?
         if (!startDestinationAdded)
-            startDestinationAdded = addPoiDestination(road, start, true, poiTree, safetyTree)
+            addPoiDestination(road, start, true, poiTree, safetyTree)
         if (!endDestinationAdded)
-            endDestinationAdded = addPoiDestination(road, end, false, poiTree, safetyTree)
+            addPoiDestination(road, end, false, poiTree, safetyTree)
     }
 }
 

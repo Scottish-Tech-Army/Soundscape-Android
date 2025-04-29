@@ -64,11 +64,8 @@ class FileGridState : ProtomapsGridState() {
             val remoteTile = FileInputStream(path + "${x}x${y}.mvt")
             val result = VectorTile.Tile.parseFrom(remoteTile)
             if (result != null) {
-                var tileFeatureCollection: FeatureCollection? = null
-                tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
-
-                var collections: Array<FeatureCollection>? = null
-                collections = processTileFeatureCollection(tileFeatureCollection)
+                val tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
+                val collections = processTileFeatureCollection(tileFeatureCollection)
 
                 for ((index, collection) in collections.withIndex()) {
                     featureCollections[index].plusAssign(collection)
@@ -130,18 +127,18 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                 currentFeature.properties?.set("marker-color", "#004000")
 
             } else {
-                val regex = Regex("/*<bearing>(.*)</bearing>.*")
-                val matchResult = regex.find(line)
-                if (matchResult != null) {
-                    currentFeature.properties?.set("heading", matchResult.groupValues[1].toDouble())
+                val regex2 = Regex("/*<bearing>(.*)</bearing>.*")
+                val matchResult2 = regex2.find(line)
+                if (matchResult2 != null) {
+                    currentFeature.properties?.set("heading", matchResult2.groupValues[1].toDouble())
                 }
                 else {
-                    val regex = Regex("/*<speed>(.*)</speed>.*")
-                    val matchResult = regex.find(line)
-                    if (matchResult != null) {
+                    val regex3 = Regex("/*<speed>(.*)</speed>.*")
+                    val matchResult3 = regex3.find(line)
+                    if (matchResult3 != null) {
                         currentFeature.properties?.set(
                             "speed",
-                            matchResult.groupValues[1].toDouble()
+                            matchResult3.groupValues[1].toDouble()
                         )
                     }
                 }

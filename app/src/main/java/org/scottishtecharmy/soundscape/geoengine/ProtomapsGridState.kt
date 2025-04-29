@@ -46,11 +46,11 @@ open class ProtomapsGridState : GridState() {
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
                     Log.e(TAG, "Tile size ${result.serializedSize}")
-                    var tileFeatureCollection: FeatureCollection? = null
+                    var tileFeatureCollection: FeatureCollection?
                     val mvtParseTime = measureTimeMillis {
                         tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
                     }
-                    var collections: Array<FeatureCollection>? = null
+                    var collections: Array<FeatureCollection>?
                     val processTime = measureTimeMillis {
                         collections = processTileFeatureCollection(tileFeatureCollection!!)
                     }
