@@ -25,11 +25,11 @@ open class FeatureCollection : GeoJsonObject(), Iterable<Feature> {
 
     override fun iterator(): Iterator<Feature> = features.iterator()
 
-    operator fun plusAssign(rhs: Feature): Unit {
+    operator fun plusAssign(rhs: Feature) {
         features.add(rhs)
     }
 
-    operator fun plusAssign(rhs: FeatureCollection): Unit {
+    operator fun plusAssign(rhs: FeatureCollection) {
         features.addAll(rhs)
     }
 }

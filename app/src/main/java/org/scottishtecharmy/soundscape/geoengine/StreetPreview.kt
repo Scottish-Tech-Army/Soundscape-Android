@@ -123,8 +123,7 @@ class StreetPreview {
                                 } else
                                     false
                             }
-                            var nextIntersection:Intersection? = null
-                            nextIntersection = if(ways.last().first)
+                            var nextIntersection = if(ways.last().first)
                                 ways.last().second.intersections[WayEnd.END.id]
                             else
                                 ways.last().second.intersections[WayEnd.START.id]

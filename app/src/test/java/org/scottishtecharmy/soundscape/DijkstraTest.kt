@@ -38,7 +38,7 @@ class DijkstraTest {
         // We should already have these values in the real code, so don't time them
         val startIntersection = intersectionsTree.getNearestFeature(startLocation) as Intersection
         val endIntersection = intersectionsTree.getNearestFeature(endLocation) as Intersection
-        var shortestPath = 0.0
+        var shortestPath : Double
         val timeTakenUsingNewAlgorithm = measureTime {
             /**
              * We already have a Way/Intersection graph which has all of the lines segmented at
@@ -68,7 +68,6 @@ class DijkstraTest {
         val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
 
         val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-        val intersectionsTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // dijkstraOnWaysWithLoops works from intersection to intersection as those are the nodes
         // in our graph. The original dijkstraWithLoops split the ways of the graph into separate
@@ -88,7 +87,7 @@ class DijkstraTest {
         val startWay = roadTree.getNearestFeature(startLocation) as Way
         val endWay = roadTree.getNearestFeature(endLocation) as Way
 
-        var shortestPath = 0.0
+        var shortestPath : Double
         val shortestRoute = FeatureCollection()
         val timeTaken = measureTime {
             val results = findShortestDistance(startLocation, endLocation, startWay, endWay, shortestRoute)
@@ -120,7 +119,7 @@ class DijkstraTest {
         val startWay = roadTree.getNearestFeature(startLocation) as Way
         val endWay = roadTree.getNearestFeature(endLocation) as Way
 
-        var shortestPath = 0.0
+        var shortestPath : Double
         val shortestRoute = FeatureCollection()
         val timeTaken = measureTime {
             val results = findShortestDistance(startLocation, endLocation, startWay, endWay, shortestRoute)

@@ -328,16 +328,16 @@ class CheapRuler(lat: Double, units: Double) {
                 }
             }
 
-            dx = wrap(p.longitude - x) * kx;
-            dy = (p.latitude - y) * ky;
+            dx = wrap(p.longitude - x) * kx
+            dy = (p.latitude - y) * ky
 
-            val sqDist = dx * dx + dy * dy;
+            val sqDist = dx * dx + dy * dy
             if (sqDist < minDist) {
-                minDist = sqDist;
-                minX = x;
-                minY = y;
-                minI = i;
-                minT = t;
+                minDist = sqDist
+                minX = x
+                minY = y
+                minI = i
+                minT = t
             }
         }
 

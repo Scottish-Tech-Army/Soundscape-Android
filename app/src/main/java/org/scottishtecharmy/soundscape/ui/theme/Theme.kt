@@ -301,7 +301,7 @@ fun SoundscapeTheme(
     content: @Composable () -> Unit
 ) {
     val themeState = themeStateFlow?.collectAsState()
-    val hintsEnabled = remember(themeState?.value) { themeState?.value?.hintsEnabled ?: true }
+    val hintsEnabled = remember(themeState?.value) { themeState?.value?.hintsEnabled != false }
     var colorScheme = remember(themeState?.value) {
         if (themeState?.value?.themeIsLight == true) {
             when (themeState.value.themeContrast) {

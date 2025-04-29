@@ -31,7 +31,7 @@ open class GeometryCollection : GeoJsonObject(), Iterable<GeoJsonObject> {
 
     override fun iterator(): Iterator<GeoJsonObject> = geometries.iterator()
 
-    operator fun plusAssign(rhs: GeoJsonObject): Unit {
+    operator fun plusAssign(rhs: GeoJsonObject) {
         geometries.add(rhs)
     }
 }

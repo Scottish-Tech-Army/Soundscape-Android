@@ -140,7 +140,6 @@ class StreetPreviewTest {
                             val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
 
                             for (y in 0 until intersectionsSortedByDistance.features.size) {
-                                val intersectionRoadNames = getIntersectionRoadNames(intersectionsSortedByDistance.features[y], fovRoadsFeatureCollection)
                                 val intersectionsNeedsFurtherChecking = checkWhetherIntersectionIsOfInterest(Intersection(), testNearestRoad)
                                 if(intersectionsNeedsFurtherChecking == 1) {
                                     intersectionsNeedsFurtherCheckingFC.addFeature(intersectionsSortedByDistance.features[y])
