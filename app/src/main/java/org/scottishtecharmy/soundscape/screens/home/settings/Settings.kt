@@ -270,20 +270,19 @@ fun Settings(
                 valueSteps = 10,
                 valueText = { Text(text = "%.1fx".format(it), color = textColor) },
             )
-            if(BuildConfig.DEBUG) {
-                item {
-                    Text(
-                        text = "Debug settings",
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier.semantics { heading() },
-                        )
-                }
-                switchPreference(
-                    key = MainActivity.RECORD_TRAVEL_KEY,
-                    defaultValue = MainActivity.RECORD_TRAVEL_DEFAULT,
-                    title = { Text(text = "Record travel") },
-                )
+
+            item {
+                Text(
+                    text = "Developer settings",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.semantics { heading() },
+                    )
             }
+            switchPreference(
+                key = MainActivity.RECORD_TRAVEL_KEY,
+                defaultValue = MainActivity.RECORD_TRAVEL_DEFAULT,
+                title = { Text(text = "Record travel") },
+            )
         }
     }
 }
