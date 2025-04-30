@@ -70,7 +70,8 @@ fun LocationDetailsScreen(
         navController = navController,
         locationDescription = locationDescription,
         createBeacon = { loc ->
-            viewModel.createBeacon(loc)
+            viewModel.startBeacon(loc, locationDescription.name ?: "")
+            navController.popBackStack(HomeRoutes.Home.route, false)
         },
         saveMarker = { description, successMessage, failureMessage ->
             viewModel.createMarker(

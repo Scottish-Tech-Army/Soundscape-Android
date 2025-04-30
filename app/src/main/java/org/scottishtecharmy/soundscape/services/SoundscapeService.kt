@@ -10,7 +10,6 @@ import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.net.Uri
 import android.os.Binder
-import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
@@ -388,10 +387,13 @@ class SoundscapeService : MediaSessionService() {
         return geoEngine.getLocationDescription(location)
     }
 
-    fun startRoute(routeId: ObjectId) {
+    fun startBeacon(location: LngLatAlt, name: String) {
+        routePlayer.startBeacon(location, name)
+    }
+    fun routeStart(routeId: ObjectId) {
         routePlayer.startRoute(routeId)
     }
-    fun stopRoute() {
+    fun routeStop() {
         routePlayer.stopRoute()
     }
     fun routeSkipPrevious(): Boolean {

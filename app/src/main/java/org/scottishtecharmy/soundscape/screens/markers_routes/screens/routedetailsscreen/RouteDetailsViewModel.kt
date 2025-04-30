@@ -46,11 +46,11 @@ class RouteDetailsViewModel @Inject constructor(
     }
 
     fun startRoute(routeId: ObjectId) {
-        soundscapeServiceConnection.startRoute(routeId)
+        soundscapeServiceConnection.routeStart(routeId)
     }
 
     fun stopRoute() {
-        soundscapeServiceConnection.stopRoute()
+        soundscapeServiceConnection.routeStop()
     }
 
     fun clearErrorMessage() {

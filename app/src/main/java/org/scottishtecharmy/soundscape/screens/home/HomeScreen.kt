@@ -61,6 +61,7 @@ data class RouteFunctions(val viewModel: HomeViewModel?) {
     val skipPrevious = { viewModel?.routeSkipPrevious() }
     val skipNext = { viewModel?.routeSkipNext() }
     val mute = { viewModel?.routeMute() }
+    val stop =  { viewModel?.routeStop() }
 }
 
 data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {

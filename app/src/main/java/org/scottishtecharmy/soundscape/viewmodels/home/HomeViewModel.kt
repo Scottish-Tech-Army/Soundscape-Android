@@ -222,6 +222,11 @@ class HomeViewModel
             soundscapeServiceConnection.routeMute()
         }
     }
+    fun routeStop() {
+        viewModelScope.launch {
+            soundscapeServiceConnection.routeStop()
+        }
+    }
 
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
