@@ -104,11 +104,9 @@ open class LngLatAlt(
 
     /**
      * Distance to a LineString from current location.
-     * @param lineStringCoordinates
-     * LineString that we are working out the distance from
-     * @param nearestPoint
-     * Point in the line nearest that had the shortest distance
-     * @return The distance of the point to the LineString
+     * @param lineStringCoordinates LineString that we are working out the distance from
+     * @return The distance of the point to the LineString, the nearest point on the line and the
+     * heading of the line at that point.
      */
     fun distanceToLineString(
         lineStringCoordinates: LineString

@@ -162,6 +162,43 @@ class Way : Feature() {
         return null
     }
 
+    /**
+     * isSidewalkConnector returns true if this way is joining mainWay from intersection to its
+     * own sidewalk e.g. https://www.openstreetmap.org/way/958596881. If we are map matched to the
+     * sidewalk, but calling out from the perspective of mainWay, these connectors are not useful.
+     */
+    fun isSidewalkConnector(intersection: Intersection,
+                            mainWay: Way?,
+                            featureTrees: Array<FeatureTree>) : Boolean {
+
+        // It's not a connector if the mainWay isn't named
+        if(mainWay == null)
+            return false
+
+        // It's not a connector if it's named
+        val name = properties?.get("name")
+        if(name != null)
+            return false
+
+        // Look at the other end and check if it connects to a sidewalk associated with the mainWay
+        getOtherIntersection(intersection)?.let { otherIntersection ->
+            for(way in otherIntersection.members) {
+                if(way == this) continue
+                if(way.properties?.get("footway") != "sidewalk") {
+                    // This does connect to something that isn't a sidewalk, so it's not a simple
+                    // connector i.e. it may connect to a sidewalk, but it goes further.
+                    return false
+                }
+                else if(way.properties?.get("pavement") == null) {
+                    confectNamesForRoad(way, featureTrees)
+                }
+                // And then return true if it's the pavement for this Way
+                return (way.properties?.get("pavement") == mainWay.properties?.get("name"))
+            }
+        }
+        return false
+    }
+
     fun followWays(fromIntersection: Intersection,
                    ways: MutableList<Pair<Boolean, Way>>,
                    depth: Int = 0,
@@ -231,6 +268,13 @@ class Way : Feature() {
             (geometry as LineString).coordinates.dropLast(1).last()
 
         return bearingFromTwoPoints(fromIntersection.location, nextLocation)
+    }
+
+    fun getOtherIntersection(fromIntersection: Intersection) : Intersection? {
+        return if (fromIntersection == intersections[WayEnd.START.id])
+            intersections[WayEnd.END.id]
+        else
+            intersections[WayEnd.START.id]
     }
 
     /**

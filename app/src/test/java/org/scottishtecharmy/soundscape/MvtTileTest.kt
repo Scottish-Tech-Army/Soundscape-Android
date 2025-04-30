@@ -557,6 +557,7 @@ class MvtTileTest {
         val endIndex = gps.features.size
         val autoCallout = AutoCallout(null, null)
         var lastCallout : List<PositionedString> = emptyList()
+        val callOutText = FileOutputStream("callout-text.txt")
 
         gps.features.filterIndexed {
                 index, _ -> (index > startIndex) and (index < endIndex)
@@ -604,7 +605,9 @@ class MvtTileTest {
                         val fovFeature = Feature()
                         fovFeature.geometry = polygon
                         fovFeature.properties = hashMapOf()
+                        callOutText.write("\nCallout\n".toByteArray())
                         for (callout in intersectionCallout.withIndex()) {
+                            callOutText.write("\t${callout.value.text}\n".toByteArray())
                             fovFeature.properties?.set(
                                 "Callout ${callout.index}",
                                 callout.value.text
@@ -616,6 +619,8 @@ class MvtTileTest {
                 }
             }
         }
+        callOutText.close()
+
         val adapter = GeoJsonObjectMoshiAdapter()
         val mapMatchingOutput = FileOutputStream("map-matching.geojson")
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
