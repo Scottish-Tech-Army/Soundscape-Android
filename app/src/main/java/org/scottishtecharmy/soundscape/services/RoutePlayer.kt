@@ -2,32 +2,29 @@ package org.scottishtecharmy.soundscape.services
 
 import android.content.Context
 import android.content.res.Configuration
-import android.location.Location
 import android.util.Log
-import androidx.compose.runtime.currentComposer
 import io.realm.kotlin.ext.copyFromRealm
+import io.realm.kotlin.ext.realmListOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.maplibre.android.geometry.LatLng
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
 import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
+import org.scottishtecharmy.soundscape.database.local.model.MarkerData
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
-data class RoutePlayerState(val routeData: RouteData? = null, val currentWaypoint: Int = 0)
+data class RoutePlayerState(val routeData: RouteData? = null, val currentWaypoint: Int = 0, val beaconOnly: Boolean = false)
 
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteData? = null
@@ -45,6 +42,39 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     private val _currentRouteFlow = MutableStateFlow<RoutePlayerState>(RoutePlayerState())
     var currentRouteFlow: StateFlow<RoutePlayerState> = _currentRouteFlow
 
+    /**
+     * startBeacon creates a temporary route with a single waypoint and starts playing it. This
+     * means that the same UI code can be used to control the beacon as for a real route.
+     * @param beaconLocation The location to place the beacon at
+     * @param beaconName The name of the beacon
+     */
+    fun startBeacon(beaconLocation: LngLatAlt, beaconName: String) {
+        Log.e(TAG, "startBeacon")
+        currentMarker = 0
+        currentRouteData = RouteData(beaconName, "").apply {
+
+            val marker = MarkerData().apply {
+                addressName = beaconName
+                location =
+                    org.scottishtecharmy.soundscape.database.local.model.Location(beaconLocation)
+            }
+            waypoints = realmListOf(marker)
+        }
+        _currentRouteFlow.update {
+            it.copy(
+                routeData = currentRouteData,
+                currentWaypoint = currentMarker,
+                beaconOnly = true
+            )
+        }
+        play()
+        Log.d(TAG, toString())
+        startMonitoringLocation()
+    }
+
+    /** startRoute starts playback of a route from the database.
+     * @param routeId The id of the route to play
+     */
     fun startRoute(routeId: ObjectId) {
         val realm = RealmConfiguration.getMarkersInstance()
         val routesDao = RoutesDao(realm)
@@ -53,18 +83,24 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         Log.e(TAG, "startRoute")
         coroutineScope.launch {
             val dbRoutes = routesRepository.getRoute(routeId)
-            currentMarker = 0
-            if(dbRoutes.isNotEmpty()) {
+            if (dbRoutes.isNotEmpty()) {
+                currentMarker = 0
                 currentRouteData = dbRoutes[0].copyFromRealm()
-                _currentRouteFlow.update { it.copy(
-                    routeData = currentRouteData,
-                    currentWaypoint = currentMarker
-                )}
+                _currentRouteFlow.update {
+                    it.copy(
+                        routeData = currentRouteData,
+                        currentWaypoint = currentMarker,
+                        beaconOnly = false
+                    )
+                }
             }
             play()
             Log.d(TAG, toString())
         }
+        startMonitoringLocation()
+    }
 
+    fun startMonitoringLocation() {
         coroutineScope.launch {
             // Observe location updates from the service
             service.locationProvider.locationFlow.collect { value ->

@@ -54,8 +54,8 @@ class SoundscapeServiceConnection @Inject constructor() {
         soundscapeService?.setStreetPreviewMode(on, location)
     }
 
-    fun startRoute(routeId: ObjectId) {
-        soundscapeService?.startRoute(routeId)
+    fun routeStart(routeId: ObjectId) {
+        soundscapeService?.routeStart(routeId)
     }
 
     fun routeSkipPrevious() {
@@ -67,8 +67,8 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun routeMute() {
         soundscapeService?.routeMute()
     }
-    fun stopRoute() {
-        soundscapeService?.stopRoute()
+    fun routeStop() {
+        soundscapeService?.routeStop()
     }
 
     // needed to communicate with the service.

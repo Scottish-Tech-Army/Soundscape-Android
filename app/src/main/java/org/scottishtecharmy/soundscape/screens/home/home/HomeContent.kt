@@ -15,6 +15,7 @@ import androidx.compose.material.icons.automirrored.filled.VolumeOff
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -170,16 +171,29 @@ fun HomeContent(
                                         contentDescription = stringResource(R.string.route_detail_action_next)
                                     )
                                 }
-                                Button(onClick = {
-                                        onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.objectId.toHexString()}")
+                                Button(
+                                    onClick = {
+                                        if (routePlayerState.beaconOnly) {
+                                            routeFunctions.stop()
+                                        } else {
+                                            onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.objectId.toHexString()}")
+                                        }
                                     }
                                 )
                                 {
-                                    Icon(
-                                        modifier = Modifier,
-                                        imageVector = Icons.Filled.Info,
-                                        contentDescription = stringResource(R.string.behavior_experiences_route_nav_title),
-                                    )
+                                    if (routePlayerState.beaconOnly) {
+                                        Icon(
+                                            modifier = Modifier,
+                                            imageVector = Icons.Filled.Stop,
+                                            contentDescription = stringResource(R.string.route_detail_action_stop_route),
+                                        )
+                                    } else {
+                                        Icon(
+                                            modifier = Modifier,
+                                            imageVector = Icons.Filled.Info,
+                                            contentDescription = stringResource(R.string.behavior_experiences_route_nav_title),
+                                        )
+                                    }
                                 }
                                 Button(onClick = { routeFunctions.mute() })
                                 {

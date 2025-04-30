@@ -26,8 +26,8 @@ class LocationDetailsViewModel @Inject constructor(
     private val routesRepository: RoutesRepository
 ): ViewModel() {
 
-    fun createBeacon(location: LngLatAlt) {
-        soundscapeServiceConnection.soundscapeService?.createBeacon(location)
+    fun startBeacon(location: LngLatAlt, name: String) {
+        soundscapeServiceConnection.soundscapeService?.startBeacon(location, name)
     }
 
     fun enableStreetPreview(location: LngLatAlt) {
