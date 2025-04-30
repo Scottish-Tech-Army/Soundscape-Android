@@ -126,7 +126,7 @@ class MvtPerformanceTest {
 
         Debug.startMethodTracing("Test2")
 
-        var shortestPath = 0.0
+        var shortestPath: Double
         val measureTime = measureTime {
             val result = findShortestDistance(
                 startLocation,
