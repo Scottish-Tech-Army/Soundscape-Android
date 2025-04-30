@@ -82,7 +82,7 @@ class Way : Feature() {
                 featureTrees: Array<FeatureTree>? = null) : String {
 
         var destinationModifier: Any? = null
-        var passesModifier: Any? = null
+        var passesModifier: Any?
         var name = properties?.get("name")
         var passesString = ""
 
