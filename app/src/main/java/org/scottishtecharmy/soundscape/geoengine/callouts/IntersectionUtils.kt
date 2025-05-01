@@ -63,7 +63,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // If we're on a mapped sidewalk, use the associated road for intersection detection instead of
     // the sidewalk itself.
-    if(nearestRoad?.properties?.get("footway") == "sidewalk") {
+    if(nearestRoad?.isSidewalkOrCrossing() == true) {
         if(nearestRoad.properties?.get("pavement") == null) {
             // Confect the names for the sidewalk first, this should come up with the name of the
             // associated road.
@@ -106,7 +106,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         val intersection = i as Intersection
         var add = true
         for(way in i.members) {
-            if(way.properties?.get("footway") == "sidewalk")
+            if(way.isSidewalkOrCrossing())
                 add = false
             else if(way.isSidewalkConnector(intersection, nearestRoad, gridState))
                 add = false
@@ -153,7 +153,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                                 if (next.members.size > 2) {
                                     for(member in next.members) {
                                         if(member.properties != null) {
-                                            if ((member.properties?.get("footway") != "sidewalk") &&
+                                            if (member.isSidewalkOrCrossing() &&
                                                 !member.isSidewalkConnector(intersection, nearestRoad, gridState)
                                             ) {
                                                 count++

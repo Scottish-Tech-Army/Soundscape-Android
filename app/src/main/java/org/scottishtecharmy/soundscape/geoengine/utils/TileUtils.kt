@@ -25,6 +25,7 @@ import java.lang.Math.toDegrees
 import kotlin.collections.iterator
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
+import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.atan
 import kotlin.math.floor
@@ -1936,12 +1937,12 @@ fun getSuperCategoryElements(category: String): Set<String> {
 }
 
 
-fun addSidewalk(currentRoad: Feature,
+fun addSidewalk(currentRoad: Way,
                 start: LngLatAlt,
                 end: LngLatAlt,
                 roadTree: FeatureTree) : Boolean {
 
-    if(currentRoad.properties?.get("footway") == "sidewalk") {
+    if(currentRoad.isSidewalkOrCrossing()){
         if(currentRoad.properties?.containsKey("pavement") == true)
             return true
 
@@ -1959,14 +1960,19 @@ fun addSidewalk(currentRoad: Feature,
         var name: Any? = null
         var found = false
         for(road in startRoads) {
-            if(road.properties?.get("footway") == "sidewalk") continue
+            if((road as Way).isSidewalkOrCrossing()) continue
             name = road.properties?.get("name")
             if(name != null) {
                 for (road2 in endRoads) {
-                    if(road2.properties?.get("footway") == "sidewalk") continue
+                    if((road2 as Way).isSidewalkOrCrossing()) continue
                     if (road2.properties?.get("name") == name) {
-                        found = true
-                        break
+                        // The distance between the pavement and the road should be similar at both ends.
+                        val delta = abs(start.distanceToLineString(road.geometry as LineString).distance -
+                                    end.distanceToLineString(road2.geometry as LineString).distance)
+                        if((delta < 5.0) && (delta < currentRoad.length / 2)) {
+                            found = true
+                            break
+                        }
                     }
                 }
                 if(found)
@@ -2068,7 +2074,7 @@ fun confectNamesForRoad(road: Feature,
         val line = road.geometry as LineString
         val start = line.coordinates.first()
         val end = line.coordinates.last()
-        if (addSidewalk(road, start, end, roadTree)) {
+        if (addSidewalk(road as Way, start, end, roadTree)) {
             return
         }
 
@@ -2114,9 +2120,9 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
             // Skip if the road is named
             if (road.properties?.get("name") == null) {
 
-                // We don't confect names for sidewalks as those will be named from the adjacent
-                // road.
-                if(road.properties?.get("footway") == "sidewalk")
+                // We don't confect names for sidewalks or crossings as those will be named from the
+                // adjacent road.
+                if(road.isSidewalkOrCrossing())
                     continue
 
                 val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
