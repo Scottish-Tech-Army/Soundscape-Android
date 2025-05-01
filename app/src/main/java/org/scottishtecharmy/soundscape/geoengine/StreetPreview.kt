@@ -164,7 +164,7 @@ class StreetPreview {
                         heading = member.heading(nearestIntersection),
                         name = member.getName(
                             member.intersections[WayEnd.START.id] == nearestIntersection,
-                            engine.gridState.featureTrees
+                            engine.gridState
                         ),
                         way = member
                     )

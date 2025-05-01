@@ -1,8 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.utils.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
@@ -79,7 +79,7 @@ class Way : Feature() {
     var wayType = WayType.REGULAR
 
     fun getName(direction: Boolean? = null,
-                featureTrees: Array<FeatureTree>? = null) : String {
+                gridState: GridState? = null) : String {
 
         var destinationModifier: Any? = null
         var passesModifier: Any?
@@ -90,8 +90,8 @@ class Way : Feature() {
             // Un-named way, so use "class" property
             name = properties?.get("class").toString()
 
-            if(featureTrees != null) {
-                confectNamesForRoad(this, featureTrees)
+            if(gridState != null) {
+                confectNamesForRoad(this, gridState)
             }
 
             if (direction != null) {
@@ -169,7 +169,7 @@ class Way : Feature() {
      */
     fun isSidewalkConnector(intersection: Intersection,
                             mainWay: Way?,
-                            featureTrees: Array<FeatureTree>) : Boolean {
+                            gridState: GridState,) : Boolean {
 
         // It's not a connector if the mainWay isn't named
         if(mainWay == null)
@@ -190,7 +190,7 @@ class Way : Feature() {
                     return false
                 }
                 else if(way.properties?.get("pavement") == null) {
-                    confectNamesForRoad(way, featureTrees)
+                    confectNamesForRoad(way, gridState)
                 }
                 // And then return true if it's the pavement for this Way
                 return (way.properties?.get("pavement") == mainWay.properties?.get("name"))

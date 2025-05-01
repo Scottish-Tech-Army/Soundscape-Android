@@ -315,7 +315,7 @@ class MvtTileTest {
         var roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
         val confectionTime2 = measureTimeMillis {
             for (road in roads) {
-                confectNamesForRoad(road, gridState.featureTrees)
+                confectNamesForRoad(road, gridState)
             }
         }
         println("Confection time: $confectionTime ms")
@@ -558,6 +558,15 @@ class MvtTileTest {
         val autoCallout = AutoCallout(null, null)
         var lastCallout : List<PositionedString> = emptyList()
         val callOutText = FileOutputStream("callout-text.txt")
+
+        val markers = FeatureCollection()
+        val marker = Feature()
+        marker.geometry = Point(-4.3095570, 55.9498421)
+        val properties = java.util.HashMap<String, Any?>()
+        properties["name"] = "Marker 1"
+        marker.properties = properties
+        markers.addFeature(marker)
+        gridState.markerTree = FeatureTree(markers)
 
         gps.features.filterIndexed {
                 index, _ -> (index > startIndex) and (index < endIndex)

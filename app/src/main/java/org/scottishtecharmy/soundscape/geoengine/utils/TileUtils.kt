@@ -15,6 +15,7 @@ import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.Polygon as JtsPolygon
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.LinearRing
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -1993,8 +1994,7 @@ fun addSidewalk(currentRoad: Feature,
 fun addPoiDestinations(currentRoad: Feature,
                        startLocation: LngLatAlt,
                        endLocation: LngLatAlt,
-                       poiTree: FeatureTree,
-                       safetyTree: FeatureTree) : Boolean {
+                       gridState: GridState) : Boolean {
 
     // Only add in destinations tag if they don't already exist
     val startDestinationAdded = currentRoad.properties?.get("destination:backward") != null
@@ -2002,16 +2002,33 @@ fun addPoiDestinations(currentRoad: Feature,
 
     if(startDestinationAdded && endDestinationAdded) return false
 
-    // Does the unnamed way start or end near a POI?
-    var startPoi = poiTree.getNearestFeature(
+    // Does the unnamed way start or end near a Marker?
+    val markerTree = gridState.markerTree
+    var startPoi = markerTree?.getNearestFeature(
         location = startLocation,
         distance = 20.0
     )
-    var endPoi = poiTree.getNearestFeature(
+    var endPoi = markerTree?.getNearestFeature(
         location = endLocation,
         distance = 20.0
     )
 
+    // Does the unnamed way start or end near a POI?
+    val poiTree = gridState.featureTrees[TreeId.LANDMARK_POIS.id]
+    if(startPoi == null) {
+        startPoi = poiTree.getNearestFeature(
+            location = startLocation,
+            distance = 20.0
+        )
+    }
+    if(endPoi == null) {
+        endPoi = poiTree.getNearestFeature(
+            location = endLocation,
+            distance = 20.0
+        )
+    }
+
+    val safetyTree = gridState.featureTrees[TreeId.SAFETY_POIS.id]
     if(startPoi == null) {
         startPoi = safetyTree.getContainingPolygons(startLocation).features.firstOrNull()
     }
@@ -2041,13 +2058,11 @@ fun addPoiDestinations(currentRoad: Feature,
 }
 
 fun confectNamesForRoad(road: Feature,
-                        featureTrees: Array<FeatureTree>) {
+                        gridState: GridState) {
 
     // rtree searches take time and so we should avoid them where possible.
 
-    val roadTree = featureTrees[TreeId.ROADS_AND_PATHS.id]
-    val poiTree = featureTrees[TreeId.LANDMARK_POIS.id]
-    val safetyTree = featureTrees[TreeId.SAFETY_POIS.id]
+    val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
     if (road.properties?.get("name") == null) {
 
         val line = road.geometry as LineString
@@ -2057,7 +2072,7 @@ fun confectNamesForRoad(road: Feature,
             return
         }
 
-        addPoiDestinations(road, start, end, poiTree, safetyTree)
+        addPoiDestinations(road, start, end, gridState)
     }
 }
 
