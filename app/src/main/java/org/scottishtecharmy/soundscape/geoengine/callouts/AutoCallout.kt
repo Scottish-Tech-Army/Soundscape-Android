@@ -92,7 +92,7 @@ class AutoCallout(
             localizedContext,
             results,
             intersectionCalloutHistory,
-            gridState.featureTrees
+            gridState
         )
 
         return results

@@ -67,7 +67,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         if(nearestRoad.properties?.get("pavement") == null) {
             // Confect the names for the sidewalk first, this should come up with the name of the
             // associated road.
-            confectNamesForRoad(nearestRoad, gridState.featureTrees)
+            confectNamesForRoad(nearestRoad, gridState)
         }
         // There could be multiple Ways which share the same pavement name, and we want to pick the
         // right one to use. We want the Way to be running in the same direction as the pavement is,
@@ -108,7 +108,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         for(way in i.members) {
             if(way.properties?.get("footway") == "sidewalk")
                 add = false
-            else if(way.isSidewalkConnector(intersection, nearestRoad, gridState.featureTrees))
+            else if(way.isSidewalkConnector(intersection, nearestRoad, gridState))
                 add = false
         }
         if(add)
@@ -154,7 +154,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                                     for(member in next.members) {
                                         if(member.properties != null) {
                                             if ((member.properties?.get("footway") != "sidewalk") &&
-                                                !member.isSidewalkConnector(intersection, nearestRoad, gridState.featureTrees)
+                                                !member.isSidewalkConnector(intersection, nearestRoad, gridState)
                                             ) {
                                                 count++
                                             }
@@ -231,7 +231,7 @@ fun addIntersectionCalloutFromDescription(
     localizedContext: Context?,
     results: MutableList<PositionedString>,
     calloutHistory: CalloutHistory? = null,
-    featureTrees: Array<FeatureTree>
+    gridState: GridState
 ) {
 
     // Report nearby road
@@ -258,12 +258,12 @@ fun addIntersectionCalloutFromDescription(
             }
             if (direction != null) {
                 val calloutText = if (localizedContext == null)
-                    "Ahead ${(nearestRoad).getName(direction, featureTrees)}"
+                    "Ahead ${(nearestRoad).getName(direction, gridState)}"
                 else
                     "${localizedContext.getString(R.string.directions_direction_ahead)} ${
                         (nearestRoad).getName(
                             direction,
-                            featureTrees
+                            gridState
                         )
                     }}"
 
@@ -357,7 +357,7 @@ fun addIntersectionCalloutFromDescription(
                 else -> 0.0
             }
 
-            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, featureTrees)
+            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState)
             val intersectionCallout =
                 localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText $unlocalizedDirection"
             results.add(
