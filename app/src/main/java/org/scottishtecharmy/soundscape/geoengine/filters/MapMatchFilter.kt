@@ -7,6 +7,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.addSidewalk
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
@@ -367,25 +368,60 @@ class MapMatchFilter {
             val way = follower.currentNearestRoad
             if(frechetStatus.frechetAverage < lowestFrechet) {
                 var skip = false
-                if(matchedWay != null) {
-                    if (matchedWay != way) {
+                matchedWay?.let { matched ->
+                    if (matched != way) {
                         // Can we get to this followers matched location from the last matched
                         // location via the road/path network?
-                        val testDistance = (follower.averagePointGap * 3) + 10.0
-                        val timeDijkstra = measureTime {
-                            val shortestDistance = findShortestDistance(
-                                matchedLocation!!.point,
-                                follower.chosen()!!.point,
-                                matchedWay!!,
-                                way,
-                                null,
-                                testDistance
-                            )
-                            if (shortestDistance.distance >= testDistance)
-                                skip = true
-                            shortestDistance.tidy()
+
+                        // First check that we aren't just hopping between footway=sidewalk for the
+                        // same Way. These aren't usually well inter-connected and so running
+                        // Dijkstra on them will result in a longer distance than it really is. For
+                        // example, crossing the road here:
+                        // https://www.openstreetmap.org/query?lat=55.941074&lon=-4.320473
+                        // is really moving between two sidewalks and is easily done regardless of
+                        // the Dijkstra distance.
+
+                        var useDijkstra = true
+                        if(matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
+                            // We're matching on a sidewalk, see if the other way is either the
+                            // associated way or another sidewalk for the associated way
+                            addSidewalk(matched, roadTree)
+                            addSidewalk(way, roadTree)
+
+                            val matchedPavement = matched.properties?.get("pavement")
+                            val matchedName = matched.properties?.get("name")
+                            val wayPavement = way.properties?.get("pavement")
+                            val wayName = way.properties?.get("name")
+
+                            if((matchedPavement != null) &&
+                               ((matchedPavement == wayName) || (matchedPavement == wayPavement))) {
+                                // The matched way is a sidewalk, and the other way is either the
+                                // associated way or another sidewalk for the associated way
+                                useDijkstra = false
+                            }
+                            else if((wayPavement != null) && (wayPavement == matchedName)) {
+                                // The other way is a sidewalk, and the matched way is its
+                                // associated way
+                                useDijkstra = false
+                            }
                         }
-                        println("Time Dijkstra: $timeDijkstra")
+                        if(useDijkstra) {
+                            val testDistance = (follower.averagePointGap * 3) + 10.0
+                            val timeDijkstra = measureTime {
+                                val shortestDistance = findShortestDistance(
+                                    matchedLocation!!.point,
+                                    follower.chosen()!!.point,
+                                    matched,
+                                    way,
+                                    null,
+                                    testDistance
+                                )
+                                if (shortestDistance.distance >= testDistance)
+                                    skip = true
+                                shortestDistance.tidy()
+                            }
+                            println("Time Dijkstra: $timeDijkstra")
+                        }
                     }
                 }
                 if(!skip) {
