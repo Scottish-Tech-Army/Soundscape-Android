@@ -545,19 +545,17 @@ class MvtTileTest {
         return true
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Test
-    fun testMovingGrid() {
+    fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
         val mapMatchFilter = MapMatchFilter()
-        val gps = parseGpxFromFile("travel-3.gpx")
+        val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
         val startIndex = 0
         val endIndex = gps.features.size
         val autoCallout = AutoCallout(null, null)
         var lastCallout : List<PositionedString> = emptyList()
-        val callOutText = FileOutputStream("callout-text.txt")
+        val callOutText = FileOutputStream(calloutFilename)
 
         val markers = FeatureCollection()
         val marker = Feature()
@@ -631,9 +629,17 @@ class MvtTileTest {
         callOutText.close()
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("map-matching.geojson")
+        val mapMatchingOutput = FileOutputStream(geojsonFilename)
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testCallouts() {
+        testMovingGrid("travel.gpx", "callout-travel.txt", "map-matching.geojson")
+        testMovingGrid("travel-2.gpx", "callout-travel-2.txt", "map-matching-2.geojson")
+        testMovingGrid("travel-3.gpx", "callout-travel-3.txt", "map-matching-3.geojson")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

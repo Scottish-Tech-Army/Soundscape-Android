@@ -1938,23 +1938,25 @@ fun getSuperCategoryElements(category: String): Set<String> {
 
 
 fun addSidewalk(currentRoad: Way,
-                start: LngLatAlt,
-                end: LngLatAlt,
                 roadTree: FeatureTree) : Boolean {
 
     if(currentRoad.isSidewalkOrCrossing()){
         if(currentRoad.properties?.containsKey("pavement") == true)
             return true
 
+        val line = currentRoad.geometry as LineString
+        val start = line.coordinates.first()
+        val end = line.coordinates.last()
+
         val startRoads = roadTree.getNearestCollection(
             location = start,
-            distance = 15.0,
-            maxCount = 10
+            distance = 20.0,
+            maxCount = 25
         )
         val endRoads = roadTree.getNearestCollection(
             location = end,
-            distance = 15.0,
-            maxCount = 10
+            distance = 20.0,
+            maxCount = 25
         )
         // Find common road that's near the start and the end of our road - ignoring any sidewalks
         var name: Any? = null
@@ -1998,9 +2000,11 @@ fun addSidewalk(currentRoad: Way,
 }
 
 fun addPoiDestinations(currentRoad: Feature,
-                       startLocation: LngLatAlt,
-                       endLocation: LngLatAlt,
                        gridState: GridState) : Boolean {
+
+    val line = currentRoad.geometry as LineString
+    val startLocation = line.coordinates.first()
+    val endLocation = line.coordinates.last()
 
     // Only add in destinations tag if they don't already exist
     val startDestinationAdded = currentRoad.properties?.get("destination:backward") != null
@@ -2071,14 +2075,11 @@ fun confectNamesForRoad(road: Feature,
     val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
     if (road.properties?.get("name") == null) {
 
-        val line = road.geometry as LineString
-        val start = line.coordinates.first()
-        val end = line.coordinates.last()
-        if (addSidewalk(road as Way, start, end, roadTree)) {
+        if (addSidewalk(road as Way, roadTree)) {
             return
         }
 
-        addPoiDestinations(road, start, end, gridState)
+        addPoiDestinations(road, gridState)
     }
 }
 
