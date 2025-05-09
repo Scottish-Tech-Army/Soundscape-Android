@@ -44,12 +44,12 @@ class CrossingTest {
 
         val nearestCrossing = FeatureTree(fovCrossingFeatureCollection).getNearestFeature(userGeometry.location)
         val crossingLocation = nearestCrossing!!.geometry as Point
-        val distanceToCrossing = userGeometry.location.distance(crossingLocation.coordinates)
+        val distanceToCrossing = userGeometry.ruler.distance(userGeometry.location, crossingLocation.coordinates)
 
         // Confirm which road the crossing is on
         val nearestRoadToCrossing = roadsTree.getNearestFeature(crossingLocation.coordinates)
 
-        Assert.assertEquals(24.58, distanceToCrossing, 0.1)
+        Assert.assertEquals(24.58, distanceToCrossing, 0.2)
         Assert.assertEquals("Belmont Drive", nearestRoadToCrossing!!.properties?.get("name"))
         Assert.assertEquals("yes", nearestCrossing.properties?.get("tactile_paving"))
 

@@ -2,7 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
-import org.scottishtecharmy.soundscape.dto.Circle
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -694,25 +694,20 @@ fun lineStringIsCircular(path: LineString): Boolean {
 fun distanceToPolygon(
     pointCoordinates: LngLatAlt,
     polygon: Polygon,
+    ruler: Ruler,
     nearestPoint: LngLatAlt? = null)
 : Double {
 
-    var minDistance = Double.MAX_VALUE
-    var last = polygon.coordinates[0][0]
-    for (i in 1 until polygon.coordinates[0].size) {
-        val current = polygon.coordinates[0][i]
-        val pointOnLine = LngLatAlt()
-        val distance = pointCoordinates.distanceToLine(last, current, pointOnLine)
-        if(distance < minDistance) {
-            minDistance = min(minDistance, distance)
-            if(nearestPoint != null) {
-                nearestPoint.latitude = pointOnLine.latitude
-                nearestPoint.longitude = pointOnLine.longitude
-            }
-        }
-        last = current
+    // We're only looking at the outer ring, which is really just a LineString
+    val lineString = LineString()
+    lineString.coordinates = polygon.coordinates[0]
+
+    val pdh = ruler.distanceToLineString(pointCoordinates, lineString)
+    if(nearestPoint != null) {
+        nearestPoint.latitude = pdh.point.latitude
+        nearestPoint.longitude = pdh.point.longitude
     }
-    return minDistance
+    return pdh.distance
 }
 
 /**
@@ -861,43 +856,6 @@ fun calculateRadius(
     return radius
 }
 
-/**
- * Calculate the approximate center coordinates of a circle based on the start and end coordinates
- * of a segment and the arc midpoint.
- * @param start
- * is start coordinates of segment
- * @param end
- * is end coordinates of segment
- * @param arcMidPoint
- * The coordinates of the arc midpoint as LngLatAlt.
- * @return The coordinates of the center of the circle as LngLatAlt.
- */
-fun calculateCenter(
-    start: LngLatAlt,
-    end: LngLatAlt,
-    arcMidPoint: LngLatAlt
-): Circle {
-    val chordMidpoint =
-        LngLatAlt((start.longitude + end.longitude) / 2, (start.latitude + end.latitude) / 2)
-    val chordLength = start.distance(end)
-    // calculate radius
-    val radius = calculateRadius(chordLength, arcMidPoint, chordMidpoint)
-    // is the chord midpoint to the right or left of the segment?
-    val chordBearing = if(pointOnRightSide(start, arcMidPoint, end)){
-        bearingFromTwoPoints(end, start)
-    } else {
-        bearingFromTwoPoints(start, end)
-    }
-
-    // Calculate chord bearing
-    //val chordBearing = bearingFromTwoPoints(end.latitude, end.longitude, start.latitude, start.longitude)
-    val circleCenter = findCircleCenter(arcMidPoint, chordBearing, radius)
-    val circle = Circle()
-    circle.center = circleCenter
-    circle.radius = radius
-
-    return circle
-}
 
 /**
  * Checks if a point is on the right side of a line segment or not.
@@ -915,44 +873,6 @@ fun pointOnRightSide(
     end: LngLatAlt
 ): Boolean {
     return (pointToCheck.longitude - start.longitude) * (end.latitude - start.latitude) - (pointToCheck.latitude - start.latitude) * (end.longitude - start.longitude) > 0
-}
-
-/**
- * Calculate the approximate center coordinates of a circle based on a segment.
- * @param segment
- * segment of circle as LineString
- * @return The coordinates of the center of the circle as LngLatAlt.
- */
-fun calculateCenterOfCircle(
-    segment: LineString
-): Circle {
-    val a = segment.coordinates.first()
-    val b = segment.coordinates.last()
-    val arcMidPoint: LngLatAlt
-
-    if (segment.coordinates.size % 2 == 0) {
-        // synthesize the arcPoint
-        val firstCoordinate = segment.coordinates[segment.coordinates.size / 2 - 1]
-        val secondCoordinate = segment.coordinates[segment.coordinates.size / 2]
-        val distanceBetweenCoordinates =
-            distance(
-                firstCoordinate.latitude,
-                firstCoordinate.longitude,
-                secondCoordinate.latitude,
-                secondCoordinate.longitude
-            )
-        val bearing =
-            bearingFromTwoPoints(firstCoordinate, secondCoordinate)
-        arcMidPoint =
-            getDestinationCoordinate(firstCoordinate, bearing, distanceBetweenCoordinates / 2)
-
-    } else {
-        arcMidPoint = segment.coordinates[segment.coordinates.size / 2]
-    }
-
-    val center = calculateCenter(a, b, arcMidPoint)
-
-    return center
 }
 
 /**

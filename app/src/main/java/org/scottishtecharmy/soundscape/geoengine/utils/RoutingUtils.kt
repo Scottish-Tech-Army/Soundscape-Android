@@ -3,9 +3,9 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.PriorityQueue
 
@@ -14,10 +14,9 @@ var dijkstraRunCount = 0
 fun dijkstraOnWaysWithLoops(
     start: Intersection,
     end: Intersection,
+    ruler: CheapRuler,
     maxDistance: Double = Double.MAX_VALUE
 ): Double {
-
-    val cheapRuler = CheapRuler(start.location.latitude, meters)
 
     dijkstraRunCount++
 
@@ -48,7 +47,7 @@ fun dijkstraOnWaysWithLoops(
 
                 if (adjacent != null) {
                     val totalDist = currentDist + weight
-                    val directDistanceToEnd = cheapRuler.distance(adjacent.location, end.location)
+                    val directDistanceToEnd = ruler.distance(adjacent.location, end.location)
                     if ((totalDist + directDistanceToEnd) < distanceToEnd) {
                         if(adjacent.dijkstraRunCount != dijkstraRunCount) {
                             // Lazy initialization of internal distance
@@ -98,12 +97,15 @@ fun findShortestDistance(
     maxDistance: Double = Double.MAX_VALUE,
 ) : ShortestDistanceResults  {
 
-    val newStartIntersection = startWay.createTemporaryIntersectionAndWays(startLocation)
-    val newEndIntersection = endWay.createTemporaryIntersectionAndWays(endLocation)
+    val ruler = startLocation.createCheapRuler()
+
+    val newStartIntersection = startWay.createTemporaryIntersectionAndWays(startLocation, ruler)
+    val newEndIntersection = endWay.createTemporaryIntersectionAndWays(endLocation, ruler)
 
     val shortestDistance = dijkstraOnWaysWithLoops(
         newStartIntersection,
         newEndIntersection,
+        ruler,
         maxDistance
     )
 
@@ -152,46 +154,4 @@ fun getPathWays(
     }
 
     return ways
-}
-
-fun featureCollectionToGraphWithNodeMap(
-    featureCollection: FeatureCollection
-): Pair<Map<Int, List<Pair<Int, Int>>>, Map<LngLatAlt, Int>> {
-    // take the feature collection and explode the linestring coordinates
-    // into pairs of coordinates as LineStrings
-    val explodedFeatureCollection = explodeLineString(featureCollection)
-    val nodeMap = mutableMapOf<LngLatAlt, Int>()
-    var nodeIdCounter = 1
-
-    val graph = mutableMapOf<Int, MutableList<Pair<Int, Int>>>()
-
-    for (feature in explodedFeatureCollection.features) {
-        if (feature.geometry is LineString) {
-            val lineString = feature.geometry as LineString
-            val coordinates = lineString.coordinates
-
-            val startNode = getNode(coordinates[0], nodeMap, nodeIdCounter)
-            nodeIdCounter = if (startNode == nodeIdCounter) nodeIdCounter + 1 else nodeIdCounter
-            val endNode = getNode(coordinates[1], nodeMap, nodeIdCounter)
-            nodeIdCounter = if (endNode == nodeIdCounter) nodeIdCounter + 1 else nodeIdCounter
-
-
-            val weight = distance(
-                coordinates[0].latitude,
-                coordinates[0].longitude,
-                coordinates[1].latitude,
-                coordinates[1].longitude
-            ).toInt()
-
-            graph.computeIfAbsent(startNode) { mutableListOf() }.add(Pair(endNode, weight))
-            // For undirected graph which is what we want for pedestrians as we don't care about one-way streets
-            graph.computeIfAbsent(endNode) { mutableListOf() }.add(Pair(startNode, weight))
-        }
-    }
-
-    return Pair(graph, nodeMap)
-}
-
-fun getNode(coordinate: LngLatAlt, nodeMap: MutableMap<LngLatAlt, Int>, nodeIdCounter: Int): Int {
-    return nodeMap.computeIfAbsent(coordinate) { nodeIdCounter }
 }

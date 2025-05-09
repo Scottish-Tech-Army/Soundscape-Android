@@ -75,7 +75,7 @@ class VisuallyCheckIntersectionLayers {
             (feature.foreign?.get("osm_ids") as? List<*>)?.size ?: 0
         }
 
-        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
+        val nearestIntersection = FeatureTree(fovIntersectionsFeatureCollection).getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         val nearestRoadBearing = getRoadBearingToIntersection(nearestIntersection, testNearestRoad)
         val intersectionLocation = featureWithMostOsmIds!!.geometry as Point
         val intersectionRelativeDirections = getRelativeDirectionsPolygons(
@@ -103,7 +103,7 @@ class VisuallyCheckIntersectionLayers {
         // a traffic island for the road that we are currently on.
         // Original Soundscape doesn't flag that a crossing is a traffic island
         // or has tactile paving, etc.
-        val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
+        val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         // Confirm which road the crossing is on
         val crossingLocation = nearestCrossing!!.geometry as Point
         val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(crossingLocation.coordinates)

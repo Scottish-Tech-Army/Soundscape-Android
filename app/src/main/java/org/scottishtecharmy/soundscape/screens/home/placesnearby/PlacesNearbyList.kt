@@ -26,10 +26,9 @@ import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.metres
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -58,7 +57,7 @@ fun PlacesNearbyList(
     )
     val context = LocalContext.current
     val locations = remember(uiState) {
-        val cheapRuler = CheapRuler(uiState.userLocation?.latitude ?: 0.0, metres)
+        val ruler = CheapRuler(uiState.userLocation?.latitude ?: 0.0)
         if(uiState.filter == "intersections") {
             uiState.nearbyIntersections.features.filter { feature ->
                 // Filter out un-named intersections
@@ -66,11 +65,11 @@ fun PlacesNearbyList(
             }.map { feature ->
                 LocationDescription(
                     name = feature.properties?.get("name").toString(),
-                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                    location = getDistanceToFeature(LngLatAlt(), feature, ruler).point
                 )
             }.sortedBy {
                 uiState.userLocation?.let { location ->
-                    cheapRuler.distance(location, it.location)
+                    ruler.distance(location, it.location)
                 } ?: 0.0
             }
         } else {
@@ -81,11 +80,11 @@ fun PlacesNearbyList(
             }.map { feature ->
                 LocationDescription(
                     name = getTextForFeature(context, feature).text,
-                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                    location = getDistanceToFeature(LngLatAlt(), feature, ruler).point
                 )
             }.sortedBy {
                 uiState.userLocation?.let { location ->
-                    cheapRuler.distance(location, it.location)
+                    ruler.distance(location, it.location)
                 } ?: 0.0
             }
         }

@@ -50,7 +50,7 @@ class BusStopTest {
         // bus stop location data for this example is rubbish so not sure how useful this is to the user?
         val nearestBusStop = FeatureTree(fovBusStopFeatureCollection).getNearestFeature(userGeometry.location)
         val busStopLocation = nearestBusStop!!.geometry as Point
-        val distanceToBusStop = userGeometry.location.distance(busStopLocation.coordinates)
+        val distanceToBusStop = userGeometry.ruler.distance(userGeometry.location, busStopLocation.coordinates)
         Assert.assertEquals(9.08, distanceToBusStop, 0.1)
 
         // Here's the naptan stuff stored in the bus stop properties which might be

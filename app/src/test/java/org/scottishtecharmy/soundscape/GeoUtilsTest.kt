@@ -27,8 +27,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.pixelXYToLatLon
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
+import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringsIntersect
@@ -36,6 +38,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.mergePolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.straightLinesIntersect
 import org.scottishtecharmy.soundscape.geoengine.utils.straightLinesIntersectLngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import java.io.FileOutputStream
 
 
 class GeoUtilsTest {
@@ -384,23 +389,26 @@ class GeoUtilsTest {
 
     @Test
     fun distanceToPolygonTest(){
+        val lngLat = 0.01
+        val accuracy = 0.01
+        val ruler = CheapRuler(lngLat)
         val polygonObject = Polygon().also {
             it.coordinates = arrayListOf(
                 arrayListOf(
-                    LngLatAlt(0.0, 1.0),
+                    LngLatAlt(0.0, lngLat),
                     LngLatAlt(0.0, 0.0),
-                    LngLatAlt(1.0, 0.0),
-                    LngLatAlt(1.0, 1.0),
-                    LngLatAlt(0.0, 1.0)
+                    LngLatAlt(lngLat, 0.0),
+                    LngLatAlt(lngLat, lngLat),
+                    LngLatAlt(0.0, lngLat)
                 )
             )
         }
-        val minDistanceToPolygon1 = distanceToPolygon(LngLatAlt(0.0, -1.0), polygonObject)
-        Assert.assertEquals(111319.49, minDistanceToPolygon1, 0.1)
-        val minDistanceToPolygon2 = distanceToPolygon(LngLatAlt(0.0, 2.0), polygonObject)
-        Assert.assertEquals(111319.49, minDistanceToPolygon2, 0.1)
-        val minDistanceToPolygon3 = distanceToPolygon(LngLatAlt(0.0, 0.0), polygonObject)
-        Assert.assertEquals(0.0, minDistanceToPolygon3, 0.1)
+        val minDistanceToPolygon1 = distanceToPolygon(LngLatAlt(0.0, -lngLat), polygonObject, ruler)
+        Assert.assertEquals(1105.74, minDistanceToPolygon1, accuracy)
+        val minDistanceToPolygon2 = distanceToPolygon(LngLatAlt(0.0, lngLat * 2), polygonObject, ruler)
+        Assert.assertEquals(1105.74, minDistanceToPolygon2, accuracy)
+        val minDistanceToPolygon3 = distanceToPolygon(LngLatAlt(0.0, 0.0), polygonObject, ruler)
+        Assert.assertEquals(0.0, minDistanceToPolygon3, accuracy)
     }
 
     @Test
@@ -523,6 +531,58 @@ class GeoUtilsTest {
 
         val circle5 = calculateCenterOfCircle(segmentLineString5)
         Assert.assertEquals(0.11, distance(actualCircleCenter.latitude, actualCircleCenter.longitude, circle5.center.latitude, circle5.center.longitude), 0.11)
+    }
+
+
+    fun cheapTestPoint(ruler: CheapRuler, point: LngLatAlt, line: LineString, fc: FeatureCollection) {
+        val pdh = ruler.distanceToLineString(point, line)
+        val pointFeature1 = Feature()
+        pointFeature1.geometry = Point(point.longitude, point.latitude)
+        pointFeature1.properties = hashMapOf()
+        fc.addFeature(pointFeature1)
+
+        val pointFeature2 = Feature()
+        pointFeature2.geometry = Point(pdh.point.longitude, pdh.point.latitude)
+        pointFeature2.properties = hashMapOf()
+        fc.addFeature(pointFeature2)
+    }
+
+    @Test
+    fun cheapRulerTest() {
+        // Create circle
+        val circle = circleToPolygon(
+            32,
+            51.431658,
+            -2.653228,
+            200.0
+        )
+        // Turn the circle into a line
+        val line = LineString()
+        line.coordinates.addAll(circle.coordinates[0])
+
+        // Test some nearest points on the line
+        val ruler = CheapRuler(51.431658)
+        val fc = FeatureCollection()
+
+        val testCircle = circleToPolygon(
+            320,
+            51.431658,
+            -2.653228,
+            190.0
+        )
+        for(point in testCircle.coordinates[0]) {
+            cheapTestPoint(ruler, point, line, fc)
+        }
+
+        val lineFeature = Feature()
+        lineFeature.geometry = line
+        lineFeature.properties = hashMapOf()
+        fc. addFeature(lineFeature)
+
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("cheap-ruler.geojson")
+        mapMatchingOutput.write(adapter.toJson(fc).toByteArray())
+        mapMatchingOutput.close()
     }
 
     @Test
@@ -725,12 +785,12 @@ class GeoUtilsTest {
             )
         }
 
-        val nearestDistance1 = distanceToPolygon(currentLocation1, polygon1)
+        val nearestDistance1 = distanceToPolygon(currentLocation1, polygon1, currentLocation1.createCheapRuler())
         val nearestPoint1 = nearestPointOnPolygonSegment(currentLocation1, polygon1)
 
         // distance to midpoint of hypotenuse (large error used is because the distance doesn't use
         // haversine calculation and so over 78km is off by a large amount)
-        Assert.assertEquals(78714.27, nearestDistance1, 0.6)
+        Assert.assertEquals(78714.27, nearestDistance1, 300.0) // We're using CheapRuler which is inaccurate at these distances
         // midpoint of hypotenuse
         Assert.assertEquals(LngLatAlt(0.5, 0.5), nearestPoint1)
 

@@ -113,7 +113,8 @@ class AutoCallout(
         val markers = gridState.markerTree?.getNearestCollection(
             userGeometry.location,
             userGeometry.getSearchDistance(),
-            5
+            5,
+            userGeometry.ruler
         )
 
         // Get a list of the 10 nearest POI that are within search range, adding in the markers
@@ -121,6 +122,7 @@ class AutoCallout(
             userGeometry.location,
             userGeometry.getSearchDistance(),
             10,
+            userGeometry.ruler,
             markers
         )
 
@@ -129,7 +131,7 @@ class AutoCallout(
 
             if(userGeometry.currentBeacon != null) {
                 // If the feature is within 1m of the current beacon, don't call it out
-                if(getDistanceToFeature(userGeometry.currentBeacon, feature).distance < 1.0) {
+                if(getDistanceToFeature(userGeometry.currentBeacon, feature, userGeometry.ruler).distance < 1.0) {
                     return@filter true
                 }
             }
@@ -137,7 +139,7 @@ class AutoCallout(
             val name = getTextForFeature(localizedContext, feature)
             val category = feature.foreign?.get("category") as String?
 
-            val nearestPoint = getDistanceToFeature(userGeometry.location, feature)
+            val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
             if(category == null) {
                 true
             } else {
@@ -169,7 +171,7 @@ class AutoCallout(
                             if(nearestPoint.distance == 0.0) {
                                 results.add(
                                     PositionedString(
-                                        text = localizedContext?.getString(R.string.directions_at_poi, name.text) ?: name.text,
+                                        text = localizedContext?.getString(R.string.directions_at_poi, name.text) ?: "At ${name.text}",
                                         earcon = earcon,
                                         type = AudioType.STANDARD
                                     ),

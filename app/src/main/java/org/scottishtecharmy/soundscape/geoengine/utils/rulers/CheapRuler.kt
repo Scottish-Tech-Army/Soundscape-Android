@@ -1,13 +1,13 @@
-package org.scottishtecharmy.soundscape.geoengine.utils
+package org.scottishtecharmy.soundscape.geoengine.utils.rulers
 
-import com.google.common.math.IntMath.pow
+import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.math.PI
-import kotlin.math.atan
+import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.cos
-import kotlin.math.exp
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
@@ -33,38 +33,19 @@ import kotlin.math.sqrt
     THIS SOFTWARE.
 */
 
-const val kilometers = 1.0
-const val miles = 1000.0 / 1609.344
-const val nauticalMiles = 1000.0 / 1852.0
 const val meters = 1000.0
-const val metres = 1000.0
-const val yards = 1000.0 / 0.9144
-const val feet = 1000.0 / 0.3048
-const val inches = 1000.0 / 0.0254
+//const val kilometers = 1.0
+//const val miles = 1000.0 / 1609.344
+//const val nauticalMiles = 1000.0 / 1852.0
+//const val yards = 1000.0 / 0.9144
+//const val feet = 1000.0 / 0.3048
+//const val inches = 1000.0 / 0.0254
 
 // Values that define WGS84 ellipsoid model of the Earth
 private const val RE = 6378.137
 private const val FE = 1 / 298.257223563
 private const val E2 = FE * (2 - FE)
 private const val RAD = PI / 180
-
-/**
- * Creates a ruler object from tile coordinates (y and z).
- *
- * @param {number} y
- * @param {number} z
- * @param {keyof typeof factors} [units='kilometers']
- * @returns {CheapRuler}
- * @example
- * const ruler = cheapRuler.fromTile(1567, 12)
- * //=ruler
- */
-fun cheapRulerFromTile(y: Int, z: Int, units: Double) : CheapRuler {
-    val n = PI * (1 - 2 * (y + 0.5) / pow(2, z))
-    val lat = atan(0.5 * (exp(n) - exp(-n))) / RAD
-
-    return CheapRuler(lat, units)
-}
 
 /**
  * normalize a degree value into [-180..180] range
@@ -81,16 +62,21 @@ fun wrap(deg: Double) : Double {
 /**
  * A collection of very fast approximations to common geodesic measurements. Useful for
  * performance-sensitive code that measures things on a city scale.
+ *
+ * Creates a ruler instance for very fast approximations to common geodesic measurements around a certain latitude.
+ *
+ * @param {number} lat latitude
+ * @example
+ * const ruler = cheapRuler(35.05)
  */
-class CheapRuler(lat: Double, units: Double) {
+class CheapRuler(val lat: Double) : Ruler() {
 
     val kx: Double
     val ky: Double
 
-
     init {
         // Curvature formulas from https://en.wikipedia.org/wiki/Earth_radius#Meridional
-        val m = RAD * RE * (units)
+        val m = RAD * RE * (meters)
         val cosLat = cos(lat * RAD)
         val w2 = 1 / (1 - E2 * (1 - cosLat * cosLat))
         val w = sqrt(w2)
@@ -100,27 +86,20 @@ class CheapRuler(lat: Double, units: Double) {
         ky = m * w * w2 * (1 - E2)  // based on meridional radius of curvature
     }
 
+    fun needsReplacing(newLat: Double) : Boolean {
+        // If the latitude changes by more than 0.01 degrees, then create a new ruler to maintain
+        // accuracy of calculations.
+        return (abs(lat - newLat) > 0.01)
+    }
 
     /**
-     * Creates a ruler instance for very fast approximations to common geodesic measurements around a certain latitude.
+     * Given two LngLatAlt returns the distance between them
      *
-     * @param {number} lat latitude
-     * @param {keyof typeof factors} [units='kilometers']
-     * @example
-     * const ruler = cheapRuler(35.05, 'miles')
-     * //=ruler
+     * @param a a point as a LngLatAlt
+     * @param b another point as a LngLatAlt
+     * @returns {number} distance between points
      */
-    /**
-     * Given two points of the form [longitude, latitude], returns the distance.
-     *
-     * @param {[number, number]} a point [longitude, latitude]
-     * @param {[number, number]} b point [longitude, latitude]
-     * @returns {number} distance
-     * @example
-     * const distance = ruler.distance([30.5, 50.5], [30.51, 50.49]);
-     * //=distance
-     */
-    fun distance(a: LngLatAlt, b: LngLatAlt) : Double {
+    override fun distance(a: LngLatAlt, b: LngLatAlt) : Double {
         val dx = wrap(a.longitude - b.longitude) * kx
         val dy = (a.latitude - b.latitude) * ky
 
@@ -128,16 +107,13 @@ class CheapRuler(lat: Double, units: Double) {
     }
 
     /**
-     * Returns the bearing between two points in angles.
+     * Returns the bearing between two points
      *
-     * @param {[number, number]} a point [longitude, latitude]
-     * @param {[number, number]} b point [longitude, latitude]
-     * @returns {number} bearing
-     * @example
-     * const bearing = ruler.bearing([30.5, 50.5], [30.51, 50.49]);
-     * //=bearing
+     * @param a a point as a LngLatAlt
+     * @param b another point as a LngLatAlt
+     * @returns {number} bearing from point a to point b
      */
-    fun bearing(a: LngLatAlt, b: LngLatAlt) : Double {
+    override fun bearing(a: LngLatAlt, b: LngLatAlt) : Double {
         val dx = wrap(b.longitude - a.longitude) * kx
         val dy = (b.latitude - a.latitude) * ky
 
@@ -147,19 +123,21 @@ class CheapRuler(lat: Double, units: Double) {
     /**
      * Returns a new point given distance and bearing from the starting point.
      *
-     * @param {[number, number]} p point [longitude, latitude]
+     * @param p starting point LngLatAlt
      * @param {number} dist distance
      * @param {number} bearing
-     * @returns {[number, number]} point [longitude, latitude]
+     * @returns New point LngLatAlt
      * @example
      * const point = ruler.destination([30.5, 50.5], 0.1, 90);
      * //=point
      */
-    fun destination(p: LngLatAlt, dist: Double, bearing: Double) : LngLatAlt {
+    override fun destination(p: LngLatAlt, dist: Double, bearing: Double) : LngLatAlt {
         val a = bearing * RAD
-        return offset(p,
+        return offset(
+            p,
             sin(a) * dist,
-            cos(a) * dist)
+            cos(a) * dist
+        )
     }
 
     /**
@@ -236,21 +214,21 @@ class CheapRuler(lat: Double, units: Double) {
      * const point = ruler.along(line, 2.5);
      * //=point
      */
-//    along(line, dist) {
-//        let sum = 0;
-//
-//        if (dist <= 0) return line[0];
-//
-//        for (let i = 0; i < line.length - 1; i++) {
-//            const p0 = line[i];
-//            const p1 = line[i + 1];
-//            const d = this.distance(p0, p1);
-//            sum += d;
-//            if (sum > dist) return interpolate(p0, p1, (dist - (sum - d)) / d);
-//        }
-//
-//        return line[line.length - 1];
-//    }
+    override fun along(line: LineString, dist: Double) : LngLatAlt {
+        var sum = 0.0
+
+        if (dist <= 0.0) return line.coordinates[0]
+
+        for (i in 0 until line.coordinates.size - 1) {
+            val p0 = line.coordinates[i];
+            val p1 = line.coordinates[i + 1];
+            val d = this.distance(p0, p1);
+            sum += d;
+            if (sum > dist) return cheapInterpolate(p0, p1, (dist - (sum - d)) / d);
+        }
+
+        return line.coordinates[line.coordinates.size - 1];
+    }
 
     /**
      * Returns the distance from a point `p` to a line segment `a` to `b`.
@@ -264,29 +242,30 @@ class CheapRuler(lat: Double, units: Double) {
      * const distance = ruler.pointToSegmentDistance([-67.04, 50.5], [-67.05, 50.57], [-67.03, 50.54]);
      * //=distance
      */
-//    pointToSegmentDistance(p, a, b) {
-//        let [x, y] = a;
-//        let dx = wrap(b[0] - x) * this.kx;
-//        let dy = (b[1] - y) * this.ky;
-//
-//        if (dx !== 0 || dy !== 0) {
-//            const t = (wrap(p[0] - x) * this.kx * dx + (p[1] - y) * this.ky * dy) / (dx * dx + dy * dy);
-//
-//            if (t > 1) {
-//                x = b[0];
-//                y = b[1];
-//
-//            } else if (t > 0) {
-//                x += (dx / this.kx) * t;
-//                y += (dy / this.ky) * t;
-//            }
-//        }
-//
-//        dx = wrap(p[0] - x) * this.kx;
-//        dy = (p[1] - y) * this.ky;
-//
-//        return sqrt(dx * dx + dy * dy);
-//    }
+    override fun pointToSegmentDistance(p: LngLatAlt, a: LngLatAlt, b: LngLatAlt) : Double {
+        var x = a.longitude
+        var y = a.latitude
+        var dx = wrap(b.longitude - x) * this.kx
+        var dy = (b.latitude - y) * this.ky
+
+        if (dx != 0.0 || dy != 0.0) {
+            val t = (wrap(p.longitude - x) * this.kx * dx + (p.latitude - y) * this.ky * dy) / (dx * dx + dy * dy)
+
+            if (t > 1) {
+                x = b.longitude
+                y = b.latitude
+
+            } else if (t > 0) {
+                x += (dx / this.kx) * t
+                y += (dy / this.ky) * t
+            }
+        }
+
+        dx = wrap(p.longitude - x) * this.kx;
+        dy = (p.latitude - y) * this.ky;
+
+        return sqrt(dx * dx + dy * dy);
+    }
 
     /**
      * Returns an object of the form {point, index, t}, where point is closest point on the line
@@ -300,7 +279,7 @@ class CheapRuler(lat: Double, units: Double) {
      * const point = ruler.pointOnLine(line, [-67.04, 50.5]).point;
      * //=point
      */
-    fun pointOnLine(line: LineString, p: LngLatAlt) : Triple<LngLatAlt, Int, Double> {
+    override fun distanceToLineString(p: LngLatAlt, line: LineString) : PointAndDistanceAndHeading {
         var minDist = Double.MAX_VALUE
         var minX = line.coordinates[0].longitude
         var minY = line.coordinates[0].latitude
@@ -316,7 +295,7 @@ class CheapRuler(lat: Double, units: Double) {
             var t = 0.0
 
             if (dx != 0.0 || dy != 0.0) {
-                t = (wrap(p.longitude - x) * kx * dx + (p.latitude - y) * ky * dy) / (dx * dx + dy * dy)
+                t = ((wrap(p.longitude - x) * kx * dx) + ((p.latitude - y) * ky * dy)) / ((dx * dx) + (dy * dy))
 
                 if (t > 1.0) {
                     x = line.coordinates[i+1].longitude
@@ -331,7 +310,7 @@ class CheapRuler(lat: Double, units: Double) {
             dx = wrap(p.longitude - x) * kx
             dy = (p.latitude - y) * ky
 
-            val sqDist = dx * dx + dy * dy
+            val sqDist = (dx * dx) + (dy * dy)
             if (sqDist < minDist) {
                 minDist = sqDist
                 minX = x
@@ -341,10 +320,13 @@ class CheapRuler(lat: Double, units: Double) {
             }
         }
 
-        return Triple(
-            LngLatAlt(minX, minY),
+        val nearestPoint = cheapInterpolate(line.coordinates[minI], line.coordinates[minI+1], max(0.0, min(1.0, minT)))
+        return PointAndDistanceAndHeading(
+            nearestPoint,
+            this.distance(p, nearestPoint),
+            bearingFromTwoPoints(line.coordinates[minI], line.coordinates[minI + 1]),
             minI,
-            max(0.0, min(1.0, minT))
+            minI.toDouble() + max(0.0, min(1.0, minT))
         )
     }
 
@@ -410,11 +392,11 @@ class CheapRuler(lat: Double, units: Double) {
 //            sum += d;
 //
 //            if (sum > start && slice.length === 0) {
-//                slice.push(interpolate(p0, p1, (start - (sum - d)) / d));
+//                slice.push(cheapInterpolate(p0, p1, (start - (sum - d)) / d));
 //            }
 //
 //            if (sum >= stop) {
-//                slice.push(interpolate(p0, p1, (stop - (sum - d)) / d));
+//                slice.push(cheapInterpolate(p0, p1, (stop - (sum - d)) / d));
 //                return slice;
 //            }
 //
@@ -498,11 +480,8 @@ class CheapRuler(lat: Double, units: Double) {
  * @param {number} t
  * @returns {[number, number]}
  */
-//function interpolate(a, b, t) {
-//    const dx = wrap(b[0] - a[0]);
-//    const dy = b[1] - a[1];
-//    return [
-//        a[0] + dx * t,
-//        a[1] + dy * t
-//    ];
-//}
+fun cheapInterpolate(a: LngLatAlt, b: LngLatAlt, t: Double) : LngLatAlt {
+    val dx = wrap(b.longitude - a.longitude)
+    val dy = b.latitude - a.latitude
+    return LngLatAlt(a.longitude + (dx * t), a.latitude + (dy * t))
+}

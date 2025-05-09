@@ -32,6 +32,7 @@ import kotlin.math.abs
 import kotlin.sequences.forEach
 import kotlin.system.measureTimeMillis
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -361,7 +362,7 @@ class MvtTileTest {
         //tree.tree!!.visualize(4096,4096).save("tree.png");
 
         start = System.currentTimeMillis()
-        val distanceFc = tree.getNearbyCollection(LngLatAlt(-4.3058322, 55.9473305), 20.0)
+        val distanceFc = tree.getNearbyCollection(LngLatAlt(-4.3058322, 55.9473305), 20.0, CheapRuler(55.9473305))
         end = System.currentTimeMillis()
         println("Search (${end-start}ms):")
         for(feature in distanceFc) {
@@ -369,7 +370,7 @@ class MvtTileTest {
         }
 
         start = System.currentTimeMillis()
-        val nearestFc = tree.getNearestFeature(LngLatAlt(-4.316914, 55.941861), 50.0)
+        val nearestFc = tree.getNearestFeature(LngLatAlt(-4.316914, 55.941861), 50.0, CheapRuler(55.9473305))
         end = System.currentTimeMillis()
         println("Nearest (${end-start}ms):")
         println(nearestFc?.properties?.get("name"))
@@ -458,12 +459,12 @@ class MvtTileTest {
 
                 val location = LngLatAlt(longitude, latitude)
                 val sensedNearestRoads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-                    .getNearestCollection(location, 20.0, 10)
+                    .getNearestCollection(location, 20.0, 10, gridState.ruler)
 
                 var bestIndex = -1
                 var bestFitness = 0.0
                 for ((index, sensedRoad) in sensedNearestRoads.withIndex()) {
-                    val sensedRoadInfo = getDistanceToFeature(location, sensedRoad)
+                    val sensedRoadInfo = getDistanceToFeature(location, sensedRoad, gridState.ruler)
                     var headingOffSensedRoad =
                         abs((heading % 180) - (sensedRoadInfo.heading % 180))
                     if(headingOffSensedRoad > 90)
@@ -603,7 +604,8 @@ class MvtTileTest {
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation
                 )
-                val intersectionCallout = autoCallout.buildCalloutForIntersections(userGeometry, gridState)
+
+                val intersectionCallout = autoCallout.updateLocation(userGeometry, gridState)
                 if(intersectionCallout.isNotEmpty()) {
                     if (!compareCallouts(lastCallout, intersectionCallout)) {
                         // We've got a new callout, so add it to our geoJSON as a triangle for the
@@ -640,6 +642,10 @@ class MvtTileTest {
         testMovingGrid("travel.gpx", "callout-travel.txt", "map-matching.geojson")
         testMovingGrid("travel-2.gpx", "callout-travel-2.txt", "map-matching-2.geojson")
         testMovingGrid("travel-3.gpx", "callout-travel-3.txt", "map-matching-3.geojson")
+//        testMovingGrid("travel-4.gpx", "callout-travel-4.txt", "map-matching-4.geojson")
+//        testMovingGrid("travel-5.gpx", "callout-travel-5.txt", "map-matching-5.geojson")
+//        testMovingGrid("travel-6.gpx", "callout-travel-6.txt", "map-matching-6.geojson")
+//        testMovingGrid("travel-7.gpx", "callout-travel-7.txt", "map-matching-7.geojson")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

@@ -15,9 +15,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
-import hilt_aggregated_deps._org_scottishtecharmy_soundscape_OnboardingActivity_GeneratedInjector
 import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 
@@ -61,7 +61,8 @@ class MvtPerformanceTest {
         println("Tree size: ${tree.tree!!.size()} - ${end-start}ms")
 
         start = System.currentTimeMillis()
-        val distanceResults = Iterables.toList(tree.getNearbyCollection(LngLatAlt(-4.316914, 55.941861), 10.0))
+        val ruler = CheapRuler(55.941861)
+        val distanceResults = Iterables.toList(tree.getNearbyCollection(LngLatAlt(-4.316914, 55.941861), 10.0, ruler))
         end = System.currentTimeMillis()
         println("Search result in ${end-start}ms")
         for(dResult in distanceResults) {

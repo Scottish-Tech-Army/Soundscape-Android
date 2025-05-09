@@ -80,7 +80,8 @@ class PoiTest {
         for((index, polygon) in polygons.features.withIndex()) {
 
             val nearestFeature = poi.getNearestFeatureWithinTriangle(
-                getTriangleForDirection(polygons, index)
+                getTriangleForDirection(polygons, index),
+                gridState.ruler
             )
 
             val name = getNameForFeature(nearestFeature!!)
@@ -118,7 +119,8 @@ class PoiTest {
 
             val poiFeatures = poi.getNearestCollectionWithinTriangle(
                 getTriangleForDirection(polygons, index),
-                10
+                10,
+                gridState.ruler
             )
             // Check that the first returned name is the nearest
             val nearestName = getNameForFeature(poiFeatures.features[0])
@@ -161,7 +163,7 @@ class PoiTest {
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val featuresToDraw = FeatureCollection()
-        val features = poi.getNearbyCollection(userGeometry.location, 50.0)
+        val features = poi.getNearbyCollection(userGeometry.location, 50.0, gridState.ruler)
         featuresToDraw.plusAssign(features)
         assert(features.features.size == 39)
 

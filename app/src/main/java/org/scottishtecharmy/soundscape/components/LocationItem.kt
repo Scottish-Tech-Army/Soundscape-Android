@@ -67,7 +67,7 @@ fun LocationItem(
     var distanceString = ""
     if(userLocation != null) {
         distanceString = formatDistance(
-            userLocation.distance(item.location),
+            item.location.createCheapRuler().distance(userLocation, item.location),
             context
         )
     }

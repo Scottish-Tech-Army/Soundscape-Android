@@ -50,7 +50,7 @@ class StreetPreview {
                 var nearestIntersection : Intersection? = null
                 for(intersection in road.intersections) {
                     if(intersection != null) {
-                        val distanceToIntersection = userGeometry.location.distance(intersection.location)
+                        val distanceToIntersection = userGeometry.ruler.distance(userGeometry.location, intersection.location)
                         if(distanceToIntersection < nearestDistance) {
                             nearestIntersection = intersection
                             nearestDistance = distanceToIntersection
