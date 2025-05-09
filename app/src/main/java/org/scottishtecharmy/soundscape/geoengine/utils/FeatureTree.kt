@@ -9,6 +9,7 @@ import com.github.davidmoten.rtree2.geometry.Line
 import com.github.davidmoten.rtree2.geometry.Point
 import com.github.davidmoten.rtree2.geometry.Rectangle
 import com.github.davidmoten.rtree2.internal.EntryDefault
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
@@ -153,31 +154,43 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         return rect
     }
 
-    private fun distanceToEntry(entry: Entry<Feature, Geometry?>, from: LngLatAlt) : Double {
+    private fun distanceToEntry(entry: Entry<Feature, Geometry?>,
+                                from: LngLatAlt,
+                                ruler: Ruler
+    ) : Double {
         when (val p = entry.geometry()) {
             is Point -> {
                 val position = LngLatAlt(p.x(), p.y())
-                return from.distance(position)
+                return ruler.distance(from, position)
             }
 
             is Line -> {
-                return from.distanceToLine(LngLatAlt(p.x1(), p.y1()),LngLatAlt(p.x2(), p.y2()))
+                return ruler.pointToSegmentDistance(
+                    from,
+                    LngLatAlt(p.x1(), p.y1()),
+                    LngLatAlt(p.x2(), p.y2())
+                )
             }
 
             is Rectangle -> {
-                return distanceToPolygon(from, entry.value().geometry as Polygon)
+                return distanceToPolygon(from, entry.value().geometry as Polygon, ruler)
             }
         }
         return Double.POSITIVE_INFINITY
     }
 
-    private fun entryWithinDistance(entry: Entry<Feature, Geometry?>, distance: Double, from: LngLatAlt)  : Boolean {
-        return distanceToEntry(entry, from) < distance
+    private fun entryWithinDistance(entry: Entry<Feature, Geometry?>,
+                                    distance: Double,
+                                    from: LngLatAlt,
+                                    ruler: Ruler
+    )  : Boolean {
+        return distanceToEntry(entry, from, ruler) < distance
     }
 
     private fun searchWithinDistance(
         lonLat: Point,
-        distance: Double
+        distance: Double,
+        ruler: Ruler
     ): MutableIterable<Entry<Feature, Geometry?>>? {
 
         // This should not be called if the tree is null
@@ -190,14 +203,15 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
         return Iterables.filter(tree!!.search(bounds))
         { entry ->
-            entryWithinDistance(entry, distance, from)
+            entryWithinDistance(entry, distance, from, ruler)
         }
     }
 
     private fun nearestWithinDistance(
         lonLat: Point,
         distance: Double,
-        maxCount: Int
+        maxCount: Int,
+        ruler: Ruler
     ): MutableIterable<Entry<Feature, Geometry?>>? {
 
         // This should not be called if the tree is null
@@ -206,7 +220,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         val from = LngLatAlt(lonLat.x(), lonLat.y())
         return Iterables.filter(tree!!.nearest(lonLat, distance, maxCount))
         { entry ->
-            entryWithinDistance(entry, distance, from)
+            entryWithinDistance(entry, distance, from, ruler)
         }
     }
 
@@ -315,7 +329,8 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
     private fun nearestWithinTriangle(
         triangle: Triangle,
-        maxCount: Int
+        maxCount: Int,
+        ruler: Ruler
     ): FeatureCollection {
 
         val results = FeatureCollection()
@@ -336,7 +351,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
             val unsortedList = emptyList<EntryWithDistance>().toMutableList()
             for (entry in resultsWithinTriangle) {
-                unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, triangle.origin)))
+                unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, triangle.origin, ruler)))
             }
             val sortedList = unsortedList.sortedBy { entryWithinDistance ->
                 entryWithinDistance.distance
@@ -382,13 +397,15 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * @result FeatureCollection containing all of the features from the rtree that are within
      * distance of the location
      */
-    fun getNearbyCollection(location: LngLatAlt, distance: Double): FeatureCollection {
+    fun getNearbyCollection(location: LngLatAlt, distance: Double, ruler: Ruler): FeatureCollection {
         val featureCollection = FeatureCollection()
         if(tree != null) {
             // Return only the entries within distance of our location
             val distanceResults = Iterables.toList(searchWithinDistance(
                 Geometries.pointGeographic(location.longitude, location.latitude),
-                distance))
+                distance,
+                ruler)
+            )
 
             val deduplicationSet = mutableSetOf<Feature>()
             for (feature in distanceResults) {
@@ -415,13 +432,16 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     fun getNearestCollection(location: LngLatAlt,
                              distance: Double,
                              maxCount: Int,
+                             ruler: Ruler,
                              initialCollection: FeatureCollection? = null): FeatureCollection {
         val featureCollection = FeatureCollection()
         if(tree != null) {
             val distanceResults = Iterables.toList(nearestWithinDistance(
                 Geometries.pointGeographic(location.longitude, location.latitude),
                 distance,
-                maxCount))
+                maxCount,
+                ruler)
+            )
 
             // Deduplicate returned entries and add them to a list ready to sort by distance
             val deduplicationSet = mutableSetOf<Feature>()
@@ -429,7 +449,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             val unsortedList = emptyList<EntryWithDistance>().toMutableList()
             for (entry in distanceResults) {
                 if(!deduplicationSet.contains(entry.value())) {
-                    unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, location)))
+                    unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, location, ruler)))
                     deduplicationSet.add(entry.value())
                 }
             }
@@ -450,7 +470,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 if (initialItem != null) {
                     var addInitial = false
                     if (newItem == null) addInitial = true
-                    if(!addInitial) addInitial = getDistanceToFeature(location, initialItem).distance < newItem!!.distance
+                    if(!addInitial) addInitial = getDistanceToFeature(location, initialItem, ruler).distance < newItem!!.distance
                     if(addInitial) {
                         featureCollection.addFeature(initialItem)
                         initialItem = if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
@@ -471,13 +491,16 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * @param distance Maximum distance to return results for
      * @result Feature that is the nearest member of the rtree that is also within distance
      */
-    fun getNearestFeature(location: LngLatAlt, distance: Double = Double.POSITIVE_INFINITY): Feature? {
+    fun getNearestFeature(location: LngLatAlt,
+                          distance: Double = Double.POSITIVE_INFINITY,
+                          ruler: Ruler? = null): Feature? {
         if(tree != null) {
             val distanceResults = Iterables.toList(
                 nearestWithinDistance(
                     Geometries.pointGeographic(location.longitude, location.latitude),
                     distance,
-                    1
+                    1,
+                    ruler ?: location.createCheapRuler()
                 )
             )
 
@@ -496,11 +519,13 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * provided
      */
     fun getNearestCollectionWithinTriangle(triangle: Triangle,
-                                           maxCount: Int): FeatureCollection {
+                                           maxCount: Int,
+                                           ruler: Ruler
+    ): FeatureCollection {
 
         if(tree == null) return FeatureCollection()
 
-        return nearestWithinTriangle(triangle, maxCount)
+        return nearestWithinTriangle(triangle, maxCount, ruler)
     }
 
     /**
@@ -529,12 +554,12 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * @param triangle Triangle to search within
      * @result Feature that is the nearest member of the rtree within the triangle provided
      */
-    fun getNearestFeatureWithinTriangle(triangle: Triangle): Feature? {
+    fun getNearestFeatureWithinTriangle(triangle: Triangle, ruler: Ruler): Feature? {
 
         if (tree == null)
             return null
 
-        val results = nearestWithinTriangle(triangle, 1)
+        val results = nearestWithinTriangle(triangle, 1, ruler)
         if(results.features.isEmpty()) return null
 
         return results.features[0]

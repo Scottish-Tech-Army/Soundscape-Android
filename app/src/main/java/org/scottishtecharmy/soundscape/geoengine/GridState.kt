@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -57,6 +58,7 @@ open class GridState {
 
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
+    internal var ruler = CheapRuler(0.0)
     internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
     internal var gridIntersections: HashMap<LngLatAlt, Intersection> = HashMap<LngLatAlt, Intersection>()
 
@@ -95,6 +97,20 @@ open class GridState {
             while(iterator.hasNext()) {
                 val way = iterator.next()
                 if(way.wayType == WayType.JOINER) {
+
+                    // Remove far end too
+                    val otherEnd = way.getOtherIntersection(intersection)
+                    if(otherEnd != null) {
+                        val members = otherEnd.members.listIterator()
+                        while(members.hasNext()) {
+                            val member = members.next()
+                            if(member == way) {
+                                members.remove()
+                                break
+                            }
+                        }
+                    }
+
                     way.intersections[WayEnd.START.id] = null
                     way.intersections[WayEnd.END.id] = null
                     iterator.remove()
@@ -170,7 +186,7 @@ open class GridState {
                         // Don't join if already joined
                         if(intersection1.members.size < 2) {
                             // Join if within 1.0m
-                            val distance = intersection1.location.distance(intersection2.location)
+                            val distance = ruler.distance(intersection1.location, intersection2.location)
                             if (distance < 1.0) {
                                 // Join the intersections together
                                 val way = Way()
@@ -235,6 +251,7 @@ open class GridState {
                         val timeSource = TimeSource.Monotonic
                         val gridStartTime = timeSource.markNow()
 
+                        ruler = CheapRuler(location.latitude)
                         clearTileConnectionsFromGrid()
 
                         processGridState(
@@ -440,13 +457,14 @@ open class GridState {
         val result = if(distance == Double.POSITIVE_INFINITY) {
             featureTrees[id.id].getAllCollection()
         } else {
+            val ruler = CheapRuler(location.latitude)
             if(maxCount == 0) {
-                featureTrees[id.id].getNearbyCollection(location, distance)
+                featureTrees[id.id].getNearbyCollection(location, distance, ruler)
             } else {
                 if (maxCount == 0) {
-                    featureTrees[id.id].getNearbyCollection(location, distance)
+                    featureTrees[id.id].getNearbyCollection(location, distance, ruler)
                 } else {
-                    featureTrees[id.id].getNearestCollection(location, distance, maxCount)
+                    featureTrees[id.id].getNearestCollection(location, distance, maxCount, ruler)
                 }
             }
         }

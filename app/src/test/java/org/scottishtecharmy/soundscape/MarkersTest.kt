@@ -27,9 +27,9 @@ class MarkersTest {
 
         // I'm just reusing the Intersection functions here for the markers test
         val triangle = getFovTriangle(userGeometry)
-        val nearestMarker = markersTree.getNearestFeatureWithinTriangle(triangle)
+        val nearestMarker = markersTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         val nearestPoint = nearestMarker!!.geometry as Point
-        val nearestMarkerDistance = userGeometry.location.distance(nearestPoint.coordinates)
+        val nearestMarkerDistance = userGeometry.ruler.distance(userGeometry.location, nearestPoint.coordinates)
 
         println("Approaching ${nearestMarker.properties!!["marker"]} marker at $nearestMarkerDistance meters")
 

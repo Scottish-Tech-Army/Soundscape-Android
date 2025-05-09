@@ -33,7 +33,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPoly
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
-import org.scottishtecharmy.soundscape.geoengine.utils.traceLineString
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -215,7 +214,7 @@ class TileUtilsTest {
         Assert.assertEquals(
             55659.75,
             distanceToFeatureCollection.features[0].foreign?.get("distance_to") as Double,
-            0.1
+            500.0 // CheapRuler is very inaccurate at these distances
         )
         // Current location is on the boundary of the Polygon so distance should be 0.0
         Assert.assertEquals(
@@ -412,7 +411,7 @@ class TileUtilsTest {
         // Create a FOV triangle to pick up the intersections
         val triangle = getFovTriangle(userGeometry)
         val nearestIntersection =
-            intersectionTree.getNearestFeatureWithinTriangle(triangle)
+            intersectionTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
         // Should only be the nearest intersection in this Feature Collection
         assert(nearestIntersection != null)
@@ -489,13 +488,14 @@ class TileUtilsTest {
         // Create a FOV triangle to pick up the poi
         val triangle = getFovTriangle(userGeometry)
         val nearestPoiFeature =
-            poiTree.getNearestFeatureWithinTriangle(triangle)
+            poiTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
         // It's a grit-bin - not the most useful, but the original Soundscape used to find houses
         // which was even less useful. Measure distance to it.
-        val distance = getDistanceToFeature(userGeometry.location, nearestPoiFeature!!)
+        val distance = getDistanceToFeature(userGeometry.location, nearestPoiFeature!!, userGeometry.ruler)
 
-        Assert.assertEquals(46.82, distance.distance, 0.01)
+        Assert.assertEquals(46.82, distance.distance, 0.1) //  CheapRuler is slightly inaccurate at these distances
+
     }
 
     @Test
@@ -660,13 +660,13 @@ class TileUtilsTest {
         val fovRoadsFeatureCollection = roadTree.getAllWithinTriangle(triangle)
 
         // Create a FOV triangle to pick up the intersections
-        val nearestIntersection = intersectionTree.getNearestFeatureWithinTriangle(triangle)
+        val nearestIntersection = intersectionTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         assert(nearestIntersection != null)
 
         // how far away is the intersection?
         val nearestIntersectionPoint = nearestIntersection!!.geometry as Point
         val distanceToNearestIntersection =
-            userGeometry.location.distance(nearestIntersectionPoint.coordinates)
+            userGeometry.ruler.distance(userGeometry.location, nearestIntersectionPoint.coordinates)
         Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
@@ -732,35 +732,6 @@ class TileUtilsTest {
 
         val explodedFeatureCollection = explodeLineString(featureCollection)
         Assert.assertEquals(2, explodedFeatureCollection.features.size)
-    }
-
-    @Test
-    fun traceLineStringTest() {
-        val featureCollection = FeatureCollection().also {
-            it.addFeature(
-                Feature().also { feature ->
-                    feature.geometry = LineString().also { lineString ->
-                        lineString.coordinates = arrayListOf(
-                            LngLatAlt(0.0, 0.0),
-                            LngLatAlt(1.0, 1.0),
-                            LngLatAlt(2.0, 0.0)
-                        )
-                    }
-                }
-            )
-        }
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-
-        val tracedEvery1000FeatureCollection = traceLineString(featureCollection, 1000.0)
-        val tracedEvery10000FeatureCollection = traceLineString(featureCollection, 10000.0)
-
-        val pointEvery1000String =
-            moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery1000FeatureCollection)
-        val pointEvery10000String =
-            moshi.adapter(FeatureCollection::class.java).toJson(tracedEvery10000FeatureCollection)
-        // copy and paste into GeoJSON.io
-        println(pointEvery1000String)
-        println(pointEvery10000String)
     }
 
     @Test

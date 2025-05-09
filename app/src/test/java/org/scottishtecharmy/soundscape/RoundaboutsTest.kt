@@ -75,9 +75,9 @@ class RoundaboutsTest {
         }
         val fovIntersectionsFeatureCollection = intersectionsTree.getAllWithinTriangle(triangle)
 
-        val nearestIntersection = intersectionsTree.getNearestFeatureWithinTriangle(triangle)
+        val nearestIntersection = intersectionsTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
-        val distanceToRoundabout = getDistanceToFeature(userGeometry.location, nearestIntersection!!)
+        val distanceToRoundabout = getDistanceToFeature(userGeometry.location, nearestIntersection!!, userGeometry.ruler)
         // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
         println("Roundabout with ${roundaboutExitRoads.features.size} " +
                 "exits $distanceToRoundabout away")
@@ -91,7 +91,7 @@ class RoundaboutsTest {
         val boundingBoxOfCircleCorners = getBoundingBoxCorners(boundingBoxOfCircle)
         val centerOfBoundingBox = getCenterOfBoundingBox(boundingBoxOfCircleCorners)
 
-        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
+        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         val testNearestRoadBearing =
             getRoadBearingToIntersection(nearestIntersection, testNearestRoad)
         val geometry = UserGeometry(centerOfBoundingBox, testNearestRoadBearing, userGeometry.fovDistance)
@@ -172,12 +172,12 @@ class RoundaboutsTest {
         val fovRoadsFeatureCollection = roadsTree.getAllWithinTriangle(triangle)
 
         // get the nearest intersection in the FoV and the roads that make up the intersection
-        val nearestIntersection = intersectionsTree.getNearestFeatureWithinTriangle(triangle)
+        val nearestIntersection = intersectionsTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
         // This will remove the duplicate "osm_ids" from the intersection
         val cleanNearestIntersection = removeDuplicates(nearestIntersection)
 
-        val testNearestRoad = roadsTree.getNearestFeatureWithinTriangle(triangle)
+        val testNearestRoad = roadsTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
         val testNearestRoadBearing = getRoadBearingToIntersection(cleanNearestIntersection, testNearestRoad)
 
@@ -238,14 +238,14 @@ class RoundaboutsTest {
         val fovRoadsFeatureCollection = roadsTree.getAllWithinTriangle(triangle)
 
         // get the nearest intersection in the FoV
-        val testNearestIntersection = intersectionTree.getNearestFeatureWithinTriangle(triangle)
+        val testNearestIntersection = intersectionTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
         // get the roads that make up the intersection - this is where the road splits into two "oneway" roads
         val intersectionRoadNames = getIntersectionRoadNames(testNearestIntersection, fovRoadsFeatureCollection)
         println("Number of roads that make up the nearest intersection ${intersectionRoadNames.features.size}")
         // I need to test that the intersection roads have
         // "oneway" and "yes" tags and that the road names are all the same
-        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle)
+        val testNearestRoad = FeatureTree(fovRoadsFeatureCollection).getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         for (road in intersectionRoadNames) {
             if(testNearestRoad!!.properties?.get("name") == road.properties?.get("name")
                 && road.properties?.get("oneway") == "yes"){
@@ -414,7 +414,7 @@ class RoundaboutsTest {
                 val newFeatureCollectionJson = moshi.adapter(FeatureCollection::class.java).toJson(newFeatureCollection)
                 println("This should display the combined roads and directions: $newFeatureCollectionJson")*/
 
-                val distanceToRoundabout = userGeometry.location.distance(roundaboutCenter.center)
+                val distanceToRoundabout = userGeometry.ruler.distance(userGeometry.location, roundaboutCenter.center)
 
                 // Original string "directions_roundabout_with_exits_distance" Roundabout with %1$@ exits %2$@ away
                 println(

@@ -1,9 +1,9 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
-import org.scottishtecharmy.soundscape.geoengine.utils.CheapRuler
-import org.scottishtecharmy.soundscape.geoengine.utils.meters
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.math.abs
 
@@ -43,7 +43,7 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    val mapMatchedWay: Way? = null,
                    val mapMatchedLocation: PointAndDistanceAndHeading? = null,
                    val currentBeacon: LngLatAlt? = null,
-                   val cheapRuler: CheapRuler = CheapRuler(location.latitude, meters),
+                   val ruler: Ruler = CheapRuler(location.latitude),
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
                    private var headHeading: Double? = null,

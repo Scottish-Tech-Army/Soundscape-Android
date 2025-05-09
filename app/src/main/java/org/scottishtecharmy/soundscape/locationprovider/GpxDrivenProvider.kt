@@ -10,6 +10,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.GeodesicRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
@@ -37,6 +38,7 @@ class GpxDrivenProvider  {
         parseGpx(input)
 
         coroutineScope.launch {
+            var ruler = GeodesicRuler()
             while (true) {
                 val point = parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(trackPointIndex)
 
@@ -50,7 +52,7 @@ class GpxDrivenProvider  {
                             )
                         nextPoint?.let { itNext ->
                             val nextPointLngLatAlt = LngLatAlt(itNext.longitude, itNext.latitude)
-                            val distance = pointLngLatAlt.distance(nextPointLngLatAlt)
+                            val distance = ruler.distance(pointLngLatAlt, nextPointLngLatAlt)
                             stepsInPoint = (distance / (walkingSpeed * (msWait/1000.0))).toInt()
                             if(stepsInPoint == 0) stepsInPoint = 1
                             currentStep = 0

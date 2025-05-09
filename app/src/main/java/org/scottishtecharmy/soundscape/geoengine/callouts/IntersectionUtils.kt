@@ -14,7 +14,6 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
-import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
@@ -59,7 +58,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     var nearestRoad = userGeometry.mapMatchedWay
     if(nearestRoad == null)
-        nearestRoad = roadTree.getNearestFeatureWithinTriangle(triangle) as Way?
+        nearestRoad = roadTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler) as Way?
 
     // If we're on a mapped sidewalk, use the associated road for intersection detection instead of
     // the sidewalk itself.
@@ -76,11 +75,12 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         var bestRoadDistance = Double.MAX_VALUE
         for(road in fovRoads.features) {
             if(nearestRoad.properties?.get("pavement") == road.properties?.get("name")) {
-                val roadDistance = userGeometry.mapMatchedLocation?.point?.distanceToLineString(road.geometry as LineString)
-                if(roadDistance != null) {
+                if(userGeometry.mapMatchedLocation?.point != null) {
+                    val roadDistance =
+                        userGeometry.ruler.distanceToLineString(userGeometry.mapMatchedLocation.point, road.geometry as LineString)
                     val snappedHeading = userGeometry.snappedHeading()
-                    if(snappedHeading != null) {
-                        if(((roadDistance.heading - snappedHeading + 360.0) % 180.0) > 45.0) {
+                    if (snappedHeading != null) {
+                        if (((roadDistance.heading - snappedHeading + 360.0) % 180.0) > 45.0) {
                             // This way is not at the angle of travel, so skip it
                             continue
                         }

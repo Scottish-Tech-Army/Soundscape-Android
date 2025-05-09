@@ -277,7 +277,7 @@ private fun LocationDescriptionTextsSection(
         // If the location changes, recalculate the distance string
         if(userLocation == null) return@remember ""
         return@remember formatDistance(
-            userLocation.distance(locationDescription.location),
+            userLocation.createCheapRuler().distance(userLocation, locationDescription.location),
             context)
     }
 

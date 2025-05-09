@@ -80,6 +80,7 @@ fun AddWaypointsList(
         Folder(stringResource(R.string.osm_tag_intersection), Icons.Rounded.ForkLeft, "intersections"),
     )
     val context = LocalContext.current
+    val ruler = placesNearbyUiState.userLocation?.createCheapRuler() ?: LngLatAlt().createCheapRuler()
     val nearbyLocations = remember(placesNearbyUiState) {
         if(placesNearbyUiState.filter == "intersections") {
             placesNearbyUiState.nearbyIntersections.features.filter { feature ->
@@ -88,9 +89,13 @@ fun AddWaypointsList(
             }.map { feature ->
                 LocationDescription(
                     name = feature.properties?.get("name").toString(),
-                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                    location = getDistanceToFeature(LngLatAlt(), feature, ruler).point
                 )
-            }.sortedBy { placesNearbyUiState.userLocation?.distance(it.location) }
+            }.sortedBy {
+                placesNearbyUiState.userLocation?.let { location ->
+                    ruler.distance(location, it.location)
+                } ?: 0.0
+            }
 
         } else {
             placesNearbyUiState.nearbyPlaces.features.filter { feature ->
@@ -100,9 +105,13 @@ fun AddWaypointsList(
             }.map { feature ->
                 LocationDescription(
                     name = getTextForFeature(context, feature).text,
-                    location = getDistanceToFeature(LngLatAlt(), feature).point
+                    location = getDistanceToFeature(LngLatAlt(), feature, ruler).point
                 )
-            }.sortedBy { placesNearbyUiState.userLocation?.distance(it.location) }
+            }.sortedBy {
+                placesNearbyUiState.userLocation?.let { location ->
+                    ruler.distance(location, it.location)
+                } ?: 0.0
+            }
         }
     }
 

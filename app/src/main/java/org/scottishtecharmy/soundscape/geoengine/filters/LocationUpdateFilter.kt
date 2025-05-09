@@ -36,7 +36,7 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
         }
 
         lastLocation?.let { geometry ->
-            val distance = userGeometry.location.distance(geometry.location)
+            val distance = userGeometry.ruler.distance(userGeometry.location, geometry.location)
             val timeDifference = System.currentTimeMillis() - lastTime
 
             if ((distance >= updateDistanceInterval) && (timeDifference >= updateTimeInterval)) {

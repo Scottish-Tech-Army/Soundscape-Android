@@ -3,9 +3,8 @@ package org.scottishtecharmy.soundscape.geoengine.filters
 import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.addSidewalk
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
@@ -27,7 +26,6 @@ import kotlin.math.min
 import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.sqrt
-import kotlin.time.measureTime
 
 private const val FRECHET_QUEUE_SIZE = 4 // The size of this queue doesn't make a lot of difference!
 
@@ -87,7 +85,12 @@ class RoadFollower(val parent: MapMatchFilter,
     }
 
 
-    fun update(gpsLocation: LngLatAlt, overallLastMatchedLocation: LngLatAlt?, collection: FeatureCollection) : RoadFollowerStatus {
+    fun update(
+        gpsLocation: LngLatAlt,
+        overallLastMatchedLocation: LngLatAlt?,
+        collection: FeatureCollection,
+        ruler: CheapRuler
+    ) : RoadFollowerStatus {
 
         // Update radius
         var gpsHeading = Double.NaN
@@ -104,12 +107,12 @@ class RoadFollower(val parent: MapMatchFilter,
 
             // Get the shortest D min value (distance from new location to previous chord ends)
             dMin = min(
-                gpsLocation.distance(lastChordPoints[0]),
-                gpsLocation.distance(lastChordPoints[1])
+                ruler.distance(gpsLocation, lastChordPoints[0]),
+                ruler.distance(gpsLocation, lastChordPoints[1])
             )
 
             // Calculate the average point gap
-            pointGap = gpsLocation.distance(lastLocation)
+            pointGap = ruler.distance(gpsLocation, lastLocation)
             if (averagePointGap == 0.0)
                 averagePointGap = pointGap
             else {
@@ -122,10 +125,10 @@ class RoadFollower(val parent: MapMatchFilter,
         if (currentNearestRoad.geometry.type == "LineString") {
 
             nearestPoint =
-                gpsLocation.distanceToLineString(currentNearestRoad.geometry as LineString)
+                ruler.distanceToLineString(gpsLocation, currentNearestRoad.geometry as LineString)
             if (nextRoad != null) {
                 val nearestPointOnNextRoad =
-                    gpsLocation.distanceToLineString(nextRoad!!.geometry as LineString)
+                    ruler.distanceToLineString(gpsLocation, nextRoad!!.geometry as LineString)
                 if (nearestPointOnNextRoad.distance < nearestPoint!!.distance) {
 
                     currentNearestRoad = nextRoad!!.also {
@@ -179,13 +182,13 @@ class RoadFollower(val parent: MapMatchFilter,
                 var matchedPoint = nearestPoint
                 if ((lastGpsLocation != null) and (lastMatchedLocation != null)) {
                     val c1 = bearingFromTwoPoints(lastGpsLocation!!, lastMatchedLocation!!.point)
-                    val d1 = lastGpsLocation!!.distance(lastMatchedLocation!!.point)
+                    val d1 = ruler.distance(lastGpsLocation!!, lastMatchedLocation!!.point)
                     var ar = k.pow(pointGap / averagePointGap)
                     if (ar.isNaN()) ar = 1.0
                     lastCenter = getDestinationCoordinate(gpsLocation, c1, d1 * ar)
                     matchedPoint =
-                        lastCenter.distanceToLineString(currentNearestRoad.geometry as LineString)
-                    radius = max(dMin, gpsLocation.distance(lastGpsLocation!!) * ar)
+                        ruler.distanceToLineString(lastCenter, currentNearestRoad.geometry as LineString)
+                    radius = max(dMin, ruler.distance(gpsLocation, lastGpsLocation!!) * ar)
                 }
                 // Check if we can actually get to this new point from the last point
                 if (overallLastMatchedLocation != null) {
@@ -278,39 +281,11 @@ class MapMatchFilter {
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
 
-    fun nearestIntersection(way: Way, location: LngLatAlt) : Intersection? {
-        var distanceToNearestIntersection = Double.MAX_VALUE
-        var nearestIntersection : Intersection? = null
-
-        for(wayEnd in way.intersections) {
-            if (wayEnd != null) {
-                // Follow way from intersection to avoid TILE_EDGE intersections
-                val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
-                way.followWays(wayEnd, ways)
-
-                val intersection = if (ways.last().first)
-                    ways.last().second.intersections[WayEnd.START.id]
-                else
-                    ways.last().second.intersections[WayEnd.END.id]
-
-                if (intersection != null) {
-                    val distance = location.distance(intersection.location)
-                    if (distance < distanceToNearestIntersection) {
-                        distanceToNearestIntersection = distance
-                        nearestIntersection = intersection
-                    }
-                }
-            }
-        }
-        return nearestIntersection
-    }
-
     var colorIndex = 0
     fun filter(location: LngLatAlt, gridState: GridState, collection: FeatureCollection): Triple<LngLatAlt?, Feature?, String> {
 
         var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
-
-        var roads = roadTree.getNearestCollection(location, 20.0, 4)
+        var roads = roadTree.getNearestCollection(location, 20.0, 4, gridState.ruler)
         var found = false
         for (road in roads) {
             val way = road as Way
@@ -359,7 +334,7 @@ class MapMatchFilter {
         val followerIterator = followerList.listIterator()
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
-            val frechetStatus = follower.update(location, matchedLocation?.point, collection)
+            val frechetStatus = follower.update(location, matchedLocation?.point, collection, gridState.ruler)
             freshetList.add(Pair(frechetStatus, follower.color))
             if(frechetStatus.confidence < 0) {
                 followerIterator.remove()
@@ -385,8 +360,8 @@ class MapMatchFilter {
                         if(matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
-                            addSidewalk(matched, roadTree)
-                            addSidewalk(way, roadTree)
+                            addSidewalk(matched, roadTree, gridState.ruler)
+                            addSidewalk(way, roadTree, gridState.ruler)
 
                             val matchedPavement = matched.properties?.get("pavement")
                             val matchedName = matched.properties?.get("name")
@@ -407,20 +382,17 @@ class MapMatchFilter {
                         }
                         if(useDijkstra) {
                             val testDistance = (follower.averagePointGap * 3) + 10.0
-                            val timeDijkstra = measureTime {
-                                val shortestDistance = findShortestDistance(
-                                    matchedLocation!!.point,
-                                    follower.chosen()!!.point,
-                                    matched,
-                                    way,
-                                    null,
-                                    testDistance
-                                )
-                                if (shortestDistance.distance >= testDistance)
-                                    skip = true
-                                shortestDistance.tidy()
-                            }
-                            println("Time Dijkstra: $timeDijkstra")
+                            val shortestDistance = findShortestDistance(
+                                matchedLocation!!.point,
+                                follower.chosen()!!.point,
+                                matched,
+                                way,
+                                null,
+                                testDistance
+                            )
+                            if (shortestDistance.distance >= testDistance)
+                                skip = true
+                            shortestDistance.tidy()
                         }
                     }
                 }

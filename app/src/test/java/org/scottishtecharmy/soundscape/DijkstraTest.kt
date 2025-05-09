@@ -45,7 +45,7 @@ class DijkstraTest {
              * intersections and with a length value for each Way. We don't have a node ID, but
              * the intersections are all unique objects, so that should be enough.
              */
-            val shortestPathDistance = dijkstraOnWaysWithLoops(startIntersection, endIntersection)
+            val shortestPathDistance = dijkstraOnWaysWithLoops(startIntersection, endIntersection, gridState.ruler)
             val ways = getPathWays(
                 endIntersection
             )
