@@ -186,6 +186,11 @@ class Way : Feature() {
         return ((footway == "sidewalk") || (footway == "crossing"))
     }
 
+    fun endsAtTileEdge() : Boolean {
+        return (intersections[WayEnd.START.id]?.intersectionType == IntersectionType.TILE_EDGE) ||
+                (intersections[WayEnd.END.id]?.intersectionType == IntersectionType.TILE_EDGE)
+    }
+
     /**
      * isSidewalkConnector returns true if this way is joining mainWay from intersection to its
      * own sidewalk e.g. https://www.openstreetmap.org/way/958596881. If we are map matched to the
@@ -204,6 +209,10 @@ class Way : Feature() {
         if(name != null)
             return false
 
+        // It's not a connector if it's more than 20m long, or it ends in a TILE_EDGE
+        if((length > 20.0) || endsAtTileEdge())
+            return false
+
         // Look at the other end and check if it connects to a sidewalk associated with the mainWay
         getOtherIntersection(intersection)?.let { otherIntersection ->
             for(way in otherIntersection.members) {
@@ -217,7 +226,8 @@ class Way : Feature() {
                     confectNamesForRoad(way, gridState)
                 }
                 // And then return true if it's the pavement for this Way
-                return (way.properties?.get("pavement") == mainWay.properties?.get("name"))
+                val pavement = way.properties?.get("pavement")
+                return ((pavement != null) && (pavement == mainWay.properties?.get("name")))
             }
         }
         return false
@@ -292,6 +302,10 @@ class Way : Feature() {
             (geometry as LineString).coordinates.dropLast(1).last()
 
         return bearingFromTwoPoints(fromIntersection.location, nextLocation)
+    }
+
+    fun containsIntersection(intersection: Intersection) : Boolean {
+        return intersections.contains(intersection)
     }
 
     fun getOtherIntersection(fromIntersection: Intersection) : Intersection? {

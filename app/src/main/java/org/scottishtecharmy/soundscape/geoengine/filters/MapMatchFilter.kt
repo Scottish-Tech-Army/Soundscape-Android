@@ -3,7 +3,11 @@ package org.scottishtecharmy.soundscape.geoengine.filters
 import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.addSidewalk
@@ -14,25 +18,137 @@ import org.scottishtecharmy.soundscape.geoengine.utils.clone
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.fromRadians
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import kotlin.math.abs
 import kotlin.math.asin
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.max
 import kotlin.math.pow
+import kotlin.math.sign
 import kotlin.math.sqrt
 
-private const val FRECHET_QUEUE_SIZE = 4 // The size of this queue doesn't make a lot of difference!
+private const val FRECHET_QUEUE_SIZE = 24
 
-data class RoadFollowerStatus(val frechetAverage: Double, val confidence: Int)
+enum class RoadFollowerState {
+    LOCKED,
+    UNLOCKED,
+    ANGLED_AWAY,
+    DIRECTION_CHANGED,
+    DISTANT
+}
+data class RoadFollowerStatus(val frechetAverage: Double, val state: RoadFollowerState)
+
+/**
+ * Create a single LineString from our route which is a list of Ways. Two Arrays are created when
+ * the line is created:
+ *   * indices - this allows any point in the line to be referenced back to the route that created
+ *     it. When a point is found on the line it can be immediately matched to the Way that it
+ *     belongs to.
+ *   * direction - the line segments all have to be in the same direction, and this involves
+ *     reversing the lines from the Way to keep the line contiguous. We store this so that we can
+ *     adjust the heading for a point on the line to match that of the Way rather than of the line.
+ *
+ *  We also create a hashCode as the line is created. This is so that RoadFollowers with identical
+ *  lines can be de-duplicated.
+ */
+class IndexedLineString {
+
+    var line : LineString? = null
+    var indices: Array<Int>? = null
+    var direction: Array<Boolean>? = null
+    var hashCode: Int = 0
+
+    fun getWayIndex(pointIndex: Int) : Int? {
+
+        indices?.let { indices ->
+            for ((index, offset) in indices.withIndex()) {
+                if (pointIndex < offset) {
+                    return index
+                }
+            }
+            return indices.size - 1
+        }
+        return null
+    }
+
+    fun updateFromRoute(route: List<Way>) {
+
+        if (route.isEmpty()) {
+            line = null
+            return
+        }
+
+        indices = Array<Int>(route.size) { 0 }
+        direction = Array<Boolean>(route.size) { true }
+        if (route.size == 1) {
+            line = route[0].geometry as LineString
+            indices?.set(0, line!!.coordinates.size)
+            hashCode = line?.coordinates.hashCode()
+            return
+        }
+
+        line = LineString()
+        var nextIntersection = route[0].doesIntersect(route[1])
+        if(nextIntersection == null) {
+            // We can get here if the tile grid is recalculated, and tiles rejoined and the route is
+            // left with out of date and disconnected ways.
+            assert(false)
+        }
+        var firstIntersection = route[0].getOtherIntersection(nextIntersection!!)
+        var forwards = nextIntersection != route[0].intersections[WayEnd.START.id]
+
+        for ((index, way) in route.withIndex()) {
+            if (index != 0) {
+                forwards = firstIntersection != way.intersections[WayEnd.END.id]
+            }
+
+            // And add its coordinates to the LineString along with whether or not we reversed the
+            // order of the coordinates. This results in the same coordinate being duplicated at
+            // each intersection, but is simple.
+            if (forwards) {
+                line!!.coordinates.addAll((way.geometry as LineString).coordinates)
+                direction?.set(index, true)
+            }
+            else {
+                line!!.coordinates.addAll((way.geometry as LineString).coordinates.reversed())
+                direction?.set(index, false)
+            }
+
+            // Note the index at which this Way ends
+            indices?.set(index, line!!.coordinates.size)
+
+            if(firstIntersection != null) {
+                firstIntersection = way.getOtherIntersection(firstIntersection)
+                if(firstIntersection?.intersectionType == IntersectionType.TILE_EDGE) {
+                    for(member in firstIntersection!!.members) {
+                        if(member.wayType == WayType.JOINER) {
+                            if((member.intersections[WayEnd.START.id] == null) &&
+                               (member.intersections[WayEnd.END.id] == null))
+                            {
+                                assert(false)
+                            } else {
+                                firstIntersection = member.getOtherIntersection(firstIntersection!!)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        hashCode = line?.coordinates.hashCode()
+    }
+}
 
 class RoadFollower(val parent: MapMatchFilter,
-                   var currentNearestRoad: Way,
+                   var route: MutableList<Way>,
                    var lastGpsLocation: LngLatAlt?,
                    val colorIndex: Int) {
 
@@ -42,10 +158,38 @@ class RoadFollower(val parent: MapMatchFilter,
     var lastMatchedLocation: PointAndDistanceAndHeading? = null
     var lastCenter = LngLatAlt()
     val frechetQueue = ArrayDeque<Double>(FRECHET_QUEUE_SIZE)
-    var nextRoad: Way? = null
 
     val k = 0.2
     var averagePointGap: Double = 0.0
+
+    var ils = IndexedLineString()
+    var currentNearestRoad: Way = route[0]
+
+    // Instead of acting on the LineStrings of individual Ways, we want to create our own LineString
+    // by concatenating those within the Ways to make a single line. Each point should link to
+    // the Way that it is a member of so that at any point it's know that that's what's being
+    // followed. This should solve the current issue where the following is poor near intersections,
+    // and followers with the closest matching LineString should maintain a good lock.
+    // This is particularly important where there are many short segments e.g. around
+    //          https://www.openstreetmap.org/node/12580941684
+    //
+    // The LineString can be trimmed once it's members no longer form part of the Frechet queue.
+    //
+    // OR perhaps we can just have an ordered list of Ways which are treated as a single LineString
+    // by the algorithm. How about:
+    //
+    // When a follower nears the end of it's current Way (measurable via the points of the way),
+    // another Way can be queued up behind it. In the case of a single Way with multiple 'joins'
+    // there would exist a single RoadFollower containing all of the segments of the Way.
+    // If a Way splits at an Intersection, then there would need to exist a RoadFollower for each
+    // member of the intersection. This sort of happens right now - but they are for the segment
+    // and not a continuation. We can perhaps tighten up on ending RoadFollowers when their radius
+    // is far greater than the chosen RoadFollower.
+    //
+    // We also still need to create RoadFollowers for Way that appear nearby in case a user
+    // jumps to an un-connected Way e.g. uses an unmarked Way or goes across some grass/pedestrian
+    // area where there is no Way.
+    //
 
     val color: String
     init {
@@ -64,45 +208,211 @@ class RoadFollower(val parent: MapMatchFilter,
             "#800080"
         )
         color = colorArray[colorIndex % colorArray.size]
+
+        validateRoute()
+        ils.updateFromRoute(route)
     }
 
-    fun extendToNewWay(newWay: Way, colorIndexOffset: Int) : RoadFollower {
-        // Create a new follower which is a copy of this one, but with a new nextRoad set
-        val newFollower = RoadFollower(parent, currentNearestRoad, lastGpsLocation?.clone(), colorIndex + colorIndexOffset)
+    fun dump() {
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val collection = FeatureCollection()
+        for (way in route) {
+            collection.addFeature(way)
+        }
+        println(adapter.toJson(collection))
+    }
+
+    fun validateRoute() {
+        val hashMap = HashMap<Intersection, Int>()
+        for(way in route) {
+            for(intersection in way.intersections) {
+                if(intersection != null) {
+                    if (hashMap.containsKey(intersection)) {
+                        hashMap[intersection] = hashMap[intersection]!! + 1
+                    } else {
+                        hashMap[intersection] = 1
+                    }
+                }
+            }
+        }
+        for(count in hashMap) {
+            if(count.value > 2) {
+                println("Too many intersections")
+                dump()
+                // We can get here 'legally' if we add a way which loops back and joins the current
+                // way e.g. https://www.openstreetmap.org/way/945577262
+//                assert(false)
+            }
+        }
+    }
+
+    /**
+     * If a Way in a route is more than 60m away, then trim it off. If we get close to it again, we
+     * can add it back in.
+     */
+    fun trimRoute(location: LngLatAlt, ruler: CheapRuler) : Boolean {
+        var trimmed = false
+
+        // Trim start
+        val iterator = route.listIterator()
+        while (iterator.hasNext()) {
+            val way = iterator.next()
+            if (ruler.distanceToLineString(location, way.geometry as LineString).distance > 60.0) {
+                iterator.remove()
+                trimmed = true
+            } else {
+                break
+            }
+        }
+
+        // Go to end of list
+        while (iterator.hasNext()) {
+            iterator.next()
+        }
+
+        // Trim end
+        while(iterator.hasPrevious()) {
+            val way = iterator.previous()
+            if(ruler.distanceToLineString(location, way.geometry as LineString).distance > 60.0) {
+                iterator.remove()
+                trimmed = true
+            } else {
+                break
+            }
+        }
+        if(trimmed) {
+            validateRoute()
+            ils.updateFromRoute(route)
+        }
+        return trimmed
+    }
+
+    fun getRouteIntersectionIndices(newWay: Way) : Pair<Int, Int> {
+        var minIndex = Int.MAX_VALUE
+        var maxIndex = -1
+        for((index, way) in route.withIndex()) {
+            if(way.doesIntersect(newWay) != null) {
+                if(index < minIndex) minIndex = index
+                if(index > maxIndex) maxIndex = index
+            }
+        }
+        return Pair(minIndex, maxIndex)
+    }
+    fun createExtendedFollower(extensionAddedAtStart: Boolean,
+                               newWay: Way,
+                               colorIndexOffset: Int) : RoadFollower {
+        // Create a new follower which is a copy of this one, but with an extended route
+        var newRoute = emptyList<Way>().toMutableList()
+
+        val (minIndex, maxIndex) = getRouteIntersectionIndices(newWay)
+        if(minIndex != maxIndex) {
+            // newWay intersects with more than one of our ways, so we need to drop one.
+            if (extensionAddedAtStart) {
+                // Replace the first way
+                newRoute.addAll(route)
+                newRoute[0] = newWay
+            } else {
+                // Replace the last way
+                newRoute.addAll(route)
+                newRoute[maxIndex] = newWay
+            }
+        } else {
+            if (extensionAddedAtStart) {
+                // Insert as first way
+                newRoute.add(newWay)
+                newRoute.addAll(route)
+            } else {
+                // Append as last way
+                newRoute.addAll(route)
+                newRoute.add(newWay)
+            }
+        }
+
+        val newFollower = RoadFollower(parent, newRoute, lastGpsLocation?.clone(), colorIndex + colorIndexOffset)
 
         // Clone all the data that we need
         newFollower.averagePointGap = averagePointGap
         newFollower.nearestPoint = nearestPoint?.clone()
         newFollower.radius = radius
+        newFollower.lastCenter = lastCenter.clone()
+        newFollower.currentNearestRoad = currentNearestRoad
+
         frechetQueue.forEach { newFollower.frechetQueue.add(it) }
         lastChordPoints.forEachIndexed { index,point -> newFollower.lastChordPoints[index] = point.clone() }
         newFollower.lastMatchedLocation = lastMatchedLocation?.clone()
 
-        // Don't clone the way as it's shared data
-        newFollower.nextRoad = newWay
-
         return newFollower
     }
 
+    fun extendToNewWay(newWay: Way, ruler: Ruler) : Boolean {
+        val (minIndex, maxIndex) = getRouteIntersectionIndices(newWay)
+        if(minIndex != maxIndex) {
+            // We can't extend the route as the newWay intersects with more than one of the ways in
+            // the route already.
+            return false
+        }
 
+        var newRoute = emptyList<Way>().toMutableList()
+        if(route.first().doesIntersect(newWay) != null) {
+            if(!route.first().intersections.contains(null)) {
+                newRoute.add(newWay)
+                newRoute.addAll(route)
+            }
+        } else if(route.last().doesIntersect(newWay) != null) {
+            if(!route.last().intersections.contains(null)) {
+                newRoute.addAll(route)
+                newRoute.add(newWay)
+            }
+        } else {
+            assert(false)
+        }
+        if(newRoute.isNotEmpty()) {
+            if (newRoute[0].doesIntersect(newRoute[1]) == null) {
+                assert(false)
+            }
+
+            route = newRoute
+            validateRoute()
+            ils.updateFromRoute(route)
+            nearestPoint?.let { point ->
+                nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
+            }
+            return true
+        }
+        return false
+    }
+
+    var directionOnLine = 0.0
+    var directionHysteresis = 0
     fun update(
         gpsLocation: LngLatAlt,
-        overallLastMatchedLocation: LngLatAlt?,
         collection: FeatureCollection,
         ruler: CheapRuler
     ) : RoadFollowerStatus {
+
+        if(trimRoute(gpsLocation, ruler)) {
+            // The route was trimmed
+            if (route.isEmpty()) {
+                return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
+            }
+            // Reset nearestPoint so that the pointAlongLine is based on our newly trimmed line
+            nearestPoint?.let { point ->
+                nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
+            }
+        }
 
         // Update radius
         var gpsHeading = Double.NaN
         var pointGap = 0.0
         var dMin = 0.0
+        var directionChange = false
         lastGpsLocation?.let { lastLocation ->
 
             if(lastLocation == gpsLocation) {
-                if (frechetQueue.size == FRECHET_QUEUE_SIZE) {
-                    return RoadFollowerStatus(frechetQueue.average(), 1)
+                if (frechetQueue.size > FRECHET_QUEUE_SIZE/2) {
+                    return RoadFollowerStatus(frechetQueue.average(), RoadFollowerState.LOCKED)
                 }
-                return RoadFollowerStatus(Double.MAX_VALUE, 0)
+                return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.UNLOCKED)
             }
 
             // Get the shortest D min value (distance from new location to previous chord ends)
@@ -122,59 +432,51 @@ class RoadFollower(val parent: MapMatchFilter,
             gpsHeading = bearingFromTwoPoints(lastLocation, gpsLocation)
         }
 
-        if (currentNearestRoad.geometry.type == "LineString") {
+        ils.line?.let { line ->
 
+            var positionAlongLine = Double.NaN
+            nearestPoint?.let { nearestPoint ->
+                positionAlongLine = nearestPoint.positionAlongLine
+            }
+            // Get the nearest point on our accumulated LineString to the GPS location. Everything
+            // returned is valid except for the heading. The heading is relative to the direction of
+            // the accumulated LineString which may be the opposite direction to the line within the
+            // Way.
             nearestPoint =
-                ruler.distanceToLineString(gpsLocation, currentNearestRoad.geometry as LineString)
-            if (nextRoad != null) {
-                val nearestPointOnNextRoad =
-                    ruler.distanceToLineString(gpsLocation, nextRoad!!.geometry as LineString)
-                if (nearestPointOnNextRoad.distance < nearestPoint!!.distance) {
+                ruler.distanceToLineString(gpsLocation, ils.line as LineString)
+            nearestPoint?.let { nearestPoint ->
 
-                    currentNearestRoad = nextRoad!!.also {
-                        nextRoad = currentNearestRoad
-                        nearestPoint = nearestPointOnNextRoad
+                if(!positionAlongLine.isNaN() && !nearestPoint.positionAlongLine.isNaN()) {
+                    val delta = nearestPoint.positionAlongLine - positionAlongLine
+                    if((abs(directionOnLine) > 0.03) && (sign(delta) != sign(directionOnLine))) {
+                        // Change of direction?
+                        --directionHysteresis
+                        if(directionHysteresis == 0) {
+                            directionHysteresis = 5
+                            directionOnLine = delta
+                        }
+                        directionChange = true
+                    } else {
+                        directionHysteresis = 5
+                        directionOnLine = delta
+                    }
+                } else {
+                    directionHysteresis = 5
+                }
+
+                val routeIndex = ils.getWayIndex(nearestPoint.index)
+                if(routeIndex != null) {
+                    currentNearestRoad = route[routeIndex]
+
+                    if(ils.direction?.get(routeIndex) == false) {
+                        // The coordinates were reversed, so we need to reverse the heading
+                        nearestPoint.heading = (nearestPoint.heading + 180.0) % 360.0
                     }
                 }
-            }
-            nearestPoint?.let { nearestPoint ->
 
                 // Dispose of this if we're a long way away
                 if(nearestPoint.distance > 30.0) {
-                    return RoadFollowerStatus(Double.MAX_VALUE, -1)
-                }
-
-                val roadHeading = nearestPoint.heading
-                if (!gpsHeading.isNaN()) {
-                    var headingDifference = calculateHeadingOffset(gpsHeading, roadHeading)
-                    if (headingDifference > 90.0)
-                        headingDifference = 180.0 - headingDifference
-                    val cosHeadingDifference = cos(toRadians(headingDifference))
-                    if (cosHeadingDifference < 0.730) {
-                        // Unreliable GPS heading - the GPS is moving in a different direction to
-                        // the road
-                        if(Build.VERSION.SDK_INT == 0) {
-                            val circle = Feature()
-                            circle.geometry = circleToPolygon(
-                                32,
-                                gpsLocation.latitude,
-                                gpsLocation.longitude,
-                                radius
-                            )
-                            circle.properties = hashMapOf()
-                            circle.properties?.set("fill-opacity", 0.0)
-                            circle.properties?.set("stroke", color)
-                            circle.properties?.set("radius", radius)
-                            collection.addFeature(circle)
-                        }
-
-                        if (frechetQueue.isNotEmpty()) {
-                            frechetQueue.removeFirst()
-                            if(frechetQueue.size > (FRECHET_QUEUE_SIZE / 2))
-                                return RoadFollowerStatus(frechetQueue.average(), 0)
-                        }
-                        return RoadFollowerStatus(Double.MAX_VALUE, -1)
-                    }
+                    return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
                 }
 
                 // Last point
@@ -190,18 +492,15 @@ class RoadFollower(val parent: MapMatchFilter,
                         ruler.distanceToLineString(lastCenter, currentNearestRoad.geometry as LineString)
                     radius = max(dMin, ruler.distance(gpsLocation, lastGpsLocation!!) * ar)
                 }
-                // Check if we can actually get to this new point from the last point
-                if (overallLastMatchedLocation != null) {
-                }
 
                 if (matchedPoint.distance > radius)
                     radius = matchedPoint.distance * 1.2
 
                 if(radius > 30.0) {
-                    return RoadFollowerStatus(Double.MAX_VALUE, -1)
+                    return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
                 }
 
-                if(Build.VERSION.SDK_INT == 0) {
+                if(Build.VERSION.SDK_INT == 10000) {
                     val circle = Feature()
                     circle.geometry =
                         circleToPolygon(32, lastCenter.latitude, lastCenter.longitude, radius)
@@ -245,11 +544,27 @@ class RoadFollower(val parent: MapMatchFilter,
             }
             lastGpsLocation = gpsLocation
         }
-        if (frechetQueue.size == FRECHET_QUEUE_SIZE) {
-            return RoadFollowerStatus(frechetQueue.average(), 1)
+
+        val roadHeading = nearestPoint?.heading
+        if (!gpsHeading.isNaN() && roadHeading != null) {
+            var headingDifference = calculateHeadingOffset(gpsHeading, roadHeading)
+            if (headingDifference > 90.0)
+                headingDifference = 180.0 - headingDifference
+            val cosHeadingDifference = cos(toRadians(headingDifference))
+            if (cosHeadingDifference < 0.703) {
+                // Unreliable GPS heading - the GPS is moving in a very different direction
+                // to the road.
+                if(frechetQueue.size > (FRECHET_QUEUE_SIZE / 2))
+                    return RoadFollowerStatus(frechetQueue.average(), RoadFollowerState.ANGLED_AWAY)
+
+                return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.ANGLED_AWAY)
+            }
+        }
+        if(frechetQueue.size > (FRECHET_QUEUE_SIZE / 2)) {
+            return RoadFollowerStatus(frechetQueue.average(), if(directionChange) RoadFollowerState.DIRECTION_CHANGED else RoadFollowerState.LOCKED)
         }
 
-        return RoadFollowerStatus(Double.MAX_VALUE, 0)
+        return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.UNLOCKED)
     }
 
     fun chosen(): PointAndDistanceAndHeading? {
@@ -281,65 +596,153 @@ class MapMatchFilter {
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
 
-    var colorIndex = 0
-    fun filter(location: LngLatAlt, gridState: GridState, collection: FeatureCollection): Triple<LngLatAlt?, Feature?, String> {
+    fun addWaysToFollowers(intersection: Intersection,
+                           follower: RoadFollower,
+                           iterator: MutableListIterator<RoadFollower>,
+                           ruler: Ruler) {
+        var extended = false
+        var extensionAddedAtStart = false
+        for (member in intersection.members.withIndex()) {
 
-        var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
-        var roads = roadTree.getNearestCollection(location, 20.0, 4, gridState.ruler)
-        var found = false
-        for (road in roads) {
-            val way = road as Way
+            // Don't add a Way more than once to the route
+            if (follower.route.contains(member.value)) continue
 
-            for (follower in followerList) {
-                if ((follower.currentNearestRoad == way) or
-                    (follower.nextRoad == way)
-                ) {
-                    // Don't re-add the current follower
-                    found = true
+            // Skip JOINERS
+            if (member.value.wayType == WayType.JOINER) continue
+            if (!extended) {
+                // Try and extend the follower to this way
+                if(follower.extendToNewWay(member.value, ruler)) {
+                    extended = true
+                    extensionAddedAtStart = follower.route.first() == member.value
+                    continue
                 }
             }
+            // Create a new follower which adds this way to the route
+            iterator.add(
+                follower.createExtendedFollower(
+                    extensionAddedAtStart,
+                    member.value,
+                    member.index + 1
+                )
+            )
+        }
+    }
 
-            if (!found) {
-                val intersection = matchedWay?.doesIntersect(way)
-                if (intersection != null) {
-                    // This road meets our currently matched way, add all of the roads from the same
-                    // intersection
-                    for (member in intersection.members.withIndex()) {
-                        var intersectionFound = false
-                        for (follower in followerList) {
-                            if ((follower.currentNearestRoad == member.value) or
-                                (follower.nextRoad == member.value)
-                            ) {
-                                // Don't re-add the current follower
-                                intersectionFound = true
-                            }
-                        }
-                        if (!intersectionFound)
-                            followerList.add(
-                                matchedFollower!!.extendToNewWay(
-                                    member.value,
-                                    member.index + 1
-                                )
-                            )
+    /**
+     * extendFollowerList looks for nearby roads and ensures that they are included in the list
+     * of RoadFollowers that we have. There should be a RoadFollower for every possible road segment
+     * combination.
+     */
+    fun extendFollowerList(location: LngLatAlt, gridState: GridState) {
+        var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+
+        var roads = roadTree.getNearestCollection(location, 20.0, 4, gridState.ruler)
+
+        if (followerList.isEmpty()) {
+            if(roads.features.isNotEmpty()) {
+                // Start off with a follower for the nearest road
+                followerList.add(RoadFollower(this, MutableList(1) { roads.first() as Way }, lastLocation, colorIndex))
+                ++colorIndex
+            }
+        }
+
+        for (road in roads) {
+            val way = road as Way
+            var added = false
+
+            for (follower in followerList) {
+                if (follower.route.contains(way)) {
+                    // We already have some followers that are following this Way, so don't add more
+                    added = true
+                    break
+                }
+                if((way.properties?.containsKey("dead-end:forward") == true) ||
+                   (way.properties?.containsKey("dead-end:backward") == true)) {
+                    // The way is a dead end, don't follow it if it's also short
+                    if(way.length < 20.0) {
+                        added = true
+                        break
                     }
-                } else {
-                    followerList.add(RoadFollower(this, way, lastLocation, colorIndex))
+                }
+            }
+            if (!added) {
+
+                // For each follower, see if we can append this way
+                val iterator = followerList.listIterator()
+                while(iterator.hasNext()) {
+                    val follower = iterator.next()
+                    val lastWayInRoute = follower.route.last()
+                    val intersection = lastWayInRoute.doesIntersect(way)
+                    if (intersection != null) {
+                        // This road intersects with the last way, so it can either replace it, or
+                        // be added on to it.
+                        addWaysToFollowers(intersection, follower, iterator, gridState.ruler)
+                        added = true
+                    } else {
+                        val firstWayInRoute = follower.route.first()
+                        val firstIntersection = firstWayInRoute.doesIntersect(way)
+                        if (firstIntersection != null) {
+                            // This road intersects with the first way, so it can either replace it,
+                            // or be added on to it.
+                            addWaysToFollowers(firstIntersection, follower, iterator, gridState.ruler)
+                            added = true
+                        }
+                    }
+                }
+                // If no follower added this Way, then create a new follower for it
+                if (!added) {
+                    followerList.add(
+                        RoadFollower(
+                            this,
+                            MutableList(1) { way },
+                            lastLocation,
+                            colorIndex
+                        )
+                    )
                     ++colorIndex
                 }
             }
         }
+
+        // De-duplicate list of followers
+        val followerIterator = followerList.listIterator()
+        val followerHashes = HashSet<Int>()
+        while(followerIterator.hasNext()) {
+            val follower = followerIterator.next()
+            val hash = follower.ils.hashCode
+            if(followerHashes.contains(hash))
+                followerIterator.remove()
+            else
+                followerHashes.add(hash)
+        }
+    }
+
+    var colorIndex = 0
+    fun filter(location: LngLatAlt, gridState: GridState, collection: FeatureCollection): Triple<LngLatAlt?, Feature?, String> {
+
+        extendFollowerList(location, gridState)
+
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
         var freshetList = emptyList<Pair<RoadFollowerStatus, String>>().toMutableList()
         val followerIterator = followerList.listIterator()
+        var matchedStatus : RoadFollowerStatus? = null
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
-            val frechetStatus = follower.update(location, matchedLocation?.point, collection, gridState.ruler)
+            val frechetStatus = follower.update(location, collection, gridState.ruler)
+            if(follower == matchedFollower)
+                matchedStatus = frechetStatus
+
             freshetList.add(Pair(frechetStatus, follower.color))
-            if(frechetStatus.confidence < 0) {
+            if(frechetStatus.state == RoadFollowerState.DISTANT) {
                 followerIterator.remove()
                 continue
             }
+            if((frechetStatus.state == RoadFollowerState.ANGLED_AWAY) ||
+               (frechetStatus.state == RoadFollowerState.DIRECTION_CHANGED)){
+                continue
+            }
+
             val way = follower.currentNearestRoad
             if(frechetStatus.frechetAverage < lowestFrechet) {
                 var skip = false
@@ -360,6 +763,7 @@ class MapMatchFilter {
                         if(matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
+                            var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
                             addSidewalk(matched, roadTree, gridState.ruler)
                             addSidewalk(way, roadTree, gridState.ruler)
 
@@ -404,14 +808,17 @@ class MapMatchFilter {
         }
 
         lastLocation = location
-        if(lowestFollower != null) {
+        if (lowestFollower != null) {
             matchedLocation = lowestFollower.chosen()
             matchedFollower = lowestFollower
-            if(Build.VERSION.SDK_INT == 0) {
+            if (Build.VERSION.SDK_INT == 10000) {
                 if (matchedWay != matchedFollower!!.currentNearestRoad) {
                     val choiceFeature = Feature()
                     choiceFeature.geometry =
-                        Point(matchedLocation!!.point.longitude, matchedLocation!!.point.latitude)
+                        Point(
+                            matchedLocation!!.point.longitude,
+                            matchedLocation!!.point.latitude
+                        )
                     choiceFeature.properties = hashMapOf()
                     choiceFeature.properties?.set("marker-size", "large")
                     choiceFeature.properties?.set("marker-color", "#000000")
@@ -421,18 +828,23 @@ class MapMatchFilter {
                     collection.addFeature(choiceFeature)
                 }
             }
-
             matchedWay = matchedFollower!!.currentNearestRoad
             val color = matchedFollower!!.color
             matchedLocation?.let { matchedLocation ->
                 return Triple(matchedLocation.point, matchedWay, color)
             }
-        } else {
-            matchedLocation = null
-            matchedFollower = null
-            matchedWay = null
         }
+        matchedLocation = null
+        matchedFollower = null
+        matchedWay = null
 
         return Triple(null, null, "")
+    }
+
+    fun dump() {
+        println("Dump followers")
+        for(follower in followerList) {
+            follower.dump()
+        }
     }
 }
