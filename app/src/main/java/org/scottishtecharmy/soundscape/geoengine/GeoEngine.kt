@@ -459,7 +459,7 @@ class GeoEngine {
 
                         val nearestRoad = userGeometry.mapMatchedWay
                         if (nearestRoad != null) {
-                            var roadName = nearestRoad.getName(null, gridState)
+                            var roadName = nearestRoad.getName(null, gridState, localizedContext)
                             val facingDirectionAlongRoad =
                                 getCompassLabelFacingDirectionAlong(
                                     localizedContext,
@@ -1035,7 +1035,7 @@ fun localReverseGeocode(location: LngLatAlt,
     val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0) as Way?
     if(nearestRoad != null) {
         // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
-        val roadName = nearestRoad.getName(null, gridState, true)
+        val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
         if(roadName.isNotEmpty()) {
             return LocationDescription(
                 name = localizedContext?.getString(R.string.directions_near_name)

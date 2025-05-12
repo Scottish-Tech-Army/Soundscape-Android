@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import android.content.Context
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
@@ -79,6 +81,7 @@ class Way : Feature() {
 
     fun getName(direction: Boolean? = null,
                 gridState: GridState? = null,
+                localizedContext: Context? = null,
                 nonGenericOnly: Boolean = false) : String {
 
         var destinationModifier: Any? = null
@@ -117,9 +120,11 @@ class Way : Feature() {
 
                 if (destinationModifier != null) {
                     return if(passesString.isNotEmpty()) {
-                        "$name to $destinationModifier via $passesString"
+                        localizedContext?.getString(R.string.confect_name_to_via)
+                            ?.format(name,destinationModifier, passesString) ?: "$name to $destinationModifier via $passesString"
                     } else {
-                        "$name to $destinationModifier"
+                        localizedContext?.getString(R.string.confect_name_to)
+                            ?.format(name,destinationModifier) ?: "$name to $destinationModifier"
                     }
                 }
             } else {
@@ -127,7 +132,8 @@ class Way : Feature() {
                 val end = properties?.get("destination:forward")
 
                 if ((end != null) and (start != null)) {
-                    return "$name that joins $start and $end"
+                    return localizedContext?.getString(R.string.confect_name_joins)
+                        ?.format(name, start, end) ?: "$name that joins $start and $end"
                 }
             }
         }
@@ -138,15 +144,21 @@ class Way : Feature() {
                 properties?.get("dead-end:backward")
         }
         if (destinationModifier != null) {
+            if(destinationModifier == "dead-end") {
+                destinationModifier = localizedContext?.getString(R.string.confect_name_dead_end) ?: "dead end"
+            }
             return if(passesString.isNotEmpty()) {
-                "$name to $destinationModifier via $passesString"
+                localizedContext?.getString(R.string.confect_name_to_via)
+                    ?.format(name,destinationModifier, passesString) ?: "$name to $destinationModifier via $passesString"
             } else {
-                "$name to $destinationModifier"
+                localizedContext?.getString(R.string.confect_name_to)
+                    ?.format(name,destinationModifier) ?: "$name to $destinationModifier"
             }
         }
         else {
             return if (passesString.isNotEmpty()) {
-                "$name via $passesString"
+                localizedContext?.getString(R.string.confect_name_via)
+                    ?.format(name, passesString) ?: "$name via $passesString"
             } else {
                 // This is a path/service/track with no other qualifiers, so just return the name
                 // unless we're looking for a non-generic name.

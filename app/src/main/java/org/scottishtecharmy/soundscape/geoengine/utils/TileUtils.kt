@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import android.content.Context
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
@@ -13,6 +14,7 @@ import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.Polygon as JtsPolygon
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.LinearRing
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -1461,7 +1463,8 @@ fun getSuperCategoryElements(category: String): Set<String> {
 
 fun addSidewalk(currentRoad: Way,
                 roadTree: FeatureTree,
-                ruler: Ruler
+                ruler: Ruler,
+                localizedContext: Context? = null,
 ) : Boolean {
 
     if(currentRoad.isSidewalkOrCrossing()){
@@ -1512,9 +1515,13 @@ fun addSidewalk(currentRoad: Way,
 
         if (found) {
             if (name != null) {
-                currentRoad.properties?.set("name", "Pavement next to $name")
+                val text = localizedContext?.getString(R.string.confect_name_pavement_next_to)
+                    ?.format(name) ?: "Pavement next to $name"
+                currentRoad.properties?.set("name", text)
             } else {
-                currentRoad.properties?.set("name", "Pavement")
+                val text = localizedContext?.getString(R.string.confect_name_pavement)
+                    ?.format(name) ?: "Pavement"
+                currentRoad.properties?.set("name", text)
             }
             // Store the name of the associated road
             currentRoad.properties?.set("pavement", name.toString())
@@ -1692,7 +1699,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
             ) {
                 for (eachWay in ways) {
                     // We currently label all roads, even named ones, with Dead End
-                    setDestinationTag(eachWay.second.properties, !eachWay.first, "Dead End", true, "")
+                    setDestinationTag(eachWay.second.properties, !eachWay.first, "dead-end", true, "")
                 }
             }
         }

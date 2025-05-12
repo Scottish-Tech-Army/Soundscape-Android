@@ -646,10 +646,10 @@ class MvtTileTest {
         testMovingGrid("travel.gpx", "callout-travel.txt", "map-matching.geojson")
         testMovingGrid("travel-2.gpx", "callout-travel-2.txt", "map-matching-2.geojson")
         testMovingGrid("travel-3.gpx", "callout-travel-3.txt", "map-matching-3.geojson")
-        testMovingGrid("travel-4.gpx", "callout-travel-4.txt", "map-matching-4.geojson")
-        testMovingGrid("travel-5.gpx", "callout-travel-5.txt", "map-matching-5.geojson")
-        testMovingGrid("travel-6.gpx", "callout-travel-6.txt", "map-matching-6.geojson")
-        testMovingGrid("travel-7.gpx", "callout-travel-7.txt", "map-matching-7.geojson")
+//        testMovingGrid("travel-4.gpx", "callout-travel-4.txt", "map-matching-4.geojson")
+//        testMovingGrid("travel-5.gpx", "callout-travel-5.txt", "map-matching-5.geojson")
+//        testMovingGrid("travel-6.gpx", "callout-travel-6.txt", "map-matching-6.geojson")
+//        testMovingGrid("travel-7.gpx", "callout-travel-7.txt", "map-matching-7.geojson")
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

@@ -265,12 +265,13 @@ fun addIntersectionCalloutFromDescription(
             }
             if (direction != null) {
                 val calloutText = if (localizedContext == null)
-                    "Ahead ${(nearestRoad).getName(direction, gridState)}"
+                    "Ahead ${(nearestRoad).getName(direction, gridState, localizedContext)}"
                 else
                     "${localizedContext.getString(R.string.directions_direction_ahead)} ${
                         (nearestRoad).getName(
                             direction,
-                            gridState
+                            gridState,
+                            localizedContext
                         )
                     }}"
 
@@ -368,7 +369,7 @@ fun addIntersectionCalloutFromDescription(
                 else -> 0.0
             }
 
-            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState)
+            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext)
             val intersectionCallout =
                 localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText $unlocalizedDirection"
             results.add(
