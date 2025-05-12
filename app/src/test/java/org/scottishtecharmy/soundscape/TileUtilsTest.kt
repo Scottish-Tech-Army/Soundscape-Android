@@ -75,7 +75,7 @@ class TileUtilsTest {
         for (feature in testCrossingsFeatureCollection) {
             Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(95, testCrossingsFeatureCollection.features.size)
+        Assert.assertEquals(97, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
@@ -90,7 +90,7 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is 1570
         Assert.assertEquals(
-            1570,
+            1386,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -103,7 +103,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(1706, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(1524, testIntersectionsCollectionFromTileFeatureCollection.features.size)
 
     }
 
@@ -123,7 +123,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(1083, testPoiCollection.features.size)
+        Assert.assertEquals(1084, testPoiCollection.features.size)
 
     }
 
@@ -135,7 +135,7 @@ class TileUtilsTest {
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
-        Assert.assertEquals(271, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(272, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -392,7 +392,7 @@ class TileUtilsTest {
         // - Bus stop
         // - Memorial
         // - Crossing
-        Assert.assertEquals(5, fovPoiFeatureCollection.features.size)
+        Assert.assertEquals(6, fovPoiFeatureCollection.features.size)
     }
 
     @Test

@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.filters.IndexedLineString
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.dijkstraOnWaysWithLoops
@@ -121,9 +122,21 @@ class DijkstraTest {
 
         var shortestPath : Double
         val shortestRoute = FeatureCollection()
+        val shortestRouteAsSingleLine = FeatureCollection()
         val timeTaken = measureTime {
             val results = findShortestDistance(startLocation, endLocation, startWay, endWay, shortestRoute)
             shortestPath = results.distance
+
+            val route = getPathWays(results.endIntersection)
+
+            // Convert the ways into a single line string
+            val ils = IndexedLineString()
+            ils.updateFromRoute(route)
+            val singleLine = Feature()
+            singleLine.geometry = ils.line!!
+            singleLine.properties = hashMapOf()
+            shortestRouteAsSingleLine.addFeature(singleLine)
+
             results.tidy()
         }
 
@@ -132,7 +145,7 @@ class DijkstraTest {
         // Visualise the shortest routes
         val adapter = GeoJsonObjectMoshiAdapter()
         val mapMatchingOutput = FileOutputStream("shortest-route.geojson")
-        mapMatchingOutput.write(adapter.toJson(shortestRoute).toByteArray())
+        mapMatchingOutput.write(adapter.toJson(shortestRouteAsSingleLine).toByteArray())
         mapMatchingOutput.close()
     }
 }

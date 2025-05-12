@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
@@ -80,7 +81,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                         userGeometry.ruler.distanceToLineString(userGeometry.mapMatchedLocation.point, road.geometry as LineString)
                     val snappedHeading = userGeometry.snappedHeading()
                     if (snappedHeading != null) {
-                        if (((roadDistance.heading - snappedHeading + 360.0) % 180.0) > 45.0) {
+                        if (calculateHeadingOffset(roadDistance.heading, snappedHeading) > 45.0) {
                             // This way is not at the angle of travel, so skip it
                             continue
                         }
@@ -99,24 +100,30 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val fovIntersections = intersectionTree.getAllWithinTriangle(triangle)
     if(fovIntersections.features.isEmpty()) return IntersectionDescription(nearestRoad, userGeometry)
 
-    // Remove intersections which are short paths leading to sidewalks of the road, or direct
-    // intersections with sidewalks.
+    // Remove intersections which are:
+    //  1. Short paths leading to sidewalks of the road, or
+    //  2. Direct intersections with sidewalks.
+    //  3. Within a 5m radius of the current location
     val trimmedIntersections = FeatureCollection()
     for(i in fovIntersections.features) {
         val intersection = i as Intersection
         var add = true
-        for(way in i.members) {
-            if(way.isSidewalkOrCrossing())
-                add = false
-            else if(way.isSidewalkConnector(intersection, nearestRoad, gridState))
-                add = false
+        if(userGeometry.ruler.distance(intersection.location, userGeometry.mapMatchedLocation?.point ?: userGeometry.location) < 5.0)
+            add = false
+        else {
+            for (way in i.members) {
+                if (way.isSidewalkOrCrossing())
+                    add = false
+                else if (way.isSidewalkConnector(intersection, nearestRoad, gridState))
+                    add = false
+            }
         }
         if(add)
             trimmedIntersections.features.add(intersection)
     }
 
     // Sort the FOV intersections by distance
-    val sortedFovIntersections = sortedByDistanceTo(userGeometry.location, trimmedIntersections)
+    val sortedFovIntersections = sortedByDistanceTo(userGeometry.mapMatchedLocation?.point ?: userGeometry.location, trimmedIntersections)
 
     // Inspect each intersection so as to skip trivial ones
     val nonTrivialIntersections = emptyList<Pair<Int, Intersection>>().toMutableList()
@@ -293,6 +300,16 @@ fun addIntersectionCalloutFromDescription(
 
     val intersectionName = description.intersection.name
 
+    // It's possible to get here and the nearestRoad is NOT a member of the intersection.
+    if(description.nearestRoad?.containsIntersection(description.intersection) != true)
+        return
+
+    val heading = description.nearestRoad?.heading(description.intersection)
+    if(heading == null)
+        return
+    if(description.intersection.members.size <= 2)
+        return
+
     // Check if we should be filtering out this callout
     val intersectionLocation = description.intersection.location
     calloutHistory?.checkAndAdd(TrackedCallout(intersectionName,
@@ -302,12 +319,6 @@ fun addIntersectionCalloutFromDescription(
     ))?.let { success ->
         if(!success) return
     }
-
-    val heading = description.nearestRoad?.heading(description.intersection)
-    if(heading == null)
-        return
-    if(description.intersection.members.size <= 2)
-        return
 
     // Report intersection is coming up
     results.add(
