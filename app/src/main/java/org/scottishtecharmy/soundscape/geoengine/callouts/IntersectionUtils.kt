@@ -161,9 +161,10 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                     // intersections first.
                     val shortestDistanceResults = findShortestDistance(
                         userGeometry.mapMatchedLocation.point,
-                        intersectionLocation,
                         nearestRoad,
+                        intersectionLocation,
                         (intersection as Intersection).members.first(),
+                        null,
                         null,
                         50.0
                     )
@@ -320,9 +321,25 @@ fun addIntersectionCalloutFromDescription(
 
     val intersectionName = description.intersection.name
 
-    // It's possible to get here and the nearestRoad is NOT a member of the intersection.
-    if(description.nearestRoad?.containsIntersection(description.intersection) != true)
-        return
+    // It's possible to get here and the nearestRoad is NOT a member of the intersection. This is
+    // particularly likely where there are sidewalks breaking up the road segments. So we need to
+    // follow our nearestRoad to the intersection
+    if(description.nearestRoad?.containsIntersection(description.intersection) != true) {
+        if(description.nearestRoad == null)
+            return
+
+        val shortestDistanceResults = findShortestDistance(
+            description.userGeometry.mapMatchedLocation?.point ?: description.userGeometry.location,
+            description.nearestRoad!!,
+            null, null, description.intersection,
+            null,
+            50.0
+        )
+        val ways = getPathWays(shortestDistanceResults.endIntersection)
+        description.nearestRoad = ways.first()
+
+        shortestDistanceResults.tidy()
+    }
 
     val heading = description.nearestRoad?.heading(description.intersection)
     if(heading == null)

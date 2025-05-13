@@ -73,26 +73,36 @@ fun dijkstraOnWaysWithLoops(
     return end.dijkstraDistance
 }
 
-/**
- * findShortestDistance inserts the start and end locations as connected nodes in the graph so that
- * it only needs to call dijkstraOnWaysWithLoops a single time.
- */
 class ShortestDistanceResults(val distance: Double,
                               val startIntersection: Intersection,
                               val startWay: Way,
                               val endIntersection: Intersection,
-                              val endWay: Way) {
+                              val endWay: Way?) {
 
     fun tidy() {
         startWay.removeIntersection(startIntersection)
-        endWay.removeIntersection(endIntersection)
+        endWay?.removeIntersection(endIntersection)
     }
 }
+
+/**
+ * findShortestDistance gets the shortest distance between two points, or between one point and an
+ * intersection. The points have to already be associated with a nearest Way and temporary start and
+ * end locations are added as connected nodes in the graph.
+ * @param startLocation The location of the start point
+ * @param startWay The nearest matched Way to the start point
+ * @param endLocation The location of the end point (not used if endIntersection is specified)
+ * @param endWay The nearest matched Way to the end point (not used if endIntersection is specified)
+ * @param endIntersection The intersection to end the search at
+ * @param debugFeatureCollection A FeatureCollection used for debug only
+ * @param maxDistance The maximum distance to search for
+ */
 fun findShortestDistance(
     startLocation: LngLatAlt,
-    endLocation: LngLatAlt,
     startWay: Way,
-    endWay: Way,
+    endLocation: LngLatAlt?,
+    endWay: Way?,
+    endIntersection: Intersection?,
     debugFeatureCollection: FeatureCollection?,
     maxDistance: Double = Double.MAX_VALUE,
 ) : ShortestDistanceResults  {
@@ -100,11 +110,13 @@ fun findShortestDistance(
     val ruler = startLocation.createCheapRuler()
 
     val newStartIntersection = startWay.createTemporaryIntersectionAndWays(startLocation, ruler)
-    val newEndIntersection = endWay.createTemporaryIntersectionAndWays(endLocation, ruler)
+    var newEndIntersection = endIntersection
+    if(endIntersection == null)
+        newEndIntersection = endWay!!.createTemporaryIntersectionAndWays(endLocation!!, ruler)
 
     val shortestDistance = dijkstraOnWaysWithLoops(
         newStartIntersection,
-        newEndIntersection,
+        newEndIntersection!!,
         ruler,
         maxDistance
     )
