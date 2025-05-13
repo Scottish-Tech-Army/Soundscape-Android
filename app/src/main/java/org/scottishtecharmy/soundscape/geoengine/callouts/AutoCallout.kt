@@ -62,9 +62,10 @@ class AutoCallout(
                                              gridState: GridState) : List<PositionedString> {
         val results : MutableList<PositionedString> = mutableListOf()
 
-        // We rely heavily on having map matched our GPS location to a nearby way. If we don't
-        // have that Way, then skip intersection callouts until we do.
-        if(userGeometry.mapMatchedWay == null) {
+        // We rely heavily on having map matched our GPS location to a nearby way. If we're not in
+        // StreetPreview mode and we don't have that Way, then skip intersection callouts until we
+        // do.
+        if((userGeometry.mapMatchedWay == null) && !userGeometry.inStreetPreview) {
             return emptyList()
         }
 

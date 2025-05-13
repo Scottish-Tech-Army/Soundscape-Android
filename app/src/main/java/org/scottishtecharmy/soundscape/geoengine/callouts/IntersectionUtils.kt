@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import kotlin.math.abs
 
 data class IntersectionDescription(var nearestRoad: Way? = null,
                                    val userGeometry: UserGeometry = UserGeometry(),
@@ -58,8 +59,26 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     if(fovRoads.features.isEmpty()) return IntersectionDescription(nearestRoad = userGeometry.mapMatchedWay)
 
     var nearestRoad = userGeometry.mapMatchedWay
-    if(nearestRoad == null)
-        nearestRoad = roadTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler) as Way?
+    if(nearestRoad == null) {
+        if (userGeometry.inStreetPreview) {
+            // In StreetPreview mode, the road we're on is that matching the heading into the
+            // intersection that we're at.
+            val intersection = intersectionTree.getNearestFeature(userGeometry.location) as Intersection
+            val userHeading = userGeometry.heading()
+            if(userHeading != null) {
+                for (member in intersection.members) {
+                    val wayHeading = (member.heading(intersection) + 180.0) % 360.0
+                    if (abs(wayHeading - userHeading) < 1.0) {
+                        nearestRoad = member
+                        break
+                    }
+                }
+            }
+        } else {
+            nearestRoad =
+                roadTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler) as Way?
+        }
+    }
 
     // If we're on a mapped sidewalk, use the associated road for intersection detection instead of
     // the sidewalk itself.
@@ -108,7 +127,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     for(i in fovIntersections.features) {
         val intersection = i as Intersection
         var add = true
-        if(userGeometry.ruler.distance(intersection.location, userGeometry.mapMatchedLocation?.point ?: userGeometry.location) < 5.0)
+        if(!userGeometry.inStreetPreview && userGeometry.ruler.distance(intersection.location, userGeometry.mapMatchedLocation?.point ?: userGeometry.location) < 5.0)
             add = false
         else {
             for (way in i.members) {
