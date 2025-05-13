@@ -636,7 +636,7 @@ class MapMatchFilter {
     fun extendFollowerList(location: LngLatAlt, gridState: GridState) {
         var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
 
-        var roads = roadTree.getNearestCollection(location, 20.0, 4, gridState.ruler)
+        var roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
 
         if (followerList.isEmpty()) {
             if(roads.features.isNotEmpty()) {
@@ -788,9 +788,10 @@ class MapMatchFilter {
                             val testDistance = (follower.averagePointGap * 3) + 10.0
                             val shortestDistance = findShortestDistance(
                                 matchedLocation!!.point,
-                                follower.chosen()!!.point,
                                 matched,
+                                follower.chosen()!!.point,
                                 way,
+                                null,
                                 null,
                                 testDistance
                             )

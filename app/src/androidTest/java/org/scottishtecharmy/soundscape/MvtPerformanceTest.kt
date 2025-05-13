@@ -131,9 +131,10 @@ class MvtPerformanceTest {
         val measureTime = measureTime {
             val result = findShortestDistance(
                 startLocation,
-                endLocation,
                 startWay,
+                endLocation,
                 endWay,
+                null,
                 null,
                 200.0
             )

@@ -91,7 +91,7 @@ class DijkstraTest {
         var shortestPath : Double
         val shortestRoute = FeatureCollection()
         val timeTaken = measureTime {
-            val results = findShortestDistance(startLocation, endLocation, startWay, endWay, shortestRoute)
+            val results = findShortestDistance(startLocation, startWay, endLocation, endWay, null, shortestRoute)
             shortestPath = results.distance
             results.tidy()
         }
@@ -124,7 +124,7 @@ class DijkstraTest {
         val shortestRoute = FeatureCollection()
         val shortestRouteAsSingleLine = FeatureCollection()
         val timeTaken = measureTime {
-            val results = findShortestDistance(startLocation, endLocation, startWay, endWay, shortestRoute)
+            val results = findShortestDistance(startLocation, startWay, endLocation, endWay, null, shortestRoute)
             shortestPath = results.distance
 
             val route = getPathWays(results.endIntersection)
