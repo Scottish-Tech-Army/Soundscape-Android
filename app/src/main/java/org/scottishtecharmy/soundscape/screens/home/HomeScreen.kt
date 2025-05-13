@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
@@ -72,6 +73,7 @@ data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {
 @Composable
 fun HomeScreen(
     navController: NavHostController,
+    preferences: SharedPreferences,
     viewModel: HomeViewModel = hiltViewModel(),
     rateSoundscape: () -> Unit
 ) {
@@ -90,6 +92,7 @@ fun HomeScreen(
             Home(
                 state = state.value,
                 onNavigate = { dest -> navController.navigate(dest) },
+                preferences = preferences,
                 onMapLongClick = { latLong ->
                     val location = LngLatAlt(latLong.longitude, latLong.latitude)
                     val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)

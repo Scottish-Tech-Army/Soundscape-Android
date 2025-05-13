@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home
 
+import android.content.SharedPreferences
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -20,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -29,9 +32,12 @@ fun DrawerContent(
     drawerState: DrawerState,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
-    shareRecording: () -> Unit
+    shareRecording: () -> Unit,
+    preferences: SharedPreferences?
 ) {
     val scope = rememberCoroutineScope()
+    val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
+
     ModalDrawerSheet(
         drawerContainerColor = MaterialTheme.colorScheme.background,
         drawerContentColor = MaterialTheme.colorScheme.onBackground,
@@ -93,17 +99,20 @@ fun DrawerContent(
 //            label = stringResource(R.string.share_title),
 //            icon = Icons.Rounded.IosShare,
 //        )
-        DrawerMenuItem(
-            onClick = { shareRecording() },
-            label = "Share recorded route",
-            icon = Icons.Rounded.Share,
-        )
 
         DrawerMenuItem(
             onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
             label = stringResource(R.string.settings_about_app),
             Icons.AutoMirrored.Rounded.HelpOutline,
         )
+
+        if(recordingEnabled) {
+            DrawerMenuItem(
+                onClick = { shareRecording() },
+                label = stringResource(R.string.menu_share_recorded_route),
+                icon = Icons.Rounded.Share,
+            )
+        }
     }
 }
 @Preview
@@ -113,6 +122,7 @@ fun PreviewDrawerContent() {
         DrawerState(DrawerValue.Open) { true },
         { },
         { },
-        { }
+        { },
+        null
     )
 }

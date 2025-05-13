@@ -255,6 +255,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 HomeScreen(
                     navController = navController,
+                    preferences = sharedPreferences,
                     rateSoundscape = {
                         this.rateSoundscape()
                     }
