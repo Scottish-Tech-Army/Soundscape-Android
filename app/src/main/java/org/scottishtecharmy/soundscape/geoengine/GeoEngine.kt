@@ -186,7 +186,8 @@ class GeoEngine {
             travelHeading = travelHeading,
             mapMatchedWay = mapMatchFilter?.matchedWay,
             mapMatchedLocation = mapMatchFilter?.matchedLocation,
-            currentBeacon = beaconLocation
+            currentBeacon = beaconLocation,
+            inStreetPreview = streetPreview.running
         )
     }
 
@@ -298,6 +299,8 @@ class GeoEngine {
     }
 
     fun stop() {
+        streetPreview.stop()
+
         locationMonitoringJob?.cancel()
         audioEngineUpdateJob?.cancel()
         markerMonitoringJob?.cancel()

@@ -47,7 +47,7 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
                    private var headHeading: Double? = null,
-                   private val inStreetPreview: Boolean = false)
+                   val inStreetPreview: Boolean = false)
 {
     private val automotiveRangeMultiplier = 6.0
     private val streetPreviewRangeIncrement = 10.0

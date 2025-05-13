@@ -33,9 +33,14 @@ class StreetPreview {
     private var previewRoad: StreetPreviewChoice? = null
 
     private var lastHeading = Double.NaN
-
+    var running = false
     fun start() {
         previewState = PreviewState.INITIAL
+        running = true
+    }
+
+    fun stop() {
+        running = false
     }
 
     fun go(userGeometry: UserGeometry, engine: GeoEngine) : LngLatAlt? {
