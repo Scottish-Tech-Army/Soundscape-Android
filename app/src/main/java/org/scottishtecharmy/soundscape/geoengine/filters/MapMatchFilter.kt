@@ -100,7 +100,8 @@ class IndexedLineString {
         if(nextIntersection == null) {
             // We can get here if the tile grid is recalculated, and tiles rejoined and the route is
             // left with out of date and disconnected ways.
-            assert(false)
+            line = null
+            return
         }
         var firstIntersection = route[0].getOtherIntersection(nextIntersection!!)
         var forwards = nextIntersection != route[0].intersections[WayEnd.START.id]
@@ -390,9 +391,11 @@ class RoadFollower(val parent: MapMatchFilter,
         ruler: CheapRuler
     ) : RoadFollowerStatus {
 
+        if(ils.line == null)
+            return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
         if(trimRoute(gpsLocation, ruler)) {
             // The route was trimmed
-            if (route.isEmpty()) {
+            if (route.isEmpty() || ils.line == null) {
                 return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
             }
             // Reset nearestPoint so that the pointAlongLine is based on our newly trimmed line
