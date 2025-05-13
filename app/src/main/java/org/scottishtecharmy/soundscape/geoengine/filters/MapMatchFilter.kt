@@ -35,7 +35,7 @@ import kotlin.math.pow
 import kotlin.math.sign
 import kotlin.math.sqrt
 
-private const val FRECHET_QUEUE_SIZE = 24
+private const val FRECHET_QUEUE_SIZE = 12
 
 enum class RoadFollowerState {
     LOCKED,
