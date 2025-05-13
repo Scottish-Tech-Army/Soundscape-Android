@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.location.Location
 import android.net.Uri
-import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
@@ -57,13 +56,11 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
 import java.io.File
-import java.io.FileOutputStream
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import kotlin.toString
-import androidx.core.content.edit
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 
 
@@ -202,21 +199,16 @@ class GeoEngine {
         )
     }
 
-    fun updateRecordingState(recordState: Boolean, context: Context) {
-        if(recordState) {
-            gpxRecorder = GpxRecorder(context)
+    fun updateRecordingState(recordState: Boolean) {
+        gpxRecorder = if(recordState) {
+            GpxRecorder()
         } else {
-            gpxRecorder?.close()
-            gpxRecorder = null
+            null
         }
     }
 
     fun getRecordingShareUri(context: Context) : Uri? {
-        gpxRecorder?.close()
         val ret = gpxRecorder?.getShareUri(context)
-        gpxRecorder = null
-        sharedPreferences.edit(commit = true) { putBoolean(MainActivity.RECORD_TRAVEL_KEY, false) }
-
         return ret
     }
 
@@ -230,7 +222,7 @@ class GeoEngine {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
         recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
-        updateRecordingState(recordTravel, application.applicationContext)
+        updateRecordingState(recordTravel)
 
         sharedPreferencesListener =
             SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
@@ -238,7 +230,7 @@ class GeoEngine {
                     if(key == MainActivity.RECORD_TRAVEL_KEY) {
                         Log.e(TAG, "RECORD_TRAVEL_KEY changed")
                         recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
-                        updateRecordingState(recordTravel, application.applicationContext)
+                        updateRecordingState(recordTravel)
                     }
                 }
             }
@@ -389,7 +381,7 @@ class GeoEngine {
                         }
 
                         // Save the location data to a file if enabled
-                        gpxRecorder?.write(location)
+                        gpxRecorder?.storeLocation(location)
                     }
                 }
             }

@@ -273,7 +273,7 @@ fun Settings(
 
             item {
                 Text(
-                    text = "Developer settings",
+                    text = stringResource(R.string.settings_debug_heading),
                     style = MaterialTheme.typography.headlineSmall,
                     color = textColor,
                     modifier = Modifier.semantics { heading() },
@@ -282,7 +282,12 @@ fun Settings(
             switchPreference(
                 key = MainActivity.RECORD_TRAVEL_KEY,
                 defaultValue = MainActivity.RECORD_TRAVEL_DEFAULT,
-                title = { Text(text = "Record travel") },
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_travel_recording),
+                        color = textColor
+                    )
+                },
             )
         }
     }

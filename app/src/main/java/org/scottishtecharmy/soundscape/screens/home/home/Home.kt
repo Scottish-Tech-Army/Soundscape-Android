@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.content.SharedPreferences
 import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
@@ -50,6 +51,7 @@ import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 fun Home(
     state: HomeState,
     onNavigate: (String) -> Unit,
+    preferences: SharedPreferences?,
     onMapLongClick: (LatLng) -> Boolean,
     bottomButtonFunctions: BottomButtonFunctions,
     getCurrentLocationDescription: () -> LocationDescription,
@@ -72,7 +74,8 @@ fun Home(
                 onNavigate = onNavigate,
                 drawerState = drawerState,
                 rateSoundscape = rateSoundscape,
-                shareRecording = { (context as MainActivity).shareRecording() }
+                shareRecording = { (context as MainActivity).shareRecording() },
+                preferences = preferences
             )
         },
         modifier = modifier,
@@ -177,6 +180,7 @@ fun HomePreview() {
     Home(
         state = HomeState(),
         onNavigate = {},
+        preferences = null,
         onMapLongClick = { false },
         bottomButtonFunctions = BottomButtonFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
@@ -196,6 +200,7 @@ fun HomeSearchPreview() {
     Home(
         state = HomeState(),
         onNavigate = {},
+        preferences = null,
         onMapLongClick = { false },
         bottomButtonFunctions = BottomButtonFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
@@ -226,6 +231,7 @@ fun HomeRoutePreview() {
             currentRouteData = routePlayerState
         ),
         onNavigate = {},
+        preferences = null,
         onMapLongClick = { false },
         bottomButtonFunctions = BottomButtonFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },

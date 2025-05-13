@@ -3601,6 +3601,9 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="settings_theme_is_light" translatable="false">"Use light theme"</string>
   <string name="settings_theme_contrast" translatable="false">"Theme contrast"</string>
   <string name="street_preview_exit" translatable="false">"Exit Street Preview"</string>
+  <string name="settings_travel_recording" translatable="false">"Enable recording of travel"</string>
+  <string name="settings_debug_heading" translatable="false">"Debug settings"</string>
+  <string name="menu_share_recorded_route" translatable="false">"Share recording of travel"</string>
 
   <string name="confect_name_to_via" translatable="false">"%s to %s via %s"</string>
   <string name="confect_name_to" translatable="false">"%s to %s"</string>
