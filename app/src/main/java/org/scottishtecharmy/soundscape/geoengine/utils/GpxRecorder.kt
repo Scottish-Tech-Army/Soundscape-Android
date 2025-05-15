@@ -33,25 +33,23 @@ class GpxRecorder() {
     }
 
     private suspend fun generateGpxFile(outputFile: File) {
-        if(outputFile.exists()) {
-            val outputStream = FileOutputStream(outputFile, false)
-            writeGpxHeader(outputStream)
-            bufferMutex.withLock {
-                for (location in buffer) {
-                    val xmlString =
-                        "<trkpt lat=\"${location.latitude}\" lon=\"${location.longitude}\">\n" +
-                                "<ele>${location.altitude}></ele>\n" +
-                                "<accuracy>${location.accuracy}</accuracy>\n" +
-                                "<speed>${location.speed}</speed>\n" +
-                                "<bearing>${location.bearing}</bearing>\n" +
-                                "<bearingAccuracyDegrees>${location.bearingAccuracyDegrees}</bearingAccuracyDegrees>\n" +
-                                "<time>${location.time}</time>\n" +
-                                "</trkpt>\n"
-                    outputStream.write(xmlString.toByteArray())
-                }
+        val outputStream = FileOutputStream(outputFile, false)
+        writeGpxHeader(outputStream)
+        bufferMutex.withLock {
+            for (location in buffer) {
+                val xmlString =
+                    "<trkpt lat=\"${location.latitude}\" lon=\"${location.longitude}\">\n" +
+                            "<ele>${location.altitude}></ele>\n" +
+                            "<accuracy>${location.accuracy}</accuracy>\n" +
+                            "<speed>${location.speed}</speed>\n" +
+                            "<bearing>${location.bearing}</bearing>\n" +
+                            "<bearingAccuracyDegrees>${location.bearingAccuracyDegrees}</bearingAccuracyDegrees>\n" +
+                            "<time>${location.time}</time>\n" +
+                            "</trkpt>\n"
+                outputStream.write(xmlString.toByteArray())
             }
-            writeGpxFooter(outputStream)
         }
+        writeGpxFooter(outputStream)
     }
 
     private fun writeGpxHeader(outputStream: FileOutputStream) {
