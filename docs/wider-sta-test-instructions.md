@@ -112,6 +112,16 @@ then it will start using the direction in which your walking. The sound of the b
 different if you are walking towards it or away from it. If you stop moving and your phone is 
 locked then any beacon will go quieter to indicate that there's no available direction data.
 
+## Providing debug location trace
+In release 0.0.71 we added a feature that provides useful data to us for debugging issues.  The app can now store up to an hour buffer of the user location recorded whilst the app is running. This feature is disabled by default, and even when enabled the data stays on the phone unless the user chooses to share it via interaction with the app. To use the feature:
+1. Tap on the Menu hamburger in the top left, and then tap on "Settings" scroll to the bottom and you'll see the "Enable recording of travel" option. Click to enable/disable.
+2. With the setting enabled, a new option appears in the Menu drawer below "About Soundscape" which is "Share recording of travel". If you want to share a GPX track you can click on that and you can then choose whether to use email/slack etc. to send the file to us to debug.
+The file contains the data from the Android location services for up to the last hour that the app has been running. Don't share it with us if you don't want us to know where you've been. There's no identifying data in it, though obviously we'll know who sent it.
+
+We can load the GPX file into our test code and it will generate the callouts that the user will have heard and we can see which road/path the app thought it was following, and figure out why callouts were generated incorrectly or not generated at all.
+Enabling the setting is absolutely optional, but it is useful to us for debugging.
+
+
 ## Final notes
 There are other features in the app, but for this first phase of testing the focus is those 
 above. If there's anything unclear in these instructions let us know. Once we have some feedback,
