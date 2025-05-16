@@ -1,18 +1,34 @@
 # Release notes
 
-## 0.0.62
+# 0.0.71
+## New in this release
+* The code that deals with the map data has changed significantly. This particularly affects all callouts and StreetPreview,
+* Improved matching from the GPS location to a location on the map, tracking which road a user is travelling on. It's impossible to be perfect, as there's error both in the GPS location and in the mapping data, but it's much improved. This should lead to more accurate callouts describing the nearby intersections, especially when there are roads at different altitudes e.g. bridges, tunnels etc.
+* Un-named roads and paths are now described with some additional context where possible. The code follows along an un-named road or path until it hits a split in the road and then tries to name it.  There are various issues filed to increase this capability, but for now this includes:
+  * <Un-named Way> to <named Way> e.g. "Path to Moor Road"
+  * <Un-named Way> to <POI> e.g. "Service to "Police Station"
+  * <Un-named Way> to <Marker> e.g. "Path to Dave's first marker". This means that all un-named ways can be 'named' by use of Markers.
+  * <Way> to dead-end e.g. "Glassford Street to dead end"
+  * "Via" which includes whether an un-named Way goes via "steps", "a bridge" or "a tunnel" e.g "Path via steps to Crossvegate" or "Path via tunnel to train station"
+* Special treatment for paths marked as "sidewalk" in OpenStreetMap. When travelling along a sidewalk, the callouts are now given relative to the road that the sidewalk is next to. That means that paths joining just the sidewalk won't be called out, but that road junctions are much more clearly described.
+* GPX (GPS track) sharing for up to the last hour of app use. This is off by default, but can be enabled in the settings. Once enabled, each GPS location is recorded into a buffer which will hold the last hour of data. From the menu "Share recording of travel" can be used to generate a GPX file from the buffer and share it with another app e.g. Slack/Gmail etc. If when testing a user has a callout which they think is wrong, they can share the GPX with us and we can investigate it more easily.
+* Beacons started from the Location Details page can now be stopped from the UI.
 
-This release has many of the main features at least partially implemented. The maps from the cloud cover the whole world which means that the app can be tested anywhere.
+### Still to come
+The issues listed [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues) are still being worked on. There's definitely still more work to do improving the callouts, especially reducing less useful ones.
+
+## General information
+This release has the majority of the main features implemented. The maps served up from the cloud cover the whole world which means that the app can be tested anywhere.
 
 We're releasing the app to:
 
 1. Enable wider testing and check support across a wider selection of real world devices
-1. Get initial feedback on accuracy of geographical data, both for callouts and in the UI
-1. Get feedback on location/heading and audio beacons
-1. We want to measure map tile consumption and UI performance
-1. GUI accessibility testing. There have been a large number of accessibility improvements made to the GUI.
+2. Get feedback on the accuracy of geographical data, both for audio callouts and the UI
+3. Get feedback on location/heading and audio beacons
+4. We want to measure map tile consumption and UI performance
+5. GUI accessibility testing. There have been a large number of accessibility improvements made to the GUI.
 
-It's not yet ready for real use in that it has had very little real world testing. For any issues found, or questions you have, please open an issue on the [github page](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues).
+Known issues can be seen on our [github page](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues) and if you have a new issue you can open it there, though it does require creation of a (free) GitHub account.
 
 ### Features
 #### Onboarding screens
