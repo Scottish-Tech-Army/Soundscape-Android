@@ -250,12 +250,27 @@ class Way : Feature() {
                    depth: Int = 0,
                    optionalEarlyPredicate: ((Way, Way?) -> Boolean)? = null) {
 
+        if(depth > 15)
+        {
+            // Break out at arbitrarily deep following.
+            return
+        }
+
         if(optionalEarlyPredicate != null) {
             if(wayType != WayType.JOINER) {
                 if (optionalEarlyPredicate(this, ways.lastOrNull()?.second))
                     return
             }
         }
+
+        for(existingWay in ways) {
+            if(this == existingWay.second) {
+                // This way has already been added to the list so we must have looped around, that's
+                // the end of our following, otherwise we'll recurse forever deeper.
+                return
+            }
+        }
+
         // Add this way
         val forwards = (fromIntersection == intersections[WayEnd.START.id])
         ways += Pair(forwards, this)
