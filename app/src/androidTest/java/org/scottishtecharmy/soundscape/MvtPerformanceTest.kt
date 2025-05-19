@@ -15,11 +15,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
+import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 
 class MvtPerformanceTest {
 
@@ -147,29 +149,22 @@ class MvtPerformanceTest {
     }
 
 
-    @Test
-    fun testGridCache() {
+    private fun testGridCache(boundingBox: BoundingBox, count: Int = 1 ) {
 
-        // This test 'moves' from the center of one tile to the center of the next to see how tile
-        // caching behaves. We're using Edinburgh which we already have tile from 16092-16096 and
-        // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
-
-        println("Start test")
-        Thread.sleep(10000)
-
+        // This test 'moves' from the center of one tile to the center of the next to check that
+        // we can parse the contents of the bounding box
         val gridState = ProtomapsGridState()
         val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
         println(directory)
         gridState.validateContext = false
         gridState.start(ApplicationProvider.getApplicationContext())
 
-//        Debug.startMethodTracing("Memory")
+        val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), ZOOM_LEVEL)
+        val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), ZOOM_LEVEL)
 
-        // The center of each grid
-        for(loop in 1 until 10) {
-            println(">>>>>>>>> LOOP $loop")
-            for (x in 16091 until 16096) {
-                for (y in 10210 until 10214) {
+        for(i in 0 until count) {
+            for (x in minX.toInt() until maxX.toInt()) {
+                for (y in minY.toInt() until maxY.toInt()) {
 
                     // Get top left of tile
                     val location = getLatLonTileWithOffset(x, y, ZOOM_LEVEL, 0.0, 0.0)
@@ -185,10 +180,8 @@ class MvtPerformanceTest {
                     }
                 }
             }
+            gridState.stop()
         }
-        gridState.stop()
-//        Debug.stopMethodTracing()
-        Thread.sleep(10000)
     }
     @Test
     fun testSingleGridCache() {
@@ -221,5 +214,19 @@ class MvtPerformanceTest {
         gridState.stop()
 
         Thread.sleep(10000)
+    }
+
+    @Test
+    fun testMapAreas() {
+        val newYork = BoundingBox(-74.0231755, 40.7120699, -73.9197845, 40.8303351)
+        testGridCache(newYork)
+        val yaounde = BoundingBox(11.4402869, 3.7493240, 11.6208422, 3.9353452)
+        testGridCache(yaounde)
+        val edinburgh = BoundingBox(-3.3568399, 55.9005448, -3.0921694, 55.9919155)
+        testGridCache(edinburgh, 1)
+
+        // London results in OOM - needs investigating
+//        val london = BoundingBox(-0.5111412, 51.3083029, 0.1582387, 51.6369422)
+//        testGridCache(london)
     }
 }
