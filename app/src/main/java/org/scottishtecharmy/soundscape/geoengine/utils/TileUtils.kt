@@ -643,10 +643,15 @@ fun mergeAllPolygonsInFeatureCollection(
         for(featureCollection in featureCollectionList.value) {
             var mergedFeature: Feature? = null
             for ((index, feature) in featureCollection.features.withIndex()) {
+                val tempMergedFeature = mergedFeature
                 mergedFeature = if (index == 0) {
                     feature
                 } else {
                     mergePolygons(mergedFeature!!, feature)
+                }
+                if(mergedFeature == feature) {
+                    if(tempMergedFeature != null)
+                        resultantFeatureCollection.addFeature(tempMergedFeature)
                 }
             }
             resultantFeatureCollection.addFeature(mergedFeature!!)
@@ -700,7 +705,15 @@ fun mergePolygons(
     val polygon2GeometryJTS = createJtsPolygonFromPolygon(polygon2.geometry as? Polygon)
 
     // merge/union the polygons
-    val mergedGeometryJTS = polygon1GeometryJTS?.union(polygon2GeometryJTS) as JtsPolygon
+    val mergedGeometryJTSInitial = polygon1GeometryJTS?.union(polygon2GeometryJTS)
+    if(mergedGeometryJTSInitial is org.locationtech.jts.geom.MultiPolygon) {
+        // If the merge resulted in a MultiPolygon, then we don't need to use it,
+        // we just need to add both polygons. Return the second, and the caller
+        // can add the first.
+        return polygon2
+    }
+
+    val mergedGeometryJTS = mergedGeometryJTSInitial as JtsPolygon
     // create a new Polygon with a single outer ring using the coordinates from the JTS merged geometry
     val mergedPolygon = Feature().also { feature ->
         feature.properties = polygon1.properties
