@@ -168,7 +168,7 @@ class MvtPerformanceTest {
         // The center of each grid
         for(loop in 1 until 10) {
             println(">>>>>>>>> LOOP $loop")
-            for (x in 16093 until 16096) {
+            for (x in 16091 until 16096) {
                 for (y in 10210 until 10214) {
 
                     // Get top left of tile
@@ -205,7 +205,7 @@ class MvtPerformanceTest {
 
         // The center of each grid
         // Get top left of tile
-        val location = getLatLonTileWithOffset(16093, 10210, ZOOM_LEVEL, 0.0, 0.0)
+        val location = getLatLonTileWithOffset(16091, 10210, ZOOM_LEVEL, 0.0, 0.0)
 
         println("Moving grid to $location")
 
