@@ -4,7 +4,7 @@ import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 data class LocationDescription(
-    var name: String? = null,
+    var name: String = "",
     var location: LngLatAlt,
     var description: String? = null,
     var databaseId: ObjectId? = null

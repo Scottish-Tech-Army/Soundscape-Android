@@ -89,9 +89,9 @@ fun LocationItem(
                     // Provide a clearer description of the current state and what
                     // happens when the user double taps.
                     contentDescription = if (decoration.editRoute.value)
-                       "Selected. ${item.name!!}"
+                       "Selected. ${item.name}"
                     else
-                       "Not selected. ${item.name!!}"
+                       "Not selected. ${item.name}"
                     onClick(
                         label =
                             if(decoration.editRoute.value) decoration.editRoute.hintWhenOn
@@ -100,9 +100,9 @@ fun LocationItem(
                     )
                 } else {
                     contentDescription = if(decoration.index != -1) {
-                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name!!}"
+                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
                     } else {
-                        item.name!!
+                        item.name
                     }
                 }
                 if(decoration.reorderable) {

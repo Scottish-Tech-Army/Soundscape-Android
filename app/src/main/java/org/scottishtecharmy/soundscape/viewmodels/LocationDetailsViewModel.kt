@@ -121,8 +121,12 @@ fun createMarker(
 ) {
     viewModelScope.launch {
         var name = locationDescription.name
-        if (name == null) name = locationDescription.description
-        name = name ?: "Unknown"
+        if (name.isEmpty()) {
+            name = if(locationDescription.description == null)
+                "Unknown"
+            else
+                locationDescription.description!!
+        }
 
         val updated = locationDescription.databaseId?.let { objectId ->
             // We are updating an existing marker

@@ -49,7 +49,7 @@ fun SaveAndEditMarkerDialog(
     modifier: Modifier = Modifier,
     dialogState: MutableState<Boolean>
 ) {
-    var name by rememberSaveable { mutableStateOf(locationDescription.name ?: "") }
+    var name by rememberSaveable { mutableStateOf(locationDescription.name) }
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val objectId = locationDescription.databaseId
 
