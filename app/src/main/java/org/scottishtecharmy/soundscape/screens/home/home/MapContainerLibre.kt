@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
+import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -107,7 +108,7 @@ fun MapContainerLibre(
     beaconLocation: LngLatAlt?,
     routeData: RouteData?,
     modifier: Modifier = Modifier,
-    onMapLongClick: (LatLng) -> Boolean,
+    onMapLongClick: OnMapLongClickListener,
 ) {
     val context = LocalContext.current
 

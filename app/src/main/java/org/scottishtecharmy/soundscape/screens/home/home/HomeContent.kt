@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
-import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.database.local.model.Location
@@ -56,7 +56,7 @@ fun HomeContent(
     routePlayerState: RoutePlayerState,
     heading: Float,
     onNavigate: (String) -> Unit,
-    onMapLongClick: (LatLng) -> Boolean,
+    onMapLongClick: OnMapLongClickListener,
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
