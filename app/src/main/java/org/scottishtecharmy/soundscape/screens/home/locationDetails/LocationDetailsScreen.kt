@@ -70,7 +70,7 @@ fun LocationDetailsScreen(
         navController = navController,
         locationDescription = locationDescription,
         createBeacon = { loc ->
-            viewModel.startBeacon(loc, locationDescription.name ?: "")
+            viewModel.startBeacon(loc, locationDescription.name)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
         saveMarker = { description, successMessage, failureMessage ->
@@ -284,13 +284,12 @@ private fun LocationDescriptionTextsSection(
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
     ) {
-        locationDescription.name?.let {
-            Text(
-                text = it,
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
+        Text(
+            text = locationDescription.name,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface,
+        )
+
         if(distanceString.isNotEmpty()) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
