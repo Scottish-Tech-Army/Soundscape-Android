@@ -21,23 +21,28 @@ fun rememberMapViewWithLifecycle(disposeCode : (map : MapView) -> Unit): MapView
 //        options.apply {
 //            pixelRatio(4.0F)
 //        }
-        return@remember MapView(context, options)
+        val view = MapView(context, options)
+        return@remember view
     }
 
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     DisposableEffect(lifecycle, mapView) {
         // Make MapView follow the current lifecycle
-        val lifecycleObserver = getMapLifecycleObserver(mapView, disposeCode)
+        val lifecycleObserver = getMapLifecycleObserver(mapView)
         lifecycle.addObserver(lifecycleObserver)
         onDispose {
+            // Removing the observer means that no ON_DESTROY event is ever received
             lifecycle.removeObserver(lifecycleObserver)
+            // Call the disposal code and destroy the mapView
+            disposeCode(mapView)
+            mapView.onDestroy()
         }
     }
 
     return mapView
 }
 
-private fun getMapLifecycleObserver(mapView: MapView, disposeCode : (map : MapView) -> Unit): LifecycleEventObserver =
+private fun getMapLifecycleObserver(mapView: MapView): LifecycleEventObserver =
     LifecycleEventObserver { _, event ->
         when (event) {
             Lifecycle.Event.ON_CREATE -> mapView.onCreate(Bundle())
@@ -46,8 +51,8 @@ private fun getMapLifecycleObserver(mapView: MapView, disposeCode : (map : MapVi
             Lifecycle.Event.ON_PAUSE -> mapView.onPause()
             Lifecycle.Event.ON_STOP -> mapView.onStop()
             Lifecycle.Event.ON_DESTROY -> {
-                disposeCode(mapView)
-                mapView.onDestroy()
+                // We should never get this event
+                assert(false)
             }
             else -> throw IllegalStateException()
         }

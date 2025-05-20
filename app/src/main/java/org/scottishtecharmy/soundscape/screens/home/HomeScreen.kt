@@ -19,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -82,6 +83,15 @@ fun HomeScreen(
     val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
     val bottomButtonFunctions = remember(viewModel) { BottomButtonFunctions(viewModel) }
+    val onMapLongClickListener = remember(viewModel) {
+        OnMapLongClickListener { latLong ->
+            val location = LngLatAlt(latLong.longitude, latLong.latitude)
+            val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
+            navController.navigate(generateLocationDetailsRoute(ld))
+            true
+        }
+    }
+
 
     NavHost(
         navController = navController,
@@ -93,12 +103,7 @@ fun HomeScreen(
                 state = state.value,
                 onNavigate = { dest -> navController.navigate(dest) },
                 preferences = preferences,
-                onMapLongClick = { latLong ->
-                    val location = LngLatAlt(latLong.longitude, latLong.latitude)
-                    val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
-                    navController.navigate(generateLocationDetailsRoute(ld))
-                    true
-                },
+                onMapLongClick = onMapLongClickListener,
                 bottomButtonFunctions = bottomButtonFunctions,
                 getCurrentLocationDescription = {
                     if(state.value.location != null) {

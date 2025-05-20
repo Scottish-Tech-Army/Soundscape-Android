@@ -28,7 +28,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.maplibre.android.geometry.LatLng
+import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
@@ -51,7 +51,7 @@ fun Home(
     state: HomeState,
     onNavigate: (String) -> Unit,
     preferences: SharedPreferences?,
-    onMapLongClick: (LatLng) -> Boolean,
+    onMapLongClick: OnMapLongClickListener,
     bottomButtonFunctions: BottomButtonFunctions,
     getCurrentLocationDescription: () -> LocationDescription,
     rateSoundscape: () -> Unit,
