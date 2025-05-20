@@ -15,11 +15,11 @@ class PlacesNearbyViewModel
 
     val logic = PlacesNearbySharedLogic(soundscapeServiceConnection, viewModelScope)
     fun onClickBack() {
-        logic._uiState.value = logic.uiState.value.copy(level = 0)
+        logic.internalUiState.value = logic.uiState.value.copy(level = 0)
     }
 
     fun onClickFolder(filter: String, title: String) {
         // Apply the filter
-        logic._uiState.value = logic.uiState.value.copy(level = 1, filter = filter, title = title)
+        logic.internalUiState.value = logic.uiState.value.copy(level = 1, filter = filter, title = title)
     }
 }

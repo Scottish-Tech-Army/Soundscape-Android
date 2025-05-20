@@ -43,7 +43,7 @@ fun StreetPreview(
         for (road in roads) {
             if (lastName != null) {
                 if (intersectionText.isNotEmpty()) intersectionText += ", "
-                intersectionText += "$lastName"
+                intersectionText += lastName
             }
             lastName = road
         }

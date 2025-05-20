@@ -103,7 +103,7 @@ class IndexedLineString {
             line = null
             return
         }
-        var firstIntersection = route[0].getOtherIntersection(nextIntersection!!)
+        var firstIntersection = route[0].getOtherIntersection(nextIntersection)
         var forwards = nextIntersection != route[0].intersections[WayEnd.START.id]
 
         for ((index, way) in route.withIndex()) {

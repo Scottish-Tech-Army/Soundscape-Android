@@ -50,8 +50,4 @@ class AndroidDirectionProvider(context : Context) :
         val executor = Executors.newSingleThreadExecutor()
         fusedOrientationProviderClient.requestOrientationUpdates(request, executor, listener)
     }
-
-    companion object {
-        private const val TAG = "AndroidDirectionProvider"
-    }
 }

@@ -14,8 +14,6 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.time.Duration.Companion.seconds
 
 class AndroidLocationProvider(context : Context) :
@@ -88,8 +86,6 @@ class AndroidLocationProvider(context : Context) :
     }
 
     companion object {
-        private const val TAG = "AndroidLocationProvider"
-
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
     }

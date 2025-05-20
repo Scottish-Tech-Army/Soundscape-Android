@@ -220,14 +220,14 @@ class CheapRuler(val lat: Double) : Ruler() {
         if (dist <= 0.0) return line.coordinates[0]
 
         for (i in 0 until line.coordinates.size - 1) {
-            val p0 = line.coordinates[i];
-            val p1 = line.coordinates[i + 1];
-            val d = this.distance(p0, p1);
-            sum += d;
-            if (sum > dist) return cheapInterpolate(p0, p1, (dist - (sum - d)) / d);
+            val p0 = line.coordinates[i]
+            val p1 = line.coordinates[i + 1]
+            val d = this.distance(p0, p1)
+            sum += d
+            if (sum > dist) return cheapInterpolate(p0, p1, (dist - (sum - d)) / d)
         }
 
-        return line.coordinates[line.coordinates.size - 1];
+        return line.coordinates[line.coordinates.size - 1]
     }
 
     /**
@@ -261,10 +261,10 @@ class CheapRuler(val lat: Double) : Ruler() {
             }
         }
 
-        dx = wrap(p.longitude - x) * this.kx;
-        dy = (p.latitude - y) * this.ky;
+        dx = wrap(p.longitude - x) * this.kx
+        dy = (p.latitude - y) * this.ky
 
-        return sqrt(dx * dx + dy * dy);
+        return sqrt(dx * dx + dy * dy)
     }
 
     /**

@@ -124,7 +124,7 @@ fun findShortestDistance(
     if (debugFeatureCollection != null) {
         debugFeatureCollection.features.clear()
         val ways = getPathWays(
-            newEndIntersection
+            newEndIntersection!!
         )
         for (way in ways) {
             debugFeatureCollection.addFeature(way as Feature)
@@ -135,7 +135,7 @@ fun findShortestDistance(
         shortestDistance,
         newStartIntersection,
         startWay,
-        newEndIntersection,
+        newEndIntersection!!,
         endWay)
 }
 

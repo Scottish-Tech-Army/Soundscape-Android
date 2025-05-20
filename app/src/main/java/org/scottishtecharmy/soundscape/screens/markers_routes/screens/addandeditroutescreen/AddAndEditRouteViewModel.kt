@@ -140,7 +140,7 @@ class AddAndEditRouteViewModel @Inject constructor(
                     actionType = ActionType.DELETE
                 )
             } catch (e: Exception) {
-                Log.e("EditRouteViewModel", "Error deleting route: \${e.message}")
+                Log.e("EditRouteViewModel", "Error deleting route: ${e.message}")
                 _uiState.value = _uiState.value.copy(errorMessage = "Error deleting route: \${e.message}")
             }
         }
@@ -167,7 +167,7 @@ class AddAndEditRouteViewModel @Inject constructor(
             _uiState.value.routeMembers.forEach {
                 routeData.waypoints.add(
                     MarkerData(
-                        addressName = it.name ?: "",
+                        addressName = it.name,
                         location = Location(it.location),
                         objectId = it.databaseId!!
                     )
@@ -191,16 +191,16 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun onClickBack() {
         var newLevel = logic.uiState.value.level
         if(newLevel > 0) newLevel = newLevel - 1
-        logic._uiState.value = logic.uiState.value.copy(level = newLevel)
+        logic.internalUiState.value = logic.uiState.value.copy(level = newLevel)
     }
     fun onSelectLocation(location: LocationDescription) {
-        logic._uiState.value = logic.uiState.value.copy(markerDescription = location)
+        logic.internalUiState.value = logic.uiState.value.copy(markerDescription = location)
     }
 
     fun onClickFolder(filter: String, title: String) {
         // Apply the filter
         val newLevel = logic.uiState.value.level + 1
-        logic._uiState.value = logic.uiState.value.copy(level = newLevel, filter = filter, title = title)
+        logic.internalUiState.value = logic.uiState.value.copy(level = newLevel, filter = filter, title = title)
     }
 
     fun createAndAddMarker(
@@ -225,7 +225,7 @@ class AddAndEditRouteViewModel @Inject constructor(
         )
 
         // And ensure we're on the top level
-        logic._uiState.value = logic.uiState.value.copy(
+        logic.internalUiState.value = logic.uiState.value.copy(
             markerDescription = null,
             level = 0
         )

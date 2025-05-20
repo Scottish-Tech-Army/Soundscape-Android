@@ -138,13 +138,11 @@ fun LocationItem(
         Column(
             modifier = Modifier.padding(start = spacing.small).weight(1F),
         ) {
-            item.name?.let {
-                Text(
-                    text = it,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.titleLarge,
-                )
-            }
+            Text(
+                text = item.name,
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.titleLarge,
+            )
             if(distanceString.isNotEmpty()) {
                 Text(
                     text = distanceString,

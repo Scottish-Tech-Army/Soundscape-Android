@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.SharedPreferences
-import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

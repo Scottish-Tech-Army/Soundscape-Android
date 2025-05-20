@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.viewmodels.home
 
-import android.content.Context
-import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,13 +14,11 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.blankOrEmpty
 import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
-import java.net.URLEncoder
 import javax.inject.Inject
 
 @HiltViewModel

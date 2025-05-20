@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import javax.inject.Inject
+import androidx.core.content.edit
 
 @HiltViewModel
 class AudioBeaconsViewModel @Inject constructor(@ApplicationContext val context: Context, val audioEngine : NativeAudioEngine): ViewModel() {
@@ -41,7 +42,7 @@ class AudioBeaconsViewModel @Inject constructor(@ApplicationContext val context:
         _state.value = state.value.copy(selectedBeacon = type)
         // Store the preference for future use
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        sharedPreferences.edit().putString(MainActivity.BEACON_TYPE_KEY, type).commit()
+        sharedPreferences.edit(commit = true) { putString(MainActivity.BEACON_TYPE_KEY, type) }
     }
 
     fun silenceBeacon() {
