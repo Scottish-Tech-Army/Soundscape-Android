@@ -21,7 +21,7 @@ open class KalmanFilter(filterSigma : Double = 9.0, private val dimensions : Int
     private var covariance = 0.0
 
     /// Last estimate  computed by the `process(:)` method
-    private var estimate = DoubleArray(dimensions) { 0.0 }
+    private var estimate = DoubleArray(dimensions)
 
     /// Timestamp of last estimate
     private var timestamp: Long = 0L
@@ -69,7 +69,7 @@ open class KalmanFilter(filterSigma : Double = 9.0, private val dimensions : Int
 
     fun reset() {
         covariance = 0.0
-        estimate = DoubleArray(2) { 0.0 }
+        estimate = DoubleArray(2)
         timestamp = 0L
     }
 }

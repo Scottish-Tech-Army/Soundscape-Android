@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,8 +20,8 @@ class PlacesNearbySharedLogic(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
     private val viewModelScope: CoroutineScope
 ) {
-    internal val _uiState = MutableStateFlow(PlacesNearbyUiState())
-    val uiState: StateFlow<PlacesNearbyUiState> = _uiState
+    internal val internalUiState = MutableStateFlow(PlacesNearbyUiState())
+    val uiState: StateFlow<PlacesNearbyUiState> = internalUiState
 
     init {
         // Collect the flow for the service connection and use it to start and stop collecting the
@@ -42,6 +42,7 @@ class PlacesNearbySharedLogic(
     }
 
     data class LocationAndGridState(val location: LngLatAlt?, val gridState: GridState?)
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringFlows() {
         monitorJob = Job()
         viewModelScope.launch(monitorJob) {
@@ -56,7 +57,7 @@ class PlacesNearbySharedLogic(
 
             }.collect { locationAndGrid ->
                 if (locationAndGrid.location != null) {
-                    _uiState.update {
+                    internalUiState.update {
                         it.copy(
                             userLocation = locationAndGrid.location
                         )
@@ -78,12 +79,12 @@ class PlacesNearbySharedLogic(
                         }
                     }
 
-                    _uiState.value = uiState.value.copy(
+                    internalUiState.value = uiState.value.copy(
                         nearbyPlaces = nearbyPlaces,
                         nearbyIntersections = nearbyIntersections
                     )
                 } else {
-                    _uiState.value = uiState.value.copy(
+                    internalUiState.value = uiState.value.copy(
                         nearbyPlaces = FeatureCollection(),
                         nearbyIntersections = FeatureCollection()
                     )

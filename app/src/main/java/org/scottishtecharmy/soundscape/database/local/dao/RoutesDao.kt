@@ -108,7 +108,7 @@ class RoutesDao(private val realm: Realm) {
     suspend fun deleteMarker(objectId: ObjectId) = realm.write {
         val findMarker = query<MarkerData>("objectId == $0", objectId).find()
         Log.d("routeDao", "Deleting marker \"" + objectId.toString() + "\" size " + findMarker.size)
-        if(findMarker.size != 0) {
+        if(findMarker.isNotEmpty()) {
             val markers = getMarkers()
             for(marker in markers) {
                 if(marker.objectId == objectId) {

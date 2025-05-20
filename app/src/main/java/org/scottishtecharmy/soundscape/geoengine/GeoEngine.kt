@@ -9,9 +9,7 @@ import android.net.Uri
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
-import com.google.firebase.Firebase
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.crashlytics.crashlytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -855,7 +853,7 @@ class GeoEngine {
                         if(preserveLocation) {
                             val overwritten = ld.first()
                             overwritten.location = location
-                            if(overwritten.name != null) {
+                            if(overwritten.name.isNotEmpty()) {
                                 overwritten.name = localizedContext.getString(R.string.directions_near_name).format(overwritten.name)
                                 overwritten
                             }
@@ -1062,12 +1060,10 @@ fun reverseGeocode(userGeometry: UserGeometry,
 
     val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
     location?.let { l ->
-        l.name?.let { name ->
-            return PositionedString(
-                text = name,
-                location = userGeometry.location,
-                type = AudioType.LOCALIZED)
-        }
+        return PositionedString(
+            text = l.name,
+            location = userGeometry.location,
+            type = AudioType.LOCALIZED)
     }
     // We don't want to call out "Unknown place", so return null and skip this callout
     return null

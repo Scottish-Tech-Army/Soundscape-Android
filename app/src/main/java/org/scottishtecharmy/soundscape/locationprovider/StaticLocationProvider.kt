@@ -30,8 +30,4 @@ class StaticLocationProvider(private var location: LngLatAlt) :
         passiveLocation.speed = speed
         mutableLocationFlow.value = passiveLocation
     }
-
-    companion object {
-        private const val TAG = "StaticLocationProvider"
-    }
 }

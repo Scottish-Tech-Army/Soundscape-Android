@@ -39,7 +39,6 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
-import java.net.URLEncoder
 import javax.inject.Inject
 
 data class ThemeState(

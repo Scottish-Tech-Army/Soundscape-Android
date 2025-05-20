@@ -16,11 +16,7 @@ import java.util.concurrent.TimeUnit
 // https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
 abstract class TileClient(val applicationContext: Context) {
 
-    private val connectivityManager: ConnectivityManager
-    init {
-        connectivityManager =
-            applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    }
+    private val connectivityManager: ConnectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     private var retrofit : Retrofit? = null
 

@@ -11,6 +11,7 @@ import androidx.preference.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.screens.onboarding.SetUpOnboardingNavGraph
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import androidx.core.content.edit
 
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class OnboardingActivity : AppCompatActivity() {
     @SuppressLint("ApplySharedPref")
     fun onboardingComplete() {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        sharedPrefs.edit().putBoolean(MainActivity.FIRST_LAUNCH_KEY, false).commit()
+        sharedPrefs.edit(commit = true) { putBoolean(MainActivity.FIRST_LAUNCH_KEY, false) }
 
         val intent = Intent(applicationContext, MainActivity::class.java)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
