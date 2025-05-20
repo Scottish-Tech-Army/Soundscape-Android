@@ -73,7 +73,7 @@ fun TermsScreen(
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.primaryContainer)
             ) {
-                TermsItem(stringResource(R.string.terms_of_use_message))
+                TermsItem(stringResource(R.string.terms_of_use_message).format(stringResource(R.string.terms_of_use_service_agreement)))
                 TermsItem(stringResource(R.string.terms_of_use_medical_safety_disclaimer))
             }
 
