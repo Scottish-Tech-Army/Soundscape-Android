@@ -35,7 +35,7 @@ inline void getDestinationCoordinate(
     auto lat1 = toRadians(start_lat);
     auto lon1 = toRadians(start_lon);
 
-    auto d = 10000 / EARTH_RADIUS_METERS; // Distance in radians for 10km away
+    auto d = 1000.0 / EARTH_RADIUS_METERS; // Distance in radians for 1km away
 
     auto bearingRadians = toRadians(bearing);
     auto lat2 = asin(
@@ -43,7 +43,7 @@ inline void getDestinationCoordinate(
         cos(lat1) * sin(d) * cos(bearingRadians));
     auto lon2 = lon1 + atan2(
         sin(bearingRadians) * sin(d) * cos(lat1),
-        cos(d) - sin(lat1) * sin(*end_lat));
+        cos(d) - sin(lat1) * sin(lat2));
 
     *end_lat = fromRadians(lat2);
     *end_lon = fromRadians(lon2);
