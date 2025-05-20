@@ -193,6 +193,8 @@ class RoadFollower(val parent: MapMatchFilter,
     //
 
     val color: String
+    var directionOnLine = 0.0
+    var directionHysteresis = 0
     init {
         val colorArray = arrayOf(
             "#ff0000",
@@ -378,13 +380,12 @@ class RoadFollower(val parent: MapMatchFilter,
             nearestPoint?.let { point ->
                 nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
             }
+            directionOnLine = 0.0
             return true
         }
         return false
     }
 
-    var directionOnLine = 0.0
-    var directionHysteresis = 0
     fun update(
         gpsLocation: LngLatAlt,
         collection: FeatureCollection,
@@ -402,6 +403,7 @@ class RoadFollower(val parent: MapMatchFilter,
             nearestPoint?.let { point ->
                 nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
             }
+            directionOnLine = 0.0
         }
 
         // Update radius
