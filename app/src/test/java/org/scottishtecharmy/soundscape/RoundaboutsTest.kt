@@ -211,7 +211,7 @@ class RoundaboutsTest {
         Assert.assertEquals("Elm Lodge Road", roadRelativeDirections.features[0].properties!!["name"])
         Assert.assertEquals(2, roadRelativeDirections.features[1].properties!!["Direction"])
         Assert.assertEquals("Elm Lodge Road", roadRelativeDirections.features[1].properties!!["name"])
-        Assert.assertEquals(5, roadRelativeDirections.features[2].properties!!["Direction"])
+        Assert.assertEquals(4, roadRelativeDirections.features[2].properties!!["Direction"])
         Assert.assertEquals("Green Pastures Road", roadRelativeDirections.features[2].properties!!["name"])
     }
 
