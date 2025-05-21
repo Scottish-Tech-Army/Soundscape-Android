@@ -194,7 +194,7 @@ class RoadFollower(val parent: MapMatchFilter,
 
     val color: String
     var directionOnLine = 0.0
-    var directionHysteresis = 0
+    var directionHysteresis = 5
     init {
         val colorArray = arrayOf(
             "#ff0000",
@@ -381,6 +381,7 @@ class RoadFollower(val parent: MapMatchFilter,
                 nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
             }
             directionOnLine = 0.0
+            directionHysteresis = 5
             return true
         }
         return false
@@ -404,6 +405,7 @@ class RoadFollower(val parent: MapMatchFilter,
                 nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
             }
             directionOnLine = 0.0
+            directionHysteresis = 5
         }
 
         // Update radius
@@ -439,10 +441,7 @@ class RoadFollower(val parent: MapMatchFilter,
 
         ils.line?.let { line ->
 
-            var positionAlongLine = Double.NaN
-            nearestPoint?.let { nearestPoint ->
-                positionAlongLine = nearestPoint.positionAlongLine
-            }
+            val lastNearestPoint = nearestPoint
             // Get the nearest point on our accumulated LineString to the GPS location. Everything
             // returned is valid except for the heading. The heading is relative to the direction of
             // the accumulated LineString which may be the opposite direction to the line within the
@@ -451,9 +450,12 @@ class RoadFollower(val parent: MapMatchFilter,
                 ruler.distanceToLineString(gpsLocation, ils.line as LineString)
             nearestPoint?.let { nearestPoint ->
 
-                if(!positionAlongLine.isNaN() && !nearestPoint.positionAlongLine.isNaN()) {
-                    val delta = nearestPoint.positionAlongLine - positionAlongLine
-                    if((abs(directionOnLine) > 0.03) && (sign(delta) != sign(directionOnLine))) {
+                if((lastNearestPoint != null) &&
+                    !lastNearestPoint.positionAlongLine.isNaN() &&
+                    !nearestPoint.positionAlongLine.isNaN())
+                {
+                    val delta = nearestPoint.positionAlongLine - lastNearestPoint.positionAlongLine
+                    if((directionOnLine != 0.0) && (sign(delta) != sign(directionOnLine))) {
                         // Change of direction?
                         --directionHysteresis
                         if(directionHysteresis == 0) {
