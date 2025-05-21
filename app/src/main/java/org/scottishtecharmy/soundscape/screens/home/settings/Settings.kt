@@ -103,7 +103,7 @@ fun Settings(
         LazyColumn (modifier = modifier.background(backgroundColor)){
             stickyHeader {
                 Surface {
-                    CustomAppBar(stringResource(R.string.general_alert_settings),
+                    CustomAppBar(stringResource(R.string.settings_screen_title),
                         onNavigateUp = onNavigateUp,
                         navigationButtonTitle = "Back"
                     )
