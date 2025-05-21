@@ -370,12 +370,17 @@ fun sortedByDistanceTo(
 }
 
 /**
- * This represent the original iOS COMBINED direction type which they described like this:
+ * This is based on the original iOS COMBINED direction type which they described like this:
  *
  *  Ahead, Right, Behind, and Left all get a 150 degree window centered in their respective
  *  directions (e.g. right is 15 degrees to 165 degrees). In the areas where these windows
  *  overlap, the relative directions get combined. For example, 0 degrees is "ahead", while
  *  20 degrees is "ahead to the right."
+ *
+ *  However, this gives a very small Ahead window which leads to less good intersection
+ *  descriptions, especially when all ahead/behind Left are reduced to Left. As a result, we've
+ *  biased ahead over ahead left/right so that it's 60 degrees, and the ahead/behind left/right are
+ *  only 30 degrees. This is basically shrinking the 150 degree window to 120 degrees.
 
  * @param heading
  * Direction the device is pointing in degrees
@@ -385,22 +390,22 @@ fun getCombinedDirectionSegments(
     heading: Double
 ): Array<Segment> {
     return arrayOf(
-            // 30 degree "behind" triangle
-            Segment(heading + 180.0, 30.0),
-            // 60 degree "behind left" triangle
-            Segment(heading + 225.0, 60.0),
-            // 30 degree "left" triangle
-            Segment(heading + 270.0, 30.0),
-            // 60 degree "ahead left" triangle
-            Segment(heading + 315.0, 60.0),
-            // 30 degree "ahead" triangle
-            Segment(heading, 30.0),
-            // 60 degree "ahead right" triangle
-            Segment(heading + 45, 60.0),
-            // 30 degree "right" triangle
-            Segment(heading + 90, 30.0),
-            // 60 degree "behind right" triangle
-            Segment(heading + 135, 60.0)
+            // "behind" triangle
+            Segment(heading + 180.0, 60.0),
+            // "behind left" triangle
+            Segment(heading + 225.0, 30.0),
+            // "left" triangle
+            Segment(heading + 270.0, 60.0),
+            // "ahead left" triangle
+            Segment(heading + 315.0, 30.0),
+            // "ahead" triangle
+            Segment(heading, 60.0),
+            // "ahead right" triangle
+            Segment(heading + 45, 30.0),
+            // "right" triangle
+            Segment(heading + 90, 60.0),
+            // "behind right" triangle
+            Segment(heading + 135, 30.0)
         )
 }
 

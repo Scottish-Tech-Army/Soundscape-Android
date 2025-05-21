@@ -618,7 +618,7 @@ class TileUtilsTest {
             val iAmHere6 =
                 polygonContainsCoordinates(testBeaconBehindLeft, (feature.geometry as Polygon))
             if (iAmHere6) {
-                Assert.assertEquals(1, feature.properties!!["Direction"])
+                Assert.assertEquals(2, feature.properties!!["Direction"])
             }
         }
         // Location to test relative directions. Placed in "Left" triangle

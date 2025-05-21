@@ -69,7 +69,7 @@ class IntersectionsTestMvt {
         val indexLA = 0
         Assert.assertEquals(Direction.BEHIND, intersection.members[indexWR].direction(intersection, deviceHeading))
         Assert.assertEquals("Weston Road", intersection.members[indexWR].properties!!["name"])
-        Assert.assertEquals(Direction.AHEAD_LEFT, intersection.members[indexLA].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexLA].direction(intersection, deviceHeading))
         Assert.assertEquals("Long Ashton Road", intersection.members[indexLA].properties!!["name"])
 
     }
@@ -427,11 +427,11 @@ class IntersectionsTestMvt {
         val indexBS = 3
         Assert.assertEquals(Direction.BEHIND, intersection.members[indexSMB].direction(intersection, deviceHeading))
         Assert.assertEquals("St Mary's Butts", intersection.members[indexSMB].properties!!["name"])
-        Assert.assertEquals(Direction.AHEAD_LEFT, intersection.members[indexOR].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexOR].direction(intersection, deviceHeading))
         Assert.assertEquals("Oxford Road", intersection.members[indexOR].properties!!["name"])
         Assert.assertEquals(Direction.AHEAD, intersection.members[indexWS].direction(intersection, deviceHeading))
         Assert.assertEquals("West Street", intersection.members[indexWS].properties!!["name"])
-        Assert.assertEquals(Direction.BEHIND_RIGHT, intersection.members[indexBS].direction(intersection, deviceHeading))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexBS].direction(intersection, deviceHeading))
         Assert.assertEquals("Broad Street", intersection.members[indexBS].properties!!["name"])
 
     }
