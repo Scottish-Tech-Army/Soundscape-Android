@@ -218,8 +218,8 @@ fun HomeSearchPreview() {
 fun HomeRoutePreview() {
     val routePlayerState = RoutePlayerState(
         routeData = RouteData(
-            name = "Route 1",
-            description = "Description 1"
+            name = "NameOfRoute 1",
+            description = "DescriptionOfRoute 1"
         ),
         currentWaypoint = 0
     )

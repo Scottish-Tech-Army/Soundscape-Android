@@ -72,7 +72,7 @@ fun DrawerContent(
 //        )
         DrawerMenuItem(
             onClick = { onNavigate(HomeRoutes.Settings.route) },
-            label = stringResource(R.string.general_alert_settings),
+            label = stringResource(R.string.settings_screen_title),
             icon = Icons.Rounded.Settings,
         )
         DrawerMenuItem(
