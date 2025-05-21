@@ -369,6 +369,7 @@ fun addIntersectionCalloutFromDescription(
     val incomingHeading = (heading.toDouble() + 180.0) % 360.0
 
     val directions = getCombinedDirectionSegments(incomingHeading)
+    val intersectionResults = emptyList<PositionedString>().toMutableList()
     for (way in description.intersection.members) {
 
         val wayHeading = way.heading(description.intersection)
@@ -408,7 +409,7 @@ fun addIntersectionCalloutFromDescription(
             var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext)
             val intersectionCallout =
                 localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText $unlocalizedDirection"
-            results.add(
+            intersectionResults.add(
                 PositionedString(
                     text = intersectionCallout,
                     type = AudioType.COMPASS,
@@ -417,4 +418,9 @@ fun addIntersectionCalloutFromDescription(
             )
         }
     }
+    // Order intersection callout by heading from left to right
+    intersectionResults.sortWith(Comparator { p1, p2 ->
+        p1.heading!!.compareTo(p2.heading!!)
+    })
+    results.addAll(intersectionResults)
 }
