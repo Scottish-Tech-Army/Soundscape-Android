@@ -336,7 +336,7 @@ fun addIntersectionCalloutFromDescription(
             50.0
         )
         val ways = getPathWays(shortestDistanceResults.endIntersection)
-        description.nearestRoad = ways.first()
+        description.nearestRoad = ways.firstOrNull()
 
         shortestDistanceResults.tidy()
     }
