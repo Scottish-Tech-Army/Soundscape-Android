@@ -95,19 +95,29 @@ class IndexedLineString {
         }
 
         line = LineString()
-        var nextIntersection = route[0].doesIntersect(route[1])
-        if(nextIntersection == null) {
-            // We can get here if the tile grid is recalculated, and tiles rejoined and the route is
-            // left with out of date and disconnected ways.
-            line = null
-            return
-        }
-        var firstIntersection = route[0].getOtherIntersection(nextIntersection)
-        var forwards = nextIntersection != route[0].intersections[WayEnd.START.id]
-
         for ((index, way) in route.withIndex()) {
-            if (index != 0) {
-                forwards = firstIntersection != way.intersections[WayEnd.END.id]
+
+            var forwards = true
+            if(index < route.size - 1) {
+                // Most of the Ways in the route
+                val (nextIntersection, ourIndex) = route[index].doesIntersect(route[index + 1])
+                if(nextIntersection == null) {
+                    // We can get here if the tile grid is recalculated, and tiles rejoined and the route is
+                    // left with out of date and disconnected ways.
+                    line = null
+                    return
+                }
+                forwards = (ourIndex == WayEnd.END.id)
+            } else {
+                // The last Way in the route
+                val (firstIntersection, ourIndex) = route[index].doesIntersect(route[index - 1])
+                if(firstIntersection == null) {
+                    // We can get here if the tile grid is recalculated, and tiles rejoined and the route is
+                    // left with out of date and disconnected ways.
+                    line = null
+                    return
+                }
+                forwards = (ourIndex == WayEnd.START.id)
             }
 
             // And add its coordinates to the LineString along with whether or not we reversed the
@@ -115,33 +125,14 @@ class IndexedLineString {
             // each intersection, but is simple.
             if (forwards) {
                 line!!.coordinates.addAll((way.geometry as LineString).coordinates)
-                direction?.set(index, true)
             }
             else {
                 line!!.coordinates.addAll((way.geometry as LineString).coordinates.reversed())
-                direction?.set(index, false)
             }
+            direction?.set(index, forwards)
 
             // Note the index at which this Way ends
             indices?.set(index, line!!.coordinates.size)
-
-            if(firstIntersection != null) {
-                firstIntersection = way.getOtherIntersection(firstIntersection)
-                if(firstIntersection?.intersectionType == IntersectionType.TILE_EDGE) {
-                    for(member in firstIntersection!!.members) {
-                        if(member.wayType == WayType.JOINER) {
-                            if((member.intersections[WayEnd.START.id] == null) &&
-                               (member.intersections[WayEnd.END.id] == null))
-                            {
-                                assert(false)
-                            } else {
-                                firstIntersection = member.getOtherIntersection(firstIntersection!!)
-                                break
-                            }
-                        }
-                    }
-                }
-            }
         }
         hashCode = line?.coordinates.hashCode()
     }
@@ -293,7 +284,7 @@ class RoadFollower(val parent: MapMatchFilter,
         var minIndex = Int.MAX_VALUE
         var maxIndex = -1
         for((index, way) in route.withIndex()) {
-            if(way.doesIntersect(newWay) != null) {
+            if(way.doesIntersect(newWay).first != null) {
                 if(index < minIndex) minIndex = index
                 if(index > maxIndex) maxIndex = index
             }
@@ -355,12 +346,12 @@ class RoadFollower(val parent: MapMatchFilter,
         }
 
         var newRoute = emptyList<Way>().toMutableList()
-        if(route.first().doesIntersect(newWay) != null) {
+        if(route.first().doesIntersect(newWay).first != null) {
             if(!route.first().intersections.contains(null)) {
                 newRoute.add(newWay)
                 newRoute.addAll(route)
             }
-        } else if(route.last().doesIntersect(newWay) != null) {
+        } else if(route.last().doesIntersect(newWay).first != null) {
             if(!route.last().intersections.contains(null)) {
                 newRoute.addAll(route)
                 newRoute.add(newWay)
@@ -369,15 +360,17 @@ class RoadFollower(val parent: MapMatchFilter,
             assert(false)
         }
         if(newRoute.isNotEmpty()) {
-            if (newRoute[0].doesIntersect(newRoute[1]) == null) {
+            if (newRoute[0].doesIntersect(newRoute[1]).first == null) {
                 assert(false)
             }
 
             route = newRoute
             validateRoute()
             ils.updateFromRoute(route)
-            nearestPoint?.let { point ->
-                nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
+            if(ils.line != null) {
+                nearestPoint?.let { point ->
+                    nearestPoint = ruler.distanceToLineString(point.point, ils.line as LineString)
+                }
             }
             directionOnLine = 0.0
             directionHysteresis = 5
@@ -454,7 +447,7 @@ class RoadFollower(val parent: MapMatchFilter,
                     !nearestPoint.positionAlongLine.isNaN())
                 {
                     val delta = nearestPoint.positionAlongLine - lastNearestPoint.positionAlongLine
-                    if((directionOnLine != 0.0) && (sign(delta) != sign(directionOnLine))) {
+                    if((directionOnLine != 0.0) && ((sign(delta) != sign(directionOnLine)) || (delta == 0.0))) {
                         // Change of direction?
                         --directionHysteresis
                         if(directionHysteresis == 0) {
@@ -676,7 +669,7 @@ class MapMatchFilter {
                 while(iterator.hasNext()) {
                     val follower = iterator.next()
                     val lastWayInRoute = follower.route.last()
-                    val intersection = lastWayInRoute.doesIntersect(way)
+                    var (intersection, ourIndex) = lastWayInRoute.doesIntersect(way)
                     if (intersection != null) {
                         // This road intersects with the last way, so it can either replace it, or
                         // be added on to it.
@@ -684,7 +677,7 @@ class MapMatchFilter {
                         added = true
                     } else {
                         val firstWayInRoute = follower.route.first()
-                        val firstIntersection = firstWayInRoute.doesIntersect(way)
+                        val (firstIntersection, ourIndex2) = firstWayInRoute.doesIntersect(way)
                         if (firstIntersection != null) {
                             // This road intersects with the first way, so it can either replace it,
                             // or be added on to it.

@@ -646,6 +646,14 @@ class MvtTileTest {
     fun testCallouts() {
 
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
+
+
+        val resultsStoragePath =  "gpxFiles/"
+        val resultsStorageDir = File(resultsStoragePath)
+        if (!resultsStorageDir.exists()) {
+            resultsStorageDir.mkdirs()
+        }
+
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for(file in directoryEntries) {
             testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
