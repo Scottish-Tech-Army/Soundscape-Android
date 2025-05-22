@@ -563,6 +563,10 @@ fun checkWhetherIntersectionIsOfInterest(
     if(testNearestRoad == null)
         return 0
 
+    // We don't announce intersections with only 2 or fewer Ways
+    if(intersection.members.size <= 2)
+        return -1
+
     var needsFurtherChecking = 0
     val setOfNames = emptySet<String>().toMutableSet()
     for (way in intersection.members) {
