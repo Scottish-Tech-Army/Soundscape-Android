@@ -170,27 +170,34 @@ class Way : Feature() {
         }
     }
 
-    fun doesIntersect(other: Way) : Intersection? {
-        for(ours in intersections) {
+    fun doesIntersect(other: Way) : Pair<Intersection?, Int> {
+        for((ourIndex ,ours) in intersections.withIndex()) {
             if(ours == null) continue
             for(theirs in other.intersections) {
                 if(theirs == null) continue
                 // Check for direct intersection first
                 if(ours == theirs)
-                    return ours
+                    return Pair(ours, ourIndex)
+            }
+        }
+
+        for((ourIndex ,ours) in intersections.withIndex()) {
+            if(ours == null) continue
+            for(theirs in other.intersections) {
+                if(theirs == null) continue
                 // Check for tile-edge joiner
                 if((ours.intersectionType == IntersectionType.TILE_EDGE) &&
-                   (theirs.intersectionType == IntersectionType.TILE_EDGE)) {
+                    (theirs.intersectionType == IntersectionType.TILE_EDGE)) {
                     for(member in ours.members) {
                         if(theirs.members.contains(member)) {
-                            return theirs
+                            return Pair(theirs, ourIndex)
                         }
                     }
                 }
             }
         }
 
-        return null
+        return Pair(null, 0)
     }
 
     fun isSidewalkOrCrossing() : Boolean {
@@ -381,8 +388,8 @@ class Way : Feature() {
         newWay1.length = length1
 
         val newWay2 = Way()
-        newWay2.intersections[0] = intersections[1]
-        newWay2.intersections[1] = newIntersection
+        newWay2.intersections[0] = newIntersection
+        newWay2.intersections[1] = intersections[1]
         newWay2.geometry = line2
         newWay2.length = length2
 
