@@ -21,7 +21,8 @@ class IntersectionsTestMvt {
         mapMatchFilter.filter(
             location = currentLocation,
             gridState = gridState,
-            collection = FeatureCollection()
+            collection = FeatureCollection(),
+            dump = false
         )
         val userGeometry = UserGeometry(
             location = currentLocation,
