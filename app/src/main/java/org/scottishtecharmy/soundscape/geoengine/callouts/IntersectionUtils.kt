@@ -14,7 +14,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
-import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
 import org.scottishtecharmy.soundscape.geoengine.utils.checkWhetherIntersectionIsOfInterest
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
@@ -100,7 +100,8 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                         userGeometry.ruler.distanceToLineString(userGeometry.mapMatchedLocation.point, road.geometry as LineString)
                     val snappedHeading = userGeometry.snappedHeading()
                     if (snappedHeading != null) {
-                        if (calculateHeadingOffset(roadDistance.heading, snappedHeading) > 45.0) {
+                        var innerAngle = calculateSmallestAngleBetweenLines(roadDistance.heading, snappedHeading)
+                        if (innerAngle > 45.0) {
                             // This way is not at the angle of travel, so skip it
                             continue
                         }

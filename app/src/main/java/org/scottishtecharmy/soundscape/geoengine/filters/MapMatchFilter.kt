@@ -12,7 +12,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.addSidewalk
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
-import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.clone
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
@@ -26,7 +26,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import kotlin.math.abs
 import kotlin.math.asin
 import kotlin.math.cos
 import kotlin.math.min
@@ -554,9 +553,7 @@ class RoadFollower(val parent: MapMatchFilter,
 
         val roadHeading = nearestPoint?.heading
         if (!gpsHeading.isNaN() && roadHeading != null) {
-            var headingDifference = calculateHeadingOffset(gpsHeading, roadHeading)
-            if (headingDifference > 90.0)
-                headingDifference = 180.0 - headingDifference
+            var headingDifference = calculateSmallestAngleBetweenLines(gpsHeading, roadHeading)
             val cosHeadingDifference = cos(toRadians(headingDifference))
             if (cosHeadingDifference < 0.703) {
                 // Unreliable GPS heading - the GPS is moving in a very different direction
@@ -725,7 +722,7 @@ class MapMatchFilter {
     }
 
     var colorIndex = 0
-    fun filter(location: LngLatAlt, gridState: GridState, collection: FeatureCollection): Triple<LngLatAlt?, Feature?, String> {
+    fun filter(location: LngLatAlt, gridState: GridState, collection: FeatureCollection, dump: Boolean): Triple<LngLatAlt?, Feature?, String> {
 
         extendFollowerList(location, gridState)
 
@@ -792,7 +789,7 @@ class MapMatchFilter {
                             }
                         }
                         if(useDijkstra) {
-                            val testDistance = (follower.averagePointGap * 3) + 10.0
+                            val testDistance = (follower.averagePointGap * 8) + 15.0
                             val shortestDistance = findShortestDistance(
                                 matchedLocation!!.point,
                                 matched,

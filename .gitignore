@@ -12,8 +12,8 @@
 /captures
 .externalNativeBuild
 .cxx
+app/gpxFiles/*
 app/*.geojson
-app/callout*.txt
 
 # Gradle files
 .gradle/

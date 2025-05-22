@@ -1209,11 +1209,30 @@ fun pointIsWithinBoundingBox(point: LngLatAlt?, box: BoundingBox) : Boolean {
  * heading of a road.
  * @param heading1
  * @param heading2
- * @return The inner angle between the two headings in degrees.
+ * @return The inner angle between the two headings in degrees. This can be up to 180.0 degrees
+ * because that's the maximum difference between headings.
  */
 fun calculateHeadingOffset(heading1: Double, heading2: Double): Double {
-    var diff = abs(heading1 - heading2) % 360.0
+    val normalizedHeading1 = (heading1 % 360.0 + 360.0) % 360.0
+    val normalizedHeading2 = (heading2 % 360.0 + 360.0) % 360.0
+    var diff = abs(normalizedHeading1 - normalizedHeading2)
     if (diff > 180.0) diff = 360.0 - diff
 
     return diff
+}
+
+/**
+ * calculateSmallestAngleBetweenLines calculates the smallest angle between two lines.
+ *
+ * heading of a road.
+ * @param heading1
+ * @param heading2
+ * @return The inner angle between the two lines in degrees. This can be up to 90.0 degrees as it's
+ * the smallest angle between the two lines.
+ */
+fun calculateSmallestAngleBetweenLines(heading1: Double, heading2: Double): Double {
+    var innerAngle = calculateHeadingOffset(heading1, heading2)
+    if (innerAngle > 90.0)
+        innerAngle = 180.0 - innerAngle
+    return innerAngle
 }

@@ -37,6 +37,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import kotlin.io.path.Path
+import kotlin.io.path.listDirectoryEntries
+import kotlin.io.path.name
+import kotlin.io.path.nameWithoutExtension
 
 /**
  * FileGridState overrides ProtomapsGridState updateTile to get tiles from test resources instead of
@@ -99,11 +103,10 @@ private fun vectorTileToGeoJsonFromFile(
 }
 
 private fun parseGpxFromFile(filename: String): FeatureCollection {
-    val path = "src/test/res/org/scottishtecharmy/soundscape/"
     val fc = FeatureCollection()
 
     var currentFeature = Feature()
-    File(path + filename).useLines { lines ->
+    File(filename).useLines { lines ->
         lines.forEach { line ->
 
             // Get the location
@@ -579,13 +582,11 @@ class MvtTileTest {
                 )
 
                 // Update the nearest road filter with our new location
-                if(startIndex + index == 526) {
-                    mapMatchFilter.dump()
-                }
                 val mapMatchedResult = mapMatchFilter.filter(
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
-                    collection
+                    collection,
+                    false
                 )
 
                 if(mapMatchedResult.first != null) {
@@ -643,13 +644,12 @@ class MvtTileTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testCallouts() {
-        testMovingGrid("travel.gpx", "callout-travel.txt", "map-matching.geojson")
-        testMovingGrid("travel-2.gpx", "callout-travel-2.txt", "map-matching-2.geojson")
-        testMovingGrid("travel-3.gpx", "callout-travel-3.txt", "map-matching-3.geojson")
-//        testMovingGrid("travel-4.gpx", "callout-travel-4.txt", "map-matching-4.geojson")
-//        testMovingGrid("travel-5.gpx", "callout-travel-5.txt", "map-matching-5.geojson")
-//        testMovingGrid("travel-6.gpx", "callout-travel-6.txt", "map-matching-6.geojson")
-//        testMovingGrid("travel-7.gpx", "callout-travel-7.txt", "map-matching-7.geojson")
+
+        val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
+        val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
+        for(file in directoryEntries) {
+            testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
+        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

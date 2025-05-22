@@ -360,7 +360,8 @@ class GeoEngine {
                                 mapMatchFilter.filter(
                                     LngLatAlt(location.longitude, location.latitude),
                                     gridState,
-                                    FeatureCollection()
+                                    FeatureCollection(),
+                                    false
                                 )
                             }
                             val matchedWay = mapMatchFilter.matchedWay
