@@ -23,7 +23,7 @@ class ComplexIntersections {
             location,
             320.0,
             50.0,
-            mapMatchedWay = gridState.getNearestFeature(TreeId.ROADS, LngLatAlt(-2.697291022799874,51.44378095087524)) as Way
+            mapMatchedWay = gridState.getNearestFeature(TreeId.ROADS, gridState.ruler, LngLatAlt(-2.697291022799874,51.44378095087524)) as Way
         )
 
         val intersection = getRoadsDescriptionFromFov(
@@ -67,7 +67,7 @@ class ComplexIntersections {
             location,
             45.0,
             50.0,
-            mapMatchedWay = gridState.getNearestFeature(TreeId.ROADS, location) as Way
+            mapMatchedWay = gridState.getNearestFeature(TreeId.ROADS, gridState.ruler, location) as Way
         )
 
         val intersection = getRoadsDescriptionFromFov(

@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
@@ -39,7 +41,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.io.path.Path
 import kotlin.io.path.listDirectoryEntries
-import kotlin.io.path.name
 import kotlin.io.path.nameWithoutExtension
 
 /**
@@ -161,10 +162,15 @@ fun getGridStateForLocation(
     GRID_SIZE = gridSize
     val gridState = FileGridState()
     runBlocking {
+
+        val enabledCategories = emptySet<String>().toMutableSet()
+        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
+        enabledCategories.add(MOBILITY_KEY)
+
         // Update the grid state
         gridState.locationUpdate(
             LngLatAlt(location.longitude, location.latitude),
-            emptySet()
+            enabledCategories
         )
     }
     return gridState
@@ -373,7 +379,7 @@ class MvtTileTest {
         }
 
         start = System.currentTimeMillis()
-        val nearestFc = tree.getNearestFeature(LngLatAlt(-4.316914, 55.941861), 50.0, CheapRuler(55.9473305))
+        val nearestFc = tree.getNearestFeature(LngLatAlt(-4.316914, 55.941861), CheapRuler(55.9473305), 50.0)
         end = System.currentTimeMillis()
         println("Nearest (${end-start}ms):")
         println(nearestFc?.properties?.get("name"))
@@ -442,7 +448,7 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(userGeometry.location)
 
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
-        val nearestRoad = roadTree.getNearestFeature(userGeometry.location)
+        val nearestRoad = roadTree.getNearestFeature(userGeometry.location, userGeometry.ruler)
 
         println(nearestRoad.toString())
     }
@@ -576,10 +582,19 @@ class MvtTileTest {
             val location = (position.geometry as Point).coordinates
             runBlocking {
                 // Update the grid state
-                gridState.locationUpdate(
+                val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
                     emptySet()
                 )
+
+                if(gridChanged) {
+                    // As we're here, test the name confection for the grids. This is relatively
+                    // expensive and is only done on individual Ways as needed when running the app.
+                    val roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+                    for (road in roads) {
+                        confectNamesForRoad(road, gridState)
+                    }
+                }
 
                 // Update the nearest road filter with our new location
                 val mapMatchedResult = mapMatchFilter.filter(

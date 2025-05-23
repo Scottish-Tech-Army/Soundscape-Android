@@ -48,7 +48,7 @@ class BusStopTest {
         Assert.assertEquals(2, fovBusStopFeatureCollection.features.size)
         // we can detect the nearest bus stop and give a distance/direction but as mentioned above the OSM
         // bus stop location data for this example is rubbish so not sure how useful this is to the user?
-        val nearestBusStop = FeatureTree(fovBusStopFeatureCollection).getNearestFeature(userGeometry.location)
+        val nearestBusStop = FeatureTree(fovBusStopFeatureCollection).getNearestFeature(userGeometry.location, userGeometry.ruler)
         val busStopLocation = nearestBusStop!!.geometry as Point
         val distanceToBusStop = userGeometry.ruler.distance(userGeometry.location, busStopLocation.coordinates)
         Assert.assertEquals(9.08, distanceToBusStop, 0.1)

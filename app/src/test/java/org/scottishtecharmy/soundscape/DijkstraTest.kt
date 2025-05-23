@@ -37,8 +37,8 @@ class DijkstraTest {
         val shortestRoutes = FeatureCollection()
 
         // We should already have these values in the real code, so don't time them
-        val startIntersection = intersectionsTree.getNearestFeature(startLocation) as Intersection
-        val endIntersection = intersectionsTree.getNearestFeature(endLocation) as Intersection
+        val startIntersection = intersectionsTree.getNearestFeature(startLocation, gridState.ruler) as Intersection
+        val endIntersection = intersectionsTree.getNearestFeature(endLocation, gridState.ruler) as Intersection
         var shortestPath : Double
         val timeTakenUsingNewAlgorithm = measureTime {
             /**
@@ -85,8 +85,8 @@ class DijkstraTest {
         val endLocation = LngLatAlt(-4.316699, 55.939225)
 
         // Find the nearest ways to each location
-        val startWay = roadTree.getNearestFeature(startLocation) as Way
-        val endWay = roadTree.getNearestFeature(endLocation) as Way
+        val startWay = roadTree.getNearestFeature(startLocation, gridState.ruler) as Way
+        val endWay = roadTree.getNearestFeature(endLocation, gridState.ruler) as Way
 
         var shortestPath : Double
         val shortestRoute = FeatureCollection()
@@ -117,8 +117,8 @@ class DijkstraTest {
         val endLocation = LngLatAlt(-4.316699, 55.939225)
 
         // Find the nearest ways to each location
-        val startWay = roadTree.getNearestFeature(startLocation) as Way
-        val endWay = roadTree.getNearestFeature(endLocation) as Way
+        val startWay = roadTree.getNearestFeature(startLocation, gridState.ruler) as Way
+        val endWay = roadTree.getNearestFeature(endLocation, gridState.ruler) as Way
 
         var shortestPath : Double
         val shortestRoute = FeatureCollection()
