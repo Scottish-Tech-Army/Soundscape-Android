@@ -33,7 +33,7 @@ class CrossingTest {
             location,
             45.0,
             50.0,
-            mapMatchedWay = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(location) as Way
+            mapMatchedWay = gridState.getFeatureTree(TreeId.ROADS).getNearestFeature(location, gridState.ruler) as Way
         )
 
         // We can reuse the intersection code as crossings are GeoJSON Points just like Intersections
@@ -42,12 +42,12 @@ class CrossingTest {
         val fovCrossingFeatureCollection = crossingsTree.getAllWithinTriangle(triangle)
         Assert.assertEquals(1, fovCrossingFeatureCollection.features.size)
 
-        val nearestCrossing = FeatureTree(fovCrossingFeatureCollection).getNearestFeature(userGeometry.location)
+        val nearestCrossing = FeatureTree(fovCrossingFeatureCollection).getNearestFeature(userGeometry.location, userGeometry.ruler)
         val crossingLocation = nearestCrossing!!.geometry as Point
         val distanceToCrossing = userGeometry.ruler.distance(userGeometry.location, crossingLocation.coordinates)
 
         // Confirm which road the crossing is on
-        val nearestRoadToCrossing = roadsTree.getNearestFeature(crossingLocation.coordinates)
+        val nearestRoadToCrossing = roadsTree.getNearestFeature(crossingLocation.coordinates, userGeometry.ruler)
 
         Assert.assertEquals(24.58, distanceToCrossing, 0.2)
         Assert.assertEquals("Belmont Drive", nearestRoadToCrossing!!.properties?.get("name"))

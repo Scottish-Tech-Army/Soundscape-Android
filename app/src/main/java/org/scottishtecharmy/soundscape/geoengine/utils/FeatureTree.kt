@@ -492,15 +492,15 @@ class FeatureTree(featureCollection: FeatureCollection?) {
      * @result Feature that is the nearest member of the rtree that is also within distance
      */
     fun getNearestFeature(location: LngLatAlt,
-                          distance: Double = Double.POSITIVE_INFINITY,
-                          ruler: Ruler? = null): Feature? {
+                          ruler: Ruler,
+                          distance: Double = Double.POSITIVE_INFINITY): Feature? {
         if(tree != null) {
             val distanceResults = Iterables.toList(
                 nearestWithinDistance(
                     Geometries.pointGeographic(location.longitude, location.latitude),
                     distance,
                     1,
-                    ruler ?: location.createCheapRuler()
+                    ruler
                 )
             )
 

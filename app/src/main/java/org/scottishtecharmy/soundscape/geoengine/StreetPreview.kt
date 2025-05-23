@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 data class StreetPreviewChoice(
@@ -48,7 +49,7 @@ class StreetPreview {
 
             PreviewState.INITIAL -> {
                 // Jump to an intersection on the nearest road or path
-                val road : Way? = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.location, Double.POSITIVE_INFINITY) as Way?
+                val road : Way? = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.ruler, userGeometry.location, Double.POSITIVE_INFINITY) as Way?
                 if(road == null)
                     return null
                 var nearestDistance = Double.POSITIVE_INFINITY
@@ -161,7 +162,8 @@ class StreetPreview {
     fun getDirectionChoices(engine: GeoEngine, location: LngLatAlt): List<StreetPreviewChoice> {
         val choices = mutableListOf<StreetPreviewChoice>()
 
-        val nearestIntersection = engine.gridState.getNearestFeature(TreeId.INTERSECTIONS, location, 1.0) as Intersection?
+        val ruler = CheapRuler(location.latitude)
+        val nearestIntersection = engine.gridState.getNearestFeature(TreeId.INTERSECTIONS, ruler, location, 1.0) as Intersection?
         if(nearestIntersection != null) {
             for(member in nearestIntersection.members) {
                 choices.add(

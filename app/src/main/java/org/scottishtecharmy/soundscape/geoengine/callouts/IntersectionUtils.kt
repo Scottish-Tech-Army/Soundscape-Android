@@ -63,7 +63,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         if (userGeometry.inStreetPreview) {
             // In StreetPreview mode, the road we're on is that matching the heading into the
             // intersection that we're at.
-            val intersection = intersectionTree.getNearestFeature(userGeometry.location) as Intersection?
+            val intersection = intersectionTree.getNearestFeature(userGeometry.location, userGeometry.ruler) as Intersection?
             val userHeading = userGeometry.heading()
             if((userHeading != null) && (intersection != null)) {
                 for (member in intersection.members) {

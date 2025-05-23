@@ -124,8 +124,8 @@ class MvtPerformanceTest {
         val endLocation = LngLatAlt(-4.316699, 55.939225)
 
         // Find the nearest ways to each location
-        val startWay = roadTree.getNearestFeature(startLocation) as Way
-        val endWay = roadTree.getNearestFeature(endLocation) as Way
+        val startWay = roadTree.getNearestFeature(startLocation, gridState.ruler) as Way
+        val endWay = roadTree.getNearestFeature(endLocation, gridState.ruler) as Way
 
         Debug.startMethodTracing("Test2")
 
@@ -225,7 +225,7 @@ class MvtPerformanceTest {
         val edinburgh = BoundingBox(-3.3568399, 55.9005448, -3.0921694, 55.9919155)
         testGridCache(edinburgh, 1)
 
-        // London results in OOM - needs investigating
+        // London results simply take too long as it's a huge area
 //        val london = BoundingBox(-0.5111412, 51.3083029, 0.1582387, 51.6369422)
 //        testGridCache(london)
     }

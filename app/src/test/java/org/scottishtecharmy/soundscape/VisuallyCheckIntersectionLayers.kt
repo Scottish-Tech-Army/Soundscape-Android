@@ -59,7 +59,7 @@ class VisuallyCheckIntersectionLayers {
             fovIntersectionsFeatureCollection
         )
         // Get the nearest Road in the FoV
-        val testNearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(userGeometry.location)
+        val testNearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(userGeometry.location, userGeometry.ruler)
 
         val intersectionsNeedsFurtherCheckingFC = FeatureCollection()
         for (i in 0 until intersectionsSortedByDistance.features.size) {
@@ -106,7 +106,7 @@ class VisuallyCheckIntersectionLayers {
         val nearestCrossing = FeatureTree(fovCrossingsFeatureCollection).getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
         // Confirm which road the crossing is on
         val crossingLocation = nearestCrossing!!.geometry as Point
-        val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(crossingLocation.coordinates)
+        val nearestRoadToCrossing = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getNearestFeature(crossingLocation.coordinates, userGeometry.ruler)
         // *** End of Crossing
 
         // Road with nearest crossing

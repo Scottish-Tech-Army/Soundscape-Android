@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTil
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -472,11 +473,12 @@ open class GridState {
     }
 
     internal fun getNearestFeature(id: TreeId,
+                                   ruler: Ruler,
                                    location: LngLatAlt = LngLatAlt(),
                                    distance : Double = Double.POSITIVE_INFINITY
     ): Feature? {
         checkContext()
-        return featureTrees[id.id].getNearestFeature(location, distance)
+        return featureTrees[id.id].getNearestFeature(location, ruler, distance)
     }
 
     internal fun processTileFeatureCollection(tileFeatureCollection: FeatureCollection): Array<FeatureCollection> {

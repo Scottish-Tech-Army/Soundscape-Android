@@ -1033,7 +1033,7 @@ fun localReverseGeocode(location: LngLatAlt,
     }
 
     // Check if the location is alongside a road/path
-    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, location, 100.0) as Way?
+    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
     if(nearestRoad != null) {
         // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
         val roadName = nearestRoad.getName(null, gridState, localizedContext, true)

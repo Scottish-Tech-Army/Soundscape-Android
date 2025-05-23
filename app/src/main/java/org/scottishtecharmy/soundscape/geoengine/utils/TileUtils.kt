@@ -1555,17 +1555,60 @@ fun addSidewalk(currentRoad: Way,
     }
     return false
 }
+fun checkNearbyPoi(tree: FeatureTree,
+                   location: LngLatAlt,
+                   polygonPoiToCompare: Feature?,
+                   ruler: Ruler) : Feature? {
 
-fun addPoiDestinations(currentRoad: Feature,
+    // Get the nearest 2 features so that we can exclude polygonPoiToCompare.
+    // Otherwise we never find features within other Polygons like parks.
+    val nearbyPois = tree.getNearestCollection(
+        location = location,
+        distance = 20.0,
+        2,
+        ruler = ruler
+    )
+    for(poi in nearbyPois) {
+        // Return the startPoi so long as we haven't matched against the polygonEndPoi
+        if (poi != polygonPoiToCompare) {
+            return poi
+        }
+    }
+    return null
+}
+
+fun addPoiDestinations(way: Way,
                        gridState: GridState) : Boolean {
 
-    val line = currentRoad.geometry as LineString
-    val startLocation = line.coordinates.first()
-    val endLocation = line.coordinates.last()
+    // We want to use the locations at the furthest extent of the way as the start and end points.
+    val line = way.geometry as LineString
+    var startLocation = line.coordinates.first()
+    var endLocation = line.coordinates.last()
+
+    val startIntersection = way.intersections[WayEnd.START.id]
+    val endIntersection = way.intersections[WayEnd.END.id]
+    if(startIntersection != null) {
+        val waysFromStart = emptyList<Pair<Boolean, Way>>().toMutableList()
+        way.followWays(startIntersection, waysFromStart)
+        // When followWays from the start intersection will head towards the end of the line
+        endLocation = if(waysFromStart.last().first)
+            (waysFromStart.last().second.geometry as LineString).coordinates.last()
+        else
+            (waysFromStart.last().second.geometry as LineString).coordinates.first()
+    }
+    if(endIntersection != null) {
+        val waysFromEnd = emptyList<Pair<Boolean, Way>>().toMutableList()
+        way.followWays(endIntersection, waysFromEnd)
+        // When followWays from the end intersection will head towards the start of the line
+        startLocation = if(waysFromEnd.last().first)
+            (waysFromEnd.last().second.geometry as LineString).coordinates.last()
+        else
+            (waysFromEnd.last().second.geometry as LineString).coordinates.first()
+    }
 
     // Only add in destinations tag if they don't already exist
-    val startDestinationAdded = currentRoad.properties?.get("destination:backward") != null
-    val endDestinationAdded = currentRoad.properties?.get("destination:forward") != null
+    val startDestinationAdded = way.properties?.get("destination:backward") != null
+    val endDestinationAdded = way.properties?.get("destination:forward") != null
 
     if(startDestinationAdded && endDestinationAdded) return false
 
@@ -1573,50 +1616,66 @@ fun addPoiDestinations(currentRoad: Feature,
     val markerTree = gridState.markerTree
     var startPoi = markerTree?.getNearestFeature(
         location = startLocation,
-        distance = 20.0
+        distance = 20.0,
+        ruler = gridState.ruler
     )
     var endPoi = markerTree?.getNearestFeature(
         location = endLocation,
-        distance = 20.0
+        distance = 20.0,
+        ruler = gridState.ruler
     )
 
-    // Does the unnamed way start or end near a POI?
-    val poiTree = gridState.featureTrees[TreeId.LANDMARK_POIS.id]
-    if(startPoi == null) {
-        startPoi = poiTree.getNearestFeature(
-            location = startLocation,
-            distance = 20.0
-        )
-    }
-    if(endPoi == null) {
-        endPoi = poiTree.getNearestFeature(
-            location = endLocation,
-            distance = 20.0
-        )
+    // Does the unnamed way start or end near inside a POI? If we don't do this check, we can end
+    // up with confusing confections inside parks where a path is described "to Park" when the
+    // whole path is within the park, but one end is nearer the edge of it.
+    val poiTree = gridState.featureTrees[TreeId.POIS.id]
+    val polygonStartPoi = poiTree.getContainingPolygons(startLocation).features.firstOrNull()
+    val polygonEndPoi = poiTree.getContainingPolygons(endLocation).features.firstOrNull()
+    if((polygonEndPoi != null) || (polygonStartPoi != null)) {
+        if(polygonEndPoi != polygonStartPoi) {
+            // The way crosses across a polygon boundary
+            if(startPoi == null) startPoi = polygonStartPoi
+            if(endPoi == null) endPoi = polygonEndPoi
+        }
     }
 
+    // Does the unnamed way start or end near an entrance? These should take priority over other
+    // types of POI as they are likely the most useful
+    val entrancesTree = gridState.featureTrees[TreeId.ENTRANCES.id]
+    if (startPoi == null)
+        startPoi = checkNearbyPoi(entrancesTree, startLocation, polygonEndPoi, gridState.ruler)
+    if (endPoi == null)
+        endPoi = checkNearbyPoi(entrancesTree, endLocation, polygonStartPoi, gridState.ruler)
+
+    // Does the unnamed way start or end near a Landmark or a place?
+    val placesAndLandmarkTree = gridState.featureTrees[TreeId.PLACES_AND_LANDMARKS.id]
+    if (startPoi == null)
+        startPoi = checkNearbyPoi(placesAndLandmarkTree, startLocation, polygonEndPoi, gridState.ruler)
+    if (endPoi == null)
+        endPoi = checkNearbyPoi(placesAndLandmarkTree, endLocation, polygonStartPoi, gridState.ruler)
+
     val safetyTree = gridState.featureTrees[TreeId.SAFETY_POIS.id]
-    if(startPoi == null) {
+    if (startPoi == null) {
         startPoi = safetyTree.getContainingPolygons(startLocation).features.firstOrNull()
     }
-    if(endPoi == null) {
+    if (endPoi == null) {
         endPoi = safetyTree.getContainingPolygons(endLocation).features.firstOrNull()
     }
 
     var addedDestinations = false
+
     if(startPoi != endPoi) {
-        // There's no point in describing a path that starts and ends at the same place
         if(!startDestinationAdded) {
             val startName = startPoi?.properties?.get("name")
             if (startName != null) {
-                currentRoad.properties?.set("destination:backward", startName)
+                way.properties?.set("destination:backward", startName)
                 addedDestinations = true
             }
         }
         if(!endDestinationAdded) {
             val endName = endPoi?.properties?.get("name")
             if (endName != null) {
-                currentRoad.properties?.set("destination:forward", endName)
+                way.properties?.set("destination:forward", endName)
                 addedDestinations = true
             }
         }
@@ -1636,7 +1695,7 @@ fun confectNamesForRoad(road: Feature,
             return
         }
 
-        addPoiDestinations(road, gridState)
+        addPoiDestinations(road as Way, gridState)
     }
 }
 
@@ -1711,9 +1770,6 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
         // Check for dead ends
         for (road in intersection.value.members) {
             val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
-            if(intersection.value.location.longitude == -2.688494771718979) {
-                println("!")
-            }
             road.followWays(intersection.value, ways)
             val way = ways.last()
             if ((way.first and (way.second.intersections[WayEnd.END.id] == null)) or
