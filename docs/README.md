@@ -6,3 +6,6 @@ We now have an app which has many of the features available which are available 
 
 ## For developers
 Documentation for developers is available [here](developers.md).
+
+## Localization
+We have started using the fantastic [Weblate](https://hosted.weblate.org/projects/soundscape-android/) to help with the localization of the app.
