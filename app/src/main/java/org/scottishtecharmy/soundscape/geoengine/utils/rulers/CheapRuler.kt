@@ -320,10 +320,9 @@ class CheapRuler(val lat: Double) : Ruler() {
             }
         }
 
-        val nearestPoint = cheapInterpolate(line.coordinates[minI], line.coordinates[minI+1], max(0.0, min(1.0, minT)))
         return PointAndDistanceAndHeading(
-            nearestPoint,
-            this.distance(p, nearestPoint),
+            LngLatAlt(minX, minY),
+            sqrt(minDist),
             bearingFromTwoPoints(line.coordinates[minI], line.coordinates[minI + 1]),
             minI,
             minI.toDouble() + max(0.0, min(1.0, minT))
