@@ -837,7 +837,7 @@
     <string name="help_remote_page_title">"Utilisation des commandes multimédias"</string>
     <!--   <string name="help_tutorial_footer_disabled">"Les didacticiels sont désactivés lorsque les conseils d’itinéraire sont actifs"</string> -->
   <string name="help_text_section_title_what">"De quoi s’agit-il ?"</string>
-    <string name="help_text_section_title_when">Utilisation?</string>
+    <string name="help_text_section_title_when">Utilisation</string>
     <string name="help_text_section_title_how">"Fonctionnement"</string>
     <!--   <string name="help_more_help_section_title">"Aide supplémentaire"</string> -->
 <!--   <string name="help_support">"Scottish Tech Army Support"</string> -->
@@ -904,7 +904,7 @@
 <!--   <string name="first_launch_beacon_callout_headtracking_haptic">"Placement d’une balise devant vous. Tournez-vous vers la gauche et vers la droite pour obtenir le retour tactile de la balise."</string> -->
 <!--   <string name="first_launch_beacon_callout_ahead">"Balise devant vous"</string> -->
 <!--   <string name="first_launch_beacon_callout_behind">"Balise derrière vous"</string> -->
-  <string name="first_launch_prompt_title">La configuration est terminée!</string>
+  <string name="first_launch_prompt_title">La configuration est terminée !</string>
     <string name="first_launch_prompt_message">"Vous êtes prêt pour votre première promenade avec Soundscape. Essayez-le maintenant en choisissant une destination proche, démarrez la balise auidio et vous l’entendrez dans la direction de votre destination."</string>
     <string name="first_launch_prompt_button">"Terminer"</string>
     <!--   <string name="first_launch_help_title">"Configuration de l’application"</string> -->
@@ -938,7 +938,7 @@
     <string name="help_text_markers_content_2">"Vous pouvez marquer ce qui est personnel et important pour vous, comme votre domicile, votre lieu de travail et votre épicerie préférée. Vous pouvez marquer un lieu ou une adresse, ainsi que des éléments qui ne figurent pas habituellement sur les cartes, comme les entrées de bâtiment ou des parcs, les boutons des passages piétons, les passages piétons ou les ponts, les arrêts de bus ou même l’arbre préféré de votre chien, et utiliser ces références sur votre trajet."</string>
     <string name="help_text_markers_content_3">"Dans le cadre de cette expérience, Soundscape vous notifie automatiquement lorsque vous croisez des emplacements marqués ou que vous vous en approchez. Vous pouvez également utiliser le bouton Marqueurs à proximité situé en bas de l’écran d’accueil de Soundscape pour écouter une notification spatiale des emplacements marqués environnants. En outre, vous avez la possibilité de définir une balise sonore sur n’importe quel emplacement marqué. Ainsi, la balise sonore Soundscape qui vous est familière retentira et vous pourrez procéder comme à votre habitude."</string>
     <string name="help_text_creating_markers_content_1">"Vous pouvez créer des marqueurs de trois façons différentes : en recherchant l’emplacement que vous souhaitez enregistrer à l’aide de la barre de recherche, en trouvant un lieu à l’aide du bouton « Emplacements à proximité » ou en utilisant le bouton « Utiliser l’emplacement actuel », tous ces éléments se trouvant sur l’écran d’accueil de Soundscape. Une fois que vous avez trouvé l’emplacement souhaité, sélectionnez-le pour accéder à la page « Détails de l’emplacement ». Puis, sélectionnez le bouton « Enregistrer le marqueur » sur cette page."</string>
-    <string name="help_text_creating_markers_content_2">"Vous avez maintenant la possibilité de personnaliser ce marqueur. Cette étape est facultative. Si vous le souhaitez, vous pouvez modifier le nom du marqueur et ajouter une annotation qui sera appelée avec le marqueur pour fournir des informations supplémentaires. Une fois que vous avez terminé, sélectionnez le bouton « Terminé » pour enregistrer votre marqueur. "</string>
+    <string name="help_text_creating_markers_content_2">Vous avez maintenant la possibilité de personnaliser ce marqueur. Cette étape est facultative. Si vous le souhaitez, vous pouvez modifier le nom du marqueur et ajouter une annotation qui sera appelée avec le marqueur pour fournir des informations supplémentaires. Une fois que vous avez terminé, sélectionnez le bouton « Terminé » pour enregistrer votre marqueur.</string>
     <string name="help_text_customizing_markers_content_1">"Si vous souhaitez renommer un marqueur que vous avez créé précédemment ou lui ajouter une annotation, vous pouvez le faire en sélectionnant le marqueur dans l’onglet « Marqueurs » dans la page « Marqueurs et Itinéraires », puis en cliquant sur le bouton « Modifier le marqueur ». Vous pouvez utiliser cette option pour donner aux marqueurs des surnoms descriptifs ou utiles, ainsi que pour leur donner une description plus longue en utilisant le champ d’annotation."</string>
     <string name="help_text_customizing_markers_content_2">"Sur cet écran Modifier, vous pouvez également supprimer un marqueur si vous n’en avez plus besoin."</string>
     <string name="help_text_routes_content_what">"Un Itinéraire correspond à une série de points de repère. Vous êtes informé quand vous arrivez à chaque point de repère, et la balise audio avance automatiquement jusqu’au point de repère suivant."</string>
