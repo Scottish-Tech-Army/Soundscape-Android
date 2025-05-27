@@ -637,13 +637,13 @@
     <!--   <string name="distance_format_mi">"%s マイル"</string> -->
 <!--   <string name="distance_format_mile">"%s マイル"</string> -->
   <string name="distance_format_miles">"%s マイル"</string>
-    <string name="ui_action_button_my_location">"現在地\n"</string>
+    <string name="ui_action_button_my_location">現在地</string>
     <string name="ui_action_button_my_location_acc_hint">"現在地の情報を聞くにはダブルタップします"</string>
     <string name="ui_action_button_nearby_markers">"近くの\nマーカー"</string>
     <string name="ui_action_button_nearby_markers_acc_hint">"マーカーを設定した近くの場所の情報を聞くにはダブルタップします"</string>
-    <string name="ui_action_button_around_me">"周辺\n"</string>
+    <string name="ui_action_button_around_me">周辺</string>
     <string name="ui_action_button_around_me_acc_hint">"自分の周辺の 4 方向の情報を聞くにはダブル タップします"</string>
-    <string name="ui_action_button_ahead_of_me">"前方\n"</string>
+    <string name="ui_action_button_ahead_of_me">前方</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">"自分の前方の情報を聞くにはダブルタップします"</string>
     <string name="ui_menu">"メニュー"</string>
     <string name="ui_menu_hint">"ダブル タップすると、メニューが開きます"</string>
