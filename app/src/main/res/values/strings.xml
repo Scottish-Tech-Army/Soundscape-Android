@@ -2725,7 +2725,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="help_offline_limitations_heading">"Limitations"</string>
 
 <!-- Help Limitations Description, Offline -->
-  <string name="help_offline_limitations_description">"Callouts will continue to work if you are in an area that you have walked by before and that has been stored in your callout history. Similarly, you can place an audio beacon or create a marker on places that have been stored in your callout history"</string>
+  <string name="help_offline_limitations_description">Callouts will continue to work if you are in an area that you have walked by before and that has been stored in your callout history. Similarly, you can place an audio beacon or create a marker on places that have been stored in your callout history.</string>
 
 <!-- Help Troubleshooting Title, Offline -->
   <string name="help_offline_troubleshooting_heading">"What can you do?"</string>
@@ -3070,7 +3070,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="help_text_creating_markers_content_1">"You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the \"Places Nearby\" button, or using the \"Use Current Location\" button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the \"Location Details\" page. On this page, select the button called \"Save Marker\"."</string>
 
 <!-- Notification, Creating Markers help content continued, Quotation marks are written as \" -->
-  <string name="help_text_creating_markers_content_2">"You will now have the option to customize this marker. This step is optional. If you want to, you can change the name of the marker and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the \"Done\" button to save your Marker. "</string>
+  <string name="help_text_creating_markers_content_2">You will now have the option to customize this marker. This step is optional. If you want to, you can change the name of the marker and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the \"Done\" button to save your Marker.</string>
 
 <!-- Notification, Customizing Markers help content. "Markers & Routes" should be translated the same as the string with key 'search.view_markers'. Quotes written as \" -->
   <string name="help_text_customizing_markers_content_1">"If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the \"Markers\" tab of the \"Markers &amp; Routes\" page, then selecting the \"Edit Marker\" button. You can use this to give markers descriptive or useful nicknames, as well as giving them a longer description using the annotation field."</string>
@@ -3422,7 +3422,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="faq_beacon_on_home_answer">"Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the \"Location Details\" screen, tap the \"Start Audio Beacon\" button."</string>
 
 <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. {NumberedPlaceholder="Soundscape"} -->
-  <string name="faq_how_close_to_destination_question">"When I set a beacon on a destination, how close will Soundscape get me to the destination? "</string>
+  <string name="faq_how_close_to_destination_question">When I set a beacon on a destination, how close will Soundscape get me to the destination?</string>
 
 <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. {NumberedPlaceholder="Soundscape"} -->
   <string name="faq_how_close_to_destination_answer">"Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off."</string>
@@ -3478,7 +3478,7 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="faq_battery_impact_question">"How does Soundscape impact my iPhone’s battery?"</string>
 
 <!-- Sleep - To put the app in an idle state for a period of time. Snooze - To put the app in an idle state that is interrupted by user movement. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. {NumberedPlaceholder="Soundscape","iPhone"} -->
-  <string name="faq_battery_impact_answer">"Battery life varies significantly depending on which iPhone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone you should keep the screen locked whenever possible. To help minimize the impact on your iPhone battery Soundscape now has a Sleep Mode and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your iPhone’s App Switcher. "</string>
+  <string name="faq_battery_impact_answer">Battery life varies significantly depending on which iPhone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone you should keep the screen locked whenever possible. To help minimize the impact on your iPhone battery Soundscape now has a Sleep Mode and a Snooze Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your iPhone’s App Switcher.</string>
 
 <!-- Sleep - To put the app in an idle state for a period of time. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. {NumberedPlaceholder="Soundscape"} -->
   <string name="faq_sleep_mode_battery_question">"How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?"</string>
@@ -3605,10 +3605,10 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="settings_debug_heading" translatable="false">"Debug settings"</string>
   <string name="menu_share_recorded_route" translatable="false">"Share recording of travel"</string>
 
-  <string name="confect_name_to_via" translatable="false">"%s to %s via %s"</string>
-  <string name="confect_name_to" translatable="false">"%s to %s"</string>
-  <string name="confect_name_joins" translatable="false">"%s that joins %s and %s"</string>
-  <string name="confect_name_via" translatable="false">"%s via %s"</string>
+  <string name="confect_name_to_via" translatable="false">"%1$s to %2$s via %3$s"</string>
+  <string name="confect_name_to" translatable="false">"%1$s to %2$s"</string>
+  <string name="confect_name_joins" translatable="false">"%1$s that joins %2$s and %3$s"</string>
+  <string name="confect_name_via" translatable="false">"%1$s via %2$s"</string>
   <string name="confect_name_pavement_next_to" translatable="false">"Pavement next to %s"</string>
   <string name="confect_name_pavement" translatable="false">"Pavement"</string>
   <string name="confect_name_dead_end" translatable="false">"dead end"</string>

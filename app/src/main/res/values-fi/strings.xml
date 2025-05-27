@@ -340,7 +340,7 @@
 <!--   <string name="route_detail_beacon_title">"Ohjattu reitti"</string> -->
 <!--   <string name="route_detail_orienteering_title">"Suunnistus"</string> -->
 <!--   <string name="route_detail_beacon_stop">"Lopeta reitti"</string> -->
-  <string name="route_update_success_title">"Päivitys on suoritettu."</string>
+  <string name="route_update_success_title">Päivitys on suoritettu!</string>
 <!--   <string name="route_update_success_message">"Vapaa-ajan toimintasi on päivitetty"</string> -->
 <!--   <string name="route_update_fail_title">"Päivitys epäonnistui"</string> -->
 <!--   <string name="route_update_fail_message">"Vapaa-ajan toimintaasi päivitettäessä tapahtui virhe"</string> -->
@@ -827,7 +827,7 @@
   <string name="help_offline_page_title">"Miksi Soundscape toimii offline-tilassa?"</string>
   <string name="help_offline_description">"Kun Internet-yhteyttä ei ole, tai Soundscape-palveluissa on häiriö, Soundscape siirtyy offline-tilaan. Soundscape toimii siitä huolimatta, mutta jotkin toiminnot voivat olla rajoitettuja."</string>
   <string name="help_offline_limitations_heading">"Rajoitukset"</string>
-  <string name="help_offline_limitations_description">"Ilmoitukset jatkavat toimintaansa, jos olet alueella, jonka ohi olet kävellyt aiemmin, ja joka on tallennettu ilmoitushistoriaasi. Voit myös sijoittaa äänimajakan tai luoda merkinnän paikkoihin, jotka on tallennettu ilmoitushistoriaasi"</string>
+  <string name="help_offline_limitations_description">Ilmoitukset jatkavat toimintaansa, jos olet alueella, jonka ohi olet kävellyt aiemmin, ja joka on tallennettu ilmoitushistoriaasi. Voit myös sijoittaa äänimajakan tai luoda merkinnän paikkoihin, jotka on tallennettu ilmoitushistoriaasi.</string>
   <string name="help_offline_troubleshooting_heading">"Mitä voit tehdä?"</string>
   <string name="help_offline_troubleshooting_description">"Soundscape yrittää palata normaaliin toimintaan, kun puhelimesi on yhdistetty langattomaan verkkoon tai mobiilidata on käytössä, ja olet alueella, jolla on hyvä yhteys. Jos puhelimellasi on hyvä Internet-yhteys, mutta Soundscape ei palaudu normaaliin toimintaan, Soundscape-palveluissa voi olla katkos."</string>
   <string name="help_orient_page_title">"Lähiympäristö"</string>
@@ -890,7 +890,7 @@
   <string name="first_launch_permissions_message">"Kun suunnistat Soundscapen avulla, sinua opastaa äänimajakka. Sinun on annettava seuraavat luvat Soundscapelle voidaksesi tätä varten:"</string>
   <string name="first_launch_permissions_location">"Sijaintipalvelut tarkalla sijainnilla"</string>
   <string name="first_launch_permissions_motion">"Liike ja Kuntoilu"</string>
-  <string name="first_launch_permissions_required">"Tämä käyttöoikeus vaaditaan."</string>
+  <string name="first_launch_permissions_required">Tämä käyttöoikeus vaaditaan</string>
   <string name="first_launch_beacon_title">"Äänimajakan valitseminen"</string>
   <string name="first_launch_beacon_message_1">"Kun suunnistat Soundscapen avulla, kuulet äänimajakan siitä suunnasta, jossa määränpääsi on. Seuraamalla sen ääntä tiedät, mihin päin kulkea."</string>
   <string name="first_launch_beacon_message_2">"Kuuntele saatavilla olevia äänimajakoita ja valitse haluamasi."</string>
@@ -904,7 +904,7 @@
 <!--   <string name="first_launch_beacon_callout_headtracking_haptic">"Majakka asetetaan eteesi. Käännä vasemmalle ja oikealle kokeaksesi majakan haptisen palautteen."</string> -->
 <!--   <string name="first_launch_beacon_callout_ahead">"Majakka edessä"</string> -->
 <!--   <string name="first_launch_beacon_callout_behind">"Majakka takana"</string> -->
-  <string name="first_launch_prompt_title">"Kaikki on valmista."</string>
+  <string name="first_launch_prompt_title">Kaikki on valmista!</string>
   <string name="first_launch_prompt_message">"Olet valmis ensimmäiselle kävelyllesi Soundscapen kanssa. Jos haluat kokeilla sitä nyt, sinun tarvitsee vain valita sijainti lähelläsi ja käynnistää äänimajakka niin kuulet sen määränpääsi suunnalta."</string>
   <string name="first_launch_prompt_button">"Valmis"</string>
 <!--   <string name="first_launch_help_title">"Sovelluksen asennus"</string> -->
@@ -1047,7 +1047,7 @@
   <string name="faq_beacon_on_address_answer">"Kyllä voit. Osoitteita ei ole luettelossa oletusarvoisesti, mutta ne ovat löydettävissä hakukentän avulla. Jos haluat tallentaa tämän osoitteen, jotta sinun ei tarvitse hakea sitä uudelleen, voit lisätä sen merkiksi aloitusnäytöltä valitsemalla \"lisää merkintöihin\" -painikkeen tai käyttämällä VoiceOver-toimintoja aloitussivun majakassa."</string>
   <string name="faq_beacon_on_home_question">"Kuinka määritän majakan kotiini?"</string>
   <string name="faq_beacon_on_home_answer">"Soundscape tukee majakoiden määrittämistä osoitteisiin. Voit määrittää majakan kotiisi tai mihin tahansa muuhun osoitteeseen etsimällä sijaintia Soundscapen päänäytöltä. Napauta \"Sijainnin tiedot\" -näytöllä \"Käynnistä äänimajakka\" -painiketta."</string>
-  <string name="faq_how_close_to_destination_question">"Kun määritän majakan määränpäähän, kuinka lähelle määränpäätä Soundscape vie minut? "</string>
+  <string name="faq_how_close_to_destination_question">Kun määritän majakan määränpäähän, kuinka lähelle määränpäätä Soundscape vie minut?</string>
   <string name="faq_how_close_to_destination_answer">"Soundscape voi tunnistaa määränpääsi paikan muutamien metrien etäisyydellä, mutta ei sitä lähempänä. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä."</string>
   <string name="faq_turn_beacon_back_on_question">"Voinko ottaa majakan takaisin käyttöön, kun olen lähellä päämäärääni?"</string>
   <string name="faq_turn_beacon_back_on_answer">"Kyllä, voit laittaa majakan uudelleen päälle, kun Soundscape on laittanut sen pois päältä valitsemalla \"poista majakan hiljennys -painikkeen\". Koska sijaintipalvelut ovat kuitenkin tarkkoja vain noin 10 metrin etäisyydellä, emme voi taata majakan toimintaa, kun olet muutaman metrin päässä määränpäästäsi."</string>
@@ -1065,7 +1065,7 @@
   <string name="faq_supported_headsets_question">"Mitä kuulokkeita Soundscapen kanssa tulisi käyttää?"</string>
   <string name="faq_supported_headsets_answer">"Se, mitä kuulokkeita käytät Soundscapen kanssa, riippuu henkilökohtaisista mieltymyksistä, ja kullakin vaihtoehdolla on etuja ja kääntöpuolia. Ainoa erityinen suositus on käyttää stereokuulokkeita, jotta voit hyödyntää Soundscapen 3D- tilaääni-ilmoituksia."</string>
   <string name="faq_battery_impact_question">"Kuinka Soundscape vaikuttaa iPhonen akkuun?"</string>
-  <string name="faq_battery_impact_answer">"Akun kesto vaihtelee merkittävästi riippuen siitä, mikä iPhone sinulla on ja kuinka vanha se on. Näytön päällä pitäminen kuluttaa akkua eniten, joten puhelimesi akun keston maksimoimiseksi näyttö olisi pidettävä lukittuna aina kun mahdollista. Soundscapessa on nyt lepotila ja odotustila iPhonesi akun säästämiseksi. Voit vähentää akun kulutusta entisestään pakottamalla Soundscapen sulkeutumaan iPhonen Sovelluksen vaihtajasta, kun et käytä sitä. "</string>
+  <string name="faq_battery_impact_answer">Akun kesto vaihtelee merkittävästi riippuen siitä, mikä iPhone sinulla on ja kuinka vanha se on. Näytön päällä pitäminen kuluttaa akkua eniten, joten puhelimesi akun keston maksimoimiseksi näyttö olisi pidettävä lukittuna aina kun mahdollista. Soundscapessa on nyt lepotila ja odotustila iPhonesi akun säästämiseksi. Voit vähentää akun kulutusta entisestään pakottamalla Soundscapen sulkeutumaan iPhonen Sovelluksen vaihtajasta, kun et käytä sitä.</string>
   <string name="faq_sleep_mode_battery_question">"Kuinka käytän lepotilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?"</string>
   <string name="faq_sleep_mode_battery_answer">"Voit asettaa Soundscapen lepotilaan valitsemalla \"Siirry lepotilaan\"-painikkeen näytön oikeasta yläkulmasta. Kun valitset tämän, Soundscape lakkaa käyttämästä sijaintipalveluita ja mobiilidataa, kunnes päätät taas herättää sen."</string>
   <string name="faq_snooze_mode_battery_question">"Kuinka käytän odotustilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?"</string>

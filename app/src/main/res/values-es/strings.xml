@@ -340,7 +340,7 @@
 <!--   <string name="route_detail_beacon_title">"Ruta guiada"</string> -->
 <!--   <string name="route_detail_orienteering_title">"Carrera de orientación"</string> -->
 <!--   <string name="route_detail_beacon_stop">"Finalizar ruta"</string> -->
-  <string name="route_update_success_title">"Actualización completada."</string>
+  <string name="route_update_success_title">Actualización completada!</string>
 <!--   <string name="route_update_success_message">"La actividad recreativa está actualizada"</string> -->
 <!--   <string name="route_update_fail_title">"Error al actualizar"</string> -->
 <!--   <string name="route_update_fail_message">"Se ha producido un error al actualizar la actividad recreativa"</string> -->
@@ -827,7 +827,7 @@
   <string name="help_offline_page_title">"¿Por qué está Soundscape funcionando sin conexión?"</string>
   <string name="help_offline_description">"Cuando no hay conexión a Internet o se produce una interrupción en los servicios de Soundscape, Soundscape realiza la transición a un modo sin conexión. Sin embargo, Soundscape continuará funcionando, aunque algunas características pueden estar limitadas."</string>
   <string name="help_offline_limitations_heading">"Limitaciones"</string>
-  <string name="help_offline_limitations_description">"Los avisos continuarán funcionando si se encuentra en una zona por la que ha pasado antes, que se ha guardado en su historial de avisos. De manera similar, puede colocar una señal de audio o crear un marcador en lugares que se han almacenado en su historial de avisos"</string>
+  <string name="help_offline_limitations_description">Los avisos continuarán funcionando si se encuentra en una zona por la que ha pasado antes, que se ha guardado en su historial de avisos. De manera similar, puede colocar una señal de audio o crear un marcador en lugares que se han almacenado en su historial de avisos.</string>
   <string name="help_offline_troubleshooting_heading">"¿Qué puede hacer?"</string>
   <string name="help_offline_troubleshooting_description">"Soundscape intentará reanudar el funcionamiento normal cuando su teléfono se conecte a Wi-Fi o los datos móviles estén habilitados y se encuentre en una zona con buena señal. Si su teléfono tiene una buena conexión a Internet, pero Soundscape no reanuda el funcionamiento normal, es posible que haya una interrupción en los servicios de Soundscape."</string>
   <string name="help_orient_page_title">"Alrededor de mí"</string>
@@ -871,7 +871,7 @@
 <!--   <string name="first_launch_setting_off_way_text">"Guarde el teléfono y camine. Soundscape le ayudará a estar informado de su ubicación y le avisará de carreteras, cruces y puntos de referencia conforme se acerque a ellos. Los avisos se pueden configurar en los ajustes."</string> -->
 <!--   <string name="first_launch_find_things_nearby">"¿Desea encontrar más cosas cerca?"</string> -->
 <!--   <string name="first_launch_find_things_nearby_text">"Mantenga el teléfono en posición horizontal en la mano y use los botones para encontrar carreteras y cruces próximos, orientarse con puntos de referencia conocidos a su alrededor y explorar puntos de referencia que se encuentren delante de usted."</string> -->
-  <string name="first_launch_welcome_title">"Bienvenido."</string>
+  <string name="first_launch_welcome_title">Bienvenido!</string>
 <!--   <string name="first_launch_welcome_title_accessibility_label">"Le damos la bienvenida a Soundscape."</string> -->
   <string name="first_launch_welcome_description">"Navegue con confianza utilizando el audio espacial de Soundscape"</string>
   <string name="first_launch_welcome_button">"Comenzar"</string>
@@ -904,7 +904,7 @@
 <!--   <string name="first_launch_beacon_callout_headtracking_haptic">"Colocando la señal delante de usted. Gire a la izquierda y a la derecha para probar los comentarios hápticos de la señal."</string> -->
 <!--   <string name="first_launch_beacon_callout_ahead">"Señal adelante"</string> -->
 <!--   <string name="first_launch_beacon_callout_behind">"Señal atrás"</string> -->
-  <string name="first_launch_prompt_title">"Todo listo."</string>
+  <string name="first_launch_prompt_title">Todo listo!</string>
   <string name="first_launch_prompt_message">"Está listo para su primer paseo con Soundscape. Para probarlo ahora, simplemente elija un destino cercano, inicie la señal de audio y lo escuchará en la dirección de su destino."</string>
   <string name="first_launch_prompt_button">"Finalizar"</string>
 <!--   <string name="first_launch_help_title">"Configuración de la aplicación"</string> -->
@@ -938,7 +938,7 @@
   <string name="help_text_markers_content_2">"Puede marcar las cosas que son personales y relevantes para usted, como su casa, su oficina y su tienda de comestibles preferida. Puede marcar cualquier lugar o dirección, pero también cosas que podrían no estar disponible tradicionalmente en mapas, por ejemplos, entradas a edificios o parques, lugares con pulsador para cruzar la calle, pasos de cebra o puentes, paradas de autobús o incluso el árbol favorito de su perro y usarlos como referencia durante su paseo."</string>
   <string name="help_text_markers_content_3">"Para que conozca los lugares marcados, Soundscape avisará automáticamente de ellos mientras pasa a pie o se aproxima a ellos o bien, puede usar el botón Marcadores cercanos de la parte inferior de la pantalla principal de Soundscape para oír un aviso espacial de los lugares marcados a su alrededor. Además, tiene la capacidad de establecer una señal de audio en cualquier lugar marcado. Cuando haga esto, se oirá la señal de audio de Soundscape que conoce y podrá actuar de la manera habitual."</string>
   <string name="help_text_creating_markers_content_1">"Puede crear marcadores de tres maneras: buscando el lugar que desea guardar usando la barra de búsqueda, buscando un lugar con el botón \"Lugares cercanos\" o usando el botón \"Usar ubicación actual\", todo ello en la pantalla principal de Soundscape. Una vez que haya encontrado el lugar que desea, al seleccionarlo, irá a la página \"Detalles de la ubicación\". En esta página, seleccione el botón \"Guardar marcador\"."</string>
-  <string name="help_text_creating_markers_content_2">"Tendrá la opción de personalizar este marcador. Este paso es opcional. Si lo desea, puede cambiar el nombre del marcador y también agregar una anotación que se oirá con el marcador para proporcionar información adicional. Una vez que haya acabado, seleccione el botón \"Listo\" para guardar el marcador. "</string>
+  <string name="help_text_creating_markers_content_2">Tendrá la opción de personalizar este marcador. Este paso es opcional. Si lo desea, puede cambiar el nombre del marcador y también agregar una anotación que se oirá con el marcador para proporcionar información adicional. Una vez que haya acabado, seleccione el botón \"Listo\" para guardar el marcador.</string>
   <string name="help_text_customizing_markers_content_1">"Si desea cambiar el nombre de un marcador que ha creado anteriormente, o agregarle una anotación, puede hacerlo seleccionando el marcador en la pestaña \"Marcadores\" de la página \"Marcadores y rutas\" y, a continuación, \"Editar marcador\" . Puede usarlo para asignar a los marcadores sobrenombres útiles o descriptivos, así como para proporcionarles una descripción más larga con el campo de anotación."</string>
   <string name="help_text_customizing_markers_content_2">"En esta pantalla Editar, también puede eliminar un marcador si ya no lo necesita."</string>
   <string name="help_text_routes_content_what">"Las rutas son una serie de puntos de ruta. Se le informará a su llegada a cada uno de ellos y la señal de audio avanzará automáticamente hasta el siguiente."</string>
@@ -1047,7 +1047,7 @@
   <string name="faq_beacon_on_address_answer">"Sí. Las direcciones no se muestran de manera predeterminada pero se pueden encontrar en el campo de búsqueda. Para guardar esta dirección y no tener que buscarla de nuevo, puede agregarla como marcador desde la pantalla principal seleccionando el botón \"agregar a marcadores\" o mediante acciones de VoiceOver en la señal de la pantalla principal."</string>
   <string name="faq_beacon_on_home_question">"¿Cómo establezco una señal en mi casa?"</string>
   <string name="faq_beacon_on_home_answer">"Soundscape admite el establecimiento de señales en direcciones. Para establecer una señal en su casa, o en otra dirección, busque una ubicación en la pantalla principal de Soundscape. En la pantalla \"Detalles de la ubicación\", pulse en el botón \"Iniciar señal de audio\"."</string>
-  <string name="faq_how_close_to_destination_question">"Cuando establezca una señal en un destino, ¿me llevará Soundscape cerca del destino? "</string>
+  <string name="faq_how_close_to_destination_question">Cuando establezca una señal en un destino, ¿me llevará Soundscape cerca del destino?</string>
   <string name="faq_how_close_to_destination_answer">"Soundscape puede determinar la ubicación de su destino a menos de varios metros, pero no menos. Cuando Soundscape determine que está cerca de su destino, escuchará un aviso final de que su destino está cerca y la señal se apagará."</string>
   <string name="faq_turn_beacon_back_on_question">"¿Puedo volver a activar la señal cuando esté cerca de mi destino?"</string>
   <string name="faq_turn_beacon_back_on_answer">"Sí, puede volver a activar la señal cuando Soundscape la haya desactivado. Para ello, seleccione el botón \"reactivar señal\". Sin embargo, dada la baja precisión de Localización a unos 10 metros, no podemos garantizar el comportamiento de la señal cuando se encuentre a pocos metros de su destino."</string>
@@ -1065,7 +1065,7 @@
   <string name="faq_supported_headsets_question">"¿Qué auriculares debo usar con Soundscape?"</string>
   <string name="faq_supported_headsets_answer">"Los auriculares que use con Soundscape es una cuestión de preferencia personal y cada opción tiene sus ventajas e inconvenientes. El requisito específico es usar auriculares estéreos para beneficiarse de los avisos acústicos espaciales 3D de Soundscape."</string>
   <string name="faq_battery_impact_question">"¿Cómo afecta Soundscape a la batería del iPhone?"</string>
-  <string name="faq_battery_impact_answer">"La duración de la batería varía en gran medida en función del iPhone que tenga y de su antigüedad. El mayor consumo de la batería se produce al tener la pantalla encendida, por lo que para maximizar su duración, debe mantener la pantalla bloqueada siempre que sea posible. Para ayudar a minimizar el impacto en la batería de iPhone, Soundscape ahora tiene un modo de suspensión y un modo de alarma. Para reducir aún más el uso de la batería, cuando no use Soundscape, debe forzar cerrar la aplicación con el Selector de aplicación de iPhone. "</string>
+  <string name="faq_battery_impact_answer">La duración de la batería varía en gran medida en función del iPhone que tenga y de su antigüedad. El mayor consumo de la batería se produce al tener la pantalla encendida, por lo que para maximizar su duración, debe mantener la pantalla bloqueada siempre que sea posible. Para ayudar a minimizar el impacto en la batería de iPhone, Soundscape ahora tiene un modo de suspensión y un modo de alarma. Para reducir aún más el uso de la batería, cuando no use Soundscape, debe forzar cerrar la aplicación con el Selector de aplicación de iPhone.</string>
   <string name="faq_sleep_mode_battery_question">"¿Cómo uso el modo de suspensión para minimizar el impacto de Soundscape en la batería del teléfono?"</string>
   <string name="faq_sleep_mode_battery_answer">"Para poner Soundscape en el Modo de Suspender, seleccione el botón \"Suspender\" de la esquina superior derecha de la pantalla. Al seleccionar esto, Soundscape dejará de usar Localización y los datos móviles hasta que elija reactivarlos de nuevo."</string>
   <string name="faq_snooze_mode_battery_question">"¿Cómo uso el modo de aplazamiento para minimizar el impacto de Soundscape en la batería del teléfono?"</string>
