@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name" translatable="false">Soundscape</string>
 
 <!--******************************************************************************-->
@@ -3581,61 +3581,61 @@ Alternatively, you may continue previewing the app with a predefined test locati
   <string name="first_launch_permissions_notification">Notifications</string>
 
   <!-- TODO these strings aren't translated yet -->>
-  <string name="notification_text" translatable="false">We are running this location service in the foreground</string>
-<!--   <string name="general_error_notification_services_authorize_description" translatable="false">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string> -->
-<!--   <string name="first_launch_permissions_background_location_title" translatable="false">Background Location Permission</string> -->
-<!--   <string name="first_launch_permissions_background_location_description" translatable="false">To allow Soundscape to work in the background, the app needs access to background location services.</string> -->
-<!--   <string name="search_hint_input" translatable="false">Search for an address</string> -->
-  <string name="cancel_search_contentDescription" translatable="false">Cancel search</string>
-  <string name="osm_tag_train_station"  translatable="false">"Train station"</string>
-  <string name="osm_tag_train_station_named"  translatable="false">"%s Train station"</string>
-  <string name="osm_tag_tram_stop"  translatable="false">"Tram stop"</string>
-  <string name="osm_tag_tram_stop_named"  translatable="false">"%s tram stop"</string>
-  <string name="osm_tag_subway"  translatable="false">"Subway station"</string>
-  <string name="osm_tag_subway_named"  translatable="false">"%s subway station"</string>
-  <string name="osm_tag_ferry_terminal"  translatable="false">"Ferry_terminal"</string>
-  <string name="osm_tag_ferry_terminal_named"  translatable="false">"%s ferry_terminal"</string>
-  <string name="menu_manage_audio" translatable="false">"Manage Audio"</string>
-  <string name="menu_manage_accessibility" translatable="false">"Manage Accessibility"</string>
-<!--   <string name="settings_hints" translatable="false">"Enable TalkBack hints"</string> -->
-  <string name="settings_theme_is_light" translatable="false">"Use light theme"</string>
-  <string name="settings_theme_contrast" translatable="false">"Theme contrast"</string>
-  <string name="street_preview_exit" translatable="false">"Exit Street Preview"</string>
-  <string name="settings_travel_recording" translatable="false">"Enable recording of travel"</string>
-  <string name="settings_debug_heading" translatable="false">"Debug settings"</string>
-  <string name="menu_share_recorded_route" translatable="false">"Share recording of travel"</string>
+  <string name="notification_text" tools:ignore="MissingTranslation">We are running this location service in the foreground</string>
+<!--   <string name="general_error_notification_services_authorize_description">Soundscape uses notifications to let you know if it is currently working. Soundscape will work without this permission.</string> -->
+<!--   <string name="first_launch_permissions_background_location_title">Background Location Permission</string> -->
+<!--   <string name="first_launch_permissions_background_location_description">To allow Soundscape to work in the background, the app needs access to background location services.</string> -->
+<!--   <string name="search_hint_input">Search for an address</string> -->
+  <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancel search</string>
+  <string name="osm_tag_train_station" tools:ignore="MissingTranslation">"Train station"</string>
+  <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">"%s Train station"</string>
+  <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">"Tram stop"</string>
+  <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">"%s tram stop"</string>
+  <string name="osm_tag_subway" tools:ignore="MissingTranslation">"Subway station"</string>
+  <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">"%s subway station"</string>
+  <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">"Ferry_terminal"</string>
+  <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">"%s ferry_terminal"</string>
+  <string name="menu_manage_audio" tools:ignore="MissingTranslation">"Manage Audio"</string>
+  <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"Manage Accessibility"</string>
+<!--   <string name="settings_hints">"Enable TalkBack hints"</string> -->
+  <string name="settings_theme_is_light" tools:ignore="MissingTranslation">"Use light theme"</string>
+  <string name="settings_theme_contrast" tools:ignore="MissingTranslation">"Theme contrast"</string>
+  <string name="street_preview_exit" tools:ignore="MissingTranslation">"Exit Street Preview"</string>
+  <string name="settings_travel_recording" tools:ignore="MissingTranslation">"Enable recording of travel"</string>
+  <string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug settings"</string>
+  <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">"Share recording of travel"</string>
 
-  <string name="confect_name_to_via" translatable="false">"%1$s to %2$s via %3$s"</string>
-  <string name="confect_name_to" translatable="false">"%1$s to %2$s"</string>
-  <string name="confect_name_joins" translatable="false">"%1$s that joins %2$s and %3$s"</string>
-  <string name="confect_name_via" translatable="false">"%1$s via %2$s"</string>
-  <string name="confect_name_pavement_next_to" translatable="false">"Pavement next to %s"</string>
-  <string name="confect_name_pavement" translatable="false">"Pavement"</string>
-  <string name="confect_name_dead_end" translatable="false">"dead end"</string>
+  <string name="confect_name_to_via" tools:ignore="MissingTranslation">"%1$s to %2$s via %3$s"</string>
+  <string name="confect_name_to" tools:ignore="MissingTranslation">"%1$s to %2$s"</string>
+  <string name="confect_name_joins" tools:ignore="MissingTranslation">"%1$s that joins %2$s and %3$s"</string>
+  <string name="confect_name_via" tools:ignore="MissingTranslation">"%1$s via %2$s"</string>
+  <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">"Pavement next to %s"</string>
+  <string name="confect_name_pavement" tools:ignore="MissingTranslation">"Pavement"</string>
+  <string name="confect_name_dead_end" tools:ignore="MissingTranslation">"dead end"</string>
 
   <!-- We need to encode < as &lt; to prevent them being stripped prior to use -->
-  <string name="about_soundscape"  translatable="false">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
+  <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 
   <!-- Licensing strings -->
-  <string name="copyright_notices"  translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
-  <string name="osm_copyright"  translatable="false">&lt;a href="https://www.openstreetmap.org/copyright">&#169;OpenStreetMap contributors&lt;/a> provide all of the geo data for mapping and audio used in Soundscape.</string>
-  <string name="openmaptiles_copyright"  translatable="false">&lt;a href="https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md">&#169;OpenMapTiles&lt;/a> is used to generate the mapping tiles that we use.</string>
-  <string name="fmod_copyright"  translatable="false">&lt;a href="https://www.fmod.com/legal">Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.&lt;/a> takes care of the audio playback.</string>
+  <string name="copyright_notices" translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
+  <string name="osm_copyright" translatable="false">&lt;a href="https://www.openstreetmap.org/copyright">&#169;OpenStreetMap contributors&lt;/a> provide all of the geo data for mapping and audio used in Soundscape.</string>
+  <string name="openmaptiles_copyright" translatable="false">&lt;a href="https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md">&#169;OpenMapTiles&lt;/a> is used to generate the mapping tiles that we use.</string>
+  <string name="fmod_copyright" translatable="false">&lt;a href="https://www.fmod.com/legal">Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.&lt;/a> takes care of the audio playback.</string>
   <!-- BSD 2-clause -->
-  <string name="maplibre_copyright"  translatable="false">&lt;a href="https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md">&#169;MapLibre&lt;/a> performs the map rendering for the UI.</string>
+  <string name="maplibre_copyright" translatable="false">&lt;a href="https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md">&#169;MapLibre&lt;/a> performs the map rendering for the UI.</string>
   <!-- Eclipse -->
-  <string name="junit_copyright"  translatable="false">&lt;a href="https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt">junit-team/junit4&lt;/a> for unit testing.</string>
+  <string name="junit_copyright" translatable="false">&lt;a href="https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt">junit-team/junit4&lt;/a> for unit testing.</string>
 
   <!-- Apache 2.0 -->
-  <string name="apache_notices"  translatable="false">The remainder of the licenses are all Apache 2.0:</string>
-  <string name="rtree_copyright"  translatable="false">&lt;a href="https://github.com/davidmoten/rtree2/blob/master/LICENCE">rtree2&lt;/a> makes our local geo-search much more efficient.</string>
-  <string name="realm_copyright"  translatable="false">&lt;a href="https://github.com/realm/realm-kotlin/blob/main/LICENSE">Realm&lt;/a> takes care of our database.</string>
-  <string name="moshi_copyright"  translatable="false">&lt;a href="https://github.com/square/moshi/blob/master/LICENSE.txt">square/moshi&lt;/a> for GeoJSON parsing.</string>
-  <string name="retrofit_copyright"  translatable="false">&lt;a href="https://github.com/square/retrofit/blob/trunk/LICENSE.txt">square/retrofit&lt;/a> HTTP client abstraction.</string>
-  <string name="okhttp_copyright"  translatable="false">&lt;a href="https://github.com/square/okhttp/blob/master/LICENSE.txt">square/okhttp&lt;/a> underlying HTTP client.</string>
-  <string name="otto_copyright"  translatable="false">&lt;a href="https://github.com/square/otto/blob/master/LICENSE.txt">square/otto&lt;/a> to provide an event bus.</string>
-  <string name="leak_canary_copyright"  translatable="false">&lt;a href="https://github.com/square/leakcanary/blob/main/LICENSE.txt">square/leakcanary&lt;/a> for adding mermaid diagrams to Dokka documentation.</string>
-  <string name="gpx_parser_copyright"  translatable="false">&lt;a href="https://github.com/ticofab/android-gpx-parser/blob/master/LICENSE">ticofab/android-gpx-parser&lt;/a> for GPX parsing.</string>
-  <string name="preferences_copyright"  translatable="false">&lt;a href="https://github.com/zhanghai/ComposePreference/blob/master/LICENSE">zhanghai/ComposePreference&lt;/a> for a simple settings UI.</string>
-  <string name="dokka_mermaid_copyright"  translatable="false">&lt;a href="https://github.com/glureau/dokka-mermaid/blob/main/LICENSE">glureau/dokka-mermaid&lt;/a> for adding mermaid diagrams to Dokka documentation.</string>
+  <string name="apache_notices" translatable="false">The remainder of the licenses are all Apache 2.0:</string>
+  <string name="rtree_copyright" translatable="false">&lt;a href="https://github.com/davidmoten/rtree2/blob/master/LICENCE">rtree2&lt;/a> makes our local geo-search much more efficient.</string>
+  <string name="realm_copyright" translatable="false">&lt;a href="https://github.com/realm/realm-kotlin/blob/main/LICENSE">Realm&lt;/a> takes care of our database.</string>
+  <string name="moshi_copyright" translatable="false">&lt;a href="https://github.com/square/moshi/blob/master/LICENSE.txt">square/moshi&lt;/a> for GeoJSON parsing.</string>
+  <string name="retrofit_copyright" translatable="false">&lt;a href="https://github.com/square/retrofit/blob/trunk/LICENSE.txt">square/retrofit&lt;/a> HTTP client abstraction.</string>
+  <string name="okhttp_copyright" translatable="false">&lt;a href="https://github.com/square/okhttp/blob/master/LICENSE.txt">square/okhttp&lt;/a> underlying HTTP client.</string>
+  <string name="otto_copyright" translatable="false">&lt;a href="https://github.com/square/otto/blob/master/LICENSE.txt">square/otto&lt;/a> to provide an event bus.</string>
+  <string name="leak_canary_copyright" translatable="false">&lt;a href="https://github.com/square/leakcanary/blob/main/LICENSE.txt">square/leakcanary&lt;/a> for adding mermaid diagrams to Dokka documentation.</string>
+  <string name="gpx_parser_copyright" translatable="false">&lt;a href="https://github.com/ticofab/android-gpx-parser/blob/master/LICENSE">ticofab/android-gpx-parser&lt;/a> for GPX parsing.</string>
+  <string name="preferences_copyright" translatable="false">&lt;a href="https://github.com/zhanghai/ComposePreference/blob/master/LICENSE">zhanghai/ComposePreference&lt;/a> for a simple settings UI.</string>
+  <string name="dokka_mermaid_copyright" translatable="false">&lt;a href="https://github.com/glureau/dokka-mermaid/blob/main/LICENSE">glureau/dokka-mermaid&lt;/a> for adding mermaid diagrams to Dokka documentation.</string>
 </resources>
