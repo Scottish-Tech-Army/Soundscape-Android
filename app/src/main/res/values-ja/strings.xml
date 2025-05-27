@@ -1047,7 +1047,7 @@
     <string name="faq_beacon_on_address_answer">"はい、できます。住所はデフォルトでは一覧に表示されませんが、検索フィールドを使って検索できます。何度も検索しなくて済むように住所を保存しておくには、ホーム画面で住所をマーカーとして追加します。それには、[マーカーに追加] ボタンを選択するか、ホーム画面でビーコンに対する VoiceOver アクションを使用します。"</string>
     <string name="faq_beacon_on_home_question">"自宅にビーコンを設定するには、どうしたらよいですか?"</string>
     <string name="faq_beacon_on_home_answer">"Soundscape では、住所にビーコンを設定できます。自宅やその他の住所にビーコンを設定するには、Soundscape のメイン画面で場所を検索します。[場所の詳細] 画面で [音声ビーコンを開始] ボタンをタップします。"</string>
-    <string name="faq_how_close_to_destination_question">目的地にビーコンを設定した場合、Soundscape では目的地のどの程度近くまで案内ができますか。</string>
+    <string name="faq_how_close_to_destination_question">目的地にビーコンを設定した場合、Soundscape では目的地のどの程度近くまで案内ができますか?</string>
     <string name="faq_how_close_to_destination_answer">"Soundscape では、目的地の位置を数メートルの誤差で特定できますが、それ以上の精度はありません。ユーザーが目的地付近に到着したと Soundscape が判断すると、目的地付近であることを知らせる最終のコールアウトが聞こえ、ビーコンがオフになります。"</string>
     <string name="faq_turn_beacon_back_on_question">"目的地に近くなってから、ビーコンをオンにすることはできますか?"</string>
     <string name="faq_turn_beacon_back_on_answer">"はい。Soundscape で一度オフにしたビーコンは、[ビーコンのミュートを解除] ボタンを選択すると、再びオンにすることができます。ただし、位置情報サービスの精度は約 10 メートルであるため、目的地から数メートルの距離にいる場合、ビーコンの動作は保証されません。"</string>
