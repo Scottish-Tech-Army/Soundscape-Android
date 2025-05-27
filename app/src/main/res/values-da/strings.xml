@@ -827,7 +827,7 @@
   <string name="help_offline_page_title">"Hvorfor arbejder Soundscape offline?"</string>
   <string name="help_offline_description">"Når der ikke er nogen internetforbindelse eller et udfald i Soundscape-tjenesterne, skifter Soundscape til en offlinetilstand. Ikke desto mindre vil Soundscape fortsætte med at fungere, men nogle funktioner kan være begrænsede."</string>
   <string name="help_offline_limitations_heading">"Begrænsninger"</string>
-  <string name="help_offline_limitations_description">"Lydbeskeder fungerer fortsat, hvis du er i et område, som du er gået forbi før, og som er blevet gemt i din historik for lydbeskeder. På samme måde kan du placere et lydfyr eller oprette et mærke på steder, der er gemt i din historik for lydbeskeder"</string>
+  <string name="help_offline_limitations_description">Lydbeskeder fungerer fortsat, hvis du er i et område, som du er gået forbi før, og som er blevet gemt i din historik for lydbeskeder. På samme måde kan du placere et lydfyr eller oprette et mærke på steder, der er gemt i din historik for lydbeskeder.</string>
   <string name="help_offline_troubleshooting_heading">"Hvad kan du gøre?"</string>
   <string name="help_offline_troubleshooting_description">"Soundscape vil forsøge at genoptage normal drift, når telefonen er forbundet til Wi-Fi, eller mobildata er aktiveret, og du er i et område med godt signal. Hvis din telefon har en god internetforbindelse, men Soundscape ikke genoptager normal drift, kan der være et udfald i Soundscape-tjenesterne."</string>
   <string name="help_orient_page_title">"Omkring mig"</string>
@@ -904,7 +904,7 @@
 <!--   <string name="first_launch_beacon_callout_headtracking_haptic">"Lydfyret er placeret foran dig. Drej til venstre og højre for at opleve lydfyrets haptiske feedback."</string> -->
 <!--   <string name="first_launch_beacon_callout_ahead">"Lydfyr foran"</string> -->
 <!--   <string name="first_launch_beacon_callout_behind">"Lydfyr bagved"</string> -->
-  <string name="first_launch_prompt_title">"Så er du klar."</string>
+  <string name="first_launch_prompt_title">Så er du klar!</string>
   <string name="first_launch_prompt_message">"Du er klar til din første gåtur med Soundscape. Du skal blot vælge en destination i nærheden, starte lydfyret, og du vil høre det i retningen af din destination."</string>
   <string name="first_launch_prompt_button">"Afslut"</string>
 <!--   <string name="first_launch_help_title">"Appopsætning"</string> -->
@@ -1047,7 +1047,7 @@
   <string name="faq_beacon_on_address_answer">"Ja, du kan. Adresser vises ikke som standard, men de kan findes ved hjælp af søgefeltet. Hvis du vil gemme denne adresse, så du ikke behøver at søge efter den igen, kan du tilføje den som et mærke fra startskærmen ved at vælge knappen \"føj til mærker\" eller ved hjælp VoiceOver-handlinger på lydfyret på startskærmen."</string>
   <string name="faq_beacon_on_home_question">"Hvordan indstiller jeg et lydfyr på mit hjem?"</string>
   <string name="faq_beacon_on_home_answer">"Soundscape understøtter indstilling af lydfyr på adresser. Hvis du vil indstille et lydfyr på dit hjem eller en anden adresse, skal du søge efter en placering fra Soundscape-hovedskærmen. Tryk på knappen \"Start lydfyr\", på skærmbilledet \"Placeringsdetaljer\"."</string>
-  <string name="faq_how_close_to_destination_question">"Når jeg sætter et lydfyr på en destination, hvor tæt vil Soundscape få mig til destinationen? "</string>
+  <string name="faq_how_close_to_destination_question">Når jeg sætter et lydfyr på en destination, hvor tæt vil Soundscape få mig til destinationen?</string>
   <string name="faq_how_close_to_destination_answer">"Soundscape kan bestemme placeringen af din destination inden for nogle meters afstand, men ikke mindre. Når Soundscape registrerer, at du er tæt på din destination, hører du en endelig lydbesked om, at din destination er i nærheden, og lydfyret slukkes."</string>
   <string name="faq_turn_beacon_back_on_question">"Kan jeg slå for lydfyret til igen, når jeg er tæt på min destination?"</string>
   <string name="faq_turn_beacon_back_on_answer">"Ja, du kan slå lydfyret til igen, når Soundscape slår det fra, ved at vælge \"slå lydfyr til-knappen\". Men da lokalitetstjenester kun har en præcision på cirka 10 meter, kan vi ikke garantere lydfyrets funktion, når du er inden for nogle få meter af din destination."</string>
@@ -1065,7 +1065,7 @@
   <string name="faq_supported_headsets_question">"Hvilke hovedtelefoner skal jeg bruge sammen med Soundscape?"</string>
   <string name="faq_supported_headsets_answer">"Hvilke hovedtelefoner du bruger sammen med Soundscape, er et spørgsmål om personlig præference, og der er fordele og ulemper ved hver mulighed. Det eneste specifikke krav er, at du skal bruge et par stereohovedtelefoner, så du kan drage fordel af rumlig 3D-lyd i lydbeskeder fra Soundscape."</string>
   <string name="faq_battery_impact_question">"Hvordan påvirker Soundscape batteriet i min iPhone?"</string>
-  <string name="faq_battery_impact_answer">"Batteriets levetid varierer meget, afhængigt af hvilken iPhone du ejer, og hvor gammel den er. Det største dræn på batteriet er at have skærmen tændt, så for at maksimere batteriets levetid på din telefon, bør du holde skærmen låst, når det er muligt. For at minimere indvirkningen på iPhone-batteriet har Soundscape nu en dvaletilstand og en slumretilstand. Hvis du yderligere vil reducere mængden af batteriforbrug, skal du via App Switcher på din iPhone tvinge Soundscape til at lukke. "</string>
+  <string name="faq_battery_impact_answer">Batteriets levetid varierer meget, afhængigt af hvilken iPhone du ejer, og hvor gammel den er. Det største dræn på batteriet er at have skærmen tændt, så for at maksimere batteriets levetid på din telefon, bør du holde skærmen låst, når det er muligt. For at minimere indvirkningen på iPhone-batteriet har Soundscape nu en dvaletilstand og en slumretilstand. Hvis du yderligere vil reducere mængden af batteriforbrug, skal du via App Switcher på din iPhone tvinge Soundscape til at lukke.</string>
   <string name="faq_sleep_mode_battery_question">"Hvordan bruger jeg dvaletilstand til at minimere indvirkningen fra Soundscape på mit telefonbatteri?"</string>
   <string name="faq_sleep_mode_battery_answer">"Hvis du vil sætte Soundscape i dvaletilstand, skal du vælge knappen \"Dvale\" i øverste højre hjørne af skærmen. Når du vælger dette, stopper Soundscape med at bruge lokalitetstjenester og mobildata, indtil du vælger at vække programmet igen."</string>
   <string name="faq_snooze_mode_battery_question">"Hvordan bruger jeg slumretilstand til at minimere indvirkningen fra Soundscape på mit telefonbatteri?"</string>
