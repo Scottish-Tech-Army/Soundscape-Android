@@ -480,11 +480,7 @@
   <string name="callouts_audio_beacon">"Distanz zum Audiobeacon"</string>
   <string name="callouts_audio_beacon_info">"Aktualisierung der Distanz zum Audiobeacon, wenn es platziert ist"</string>
   <string name="callouts_automatic_callouts">"Automatische Hinweise"</string>
-  <string name="callouts_intersection_callout">"Kreuzungshinweis"</string>
-  <string name="callouts_ahead_of_you">"Vor Ihnen"</string>
-  <string name="callouts_around_you">"Um Sie herum"</string>
-  <string name="callouts_marked_points">"Markierte Punkte"</string>
-  <string name="callouts_nothing_to_call_out_now">"Derzeit gibt es keine Hinweise."</string>
+  <string name="callouts_nothing_to_call_out_now">Derzeit gibt es keine Hinweise</string>
   <string name="callouts_nearby_markers">"Markierungen in der Nähe"</string>
   <string name="callouts_no_nearby_markers_to_call_out_now">"Derzeit gibt es keine Markierungen in der Nähe für Hinweise."</string>
   <string name="callouts_action_repeat">"Wiederholen"</string>
@@ -890,7 +886,7 @@
   <string name="first_launch_permissions_message">"Wenn Sie mit Soundscape navigieren, werden Sie von einem Audiobeacon geführt. Dazu müssen Sie Soundscape die folgenden Berechtigungen erteilen:"</string>
   <string name="first_launch_permissions_location">"Ortungsdienste mit genauem Standort"</string>
   <string name="first_launch_permissions_motion">"Bewegung &amp; Fitness"</string>
-  <string name="first_launch_permissions_required">"Diese Berechtigung ist erforderlich."</string>
+  <string name="first_launch_permissions_required">Diese Berechtigung ist erforderlich</string>
   <string name="first_launch_beacon_title">"Audiobeacon auswählen"</string>
   <string name="first_launch_beacon_message_1">"Wenn Sie mit Soundscape navigieren, hören Sie den Ton des Beacons in Richtung Ihres Ziels. Wenn Sie dem Klang folgen, wissen Sie immer, in welche Richtung Sie gehen müssen."</string>
   <string name="first_launch_beacon_message_2">"Hören Sie sich die verfügbaren Audiobeacons an, und wählen Sie Ihre bevorzugte Option aus."</string>
@@ -938,7 +934,7 @@
   <string name="help_text_markers_content_2">"Sie können Dinge markieren, die für Sie persönlich und wichtig sind, wie Ihr Zuhause, Ihr Büro oder Ihr bevorzugter Supermarkt. Sie können jeden Ort oder jede Adresse markieren, aber auch Orientierungspunkte, die für gewöhnlich nicht auf Karten eingetragen sind, z. B. Eingänge zu Gebäuden oder Parks, Push-to-Walk-Tasten, Fußgängerüberwege oder Brücken, Bushaltestellen oder sogar den Lieblingsbaum Ihres Hundes, und diese als Referenzen entlang Ihres Weges verwenden."</string>
   <string name="help_text_markers_content_3">"Soundscape weist automatisch auf markierte Orte hin, wenn Sie sich ihnen nähern oder an ihnen vorbeigehen. Sie können auch über die Schaltfläche „Markierungen in der Nähe“ unten am Soundscape-Startbildschirm einen räumlichen Hinweis zu markierten Orten um Sie herum abrufen. Zusätzlich haben Sie die Möglichkeit, ein Audiobeacon an einem markierten Ort zu platzieren. Danach können Sie das Audiobeacon von Soundscape hören und es wie gewohnt verwalten."</string>
   <string name="help_text_creating_markers_content_1">"Sie können Markierungen auf drei Arten erstellen: Suche nach dem Ort, den Sie speichern möchten, über die Suchleiste, mithilfe der Schaltfläche „Orte in der Nähe“ oder mit der Option „Aktuellen Standort verwenden“. Alle diese Optionen befinden sich auf dem Soundscape-Startbildschirm. Sobald Sie den gewünschten Ort gefunden haben, wählen Sie ihn aus, und Sie werden zur Seite „Standortdetails“ geleitet. Tippen Sie hier auf die Schaltfläche „Markierung speichern“."</string>
-  <string name="help_text_creating_markers_content_2">"Sie haben nun die Möglichkeit, diese Markierung anzupassen. Dieser Schritt ist optional. Wenn Sie möchten, können Sie den Namen der Markierung ändern und auch eine Notiz hinzufügen, die zusammen mit der Markierung aufgerufen wird, um einige zusätzliche Informationen bereitzustellen. Wenn Sie fertig sind, tippen Sie auf „Fertig“, um Ihre Markierung zu speichern. "</string>
+  <string name="help_text_creating_markers_content_2">Sie haben nun die Möglichkeit, diese Markierung anzupassen. Dieser Schritt ist optional. Wenn Sie möchten, können Sie den Namen der Markierung ändern und auch eine Notiz hinzufügen, die zusammen mit der Markierung aufgerufen wird, um einige zusätzliche Informationen bereitzustellen. Wenn Sie fertig sind, tippen Sie auf „Fertig“, um Ihre Markierung zu speichern.</string>
   <string name="help_text_customizing_markers_content_1">"Wenn Sie eine schon erstellte Markierung umbenennen oder ihr eine Notiz hinzufügen möchten, wählen Sie diese Markierung auf der Registerkarte „Markierungen“ auf der Seite „Markierungen und Routen“ aus, und wählen „Markierung bearbeiten“ aus. Damit können Sie Markierungen aussagekräftige oder nützliche Kurznamen geben, oder auch eine längere Beschreibung über das Notizfeld hinzufügen."</string>
   <string name="help_text_customizing_markers_content_2">"Auf diesem Bearbeitungsbildschirm können Sie eine nicht mehr benötigte Markierung löschen."</string>
   <string name="help_text_routes_content_what">"Routen bestehen aus einer Reihe von Wegpunkten. Sie werden bei der Ankunft an einem Wegpunkt informiert. Dann springt das Audiobeacon automatisch zum nächsten Wegpunkt."</string>
@@ -1047,7 +1043,7 @@
   <string name="faq_beacon_on_address_answer">"Ja. Adressen werden nicht standardmäßig aufgelistet, können jedoch über das Suchfeld gefunden werden. Um eine Adresse zu speichern, können Sie sie vom Startbildschirm aus als Markierung hinzufügen, indem Sie auf „Zu Markierungen hinzufügen“ tippen oder VoiceOver-Aktionen des Beacons auf dem Startbildschirm verwenden."</string>
   <string name="faq_beacon_on_home_question">"Wie platziere ich ein Beacon auf meiner Hausadresse?"</string>
   <string name="faq_beacon_on_home_answer">"Soundscape unterstützt das Platzieren von Beacons auf Adressen. Um ein Beacon auf Ihre Hausadresse oder eine andere Adresse zu platzieren, suchen Sie nach dem Standort über den Soundscape-Startbildschirm. Tippen Sie auf dem „Standortdetails“-Bildschirm auf die Schaltfläche „Audiobeacon starten“."</string>
-  <string name="faq_how_close_to_destination_question">"Wenn ich ein Beacon an einem Ziel platziere, wie nah komme ich mit Soundscape an das Ziel heran? "</string>
+  <string name="faq_how_close_to_destination_question">Wenn ich ein Beacon an einem Ziel platziere, wie nah komme ich mit Soundscape an das Ziel heran?</string>
   <string name="faq_how_close_to_destination_answer">"Soundscape kann die Position Ihres Ziels mit einer Genauigkeit von einigen Metern bestimmen. Wenn Soundscape feststellt, dass Sie sich in der Nähe Ihres Ziels befinden, hören Sie einen letzten Hinweis, dass Ihr Ziel in der Nähe ist, und das Beacon schaltet sich aus."</string>
   <string name="faq_turn_beacon_back_on_question">"Kann ich das Beacon wieder aktivieren, wenn ich in der Nähe meines Ziels bin?"</string>
   <string name="faq_turn_beacon_back_on_answer">"Ja, Sie können das Beacon wieder einschalten, sobald es von Soundscape ausgeschaltet wird, indem Sie „Stummschaltung des Beacons aufheben“ auswählen. Jedoch kann angesichts der geringen Genauigkeit der Ortungsdienste unter 10 Metern das Verhalten des Beacons nicht garantiert werden, wenn Sie sich nur noch wenige Meter von Ihrem Ziel entfernt sind."</string>
@@ -1065,7 +1061,7 @@
   <string name="faq_supported_headsets_question">"Welche Kopfhörer sollte ich mit Soundscape verwenden?"</string>
   <string name="faq_supported_headsets_answer">"Welche Kopfhörer Sie mit Soundscape verwenden, hängt von Ihren persönlichen Präferenzen ab. Jede Option hat ihre Vor- und Nachteile. Die einzige spezifische Anforderung ist die Verwendung eines Stereo-Kopfhörers, damit Sie die Vorteile der räumlichen 3D-Audiohinweise von Soundscape genießen können."</string>
   <string name="faq_battery_impact_question">"Wie wirkt sich Soundscape auf den Akku meines iPhone aus?"</string>
-  <string name="faq_battery_impact_answer">"Die Akkulaufzeit unterscheidet sich signifikant je nach Modell und Alter Ihres iPhone. Um die Akkulaufzeit zu maximieren, sollten Sie den Bildschirm daher möglichst immer gesperrt halten. Um die Auswirkungen auf den Akku Ihres iPhone zu minimieren, bietet Soundscape jetzt einen Standby- und Ruhemodus. Um den Akkuverbrauch weiter zu reduzieren, sollten Sie das Schließen von Soundscape über den App-Umschalter Ihres iPhone erzwingen. "</string>
+  <string name="faq_battery_impact_answer">Die Akkulaufzeit unterscheidet sich signifikant je nach Modell und Alter Ihres iPhone. Um die Akkulaufzeit zu maximieren, sollten Sie den Bildschirm daher möglichst immer gesperrt halten. Um die Auswirkungen auf den Akku Ihres iPhone zu minimieren, bietet Soundscape jetzt einen Standby- und Ruhemodus. Um den Akkuverbrauch weiter zu reduzieren, sollten Sie das Schließen von Soundscape über den App-Umschalter Ihres iPhone erzwingen.</string>
   <string name="faq_sleep_mode_battery_question">"Wie verwenden ich den Ruhemodus, um die Auswirkung von Soundscape auf den Akku zu minimieren?"</string>
   <string name="faq_sleep_mode_battery_answer">"Wählen Sie zum Versetzen von Soundscape in den Ruhemodus die Schaltfläche „Ruhemodus“ oben rechts am Bildschirm aus. Bei dieser Auswahl hält Soundscape die Verwendung von Ortungsdiensten und mobilen Daten an, bis sie die Anwendung wieder aufrufen."</string>
   <string name="faq_snooze_mode_battery_question">"Wie verwende ich den Standbymodus, um die Auswirkung von Soundscape auf den Akku zu minimieren?"</string>

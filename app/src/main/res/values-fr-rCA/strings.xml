@@ -827,7 +827,7 @@
   <string name="help_offline_page_title">"Pourquoi Soundscape est-il en mode hors ligne?"</string>
   <string name="help_offline_description">"S’il n’y a pas de connexion Internet ou si les services Soundscape sont en panne, Soundscape passe en mode hors ligne. Soundscape continue quand même à fonctionner, mais certaines fonctions peuvent être limitées."</string>
   <string name="help_offline_limitations_heading">"Limites"</string>
-  <string name="help_offline_limitations_description">"Les notifications continuent à fonctionner si vous êtes dans un secteur que vous avez déjà visité et qui est conservé dans votre historique des notifications. De la même façon, vous pouvez placer une balise sonore ou créer un marqueur sur les emplacements qui ont été enregistrés dans votre historique des notifications"</string>
+  <string name="help_offline_limitations_description">Les notifications continuent à fonctionner si vous êtes dans un secteur que vous avez déjà visité et qui est conservé dans votre historique des notifications. De la même façon, vous pouvez placer une balise sonore ou créer un marqueur sur les emplacements qui ont été enregistrés dans votre historique des notifications.</string>
   <string name="help_offline_troubleshooting_heading">"Que pouvez-vous faire?"</string>
   <string name="help_offline_troubleshooting_description">"Soundscape repasse en mode normal une fois que votre téléphone est connecté au Wi-Fi ou que les données cellulaires sont activées si le signal de la zone où vous vous trouvez est correct. Si la connexion Internet de votre téléphone est bonne, mais que Soundscape ne repasse pas en mode normal, cela signifie peut-être que les services Soundscape sont en panne."</string>
   <string name="help_orient_page_title">"Autour de moi"</string>
@@ -837,7 +837,7 @@
   <string name="help_remote_page_title">"Utilisation des commandes multimédias"</string>
   <string name="help_tutorial_footer_disabled">"Les didacticiels sont désactivés lorsque les conseils d’itinéraire sont actifs"</string>
   <string name="help_text_section_title_what">"De quoi s’agit-il?"</string>
-  <string name="help_text_section_title_when">"Utilisation"</string>
+  <string name="help_text_section_title_when">Utilisation?</string>
   <string name="help_text_section_title_how">"Fonctionnement"</string>
   <string name="help_more_help_section_title">"Aide supplémentaire"</string>
   <string name="help_support">"Scottish Tech Army Support"</string>
@@ -895,16 +895,7 @@
   <string name="first_launch_beacon_message_1">"Lorsque vous vous vous déplacez avec Soundscape, une balise audio se déclenche dans la direction de votre destination. Grâce à ce son, vous saurez toujours quelle direction prendre."</string>
   <string name="first_launch_beacon_message_2">"Écoutez les balises audio disponibles et sélectionnez celle de votre choix."</string>
   <string name="first_launch_beacon_message_3">"Vous pourrez en changer ultérieurement dans les réglages de l’appli."</string>
-  <string name="first_launch_select_beacon">"Sélectionner une balise"</string>
-  <string name="first_launch_beacon_audio_title">"Balise audio spatiale"</string>
-  <string name="first_launch_beacon_audio_message">"La balise suit le mouvement de votre téléphone et utilise l’audio spatial afin que vous sachiez toujours où elle se trouve."</string>
-  <string name="first_launch_beacon_callout_standard">"Placement de balise à votre droite. Orientez votre téléphone pour suivre le son qu’elle émet et obtenir l’audio spatial de la balise."</string>
-  <string name="first_launch_beacon_callout_haptic">"Placement d’une balise devant vous. Orientez votre téléphone vers la gauche et vers la droite pour obtenir le retour tactile de la balise."</string>
-  <string name="first_launch_beacon_callout_headtracking_standard">"Placement de balise à votre droite. Tournez-vous pour suivre le son qu’elle émet et obtenir le son spatial de la balise."</string>
-  <string name="first_launch_beacon_callout_headtracking_haptic">"Placement d’une balise devant vous. Tournez-vous vers la gauche et vers la droite pour obtenir le retour tactile de la balise."</string>
-  <string name="first_launch_beacon_callout_ahead">"Balise devant vous"</string>
-  <string name="first_launch_beacon_callout_behind">"Balise derrière vous"</string>
-  <string name="first_launch_prompt_title">"La configuration est terminée."</string>
+  <string name="first_launch_prompt_title">La configuration est terminée!</string>
   <string name="first_launch_prompt_message">"Vous êtes prêt pour votre première promenade avec Soundscape. Essayez-le maintenant en choisissant une destination proche, démarrez la balise audio et vous l’entendrez dans la direction de votre destination."</string>
   <string name="first_launch_prompt_button">"Terminer"</string>
   <string name="first_launch_help_title">"Configuration de l’appli"</string>
@@ -1047,7 +1038,7 @@
   <string name="faq_beacon_on_address_answer">"Oui, vous pouvez. Les adresses ne sont pas répertoriées par défaut, mais peuvent être trouvées à l’aide du champ de recherche. Pour enregistrer cette adresse afin de ne pas devoir la rechercher, vous pouvez l’ajouter comme marqueur à partir de l’écran d’accueil en sélectionnant le bouton « Ajouter aux marqueurs » ou en utilisant les actions VoiceOver sur la balise dans l’écran d’accueil."</string>
   <string name="faq_beacon_on_home_question">"Comment définir une balise sur mon domicile?"</string>
   <string name="faq_beacon_on_home_answer">"Soundscape prend en charge la définition de balises sur des adresses. Pour définir une balise sur votre domicile ou sur toute autre adresse, recherchez un emplacement à partir de l’écran principal de Soundscape. Dans l’écran « Détail de l’emplacement », appuyez sur le bouton « Démarrer la balise sonore »."</string>
-  <string name="faq_how_close_to_destination_question">"Lorsque je définis une balise sur une destination, à quelle distance de la destination Soundscape va-t-il m’amener? "</string>
+  <string name="faq_how_close_to_destination_question">Lorsque je définis une balise sur une destination, à quelle distance de la destination Soundscape va-t-il m’amener?</string>
   <string name="faq_how_close_to_destination_answer">"Soundscape peut déterminer l’emplacement de votre destination à quelques mètres près, mais pas moins. Lorsque Soundscape détermine que vous êtes proche de votre destination, vous entendez une notification finale indiquant que la destination est proche et que la balise va être désactivée."</string>
   <string name="faq_turn_beacon_back_on_question">"Puis-je réactiver la balise lorsque je suis proche de ma destination?"</string>
   <string name="faq_turn_beacon_back_on_answer">"Oui, vous pouvez réactiver la balise lorsque Soundscape l’a désactivée en sélectionnant le bouton « Réactiver le son de la balise ». Toutefois, étant donné que les services de localisation ne sont précis qu’à environ 10 mètres, nous ne pouvons pas garantir le comportement de la balise si vous vous trouvez à quelques mètres de votre destination."</string>
@@ -1065,7 +1056,7 @@
   <string name="faq_supported_headsets_question">"Quel casque dois-je utiliser avec Soundscape?"</string>
   <string name="faq_supported_headsets_answer">"Le casque que vous utilisez avec Soundscape est une question de préférences personnelles et chaque option offre des avantages et des inconvénients. La seule exigence spécifique consiste à utiliser une paire d’écouteurs stéréo afin de pouvoir tirer parti des notifications audio spatiales 3D de Soundscape."</string>
   <string name="faq_battery_impact_question">"Quel est l’impact de Soundscape sur la batterie de mon iPhone?"</string>
-  <string name="faq_battery_impact_answer">"L’autonomie de la batterie varie considérablement en fonction de votre iPhone et de son âge. La plus grande contrainte pour votre batterie est l’écran qui reste allumé. Donc, pour optimiser l’autonomie de la batterie de votre téléphone, vous devez garder l’écran verrouillé dès que possible. Pour contribuer à minimiser l’impact sur la batterie de votre iPhone, Soundscape dispose maintenant des modes Mettre en veille et Désactiver temporairement. Pour réduire davantage la quantité de batterie consommée, lorsque vous n’utilisez pas Soundscape, vous devez forcer sa fermeture via le multitâche visuel de votre iPhone. "</string>
+  <string name="faq_battery_impact_answer">L’autonomie de la batterie varie considérablement en fonction de votre iPhone et de son âge. La plus grande contrainte pour votre batterie est l’écran qui reste allumé. Donc, pour optimiser l’autonomie de la batterie de votre téléphone, vous devez garder l’écran verrouillé dès que possible. Pour contribuer à minimiser l’impact sur la batterie de votre iPhone, Soundscape dispose maintenant des modes Mettre en veille et Désactiver temporairement. Pour réduire davantage la quantité de batterie consommée, lorsque vous n’utilisez pas Soundscape, vous devez forcer sa fermeture via le multitâche visuel de votre iPhone.</string>
   <string name="faq_sleep_mode_battery_question">"Comment utiliser le mode Mettre en veille de manière à réduire l’impact de Soundscape sur la batterie de mon téléphone?"</string>
   <string name="faq_sleep_mode_battery_answer">"Pour mettre Soundscape en mode Mettre en veille, sélectionnez le bouton « Mettre en veille » dans le coin supérieur droit de l’écran. Lorsque vous sélectionnez cette option, Soundscape arrête d’utiliser les services de localisation et les données mobiles jusqu’à ce que vous choisissiez de le sortir de veille."</string>
   <string name="faq_snooze_mode_battery_question">"Comment utiliser le mode Désactiver temporairement de manière à réduire l’impact de Soundscape sur la batterie de mon téléphone?"</string>
