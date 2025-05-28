@@ -63,10 +63,10 @@ fun ListPreferenceItem(value: String,
                 onClick()
             }
             .talkbackHint(
-                if (value == currentValue) "keep"
-                else "use"
+                if (value == currentValue) stringResource(R.string.settings_keep_value)
+                else stringResource(R.string.settings_use_value)
             )
-            .talkbackDescription("$value is ${index + 1} choice out of $listSize"),
+            .talkbackDescription(stringResource(R.string.settings_list_item_description).format(value, index + 1, listSize)),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -98,6 +98,11 @@ fun Settings(
     val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
+    val themeValues = listOf(
+        stringResource(R.string.settings_theme_contrast_regular),
+        stringResource(R.string.settings_theme_contrast_medium),
+        stringResource(R.string.settings_theme_contrast_high)
+    )
 
     ProvidePreferenceLocals {
         LazyColumn (modifier = modifier.background(backgroundColor)){
@@ -105,7 +110,7 @@ fun Settings(
                 Surface {
                     CustomAppBar(stringResource(R.string.settings_screen_title),
                         onNavigateUp = onNavigateUp,
-                        navigationButtonTitle = "Back"
+                        navigationButtonTitle = stringResource(R.string.ui_back_button_title)
                     )
                 }
             }
@@ -186,7 +191,6 @@ fun Settings(
                     )
                 },
             )
-            val themeValues = listOf("Regular", "Medium", "High")
             listPreference(
                 key = MainActivity.THEME_CONTRAST_KEY,
                 defaultValue = MainActivity.THEME_CONTRAST_DEFAULT,

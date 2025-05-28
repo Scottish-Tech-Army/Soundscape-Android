@@ -1403,6 +1403,18 @@
   <!-- App theme setting title for color contrast -->
   <string name="settings_theme_contrast" tools:ignore="MissingTranslation">"Theme contrast"</string>
 
+  <!-- App theme options for contrast setting -->
+  <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">"Regular"</string>
+  <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">"Medium"</string>
+  <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">"High"</string>
+
+  <!-- Description for an item in a list e.g. "Blah is choice 2 out of 3" -->
+  <string name="settings_list_item_description" tools:ignore="MissingTranslation">"%1$s is choice %2$s out of %3$s"</string>
+
+  <!-- Setting hints for keeping or using a value -->
+  <string name="settings_keep_value" tools:ignore="MissingTranslation">"keep"</string>
+  <string name="settings_use_value" tools:ignore="MissingTranslation">"use"</string>
+
   <!-- Button text for exiting Street Preview mode -->
   <string name="street_preview_exit" tools:ignore="MissingTranslation">"Exit Street Preview"</string>
 
@@ -1416,21 +1428,21 @@
   <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">"Share recording of travel"</string>
 
   <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
-  <string name="confect_name_to_via" tools:ignore="MissingTranslation">"%s to %s via %s"</string>
+  <string name="confect_name_to_via" tools:ignore="MissingTranslation">"%1$s to %2$s via %3$s"</string>
 
   <!-- Road description of path to another road e.g. "Path to Moor Road" -->
-  <string name="confect_name_to" tools:ignore="MissingTranslation">"%s to %s"</string>
+  <string name="confect_name_to" tools:ignore="MissingTranslation">"%1$s to %2$s"</string>
 
   <!-- Road description of path joining two roads e.g. "Path that joins Roselea Drive and Moor Road" -->
-  <string name="confect_name_joins" tools:ignore="MissingTranslation">"%s that joins %s and %s"</string>
+  <string name="confect_name_joins" tools:ignore="MissingTranslation">"%1$s that joins %2$s and %3$s"</string>
 
   <!-- Road description for path via steps/tunnel/bridge e.g. "Path via bridge" -->
-  <string name="confect_name_via" tools:ignore="MissingTranslation">"%s via %s"</string>
+  <string name="confect_name_via" tools:ignore="MissingTranslation">"%1$s via %2$s"</string>
 
   <!-- Description for pavement next to road e.g. "Pavement next to Clober Road" -->
-  <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">"Pavement next to %s"</string>
+  <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">"Pavement next to %1$s"</string>
 
-  <!-- Sidewalk description-->
+  <!-- Sidewalk description -->
   <string name="confect_name_pavement" tools:ignore="MissingTranslation">"Sidewalk"</string>
 
   <!-- Dead end road description - a road that goes nowhere -->
