@@ -1012,23 +1012,15 @@ fun localReverseGeocode(location: LngLatAlt,
     if(!gridState.isLocationWithinGrid(location)) return null
 
     // Check if we're inside a POI
-    val gridPoiCollection = gridState.getFeatureCollection(TreeId.POIS, location, 200.0)
-    val gridPoiFeatureCollection = removeDuplicateOsmIds(gridPoiCollection)
-    for(poi in gridPoiFeatureCollection) {
-        // We can only be inside polygons
-        if(poi.geometry.type == "Polygon") {
-            val polygon = poi.geometry as Polygon
-
-            if(polygonContainsCoordinates(location, polygon)) {
-                // We've found a POI that contains the location. We could return the c
-                val name = poi.properties?.get("name")
-                if(name != null) {
-                    return LocationDescription(
-                        name = localizedContext?.getString(R.string.directions_at_poi)?.format(name as String) ?: "At $name",
-                        location = location,
-                    )
-                }
-            }
+    val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
+    val insidePois = gridPoiTree.getContainingPolygons(location)
+    for(poi in insidePois) {
+        val name = poi.properties?.get("name")
+        if(name != null) {
+            return LocationDescription(
+                name = localizedContext?.getString(R.string.directions_at_poi)?.format(name as String) ?: "At $name",
+                location = location,
+            )
         }
     }
 
