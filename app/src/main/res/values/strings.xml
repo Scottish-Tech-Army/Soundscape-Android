@@ -1421,6 +1421,9 @@
   <!-- Settings option for enabling recording of travel locations -->
   <string name="settings_travel_recording" tools:ignore="MissingTranslation">"Enable recording of travel"</string>
 
+  <!-- Settings option for enabling a map styling which has improved accessibility -->
+  <string name="settings_accessible_map" tools:ignore="MissingTranslation">"Enable accessible map styling"</string>
+
   <!-- Settings title for various debugging options to aid developers -->
   <string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug settings"</string>
 

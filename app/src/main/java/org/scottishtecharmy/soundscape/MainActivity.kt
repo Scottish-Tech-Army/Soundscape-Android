@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.extractAssets
 import java.io.File
 import javax.inject.Inject
+import kotlin.sequences.forEach
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
@@ -130,6 +131,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    fun processStyle(inputFilename: String, outputFilename: String) {
+        val filesDir = applicationContext.filesDir.toString()
+        val outputStyleStream =
+            File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
+        val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
+        inputStyleStream.bufferedReader().useLines { lines ->
+            lines.forEach { line ->
+                if (line.contains("PROTOMAPS_SERVER_URL")) {
+                    val newline = line.replace(
+                        "PROTOMAPS_SERVER_URL",
+                        "$PROTOMAPS_SERVER_BASE/$PROTOMAPS_SERVER_PATH.json"
+                    )
+                    outputStyleStream.write(newline.toByteArray())
+                } else {
+                    outputStyleStream.write(line.toByteArray())
+                }
+            }
+        }
+        inputStyleStream.close()
+        outputStyleStream.close()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -162,22 +184,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("ExtractAssets", "Completed extraction")
 
         // Update extracted style.json with protomaps server URI
-        val filesDir = applicationContext.filesDir.toString()
-        val outputStyleStream = File("$filesDir/osm-liberty-accessible/processedStyle.json").outputStream()
-        val inputStyleStream = File("$filesDir/osm-liberty-accessible/style.json").inputStream()
-        inputStyleStream.bufferedReader().useLines { lines ->
-            lines.forEach { line ->
-                if(line.contains("PROTOMAPS_SERVER_URL")) {
-                    val newline = line.replace("PROTOMAPS_SERVER_URL", "$PROTOMAPS_SERVER_BASE/$PROTOMAPS_SERVER_PATH.json")
-                    outputStyleStream.write(newline.toByteArray())
-                }
-                else {
-                    outputStyleStream.write(line.toByteArray())
-                }
-            }
-        }
-        inputStyleStream.close()
-        outputStyleStream.close()
+        processStyle("style.json", "processedStyle.json")
+        processStyle("originalStyle.json", "processedOriginalStyle.json")
 
         // Debug - dump preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -409,6 +417,8 @@ class MainActivity : AppCompatActivity() {
         const val THEME_CONTRAST_KEY = "ThemeContrast"
         const val RECORD_TRAVEL_DEFAULT = false
         const val RECORD_TRAVEL_KEY = "RecordTravel"
+        const val ACCESSIBLE_MAP_DEFAULT = false
+        const val ACCESSIBLE_MAP_KEY = "AccessibleMap"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }

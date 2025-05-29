@@ -292,6 +292,16 @@ fun Settings(
                     )
                 },
             )
+            switchPreference(
+                key = MainActivity.ACCESSIBLE_MAP_KEY,
+                defaultValue = MainActivity.ACCESSIBLE_MAP_DEFAULT,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_accessible_map),
+                        color = textColor
+                    )
+                },
+            )
         }
     }
 }
