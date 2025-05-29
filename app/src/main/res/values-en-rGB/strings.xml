@@ -437,4 +437,5 @@
     <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Medium</string>
     <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">High</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">use</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Enable accessible map styling</string>
 </resources>
