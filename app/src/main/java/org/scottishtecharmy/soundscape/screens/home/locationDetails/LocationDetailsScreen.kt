@@ -1,12 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -21,6 +20,7 @@ import androidx.compose.material.icons.filled.ShareLocation
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -41,6 +41,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
@@ -120,6 +121,7 @@ fun LocationDetails(
     modifier: Modifier = Modifier) {
 
     val dialogState = remember { mutableStateOf(false) }
+    val fullscreenMap = remember { mutableStateOf(false) }
     val description = remember { mutableStateOf(locationDescription) }
 
     if(dialogState.value) {
@@ -132,69 +134,99 @@ fun LocationDetails(
             modifier,
             dialogState)
     } else {
-        Column(
-            modifier = modifier
-                .fillMaxHeight()
-                .background(MaterialTheme.colorScheme.surface)
-        ) {
-            CustomAppBar(
-                title = stringResource(R.string.location_detail_title_default),
-                onNavigateUp = { navController.popBackStack() },
-            )
-            Column(
-                modifier =
-                Modifier
-                    .padding(horizontal = spacing.medium, vertical = spacing.small)
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(spacing.small),
-            ) {
-                LocationDescriptionTextsSection(
-                    locationDescription = description.value,
-                    userLocation = location
-                )
-                HorizontalDivider()
-                LocationDescriptionButtonsSection(
-                    createBeacon = createBeacon,
-                    locationDescription = description.value,
-                    enableStreetPreview = enableStreetPreview,
-                    shareLocation = shareLocation,
+        Scaffold(
+            modifier = modifier,
+            topBar = {
+                CustomAppBar(
+                    title = stringResource(R.string.location_detail_title_default),
                     onNavigateUp = { navController.popBackStack() },
-                    dialogState = dialogState
                 )
+            },
+            content = { padding ->
+                if (fullscreenMap.value) {
+                    MapContainerLibre(
+                        beaconLocation = description.value.location,
+                        allowScrolling = true,
+                        onMapLongClick = { latLong ->
+                            val clickLocation = fromLatLng(latLong)
+                            val ld = getLocationDescription(clickLocation)
 
-                MapContainerLibre(
-                    beaconLocation = description.value.location,
-                    allowScrolling = true,
-                    onMapLongClick = { latLong ->
-                        val clickLocation = fromLatLng(latLong)
-                        val ld = getLocationDescription(clickLocation)
-
-                        // This effectively replaces the current screen with the new one
-                        navController.navigate(generateLocationDetailsRoute(ld)) {
-                            println("entry: ${navController.currentBackStackEntry?.destination?.route}")
-                            popUpTo(
-                                navController.currentBackStackEntry?.destination?.route
-                                    ?: return@navigate
-                            ) {
-                                inclusive = true
+                            // This effectively replaces the current screen with the new one
+                            navController.navigate(generateLocationDetailsRoute(ld)) {
+                                println("entry: ${navController.currentBackStackEntry?.destination?.route}")
+                                popUpTo(
+                                    navController.currentBackStackEntry?.destination?.route
+                                        ?: return@navigate
+                                ) {
+                                    inclusive = true
+                                }
+                                launchSingleTop = true // Prevents multiple instances of Home
                             }
-                            launchSingleTop = true // Prevents multiple instances of Home
-                        }
-                        true
-                    },
-                    // Center on the beacon
-                    mapCenter = description.value.location,
-                    userLocation = location ?: LngLatAlt(),
-                    mapViewRotation = 0.0F,
-                    userSymbolRotation = heading,
-                    routeData = null,
-                    modifier =
-                    modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1.0f)
-                )
+                            true
+                        },
+                        // Center on the beacon
+                        mapCenter = description.value.location,
+                        userLocation = location ?: LngLatAlt(),
+                        userSymbolRotation = heading,
+                        routeData = null,
+                        modifier = modifier.fillMaxSize()
+                    )
+                } else {
+                    Column(
+                        modifier =
+                            Modifier
+                                .padding(padding)
+                                .verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(spacing.small),
+                    ) {
+                        LocationDescriptionTextsSection(
+                            locationDescription = description.value,
+                            userLocation = location
+                        )
+                        HorizontalDivider()
+                        LocationDescriptionButtonsSection(
+                            createBeacon = createBeacon,
+                            locationDescription = description.value,
+                            enableStreetPreview = enableStreetPreview,
+                            shareLocation = shareLocation,
+                            onNavigateUp = { navController.popBackStack() },
+                            dialogState = dialogState
+                        )
+
+                        MapContainerLibre(
+                            beaconLocation = description.value.location,
+                            allowScrolling = true,
+                            onMapLongClick = { latLong ->
+                                val clickLocation = fromLatLng(latLong)
+                                val ld = getLocationDescription(clickLocation)
+
+                                // This effectively replaces the current screen with the new one
+                                navController.navigate(generateLocationDetailsRoute(ld)) {
+                                    println("entry: ${navController.currentBackStackEntry?.destination?.route}")
+                                    popUpTo(
+                                        navController.currentBackStackEntry?.destination?.route
+                                            ?: return@navigate
+                                    ) {
+                                        inclusive = true
+                                    }
+                                    launchSingleTop = true // Prevents multiple instances of Home
+                                }
+                                true
+                            },
+                            // Center on the beacon
+                            mapCenter = description.value.location,
+                            userLocation = location ?: LngLatAlt(),
+                            userSymbolRotation = heading,
+                            routeData = null,
+                            modifier = modifier.fillMaxWidth().aspectRatio(1.0f)
+                        )
+                    }
+                }
+            },
+            floatingActionButton = {
+                FullScreenMapFab(fullscreenMap)
             }
-        }
+        )
     }
 }
 

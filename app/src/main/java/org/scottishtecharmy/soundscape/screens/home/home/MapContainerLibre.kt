@@ -10,9 +10,15 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Fullscreen
+import androidx.compose.material.icons.rounded.FullscreenExit
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -20,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -45,7 +52,6 @@ import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
-import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
 
@@ -79,7 +85,7 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
     val numberTextView = TextView(context)
     numberTextView.apply {
         text = "$number"
-        setTextColor(android.graphics.Color.WHITE)
+        setTextColor(Color.WHITE)
         textSize = 11f
         gravity = Gravity.CENTER
     }
@@ -100,6 +106,19 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
     return bitmap.toDrawable(context.resources)
 }
 
+@Composable
+fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>) {
+    FloatingActionButton(onClick = { fullscreenMap.value = !fullscreenMap.value }) {
+        Icon(
+            imageVector = if(fullscreenMap.value) Icons.Rounded.FullscreenExit else Icons.Rounded.Fullscreen,
+            contentDescription = if(fullscreenMap.value)
+                stringResource(R.string.location_detail_exit_full_screen_hint)
+            else
+                stringResource(R.string.location_detail_full_screen_hint)
+        )
+    }
+}
+
 /**
  * A map disable component that uses maplibre.
  *
@@ -115,13 +134,12 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
 fun MapContainerLibre(
     mapCenter: LngLatAlt,
     allowScrolling: Boolean,
-    mapViewRotation: Float,
     userLocation: LngLatAlt?,
     userSymbolRotation: Float,
     beaconLocation: LngLatAlt?,
     routeData: RouteData?,
     modifier: Modifier = Modifier,
-    onMapLongClick: OnMapLongClickListener,
+    onMapLongClick: OnMapLongClickListener
 ) {
     val context = LocalContext.current
     val sharedPreferences =
@@ -140,11 +158,10 @@ fun MapContainerLibre(
 
     // We don't run the map code when in a Preview as it does not render
     if(!LocalInspectionMode.current) {
-        val cameraPosition = remember(mapCenter, mapViewRotation, allowScrolling) {
+        val cameraPosition = remember(mapCenter, allowScrolling) {
 
-            // We always use the mapViewRotation, but we only recenter the map if scrolling has
-            // been disallowed
-            val cp = CameraPosition.Builder().bearing(mapViewRotation.toDouble())
+            // Only recenter the map if scrolling has been disallowed
+            val cp = CameraPosition.Builder().bearing(0.0)
             if(!allowScrolling)
                 cp.target(mapCenter.toLatLng())
             cp.build()
@@ -303,7 +320,7 @@ fun MapContainerLibre(
 
                         val layers = style.layers
                         for (layer in layers) {
-                            println("Layer: ${layer.id}")
+                            //println("Layer: ${layer.id}")
                             when (layer) {
                                 is BackgroundLayer -> {
                                     layer.setProperties(
@@ -376,8 +393,35 @@ fun MapContainerLibre(
                 mapLibre.cameraPosition = CameraPosition.Builder()
                     .target(mapCenter.toLatLng())
                     .zoom(15.0) // we set the zoom only at init
-                    .bearing(mapViewRotation.toDouble())
+                    .bearing(0.0)
                     .build()
+            }
+        }
+
+        // We have to manually retrigger painting if we want to change the data displayed in our
+        // layer i.e. route and beacon markers.
+        val currentRouteData = remember { mutableStateOf<RouteData?>(null) }
+        if((routeData != currentRouteData.value) && (symbolManager.value != null)) {
+            currentRouteData.value = routeData
+            routeMarkers.value?.let { markers ->
+                for(marker in markers) {
+                    symbolManager.value?.delete(marker)
+                }
+                routeMarkers.value = null
+            }
+            map.getMapAsync { mapLibre ->
+                mapLibre.triggerRepaint()
+            }
+        }
+        val currentBeaconMarker = remember { mutableStateOf<LngLatAlt?>(null) }
+        if((beaconLocation != currentBeaconMarker.value) && (symbolManager.value != null)) {
+            currentBeaconMarker.value = beaconLocation
+            beaconLocationMarker.value?.let { currentBeacon ->
+                symbolManager.value?.delete(currentBeacon)
+                beaconLocationMarker.value = null
+            }
+            map.getMapAsync { mapLibre ->
+                mapLibre.triggerRepaint()
             }
         }
 

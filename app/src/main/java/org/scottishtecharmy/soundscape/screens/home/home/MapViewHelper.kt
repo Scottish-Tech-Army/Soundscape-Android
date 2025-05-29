@@ -18,9 +18,6 @@ fun rememberMapViewWithLifecycle(disposeCode : (map : MapView) -> Unit): MapView
     val mapView = remember {
         MapLibre.getInstance(context)
         val options = createFromAttributes(context)
-//        options.apply {
-//            pixelRatio(4.0F)
-//        }
         val view = MapView(context, options)
         return@remember view
     }
@@ -51,8 +48,8 @@ private fun getMapLifecycleObserver(mapView: MapView): LifecycleEventObserver =
             Lifecycle.Event.ON_PAUSE -> mapView.onPause()
             Lifecycle.Event.ON_STOP -> mapView.onStop()
             Lifecycle.Event.ON_DESTROY -> {
-                // We should never get this event
-                assert(false)
+                println("MapView: ON_DESTROY")
+                mapView.onDestroy()
             }
             else -> throw IllegalStateException()
         }
