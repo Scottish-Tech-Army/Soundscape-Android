@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Log
@@ -9,12 +10,14 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.viewinterop.AndroidView
@@ -28,13 +31,23 @@ import org.maplibre.android.maps.MapView
 import org.maplibre.android.plugins.annotation.Symbol
 import org.maplibre.android.plugins.annotation.SymbolManager
 import org.maplibre.android.plugins.annotation.SymbolOptions
+import org.maplibre.android.style.layers.BackgroundLayer
+import org.maplibre.android.style.layers.FillExtrusionLayer
+import org.maplibre.android.style.layers.FillLayer
+import org.maplibre.android.style.layers.LineLayer
+import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.layers.SymbolLayer
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
+import androidx.preference.PreferenceManager
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
+import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -111,6 +124,19 @@ fun MapContainerLibre(
     onMapLongClick: OnMapLongClickListener,
 ) {
     val context = LocalContext.current
+    val sharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
+    val accessibleMapEnabled = sharedPreferences.getBoolean(ACCESSIBLE_MAP_KEY, ACCESSIBLE_MAP_DEFAULT)
+
+    // Setup map colors. We use the background and onBackground theme colors as the main map
+    // colors so that we automatically switch with the theme.
+    val backgroundColor = MaterialTheme.colorScheme.background.toArgb()
+    val foregroundColor = MaterialTheme.colorScheme.onBackground.toArgb()
+
+    // The other colors are currently the same for both light and dark themes
+    var motorwayColor: Int = Color.rgb(128,128,255)
+    var trunkRoadColor: Int = Color.rgb(255,200,30)
+    val waterColor = Color.rgb(160,200,240)
 
     // We don't run the map code when in a Preview as it does not render
     if(!LocalInspectionMode.current) {
@@ -130,6 +156,7 @@ fun MapContainerLibre(
                 .withIconImage(USER_POSITION_MARKER_NAME)
                 .withIconAnchor("center")
                 .withIconRotate(userSymbolRotation)
+                .withIconSize(1.5f)
         }
 
         val routeMarkers = remember { mutableStateOf<List<Symbol>?>(null) }
@@ -190,7 +217,8 @@ fun MapContainerLibre(
             // init map first time it is displayed
             map.getMapAsync { mapLibre ->
                 // val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
-                val styleUrl = Uri.fromFile(File("$filesDir/osm-liberty-accessible/processedStyle.json")).toString()
+                val styleName = if(accessibleMapEnabled) "processedStyle.json" else "processedOriginalStyle.json"
+                val styleUrl = Uri.fromFile(File("$filesDir/osm-liberty-accessible/$styleName")).toString()
                 mapLibre.setStyle(styleUrl) { style ->
 
                     // Add the icons we might need to the style
@@ -199,6 +227,117 @@ fun MapContainerLibre(
                     style.addImage(USER_POSITION_MARKER_NAME, userPositionDrawable!!)
                     for(i in 0 .. 99) {
                         style.addImage(LOCATION_MARKER_NAME.format(i), markerDrawables[i])
+                    }
+
+                    if(accessibleMapEnabled) {
+                        val lineToColorMap = mapOf<String, Int>(
+                            "aeroway_runway" to foregroundColor,
+                            "aeroway_taxiway" to foregroundColor,
+                            "tunnel_motorway_link_casing" to foregroundColor,
+                            "tunnel_service_track_casing" to foregroundColor,
+                            "tunnel_link_casing" to foregroundColor,
+                            "tunnel_street_casing" to foregroundColor,
+                            "tunnel_secondary_tertiary_casing" to foregroundColor,
+                            "tunnel_trunk_primary_casing" to foregroundColor,
+                            "tunnel_motorway_casing" to foregroundColor,
+                            "tunnel_path_pedestrian" to foregroundColor,
+                            "tunnel_motorway_link" to motorwayColor,
+                            "tunnel_service_track" to backgroundColor,
+                            "tunnel_link" to backgroundColor,
+                            "tunnel_minor" to backgroundColor,
+                            "tunnel_secondary_tertiary" to trunkRoadColor,
+                            "tunnel_trunk_primary" to trunkRoadColor,
+                            "tunnel_motorway" to motorwayColor,
+                            "tunnel_major_rail" to foregroundColor,
+                            "tunnel_major_rail_hatching" to foregroundColor,
+                            "tunnel_transit_rail" to foregroundColor,
+                            "tunnel_transit_rail_hatching" to foregroundColor,
+                            "road_area_pattern" to foregroundColor,
+                            "road_motorway_link_casing" to foregroundColor,
+                            "road_service_track_casing" to foregroundColor,
+                            "road_link_casing" to foregroundColor,
+                            "road_minor_casing" to foregroundColor,
+                            "road_secondary_tertiary_casing" to foregroundColor,
+                            "road_trunk_primary_casing" to foregroundColor,
+                            "road_motorway_casing" to foregroundColor,
+                            "road_path_pedestrian" to foregroundColor,
+                            "road_motorway_link" to motorwayColor,
+                            "road_service_track" to backgroundColor,
+                            "road_link" to backgroundColor,
+                            "road_minor" to backgroundColor,
+                            "road_secondary_tertiary" to trunkRoadColor,
+                            "road_trunk_primary" to trunkRoadColor,
+                            "road_motorway" to motorwayColor,
+                            "road_major_rail" to foregroundColor,
+                            "road_major_rail_hatching" to foregroundColor,
+                            "road_transit_rail" to foregroundColor,
+                            "road_transit_rail_hatching" to foregroundColor,
+                            "bridge_motorway_link_casing" to foregroundColor,
+                            "bridge_service_track_casing" to foregroundColor,
+                            "bridge_link_casing" to foregroundColor,
+                            "bridge_street_casing" to foregroundColor,
+                            "bridge_path_pedestrian_casing" to foregroundColor,
+                            "bridge_secondary_tertiary_casing" to foregroundColor,
+                            "bridge_trunk_primary_casing" to foregroundColor,
+                            "bridge_motorway_casing" to foregroundColor,
+                            "bridge_path_pedestrian" to backgroundColor,
+                            "bridge_motorway_link" to motorwayColor,
+                            "bridge_service_track" to backgroundColor,
+                            "bridge_link" to backgroundColor,
+                            "bridge_street" to backgroundColor,
+                            "bridge_secondary_tertiary" to trunkRoadColor,
+                            "bridge_trunk_primary" to trunkRoadColor,
+                            "bridge_motorway" to motorwayColor,
+                            "bridge_major_rail" to foregroundColor,
+                            "bridge_major_rail_hatching" to foregroundColor,
+                            "bridge_transit_rail" to foregroundColor,
+                            "bridge_transit_rail_hatching" to foregroundColor,
+                            "waterway_tunnel" to waterColor,
+                            "waterway_river" to waterColor,
+                            "waterway_other" to waterColor,
+                            "park_outline" to foregroundColor,
+                            "boundary_3" to foregroundColor,
+                            "boundary_2_z0-4" to foregroundColor,
+                            "boundary_2_z5-" to foregroundColor
+                        )
+
+                        val layers = style.layers
+                        for (layer in layers) {
+                            println("Layer: ${layer.id}")
+                            when (layer) {
+                                is BackgroundLayer -> {
+                                    layer.setProperties(
+                                        PropertyFactory.backgroundColor(backgroundColor)
+                                    )
+                                }
+
+                                is LineLayer -> {
+                                    layer.setProperties(
+                                        PropertyFactory.lineColor(lineToColorMap[layer.id]!!)
+                                    )
+                                }
+
+                                is FillLayer -> {
+                                }
+
+                                is FillExtrusionLayer -> {
+                                    if (layer.id == "building-3d") {
+                                        layer.setProperties(
+                                            PropertyFactory.fillExtrusionColor(foregroundColor)
+                                        )
+                                    }
+                                }
+
+                                is SymbolLayer -> {
+                                    layer.setProperties(
+                                        PropertyFactory.textColor(foregroundColor),
+                                        PropertyFactory.textHaloColor(backgroundColor),
+                                    )
+                                }
+
+                                else -> assert(false)
+                            }
+                        }
                     }
 
                     val sm = SymbolManager(map, mapLibre, style)
@@ -266,6 +405,7 @@ fun MapContainerLibre(
                                 .withLatLng(beaconLocation!!.toLatLng())
                                 .withIconImage(LOCATION_MARKER_NAME.format(0))
                                 .withIconAnchor("bottom")
+                                .withIconSize(1.5f)
                             val sym = symbolManager.value?.create(markerOptions)
                             symbolManager.value?.update(sym)
                             beaconLocationMarker.value = sym
@@ -282,6 +422,7 @@ fun MapContainerLibre(
                                         .withLatLng(waypoint.location!!.location().toLatLng())
                                         .withIconImage(LOCATION_MARKER_NAME.format(index))
                                         .withIconAnchor("bottom")
+                                        .withIconSize(1.5f)
                                     val sym = symbolManager.value?.create(markerOptions)
                                     if(sym != null) {
                                         symbolManager.value?.update(sym)
