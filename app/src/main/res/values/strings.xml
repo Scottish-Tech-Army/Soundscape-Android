@@ -114,6 +114,11 @@
   <string name="location_detail_add_waypoint_existing_hint">"remove this marker from your route."</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
   <string name="location_detail_add_waypoint_new_hint">"add this marker to your route."</string>
+
+    <!-- Settings option for enabling recording of travel locations -->
+  <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">"Make the map full screen"</string>
+  <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">"Exit full screen map"</string>
+
     <!--******************************************************************************-->
   <!-- MARK: - Route Detail-->
   <!--******************************************************************************-->

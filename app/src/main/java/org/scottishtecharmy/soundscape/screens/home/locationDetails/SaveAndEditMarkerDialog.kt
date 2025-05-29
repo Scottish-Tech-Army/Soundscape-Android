@@ -28,6 +28,7 @@ import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
@@ -52,6 +53,7 @@ fun SaveAndEditMarkerDialog(
     var name by rememberSaveable { mutableStateOf(locationDescription.name) }
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val objectId = locationDescription.databaseId
+    val fullscreenMap = remember { mutableStateOf(false) }
 
     val successMessage = stringResource(R.string.markers_marker_created)
     val failureMessage = stringResource(R.string.general_error_add_marker_error)
@@ -95,58 +97,74 @@ fun SaveAndEditMarkerDialog(
                 }
             }
         },
+        floatingActionButton = {
+            FullScreenMapFab(fullscreenMap)
+        },
         content = { padding ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-                    .smallPadding()
-                    .verticalScroll(rememberScrollState())
-            ) {
-                Text(
-                    modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
-                    text = stringResource(R.string.markers_sort_button_sort_by_name),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                CustomTextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = name,
-                    onValueChange = {
-                        println("onValueChange $it")
-                        name = it
-                        //locationDescription.addressName = it
-                    }
-                )
-                Text(
-                    modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
-                    text = stringResource(R.string.markers_annotation),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                CustomTextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = annotation,
-                    onValueChange = {
-                        println("onValueChange $it")
-                        annotation = it
-                        //locationDescription.fullAddress = it
-                    }
-                )
-                Spacer(modifier = Modifier.height(spacing.medium))
-
+            if(fullscreenMap.value) {
                 MapContainerLibre(
                     beaconLocation = locationDescription.location,
                     mapCenter = locationDescription.location,
                     allowScrolling = true,
-                    mapViewRotation = 0.0F,
                     userLocation = location ?: LngLatAlt(),
                     userSymbolRotation = heading,
                     routeData = null,
                     onMapLongClick = { false },
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1.7f)
-                        .smallPadding()
+                        .fillMaxSize()
                 )
+            } else {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        .smallPadding()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    Text(
+                        modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
+                        text = stringResource(R.string.markers_sort_button_sort_by_name),
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                    CustomTextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = name,
+                        onValueChange = {
+                            println("onValueChange $it")
+                            name = it
+                            //locationDescription.addressName = it
+                        }
+                    )
+                    Text(
+                        modifier = Modifier.padding(top = spacing.small, bottom = spacing.small),
+                        text = stringResource(R.string.markers_annotation),
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                    CustomTextField(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = annotation,
+                        onValueChange = {
+                            println("onValueChange $it")
+                            annotation = it
+                            //locationDescription.fullAddress = it
+                        }
+                    )
+                    Spacer(modifier = Modifier.height(spacing.medium))
+
+                    MapContainerLibre(
+                        beaconLocation = locationDescription.location,
+                        mapCenter = locationDescription.location,
+                        allowScrolling = true,
+                        userLocation = location ?: LngLatAlt(),
+                        userSymbolRotation = heading,
+                        routeData = null,
+                        onMapLongClick = { false },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(1.0f)
+                            .smallPadding()
+                    )
+                }
             }
         }
     )

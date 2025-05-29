@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.SharedPreferences
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
@@ -18,6 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -65,6 +68,7 @@ fun Home(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val fullscreenMap = remember { mutableStateOf(false) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -88,39 +92,55 @@ fun Home(
                 )
             },
             bottomBar = {
-                HomeBottomAppBar(bottomButtonFunctions)
+                if(!fullscreenMap.value)
+                    HomeBottomAppBar(bottomButtonFunctions)
             },
-            floatingActionButton = {},
+            floatingActionButton = {
+                FullScreenMapFab(fullscreenMap)
+            },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
-            HomeContent(
-                location = state.location,
-                beaconState = state.beaconState,
-                routePlayerState = state.currentRouteData,
-                heading = state.heading,
-                modifier = modifier.padding(innerPadding),
-                onNavigate = onNavigate,
-                getCurrentLocationDescription = getCurrentLocationDescription,
-                searchBar = {
-                    MainSearchBar(
-                        searchText = searchText,
-                        isSearching = state.isSearching,
-                        itemList = state.searchItems.orEmpty(),
-                        onSearchTextChange = onSearchTextChange,
-                        onToggleSearch = onToggleSearch,
-                        onItemClick = { item ->
-                            onNavigate(
-                                generateLocationDetailsRoute(item),
-                            )
-                        },
-                        userLocation = state.location
-                    )
-                },
-                onMapLongClick = onMapLongClick,
-                streetPreviewState = state.streetPreviewState,
-                routeFunctions = routeFunctions,
-                streetPreviewFunctions = streetPreviewFunctions
-            )
+            if (fullscreenMap.value) {
+                MapContainerLibre(
+                    beaconLocation = state.beaconState?.location,
+                    routeData = state.currentRouteData.routeData,
+                    mapCenter = state.location!!,
+                    allowScrolling = false,
+                    userLocation = state.location!!,
+                    userSymbolRotation = state.heading,
+                    onMapLongClick = onMapLongClick,
+                    modifier = modifier.fillMaxSize()
+                )
+            } else {
+                HomeContent(
+                    location = state.location,
+                    beaconState = state.beaconState,
+                    routePlayerState = state.currentRouteData,
+                    heading = state.heading,
+                    modifier = modifier.padding(innerPadding),
+                    onNavigate = onNavigate,
+                    getCurrentLocationDescription = getCurrentLocationDescription,
+                    searchBar = {
+                        MainSearchBar(
+                            searchText = searchText,
+                            isSearching = state.isSearching,
+                            itemList = state.searchItems.orEmpty(),
+                            onSearchTextChange = onSearchTextChange,
+                            onToggleSearch = onToggleSearch,
+                            onItemClick = { item ->
+                                onNavigate(
+                                    generateLocationDetailsRoute(item),
+                                )
+                            },
+                            userLocation = state.location
+                        )
+                    },
+                    onMapLongClick = onMapLongClick,
+                    streetPreviewState = state.streetPreviewState,
+                    routeFunctions = routeFunctions,
+                    streetPreviewFunctions = streetPreviewFunctions
+                )
+            }
         }
     }
 }
