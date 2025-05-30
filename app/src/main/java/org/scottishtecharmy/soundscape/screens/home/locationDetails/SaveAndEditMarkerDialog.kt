@@ -54,6 +54,7 @@ fun SaveAndEditMarkerDialog(
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val objectId = locationDescription.databaseId
     val fullscreenMap = remember { mutableStateOf(false) }
+    val newLocation = remember { locationDescription.location.clone() }
 
     val successMessage = stringResource(R.string.markers_marker_created)
     val failureMessage = stringResource(R.string.general_error_add_marker_error)
@@ -69,6 +70,7 @@ fun SaveAndEditMarkerDialog(
                 onRightButton = {
                     locationDescription.name = name
                     locationDescription.description = annotation
+                    locationDescription.location = newLocation
                     saveMarker(locationDescription, successMessage, failureMessage)
                     dialogState.value = false
                 }
@@ -103,8 +105,9 @@ fun SaveAndEditMarkerDialog(
         content = { padding ->
             if(fullscreenMap.value) {
                 MapContainerLibre(
-                    beaconLocation = locationDescription.location,
-                    mapCenter = locationDescription.location,
+                    beaconLocation = newLocation,
+                    mapCenter = newLocation,
+                    editBeaconLocation = true,
                     allowScrolling = true,
                     userLocation = location ?: LngLatAlt(),
                     userSymbolRotation = heading,
@@ -152,8 +155,9 @@ fun SaveAndEditMarkerDialog(
                     Spacer(modifier = Modifier.height(spacing.medium))
 
                     MapContainerLibre(
-                        beaconLocation = locationDescription.location,
-                        mapCenter = locationDescription.location,
+                        beaconLocation = newLocation,
+                        mapCenter = newLocation,
+                        editBeaconLocation = true,
                         allowScrolling = true,
                         userLocation = location ?: LngLatAlt(),
                         userSymbolRotation = heading,
