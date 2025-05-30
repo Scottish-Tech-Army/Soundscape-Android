@@ -101,16 +101,18 @@ fun Home(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
             if (fullscreenMap.value) {
-                MapContainerLibre(
-                    beaconLocation = state.beaconState?.location,
-                    routeData = state.currentRouteData.routeData,
-                    mapCenter = state.location!!,
-                    allowScrolling = false,
-                    userLocation = state.location!!,
-                    userSymbolRotation = state.heading,
-                    onMapLongClick = onMapLongClick,
-                    modifier = modifier.fillMaxSize()
-                )
+                state.location?.let { location ->
+                    MapContainerLibre(
+                        beaconLocation = state.beaconState?.location,
+                        routeData = state.currentRouteData.routeData,
+                        mapCenter = location,
+                        allowScrolling = false,
+                        userLocation = location,
+                        userSymbolRotation = state.heading,
+                        onMapLongClick = onMapLongClick,
+                        modifier = modifier.fillMaxSize()
+                    )
+                }
             } else {
                 HomeContent(
                     location = state.location,
