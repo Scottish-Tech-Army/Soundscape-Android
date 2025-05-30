@@ -139,7 +139,8 @@ fun MapContainerLibre(
     beaconLocation: LngLatAlt?,
     routeData: RouteData?,
     modifier: Modifier = Modifier,
-    onMapLongClick: OnMapLongClickListener
+    editBeaconLocation: Boolean = false,
+    onMapLongClick: OnMapLongClickListener,
 ) {
     val context = LocalContext.current
     val sharedPreferences =
@@ -388,6 +389,20 @@ fun MapContainerLibre(
                     mapLibre.uiSettings.isAttributionEnabled = false
 
                     mapLibre.addOnMapLongClickListener(onMapLongClick)
+                    mapLibre.addOnCameraMoveListener {
+                        if(editBeaconLocation) {
+                            if(beaconLocationMarker.value != null) {
+                                val center = mapLibre.projection.visibleRegion.latLngBounds.center
+
+                                // Update our marker location from the center of the screen
+                                beaconLocationMarker.value?.latLng = center
+                                symbolManager.value?.update(beaconLocationMarker.value)
+
+                                beaconLocation?.latitude = center.latitude
+                                beaconLocation?.longitude = center.longitude
+                            }
+                        }
+                    }
                 }
 
                 mapLibre.cameraPosition = CameraPosition.Builder()
