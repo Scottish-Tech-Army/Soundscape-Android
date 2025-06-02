@@ -438,4 +438,6 @@
     <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">High</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">use</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Enable accessible map styling</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Make the map full screen</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Exit full screen map</string>
 </resources>
