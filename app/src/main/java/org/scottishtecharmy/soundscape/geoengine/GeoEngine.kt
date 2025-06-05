@@ -41,13 +41,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
-import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
@@ -1007,6 +1004,20 @@ fun localReverseGeocode(location: LngLatAlt,
                         localizedContext: Context?): LocationDescription? {
 
     if(!gridState.isLocationWithinGrid(location)) return null
+
+    // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
+    val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+    val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
+    if(nearestBusStop != null) {
+        val busStopText = getTextForFeature(localizedContext, nearestBusStop)
+        if(!busStopText.generic) {
+            return LocationDescription(
+                name = localizedContext?.getString(R.string.directions_near_name)
+                    ?.format(busStopText.text) ?: "Near ${busStopText.text}",
+                location = location,
+            )
+        }
+    }
 
     // Check if we're inside a POI
     val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
