@@ -5,11 +5,14 @@ package org.scottishtecharmy.soundscape.geoengine
  */
 
 /**
- * The zoom level and grid size are constant. When using soundscape-backend these will be
- * 16 and 3, but if we switch to using protobuf tiles they will be 15 and 2.
+ * The zoom level and grid size were constant when using soundscape-backend at 16 and 3
+ * respectively. With protobuf tiles the tile grid for walking around will be 15 and 2, but we can
+ * also have a lower zoom level to allow us to give better context when we're travelling by faster
+ * means of transport e.g. inter city train. The lower zoom levels mean that we can search for
+ * the nearest village or town instead of just the nearest street or road.
  */
-const val ZOOM_LEVEL = 15
-var GRID_SIZE = 2
+const val MAX_ZOOM_LEVEL = 15
+const val GRID_SIZE = 2
 
 /**
  * The default tile server is the one out in the cloud where the tile JSON is at:

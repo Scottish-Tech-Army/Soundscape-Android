@@ -1,5 +1,13 @@
 protomaps_server=https://d1wzlzgah5gfol.cloudfront.net/protomaps
 
+for x in $(seq 1997 2000);
+do
+  for y in $(seq 1275 1280);
+  do
+    wget $protomaps_server/12/$x/$y.pbf -O ${x}x${y}x12.mvt
+  done
+done
+
 # for x in $(seq 15988 15998);
 # do
 #   for y in $(seq 10212 10228);
@@ -8,25 +16,25 @@ protomaps_server=https://d1wzlzgah5gfol.cloudfront.net/protomaps
 #   done
 # done
 
-for x in $(seq 16092 16096);
-do
-  for y in $(seq 10209 10214);
-  do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
-  done
-done
-
-# Tiles for testVectorToGeoJsonGrid
-for x in $(seq 15990 15992);
-do
-  for y in $(seq 10211 10214);
-  do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
-  done
-done
+#for x in $(seq 16092 16096);
+#do
+#  for y in $(seq 10209 10214);
+#  do
+#    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
+#  done
+#done
+#
+## Tiles for testVectorToGeoJsonGrid
+#for x in $(seq 15990 15992);
+#do
+#  for y in $(seq 10211 10214);
+#  do
+#    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
+#  done
+#done
 
 # West End of Glasgow - to test private gardens and footways marked as sidewalks
-wget $protomaps_server/15/15992/10223.pbf -O 15992x10223.mvt
+wget $protomaps_server/15/15992/10223.pbf -O 15992x10223x15.mvt
 
 # Tiles for intersectionsStraightAheadType (-2.6577997643930757, 51.43041390383118)
 # and for intersectionsSideRoadRight (-2.656109007812404,51.43079699441145)
@@ -36,7 +44,7 @@ for x in $(seq 16141 16142);
 do
   for y in $(seq 10906 10907);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done
 
@@ -46,7 +54,7 @@ for x in $(seq 16143 16144);
 do
   for y in $(seq 10900 10901);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done
 
@@ -59,7 +67,7 @@ for x in $(seq 16145 16146);
 do
   for y in $(seq 10902 10904);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done
 
@@ -68,7 +76,7 @@ for x in $(seq 16294 16295);
 do
   for y in $(seq 10903 10904);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done
 
@@ -78,38 +86,38 @@ for x in $(seq 5275 5276);
 do
   for y in $(seq 12715 12716);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done
 
-wget $protomaps_server/15/16093/10211.pbf -O 16093x10211.mvt
+wget $protomaps_server/15/16093/10211.pbf -O 16093x10211x15.mvt
 
 # Roundabout and intersection test tiles
-wget $protomaps_server/15/16133/10906.pbf -O 16133x10906.mvt
-wget $protomaps_server/15/16134/10906.pbf -O 16134x10906.mvt
-wget $protomaps_server/15/16138/10905.pbf -O 16138x10905.mvt
-wget $protomaps_server/15/16139/10905.pbf -O 16139x10905.mvt
-wget $protomaps_server/15/16138/10906.pbf -O 16138x10906.mvt
+wget $protomaps_server/15/16133/10906.pbf -O 16133x10906x15.mvt
+wget $protomaps_server/15/16134/10906.pbf -O 16134x10906x15.mvt
+wget $protomaps_server/15/16138/10905.pbf -O 16138x10905x15.mvt
+wget $protomaps_server/15/16139/10905.pbf -O 16139x10905x15.mvt
+wget $protomaps_server/15/16138/10906.pbf -O 16138x10906x15.mvt
 
 # Central Manchester
-wget $protomaps_server/15/16180/10601.pbf -O 16180x10601.mvt
+wget $protomaps_server/15/16180/10601.pbf -O 16180x10601x15.mvt
 
 # Tiles for merging polygons
 for x in $(seq 16143 16144);
 do
   for y in $(seq 10890 10891);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done
 
-wget $protomaps_server/15/21066/16629.pbf -O 21066x16629.mvt
+wget $protomaps_server/15/21066/16629.pbf -O 21066x16629x15.mvt
 
 # Tiles for Failand
 for x in $(seq 16139 16140);
 do
   for y in $(seq 10906 10907);
   do
-    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}.mvt
+    wget $protomaps_server/15/$x/$y.pbf -O ${x}x${y}x15.mvt
   done
 done

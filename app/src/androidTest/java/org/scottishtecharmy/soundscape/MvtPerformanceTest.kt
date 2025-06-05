@@ -16,7 +16,7 @@ import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
 import org.scottishtecharmy.soundscape.dto.BoundingBox
-import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
@@ -159,15 +159,15 @@ class MvtPerformanceTest {
         gridState.validateContext = false
         gridState.start(ApplicationProvider.getApplicationContext())
 
-        val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), ZOOM_LEVEL)
-        val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), ZOOM_LEVEL)
+        val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), MAX_ZOOM_LEVEL)
+        val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), MAX_ZOOM_LEVEL)
 
         for(i in 0 until count) {
             for (x in minX.toInt() until maxX.toInt()) {
                 for (y in minY.toInt() until maxY.toInt()) {
 
                     // Get top left of tile
-                    val location = getLatLonTileWithOffset(x, y, ZOOM_LEVEL, 0.0, 0.0)
+                    val location = getLatLonTileWithOffset(x, y, MAX_ZOOM_LEVEL, 0.0, 0.0)
 
                     println("Moving grid to $location")
 
@@ -198,7 +198,7 @@ class MvtPerformanceTest {
 
         // The center of each grid
         // Get top left of tile
-        val location = getLatLonTileWithOffset(16091, 10210, ZOOM_LEVEL, 0.0, 0.0)
+        val location = getLatLonTileWithOffset(16091, 10210, MAX_ZOOM_LEVEL, 0.0, 0.0)
 
         println("Moving grid to $location")
 

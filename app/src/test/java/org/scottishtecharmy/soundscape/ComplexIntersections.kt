@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -18,7 +19,7 @@ class ComplexIntersections {
         // and which ones are useful to call out to the user
         // Fake location, heading and Field of View for testing
         val location = LngLatAlt(-2.697291022799874,51.44378095087524)
-        val gridState = getGridStateForLocation(location, 1)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 1)
         val userGeometry = UserGeometry(
             location,
             320.0,
@@ -62,7 +63,7 @@ class ComplexIntersections {
         // https://geojson.io/#map=18.65/51.4405486/-2.6851813
         // Fake location, heading and Field of View for testing
         val location = LngLatAlt(-2.6854420947740323, 51.44036284885249)
-        val gridState = getGridStateForLocation(location, 1)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 1)
         val userGeometry = UserGeometry(
             location,
             45.0,

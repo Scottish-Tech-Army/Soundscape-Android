@@ -17,6 +17,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.geoengine.utils.tileToBoundingBox
 import com.squareup.moshi.Moshi
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
@@ -118,7 +119,7 @@ class VisuallyCheckOutput {
     fun roadsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), 1)
+        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), MAX_ZOOM_LEVEL, 1)
         val testRoadsCollection = gridState.getFeatureCollection(TreeId.ROADS)
         val roads = moshi.adapter(FeatureCollection::class.java).toJson(testRoadsCollection)
         // copy and paste into GeoJSON.io
@@ -129,7 +130,7 @@ class VisuallyCheckOutput {
     fun intersectionsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), 1)
+        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), MAX_ZOOM_LEVEL, 1)
         // get the Intersections Feature Collection.
         val testIntersectionsCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
@@ -142,7 +143,7 @@ class VisuallyCheckOutput {
     fun poiFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), 1)
+        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), MAX_ZOOM_LEVEL, 1)
         // get the POI Feature Collection.
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
@@ -156,7 +157,7 @@ class VisuallyCheckOutput {
         // The tile that I've been using above doesn't have any paths mapped in it
         // so I'm swapping to a different tile.
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
 
         val testPathCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
 
@@ -168,7 +169,7 @@ class VisuallyCheckOutput {
     @Test
     fun entrancesFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testEntrancesCollection = gridState.getFeatureCollection(TreeId.ENTRANCES)
 
         val entrances = moshi.adapter(FeatureCollection::class.java).toJson(testEntrancesCollection)
@@ -179,7 +180,7 @@ class VisuallyCheckOutput {
     @Test
     fun poiSuperCategory(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select super category
@@ -209,7 +210,7 @@ class VisuallyCheckOutput {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // ********* This is the only line that is useful. The rest of it is
@@ -257,7 +258,7 @@ class VisuallyCheckOutput {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // ********* This is the only line that is useful. The rest of it is
@@ -305,7 +306,7 @@ class VisuallyCheckOutput {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // ********* This is the only line that is useful. The rest of it is

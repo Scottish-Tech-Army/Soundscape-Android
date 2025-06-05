@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
@@ -71,7 +73,7 @@ class PoiTest {
         val userGeometry = UserGeometry(LngLatAlt(-4.317229, 55.941891),
             0.0,
             50.0)
-        val gridState = getGridStateForLocation(userGeometry.location)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val polygons = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.INDIVIDUAL)
@@ -109,7 +111,7 @@ class PoiTest {
         val userGeometry = UserGeometry(LngLatAlt(-4.317229, 55.941891),
             0.0,
             50.0)
-        val gridState = getGridStateForLocation(userGeometry.location)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val polygons = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.INDIVIDUAL)
@@ -159,7 +161,7 @@ class PoiTest {
             0.0,
             50.0
         )
-        val gridState = getGridStateForLocation(userGeometry.location)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val featuresToDraw = FeatureCollection()
@@ -190,7 +192,7 @@ class PoiTest {
             0.0,
             50.0
         )
-        val gridState = getGridStateForLocation(userGeometry.location)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poi = gridState.getFeatureTree(TreeId.POIS)
         val features = poi.getAllCollection()
 

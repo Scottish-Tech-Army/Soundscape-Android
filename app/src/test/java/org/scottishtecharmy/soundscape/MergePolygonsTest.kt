@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -236,7 +237,7 @@ class MergePolygonsTest {
             gridSize = 3
         }
         // Get a grid around the location
-        val grid = getTileGrid(location, gridSize)
+        val grid = getTileGrid(location, MAX_ZOOM_LEVEL, gridSize)
         for (tile in grid.tiles) {
             println("Need tile ${tile.tileX}x${tile.tileY}")
         }
@@ -251,7 +252,7 @@ class MergePolygonsTest {
             val geojson = vectorTileToGeoJsonFromFile(
                 tile.tileX,
                 tile.tileY,
-                "${tile.tileX}x${tile.tileY}.mvt",
+                "${tile.tileX}x${tile.tileY}x${MAX_ZOOM_LEVEL}.mvt",
                 intersectionMap
             )
             for (feature in geojson) {

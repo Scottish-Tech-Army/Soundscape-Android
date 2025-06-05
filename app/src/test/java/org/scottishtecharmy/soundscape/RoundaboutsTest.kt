@@ -4,6 +4,7 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.Circle
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -45,7 +46,7 @@ class RoundaboutsTest {
             225.0,
             50.0
         )
-        val gridState = getGridStateForLocation(userGeometry.location, 1)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 1)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionsTree  = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
@@ -161,7 +162,7 @@ class RoundaboutsTest {
             0.0,
             50.0
         )
-        val gridState = getGridStateForLocation(userGeometry.location, 1)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 1)
 
         // create FOV to pickup the roads
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
@@ -229,7 +230,7 @@ class RoundaboutsTest {
             50.0
         )
 
-        val gridState = getGridStateForLocation(userGeometry.location, 1)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 1)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
