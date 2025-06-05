@@ -13,6 +13,7 @@ import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
@@ -46,7 +47,7 @@ class TileUtilsTest {
 
     @Test
     fun getRoadsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(sixtyAcresCloseTestLocation, 1)
+        val gridState = getGridStateForLocation(sixtyAcresCloseTestLocation, MAX_ZOOM_LEVEL, 1)
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
@@ -58,7 +59,7 @@ class TileUtilsTest {
 
     @Test
     fun getBusStopsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val testBusStopFeatureCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
 
@@ -70,7 +71,7 @@ class TileUtilsTest {
 
     @Test
     fun getCrossingsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
         for (feature in testCrossingsFeatureCollection) {
             Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
@@ -80,7 +81,7 @@ class TileUtilsTest {
 
     @Test
     fun getPathsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPathsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
         val testRoadsCollectionFromTileFeatureCollection =
@@ -90,26 +91,26 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is 1570
         Assert.assertEquals(
-            1386,
+            1570,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
 
     @Test
     fun getIntersectionsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testIntersectionsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(1524, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(1706, testIntersectionsCollectionFromTileFeatureCollection.features.size)
 
     }
 
     @Test
     fun getEntrancesFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testEntrancesCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ENTRANCES)
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
@@ -120,7 +121,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         Assert.assertEquals(1084, testPoiCollection.features.size)
@@ -129,7 +130,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryMobilityTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select "mobility" super category
@@ -140,7 +141,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryObjectTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select "object" super category
@@ -154,7 +155,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryInformationTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select "information" super category
@@ -166,7 +167,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryPlaceTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select "place" super category
@@ -178,7 +179,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryLandmarkTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select "landmark" super category
@@ -189,7 +190,7 @@ class TileUtilsTest {
 
     @Test
     fun getPoiFeatureCollectionBySuperCategorySafetyTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, 1)
+        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select "safety" super category
@@ -226,7 +227,7 @@ class TileUtilsTest {
 
     @Test
     fun getWhatsAroundMeTest() {
-        val gridState = getGridStateForLocation(sixtyAcresCloseTestLocation)
+        val gridState = getGridStateForLocation(sixtyAcresCloseTestLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         val currentLat = 51.43931965688239
@@ -333,7 +334,7 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersection (this intersection is a transition from
@@ -355,7 +356,7 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // Create a FOV triangle to pick up the roads in the FoV roads.
@@ -378,7 +379,7 @@ class TileUtilsTest {
             200.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // Create a FOV triangle to pick up the Points of interest in the FoV
@@ -405,7 +406,7 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
@@ -427,7 +428,7 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
         // Create a FOV triangle to pick up the intersections
@@ -455,7 +456,7 @@ class TileUtilsTest {
             90.0, 50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
 
         // Create a FOV triangle to pick up the roads
@@ -482,7 +483,7 @@ class TileUtilsTest {
             100.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
 
         // Create a FOV triangle to pick up the poi
@@ -524,30 +525,28 @@ class TileUtilsTest {
 
     @Test
     fun get3x3TileGridTest() {
-        // Override Global grid size setting
-        GRID_SIZE = 3
+        val gridSize = 3
 
-        var tileGrid = getTileGrid(LngLatAlt(65.0, 0.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(LngLatAlt(-65.0, 0.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(LngLatAlt(0.0, 180.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(LngLatAlt(0.0, -180.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
+        var tileGrid = getTileGrid(LngLatAlt(65.0, 0.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
+        tileGrid = getTileGrid(LngLatAlt(-65.0, 0.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 180.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
+        tileGrid = getTileGrid(LngLatAlt(0.0, -180.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
     }
 
     @Test
     fun get2x2TileGridTest() {
-        // Override Global grid size setting
-        GRID_SIZE = 2
+        val gridSize = 2
 
-        var tileGrid = getTileGrid(LngLatAlt(0.001, 0.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
-        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0))
-        Assert.assertEquals(GRID_SIZE * GRID_SIZE, tileGrid.tiles.size)
+        var tileGrid = getTileGrid(LngLatAlt(0.001, 0.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
+        tileGrid = getTileGrid(LngLatAlt(0.0, 0.0), MAX_ZOOM_LEVEL, gridSize)
+        Assert.assertEquals(gridSize * gridSize, tileGrid.tiles.size)
     }
 
     @Test
@@ -651,7 +650,7 @@ class TileUtilsTest {
             50.0
         )
 
-        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, 1)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 

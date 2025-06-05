@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -18,7 +19,7 @@ class CrossingTest {
     @Test
     fun simpleCrossingTest(){
         val location = LngLatAlt(-2.6920313574678403, 51.43745588326692)
-        val gridState = getGridStateForLocation(location, 1)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 1)
 
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)

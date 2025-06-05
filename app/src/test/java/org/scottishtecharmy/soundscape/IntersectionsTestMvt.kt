@@ -2,12 +2,13 @@ package org.scottishtecharmy.soundscape
 
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 
@@ -16,7 +17,7 @@ class IntersectionsTestMvt {
                           deviceHeading: Double,
                           fovDistance: Double) : Intersection? {
 
-        val gridState = getGridStateForLocation(currentLocation)
+        val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
         val mapMatchFilter = MapMatchFilter()
         mapMatchFilter.filter(
             location = currentLocation,

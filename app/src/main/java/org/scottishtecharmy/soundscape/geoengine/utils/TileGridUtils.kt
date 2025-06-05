@@ -2,8 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.Tile
-import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
-import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class TileGrid(newTiles : MutableList<Tile>,
@@ -21,24 +19,25 @@ class TileGrid(newTiles : MutableList<Tile>,
          * @return  A TileGrid describing the new grid
          */
         private fun get3x3TileGrid(
-            currentLocation: LngLatAlt
+            currentLocation: LngLatAlt,
+            zoomLevel: Int
         ) : TileGrid {
 
             // Get tile that contains current location
-            val tileXY = getXYTile(currentLocation, ZOOM_LEVEL)
+            val tileXY = getXYTile(currentLocation, zoomLevel)
 
             // Center of grid is at the center of this tile
             val centerX = (tileXY.first * 256) + 128
             val centerY = (tileXY.second * 256) + 128
-            val southWest = pixelXYToLatLon((centerX - 192).toDouble(), (centerY + 192).toDouble(), ZOOM_LEVEL)
-            val northEast = pixelXYToLatLon((centerX + 192).toDouble(), (centerY - 192).toDouble(), ZOOM_LEVEL)
+            val southWest = pixelXYToLatLon((centerX - 192).toDouble(), (centerY + 192).toDouble(), zoomLevel)
+            val northEast = pixelXYToLatLon((centerX + 192).toDouble(), (centerY - 192).toDouble(), zoomLevel)
             val centralBoundingBox = BoundingBox(southWest.second,
                                                  southWest.first,
                                                  northEast.second,
                                                  northEast.first)
 
             // And build 3x3 grid around it ensuring that we wrap at the edges
-            val maxCoordinate = mapSize(ZOOM_LEVEL) / 256
+            val maxCoordinate = mapSize(zoomLevel) / 256
             val xValues = IntArray(3)
             xValues[0] = (tileXY.first - 1).mod(maxCoordinate)
             xValues[1] = tileXY.first
@@ -51,7 +50,7 @@ class TileGrid(newTiles : MutableList<Tile>,
             val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
                 for (x in xValues) {
-                    val surroundingTile = Tile(x, y, ZOOM_LEVEL)
+                    val surroundingTile = Tile(x, y, zoomLevel)
                     tiles.add(surroundingTile)
                 }
             }
@@ -74,20 +73,21 @@ class TileGrid(newTiles : MutableList<Tile>,
          * @return  A TileGrid describing the new grid
          */
         private fun get2x2TileGrid(
-            currentLocation: LngLatAlt
+            currentLocation: LngLatAlt,
+            zoomLevel: Int
         ): TileGrid {
 
             // Get tile that contains current location
-            val tileXY = getXYTile(currentLocation, ZOOM_LEVEL)
+            val tileXY = getXYTile(currentLocation, zoomLevel)
             // Scale up the tile xy
             val scaledTile = Pair(tileXY.first * 2, tileXY.second * 2)
 
             // And the quadrant within that tile
-            val tileQuadrant = getXYTile(currentLocation, ZOOM_LEVEL + 1)
+            val tileQuadrant = getXYTile(currentLocation, zoomLevel + 1)
 
             // The center of the grid is the corner of the tile that is shared with the quadrant that the
             // location is within.
-            val maxCoordinate = mapSize(ZOOM_LEVEL) / 256
+            val maxCoordinate = mapSize(zoomLevel) / 256
             val xValues = IntArray(2)
             val yValues = IntArray(2)
             if (tileQuadrant.first == scaledTile.first) {
@@ -123,12 +123,12 @@ class TileGrid(newTiles : MutableList<Tile>,
             val gridNorthWest = pixelXYToLatLon(
                 (xValues[0] * 256).toDouble(),
                 (yValues[0] * 256).toDouble(),
-                ZOOM_LEVEL
+                zoomLevel
             )
             val gridSouthEast = pixelXYToLatLon(
                 ((xValues[1] + 1).mod(maxCoordinate) * 256).toDouble(),
                 ((yValues[1] + 1).mod(maxCoordinate) * 256).toDouble(),
-                ZOOM_LEVEL
+                zoomLevel
             )
             val totalBoundingBox = BoundingBox(
                 gridNorthWest.second,
@@ -140,8 +140,8 @@ class TileGrid(newTiles : MutableList<Tile>,
             // Center of grid is the top left corner of the bottom right tile
             val centerX = (xValues[1] * 256)
             val centerY = (yValues[1] * 256)
-            val southWest = pixelXYToLatLon((centerX - 160).toDouble(), (centerY + 160).toDouble(), ZOOM_LEVEL)
-            val northEast = pixelXYToLatLon((centerX + 160).toDouble(), (centerY - 160).toDouble(), ZOOM_LEVEL)
+            val southWest = pixelXYToLatLon((centerX - 160).toDouble(), (centerY + 160).toDouble(), zoomLevel)
+            val northEast = pixelXYToLatLon((centerX + 160).toDouble(), (centerY - 160).toDouble(), zoomLevel)
             val centralBoundingBox = BoundingBox(southWest.second,
                 southWest.first,
                 northEast.second,
@@ -150,7 +150,7 @@ class TileGrid(newTiles : MutableList<Tile>,
             val tiles: MutableList<Tile> = mutableListOf()
             for (y in yValues) {
                 for (x in xValues) {
-                    val surroundingTile = Tile(x, y, ZOOM_LEVEL)
+                    val surroundingTile = Tile(x, y, zoomLevel)
                     tiles.add(surroundingTile)
                 }
             }
@@ -162,13 +162,14 @@ class TileGrid(newTiles : MutableList<Tile>,
          * within, we need the adjacent tile so that we can move seamlessly into it.
          */
         private fun get1x1TileGrid(
-            currentLocation: LngLatAlt
+            currentLocation: LngLatAlt,
+            zoomLevel: Int
         ) : TileGrid {
 
             // Get tile that contains current location
-            val tileXY = getXYTile(currentLocation, ZOOM_LEVEL)
-            val southWest = pixelXYToLatLon((tileXY.first * 256).toDouble(), (tileXY.second * 256).toDouble(), ZOOM_LEVEL)
-            val northEast = pixelXYToLatLon(((tileXY.first + 1) * 256).toDouble(), ((tileXY.second + 1) * 256).toDouble(), ZOOM_LEVEL)
+            val tileXY = getXYTile(currentLocation, zoomLevel)
+            val southWest = pixelXYToLatLon((tileXY.first * 256).toDouble(), (tileXY.second * 256).toDouble(), zoomLevel)
+            val northEast = pixelXYToLatLon(((tileXY.first + 1) * 256).toDouble(), ((tileXY.second + 1) * 256).toDouble(), zoomLevel)
             val centralBoundingBox = BoundingBox(
                 southWest.second,
                 southWest.first,
@@ -176,7 +177,7 @@ class TileGrid(newTiles : MutableList<Tile>,
                 northEast.first)
 
             val tiles: MutableList<Tile> = mutableListOf()
-            val surroundingTile = Tile(tileXY.first, tileXY.second, ZOOM_LEVEL)
+            val surroundingTile = Tile(tileXY.first, tileXY.second, zoomLevel)
             tiles.add(surroundingTile)
 
             return TileGrid(tiles, centralBoundingBox, centralBoundingBox)
@@ -193,12 +194,13 @@ class TileGrid(newTiles : MutableList<Tile>,
          */
         fun getTileGrid(
             currentLocation: LngLatAlt,
-            gridSize : Int = GRID_SIZE
+            zoomLevel: Int,
+            gridSize : Int
         ): TileGrid {
             when(gridSize) {
-                1 -> return get1x1TileGrid(currentLocation)
-                2 -> return get2x2TileGrid(currentLocation)
-                3 -> return get3x3TileGrid(currentLocation)
+                1 -> return get1x1TileGrid(currentLocation, zoomLevel)
+                2 -> return get2x2TileGrid(currentLocation, zoomLevel)
+                3 -> return get3x3TileGrid(currentLocation, zoomLevel)
             }
             assert(false)
             return TileGrid(mutableListOf(), BoundingBox(), BoundingBox())

@@ -16,7 +16,9 @@ import retrofit2.awaitResponse
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 
-open class ProtomapsGridState : GridState() {
+open class ProtomapsGridState(
+    zoomLevel: Int = MAX_ZOOM_LEVEL,
+    gridSize: Int = GRID_SIZE) : GridState(zoomLevel, gridSize) {
 
     override fun start(applicationContext: Context) {
         tileClient = ProtomapsTileClient(applicationContext)
@@ -40,7 +42,7 @@ open class ProtomapsGridState : GridState() {
                     tileClient.retrofitInstance?.create(ITileDAO::class.java)
                 val tileReq =
                     async {
-                        service?.getVectorTileWithCache(x, y, ZOOM_LEVEL)
+                        service?.getVectorTileWithCache(x, y, zoomLevel)
                     }
                 var result = tileReq.await()?.awaitResponse()?.body()
                 if (result != null) {
@@ -48,7 +50,12 @@ open class ProtomapsGridState : GridState() {
                     Log.e(TAG, "Tile size ${result.serializedSize}")
                     var tileFeatureCollection: FeatureCollection?
                     val mvtParseTime = measureTimeMillis {
-                        tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
+                        tileFeatureCollection = vectorTileToGeoJson(
+                            tileX = x,
+                            tileY = y,
+                            mvt = result,
+                            intersectionMap = intersectionMap,
+                            tileZoom = zoomLevel)
                     }
                     var collections: Array<FeatureCollection>?
                     val processTime = measureTimeMillis {

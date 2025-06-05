@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
 import org.junit.Assert
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -33,7 +34,7 @@ class VisuallyCheckIntersectionLayers {
         )
 
         // Get the tile feature collection from the GeoJSON
-        val gridState = getGridStateForLocation(userGeometry.location, 1)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 1)
 
         val intersectionTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)

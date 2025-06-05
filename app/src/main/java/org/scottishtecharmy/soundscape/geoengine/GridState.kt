@@ -49,10 +49,14 @@ enum class TreeId(
     SAFETY_POIS(13),
     PLACES_AND_LANDMARKS(14),
     SELECTED_SUPER_CATEGORIES(15),
-    MAX_COLLECTION_ID(16),
+    SETTLEMENTS(16),
+    SETTLEMENT_AREAS(17),
+    MAX_COLLECTION_ID(18),
 }
 
-open class GridState {
+open class GridState(
+    val zoomLevel: Int = MAX_ZOOM_LEVEL,
+    val gridSize: Int = GRID_SIZE) {
 
     // HTTP connection to tile server
     internal lateinit var tileClient: TileClient
@@ -143,83 +147,88 @@ open class GridState {
             localTrees[index] = FeatureTree(fc)
         }
 
-        // We want to join up Ways that cross tile boundaries
-        //
-        // In our initial parsing we created Intersections at every line ending that is at the
-        // tile boundary. Now that we have our grid, we can match up pairs of these intersections
-        // in the same way that the InterpolatedPointsJoiner does - searching by distance. We add
-        // a Way between each pair which is marked as a 'Tile Joiner'. These Ways can be followed
-        // between the tiles, but are otherwise transparent. We should make it easy to dispose of
-        // them when a new grid is made so that we can reuse the Tiles themselves for the new grid.
+        if(featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
+            // We want to join up Ways that cross tile boundaries
+            //
+            // In our initial parsing we created Intersections at every line ending that is at the
+            // tile boundary. Now that we have our grid, we can match up pairs of these intersections
+            // in the same way that the InterpolatedPointsJoiner does - searching by distance. We add
+            // a Way between each pair which is marked as a 'Tile Joiner'. These Ways can be followed
+            // between the tiles, but are otherwise transparent. We should make it easy to dispose of
+            // them when a new grid is made so that we can reuse the Tiles themselves for the new grid.
 
-        // Make list of intersections to join
-        if(grid.tiles.size > 1) {
-            assert(grid.tiles.size == 4)
+            // Make list of intersections to join
+            if (grid.tiles.size > 1) {
+                assert(grid.tiles.size == 4)
 
-            // Center of grid is bottom right of first tile
-            val gridCenter = getLatLonTileWithOffset(
-                grid.tiles[0].tileX,
-                grid.tiles[0].tileY,
-                ZOOM_LEVEL,
-                1.0, 1.0)
+                // Center of grid is bottom right of first tile
+                val gridCenter = getLatLonTileWithOffset(
+                    grid.tiles[0].tileX,
+                    grid.tiles[0].tileY,
+                    zoomLevel,
+                    1.0, 1.0
+                )
 
-            val tileEdgeList = emptyList<Intersection>().toMutableList()
-            for(intersectionList in newGridIntersections) {
-                for(intersection in intersectionList) {
-                    if(intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
-                        // We have an edge - check if it's an internal edge to the grid
-                        if (
-                            (intersection.value.location.longitude == gridCenter.longitude) or
-                            (intersection.value.location.latitude == gridCenter.latitude)
-                        ) {
-                            // This intersection needs joining, so put add it to our list
-                            tileEdgeList.add(intersection.value)
+                val tileEdgeList = emptyList<Intersection>().toMutableList()
+                for (intersectionList in newGridIntersections) {
+                    for (intersection in intersectionList) {
+                        if (intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
+                            // We have an edge - check if it's an internal edge to the grid
+                            if (
+                                (intersection.value.location.longitude == gridCenter.longitude) or
+                                (intersection.value.location.latitude == gridCenter.latitude)
+                            ) {
+                                // This intersection needs joining, so put add it to our list
+                                tileEdgeList.add(intersection.value)
+                            }
                         }
                     }
                 }
-            }
 
-            // We have our list of intersections to join, so join them
-            for(intersection1 in tileEdgeList) {
-                for(intersection2 in tileEdgeList) {
-                    // Don't join to ourselves
-                    if(intersection1 != intersection2) {
-                        // Don't join if already joined
-                        if(intersection1.members.size < 2) {
-                            // Join if within 1.0m
-                            val distance = ruler.distance(intersection1.location, intersection2.location)
-                            if (distance < 1.0) {
-                                // Join the intersections together
-                                val way = Way()
-                                way.geometry = LineString(intersection1.location, intersection2.location)
-                                way.wayType = WayType.JOINER
-                                way.intersections[WayEnd.START.id] = intersection1
-                                way.intersections[WayEnd.END.id] = intersection2
-                                intersection1.members.add(way)
-                                intersection2.members.add(way)
-                                break
+                // We have our list of intersections to join, so join them
+                for (intersection1 in tileEdgeList) {
+                    for (intersection2 in tileEdgeList) {
+                        // Don't join to ourselves
+                        if (intersection1 != intersection2) {
+                            // Don't join if already joined
+                            if (intersection1.members.size < 2) {
+                                // Join if within 1.0m
+                                val distance =
+                                    ruler.distance(intersection1.location, intersection2.location)
+                                if (distance < 1.0) {
+                                    // Join the intersections together
+                                    val way = Way()
+                                    way.geometry =
+                                        LineString(intersection1.location, intersection2.location)
+                                    way.wayType = WayType.JOINER
+                                    way.intersections[WayEnd.START.id] = intersection1
+                                    way.intersections[WayEnd.END.id] = intersection2
+                                    intersection1.members.add(way)
+                                    intersection2.members.add(way)
+                                    break
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        //
-        // Confect names for un-named ways
-        //
-        // Start by traversing the way graph which is efficient and adds cut-through and
-        // dead-end modifiers to the ways
-        for (hashmap in newGridIntersections) {
-            traverseIntersectionsConfectingNames(hashmap, intersectionAccumulator)
-        }
+            //
+            // Confect names for un-named ways
+            //
+            // Start by traversing the way graph which is efficient and adds cut-through and
+            // dead-end modifiers to the ways
+            for (hashmap in newGridIntersections) {
+                traverseIntersectionsConfectingNames(hashmap, intersectionAccumulator)
+            }
 
 // The other confection is done lazily as it's relatively time consuming to do the whole tile at once
-//        //And then fill in any remaining names using rtree searches - this is slower and
-//        // adds POIs and co-linear names
-//        for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
-//            confectNamesForRoad(road, featureTrees)
-//        }
+//          //And then fill in any remaining names using rtree searches - this is slower and
+//            // adds POIs and co-linear names
+//            for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
+//                confectNamesForRoad(road, featureTrees)
+//          }
+        }
     }
 
     /**
@@ -233,7 +242,7 @@ open class GridState {
             //println("Update central grid area")
             // The current location has moved from within the central area, so get the
             // new grid and the new central area.
-            val tileGrid = getTileGrid(location)
+            val tileGrid = getTileGrid(location, zoomLevel, gridSize)
 
             // We have a new centralBoundingBox, so update the tiles
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
@@ -394,7 +403,15 @@ open class GridState {
         // The FeatureCollection for POIS has been created, but we need to create sub-collections
         // for each of the super-categories along with one for the currently selected super-
         // categories.
-        val superCategories = listOf("information", "object", "place", "landmark", "mobility", "safety")
+        val superCategories = listOf(
+            "information",
+            "object",
+            "place",
+            "landmark",
+            "mobility",
+            "safety",
+            "settlement",
+            "settlement_area")
         val superCategoryCollections = superCategories.associateWith { superCategory ->
             getPoiFeatureCollectionBySuperCategory(superCategory, featureCollections[TreeId.POIS.id])
         }
@@ -412,6 +429,12 @@ open class GridState {
         featureCollections[TreeId.MOBILITY_POIS.id] = category ?: FeatureCollection()
         category = superCategoryCollections["safety"]
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
+
+        // Settlement amd their area names
+        category = superCategoryCollections["settlement"]
+        featureCollections[TreeId.SETTLEMENTS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections["settlement_area"]
+        featureCollections[TreeId.SETTLEMENT_AREAS.id] = category ?: FeatureCollection()
 
         // Create a merged collection of places and landmarks, as used by whatsAroundMe and aheadOfMe
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.PLACE_POIS.id])

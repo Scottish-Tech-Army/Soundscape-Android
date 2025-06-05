@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.filters.IndexedLineString
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -21,7 +22,7 @@ class DijkstraTest {
     @Test
     fun testMvtDijkstra(){
 
-        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
         val intersectionsTree = gridState.getFeatureTree(TreeId.INTERSECTIONS)
 
@@ -66,7 +67,7 @@ class DijkstraTest {
     @Test
     fun testMvtArbitraryDijkstra(){
 
-        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
         val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
 
@@ -107,7 +108,7 @@ class DijkstraTest {
     @Test
     fun testMvtArbitraryDijkstra2(){
 
-        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
         val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
 

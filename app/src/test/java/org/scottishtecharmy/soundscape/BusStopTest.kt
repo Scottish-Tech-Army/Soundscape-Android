@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
@@ -18,7 +19,7 @@ class BusStopTest {
     fun busStopTest(){
 
         val currentLocation = LngLatAlt(-2.655732516651227,51.430910659124464)
-        val gridState = getGridStateForLocation(currentLocation, 1)
+        val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, 1)
 
         // extract bus stops for tile
         val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)

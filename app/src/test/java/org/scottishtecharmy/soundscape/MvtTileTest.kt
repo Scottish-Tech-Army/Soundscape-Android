@@ -11,7 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
@@ -48,7 +48,9 @@ import kotlin.io.path.nameWithoutExtension
  * over the network. It also sets validateContext to false as it assumes that the tests are all
  * running in a single context.
  */
-class FileGridState : ProtomapsGridState() {
+class FileGridState(
+    zoomLevel: Int = MAX_ZOOM_LEVEL,
+    gridSize: Int = GRID_SIZE) : ProtomapsGridState(zoomLevel, gridSize) {
 
     init {
         validateContext = false
@@ -67,10 +69,15 @@ class FileGridState : ProtomapsGridState() {
         var ret = false
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
         try {
-            val remoteTile = FileInputStream(path + "${x}x${y}.mvt")
+            val remoteTile = FileInputStream(path + "${x}x${y}x${zoomLevel}.mvt")
             val result = VectorTile.Tile.parseFrom(remoteTile)
             if (result != null) {
-                val tileFeatureCollection = vectorTileToGeoJson(x, y, result, intersectionMap)
+                val tileFeatureCollection = vectorTileToGeoJson(
+                    tileX = x,
+                    tileY = y,
+                    mvt = result,
+                    intersectionMap = intersectionMap,
+                    tileZoom = zoomLevel)
                 val collections = processTileFeatureCollection(tileFeatureCollection)
 
                 for ((index, collection) in collections.withIndex()) {
@@ -100,7 +107,7 @@ private fun vectorTileToGeoJsonFromFile(
     val remoteTile = FileInputStream(path + filename)
     val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
 
-    return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
+    return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, MAX_ZOOM_LEVEL)
 }
 
 private fun parseGpxFromFile(filename: String): FeatureCollection {
@@ -156,11 +163,11 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
 
 fun getGridStateForLocation(
     location: LngLatAlt,
-    gridSize: Int = 2
+    zoomLevel: Int,
+    gridSize: Int
 ): GridState {
 
-    GRID_SIZE = gridSize
-    val gridState = FileGridState()
+    val gridState = FileGridState(zoomLevel, gridSize)
     runBlocking {
 
         val enabledCategories = emptySet<String>().toMutableSet()
@@ -187,7 +194,7 @@ class MvtTileTest {
         //  2. Parses it with the code auto-generated from the vector_tile.proto specification
         //  3. Prints it out
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val remoteTile = FileInputStream(path + "16093x10211.mvt")
+        val remoteTile = FileInputStream(path + "16093x10211x15.mvt")
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
         assert(tile.layersList.isNotEmpty())
 
@@ -211,7 +218,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonMilngavie() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212.mvt", intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212x15.mvt", intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("milngavie.geojson")
@@ -222,7 +229,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonEdinburgh() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, "16093x10211.mvt", intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, "16093x10211x15.mvt", intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("edinburgh.geojson")
@@ -233,7 +240,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonByresRoad() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, "15992x10223.mvt", intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, "15992x10223x15.mvt", intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("byresroad.geojson")
@@ -261,7 +268,7 @@ class MvtTileTest {
     fun testVectorToGeoJsonGrid() {
 
         // Make a large grid to aid analysis
-        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 2)
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
         // Check that the de-duplication of the points worked (without that there are two points
         // for Graeme Pharmacy, one each from two separate tiles).
@@ -316,7 +323,7 @@ class MvtTileTest {
     @Test
     fun testNameConfection() {
         val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
-        val gridState = getGridStateForLocation(userGeometry.location, 2)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 2)
 
         val confectionTime = measureTimeMillis {
             traverseIntersectionsConfectingNames(gridState.gridIntersections)
@@ -346,7 +353,7 @@ class MvtTileTest {
         for (x in 15990..15992) {
             for (y in 10212..10213) {
                 val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt", intersectionMap)
+                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}x15.mvt", intersectionMap)
                 for (feature in geojson) {
                     featureCollection.addFeature(feature)
                 }
@@ -399,7 +406,7 @@ class MvtTileTest {
         // problem, but we do add "distance_to".
 
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, "15990x10212.mvt", intersectionMap)
+        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, "15990x10212x15.mvt", intersectionMap)
         println(featureCollection.features[0].id)
         val newFeatureCollection = FeatureCollection()
         newFeatureCollection.plusAssign(featureCollection)
@@ -445,7 +452,7 @@ class MvtTileTest {
     @Test
     fun testRoadBearing(){
         val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
-        val gridState = getGridStateForLocation(userGeometry.location)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 2)
 
         val roadTree = gridState.getFeatureTree(TreeId.ROADS)
         val nearestRoad = roadTree.getNearestFeature(userGeometry.location, userGeometry.ruler)
@@ -456,7 +463,7 @@ class MvtTileTest {
     @Test
     fun testNearestRoadIdeas() {
 
-        val gridState = getGridStateForLocation(LngLatAlt(-4.31029, 55.94583))
+        val gridState = getGridStateForLocation(LngLatAlt(-4.31029, 55.94583), MAX_ZOOM_LEVEL, 2)
         val geojson = FeatureCollection()
 
         val heading = 180.0
@@ -690,7 +697,7 @@ class MvtTileTest {
             for (y in 10210 until 10215) {
 
                 // Get top left of tile
-                val location = getLatLonTileWithOffset(x, y, ZOOM_LEVEL, 0.0, 0.0)
+                val location = getLatLonTileWithOffset(x, y, MAX_ZOOM_LEVEL, 0.0, 0.0)
 
                 println("Moving grid to $location")
 
@@ -713,5 +720,31 @@ class MvtTileTest {
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
 
+    }
+
+    @Test
+    fun testLowerZoomLevel() {
+
+        val zoomLevel = 12
+
+        // Make a 3x3 grid at a lower zoom level. This will just contain the 'places' layer which
+        // will allow searching for nearby suburbs etc.
+//        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), zoomLevel, 3)
+        val gridState = getGridStateForLocation(LngLatAlt(-4.25391, 55.86226), zoomLevel, 3)
+
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val settlementCollection = gridState.featureTrees[TreeId.SETTLEMENTS.id].getAllCollection()
+        for(feature in settlementCollection) {
+            feature.properties?.set("marker-size", "large")
+        }
+        val areaCollection = gridState.featureTrees[TreeId.SETTLEMENT_AREAS.id].getAllCollection()
+        for(feature in areaCollection) {
+            feature.properties?.set("marker-size", "small")
+        }
+        val outputCollection = settlementCollection
+        outputCollection.plusAssign(areaCollection)
+        val outputFile = FileOutputStream("low-zoom.geojson")
+        outputFile.write(adapter.toJson(outputCollection).toByteArray())
+        outputFile.close()
     }
 }
