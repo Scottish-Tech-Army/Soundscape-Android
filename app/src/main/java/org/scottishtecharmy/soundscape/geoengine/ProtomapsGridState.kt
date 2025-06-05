@@ -2,7 +2,10 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
 import android.util.Log
+import kotlinx.coroutines.CloseableCoroutineDispatcher
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -16,9 +19,12 @@ import retrofit2.awaitResponse
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 
+@OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 open class ProtomapsGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
-    gridSize: Int = GRID_SIZE) : GridState(zoomLevel, gridSize) {
+    gridSize: Int = GRID_SIZE,
+    passedInTreeContext: CloseableCoroutineDispatcher? = null
+) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
     override fun start(applicationContext: Context) {
         tileClient = ProtomapsTileClient(applicationContext)

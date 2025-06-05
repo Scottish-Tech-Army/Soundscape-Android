@@ -33,7 +33,8 @@ class AutoCallout(
     private val poiCalloutHistory = CalloutHistory()
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
-                                         gridState: GridState): List<PositionedString> {
+                                         gridState: GridState,
+                                         settlementGrid: GridState): List<PositionedString> {
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -49,7 +50,7 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val geocode = reverseGeocode(userGeometry, gridState, localizedContext)
+        val geocode = reverseGeocode(userGeometry, gridState, settlementGrid, localizedContext)
 
         // Check that the geocode has changed before returning a callout describing it
         return if(geocode != null) {
@@ -209,7 +210,8 @@ class AutoCallout(
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     fun updateLocation(userGeometry: UserGeometry,
-                       gridState: GridState) : List<PositionedString> {
+                       gridState: GridState,
+                       settlementGrid: GridState) : List<PositionedString> {
 
         // Check that the callout isn't disabled in the settings
         if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) == false) {
@@ -223,7 +225,7 @@ class AutoCallout(
                 var list = emptyList<PositionedString>()
 
                 // buildCalloutForRoadSense builds a callout for
-                val roadSenseCallout = buildCalloutForRoadSense(userGeometry, gridState)
+                val roadSenseCallout = buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
                 if (roadSenseCallout.isNotEmpty()) {
                     // If we have som
                     list = roadSenseCallout

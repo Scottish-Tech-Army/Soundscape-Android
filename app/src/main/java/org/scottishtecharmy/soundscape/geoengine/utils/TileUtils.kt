@@ -760,21 +760,24 @@ fun mergePolygons(
  * Categories taken from original Soundscape.
  * @param category
  * String for super category. Options are "information", "object", "place", "landmark", "mobility",
- * "safety", "settlement", "settlement_area"
+ * "safety", "settlementCity", "settlementTown", "settlementVillage", "settlementHamlet"
  * @return a mutable list of things in the super category.
  */
 fun getSuperCategoryElements(category: String): Set<String> {
     return when (category) {
-        "settlement" -> setOf(
+        "settlementCity" -> setOf(
             "city",
-            "town",
-            "village",
-            "hamlet"
         )
-
-        "settlement_area" -> setOf(
-            "borough",
+        "settlementTown" -> setOf(
+            "town",
+            "borough"
+        )
+        "settlementVillage" -> setOf(
+            "village",
             "suburb",
+        )
+        "settlementHamlet" -> setOf(
+            "hamlet",
             "quarter",
             "neighbourhood",
             "city_block",
