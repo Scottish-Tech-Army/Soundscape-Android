@@ -58,6 +58,9 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
         // junctions it will switch to non-vehicle mode.
         return speed > 5.0
     }
+    fun inMotion() : Boolean {
+        return speed > 0.2
+    }
 
     private fun transform(distance: Double) : Double {
         if(inVehicle()) return distance * automotiveRangeMultiplier
@@ -66,7 +69,7 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
     }
 
     fun getTravelHeading() : Double? {
-        if(speed > 0.2 && (travelHeading != null))
+        if(inMotion() && (travelHeading != null))
             return travelHeading
         return null
     }
