@@ -11,6 +11,7 @@ import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -70,6 +71,7 @@ data class PositionedString(
     val heading: Double? = null
 )
 
+@OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 class GeoEngine {
     private val coroutineScope = CoroutineScope(Job())
 
@@ -79,6 +81,7 @@ class GeoEngine {
     private var markerMonitoringJob: Job? = null
 
     val gridState = ProtomapsGridState()
+    val settlementGrid = ProtomapsGridState(zoomLevel = 12, gridSize = 3, gridState.treeContext)
 
     internal lateinit var locationProvider : LocationProvider
     private lateinit var directionProvider : DirectionProvider
@@ -237,6 +240,7 @@ class GeoEngine {
         }
 
         gridState.start(application)
+        settlementGrid.start(application)
 
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)
@@ -292,6 +296,7 @@ class GeoEngine {
         audioEngineUpdateJob?.cancel()
         markerMonitoringJob?.cancel()
 
+        settlementGrid.stop()
         gridState.stop()
         locationProvider.destroy()
         directionProvider.destroy()
@@ -341,8 +346,13 @@ class GeoEngine {
                     FirebaseCrashlytics.getInstance().setCustomKey("latitude", newLocation.latitude)
                     FirebaseCrashlytics.getInstance().setCustomKey("longitude", newLocation.longitude)
 
-                    // Update the grid state
+                    // Update the main grid state
                     val updated = gridState.locationUpdate(
+                        LngLatAlt(location.longitude, location.latitude),
+                        createSuperCategoriesSet()
+                    )
+                    // and update the settlement grid state
+                    settlementGrid.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
                         createSuperCategoriesSet()
                     )
@@ -374,7 +384,10 @@ class GeoEngine {
                     // falling back to use the phone direction.
                     if(!soundscapeService.isAudioEngineBusy() && !autoCalloutDisabled) {
                         val callouts =
-                            autoCallout.updateLocation(getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto), gridState)
+                            autoCallout.updateLocation(
+                                getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
+                                gridState,
+                                settlementGrid)
                         if (callouts.isNotEmpty()) {
                             // Tell the service that we've got some callouts to tell the user about
                             soundscapeService.speakCallout(callouts, false)
@@ -826,7 +839,7 @@ class GeoEngine {
         // the location.
         geocode = runBlocking {
             withContext(gridState.treeContext) {
-                localReverseGeocode(location, gridState, localizedContext)
+                localReverseGeocode(location, gridState, settlementGrid, localizedContext)
             }
         }
         if(geocode != null) return geocode
@@ -1001,6 +1014,7 @@ fun formatDistance(distance: Double, localizedContext: Context) : String {
 
 fun localReverseGeocode(location: LngLatAlt,
                         gridState: GridState,
+                        settlementGrid: GridState,
                         localizedContext: Context?): LocationDescription? {
 
     if(!gridState.isLocationWithinGrid(location)) return null
@@ -1032,19 +1046,61 @@ fun localReverseGeocode(location: LngLatAlt,
         }
     }
 
+    // Get the nearest settlements. Nominatim uses the following proximities, so we do the same:
+    //
+    // cities, municipalities, islands | 15 km
+    // towns, boroughs                 | 4 km
+    // villages, suburbs               | 2 km
+    // hamlets, farms, neighbourhoods  |  1 km
+    //
+    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET).getNearestFeature(location, settlementGrid.ruler, 1000.0)
+    var nearestSettlementName = nearestSettlement?.properties?.get("name")
+    if(nearestSettlementName == null) {
+        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getNearestFeature(location, settlementGrid.ruler, 2000.0)
+        nearestSettlementName = nearestSettlement?.properties?.get("name")
+        if(nearestSettlementName == null) {
+            nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
+                .getNearestFeature(location, settlementGrid.ruler, 4000.0)
+            nearestSettlementName = nearestSettlement?.properties?.get("name")
+            if (nearestSettlementName == null) {
+                nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
+                    .getNearestFeature(location, settlementGrid.ruler, 15000.0)
+                nearestSettlementName = nearestSettlement?.properties?.get("name")
+            }
+        }
+    }
+
     // Check if the location is alongside a road/path
     val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
     if(nearestRoad != null) {
         // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
         val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
         if(roadName.isNotEmpty()) {
-            return LocationDescription(
-                name = localizedContext?.getString(R.string.directions_near_name)
-                    ?.format(roadName) ?: "Near $roadName",
-                location = location,
-            )
+            if(nearestSettlementName != null) {
+                // TODO: Switch to string resource
+                return LocationDescription(
+                    name = "Near $roadName in $nearestSettlementName",
+                    location = location,
+                )
+            } else {
+                return LocationDescription(
+                    name = localizedContext?.getString(R.string.directions_near_name)
+                        ?.format(roadName) ?: "Near $roadName",
+                    location = location,
+                )
+            }
         }
     }
+
+    if(nearestSettlementName != null) {
+        //val distanceToSettlement = settlementGrid.ruler.distance(location, (nearestSettlement?.geometry as Point).coordinates)
+        return LocationDescription(
+            name = localizedContext?.getString(R.string.directions_near_name)
+                ?.format(nearestSettlementName) ?: "Near $nearestSettlementName",
+            location = location,
+        )
+    }
+
 
     return null
 }
@@ -1057,9 +1113,10 @@ fun localReverseGeocode(location: LngLatAlt,
  */
 fun reverseGeocode(userGeometry: UserGeometry,
                    gridState: GridState,
+                   settlementGrid: GridState,
                    localizedContext: Context?): PositionedString? {
 
-    val location = localReverseGeocode(userGeometry.location, gridState, localizedContext)
+    val location = localReverseGeocode(userGeometry.location, gridState, settlementGrid, localizedContext)
     location?.let { l ->
         return PositionedString(
             text = l.name,

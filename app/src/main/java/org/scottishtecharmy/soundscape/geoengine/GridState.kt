@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
+import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.newSingleThreadContext
@@ -49,14 +50,19 @@ enum class TreeId(
     SAFETY_POIS(13),
     PLACES_AND_LANDMARKS(14),
     SELECTED_SUPER_CATEGORIES(15),
-    SETTLEMENTS(16),
-    SETTLEMENT_AREAS(17),
-    MAX_COLLECTION_ID(18),
+    SETTLEMENT_CITY(16),
+    SETTLEMENT_TOWN(17),
+    SETTLEMENT_VILLAGE(18),
+    SETTLEMENT_HAMLET(19),
+    MAX_COLLECTION_ID(20),
 }
 
+@OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 open class GridState(
     val zoomLevel: Int = MAX_ZOOM_LEVEL,
-    val gridSize: Int = GRID_SIZE) {
+    val gridSize: Int = GRID_SIZE,
+    passedInTreeContext: CloseableCoroutineDispatcher? = null
+) {
 
     // HTTP connection to tile server
     internal lateinit var tileClient: TileClient
@@ -67,8 +73,7 @@ open class GridState(
     internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
     internal var gridIntersections: HashMap<LngLatAlt, Intersection> = HashMap<LngLatAlt, Intersection>()
 
-    @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
-    val treeContext = newSingleThreadContext("TreeContext")
+    val treeContext = passedInTreeContext ?: newSingleThreadContext("TreeContext")
     var validateContext = true
 
     // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
@@ -410,8 +415,11 @@ open class GridState(
             "landmark",
             "mobility",
             "safety",
-            "settlement",
-            "settlement_area")
+            "settlementCity",
+            "settlementTown",
+            "settlementVillage",
+            "settlementHamlet"
+        )
         val superCategoryCollections = superCategories.associateWith { superCategory ->
             getPoiFeatureCollectionBySuperCategory(superCategory, featureCollections[TreeId.POIS.id])
         }
@@ -431,10 +439,14 @@ open class GridState(
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
 
         // Settlement amd their area names
-        category = superCategoryCollections["settlement"]
-        featureCollections[TreeId.SETTLEMENTS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["settlement_area"]
-        featureCollections[TreeId.SETTLEMENT_AREAS.id] = category ?: FeatureCollection()
+        category = superCategoryCollections["settlementCity"]
+        featureCollections[TreeId.SETTLEMENT_CITY.id] = category ?: FeatureCollection()
+        category = superCategoryCollections["settlementTown"]
+        featureCollections[TreeId.SETTLEMENT_TOWN.id] = category ?: FeatureCollection()
+        category = superCategoryCollections["settlementVillage"]
+        featureCollections[TreeId.SETTLEMENT_VILLAGE.id] = category ?: FeatureCollection()
+        category = superCategoryCollections["settlementHamlet"]
+        featureCollections[TreeId.SETTLEMENT_HAMLET.id] = category ?: FeatureCollection()
 
         // Create a merged collection of places and landmarks, as used by whatsAroundMe and aheadOfMe
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.PLACE_POIS.id])

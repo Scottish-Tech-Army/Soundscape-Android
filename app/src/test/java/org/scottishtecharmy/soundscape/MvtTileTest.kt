@@ -565,6 +565,7 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
+        val settlementGrid = FileGridState()
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -632,7 +633,7 @@ class MvtTileTest {
                     mapMatchedLocation = mapMatchFilter.matchedLocation
                 )
 
-                val intersectionCallout = autoCallout.updateLocation(userGeometry, gridState)
+                val intersectionCallout = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
                 if(intersectionCallout.isNotEmpty()) {
                     if (!compareCallouts(lastCallout, intersectionCallout)) {
                         // We've got a new callout, so add it to our geoJSON as a triangle for the
@@ -729,20 +730,35 @@ class MvtTileTest {
 
         // Make a 3x3 grid at a lower zoom level. This will just contain the 'places' layer which
         // will allow searching for nearby suburbs etc.
-//        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), zoomLevel, 3)
+        //val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), zoomLevel, 3)
         val gridState = getGridStateForLocation(LngLatAlt(-4.25391, 55.86226), zoomLevel, 3)
 
+
         val adapter = GeoJsonObjectMoshiAdapter()
-        val settlementCollection = gridState.featureTrees[TreeId.SETTLEMENTS.id].getAllCollection()
-        for(feature in settlementCollection) {
+        val cityCollection = gridState.featureTrees[TreeId.SETTLEMENT_CITY.id].getAllCollection()
+        for(feature in cityCollection) {
             feature.properties?.set("marker-size", "large")
+            feature.properties?.set("marker-color", "#ff0000")
         }
-        val areaCollection = gridState.featureTrees[TreeId.SETTLEMENT_AREAS.id].getAllCollection()
-        for(feature in areaCollection) {
+        val townCollection = gridState.featureTrees[TreeId.SETTLEMENT_TOWN.id].getAllCollection()
+        for(feature in townCollection) {
+            feature.properties?.set("marker-size", "medium")
+            feature.properties?.set("marker-color", "#ffff00")
+        }
+        val villageCollection = gridState.featureTrees[TreeId.SETTLEMENT_VILLAGE.id].getAllCollection()
+        for(feature in villageCollection) {
             feature.properties?.set("marker-size", "small")
+            feature.properties?.set("marker-color", "#00ff00")
         }
-        val outputCollection = settlementCollection
-        outputCollection.plusAssign(areaCollection)
+        val hamletCollection = gridState.featureTrees[TreeId.SETTLEMENT_HAMLET.id].getAllCollection()
+        for(feature in hamletCollection) {
+            feature.properties?.set("marker-size", "small")
+            feature.properties?.set("marker-color", "#0000ff")
+        }
+        val outputCollection = cityCollection
+        outputCollection.plusAssign(townCollection)
+        outputCollection.plusAssign(villageCollection)
+        outputCollection.plusAssign(hamletCollection)
         val outputFile = FileOutputStream("low-zoom.geojson")
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
