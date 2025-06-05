@@ -95,9 +95,6 @@ class GeoEngine {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
 
-    private var inVehicle = false
-    private var inMotion = false
-
     // Flag to indicate that the app is running on screen
     var appInForeground = false
 
@@ -466,8 +463,8 @@ class GeoEngine {
                                     localizedContext,
                                     heading.toInt(),
                                     roadName.toString(),
-                                    inMotion,
-                                    inVehicle
+                                    userGeometry.inMotion(),
+                                    userGeometry.inVehicle()
                                 )
                             list.add(PositionedString(
                                 text = facingDirectionAlongRoad,
@@ -477,8 +474,8 @@ class GeoEngine {
                                 getCompassLabelFacingDirection(
                                     localizedContext,
                                     heading.toInt(),
-                                    inMotion,
-                                    inVehicle
+                                    userGeometry.inMotion(),
+                                    userGeometry.inVehicle()
                                 )
                             list.add(PositionedString(
                                 text = facingDirection,

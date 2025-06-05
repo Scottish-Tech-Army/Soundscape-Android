@@ -419,6 +419,43 @@
   <string name="directions_along_heading_w">"Heading west along %s"</string>
     <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle., %@ is a road name {NumberedPlaceholder="%@"} -->
   <string name="directions_along_heading_nw">"Heading northwest along %s"</string>
+
+    <!--******************************************************************************-->
+  <!-- MARK: Directions (Cardinal Directions)-->
+  <!--******************************************************************************-->
+  <!-- Direction, North -->
+  <string name="directions_cardinal_north" tools:ignore="MissingTranslation">"North"</string>
+    <!-- Direction, North East -->
+  <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">"North East"</string>
+    <!-- Direction, East -->
+  <string name="directions_cardinal_east" tools:ignore="MissingTranslation">"East"</string>
+    <!-- Direction, South East -->
+  <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">"South East"</string>
+    <!-- Direction, South -->
+  <string name="directions_cardinal_south" tools:ignore="MissingTranslation">"South"</string>
+    <!-- Direction, South West -->
+  <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">"South West"</string>
+    <!-- Direction, West -->
+  <string name="directions_cardinal_west" tools:ignore="MissingTranslation">"West"</string>
+    <!-- Direction, North West -->
+  <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">"North West"</string>
+    <!-- Direction, Abbreviation for North -->
+  <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">"N"</string>
+    <!-- Direction, Abbreviation for North East -->
+  <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">"NE"</string>
+    <!-- Direction, Abbreviation for East -->
+  <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">"E"</string>
+  <!-- Direction, Abbreviation for South East -->
+  <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">"SE"</string>
+  <!-- Direction, Abbreviation for South -->
+  <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">"S"</string>
+  <!-- Direction, Abbreviation for South West -->
+  <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">"SW"</string>
+  <!-- Direction, Abbreviation for West -->
+  <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">"W"</string>
+  <!-- Direction, Abbreviation for North West -->
+  <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">"NW"</string>
+
     <!--******************************************************************************-->
   <!-- MARK: - Distance-->
   <!--******************************************************************************-->
