@@ -440,4 +440,21 @@
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Enable accessible map styling</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Make the map full screen</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Exit full screen map</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Near %1$s and close to %2$s</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">North</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">North East</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">East</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">South East</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">South</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">South West</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">West</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">North West</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">NE</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">E</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SE</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SW</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">W</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NW</string>
 </resources>
