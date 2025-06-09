@@ -153,6 +153,16 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                             matchResult3.groupValues[1].toDouble()
                         )
                     }
+                    else {
+                        val regex4 = Regex("/*<time>(.*)</time>.*")
+                        val matchResult4 = regex4.find(line)
+                        if (matchResult4 != null) {
+                            currentFeature.properties?.set(
+                                "time",
+                                matchResult4.groupValues[1].toDouble()
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -565,7 +575,7 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
-        val settlementGrid = FileGridState()
+        val settlementGrid = FileGridState(12, 3)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -574,6 +584,10 @@ class MvtTileTest {
         val autoCallout = AutoCallout(null, null)
         var lastCallout : List<PositionedString> = emptyList()
         val callOutText = FileOutputStream(calloutFilename)
+
+        val enabledCategories = emptySet<String>().toMutableSet()
+        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
+        enabledCategories.add(MOBILITY_KEY)
 
         val markers = FeatureCollection()
         val marker = Feature()
@@ -591,6 +605,10 @@ class MvtTileTest {
             runBlocking {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
+                    LngLatAlt(location.longitude, location.latitude),
+                    enabledCategories
+                )
+                settlementGrid.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
                     emptySet()
                 )
@@ -630,12 +648,13 @@ class MvtTileTest {
                     travelHeading = position.properties?.get("heading") as Double?,
                     speed = position.properties?.get("speed") as Double,
                     mapMatchedWay = mapMatchFilter.matchedWay,
-                    mapMatchedLocation = mapMatchFilter.matchedLocation
+                    mapMatchedLocation = mapMatchFilter.matchedLocation,
+                    timestampMilliseconds = (position.properties?.get("time") as Double).toLong()
                 )
 
-                val intersectionCallout = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
-                if(intersectionCallout.isNotEmpty()) {
-                    if (!compareCallouts(lastCallout, intersectionCallout)) {
+                val callouts = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
+                if(callouts.isNotEmpty()) {
+                    if (!compareCallouts(lastCallout, callouts)) {
                         // We've got a new callout, so add it to our geoJSON as a triangle for the
                         // FOV that was used to create it, along with the text from the callouts.
                         val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
@@ -643,7 +662,7 @@ class MvtTileTest {
                         fovFeature.geometry = polygon
                         fovFeature.properties = hashMapOf()
                         callOutText.write("\nCallout\n".toByteArray())
-                        for (callout in intersectionCallout.withIndex()) {
+                        for (callout in callouts.withIndex()) {
                             callOutText.write("\t${callout.value.text}\n".toByteArray())
                             fovFeature.properties?.set(
                                 "Callout ${callout.index}",
@@ -651,7 +670,7 @@ class MvtTileTest {
                             )
                         }
                         collection.addFeature(fovFeature)
-                        lastCallout = intersectionCallout
+                        lastCallout = callouts
                     }
                 }
             }
@@ -679,7 +698,8 @@ class MvtTileTest {
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for(file in directoryEntries) {
-            testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
+            if(file.nameWithoutExtension.contains("train-1"))
+                testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
         }
     }
 

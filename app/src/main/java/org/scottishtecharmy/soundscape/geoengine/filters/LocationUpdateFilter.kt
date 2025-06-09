@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
-import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 
 /**
@@ -14,15 +13,12 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
     private var lastTime = 0L
     private var minTimeMs : Long = 0
     init {
-        // Unit tests must have a zero time interval as they don't run in realtime
-        if(Build.VERSION.SDK_INT != 0) {
-            minTimeMs = minTimeMilliseconds
-        }
+        minTimeMs = minTimeMilliseconds
     }
 
     fun update(userGeometry: UserGeometry)
     {
-        lastTime = System.currentTimeMillis()
+        lastTime = userGeometry.timestampMilliseconds
         lastLocation = userGeometry
     }
 
@@ -37,7 +33,7 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
 
         lastLocation?.let { geometry ->
             val distance = userGeometry.ruler.distance(userGeometry.location, geometry.location)
-            val timeDifference = System.currentTimeMillis() - lastTime
+            val timeDifference = userGeometry.timestampMilliseconds - lastTime
 
             if ((distance >= updateDistanceInterval) && (timeDifference >= updateTimeInterval)) {
                 return true

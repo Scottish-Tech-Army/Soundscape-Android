@@ -56,7 +56,9 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 
     // Find roads within FOV
     val fovRoads = roadTree.getAllWithinTriangle(triangle)
-    if(fovRoads.features.isEmpty()) return IntersectionDescription(nearestRoad = userGeometry.mapMatchedWay)
+    if(fovRoads.features.isEmpty()) return IntersectionDescription(
+        nearestRoad = userGeometry.mapMatchedWay,
+        userGeometry = userGeometry)
 
     var nearestRoad = userGeometry.mapMatchedWay
     if(nearestRoad == null) {
@@ -299,6 +301,7 @@ fun addIntersectionCalloutFromDescription(
                 var skip = false
                 calloutHistory?.checkAndAdd(
                     TrackedCallout(
+                        description.userGeometry,
                         calloutText,
                         LngLatAlt(),
                         isPoint = false,
@@ -350,7 +353,9 @@ fun addIntersectionCalloutFromDescription(
 
     // Check if we should be filtering out this callout
     val intersectionLocation = description.intersection.location
-    calloutHistory?.checkAndAdd(TrackedCallout(intersectionName,
+    calloutHistory?.checkAndAdd(TrackedCallout(
+        description.userGeometry,
+        intersectionName,
         intersectionLocation,
         isPoint = true,
         isGeneric = false

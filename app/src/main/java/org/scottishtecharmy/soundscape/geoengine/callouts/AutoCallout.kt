@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -31,6 +30,7 @@ class AutoCallout(
     private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionCalloutHistory = CalloutHistory(30000)
     private val poiCalloutHistory = CalloutHistory()
+    private val roadSenseCalloutHistory = CalloutHistory()
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
                                          gridState: GridState,
@@ -40,6 +40,9 @@ class AutoCallout(
         if (!locationFilter.shouldUpdate(userGeometry)) {
             return emptyList()
         }
+
+        // Trim history based on location and current time
+        roadSenseCalloutHistory.trim(userGeometry)
 
         // Check that we're in a vehicle
         if (!userGeometry.inVehicle()) {
@@ -51,16 +54,30 @@ class AutoCallout(
 
         // Reverse geocode the current location (this is the iOS name for the function)
         val geocode = reverseGeocode(userGeometry, gridState, settlementGrid, localizedContext)
+        if(geocode != null) {
+            val callout = TrackedCallout(
+                userGeometry,
+                geocode.text,
+                geocode.location!!,
+                false,
+                false
+            )
 
-        // Check that the geocode has changed before returning a callout describing it
-        return if(geocode != null) {
-            listOf(geocode)
-        } else
-            emptyList()
+            if (roadSenseCalloutHistory.find(callout)) {
+                println("Discard ${callout.callout}")
+                // Filter out
+                return emptyList()
+            }
+            roadSenseCalloutHistory.add(callout)
+
+            // Check that the geocode has changed before returning a callout describing it
+            return listOf(geocode)
+        }
+
+        return emptyList()
     }
-
     fun buildCalloutForIntersections(userGeometry: UserGeometry,
-                                             gridState: GridState) : List<PositionedString> {
+                                     gridState: GridState) : List<PositionedString> {
         val results : MutableList<PositionedString> = mutableListOf()
 
         // We rely heavily on having map matched our GPS location to a nearby way. If we're not in
@@ -151,13 +168,14 @@ class AutoCallout(
                 } else {
                     // Check the history and if the POI has been called out recently then we skip it
                     val callout = TrackedCallout(
+                        userGeometry,
                         name.text,
                         nearestPoint.point,
                         feature.geometry.type == "Point",
                         name.generic
                     )
                     if (poiCalloutHistory.find(callout)) {
-                        Log.d(TAG, "Discard ${callout.callout}")
+                        println("Discard ${callout.callout}")
                         // Filter out
                         true
                     } else {

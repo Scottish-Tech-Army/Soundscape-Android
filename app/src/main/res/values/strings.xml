@@ -313,8 +313,10 @@
   <string name="directions_name_goes_right">"%s, goes right"</string>
     <!-- Notification, %@ street name, "<Pike Street>, continues ahead {NumberedPlaceholder="%@"} -->
   <string name="directions_name_continues_ahead">"%s, continues ahead"</string>
-    <!-- Notification orientation, ahead. Used as the direction name in sentances such as "<Pike Street>, <ahead>". -->
+    <!-- Notification orientation, ahead. Used as the direction name in sentences such as "<Pike Street>, <ahead>". -->
   <string name="directions_direction_ahead">"ahead"</string>
+  <!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie", {NumberedPlaceholder="%1$@","%2$@""} -->
+  <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">"Near %1$s and close to %2$s"</string>
     <!--******************************************************************************-->
   <!-- MARK: Directions (Traveling with Cardinal Directions)-->
   <!--******************************************************************************-->

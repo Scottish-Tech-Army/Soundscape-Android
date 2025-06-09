@@ -182,7 +182,8 @@ class GeoEngine {
             mapMatchedWay = mapMatchFilter?.matchedWay,
             mapMatchedLocation = mapMatchFilter?.matchedLocation,
             currentBeacon = beaconLocation,
-            inStreetPreview = streetPreview.running
+            inStreetPreview = streetPreview.running,
+            timestampMilliseconds = System.currentTimeMillis()
         )
     }
 
@@ -922,6 +923,11 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
     val isMarker = feature.foreign?.get("category") == "marker"
 
     if(localizedContext == null) {
+        if(name == null) {
+            val osmClass = feature.properties?.get("class") as String?
+            return TextForFeature(osmClass?.toString() ?: "", true)
+        }
+
         return TextForFeature(name.toString(), false)
     }
 
@@ -1077,9 +1083,9 @@ fun localReverseGeocode(location: LngLatAlt,
         val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
         if(roadName.isNotEmpty()) {
             if(nearestSettlementName != null) {
-                // TODO: Switch to string resource
                 return LocationDescription(
-                    name = "Near $roadName in $nearestSettlementName",
+                    name = localizedContext?.getString(R.string.directions_near_road_and_settlement)
+                    ?.format(roadName, nearestSettlementName) ?: "Near $roadName and close to $nearestSettlementName",
                     location = location,
                 )
             } else {
