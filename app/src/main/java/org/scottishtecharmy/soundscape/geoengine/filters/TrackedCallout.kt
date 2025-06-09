@@ -5,13 +5,14 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class TrackedCallout(
+    userGeometry: UserGeometry,
     val callout: String,
     val location: LngLatAlt,
     val isPoint: Boolean,
     private val isGeneric: Boolean
     )
 {
-    val time = System.currentTimeMillis()
+    val time = userGeometry.timestampMilliseconds
     val ruler = location.createCheapRuler()
 
     override fun equals(other: Any?) : Boolean {
@@ -45,10 +46,7 @@ class CalloutHistory(expiryPeriodMilliseconds : Long = 60000) {
 
     private var expiryPeriod : Long = 0
     init {
-        // Unit tests must have a zero expiryPeriod as they don't run in realtime
-        if(Build.VERSION.SDK_INT != 0) {
-            expiryPeriod = expiryPeriodMilliseconds
-        }
+        expiryPeriod = expiryPeriodMilliseconds
     }
 
     fun add(callout: TrackedCallout) {
@@ -56,7 +54,7 @@ class CalloutHistory(expiryPeriodMilliseconds : Long = 60000) {
     }
 
     fun trim(userGeometry: UserGeometry) {
-        val now = System.currentTimeMillis()
+        val now = userGeometry.timestampMilliseconds
         // TODO : Remove hardcoded expiry time and distance should be based on category
         history.removeAll {
             val result = ((now - it.time) > expiryPeriod) || (it.isPoint && userGeometry.ruler.distance(userGeometry.location, it.location) > 50.0)
