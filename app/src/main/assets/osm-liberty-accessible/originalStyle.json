@@ -324,7 +324,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "tunnel"],
-        ["in", "class", "secondary", "tertiary"]
+        ["in", "class", "secondary", "tertiary", "busway", "bus_guideway"]
       ],
       "layout": {"line-join": "round"},
       "paint": {
@@ -460,7 +460,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "tunnel"],
-        ["in", "class", "secondary", "tertiary"]
+        ["in", "class", "secondary", "tertiary", "busway", "bus_guideway"]
       ],
       "layout": {"line-join": "round"},
       "paint": {
@@ -651,7 +651,7 @@
       "filter": [
         "all",
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["in", "class", "secondary", "tertiary"],
+        ["in", "class", "secondary", "tertiary", "busway", "bus_guideway"],
         ["!=", "ramp", 1]
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
@@ -802,7 +802,7 @@
       "filter": [
         "all",
         ["!in", "brunnel", "bridge", "tunnel"],
-        ["in", "class", "secondary", "tertiary"]
+        ["in", "class", "secondary", "tertiary", "busway", "bus_guideway"]
       ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
@@ -1027,7 +1027,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "bridge"],
-        ["in", "class", "secondary", "tertiary"]
+        ["in", "class", "secondary", "tertiary", "busway", "bus_guideway"]
       ],
       "layout": {"line-join": "round"},
       "paint": {
@@ -1162,7 +1162,7 @@
       "filter": [
         "all",
         ["==", "brunnel", "bridge"],
-        ["in", "class", "secondary", "tertiary"]
+        ["in", "class", "secondary", "tertiary", "busway", "bus_guideway"]
       ],
       "layout": {"line-join": "round"},
       "paint": {
