@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -51,18 +52,16 @@ fun StreetPreview(
             if (intersectionText.isEmpty()) {
                 intersectionText = lastName
             } else {
-                intersectionText += " and $lastName"
+                intersectionText += stringResource(R.string.last_entry_in_list).format(lastName)
             }
         }
 
-        var text = stringResource(R.string.preview_go_title)
-        // TODO: Internationalization
-        text += if (bestChoice != -1) " - " + state.choices[bestChoice].name
-        else " to nearest intersection"
+        val text = if (bestChoice != -1)
+            stringResource(R.string.preview_go_title) + " - " + state.choices[bestChoice].name + " " + stringResource(getCompassLabel(state.choices[bestChoice].heading.toInt()))
+                   else stringResource(R.string.preview_go_nearest_intersection)
 
-        // TODO: Internationalization
         if (intersectionText.isNotEmpty()) {
-            Text(text = "At $intersectionText")
+            Text(text = stringResource(R.string.directions_at_poi).format(intersectionText))
         }
         NavigationButton(
             onClick = {
@@ -76,7 +75,6 @@ fun StreetPreview(
         onClick = {
             streetPreviewFunctions.exit()
         },
-        // TODO: Internationalization
         text = stringResource(R.string.street_preview_exit),
         horizontalPadding = spacing.large
     )
