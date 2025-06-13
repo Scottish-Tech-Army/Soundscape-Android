@@ -149,7 +149,7 @@ fun RoutesScreen(
                         userLocation = userLocation,
                         modifier = Modifier.weight(1f),
                         onSelect = { desc ->
-                            homeNavController.navigate("${HomeRoutes.RouteDetails.route}/${desc.databaseId!!.toHexString()}")
+                            homeNavController.navigate("${HomeRoutes.RouteDetails.route}/${desc.databaseId}")
                         }
                     )
                 }

@@ -30,9 +30,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -118,7 +118,7 @@ fun HomeContent(
                         Column(verticalArrangement = Arrangement.spacedBy(spacing.small)) {
                             Row {
                                 Text(
-                                    text = "${routePlayerState.routeData.name} - ${routePlayerState.currentWaypoint + 1}/${routePlayerState.routeData.waypoints.size}",
+                                    text = "${routePlayerState.routeData.route.name} - ${routePlayerState.currentWaypoint + 1}/${routePlayerState.routeData.markers.size}",
                                     style = MaterialTheme.typography.labelLarge,
                                     modifier = Modifier.smallPadding()
                                 )
@@ -163,7 +163,7 @@ fun HomeContent(
                                             stringResource(R.string.route_detail_action_next_hint)
                                         ),
                                         imageVector = Icons.Filled.SkipNext,
-                                        tint = if (routePlayerState.currentWaypoint < routePlayerState.routeData.waypoints.size - 1)
+                                        tint = if (routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1)
                                                    MaterialTheme.colorScheme.onPrimary
                                                else
                                                    MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f),
@@ -175,7 +175,7 @@ fun HomeContent(
                                         if (routePlayerState.beaconOnly) {
                                             routeFunctions.stop()
                                         } else {
-                                            onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.objectId.toHexString()}")
+                                            onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}")
                                         }
                                     }
                                 )
@@ -258,15 +258,28 @@ fun StreetPreviewHomeContent() {
 @Composable
 fun PreviewHomeContent() {
     val routePlayerState = RoutePlayerState(
-        routeData = RouteData(
-            name = "Route 1",
-            description = "Description 1"
+        routeData = RouteWithMarkers(
+            RouteEntity(
+                name = "Route 1",
+                description = "Description 1"
+            ),
+            listOf(
+                MarkerEntity(
+                    name = "Marker 1",
+                    longitude = -74.0060,
+                    latitude = .7128,
+                    fullAddress = "Description 1"
+                ),
+                MarkerEntity(
+                    name = "Marker 2",
+                    longitude = -74.0060,
+                    latitude = .7128,
+                    fullAddress = "Description 2"
+                )
+            )
         ),
         currentWaypoint = 0
     )
-
-    routePlayerState.routeData!!.waypoints.add(MarkerData("Marker 1", Location(40.7128, -74.0060), "Description 1"))
-    routePlayerState.routeData.waypoints.add(MarkerData("Marker 2", Location(40.7128, -74.0060), "Description 2"))
 
     HomeContent(
         location = LngLatAlt(),

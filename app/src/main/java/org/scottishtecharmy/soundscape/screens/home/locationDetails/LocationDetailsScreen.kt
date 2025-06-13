@@ -34,7 +34,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -114,7 +113,7 @@ fun LocationDetails(
         description: LocationDescription,
         successMessage: String,
         failureMessage: String) -> Unit,
-    deleteMarker: (objectId: ObjectId) -> Unit,
+    deleteMarker: (objectId: Long) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
@@ -253,7 +252,7 @@ private fun LocationDescriptionButtonsSection(
             createBeacon(locationDescription.location)
         }
 
-        if(locationDescription.databaseId != null) {
+        if(locationDescription.databaseId != 0L) {
             IconWithTextButton(
                 icon = Icons.Filled.EditLocation,
                 text = stringResource(R.string.markers_edit_screen_title_edit),

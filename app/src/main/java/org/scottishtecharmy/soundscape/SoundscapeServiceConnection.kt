@@ -11,7 +11,6 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -54,7 +53,7 @@ class SoundscapeServiceConnection @Inject constructor() {
         soundscapeService?.setStreetPreviewMode(on, location)
     }
 
-    fun routeStart(routeId: ObjectId) {
+    fun routeStart(routeId: Long) {
         soundscapeService?.routeStart(routeId)
     }
 

@@ -5,7 +5,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-    id("io.realm.kotlin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     alias(libs.plugins.screenshot)
@@ -213,10 +212,6 @@ dependencies {
     // LiveData
     implementation(libs.androidx.runtime.livedata)
 
-    // Realm for Kotlin
-    implementation(libs.library.base)
-    implementation(libs.kotlinx.coroutines.core)
-
     // Datastore for onboarding and settings
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore)
@@ -263,4 +258,9 @@ dependencies {
     debugImplementation(libs.leakcanary.android)
 
     implementation(libs.reorderable)
+
+    // Database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }

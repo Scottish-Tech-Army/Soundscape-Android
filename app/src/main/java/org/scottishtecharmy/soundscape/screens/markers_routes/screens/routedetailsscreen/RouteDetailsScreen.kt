@@ -40,12 +40,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -60,7 +60,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 @Composable
 fun RouteDetailsScreenVM(
     navController: NavController,
-    routeId: ObjectId,
+    routeId: Long,
     viewModel: RouteDetailsViewModel = hiltViewModel(),
     modifier: Modifier,
     userLocation: LngLatAlt?,
@@ -86,12 +86,12 @@ fun RouteDetailsScreenVM(
 @Composable
 fun RouteDetailsScreen(
     navController: NavController,
-    routeId: ObjectId,
+    routeId: Long,
     modifier: Modifier,
     uiState: RouteDetailsUiState,
     routePlayerState: RoutePlayerState,
-    getRouteById: (routeId: ObjectId) -> Unit,
-    startRoute: (routeId: ObjectId) -> Unit,
+    getRouteById: (routeId: Long) -> Unit,
+    startRoute: (routeId: Long) -> Unit,
     stopRoute: () -> Unit,
     clearErrorMessage: () -> Unit,
     userLocation: LngLatAlt?,
@@ -99,8 +99,8 @@ fun RouteDetailsScreen(
 ) {
     // Observe the UI state from the ViewModel
     val context = LocalContext.current
-    val firstWaypoint = uiState.route?.waypoints?.firstOrNull()?.location?.location() ?: LngLatAlt()
-    val thisRoutePlaying = (routePlayerState.routeData?.objectId == routeId)
+    val firstWaypoint = uiState.route?.markers?.firstOrNull()?.getLngLatAlt() ?: LngLatAlt()
+    val thisRoutePlaying = (routePlayerState.routeData?.route?.routeId == routeId)
     val fullscreenMap = remember { mutableStateOf(false) }
 
     // Fetch the route details when the screen is launched
@@ -174,14 +174,14 @@ fun RouteDetailsScreen(
                             ) {
                                 Column {
                                     Text(
-                                        text = uiState.route.name,
+                                        text = uiState.route.route.name,
                                         style = MaterialTheme.typography.headlineMedium,
                                         modifier = Modifier.padding(bottom = spacing.extraSmall),
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
-                                    if (uiState.route.description.isNotEmpty()) {
+                                    if (uiState.route.route.description.isNotEmpty()) {
                                         Text(
-                                            text = uiState.route.description,
+                                            text = uiState.route.route.description,
                                             style = MaterialTheme.typography.bodyMedium,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
@@ -212,7 +212,7 @@ fun RouteDetailsScreen(
                                         text = stringResource(R.string.route_detail_action_start_route),
                                         color = MaterialTheme.colorScheme.onSurface
                                     ) {
-                                        startRoute(uiState.route.objectId)
+                                        startRoute(uiState.route.route.routeId)
                                         // Pop up to the home screen
                                         navController.navigate(HomeRoutes.Home.route) {
                                             popUpTo(navController.graph.findStartDestination().id) {
@@ -231,7 +231,7 @@ fun RouteDetailsScreen(
                                     talkbackHint = stringResource(R.string.route_detail_action_edit_hint),
                                     color = MaterialTheme.colorScheme.onSurface
                                 ) {
-                                    navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.objectId.toHexString()}")
+                                    navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.route.routeId}")
                                 }
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
@@ -262,11 +262,11 @@ fun RouteDetailsScreen(
                                 verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                                 modifier = Modifier.weight(2f)
                             ) {
-                                itemsIndexed(uiState.route.waypoints) { index, marker ->
+                                itemsIndexed(uiState.route.markers) { index, marker ->
                                     LocationItem(
                                         item = LocationDescription(
-                                            name = marker.addressName,
-                                            location = marker.location?.location() ?: LngLatAlt(),
+                                            name = marker.name,
+                                            location = marker.getLngLatAlt(),
                                         ),
                                         decoration = LocationItemDecoration(
                                             location = false,
@@ -297,22 +297,26 @@ fun RouteDetailsScreen(
 @Preview(showBackground = true)
 @Composable
 fun RoutesDetailsPopulatedPreview() {
-    val routeData = RouteData(
-        name = "Route 1",
-        description = "Description 1"
+    val routeData = RouteWithMarkers(
+        RouteEntity(
+            name = "Route 1",
+            description = "Description 1"
+        ),
+        listOf(
+            MarkerEntity(0, "Marker 1", 0.0, 0.0, "Description 1"),
+            MarkerEntity(0, "Marker 2", 0.0, 0.0, "Description 2"),
+            MarkerEntity(0, "Marker 3", 0.0, 0.0, "Description 3"),
+            MarkerEntity(0, "Marker 4", 0.0, 0.0, "Description 4"),
+            MarkerEntity(0, "Marker 5", 0.0, 0.0, "Description 5"),
+            MarkerEntity(0, "Marker 6", 0.0, 0.0, "Description 6"),
+            MarkerEntity(0, "Marker 7", 0.0, 0.0, "Description 7"),
+            MarkerEntity(0, "Marker 8", 0.0, 0.0, "Description 8")
+        )
     )
-    routeData.waypoints.add(MarkerData("Marker 1", null, "Description 1"))
-    routeData.waypoints.add(MarkerData("Marker 2", null, "Description 2"))
-    routeData.waypoints.add(MarkerData("Marker 3", null, "Description 3"))
-    routeData.waypoints.add(MarkerData("Marker 4", null, "Description 4"))
-    routeData.waypoints.add(MarkerData("Marker 5", null, "Description 5"))
-    routeData.waypoints.add(MarkerData("Marker 6", null, "Description 6"))
-    routeData.waypoints.add(MarkerData("Marker 7", null, "Description 7"))
-    routeData.waypoints.add(MarkerData("Marker 8", null, "Description 8"))
 
     RouteDetailsScreen(
         navController = rememberNavController(),
-        routeId = ObjectId(),
+        routeId = 0L,
         modifier = Modifier,
         uiState = RouteDetailsUiState(
             route = routeData
@@ -332,7 +336,7 @@ fun RoutesDetailsPopulatedPreview() {
 fun RoutesDetailsLoadingPreview() {
     RouteDetailsScreen(
         navController = rememberNavController(),
-        routeId = ObjectId(),
+        routeId = 0L,
         uiState = RouteDetailsUiState(isLoading = true),
         modifier = Modifier,
         getRouteById = {},
@@ -350,7 +354,7 @@ fun RoutesDetailsLoadingPreview() {
 fun RoutesDetailsEmptyPreview() {
     RouteDetailsScreen(
         navController = rememberNavController(),
-        routeId = ObjectId(),
+        routeId = 0L,
         modifier = Modifier,
         uiState = RouteDetailsUiState(),
         getRouteById = {},

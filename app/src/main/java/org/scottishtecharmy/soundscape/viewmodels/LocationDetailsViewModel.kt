@@ -8,12 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -23,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LocationDetailsViewModel @Inject constructor(
     private val soundscapeServiceConnection : SoundscapeServiceConnection,
-    private val routesRepository: RoutesRepository
+    private val routeDao: RouteDao
 ): ViewModel() {
 
     fun startBeacon(location: LngLatAlt, name: String) {
@@ -41,7 +39,7 @@ class LocationDetailsViewModel @Inject constructor(
     ) {
         createMarker(
             locationDescription = locationDescription,
-            routesRepository = routesRepository,
+            routeDao = routeDao,
             viewModelScope = viewModelScope,
             onSuccess = {
                 Log.d("LocationDetailsViewModel", successMessage)
@@ -60,10 +58,10 @@ class LocationDetailsViewModel @Inject constructor(
         )
     }
 
-    fun deleteMarker(objectId: ObjectId) {
+    fun deleteMarker(objectId: Long) {
         viewModelScope.launch {
             try {
-                routesRepository.deleteMarker(objectId)
+                routeDao.removeMarker(objectId)
                 Log.d("LocationDetailsViewModel","Delete $objectId")
             } catch (e: Exception) {
                 Log.e("LocationDetailsViewModel", "Error deleting marker: ${e.message}")
@@ -114,7 +112,7 @@ class LocationDetailsViewModel @Inject constructor(
 
 fun createMarker(
     locationDescription: LocationDescription,
-    routesRepository: RoutesRepository,
+    routeDao: RouteDao,
     viewModelScope: CoroutineScope,
     onSuccess: () -> Unit,
     onFailure: () -> Unit,
@@ -128,41 +126,36 @@ fun createMarker(
                 locationDescription.description!!
         }
 
-        val updated = locationDescription.databaseId?.let { objectId ->
+        var updated = false
+        if(locationDescription.databaseId != 0L) {
             // We are updating an existing marker
-            val markerData = MarkerData(
-                objectId = objectId,
-                addressName = name,
+            val markerData = MarkerEntity(
+                markerId = locationDescription.databaseId,
+                name = name,
                 fullAddress = locationDescription.description
                     ?: "", // TODO Fanny is it possible to get no full address ?
-                location = Location(
-                    latitude = locationDescription.location.latitude,
-                    longitude = locationDescription.location.longitude
-                ),
+                longitude = locationDescription.location.longitude,
+                latitude = locationDescription.location.latitude
             )
             try {
-                routesRepository.updateMarker(markerData)
+                routeDao.insertMarker(markerData)
                 onSuccess()
-                true
+                updated = true
             } catch (e: Exception) {
                 onFailure()
-                null
             }
         }
-        if(updated == null) {
+        if(!updated) {
             val marker =
-                MarkerData(
-                    addressName = name,
+                MarkerEntity(
+                    name = name,
                     fullAddress = locationDescription.description
                         ?: "", // TODO Fanny is it possible to get no full address ?
-                    location = Location(
-                        latitude = locationDescription.location.latitude,
-                        longitude = locationDescription.location.longitude
-                    ),
+                    longitude = locationDescription.location.longitude,
+                    latitude = locationDescription.location.latitude
                 )
             try {
-                routesRepository.insertMarker(marker)
-                locationDescription.databaseId = marker.objectId
+                locationDescription.databaseId = routeDao.insertMarker(marker)
                 onSuccess()
             } catch (e: Exception) {
                 onFailure()

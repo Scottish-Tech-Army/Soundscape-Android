@@ -8,7 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortFieldPreference
@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoutesViewModel @Inject constructor(
-    private val routesRepository: RoutesRepository,
+    private val routeDao: RouteDao,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -38,20 +38,20 @@ class RoutesViewModel @Inject constructor(
         // and deleted. We turn the routes into LocationDescriptions so that they can be displayed
         // using common code with Markers.
         viewModelScope.launch {
-            routesRepository.getRouteFlow().collect { routes ->
+            routeDao.getAllRoutesWithMarkersFlow().collect { routes ->
                 _uiState.value =  uiState.value.copy(
                     entries = sortMarkers(
                         routes.map {
                             // Turn RouteData into LocationDescription
                             LocationDescription(
-                                name = it.name,
+                                name = it.route.name,
                                 location =
-                                    if(it.waypoints.isNotEmpty())
-                                        it.waypoints[0].location!!.location()
+                                    if(it.markers.isNotEmpty())
+                                        LngLatAlt(it.markers[0].longitude, it.markers[0].latitude)
                                     else
                                         LngLatAlt(),
-                                description = it.description,
-                                databaseId = it.objectId
+                                description = it.route.description,
+                                databaseId = it.route.routeId
                             )
                         },
                         _uiState.value.isSortByName,
