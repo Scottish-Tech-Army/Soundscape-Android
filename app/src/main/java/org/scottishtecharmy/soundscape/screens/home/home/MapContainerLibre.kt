@@ -45,7 +45,6 @@ import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.android.style.layers.SymbolLayer
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
 import androidx.core.graphics.createBitmap
@@ -54,6 +53,7 @@ import androidx.preference.PreferenceManager
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -137,7 +137,7 @@ fun MapContainerLibre(
     userLocation: LngLatAlt?,
     userSymbolRotation: Float,
     beaconLocation: LngLatAlt?,
-    routeData: RouteData?,
+    routeData: RouteWithMarkers?,
     modifier: Modifier = Modifier,
     editBeaconLocation: Boolean = false,
     onMapLongClick: OnMapLongClickListener,
@@ -415,7 +415,7 @@ fun MapContainerLibre(
 
         // We have to manually retrigger painting if we want to change the data displayed in our
         // layer i.e. route and beacon markers.
-        val currentRouteData = remember { mutableStateOf<RouteData?>(null) }
+        val currentRouteData = remember { mutableStateOf<RouteWithMarkers?>(null) }
         if((routeData != currentRouteData.value) && (symbolManager.value != null)) {
             currentRouteData.value = routeData
             routeMarkers.value?.let { markers ->
@@ -474,11 +474,11 @@ fun MapContainerLibre(
                             (routeData != null) and
                             ( routeMarkers.value == null)) {
 
-                            if(routeData?.waypoints != null) {
+                            if(routeData?.markers != null) {
                                 val markersList = emptyList<Symbol>().toMutableList()
-                                for ((index, waypoint) in routeData.waypoints.withIndex()) {
+                                for ((index, waypoint) in routeData.markers.withIndex()) {
                                     val markerOptions = SymbolOptions()
-                                        .withLatLng(waypoint.location!!.location().toLatLng())
+                                        .withLatLng(LatLng(waypoint.latitude, waypoint.longitude))
                                         .withIconImage(LOCATION_MARKER_NAME.format(index))
                                         .withIconAnchor("bottom")
                                         .withIconSize(1.5f)

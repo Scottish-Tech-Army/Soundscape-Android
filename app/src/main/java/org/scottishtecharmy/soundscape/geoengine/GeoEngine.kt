@@ -26,9 +26,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMAR
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
-import org.scottishtecharmy.soundscape.database.local.dao.RoutesDao
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -59,7 +57,6 @@ import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
-import kotlin.toString
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 
 
@@ -261,18 +258,17 @@ class GeoEngine {
         markerMonitoringJob?.cancel()
         markerMonitoringJob = coroutineScope.launch {
 
-            val realm = RealmConfiguration.getMarkersInstance()
-            val routesDao = RoutesDao(realm)
-            val routesRepository = RoutesRepository(routesDao)
-            routesRepository.getMarkerFlow().collect { markers ->
+            val realm = MarkersAndRoutesDatabase.getMarkersInstance(application.applicationContext)
+            val routeDao = realm.routeDao()
+            routeDao.getAllMarkersFlow().collect { markers ->
 
                 val featureCollection = FeatureCollection()
                 for (marker in markers) {
                     val geoFeature = Feature()
                     geoFeature.geometry =
-                        Point(marker.location!!.longitude, marker.location!!.latitude)
+                        Point(marker.longitude, marker.latitude)
                     val properties : HashMap<String, Any?> = hashMapOf()
-                    properties["name"] = marker.addressName
+                    properties["name"] = marker.name
                     properties["description"] = marker.fullAddress
                     geoFeature.properties = properties
                     val foreign : HashMap<String, Any?> = hashMapOf()

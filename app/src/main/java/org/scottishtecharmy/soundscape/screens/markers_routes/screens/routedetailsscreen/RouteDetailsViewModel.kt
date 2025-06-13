@@ -7,35 +7,27 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import javax.inject.Inject
 
 @HiltViewModel
 class RouteDetailsViewModel @Inject constructor(
-    private val routesRepository: RoutesRepository,
+    private val routeDao: RouteDao,
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(RouteDetailsUiState())
     val uiState: StateFlow<RouteDetailsUiState> = _uiState.asStateFlow()
 
-    fun getRouteById(routeId: ObjectId) {
+    fun getRouteById(routeId: Long) {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
-                val routeResult = routesRepository.getRoute(routeId)
-                val route = routeResult.firstOrNull() // Extract the first match if it exists
-                if (route != null) {
-                    _uiState.value = _uiState.value.copy(
-                        route = route,
-                        isLoading = false)
-                } else {
-                    _uiState.value = _uiState.value.copy(
-                        errorMessage = "Route not found",
-                        isLoading = false
-                    )
-                }
+                val route = routeDao.getRouteWithMarkers(routeId)
+                _uiState.value = _uiState.value.copy(
+                    route = route,
+                    isLoading = false
+                )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     errorMessage = e.message ?: "An error occurred",
@@ -45,7 +37,7 @@ class RouteDetailsViewModel @Inject constructor(
         }
     }
 
-    fun startRoute(routeId: ObjectId) {
+    fun startRoute(routeId: Long) {
         soundscapeServiceConnection.routeStart(routeId)
     }
 

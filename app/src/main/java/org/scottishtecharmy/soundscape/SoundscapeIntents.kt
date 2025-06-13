@@ -9,9 +9,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -222,7 +222,7 @@ class SoundscapeIntents
                                                 mainActivity.contentResolver.openInputStream(uri)
 
                                             if (input != null) {
-                                                val routeData: RouteData?
+                                                val routeData: RouteWithMarkers?
                                                 if((intent.type == "application/json") or (intent.type == "application/octet-stream")) {
                                                     // This might be a saved route shared from iOS.
                                                     // We want to translate this into a RouteData
@@ -235,12 +235,9 @@ class SoundscapeIntents
                                                     }
                                                     val json = inputStreamToJson(input) ?: throw Exception("Failed to parse JSON")
 
-                                                    routeData = RouteData()
-                                                    val routeName = json.getString("name")
-                                                    routeData.name = routeName
-
                                                     // Hand crafted decode based on sample file...
                                                     val waypoints = json.getJSONArray("waypoints")
+                                                    val markers = mutableListOf<MarkerEntity>()
                                                     for(i in 0 until waypoints.length()) {
                                                         val item = waypoints.get(i) as JSONObject
                                                         val marker = item.get("marker")
@@ -255,18 +252,32 @@ class SoundscapeIntents
                                                             var estimatedAddress = ""
                                                             if(marker.has("estimatedAddress"))
                                                                 estimatedAddress = marker.getString("estimatedAddress")
-                                                            routeData.waypoints.add(
-                                                                MarkerData(name, Location(latitude, longitude), estimatedAddress)
+                                                            markers.add(
+                                                                MarkerEntity(
+                                                                    name = name,
+                                                                    longitude = longitude,
+                                                                    latitude = latitude,
+                                                                    fullAddress = estimatedAddress
+                                                                )
                                                             )
                                                         }
                                                     }
+                                                    routeData = RouteWithMarkers(
+                                                        RouteEntity(
+                                                            0,
+                                                            json.getString("name"),
+                                                            ""
+                                                        ),
+                                                        markers
+                                                    )
+
 
                                                 } else {
                                                     routeData = parseGpxFile(input)
                                                 }
                                                 // If no exception was thrown, then the parsing has
                                                 // succeeded, pass the data to the new route screen.
-                                                mainActivity.navigator.navigate(generateRouteDetailsRoute(routeData))
+                                                mainActivity.navigator.navigate(generateRouteDetailsRoute(routeData!!))
                                             }
                                         } catch (e: Exception) {
                                             Log.e(TAG, "Failed to import file from intent: $e")

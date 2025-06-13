@@ -20,8 +20,7 @@ import androidx.navigation.navArgument
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
-import org.mongodb.kbson.ObjectId
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
@@ -167,7 +166,7 @@ fun HomeScreen(
         composable(HomeRoutes.RouteDetails.route + "/{routeId}") { backStackEntry ->
             val routeId = backStackEntry.arguments?.getString("routeId") ?: ""
             RouteDetailsScreenVM(
-                routeId = ObjectId(routeId),
+                routeId = routeId.toLong(),
                 navController = navController,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 userLocation = state.value.location,
@@ -191,7 +190,7 @@ fun HomeScreen(
             val command = backStackEntry.arguments?.getString("command") ?: ""
             val data = backStackEntry.arguments?.getString("data") ?: ""
 
-            var routeData : RouteData? = null
+            var routeData : RouteWithMarkers? = null
             when(command) {
                 "import" -> {
                     try {
@@ -209,9 +208,9 @@ fun HomeScreen(
             LaunchedEffect(data) {
                 addAndEditRouteViewModel.loadMarkers()
                 if(routeData != null) {
-                    addAndEditRouteViewModel.initializeRoute(routeData)
+                    addAndEditRouteViewModel.initializeRouteFromData(routeData)
                 } else if(command == "edit") {
-                    addAndEditRouteViewModel.initializeRouteFromDatabase(ObjectId(data))
+                    addAndEditRouteViewModel.initializeRouteFromDatabase(data.toLong())
                 }
             }
 

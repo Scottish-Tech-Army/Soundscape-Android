@@ -8,7 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class MarkersViewModel
     @Inject
     constructor(
-        private val routesRepository: RoutesRepository,
+        private val routeDao: RouteDao,
         @ApplicationContext private val context: Context,
     ) : ViewModel() {
         private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = true))
@@ -38,15 +38,14 @@ class MarkersViewModel
             // Collect the flow of routes from the repository so that we update when routes are added
             // and deleted
             viewModelScope.launch {
-                routesRepository.getMarkerFlow().collect { markers ->
+                routeDao.getAllMarkersFlow().collect { markers ->
                     val locations = markers.map {
-                        val markerLngLat =
-                            LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
+                        val markerLngLat = LngLatAlt(it.longitude, it.latitude)
                         LocationDescription(
-                            name = it.addressName,
+                            name = it.name,
                             description = it.fullAddress,
                             location = markerLngLat,
-                            databaseId = it.objectId
+                            databaseId = it.markerId
                         )
                     }
                     _uiState.value =  uiState.value.copy(
