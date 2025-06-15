@@ -149,7 +149,7 @@ void BeaconBufferGroup::UpdateCurrentBufferFromHeading()
         m_pCurrentBuffer = m_pBuffers[0].get();
 }
 
-FMOD_RESULT F_CALLBACK BeaconBufferGroup::PcmReadCallback(void *data, unsigned int data_length)
+FMOD_RESULT F_CALL BeaconBufferGroup::PcmReadCallback(void *data, unsigned int data_length)
 {
     if(m_PlayState == PLAYING_COMPLETE) {
         return FMOD_ERR_FILE_EOF;
@@ -220,7 +220,7 @@ void TtsAudioSource::CreateSound(FMOD::System *system, FMOD::Sound **sound, cons
     ERROR_CHECK(result);
 
 }
-FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int data_length)
+FMOD_RESULT F_CALL TtsAudioSource::PcmReadCallback(void *data, unsigned int data_length)
 {
     // The text to speech data is sent over a socket from Kotlin. The socket is closed on the
     // Kotlin end when the speech has been fully synthesised. However, the onDone appears to be
@@ -274,7 +274,7 @@ FMOD_RESULT F_CALLBACK TtsAudioSource::PcmReadCallback(void *data, unsigned int 
 //
 //
 //
-FMOD_RESULT F_CALLBACK BeaconAudioSource::StaticPcmReadCallback(FMOD_SOUND* sound, void *data, unsigned int data_length) {
+FMOD_RESULT F_CALL BeaconAudioSource::StaticPcmReadCallback(FMOD_SOUND* sound, void *data, unsigned int data_length) {
     BeaconAudioSource *bg;
     ((FMOD::Sound*)sound)->getUserData((void **)&bg);
     bg->PcmReadCallback(data, data_length);

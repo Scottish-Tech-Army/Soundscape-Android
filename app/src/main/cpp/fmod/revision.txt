@@ -1,7 +1,7 @@
 
 ==========================================================================================
                             REVISION HISTORY : FMOD Studio API                            
-                 Copyright (c) Firelight Technologies, Pty, Ltd, 2011-2024                
+                 Copyright (c) Firelight Technologies, Pty, Ltd, 2011-2025                
                                    https://www.fmod.com                                   
 ==========================================================================================
 
@@ -14,8 +14,281 @@ iOS:     Apple iOS / tvOS              PS5:      Sony PlayStation 5
 Android: Google Android                Switch:   Nintendo Switch
 HTML5:   JavaScript WebAssembly        UWP:      Microsoft Universal Windows Platform
 
-6/5/24 2.02.22 - Studio API minor release (build 142841)
+9/6/25 2.03.08 - Studio API minor release (build 153137)
 ------------------------------------------------------------------------------------------
+
+Features:
+* Core API /
+  Studio API   - HTML5 - Added pthread/SharedArrayBuffer support using the fmodP / 
+                 fmodstudioP variants of the libraries.
+
+Fixes:
+* Studio API   - Fixed sidechain level being ignored when the connected effect is
+                 instantiated after the sidechain.
+* Studio API   - Fixed parameter initial value being ignored on first playback if
+                 the parameter has a seek modulator.
+* Studio API   - Fixed command instruments decrementing discrete and labeled parameters
+                 by the wrong amount.
+* Core API     - Fixed deadlock when adding/removing audio device after call to
+                 System::mixerSuspend.
+* Studio API   - Fixed changes to delay time on the FMOD Delay effect being ignored
+                 unless the event is playing.
+* Core API     - Fixed possible crash if FMOD_CREATECOMPRESSEDSAMPLE codec ran out of 
+                 memory combined with virtual voices.
+* Core API     - Android/iOS - Fixed recording not returning after System::mixerResume.
+* Core API     - Android - All AAudio devices now enumerated regardless of whether
+                 specific devices permissions have been granted.
+* Core API     - Linux - pthread stack size is now aligned to system page size.
+* Core API     - Fixed audibility calculation factoring in fader gain value incorrectly
+                 when using sends/returns, leading to voices cutting out while still
+                 audible.
+* Unreal       - Fixed an issue where Events triggered by the OnEventStopped callback
+                 could continue playing once exiting PIE or unloading a level.
+* Unreal       - Fixed an issue where banks would not be loaded correctly when validating
+                 FMOD or auditioning events in editor.
+* Unity        - Fixed crash when passing null to setParameterData.
+* Unity        - Removed dependency on the Unity UI package.
+* Unity        - Oneshot events will no longer trigger outside of max distance when
+                 "Stop Events Outside Max Distance" setting is enabled.
+
+Notes:
+* Unity        - Added support for Unity 6.1.
+
+03/04/25 2.03.07 - Studio API minor release (build 150747)
+------------------------------------------------------------------------------------------
+
+Features:
+* Unity        - Added support for WeChat Mini Game platform in TuanJie Engine.
+
+Fixes:
+* Studio API   - Fixed parameters set to "Hold Value During Playback" changing if
+                 automated by another parameter.
+* Core API     - Android - Fixed crash when calling into record API while mixer suspended.
+* Core API     - Fixed DSP::setWetDryMix causing audible output on some DSPs if they 
+                 were muted internally, for example FMOD_DSP_TYPE_FADER, or user DSPs 
+                 using FMOD_ERR_DSP_SILENCE as a return value.
+* Core API     - Mac - Fixed FMOD_ERR_OUTPUT_DRIVERCALL being returned on certain
+                 device change events.
+* Core API     - XSX - Fixed hardware convolution failing to fallback to software
+                 implementation when an invalid impulse response length was provided.
+* Core API     - Added support for .m3u8 file format.
+* Unity        - Improved EventReferenceDrawer performance when working with large FMOD
+                 projects.
+* Unity        - OpenHarmony - Removed need for manual fmod.init call in exported
+                 project's Ability.
+* Unity        - Added suggestion for line ending requirements to Source Control window of the
+                 Set Up Wizard.
+* Unity/Unreal - Filter out benign FMOD_ERR_CHANNEL_STOLEN error.
+
+Notes:
+* Switch       - Now built with SDK 19.3.5.
+
+07/02/25 2.03.06 - Studio API minor release (build 149358)
+------------------------------------------------------------------------------------------
+
+Features:
+* Core API     - Android - Added support for Spatial Audio when surround speaker mode is
+                 5.1 or higher and user has Spatial Audio enabled.
+* Unity        - Added public property StudioListener::AttenuationObject.
+* Unity        - Added Chinese localization to Resonance plugin.
+
+Fixes:
+* Studio API   - HTML5 - Added support for position independent code with Upstream WASM.
+* Core API     - Fixed Channel::getAudibility not considering 3D attributes of parent
+                 ChannelGroups in audibility calculation.
+* Core API     - Fixed audible pop from fix introduced in 2.02.24 regarding virtual channels
+                 and ChannelControl::setPan/setMixLevelsInput/setMixLevelsOutput/
+                 ChannelControl::setMixMatrix.
+* Core API     - Android - Fixed input stream leak when backgrounding application on some
+                 Android devices.
+* Core API     - Android - Fixed small amount of old audio being played after calling
+                 System::mixerResume when using OpenSL or AAudio output types.
+* Core API     - PS5 - Fixed potentially incorrect pitch / hardware errors when using
+                 very high or low pitch values with Opus.
+* Core API     - PS5 - Fixed issues with the Opus codec with seamless looping.
+* Core API     - Windows - Fixed ASIO failing to initialize if device CLSID is empty.
+* OpenHarmony  - Reduced latency by taking advantage of SDK 11 functionality, latency
+                 for SDK 10 devices remains unchanged.
+* Unity        - Fixed vector out-of-range warning when creating 3D event instances.
+* Unity        - Fixed an issue with SetListenerLocation if Physic2D was disabled.
+* Unity        - Fixed Setup Wizard window to be resizable and scrollable.
+* Unity        - Fixed NotImplementedException error when running the event reference
+                 updater on objects that have not implemented GetEnumerator().
+* Unity        - Fixed ArgumentOutOfRangeException error when trying to create a new
+                 FMOD event in editor.
+* Unreal       - Fixed 3D AudioLink events playing at world zero before receiving
+                 position information from Unreal.
+
+13/12/24 2.03.05 - Studio API minor release (build 148280)
+------------------------------------------------------------------------------------------
+
+Features:
+* Unity        - Added Chinese localization.
+
+Fixes:
+* Studio API   - Added some extra validation around 3D attributes passed in.
+* Studio API   - Fixed an assert that occurs when playing a transition timeline with a
+                 relative offset and a destination region that passes the end of the main
+                 timeline.
+* Studio API   - Fixed incorrect timeline transition behavior when loading banks built by
+                 FMOD Studio 2.00.04 or earlier.
+* Studio API   - PS4/PS5 - Fixed crash preceded by an internal assert(isValid) on
+                 PS5 SDK 10 and PS4 SDK 12.
+* Core API     - Android - Fixed glitching when attempting screen recording with AAudio
+                 on Android 14 and above.
+* Core API     - Android - Added protections against recording with multiple input devices
+                 simultaneously when using OpenSL.
+* Core API     - Android - AAudio now correctly stops recording if a new recording begins
+                 on a different device.
+* Core API     - iOS - Added protections against recording with multiple input devices
+                 simultaneously.
+* Unity        - Fixed the Event Reference Updater incorrectly being triggered when
+                 capitalization changes on events or folders.
+* Unity        - Fixed "Stop Events Outside Max Distance" behavior not taking listener
+                 attenuation objects into account.
+* Unity        - Removed Codec assigning for the default platform as not all platforms
+                 support the same Codec values.
+
+Notes:
+* PS4          - Now built with SDK 12.008.011.
+* PS5          - Now built with SDK 10.00.00.40.
+* Unreal       - Added support for UE5.5.
+* Android      - arm64-v8a and x86_64 libraries are now aligned to 16kb page size.
+
+11/11/24 2.03.04 - Studio API minor release (build 147563)
+------------------------------------------------------------------------------------------
+
+Fixes:
+* Studio API   - Fixed a crash caused by changing an event via live update and then
+                 unloading one of its assets banks.
+* Studio API   - Fixed an assert when an event with manual sample loading uses a sample
+                 after an event with automatic sample loading.
+* Studio API   - Fixed crash and memory leaks when loading master banks that are missing
+                 mixer content required in other banks.
+* Core API     - Removed the MarshalHelper to avoid AOT build errors when using the
+                 C# wrapper.
+* Core API     - FMOD_ERR_FILE_NOTFOUND logs will now be of level "log" rather than
+                 "error" as it is not an error in some cases.
+* Core API     - Fixed compatibility issues with .wavs produced with
+                 FMOD_OUTTPUTTYPE_WAVWRITER or FMOD_OUTTPUTTYPE_WAVWRITER_NRT.
+* Core API     - Fixed incorrect "device" name for PCM float output with
+                 FMOD_OUTTPUTTYPE_WAVWRITER and FMOD_OUTTPUTTYPE_WAVWRITER_NRT.
+* Core API     - Fixed DSP creation failing with FMOD_ERR_MEMORY if called a large number
+                 of times, despite still having system memory available.
+* Core API     - C# - Fixed the definition of FMOD_DSP_BUFFER_ARRAY to allow the
+                 usage of FMOD_DSP_PROCESS_CALLBACK. New properties allow easy access
+                 to the native arrays.
+* Core API     - Consoles - Hardware resources will now correctly yield after an
+                 FMOD_CREATESAMPLE decode so they can be used in other sounds.
+* Core API     - Fixed subsounds in FSBs returning FMOD_SOUND_TYPE_FSB from
+                 Sound::getFormat instead of their encoded sound type.
+* Core API     - Mac - Fixed error initializing output after turning bluetooth off.
+* Core API     - Win - Downgraded "device unplugged" errors to warnings as device
+                 switching is supported.
+* Core API     - Win - Fixed potential crash with certain ASIO driver after System::close.
+* Unity        - Added support for setting number of Opus Codecs on PS5.
+* Unreal       - DestroyStudioSystem no longer unloads banks, as the system release
+                 handles this.
+
+Notes:
+* HTML5        - Now built with SDK 3.1.67.
+* Unity        - HTML5 - Now built with SDK 3.1.8 for Unity 2022.3 and 3.1.39 for
+                 Unity 6000.0.
+
+25/09/24 2.03.03 - Studio API minor release (build 146372)
+------------------------------------------------------------------------------------------
+
+Features:
+* Core API     - Mac/iOS - System::mixerSuspend/System::mixerResume now suspends the mixer
+                 and all other threads.
+* Core API     - Added logging to System::setAdvancedSettings.
+* Unity        - Added AttachInstanceToGameObject overload that accepts GameObject
+                 instead of Transform.
+
+Fixes:
+* Studio API   - Fixed a crash when unloading an assets bank before its associated
+                 metadata bank.
+* Studio API   - Fixed backwards compatibility loading banks from 1.08 and older, which
+                 presented as FMOD_ERR_INVALID_PARAM being returned from
+                 System::loadBankFile (or equivalent bank load function).
+* Studio API   - Fixed invalid handle error being returned from Studio::System::update
+                 if a spectral sidechain on a global bus is released (due to the
+                 bus becoming unused).
+* Core API     - Fixed passed in values being ignored when calling ChannelControl::setPan,
+                 ChannelControl::setMixLevelsInput, ChannelControl::setMixLevelsOutput,
+                 or ChannelControl::setMixMatrix on a virtual Channel.
+* Core API     - Fixed MultibandEQ not handling DSP::reset correctly for bands
+                 B through E.
+* Core API     - OpenHarmony - Audio will now automatically resume after interruption.
+* Core API     - PS5 - Fixed Opus decode errors with certain pitch and seek combinations.
+* Unreal       - Added additional validation to Content Browser Prefix to account for
+                 invalid characters and prefix lengths.
+* Unity        - Added non-Rigidbody velocity effect option on Listeners.
+* Unity        - Fixed source control presentation on macOS.
+* Unity        - OpenHarmony - Fixed issue locating bank files on devices.
+* Unity        - Fixed EventReferenceUpdater stack overflow exception caused by
+                 Input System.
+* Studio API   - Reduced effect parameter allocations by allocating upfront instead of
+                 individually.
+
+Notes:
+* Unity        - Renamed StudioEventEmitter members PlayEvent and StopEvent to
+                 EventPlayTrigger and EventStopTrigger to disambiguate from
+                 StudioEventEmitter.Play().
+* GameCore     - Now built with March 2024 Update 1 GDKX.
+* Unreal       - PS4 - UE4.27 - Now built with SDK 11.008.001.
+* Unreal       - PS5 - UE4.27 - Now built with SDK 8.00.00.41.
+
+12/07/24 2.03.02 - Studio API minor release (build 144646)
+------------------------------------------------------------------------------------------
+
+Features:
+* Core API     - Android - Non-default input and output devices can now be requested when
+                 using AAudio. Only available on devices targeting API level 26 (Oreo)
+                 and above.
+* Core API     - Android - Added FMOD_Android_JNI_Init to support initializing Java
+                 layer from a native activity.
+* Core API     - GameCore - Added FMOD_PORT_TYPE_CONTROLLER to the FMOD_OUTPUTTYPE_WASAPI
+                 output plug-in to route audio to a user specific audio device.
+* Unity        - Fixed warnings for updated api functions in Unity 2023.1+.
+* Unity        - Android - Added support for Application Entry Point GameActivity.
+
+Fixes:
+* Studio API   - Fixed glitches due to modulation not being applied correctly at event
+                 start time.
+* Studio API   - Fixed glitches in AHDSR modulator release.
+* Studio API   - Fixed an intermittent assert when playing instruments with trigger delay.
+* Studio API   - GameCore - Fixed crash when setting invalid thread affinity.
+* Core API     - Fixed rare crash when virtual voices swapped when using a mix of Sound 
+                 and DSP based channels.
+* Core API     - Android - Fixed crash when calling recordStart while mixer suspended.
+* Core API     - OpenHarmony - Added support for System::mixerSuspend and
+                 System::mixerResume to allow recovery of audio when returning from
+                 the background.
+* Core API     - visionOS - Fixed missing symbol build error.
+* Core API     - Windows - Fixed initialization failure when audio service unavailable.
+* Unity        - Fixed EventReferenceUpdater iterating over irrelevant objects.
+* Unreal       - Fixed Niagara component variables using incorrect namespaces.
+* Unreal       - Fixed compile errors in UE5.4 for FMODAudioLinkInputClient.cpp 
+                 on some consoles.
+* Unreal       - FMODAudioComponents Occlusion and Velocity is now based off the
+                 component instead of the actor.
+* Unity        - Fixed CodeGeneration.cs being left in the wrong location when migrating
+                 from 2.01 to 2.02.
+* Unity        - Fixed EventReferenceUpdater exception when attempting to iterate
+                 uninitialized items.
+
+Notes:
+* Unity        - Studio Event Emitter setting "Allow Non-Rigidbody Doppler" has been
+                 renamed "Non-Rigidbody Velocity".
+* Unity        - Added support for Unity 6.
+
+08/05/24 2.03.01 - Studio API minor release (build 142842)
+------------------------------------------------------------------------------------------
+
+Features:
+* Core API     - Added optimizations to Multiband Dynamics plugin to skip processing of
+                 collapsed bands.
 
 Fixes:
 * Studio API   - Fixed a crash when unloading a bank containing a global parameter that
@@ -40,6 +313,79 @@ Notes:
                  mach_absolute_time, no manifest needed.
 * PS4          - Now built with SDK 11.508.011.
 * PS5          - Now built with SDK 9.00.00.40.
+
+13/03/24 2.03.00 - Studio API major release (build 141450)
+------------------------------------------------------------------------------------------
+
+Features:
+* Studio API   - Referenced events now continue playing after they are untriggered.
+* Studio API   - Added Studio::EventInstance::getSystem for accessing the FMOD System
+                 from event callbacks.
+* Core API     - System::getVersion now outputs build number from second argument.
+* Core API     - Recording is now automatically restarted after device resets and
+                 changing output types where the devices of the output types have
+                 matching GUIDs. This continues the recording with the sound previously
+                 passed in. If the output types are incompatible, the behavior is
+                 unchanged.
+* Core API     - Added new port type, FMOD_PORT_TYPE_VR_VIBRATION, to cater for
+                 VR controllers that support vibration. Removed the old method
+                 of controlling vibration via FMOD_PORT_INDEX_FLAG_VR_CONTROLLER.
+                 Supported by PS5 (PSVR2).
+* Core API     - Added new port type, FMOD_PORT_TYPE_PASSTHROUGH, to provide a bypass
+                 for platform-provided multichannel spatialization.
+                 Supported by PS5 and Windows (WinSonic).
+* Core API     - Added new FMOD_DSP_TYPE_ECHO parameter FMOD_DSP_ECHO_DELAYCHANGEMODE.
+                 FMOD_DSP_ECHO_DELAYCHANGEMODE_FADE (default) is best suited to
+                 large changes in delay time, FMOD_DSP_ECHO_DELAYCHANGEMODE_LERP
+                 is best suited to small changes in delay time, and
+                 FMOD_DSP_ECHO_DELAYCHANGEMODE_NONE is available to avoid additional
+                 processing between delay time changes, but can introduce zipper
+                 noise.
+* Core API     - Added new FMOD_DSP_TYPE_FFT parameters FMOD_DSP_FFT_BAND_START_FREQ,
+                 FMOD_DSP_FFT_BAND_STOP_FREQ, FMOD_DSP_FFT_DOWNMIX, and
+                 FMOD_DSP_FFT_CHANNEL to give control over how the input signal
+                 is processed and which part of a spectrum is analyzed.
+* Core API     - Added new FMOD_DSP_TYPE_FFT parameter FMOD_DSP_FFT_RMS and renamed
+                 FMOD_DSP_FFT_DOMINANT_FREQ to FMOD_DSP_FFT_SPECTRAL_CENTROID. Both
+                 provide information about the nature of the signal within the analysis
+                 band.
+* Core API     - Added new FMOD_DSP_TYPE_FFT parameter FMOD_DSP_FFT_IMMEDIATE_MODE
+                 to control whether processing is immediate or delayed to reduce
+                 CPU cost by offloading to compatible hardware. The default is delayed.
+* Core API     - Added new 6dB high/low pass filters to FMOD_DSP_MULTIBAND_EQ_FILTER_TYPE
+                 for FMOD_DSP_TYPE_MULTIBAND_EQ. These give a more gentle roll-off
+                 and lower CPU cost.
+* Core API     - Added new Multiband Dynamics effect FMOD_DSP_MULTIBAND_DYNAMICS.
+                 It supports upward/downward compression/expansion across three bands.
+* Unreal       - Added cross platform Memory Pool and Codec settings.
+
+Fixes:
+* Studio API   - Fixed popping caused by Studio::Bus::setPaused.
+* Studio API   - Fixed sounds being stopped when they are in multiple banks and
+                 the first loaded bank is unloaded.
+* Studio API   - Fixed looping playlist instruments displaying a warning when using
+                 a DSP buffer size of less than 1024.
+* Core API     - Fixed virtual voices getting out of sync when they return to real.
+
+Notes:
+* All APIs     - The F_CALLBACK macro has been removed, update existing code to
+                 use F_CALL instead.
+* Core API     - In C#, FMOD_DSP_STATE.functions now has a wrapper function returning
+                 an FMOD_DSP_STATE_FUNCTIONS struct instead of the IntPtr requiring
+                 marshalling.
+* Core API     - Removed FMOD_DSP_TYPE_ENVELOPEFOLLOWER, FMOD_DSP_TYPE_VSTPLUGIN,
+                 FMOD_DSP_TYPE_LADSPAPLUGIN, and FMOD_DSP_TYPE_WINAMPPLUGIN.
+* Core API     - Removed FMOD_SYSTEM_CALLBACK_MIDMIX.
+* Core API     - Renamed the FMOD_DSP_FFT_WINDOW enum to FMOD_DSP_FFT_WINDOW_TYPE,
+                 and renamed the FMOD_DSP_FFT_WINDOWTYPE enum value to
+                 FMOD_DSP_FFT_WINDOW.
+* Core API     - Win - The default DSP buffer size is now 512 rather than 1024 to
+                 reduce latency.
+* Android      - Updated to NDK 26b and Android SDK 21.
+* HTML5        - Removed support for deprecated Fastcomp backend.
+* Unity        - Removed support for end-of-life versions, minimum is now 2021.3.
+* Tools        - Updated Qt framework to v6.5.3 which lifts the minimum requirement
+                 to macOS 11.0, Win10 1809 and Linux GLIBC 2.28.
 
 13/03/24 2.02.21 - Studio API minor release (build 141420)
 ------------------------------------------------------------------------------------------

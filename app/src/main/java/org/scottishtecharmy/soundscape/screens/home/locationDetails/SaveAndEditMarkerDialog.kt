@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -46,7 +45,7 @@ fun SaveAndEditMarkerDialog(
         description: LocationDescription,
         successMessage: String,
         failureMessage: String) -> Unit,
-    deleteMarker: (objectId: ObjectId) -> Unit,
+    deleteMarker: (objectId: Long) -> Unit,
     modifier: Modifier = Modifier,
     dialogState: MutableState<Boolean>
 ) {
@@ -62,7 +61,7 @@ fun SaveAndEditMarkerDialog(
         modifier = modifier,
         topBar = {
             TextOnlyAppBar(
-                title = if(locationDescription.databaseId != null) stringResource(R.string.markers_edit_screen_title_edit)
+                title = if(locationDescription.databaseId != 0L) stringResource(R.string.markers_edit_screen_title_edit)
                         else  stringResource(R.string.user_activity_save_marker_title),
                 navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                 onNavigateUp = { dialogState.value = false },
@@ -80,7 +79,7 @@ fun SaveAndEditMarkerDialog(
             Column(
                 modifier = Modifier.smallPadding()
             ) {
-                if(objectId != null) {
+                if(objectId != 0L) {
                     CustomButton(
                         onClick = {
                             deleteMarker(objectId)
@@ -181,8 +180,7 @@ fun AddRouteScreenPreview() {
         locationDescription = LocationDescription(
             name = "Pizza hut",
             location = LngLatAlt(),
-            description = "139 boulevard gambetta",
-            databaseId = ObjectId()
+            description = "139 boulevard gambetta"
         ),
         location = null,
         heading = 45.0F,

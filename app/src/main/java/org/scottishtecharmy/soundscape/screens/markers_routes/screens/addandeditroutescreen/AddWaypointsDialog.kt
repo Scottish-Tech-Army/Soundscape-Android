@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -92,24 +91,24 @@ fun AddWaypointsScreenPopulatedPreview() {
                 routeMembers =
                 mutableListOf(
                     LocationDescription(name = "Long named route point as if we need one", location = LngLatAlt()),
-                    LocationDescription(name = "Route point 2", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Route point 3", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Route point 4", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Route point 5", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Route point 6", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Route point 7", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Route point 8", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Route point 2", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 3", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 4", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 5", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 6", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 7", location = LngLatAlt()),
+                    LocationDescription(name = "Route point 8", location = LngLatAlt()),
                 ),
                 markers =
                 mutableListOf(
-                    LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 4", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 6", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = ObjectId()),
-                    LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = ObjectId()),
+                    LocationDescription(name = "Waypoint 1", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 2", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 3", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 4", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 5", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 6", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 7", location = LngLatAlt()),
+                    LocationDescription(name = "Waypoint 8", location = LngLatAlt()),
                 )
             ),
         placesNearbyUiState = PlacesNearbyUiState(),

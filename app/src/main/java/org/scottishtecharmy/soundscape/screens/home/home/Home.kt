@@ -32,11 +32,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
@@ -239,9 +239,12 @@ fun HomeSearchPreview() {
 @Composable
 fun HomeRoutePreview() {
     val routePlayerState = RoutePlayerState(
-        routeData = RouteData(
-            name = "NameOfRoute 1",
-            description = "DescriptionOfRoute 1"
+        routeData = RouteWithMarkers(
+            RouteEntity(
+                name = "NameOfRoute 1",
+                description = "DescriptionOfRoute 1"
+            ),
+            emptyList()
         ),
         currentWaypoint = 0
     )
@@ -269,19 +272,16 @@ val previewLocationList = listOf(
     LocationDescription(
         name = "Barrowland Ballroom",
         description = "Somewhere in Glasgow",
-        location = LngLatAlt(-4.2366753, 55.8552688),
-        databaseId = ObjectId()
+        location = LngLatAlt(-4.2366753, 55.8552688)
     ),
     LocationDescription(
         name = "King Tut's Wah Wah Hut",
         description = "Somewhere else in Glasgow",
-        location = LngLatAlt(-4.2649646, 55.8626180),
-        databaseId = ObjectId()
+        location = LngLatAlt(-4.2649646, 55.8626180)
     ),
     LocationDescription(
         name = "St. Lukes and the Winged Ox",
         description = "Where else?",
-        location = LngLatAlt( -4.2347580, 55.8546320),
-        databaseId = ObjectId()
+        location = LngLatAlt( -4.2347580, 55.8546320)
     )
 )

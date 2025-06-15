@@ -41,13 +41,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -75,17 +74,17 @@ private data class SimpleRouteData(
     var waypoints: MutableList<SimpleMarkerData> = emptyList<SimpleMarkerData>().toMutableList()
 )
 
-fun generateRouteDetailsRoute(routeData: RouteData): String {
+fun generateRouteDetailsRoute(routeData: RouteWithMarkers): String {
 
     // Generate JSON for the RouteData and append it to the route
     val simpleRouteData = SimpleRouteData()
-    simpleRouteData.name = routeData.name
-    simpleRouteData.description = routeData.description
-    for (waypoint in routeData.waypoints) {
+    simpleRouteData.name = routeData.route.name
+    simpleRouteData.description = routeData.route.description
+    for (waypoint in routeData.markers) {
         simpleRouteData.waypoints.add(
             SimpleMarkerData(
-                waypoint.addressName,
-                waypoint.location!!.location()
+                waypoint.name,
+                LngLatAlt(waypoint.longitude, waypoint.latitude)
             )
         )
     }
@@ -95,30 +94,35 @@ fun generateRouteDetailsRoute(routeData: RouteData): String {
     return "${HomeRoutes.AddAndEditRoute.route}?command=import&data=$urlEncodedJson"
 }
 
-fun parseSimpleRouteData(jsonData: String): RouteData {
+fun parseSimpleRouteData(jsonData: String): RouteWithMarkers {
 
     // Parse JSON
     val gson = GsonBuilder().create()
     val simpleRouteData = gson.fromJson(jsonData, SimpleRouteData::class.java)
 
-    val routeData = RouteData(
-        name = simpleRouteData.name,
-        description = simpleRouteData.description,
-    )
+    val markers = mutableListOf<MarkerEntity>()
     for (waypoint in simpleRouteData.waypoints) {
-        routeData.waypoints.add(
-            MarkerData(
-                waypoint.addressName,
-                Location(waypoint.location)
+        markers.add(
+            MarkerEntity(
+                name =waypoint.addressName,
+                longitude = waypoint.location.longitude,
+                latitude = waypoint.location.latitude,
             )
         )
     }
+    val routeData = RouteWithMarkers(
+        RouteEntity(
+            name = simpleRouteData.name,
+            description = simpleRouteData.description,
+        ),
+        markers
+    )
     return routeData
 }
 
 @Composable
 fun AddAndEditRouteScreenVM(
-    routeObjectId: ObjectId?,
+    routeObjectId: Long?,
     navController: NavController,
     modifier: Modifier,
     userLocation: LngLatAlt?,
@@ -155,7 +159,7 @@ fun AddAndEditRouteScreenVM(
 
 @Composable
 fun AddAndEditRouteScreen(
-    routeObjectId: ObjectId?,
+    routeObjectId: Long?,
     navController: NavController,
     modifier: Modifier,
     uiState: AddAndEditRouteUiState,
@@ -166,7 +170,7 @@ fun AddAndEditRouteScreen(
     onResetDoneAction: () -> Unit,
     onNameChange: (newText: String) -> Unit,
     onDescriptionChange: (newText: String) -> Unit,
-    onDeleteRoute: (objectId: ObjectId) -> Unit,
+    onDeleteRoute: (objectId: Long) -> Unit,
     onEditComplete: () -> Unit,
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
@@ -351,7 +355,7 @@ fun AddAndEditRouteScreen(
                                 state = lazyListState,
                                 verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                             ) {
-                                itemsIndexed(routeMembers, key = { _,item -> item.databaseId!!.toString() }) { index, item ->
+                                itemsIndexed(routeMembers, key = { _,item -> item.databaseId.toString() }) { index, item ->
                                     ReorderableItem(reorderableLazyListState, item.databaseId.toString()) { _ ->
                                         Row(modifier = Modifier
                                             .background(MaterialTheme.colorScheme.surface)
@@ -422,7 +426,7 @@ fun AddAndEditRouteScreen(
 @Composable
 fun NewRouteScreenPreview() {
     AddAndEditRouteScreen(
-        routeObjectId = ObjectId(),
+        routeObjectId = 0L,
         navController = rememberNavController(),
         modifier = Modifier,
         uiState = AddAndEditRouteUiState(),
@@ -446,7 +450,7 @@ fun NewRouteScreenPreview() {
 @Composable
 fun EditRouteScreenPreview() {
     AddAndEditRouteScreen(
-        routeObjectId = ObjectId(),
+        routeObjectId = 0L,
         navController = rememberNavController(),
         modifier = Modifier,
         uiState = AddAndEditRouteUiState(

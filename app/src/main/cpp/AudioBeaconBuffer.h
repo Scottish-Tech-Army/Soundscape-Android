@@ -42,14 +42,14 @@ namespace soundscape {
 
         virtual void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) = 0;
 
-        virtual FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) { return FMOD_ERR_BADCOMMAND; };
+        virtual FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) { return FMOD_ERR_BADCOMMAND; };
 
         virtual void UpdateGeometry(double degrees_off_axis);
 
     protected:
         PositionedAudio *m_pParent;
 
-        static FMOD_RESULT F_CALLBACK
+        static FMOD_RESULT F_CALL
         StaticPcmReadCallback(FMOD_SOUND *sound, void *data, unsigned int data_length);
 
         std::atomic<double> m_DegreesOffAxis;
@@ -64,7 +64,7 @@ namespace soundscape {
         void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
         void Stop();
 
-        FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) override;
+        FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) override;
 
     private:
         void UpdateCurrentBufferFromHeading();
@@ -93,7 +93,7 @@ namespace soundscape {
 
         void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
 
-        FMOD_RESULT F_CALLBACK PcmReadCallback(void *data, unsigned int data_length) override;
+        FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) override;
 
     private:
         int m_TtsSocket;

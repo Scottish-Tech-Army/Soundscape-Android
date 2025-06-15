@@ -7,13 +7,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.repository.RoutesRepository
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -23,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddAndEditRouteViewModel @Inject constructor(
-    private val routesRepository: RoutesRepository,
+    private val routeDao: RouteDao,
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
 
@@ -34,14 +33,14 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun loadMarkers() {
         // Monitor the markers in the database
         viewModelScope.launch {
-            routesRepository.getMarkerFlow().collect { markers ->
+            routeDao.getAllMarkersFlow().collect() { markers ->
                 val markerVMs = markers.map {
                     val markerLngLat =
-                        LngLatAlt(it.location?.longitude ?: 0.0, it.location?.latitude ?: 0.0)
+                        LngLatAlt(it.longitude, it.latitude)
                     LocationDescription(
-                        name = it.addressName,
+                        name = it.name,
                         location = markerLngLat,
-                        databaseId = it.objectId
+                        databaseId = it.markerId
                     )
                 }
 
@@ -76,33 +75,49 @@ class AddAndEditRouteViewModel @Inject constructor(
     }
 
     // Function to initialize an importedRoute
-    fun initializeRoute(routeData: RouteData) {
+    fun initializeRoute(routeData: RouteWithMarkers) {
         val routeMembers = emptyList<LocationDescription>().toMutableList()
-        for (waypoint in routeData.waypoints) {
+        for (waypoint in routeData.markers) {
             routeMembers.add(
                 LocationDescription(
-                    name = waypoint.addressName,
-                    location = waypoint.location?.location() ?: LngLatAlt(),
-                    databaseId = waypoint.objectId
+                    name = waypoint.name,
+                    location = LngLatAlt(waypoint.longitude, waypoint.latitude),
+                    databaseId = waypoint.markerId
                 )
             )
         }
         _uiState.value = _uiState.value.copy(
-            name = routeData.name,
-            description = routeData.description,
+            name = routeData.route.name,
+            description = routeData.route.description,
             routeMembers = routeMembers,
-            routeObjectId = routeData.objectId
+            routeObjectId = routeData.route.routeId
         )
     }
 
     // Function to initialize the editing route
-    fun initializeRouteFromDatabase(routeId: ObjectId) {
+    fun initializeRouteFromData(routeData: RouteWithMarkers) {
         viewModelScope.launch {
             try {
-                val route = routesRepository.getRoute(routeId).firstOrNull()
-                route?.let {
-                    initializeRoute(route)
-                }
+                // We need to write the new route to the database so that the ids are all correct
+                val id = routeDao.insertRouteWithNewMarkers(routeData.route, routeData.markers)
+                val route = routeDao.getRouteWithMarkers(id)
+                if(route == null) throw Exception("Route not found")
+                initializeRoute(route)
+            } catch (e: Exception) {
+                Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
+                _uiState.value =
+                    _uiState.value.copy(errorMessage = "Failed to load route: ${e.message}")
+            }
+        }
+    }
+
+    fun initializeRouteFromDatabase(routeId: Long) {
+        viewModelScope.launch {
+            try {
+                // Read the route from the database
+                val route = routeDao.getRouteWithMarkers(routeId)
+                if(route == null) throw Exception("Route not found")
+                initializeRoute(route)
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
                 _uiState.value =
@@ -130,10 +145,10 @@ class AddAndEditRouteViewModel @Inject constructor(
     }
 
     // Function to handle deleting a route
-    fun deleteRoute(objectId: ObjectId) {
+    fun deleteRoute(objectId: Long) {
         viewModelScope.launch {
             try {
-                routesRepository.deleteRoute(objectId)
+                routeDao.removeRoute(objectId)
                 Log.d("EditRouteViewModel", "Route deleted successfully: \$routeName")
                 _uiState.value = _uiState.value.copy(
                     doneActionCompleted = true,
@@ -159,23 +174,30 @@ class AddAndEditRouteViewModel @Inject constructor(
     // Add/Edit has been completed
     fun editComplete() {
         viewModelScope.launch {
-            val routeData = RouteData().apply {
-                name = _uiState.value.name
-                description = _uiState.value.description
-                objectId = _uiState.value.routeObjectId ?: ObjectId()
+
+            // Until it's been put in the database, the routeObjectId will be null
+            val routeData = RouteEntity(
+                routeId = _uiState.value.routeObjectId ?: 0L,
+                name = _uiState.value.name,
+                description = _uiState.value.description,
+            )
+            if(_uiState.value.actionType == ActionType.DELETE) {
+                routeDao.removeRoute(_uiState.value.routeObjectId ?: 0L)
+                return@launch
             }
+            val markers = mutableListOf<MarkerEntity>()
             _uiState.value.routeMembers.forEach {
-                routeData.waypoints.add(
-                    MarkerData(
-                        addressName = it.name,
-                        location = Location(it.location),
-                        objectId = it.databaseId!!
+                markers.add(
+                    MarkerEntity(
+                        name = it.name,
+                        longitude = it.location.longitude,
+                        latitude = it.location.latitude,
+                        markerId = it.databaseId
                     )
                 )
             }
-
             try {
-                routesRepository.insertRoute(routeData)
+                routeDao.insertRouteWithExistingMarkers(routeData, markers)
                 Log.d("AddRouteViewModel", "Route saved successfully: ${routeData.name}")
                 _uiState.value = _uiState.value.copy(
                     doneActionCompleted = true,
@@ -209,7 +231,7 @@ class AddAndEditRouteViewModel @Inject constructor(
         failureMessage: String
     ) {
         // Kick off adding the marker to the database
-        createMarker(locationDescription, routesRepository, viewModelScope,
+        createMarker(locationDescription, routeDao, viewModelScope,
             onSuccess = {
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
                     listOf(PositionedString(text = successMessage, type = AudioType.STANDARD)),

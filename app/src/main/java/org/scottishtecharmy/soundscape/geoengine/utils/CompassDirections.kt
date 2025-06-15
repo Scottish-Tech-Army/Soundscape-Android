@@ -165,42 +165,16 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
     }
 }
 
-fun getCompassLabel(localizedContext: Context,
-                    degrees: Int
-):String {
+fun getCompassLabel(degrees: Int):Int {
     return when (degrees) {
-        in 338..360, in 0..22 -> localizedContext.getString(
-            R.string.directions_cardinal_north
-        )
-
-        in 23..67 -> localizedContext.getString(
-            R.string.directions_cardinal_north_east
-        )
-
-        in 68..112 -> localizedContext.getString(
-            R.string.directions_cardinal_east,
-        )
-
-        in 113..157 -> localizedContext.getString(
-            R.string.directions_cardinal_south_east
-        )
-
-        in 158..202 -> localizedContext.getString(
-            R.string.directions_cardinal_south
-        )
-
-        in 203..247 -> localizedContext.getString(
-            R.string.directions_cardinal_south_west
-        )
-
-        in 248..292 -> localizedContext.getString(
-            R.string.directions_cardinal_west
-        )
-
-        in 293..337 -> localizedContext.getString(
-            R.string.directions_cardinal_north_west
-        )
-
-        else -> ""
+        in 338..360, in 0..22 -> R.string.directions_cardinal_north
+        in 23..67 -> R.string.directions_cardinal_north_east
+        in 68..112 -> R.string.directions_cardinal_east
+        in 113..157 -> R.string.directions_cardinal_south_east
+        in 158..202 -> R.string.directions_cardinal_south
+        in 203..247 -> R.string.directions_cardinal_south_west
+        in 248..292 -> R.string.directions_cardinal_west
+        in 293..337 -> R.string.directions_cardinal_north_west
+        else -> R.string.directions_cardinal_north
     }
 }

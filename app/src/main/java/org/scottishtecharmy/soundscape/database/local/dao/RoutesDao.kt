@@ -1,150 +1,108 @@
 package org.scottishtecharmy.soundscape.database.local.dao
 
-import android.util.Log
-import io.realm.kotlin.Realm
-import io.realm.kotlin.UpdatePolicy
-import io.realm.kotlin.annotations.ExperimentalGeoSpatialApi
-import io.realm.kotlin.ext.query
-import io.realm.kotlin.query.RealmResults
-import io.realm.kotlin.types.geo.Distance
-import io.realm.kotlin.types.geo.GeoCircle
-import io.realm.kotlin.types.geo.GeoPoint
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import org.mongodb.kbson.ObjectId
-import org.scottishtecharmy.soundscape.database.local.model.Location
-import org.scottishtecharmy.soundscape.database.local.model.RouteData
-import org.scottishtecharmy.soundscape.database.local.model.MarkerData
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteMarkerCrossRef
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 
-class RoutesDao(private val realm: Realm) {
 
-    suspend fun insertRoute(route: RouteData) : Boolean
-    {
-        // If we don't catch the exception here, then it prevents write
-        // from completing its transaction logic.
-        var success = true
-        realm.write {
-            try {
-                copyToRealm(route, updatePolicy = UpdatePolicy.ALL)
-            } catch (e: IllegalArgumentException) {
-                Log.e("realm", e.message.toString())
-                success = false
-            }
+@Dao
+interface RouteDao {
+
+    // --- Marker Operations ---
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // Or IGNORE if you don't want to update existing
+    suspend fun insertMarker(marker: MarkerEntity): Long // Returns the new markerId
+
+    @Query("SELECT * FROM markers WHERE marker_id = :markerId")
+    fun getMarkerById(markerId: Long): MarkerEntity?
+
+    @Query("SELECT * FROM markers")
+    fun getAllMarkers(): List<MarkerEntity>
+
+    @Query("SELECT * FROM markers")
+    fun getAllMarkersFlow(): Flow<List<MarkerEntity>>
+
+    // --- Route Operations ---
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertRoute(route: RouteEntity): Long // Returns the new routeId
+
+    // --- RouteMarkerCrossRef Operations ---
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // Ignore if the marker is already in the route
+    suspend fun addMarkerToRoute(crossRef: RouteMarkerCrossRef)
+
+    @Query("DELETE FROM route_marker_cross_ref WHERE route_id = :routeId AND marker_id = :markerId")
+    suspend fun removeMarkerFromRoute(routeId: Long, markerId: Long)
+
+    @Query("DELETE FROM route_marker_cross_ref WHERE route_id = :routeId")
+    suspend fun removeMarkersForRoute(routeId: Long)
+
+    // --- Querying Routes With Their Markers ---
+    @Query("SELECT * FROM routes WHERE route_id = :routeId")
+    fun getRouteById(routeId: Long): RouteEntity?
+
+    @Query("SELECT * FROM route_marker_cross_ref WHERE route_id = :routeId")
+    fun getMarkerCrossReference(routeId: Long): List<RouteMarkerCrossRef>
+
+    @Transaction
+    fun getRouteWithMarkers(routeId: Long): RouteWithMarkers? {
+        val route = getRouteById(routeId)
+        val crossReferences = getMarkerCrossReference(routeId)
+
+        if(route == null) return null
+
+        val markers = mutableListOf<MarkerEntity>()
+        for(crossRef in crossReferences.sortedBy { it.markerOrder }) {
+            val id = getMarkerById(crossRef.markerId)
+            if(id != null)
+                markers.add(id)
         }
-        return success
+        return RouteWithMarkers(route, markers)
     }
 
-    suspend fun insertMarker(waypoint: MarkerData) : Boolean
-    {
-        // If we don't catch the exception here, then it prevents write
-        // from completing its transaction logic.
-        var success = true
-        realm.write {
-            try {
-                copyToRealm(waypoint, updatePolicy = UpdatePolicy.ERROR)
-            } catch (e: IllegalArgumentException) {
-                Log.e("realm", e.message.toString())
-                success = false
-            }
+    @Transaction
+    @Query("SELECT * FROM routes")
+    fun getAllRoutesWithMarkersFlow(): Flow<List<RouteWithMarkers>>
+
+    @Transaction
+    @Query("SELECT * FROM routes")
+    fun getAllRoutesWithMarkers(): List<RouteWithMarkers>
+
+    @Query("DELETE FROM routes WHERE route_id = :routeId")
+    suspend fun removeRoute(routeId: Long)
+
+    @Query("DELETE FROM markers WHERE marker_id = :markerId")
+    suspend fun removeMarker(markerId: Long)
+
+    /**
+     * insertRouteWithExistingMarkers is used from the app to create a route using markers which
+     * are already in the database.
+     */
+    @Transaction
+    suspend fun insertRouteWithExistingMarkers(route: RouteEntity, markers: List<MarkerEntity>) : Long {
+        val routeId = insertRoute(route)
+        markers.forEachIndexed { index, marker ->
+            addMarkerToRoute(RouteMarkerCrossRef(routeId, marker.markerId, index))
         }
-        return success
+        return routeId
     }
 
-    fun getRoute(name: String): RealmResults<RouteData> {
-        return realm.query<RouteData>("name == $0", name).find()
-    }
-
-    fun getRoute(objectId: ObjectId): RealmResults<RouteData> {
-        return realm.query<RouteData>("objectId == $0", objectId).find()
-    }
-
-    fun getRoutes(): List<RouteData> {
-        return realm.query<RouteData>().find()
-    }
-
-    fun getMarkers(): List<MarkerData> {
-        return realm.query<MarkerData>().find()
-    }
-
-    fun getMarker(objectId: ObjectId): RealmResults<MarkerData> {
-        return realm.query<MarkerData>("objectId == $0", objectId).find()
-    }
-
-    @OptIn(ExperimentalGeoSpatialApi::class)
-    fun getMarkersNear(location: Location?, kilometre: Double): RealmResults<MarkerData> {
-        if(location != null) {
-            val circle1 = GeoCircle.create(
-                center = GeoPoint.create(location.latitude, location.longitude),
-                radius = Distance.fromKilometers(kilometre)
-            )
-            return realm.query<MarkerData>("location GEOWITHIN $circle1").find()
+    /**
+     * insertRouteWithNewMarkers is used from test code and creates a route AND all of the markers
+     * within it.
+     */
+    @Transaction
+    suspend fun insertRouteWithNewMarkers(route: RouteEntity, markers: List<MarkerEntity>) : Long {
+        val routeId = insertRoute(route)
+        markers.forEachIndexed { index, marker ->
+            val markerId = insertMarker(marker)
+            addMarkerToRoute(RouteMarkerCrossRef(routeId, markerId, index))
         }
-        return realm.query<MarkerData>().find()
-    }
-
-    suspend fun deleteRoute(objectId: ObjectId) = realm.write {
-        val findRoute = query<RouteData>("objectId == $0", objectId).find()
-        Log.d("routeDao", "Deleting route \"" + objectId.toString() + "\" size " + findRoute.size)
-        delete(findRoute)
-
-        // We leave the markers in the database
-    }
-
-    suspend fun updateRoute(route: RouteData) = realm.write {
-        val findRoute = query<RouteData>("objectId == $0", route.objectId).first().find()
-
-        try {
-            findRoute?.apply {
-                // objectId = route.objectId - not possible to update primary key
-                name = route.name
-                description = route.description
-                waypoints = route.waypoints
-            }
-        } catch (e: IllegalArgumentException) {
-            Log.e("realm", e.message.toString())
-        }
-    }
-
-    suspend fun deleteMarker(objectId: ObjectId) = realm.write {
-        val findMarker = query<MarkerData>("objectId == $0", objectId).find()
-        Log.d("routeDao", "Deleting marker \"" + objectId.toString() + "\" size " + findMarker.size)
-        if(findMarker.isNotEmpty()) {
-            val markers = getMarkers()
-            for(marker in markers) {
-                if(marker.objectId == objectId) {
-                    Log.d("routeDao", "Marker found $objectId")
-                } else {
-                    Log.d("routeDao", "Marker ignored ${marker.addressName}, ${marker.objectId}")
-                }
-            }
-        }
-        delete(findMarker)
-    }
-
-    suspend fun updateMarker(marker: MarkerData) = realm.write {
-        val findMarker = query<MarkerData>("objectId == $0", marker.objectId).first().find()
-
-        try {
-            findMarker?.apply {
-                //objectId = marker.objectId            Not possible to update primary key
-                addressName = marker.addressName
-                fullAddress = marker.fullAddress
-                location = marker.location
-            }
-        } catch (e: IllegalArgumentException) {
-            Log.e("realm", e.message.toString())
-        }
-    }
-
-    fun getRouteFlow() : Flow<List<RouteData>> {
-        return realm.query<RouteData>().asFlow().map { changes ->
-            changes.list
-        }
-    }
-
-    fun getMarkerFlow() : Flow<List<MarkerData>> {
-        return realm.query<MarkerData>().asFlow().map { changes ->
-            changes.list
-        }
+        return routeId
     }
 }

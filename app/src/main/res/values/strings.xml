@@ -94,6 +94,10 @@
   <string name="preview_title">"Soundscape Street Preview"</string>
     <!-- Title for button to go to the next intersection -->
   <string name="preview_go_title">"Go"</string>
+  <!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
+  <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">"Go to nearest intersection"</string>
+    <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. " and Moor Road" {NumberedPlaceholder="%s"} -->
+  <string name="last_entry_in_list" tools:ignore="MissingTranslation">" and %s"</string>
     <!-- Title for a setting to include unnamed roads -->
   <string name="preview_include_unnamed_roads_title">"Unnamed Roads"</string>
     <!-- Location Details, View title -->
@@ -301,7 +305,6 @@
 
   <!-- Notification, %@ is a point of interest, "At Starbucks" {NumberedPlaceholder="%@"} -->
   <string name="directions_at_poi">"At %s"</string>
-    <!-- Notification, %@ road name, "Along Pike Street." {NumberedPlaceholder="%@"} -->
 
   <!-- Button, My location -->
   <string name="directions_my_location">"My Location"</string>

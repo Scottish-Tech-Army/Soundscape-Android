@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.junit.runner.Version.id
+
 pluginManagement {
     repositories {
         google {
@@ -17,6 +19,17 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url = uri("https://jitpack.io")}
+    }
+}
+
+plugins {
+    id("com.gradle.develocity") version ("3.19.2")
+}
+
+develocity {
+    buildScan {
+        termsOfUseUrl.set("https://gradle.com/help/legal-terms-of-use")
+        termsOfUseAgree.set("yes")
     }
 }
 

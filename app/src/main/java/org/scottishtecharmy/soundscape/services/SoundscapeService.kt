@@ -31,12 +31,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.mongodb.kbson.ObjectId
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.database.local.RealmConfiguration
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
@@ -180,7 +179,7 @@ class SoundscapeService : MediaSessionService() {
             directionProvider = AndroidDirectionProvider(this)
 
             // create new RealmDB or open existing
-            startRealms()
+            startRealms(applicationContext)
 
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setCallback(SoundscapeMediaSessionCallback(this))
@@ -306,8 +305,8 @@ class SoundscapeService : MediaSessionService() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    private fun startRealms() {
-        RealmConfiguration.getMarkersInstance()
+    private fun startRealms(context: Context) {
+        MarkersAndRoutesDatabase.getMarkersInstance(context)
     }
 
     /*    fun deleteRealm(){
@@ -390,7 +389,7 @@ class SoundscapeService : MediaSessionService() {
     fun startBeacon(location: LngLatAlt, name: String) {
         routePlayer.startBeacon(location, name)
     }
-    fun routeStart(routeId: ObjectId) {
+    fun routeStart(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
     fun routeStop() {
