@@ -406,4 +406,30 @@
     <string name="first_launch_permissions_notification">Notifications</string>
     <string name="no_language_selected">Aucune langue sélectionnée</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Faire la carte plein écran</string>
+    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Gare ferroviaire</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Nous exécutons ce service de localisation au premier plan</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annuler la recherche</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s Gare</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Nord</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Nord-Ouest</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" et %s"</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Sud-Ouest</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">E</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">Sud-Est</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">NE</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SO</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Aller à l\'intersection la plus proche</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Nord-est</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Est</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">Sud</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Ouest</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">O</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NO</string>
+    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Arrêt de Tram</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s arrêt de tram</string>
+    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Station de métro</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SE</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s station de métro</string>
 </resources>
