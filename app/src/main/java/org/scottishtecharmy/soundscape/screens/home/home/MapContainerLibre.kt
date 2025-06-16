@@ -155,7 +155,8 @@ fun MapContainerLibre(
     // The other colors are currently the same for both light and dark themes
     var motorwayColor: Int = Color.rgb(128,128,255)
     var trunkRoadColor: Int = Color.rgb(255,200,30)
-    val waterColor = Color.rgb(160,200,240)
+    val waterColor = Color.rgb(200,200,240)
+    val greeneryColor = Color.argb(20, 240,255,240)
 
     // We don't run the map code when in a Preview as it does not render
     if(!LocalInspectionMode.current) {
@@ -336,6 +337,15 @@ fun MapContainerLibre(
                                 }
 
                                 is FillLayer -> {
+                                    when(layer.id) {
+                                        "park",
+                                        "landcover_wood",
+                                        "landcover_grass",
+                                        "landuse_cemetery"->
+                                            layer.setProperties(
+                                                PropertyFactory.fillColor(greeneryColor)
+                                            )
+                                    }
                                 }
 
                                 is FillExtrusionLayer -> {
