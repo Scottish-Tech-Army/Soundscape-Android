@@ -138,7 +138,7 @@ fun createMarker(
                 latitude = locationDescription.location.latitude
             )
             try {
-                routeDao.insertMarker(markerData)
+                routeDao.updateMarker(markerData)
                 onSuccess()
                 updated = true
             } catch (e: Exception) {

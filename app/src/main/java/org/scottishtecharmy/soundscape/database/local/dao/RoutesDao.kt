@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -16,11 +17,17 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 interface RouteDao {
 
     // --- Marker Operations ---
-    @Insert(onConflict = OnConflictStrategy.REPLACE) // Or IGNORE if you don't want to update existing
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMarker(marker: MarkerEntity): Long // Returns the new markerId
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateMarker(marker: MarkerEntity)
 
     @Query("SELECT * FROM markers WHERE marker_id = :markerId")
     fun getMarkerById(markerId: Long): MarkerEntity?
+
+    @Query("SELECT * FROM markers WHERE latitude = :latitude AND longitude = :longitude")
+    fun getMarkerByLocation(longitude: Double, latitude: Double): MarkerEntity?
 
     @Query("SELECT * FROM markers")
     fun getAllMarkers(): List<MarkerEntity>
@@ -100,7 +107,9 @@ interface RouteDao {
     suspend fun insertRouteWithNewMarkers(route: RouteEntity, markers: List<MarkerEntity>) : Long {
         val routeId = insertRoute(route)
         markers.forEachIndexed { index, marker ->
-            val markerId = insertMarker(marker)
+            // Check if the marker already exists
+            val existingMarker = getMarkerByLocation(marker.longitude, marker.latitude)
+            val markerId = existingMarker?.markerId ?: insertMarker(marker)
             addMarkerToRoute(RouteMarkerCrossRef(routeId, markerId, index))
         }
         return routeId

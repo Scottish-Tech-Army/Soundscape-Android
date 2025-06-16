@@ -77,11 +77,12 @@ class AddAndEditRouteViewModel @Inject constructor(
     // Function to initialize an importedRoute
     fun initializeRoute(routeData: RouteWithMarkers) {
         val routeMembers = emptyList<LocationDescription>().toMutableList()
-        for (waypoint in routeData.markers) {
+        for ((index, waypoint) in routeData.markers.withIndex()) {
             routeMembers.add(
                 LocationDescription(
                     name = waypoint.name,
                     location = LngLatAlt(waypoint.longitude, waypoint.latitude),
+                    orderId = index.toLong(),
                     databaseId = waypoint.markerId
                 )
             )
@@ -98,11 +99,7 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun initializeRouteFromData(routeData: RouteWithMarkers) {
         viewModelScope.launch {
             try {
-                // We need to write the new route to the database so that the ids are all correct
-                val id = routeDao.insertRouteWithNewMarkers(routeData.route, routeData.markers)
-                val route = routeDao.getRouteWithMarkers(id)
-                if(route == null) throw Exception("Route not found")
-                initializeRoute(route)
+                initializeRoute(routeData)
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
                 _uiState.value =
@@ -186,6 +183,7 @@ class AddAndEditRouteViewModel @Inject constructor(
                 return@launch
             }
             val markers = mutableListOf<MarkerEntity>()
+            var newMarkers = false
             _uiState.value.routeMembers.forEach {
                 markers.add(
                     MarkerEntity(
@@ -195,9 +193,14 @@ class AddAndEditRouteViewModel @Inject constructor(
                         markerId = it.databaseId
                     )
                 )
+                if(it.databaseId == 0L)
+                    newMarkers = true
             }
             try {
-                routeDao.insertRouteWithExistingMarkers(routeData, markers)
+                if(newMarkers)
+                    routeDao.insertRouteWithNewMarkers(routeData, markers)
+                else
+                    routeDao.insertRouteWithExistingMarkers(routeData, markers)
                 Log.d("AddRouteViewModel", "Route saved successfully: ${routeData.name}")
                 _uiState.value = _uiState.value.copy(
                     doneActionCompleted = true,
