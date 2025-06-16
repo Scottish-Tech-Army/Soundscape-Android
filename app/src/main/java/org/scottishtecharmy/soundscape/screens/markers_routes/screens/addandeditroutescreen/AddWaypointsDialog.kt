@@ -25,6 +25,7 @@ import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 fun AddWaypointsDialog(
     uiState: AddAndEditRouteUiState,
     placesNearbyUiState: PlacesNearbyUiState,
+    routeList: MutableList<LocationDescription>,
     modifier: Modifier,
     onAddWaypointComplete: () -> Unit,
     onClickFolder: (String, String) -> Unit,
@@ -58,7 +59,10 @@ fun AddWaypointsDialog(
                 title = stringResource(R.string.route_detail_edit_waypoints_button),
                 onNavigateUp = { onClickBack() },
                 navigationButtonTitle = stringResource(R.string.ui_back_button_title),
-                onRightButton = onAddWaypointComplete,
+                onRightButton = {
+                    // Update the list of waypoints in the route
+                    onAddWaypointComplete()
+                },
                 rightButtonTitle = stringResource(R.string.general_alert_done)
             )
 
@@ -68,6 +72,7 @@ fun AddWaypointsDialog(
             AddWaypointsList(
                 uiState = uiState,
                 placesNearbyUiState = placesNearbyUiState,
+                routeList = routeList,
                 onClickFolder = onClickFolder,
                 onSelectLocation = { location ->
                     saveMarkerDialog.value = true
@@ -112,6 +117,7 @@ fun AddWaypointsScreenPopulatedPreview() {
                 )
             ),
         placesNearbyUiState = PlacesNearbyUiState(),
+        routeList = emptyList<LocationDescription>().toMutableList(),
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
@@ -128,6 +134,7 @@ fun AddWaypointsScreenPreview() {
         uiState = AddAndEditRouteUiState(),
         userLocation = null,
         placesNearbyUiState = PlacesNearbyUiState(),
+        routeList = emptyList<LocationDescription>().toMutableList(),
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },

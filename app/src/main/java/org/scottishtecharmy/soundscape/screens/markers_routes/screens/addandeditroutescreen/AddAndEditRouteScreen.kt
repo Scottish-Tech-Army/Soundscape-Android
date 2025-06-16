@@ -180,8 +180,16 @@ fun AddAndEditRouteScreen(
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
     var routeMembers by remember(uiState.routeMembers) {
-        mutableStateOf(uiState.routeMembers.toList())
+        val members = uiState.routeMembers.toList()
+        for((index, marker) in members.withIndex()) {
+            marker.orderId = index.toLong()
+        }
+        mutableStateOf(members)
     }
+    val editableRouteList = remember(routeMembers) {
+        routeMembers.toMutableList()
+    }
+
     val lazyListState = rememberLazyListState()
     val location by remember(userLocation) {mutableStateOf(userLocation)}
     val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
@@ -229,7 +237,13 @@ fun AddAndEditRouteScreen(
         AddWaypointsDialog(
             uiState = uiState,
             placesNearbyUiState = placesNearbyUiState,
+            routeList = editableRouteList,
             onAddWaypointComplete = {
+                // Update indices
+                for((index, marker) in editableRouteList.withIndex()) {
+                    marker.orderId = index.toLong()
+                }
+                routeMembers = editableRouteList
                 addWaypointDialog = false
             },
             onClickFolder = onClickFolder,
@@ -257,6 +271,7 @@ fun AddAndEditRouteScreen(
                     onNavigateUp = { navController.popBackStack() },
                     navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                     onRightButton = {
+                        // Update the route
                         uiState.routeMembers = routeMembers
                         onEditComplete()
                     },
@@ -355,8 +370,8 @@ fun AddAndEditRouteScreen(
                                 state = lazyListState,
                                 verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                             ) {
-                                itemsIndexed(routeMembers, key = { _,item -> item.databaseId.toString() }) { index, item ->
-                                    ReorderableItem(reorderableLazyListState, item.databaseId.toString()) { _ ->
+                                itemsIndexed(routeMembers, key = { _,item -> item.orderId.toString() }) { index, item ->
+                                    ReorderableItem(reorderableLazyListState, item.orderId.toString()) { _ ->
                                         Row(modifier = Modifier
                                             .background(MaterialTheme.colorScheme.surface)
                                         ) {

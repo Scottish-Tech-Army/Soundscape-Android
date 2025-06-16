@@ -257,6 +257,8 @@ class MainActivity : AppCompatActivity() {
                     if(destination != "") {
                         if (navController.currentDestination?.route != destination) {
                             navController.navigate(destination)
+                            // Reset the destination state ready for another
+                            navigator.destination.value = ""
                         }
                     }
                 }

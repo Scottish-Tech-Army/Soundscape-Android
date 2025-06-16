@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiS
 fun AddWaypointsList(
     uiState: AddAndEditRouteUiState,
     placesNearbyUiState: PlacesNearbyUiState,
+    routeList: MutableList<LocationDescription>,
     onClickFolder: (String, String) -> Unit,
     userLocation: LngLatAlt?,
     onSelectLocation: (LocationDescription) -> Unit
@@ -48,9 +49,9 @@ fun AddWaypointsList(
     val locations = remember(uiState) {
         mutableStateListOf<LocationDescription>()
             .apply {
-                addAll(uiState.routeMembers)
+                addAll(routeList)
                 addAll(uiState.markers.filter { marker ->
-                    uiState.routeMembers.none { routeMember ->
+                    routeList.none { routeMember ->
                         routeMember.databaseId == marker.databaseId
                     }
                 }
@@ -62,7 +63,7 @@ fun AddWaypointsList(
         mutableStateMapOf<LocationDescription, Boolean>()
             .apply {
                 uiState.markers.associateWith { false }.also { putAll(it) }
-                uiState.routeMembers.associateWith { true }.also { putAll(it) }
+                routeList.associateWith { true }.also { putAll(it) }
             }
     }
 
@@ -173,12 +174,10 @@ fun AddWaypointsList(
                             enabled = true,
                             functionBoolean = {
                                 routeMember[locationDescription] = it
-                                val updatedList = uiState.routeMembers.toMutableList()
                                 if (it)
-                                    updatedList.add(locationDescription)
+                                    routeList.add(locationDescription)
                                 else
-                                    updatedList.remove(locationDescription)
-                                uiState.routeMembers = updatedList
+                                    routeList.remove(locationDescription)
                             },
                             value = routeMember[locationDescription] == true,
                             hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),

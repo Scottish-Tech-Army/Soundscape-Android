@@ -10,7 +10,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
-import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 
 // The GPX parsing code requires various pieces of Android infrastructure, so
@@ -247,6 +246,10 @@ class GpxTest {
     @Test
     fun soundscapeDuplicateDatabase() {
         val expectedValues = expectedSoundscapeValues()
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+        roomDb.clearAllTables()
+
         val id1 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
         val id2 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description", "Soundscape2")
         testDatabase(id2, expectedValues)
