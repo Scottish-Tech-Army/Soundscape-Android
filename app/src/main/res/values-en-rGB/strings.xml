@@ -457,4 +457,6 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SW</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">W</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NW</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Go to nearest intersection</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" and %s"</string>
 </resources>
