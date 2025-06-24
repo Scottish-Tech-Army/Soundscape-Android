@@ -162,7 +162,13 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         FMOD::System_Create(&system);
         m_pSystem = system;
 
-        result = m_pSystem->setSoftwareFormat(22050, FMOD_SPEAKERMODE_SURROUND, 0);
+        // As of FMOD 2.03.06 Android spatial audio is supported. Prior to that version we set the
+        // setSoftwareFormat with FMOD_SPEAKERMODE_SURROUND, but since spatial audio support was
+        // added the behaviour changed and the audio wasn't always appearing in the correct
+        // location. Intersection callouts in particular all seemed to be called out from directly
+        // ahead. We now set it to FMOD_SPEAKERMODE_STEREO. In future we can investigate using
+        // Android spatial audio.
+        result = m_pSystem->setSoftwareFormat(22050, FMOD_SPEAKERMODE_STEREO, 0);
         ERROR_CHECK(result);
 
         result = m_pSystem->init(32, FMOD_INIT_NORMAL, nullptr);
