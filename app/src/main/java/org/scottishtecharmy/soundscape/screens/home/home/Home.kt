@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.invisibleToUser
+import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.CoroutineScope
@@ -159,7 +159,7 @@ fun HomeTopAppBar(
         title = {
             Text(
                 text = stringResource(R.string.app_name),
-                modifier = Modifier.semantics { this.invisibleToUser() },
+                modifier = Modifier.semantics { this.hideFromAccessibility() },
             )
         },
         navigationIcon = {

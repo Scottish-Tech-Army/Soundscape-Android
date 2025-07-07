@@ -23,7 +23,7 @@ class MarkersViewModel
     @Inject
     constructor(
         private val routeDao: RouteDao,
-        @ApplicationContext private val context: Context,
+        @param:ApplicationContext private val context: Context,
     ) : ViewModel() {
         private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = true))
         val uiState: StateFlow<MarkersAndRoutesUiState> = _uiState
