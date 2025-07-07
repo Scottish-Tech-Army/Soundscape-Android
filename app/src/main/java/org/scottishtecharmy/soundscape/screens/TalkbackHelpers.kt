@@ -3,9 +3,9 @@ package org.scottishtecharmy.soundscape.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.invisibleToUser
 
 /**
  * talkbackHint adds a string which describes what the element does on a double click
@@ -39,5 +39,5 @@ fun Modifier.talkbackDescription(contentDescription: String) =
 @Composable
 fun Modifier.talkbackHidden() =
     semantics {
-        invisibleToUser()
+        hideFromAccessibility()
     }

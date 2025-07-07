@@ -16,7 +16,7 @@ import javax.inject.Inject
 import androidx.core.content.edit
 
 @HiltViewModel
-class AudioBeaconsViewModel @Inject constructor(@ApplicationContext val context: Context, val audioEngine : NativeAudioEngine): ViewModel() {
+class AudioBeaconsViewModel @Inject constructor(@param:ApplicationContext val context: Context, val audioEngine : NativeAudioEngine): ViewModel() {
 
     data class AudioBeaconsUiState(
         // Data for the ViewMode that affects the UI
