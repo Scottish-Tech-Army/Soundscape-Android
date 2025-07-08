@@ -25,6 +25,7 @@ data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val current
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteWithMarkers? = null
     private var currentMarker = -1
+    private var autoProgressRoute = true
     private val coroutineScope = CoroutineScope(Job())
     private var localizedContext: Context
     init {
@@ -59,6 +60,10 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             RouteEntity(0, beaconName, ""),
             waypoints
         )
+        // We don't auto progress this route, as we want to allow setting the beacon at the current
+        // location and keeping it active. If auto progress were set, that beacon would immediately
+        // stop because it is nearby.
+        autoProgressRoute = false
         _currentRouteFlow.update {
             it.copy(
                 routeData = currentRouteData,
@@ -83,6 +88,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             val route = routeDao.getRouteWithMarkers(routeId)
             currentMarker = 0
             currentRouteData = route
+            autoProgressRoute = true
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
@@ -102,25 +108,35 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             service.locationProvider.locationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
-                        if(currentMarker < route.markers.size) {
-                            val location = route.markers[currentMarker].getLngLatAlt()
-                            if(distance(location.latitude, location.longitude, value.latitude, value.longitude) < 15.0) {
-                                if((currentMarker + 1) < route.markers.size) {
-                                    // We're within 15m of the marker, move on to the next one
-                                    moveToNext()
-                                } else {
-                                    // We've reached the end of the route
-                                    // Announce the end of the route
-                                    val endOfRouteText = localizedContext.getString(
-                                        R.string.route_end_completed_accessibility,
-                                        route.route.name)
-                                    service.audioEngine.clearTextToSpeechQueue()
-                                    service.audioEngine.createTextToSpeech(
-                                        endOfRouteText,
-                                        AudioType.STANDARD)
+                        if(autoProgressRoute) {
+                            if(currentMarker < route.markers.size) {
+                                val location = route.markers[currentMarker].getLngLatAlt()
+                                if (distance(
+                                        location.latitude,
+                                        location.longitude,
+                                        value.latitude,
+                                        value.longitude
+                                    ) < 15.0
+                                ) {
+                                    if ((currentMarker + 1) < route.markers.size) {
+                                        // We're within 15m of the marker, move on to the next one
+                                        moveToNext()
+                                    } else {
+                                        // We've reached the end of the route
+                                        // Announce the end of the route
+                                        val endOfRouteText = localizedContext.getString(
+                                            R.string.route_end_completed_accessibility,
+                                            route.route.name
+                                        )
+                                        service.audioEngine.clearTextToSpeechQueue()
+                                        service.audioEngine.createTextToSpeech(
+                                            endOfRouteText,
+                                            AudioType.STANDARD
+                                        )
 
-                                    // Stop the beacon
-                                    stopRoute()
+                                        // Stop the beacon
+                                        stopRoute()
+                                    }
                                 }
                             }
                         }
