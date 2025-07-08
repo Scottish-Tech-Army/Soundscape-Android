@@ -1,4 +1,7 @@
 import com.google.protobuf.gradle.id
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -45,20 +48,21 @@ android {
         versionCode = 86
         versionName = "0.0.85"
 
-//  We don't currently require a Tile provider API key
-//
-//        // Retrieve the tile provider API from local.properties. This is not under version control
-//        // and must be configured by each developer locally. GitHb actions fill in local.properties
-//        // from a secret.
-//        var tileProviderApiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-//        try {
-//            val localProperties = Properties()
-//            localProperties.load(FileInputStream(rootProject.file("local.properties")))
-//            tileProviderApiKey = localProperties["tileProviderApiKey"].toString()
-//        } catch (e: Exception) {
-//            println("Failed to load local.properties for TILE_PROVIDER_API_KEY: $e")
-//        }
-//        buildConfigField("String", "TILE_PROVIDER_API_KEY", "\"${tileProviderApiKey}\"")
+        // Retrieve the tile provider URL and API key from local.properties. This is not under
+        // version control and must be configured by each developer locally. GitHub actions fill in
+        // local.properties from a secret.
+        var tileProviderUrl = ""
+        var tileProviderApiKey = ""
+        try {
+            val localProperties = Properties()
+            localProperties.load(FileInputStream(rootProject.file("local.properties")))
+            tileProviderUrl = localProperties["tileProviderUrl"].toString()
+            tileProviderApiKey = localProperties["tileProviderApiKey"].toString()
+        } catch (e: Exception) {
+            println("Failed to load local.properties for tile provider: $e")
+        }
+        buildConfigField("String", "TILE_PROVIDER_URL", "\"${tileProviderUrl}\"")
+        buildConfigField("String", "TILE_PROVIDER_API_KEY", "\"${tileProviderApiKey}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
         buildConfigField("String", "FMOD_LIB", "\"fmod\"")
@@ -102,8 +106,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_19
         targetCompatibility = JavaVersion.VERSION_19
     }
-    kotlinOptions {
-        jvmTarget = "19"
+
+    kotlin {
+        compilerOptions {
+            compilerOptions.jvmTarget.set(JvmTarget.JVM_19)
+        }
     }
     buildFeatures {
         compose = true

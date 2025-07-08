@@ -23,6 +23,11 @@ Authenticate for talking to the Firebase servers is done using [google-github-ac
 * GCLOUD_CREDENTIALS_JSON - the value passed in to  `credentials_json`.
 * FIREBASE_PROJECT_ID - This is the Project ID from Firebase. 
 
+### Tile provider secrets
+These are the secrets that are used to get mapping tiles from the protomaps server.
+* TILE_PROVIDER_URL - the base URL pointing at our protomaps server
+* TILE_PROVIDER_API_KEY - the API key required to access the protomaps server
+
 ### Repo commit without pull request
 The `run-test.yaml` action bumps the version number, committing the change back into the repo. The repo has branch protection enabled which requires a pull request for any commits. We pass in a token as described [here](https://github.com/stefanzweifel/git-auto-commit-action?tab=readme-ov-file#push-to-protected-branches) to allow the pull request to be bypassed:
 * PAT_TOKEN - token generated on an admin account which allows write access to public repos.

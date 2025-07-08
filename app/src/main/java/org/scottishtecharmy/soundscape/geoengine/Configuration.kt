@@ -21,7 +21,6 @@ const val GRID_SIZE = 2
  * and the tiles are at
  *    https://server/protomaps/{z}/{x}/{y}.mvt
  */
-const val PROTOMAPS_SERVER_BASE = "https://d1wzlzgah5gfol.cloudfront.net"
 const val PROTOMAPS_SERVER_PATH = "protomaps"
 const val PROTOMAPS_SUFFIX = "mvt"
 

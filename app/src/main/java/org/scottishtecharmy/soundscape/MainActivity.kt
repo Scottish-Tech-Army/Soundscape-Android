@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape
 import android.Manifest
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -30,7 +31,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_BASE
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
                 if (line.contains("PROTOMAPS_SERVER_URL")) {
                     val newline = line.replace(
                         "PROTOMAPS_SERVER_URL",
-                        "$PROTOMAPS_SERVER_BASE/$PROTOMAPS_SERVER_PATH.json"
+                        "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
                     )
                     outputStyleStream.write(newline.toByteArray())
                 } else {
