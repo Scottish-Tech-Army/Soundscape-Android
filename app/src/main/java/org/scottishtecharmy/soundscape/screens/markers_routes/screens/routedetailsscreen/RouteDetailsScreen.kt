@@ -68,6 +68,7 @@ fun RouteDetailsScreenVM(
     routePlayerState: RoutePlayerState
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val context = LocalContext.current
     RouteDetailsScreen(
         navController,
         routeId,
@@ -77,6 +78,7 @@ fun RouteDetailsScreenVM(
         getRouteById = { viewModel.getRouteById(routeId) },
         startRoute = { viewModel.startRoute(routeId) },
         stopRoute = { viewModel.stopRoute() },
+        shareRoute = { viewModel.shareRoute(context, routeId) },
         clearErrorMessage = { viewModel.clearErrorMessage() },
         userLocation = userLocation,
         heading = heading
@@ -90,9 +92,10 @@ fun RouteDetailsScreen(
     modifier: Modifier,
     uiState: RouteDetailsUiState,
     routePlayerState: RoutePlayerState,
-    getRouteById: (routeId: Long) -> Unit,
-    startRoute: (routeId: Long) -> Unit,
+    getRouteById: () -> Unit,
+    startRoute: () -> Unit,
     stopRoute: () -> Unit,
+    shareRoute:(routeId: Long) -> Unit,
     clearErrorMessage: () -> Unit,
     userLocation: LngLatAlt?,
     heading: Float
@@ -105,7 +108,7 @@ fun RouteDetailsScreen(
 
     // Fetch the route details when the screen is launched
     LaunchedEffect(routeId) {
-        getRouteById(routeId)
+        getRouteById()
     }
 
     // Display error message if it exists
@@ -212,7 +215,7 @@ fun RouteDetailsScreen(
                                         text = stringResource(R.string.route_detail_action_start_route),
                                         color = MaterialTheme.colorScheme.onSurface
                                     ) {
-                                        startRoute(uiState.route.route.routeId)
+                                        startRoute()
                                         // Pop up to the home screen
                                         navController.navigate(HomeRoutes.Home.route) {
                                             popUpTo(navController.graph.findStartDestination().id) {
@@ -241,7 +244,7 @@ fun RouteDetailsScreen(
                                     talkbackHint = stringResource(R.string.route_detail_action_share_hint),
                                     color = MaterialTheme.colorScheme.onSurface
                                 ) {
-                                    /*TODO*/
+                                    shareRoute(uiState.route.route.routeId)
                                 }
                             }
                             // Small map showing route
@@ -324,6 +327,7 @@ fun RoutesDetailsPopulatedPreview() {
         getRouteById = {},
         startRoute = {},
         stopRoute = {},
+        shareRoute = {},
         clearErrorMessage = {},
         userLocation = null,
         heading = 0.0F,
@@ -342,6 +346,7 @@ fun RoutesDetailsLoadingPreview() {
         getRouteById = {},
         startRoute = {},
         stopRoute = {},
+        shareRoute = {},
         clearErrorMessage = {},
         userLocation = null,
         heading = 0.0F,
@@ -360,6 +365,7 @@ fun RoutesDetailsEmptyPreview() {
         getRouteById = {},
         startRoute = {},
         stopRoute = {},
+        shareRoute = {},
         clearErrorMessage = {},
         userLocation = null,
         heading = 0.0F,
