@@ -317,6 +317,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun shareRoute(shareUri: Uri?) {
+        if(shareUri != null) {
+            val sendIntent: Intent =
+                Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TITLE, "Shared route")
+                    putExtra(Intent.EXTRA_STREAM, shareUri)
+                    type = "text/plain"
+                    flags += Intent.FLAG_GRANT_READ_URI_PERMISSION
+                }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Log.d(TAG, "onNewIntent")
