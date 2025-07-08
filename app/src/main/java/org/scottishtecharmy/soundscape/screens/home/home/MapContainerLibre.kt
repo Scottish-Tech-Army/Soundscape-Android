@@ -235,7 +235,6 @@ fun MapContainerLibre(
         LaunchedEffect(map) {
             // init map first time it is displayed
             map.getMapAsync { mapLibre ->
-                // val apiKey = BuildConfig.TILE_PROVIDER_API_KEY
                 val styleName = if(accessibleMapEnabled) "processedStyle.json" else "processedOriginalStyle.json"
                 val styleUrl = Uri.fromFile(File("$filesDir/osm-liberty-accessible/$styleName")).toString()
                 mapLibre.setStyle(styleUrl) { style ->

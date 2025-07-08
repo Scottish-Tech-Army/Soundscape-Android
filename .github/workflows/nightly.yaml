@@ -48,11 +48,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      #- name: Setup tile provider API key
-      #  env:
-      #    TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-      #  run: |
-      #    echo tileProviderApiKey=$TILE_PROVIDER_API_KEY > local.properties
+      - name: Setup tile provider
+        env:
+          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
+        run: |
+          echo tileProviderUrl=$TILE_PROVIDER_URL > local.properties
+          echo tileProviderApiKey=$TILE_PROVIDER_API_KEY >> local.properties
 
       - name: Decode Google services
         env:
@@ -127,11 +129,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      #- name: Setup tile provider API key
-      #  env:
-      #    TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-      #  run: |
-      #    echo tileProviderApiKey=$TILE_PROVIDER_API_KEY > local.properties
+      - name: Setup tile provider
+        env:
+          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
+        run: |
+          echo tileProviderUrl=$TILE_PROVIDER_URL > local.properties
+          echo tileProviderApiKey=$TILE_PROVIDER_API_KEY >> local.properties
 
       - name: Decode Google services
         env:

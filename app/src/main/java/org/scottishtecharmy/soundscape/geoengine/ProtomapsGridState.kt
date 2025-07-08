@@ -50,7 +50,7 @@ open class ProtomapsGridState(
                     async {
                         service?.getVectorTileWithCache(x, y, zoomLevel)
                     }
-                var result = tileReq.await()?.awaitResponse()?.body()
+                val result = tileReq.await()?.awaitResponse()?.body()
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
                     Log.e(TAG, "Tile size ${result.serializedSize}")

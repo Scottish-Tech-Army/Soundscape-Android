@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -80,8 +81,15 @@ class MvtPerformanceTest {
             gridState.updateTile(x, y, featureCollections, intersectionMap)
         }
     }
+    fun tileProviderAvailable(): Boolean {
+        return !BuildConfig.TILE_PROVIDER_URL.isEmpty()
+    }
+
     @Test
     fun testParsing() {
+
+        if(!tileProviderAvailable())
+            return
 
         val gridState = ProtomapsGridState()
         gridState.start(ApplicationProvider.getApplicationContext())
@@ -103,8 +111,13 @@ class MvtPerformanceTest {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testRouting() {
+
+        if(!tileProviderAvailable())
+            return
+
         val gridState = ProtomapsGridState()
 
         val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
@@ -149,7 +162,11 @@ class MvtPerformanceTest {
     }
 
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun testGridCache(boundingBox: BoundingBox, count: Int = 1 ) {
+
+        if(!tileProviderAvailable())
+            return
 
         // This test 'moves' from the center of one tile to the center of the next to check that
         // we can parse the contents of the bounding box
@@ -183,8 +200,12 @@ class MvtPerformanceTest {
             gridState.stop()
         }
     }
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testSingleGridCache() {
+
+        if(!tileProviderAvailable())
+            return
 
         println("Start test")
 
@@ -218,6 +239,9 @@ class MvtPerformanceTest {
 
     @Test
     fun testMapAreas() {
+        if(!tileProviderAvailable())
+            return
+
         val newYork = BoundingBox(-74.0231755, 40.7120699, -73.9197845, 40.8303351)
         testGridCache(newYork)
         val yaounde = BoundingBox(11.4402869, 3.7493240, 11.6208422, 3.9353452)
