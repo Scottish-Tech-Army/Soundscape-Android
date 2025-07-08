@@ -119,6 +119,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 review = { module = "com.google.android.play:review", version.ref = "review" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 rtree2 = { module = "com.github.davidmoten:rtree2", version.ref = "rtree2" }
+symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "devtools-ksp" }
 ui = { module = "androidx.compose.ui:ui" }
 ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }

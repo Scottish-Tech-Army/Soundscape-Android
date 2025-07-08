@@ -71,6 +71,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags += ""
+                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
             }
         }
     }
@@ -271,4 +272,6 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.symbol.processing.api)
 }
