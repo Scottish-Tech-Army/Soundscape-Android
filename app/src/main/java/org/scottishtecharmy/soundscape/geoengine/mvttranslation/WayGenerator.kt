@@ -50,7 +50,7 @@ class Intersection : Feature() {
 
     fun toFeature() {
         geometry = Point(location.longitude, location.latitude)
-        properties = hashMapOf<String, Any?>()
+        properties = hashMapOf()
         properties?.set("name", name)
         properties?.set("members", members.size)
         properties?.set("type", if(intersectionType == IntersectionType.TILE_EDGE) "tile_edge" else "intersection")
@@ -441,11 +441,11 @@ fun convertBackToTileCoordinates(location: LngLatAlt,
                                  tileZoom : Int) : Pair<Int, Int> {
 
 
-    var x = ((location.longitude + 180.0) / 360.0) * (1 shl tileZoom)
-    var y = (1 shl tileZoom) * (1.0 - asinh(tan(toRadians(location.latitude))) / PI) / 2
+    val x = ((location.longitude + 180.0) / 360.0) * (1 shl tileZoom)
+    val y = (1 shl tileZoom) * (1.0 - asinh(tan(toRadians(location.latitude))) / PI) / 2
 
-    var xInt = (abs(x - truncate(x)) * 4096).toInt()
-    var yInt = (abs(y - truncate(y)) * 4096).toInt()
+    val xInt = (abs(x - truncate(x)) * 4096).toInt()
+    val yInt = (abs(y - truncate(y)) * 4096).toInt()
 
     return Pair(xInt, yInt)
 }
@@ -509,7 +509,7 @@ class WayGenerator {
         // Add feature with the segment up until this point
         val newFeature = Feature()
         feature.properties?.let { properties ->
-            newFeature.properties = hashMapOf<String, Any?>()
+            newFeature.properties = hashMapOf()
             for((key, prop) in properties) {
                 newFeature.properties!![key] = prop
             }
@@ -517,7 +517,7 @@ class WayGenerator {
         }
         feature.foreign?.let { foreign ->
 
-            newFeature.foreign = hashMapOf<String, Any?>()
+            newFeature.foreign = hashMapOf()
             for((key, prop) in foreign) {
                 newFeature.foreign!![key] = prop
             }
@@ -700,9 +700,9 @@ class WayGenerator {
             intersection.value.name = name.toString()
 
             intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
-            intersection.value.properties = hashMapOf<String, Any?>()
+            intersection.value.properties = hashMapOf()
             intersection.value.properties?.set("name", intersection.value.name)
-            intersection.value.foreign = hashMapOf<String, Any?>()
+            intersection.value.foreign = hashMapOf()
             intersection.value.foreign?.set("feature_type", "highway")
             intersection.value.foreign?.set("feature_value", "gd_intersection")
             intersection.value.foreign?.set("osm_ids", osmIds)

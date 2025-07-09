@@ -33,7 +33,7 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun loadMarkers() {
         // Monitor the markers in the database
         viewModelScope.launch {
-            routeDao.getAllMarkersFlow().collect() { markers ->
+            routeDao.getAllMarkersFlow().collect { markers ->
                 val markerVMs = markers.map {
                     val markerLngLat =
                         LngLatAlt(it.longitude, it.latitude)

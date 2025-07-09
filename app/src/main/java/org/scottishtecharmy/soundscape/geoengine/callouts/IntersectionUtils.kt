@@ -102,7 +102,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                         userGeometry.ruler.distanceToLineString(userGeometry.mapMatchedLocation.point, road.geometry as LineString)
                     val snappedHeading = userGeometry.snappedHeading()
                     if (snappedHeading != null) {
-                        var innerAngle = calculateSmallestAngleBetweenLines(roadDistance.heading, snappedHeading)
+                        val innerAngle = calculateSmallestAngleBetweenLines(roadDistance.heading, snappedHeading)
                         if (innerAngle > 45.0) {
                             // This way is not at the angle of travel, so skip it
                             continue
@@ -372,7 +372,7 @@ fun addIntersectionCalloutFromDescription(
     )
 
     // Report roads that join the intersection
-    val incomingHeading = (heading.toDouble() + 180.0) % 360.0
+    val incomingHeading = (heading + 180.0) % 360.0
 
     val directions = getCombinedDirectionSegments(incomingHeading)
     val intersectionResults = emptyList<PositionedString>().toMutableList()
@@ -412,7 +412,7 @@ fun addIntersectionCalloutFromDescription(
                 else -> 0.0
             }
 
-            var destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext)
+            val destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext)
             val intersectionCallout =
                 localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText $unlocalizedDirection"
             intersectionResults.add(

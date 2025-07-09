@@ -58,6 +58,7 @@ import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import java.lang.String.format
 
 
 data class PositionedString(
@@ -464,12 +465,12 @@ class GeoEngine {
 
                         val nearestRoad = userGeometry.mapMatchedWay
                         if (nearestRoad != null) {
-                            var roadName = nearestRoad.getName(null, gridState, localizedContext)
+                            val roadName = nearestRoad.getName(null, gridState, localizedContext)
                             val facingDirectionAlongRoad =
                                 getCompassLabelFacingDirectionAlong(
                                     localizedContext,
                                     heading.toInt(),
-                                    roadName.toString(),
+                                    roadName,
                                     userGeometry.inMotion(),
                                     userGeometry.inVehicle()
                                 )
@@ -921,10 +922,10 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
     if(localizedContext == null) {
         if(name == null) {
             val osmClass = feature.properties?.get("class") as String?
-            return TextForFeature(osmClass?.toString() ?: "", true)
+            return TextForFeature(osmClass ?: "", true)
         }
 
-        return TextForFeature(name.toString(), false)
+        return TextForFeature(name, false)
     }
 
     if(isMarker) {
@@ -985,7 +986,7 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
  *
  */
 
-fun formatDistance(distance: Double, localizedContext: Context) : String {
+fun formatDistance(distance: Double, localizedContext: Context?) : String {
     // TODO - Add setting for imperial/metric
     val metric = true
     var units = distance
@@ -1001,16 +1002,16 @@ fun formatDistance(distance: Double, localizedContext: Context) : String {
         ((units + (roundToNearest / 2)) / roundToNearest).toInt() * roundToNearest
 
     if (roundedDistance < 1000) {
-        return localizedContext.getString(
+        return localizedContext?.getString(
             if(metric) R.string.distance_format_meters else R.string.distance_format_feet,
             roundedDistance.toInt().toString()
-        )
+        ) ?: format("%f metres", roundedDistance)
     } else {
         val bigUnits = (roundedDistance.toInt() / 10).toFloat() / bigUnitDivisor
-        return localizedContext.getString(
+        return localizedContext?.getString(
             if(metric) R.string.distance_format_km else R.string.distance_format_miles,
             "%.2f".format(bigUnits)
-        )
+        )  ?: format("%f km", bigUnits)
     }
 }
 

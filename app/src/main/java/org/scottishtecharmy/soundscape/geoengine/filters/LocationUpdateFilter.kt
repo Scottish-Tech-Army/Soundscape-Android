@@ -56,7 +56,7 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
             val timeInterval = minTimeMs * inVehicleTimeIntervalMultiplier
             var distanceInterval = minDistance
             if(userGeometry.speed > 0) {
-                distanceInterval = userGeometry.speed.toDouble() * minTimeMs
+                distanceInterval = userGeometry.speed * minTimeMs
             }
 
             return shouldUpdate(userGeometry, timeInterval, distanceInterval)

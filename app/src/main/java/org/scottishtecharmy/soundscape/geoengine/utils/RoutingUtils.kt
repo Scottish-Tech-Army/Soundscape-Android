@@ -25,7 +25,7 @@ fun dijkstraOnWaysWithLoops(
     // accumulated distance to that node
     val priorityQueue = PriorityQueue<Triple<Intersection, Double, Double>>(compareBy { it.third })
     val visited = mutableSetOf<Pair<Intersection, Double>>()
-    var distanceToEnd = maxDistance
+    val distanceToEnd = maxDistance
 
     priorityQueue.add(Triple(start,0.0,0.0))
     start.dijkstraRunCount = dijkstraRunCount
@@ -116,7 +116,7 @@ fun findShortestDistance(
 
     val shortestDistance = dijkstraOnWaysWithLoops(
         newStartIntersection,
-        newEndIntersection!!,
+        newEndIntersection,
         ruler,
         maxDistance
     )
@@ -124,7 +124,7 @@ fun findShortestDistance(
     if (debugFeatureCollection != null) {
         debugFeatureCollection.features.clear()
         val ways = getPathWays(
-            newEndIntersection!!
+            newEndIntersection
         )
         for (way in ways) {
             debugFeatureCollection.addFeature(way as Feature)
@@ -135,7 +135,7 @@ fun findShortestDistance(
         shortestDistance,
         newStartIntersection,
         startWay,
-        newEndIntersection!!,
+        newEndIntersection,
         endWay)
 }
 

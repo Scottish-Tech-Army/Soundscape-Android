@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -25,12 +26,41 @@ class AutoCallout(
     private val localizedContext: Context?,
     private val sharedPreferences: SharedPreferences?
 ) {
+    private val destinationFilter = LocationUpdateFilter(60000, 10.0)
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionFilter = LocationUpdateFilter(5000, 5.0)
     private val intersectionCalloutHistory = CalloutHistory(30000)
     private val poiCalloutHistory = CalloutHistory()
     private val roadSenseCalloutHistory = CalloutHistory()
+
+    private fun buildCalloutForDestination(userGeometry: UserGeometry): List<PositionedString> {
+
+        // Check that we have a destination
+        if(userGeometry.currentBeacon == null)
+            return emptyList()
+
+        // Check that our location/time has changed enough to generate this callout
+        if (!destinationFilter.shouldUpdate(userGeometry)) {
+            return emptyList()
+        }
+
+        val distance = userGeometry.ruler.distance(userGeometry.location, userGeometry.currentBeacon)
+        val distanceString = formatDistance(distance, localizedContext)
+        var text = localizedContext?.getString(R.string.callouts_audio_beacon) ?: "Distance to the audio beacon"
+        text += " $distanceString"
+
+        val results: MutableList<PositionedString> = mutableListOf()
+        results.add(
+            PositionedString(
+                text = text,
+                location = userGeometry.currentBeacon,
+                type = AudioType.LOCALIZED
+            ),
+        )
+
+        return results
+    }
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
                                          gridState: GridState,
@@ -57,10 +87,10 @@ class AutoCallout(
         if(geocode != null) {
             val callout = TrackedCallout(
                 userGeometry,
-                geocode.text,
-                geocode.location!!,
-                false,
-                false
+                callout = geocode.text,
+                location =geocode.location!!,
+                isPoint = false,
+                isGeneric = false
             )
 
             if (roadSenseCalloutHistory.find(callout)) {
@@ -97,8 +127,7 @@ class AutoCallout(
             return emptyList()
         }
 
-        // Update time/location filter for our new position
-        intersectionFilter.update(userGeometry)
+        // Trim callout history based on our location and current time
         intersectionCalloutHistory.trim(userGeometry)
 
         val roadsDescription = getRoadsDescriptionFromFov(
@@ -231,47 +260,46 @@ class AutoCallout(
                        gridState: GridState,
                        settlementGrid: GridState) : List<PositionedString> {
 
-        // Check that the callout isn't disabled in the settings
-        if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) == false) {
-            return emptyList()
-        }
-
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
         val returnList = runBlocking {
             withContext(gridState.treeContext) {
                 var list = emptyList<PositionedString>()
 
-                // buildCalloutForRoadSense builds a callout for
-                val roadSenseCallout = buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
-                if (roadSenseCallout.isNotEmpty()) {
-                    // If we have som
-                    list = roadSenseCallout
-                } else {
-                    val intersectionCallout = buildCalloutForIntersections(userGeometry, gridState)
-                    if (intersectionCallout.isNotEmpty()) {
-                        intersectionFilter.update(userGeometry)
-                        list = list + intersectionCallout
-                    }
+                val destinationCallout = buildCalloutForDestination(userGeometry)
+                if (destinationCallout.isNotEmpty()) {
+                    // Update the destination filter if we're outputting it
+                    destinationFilter.update(userGeometry)
+                    list = destinationCallout
+                } else if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) == true) {
+                    // buildCalloutForRoadSense builds a callout for travel that's faster than
+                    // walking
+                    val roadSenseCallout =
+                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
+                    if (roadSenseCallout.isNotEmpty()) {
+                        list = roadSenseCallout
+                    } else {
+                        val intersectionCallout =
+                            buildCalloutForIntersections(userGeometry, gridState)
+                        if (intersectionCallout.isNotEmpty()) {
+                            intersectionFilter.update(userGeometry)
+                            list = list + intersectionCallout
+                        }
 
 
-                    // Get normal callouts for nearby POIs, for the destination, and for beacons
-                    val poiCallout = buildCalloutForNearbyPOI(userGeometry, gridState)
+                        // Get normal callouts for nearby POIs, for the destination, and for beacons
+                        val poiCallout = buildCalloutForNearbyPOI(userGeometry, gridState)
 
-                    // Update time/location filter for our new position
-                    if (poiCallout.isNotEmpty()) {
-                        poiFilter.update(userGeometry)
-                        list = list + poiCallout
+                        // Update time/location filter for our new position
+                        if (poiCallout.isNotEmpty()) {
+                            poiFilter.update(userGeometry)
+                            list = list + poiCallout
+                        }
                     }
                 }
-
                 list
             }
         }
         return returnList
-    }
-
-    companion object {
-        private const val TAG = "AutoCallout"
     }
 }

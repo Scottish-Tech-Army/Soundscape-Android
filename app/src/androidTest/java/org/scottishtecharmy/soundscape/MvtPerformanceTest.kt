@@ -85,6 +85,7 @@ class MvtPerformanceTest {
         return !BuildConfig.TILE_PROVIDER_URL.isEmpty()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testParsing() {
 
@@ -180,8 +181,8 @@ class MvtPerformanceTest {
         val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), MAX_ZOOM_LEVEL)
 
         for(i in 0 until count) {
-            for (x in minX.toInt() until maxX.toInt()) {
-                for (y in minY.toInt() until maxY.toInt()) {
+            for (x in minX until maxX) {
+                for (y in minY until maxY) {
 
                     // Get top left of tile
                     val location = getLatLonTileWithOffset(x, y, MAX_ZOOM_LEVEL, 0.0, 0.0)

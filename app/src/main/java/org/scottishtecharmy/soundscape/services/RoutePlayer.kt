@@ -36,7 +36,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     }
 
     // Flow to return current route data
-    private val _currentRouteFlow = MutableStateFlow<RoutePlayerState>(RoutePlayerState())
+    private val _currentRouteFlow = MutableStateFlow(RoutePlayerState())
     var currentRouteFlow: StateFlow<RoutePlayerState> = _currentRouteFlow
 
     /**
@@ -54,7 +54,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             longitude = beaconLocation.longitude,
             latitude = beaconLocation.latitude,
         )
-        val waypoints = listOf<MarkerEntity>(marker)
+        val waypoints = listOf(marker)
 
         currentRouteData = RouteWithMarkers(
             RouteEntity(0, beaconName, ""),

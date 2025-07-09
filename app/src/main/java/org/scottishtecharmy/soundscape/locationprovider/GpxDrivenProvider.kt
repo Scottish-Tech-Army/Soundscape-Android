@@ -38,7 +38,7 @@ class GpxDrivenProvider  {
         parseGpx(input)
 
         coroutineScope.launch {
-            var ruler = GeodesicRuler()
+            val ruler = GeodesicRuler()
             while (true) {
                 val point = parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(trackPointIndex)
 

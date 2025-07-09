@@ -4,7 +4,6 @@ import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
@@ -85,8 +84,8 @@ class IndexedLineString {
             return
         }
 
-        indices = Array<Int>(route.size) { 0 }
-        direction = Array<Boolean>(route.size) { true }
+        indices = Array(route.size) { 0 }
+        direction = Array(route.size) { true }
         if (route.size == 1) {
             line = route[0].geometry as LineString
             indices?.set(0, line!!.coordinates.size)
@@ -97,7 +96,7 @@ class IndexedLineString {
         line = LineString()
         for ((index, way) in route.withIndex()) {
 
-            var forwards = true
+            var forwards: Boolean
             if(index < route.size - 1) {
                 // Most of the Ways in the route
                 val (nextIntersection, ourIndex) = route[index].doesIntersect(route[index + 1])
@@ -295,7 +294,7 @@ class RoadFollower(val parent: MapMatchFilter,
                                newWay: Way,
                                colorIndexOffset: Int) : RoadFollower {
         // Create a new follower which is a copy of this one, but with an extended route
-        var newRoute = emptyList<Way>().toMutableList()
+        val newRoute = emptyList<Way>().toMutableList()
 
         val (minIndex, maxIndex) = getRouteIntersectionIndices(newWay)
         if(minIndex != maxIndex) {
@@ -345,7 +344,7 @@ class RoadFollower(val parent: MapMatchFilter,
             return false
         }
 
-        var newRoute = emptyList<Way>().toMutableList()
+        val newRoute = emptyList<Way>().toMutableList()
         if(route.first().doesIntersect(newWay).first != null) {
             if(!route.first().intersections.contains(null)) {
                 newRoute.add(newWay)
@@ -510,7 +509,7 @@ class RoadFollower(val parent: MapMatchFilter,
                     collection.addFeature(circle)
                 }
 
-                var directionToNearestPoint = bearingFromTwoPoints(lastCenter, matchedPoint.point)
+                val directionToNearestPoint = bearingFromTwoPoints(lastCenter, matchedPoint.point)
                 val chordLength = sqrt(
                     (radius * radius) - (matchedPoint.distance * matchedPoint.distance)
                 ) * 2
@@ -546,7 +545,7 @@ class RoadFollower(val parent: MapMatchFilter,
 
         val roadHeading = nearestPoint?.heading
         if (!gpsHeading.isNaN() && roadHeading != null) {
-            var headingDifference = calculateSmallestAngleBetweenLines(gpsHeading, roadHeading)
+            val headingDifference = calculateSmallestAngleBetweenLines(gpsHeading, roadHeading)
             val cosHeadingDifference = cos(toRadians(headingDifference))
             if (cosHeadingDifference < 0.703) {
                 // Unreliable GPS heading - the GPS is moving in a very different direction
@@ -631,9 +630,9 @@ class MapMatchFilter {
      * combination.
      */
     fun extendFollowerList(location: LngLatAlt, gridState: GridState) {
-        var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+        val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
 
-        var roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
+        val roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
 
         if (followerList.isEmpty()) {
             if(roads.features.isNotEmpty()) {
@@ -669,7 +668,7 @@ class MapMatchFilter {
                 while(iterator.hasNext()) {
                     val follower = iterator.next()
                     val lastWayInRoute = follower.route.last()
-                    var (intersection, ourIndex) = lastWayInRoute.doesIntersect(way)
+                    val (intersection, _) = lastWayInRoute.doesIntersect(way)
                     if (intersection != null) {
                         // This road intersects with the last way, so it can either replace it, or
                         // be added on to it.
@@ -677,7 +676,7 @@ class MapMatchFilter {
                         added = true
                     } else {
                         val firstWayInRoute = follower.route.first()
-                        val (firstIntersection, ourIndex2) = firstWayInRoute.doesIntersect(way)
+                        val (firstIntersection, _) = firstWayInRoute.doesIntersect(way)
                         if (firstIntersection != null) {
                             // This road intersects with the first way, so it can either replace it,
                             // or be added on to it.
@@ -721,14 +720,11 @@ class MapMatchFilter {
 
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
-        var freshetList = emptyList<Pair<RoadFollowerStatus, String>>().toMutableList()
+        val freshetList = emptyList<Pair<RoadFollowerStatus, String>>().toMutableList()
         val followerIterator = followerList.listIterator()
-        var matchedStatus : RoadFollowerStatus? = null
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
             val frechetStatus = follower.update(location, collection, gridState.ruler)
-            if(follower == matchedFollower)
-                matchedStatus = frechetStatus
 
             freshetList.add(Pair(frechetStatus, follower.color))
             if(frechetStatus.state == RoadFollowerState.DISTANT) {
@@ -760,7 +756,7 @@ class MapMatchFilter {
                         if(matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
-                            var roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+                            val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
                             addSidewalk(matched, roadTree, gridState.ruler)
                             addSidewalk(way, roadTree, gridState.ruler)
 
