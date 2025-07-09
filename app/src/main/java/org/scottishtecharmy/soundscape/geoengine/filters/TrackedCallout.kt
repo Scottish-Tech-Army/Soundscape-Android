@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
-import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 

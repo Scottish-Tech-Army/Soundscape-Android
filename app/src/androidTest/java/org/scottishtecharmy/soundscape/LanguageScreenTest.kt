@@ -27,7 +27,7 @@ class LanguageScreenTest {
     private val context: Context = ApplicationProvider.getApplicationContext()
 
     @Test
-    fun WHEN_no_language_selected_THEN_no_language_label_displayed_AND_continue_button_disabled(){
+    fun whenNoLanguageSelectedThenNoLanguageLabelDisplayedAndContinueButtonDisabled(){
         composeTestRule.setContent {
             LanguageComposable(
                 supportedLanguages = MockLanguagePreviewData.languages,
@@ -52,7 +52,7 @@ class LanguageScreenTest {
     }
 
     @Test
-    fun WHEN_a_language_is_selected_THEN_its_name_appears_in_the_default_button_AND_language_is_marked_as_selected_in_the_menu(){
+    fun whenALanguageIsSelectedThenItsNameAppearsInTheDefaultButtonAndLanguageIsMarkedAsSelectedInTheMenu(){
         val selectedIndex = 1
         composeTestRule.setContent {
             SoundscapeTheme {

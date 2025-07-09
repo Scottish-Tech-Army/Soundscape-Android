@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.language
 
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.ui.text.intl.LocaleList
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

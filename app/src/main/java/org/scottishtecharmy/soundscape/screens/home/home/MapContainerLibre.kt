@@ -153,8 +153,8 @@ fun MapContainerLibre(
     val foregroundColor = MaterialTheme.colorScheme.onBackground.toArgb()
 
     // The other colors are currently the same for both light and dark themes
-    var motorwayColor: Int = Color.rgb(128,128,255)
-    var trunkRoadColor: Int = Color.rgb(255,200,30)
+    val motorwayColor: Int = Color.rgb(128,128,255)
+    val trunkRoadColor: Int = Color.rgb(255,200,30)
     val waterColor = Color.rgb(200,200,240)
     val greeneryColor = Color.argb(20, 240,255,240)
 

@@ -71,7 +71,7 @@ open class GridState(
     private var totalBoundingBox = BoundingBox()
     internal var ruler = CheapRuler(0.0)
     internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-    internal var gridIntersections: HashMap<LngLatAlt, Intersection> = HashMap<LngLatAlt, Intersection>()
+    internal var gridIntersections: HashMap<LngLatAlt, Intersection> = HashMap()
 
     val treeContext = passedInTreeContext ?: newSingleThreadContext("TreeContext")
     var validateContext = true

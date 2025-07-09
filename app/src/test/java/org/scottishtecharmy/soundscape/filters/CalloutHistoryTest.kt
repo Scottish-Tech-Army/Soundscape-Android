@@ -15,7 +15,10 @@ class CalloutHistoryTest {
     fun testAddAndFind() {
         val history = CalloutHistory(10)
         val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
-        val callout = TrackedCallout(UserGeometry(), "Poi number one", location, true, false)
+        val callout = TrackedCallout(UserGeometry(), "Poi number one", location,
+            isPoint = true,
+            isGeneric = false
+        )
         history.add(callout)
         assertTrue(history.find(callout))
         assertEquals(1, history.size())
@@ -29,8 +32,8 @@ class CalloutHistoryTest {
             UserGeometry(timestampMilliseconds = 0L),
             "Poi number two",
             location,
-            true,
-            true
+            isPoint = true,
+            isGeneric = true
         )
         history.add(callout)
         history.trim(UserGeometry(
@@ -47,7 +50,10 @@ class CalloutHistoryTest {
         val history = CalloutHistory(10)
         val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
         val distantLocation = LngLatAlt(10.0, 10.0, 10.0)
-        val callout = TrackedCallout(UserGeometry(), "Poi number three", distantLocation, true, false)
+        val callout = TrackedCallout(UserGeometry(), "Poi number three", distantLocation,
+            isPoint = true,
+            isGeneric = false
+        )
         history.add(callout)
         history.trim(UserGeometry(location))
         assertFalse(history.find(callout))

@@ -460,8 +460,8 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             }
 
             // Merge the sorted initial list into the sorted list that we just generated
-            var initialItemIterator = initialCollection?.features?.iterator()
-            var newItemIterator = sortedList.iterator()
+            val initialItemIterator = initialCollection?.features?.iterator()
+            val newItemIterator = sortedList.iterator()
 
             var initialItem: Feature? = if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
             var newItem: EntryWithDistance? = if (newItemIterator.hasNext()) newItemIterator.next() else null

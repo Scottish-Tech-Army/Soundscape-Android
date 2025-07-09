@@ -181,7 +181,7 @@ fun removeDuplicateOsmIds(
 }
 
 fun getFovTriangle(userGeometry: UserGeometry, forceLocation: Boolean = false) : Triangle {
-    var heading = userGeometry.snappedHeading() ?: 0.0
+    val heading = userGeometry.snappedHeading() ?: 0.0
     val quadrant = Quadrant(heading)
     val location = if(forceLocation) userGeometry.location
         else if(userGeometry.mapMatchedLocation != null) userGeometry.mapMatchedLocation.point
@@ -1714,7 +1714,7 @@ fun confectNamesForRoad(road: Feature,
             return
         }
 
-        addPoiDestinations(road as Way, gridState)
+        addPoiDestinations(road, gridState)
     }
 }
 
@@ -1779,7 +1779,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
                     setDestinationTag(
                         way.second.properties,
                         way.first,
-                        namedRoadToUse?.toString() ?: "",
+                        namedRoadToUse ?: "",
                         false,
                         brunnelOrStepsValue
                     )
