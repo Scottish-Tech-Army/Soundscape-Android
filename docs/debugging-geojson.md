@@ -18,7 +18,7 @@ The only limitation of this method is that the gist must smaller than 1MByte. Ot
 ## Generate protomaps tiles to use in the above workflow
 Getting hold of tiles from our server is straightforward e.g.
 ```
-wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/17509/11948.pbf -O 17509x11948.mvt
+wget https://server_address/protomaps/15/17509/11948.pbf -O 17509x11948.mvt
 ```
 
 However, an additional bit of workflow is required when making changes to the map where we want to test it prior to it being uploaded to the server. For this we have to build `planetiler` (see the instructions in the [mapping doc](mapping.md)). Then we need to use that to build a small map to test with. I build the whole of Scotland, though building Monaco is the default and very slightly quicker option e.g.

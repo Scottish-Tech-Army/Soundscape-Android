@@ -27,19 +27,6 @@ class MergePolygonsTest {
 
     @Test
     fun mergePolygons() {
-        /*val location = LngLatAlt(-2.640563550340726, 51.540046658498945)
-        val grid = getTileGrid(location.latitude, location.longitude, 2)
-        for (tile in grid.tiles) {
-            println("wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/${tile.tileX}/${tile.tileY}.pbf -O ${tile.tileX}x${tile.tileY}.mvt")
-        }
-        val getGeoJsonForLocationFC = getGeoJsonForLocation(location)
-
-        // convert FeatureCollection to string
-        val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val tileGridString = moshi.adapter(FeatureCollection::class.java).toJson(getGeoJsonForLocationFC)
-        // copy and paste into GeoJSON.io
-        println(tileGridString)*/
-
         val polygon1String = "{\"geometry\":{\"coordinates\":[[[-2.641388475894928,51.54281206119232],[-2.641863226890564,51.54281206119232],[-2.641788125038147,51.542920490515364],[-2.6419490575790405,51.542963862172236],[-2.6418471336364746,51.54311232637706],[-2.6416057348251343,51.543047269088504],[-2.641710340976715,51.54289880467142],[-2.641388475894928,51.54281206119232]]],\"type\":\"Polygon\"},\"feature_type\":\"building\",\"feature_value\":\"warehouse\",\"osm_ids\":[6.250644792E9],\"properties\":{\"name\":\"Amazon\",\"building\":\"warehouse\",\"osm_ids\":6.250644792E9},\"type\":\"Feature\"}"
         val polygon2String = "{\"geometry\":{\"coordinates\":[[[-2.6413187384605408,51.54015462794914],[-2.643338441848755,51.54069847186351],[-2.6431426405906677,51.540978732447456],[-2.643257975578308,51.54100876026479],[-2.6431775093078613,51.54112553492164],[-2.6430460810661316,51.54109050255605],[-2.6425498723983765,51.541801153839955],[-2.6426008343696594,51.54181449929781],[-2.6425471901893616,51.54189290378369],[-2.642509639263153,51.54188289470791],[-2.641788125038147,51.542920490515364],[-2.6419490575790405,51.542963862172236],[-2.6419061422348022,51.54302558330498],[-2.6416218280792236,51.54302558330498],[-2.641710340976715,51.54289880467142],[-2.6407554745674133,51.5426402418898],[-2.6407313346862793,51.54267527306238],[-2.640613317489624,51.54264357819311],[-2.640637457370758,51.54260521069025],[-2.639513611793518,51.54230327399525],[-2.639618217945099,51.542153138981284],[-2.639486789703369,51.54211810740676],[-2.6406213641166687,51.54048827529291],[-2.641012966632843,51.540593373699565],[-2.6413187384605408,51.54015462794914]]],\"type\":\"Polygon\"},\"feature_type\":\"building\",\"feature_value\":\"warehouse\",\"osm_ids\":[6.250644792E9],\"properties\":{\"name\":\"Amazon\",\"building\":\"warehouse\",\"osm_ids\":6.250644792E9},\"type\":\"Feature\"}"
         val feature1 = moshi.adapter(GeoJsonObject::class.java).fromJson(polygon1String)

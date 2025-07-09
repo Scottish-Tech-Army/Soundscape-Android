@@ -463,36 +463,4 @@ class IntersectionsTestMvt {
 //        Assert.assertEquals(5, intersection.members[indexS2].direction(intersection, deviceHeading))
 //        Assert.assertEquals("service", intersection.members[indexS2].properties!!["name"])
     }
-
-    /*@Test
-    fun debugUtil(){
-        val currentLocation = LngLatAlt(-0.9752549546655587, 51.4553843453491)
-        // mvt tile so zoom at 15
-        val slippyTileName = getXYTile(currentLocation.latitude, currentLocation.longitude, 15)
-        // output wget to grab the tile from backend
-        println("wget https://d1wzlzgah5gfol.cloudfront.net/protomaps/15/${slippyTileName.first}/${slippyTileName.second}.pbf -O ${slippyTileName.first}x${slippyTileName.second}.mvt")
-        val geoJson = vectorTileToGeoJsonFromFile(slippyTileName.first, slippyTileName.second, "${slippyTileName.first}x${slippyTileName.second}.mvt")
-
-        val adapter = GeoJsonObjectMoshiAdapter()
-        val outputFile = FileOutputStream("${slippyTileName.first}x${slippyTileName.second}.geojson")
-        outputFile.write(adapter.toJson(geoJson).toByteArray())
-        outputFile.close()
-
-    }
-
-    private fun vectorTileToGeoJsonFromFile(
-        tileX: Int,
-        tileY: Int,
-        filename: String,
-        cropPoints: Boolean = true
-    ): FeatureCollection {
-
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val remoteTile = FileInputStream(path + filename)
-        val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
-
-        val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, cropPoints, 15)
-
-        return featureCollection
-    }*/
 }

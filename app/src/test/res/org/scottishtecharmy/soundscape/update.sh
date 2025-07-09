@@ -1,4 +1,4 @@
-protomaps_server=https://d1wzlzgah5gfol.cloudfront.net/protomaps
+protomaps_server=https://protomaps_server/protomaps
 
 for x in $(seq 1997 2000);
 do
