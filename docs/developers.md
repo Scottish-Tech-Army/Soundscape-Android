@@ -1,8 +1,5 @@
 # Developer information
-The app is developed using [Android Studio](https://developer.android.com/studio) with the majority of the app code written in Kotlin. 
-
-## Progress
-We now have an app which has many of the features available which are available in the iOS app, though it is still relatively early days in the project. 
+The app is developed using [Android Studio](https://developer.android.com/studio) with the majority of the app code written in Kotlin.
 
 ## Get started
 The quickest way to get started building the app is to run Android Studio and select `File/New/Project from version control` from the menu. Select `Git` as the version control and paste in the HTTPS code link for this project from above. Click on Clone and the project will download, open and initialize ready to build.
