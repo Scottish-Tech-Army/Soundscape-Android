@@ -1,3 +1,10 @@
+---
+title: Geographical locations that have caused problems in the past
+layout: page
+parent: Testing
+has_toc: false
+---
+
 This document contains links to locations which provide interesting test cases for Soundscape.
 Clicking on the links on a phone with Soundscape installed will automatically bring up the problem
 location in Street Preview mode.

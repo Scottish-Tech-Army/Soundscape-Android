@@ -1,3 +1,10 @@
+---
+title: Mapping data
+layout: page
+parent: Information for developers
+has_toc: false
+---
+
 # Mapping in Soundscape
 Mapping data is at the heart of Soundscape and there's a lot to think about!
 

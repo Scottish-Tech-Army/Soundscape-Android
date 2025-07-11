@@ -1,3 +1,10 @@
+---
+title: GitHub actions
+layout: page
+parent: Information for developers
+has_toc: false
+---
+
 # Continuous integration actions
 
 This document describes the GitHGub actions in the repo. They're written by someone new to GitHub, so improvements are always welcome. 

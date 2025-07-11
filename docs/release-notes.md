@@ -1,3 +1,10 @@
+---
+title: Release notes
+layout: page
+nav_order: 5
+has_toc: false
+---
+
 # Release notes
 
 # 0.0.71

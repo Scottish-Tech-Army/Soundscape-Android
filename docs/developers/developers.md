@@ -1,3 +1,10 @@
+---
+title: Information for developers
+layout: page
+nav_order: 10
+has_toc: true
+---
+
 # Developer information
 The app is developed using [Android Studio](https://developer.android.com/studio) with the majority of the app code written in Kotlin.
 
@@ -21,19 +28,14 @@ tileProviderApiKey=XXXXXXXXXXXXXXXXXXXX
 If you would like access to the main Soundscape tile provider for development, get in touch.
 
 ## Code documentation
-* [App architecture](architecture.md) is an introduction to the app structure and its UI.
-* [GeoEngine](geoengine.md) describes the code which parses mapping data and provides an API to the parts of the app that need it.
-* [Audio API](audio-API.md) describes the interface with the audio engine for beacon and text to speech play out.
-* [Dokka generated docs](dokka/index.html) contains docs auto-generated from comments in the code.
+
+* [App architecture]({% link developers/architecture.md %}) is an introduction to the app structure and its UI.
+* [GeoEngine]({% link developers/geoengine.md %}) describes the code which parses mapping data and provides an API to the parts of the app that need it.
+* [Audio API]({% link developers/audio-API.md %}) describes the interface with the audio engine for beacon and text to speech play out.
+* [Dokka generated docs]({% link dokka/index.html %}) contains docs auto-generated from comments in the code.
 
 ## Mapping data
-See [here](mapping.md) for information about how we configure and use mapping data. There's also [this document](debugging-geojson.md) which describes a possible workflow for GeoJSON debugging.
-
-## Release notes
-[Here](release-notes.md) are the latest release notes.
-
-## Testing resources
-[A document](tricky-locations.md) containing locations which cause particular issues in Soundscape. 
+See [here]({% link developers/mapping.md %}) for information about how we configure and use mapping data. There's also [this document](debugging-geojson.md) which describes a possible workflow for GeoJSON debugging.
 
 ## Continual Integration on GitHub
-See the document [here](actions.md) to learn about the GitHub actions used and how they are configured.
+See the document [here]({% link developers/actions.md %}) to learn about the GitHub actions used and how they are configured.
