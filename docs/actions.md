@@ -1,8 +1,15 @@
 # Continuous integration actions
 
-This document describes the initial GitHGub actions in the repo. They're written by someone new to GitHub, so improvements are always welcome. 
+This document describes the GitHGub actions in the repo. They're written by someone new to GitHub, so improvements are always welcome. 
 
 ## GitHub secrets
+
+We have a number of GitHub secrets which are used to protect the following data:
+* Keys used for creating release packages and accessing Google service. These prevent someone else from publishing a build that claimed to be our app.
+* The URL and key required to get map tiles from our protomaps server. The aim here is to prevent use of our map tile server by other apps. Our server costs are covered by charities and we simply aim to minimize their costs.
+
+More details follow on each secret here which is useful during setup.
+
 ### Release build signing
 The approach to signing in `build-app.yaml` is based on [this description](https://www.droidcon.com/2023/04/04/securely-create-android-release-using-github-actions/).
 
@@ -33,13 +40,17 @@ The `run-test.yaml` action bumps the version number, committing the change back 
 * PAT_TOKEN - token generated on an admin account which allows write access to public repos.
 
 ## Actions
-`run-tests.yaml` is the action which is run on each Pull Request. It runs several layers of tests:    
+### Run tests `run-tests.yaml`
+This is the action which is run on each Pull Request. It runs several layers of tests:    
 * Lint of the repo
 * Runs unit tests
 * Builds a debug release
 * Runs instrumentation tests locally on an emulator
 
-`build-app.yaml` is the action used to build a release and is manually triggered. It's steps are: 
+Note that because of the way GitHub triggers `run-tests.yaml` it cannot use secrets. This affects tests which use the tile provider which have to be skipped when run in this way. This is straightforward to do - see callers of `tileProviderAvailable()` in the test code.
+
+### Tag and build release `build-app.yaml`
+This is the action used to build a release and is manually triggered from the GitHub GUI. It's steps are: 
 * Bump the version code and name in `app/build.gradle.kts` and commit it back to the repo with a tag containing the version number
 * Obtains the `google-service.json` and `keystore.jks` from the secrets.
 * Lints the repo
@@ -47,7 +58,12 @@ The `run-test.yaml` action bumps the version number, committing the change back 
 * Builds a debug build APK
 * Builds a release build and signs it as an APK and AAB
 * Builds the instrumentation tests into an APK
-* Uploads the artefacts
-* Triggers a run of Firebase instrumentation tests  
+* Uploads the artifacts
+* Triggers a run of Firebase instrumentation tests
+* Triggers a run of Firebase robo tests
 
-`jekyll-gh-pages.yml` is the action to build the GitHub Pages documentation site (including this page!). It's triggered whenever there is a changes submitted within the `/docs` directory. To work it needs GitHub Pages to be enabled on the repository and for them to be configured with the Source being GitHub Actions. 
+### Deploy docs `jekyll-gh-pages.yml`
+This is the action to build the GitHub Pages documentation site (including this page!). It's triggered whenever there is a changes submitted within the `/docs` directory. To work it needs GitHub Pages to be enabled on the repository and for them to be configured with the Source being GitHub Actions.
+
+### Nightly build and test `nightly.yaml`
+This is similar to the code that tags and builds a release, the main difference being is that it doesn't bump the version number and it only builds a debug version of the app. It does run the instrumentation tests locally followed by the Firebase tests on the release.
