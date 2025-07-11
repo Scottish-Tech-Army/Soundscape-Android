@@ -1,3 +1,10 @@
+---
+title: Debugging GeoJSON
+layout: page
+parent: Information for developers
+has_toc: false
+---
+
 Here are some ideas on how best to debug GeoJSON. This was inspired by Adam's use of GeoJSON.io, and my laziness with copy and paste!
 
 ## Generate GeoJSON and view online

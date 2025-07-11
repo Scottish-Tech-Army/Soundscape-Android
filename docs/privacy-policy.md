@@ -1,3 +1,10 @@
+---
+title: Privacy policy
+layout: page
+nav_order: 2
+has_toc: false
+---
+
 # Soundscape Android App Privacy Policy
 
 Last Updated: 8th July 2025

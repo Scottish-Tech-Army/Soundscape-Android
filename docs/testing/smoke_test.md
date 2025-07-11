@@ -1,3 +1,10 @@
+---
+title: Smoke test
+layout: page
+parent: Testing
+has_toc: false
+---
+
 # Smoke test
 
 This document is the start of a basic test that can be done on a release to check that no regressions have been introduced.

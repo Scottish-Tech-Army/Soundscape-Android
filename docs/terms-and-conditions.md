@@ -1,3 +1,10 @@
+---
+title: Service agreement
+layout: page
+nav_order: 2
+has_toc: false
+---
+
 # Services Agreement
 
 ## Terms and conditions - Soundscape app for Android

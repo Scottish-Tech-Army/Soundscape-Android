@@ -1,3 +1,10 @@
+---
+title: Test instructions for a new user
+layout: page
+parent: Testing
+has_toc: false
+---
+
 # How to easily test the Soundscape app
 These instructions are aimed at an initial test of the Soundscape Android app with the following 
 aims:
@@ -18,15 +25,12 @@ The app currently requires Android 11 (API 30 - see [https://apilevels.com/](htt
 We don't know of any other requirements, but that's one of the thing this testing should help us understand.
 
 ## Installing the app
-Because it's currently in _Internal Testing_, to get access to the app you need added to a list 
-on the PlayStore. Message Dave Craig directly on Slack and ask to be added to the list and include the 
-email address that you use on the PlayStore. He'll add it to the list and then you can go to 
-this link:
+Because it's currently in _Closed Testing_, to get access to the app you need added to a list 
+on the PlayStore. Once added to the list, the app can be installed from here:
 
-[https://play.google.com/apps/internaltest/4701298622029271713](https://play.google.com/apps/internaltest/4701298622029271713)
+[https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape)
 
-Follow the instructions there for how to download and install the app. Any problems, message 
-Dave Craig.
+Follow the instructions there for how to download and install the app..
 
 ## Running the app the first time
 The first time you run the Soundscape app you will see a series of onboarding screens which let 
@@ -41,7 +45,7 @@ Things we're interested in on the initial screens:
   lines?
 * Do you just hear silence when you click the **Listen** button on the **Hear Your 
   Surroundings** page?
-* Do you only hear silence when selecting the different beacon sounds on the **Choose and Audio 
+* Do you only hear silence when selecting the different beacon sounds on the **Choose an Audio 
   Beacon** page?
 
 Please report any of these issues on the Slack channel.
@@ -51,7 +55,6 @@ Now that you're past the onboarding screens, you shouldn't see them again and yo
 the main screen:
 
 <img src="home-screen.png" alt="Soundscape Home Screen" width="200px"/>
-
 
 Soundscape will now continue to run in the background. To exit it, click on the top right corner 
 to put the app to sleep, and then close the app (swipe up etc.).

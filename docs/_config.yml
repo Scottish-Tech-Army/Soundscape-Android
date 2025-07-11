@@ -1,0 +1,11 @@
+title: Soundscape
+description: Documentation for the Soundscape for Android project
+theme: just-the-docs
+
+url: https://scottish-tech-army.github.io/Soundscape-Android/
+
+aux_links:
+  Soundscape on GitHub: https://github.com/Scottish-Tech-Army/Soundscape-Android
+
+mermaid:
+  version: "11.8.1"

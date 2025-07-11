@@ -1,11 +1,14 @@
 ---
-tags: [Mermaid]
-mermaid: true
+title: GeoEngine
+layout: page
+parent: Information for developers
+has_toc: false
 ---
+
 ## GeoEngine introduction
 The GeoEngine module takes care of parsing map tile data and making that data available to the rest of the app for generating audio callouts and some UI. The classes at the bottom levl are based around GeoJSON objects as per https://en.wikipedia.org/wiki/GeoJSON. Originally, the app was parsing GeoJSON from the soundscape-backend server and this was the natural result. However, now that we've switched to parsing Mapbox Vector Tiles the use of GeoJSON classes is somewhat legacy, though it does ease debugging as it's easy to output GeoJSON and render it on top of other maps e.g. using [geojson.io](https://geojson.io) . Here's a simplified view of the basic classes involved:
 
-<div class="mermaid">
+```mermaid
 classDiagram
     class Feature{
         // A GeoJSON Feature
@@ -45,7 +48,7 @@ classDiagram
 
     }
     FeatureTree *-- Feature
-</div>
+```
 
 Features are points, lines or polygons along with some metadata describing what they are. We construct these based on the Mapbox Vector Tile contents and then divide them up into separate searchable FeatureTrees depending on the type of feature they are.
 

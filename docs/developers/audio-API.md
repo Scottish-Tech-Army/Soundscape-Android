@@ -1,6 +1,8 @@
 ---
-tags: [Mermaid]
-mermaid: true
+title: Audio API
+layout: page
+parent: Information for developers
+has_toc: false
 ---
 
 # Audio API for Soundscape
@@ -9,7 +11,7 @@ This document aims to describe the API for a library that can be exposed to the 
 ## iOS Soundscape audio classes
 The iOS app has a host of audio classes to support playback of beacons, text to speech and other sounds.
 
-<div class="mermaid">
+```mermaid
 classDiagram
     class SoundBase{
         +SoundType type
@@ -26,14 +28,19 @@ classDiagram
         buffer(AssetType asset)
     }
     class TTSSound{
+        TTSSound()
     }
     class LayeredSound{
+        LayeredSound()
     }
     class SynchronouslyGeneratedSound{
+        SynchronouslyGeneratedSound()
     }
     class GenericSound{
+        GenericSound()
     }
     class GlyphSound{
+        GlyphSound()
     }
 
     SoundBase <|-- Sound
@@ -47,7 +54,7 @@ classDiagram
     GenericSound <|-- GlyphSound
 
     class AudioPlayer{
-        AudioPlayerIndentifier id
+        AudioPlayerIdentifier id
         SoundBase sound
         AudioPlayerState state
         Bool isPlaying
@@ -64,7 +71,7 @@ classDiagram
     BaseAudioPlayer<|--DiscreteAudioPlayerDelegate
     AudioPlayer<|--DynamicAudioPlayer
     AVAudioPlayer<|--FadeableAudioPlayer
-</div>
+```
 
 * **GlyphSound** are short audio files with specific meaning to the user e.g. app going offline/online, or entering/leaving a waypoint. I find them fairly indistinguishable, but perhaps with use and practice their meaning becomes obvious.
 * **LayeredSound** seems to be for mixing sounds together. Each layer can have its own EQ parameters defined. 
