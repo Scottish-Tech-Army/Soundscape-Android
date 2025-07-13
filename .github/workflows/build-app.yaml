@@ -125,6 +125,47 @@ jobs:
           name: screenshot-previews
           path: ${{ env.main_project_module }}/src/debug/screenshotTest/reference/org/scottishtecharmy/soundscape/
 
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Build instrumentation tests to generate screenshots for documentation
+        id: documentation-screenshot-tests
+        uses: reactivecircus/android-emulator-runner@v2
+        continue-on-error: true
+        with:
+          api-level: 34
+          target: default
+          arch: x86_64
+          profile: pixel_7
+          script: |
+            mkdir -p docs/documentationScreens
+            adb logcat -c                                                   # clear logs
+            adb shell settings put global policy_control immersive.status=* # Disable status bar at top of screen
+            touch app/emulator.log                                          # create log file
+            chmod 777 app/emulator.log                                      # allow writing to log file
+            adb logcat >> app/emulator.log &                                # pipe all logcat messages into log file as a background process
+            # Run only the DocumentationScreens tests
+            ./gradlew connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=org.scottishtecharmy.soundscape.DocumentationScreens
+            # And then get the resulting screenshots from the emulator
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/homeScreen.png docs/documentationScreens/homeScreen.png
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/homeScreenWithRoute.png docs/documentationScreens/homeScreenWithRoute.png
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/routeDetails.png docs/documentationScreens/routeDetails.png
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/routeEdit.png docs/documentationScreens/routeEdit.png
+
+      - name: ImageMagick Action to trim off status and navigation bars from screenshots
+        uses: jruipinto/ImageMagick-action@v1
+        with:
+          command: mogrify -path docs/documentationScreens -crop 1080x2130+0+140 docs/documentationScreens/*.*
+
+      - name: Commit new screenshots
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "New documentation screenshots"
+          file_pattern: 'docs/documentationScreens/*.png'
+
       # Run Build Project
       - name: Build gradle project
         env:
