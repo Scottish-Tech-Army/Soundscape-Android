@@ -249,6 +249,7 @@ dependencies {
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
+    androidTestImplementation(libs.androidx.uiautomator)
 
     // Protobuf
     implementation(libs.protobuf.kotlin.lite)

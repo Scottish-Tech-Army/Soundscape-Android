@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape.utils
 import android.content.Context
 import android.content.res.AssetManager
 import android.util.Log
+import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -23,6 +25,8 @@ fun extractAssets(applicationContext: Context,
         val sdPath: File = applicationContext.filesDir
         val destDirPath: String = sdPath.toString() + addLeadingSlash(destinationDir)
         val destDir = File(destDirPath)
+
+        Log.d("ExtractAssets", "extracting to $destDirPath")
 
         createDir(destDir)
 
@@ -120,4 +124,35 @@ private fun createDir(dir: File) {
             throw IOException("Unable to create directory")
         }
     }
+}
+
+private fun processStyle(applicationContext: Context, inputFilename: String, outputFilename: String) {
+    val filesDir = applicationContext.filesDir.toString()
+    val outputStyleStream =
+        File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
+    val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
+    inputStyleStream.bufferedReader().useLines { lines ->
+        lines.forEach { line ->
+            if (line.contains("PROTOMAPS_SERVER_URL")) {
+                val newline = line.replace(
+                    "PROTOMAPS_SERVER_URL",
+                    "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
+                )
+                outputStyleStream.write(newline.toByteArray())
+            } else {
+                outputStyleStream.write(line.toByteArray())
+            }
+        }
+    }
+    inputStyleStream.close()
+    outputStyleStream.close()
+}
+
+fun processMaps(applicationContext: Context) {
+    // Extract the maplibre style assets
+    extractAssets(applicationContext, "osm-liberty-accessible", "osm-liberty-accessible")
+
+    // Update extracted style.json with protomaps server URI
+    processStyle(applicationContext, "style.json", "processedStyle.json")
+    processStyle(applicationContext, "originalStyle.json", "processedOriginalStyle.json")
 }

@@ -37,7 +37,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.utils.extractAssets
+import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import javax.inject.Inject
 import kotlin.sequences.forEach
@@ -178,14 +178,13 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        // Extract the maplibre style assets
-        Log.d("ExtractAssets", "Start extraction")
-        extractAssets(applicationContext, "osm-liberty-accessible","osm-liberty-accessible")
-        Log.d("ExtractAssets", "Completed extraction")
+        println("${Build.FINGERPRINT}")
+        println("${Build.MODEL}")
+        println("${Build.BRAND}")
+        println("${Build.PRODUCT}")
 
-        // Update extracted style.json with protomaps server URI
-        processStyle("style.json", "processedStyle.json")
-        processStyle("originalStyle.json", "processedOriginalStyle.json")
+        // Unpack map assets
+        processMaps(applicationContext)
 
         // Debug - dump preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
