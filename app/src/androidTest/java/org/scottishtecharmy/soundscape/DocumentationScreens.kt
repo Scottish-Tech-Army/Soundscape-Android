@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import android.os.Environment
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -23,6 +24,8 @@ import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.Home
+import org.scottishtecharmy.soundscape.screens.home.home.SectionType
+import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteUiState
@@ -31,6 +34,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetai
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.utils.processMaps
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
+import java.io.File
+import java.io.FileOutputStream
 
 // This is very helpful:
 // https://developer.android.com/develop/ui/compose/testing/testing-cheatsheet
@@ -250,6 +255,65 @@ class DocumentationScreens {
                 routeObjectId = 1,
                 placesNearbyUiState = PlacesNearbyUiState()
             )
+        }
+    }
+
+    @Test
+    fun getHelp() {
+
+        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        val helpDir = File(
+            targetContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+            "help"
+        )
+        if (!helpDir.exists()) {
+            helpDir.mkdirs()
+        }
+
+        for ((index,page) in helpPages.withIndex()) {
+
+            if(page.titleId == R.string.menu_help_and_tutorials)
+                continue
+
+            val markdownOutput = StringBuilder()
+            markdownOutput.append("---\n")
+            markdownOutput.append("title: ${targetContext.getString(page.titleId)}\n")
+            markdownOutput.append("layout: page\n")
+            markdownOutput.append("parent: Using Soundscape\n")
+            markdownOutput.append("has_toc: false\n")
+            markdownOutput.append("---\n\n")
+
+            markdownOutput.append("# ")
+            markdownOutput.append(targetContext.getString(page.titleId))
+            markdownOutput.append("\n")
+            for(section in page.sections) {
+                when (section.type) {
+                    SectionType.Faq -> {
+                        markdownOutput.append("\n")
+                        markdownOutput.append("### ")
+                        markdownOutput.append(targetContext.getString(section.textId))
+                        markdownOutput.append("\n")
+                        markdownOutput.append(targetContext.getString(section.faqAnswer))
+                    }
+                    SectionType.Title -> {
+                        markdownOutput.append("\n")
+                        markdownOutput.append("## ")
+                        markdownOutput.append(targetContext.getString(section.textId))
+                    }
+                    else -> {
+                        markdownOutput.append("\n")
+                        markdownOutput.append(targetContext.getString(section.textId))
+                    }
+                }
+                markdownOutput.append("\n")
+            }
+            markdownOutput.append("\n")
+
+            val file = File(helpDir, "help-$index.md")
+            val outputFile = FileOutputStream(file)
+            outputFile.write(markdownOutput.toString().toByteArray())
+            outputFile.close()
         }
     }
 }

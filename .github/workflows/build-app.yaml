@@ -154,6 +154,8 @@ jobs:
             adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/homeScreenWithRoute.png docs/documentationScreens/homeScreenWithRoute.png
             adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/routeDetails.png docs/documentationScreens/routeDetails.png
             adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/routeEdit.png docs/documentationScreens/routeEdit.png
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Documents/help docs/users/
+            mv docs/users/help/* docs/users/
 
       - name: ImageMagick Action to trim off status and navigation bars from screenshots
         uses: jruipinto/ImageMagick-action@v1
@@ -164,7 +166,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "New documentation screenshots"
-          file_pattern: 'docs/documentationScreens/*.png'
+          file_pattern: 'docs/documentationScreens/*.png docs/users/help-*.md'
 
       # Run Build Project
       - name: Build gradle project
