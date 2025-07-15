@@ -5,7 +5,7 @@ has_toc: true
 nav_order: 1
 ---
 
-The documentation from the latest version of the app can be read [here]({% link users/help.md %}).
+The documentation here is from the latest version of the app.
 
 Screenshots used on the Play Store are shown below.
 <img src="../documentationScreens/homeScreen.png" width="360" alt="Screenshot of the Soundscape home screen">
