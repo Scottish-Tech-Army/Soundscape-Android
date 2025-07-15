@@ -39,26 +39,26 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 import kotlin.text.split
 import kotlin.text.startsWith
 
-private enum class SectionType{
+enum class SectionType{
     Title,          // A non-clickable title of a group of other text
     Link,           // A clickable text link
     Paragraph,      // A paragraph of text
     Faq             // A FAQ question with its answer in the section
 }
-private data class Section(
+data class Section(
     val textId: Int,                      // There's always text, this is the resource id for it
     val type: SectionType,
     val skipTalkback: Boolean = false,
     val faqAnswer: Int = -1             // The resource id of the answer to a FAQ question
 )
-private data class Sections(
+data class Sections(
     val titleId: Int,
     val sections: List<Section>
 )
 
 // This is a list of all the possible Sections that can be displayed as part of the help screen.
 // Each one has a unique titleId which is used to identify it in the route.
-private val helpPages = listOf(
+val helpPages = listOf(
     Sections(
         R.string.beacon_audio_beacon,
         listOf(
@@ -305,8 +305,8 @@ private val helpPages = listOf(
     Sections(
         R.string.settings_about_app,
         listOf(
-            Section(R.string.about_soundscape, SectionType.Title, skipTalkback = false),
-            Section(R.string.copyright_notices, SectionType.Title, skipTalkback = true),
+            Section(R.string.about_soundscape, SectionType.Paragraph, skipTalkback = false),
+            Section(R.string.copyright_notices, SectionType.Paragraph, skipTalkback = true),
             Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true),
             Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true),
             Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true),
