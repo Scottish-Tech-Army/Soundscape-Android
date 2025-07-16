@@ -31,13 +31,15 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import org.commonmark.node.Node
+import org.commonmark.parser.Parser
+import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import kotlin.text.split
-import kotlin.text.startsWith
+
 
 enum class SectionType{
     Title,          // A non-clickable title of a group of other text
@@ -49,6 +51,7 @@ data class Section(
     val textId: Int,                      // There's always text, this is the resource id for it
     val type: SectionType,
     val skipTalkback: Boolean = false,
+    val markdown: Boolean = false,
     val faqAnswer: Int = -1             // The resource id of the answer to a FAQ question
 )
 data class Sections(
@@ -305,25 +308,25 @@ val helpPages = listOf(
     Sections(
         R.string.settings_about_app,
         listOf(
-            Section(R.string.about_soundscape, SectionType.Paragraph, skipTalkback = false),
-            Section(R.string.copyright_notices, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.maplibre_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.junit_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.about_soundscape, SectionType.Paragraph, skipTalkback = false, markdown = true),
+            Section(R.string.copyright_notices, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.maplibre_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.junit_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
 
             Section(R.string.apache_notices, SectionType.Title, skipTalkback = true),
-            Section(R.string.rtree_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.realm_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.moshi_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.retrofit_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.okhttp_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.otto_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.leak_canary_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.gpx_parser_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.preferences_copyright, SectionType.Paragraph, skipTalkback = true),
-            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph, skipTalkback = true),
+            Section(R.string.rtree_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.realm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.moshi_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.retrofit_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.okhttp_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.otto_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.leak_canary_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.gpx_parser_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.preferences_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
         )
     )
 )
@@ -395,7 +398,7 @@ fun HelpScreen(
                                         .padding(top = spacing.medium)
                                         .semantics {
                                             heading()
-                                            if(section.skipTalkback)
+                                            if (section.skipTalkback)
                                                 hideFromAccessibility()
                                         },
                                     color = MaterialTheme.colorScheme.onSurface,
@@ -403,9 +406,16 @@ fun HelpScreen(
                             }
 
                             SectionType.Paragraph -> {
+                                var htmlText = stringResource(section.textId)
+                                if(section.markdown) {
+                                    val parser: Parser = Parser.builder().build()
+                                    val document: Node? = parser.parse(htmlText)
+                                    val renderer = HtmlRenderer.builder().build()
+                                    htmlText = renderer.render(document)
+                                }
                                 Text(
                                     text = AnnotatedString.fromHtml(
-                                        stringResource(section.textId),
+                                        htmlString = htmlText,
                                         linkStyles = TextLinkStyles(
                                             style = SpanStyle(
                                                 textDecoration = TextDecoration.Underline,

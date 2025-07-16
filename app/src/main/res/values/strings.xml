@@ -1072,23 +1072,23 @@
   <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
     <!-- Licensing strings -->
   <string name="copyright_notices" translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
-    <string name="osm_copyright" translatable="false">&lt;a href="https://www.openstreetmap.org/copyright"&gt;©OpenStreetMap contributors&lt;/a&gt; provide all of the geo data for mapping and audio used in Soundscape.</string>
-    <string name="openmaptiles_copyright" translatable="false">&lt;a href="https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md"&gt;©OpenMapTiles&lt;/a&gt; is used to generate the mapping tiles that we use.</string>
-    <string name="fmod_copyright" translatable="false">&lt;a href="https://www.fmod.com/legal"&gt;Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.&lt;/a&gt; takes care of the audio playback.</string>
+    <string name="osm_copyright" translatable="false">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.</string>
+    <string name="openmaptiles_copyright" translatable="false">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.</string>
+    <string name="fmod_copyright" translatable="false">[Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.](https://www.fmod.com/legal) takes care of the audio playback.</string>
     <!-- BSD 2-clause -->
-  <string name="maplibre_copyright" translatable="false">&lt;a href="https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md"&gt;©MapLibre&lt;/a&gt; performs the map rendering for the UI.</string>
+  <string name="maplibre_copyright" translatable="false">[©MapLibre](https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md) performs the map rendering for the UI.</string>
     <!-- Eclipse -->
-  <string name="junit_copyright" translatable="false">&lt;a href="https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt"&gt;junit-team/junit4&lt;/a&gt; for unit testing.</string>
+  <string name="junit_copyright" translatable="false">[junit-team/junit4](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) for unit testing.</string>
     <!-- Apache 2.0 -->
   <string name="apache_notices" translatable="false">The remainder of the licenses are all Apache 2.0:</string>
-    <string name="rtree_copyright" translatable="false">&lt;a href="https://github.com/davidmoten/rtree2/blob/master/LICENCE"&gt;rtree2&lt;/a&gt; makes our local geo-search much more efficient.</string>
-    <string name="realm_copyright" translatable="false">&lt;a href="https://github.com/realm/realm-kotlin/blob/main/LICENSE"&gt;Realm&lt;/a&gt; takes care of our database.</string>
-    <string name="moshi_copyright" translatable="false">&lt;a href="https://github.com/square/moshi/blob/master/LICENSE.txt"&gt;square/moshi&lt;/a&gt; for GeoJSON parsing.</string>
-    <string name="retrofit_copyright" translatable="false">&lt;a href="https://github.com/square/retrofit/blob/trunk/LICENSE.txt"&gt;square/retrofit&lt;/a&gt; HTTP client abstraction.</string>
-    <string name="okhttp_copyright" translatable="false">&lt;a href="https://github.com/square/okhttp/blob/master/LICENSE.txt"&gt;square/okhttp&lt;/a&gt; underlying HTTP client.</string>
-    <string name="otto_copyright" translatable="false">&lt;a href="https://github.com/square/otto/blob/master/LICENSE.txt"&gt;square/otto&lt;/a&gt; to provide an event bus.</string>
-    <string name="leak_canary_copyright" translatable="false">&lt;a href="https://github.com/square/leakcanary/blob/main/LICENSE.txt"&gt;square/leakcanary&lt;/a&gt; for adding mermaid diagrams to Dokka documentation.</string>
-    <string name="gpx_parser_copyright" translatable="false">&lt;a href="https://github.com/ticofab/android-gpx-parser/blob/master/LICENSE"&gt;ticofab/android-gpx-parser&lt;/a&gt; for GPX parsing.</string>
-    <string name="preferences_copyright" translatable="false">&lt;a href="https://github.com/zhanghai/ComposePreference/blob/master/LICENSE"&gt;zhanghai/ComposePreference&lt;/a&gt; for a simple settings UI.</string>
-    <string name="dokka_mermaid_copyright" translatable="false">&lt;a href="https://github.com/glureau/dokka-mermaid/blob/main/LICENSE"&gt;glureau/dokka-mermaid&lt;/a&gt; for adding mermaid diagrams to Dokka documentation.</string>
+    <string name="rtree_copyright" translatable="false">[rtree2](https://github.com/davidmoten/rtree2/blob/master/LICENCE) makes our local geo-search much more efficient.</string>
+    <string name="realm_copyright" translatable="false">[Realm](https://github.com/realm/realm-kotlin/blob/main/LICENSE) takes care of our database.</string>
+    <string name="moshi_copyright" translatable="false">[square/moshi](https://github.com/square/moshi/blob/master/LICENSE.txt) for GeoJSON parsing.</string>
+    <string name="retrofit_copyright" translatable="false">[square/retrofit](https://github.com/square/retrofit/blob/trunk/LICENSE.txt) HTTP client abstraction.</string>
+    <string name="okhttp_copyright" translatable="false">[square/okhttp](https://github.com/square/okhttp/blob/master/LICENSE.txt) underlying HTTP client.</string>
+    <string name="otto_copyright" translatable="false">[square/otto](https://github.com/square/otto/blob/master/LICENSE.txt) to provide an event bus.</string>
+    <string name="leak_canary_copyright" translatable="false">[square/leakcanary](https://github.com/square/leakcanary/blob/main/LICENSE.txt) for adding mermaid diagrams to Dokka documentation.</string>
+    <string name="gpx_parser_copyright" translatable="false">[ticofab/android-gpx-parser](github.com/ticofab/android-gpx-parser/blob/master/LICENSE) for GPX parsing.</string>
+    <string name="preferences_copyright" translatable="false">[zhanghai/ComposePreference](https://github.com/zhanghai/ComposePreference/blob/master/LICENSE) for a simple settings UI.</string>
+    <string name="dokka_mermaid_copyright" translatable="false">[glureau/dokka-mermaid](https://github.com/glureau/dokka-mermaid/blob/main/LICENSE) for adding mermaid diagrams to Dokka documentation.</string>
 </resources>
