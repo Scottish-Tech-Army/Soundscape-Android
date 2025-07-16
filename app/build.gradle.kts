@@ -282,4 +282,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     implementation(libs.symbol.processing.api)
+
+    // Markdown to HTML converter for Help screens
+    implementation(libs.commonmark)
 }
