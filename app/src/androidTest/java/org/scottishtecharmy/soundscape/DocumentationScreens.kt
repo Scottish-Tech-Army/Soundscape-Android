@@ -37,6 +37,17 @@ import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import java.io.File
 import java.io.FileOutputStream
 
+fun String.toSafeFilename(replacement: String = "-"): String {
+    val illegalCharsRegex = """[/:\\?*"<>|#%&{}^`~ ]""".toRegex()
+    var safeName = this.replace(illegalCharsRegex, replacement)
+    safeName = safeName.trim('.', ' ')
+    safeName = safeName.replace(Regex("$replacement{2,}"), replacement)
+    if (safeName.isEmpty()) {
+        assert(false)
+    }
+    return safeName.lowercase()
+}
+
 // This is very helpful:
 // https://developer.android.com/develop/ui/compose/testing/testing-cheatsheet
 class DocumentationScreens {
@@ -271,21 +282,22 @@ class DocumentationScreens {
             helpDir.mkdirs()
         }
 
-        for ((index,page) in helpPages.withIndex()) {
+        for (page in helpPages) {
 
             if(page.titleId == R.string.menu_help_and_tutorials)
                 continue
+            val pageTitle = targetContext.getString(page.titleId)
 
             val markdownOutput = StringBuilder()
             markdownOutput.append("---\n")
-            markdownOutput.append("title: ${targetContext.getString(page.titleId)}\n")
+            markdownOutput.append("title: $pageTitle\n")
             markdownOutput.append("layout: page\n")
             markdownOutput.append("parent: Using Soundscape\n")
             markdownOutput.append("has_toc: false\n")
             markdownOutput.append("---\n\n")
 
             markdownOutput.append("# ")
-            markdownOutput.append(targetContext.getString(page.titleId))
+            markdownOutput.append(pageTitle)
             markdownOutput.append("\n")
             for(section in page.sections) {
                 when (section.type) {
@@ -310,7 +322,7 @@ class DocumentationScreens {
             }
             markdownOutput.append("\n")
 
-            val file = File(helpDir, "help-$index.md")
+            val file = File(helpDir, "help-${pageTitle.toSafeFilename()}.md")
             val outputFile = FileOutputStream(file)
             outputFile.write(markdownOutput.toString().toByteArray())
             outputFile.close()
