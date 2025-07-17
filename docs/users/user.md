@@ -5,7 +5,9 @@ has_toc: true
 nav_order: 1
 ---
 
-The documentation here is from the latest version of the app.
+The documentation here is from the latest version of the app. In the app you can get to it by clicking on the menu button (top left) and then selecting Help & Tutorials.
+
+For those with an interest in how the app works, please take a look at [this page]({% link users/how-it-works.md %}).
 
 Screenshots used on the Play Store are shown below.
 <img src="../documentationScreens/homeScreen.png" width="360" alt="Screenshot of the Soundscape home screen">
