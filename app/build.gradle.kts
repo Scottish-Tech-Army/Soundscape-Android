@@ -245,7 +245,7 @@ dependencies {
     // MapLibre library
     implementation (libs.maplibre)
     implementation (libs.maplibre.annotations)
-    implementation (libs.maplibre.compose.material3)
+//    implementation (libs.maplibre.compose.material3)
 
     // Screenshots for tests
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
