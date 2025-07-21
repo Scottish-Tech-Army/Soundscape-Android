@@ -72,6 +72,7 @@ fun Home(
 
     ModalNavigationDrawer(
         drawerState = drawerState,
+        gesturesEnabled = drawerState.isOpen,
         drawerContent = {
             DrawerContent(
                 onNavigate = onNavigate,
