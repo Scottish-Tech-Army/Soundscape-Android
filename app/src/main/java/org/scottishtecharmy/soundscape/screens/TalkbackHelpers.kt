@@ -3,7 +3,7 @@ package org.scottishtecharmy.soundscape.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.hideFromAccessibility
+import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 
@@ -39,5 +39,5 @@ fun Modifier.talkbackDescription(contentDescription: String) =
 @Composable
 fun Modifier.talkbackHidden() =
     semantics {
-        hideFromAccessibility()
+        invisibleToUser()
     }
