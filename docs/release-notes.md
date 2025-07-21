@@ -7,6 +7,35 @@ has_toc: false
 
 # Release notes
 
+# 0.0.91
+We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
+Issues tagged _user-facing_ are those which describe issues from a user perspective.
+
+## Known issues in this release
+* Map scrolling in the GUI has regressed and is 'fiddly at best'
+
+## Longer term known issues
+The larger issues are:
+* [Support for Street Preview is very preliminary](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/528), especially when it comes to use by people with a visual impairment.
+* [Callouts for roundabouts need work](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/442). We have a plan for this, but it's not yet implemented.
+
+## What's improved in this release?
+There's been a lot of work in this release on documentation and translation. These don't 
+directly affect the functionality of the app for English speakers they are very important 
+platform developments. Translation is now hosted on [weblate](https://hosted.weblate.org/projects/soundscape-android/) which should allow us to more easily support new languages and extend our current language 
+support when we add new text to the app.
+
+The other major piece of work that users likely won't even notice is that we've updated to the 
+very latest version of the libraries that we use and the latest version of the language (kotlin). 
+This is important for future development, but really shouldn't impact users. However, we have had to 
+change the database that we use for storing markers and routes. Any testers who had created 
+markers and routes might notice that they have now disappeared. The database we were using was no 
+longer well supported and changing now means that we could make a breaking change before we 
+build the number of users.
+
+With all of this platform work in place, we're now ready to improve the core functionality of 
+the app as we increase the number of users and testers.
+
 # 0.0.71
 ## New in this release
 * The code that deals with the map data has changed significantly. This particularly affects all callouts and StreetPreview,
