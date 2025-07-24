@@ -237,7 +237,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
     void
     AudioEngine::UpdateGeometry(double listenerLatitude, double listenerLongitude,
-                                double listenerHeading) {
+                                double listenerHeading, bool focusGained, bool duckingAllowed) {
         const FMOD_VECTOR up = {0.0f, 1.0f, 0.0f};
 
         //
@@ -247,11 +247,26 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         // least do some of the callouts. The iOS docs suggest that My Location, Nearby Markers,
         // Around Me and  Ahead of Me should all still play out.
         //
-        if(listenerHeading > 10000.0) {
+        if (listenerHeading > 10000.0)
             listenerHeading = NAN;
-            m_pBeaconChannelGroup->setVolume(0.2);
+        if(focusGained) {
+            // Drop volume if we have no valid heading
+            m_pSpeechChannelGroup->setVolume(1.0);
+            if (listenerHeading == NAN) {
+                m_pBeaconChannelGroup->setVolume(0.2);
+            } else {
+                m_pBeaconChannelGroup->setVolume(1.0);
+            }
         } else {
-            m_pBeaconChannelGroup->setVolume(1.0);
+            // We have lost audio focus. If we're allowed to duck our audio, drop the volume,
+            // otherwise we have to mute.
+            if(duckingAllowed) {
+                m_pBeaconChannelGroup->setVolume(0.1);
+                m_pSpeechChannelGroup->setVolume(0.2);
+            } else {
+                m_pBeaconChannelGroup->setVolume(0.0);
+                m_pSpeechChannelGroup->setVolume(0.0);
+            }
         }
 
         // store pos for next time
@@ -450,12 +465,19 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_updateGeometry(JNIE
                                                                            jlong engine_handle,
                                                                            jdouble latitude,
                                                                            jdouble longitude,
-                                                                           jdouble heading) {
+                                                                           jdouble heading,
+                                                                           jboolean focus_gained,
+                                                                           jboolean ducking_allowed) {
     auto* ae =
             reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
 
     if (ae) {
-        ae->UpdateGeometry(latitude, longitude, heading);
+        ae->UpdateGeometry(
+                latitude,
+                longitude,
+                heading,
+                focus_gained,
+                ducking_allowed);
     } else {
         TRACE("UpdateGeometry failed - no AudioEngine");
     }

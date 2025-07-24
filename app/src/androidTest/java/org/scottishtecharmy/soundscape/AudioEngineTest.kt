@@ -37,7 +37,12 @@ class AudioEngineTest {
         val delta = 360.0 / (duration / delayMilliseconds)
         var time: Long = 0
         while(time <= duration) {
-            audioEngine.updateGeometry(0.0, 0.0, orientation)
+            audioEngine.updateGeometry(
+                listenerLatitude = 0.0,
+                listenerLongitude = 0.0,
+                listenerHeading = orientation,
+                focusGained = true,
+                duckingAllowed = false)
             Thread.sleep(delayMilliseconds)
             time += delayMilliseconds
             orientation += delta
@@ -175,7 +180,13 @@ class AudioEngineTest {
     fun earconPosition() {
         val audioEngine = initializeAudioEngine()
 
-        audioEngine.updateGeometry(1.0, 1.0, 0.0)
+        audioEngine.updateGeometry(
+            listenerLongitude = 1.0,
+            listenerLatitude = 1.0,
+            listenerHeading = 0.0,
+            focusGained = true,
+            duckingAllowed = false
+        )
         audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_POI, AudioType.LOCALIZED, 1.0, 2.0)
         Thread.sleep(2000)
 

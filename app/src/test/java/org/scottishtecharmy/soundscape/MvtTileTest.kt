@@ -558,20 +558,6 @@ class MvtTileTest {
         }
     }
 
-    fun compareCallouts(callout1: List<PositionedString>?, callout2: List<PositionedString>?) : Boolean
-    {
-        if(callout1 == null || callout2 == null) return true
-        if(callout1.size != callout2.size) return false
-        if(callout1.isEmpty()) return true
-
-        val iterator1 = callout1.listIterator()
-        val iterator2 = callout2.listIterator()
-        while(iterator1.hasNext()) {
-            if(iterator1.next().text != iterator2.next().text) return false
-        }
-        return true
-    }
-
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
@@ -582,7 +568,6 @@ class MvtTileTest {
         val startIndex = 0
         val endIndex = gps.features.size
         val autoCallout = AutoCallout(null, null)
-        var lastCallout : List<PositionedString> = emptyList()
         val callOutText = FileOutputStream(calloutFilename)
 
         val enabledCategories = emptySet<String>().toMutableSet()
@@ -652,26 +637,26 @@ class MvtTileTest {
                     timestampMilliseconds = (position.properties?.get("time") as Double).toLong()
                 )
 
-                val callouts = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
-                if(callouts.isNotEmpty()) {
-                    if (!compareCallouts(lastCallout, callouts)) {
-                        // We've got a new callout, so add it to our geoJSON as a triangle for the
-                        // FOV that was used to create it, along with the text from the callouts.
-                        val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
-                        val fovFeature = Feature()
-                        fovFeature.geometry = polygon
-                        fovFeature.properties = hashMapOf()
-                        callOutText.write("\nCallout\n".toByteArray())
-                        for (callout in callouts.withIndex()) {
-                            callOutText.write("\t${callout.value.text}\n".toByteArray())
-                            fovFeature.properties?.set(
-                                "Callout ${callout.index}",
-                                callout.value.text
-                            )
-                        }
-                        collection.addFeature(fovFeature)
-                        lastCallout = callouts
+                val callout = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
+                if(callout != null) {
+                    // We've got a new callout, so add it to our geoJSON as a triangle for the
+                    // FOV that was used to create it, along with the text from the callouts.
+                    val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
+                    val fovFeature = Feature()
+                    fovFeature.geometry = polygon
+                    fovFeature.properties = hashMapOf()
+                    callOutText.write("\nCallout\n".toByteArray())
+                    for (positionedString in callout.positionedStrings.withIndex()) {
+                        callOutText.write("\t${positionedString.value.text}\n".toByteArray())
+                        fovFeature.properties?.set(
+                            "Callout ${positionedString.index}",
+                            positionedString.value.text
+                        )
                     }
+                    collection.addFeature(fovFeature)
+
+                    callout.calloutHistory?.add(callout)
+                    callout.locationFilter?.update(callout.userGeometry)
                 }
             }
         }
@@ -698,8 +683,7 @@ class MvtTileTest {
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for(file in directoryEntries) {
-            if(file.nameWithoutExtension.contains("train-1"))
-                testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
+            testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
         }
     }
 

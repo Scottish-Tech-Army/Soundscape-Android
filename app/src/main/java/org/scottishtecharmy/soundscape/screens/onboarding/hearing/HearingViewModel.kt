@@ -16,7 +16,13 @@ class HearingViewModel @Inject constructor(private val audioEngine : NativeAudio
         //  Calling updateGeometry (which in the service is called every 30ms) sorts this out.
         //  We should consider another way of doing this.
         audioEngine.clearTextToSpeechQueue()
-        audioEngine.updateGeometry(0.0, 0.0,0.0)
+        audioEngine.updateGeometry(
+            listenerLatitude = 0.0,
+            listenerLongitude = 0.0,
+            listenerHeading = 0.0,
+            focusGained = true,
+            duckingAllowed = false
+        )
         audioEngine.createTextToSpeech(speechText, AudioType.LOCALIZED)
     }
 

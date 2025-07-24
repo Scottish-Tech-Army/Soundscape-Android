@@ -8,6 +8,9 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.media.AudioAttributes
+import android.media.AudioFocusRequest
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
@@ -38,9 +41,9 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
-import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
@@ -76,6 +79,46 @@ class SoundscapeService : MediaSessionService() {
     // Audio engine
     var audioEngine = NativeAudioEngine()
     private var audioBeacon: Long = 0
+
+    // Audio focus
+    private lateinit var audioManager: AudioManager
+    private var audioFocusRequest: AudioFocusRequest? = null
+
+    var audioFocusGained: Boolean = false
+    var duckingAllowed: Boolean = false
+    var focusUsers: Int = 0     // Increment for speech and for beacons separately
+
+    private val focusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
+        when (focusChange) {
+            AudioManager.AUDIOFOCUS_GAIN -> {
+                Log.d(TAG, "AUDIOFOCUS_GAIN: Focus gained.")
+                audioFocusGained = true
+                duckingAllowed = false
+            }
+            AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK -> {
+                Log.d(TAG, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK: Focus gained.")
+                audioFocusGained = true
+                duckingAllowed = false
+            }
+            AudioManager.AUDIOFOCUS_LOSS -> {
+                Log.d(TAG, "AUDIOFOCUS_LOSS: Focus lost permanently")
+                abandonAudioFocus(true)
+            }
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
+                // Temporarily lost focus. Pause playback.
+                Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT: Focus lost temporarily")
+                audioFocusGained = false
+                duckingAllowed = false
+            }
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> {
+                // Temporarily lost focus, but you can duck (lower volume).
+                Log.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK: Ducking allowed")
+
+                audioFocusGained = false
+                duckingAllowed = true
+            }
+        }
+    }
 
     // Geo engine
     private var geoEngine = GeoEngine()
@@ -173,6 +216,8 @@ class SoundscapeService : MediaSessionService() {
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
+            audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
             routePlayer = RoutePlayer(this, applicationContext)
 
             locationProvider = AndroidLocationProvider(this)
@@ -209,6 +254,8 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.destroy()
         directionProvider.destroy()
+
+        abandonAudioFocus(true)
 
         timerJob?.cancel()
         geoEngine.stop()
@@ -319,6 +366,7 @@ class SoundscapeService : MediaSessionService() {
     fun createBeacon(location: LngLatAlt?) {
         if(location == null) return
 
+        requestAudioFocus(true)
         if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
         }
@@ -336,12 +384,13 @@ class SoundscapeService : MediaSessionService() {
         // Report any change in beacon back to application
         _beaconFlow.value = _beaconFlow.value.copy(location = null)
         geoEngine.updateBeaconLocation(null)
+        abandonAudioFocus()
     }
 
     fun myLocation() {
         coroutineScope.launch {
             val results = geoEngine.myLocation()
-            if(results.isNotEmpty()) {
+            if(results != null) {
                 audioEngine.clearTextToSpeechQueue()
                 speakCallout(results, true)
             }
@@ -351,7 +400,7 @@ class SoundscapeService : MediaSessionService() {
     fun whatsAroundMe() {
         coroutineScope.launch {
             val results = geoEngine.whatsAroundMe()
-            if(results.isNotEmpty()) {
+            if(results != null) {
                 audioEngine.clearTextToSpeechQueue()
                 speakCallout(results, true)
             }
@@ -361,7 +410,7 @@ class SoundscapeService : MediaSessionService() {
     fun aheadOfMe() {
         coroutineScope.launch {
             val results = geoEngine.aheadOfMe()
-            if(results.isNotEmpty()) {
+            if(results != null) {
                 audioEngine.clearTextToSpeechQueue()
                 speakCallout(results, true)
             }
@@ -371,7 +420,7 @@ class SoundscapeService : MediaSessionService() {
     fun nearbyMarkers() {
         coroutineScope.launch {
             val results = geoEngine.nearbyMarkers()
-            if(results.isNotEmpty()) {
+            if(results != null) {
                 audioEngine.clearTextToSpeechQueue()
                 speakCallout(results, true)
             }
@@ -422,12 +471,20 @@ class SoundscapeService : MediaSessionService() {
     fun isAudioEngineBusy() : Boolean {
         val depth = audioEngine.getQueueDepth()
         //Log.d(TAG, "Queue depth: $depth")
-        return (depth > 1)
+        return (depth > 0)
     }
 
-    fun speakCallout(callouts: List<PositionedString>, addModeEarcon: Boolean) {
+    fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) {
+
+        if(callout == null) return
+
+        if (!requestAudioFocus()) {
+            Log.w(TAG, "SpeakCallout: Could not get audio focus. Aborting callouts.")
+            return
+        }
+
         if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER, AudioType.STANDARD)
-        for(result in callouts) {
+        for(result in callout.positionedStrings) {
             if(result.location == null) {
                 var type = result.type
                 if(type == AudioType.LOCALIZED) type = AudioType.STANDARD
@@ -455,6 +512,14 @@ class SoundscapeService : MediaSessionService() {
             }
         }
         if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
+
+        callout.calloutHistory?.add(callout)
+        callout.locationFilter?.update(callout.userGeometry)
+
+        while(isAudioEngineBusy()) {
+            Thread.sleep(100)
+        }
+        abandonAudioFocus()
     }
 
     fun toggleAutoCallouts() {
@@ -477,10 +542,71 @@ class SoundscapeService : MediaSessionService() {
             // Set flag in GeoEngine so that it can adjust it's behaviour
             geoEngine.appInForeground = foreground
 //        }
+        if(foreground) {
+            // If the app has switched to the foreground and we've got an active audio beacon, then
+            // we should request audio focus
+            if(audioBeacon != 0L)
+                requestAudioFocus()
+        }
     }
 
     fun getRecordingShareUri(context: Context): Uri? {
         return geoEngine.getRecordingShareUri(context)
+    }
+
+    private fun requestAudioFocus(forceUserIncrement: Boolean = false): Boolean {
+        if(!audioFocusGained) {
+            if (audioFocusRequest == null) {
+                // Build our audio focus request
+                val audioAttributes = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                    .build()
+
+                // We prefer playback over ducked audio, so if music were playing then that will be
+                // reduced in volume for our callouts to be heard.
+                audioFocusRequest =
+                    AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+                        .setAudioAttributes(audioAttributes)
+                        .setAcceptsDelayedFocusGain(true) // If you can wait for focus
+                        .setOnAudioFocusChangeListener(focusChangeListener)
+                        .build()
+            }
+            if (audioFocusRequest != null) {
+                val result = audioManager.requestAudioFocus(audioFocusRequest!!)
+
+                return if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    audioFocusGained = true
+                    Log.d(TAG, "Audio focus request granted.")
+                    ++focusUsers
+                    true
+                } else {
+                    // Assume loss if not granted
+                    Log.e(TAG, "Audio focus request failed.")
+                    audioFocusGained = false
+                    if(forceUserIncrement)
+                        ++focusUsers
+                    false
+                }
+            }
+        }
+
+        // We failed to create an audio focus request - return as if it was all successful
+        ++focusUsers
+        return true
+    }
+
+    private fun abandonAudioFocus(forceResetUsers: Boolean = false) {
+        --focusUsers
+        if((focusUsers > 0) && (!forceResetUsers))
+            return
+
+        Log.d(TAG, "Abandoning audio focus.")
+        audioFocusRequest?.let {
+            audioManager.abandonAudioFocusRequest(it)
+        }
+        audioFocusGained = false
+        focusUsers = 0
     }
 
     companion object {

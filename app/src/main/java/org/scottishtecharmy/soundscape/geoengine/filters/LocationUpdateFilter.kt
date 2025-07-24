@@ -16,10 +16,12 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
         minTimeMs = minTimeMilliseconds
     }
 
-    fun update(userGeometry: UserGeometry)
+    fun update(userGeometry: UserGeometry?)
     {
-        lastTime = userGeometry.timestampMilliseconds
-        lastLocation = userGeometry
+        if(userGeometry != null) {
+            lastTime = userGeometry.timestampMilliseconds
+            lastLocation = userGeometry
+        }
     }
 
     private fun shouldUpdate(userGeometry: UserGeometry,

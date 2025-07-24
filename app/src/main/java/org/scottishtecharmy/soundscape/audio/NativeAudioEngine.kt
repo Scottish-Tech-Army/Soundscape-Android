@@ -53,7 +53,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun getQueueDepth(engineHandle: Long) : Long
-    private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double)
+    private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
 
@@ -411,14 +411,20 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
         return true
     }
 
-    override fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?)
+    override fun updateGeometry(listenerLatitude: Double,
+                                listenerLongitude: Double,
+                                listenerHeading: Double?,
+                                focusGained: Boolean,
+                                duckingAllowed: Boolean)
     {        synchronized(engineMutex) {
             if(engineHandle != 0L)
                 updateGeometry(
                     engineHandle,
                     listenerLatitude,
                     listenerLongitude,
-                    listenerHeading ?: 50000.0
+                    listenerHeading ?: 50000.0,
+                    focusGained,
+                    duckingAllowed
                 )
         }
     }
