@@ -259,10 +259,9 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
 fun addIntersectionCalloutFromDescription(
     description: IntersectionDescription,
     localizedContext: Context?,
-    results: MutableList<PositionedString>,
     calloutHistory: CalloutHistory? = null,
     gridState: GridState
-) {
+) : TrackedCallout? {
 
     // Report nearby road
     if(description.intersection == null) {
@@ -298,29 +297,26 @@ fun addIntersectionCalloutFromDescription(
                         )
                     }}"
 
-                var skip = false
-                calloutHistory?.checkAndAdd(
-                    TrackedCallout(
-                        description.userGeometry,
-                        calloutText,
-                        LngLatAlt(),
-                        isPoint = false,
-                        isGeneric = false
-                    )
-                )?.let { newCallout ->
-                    if (!newCallout) skip = true
-                }
-                if (!skip) {
-                    results.add(
+                val trackedCallout = TrackedCallout(
+                    description.userGeometry,
+                    calloutText,
+                    LngLatAlt(),
+                    positionedStrings = List(1){
                         PositionedString(
                             text = calloutText,
                             type = AudioType.STANDARD
                         )
-                    )
+                    },
+                    isPoint = false,
+                    isGeneric = false,
+                    calloutHistory = calloutHistory
+                )
+                if(calloutHistory?.find(trackedCallout) != true) {
+                    return trackedCallout
                 }
             }
         }
-        return
+        return null
     }
 
     val intersectionName = description.intersection.name
@@ -330,7 +326,7 @@ fun addIntersectionCalloutFromDescription(
     // follow our nearestRoad to the intersection
     if(description.nearestRoad?.containsIntersection(description.intersection) != true) {
         if(description.nearestRoad == null)
-            return
+            return null
 
         val shortestDistanceResults = findShortestDistance(
             description.userGeometry.mapMatchedLocation?.point ?: description.userGeometry.location,
@@ -347,35 +343,40 @@ fun addIntersectionCalloutFromDescription(
 
     val heading = description.nearestRoad?.heading(description.intersection)
     if(heading == null)
-        return
+        return null
     if(description.intersection.members.size <= 2)
-        return
+        return null
 
     // Check if we should be filtering out this callout
     val intersectionLocation = description.intersection.location
-    calloutHistory?.checkAndAdd(TrackedCallout(
+
+    val trackedCallout = TrackedCallout(
         description.userGeometry,
         intersectionName,
         intersectionLocation,
+        positionedStrings = List(1) {
+            PositionedString(
+                text = localizedContext?.getString(R.string.intersection_approaching_intersection) ?: "Approaching intersection",
+                heading = -10000.0,
+                earcon = NativeAudioEngine.EARCON_SENSE_POI,
+                type = AudioType.STANDARD
+            )
+        },
         isPoint = true,
-        isGeneric = false
-    ))?.let { success ->
-        if(!success) return
+        isGeneric = false,
+        calloutHistory = calloutHistory
+    )
+    if(calloutHistory?.find(trackedCallout) == true) {
+        return null
     }
 
     // Report intersection is coming up
-    results.add(
-        PositionedString(
-            text = localizedContext?.getString(R.string.intersection_approaching_intersection) ?: "Approaching intersection",
-            earcon = NativeAudioEngine.EARCON_SENSE_POI,
-            type = AudioType.STANDARD)
-    )
 
     // Report roads that join the intersection
     val incomingHeading = (heading + 180.0) % 360.0
 
     val directions = getCombinedDirectionSegments(incomingHeading)
-    val intersectionResults = emptyList<PositionedString>().toMutableList()
+    val intersectionResults = trackedCallout.positionedStrings.toMutableList()
     for (way in description.intersection.members) {
 
         val wayHeading = way.heading(description.intersection)
@@ -428,5 +429,6 @@ fun addIntersectionCalloutFromDescription(
     intersectionResults.sortWith(Comparator { p1, p2 ->
         p1.heading!!.compareTo(p2.heading!!)
     })
-    results.addAll(intersectionResults)
+    trackedCallout.positionedStrings = intersectionResults
+    return trackedCallout
 }

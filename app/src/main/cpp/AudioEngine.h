@@ -67,7 +67,10 @@ namespace soundscape {
         AudioEngine() noexcept;
         ~AudioEngine();
 
-        void UpdateGeometry(double listenerLatitude, double listenerLongitude, double listenerHeading);
+        void UpdateGeometry(double listenerLatitude,
+                            double listenerLongitude,
+                            double listenerHeading,
+                            bool focusGained, bool duckingAllowed);
         FMOD::System * GetFmodSystem() const { return m_pSystem; };
         FMOD::ChannelGroup * GetBeaconGroup() const { return m_pBeaconChannelGroup; };
         FMOD::ChannelGroup * GetSpeechGroup() const { return m_pSpeechChannelGroup; };

@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbySharedLogic
@@ -237,13 +238,26 @@ class AddAndEditRouteViewModel @Inject constructor(
         createMarker(locationDescription, routeDao, viewModelScope,
             onSuccess = {
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
-                    listOf(PositionedString(text = successMessage, type = AudioType.STANDARD)),
+                    TrackedCallout(
+                        positionedStrings = listOf(
+                            PositionedString(
+                                text = successMessage,
+                                type = AudioType.STANDARD
+                            )
+                        ),
+                        filter = false
+                    ),
                     false
                 )
             },
             onFailure = {
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
-                    listOf(PositionedString(text = failureMessage, type = AudioType.STANDARD)),
+                    TrackedCallout(
+                        positionedStrings = listOf(
+                            PositionedString(text = failureMessage, type = AudioType.STANDARD)
+                        ),
+                        filter = false
+                    ),
                     false
                 )
             }

@@ -1,20 +1,27 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
+import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 class TrackedCallout(
-    userGeometry: UserGeometry,
-    val callout: String,
-    val location: LngLatAlt,
-    val isPoint: Boolean,
-    private val isGeneric: Boolean
-    )
+    val userGeometry: UserGeometry? = null,
+    val trackedText: String = "",
+    val location: LngLatAlt = LngLatAlt(),
+    var positionedStrings: List<PositionedString> = emptyList(),
+    val isPoint: Boolean = false,
+    private val isGeneric: Boolean = false,
+    private val filter: Boolean = true,
+    var calloutHistory: CalloutHistory? = null,
+    var locationFilter: LocationUpdateFilter? = null
+)
 {
-    val time = userGeometry.timestampMilliseconds
+    val time = userGeometry?.timestampMilliseconds ?: 0L
     val ruler = location.createCheapRuler()
 
     override fun equals(other: Any?) : Boolean {
+        if(!filter) return false
+
         if(other is TrackedCallout) {
             if(isGeneric && other.isGeneric) {
                 // If the POIs are both generic OSM POIs and are within the appropriate proximity
@@ -25,14 +32,14 @@ class TrackedCallout(
             }
             // If the TrackedCallout isn't for a point i.e. it's a Polygon, then we can't compare
             // it's location, as the nearest point on a Polygon changes as we move.
-            return (other.callout == callout)
+            return (other.trackedText == trackedText)
                     && (!isPoint || ruler.distance(location, other.location) < 10.0)
         }
         return false
     }
 
     override fun hashCode(): Int {
-        var result = callout.hashCode()
+        var result = trackedText.hashCode()
         result = 31 * result + location.hashCode()
         return result
     }
@@ -78,7 +85,7 @@ class CalloutHistory(expiryPeriodMilliseconds : Long = 60000) {
      */
     fun checkAndAdd(callout: TrackedCallout) : Boolean {
         if (find(callout)) {
-            println("Discard ${callout.callout} as in history")
+            println("Discard ${callout.trackedText} as in history")
             return false
         } else {
             add(callout)

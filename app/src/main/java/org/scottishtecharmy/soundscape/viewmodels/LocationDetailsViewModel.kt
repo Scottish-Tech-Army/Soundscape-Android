@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import java.net.URLEncoder
@@ -44,14 +45,24 @@ class LocationDetailsViewModel @Inject constructor(
             onSuccess = {
                 Log.d("LocationDetailsViewModel", successMessage)
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
-                    listOf(PositionedString(text = successMessage, type = AudioType.STANDARD)),
+                    TrackedCallout(
+                        positionedStrings = listOf(
+                            PositionedString(text = successMessage, type = AudioType.STANDARD)
+                        ),
+                        filter = false,
+                    ),
                     false
                 )
             },
             onFailure = {
                 Log.e("LocationDetailsViewModel", failureMessage)
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
-                    listOf(PositionedString(text = failureMessage, type = AudioType.STANDARD)),
+                    TrackedCallout(
+                        positionedStrings = listOf(
+                            PositionedString(text = failureMessage, type = AudioType.STANDARD)
+                        ),
+                        filter = false,
+                    ),
                     false
                 )
             }

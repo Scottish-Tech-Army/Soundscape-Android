@@ -34,15 +34,15 @@ class AutoCallout(
     private val poiCalloutHistory = CalloutHistory()
     private val roadSenseCalloutHistory = CalloutHistory()
 
-    private fun buildCalloutForDestination(userGeometry: UserGeometry): List<PositionedString> {
+    private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
         // Check that we have a destination
         if(userGeometry.currentBeacon == null)
-            return emptyList()
+            return null
 
         // Check that our location/time has changed enough to generate this callout
         if (!destinationFilter.shouldUpdate(userGeometry)) {
-            return emptyList()
+            return null
         }
 
         val distance = userGeometry.ruler.distance(userGeometry.location, userGeometry.currentBeacon)
@@ -50,25 +50,30 @@ class AutoCallout(
         var text = localizedContext?.getString(R.string.callouts_audio_beacon) ?: "Distance to the audio beacon"
         text += " $distanceString"
 
-        val results: MutableList<PositionedString> = mutableListOf()
-        results.add(
-            PositionedString(
-                text = text,
-                location = userGeometry.currentBeacon,
-                type = AudioType.LOCALIZED
-            ),
+        return TrackedCallout(
+            userGeometry = userGeometry,
+            trackedText = "",
+            location = userGeometry.currentBeacon,
+            isPoint = true,
+            isGeneric = true,
+            filter = false,
+            positionedStrings = List(1) {
+                PositionedString(
+                    text = text,
+                    location = userGeometry.currentBeacon,
+                    type = AudioType.LOCALIZED
+                )
+            }
         )
-
-        return results
     }
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
                                          gridState: GridState,
-                                         settlementGrid: GridState): List<PositionedString> {
+                                         settlementGrid: GridState): TrackedCallout? {
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
-            return emptyList()
+            return null
         }
 
         // Trim history based on location and current time
@@ -76,7 +81,7 @@ class AutoCallout(
 
         // Check that we're in a vehicle
         if (!userGeometry.inVehicle()) {
-            return emptyList()
+            return null
         }
 
         // Update time/location filter for our new position
@@ -87,44 +92,44 @@ class AutoCallout(
         if(geocode != null) {
             val callout = TrackedCallout(
                 userGeometry,
-                callout = geocode.text,
+                trackedText = geocode.text,
                 location =geocode.location!!,
+                positionedStrings = listOf(geocode),
                 isPoint = false,
-                isGeneric = false
+                isGeneric = false,
+                calloutHistory = roadSenseCalloutHistory
             )
 
             if (roadSenseCalloutHistory.find(callout)) {
-                println("Discard ${callout.callout}")
+                println("Discard ${callout.trackedText}")
                 // Filter out
-                return emptyList()
+                return null
             }
-            roadSenseCalloutHistory.add(callout)
 
             // Check that the geocode has changed before returning a callout describing it
-            return listOf(geocode)
+            return callout
         }
 
-        return emptyList()
+        return null
     }
     fun buildCalloutForIntersections(userGeometry: UserGeometry,
-                                     gridState: GridState) : List<PositionedString> {
-        val results : MutableList<PositionedString> = mutableListOf()
+                                     gridState: GridState) : TrackedCallout? {
 
         // We rely heavily on having map matched our GPS location to a nearby way. If we're not in
         // StreetPreview mode and we don't have that Way, then skip intersection callouts until we
         // do.
         if((userGeometry.mapMatchedWay == null) && !userGeometry.inStreetPreview) {
-            return emptyList()
+            return null
         }
 
         // Check that our location/time has changed enough to generate this callout
         if (!intersectionFilter.shouldUpdate(userGeometry)) {
-            return emptyList()
+            return null
         }
 
         // Check that we're not in a vehicle
         if (userGeometry.inVehicle()) {
-            return emptyList()
+            return null
         }
 
         // Trim callout history based on our location and current time
@@ -135,24 +140,19 @@ class AutoCallout(
             userGeometry)
 
         // Don't describe the road we're on if there's an intersection
-        addIntersectionCalloutFromDescription(
+        return addIntersectionCalloutFromDescription(
             roadsDescription,
             localizedContext,
-            results,
             intersectionCalloutHistory,
             gridState
         )
-
-        return results
     }
 
     private fun buildCalloutForNearbyPOI(userGeometry: UserGeometry,
-                                         gridState: GridState) : List<PositionedString> {
+                                         gridState: GridState) : TrackedCallout? {
         if (!poiFilter.shouldUpdateActivity(userGeometry)) {
-            return emptyList()
+            return null
         }
-
-        val results: MutableList<PositionedString> = mutableListOf()
 
         // Trim history based on location and current time
         poiCalloutHistory.trim(userGeometry)
@@ -200,11 +200,12 @@ class AutoCallout(
                         userGeometry,
                         name.text,
                         nearestPoint.point,
+                        positionedStrings = emptyList(),
                         feature.geometry.type == "Point",
                         name.generic
                     )
                     if (poiCalloutHistory.find(callout)) {
-                        println("Discard ${callout.callout}")
+                        println("Discard ${callout.trackedText}")
                         // Filter out
                         true
                     } else {
@@ -218,25 +219,28 @@ class AutoCallout(
                                 else -> NativeAudioEngine.EARCON_SENSE_POI
                             }
                             if(nearestPoint.distance == 0.0) {
-                                results.add(
+                                callout.positionedStrings = List(1) {
                                     PositionedString(
-                                        text = localizedContext?.getString(R.string.directions_at_poi, name.text) ?: "At ${name.text}",
+                                        text = localizedContext?.getString(
+                                            R.string.directions_at_poi,
+                                            name.text
+                                        ) ?: "At ${name.text}",
                                         earcon = earcon,
                                         type = AudioType.STANDARD
-                                    ),
-                                )
+                                    )
+                                }
                             } else {
-                                results.add(
+                                callout.positionedStrings = List(1) {
                                     PositionedString(
                                         text = name.text,
                                         location = nearestPoint.point,
                                         earcon = earcon,
                                         type = AudioType.LOCALIZED
-                                    ),
-                                )
+                                    )
+                                }
                             }
                             poiCalloutHistory.add(callout)
-                            false
+                            return callout
                         } else {
                             true
                         }
@@ -244,7 +248,7 @@ class AutoCallout(
                 }
             }
         }
-        return results
+        return null
     }
 
     /**
@@ -258,48 +262,47 @@ class AutoCallout(
     @OptIn(ExperimentalCoroutinesApi::class)
     fun updateLocation(userGeometry: UserGeometry,
                        gridState: GridState,
-                       settlementGrid: GridState) : List<PositionedString> {
+                       settlementGrid: GridState) : TrackedCallout? {
 
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
-        val returnList = runBlocking {
+        return runBlocking {
             withContext(gridState.treeContext) {
-                var list = emptyList<PositionedString>()
+                var trackedCallout : TrackedCallout? = null
 
                 val destinationCallout = buildCalloutForDestination(userGeometry)
-                if (destinationCallout.isNotEmpty()) {
+                if (destinationCallout != null) {
                     // Update the destination filter if we're outputting it
-                    destinationFilter.update(userGeometry)
-                    list = destinationCallout
-                } else if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) == true) {
+                    destinationCallout.locationFilter = destinationFilter
+                    trackedCallout = destinationCallout
+                } else if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) != false) {
                     // buildCalloutForRoadSense builds a callout for travel that's faster than
                     // walking
                     val roadSenseCallout =
                         buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
-                    if (roadSenseCallout.isNotEmpty()) {
-                        list = roadSenseCallout
+                    if (roadSenseCallout != null) {
+                        trackedCallout = roadSenseCallout
                     } else {
                         val intersectionCallout =
                             buildCalloutForIntersections(userGeometry, gridState)
-                        if (intersectionCallout.isNotEmpty()) {
-                            intersectionFilter.update(userGeometry)
-                            list = list + intersectionCallout
+                        if (intersectionCallout != null) {
+                            intersectionCallout.locationFilter = intersectionFilter
+                            trackedCallout = intersectionCallout
                         }
+                        else {
+                            // Get normal callouts for nearby POIs, for the destination, and for beacons
+                            val poiCallout = buildCalloutForNearbyPOI(userGeometry, gridState)
 
-
-                        // Get normal callouts for nearby POIs, for the destination, and for beacons
-                        val poiCallout = buildCalloutForNearbyPOI(userGeometry, gridState)
-
-                        // Update time/location filter for our new position
-                        if (poiCallout.isNotEmpty()) {
-                            poiFilter.update(userGeometry)
-                            list = list + poiCallout
+                            // Update time/location filter for our new position
+                            if (poiCallout != null) {
+                                poiCallout.locationFilter = poiFilter
+                                trackedCallout = poiCallout
+                            }
                         }
                     }
                 }
-                list
+                trackedCallout
             }
         }
-        return returnList
     }
 }

@@ -86,7 +86,9 @@ class GpxDrivenProvider  {
                     directionProvider.audioEngine?.updateGeometry(
                         interpolatedPoint.latitude,
                         interpolatedPoint.longitude,
-                        heading
+                        heading,
+                        focusGained = true,
+                        duckingAllowed = false
                     )
 
                     currentStep++
