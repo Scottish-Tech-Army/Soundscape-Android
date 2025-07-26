@@ -432,4 +432,31 @@
     <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SE</string>
     <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
     <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s station de métro</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Quitter la carte plein écran</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Près de %1$s et près de %2$s</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s terminal de ferry</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Gestion audio</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Gérer l\'accessibilité</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Thème clair</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Thème contraste</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Ordinaire</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Moyenne</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">Élevée</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s est le choix %2$s de %3$s</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">garder</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">valeur d\'usage</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Quitter Street Preview</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Activer l \' enregistrement des voyages</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Activer le style de carte accessible</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Paramètres de débogage</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Partager l\'enregistrement du voyage</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s à %2$s via %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s à %2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s qui rejoint %2$s et %3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s via %2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">Trottoir à côté de %1$s</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">Trottoir</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">impasse</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explore l\'utilisation d\'une technologie audio innovante pour permettre aux gens de mieux connaître leur environnement, devenant ainsi plus confiants et plus autonomes pour se déplacer.</string>
 </resources>
