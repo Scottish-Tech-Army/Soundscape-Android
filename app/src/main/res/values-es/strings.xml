@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="general_alert_cancel">"Cancelar"</string>
     <string name="general_alert_done">"Listo"</string>
     <string name="general_loading_start">"Preparando todo…"</string>
@@ -405,4 +405,58 @@
     <string name="faq_tip_create_marker_at_bus_stop">"Si hay una ruta de autobuses que utilice a menudo, establezca sus paradas de recogida y salida como Marcadores. De esta manera se guardarán para que pueda volver a encontrarlas fácilmente en la lista que aparece en el menú \"Administrar marcadores\". Puede establecer una señal en ellas y recibirá actualizaciones periódicas sobre la distancia hasta la parada de salida. Nota: Puede desactivar el sonido rítmico y seguir obteniendo actualizaciones de la distancia por el camino."</string>
     <string name="first_launch_permissions_notification">Notificaciones</string>
     <string name="no_language_selected">Ningún idioma seleccionado</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Vaya a la intersección más cercana</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" y %s"</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Haga el mapa pantalla completa</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Salir del mapa de pantalla completa</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Cerca %1$s y cerca de %2$s</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Norte</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Noreste</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Este</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">Sudeste</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">Sur</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Suroeste</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Oeste</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Noroeste</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">NE</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">E</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SE</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SO</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">O</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NO</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Estamos dirigiendo este servicio de localización en primer plano</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancelar búsqueda</string>
+    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Estación de tren</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s estación de tren</string>
+    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Parada de tranvía</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s Parón de tranvía</string>
+    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Estación de metro</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s estación de metro</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s terminal de ferry</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Gestionar audio</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Gestión de la accesibilidad</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Use tema de luz</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Contraste del tema</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Regular</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Mediana</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">Alto</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s es la elección %2$s de %3$s</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">mantener</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">uso</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Salir Street Preview</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Habilita grabar de viaje</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Habilita mapa accesible styling</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Ajustes de depuración</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Grabación compartida de viajes</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s a %2$s vía %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s a %2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s que se une %2$s y %3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s via %2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">La acera junto a %1$s</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">Acera</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">Callejón sin salida</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explora el uso de tecnología innovadora basada en audio para que las personas puedan crear una conciencia más rica de su entorno, convirtiéndose así en más confiado y habilitado para moverse.</string>
 </resources>
