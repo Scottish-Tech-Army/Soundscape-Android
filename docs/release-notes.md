@@ -7,66 +7,22 @@ has_toc: false
 
 # Release notes
 
-# 0.0.91
+# 0.0.94
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
-Issues tagged _user-facing_ are those which describe issues from a user perspective.
+Issues tagged _user-facing_ are those which describe issues from a user perspective. 
 
-## Known issues in this release
-* Map scrolling in the GUI has regressed and is 'fiddly at best'
+## New in this release
+* Support for better audio interaction between apps. Phone and video calls will automatically mute the app, and other apps will drop their volume when Soundscape callouts play.
+* Closing the app by swiping up now stops the audio service too, shutting down the app completely.
 
-## Longer term known issues
-The larger issues are:
+### Longer term known issues
+The largest issues which are still being worked on are:
 * [Support for Street Preview is very preliminary](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/528), especially when it comes to use by people with a visual impairment.
 * [Callouts for roundabouts need work](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/442). We have a plan for this, but it's not yet implemented.
 
-## What's improved in this release?
-There's been a lot of work in this release on documentation and translation. These don't 
-directly affect the functionality of the app for English speakers they are very important 
-platform developments. Translation is now hosted on [weblate](https://hosted.weblate.org/projects/soundscape-android/) which should allow us to more easily support new languages and extend our current language 
-support when we add new text to the app.
+## Features
+This is a brief description of the various features of the app.
 
-The other major piece of work that users likely won't even notice is that we've updated to the 
-very latest version of the libraries that we use and the latest version of the language (kotlin). 
-This is important for future development, but really shouldn't impact users. However, we have had to 
-change the database that we use for storing markers and routes. Any testers who had created 
-markers and routes might notice that they have now disappeared. The database we were using was no 
-longer well supported and changing now means that we could make a breaking change before we 
-build the number of users.
-
-With all of this platform work in place, we're now ready to improve the core functionality of 
-the app as we increase the number of users and testers.
-
-# 0.0.71
-## New in this release
-* The code that deals with the map data has changed significantly. This particularly affects all callouts and StreetPreview,
-* Improved matching from the GPS location to a location on the map, tracking which road a user is travelling on. It's impossible to be perfect, as there's error both in the GPS location and in the mapping data, but it's much improved. This should lead to more accurate callouts describing the nearby intersections, especially when there are roads at different altitudes e.g. bridges, tunnels etc.
-* Un-named roads and paths are now described with some additional context where possible. The code follows along an un-named road or path until it hits a split in the road and then tries to name it.  There are various issues filed to increase this capability, but for now this includes:
-  * <Un-named Way> to <named Way> e.g. "Path to Moor Road"
-  * <Un-named Way> to <POI> e.g. "Service to "Police Station"
-  * <Un-named Way> to <Marker> e.g. "Path to Dave's first marker". This means that all un-named ways can be 'named' by use of Markers.
-  * <Way> to dead-end e.g. "Glassford Street to dead end"
-  * "Via" which includes whether an un-named Way goes via "steps", "a bridge" or "a tunnel" e.g "Path via steps to Crossvegate" or "Path via tunnel to train station"
-* Special treatment for paths marked as "sidewalk" in OpenStreetMap. When travelling along a sidewalk, the callouts are now given relative to the road that the sidewalk is next to. That means that paths joining just the sidewalk won't be called out, but that road junctions are much more clearly described.
-* GPX (GPS track) sharing for up to the last hour of app use. This is off by default, but can be enabled in the settings. Once enabled, each GPS location is recorded into a buffer which will hold the last hour of data. From the menu "Share recording of travel" can be used to generate a GPX file from the buffer and share it with another app e.g. Slack/Gmail etc. If when testing a user has a callout which they think is wrong, they can share the GPX with us and we can investigate it more easily.
-* Beacons started from the Location Details page can now be stopped from the UI.
-
-### Still to come
-The issues listed [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues) are still being worked on. There's definitely still more work to do improving the callouts, especially reducing less useful ones.
-
-## General information
-This release has the majority of the main features implemented. The maps served up from the cloud cover the whole world which means that the app can be tested anywhere.
-
-We're releasing the app to:
-
-1. Enable wider testing and check support across a wider selection of real world devices
-2. Get feedback on the accuracy of geographical data, both for audio callouts and the UI
-3. Get feedback on location/heading and audio beacons
-4. We want to measure map tile consumption and UI performance
-5. GUI accessibility testing. There have been a large number of accessibility improvements made to the GUI.
-
-Known issues can be seen on our [github page](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues) and if you have a new issue you can open it there, though it does require creation of a (free) GitHub account.
-
-### Features
 #### Onboarding screens
 These are based on the iOS screens and guide the user through language selection, permissions, and beacon style selection.
 
@@ -88,7 +44,7 @@ Clickable items on the home screen that are implemented are:
     * Exiting Street Preview mode and returning to using the phone's actual location. When in Street Preview mode the direction is still controlled by the phone orientation.
     * Clicking on the other button jumps to the next intersection on that road. Which road to choose at the intersection is 
       chosen by rotating the phone. This should behave pretty much as the iOS app does, but with less animated buttons/feedback.
-  * **Search** using a Komoot Photon backend. This allows geo-searching from within the app. It updates the results if you pause typing in an auto-suggest type way. Tapping on a result opens the Location Details screen.
+  * **Search** This allows geo-searching from within the app. It updates the results if you pause typing in an auto-suggest type way. Tapping on a result opens the Location Details screen.
 
 #### Soundscape service
 This runs even when the phone is locked. It means that a beacon can be set or a route played and then the phone locked. The audio beacon will continue to sound. The service can be stopped and restarted by entering and exiting Sleep mode. The service is responsible for the audio beacon play out and the audio callouts. The heading logic is similar to iOS which means that when the phone is locked the heading is based on the current direction of travel. If the phone is unlocked - or is locked and held flat in front of the user - then the heading used is the direction that the phone is pointing in.
@@ -111,14 +67,4 @@ The main way that a user might open the app is by tapping on its icon. However, 
    com/Scottish-Tech-Army/Soundscape-Android/issues/201) and makes it simple to  reproduce.
 *  **Open a GPX/JSON file** from the File application on Android. This supports a fairly limited set of GPX files along with routes saved from the iOS app. The route opens in the "Create Route" screen allowing it to be saved to the app which saves the Markers and the Route.
 
-### Work in progress
-Features currently in progress:
- * Improving the audio callouts
- * Improving the graphical map style to be higher contrast and more accessible
- * De-duplicating marker callouts with any POIs that they might be coincident with.
- * In vehicle mode needs some attention, we've focussed mostly on audio callouts whilst walking.
-
-## Testing guidance
-We're interested in all feedback, but we aren't visually impaired and so particularly value usability feedback - especially if we fall short compared with the iOS Soundscape app.
-
-A suggested ["smoke test"](smoke_test.md) has a list of features to test and how.
+A suggested [smoke test]({% link testing/smoke_test.md %}) has a list of features to test and how.
