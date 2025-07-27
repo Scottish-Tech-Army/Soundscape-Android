@@ -17,20 +17,12 @@ The app is a port of the Soundscape iOS app and the UI is designed to be pretty 
 Whilst we're interested in improving the UI in the long term, matching the iOS behaviour is the 
 most important goal for this initial release.
 
-We're going to use Slack for all initial feedback, here's the channel link:
-[#soundscape-android-testing-feedback](https://scottishtecharmy.slack.com/archives/C08HJBFPN8N)
-
 ## Requirements
 The app currently requires Android 11 (API 30 - see [https://apilevels.com/](https://apilevels.com/)). We are hoping to drop this to Android 9 with some more work, but for now we only support Android 11 and later.
 We don't know of any other requirements, but that's one of the thing this testing should help us understand.
 
 ## Installing the app
-Because it's currently in _Closed Testing_, to get access to the app you need added to a list 
-on the PlayStore. Once added to the list, the app can be installed from here:
-
-[https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape)
-
-Follow the instructions there for how to download and install the app..
+The app is freely available on play store [here](https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape).
 
 ## Running the app the first time
 The first time you run the Soundscape app you will see a series of onboarding screens which let 
@@ -54,7 +46,7 @@ Please report any of these issues on the Slack channel.
 Now that you're past the onboarding screens, you shouldn't see them again and you should be on 
 the main screen:
 
-<img src="home-screen.png" alt="Soundscape Home Screen" width="200px"/>
+<img src="../documentationScreens/homeScreen.png" width="200" alt="Screenshot of the Soundscape home screen">
 
 Soundscape will now continue to run in the background. To exit it, click on the top right corner 
 to put the app to sleep, and then close the app (swipe up etc.).
@@ -116,7 +108,7 @@ different if you are walking towards it or away from it. If you stop moving and 
 locked then any beacon will go quieter to indicate that there's no available direction data.
 
 ## Providing debug location trace
-In release 0.0.71 we added a feature that provides useful data to us for debugging issues.  The app can now store up to an hour buffer of the user location recorded whilst the app is running. This feature is disabled by default, and even when enabled the data stays on the phone unless the user chooses to share it via interaction with the app. To use the feature:
+The app can store up to an hour buffer of the user location recorded whilst the app is running. This feature is disabled by default, and even when enabled the data stays on the phone unless the user chooses to share it via interaction with the app. To use the feature:
 1. Tap on the Menu hamburger in the top left, and then tap on "Settings" scroll to the bottom and you'll see the "Enable recording of travel" option. Click to enable/disable.
 2. With the setting enabled, a new option appears in the Menu drawer below "About Soundscape" which is "Share recording of travel". If you want to share a GPX track you can click on that and you can then choose whether to use email/slack etc. to send the file to us to debug.
 The file contains the data from the Android location services for up to the last hour that the app has been running. Don't share it with us if you don't want us to know where you've been. There's no identifying data in it, though obviously we'll know who sent it.
@@ -128,8 +120,7 @@ Enabling the setting is absolutely optional, but it is useful to us for debuggin
 ## Final notes
 There are other features in the app, but for this first phase of testing the focus is those 
 above. If there's anything unclear in these instructions let us know. Once we have some feedback,
-there'll be some bugs to fix, and then we'll do incremental releases. These are announced on the 
-Slack channel if you're interested in keeping testing. If you are interested in helping out 
+there'll be some bugs to fix, and then we'll do incremental releases. If you are interested in helping out 
 further on the project, take a look at the STA volunteer app for some available roles.
 
 Thanks for reading!
