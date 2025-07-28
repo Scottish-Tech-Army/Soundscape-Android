@@ -63,6 +63,7 @@ benchmarkCommon = "1.4.0"
 lifecycleRuntimeComposeAndroid = "2.9.2"
 lifecycleProcess = "2.9.2"
 uiautomator = "2.3.0"
+jaredsburrows-license = "0.9.8"
 
 # These libraries can't go any higher without breaking map zooming
 composeBom = "2025.04.00"
@@ -152,3 +153,4 @@ devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
+jaredsburrows-license = { id = "com.jaredsburrows.license", version.ref = "jaredsburrows-license" }

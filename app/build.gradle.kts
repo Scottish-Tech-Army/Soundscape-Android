@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.jetbrains.dokka)
+    alias(libs.plugins.jaredsburrows.license)
 }
 
 android {
@@ -182,6 +183,27 @@ protobuf {
             }
         }
     }
+}
+
+licenseReport {
+    // Generate reports
+    generateCsvReport = false
+    generateHtmlReport = false
+    generateJsonReport = true
+    generateTextReport = false
+
+    // Copy reports - These options are ignored for Java projects
+    copyCsvReportToAssets = false
+    copyHtmlReportToAssets = false
+    copyJsonReportToAssets = true
+    copyTextReportToAssets = false
+    useVariantSpecificAssetDirs = false
+
+    // Ignore licenses for certain artifact patterns
+    ignoredPatterns = emptySet()
+
+    // Show versions in the report - default is false
+    showVersions = true
 }
 
 dependencies {
