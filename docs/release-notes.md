@@ -7,13 +7,13 @@ has_toc: false
 
 # Release notes
 
-# 0.0.94
+# 0.0.96
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
 Issues tagged _user-facing_ are those which describe issues from a user perspective. 
 
 ## New in this release
-* Support for better audio interaction between apps. Phone and video calls will automatically mute the app, and other apps will drop their volume when Soundscape callouts play.
-* Closing the app by swiping up now stops the audio service too, shutting down the app completely.
+* Support for better audio interaction between apps. Phone and video calls will automatically mute the app, and other apps will drop their volume when Soundscape callouts play. Although this was added in v0.0.94 there were some issues and this release fixes those.
+* Enhanced analytics so that we can track (anonymously) which features are being used and tested.
 
 ### Longer term known issues
 The largest issues which are still being worked on are:
