@@ -25,3 +25,8 @@
 # Fix SimpleRouteData GSON generation and parsing
 -keep class org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.*  { *; }
 -keep class com.google.gson.internal.LinkedTreeMap  { *; }
+
+# Ensure that we can callback from the AudioEngine
+-keep class org.scottishtecharmy.soundscape.audio.NativeAudioEngine {
+    public void onAllBeaconsCleared();
+}

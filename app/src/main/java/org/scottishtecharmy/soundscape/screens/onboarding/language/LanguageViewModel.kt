@@ -29,6 +29,11 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         var selectedLanguageIndex: Int = -1
     )
 
+    override fun onCleared() {
+        super.onCleared()
+        audioEngine.destroy()
+    }
+
     private fun addIfSpeechSupports(allLanguages: MutableList<Language>, language: Language) {
         // TODO: The idea here is to add the language only if it's supported by the text to speech
         //  engine. However, the audioEngine appears to be struggling to initialize the TextToSpeech.

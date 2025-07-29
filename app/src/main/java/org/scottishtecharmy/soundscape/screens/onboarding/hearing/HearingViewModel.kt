@@ -9,6 +9,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HearingViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
 
+    override fun onCleared() {
+        super.onCleared()
+        audioEngine.destroy()
+    }
+
     fun playSpeech(speechText: String) {
         // Set our listener position, and play the speech
         // TODO: If updateGeometry isn't called, then the audioEngine doesn't move on to   the next
