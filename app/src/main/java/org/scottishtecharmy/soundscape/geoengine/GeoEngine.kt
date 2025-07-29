@@ -9,6 +9,8 @@ import android.net.Uri
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -347,6 +349,8 @@ class GeoEngine {
                     FirebaseCrashlytics.getInstance().setCustomKey("latitude", newLocation.latitude)
                     FirebaseCrashlytics.getInstance().setCustomKey("longitude", newLocation.longitude)
 
+                    Firebase.analytics.logEvent("gridUpdate", null)
+
                     // Update the main grid state
                     val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
@@ -444,6 +448,9 @@ class GeoEngine {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun myLocation() : TrackedCallout? {
+
+        Firebase.analytics.logEvent("myLocation", null)
+
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
@@ -512,6 +519,7 @@ class GeoEngine {
         withContext(Dispatchers.IO) {
             val location = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
             try {
+                Firebase.analytics.logEvent("geoSearch", null)
                 return@withContext PhotonSearchProvider
                     .getInstance()
                     .getSearchResults(
@@ -522,6 +530,7 @@ class GeoEngine {
                     .body()
             } catch (e: Exception) {
                 Log.e(TAG, "Error getting search results:", e)
+                Firebase.analytics.logEvent("geoSearchError", null)
                 return@withContext null
             }
         }
@@ -536,6 +545,8 @@ class GeoEngine {
         val timeSource = TimeSource.Monotonic
         val gridStartTime = timeSource.markNow()
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
+
+        Firebase.analytics.logEvent("whatsAroundMe", null)
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
@@ -638,6 +649,8 @@ class GeoEngine {
         var results : MutableList<PositionedString> = mutableListOf()
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto)
 
+        Firebase.analytics.logEvent("aheadOfMe", null)
+
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
                 localizedContext.getString(R.string.general_error_location_services_find_location_error)
@@ -694,6 +707,8 @@ class GeoEngine {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun nearbyMarkers() : TrackedCallout? {
+
+        Firebase.analytics.logEvent("nearbyMarkers", null)
 
         // Search database for nearby markers and call them out
         var results : MutableList<PositionedString> = mutableListOf()
