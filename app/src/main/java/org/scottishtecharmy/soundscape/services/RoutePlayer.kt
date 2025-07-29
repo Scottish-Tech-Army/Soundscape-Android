@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape.services
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -82,6 +84,8 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     fun startRoute(routeId: Long) {
         val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
         val routeDao = realm.routeDao()
+
+        Firebase.analytics.logEvent("startRoute", null)
 
         Log.e(TAG, "startRoute")
         coroutineScope.launch {
