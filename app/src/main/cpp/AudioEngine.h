@@ -4,6 +4,7 @@
 #include <list>
 #include <thread>
 #include <mutex>
+#include <jni.h>
 #include "fmod.hpp"
 #include "fmod.h"
 #include "BeaconDescriptor.h"
@@ -83,6 +84,11 @@ namespace soundscape {
         bool ToggleBeaconMute();
 
         void Eof(long long id);
+        void BeaconDestroyed();
+
+        // Method to be called from Kotlin to set up the callback
+        void SetBeaconEventsListener(JNIEnv *env, jobject listener_obj);
+        void ClearBeaconEventsListener(JNIEnv *env); // To release the global ref
 
         const static BeaconDescriptor msc_BeaconDescriptors[];
 
@@ -119,6 +125,14 @@ namespace soundscape {
         std::list<PositionedAudio *> m_QueuedBeacons;
 
         bool m_BeaconMute = false;
+
+        // For JNI callbacks
+        JavaVM *m_pJvm = nullptr;
+        jobject m_jBeaconListener = nullptr;
+        jmethodID m_jMethodId_onAllBeaconsCleared = nullptr;
+
+        // Helper to notify Kotlin
+        void NotifyAllBeaconsCleared(int line);
     };
 
 } // soundscape

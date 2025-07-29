@@ -21,4 +21,5 @@ interface AudioEngine {
     fun setSpeechLanguage(language : String) : Boolean
     fun updateSpeech(sharedPreferences: SharedPreferences): Boolean
     fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean
+    fun onAllBeaconsCleared()
 }

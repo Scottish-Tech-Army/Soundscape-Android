@@ -8,6 +8,7 @@
 #include <mutex>
 #include <android/log.h>
 #include <jni.h>
+#include <cassert>
 
 namespace soundscape {
 
@@ -233,6 +234,113 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         auto result = m_pSystem->release();
         ERROR_CHECK(result);
         m_pSystem = nullptr;
+
+        // We rely on clearBeaconEventsListener having been called prior to this call
+        assert(m_pJvm == nullptr);
+        assert(m_jBeaconListener == nullptr);
+    }
+
+    void AudioEngine::SetBeaconEventsListener(JNIEnv *env, jobject listener_obj) {
+        // Store the JavaVM pointer
+        if (env->GetJavaVM(&m_pJvm) != JNI_OK) {
+            TRACE("AudioEngine::SetBeaconEventsListener - Failed to get JavaVM");
+            m_pJvm = nullptr;
+            return;
+        }
+
+        // Create a global reference to the listener object (NativeAudioEngine instance)
+        // Make sure to delete this global reference when the listener is no longer needed
+        // (e.g., in a ClearBeaconEventsListener method or destructor)
+        if (m_jBeaconListener != nullptr) {
+            env->DeleteGlobalRef(m_jBeaconListener);
+            m_jBeaconListener = nullptr;
+        }
+        m_jBeaconListener = env->NewGlobalRef(listener_obj);
+        if (m_jBeaconListener == nullptr) {
+            TRACE("AudioEngine::SetBeaconEventsListener - Failed to create global ref for listener");
+            return;
+        }
+
+        // Get the class of the listener object
+        jclass listener_class = env->GetObjectClass(m_jBeaconListener);
+        if (listener_class == nullptr) {
+            TRACE("AudioEngine::SetBeaconEventsListener - Failed to get listener class");
+            env->DeleteGlobalRef(m_jBeaconListener);
+            m_jBeaconListener = nullptr;
+            return;
+        }
+
+        // Get the method ID for the callback method in NativeAudioEngine.kt
+        // The method signature "()V" means a method with no arguments that returns void.
+        m_jMethodId_onAllBeaconsCleared = env->GetMethodID(listener_class, "onAllBeaconsCleared", "()V");
+        if (m_jMethodId_onAllBeaconsCleared == nullptr) {
+            TRACE("AudioEngine::SetBeaconEventsListener - Failed to get method ID for onAllBeaconsCleared");
+            env->DeleteGlobalRef(m_jBeaconListener);
+            m_jBeaconListener = nullptr;
+            // No need to delete listener_class, it's a local reference.
+            return;
+        }
+        TRACE("AudioEngine::SetBeaconEventsListener - Successfully set up listener.");
+    }
+
+    void AudioEngine::ClearBeaconEventsListener(JNIEnv *env) {
+        if (m_jBeaconListener != nullptr) {
+            env->DeleteGlobalRef(m_jBeaconListener);
+            m_jBeaconListener = nullptr;
+            m_pJvm = nullptr;
+            m_jMethodId_onAllBeaconsCleared = nullptr;
+            TRACE("AudioEngine::ClearBeaconEventsListener - Listener cleared.");
+        }
+    }
+
+    void AudioEngine::NotifyAllBeaconsCleared(int line) {
+        if (m_pJvm == nullptr || m_jBeaconListener == nullptr || m_jMethodId_onAllBeaconsCleared == nullptr) {
+            TRACE("NotifyAllBeaconsCleared: JNI listener not set up, cannot notify Kotlin.");
+            return;
+        }
+
+        JNIEnv *env;
+        bool didAttach = false;
+        // Check if the current thread is attached to the JVM
+        int getEnvStat = m_pJvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6);
+
+        if (getEnvStat == JNI_EDETACHED) {
+            // If not attached, attach it
+            if (m_pJvm->AttachCurrentThread(&env, nullptr) != 0) {
+                TRACE("NotifyAllBeaconsCleared: Failed to attach current thread to JVM");
+                return;
+            }
+            didAttach = true;
+        } else if (getEnvStat == JNI_EVERSION) {
+            TRACE("NotifyAllBeaconsCleared: JNI version not supported");
+            return;
+        } else if (getEnvStat == JNI_OK) {
+            // Already attached
+        }
+
+        // Call the Kotlin method
+        env->CallVoidMethod(m_jBeaconListener, m_jMethodId_onAllBeaconsCleared);
+
+        // Check for exceptions from the JNI call (good practice)
+        if (env->ExceptionCheck()) {
+            TRACE("NotifyAllBeaconsCleared: Exception occurred calling Kotlin method");
+            env->ExceptionDescribe();
+            env->ExceptionClear();
+        }
+
+        // If we attached the thread, detach it
+        if (didAttach) {
+            m_pJvm->DetachCurrentThread();
+        }
+        TRACE("NotifyAllBeaconsCleared from %d: Kotlin notified.", line);
+    }
+
+    void
+    AudioEngine::BeaconDestroyed() {
+        std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+        if (m_Beacons.empty()) {
+            NotifyAllBeaconsCleared(__LINE__);
+        }
     }
 
     void
@@ -294,6 +402,9 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             //    the beacon.
             //
             std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+
+            bool wasEmpty = m_Beacons.empty();
+
             auto it = m_Beacons.begin();
             bool start_next = false;
             while(it != m_Beacons.end()) {
@@ -321,6 +432,11 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 auto queued_beacon = *m_QueuedBeacons.begin();
                 m_Beacons.insert(queued_beacon);
                 queued_beacon->PlayNow();
+            }
+
+            // Check if m_Beacons is empty *after* all removals and potential additions from queue
+            if (m_Beacons.empty() && !wasEmpty) {
+                NotifyAllBeaconsCleared(__LINE__);
             }
         }
 
@@ -393,8 +509,6 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
     {
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
         m_Beacons.erase(beacon);
-
-//        TRACE("RemoveBeacon -> %zu beacons", m_Beacons.size());
     }
 
     bool AudioEngine::ToggleBeaconMute() {
@@ -570,7 +684,11 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon
                                                                                 jobject thiz MAYBE_UNUSED,
                                                                                 jlong beacon_handle) {
     auto beacon = reinterpret_cast<soundscape::Beacon*>(beacon_handle);
+    auto ae = beacon->m_pEngine;
     delete beacon;
+    if(ae) {
+        ae->BeaconDestroyed();
+    }
 }
 
 extern "C"
@@ -665,4 +783,28 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
         return ret;
     }
     return 0L;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_setBeaconEventsListener(
+        JNIEnv *env,
+        jobject thiz, /* this is the NativeAudioEngine instance from Kotlin */
+        jlong engine_handle) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if (ae) {
+        ae->SetBeaconEventsListener(env, thiz); // Pass 'thiz' as the listener object
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_clearBeaconEventsListener(
+        JNIEnv *env,
+        jobject thiz, /* unused here but part of JNI signature for non-static native methods */
+        jlong engine_handle) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if (ae) {
+        ae->ClearBeaconEventsListener(env);
+    }
 }
