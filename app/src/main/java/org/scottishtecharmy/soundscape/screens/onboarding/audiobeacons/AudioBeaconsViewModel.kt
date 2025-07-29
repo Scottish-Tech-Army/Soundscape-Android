@@ -25,6 +25,11 @@ class AudioBeaconsViewModel @Inject constructor(@param:ApplicationContext val co
     )
     private var beacon : Long = 0
 
+    override fun onCleared() {
+        super.onCleared()
+        audioEngine.destroy()
+    }
+
     private val _state: MutableStateFlow<AudioBeaconsUiState> = MutableStateFlow(
         AudioBeaconsUiState(
             beaconTypes = audioEngine.getListOfBeaconTypes().toList(),
