@@ -23,6 +23,7 @@ namespace soundscape {
         void PlayNow();
         void Mute(bool mute);
 
+        AudioEngine *m_pEngine;
     protected:
         void Init(double degrees_off_axis);
         void InitFmodSound();
@@ -37,7 +38,6 @@ namespace soundscape {
         FMOD::System *m_pSystem = nullptr;
         FMOD::Sound *m_pSound = nullptr;
         FMOD::Channel *m_pChannel = nullptr;
-        AudioEngine *m_pEngine;
         bool m_Dimmable = false;
     };
 

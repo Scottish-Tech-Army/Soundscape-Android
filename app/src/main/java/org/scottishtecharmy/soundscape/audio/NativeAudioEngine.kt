@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 import javax.inject.Inject
@@ -30,7 +31,8 @@ enum class AudioType(val type: Int) {
 
 
 @Singleton
-class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitListener {
+class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine, TextToSpeech.OnInitListener {
+
     private var engineHandle : Long = 0
     private val engineMutex = Object()
     private var ttsSockets = HashMap<String, Array<ParcelFileDescriptor>>()
@@ -68,6 +70,7 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             if (engineHandle == 0L) {
                 return
             }
+            clearBeaconEventsListener(engineHandle)
             destroy(engineHandle)
             engineHandle = 0
 
@@ -128,6 +131,11 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
             textToSpeech = TextToSpeech(context, this)
             sharedPreferences?.let {
                 updateBeaconType(it)
+            }
+            if (engineHandle != 0L) {
+                setBeaconEventsListener(engineHandle) // Setup the listener
+            } else {
+                Log.e(TAG, "Failed to create native audio engine instance.")
             }
         }
     }
@@ -440,6 +448,25 @@ class NativeAudioEngine @Inject constructor(): AudioEngine, TextToSpeech.OnInitL
     {
         return getListOfBeacons()
     }
+
+    /**
+     * Called from JNI when all beacons have been cleared from the AudioEngine.
+     */
+    override fun onAllBeaconsCleared() {
+        println("JNI Callback: All beacons have been cleared in AudioEngine.")
+        service?.abandonAudioFocus()
+    }
+
+    /**
+     * Sets up this NativeAudioEngine instance as a listener for beacon events in the C++ AudioEngine.
+     */
+    private external fun setBeaconEventsListener(nativeHandle: Long)
+
+    /**
+     * Clears this NativeAudioEngine instance as a listener in the C++ AudioEngine.
+     */
+    private external fun clearBeaconEventsListener(nativeHandle: Long)
+
 
     companion object {
         private const val TAG = "NativeAudioEngine"

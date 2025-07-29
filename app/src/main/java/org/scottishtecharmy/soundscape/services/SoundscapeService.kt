@@ -77,7 +77,7 @@ class SoundscapeService : MediaSessionService() {
     private var timerJob: Job? = null
 
     // Audio engine
-    var audioEngine = NativeAudioEngine()
+    var audioEngine = NativeAudioEngine(this)
     private var audioBeacon: Long = 0
 
     // Audio focus
@@ -86,7 +86,6 @@ class SoundscapeService : MediaSessionService() {
 
     var audioFocusGained: Boolean = false
     var duckingAllowed: Boolean = false
-    var focusUsers: Int = 0     // Increment for speech and for beacons separately
 
     private val focusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
         when (focusChange) {
@@ -102,7 +101,7 @@ class SoundscapeService : MediaSessionService() {
             }
             AudioManager.AUDIOFOCUS_LOSS -> {
                 Log.d(TAG, "AUDIOFOCUS_LOSS: Focus lost permanently")
-                abandonAudioFocus(true)
+                abandonAudioFocus()
             }
             AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
                 // Temporarily lost focus. Pause playback.
@@ -216,7 +215,7 @@ class SoundscapeService : MediaSessionService() {
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
-            audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
 
             routePlayer = RoutePlayer(this, applicationContext)
 
@@ -255,7 +254,7 @@ class SoundscapeService : MediaSessionService() {
         locationProvider.destroy()
         directionProvider.destroy()
 
-        abandonAudioFocus(true)
+        abandonAudioFocus()
 
         timerJob?.cancel()
         geoEngine.stop()
@@ -366,7 +365,7 @@ class SoundscapeService : MediaSessionService() {
     fun createBeacon(location: LngLatAlt?) {
         if(location == null) return
 
-        requestAudioFocus(true)
+        requestAudioFocus()
         if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
         }
@@ -384,7 +383,6 @@ class SoundscapeService : MediaSessionService() {
         // Report any change in beacon back to application
         _beaconFlow.value = _beaconFlow.value.copy(location = null)
         geoEngine.updateBeaconLocation(null)
-        abandonAudioFocus()
     }
 
     fun myLocation() {
@@ -515,11 +513,6 @@ class SoundscapeService : MediaSessionService() {
 
         callout.calloutHistory?.add(callout)
         callout.locationFilter?.update(callout.userGeometry)
-
-        while(isAudioEngineBusy()) {
-            Thread.sleep(100)
-        }
-        abandonAudioFocus()
     }
 
     fun toggleAutoCallouts() {
@@ -554,7 +547,7 @@ class SoundscapeService : MediaSessionService() {
         return geoEngine.getRecordingShareUri(context)
     }
 
-    private fun requestAudioFocus(forceUserIncrement: Boolean = false): Boolean {
+    private fun requestAudioFocus(): Boolean {
         if(!audioFocusGained) {
             if (audioFocusRequest == null) {
                 // Build our audio focus request
@@ -578,35 +571,26 @@ class SoundscapeService : MediaSessionService() {
                 return if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     audioFocusGained = true
                     Log.d(TAG, "Audio focus request granted.")
-                    ++focusUsers
                     true
                 } else {
                     // Assume loss if not granted
                     Log.e(TAG, "Audio focus request failed.")
                     audioFocusGained = false
-                    if(forceUserIncrement)
-                        ++focusUsers
                     false
                 }
             }
         }
 
         // We failed to create an audio focus request - return as if it was all successful
-        ++focusUsers
         return true
     }
 
-    private fun abandonAudioFocus(forceResetUsers: Boolean = false) {
-        --focusUsers
-        if((focusUsers > 0) && (!forceResetUsers))
-            return
-
+    fun abandonAudioFocus() {
         Log.d(TAG, "Abandoning audio focus.")
         audioFocusRequest?.let {
             audioManager.abandonAudioFocusRequest(it)
         }
         audioFocusGained = false
-        focusUsers = 0
     }
 
     companion object {
