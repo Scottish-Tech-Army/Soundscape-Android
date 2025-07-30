@@ -1,0 +1,92 @@
+{
+    "data_format": 1,
+    "data_url": "https://scottish-tech-army.github.io/Soundscape-Android/taginfo.json",
+    "data_updated": "20240730T110000Z",
+    "project": {         
+        "name": "Soundscape for Android",
+        "description": "An Android app to help people with visual impairments explore and navigate.",   
+        "project_url": "https://scottish-tech-army.github.io/Soundscape-Android",
+        "icon_url": "https://scottish-tech-army.github.io/Soundscape-Android/assets/SOUNDSCAPE-logo.png",
+        "contact_name": "Scottish Tech Army",
+        "contact_email": "info@scottishtecharmy.org"
+    },
+    "tags": [
+        {
+            "key": "place",
+            "description": "To callout when a user is near a village, hamlet, town etc. This happens when moving faster than walking speed e.g. by bus or train."
+        },
+        {
+            "key": "amenity",
+            "description": "These are called out when users get close to them."
+        },
+        {
+            "key": "shop",
+            "description": "These are called out when users get close to them."
+        },
+        {
+            "key": "crossing",
+            "description": "These are called out when users get close to them."
+        },
+        {
+            "key": "highway",
+            "description": "The app uses highways to describe a user's location and intersections ahead of them."
+        },
+        {
+            "key": "railway",
+            "description": "The app uses railways to add context to a user's location e.g. on path next to railway."
+        },
+        {
+            "key": "water",
+            "description": "The app uses water tags to add context to a user's location e.g. on path next to River Dee."
+        },
+        {
+            "key": "name",
+            "description": "The app uses names wherever possible when describing nearby features."
+        },
+        {
+            "key": "footway",
+            "value": "sidewalk",
+            "description": "The sidewalk tag is crucial for trying to simplify complex urban data. If a user is on a sidewalk, then unless it's named, they are described as traveling along the adjacent highway."
+        },
+        {
+            "key": "building",
+            "value": "yes",
+            "description": "The app changes behaviour when it is inside a building, it won't callout roads and places that are outside the building."
+        },
+        {
+            "key": "entrance",
+            "description": "The app uses the entrance tag to better describe the location of a building."
+        },
+        {
+            "key": "tunnel",
+            "value": "yes",
+            "description": "The app adds context to paths e.g. path via tunnel to park."
+        },
+        {
+            "key": "bridge",
+            "value": "yes",
+            "description": "The app adds context to paths e.g. path via bridge to park."
+        },
+        {
+            "key": "highway",
+            "value": "steps",
+            "description": "The app adds context to paths e.g. path via steps to park."
+        },
+        {
+            "key": "destination:forward",
+            "description": "The destination tag is used to add context to unnamed highways e.g. path to park."
+        },
+        {
+            "key": "destination:backward",
+            "description": "The destination tag is used to add context to unnamed highways e.g. path from park."
+        },
+        {
+            "key": "roundabout",
+            "description": "Special consideration is given to roundabouts when describing them as intersections."
+        },
+        {
+            "key": "tactile_paving",
+            "description": "If there's no tactile_paving tag, and a crossing is tagged as unmarked then we don't call it out to users."
+        }
+    ]
+}
