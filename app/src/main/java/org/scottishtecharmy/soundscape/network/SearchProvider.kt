@@ -15,8 +15,6 @@ import retrofit2.http.Query
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-const val BASE_URL = "https://photon.komoot.io/"
-
 /**
  * This is a proof of concept for using the photon search engine https://github.com/komoot/photon
  * In testing it returned by far the best search results and can be run on a relatively modest
@@ -72,7 +70,7 @@ interface PhotonSearchProvider {
             if (searchProvider == null) {
                 moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
                 searchProvider = Retrofit.Builder()
-                    .baseUrl(BASE_URL).client(logging)
+                    .baseUrl(BuildConfig.SEARCH_PROVIDER_URL).client(logging)
                     .addConverterFactory(MoshiConverterFactory.create(moshi!!))
                     .build()
                     .create(PhotonSearchProvider::class.java)

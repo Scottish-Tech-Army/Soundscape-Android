@@ -48,13 +48,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup tile provider
+      - name: Setup tile and search providers
         env:
           TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
           TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
+          SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
         run: |
-          echo tileProviderUrl=$TILE_PROVIDER_URL > local.properties
-          echo tileProviderApiKey=$TILE_PROVIDER_API_KEY >> local.properties
+          echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
+          echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
+          echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
+          echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
 
       - name: Decode Google services
         env:
