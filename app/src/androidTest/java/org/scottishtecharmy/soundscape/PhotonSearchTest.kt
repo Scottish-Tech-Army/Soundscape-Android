@@ -16,6 +16,10 @@ class PhotonSearchTest {
 
    @Test
    fun testSearch() {
+
+       if(BuildConfig.SEARCH_PROVIDER_URL.isEmpty())
+           return
+
        runBlocking {
            withContext(Dispatchers.IO) {
 

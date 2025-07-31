@@ -34,18 +34,22 @@ jobs:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
 
-#      Setting up the tile provider from secrets won't work for runners which are triggered from
-#      forks e.g. to test a pull request. The tests that require tiles check if the tile provider
-#      exists, so we leave in this code so that if it's triggered by "Run workflow" the tile
-#      provider will be available.
+#      Setting up the tile and search providers from secrets won't work for runners which are
+#      triggered from forks e.g. to test a pull request. The tests that require tiles check if the
+#      tile provider exists, so we leave in this code so that if it's triggered by "Run workflow"
+#      the tile provider will be available.
 
-      - name: Setup tile provider
+      - name: Setup tile and search providers
         env:
           TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
           TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
+          SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
         run: |
           echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
           echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
+          echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
+          echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
 
       - name: Run lint over the repo
         run: ./gradlew lint
