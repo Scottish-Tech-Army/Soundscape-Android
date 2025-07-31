@@ -53,16 +53,22 @@ android {
         // local.properties from a secret.
         var tileProviderUrl = ""
         var tileProviderApiKey = ""
+        var searchProviderUrl = ""
+        var searchProviderApiKey = ""
         try {
             val localProperties = Properties()
             localProperties.load(FileInputStream(rootProject.file("local.properties")))
             tileProviderUrl = localProperties["tileProviderUrl"].toString()
             tileProviderApiKey = localProperties["tileProviderApiKey"].toString()
+            searchProviderUrl = localProperties["searchProviderUrl"].toString()
+            searchProviderApiKey = localProperties["searchProviderApiKey"].toString()
         } catch (e: Exception) {
-            println("Failed to load local.properties for tile provider: $e")
+            println("Failed to load local.properties for tile and search providers: $e")
         }
         buildConfigField("String", "TILE_PROVIDER_URL", "\"${tileProviderUrl}\"")
         buildConfigField("String", "TILE_PROVIDER_API_KEY", "\"${tileProviderApiKey}\"")
+        buildConfigField("String", "SEARCH_PROVIDER_URL", "\"${searchProviderUrl}\"")
+        buildConfigField("String", "SEARCH_PROVIDER_API_KEY", "\"${searchProviderApiKey}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
         buildConfigField("String", "FMOD_LIB", "\"fmod\"")
