@@ -106,11 +106,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun handlePreferenceChange(key: String?, preferences: SharedPreferences) {
         when (key) {
-            THEME_IS_LIGHT_KEY -> {
-                val themeIsLight = preferences.getBoolean(
-                    THEME_IS_LIGHT_KEY,
-                    THEME_IS_LIGHT_DEFAULT
+            THEME_LIGHTNESS_KEY -> {
+                val themeLightness = preferences.getString(
+                    THEME_LIGHTNESS_KEY,
+                    THEME_LIGHTNESS_DEFAULT
                 )
+                var themeIsLight = (themeLightness == "Light")
+                if(themeLightness == "Auto") {
+                    themeIsLight = (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_NO
+                }
 
                 // The state of the theme light/dark setting has changed, so update the UI
                 _themeStateFlow.value = themeStateFlow.value.copy(themeIsLight = themeIsLight)
@@ -197,7 +201,7 @@ class MainActivity : AppCompatActivity() {
             }
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
         // Get starting values
-        handlePreferenceChange(THEME_IS_LIGHT_KEY, sharedPreferences)
+        handlePreferenceChange(THEME_LIGHTNESS_KEY, sharedPreferences)
         handlePreferenceChange(THEME_CONTRAST_KEY, sharedPreferences)
 
         // When opening a JSON file containing a route from Android File we can end up with two
@@ -428,15 +432,15 @@ class MainActivity : AppCompatActivity() {
         const val SPEECH_RATE_KEY = "SpeechRate"
         const val HINTS_DEFAULT = true
         const val HINTS_KEY = "Hints"
-        const val THEME_IS_LIGHT_DEFAULT = true
-        const val THEME_IS_LIGHT_KEY = "ThemeIsLight"
+        const val THEME_LIGHTNESS_DEFAULT = "Auto"
+        const val THEME_LIGHTNESS_KEY = "ThemeLightness"
         const val THEME_CONTRAST_DEFAULT = "High"
         const val THEME_CONTRAST_KEY = "ThemeContrast"
         const val RECORD_TRAVEL_DEFAULT = false
         const val RECORD_TRAVEL_KEY = "RecordTravel"
         const val ACCESSIBLE_MAP_DEFAULT = false
         const val ACCESSIBLE_MAP_KEY = "AccessibleMap"
-        const val MEASUREMENT_UNITS_DEFAULT = "Metric"
+        const val MEASUREMENT_UNITS_DEFAULT = "Auto"
         const val MEASUREMENT_UNITS_KEY = "MeasurementUnits"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"

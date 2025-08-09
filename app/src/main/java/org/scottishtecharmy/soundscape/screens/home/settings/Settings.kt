@@ -99,22 +99,35 @@ fun Settings(
     val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
-    val themeDescriptions = listOf(
+    val themeContrastDescriptions = listOf(
         stringResource(R.string.settings_theme_contrast_regular),
         stringResource(R.string.settings_theme_contrast_medium),
         stringResource(R.string.settings_theme_contrast_high)
     )
-    val themeValues = listOf(
+    val themeContrastValues = listOf(
         "Regular",
         "Medium",
         "High"
     )
 
+    val themeLightnessDescriptions = listOf(
+        stringResource(R.string.settings_theme_auto),
+        stringResource(R.string.settings_theme_light),
+        stringResource(R.string.settings_theme_dark),
+    )
+    val themeLightnessValues = listOf(
+        "Auto",
+        "Light",
+        "Dark"
+    )
+
     val unitsDescriptions = listOf(
+        stringResource(R.string.settings_theme_auto),
         stringResource(R.string.settings_units_imperial),
         stringResource(R.string.settings_units_metric),
     )
     val unitsValues = listOf(
+        "Auto",
         "Imperial",
         "Metric",
     )
@@ -212,20 +225,27 @@ fun Settings(
                     modifier = Modifier.semantics { heading() },
                 )
             }
-            switchPreference(
-                key = MainActivity.THEME_IS_LIGHT_KEY,
-                defaultValue = MainActivity.THEME_IS_LIGHT_DEFAULT,
+
+            listPreference(
+                key = MainActivity.THEME_LIGHTNESS_KEY,
+                defaultValue = MainActivity.THEME_LIGHTNESS_DEFAULT,
+                values = themeLightnessValues,
                 title = {
                     Text(
-                        text = stringResource(R.string.settings_theme_is_light),
+                        text = stringResource(R.string.settings_theme_light_dark),
                         color = textColor
                     )
                 },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(themeLightnessDescriptions[themeLightnessValues.indexOf(value)], value, currentValue, onClick, themeLightnessValues.indexOf(value), themeLightnessValues.size)
+                },
+                summary = { Text(text = themeLightnessDescriptions[themeLightnessValues.indexOf(it)], color = textColor) },
             )
+
             listPreference(
                 key = MainActivity.THEME_CONTRAST_KEY,
                 defaultValue = MainActivity.THEME_CONTRAST_DEFAULT,
-                values = themeValues,
+                values = themeContrastValues,
                 title = {
                     Text(
                         text = stringResource(R.string.settings_theme_contrast),
@@ -233,9 +253,9 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(themeDescriptions[themeValues.indexOf(value)], value, currentValue, onClick, themeValues.indexOf(value), themeValues.size)
+                    ListPreferenceItem(themeContrastDescriptions[themeContrastValues.indexOf(value)], value, currentValue, onClick, themeContrastValues.indexOf(value), themeContrastValues.size)
                 },
-                summary = { Text(text = themeDescriptions[themeValues.indexOf(it)], color = textColor) },
+                summary = { Text(text = themeContrastDescriptions[themeContrastValues.indexOf(it)], color = textColor) },
             )
 
 //          Disabling hints just results in the Android default "Double tap to Activate" being read
