@@ -30,7 +30,17 @@
   <string name="settings_screen_title">"Settings"</string>
     <!-- Settings title, About Soundscape {NumberedPlaceholder="Soundscape"} -->
   <string name="settings_about_app">"About Soundscape"</string>
-    <!--******************************************************************************-->
+
+  <!-- Settings title,Units of Measure -->
+  <string name="settings_section_units" tools:ignore="MissingTranslation">"Units of Measure"</string>
+
+  <!-- Settings title unit of measurement, Imperial (Feet) -->
+  <string name="settings_units_imperial" tools:ignore="MissingTranslation">"Imperial (Feet)"</string>
+
+  <!-- Settings title unit of measurement, Metric (Meters) -->
+  <string name="settings_units_metric" tools:ignore="MissingTranslation">"Metric (Meters)"</string>
+
+  <!--******************************************************************************-->
   <!-- MARK: Settings (Voice)-->
   <!--******************************************************************************-->
 

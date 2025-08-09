@@ -71,6 +71,7 @@ data class PositionedString(
     val type: AudioType = AudioType.STANDARD,
     val heading: Double? = null
 )
+var metric = true
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 class GeoEngine {
@@ -229,8 +230,12 @@ class GeoEngine {
                 if (sharedPreferences == preferences) {
                     if(key == MainActivity.RECORD_TRAVEL_KEY) {
                         Log.e(TAG, "RECORD_TRAVEL_KEY changed")
-                        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
+                        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, MainActivity.RECORD_TRAVEL_DEFAULT)
                         updateRecordingState(recordTravel)
+                    }
+                    else if(key == MainActivity.MEASUREMENT_UNITS_KEY) {
+                        metric = sharedPreferences.getString(MainActivity.MEASUREMENT_UNITS_KEY, MainActivity.MEASUREMENT_UNITS_DEFAULT) == "Metric"
+                        Log.e(TAG, "MEASUREMENT_UNITS_KEY changed: $metric")
                     }
                 }
             }
@@ -1028,8 +1033,6 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
  */
 
 fun formatDistance(distance: Double, localizedContext: Context?) : String {
-    // TODO - Add setting for imperial/metric
-    val metric = true
     var units = distance
     var bigUnitDivisor = 100
     if(!metric) {

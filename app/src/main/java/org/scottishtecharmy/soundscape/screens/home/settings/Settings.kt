@@ -48,8 +48,9 @@ fun SettingsPreview() {
  * ListPreferenceItem is an attempt to make a more accessible list entry for the user.
  */
 @Composable
-fun ListPreferenceItem(value: String,
-                       currentValue: String,
+fun ListPreferenceItem(description: String,
+                       value: Any,
+                       currentValue: Any,
                        onClick: () -> Unit,
                        index: Int,
                        listSize: Int) {
@@ -71,7 +72,7 @@ fun ListPreferenceItem(value: String,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = value,
+            text = description,
             color = MaterialTheme.colorScheme.onPrimaryContainer,
         )
         Icon(
@@ -98,10 +99,24 @@ fun Settings(
     val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
-    val themeValues = listOf(
+    val themeDescriptions = listOf(
         stringResource(R.string.settings_theme_contrast_regular),
         stringResource(R.string.settings_theme_contrast_medium),
         stringResource(R.string.settings_theme_contrast_high)
+    )
+    val themeValues = listOf(
+        "Regular",
+        "Medium",
+        "High"
+    )
+
+    val unitsDescriptions = listOf(
+        stringResource(R.string.settings_units_imperial),
+        stringResource(R.string.settings_units_metric),
+    )
+    val unitsValues = listOf(
+        "Imperial",
+        "Metric",
     )
 
     ProvidePreferenceLocals {
@@ -173,6 +188,22 @@ fun Settings(
                 },
             )
 
+            listPreference(
+                key = MainActivity.MEASUREMENT_UNITS_KEY,
+                defaultValue = MainActivity.MEASUREMENT_UNITS_DEFAULT,
+                values = unitsValues,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_section_units),
+                        color = textColor
+                    )
+                },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(unitsDescriptions[unitsValues.indexOf(value)], value, currentValue, onClick, unitsValues.indexOf(value), unitsValues.size)
+                },
+                summary = { Text(text = unitsDescriptions[unitsValues.indexOf(it)], color = textColor) },
+            )
+
             item {
                 Text(
                     text = stringResource(R.string.menu_manage_accessibility),
@@ -202,9 +233,9 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, currentValue, onClick, themeValues.indexOf(value), themeValues.size)
+                    ListPreferenceItem(themeDescriptions[themeValues.indexOf(value)], value, currentValue, onClick, themeValues.indexOf(value), themeValues.size)
                 },
-                summary = { Text(text = it, color = textColor) },
+                summary = { Text(text = themeDescriptions[themeValues.indexOf(it)], color = textColor) },
             )
 
 //          Disabling hints just results in the Android default "Double tap to Activate" being read
@@ -239,7 +270,7 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, currentValue, onClick, beaconTypes.indexOf(value), beaconTypes.size)
+                    ListPreferenceItem(value, value, currentValue, onClick, beaconTypes.indexOf(value), beaconTypes.size)
                 },
                 summary = { Text(text = it, color = textColor) },
             )
@@ -255,7 +286,7 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
+                    ListPreferenceItem(value, value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
                 },
                 summary = { Text(text = it, color = textColor) },
             )
