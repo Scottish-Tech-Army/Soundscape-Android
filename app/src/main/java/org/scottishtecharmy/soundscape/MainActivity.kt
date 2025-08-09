@@ -436,6 +436,8 @@ class MainActivity : AppCompatActivity() {
         const val RECORD_TRAVEL_KEY = "RecordTravel"
         const val ACCESSIBLE_MAP_DEFAULT = false
         const val ACCESSIBLE_MAP_KEY = "AccessibleMap"
+        const val MEASUREMENT_UNITS_DEFAULT = "Metric"
+        const val MEASUREMENT_UNITS_KEY = "MeasurementUnits"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
