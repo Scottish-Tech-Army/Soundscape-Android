@@ -71,7 +71,6 @@ data class PositionedString(
     val type: AudioType = AudioType.STANDARD,
     val heading: Double? = null
 )
-var metric = true
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 class GeoEngine {
@@ -224,6 +223,7 @@ class GeoEngine {
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
         recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
         updateRecordingState(recordTravel)
+        updateMeasurementUnits(sharedPreferences)
 
         sharedPreferencesListener =
             SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
@@ -234,8 +234,7 @@ class GeoEngine {
                         updateRecordingState(recordTravel)
                     }
                     else if(key == MainActivity.MEASUREMENT_UNITS_KEY) {
-                        metric = sharedPreferences.getString(MainActivity.MEASUREMENT_UNITS_KEY, MainActivity.MEASUREMENT_UNITS_DEFAULT) == "Metric"
-                        Log.e(TAG, "MEASUREMENT_UNITS_KEY changed: $metric")
+                        updateMeasurementUnits(sharedPreferences)
                     }
                 }
             }
@@ -1031,6 +1030,20 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
  * same way as metric.
  *
  */
+
+var metric = true
+fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
+    val unitsString = sharedPreferences.getString(
+        MainActivity.MEASUREMENT_UNITS_KEY,
+        MainActivity.MEASUREMENT_UNITS_DEFAULT
+    )
+    if (unitsString == "Auto") {
+        val country = Locale.getDefault().country
+        val imperialCountries = listOf("US", "LR", "MM") // USA, Liberia, Myanmar
+        metric = !imperialCountries.contains(country.uppercase(Locale.ROOT))
+    } else
+        metric = (unitsString == "Metric")
+}
 
 fun formatDistance(distance: Double, localizedContext: Context?) : String {
     var units = distance
