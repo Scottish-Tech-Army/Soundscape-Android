@@ -135,27 +135,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    fun processStyle(inputFilename: String, outputFilename: String) {
-        val filesDir = applicationContext.filesDir.toString()
-        val outputStyleStream =
-            File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
-        val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
-        inputStyleStream.bufferedReader().useLines { lines ->
-            lines.forEach { line ->
-                if (line.contains("PROTOMAPS_SERVER_URL")) {
-                    val newline = line.replace(
-                        "PROTOMAPS_SERVER_URL",
-                        "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
-                    )
-                    outputStyleStream.write(newline.toByteArray())
-                } else {
-                    outputStyleStream.write(line.toByteArray())
-                }
-            }
-        }
-        inputStyleStream.close()
-        outputStyleStream.close()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
