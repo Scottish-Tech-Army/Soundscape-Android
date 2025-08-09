@@ -21,15 +21,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.flow.MutableStateFlow
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ThemeState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
@@ -40,8 +43,19 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
-fun SettingsPreview() {
-    Settings({}, SettingsViewModel.SettingsUiState())
+fun SettingsPreviewDark() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        Settings({}, SettingsViewModel.SettingsUiState())
+    }
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
+@Preview
+@Composable
+fun SettingsPreviewLight() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = true))) {
+        Settings({}, SettingsViewModel.SettingsUiState())
+    }
 }
 
 /**
@@ -58,7 +72,7 @@ fun ListPreferenceItem(description: String,
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .smallPadding()
             .clickable {
                 onClick()
@@ -73,7 +87,7 @@ fun ListPreferenceItem(description: String,
     ) {
         Text(
             text = description,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onSurface,
         )
         Icon(
             modifier = Modifier
@@ -81,7 +95,7 @@ fun ListPreferenceItem(description: String,
             imageVector =
                 if(value == currentValue) Icons.Filled.CheckBox
                 else Icons.Filled.CheckBoxOutlineBlank,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            tint = MaterialTheme.colorScheme.surfaceContainer,
             contentDescription = ""
         )
     }

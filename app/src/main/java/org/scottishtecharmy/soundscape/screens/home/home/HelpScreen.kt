@@ -31,12 +31,16 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.commonmark.node.Node
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ThemeState
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -444,6 +448,7 @@ fun HelpScreen(
                                     modifier = Modifier
                                         .fillMaxWidth(),
                                     shape = RoundedCornerShape(spacing.extraSmall),
+                                    colors = currentAppButtonColors
                                 ) {
                                     Box(
                                         Modifier.weight(6f)
@@ -476,179 +481,215 @@ fun HelpScreen(
 @Preview(showBackground = true)
 @Composable
 fun HomeHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.menu_help_and_tutorials}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.menu_help_and_tutorials}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BeaconHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.beacon_audio_beacon}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.beacon_audio_beacon}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun VoicesHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.voice_voices}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.voice_voices}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RemoteHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.help_remote_page_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.help_remote_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AheadOfMeHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.help_explore_page_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.help_explore_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AroundMeHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.help_orient_page_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.help_orient_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AutomaticCalloutsHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.callouts_automatic_callouts}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.callouts_automatic_callouts}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MyLocationHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.directions_my_location}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.directions_my_location}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun RoutesContentHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.routes_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.routes_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.markers_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.markers_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun CreatingMarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.help_creating_markers_page_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.help_creating_markers_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun NearbyMarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.callouts_nearby_markers}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.callouts_nearby_markers}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun EditingMarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.help_edit_markers_page_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.help_edit_markers_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun FaqHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.faq_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.faq_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun FaqAnswerHelpPreview() {
-    HelpScreen(
-        topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun TipsHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.faq_tips_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.faq_tips_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun OfflineHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.help_offline_page_title}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.help_offline_page_title}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun AboutHelpPreview() {
-    HelpScreen(
-        topic = "page${R.string.settings_about_app}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        HelpScreen(
+            topic = "page${R.string.settings_about_app}",
+            navController = rememberNavController(),
+            modifier = Modifier
+        )
+    }
 }

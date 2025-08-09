@@ -14,7 +14,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ThemeState
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -32,10 +36,7 @@ fun CustomButton(
         onClick = onClick,
         modifier = modifier,
         shape = shape,
-        colors = ButtonDefaults.buttonColors(
-            containerColor = buttonColor, // Customizable button background color
-            contentColor = contentColor // Customizable text color
-        )
+        colors = currentAppButtonColors
     ) {
         Text(
             text = text,
@@ -49,13 +50,15 @@ fun CustomButton(
 @Preview
 @Composable
 fun CustomButtonPreview() {
-    CustomButton(
-        onClick = { /*TODO*/ },
-        buttonColor = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary,
-        fontWeight = FontWeight.Bold,
-        shape = RoundedCornerShape(spacing.small),
-        text = stringResource(R.string.route_detail_edit_waypoints_button),
-        textStyle = MaterialTheme.typography.titleLarge
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        CustomButton(
+            onClick = { /*TODO*/ },
+            buttonColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            fontWeight = FontWeight.Bold,
+            shape = RoundedCornerShape(spacing.small),
+            text = stringResource(R.string.route_detail_edit_waypoints_button),
+            textStyle = MaterialTheme.typography.titleLarge
+        )
+    }
 }
