@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -50,10 +51,14 @@ import java.io.File
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
+import org.scottishtecharmy.soundscape.ThemeState
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -108,7 +113,11 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
 
 @Composable
 fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>) {
-    FloatingActionButton(onClick = { fullscreenMap.value = !fullscreenMap.value }) {
+    FloatingActionButton(
+        onClick = { fullscreenMap.value = !fullscreenMap.value },
+        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        contentColor = MaterialTheme.colorScheme.onSurface
+    ) {
         Icon(
             imageVector = if(fullscreenMap.value) Icons.Rounded.FullscreenExit else Icons.Rounded.Fullscreen,
             contentDescription = if(fullscreenMap.value)
@@ -116,6 +125,14 @@ fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>) {
             else
                 stringResource(R.string.location_detail_full_screen_hint)
         )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewFullScreenMapFab(){
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        FullScreenMapFab(remember { mutableStateOf(false) })
     }
 }
 

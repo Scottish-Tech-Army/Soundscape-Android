@@ -223,14 +223,18 @@ class GeoEngine {
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
         recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
         updateRecordingState(recordTravel)
+        updateMeasurementUnits(sharedPreferences)
 
         sharedPreferencesListener =
             SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
                 if (sharedPreferences == preferences) {
                     if(key == MainActivity.RECORD_TRAVEL_KEY) {
                         Log.e(TAG, "RECORD_TRAVEL_KEY changed")
-                        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
+                        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, MainActivity.RECORD_TRAVEL_DEFAULT)
                         updateRecordingState(recordTravel)
+                    }
+                    else if(key == MainActivity.MEASUREMENT_UNITS_KEY) {
+                        updateMeasurementUnits(sharedPreferences)
                     }
                 }
             }
@@ -1027,9 +1031,21 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
  *
  */
 
+var metric = true
+fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
+    val unitsString = sharedPreferences.getString(
+        MainActivity.MEASUREMENT_UNITS_KEY,
+        MainActivity.MEASUREMENT_UNITS_DEFAULT
+    )
+    if (unitsString == "Auto") {
+        val country = Locale.getDefault().country
+        val imperialCountries = listOf("US", "LR", "MM") // USA, Liberia, Myanmar
+        metric = !imperialCountries.contains(country.uppercase(Locale.ROOT))
+    } else
+        metric = (unitsString == "Metric")
+}
+
 fun formatDistance(distance: Double, localizedContext: Context?) : String {
-    // TODO - Add setting for imperial/metric
-    val metric = true
     var units = distance
     var bigUnitDivisor = 100
     if(!metric) {

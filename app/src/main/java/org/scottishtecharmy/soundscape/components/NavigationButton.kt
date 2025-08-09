@@ -20,6 +20,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import kotlinx.coroutines.flow.MutableStateFlow
+import org.scottishtecharmy.soundscape.ThemeState
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -36,6 +40,7 @@ fun NavigationButton(
             .fillMaxWidth()
             .padding(horizontal = horizontalPadding),
         shape = RoundedCornerShape(spacing.none),
+        colors = currentAppButtonColors
     ) {
         Row(verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
@@ -69,6 +74,16 @@ fun NavigationButton(
 
 @Preview
 @Composable
-fun PreviewNavigationButton() {
-    NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
+fun PreviewNavigationButtonLight() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = true))) {
+        NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
+    }
+}
+
+@Preview
+@Composable
+fun PreviewNavigationButtonDark() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
+    }
 }

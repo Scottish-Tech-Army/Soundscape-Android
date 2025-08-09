@@ -21,9 +21,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ThemeState
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.largePadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -79,12 +84,7 @@ fun SleepScreen(exitSleep: () -> Unit = {},
                 onClick = { exitSleep() },
                 modifier = modifier.fillMaxWidth().height(spacing.targetSize * 4),
                 shape = RoundedCornerShape(spacing.tiny),
-                colors = ButtonColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                    disabledContainerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.38f),
-                    disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.38f)
-                )
+                colors = currentAppButtonColors
             ) {
                 Text(
                     text = stringResource(R.string.sleep_wake_up_now),
@@ -98,8 +98,20 @@ fun SleepScreen(exitSleep: () -> Unit = {},
 
 @Preview(showBackground = true)
 @Composable
-fun SleepScreenPreview() {
-    SleepScreen(
-        modifier = Modifier
-    )
+fun SleepScreenPreviewLight() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = true))) {
+        SleepScreen(
+            modifier = Modifier
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SleepScreenPreviewDark() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        SleepScreen(
+            modifier = Modifier
+        )
+    }
 }

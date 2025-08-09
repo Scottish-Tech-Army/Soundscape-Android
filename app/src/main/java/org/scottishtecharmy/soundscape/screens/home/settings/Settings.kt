@@ -21,15 +21,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.flow.MutableStateFlow
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ThemeState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
@@ -40,16 +43,28 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
-fun SettingsPreview() {
-    Settings({}, SettingsViewModel.SettingsUiState())
+fun SettingsPreviewDark() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = false))) {
+        Settings({}, SettingsViewModel.SettingsUiState())
+    }
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
+@Preview
+@Composable
+fun SettingsPreviewLight() {
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = true))) {
+        Settings({}, SettingsViewModel.SettingsUiState())
+    }
 }
 
 /**
  * ListPreferenceItem is an attempt to make a more accessible list entry for the user.
  */
 @Composable
-fun ListPreferenceItem(value: String,
-                       currentValue: String,
+fun ListPreferenceItem(description: String,
+                       value: Any,
+                       currentValue: Any,
                        onClick: () -> Unit,
                        index: Int,
                        listSize: Int) {
@@ -57,7 +72,7 @@ fun ListPreferenceItem(value: String,
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .smallPadding()
             .clickable {
                 onClick()
@@ -71,8 +86,8 @@ fun ListPreferenceItem(value: String,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = value,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            text = description,
+            color = MaterialTheme.colorScheme.onSurface,
         )
         Icon(
             modifier = Modifier
@@ -80,7 +95,7 @@ fun ListPreferenceItem(value: String,
             imageVector =
                 if(value == currentValue) Icons.Filled.CheckBox
                 else Icons.Filled.CheckBoxOutlineBlank,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            tint = MaterialTheme.colorScheme.surfaceContainer,
             contentDescription = ""
         )
     }
@@ -98,10 +113,37 @@ fun Settings(
     val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
-    val themeValues = listOf(
+    val themeContrastDescriptions = listOf(
         stringResource(R.string.settings_theme_contrast_regular),
         stringResource(R.string.settings_theme_contrast_medium),
         stringResource(R.string.settings_theme_contrast_high)
+    )
+    val themeContrastValues = listOf(
+        "Regular",
+        "Medium",
+        "High"
+    )
+
+    val themeLightnessDescriptions = listOf(
+        stringResource(R.string.settings_theme_auto),
+        stringResource(R.string.settings_theme_light),
+        stringResource(R.string.settings_theme_dark),
+    )
+    val themeLightnessValues = listOf(
+        "Auto",
+        "Light",
+        "Dark"
+    )
+
+    val unitsDescriptions = listOf(
+        stringResource(R.string.settings_theme_auto),
+        stringResource(R.string.settings_units_imperial),
+        stringResource(R.string.settings_units_metric),
+    )
+    val unitsValues = listOf(
+        "Auto",
+        "Imperial",
+        "Metric",
     )
 
     ProvidePreferenceLocals {
@@ -173,6 +215,22 @@ fun Settings(
                 },
             )
 
+            listPreference(
+                key = MainActivity.MEASUREMENT_UNITS_KEY,
+                defaultValue = MainActivity.MEASUREMENT_UNITS_DEFAULT,
+                values = unitsValues,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_section_units),
+                        color = textColor
+                    )
+                },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(unitsDescriptions[unitsValues.indexOf(value)], value, currentValue, onClick, unitsValues.indexOf(value), unitsValues.size)
+                },
+                summary = { Text(text = unitsDescriptions[unitsValues.indexOf(it)], color = textColor) },
+            )
+
             item {
                 Text(
                     text = stringResource(R.string.menu_manage_accessibility),
@@ -181,20 +239,27 @@ fun Settings(
                     modifier = Modifier.semantics { heading() },
                 )
             }
-            switchPreference(
-                key = MainActivity.THEME_IS_LIGHT_KEY,
-                defaultValue = MainActivity.THEME_IS_LIGHT_DEFAULT,
+
+            listPreference(
+                key = MainActivity.THEME_LIGHTNESS_KEY,
+                defaultValue = MainActivity.THEME_LIGHTNESS_DEFAULT,
+                values = themeLightnessValues,
                 title = {
                     Text(
-                        text = stringResource(R.string.settings_theme_is_light),
+                        text = stringResource(R.string.settings_theme_light_dark),
                         color = textColor
                     )
                 },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(themeLightnessDescriptions[themeLightnessValues.indexOf(value)], value, currentValue, onClick, themeLightnessValues.indexOf(value), themeLightnessValues.size)
+                },
+                summary = { Text(text = themeLightnessDescriptions[themeLightnessValues.indexOf(it)], color = textColor) },
             )
+
             listPreference(
                 key = MainActivity.THEME_CONTRAST_KEY,
                 defaultValue = MainActivity.THEME_CONTRAST_DEFAULT,
-                values = themeValues,
+                values = themeContrastValues,
                 title = {
                     Text(
                         text = stringResource(R.string.settings_theme_contrast),
@@ -202,9 +267,9 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, currentValue, onClick, themeValues.indexOf(value), themeValues.size)
+                    ListPreferenceItem(themeContrastDescriptions[themeContrastValues.indexOf(value)], value, currentValue, onClick, themeContrastValues.indexOf(value), themeContrastValues.size)
                 },
-                summary = { Text(text = it, color = textColor) },
+                summary = { Text(text = themeContrastDescriptions[themeContrastValues.indexOf(it)], color = textColor) },
             )
 
 //          Disabling hints just results in the Android default "Double tap to Activate" being read
@@ -239,7 +304,7 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, currentValue, onClick, beaconTypes.indexOf(value), beaconTypes.size)
+                    ListPreferenceItem(value, value, currentValue, onClick, beaconTypes.indexOf(value), beaconTypes.size)
                 },
                 summary = { Text(text = it, color = textColor) },
             )
@@ -255,7 +320,7 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
+                    ListPreferenceItem(value, value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
                 },
                 summary = { Text(text = it, color = textColor) },
             )

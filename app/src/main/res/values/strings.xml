@@ -30,7 +30,17 @@
   <string name="settings_screen_title">"Settings"</string>
     <!-- Settings title, About Soundscape {NumberedPlaceholder="Soundscape"} -->
   <string name="settings_about_app">"About Soundscape"</string>
-    <!--******************************************************************************-->
+
+  <!-- Settings title,Units of Measure -->
+  <string name="settings_section_units" tools:ignore="MissingTranslation">"Units of Measure"</string>
+
+  <!-- Settings title unit of measurement, Imperial (Feet) -->
+  <string name="settings_units_imperial" tools:ignore="MissingTranslation">"Imperial (Feet)"</string>
+
+  <!-- Settings title unit of measurement, Metric (Meters) -->
+  <string name="settings_units_metric" tools:ignore="MissingTranslation">"Metric (Meters)"</string>
+
+  <!--******************************************************************************-->
   <!-- MARK: Settings (Voice)-->
   <!--******************************************************************************-->
 
@@ -1029,8 +1039,14 @@
   <string name="menu_manage_audio" tools:ignore="MissingTranslation">"Manage Audio"</string>
     <!-- Title for settings page group of audio settings -->
   <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"Manage Accessibility"</string>
+  <!-- App theme light/dark description -->
+  <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">"Light or Dark Theme"</string>
+  <!-- App theme setting for automatic light/dark based on system -->
+  <string name="settings_theme_auto" tools:ignore="MissingTranslation">"Auto"</string>
     <!-- App theme setting for light (as opposed to dark) -->
-  <string name="settings_theme_is_light" tools:ignore="MissingTranslation">"Use light theme"</string>
+  <string name="settings_theme_light" tools:ignore="MissingTranslation">"Light"</string>
+  <!-- App theme setting for dark (as opposed to light) -->
+  <string name="settings_theme_dark" tools:ignore="MissingTranslation">"Dark"</string>
     <!-- App theme setting title for color contrast -->
   <string name="settings_theme_contrast" tools:ignore="MissingTranslation">"Theme contrast"</string>
     <!-- App theme options for contrast setting -->

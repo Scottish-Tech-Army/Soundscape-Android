@@ -27,8 +27,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ThemeState
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -44,6 +46,8 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLoca
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -142,7 +146,9 @@ fun HomeContent(
                                 horizontalArrangement = Arrangement.SpaceEvenly,
                                 verticalAlignment = androidx.compose.ui.Alignment.Bottom
                             ) {
-                                Button(onClick = { routeFunctions.skipPrevious() })
+                                Button(
+                                    onClick = { routeFunctions.skipPrevious() },
+                                    colors = currentAppButtonColors)
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(
@@ -156,7 +162,10 @@ fun HomeContent(
                                         contentDescription = stringResource(R.string.route_detail_action_previous)
                                     )
                                 }
-                                Button(onClick = { routeFunctions.skipNext() })
+                                Button(
+                                    onClick = { routeFunctions.skipNext() },
+                                    colors = currentAppButtonColors
+                                )
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(
@@ -177,7 +186,8 @@ fun HomeContent(
                                         } else {
                                             onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}")
                                         }
-                                    }
+                                    },
+                                    colors = currentAppButtonColors
                                 )
                                 {
                                     if (routePlayerState.beaconOnly) {
@@ -194,7 +204,10 @@ fun HomeContent(
                                         )
                                     }
                                 }
-                                Button(onClick = { routeFunctions.mute() })
+                                Button(
+                                    onClick = { routeFunctions.mute() },
+                                    colors = currentAppButtonColors
+                                )
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(
@@ -256,7 +269,18 @@ fun StreetPreviewHomeContent() {
 
 @Preview
 @Composable
-fun PreviewHomeContent() {
+fun PreviewHomeContentLight() {
+    PreviewHomeContent(true)
+}
+@Preview
+@Composable
+fun PreviewHomeContentDark() {
+    PreviewHomeContent(false)
+}
+
+
+@Composable
+fun PreviewHomeContent(light: Boolean) {
     val routePlayerState = RoutePlayerState(
         routeData = RouteWithMarkers(
             RouteEntity(
@@ -281,17 +305,19 @@ fun PreviewHomeContent() {
         currentWaypoint = 0
     )
 
-    HomeContent(
-        location = LngLatAlt(),
-        beaconState = null,
-        routePlayerState = routePlayerState,
-        heading = 0.0f,
-        onNavigate = {},
-        onMapLongClick = { false },
-        searchBar = {},
-        streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
-        streetPreviewFunctions = StreetPreviewFunctions(null),
-        routeFunctions = RouteFunctions(null),
-        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
-    )
+    SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = light))) {
+        HomeContent(
+            location = LngLatAlt(),
+            beaconState = null,
+            routePlayerState = routePlayerState,
+            heading = 0.0f,
+            onNavigate = {},
+            onMapLongClick = { false },
+            searchBar = {},
+            streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
+            routeFunctions = RouteFunctions(null),
+            getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
+        )
+    }
 }
