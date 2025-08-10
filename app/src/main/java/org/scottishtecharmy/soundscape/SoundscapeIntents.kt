@@ -108,7 +108,11 @@ class SoundscapeIntents
                 connection.disconnect()
 
                 Log.d(TAG, "Maps URL: $redUrl")
-                useGeocoderToGetAddress(redUrl, context)
+
+                // Parse URL
+                val decodedUrl = URLDecoder.decode(redUrl, "UTF-8")
+                Log.d(TAG, "Decoded maps URL: $decodedUrl")
+                useGeocoderToGetAddress(decodedUrl, context)
             }
         }
 
