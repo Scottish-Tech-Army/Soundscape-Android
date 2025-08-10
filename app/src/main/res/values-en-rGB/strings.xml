@@ -459,4 +459,11 @@
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NW</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Go to nearest intersection</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" and %s"</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Units of Measure</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Imperial (Feet)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Metric (Meters)</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Light or Dark Theme</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">Auto</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">Light</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">Dark</string>
 </resources>
