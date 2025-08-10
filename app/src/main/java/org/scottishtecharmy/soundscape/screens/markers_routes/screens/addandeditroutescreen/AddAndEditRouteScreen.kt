@@ -303,8 +303,6 @@ fun AddAndEditRouteScreen(
                             .fillMaxWidth()
                             .smallPadding(),
                         onClick = { addWaypointDialog = true },
-                        buttonColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
                         shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.route_detail_edit_waypoints_button),
                         textStyle = MaterialTheme.typography.bodyLarge,

@@ -29,12 +29,14 @@ class LanguageScreenTest {
     @Test
     fun whenNoLanguageSelectedThenNoLanguageLabelDisplayedAndContinueButtonDisabled(){
         composeTestRule.setContent {
-            LanguageComposable(
-                supportedLanguages = MockLanguagePreviewData.languages,
-                onNavigate = {},
-                onLanguageSelected = {},
-                selectedLanguageIndex = -1,
-            )
+            SoundscapeTheme {
+                LanguageComposable(
+                    supportedLanguages = MockLanguagePreviewData.languages,
+                    onNavigate = {},
+                    onLanguageSelected = {},
+                    selectedLanguageIndex = -1,
+                )
+            }
         }
         val stringLanguageTitle = context.resources.getString(R.string.first_launch_soundscape_language)
         val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)

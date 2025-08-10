@@ -59,7 +59,7 @@ fun LanguageDropDownMenu(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = MaterialTheme.colorScheme.primaryContainer,
+                    color = MaterialTheme.colorScheme.surfaceContainer,
                     shape = RoundedCornerShape(spacing.extraSmall)
                 ),
             verticalAlignment = Alignment.CenterVertically,
@@ -80,13 +80,13 @@ fun LanguageDropDownMenu(
                         } else {
                             stringResource(R.string.no_language_selected) // TODO localize
                         },
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.weight(1f)
                     )
                     Icon(
                         Icons.Default.Edit,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
 
                 }

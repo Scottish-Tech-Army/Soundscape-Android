@@ -1,10 +1,13 @@
 package org.scottishtecharmy.soundscape.ui.theme
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
@@ -288,6 +291,25 @@ private val testColorTheme = darkColorScheme(
 
 var LocalHintsEnabled = compositionLocalOf { true }
 
+
+val LocalAppButtonColors: ProvidableCompositionLocal<ButtonColors> = compositionLocalOf {
+    error("No AppButtonColors provided.")
+}
+
+val currentAppButtonColors: ButtonColors
+    @Composable
+    get() = LocalAppButtonColors.current
+
+fun defaultAppButtonColors(colorScheme: ColorScheme) : ButtonColors {
+
+    return ButtonColors(
+        containerColor = colorScheme.surfaceContainer,
+        contentColor = colorScheme.onSurface,
+        disabledContainerColor = colorScheme.surfaceContainer.copy(alpha = 0.38f),
+        disabledContentColor = colorScheme.onSurface.copy(alpha = 0.38f)
+    )
+}
+
 @Composable
 fun SoundscapeTheme(
     themeStateFlow: StateFlow<ThemeState>? = null,
@@ -296,28 +318,37 @@ fun SoundscapeTheme(
 ) {
     val themeState = themeStateFlow?.collectAsState()
     val hintsEnabled = remember(themeState?.value) { themeState?.value?.hintsEnabled != false }
-    var colorScheme = remember(themeState?.value) {
-        if (themeState?.value?.themeIsLight == true) {
-            when (themeState.value.themeContrast) {
-                "Regular" -> lightScheme
-                "Medium" -> mediumContrastLightColorScheme
-                else -> highContrastLightColorScheme
-            }
-        } else {
-            when (themeState?.value?.themeContrast) {
-                "Regular" -> darkScheme
-                "Medium" -> mediumContrastDarkColorScheme
-                else -> highContrastDarkColorScheme
+    val currentColorScheme = remember(themeState?.value, testTheme) {
+        if(testTheme) {
+            // Override theme for checking color usage
+            testColorTheme
+        }
+        else {
+            if (themeState?.value?.themeIsLight == true) {
+                when (themeState.value.themeContrast) {
+                    "Regular" -> lightScheme
+                    "Medium" -> mediumContrastLightColorScheme
+                    else -> highContrastLightColorScheme
+                }
+            } else {
+                when (themeState?.value?.themeContrast) {
+                    "Regular" -> darkScheme
+                    "Medium" -> mediumContrastDarkColorScheme
+                    else -> highContrastDarkColorScheme
+                }
             }
         }
     }
-    if(testTheme) {
-        // Override theme for checking color usage
-        colorScheme = testColorTheme
+    val appButtonColors = remember(currentColorScheme) {
+        defaultAppButtonColors(currentColorScheme)
     }
-    CompositionLocalProvider(LocalHintsEnabled provides hintsEnabled) {
+
+    CompositionLocalProvider(
+        LocalHintsEnabled provides hintsEnabled,
+        LocalAppButtonColors provides appButtonColors
+    ) {
         MaterialTheme(
-            colorScheme = colorScheme,
+            colorScheme = currentColorScheme,
             typography = Typography,
             content = content
         )

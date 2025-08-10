@@ -34,7 +34,7 @@ fun IconWithTextButton(
     textStyle: TextStyle = MaterialTheme.typography.labelSmall,
     fontWeight: FontWeight = FontWeight.Bold,
     fontSize: TextUnit = 18.sp,
-    color: Color = MaterialTheme.colorScheme.onPrimary,
+    color: Color = MaterialTheme.colorScheme.onSurface,
     onClick: () -> Unit
 ) {
     Row(

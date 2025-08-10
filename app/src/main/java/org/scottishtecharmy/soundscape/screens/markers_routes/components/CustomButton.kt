@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -22,20 +23,24 @@ fun CustomButton(
     modifier: Modifier = Modifier, // Modifier for the button
     onClick: () -> Unit,
     text: String = "", // Button text
-    buttonColor: Color, // Button background color
-    contentColor: Color, // Button text color
+    buttonColor: Color? = null, // Button background color
+    contentColor: Color? = null, // Button text color
     shape: Shape,
     textStyle: TextStyle? = MaterialTheme.typography.labelSmall, // TextStyle for button text with set default
     fontWeight: FontWeight
 ) {
-    Button(
-        onClick = onClick,
-        modifier = modifier,
-        shape = shape,
+    var colors = currentAppButtonColors
+    if((buttonColor != null) && (contentColor != null)) {
         colors = ButtonDefaults.buttonColors(
             containerColor = buttonColor, // Customizable button background color
             contentColor = contentColor // Customizable text color
         )
+    }
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        shape = shape,
+        colors = colors
     ) {
         Text(
             text = text,
@@ -51,8 +56,6 @@ fun CustomButton(
 fun CustomButtonPreview() {
     CustomButton(
         onClick = { /*TODO*/ },
-        buttonColor = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary,
         fontWeight = FontWeight.Bold,
         shape = RoundedCornerShape(spacing.small),
         text = stringResource(R.string.route_detail_edit_waypoints_button),

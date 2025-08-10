@@ -37,6 +37,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -444,6 +445,7 @@ fun HelpScreen(
                                     modifier = Modifier
                                         .fillMaxWidth(),
                                     shape = RoundedCornerShape(spacing.extraSmall),
+                                    colors = currentAppButtonColors
                                 ) {
                                     Box(
                                         Modifier.weight(6f)

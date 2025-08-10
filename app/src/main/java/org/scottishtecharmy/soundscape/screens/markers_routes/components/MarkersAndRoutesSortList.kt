@@ -47,7 +47,7 @@ fun MarkersAndRoutesListSort(
                 stateDescription = sortOrderState
                 role = Role.Button
             }
-            .background(color = MaterialTheme.colorScheme.primaryContainer),
+            .background(color = MaterialTheme.colorScheme.surfaceContainer),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -59,7 +59,7 @@ fun MarkersAndRoutesListSort(
                 onValueChange = { onToggleSortOrder() }
             ),
             imageVector = Icons.Default.SwapVert,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = "" // TODO: Add ascending/descending hint
         )
 
@@ -70,7 +70,7 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.toggleable(
                 value = isSortByName,
                 role = Role.Button,
@@ -85,7 +85,7 @@ fun MarkersAndRoutesListSort(
                    else stringResource(R.string.routes_sort_by_name),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.toggleable(
                 value = isSortByName,
                 role = Role.Button,

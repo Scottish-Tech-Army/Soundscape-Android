@@ -123,7 +123,7 @@ fun Navigating(
                 modifier = Modifier
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
             )
             {
                 Row(
@@ -135,7 +135,7 @@ fun Navigating(
                     Icon(
                         Icons.Rounded.LocationOn,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
@@ -144,12 +144,12 @@ fun Navigating(
                         Text(
                             text = stringResource(R.string.first_launch_permissions_location),
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.onSurface,
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.onSurface,
                         )
                     }
                 }
@@ -164,7 +164,7 @@ fun Navigating(
                         Icon(
                             Icons.Rounded.Notifications,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                         Spacer(modifier = Modifier.width(spacing.extraSmall))
                         Column(
@@ -175,12 +175,12 @@ fun Navigating(
                                 // original iOS Soundscape didn't have this
                                 text = stringResource(R.string.first_launch_permissions_notification),
                                 style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                     }
@@ -197,7 +197,7 @@ fun Navigating(
                         Icons.AutoMirrored.Rounded.DirectionsRun,
                         //Icons.Rounded.FitnessCenter,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.width(spacing.medium))
                     Column(
@@ -208,12 +208,12 @@ fun Navigating(
                             // I'm reusing the original translation strings
                             text = stringResource(R.string.first_launch_permissions_motion),
                             style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.onSurface,
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.onSurface,
                             textAlign = TextAlign.Center
                         )
                     }
