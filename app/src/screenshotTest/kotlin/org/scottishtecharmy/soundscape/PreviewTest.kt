@@ -62,7 +62,7 @@ annotation class CustomPreviews
  * that case, the previews will have visible text or icons. To enable that test, set testTheme to
  * true.
  */
-const val testTheme = true
+const val testTheme = false
 class ThemeTestClass {
 
     @CustomPreviews

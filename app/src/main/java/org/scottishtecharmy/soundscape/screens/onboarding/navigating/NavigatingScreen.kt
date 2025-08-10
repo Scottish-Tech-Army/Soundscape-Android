@@ -18,7 +18,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.DirectionsRun
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Icon
@@ -51,14 +50,12 @@ fun NavigatingScreen(
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                Manifest.permission.ACTIVITY_RECOGNITION,
                 Manifest.permission.POST_NOTIFICATIONS
             )
         } else {
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                Manifest.permission.ACTIVITY_RECOGNITION,
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION
             )
         }
     val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
@@ -183,39 +180,6 @@ fun Navigating(
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
-                    }
-
-                }
-
-                Row(
-                    modifier = Modifier
-                        .mediumPadding()
-                        .fillMaxWidth(),
-                )
-                {
-                    Icon(
-                        Icons.AutoMirrored.Rounded.DirectionsRun,
-                        //Icons.Rounded.FitnessCenter,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                    Spacer(modifier = Modifier.width(spacing.medium))
-                    Column(
-                        modifier = Modifier.semantics(mergeDescendants = true) {},
-                    ) {
-                        Text(
-                            // iOS has Motion and Fitness and Android has Activity Recognition but
-                            // I'm reusing the original translation strings
-                            text = stringResource(R.string.first_launch_permissions_motion),
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurface,
-                        )
-                        Text(
-                            text = stringResource(R.string.first_launch_permissions_required),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            textAlign = TextAlign.Center
-                        )
                     }
 
                 }
