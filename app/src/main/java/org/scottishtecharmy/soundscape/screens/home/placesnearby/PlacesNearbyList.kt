@@ -75,8 +75,8 @@ fun PlacesNearbyList(
         } else {
             uiState.nearbyPlaces.features.filter { feature ->
                 // Filter based on any folder selected
-                featureIsInFilterGroup(feature, uiState.filter)
-
+                featureIsInFilterGroup(feature, uiState.filter) &&
+                getTextForFeature(context, feature).text.isNotEmpty()
             }.map { feature ->
                 LocationDescription(
                     name = getTextForFeature(context, feature).text,
