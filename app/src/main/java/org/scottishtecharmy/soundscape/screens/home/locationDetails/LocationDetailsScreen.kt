@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -175,7 +176,8 @@ fun LocationDetails(
                         modifier =
                             Modifier
                                 .padding(padding)
-                                .verticalScroll(rememberScrollState()),
+                                .verticalScroll(rememberScrollState())
+                                .background(MaterialTheme.colorScheme.surface),
                         verticalArrangement = Arrangement.spacedBy(spacing.small),
                     ) {
                         LocationDescriptionTextsSection(

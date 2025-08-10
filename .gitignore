@@ -14,6 +14,7 @@
 .cxx
 app/gpxFiles/*
 app/*.geojson
+app/src/screenshotTestDebug/*
 
 # Gradle files
 .gradle/

@@ -27,6 +27,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -152,10 +153,12 @@ data object MockLanguagePreviewData {
 @Preview
 @Composable
 fun LanguagePreview() {
-    LanguageComposable(
-        supportedLanguages = MockLanguagePreviewData.languages,
-        onNavigate = {},
-        onLanguageSelected = {},
-        selectedLanguageIndex = -1,
-    )
+    SoundscapeTheme {
+        LanguageComposable(
+            supportedLanguages = MockLanguagePreviewData.languages,
+            onNavigate = {},
+            onLanguageSelected = {},
+            selectedLanguageIndex = -1,
+        )
+    }
 }

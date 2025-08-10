@@ -58,6 +58,7 @@ jobs:
         run: ./gradlew test
 
       - name: Generate screenshots
+        continue-on-error: true # The screenshots are unreliable, awaiting Google fix
         run : ./gradlew  updateDebugScreenshotTest
 
       - name: Build debug version

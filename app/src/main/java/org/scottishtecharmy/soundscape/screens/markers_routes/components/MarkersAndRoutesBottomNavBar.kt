@@ -36,8 +36,8 @@ fun MarkersAndRoutesTabs(
     setRoutesAndMarkersTab: (pickRoutes: Boolean) -> Unit) {
 
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.primaryContainer,
-        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        contentColor = MaterialTheme.colorScheme.onSurface,
     ) {
         items.forEach { item ->
             val isSelected =
@@ -52,7 +52,7 @@ fun MarkersAndRoutesTabs(
                     Text(
                         item.title,
                         style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 },
                 icon = {

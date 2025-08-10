@@ -71,7 +71,7 @@ fun TermsScreen(
                 modifier = Modifier
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
             ) {
                 TermsItem(stringResource(R.string.terms_of_use_message).format(stringResource(R.string.terms_of_use_service_agreement)))
                 TermsItem(stringResource(R.string.terms_of_use_medical_safety_disclaimer))
@@ -134,7 +134,7 @@ fun TermsItem(text: String) {
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onPrimaryContainer)
+            color = MaterialTheme.colorScheme.onSurface)
     }
 
     HorizontalDivider(

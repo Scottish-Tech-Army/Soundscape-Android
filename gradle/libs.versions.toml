@@ -57,6 +57,7 @@ roomCompiler = "2.7.2"
 roomRuntime = "2.7.2"
 rtree2 = "0.9.3"
 screenshot = "0.0.1-alpha11"
+screenshotValidationApi = "0.0.1-alpha11"
 benchmarkCommon = "1.4.0"
 lifecycleRuntimeComposeAndroid = "2.9.2"
 lifecycleProcess = "2.9.2"
@@ -136,6 +137,7 @@ maplibre = { module = "org.maplibre.gl:android-sdk", version.ref = "mapLibre" }
 androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
+screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }
 
 [plugins]
 screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}

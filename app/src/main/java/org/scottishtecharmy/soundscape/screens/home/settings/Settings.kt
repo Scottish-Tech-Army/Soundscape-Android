@@ -58,7 +58,7 @@ fun ListPreferenceItem(description: String,
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.surfaceContainer)
             .smallPadding()
             .clickable {
                 onClick()
@@ -73,7 +73,7 @@ fun ListPreferenceItem(description: String,
     ) {
         Text(
             text = description,
-            color = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.colorScheme.onSurface,
         )
         Icon(
             modifier = Modifier
@@ -81,7 +81,7 @@ fun ListPreferenceItem(description: String,
             imageVector =
                 if(value == currentValue) Icons.Filled.CheckBox
                 else Icons.Filled.CheckBoxOutlineBlank,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = ""
         )
     }

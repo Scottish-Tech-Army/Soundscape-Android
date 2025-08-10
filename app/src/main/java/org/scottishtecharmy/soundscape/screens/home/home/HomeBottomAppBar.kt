@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -59,13 +60,13 @@ fun HomeBottomAppBar(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
             modifier = Modifier
                 .padding(bottom = spacing.small)
-                .background(MaterialTheme.colorScheme.primary),
+                .background(MaterialTheme.colorScheme.surfaceContainer),
 
         ) {
             Text(
                 textAlign = TextAlign.Start,
                 text = stringResource(R.string.callouts_panel_title).uppercase(),
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .padding(start = spacing.medium, top = spacing.medium)
                     .semantics {
@@ -131,7 +132,8 @@ private fun HomeBottomAppBarButton(
         },
         shape = RectangleShape,
         modifier = modifier,
-        contentPadding = PaddingValues(spacing.extraSmall)
+        contentPadding = PaddingValues(spacing.extraSmall),
+        colors = currentAppButtonColors
     ) {
         Column(
             verticalArrangement = Arrangement.Top,

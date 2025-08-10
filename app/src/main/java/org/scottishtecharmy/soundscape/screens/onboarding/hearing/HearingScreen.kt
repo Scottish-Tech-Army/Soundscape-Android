@@ -154,8 +154,8 @@ fun Hearing(
                             .fillMaxWidth(),
                         shape = RoundedCornerShape(spacing.tiny),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primaryContainer,
-                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                            contentColor = MaterialTheme.colorScheme.onSurface,
                         )
                     )
                     {
@@ -167,12 +167,12 @@ fun Hearing(
                             Icon(
                                 Icons.Rounded.PlayArrow,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                             Spacer(modifier = Modifier.width(spacing.small))
                             Text(
                                 text = stringResource(R.string.first_launch_callouts_listen_accessibility_label),
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                color = MaterialTheme.colorScheme.onSurface,
                                 )
                         }
                     }

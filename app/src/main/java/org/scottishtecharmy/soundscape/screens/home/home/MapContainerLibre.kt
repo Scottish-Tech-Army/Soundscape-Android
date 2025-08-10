@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -108,15 +109,26 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
 
 @Composable
 fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>) {
-    FloatingActionButton(onClick = { fullscreenMap.value = !fullscreenMap.value }) {
+    FloatingActionButton(
+        onClick = { fullscreenMap.value = !fullscreenMap.value },
+        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        contentColor = MaterialTheme.colorScheme.onSurface
+    ) {
         Icon(
             imageVector = if(fullscreenMap.value) Icons.Rounded.FullscreenExit else Icons.Rounded.Fullscreen,
+            tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = if(fullscreenMap.value)
                 stringResource(R.string.location_detail_exit_full_screen_hint)
             else
                 stringResource(R.string.location_detail_full_screen_hint)
         )
     }
+}
+
+@Preview
+@Composable
+fun PreviewFullScreenMapFab(){
+    FullScreenMapFab(remember { mutableStateOf(false) })
 }
 
 /**

@@ -182,6 +182,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose.android)
     implementation(libs.androidx.media3.session)
     implementation(libs.androidx.lifecycle.process)
+    implementation(libs.screenshot.validation.api)
 
 
     testImplementation(libs.junit)

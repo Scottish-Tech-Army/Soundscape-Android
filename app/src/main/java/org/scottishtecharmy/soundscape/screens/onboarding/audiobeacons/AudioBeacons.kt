@@ -139,12 +139,12 @@ fun AudioBeacons(
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
                     .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
-                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .background(MaterialTheme.colorScheme.surfaceContainer)
             ) {
                 items(beacons) { beacon ->
                     AudioBeaconItem(
                         text = stringResource(getBeaconResourceId(beacon)),
-                        foregroundColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        foregroundColor = MaterialTheme.colorScheme.onSurface,
                         isSelected = beacon == selectedBeacon,
                         onSelect = {
                             onBeaconSelected(beacon)

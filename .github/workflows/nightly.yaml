@@ -87,6 +87,7 @@ jobs:
 
       # Generate the screenshots from the Preview code
       - name: Generate screenshots
+        continue-on-error: true # The screenshots are unreliable, awaiting Google fix
         run : ./gradlew  updateDebugScreenshotTest
 
       # Upload screenshots as an artifact
@@ -95,7 +96,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: screenshot-previews
-          path: ${{ env.main_project_module }}/src/debug/screenshotTest/reference/org/scottishtecharmy/soundscape/
+          path: ${{ env.main_project_module }}/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/
 
       # Create APK Debug
       - name: Build apk debug project (APK)

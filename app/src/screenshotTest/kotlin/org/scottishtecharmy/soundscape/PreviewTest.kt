@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.android.tools.screenshot.PreviewTest
 import org.scottishtecharmy.soundscape.screens.home.PreviewDrawerContent
 import org.scottishtecharmy.soundscape.screens.home.home.FaqHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.HomeHelpPreview
@@ -61,11 +62,12 @@ annotation class CustomPreviews
  * that case, the previews will have visible text or icons. To enable that test, set testTheme to
  * true.
  */
-const val testTheme = false
+const val testTheme = true
 class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun AudioBeaconsPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             AudioBeaconPreview()
@@ -74,6 +76,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun FinishPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             FinishScreen(
@@ -84,6 +87,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun HearingPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             HearingPreview()
@@ -92,6 +96,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun LanguagePreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             LanguagePreview()
@@ -100,6 +105,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun ListeningPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             ListeningPreview()
@@ -108,6 +114,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun HomePreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             HomePreview()
@@ -116,6 +123,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun HomeRoutePreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             HomeRoutePreview()
@@ -124,6 +132,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun HomeSearchPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             HomeSearchPreview()
@@ -132,6 +141,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun SettingsPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             SettingsPreview()
@@ -140,6 +150,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun RoutesPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             RoutesScreenPreview()
@@ -148,6 +159,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun MarkersPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             MarkersScreenPopulatedPreview()
@@ -156,6 +168,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun NewRouteScreenPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             NewRouteScreenPreview()
@@ -164,6 +177,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun EditRouteScreenPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             EditRouteScreenPreview()
@@ -172,6 +186,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun RouteDetailsPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             RoutesDetailsPopulatedPreview()
@@ -180,6 +195,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun RoutesScreenPopulatedPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             RoutesScreenPopulatedPreview()
@@ -188,6 +204,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun HelpScreenPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             HomeHelpPreview()
@@ -195,6 +212,7 @@ class ThemeTestClass {
     }
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun FaqHelpPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             FaqHelpPreview()
@@ -203,6 +221,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun SleepScreenPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             SleepScreenPreview()
@@ -211,6 +230,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun LocationDetailsPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             LocationDetailsPreview()
@@ -219,6 +239,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun AddRouteScreenPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             AddRouteScreenPreview()
@@ -227,6 +248,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun PlacesNearbyPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             PlacesNearbyPreview()
@@ -235,6 +257,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun PreviewDrawerContentTest() {
         SoundscapeTheme(testTheme = testTheme) {
             PreviewDrawerContent()
@@ -243,6 +266,7 @@ class ThemeTestClass {
 
     @CustomPreviews
     @Composable
+    @PreviewTest
     fun AddWaypointsScreenPopulatedPreviewText() {
         SoundscapeTheme(testTheme = testTheme) {
             AddWaypointsScreenPopulatedPreview()

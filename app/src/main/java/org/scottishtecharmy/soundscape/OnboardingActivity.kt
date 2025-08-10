@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.screens.onboarding.SetUpOnboardingNavGraph
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import androidx.core.content.edit
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
@@ -21,8 +22,11 @@ class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Use the system light/dark setting
+        val themeIsLight = (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_NO
+
         setContent {
-            SoundscapeTheme {
+            SoundscapeTheme(MutableStateFlow(ThemeState(themeIsLight = themeIsLight))) {
                 navController = rememberNavController()
                 SetUpOnboardingNavGraph(
                     navController = navController,

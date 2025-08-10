@@ -44,6 +44,7 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLoca
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -142,7 +143,9 @@ fun HomeContent(
                                 horizontalArrangement = Arrangement.SpaceEvenly,
                                 verticalAlignment = androidx.compose.ui.Alignment.Bottom
                             ) {
-                                Button(onClick = { routeFunctions.skipPrevious() })
+                                Button(
+                                    onClick = { routeFunctions.skipPrevious() },
+                                    colors = currentAppButtonColors)
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(
@@ -150,13 +153,16 @@ fun HomeContent(
                                         ),
                                         imageVector = Icons.Filled.SkipPrevious,
                                         tint = if (routePlayerState.currentWaypoint == 0)
-                                                   MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f)
+                                                   MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
                                                else
-                                                   MaterialTheme.colorScheme.onPrimary,
+                                                   MaterialTheme.colorScheme.onSurface,
                                         contentDescription = stringResource(R.string.route_detail_action_previous)
                                     )
                                 }
-                                Button(onClick = { routeFunctions.skipNext() })
+                                Button(
+                                    onClick = { routeFunctions.skipNext() },
+                                    colors = currentAppButtonColors
+                                )
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(
@@ -164,9 +170,9 @@ fun HomeContent(
                                         ),
                                         imageVector = Icons.Filled.SkipNext,
                                         tint = if (routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1)
-                                                   MaterialTheme.colorScheme.onPrimary
+                                                   MaterialTheme.colorScheme.onSurface
                                                else
-                                                   MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.3f),
+                                                   MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                                         contentDescription = stringResource(R.string.route_detail_action_next)
                                     )
                                 }
@@ -177,7 +183,8 @@ fun HomeContent(
                                         } else {
                                             onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}")
                                         }
-                                    }
+                                    },
+                                    colors = currentAppButtonColors
                                 )
                                 {
                                     if (routePlayerState.beaconOnly) {
@@ -194,7 +201,10 @@ fun HomeContent(
                                         )
                                     }
                                 }
-                                Button(onClick = { routeFunctions.mute() })
+                                Button(
+                                    onClick = { routeFunctions.mute() },
+                                    colors = currentAppButtonColors
+                                )
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(

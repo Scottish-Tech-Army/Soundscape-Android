@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -36,6 +37,7 @@ fun NavigationButton(
             .fillMaxWidth()
             .padding(horizontal = horizontalPadding),
         shape = RoundedCornerShape(spacing.none),
+        colors = currentAppButtonColors
     ) {
         Row(verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
