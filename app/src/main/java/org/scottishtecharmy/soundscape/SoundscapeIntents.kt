@@ -107,12 +107,20 @@ class SoundscapeIntents
                 val redUrl = connection!!.url.toString()
                 connection.disconnect()
 
-                Log.d(TAG, "Maps URL: $redUrl")
-
                 // Parse URL
+                Log.d(TAG, "Maps URL: $redUrl")
                 val decodedUrl = URLDecoder.decode(redUrl, "UTF-8")
                 Log.d(TAG, "Decoded maps URL: $decodedUrl")
-                useGeocoderToGetAddress(decodedUrl, context)
+
+                // The URL will have the text description of the location, followed by some data
+                // which includes the FTID of the place. The FTID is a Google place identifier, but
+                // that isn't useful unless we pay Google for an API key and use the API to decode
+                // it. We'll just try and use text description instead.
+
+                // Strip off initial https://www.google.com/maps/place/ and anything after "/data="
+                val placeName = decodedUrl.substringAfter("maps/place/").substringBefore("/data=")
+                Log.d(TAG, "Place name: $placeName")
+                useGeocoderToGetAddress(placeName, context)
             }
         }
 
