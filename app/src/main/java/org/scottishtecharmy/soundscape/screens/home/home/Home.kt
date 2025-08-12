@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 import android.content.SharedPreferences
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
@@ -19,11 +20,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
@@ -47,7 +51,14 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
+
+@Composable
+fun keyboardAsState(): State<Boolean> {
+    val isImeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
+    return rememberUpdatedState(isImeVisible)
+}
 
 @Composable
 fun Home(
@@ -69,6 +80,7 @@ fun Home(
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val fullscreenMap = remember { mutableStateOf(false) }
+    val keyboardOpen = keyboardAsState()
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -85,19 +97,25 @@ fun Home(
         modifier = modifier,
     ) {
         Scaffold(
+            // If the keyboard is open, then we don't show the top or the bottom bars. This makes more
+            // room for the search. This is important when the font size is very large, but it's
+            // also good for allowing the user to view more search results.
             topBar = {
-                HomeTopAppBar(
-                    drawerState,
-                    coroutineScope,
-                    onNavigate
-                )
+                if(!keyboardOpen.value) {
+                    HomeTopAppBar(
+                        drawerState,
+                        coroutineScope,
+                        onNavigate
+                    )
+                }
             },
             bottomBar = {
-                if(!fullscreenMap.value)
+                if(!fullscreenMap.value && !keyboardOpen.value)
                     HomeBottomAppBar(bottomButtonFunctions)
             },
             floatingActionButton = {
-                FullScreenMapFab(fullscreenMap)
+                if(!keyboardOpen.value)
+                    FullScreenMapFab(fullscreenMap)
             },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
@@ -199,40 +217,54 @@ fun HomeTopAppBar(
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
-    Home(
-        state = HomeState(),
-        onNavigate = {},
-        preferences = null,
-        onMapLongClick = { false },
-        bottomButtonFunctions = BottomButtonFunctions(null),
-        getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
-        rateSoundscape = {},
-        searchText = "Lille",
-        onSearchTextChange = {},
-        onToggleSearch = {},
-        routeFunctions = RouteFunctions(null),
-        streetPreviewFunctions = StreetPreviewFunctions(null),
-    )
+    SoundscapeTheme {
+        Home(
+            state = HomeState(),
+            onNavigate = {},
+            preferences = null,
+            onMapLongClick = { false },
+            bottomButtonFunctions = BottomButtonFunctions(null),
+            getCurrentLocationDescription = {
+                LocationDescription(
+                    "Current Location",
+                    LngLatAlt()
+                )
+            },
+            rateSoundscape = {},
+            searchText = "Lille",
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
+        )
+    }
 }
 
-@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
+@Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true, fontScale = 3.13f)
 @Preview(showBackground = true)
 @Composable
 fun HomeSearchPreview() {
-    Home(
-        state = HomeState(),
-        onNavigate = {},
-        preferences = null,
-        onMapLongClick = { false },
-        bottomButtonFunctions = BottomButtonFunctions(null),
-        getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
-        rateSoundscape = {},
-        searchText = "Lille",
-        onSearchTextChange = {},
-        onToggleSearch = {},
-        routeFunctions = RouteFunctions(null),
-        streetPreviewFunctions = StreetPreviewFunctions(null),
-    )
+    SoundscapeTheme {
+        Home(
+            state = HomeState(),
+            onNavigate = {},
+            preferences = null,
+            onMapLongClick = { false },
+            bottomButtonFunctions = BottomButtonFunctions(null),
+            getCurrentLocationDescription = {
+                LocationDescription(
+                    "Current Location",
+                    LngLatAlt()
+                )
+            },
+            rateSoundscape = {},
+            searchText = "Lille",
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
+        )
+    }
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
@@ -249,24 +281,31 @@ fun HomeRoutePreview() {
         ),
         currentWaypoint = 0
     )
-    Home(
-        state = HomeState(
-            heading = 90f,
-            location = LngLatAlt(10.0, 10.0),
-            currentRouteData = routePlayerState
-        ),
-        onNavigate = {},
-        preferences = null,
-        onMapLongClick = { false },
-        bottomButtonFunctions = BottomButtonFunctions(null),
-        getCurrentLocationDescription = { LocationDescription("Current Location", LngLatAlt()) },
-        rateSoundscape = {},
-        searchText = "Lille",
-        onSearchTextChange = {},
-        onToggleSearch = {},
-        routeFunctions = RouteFunctions(null),
-        streetPreviewFunctions = StreetPreviewFunctions(null),
-    )
+    SoundscapeTheme {
+        Home(
+            state = HomeState(
+                heading = 90f,
+                location = LngLatAlt(10.0, 10.0),
+                currentRouteData = routePlayerState
+            ),
+            onNavigate = {},
+            preferences = null,
+            onMapLongClick = { false },
+            bottomButtonFunctions = BottomButtonFunctions(null),
+            getCurrentLocationDescription = {
+                LocationDescription(
+                    "Current Location",
+                    LngLatAlt()
+                )
+            },
+            rateSoundscape = {},
+            searchText = "Lille",
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
+        )
+    }
 }
 
 val previewLocationList = listOf(
