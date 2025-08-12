@@ -1,6 +1,10 @@
 package org.scottishtecharmy.soundscape.screens.onboarding
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,31 +27,52 @@ fun SetUpOnboardingNavGraph(
         startDestination = OnboardingScreens.Welcome.route
     ) {
         composable(OnboardingScreens.Welcome.route) {
-            Welcome(onNavigate = { navController.navigate(OnboardingScreens.Language.route) })
+            Welcome(
+                onNavigate = { navController.navigate(OnboardingScreens.Language.route) },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.Language.route) {
-            LanguageScreen( onNavigate = { navController.navigate(OnboardingScreens.Navigating.route) })
+            LanguageScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.Navigating.route) },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.Listening.route) {
-            ListeningScreen(onNavigate = { navController.navigate(OnboardingScreens.Hearing.route) })
+            ListeningScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.Hearing.route) },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.Hearing.route) {
-            HearingScreen(onNavigate = { navController.navigate( OnboardingScreens.AudioBeacons.route) })
+            HearingScreen(
+                onNavigate = { navController.navigate( OnboardingScreens.AudioBeacons.route) },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.Navigating.route) {
-            NavigatingScreen(onNavigate = { navController.navigate(OnboardingScreens.Listening.route) })
+            NavigatingScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.Listening.route) },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.AudioBeacons.route) {
-            AudioBeaconsScreen(onNavigate = { navController.navigate(OnboardingScreens.Terms.route) })
+            AudioBeaconsScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.Terms.route) },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.Terms.route) {
             TermsScreen(onNavigate = {
                 navController.navigate(OnboardingScreens.Finish.route)
-            })
+            },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+            )
         }
         composable(OnboardingScreens.Finish.route) {
             FinishScreen(
-                onFinish = onFinish
+                onFinish = onFinish,
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
     }
