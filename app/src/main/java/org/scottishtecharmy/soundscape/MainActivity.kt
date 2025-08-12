@@ -413,7 +413,7 @@ class MainActivity : AppCompatActivity() {
         const val THEME_CONTRAST_KEY = "ThemeContrast"
         const val RECORD_TRAVEL_DEFAULT = false
         const val RECORD_TRAVEL_KEY = "RecordTravel"
-        const val ACCESSIBLE_MAP_DEFAULT = false
+        const val ACCESSIBLE_MAP_DEFAULT = true
         const val ACCESSIBLE_MAP_KEY = "AccessibleMap"
         const val MEASUREMENT_UNITS_DEFAULT = "Auto"
         const val MEASUREMENT_UNITS_KEY = "MeasurementUnits"
