@@ -107,11 +107,13 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                             (key == MainActivity.SPEECH_RATE_KEY)
                         ) {
                             if (updateSpeech(preferences)) {
-                                // If the voice type preference changes play some test speech
-                                clearTextToSpeechQueue()
-                                val testString =
-                                    localizedContext.getString(R.string.first_launch_callouts_example_3)
-                                createTextToSpeech(testString, AudioType.STANDARD)
+                                if(service?.requestAudioFocus() == true) {
+                                    // If the voice type preference changes play some test speech
+                                    clearTextToSpeechQueue()
+                                    val testString =
+                                        localizedContext.getString(R.string.first_launch_callouts_example_3)
+                                    createTextToSpeech(testString, AudioType.STANDARD)
+                                }
                             }
                         }
                         if (key == MainActivity.BEACON_TYPE_KEY) {

@@ -547,7 +547,7 @@ class SoundscapeService : MediaSessionService() {
         return geoEngine.getRecordingShareUri(context)
     }
 
-    private fun requestAudioFocus(): Boolean {
+    fun requestAudioFocus(): Boolean {
         if(!audioFocusGained) {
             if (audioFocusRequest == null) {
                 // Build our audio focus request
