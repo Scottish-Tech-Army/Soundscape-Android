@@ -7,18 +7,24 @@ has_toc: false
 
 # Release notes
 
-# 0.0.96
+# 0.0.102
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
 Issues tagged _user-facing_ are those which describe issues from a user perspective. 
 
-## New in this release
-* Support for better audio interaction between apps. Phone and video calls will automatically mute the app, and other apps will drop their volume when Soundscape callouts play. Although this was added in v0.0.94 there were some issues and this release fixes those.
-* Enhanced analytics so that we can track (anonymously) which features are being used and tested.
+## New since 0.0.96
+* A new option in settings to select miles and feet instead of kilometers and meters.
+* Improved light and dark themes and defaulting to use the system setting.
+* Improved handling of locations shared from Google Maps especially those of places with names containing non-ASCII characters.
+* The onboarding screen now honours the safe window so that buttons don't appear under system buttons on newer Samsung phones.
+* When the onscreen keyboard is visible for typing into the search bar, the "Hear my surroundings" and "Title bar" both disappear to give more screen estate. This is most important when using large font sizes.
+* The accessible map style is now enabled by default. It can still be disabled/enabled in the app settings.
+  
 
 ### Longer term known issues
-The largest issues which are still being worked on are:
-* [Support for Street Preview is very preliminary](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/528), especially when it comes to use by people with a visual impairment.
+The largest issues which are being worked on are:
+* [Improving mapping data](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/605) to try and improve both search, the graphical maps and the contents of Places Nearby.
 * [Callouts for roundabouts need work](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/442). We have a plan for this, but it's not yet implemented.
+* [Support for Street Preview is very preliminary](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/528), especially when it comes to use by people with a visual impairment.
 
 ## Features
 This is a brief description of the various features of the app.
