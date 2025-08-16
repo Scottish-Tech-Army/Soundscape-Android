@@ -81,6 +81,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             }
             ttsSockets.clear()
 
+            textToSpeech.setOnUtteranceProgressListener(null)
             textToSpeech.shutdown()
             org.fmod.FMOD.close()
         }
