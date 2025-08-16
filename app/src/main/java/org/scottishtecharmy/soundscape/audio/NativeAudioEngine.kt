@@ -18,6 +18,8 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -350,16 +352,25 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     }
 
     override fun getAvailableSpeechLanguages() : Set<Locale> {
-        if (!textToSpeechInitialized)
-            return emptySet()
-
-        return textToSpeech.availableLanguages
+        try {
+            if (textToSpeechInitialized)
+                return textToSpeech.availableLanguages
+        } catch (e: Exception) {
+            Firebase.analytics.logEvent("getAvailableSpeechLanguages_error", null)
+            Log.e(TAG, "getAvailableSpeechVoices: $e")
+        }
+        return emptySet()
     }
 
     override fun getAvailableSpeechVoices() : Set<Voice> {
-        if (!textToSpeechInitialized)
-            return emptySet()
-        return textToSpeech.voices
+        try {
+            if (textToSpeechInitialized)
+                return textToSpeech.voices
+        } catch (e: Exception) {
+            Firebase.analytics.logEvent("getAvailableSpeechVoices_error", null)
+            Log.e(TAG, "getAvailableSpeechVoices: $e")
+        }
+        return emptySet()
     }
 
     override fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
