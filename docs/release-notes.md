@@ -7,7 +7,7 @@ has_toc: false
 
 # Release notes
 
-# 0.0.102
+# 0.0.103
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
 Issues tagged _user-facing_ are those which describe issues from a user perspective. 
 
@@ -18,6 +18,10 @@ Issues tagged _user-facing_ are those which describe issues from a user perspect
 * The onboarding screen now honours the safe window so that buttons don't appear under system buttons on newer Samsung phones.
 * When the onscreen keyboard is visible for typing into the search bar, the "Hear my surroundings" and "Title bar" both disappear to give more screen estate. This is most important when using large font sizes.
 * The accessible map style is now enabled by default. It can still be disabled/enabled in the app settings.
+* Stability improvements:
+  * Fixed memory leak when entering Sleep mode
+  * Fix for OnePlus Pro8 startup crash
+  * Fix for Honor X8c crash relating to text to speech engine
   
 
 ### Longer term known issues
