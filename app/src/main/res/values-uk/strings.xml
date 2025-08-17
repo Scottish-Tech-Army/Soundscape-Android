@@ -1,3 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">Скасувати</string>
+    <string name="general_alert_done">Готово</string>
+    <string name="general_loading_start">Підготовка…</string>
+    <string name="general_error_location_services_find_location_error">Програма не може визначити ваше поточне місцезнаходження.</string>
+    <string name="general_error_add_marker_error">Не вдалося створити мітку для цього місця. Повторіть спробу пізніше.</string>
+    <string name="settings_screen_title">Налаштування</string>
+    <string name="settings_about_app">Про Soundscape</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Одиниці вимірювання</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Британські (Милі, фути)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Метричні (Кілометри, метри)</string>
+    <string name="voice_settings_speaking_rate">Темп мовлення</string>
+    <string name="voice_voices">Голоси</string>
+    <string name="beacon_settings_style">Стилі звуку</string>
+    <string name="beacon_styles_current">Сучасний</string>
+    <string name="beacon_styles_original">Оригінальний</string>
+    <string name="beacon_styles_flare">Спалах</string>
+    <string name="beacon_styles_shimmer">Мерехтіння</string>
+    <string name="beacon_styles_tactile">Тактильний</string>
+    <string name="beacon_styles_ping">Пінг</string>
+    <string name="beacon_styles_drop">Падіння</string>
+    <string name="beacon_styles_signal">Сигнал</string>
+    <string name="beacon_styles_signal_slow">Сигнал (повільно)</string>
+    <string name="beacon_styles_signal_very_slow">Сигнал (дуже повільно)</string>
+    <string name="beacon_styles_mallet">Молоточок</string>
+    <string name="beacon_styles_mallet_slow">Молоточок (повільно)</string>
+    <string name="beacon_styles_mallet_very_slow">Молоточок (дуже повільно)</string>
+    <string name="beacon_audio_beacon">"Звуковий  маячок"</string>
+    <string name="beacon_action_mute_beacon">Вимкнути звук маячка</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Зменшити гучність звукового маячка до нуля.</string>
+    <string name="beacon_action_unmute_beacon">Увімкнути звук маячка</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Збільшити гучність звукового маячка до визначеного значення.</string>
+    <string name="preview_title">Перегляд вулиць Soundscape</string>
+    <string name="preview_go_title">Далі</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Перейти до найближчого перехрестя</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" та %s"</string>
+    <string name="preview_include_unnamed_roads_title">Дороги без назв</string>
+    <string name="location_detail_title_default">Деталі місця</string>
+    <string name="location_detail_action_beacon">Запустити звуковий маячок</string>
+    <string name="location_detail_action_beacon_hint">Встановити звуковий маячок для цього місця</string>
+    <string name="location_detail_action_save_hint">Зберегти це місце як мітку</string>
+    <string name="location_detail_action_edit_hint">Редагувати мітку</string>
+    <string name="location_detail_action_share_hint">Поділитися цим місцем</string>
+    <string name="location_detail_action_preview_hint">Розпочати перегляд у цьому місці</string>
+    <string name="location_detail_add_waypoint_existing_hint">Видалити цю мітку з маршруту.</string>
+    <string name="location_detail_add_waypoint_new_hint">Додати цю мітку до маршруту.</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Розгорнути карту на весь екран</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Вийти з повноекранного режиму карти</string>
 </resources>
