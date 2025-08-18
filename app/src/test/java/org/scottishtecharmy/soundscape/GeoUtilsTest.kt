@@ -965,4 +965,22 @@ class GeoUtilsTest {
         // Check we have one outer and one inner ring
         assert(mergedPolygon.coordinates.size == 2)
    }
+    @Test
+    fun cheapRulerWrapTest(){
+        var a = LngLatAlt(0.0, 0.0)
+        var b = LngLatAlt(0.0, 0.0)
+        a.createCheapRuler().distance(b, a)
+
+        a.longitude = -181.0
+        b.longitude = 181.0
+        a.createCheapRuler().distance(b, a)
+
+        a.longitude = -1810.0
+        b.longitude = 1810.0
+        a.createCheapRuler().distance(b, a)
+
+        a.longitude = 181.0
+        b.longitude = -181.0
+        a.createCheapRuler().distance(b, a)
+    }
 }
