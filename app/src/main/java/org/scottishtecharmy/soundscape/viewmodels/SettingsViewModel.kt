@@ -4,12 +4,14 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -28,6 +30,7 @@ class SettingsViewModel @Inject constructor(
 
     private val _state: MutableStateFlow<SettingsUiState> = MutableStateFlow(SettingsUiState())
     val state: StateFlow<SettingsUiState> = _state.asStateFlow()
+    private val coroutineScope = CoroutineScope(Job())
 
     init {
         viewModelScope.launch {
@@ -97,6 +100,14 @@ class SettingsViewModel @Inject constructor(
             }
         }
     }
+    fun updateLanguage(localContext: MainActivity) {
+        coroutineScope.launch {
+            localContext.setServiceState(false)
+            Thread.sleep(1000)
+            localContext.setServiceState(true)
+        }
+    }
+
     companion object {
         private const val TAG = "SettingsViewModel"
     }

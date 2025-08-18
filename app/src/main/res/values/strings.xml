@@ -527,6 +527,10 @@
 <string name="first_launch_prompt_message">"You are ready for your first walk with Soundscape. To try it now, just choose a nearby destination, start the audio beacon, and you’ll hear it in the direction of your destination."</string>
 <!-- Button for the last screen in the first launch experience -->
 <string name="first_launch_prompt_button">"Finish"</string>
+<!-- Button to change the configured language for the UI -->
+<string name="first_launch_change_language" tools:ignore="MissingTranslation">"Change Language"</string>
+<!-- Hint for configuring the language -->
+<string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">"to change the language used for the app"</string>
 <!-- Notification, Information on what a beacon is used for {NumberedPlaceholder="Soundscape"} -->
 <string name="help_text_destination_beacons_what">"Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known."</string>
 <!-- Notification, Information on when to use a beacon -->
