@@ -353,8 +353,6 @@ class GeoEngine {
                     FirebaseCrashlytics.getInstance().setCustomKey("latitude", newLocation.latitude)
                     FirebaseCrashlytics.getInstance().setCustomKey("longitude", newLocation.longitude)
 
-                    Firebase.analytics.logEvent("gridUpdate", null)
-
                     // Update the main grid state
                     val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
@@ -383,6 +381,8 @@ class GeoEngine {
                     }
 
                     if(updated) {
+                        Firebase.analytics.logEvent("gridUpdated", null)
+
                         // The grid updated, if we're in StreetPreview and were initializing, the
                         // service needs to update the state to ON.
                         soundscapeService.tileGridUpdated()
