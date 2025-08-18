@@ -5,6 +5,8 @@ import android.content.Intent
 import android.location.Geocoder
 import android.os.Build
 import android.util.Log
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -173,6 +175,7 @@ class SoundscapeIntents
                         intent.getStringExtra(Intent.EXTRA_TEXT)?.let { plainText ->
                             Log.d(TAG, "Intent text: $plainText")
                             if (plainText.contains("maps.app.goo.gl")) {
+                                Firebase.analytics.logEvent("intentGoogleMapShare", null)
                                 try {
                                     getRedirectUrl(plainText, mainActivity)
                                 } catch (e: Exception) {
@@ -199,12 +202,14 @@ class SoundscapeIntents
 
                         if (matchResult.groupValues[1] == "soundscape") {
                             // Switch to Street Preview mode
+                            Firebase.analytics.logEvent("intentSoundscapeSchemaUrl", null)
                             mainActivity.soundscapeServiceConnection.setStreetPreviewMode(
                                 true,
                                 LngLatAlt(longitude.toDouble(), latitude.toDouble())
                             )
                         } else {
                             try {
+                                Firebase.analytics.logEvent("intentGeoSchemaUrl", null)
                                 check(Geocoder.isPresent())
                                 useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
                             } catch (e: Exception) {
@@ -274,6 +279,7 @@ class SoundscapeIntents
                                                             )
                                                         }
                                                     }
+                                                    Firebase.analytics.logEvent("intentJsonImport", null)
                                                     routeData = RouteWithMarkers(
                                                         RouteEntity(
                                                             0,
