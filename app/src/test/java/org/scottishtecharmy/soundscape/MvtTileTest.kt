@@ -187,7 +187,8 @@ fun getGridStateForLocation(
         // Update the grid state
         gridState.locationUpdate(
             LngLatAlt(location.longitude, location.latitude),
-            enabledCategories
+            enabledCategories,
+            true
         )
     }
     return gridState
@@ -591,11 +592,13 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories
+                    enabledCategories,
+                    true
                 )
                 settlementGrid.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    emptySet()
+                    emptySet(),
+                    true
                 )
 
                 if(gridChanged) {
@@ -710,7 +713,8 @@ class MvtTileTest {
                     // Update the grid state
                     gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        emptySet()
+                        emptySet(),
+                        true
                     )
                 }
             }

@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -241,7 +243,7 @@ open class GridState(
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
-    suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>) : Boolean {
+    suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>, isUnitTesting: Boolean = false) : Boolean {
         // Check if we're still within the central area of our grid
         if (!pointIsWithinBoundingBox(location, centralBoundingBox)) {
             //println("Update central grid area")
@@ -253,7 +255,7 @@ open class GridState(
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
             val newGridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
                 emptyList<HashMap<LngLatAlt, Intersection>>().toMutableList()
-            if (updateTileGrid(tileGrid, featureCollections, newGridIntersections)) {
+            if (updateTileGrid(tileGrid, featureCollections, newGridIntersections, isUnitTesting)) {
                 // We have got a new grid, so create our new central region
                 centralBoundingBox = tileGrid.centralBoundingBox
                 totalBoundingBox = tileGrid.totalBoundingBox
@@ -336,7 +338,8 @@ open class GridState(
     private suspend fun updateTileGrid(
         tileGrid: TileGrid,
         featureCollections: Array<FeatureCollection>,
-        gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>
+        gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>,
+        isUnitTesting: Boolean
     ): Boolean {
         for (tile in tileGrid.tiles) {
 
@@ -352,6 +355,8 @@ open class GridState(
             } else {
                 var ret = false
                 tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                if(!isUnitTesting)
+                    Firebase.analytics.logEvent("updateTile", null)
                 for (retry in 1..5) {
                     ret = updateTile(tile.tileX, tile.tileY, tileCollections, intersectionMap)
                     if (ret) {
