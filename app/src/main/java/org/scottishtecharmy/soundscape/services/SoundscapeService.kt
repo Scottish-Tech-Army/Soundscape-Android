@@ -288,6 +288,7 @@ class SoundscapeService : MediaSessionService() {
      */
     fun stopForegroundService() {
         destroyBeacon()
+        abandonAudioFocus()
         stopSelf()
     }
 

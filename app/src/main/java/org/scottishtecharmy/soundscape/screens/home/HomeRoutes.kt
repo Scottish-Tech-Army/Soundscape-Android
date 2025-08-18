@@ -40,4 +40,8 @@ sealed class HomeRoutes(
         route = "sleep_screen",
         title = "SleepScreen",
     )
+    data object Language : HomeRoutes(
+        route = "language_screen",
+        title = "LanguageScreen",
+    )
 }

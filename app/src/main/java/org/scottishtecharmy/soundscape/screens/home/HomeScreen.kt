@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -20,6 +21,7 @@ import androidx.navigation.navArgument
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -35,6 +37,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.parseSimpleRouteData
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
@@ -130,10 +134,28 @@ fun HomeScreen(
             // Always just pop back out of settings, don't add to the queue
             val settingsViewModel: SettingsViewModel = hiltViewModel()
             val uiState = settingsViewModel.state.collectAsStateWithLifecycle()
+            val languageViewModel: LanguageViewModel = hiltViewModel()
+            val languageUiState = languageViewModel.state.collectAsStateWithLifecycle()
+            val localContext = LocalContext.current as MainActivity
             Settings(
                 onNavigateUp = { navController.navigateUp() },
                 uiState = uiState.value,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                supportedLanguages = languageUiState.value.supportedLanguages,
+                onLanguageSelected = { selectedLanguage ->
+                    languageViewModel.updateLanguage(selectedLanguage)
+                    settingsViewModel.updateLanguage(localContext)
+                 },
+                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex
+            )
+        }
+
+        // Language choosing screen
+        composable(HomeRoutes.Language.route) {
+            // Always just pop back out of settings, don't add to the queue
+            LanguageScreen(
+                onNavigate = { navController.navigateUp() },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
             )
         }
 

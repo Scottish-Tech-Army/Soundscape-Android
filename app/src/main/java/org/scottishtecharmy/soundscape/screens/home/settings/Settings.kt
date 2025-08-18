@@ -28,6 +28,9 @@ import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
+import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
+import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -42,7 +45,14 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 @Preview
 @Composable
 fun SettingsPreview() {
-    Settings({}, SettingsViewModel.SettingsUiState())
+    Settings(
+        {},
+        SettingsViewModel.SettingsUiState(),
+        modifier = Modifier,
+        MockLanguagePreviewData.languages,
+        {},
+        4,
+    )
 }
 
 @Preview(fontScale = 2f)
@@ -117,6 +127,9 @@ fun Settings(
     onNavigateUp: () -> Unit,
     uiState: SettingsViewModel.SettingsUiState,
     modifier: Modifier = Modifier,
+    supportedLanguages: List<Language>,
+    onLanguageSelected: (Language) -> Unit,
+    selectedLanguageIndex: Int,
 )
 {
     val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
@@ -369,6 +382,21 @@ fun Settings(
                 valueSteps = 10,
                 valueText = { Text(text = "%.1fx".format(it), color = textColor) },
             )
+
+            item {
+                Text(
+                    text = stringResource(R.string.first_launch_change_language),
+                    color = textColor,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.semantics { heading() },
+                )
+                LanguageDropDownMenu(
+                    allLanguages = supportedLanguages,
+                    onLanguageSelected = onLanguageSelected,
+                    selectedLanguageIndex = selectedLanguageIndex,
+                    modifier = Modifier.smallPadding()
+                )
+            }
 
             item {
                 Text(
