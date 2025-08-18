@@ -53,8 +53,8 @@ private const val RAD = PI / 180
  */
 fun wrap(deg: Double) : Double {
     var tmp = deg
-    while (deg < -180.0) tmp += 360.0
-    while (deg > 180.0) tmp -= 360.0
+    while (tmp < -180.0) tmp += 360.0
+    while (tmp > 180.0) tmp -= 360.0
 
     return tmp
 }
