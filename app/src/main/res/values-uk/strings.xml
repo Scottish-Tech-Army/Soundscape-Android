@@ -247,4 +247,19 @@
     <string name="first_launch_callouts_listen">Послухайте приклад того, як Soundscape може працювати під час вашої наступної прогулянки</string>
     <string name="first_launch_callouts_listen_accessibility_label">Прослухати</string>
     <string name="first_launch_callouts_example_1">Кав\'ярня</string>
+    <string name="first_launch_callouts_example_3">проспект Соборний іде ліворуч</string>
+    <string name="first_launch_callouts_example_4">проспект Соборний іде праворуч</string>
+    <string name="first_launch_permissions_title">Навігація за допомогою Soundscape</string>
+    <string name="first_launch_permissions_message">Під час навігації за допомогою Soundscape ви будете чути звуковий маячок. Щоб програма могла працювати, вам необхідно надати Soundscape такі дозволи:</string>
+    <string name="first_launch_permissions_location">Геодані з доступом до точного місцезнаходження</string>
+    <string name="first_launch_permissions_motion">Рух і фітнес</string>
+    <string name="first_launch_permissions_required">Цей дозвіл є обов\'язковим</string>
+    <string name="first_launch_beacon_title">Вибір звукового маячка</string>
+    <string name="first_launch_beacon_message_1">Під час навігації за допомогою Soundscape ви почуєте звуковий маячок у напрямку вашого місця призначення. Слідуючи за його звуком, ви завжди знатимете, куди вам рухатися.</string>
+    <string name="first_launch_beacon_message_2">Прослухайте доступні стилі звукового маячка та оберіть бажаний.</string>
+    <string name="first_launch_beacon_message_3">Це можна буде змінити пізніше в налаштуваннях програми.</string>
+    <string name="first_launch_prompt_title">Все готово!</string>
+    <string name="first_launch_prompt_message">Ви готові до вашої першої прогулянки зі Soundscape. Щоб спробувати зараз, просто виберіть бажане місце призначення, запустіть звуковий маячок, і ви почуєте його звук у напрямку вашого місця призначення.</string>
+    <string name="first_launch_prompt_button">Завершити</string>
+    <string name="help_text_destination_beacons_what">Налаштування маячка для місця призначення дозволяє Soundscape інформувати вас, відтворюючи звуковий сигнал маячка, що надходить з напрямку цього місця. Цей маячок можна вимкнути або увімкнути на головному екрані. Крім того, Soundscape відображає інформацію про місце призначення на головному екрані, включно з відстанню до нього та його поштовою адресою, якщо вона відома.</string>
 </resources>
