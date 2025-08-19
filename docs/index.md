@@ -12,6 +12,9 @@ Soundscape is an Android app to help people with visual impairment explore and n
 
 The initial release is based on the original [iOS Soundscape app](https://www.scottishtecharmy.org/soundscape). We are now at the point where we can publish openly on the Play Store, though we will be continuing to work on and improve the app based on user feedback.
 
+# Soundscape support
+The email address <soundscapeAndroid@scottishtecharmy.support> links straight into our help desk system. Please send in any feedback you have, whether it's a feature request or a bug report. You'll receive an automated email in response and we'll get pinged that there's a new ticket to look at and we'll try and answer it as quickly as possible.
+
 # How to use Soundscape
 [How to use Soundscape]({% link users/user.md %})
 
