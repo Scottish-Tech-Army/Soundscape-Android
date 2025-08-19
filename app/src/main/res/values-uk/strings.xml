@@ -47,4 +47,204 @@
     <string name="location_detail_add_waypoint_new_hint">Додати цю мітку до маршруту.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Розгорнути карту на весь екран</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Вийти з повноекранного режиму карти</string>
+    <string name="route_detail_action_start_route">Розпочати навігацыю</string>
+    <string name="route_detail_action_stop_route">Зупинити навігацію</string>
+    <string name="route_detail_action_edit">Редагувати маршрут</string>
+    <string name="route_detail_action_start_route_hint">Розпочати навігацію за цим маршрутом</string>
+    <string name="route_detail_action_start_route_disabled_hint">Щоб розпочати навігацію, спершу додайте маршрутні точки</string>
+    <string name="route_detail_action_stop_route_hint">Зупинити навігацію за цим маршрутом</string>
+    <string name="route_detail_action_share_hint">Поділитися цим маршрутом</string>
+    <string name="route_detail_action_edit_hint">Редагувати цей маршрут</string>
+    <string name="route_detail_action_create">Новий маршрут</string>
+    <string name="route_detail_action_create_hint">Створити новий маршрут</string>
+    <string name="route_end_completed_accessibility">Маршрут подолано! %s</string>
+    <string name="route_detail_action_previous">Попередня маршрутна точка</string>
+    <string name="route_detail_action_previous_hint">Подвійне натискання, щоб встановити маячок на попередній маршрутній точці</string>
+    <string name="route_detail_action_next">Наступна маршрутна точка</string>
+    <string name="route_detail_action_next_hint">Подвійне натискання, щоб встановити маячок на наступній маршрутній точці</string>
+    <string name="route_detail_edit_description">Опис</string>
+    <string name="route_detail_edit_waypoints_button">Додати маршрутні точки</string>
+    <string name="route_detail_edit_delete">Видалити маршрут</string>
+    <string name="route_update_success_title">Оновлення виконано!</string>
+    <string name="waypoint_title">Маршрутна точка</string>
+    <string name="universal_links_alert_action_marker">Зберегти як мітку</string>
+    <string name="universal_links_marker_share_message">Перегляньте мою мітку Soundscape! \"%s\"</string>
+    <string name="user_activity_save_marker_title">Зберегти мітку</string>
+    <string name="routes_title">Маршрути</string>
+    <string name="routes_action_deleted">Маршрут видалено</string>
+    <string name="routes_no_routes_title">Почніть зі створення маршрутних точок</string>
+    <string name="routes_no_routes_hint_1">Створіть маршрут для себе чи для когось іншого, використавши мітки як маршрутні точки.</string>
+    <string name="routes_no_routes_hint_2">Під час навігації за маршрутом з Soundscape ви будете проінформовані про прибуття до кожної маршрутної точки, і звуковий маячок буде автоматично переміщено до наступної точки.</string>
+    <string name="routes_sort_by_name">Сортувати за назвою</string>
+    <string name="routes_sort_by_distance">Сортувати за відстанню</string>
+    <string name="markers_title">Мітки</string>
+    <string name="markers_action_delete">Видалити мітку</string>
+    <string name="markers_sort_button_sort_by_name">Назва</string>
+    <string name="markers_sort_button_sort_by_name_voiceover">Відсортовано за назвою</string>
+    <string name="markers_sort_button_sort_by_distance">Відстань</string>
+    <string name="markers_sort_button_sort_by_distance_voiceover">Відсортовано за відстанню</string>
+    <string name="markers_no_markers_title">Почніть зі створення міток</string>
+    <string name="markers_no_markers_hint_1">Створюйте мітки для ваших улюблених місць, маршрутних точок або будь-яких об\'єктів, які ви хочете позначити. Просто скористайтеся функцією \"Зберегти як мітку\" для будь-якого місця чи вашого поточного місцезнаходження.</string>
+    <string name="markers_no_markers_hint_2">Спробуйте позначити свій дім, вхід до місця роботи чи улюблене місце в парку.</string>
+    <string name="markers_edit_screen_title_edit">Редагування мітки</string>
+    <string name="markers_generic_name">Мітка</string>
+    <string name="markers_marker_with_name">Мітка. %s</string>
+    <string name="markers_marker_created">Мітку створено</string>
+    <string name="markers_annotation">Коментар</string>
+    <string name="search_choose_destination">Виберіть місце призначення</string>
+    <string name="search_use_current_location">Поточне місцезнаходження</string>
+    <string name="search_nearby_screen_title">Навколишні місця</string>
+    <string name="search_view_markers">Мітки та Маршрути</string>
+    <string name="search_button_markers_accessibility_hint">Виберіть або відредагуйте збережені мітки</string>
+    <string name="search_button_nearby_accessibility_hint">досліджуйте місця поблизу: ресторани, зупинки громадського транспорту тощо</string>
+    <string name="search_button_current_location_accessibility_hint">Переглянути, зберегти або поділитися вашим поточним місцезнаходженням із друзями</string>
+    <string name="filter_all">Всі місця</string>
+    <string name="filter_transit">Громадський транспорт</string>
+    <string name="filter_food_drink">Їжа та напої</string>
+    <string name="filter_groceries">Торгівля</string>
+    <string name="filter_banks">Банки та банкомати</string>
+    <string name="callouts_panel_title">Що навколо</string>
+    <string name="callouts_allow_callouts">Дозволити оголошення</string>
+    <string name="callouts_places_and_landmarks">Місця та орієнтири</string>
+    <string name="callouts_mobility">Мобільність</string>
+    <string name="callouts_audio_beacon">Відстань до звукового маячка</string>
+    <string name="callouts_automatic_callouts">Автоматичні оголошення</string>
+    <string name="callouts_nothing_to_call_out_now">Зараз відсутні об\'єкти для оголошення</string>
+    <string name="callouts_nearby_markers">Навколишні мітки</string>
+    <string name="sleep_sleep">Сон</string>
+    <string name="sleep_sleeping">Спить</string>
+    <string name="sleep_sleeping_message">Зараз Soundscape перебуває в режимі сну. У цьому режимі Soundscape не використовує геодані та не завантажує дані. Це зберігає заряд акумулятора, коли ви не використовуєте Soundscape. Натисніть кнопку нижче, щоб вивести Soundscape з режиму сну.</string>
+    <string name="sleep_sleep_acc_hint">перевести Soundscape в режим сну</string>
+    <string name="sleep_wake_up_now">Розбудити зараз</string>
+    <string name="intersection_approaching_intersection">Наближення до перехрестя</string>
+    <string name="directions_at_poi">%s.У точці.</string>
+    <string name="directions_my_location">Моє місцезнаходження</string>
+    <string name="directions_near_name">Поблизу %s</string>
+    <string name="directions_name_goes_left">%s, йде ліворуч</string>
+    <string name="directions_name_goes_right">%s, йде праворуч</string>
+    <string name="directions_name_continues_ahead">%s, продовжується прямо</string>
+    <string name="directions_direction_ahead">попереду</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Поруч з %1$s та поблизу %2$s</string>
+    <string name="directions_traveling_n">Ви їдете на північ</string>
+    <string name="directions_traveling_ne">Ви їдете на північний схід</string>
+    <string name="directions_traveling_e">Ви їдете на схід</string>
+    <string name="directions_traveling_se">Ви їдете на південний схід</string>
+    <string name="directions_traveling_s">Ви їдете на південь</string>
+    <string name="directions_traveling_sw">Ви їдете на південний захід</string>
+    <string name="directions_traveling_w">Ви їдете на захід</string>
+    <string name="directions_traveling_nw">Ви їдете на північний захід</string>
+    <string name="directions_facing_n">Обличчям на північ</string>
+    <string name="directions_facing_ne">Обличчям на північний схід</string>
+    <string name="directions_facing_e">Обличчям на схід</string>
+    <string name="directions_facing_se">Обличчям на південний схід</string>
+    <string name="directions_facing_s">Обличчям на південь</string>
+    <string name="directions_facing_sw">Обличчям на південний захід</string>
+    <string name="directions_facing_w">Обличчям на захід</string>
+    <string name="directions_facing_nw">Обличчям на північний захід</string>
+    <string name="directions_heading_n">Ви ідете на північ</string>
+    <string name="directions_heading_ne">Ви ідете на північний схід</string>
+    <string name="directions_heading_e">Ви ідете на схід</string>
+    <string name="directions_heading_se">Ви ідете на південний схід</string>
+    <string name="directions_heading_s">Ви ідете на південь</string>
+    <string name="directions_heading_sw">Ви ідете на південний захід</string>
+    <string name="directions_heading_w">Ви ідете на захід</string>
+    <string name="directions_heading_nw">Ви ідете на північний захід</string>
+    <string name="directions_along_traveling_n">Ви їдете на північ по %s</string>
+    <string name="directions_along_traveling_ne">Ви їдете на північний схід по %s</string>
+    <string name="directions_along_traveling_e">Ви їдете на схід по %s</string>
+    <string name="directions_along_traveling_se">Ви їдете на південний схід по %s</string>
+    <string name="directions_along_traveling_s">Ви їдете на південь по %s</string>
+    <string name="directions_along_traveling_sw">Ви їдете на південний захід по %s</string>
+    <string name="directions_along_traveling_w">Ви їдете на захід по %s</string>
+    <string name="directions_along_traveling_nw">Ви їдете на північний захід по %s</string>
+    <string name="directions_along_facing_n">Обличчям на північ вздовж %s</string>
+    <string name="directions_along_facing_ne">Обличчям на північний схід вздовж %s</string>
+    <string name="directions_along_facing_e">Обличчям на схід вздовж %s</string>
+    <string name="directions_along_facing_se">Обличчям на південний схід вздовж %s</string>
+    <string name="directions_along_facing_s">Обличчям на південь вздовж %s</string>
+    <string name="directions_along_facing_sw">Обличчям на південний захід вздовж %s</string>
+    <string name="directions_along_facing_w">Обличчям на захід вздовж %s</string>
+    <string name="directions_along_facing_nw">Обличчям на північний захід вздовж %s</string>
+    <string name="directions_along_heading_n">Ви ідете на північ по %s</string>
+    <string name="directions_along_heading_ne">Ви ідете на північний схід по %s</string>
+    <string name="directions_along_heading_e">Ви ідете на схід по %s</string>
+    <string name="directions_along_heading_se">Ви ідете на південний схід по %s</string>
+    <string name="directions_along_heading_s">Ви ідете на південь по %s</string>
+    <string name="directions_along_heading_sw">Ви ідете на південний захід по %s</string>
+    <string name="directions_along_heading_w">Ви ідете на захід по %s</string>
+    <string name="directions_along_heading_nw">Ви ідете на північний захід по %s</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Північ</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Північний схід</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Схід</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">Південний схід</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">Південь</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Південний захід</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Захід</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Північний захід</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">П</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">П Сх</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">Сх</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">Пд Сх</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">Пд</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">Пд З</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">З</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">П З</string>
+    <string name="distance_format_meters">%s метрів</string>
+    <string name="distance_format_km">%s км</string>
+    <string name="distance_format_feet">%s футів</string>
+    <string name="distance_format_miles">%s миль</string>
+    <string name="ui_action_button_my_location">Моє\nмісце</string>
+    <string name="ui_action_button_my_location_acc_hint">Інформація про ваше поточне місцезнаходження</string>
+    <string name="ui_action_button_nearby_markers">Мітки\nпоблизу</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Інформація про найближчі позначені вами місця</string>
+    <string name="ui_action_button_around_me">Навколо\nМене</string>
+    <string name="ui_action_button_around_me_acc_hint">Інформація про місця в чотирьох квадрантах навколо вас</string>
+    <string name="ui_action_button_ahead_of_me">Попереду\nмене</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Інформація про місця перед вами</string>
+    <string name="ui_menu">Меню</string>
+    <string name="ui_menu_hint">відкрити меню</string>
+    <string name="ui_menu_close">Закрити меню</string>
+    <string name="ui_continue">Продовжити</string>
+    <string name="menu_manage_callouts">Налаштування оголошень</string>
+    <string name="menu_help_and_tutorials">Довідка та навчальні матеріали</string>
+    <string name="menu_rate">Оцінити</string>
+    <string name="ui_back_button_title">Назад</string>
+    <string name="behavior_experiences_route_nav_title">Деталі маршруту</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">Маячок встановлено на %1$s, %2$s від вас, %3$s з %4$s</string>
+    <string name="help_configuration_section_title">Налаштування Soundscape</string>
+    <string name="settings_help_section_beacons_and_pois">Маячки й оголошення</string>
+    <string name="settings_help_section_home_screen_buttons">Кнопки головного екрана</string>
+    <string name="help_config_voices_content">Soundscape може використовувати будь-який з голосів, доступних у налаштуваннях перетворення тексту на мовлення вашого Android телефона. У програмі Soundscape ви можете вибрати голос, відмінний від стандартного системного, перейшовши в Налаштування за допомогою головного меню, а потім вибравши пункт \"Голоси\".</string>
+    <string name="help_offline_page_title">Як Soundscape працює без доступу до інтернету?</string>
+    <string name="help_offline_description">Коли немає підключення до Інтернету або відбувається збій у роботі служб Soundscape, Програма переходить в автономний режим. Тим не менш, Soundscape продовжить працювати, але роботу деяких функцій може бути обмежено.</string>
+    <string name="help_offline_limitations_heading">Обмеження</string>
+    <string name="help_offline_limitations_description">Оголошення продовжуватимуть працювати, якщо ви перебуваєте в зоні, якою вже проходили раніше і яка збережена в історії оголошень. Так само ви можете розмістити звуковий маячок або створити мітку для місць, які збережені в історії оголошень.</string>
+    <string name="help_offline_troubleshooting_heading">Що ви можете зробити?</string>
+    <string name="help_offline_troubleshooting_description">Soundscape спробує відновити нормальну роботу, коли ваш телефон підключено до Wi-Fi або ввімкнено мобільні дані, і ви перебуваєте в зоні з хорошим сигналом. Якщо ваш телефон має хороше підключення до Інтернету, але Soundscape не відновлює нормальну роботу, можливо, стався збій у службах Soundscape.</string>
+    <string name="help_orient_page_title">Навколо Мене</string>
+    <string name="help_explore_page_title">Попереду Мене</string>
+    <string name="help_creating_markers_page_title">Створення міток</string>
+    <string name="help_edit_markers_page_title">Налаштування міток</string>
+    <string name="help_remote_page_title">Використання елементів керування медіа</string>
+    <string name="help_text_section_title_what">Що це?</string>
+    <string name="help_text_section_title_when">Коли б я міг це використати?</string>
+    <string name="help_text_section_title_how">Як це працює?</string>
+    <string name="terms_of_use_title">Умови використання</string>
+    <string name="terms_of_use_message">Використання Soundscape регулюється умовами %s та умовами, викладеними нижче (разом \"Умови використання\").</string>
+    <string name="terms_of_use_service_agreement">угоди про надання послуг компанії Scottish Tech Army</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Прийняти умови використання</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Ви розумієте, що Soundscape (1) не розроблено, не призначено та не надається як медичний пристрій, і (2) не розроблено та не призначено для заміни професійних медичних консультацій, діагностики, лікування чи суджень і не має використовуватися як заміна професійних медичних консультацій, діагностики, лікування чи суджень.<br></br>Повідомлення про безпеку<br></br>Програма Soundscape є навігаційним засобом і не повинна використовуватися замість навичок мобільності, обізнаності про оточення та здорового глузду. Будьте обережні під час навігації у вашому середовищі, оскільки картографічні дані, включені в програму Soundscape, отримані зі сторонніх джерел, і, отже, можуть бути обмеження щодо точності представленої інформації.</string>
+    <string name="first_launch_soundscape_language">Мова Soundscape</string>
+    <string name="first_launch_soundscape_language_text">Виберіть мову, яка буде використовуватися у Soundscape. Ви завжди можете змінити свій вибір у налаштуваннях програми.</string>
+    <string name="first_launch_welcome_title">Вітаємо!</string>
+    <string name="first_launch_welcome_description">Впевнено орієнтуйтеся за допомогою просторового аудіо Soundscape</string>
+    <string name="first_launch_welcome_button">Почати</string>
+    <string name="first_launch_headphones_title">Як звучить Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape чудово працює з будь-якими навушниками. Якщо ви хочете використовувати навушники, візьміть їх зараз.</string>
+    <string name="first_launch_headphones_message_2">Якщо у вас немає навушників або ви не хочете їх використовувати, то не переймайтеся! Soundscape працюватиме через динаміки вашого телефона.</string>
+    <string name="first_launch_callouts_title">Слухайте навколишній світ</string>
+    <string name="first_launch_callouts_message">Soundscape допомагає вам орієнтуватися у навколишньому просторі і у тому, куди ви йдете, оголошуючи дороги, перехрестя та цікаві місця, коли ви наближаєтесь до них.</string>
+    <string name="first_launch_callouts_listen">Послухайте приклад того, як Soundscape може працювати під час вашої наступної прогулянки</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Прослухати</string>
+    <string name="first_launch_callouts_example_1">Кав\'ярня</string>
 </resources>
