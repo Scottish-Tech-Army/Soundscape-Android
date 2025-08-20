@@ -410,12 +410,14 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             while(it != m_Beacons.end()) {
                 if((*it)->IsEof()) {
                     if(*m_QueuedBeacons.begin() == *it) {
+                        //TRACE("EOF from first queued beacon");
                         // The EOF is from the head of the list of queued beacons so start the next one
                         m_QueuedBeacons.pop_front();
                         start_next = true;
+                        m_QueuedBeaconPlaying = false;
                     }
 
-//                    TRACE("Remove EOF beacon");
+                    //TRACE("Remove EOF beacon");
                     auto id = (long long)*it;
                     delete *it;
                     it = m_Beacons.begin();
@@ -426,19 +428,31 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 (*it)->UpdateGeometry(listenerHeading, listenerLatitude, listenerLongitude);
                 ++it;
             }
-            if(start_next && !m_QueuedBeacons.empty())
-            {
-                //TRACE("PlayNow on next queued beacon");
+            if(!m_QueuedBeacons.empty()) {
                 auto queued_beacon = *m_QueuedBeacons.begin();
-                m_Beacons.insert(queued_beacon);
-                queued_beacon->PlayNow();
+                if (start_next && queued_beacon->CanStart()) {
+                    TRACE("PlayNow on next queued beacon");
+                    m_Beacons.insert(queued_beacon);
+                    queued_beacon->PlayNow();
+                    m_QueuedBeaconPlaying = true;
+                }
+                else if(!m_QueuedBeaconPlaying) {
+                    //TRACE("No queued beacon playing");
+                    if(queued_beacon->CanStart()) {
+                        TRACE("PlayNow on CanStart beacon");
+                        m_Beacons.insert(queued_beacon);
+                        queued_beacon->PlayNow();
+                        m_QueuedBeaconPlaying = true;
+                    }
+                }
             }
 
             // Check if m_Beacons is empty *after* all removals and potential additions from queue
-            if (m_Beacons.empty() && !wasEmpty) {
+            if (m_Beacons.empty() && !wasEmpty && m_QueuedBeacons.empty()) {
                 NotifyAllBeaconsCleared(__LINE__);
             }
         }
+        //TRACE("Queues: %d and %d", m_Beacons.size(), m_QueuedBeacons.size());
 
         // We're not going to include velocity in our audio modelling, set it to 0.0 (no doppler!)
         FMOD_VECTOR vel = {0.0, 0.0, 0.0};
@@ -483,12 +497,25 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         return m_QueuedBeacons.size();
     }
 
+    void AudioEngine::UpdateAudioConfig(std::string &utterance_id,
+                                        int sample_rate,
+                                        int audio_format,
+                                        int channel_count) {
+        std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+        for(const auto &queued_beacon: m_QueuedBeacons)
+        {
+            if(queued_beacon->m_UtteranceId == utterance_id) {
+                queued_beacon->UpdateAudioConfig(sample_rate, audio_format, channel_count);
+            }
+        }
+    }
+
     void AudioEngine::AddBeacon(PositionedAudio *beacon, bool queued)
     {
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
         if(queued)
         {
-            if(m_QueuedBeacons.empty()) {
+            if(m_QueuedBeacons.empty() && beacon->CanStart()) {
                 TRACE("First beacon in queue - PlayNow");
                 beacon->PlayNow();
                 m_Beacons.insert(beacon);
@@ -712,9 +739,14 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
                                            jdouble latitude,
                                            jdouble longitude,
                                            jdouble heading,
-                                           jint tts_socket) {
+                                           jint tts_socket,
+                                           jstring utterance_id) {
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if(ae) {
+
+        const char * id = env->GetStringUTFChars(utterance_id, nullptr);
+        std::string id_string(id);
+        env->ReleaseStringUTFChars(utterance_id, id);
 
         auto tts = std::make_unique<soundscape::TextToSpeech>(
                 ae,
@@ -723,14 +755,14 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
                         latitude,
                         longitude,
                         heading),
-                tts_socket
+                tts_socket,
+                id_string
         );
         if (not tts) {
             TRACE("Failed to create text to speech");
             tts.reset(nullptr);
         }
         auto ret = reinterpret_cast<jlong>(tts.release());
-        //TRACE("Created tts %lld", ret);
         return ret;
     }
     return 0L;
@@ -806,5 +838,25 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_clearBeaconEventsLi
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if (ae) {
         ae->ClearBeaconEventsListener(env);
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_audioConfigTextToSpeech(JNIEnv *env,
+                                                                                     jobject thiz,
+                                                                                     jlong engine_handle,
+                                                                                     jstring utterance_id,
+                                                                                     jint sample_rate,
+                                                                                     jint format,
+                                                                                     jint channel_count) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if (ae) {
+        // Update the audio source with our audio configuration values
+        const char * id = env->GetStringUTFChars(utterance_id, nullptr);
+        std::string id_string(id);
+        env->ReleaseStringUTFChars(utterance_id, id);
+
+        ae->UpdateAudioConfig(id_string, sample_rate, format, channel_count);
     }
 }

@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.audio
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.media.AudioFormat
 import android.os.Build
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
@@ -31,7 +32,6 @@ enum class AudioType(val type: Int) {
     COMPASS(3)
 }
 
-
 @Singleton
 class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine, TextToSpeech.OnInitListener {
 
@@ -43,7 +43,6 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private var utteranceIncrementingCount : Int = 0
 
     private lateinit var textToSpeech : TextToSpeech
-    private lateinit var ttsSocket : ParcelFileDescriptor
     private var textToSpeechVoiceType = MainActivity.VOICE_TYPE_DEFAULT
     private var textToSpeechRate = MainActivity.SPEECH_RATE_DEFAULT
     private var beaconType = MainActivity.BEACON_TYPE_DEFAULT
@@ -53,7 +52,18 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private external fun createNativeBeacon(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun toggleNativeBeaconMute(engineHandle: Long) : Boolean
-    private external fun createNativeTextToSpeech(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double, ttsSocket: Int) :  Long
+    private external fun createNativeTextToSpeech(engineHandle: Long,
+                                                  mode: Int,
+                                                  latitude: Double,
+                                                  longitude: Double,
+                                                  heading: Double,
+                                                  ttsSocket: Int,
+                                                  utteranceId: String) : Long
+    private external fun audioConfigTextToSpeech(engineHandle: Long,
+                                                 utteranceId: String,
+                                                 sampleRate: Int,
+                                                 format: Int,
+                                                 channelCount: Int)
     private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun getQueueDepth(engineHandle: Long) : Long
@@ -146,11 +156,13 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     }
 
     private fun clearOutUtteranceSockets(utteranceId : String) {
-        Log.d("TTS", "Closing socket pair $utteranceId")
         val sockets = ttsSockets[utteranceId]
         if(sockets != null ) {
+            Log.d("TTS", "Closing socket pair $utteranceId")
             sockets[0].closeWithError("Finished")
             sockets[1].close()
+        } else {
+            Log.d("TTS", "No socket pair $utteranceId")
         }
         ttsSockets.remove(utteranceId)
     }
@@ -197,6 +209,27 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                     Log.d("TTS", "OnError $utteranceId")
                     utteranceId?.let {
                         clearOutUtteranceSockets(it)
+                    }
+                }
+
+                override fun onBeginSynthesis(
+                    utteranceId: String?,
+                    sampleRateInHz: Int,
+                    audioFormat: Int,
+                    channelCount: Int
+                ) {
+                    Log.d("TTS", "OnBeginSynthesis $utteranceId: $sampleRateInHz, $audioFormat, $channelCount")
+
+                    utteranceId?.let { id->
+                        val format = when(audioFormat) {
+                            AudioFormat.ENCODING_PCM_8BIT -> 0
+                            AudioFormat.ENCODING_PCM_16BIT -> 1
+                            AudioFormat.ENCODING_PCM_FLOAT -> 2
+                            else -> 1
+                        }
+
+                        Log.d("TTS", "Configure TTS audio for $utteranceId")
+                        audioConfigTextToSpeech(engineHandle, id, sampleRateInHz, format, channelCount)
                     }
                 }
             })
@@ -272,28 +305,26 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                     return 0
 
                 val ttsSocketPair = ParcelFileDescriptor.createReliableSocketPair()
-                ttsSocket = ttsSocketPair[0]
+                val ttsSocket = ttsSocketPair[0]
 
                 val params = Bundle()
-                params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, ttsSocket.toString())
                 // We use the file descriptor as part of the utterance id as that's easy to track
                 // in the C++ code. However, because file descriptors get reused we qualify the
                 // utteranceId with an incrementing count.
                 utteranceIncrementingCount += 1
                 val utteranceId = ttsSocketPair[1].fd.toString() + "/" + utteranceIncrementingCount
-                textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
-
-                // Store the socket pair in a hashmap indexed by utteranceId
-                ttsSockets[ttsSocket.toString()] = ttsSocketPair
-
-                Log.d(TAG, "Call createNativeTextToSpeech: $text")
-                return createNativeTextToSpeech(
+                params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceId)
+                ttsSockets[utteranceId] = ttsSocketPair
+                val ttsHandle = createNativeTextToSpeech(
                     engineHandle,
                     type.type,
                     latitude,
                     longitude,
                     heading,
-                    ttsSocketPair[1].fd)
+                    ttsSocketPair[1].fd,
+                    utteranceId
+                )
+                textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
             }
 
             return 0
