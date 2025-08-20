@@ -1,4 +1,5 @@
 #include <string>
+#include <utility>
 #include <jni.h>
 
 #include "GeoUtils.h"
@@ -7,13 +8,17 @@
 #include "AudioEngine.h"
 using namespace soundscape;
 
-PositionedAudio::PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable)
+PositionedAudio::PositionedAudio(AudioEngine *engine,
+                                 PositioningMode mode,
+                                 bool dimmable,
+                                 std::string utterance_id)
                 : m_Mode(mode),
                   m_Eof(false),
                   m_Dimmable(dimmable)
 {
     m_pEngine = engine;
     m_pSystem = engine->GetFmodSystem();
+    m_UtteranceId =  std::move(utterance_id);
 }
 
 PositionedAudio::~PositionedAudio() {
@@ -94,9 +99,15 @@ void PositionedAudio::InitFmodSound() {
     }
 }
 
-void PositionedAudio::Init(double degrees_off_axis)
+void PositionedAudio::Init(double degrees_off_axis,
+                           int sampleRate,
+                           int audioFormat,
+                           int channelCount)
 {
-    bool queued = CreateAudioSource(degrees_off_axis);
+    bool queued = CreateAudioSource(degrees_off_axis,
+                                    sampleRate,
+                                    audioFormat,
+                                    channelCount);
 
     //TRACE("%s %p", __FUNCTION__, this);
 
@@ -137,4 +148,10 @@ void PositionedAudio::UpdateGeometry(double heading, double latitude, double lon
 
 void PositionedAudio::Mute(bool mute) {
     m_pChannel->setMute(mute);
+}
+
+void PositionedAudio::UpdateAudioConfig(int sample_rate, int audio_format, int channel_count)
+{
+    m_pAudioSource->UpdateAudioConfig(sample_rate, audio_format, channel_count);
+    m_AudioConfigured = true;
 }

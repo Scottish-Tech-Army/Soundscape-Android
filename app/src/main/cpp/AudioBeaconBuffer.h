@@ -34,9 +34,18 @@ namespace soundscape {
 
     class BeaconAudioSource {
     public:
-        explicit BeaconAudioSource(PositionedAudio *parent, double degrees_off_axis) :
+        explicit BeaconAudioSource(PositionedAudio *parent,
+                                   double degrees_off_axis,
+                                   int sampleRate,
+                                   int audioFormat,
+                                   int channelCount) :
                 m_pParent(parent),
-                m_DegreesOffAxis(degrees_off_axis) {}
+                m_DegreesOffAxis(degrees_off_axis),
+                m_SampleRate(sampleRate),
+                m_AudioFormat(audioFormat),
+                m_ChannelCount(channelCount)
+        {
+        }
 
         virtual ~BeaconAudioSource() = default;
 
@@ -46,8 +55,18 @@ namespace soundscape {
 
         virtual void UpdateGeometry(double degrees_off_axis);
 
+        void UpdateAudioConfig(int sample_rate, int audio_format, int channel_count) {
+            m_SampleRate = sample_rate;
+            m_AudioFormat = audio_format;
+            m_ChannelCount = channel_count;
+        }
+
     protected:
         PositionedAudio *m_pParent;
+
+        int m_SampleRate;
+        int m_AudioFormat;
+        int m_ChannelCount;
 
         static FMOD_RESULT F_CALL
         StaticPcmReadCallback(FMOD_SOUND *sound, void *data, unsigned int data_length);
@@ -57,7 +76,12 @@ namespace soundscape {
 
     class BeaconBufferGroup : public BeaconAudioSource {
     public:
-        BeaconBufferGroup(const AudioEngine *ae, PositionedAudio *parent, double degrees_off_axis);
+        BeaconBufferGroup(const AudioEngine *ae,
+                          PositionedAudio *parent,
+                          double degrees_off_axis,
+                          int sample_rate,
+                          int audio_format,
+                          int channel_count);
 
         ~BeaconBufferGroup() override;
 
@@ -87,7 +111,11 @@ namespace soundscape {
 
     class TtsAudioSource : public BeaconAudioSource {
     public:
-        TtsAudioSource(PositionedAudio *parent, int tts_socket);
+        TtsAudioSource(PositionedAudio *parent,
+                       int tts_socket,
+                       int sampleRate,
+                       int audioFormat,
+                       int channelCount);
 
         ~TtsAudioSource() override;
 

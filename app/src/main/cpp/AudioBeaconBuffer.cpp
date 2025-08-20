@@ -14,6 +14,18 @@
 
 using namespace soundscape;
 
+FMOD_SOUND_FORMAT AudioFormatToFmodFormat(int audioFormat) {
+    switch (audioFormat) {
+        case 0:
+            return FMOD_SOUND_FORMAT_PCM8;
+        default:
+        case 1:
+            return FMOD_SOUND_FORMAT_PCM16;
+        case 2:
+            return FMOD_SOUND_FORMAT_PCMFLOAT;
+    }
+}
+
 BeaconBuffer::BeaconBuffer(FMOD::System *system, const std::string &filename, double max_angle)
             : m_MaxAngle(max_angle),
               m_Name(filename)
@@ -73,8 +85,17 @@ unsigned int BeaconBuffer::Read(void *data, unsigned int data_length, unsigned l
 //
 //
 //
-BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae, PositionedAudio *parent, double degrees_off_axis)
-: BeaconAudioSource(parent, degrees_off_axis)
+BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae,
+                                     PositionedAudio *parent,
+                                     double degrees_off_axis,
+                                     int sample_rate,
+                                     int audio_format,
+                                     int channel_count)
+: BeaconAudioSource(parent,
+                    degrees_off_axis,
+                    sample_rate,
+                    audio_format,
+                    channel_count)
 {
     TRACE("Create BeaconBufferGroup %p", this);
     m_pDescription = ae->GetBeaconDescriptor();
@@ -112,11 +133,11 @@ void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound, c
     FMOD_CREATESOUNDEXINFO extra_info;
     memset(&extra_info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
     extra_info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);  /* Required. */
-    extra_info.numchannels = 1;
-    extra_info.defaultfrequency = 44100;
+    extra_info.numchannels = m_ChannelCount;
+    extra_info.defaultfrequency = m_SampleRate;
     extra_info.length = m_pBuffers[0]->GetBufferSize();                         /* Length of PCM data in bytes of whole song (for Sound::getLength) */
     extra_info.decodebuffersize = extra_info.length / (2 * m_pDescription->m_BeatsInPhrase);       /* Chunk size of stream update in samples. This will be the amount of data passed to the user callback. */
-    extra_info.format = FMOD_SOUND_FORMAT_PCM16;                    /* Data format of sound. */
+    extra_info.format = AudioFormatToFmodFormat(m_AudioFormat);
     extra_info.pcmreadcallback = StaticPcmReadCallback;             /* User callback for reading. */
     extra_info.userdata = this;
 
@@ -177,8 +198,10 @@ FMOD_RESULT F_CALL BeaconBufferGroup::PcmReadCallback(void *data, unsigned int d
 //
 //
 
-TtsAudioSource::TtsAudioSource(PositionedAudio *parent, int tts_socket)
-              : BeaconAudioSource(parent, 0)
+TtsAudioSource::TtsAudioSource(PositionedAudio *parent,
+                               int tts_socket,
+                               int sampleRate, int audioFormat, int channelCount)
+              : BeaconAudioSource(parent, 0, sampleRate, audioFormat, channelCount)
 
 {
     // The file descriptor is owned by the object in Kotlin, so use a duplicate.
@@ -203,12 +226,11 @@ void TtsAudioSource::CreateSound(FMOD::System *system, FMOD::Sound **sound, cons
     memset(&extra_info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
     extra_info.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
 
-    extra_info.numchannels = 1;
-    extra_info.defaultfrequency = 22050;
+    extra_info.numchannels = m_ChannelCount;
+    extra_info.defaultfrequency = m_SampleRate;
     extra_info.length = extra_info.defaultfrequency;
     extra_info.decodebuffersize = extra_info.defaultfrequency / 10;
-
-    extra_info.format = FMOD_SOUND_FORMAT_PCM16;                    /* Data format of sound. */
+    extra_info.format = AudioFormatToFmodFormat(m_AudioFormat);
     extra_info.pcmreadcallback = StaticPcmReadCallback;             /* User callback for reading. */
     extra_info.userdata = this;
 
@@ -291,7 +313,7 @@ void BeaconAudioSource::UpdateGeometry(double degrees_off_axis)
 //
 //
 EarconSource::EarconSource(PositionedAudio *parent, std::string &asset)
-        : BeaconAudioSource(parent, 0.0),
+        : BeaconAudioSource(parent, 0.0, -1, -1 , -1),
           m_Asset(asset)
 {
 }

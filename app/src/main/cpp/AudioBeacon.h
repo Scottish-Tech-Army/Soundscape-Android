@@ -9,7 +9,7 @@ namespace soundscape {
 
     class PositionedAudio {
     public:
-        PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable = false);
+        PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable = false, std::string utterance_id = "");
 
         virtual ~PositionedAudio();
 
@@ -17,15 +17,26 @@ namespace soundscape {
 
         // CreateAudioSource returns whether or not the audio source should
         // be placed in the list of queued beacons.
-        virtual bool CreateAudioSource(double degrees_off_axis) = 0;
+        virtual bool CreateAudioSource(double degrees_off_axis,
+                                       int sampleRate,
+                                       int audioFormat,
+                                       int channelCount) = 0;
         bool IsEof() { return m_Eof; }
         void Eof() { m_Eof = true; }
         void PlayNow();
         void Mute(bool mute);
+        virtual bool CanStart() = 0;
+
+        void UpdateAudioConfig(int sample_rate, int audio_format, int channel_count);
 
         AudioEngine *m_pEngine;
+        std::string m_UtteranceId;
+
     protected:
-        void Init(double degrees_off_axis);
+        void Init(double degrees_off_axis,
+                  int sampleRate = 44100,
+                  int audioFormat = 1,
+                  int channelCount = 1);
         void InitFmodSound();
 
         double GetHeadingOffset(double heading, double latitude, double longitude) const;
@@ -39,6 +50,8 @@ namespace soundscape {
         FMOD::Sound *m_pSound = nullptr;
         FMOD::Channel *m_pChannel = nullptr;
         bool m_Dimmable = false;
+
+        bool m_AudioConfigured = false;
     };
 
     class Beacon : public PositionedAudio {
@@ -59,9 +72,18 @@ namespace soundscape {
         }
 
     protected:
-        bool CreateAudioSource(double degrees_off_axis) final
+        bool CanStart() override { return true; }
+        bool CreateAudioSource(double degrees_off_axis,
+                               int sampleRate,
+                               int audioFormat,
+                               int channelCount) final
         {
-            m_pAudioSource = std::make_unique<BeaconBufferGroup>(m_pEngine, this, degrees_off_axis);
+            m_pAudioSource = std::make_unique<BeaconBufferGroup>(m_pEngine,
+                                                                 this,
+                                                                 degrees_off_axis,
+                                                                 sampleRate,
+                                                                 audioFormat,
+                                                                 channelCount);
             // Not queued
             return false;
         }
@@ -69,17 +91,28 @@ namespace soundscape {
 
     class TextToSpeech : public PositionedAudio {
     public:
-        TextToSpeech(AudioEngine *engine, PositioningMode mode, int tts_socket)
+        bool CanStart() override { return m_AudioConfigured; }
+        TextToSpeech(AudioEngine *engine,
+                     PositioningMode mode,
+                     int tts_socket,
+                     std::string &utterance_id)
                 : m_TtsSocket(tts_socket),
-                  PositionedAudio(engine, mode)
+                  PositionedAudio(engine, mode, false, utterance_id)
         {
             Init(0.0);
         }
 
     protected:
-        bool CreateAudioSource(double degrees_off_axis) final
+        bool CreateAudioSource(double degrees_off_axis,
+                               int sampleRate,
+                               int audioFormat,
+                               int channelCount) final
         {
-            m_pAudioSource = std::make_unique<TtsAudioSource>(this, m_TtsSocket);
+            m_pAudioSource = std::make_unique<TtsAudioSource>(this,
+                                                              m_TtsSocket,
+                                                              sampleRate,
+                                                              audioFormat,
+                                                              channelCount);
             // Text to speech audio are queued to play one after the other
             return true;
         }
@@ -99,7 +132,11 @@ namespace soundscape {
         }
 
     protected:
-        bool CreateAudioSource(double degrees_off_axis) final
+        bool CanStart() override { return true; }
+        bool CreateAudioSource(double degrees_off_axis,
+                               int sampleRate,
+                               int audioFormat,
+                               int channelCount) final
         {
             m_pAudioSource = std::make_unique<EarconSource>(this, m_Asset);
             // Earcons are queued along with the TextToSpeech audio

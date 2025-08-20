@@ -104,6 +104,11 @@ namespace soundscape {
 
         FMOD_VECTOR TranslateToFmodVector(double longitude, double latitude);
 
+        void UpdateAudioConfig(std::string &utterance_id,
+                               int sample_rate,
+                               int audio_format,
+                               int channel_count);
+
     private:
         FMOD::System * m_pSystem;
         FMOD::ChannelGroup *m_pBeaconChannelGroup = nullptr;
@@ -123,6 +128,7 @@ namespace soundscape {
         std::recursive_mutex m_BeaconsMutex;
         std::set<PositionedAudio *> m_Beacons;
         std::list<PositionedAudio *> m_QueuedBeacons;
+        bool m_QueuedBeaconPlaying = false;
 
         bool m_BeaconMute = false;
 
