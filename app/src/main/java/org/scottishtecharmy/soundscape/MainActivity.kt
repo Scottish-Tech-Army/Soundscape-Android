@@ -401,6 +401,8 @@ class MainActivity : AppCompatActivity() {
         const val UNNAMED_ROADS_KEY = "UnnamedRoads"
         const val BEACON_TYPE_DEFAULT = "Classic"
         const val BEACON_TYPE_KEY = "BeaconType"
+        const val SPEECH_ENGINE_DEFAULT = ""
+        const val SPEECH_ENGINE_KEY = "SpeechEngine"
         const val VOICE_TYPE_DEFAULT = "Default"
         const val VOICE_TYPE_KEY = "VoiceType"
         const val SPEECH_RATE_DEFAULT = 1.0f

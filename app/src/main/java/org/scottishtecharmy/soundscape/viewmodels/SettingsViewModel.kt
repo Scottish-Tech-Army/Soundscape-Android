@@ -22,6 +22,7 @@ class SettingsViewModel @Inject constructor(
     data class SettingsUiState(
         // Data for the ViewMode that affects the UI
         var beaconTypes : List<Int> = emptyList(),
+        var engineTypes : List<String> = emptyList(),
         var voiceTypes : List<String> = emptyList()
     )
 
@@ -38,10 +39,12 @@ class SettingsViewModel @Inject constructor(
                 if (it) {
                     val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine!!
                     viewModelScope.launch(job) {
-                        audioEngine.textToSpeechRunning.collectLatest { initialized ->
+                        audioEngine.ttsRunningStateChange.collectLatest { initialized ->
                             if (initialized) {
                                 // Only once the TextToSpeech engine is initialized can we populate the
                                 // members of these lists.
+                                val audioEngineTypes = audioEngine.getAvailableSpeechEngines()
+
                                 val audioEngineVoiceTypes = audioEngine.getAvailableSpeechVoices()
                                 val voiceTypes = mutableListOf<String>()
 
@@ -77,8 +80,12 @@ class SettingsViewModel @Inject constructor(
                                 }
                                 _state.value = SettingsUiState(
                                     beaconTypes = beaconTypes,
-                                    voiceTypes = voiceTypes
+                                    voiceTypes = voiceTypes,
+                                    engineTypes = audioEngineTypes.map { engine -> "${engine.label}:::${engine.name}" }
                                 )
+                            }
+                            else {
+                                Log.d(TAG, "Engine has gone uninitialized")
                             }
                         }
                     }

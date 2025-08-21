@@ -3,27 +3,28 @@ package org.scottishtecharmy.soundscape.audio
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.media.AudioFormat
-import android.os.Build
-import android.os.Bundle
-import android.os.ParcelFileDescriptor
 import android.speech.tts.TextToSpeech
-import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
+import androidx.core.content.edit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 enum class AudioType(val type: Int) {
     STANDARD(0),
@@ -33,32 +34,26 @@ enum class AudioType(val type: Int) {
 }
 
 @Singleton
-class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine, TextToSpeech.OnInitListener {
+class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine {
 
     private var engineHandle : Long = 0
     private val engineMutex = Object()
-    private var ttsSockets = HashMap<String, Array<ParcelFileDescriptor>>()
-    private var currentUtteranceId: String? = null
-    private var textToSpeechInitialized : Boolean = false
-    private var utteranceIncrementingCount : Int = 0
-
-    private lateinit var textToSpeech : TextToSpeech
-    private var textToSpeechVoiceType = MainActivity.VOICE_TYPE_DEFAULT
-    private var textToSpeechRate = MainActivity.SPEECH_RATE_DEFAULT
     private var beaconType = MainActivity.BEACON_TYPE_DEFAULT
+
+    lateinit var ttsEngine : TtsEngine
 
     private external fun create() : Long
     private external fun destroy(engineHandle: Long)
     private external fun createNativeBeacon(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun toggleNativeBeaconMute(engineHandle: Long) : Boolean
-    private external fun createNativeTextToSpeech(engineHandle: Long,
-                                                  mode: Int,
-                                                  latitude: Double,
-                                                  longitude: Double,
-                                                  heading: Double,
-                                                  ttsSocket: Int,
-                                                  utteranceId: String) : Long
+    external fun createNativeTextToSpeech(engineHandle: Long,
+                                          mode: Int,
+                                          latitude: Double,
+                                          longitude: Double,
+                                          heading: Double,
+                                          ttsSocket: Int,
+                                          utteranceId: String) : Long
     private external fun audioConfigTextToSpeech(engineHandle: Long,
                                                  utteranceId: String,
                                                  sampleRate: Int,
@@ -71,11 +66,33 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
 
-    private var _textToSpeechRunning = MutableStateFlow(false)
-    val textToSpeechRunning = _textToSpeechRunning.asStateFlow()
+    private var _ttsRunningStateChange = MutableStateFlow(false)
+    val ttsRunningStateChange = _ttsRunningStateChange.asStateFlow()
+
+    fun ttsRunningStateChanged(value: Boolean) {
+        _ttsRunningStateChange.value = value
+    }
+
+    private val engineCoroutineScope = CoroutineScope(Dispatchers.Default)
+    private var geometryUpdateJob: Job? = null // Job to manage the periodic update task
+    private var isActive = true
+    init {
+        if(service == null) {
+            geometryUpdateJob = engineCoroutineScope.launch {
+                while (isActive) { // Loop while the coroutine is active
+                    updateGeometry(0.0, 0.0, 0.0, true, true)
+                    delay(100L) // Wait for 100 milliseconds
+                }
+            }
+        }
+    }
 
     fun destroy()
     {
+        isActive = false
+        geometryUpdateJob?.cancel()
+
+        engineCoroutineScope.cancel()
         sharedPreferences?.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
         synchronized(engineMutex)
         {
@@ -86,15 +103,8 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             destroy(engineHandle)
             engineHandle = 0
 
-            for(ttsSocketPair in ttsSockets){
-                Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
-                ttsSocketPair.value[0].close()
-                ttsSocketPair.value[1].close()
-            }
-            ttsSockets.clear()
-
-            textToSpeech.setOnUtteranceProgressListener(null)
-            textToSpeech.shutdown()
+            Log.d(TAG, "Destroy TTS engine from NativeAudioEngine destroy")
+            ttsEngine.destroy()
             org.fmod.FMOD.close()
         }
     }
@@ -116,16 +126,44 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             sharedPreferencesListener =
                 SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
                     if (sharedPreferences == preferences) {
+                        if(key == MainActivity.SPEECH_ENGINE_KEY) {
+                            // Replace the current TTS engine
+                            val engineLabelAndName = preferences?.getString(
+                                MainActivity.SPEECH_ENGINE_KEY,
+                                MainActivity.SPEECH_ENGINE_DEFAULT)
+
+                            if(ttsEngine.getCurrentLabelAndName() != engineLabelAndName) {
+                                Log.d(
+                                    TAG,
+                                    "Destroy TTS engine due to SPEECH_ENGINE_KEY change: $engineLabelAndName"
+                                )
+                                ttsEngine.destroy()
+
+                                // Reset the current chosen voice as we've switched engine
+                                preferences.edit(true) {
+                                    putString(
+                                        MainActivity.VOICE_TYPE_KEY,
+                                        VOICE_TYPE_DEFAULT
+                                    )
+                                }
+
+                                ttsEngine = TtsEngine(this, engineLabelAndName)
+                                ttsEngine.initialize(context, followPreferences)
+                            }
+                        }
                         if ((key == MainActivity.VOICE_TYPE_KEY) ||
                             (key == MainActivity.SPEECH_RATE_KEY)
                         ) {
-                            if (updateSpeech(preferences)) {
-                                if(service?.requestAudioFocus() == true) {
-                                    // If the voice type preference changes play some test speech
-                                    clearTextToSpeechQueue()
-                                    val testString =
-                                        localizedContext.getString(R.string.first_launch_callouts_example_3)
-                                    createTextToSpeech(testString, AudioType.STANDARD)
+                            Log.d(TAG, "VOICE_TYPE_KEY or SPEECH_RATE_KEY change")
+                            if(ttsEngine.checkTextToSpeechInitialization(false)) {
+                                if (ttsEngine.updateSpeech(preferences)) {
+                                    if (service?.requestAudioFocus() == true) {
+                                        // If the voice type preference changes play some test speech
+                                        clearTextToSpeechQueue()
+                                        val testString =
+                                            localizedContext.getString(R.string.first_launch_callouts_example_3)
+                                        createTextToSpeech(testString, AudioType.STANDARD)
+                                    }
                                 }
                             }
                         }
@@ -143,7 +181,14 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             }
             org.fmod.FMOD.init(context)
             engineHandle = this.create()
-            textToSpeech = TextToSpeech(context, this)
+            ttsEngine = TtsEngine(
+                this,
+                sharedPreferences?.getString(
+                    MainActivity.SPEECH_ENGINE_KEY,
+                    MainActivity.SPEECH_ENGINE_DEFAULT)
+            )
+            ttsEngine.initialize(context, followPreferences)
+
             sharedPreferences?.let {
                 updateBeaconType(it)
             }
@@ -155,87 +200,11 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         }
     }
 
-    private fun clearOutUtteranceSockets(utteranceId : String) {
-        val sockets = ttsSockets[utteranceId]
-        if(sockets != null ) {
-            Log.d("TTS", "Closing socket pair $utteranceId")
-            sockets[0].closeWithError("Finished")
-            sockets[1].close()
-        } else {
-            Log.d("TTS", "No socket pair $utteranceId")
-        }
-        ttsSockets.remove(utteranceId)
-    }
-
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-
-            Log.d(TAG, "Android version " + Build.VERSION.SDK_INT)
-
-            // Get the current locale and initialize the text to speech engine with it
-            val languageCode = getCurrentLocale().toLanguageTag()
-            setSpeechLanguage(languageCode)
-
-            sharedPreferences?.let {
-                updateSpeech(it)
+    override fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int) {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L) {
+                audioConfigTextToSpeech(engineHandle, id, sampleRateInHz, format, channelCount)
             }
-            textToSpeech.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-
-                override fun onDone(utteranceId: String) {
-                    // TODO: This never seems to be called, why?
-                    Log.e("TTS", "OnDone $utteranceId")
-                }
-
-                @Deprecated(
-                    message = "Deprecated function, but needs overridden until it actually goes.",
-                    replaceWith = ReplaceWith("")
-                )
-                override fun onError(utteranceId: String) {
-                    Log.e("TTS", "OnError deprecated $utteranceId")
-                    clearOutUtteranceSockets(utteranceId)
-                }
-
-                override fun onStart(utteranceId: String) {
-                    Log.d("TTS", "OnStart $utteranceId")
-                    currentUtteranceId?.let {
-                        clearOutUtteranceSockets(it)
-                    }
-                    currentUtteranceId = utteranceId
-                }
-
-                override fun onError(utteranceId: String?, errorCode: Int) {
-                    // This path is triggered when shutting down the AudioEngine with multiple
-                    // speech queued.
-                    Log.d("TTS", "OnError $utteranceId")
-                    utteranceId?.let {
-                        clearOutUtteranceSockets(it)
-                    }
-                }
-
-                override fun onBeginSynthesis(
-                    utteranceId: String?,
-                    sampleRateInHz: Int,
-                    audioFormat: Int,
-                    channelCount: Int
-                ) {
-                    Log.d("TTS", "OnBeginSynthesis $utteranceId: $sampleRateInHz, $audioFormat, $channelCount")
-
-                    utteranceId?.let { id->
-                        val format = when(audioFormat) {
-                            AudioFormat.ENCODING_PCM_8BIT -> 0
-                            AudioFormat.ENCODING_PCM_16BIT -> 1
-                            AudioFormat.ENCODING_PCM_FLOAT -> 2
-                            else -> 1
-                        }
-
-                        Log.d("TTS", "Configure TTS audio for $utteranceId")
-                        audioConfigTextToSpeech(engineHandle, id, sampleRateInHz, format, channelCount)
-                    }
-                }
-            })
-            // Tell the flow listeners that the TextToSpeech is ready
-            textToSpeechInitialized = true
-            _textToSpeechRunning.value = true
         }
     }
 
@@ -276,21 +245,6 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         return false
     }
 
-    private fun awaitTextToSpeechInitialization() : Boolean {
-        // Block waiting for the TextToSpeech to initialize before using it. Timeout after
-        // waiting for 2 seconds and in that case return false
-        var timeout = 2000
-        while(!textToSpeechInitialized) {
-            Thread.sleep(100)
-            timeout -= 100
-            Log.d(TAG, "$timeout")
-            if(timeout <= 0)
-                return false
-        }
-
-        return true
-    }
-
     override fun createTextToSpeech(
         text: String,
         type: AudioType,
@@ -301,33 +255,29 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
 
-                if(!awaitTextToSpeechInitialization())
+                if(!ttsEngine.checkTextToSpeechInitialization(true))
                     return 0
 
-                val ttsSocketPair = ParcelFileDescriptor.createReliableSocketPair()
-                val ttsSocket = ttsSocketPair[0]
-
-                val params = Bundle()
-                // We use the file descriptor as part of the utterance id as that's easy to track
-                // in the C++ code. However, because file descriptors get reused we qualify the
-                // utteranceId with an incrementing count.
-                utteranceIncrementingCount += 1
-                val utteranceId = ttsSocketPair[1].fd.toString() + "/" + utteranceIncrementingCount
-                params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, utteranceId)
-                ttsSockets[utteranceId] = ttsSocketPair
-                val ttsHandle = createNativeTextToSpeech(
+                return ttsEngine.createTextToSpeech(
                     engineHandle,
-                    type.type,
+                    text,
+                    type,
                     latitude,
                     longitude,
-                    heading,
-                    ttsSocketPair[1].fd,
-                    utteranceId
+                    heading
                 )
-                textToSpeech.synthesizeToFile(text, params, ttsSocket, utteranceId)
             }
 
             return 0
+        }
+    }
+
+    fun updateSpeech(context: Context) {
+        if (service?.requestAudioFocus() == true) {
+            // If the voice type preference changes play some test speech
+            clearTextToSpeechQueue()
+            val testString = context.getString(R.string.first_launch_callouts_example_3)
+            createTextToSpeech(testString, AudioType.STANDARD)
         }
     }
 
@@ -352,20 +302,11 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     override fun clearTextToSpeechQueue() {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
-                if (!awaitTextToSpeechInitialization())
+                if (!ttsEngine.checkTextToSpeechInitialization(true))
                     return
 
                 // Stop the Text to Speech engine
-                textToSpeech.stop()
-                currentUtteranceId = null
-
-                // Close all of the previously queued sockets to terminate their playback
-                for(ttsSocketPair in ttsSockets){
-                    Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
-                    ttsSocketPair.value[0].closeWithError("Finished")
-                    ttsSocketPair.value[1].close()
-                }
-                ttsSockets.clear()
+                ttsEngine.stop()
 
                 // Clear the queue in the engine
                 clearNativeTextToSpeechQueue(engineHandle)
@@ -382,26 +323,20 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         return 0
     }
 
+    override fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo> {
+        return ttsEngine.getAvailableEngines()
+    }
+
     override fun getAvailableSpeechLanguages() : Set<Locale> {
-        try {
-            if (textToSpeechInitialized)
-                return textToSpeech.availableLanguages
-        } catch (e: Exception) {
-            Firebase.analytics.logEvent("getAvailableSpeechLanguages_error", null)
-            Log.e(TAG, "getAvailableSpeechVoices: $e")
-        }
-        return emptySet()
+        return ttsEngine.getAvailableSpeechLanguages()
     }
 
     override fun getAvailableSpeechVoices() : Set<Voice> {
-        try {
-            if (textToSpeechInitialized)
-                return textToSpeech.voices
-        } catch (e: Exception) {
-            Firebase.analytics.logEvent("getAvailableSpeechVoices_error", null)
-            Log.e(TAG, "getAvailableSpeechVoices: $e")
-        }
-        return emptySet()
+        return ttsEngine.getAvailableSpeechVoices()
+    }
+
+    override fun setSpeechLanguage(language : String) : Boolean {
+        return ttsEngine.setSpeechLanguage(language)
     }
 
     override fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
@@ -416,52 +351,6 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             return true
         }
         return false
-    }
-
-    override fun updateSpeech(sharedPreferences: SharedPreferences): Boolean {
-
-        var change = false
-
-        // Check for change in voice type preference
-        val voiceType = sharedPreferences.getString(MainActivity.VOICE_TYPE_KEY, MainActivity.VOICE_TYPE_DEFAULT)!!
-        if(textToSpeech.voices != null) {
-            for (voice in textToSpeech.voices) {
-                if (voice.name == voiceType) {
-                    if (textToSpeechVoiceType != voice.name) {
-                        textToSpeech.voice = voice
-                        Log.d(
-                            TAG,
-                            "Voice changed from $textToSpeechVoiceType to ${voice.name} on $this"
-                        )
-                        textToSpeechVoiceType = voice.name
-                        change = true
-                    }
-                    break
-                }
-            }
-        }
-        // Check for change in rate preference
-        val rate = sharedPreferences.getFloat(
-            MainActivity.SPEECH_RATE_KEY,
-            MainActivity.SPEECH_RATE_DEFAULT
-        )
-        if (rate != textToSpeechRate) {
-            textToSpeech.setSpeechRate(rate)
-            Log.d(TAG, "Speech rate changed from $textToSpeechRate to $rate on $this")
-            textToSpeechRate = rate
-            change = change.or(true)
-        }
-        return change
-    }
-
-    override fun setSpeechLanguage(language : String) : Boolean {
-        Log.d("TTS", "setSpeechLanguage to \"$language\"")
-        val result = textToSpeech.setLanguage(Locale(language))
-        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-            Log.e("TTS", "The Language not supported!")
-            return false
-        }
-        return true
     }
 
     override fun updateGeometry(listenerLatitude: Double,

@@ -24,6 +24,8 @@
 <string name="settings_units_metric" tools:ignore="MissingTranslation">"Metric (Meters)"</string>
 <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">"Speaking Rate"</string>
+<!-- Title for option to select the text-to-speech engine to use. -->
+<string name="voice_engine"  tools:ignore="MissingTranslation">"Text-to-Speech Engine"</string>
 <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">"Voices"</string>
 <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
