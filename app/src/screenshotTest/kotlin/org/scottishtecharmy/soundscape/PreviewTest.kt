@@ -42,6 +42,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 @Preview(name = "Nederlands", locale = "nl", group = "Language", showBackground = true, device = "id:small_phone")
 @Preview(name = "Português (Brasil)", locale = "pt", group = "Language", showBackground = true, device = "id:small_phone")
 @Preview(name = "Svenska", locale = "sv", group = "Language", showBackground = true, device = "id:small_phone")
+@Preview(name = "українська", locale = "uk", group = "Language", showBackground = true, device = "id:small_phone")
 annotation class LocalePreviews
 
 @Preview(name = "SmallFont", fontScale = 0.85f, group = "FontScale", device = "id:small_phone")
