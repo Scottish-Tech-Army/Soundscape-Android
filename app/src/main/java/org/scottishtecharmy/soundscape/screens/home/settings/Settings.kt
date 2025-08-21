@@ -5,7 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckBox
@@ -31,6 +31,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
@@ -42,6 +43,19 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 @Composable
 fun SettingsPreview() {
     Settings({}, SettingsViewModel.SettingsUiState())
+}
+
+@Preview(fontScale = 2f)
+@Composable
+fun ListItemPreview() {
+    ListPreferenceItem(
+        "Speech synthesis and recognition by Google",
+        value = 2,
+        currentValue = 2,
+        { },
+        2,
+        3
+    )
 }
 
 /**
@@ -57,7 +71,6 @@ fun ListPreferenceItem(description: String,
 
     Row(
         modifier = Modifier
-            .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .smallPadding()
             .clickable {
@@ -67,17 +80,27 @@ fun ListPreferenceItem(description: String,
                 if (value == currentValue) stringResource(R.string.settings_keep_value)
                 else stringResource(R.string.settings_use_value)
             )
-            .talkbackDescription(stringResource(R.string.settings_list_item_description).format(value, index + 1, listSize)),
+            .talkbackDescription(
+                stringResource(R.string.settings_list_item_description).format(
+                    value,
+                    index + 1,
+                    listSize
+                )
+            ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = description,
             color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(1f)
         )
         Icon(
             modifier = Modifier
-                .align(Alignment.CenterVertically),
+                .align(Alignment.CenterVertically)
+                .width(spacing.icon),
             imageVector =
                 if(value == currentValue) Icons.Filled.CheckBox
                 else Icons.Filled.CheckBoxOutlineBlank,
@@ -293,6 +316,28 @@ fun Settings(
                     ListPreferenceItem(value, value, currentValue, onClick, beaconTypes.indexOf(value), beaconTypes.size)
                 },
                 summary = { Text(text = it, color = textColor) },
+            )
+
+            listPreference(
+                key = MainActivity.SPEECH_ENGINE_KEY,
+                defaultValue = MainActivity.SPEECH_ENGINE_DEFAULT,
+                values = uiState.engineTypes,
+                title = {
+                    Text(
+                        text = stringResource(R.string.voice_engine),
+                        color = textColor
+                    )
+                },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(
+                        value.substringBefore(":::"),
+                        value,
+                        currentValue,
+                        onClick,
+                        uiState.engineTypes.indexOf(value),
+                        uiState.engineTypes.size)
+                },
+                summary = { Text(text = it.substringBefore(":::"), color = textColor) },
             )
 
             listPreference(

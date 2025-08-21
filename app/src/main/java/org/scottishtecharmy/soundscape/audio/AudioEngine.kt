@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.audio
 
 import android.content.SharedPreferences
+import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.Locale
@@ -16,10 +17,11 @@ interface AudioEngine {
     fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?, focusGained: Boolean, duckingAllowed: Boolean)
     fun setBeaconType(beaconType: String)
     fun getListOfBeaconTypes() : Array<String>
+    fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo>
     fun getAvailableSpeechLanguages() : Set<Locale>
     fun getAvailableSpeechVoices() : Set<Voice>
     fun setSpeechLanguage(language : String) : Boolean
-    fun updateSpeech(sharedPreferences: SharedPreferences): Boolean
     fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean
     fun onAllBeaconsCleared()
+    fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int)
 }

@@ -431,7 +431,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             if(!m_QueuedBeacons.empty()) {
                 auto queued_beacon = *m_QueuedBeacons.begin();
                 if (start_next && queued_beacon->CanStart()) {
-                    TRACE("PlayNow on next queued beacon");
+                    //TRACE("PlayNow on next queued beacon");
                     m_Beacons.insert(queued_beacon);
                     queued_beacon->PlayNow();
                     m_QueuedBeaconPlaying = true;
@@ -439,7 +439,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 else if(!m_QueuedBeaconPlaying) {
                     //TRACE("No queued beacon playing");
                     if(queued_beacon->CanStart()) {
-                        TRACE("PlayNow on CanStart beacon");
+                        //TRACE("PlayNow on CanStart beacon");
                         m_Beacons.insert(queued_beacon);
                         queued_beacon->PlayNow();
                         m_QueuedBeaconPlaying = true;
@@ -490,6 +490,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             delete queued_beacon;
         }
         m_QueuedBeacons.clear();
+        m_QueuedBeaconPlaying = false;
     }
 
     unsigned int AudioEngine::GetQueueDepth() {
