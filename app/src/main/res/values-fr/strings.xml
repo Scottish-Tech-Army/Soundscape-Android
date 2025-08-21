@@ -459,4 +459,5 @@
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">Trottoir</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">impasse</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explore l\'utilisation d\'une technologie audio innovante pour permettre aux gens de mieux connaître leur environnement, devenant ainsi plus confiants et plus autonomes pour se déplacer.</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Unités de mesure</string>
 </resources>
