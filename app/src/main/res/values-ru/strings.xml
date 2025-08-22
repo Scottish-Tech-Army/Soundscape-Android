@@ -1,3 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">Отмена</string>
+    <string name="general_alert_done">Готово</string>
+    <string name="general_loading_start">Подготовка…</string>
+    <string name="general_error_location_services_find_location_error">Не удалось определить ваше текущее местоположение.</string>
+    <string name="general_error_add_marker_error">Не удалось отметить это место. Попробуйте позже.</string>
+    <string name="settings_screen_title">Настройки</string>
+    <string name="settings_about_app">Про Soundscape</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Единицы измерения</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Имперская система (футы)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Метрическая система (метры)</string>
+    <string name="voice_settings_speaking_rate">Скорость речи</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Преобразование текста в речь</string>
+    <string name="voice_voices">Голоса</string>
+    <string name="beacon_settings_style">Аудиостили</string>
+    <string name="beacon_styles_current">Текущий</string>
+    <string name="beacon_styles_original">Исходный</string>
+    <string name="beacon_styles_flare">Вспышка</string>
+    <string name="beacon_styles_shimmer">Мерцание</string>
+    <string name="beacon_styles_tactile">Тактильный</string>
+    <string name="beacon_styles_ping">Пинг</string>
+    <string name="beacon_styles_drop">Падение</string>
+    <string name="beacon_styles_signal">Сигнал</string>
+    <string name="beacon_styles_signal_slow">Сигнал (медленно)</string>
+    <string name="beacon_styles_signal_very_slow">Сигнал (очень медленно)</string>
+    <string name="beacon_styles_mallet">Молот</string>
+    <string name="beacon_styles_mallet_slow">Молот (медленно)</string>
+    <string name="beacon_styles_mallet_very_slow">Молот (очень медленно)</string>
+    <string name="beacon_audio_beacon">Звуковой маяк</string>
+    <string name="beacon_action_mute_beacon">Отключить маяк</string>
+    <string name="beacon_action_mute_beacon_acc_hint">отключить звуковой маяк.</string>
+    <string name="beacon_action_unmute_beacon">Включить маяк</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">включить звуковой маяк.</string>
+    <string name="preview_go_title">Идти</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Идти к следующему перекрёстку</string>
+    <string name="preview_include_unnamed_roads_title">Безымянные дороги</string>
+    <string name="location_detail_title_default">Сведения о местоположении</string>
+    <string name="location_detail_action_beacon">Включить звуковой маяк</string>
+    <string name="location_detail_action_beacon_hint">Установить звуковой маяк в этом месте</string>
+    <string name="location_detail_action_save_hint">Сохраните это место как отметку</string>
+    <string name="location_detail_action_edit_hint">изменить отметку</string>
+    <string name="location_detail_action_share_hint">Поделиться этим местом</string>
+    <string name="location_detail_action_preview_hint">Начать предварительный просмотр в этом месте</string>
+    <string name="location_detail_add_waypoint_existing_hint">Удалить эту отметку из пути.</string>
+    <string name="location_detail_add_waypoint_new_hint">Добавить эту отметку в путь.</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Развернуть карту на весь экран</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Выйти из полноэкранного режима карты</string>
+    <string name="route_detail_action_start_route">Начать маршрут</string>
+    <string name="route_detail_action_stop_route">Остановить маршрут</string>
+    <string name="route_detail_action_edit">Изменить маршрут</string>
+    <string name="route_detail_action_start_route_hint">Начать этот маршрут</string>
+    <string name="route_detail_action_start_route_disabled_hint">Добавить путевые точки перед началом маршрута</string>
+    <string name="route_detail_action_stop_route_hint">Остановить этот маршрут</string>
+    <string name="route_detail_action_share_hint">Поделиться этим маршрутом</string>
+    <string name="route_detail_action_edit_hint">Изменить этот маршрут</string>
+    <string name="route_detail_action_create">Новый маршрут</string>
+    <string name="route_detail_action_create_hint">Создать новый маршрут</string>
+    <string name="route_end_completed_accessibility">Маршрут завершён! %s</string>
+    <string name="route_detail_action_previous">Предыдущая путевая точка</string>
+    <string name="route_detail_action_previous_hint">Дважды нажмите, чтобы установить маяк на предыдущую путевую точку</string>
+    <string name="route_detail_action_next">Следующая путевая точка</string>
+    <string name="route_detail_action_next_hint">Дважды нажмите, чтобы установить маяк на следующую путевую точку</string>
+    <string name="route_detail_edit_description">Описание</string>
+    <string name="route_detail_edit_waypoints_button">Добавить путевые точки</string>
+    <string name="route_detail_edit_delete">Удалить маршрут</string>
+    <string name="route_update_success_title">Обновление завершено!</string>
+    <string name="waypoint_title">Путевая точка</string>
+    <string name="universal_links_alert_action_marker">Сохранить как отметку</string>
+    <string name="universal_links_marker_share_message">Я поделился с вами отметкой в Soundscape! \"%s\"</string>
+    <string name="user_activity_save_marker_title">Сохранить отметку</string>
+    <string name="routes_title">Пути</string>
+    <string name="routes_action_deleted">Путь удалён</string>
+    <string name="routes_no_routes_title">Начало работы с путевыми точками</string>
+    <string name="routes_no_routes_hint_1">Создайте путь для себя или для кого-то другого, организовав набор отметок в качестве путевых точек.</string>
+    <string name="routes_no_routes_hint_2">Путешествуя по пути с Soundscape, вы будете получать уведомления о прибытии в каждую путевую точку, а звуковой маяк автоматически перейдёт к следующей путевой точке.</string>
+    <string name="routes_sort_by_name">Сортировка по имени</string>
+    <string name="routes_sort_by_distance">Сортировать по расстоянию</string>
+    <string name="markers_title">Отметки</string>
+    <string name="markers_action_delete">Удалить отметку</string>
+    <string name="markers_sort_button_sort_by_name">Название</string>
+    <string name="markers_sort_button_sort_by_name_voiceover">Сортировка по названию</string>
+    <string name="markers_sort_button_sort_by_distance">Расстояние</string>
+    <string name="markers_sort_button_sort_by_distance_voiceover">Сортировано по расстоянию</string>
+    <string name="markers_no_markers_title">Начало работы с отметками</string>
+    <string name="markers_no_markers_hint_1">Создайте отметки для ваших любимых пунктов назначения, путевых точек или любых других мест, которые вы хотите обозначить. Просто выберите местоположение или даже ваше текущее местоположение на главном экране и нажмите «Сохранить как отметку».</string>
+    <string name="markers_no_markers_hint_2">Попробуйте отметить свой дом, вход на работу или любимое место в парке.</string>
+    <string name="markers_edit_screen_title_edit">Изменить отметку</string>
+    <string name="markers_generic_name">Отметка</string>
+    <string name="markers_marker_with_name">Отметка. %s</string>
+    <string name="markers_marker_created">Отметка создана</string>
+    <string name="markers_annotation">Пояснение</string>
+    <string name="search_choose_destination">Выбрать место назначения</string>
+    <string name="search_use_current_location">Текущее место</string>
+    <string name="search_nearby_screen_title">Места рядом</string>
+    <string name="search_view_markers">Отметки и пути</string>
+    <string name="search_button_markers_accessibility_hint">Выберите или отредактируйте сохранённые отметки</string>
+    <string name="search_button_nearby_accessibility_hint">Исследуйте ближайшие рестораны, остановки общественного транспорта и многое другое</string>
+    <string name="search_button_current_location_accessibility_hint">Просмотреть, отметить или поделится своим текущим местоположением</string>
+    <string name="filter_all">Все места</string>
+    <string name="filter_transit">Общественный транспорт</string>
+    <string name="filter_food_drink">Еда и напитки</string>
+    <string name="filter_groceries">Продукты питания и магазины шаговой доступности</string>
+    <string name="filter_banks">Банки и банкоматы</string>
+    <string name="callouts_panel_title">Слышать моё окружение</string>
+    <string name="callouts_allow_callouts">Разрешить уточнения</string>
+    <string name="callouts_places_and_landmarks">Места и достопримечательности</string>
+    <string name="callouts_mobility">Мобильность</string>
+    <string name="callouts_audio_beacon">Расстояние до маяка</string>
+    <string name="callouts_automatic_callouts">Автоматические уточнения</string>
+    <string name="callouts_nothing_to_call_out_now">Сейчас нечего уточнять</string>
+    <string name="callouts_nearby_markers">Отметки рядом</string>
+    <string name="sleep_sleep">Сон</string>
+    <string name="sleep_sleeping">Спание</string>
+    <string name="sleep_sleeping_message">Soundscape в настоящее время находится в спящем режиме. Это предотвращает использование служб местоположения и скачивание данных. Это экономит заряд батареи, когда вы не используете Soundscape. Нажмите кнопку ниже, чтобы разбудить Soundscape.</string>
+    <string name="sleep_sleep_acc_hint">Перевести Soundscape в спящий режим</string>
+    <string name="sleep_wake_up_now">Проснуться сейчас</string>
+    <string name="intersection_approaching_intersection">Приближаемся к перекрёстку</string>
+    <string name="directions_at_poi">В %s</string>
+    <string name="directions_my_location">Моё местоположение</string>
+    <string name="directions_near_name">Рядом с %s</string>
+    <string name="directions_name_goes_left">%s, поворачивает налево</string>
+    <string name="directions_name_goes_right">%s, поворачивает направо</string>
+    <string name="directions_name_continues_ahead">%s, продолжается вперёд</string>
+    <string name="directions_direction_ahead">впереди</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Рядом с %1$s и близко к %2$s</string>
+    <string name="directions_traveling_n">Движется на север</string>
+    <string name="directions_traveling_ne">Движется на северо-восток</string>
+    <string name="directions_traveling_e">Движется на восток</string>
+    <string name="directions_traveling_se">Движется на юго-восток</string>
+    <string name="directions_traveling_s">Движется на юг</string>
+    <string name="directions_traveling_sw">Движется на юго-запад</string>
+    <string name="directions_traveling_w">Движется на запад</string>
+    <string name="directions_traveling_nw">Движется на северо-запад</string>
+    <string name="directions_facing_n">На сторону севера</string>
+    <string name="directions_facing_ne">На сторону северо-востока</string>
+    <string name="directions_facing_e">На сторону востока</string>
+    <string name="directions_facing_se">На сторону юго-востока</string>
+    <string name="directions_facing_s">На сторону юга</string>
+    <string name="directions_facing_sw">На сторону юго-запада</string>
+    <string name="directions_facing_w">На сторону запада</string>
+    <string name="directions_facing_nw">На сторону северо-запада</string>
+    <string name="directions_heading_n">На север</string>
+    <string name="directions_heading_ne">На северо-восток</string>
+    <string name="directions_heading_e">На восток</string>
+    <string name="directions_heading_se">На юго-восток</string>
+    <string name="directions_heading_s">На юг</string>
+    <string name="directions_heading_sw">На юго-запад</string>
+    <string name="directions_heading_w">На запад</string>
+    <string name="directions_heading_nw">На северо-запад</string>
+    <string name="directions_along_traveling_n">Движется на севера вдоль %s</string>
+    <string name="directions_along_traveling_ne">Движется на северо-восток вдоль %s</string>
+    <string name="directions_along_traveling_e">Движется на восток вдоль %s</string>
+    <string name="directions_along_traveling_se">Движется юго-восток вдоль %s</string>
+    <string name="directions_along_traveling_s">Движется на юг вдоль %s</string>
+    <string name="directions_along_traveling_sw">Движется на юго-запад вдоль %s</string>
+    <string name="directions_along_traveling_w">Движется на запад вдоль %s</string>
+    <string name="directions_along_traveling_nw">Движется на северо-запад вдоль %s</string>
+    <string name="directions_along_facing_n">На север вдоль %s</string>
+    <string name="directions_along_facing_ne">На северо-восток вдоль %s</string>
+    <string name="directions_along_facing_e">На восток вдоль %s</string>
+    <string name="directions_along_facing_se">На юго-восток вдоль %s</string>
+    <string name="directions_along_facing_s">На юг вдоль %s</string>
+    <string name="directions_along_facing_sw">На юго-запад вдоль %s</string>
+    <string name="directions_along_facing_w">На запад вдоль %s</string>
+    <string name="directions_along_facing_nw">На северо-запад вдоль %s</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Север</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Северо-Восток</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Восток</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">Юго-Восток</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">Юг</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Юго-Запад</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Запад</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Северо-Запад</string>
+    <string name="ui_menu">Меню</string>
+    <string name="ui_menu_hint">открыть это меню</string>
+    <string name="ui_menu_close">Закрыть меню</string>
+    <string name="ui_continue">Продолжить</string>
+    <string name="menu_help_and_tutorials">Помощь и руководство</string>
+    <string name="menu_rate">Оценить</string>
+    <string name="ui_back_button_title">Назад</string>
+    <string name="behavior_experiences_route_nav_title">Подробности пути</string>
+    <string name="help_offline_limitations_heading">Ограничения</string>
+    <string name="help_orient_page_title">Вокруг меня</string>
+    <string name="help_explore_page_title">Передо мной</string>
+    <string name="help_creating_markers_page_title">Создание отметок</string>
+    <string name="help_edit_markers_page_title">Настройка отметок</string>
+    <string name="help_text_section_title_what">Что это такое?</string>
+    <string name="help_text_section_title_how">Как оно работает?</string>
+    <string name="terms_of_use_title">Правила использования</string>
+    <string name="first_launch_welcome_title">Добро пожаловать!</string>
+    <string name="first_launch_welcome_button">Как начать</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Слушайте</string>
+    <string name="first_launch_callouts_example_1">Кафе</string>
+    <string name="first_launch_prompt_title">Всё готово!</string>
+    <string name="osm_tag_bank">Банк</string>
+    <string name="osm_tag_atm">Банкомат</string>
+    <string name="osm_tag_garden">Сад</string>
+    <string name="osm_tag_park">Парк</string>
+    <string name="faq_title">Частые вопросы</string>
+    <string name="faq_title_abbreviated">ЧаВо</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">Светлая</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">Тёмная</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Контраст темы</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Обычный</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Средний</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">Высокий</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">оставить</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">использовать</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">Тротуар</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">тупик</string>
+    <string name="preview_title">Просмотр улиц</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" и %s"</string>
 </resources>
