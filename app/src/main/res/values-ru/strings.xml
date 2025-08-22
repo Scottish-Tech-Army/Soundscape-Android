@@ -211,4 +211,168 @@
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">тупик</string>
     <string name="preview_title">Просмотр улиц</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" и %s"</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">С</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">СВ</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">В</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">ЮВ</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">Ю</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">ЮЗ</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">З</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">СЗ</string>
+    <string name="distance_format_meters">%s метров</string>
+    <string name="distance_format_km">%s км</string>
+    <string name="distance_format_feet">%s футов</string>
+    <string name="distance_format_miles">%s миль</string>
+    <string name="ui_action_button_my_location">Моё\nместо</string>
+    <string name="ui_action_button_my_location_acc_hint">слышать о своём текущем местоположении</string>
+    <string name="ui_action_button_nearby_markers">Ближайшие\nотметки</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">о близлежащих местах, которые ты отметил(а)</string>
+    <string name="ui_action_button_around_me">Вокруг\nменя</string>
+    <string name="ui_action_button_around_me_acc_hint">Узнай о местах в четырёх квадрантах вокруг тебя</string>
+    <string name="ui_action_button_ahead_of_me">Впереди\nменя</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Узнай о местах перед тобой</string>
+    <string name="menu_manage_callouts">Управление сносками</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">Маяк установлен на %1$s, %2$s от тебя, %3$s из %4$s</string>
+    <string name="help_configuration_section_title">Настройка звукового ландшафта</string>
+    <string name="settings_help_section_beacons_and_pois">Маяки и сноски</string>
+    <string name="settings_help_section_home_screen_buttons">Кнопки главного экрана</string>
+    <string name="osm_tag_crossing">Пешеходный переход</string>
+    <string name="osm_tag_construction">Строительные работы</string>
+    <string name="osm_tag_dangerous_area">Опасная зона</string>
+    <string name="osm_tag_townhall">Ратуша</string>
+    <string name="osm_tag_steps">Ступеньки</string>
+    <string name="osm_tag_elevator">Лифт</string>
+    <string name="osm_tag_walking_path">Пешеходная дорожка</string>
+    <string name="osm_tag_pedestrian_street">Пешеходная улица</string>
+    <string name="osm_tag_bicycle_path">Велосипедная дорожка</string>
+    <string name="osm_tag_residential_street">Жилая улица</string>
+    <string name="osm_tag_service_road">Подъездная дорога</string>
+    <string name="osm_tag_road">Дорога</string>
+    <string name="osm_tag_highway">Шоссе</string>
+    <string name="osm_tag_highway_named">Шоссе %s</string>
+    <string name="osm_tag_highway_refed">Шоссе %s</string>
+    <string name="osm_tag_intersection">Перекрёсток</string>
+    <string name="osm_tag_roundabout">Круглое движение</string>
+    <string name="osm_tag_highway_ramp">Съезд с шоссе</string>
+    <string name="osm_tag_merging_lane">Сливающаяся полоса</string>
+    <string name="osm_tag_office_building">Офисное здание</string>
+    <string name="osm_tag_school_building">Школьное здание</string>
+    <string name="osm_tag_covered_pavilion">Крытый павильон</string>
+    <string name="osm_tag_convenience_store">Магазин товаров повседневного спроса</string>
+    <string name="osm_tag_building_entrance">Вход в здание</string>
+    <string name="osm_tag_assembly_point">Пункт сбора</string>
+    <string name="osm_tag_cycle_barrier">Велосипедный барьер</string>
+    <string name="osm_tag_turnstile">Турникет</string>
+    <string name="osm_tag_cattle_grid">Скот Сетка</string>
+    <string name="osm_tag_gate">Ворота</string>
+    <string name="osm_tag_restroom">Туалет</string>
+    <string name="osm_tag_parking_lot">Парковка</string>
+    <string name="osm_tag_parking_entrance">Въезд на парковку</string>
+    <string name="osm_tag_bench">Скамейка</string>
+    <string name="osm_tag_taxi_waiting_area">Зона ожидания такси</string>
+    <string name="osm_tag_post_office">Почта</string>
+    <string name="osm_tag_post_box">Почтовый ящик</string>
+    <string name="osm_tag_waste_basket">Мусорная корзина</string>
+    <string name="osm_tag_shower">Душ</string>
+    <string name="osm_tag_bike_parking">Парковка для велосипедов</string>
+    <string name="osm_tag_restaurant">Ресторан</string>
+    <string name="osm_tag_telephone">Телефон</string>
+    <string name="osm_tag_gas_station">Заправка</string>
+    <string name="osm_tag_atm_named">Банкомат %s</string>
+    <string name="osm_tag_atm_refed">Банкомат %s</string>
+    <string name="osm_tag_bus_stop">Автобусная остановка</string>
+    <string name="osm_tag_bus_stop_named">Автобусная остановка %s</string>
+    <string name="osm_tag_recycling_bin">Контейнер для сбора мусора</string>
+    <string name="osm_tag_fountain">Фонтан</string>
+    <string name="osm_tag_place_of_worship">Место поклонения</string>
+    <string name="osm_tag_water_fountain">Фонтан с водой</string>
+    <string name="osm_tag_car_wash">Автомойка</string>
+    <string name="osm_tag_vending_machine">Торговый автомат</string>
+    <string name="osm_tag_playground">Детская площадка</string>
+    <string name="osm_tag_sports_field">Спортивная площадка</string>
+    <string name="osm_tag_swimming_pool">Бассейн</string>
+    <string name="osm_tag_picnic_table">Стол для пикника</string>
+    <string name="osm_tag_picnic_area">Место для пикника</string>
+    <string name="share_title">Посоветовать приложение</string>
+    <string name="no_language_selected">Язык не выбран</string>
+    <string name="first_launch_permissions_notification">Уведомления</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Мы используем эту службу определения местоположения на переднем плане</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Отменить поиск</string>
+    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Железнодорожная станция</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">Железнодорожная станция %s</string>
+    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Трамвайная остановка</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">Остановка трамвая %s</string>
+    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Станция метро</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">Станция метро %s</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Паромный терминал</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Паромный причал %s</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Настройки звука</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Настройки доступности</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Светлая или тёмная тема</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">Авто</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Использовать светлую тему</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s это выбор %2$s из %3$s</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Выйти из просмотра улицы</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Включить запись поездки</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Включить доступный стиль карты</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Настройки отладки</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Поделиться записью поездки</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s ко %2$s через %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">\'%1$s ко %2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">\'%1$s соединяющий %2$s и %3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s через %2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">Тротуар рядом с %1$s</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape исследует использование инновационных аудиотехнологий, которые позволяют людям глубже осознавать своё окружение, становясь увереннее в своих силах.</string>
+    <string name="directions_along_heading_n">Идёте на север по %s</string>
+    <string name="directions_along_heading_ne">Идёте на северо восток по %s</string>
+    <string name="directions_along_heading_e">Идёте на восток по %s</string>
+    <string name="directions_along_heading_se">Идёте на юго восток по %s</string>
+    <string name="directions_along_heading_s">Идёте на юг по %s</string>
+    <string name="directions_along_heading_sw">Идёте на юго запад по %s</string>
+    <string name="directions_along_heading_w">Идёте на запад по %s</string>
+    <string name="directions_along_heading_nw">Идёте на северо запад по %s</string>
+    <string name="help_config_voices_content">Soundscape может использовать любой из голосов, загруженных на ваш Android-смартфон в настройках синтеза речи. В приложении Soundscape вы можете выбрать голос, отличный от голоса Android по умолчанию, перейдя в раздел «Настройки» в главном меню и выбрав «Голоса».</string>
+    <string name="help_offline_page_title">Почему Soundscape работает автономно?</string>
+    <string name="help_offline_description">При отсутствии интернет-соединения или сбое в работе сервисов Soundscape он переходит в автономный режим. Тем не менее, Soundscape продолжит работать, но некоторые возможности могут быть ограничены.</string>
+    <string name="help_offline_limitations_description">Вызовы будут работать, если вы находитесь в области, которую вы уже проходили и которая сохранена в вашей истории вызовов. Аналогичным образом вы можете разместить звуковой маяк или создать маркер в местах, сохраненных в вашей истории вызовов.</string>
+    <string name="help_offline_troubleshooting_heading">Что можно сделать?</string>
+    <string name="help_offline_troubleshooting_description">Soundscape попытается возобновить нормальную работу, когда ваш телефон подключён к Wi-Fi или включена передача данных по сотовой сети, и вы находитесь в зоне с хорошим сигналом. Если у вашего телефона хорошее интернет-соединение, но Soundscape не восстанавливает нормальную работу, возможно, произошел сбой в работе сервисов Soundscape.</string>
+    <string name="help_remote_page_title">Использование элементов управления мультимедиа</string>
+    <string name="help_text_section_title_when">Когда использовать Soundscape?</string>
+    <string name="terms_of_use_message">Использование вами Soundscape регулируется условиями %s и условиями, изложенными ниже (совместно именуемыми «Условия использования»).</string>
+    <string name="terms_of_use_service_agreement">Соглашение о предоставлении услуг Шотландской технической армии</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Принять условия использования</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Вы признаете, что Soundscape (1) не разработан, не предназначен и не предоставляется в качестве медицинского устройства, и (2) не разработан и не предназначен для замены профессиональной медицинской консультации, диагностики, лечения или суждений и не должен использоваться для замены или подмены профессиональной медицинской консультации, диагностики, лечения или суждений.<br></br>Уведомление о безопасности<br></br>Soundscape — это навигационное средство и не должно использоваться вместо навыков передвижения, восприятия окружающей обстановки и здравого смысла. Будьте осторожны при навигации, так как картографические данные, встроенные в программу Soundscape, получены из стороннего приложения, поэтому точность представленной информации может быть ограничена.</string>
+    <string name="first_launch_soundscape_language">Язык Soundscape</string>
+    <string name="first_launch_soundscape_language_text">Выберите язык, который будет использоваться в Soundscape. Вы всегда можете изменить свой выбор в настройках приложения.</string>
+    <string name="first_launch_welcome_description">Путешествуйте уверенно с помощью пространственного звука Soundscape</string>
+    <string name="first_launch_headphones_title">Прослушивание Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape отлично работает с любыми наушниками. Если вы хотите использовать наушники, приобретите их прямо сейчас.</string>
+    <string name="first_launch_headphones_message_2">Если у вас нет наушников или вы предпочитаете их не использовать, не волнуйтесь! Soundscape будет работать с динамиками вашего телефона.</string>
+    <string name="first_launch_callouts_title">Слушайте окружающее</string>
+    <string name="first_launch_callouts_message">Soundscape помогает вам быть в курсе вашего местонахождения и маршрута, называя дороги, перекрёстки и объекты интереса по мере приближения к ним.</string>
+    <string name="first_launch_callouts_listen">Послушайте пример того, что Soundscape может воспроизводить во время вашей следующей прогулки</string>
+    <string name="first_launch_callouts_example_3">Главная улица идёт налево</string>
+    <string name="first_launch_callouts_example_4">Главная улица идёт направо</string>
+    <string name="first_launch_permissions_title">Навигация с Soundscape</string>
+    <string name="first_launch_permissions_message">При навигации с Soundscape вы будете использовать звуковой маяк. Для этого Soundscape необходимо включить следующие разрешения:</string>
+    <string name="first_launch_permissions_location">Службы геолокации с точным определением местоположения</string>
+    <string name="first_launch_permissions_required">Это разрешение необходимо</string>
+    <string name="first_launch_beacon_message_1">При навигации с Soundscape вы услышите звуковой маяк в направлении вашего пункта назначения. Следуя за его звуком, вы всегда будете знать, куда идти.</string>
+    <string name="first_launch_beacon_message_2">Прослушайте доступные звуковые маяки и выберите нужный.</string>
+    <string name="first_launch_beacon_message_3">Это можно изменить позже в настройках приложения.</string>
+    <string name="first_launch_prompt_message">Вы готовы к своей первой прогулке с Soundscape. Чтобы попробовать прямо сейчас, просто выберите ближайший пункт назначения, включите звуковой маяк, и вы услышите его в направлении вашего пункта назначения.</string>
+    <string name="first_launch_prompt_button">Завершить</string>
+    <string name="help_text_destination_beacons_what">Установив маяк в близлежащем месте, Soundscape будет информировать вас, воспроизводя звуковой сигнал маяка, исходящий с этого места. Звук маяка можно отключить или включить на главном экране. Кроме того, Soundscape отображает информацию о местоположении на главном экране, включая расстояние до него и адрес, если он известен.</string>
+    <string name="help_text_destination_beacons_when">Настройка маяка полезна, когда вы хотите отслеживать знакомый ориентир, исследуя новую местность, или когда вы направляетесь куда-то и хотите быть в курсе об окружающей обстановке по пути. Функция маяка не выдаёт пошаговые инструкции, но воспроизводит непрерывный звуковой сигнал, указывающий направление к маяку относительно вашего текущего местоположения. Используя звуковой сигнал, ваши навыки ориентирования и даже любимое навигационное приложение, вы можете самостоятельно выбрать способ добраться до близлежащих мест.</string>
+    <string name="help_text_destination_beacons_how_1"><b>Чтобы установить маяк</b>:<br></br> Сначала просмотрите информацию о местоположении, используя строку поиска или нажав одну из кнопок «Места рядом», «Сохранённые маркеры» или «Текущее местоположение» и выбрав местоположение. На экране сведений о местоположении можно нажать кнопку «Включить звуковой сигнал». Нажатие этой кнопки вернёт вас на главный экран и включит звуковой сигнал, исходящий с выбранного вами места. Название выбранного вами места, а также расстояние до него и физический адрес (если доступны) будут отображаться на главном экране приложения.</string>
+    <string name="help_text_destination_beacons_how_2"><b>Чтобы отключить звуковой маяк</b>:<br></br> Нажмите кнопку «Отключить маяк» рядом с кнопкой «Отключить маяк» на главном экране.</string>
+    <string name="help_text_destination_beacons_how_3"><b>Чтобы отключить звуковой сигнал маяка</b>:<br></br> Нажмите кнопку «Отключить сигнал маяка» рядом с кнопкой «Остановить сигнал маяка» на главном экране.</string>
+    <string name="help_text_automatic_callouts_what"><b>Изучение новой местности</b>:<br></br> Включите автоматические оповещения и пройдитесь по местности, чтобы услышать информацию о магазинах, ресторанах и других подобных местах. <b>Пешком к определённому месту</b>:<br></br> Когда вы направляетесь к определённому месту, автоматические подсказки для перекрёстков могут быть особенно полезны. Подсказки для перекрёстков сообщают вам о расположении перекрёстков по мере приближения к ним и подтверждают дорогу, по которой вы едете, когда покидаете их.</string>
+    <string name="help_text_automatic_callouts_when_1"><b>Исследование новой местности</b>:<br></br> Включите автоматические подсказки и прогуляйтесь, чтобы услышать обо всех разных магазинах, ресторанах и тому подобном, мимо которых вы проходите.</string>
+    <string name="help_text_automatic_callouts_when_2"><b>Включение и выключение подсказок</b>:<br></br> Отключение подсказок отключит приложение. Выноски можно включить или отключить в разделе «Управление выносками» на экране «Настройки», где можно включить или отключить их с помощью переключателя «Разрешить выноски». Вы также можете включить или отключить выноски, используя команду «Перейти вперёд» (двойное нажатие и удержание), если на ваших наушниках есть кнопки управления мультимедиа. Кроме того, вы можете использовать кнопку «Режим сна» в правом верхнем углу главного экрана, чтобы Soundscape не делал выноски до тех пор, пока вы не активируете его снова.</string>
+    <string name="help_text_automatic_callouts_how_1"><b>Управление выносками</b>:<br></br> Чтобы выбрать типы выносок, которые Soundscape будет автоматически озвучивать, перейдите на экран «Настройки» с помощью меню на главном экране. Раздел «Управление выносками» на экране «Настройки» содержит список типов выносок, которые приложение может озвучивать. Для каждого пункта есть переключатель, который можно включить или выключить. Если вы хотите отключить все выноски, нажмите на переключатель «Разрешить выноски» в верхней части списка.</string>
+    <string name="help_text_my_location_what">Кнопка <em>«Моё местоположение»</em> быстро предоставит вам информацию, которая поможет вам определить ваше текущее местоположение. Кнопка <em>«Моё местоположение»</em> сообщает вам о вашем текущем местоположении, включая направление, в котором вы смотрите, расположение ближайших дорог или перекрёстков, а также расположение ближайших объектов интереса.</string>
+    <string name="help_text_my_location_when"><em>«Моё местоположение»</em> полезна, когда вам нужно определить ваше местоположение или сторону света.</string>
+    <string name="help_text_my_location_how">Как и в случае со всеми четырьмя кнопками внизу главного экрана, держите телефон экраном вниз (в небо) и верхней частью телефона в направлении вашего взгляда, прежде чем нажать кнопку <em>«Моё местоположение»</em>. Это действует как компас, указывая приложению направление вашего движения. Просто нажмите кнопку <em>«Моё местоположение»</em> и слушайте.</string>
 </resources>
