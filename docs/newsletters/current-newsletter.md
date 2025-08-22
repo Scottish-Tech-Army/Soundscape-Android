@@ -7,7 +7,7 @@ has_toc: false
 
 # Newsletter - 19th August 2025
 
-This is the first of what will be an irregular series of newsletters to ive an update on what we're working on.
+This is the first of what will be an irregular series of newsletters to give an update on what we're working on.
 
 ## Initial open beta release
 The first open beta release went live on 8th August and given that we didn't really announce it we've been very pleased with the initial uptake. We now have around 400 users testing the release and this has kept us very busy! There are a number of places where we gather feedback:
