@@ -466,4 +466,5 @@
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Auto</string>
     <string name="settings_theme_light" tools:ignore="MissingTranslation">Light</string>
     <string name="settings_theme_dark" tools:ignore="MissingTranslation">Dark</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Text-to-Speech Engine</string>
 </resources>
