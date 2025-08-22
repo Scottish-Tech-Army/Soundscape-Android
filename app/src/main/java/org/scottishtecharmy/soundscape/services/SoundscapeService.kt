@@ -366,10 +366,11 @@ class SoundscapeService : MediaSessionService() {
         if(location == null) return
 
         requestAudioFocus()
-        if (audioBeacon != 0L) {
-            audioEngine.destroyBeacon(audioBeacon)
-        }
+        val oldBeacon = audioBeacon
         audioBeacon = audioEngine.createBeacon(location)
+        if (oldBeacon != 0L) {
+            audioEngine.destroyBeacon(oldBeacon)
+        }
         // Report any change in beacon back to application
         _beaconFlow.value = _beaconFlow.value.copy(location = location)
         geoEngine.updateBeaconLocation(location)
