@@ -198,25 +198,29 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
 
     fun moveToNext() : Boolean {
         currentRouteData?.let { route ->
-            if((currentMarker + 1) < route.markers.size) {
-                currentMarker++
-                _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
+            if(route.markers.size > 1) {
+                if ((currentMarker + 1) < route.markers.size) {
+                    currentMarker++
+                    _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
 
-                createBeaconAtWaypoint(currentMarker)
+                    createBeaconAtWaypoint(currentMarker)
+                }
+                return true
             }
-            return true
         }
         Log.d(TAG, toString())
         return false
     }
 
     fun moveToPrevious() : Boolean{
-        currentRouteData?.let { _ ->
-            if (currentMarker > 0) {
-                currentMarker--
-                _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
-                createBeaconAtWaypoint(currentMarker)
-                return true
+        currentRouteData?.let { route ->
+            if(route.markers.size > 1) {
+                if (currentMarker > 0) {
+                    currentMarker--
+                    _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
+                    createBeaconAtWaypoint(currentMarker)
+                    return true
+                }
             }
         }
         Log.d(TAG, toString())
