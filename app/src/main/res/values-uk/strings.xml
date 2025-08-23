@@ -68,7 +68,7 @@
     <string name="route_update_success_title">Оновлення виконано!</string>
     <string name="waypoint_title">Маршрутна точка</string>
     <string name="universal_links_alert_action_marker">Зберегти як мітку</string>
-    <string name="universal_links_marker_share_message">Перегляньте мою мітку Soundscape! \"%s\"</string>
+    <string name="universal_links_marker_share_message">Перегляньте мою мітку Soundscape! *\"%s\"*</string>
     <string name="user_activity_save_marker_title">Зберегти мітку</string>
     <string name="routes_title">Маршрути</string>
     <string name="routes_action_deleted">Маршрут видалено</string>
@@ -84,7 +84,7 @@
     <string name="markers_sort_button_sort_by_distance">Відстань</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">Відсортовано за відстанню</string>
     <string name="markers_no_markers_title">Почніть зі створення міток</string>
-    <string name="markers_no_markers_hint_1">Створюйте мітки для ваших улюблених місць, маршрутних точок або будь-яких об\'єктів, які ви хочете позначити. Просто скористайтеся функцією \"Зберегти як мітку\" для будь-якого місця чи вашого поточного місцезнаходження.</string>
+    <string name="markers_no_markers_hint_1">Створюйте мітки для ваших улюблених місць, маршрутних точок або будь-яких об\'єктів, які ви хочете позначити. Просто скористайтеся функцією *\"Зберегти як мітку\"* для будь-якого місця чи вашого поточного місцезнаходження.</string>
     <string name="markers_no_markers_hint_2">Спробуйте позначити свій дім, вхід до місця роботи чи улюблене місце в парку.</string>
     <string name="markers_edit_screen_title_edit">Редагування мітки</string>
     <string name="markers_generic_name">Мітка</string>
@@ -214,7 +214,7 @@
     <string name="help_configuration_section_title">Налаштування Soundscape</string>
     <string name="settings_help_section_beacons_and_pois">Маячки й оголошення</string>
     <string name="settings_help_section_home_screen_buttons">Кнопки головного екрана</string>
-    <string name="help_config_voices_content">Soundscape може використовувати будь-який з голосів, доступних у налаштуваннях перетворення тексту на мовлення вашого Android телефона. У програмі Soundscape ви можете вибрати голос, відмінний від стандартного системного, перейшовши в Налаштування за допомогою головного меню, а потім вибравши пункт \"Голоси\".</string>
+    <string name="help_config_voices_content">Soundscape може використовувати будь-який з голосів, доступних у налаштуваннях перетворення тексту на мовлення вашого Android телефона. У програмі Soundscape ви можете вибрати голос, відмінний від стандартного системного, перейшовши в Налаштування за допомогою головного меню, а потім вибравши пункт *\"Голоси\"*.</string>
     <string name="help_offline_page_title">Як Soundscape працює без доступу до інтернету?</string>
     <string name="help_offline_description">Коли немає підключення до Інтернету або відбувається збій у роботі служб Soundscape, Програма переходить в автономний режим. Тим не менш, Soundscape продовжить працювати, але роботу деяких функцій може бути обмежено.</string>
     <string name="help_offline_limitations_heading">Обмеження</string>
@@ -230,7 +230,7 @@
     <string name="help_text_section_title_when">Коли б я міг це використати?</string>
     <string name="help_text_section_title_how">Як це працює?</string>
     <string name="terms_of_use_title">Умови використання</string>
-    <string name="terms_of_use_message">Використання Soundscape регулюється умовами %s та умовами, викладеними нижче (разом \"Умови використання\").</string>
+    <string name="terms_of_use_message">Використання Soundscape регулюється умовами %s та умовами, викладеними нижче (разом *\"Умови використання\"*).</string>
     <string name="terms_of_use_service_agreement">угоди про надання послуг компанії Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Прийняти умови використання</string>
     <string name="terms_of_use_medical_safety_disclaimer">Ви розумієте, що Soundscape (1) не розроблено, не призначено та не надається як медичний пристрій, і (2) не розроблено та не призначено для заміни професійних медичних консультацій, діагностики, лікування чи суджень і не має використовуватися як заміна професійних медичних консультацій, діагностики, лікування чи суджень.\n\nПовідомлення про безпеку\n\nПрограма Soundscape є навігаційним засобом і не повинна використовуватися замість навичок мобільності, обізнаності про оточення та здорового глузду. Будьте обережні під час навігації у вашому середовищі, оскільки картографічні дані, включені в програму Soundscape, отримані зі сторонніх джерел, і, отже, можуть бути обмеження щодо точності представленої інформації.</string>
@@ -466,4 +466,5 @@
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">Тротуар</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">Кінець дороги</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape використовує інноваційні аудіотехнології, щоб надати людям можливість краще розуміти своє оточення для впевненого та комфортного пересування.</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">змінити мову, яка використовується для програми</string>
 </resources>
