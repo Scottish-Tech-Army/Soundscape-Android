@@ -67,22 +67,22 @@ val helpPages = listOf(
         R.string.beacon_audio_beacon,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_what, SectionType.Paragraph),
+            Section(R.string.help_text_destination_beacons_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_when, SectionType.Paragraph),
+            Section(R.string.help_text_destination_beacons_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_how_1, SectionType.Paragraph),
-            Section(R.string.help_text_destination_beacons_how_2, SectionType.Paragraph),
-            Section(R.string.help_text_destination_beacons_how_3, SectionType.Paragraph)
+            Section(R.string.help_text_destination_beacons_how_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_destination_beacons_how_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_destination_beacons_how_3, SectionType.Paragraph, markdown = true)
         )
     ),
 
     Sections(
         R.string.voice_voices,
         listOf(
-            Section(R.string.help_config_voices_content, SectionType.Paragraph),
+            Section(R.string.help_config_voices_content, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -90,13 +90,13 @@ val helpPages = listOf(
         R.string.help_remote_page_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_remote_control_what, SectionType.Paragraph),
+            Section(R.string.help_text_remote_control_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_remote_control_when, SectionType.Paragraph),
+            Section(R.string.help_text_remote_control_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_remote_control_how, SectionType.Paragraph),
+            Section(R.string.help_text_remote_control_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -104,13 +104,13 @@ val helpPages = listOf(
         R.string.help_explore_page_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_what, SectionType.Paragraph),
+            Section(R.string.help_text_ahead_of_me_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_when, SectionType.Paragraph),
+            Section(R.string.help_text_ahead_of_me_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_how, SectionType.Paragraph),
+            Section(R.string.help_text_ahead_of_me_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -118,13 +118,13 @@ val helpPages = listOf(
         R.string.help_orient_page_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_around_me_what, SectionType.Paragraph),
+            Section(R.string.help_text_around_me_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_around_me_when, SectionType.Paragraph),
+            Section(R.string.help_text_around_me_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_around_me_how, SectionType.Paragraph),
+            Section(R.string.help_text_around_me_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -132,16 +132,16 @@ val helpPages = listOf(
         R.string.callouts_automatic_callouts,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_what, SectionType.Paragraph),
+            Section(R.string.help_text_automatic_callouts_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_when_1, SectionType.Paragraph),
-            Section(R.string.help_text_automatic_callouts_when_2, SectionType.Paragraph),
-            Section(R.string.help_text_automatic_callouts_when_3, SectionType.Paragraph),
+            Section(R.string.help_text_automatic_callouts_when_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_automatic_callouts_when_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_automatic_callouts_when_3, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_how_1, SectionType.Paragraph),
-            Section(R.string.help_text_automatic_callouts_how_2, SectionType.Paragraph),
+            Section(R.string.help_text_automatic_callouts_how_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_automatic_callouts_how_2, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -149,13 +149,13 @@ val helpPages = listOf(
         R.string.directions_my_location,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_my_location_what, SectionType.Paragraph),
+            Section(R.string.help_text_my_location_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_my_location_when, SectionType.Paragraph),
+            Section(R.string.help_text_my_location_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_my_location_how, SectionType.Paragraph),
+            Section(R.string.help_text_my_location_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -163,15 +163,15 @@ val helpPages = listOf(
         R.string.routes_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_routes_content_what, SectionType.Paragraph),
+            Section(R.string.help_text_routes_content_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_routes_content_when, SectionType.Paragraph),
+            Section(R.string.help_text_routes_content_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_routes_content_how_1, SectionType.Paragraph),
-            Section(R.string.help_text_routes_content_how_2, SectionType.Paragraph),
-            Section(R.string.help_text_routes_content_how_3, SectionType.Paragraph),
+            Section(R.string.help_text_routes_content_how_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_routes_content_how_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_routes_content_how_3, SectionType.Paragraph, markdown = true),
         )
     ),
 
@@ -179,51 +179,51 @@ val helpPages = listOf(
         R.string.callouts_nearby_markers,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_what, SectionType.Paragraph),
+            Section(R.string.help_text_nearby_markers_what, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_when, SectionType.Paragraph),
+            Section(R.string.help_text_nearby_markers_when, SectionType.Paragraph, markdown = true),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_how, SectionType.Paragraph),
+            Section(R.string.help_text_nearby_markers_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
         R.string.markers_title,
         listOf(
-            Section(R.string.help_text_markers_content_1, SectionType.Paragraph),
-            Section(R.string.help_text_markers_content_2, SectionType.Paragraph),
-            Section(R.string.help_text_markers_content_3, SectionType.Paragraph),
+            Section(R.string.help_text_markers_content_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_markers_content_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_markers_content_3, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
         R.string.help_creating_markers_page_title,
         listOf(
-            Section(R.string.help_text_creating_markers_content_1, SectionType.Paragraph),
-            Section(R.string.help_text_creating_markers_content_2, SectionType.Paragraph),
+            Section(R.string.help_text_creating_markers_content_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_creating_markers_content_2, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
         R.string.help_edit_markers_page_title,
         listOf(
-            Section(R.string.help_text_customizing_markers_content_1, SectionType.Paragraph),
-            Section(R.string.help_text_customizing_markers_content_2, SectionType.Paragraph),
+            Section(R.string.help_text_customizing_markers_content_1, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_customizing_markers_content_2, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
         R.string.faq_tips_title,
         listOf(
-            Section(R.string.faq_tip_finding_bus_stops, SectionType.Paragraph),
-            Section(R.string.faq_tip_setting_beacon_on_address, SectionType.Paragraph),
-            Section(R.string.faq_tip_create_marker_at_bus_stop, SectionType.Paragraph),
-            Section(R.string.faq_tip_beacon_quiet, SectionType.Paragraph),
-            Section(R.string.faq_tip_hold_phone_flat, SectionType.Paragraph),
-            Section(R.string.faq_tip_turning_beacon_off, SectionType.Paragraph),
-            Section(R.string.faq_tip_turning_off_auto_callouts, SectionType.Paragraph),
+            Section(R.string.faq_tip_finding_bus_stops, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_setting_beacon_on_address, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_create_marker_at_bus_stop, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_beacon_quiet, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_hold_phone_flat, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_turning_beacon_off, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_turning_off_auto_callouts, SectionType.Paragraph, markdown = true),
             //Section(R.string.faq_tip_two_finger_double_tap, SectionType.Paragraph), Currently unsupported on Android
         )
     ),
@@ -232,11 +232,11 @@ val helpPages = listOf(
         R.string.help_offline_page_title,
         listOf(
             Section(R.string.help_offline_page_title, SectionType.Title),
-            Section(R.string.help_offline_description, SectionType.Paragraph),
+            Section(R.string.help_offline_description, SectionType.Paragraph, markdown = true),
             Section(R.string.help_offline_limitations_heading, SectionType.Title),
-            Section(R.string.help_offline_limitations_description, SectionType.Paragraph),
+            Section(R.string.help_offline_limitations_description, SectionType.Paragraph, markdown = true),
             Section(R.string.help_offline_troubleshooting_heading, SectionType.Title),
-            Section(R.string.help_offline_troubleshooting_description, SectionType.Paragraph),
+            Section(R.string.help_offline_troubleshooting_description, SectionType.Paragraph, markdown = true),
         )
     ),
 
