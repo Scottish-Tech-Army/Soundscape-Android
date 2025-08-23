@@ -97,6 +97,7 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         val list = LocaleListCompat.forLanguageTags("${selectedLanguage.code}-${selectedLanguage.region}")
         AppCompatDelegate.setApplicationLocales(list)
 
+        // If we want to restart the service
         return audioEngine.setSpeechLanguage(selectedLanguage.code)
     }
 }
