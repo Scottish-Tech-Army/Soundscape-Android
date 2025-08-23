@@ -17,5 +17,15 @@ Headphone media controls can be used while Soundscape is running. This is true w
 
 ## How does it work?
 
-You can access the following features in Soundscape using your the media control buttons on your headphones:<br/>⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio. <br/>⏭ Next: Callout <em>"My Location"</em>.<br/>⏮ Previous: Repeat last callout.<br/>⏩ Skip Forward: Toggle callouts On and Off.<br/>⏪ Skip Backward: Callout <em>"Around Me"</em>.
+You can access the following features in Soundscape using your the media control buttons on your headphones:
+
+⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio. 
+
+⏭ Next: Callout *"My Location"*.
+
+⏮ Previous: Repeat last callout.
+
+⏩ Skip Forward: Toggle callouts On and Off.
+
+⏪ Skip Backward: Callout *"Around Me"*.
 

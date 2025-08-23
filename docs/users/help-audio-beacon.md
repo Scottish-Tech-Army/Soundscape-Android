@@ -17,9 +17,15 @@ Setting a beacon is useful when you want to keep track of a familiar landmark as
 
 ## How does it work?
 
-<b>To set a beacon</b>:<br/> First, view the details for a location by either using the search bar to search for a place, or tapping one of the "Places Nearby", "Saved Markers", or "Current Location" buttons and selecting a location. From the location details screen you can select the "Start Audio Beacon" button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
+**To set a beacon :**
 
-<b>To remove the current beacon</b>:<br/> Simply press the "Stop Beacon" button on the home screen.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *"Places Nearby"*, *"Saved Markers"*, or *"Current Location"* buttons and selecting a location. From the location details screen you can select the *"Start Audio Beacon"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-<b>To mute the audible beacon</b>:<br/> Tap the "Mute Beacon" button next to the "Stop Beacon" button on the home screen.
+**To remove the current beacon :**
+
+ Simply press the *"Stop Beacon"* button on the home screen.
+
+**To mute the audible beacon :**
+
+ Tap the *"Mute Beacon"* button next to the *"Stop Beacon"* button on the home screen.
 

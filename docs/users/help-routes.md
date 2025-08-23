@@ -17,9 +17,15 @@ You may want to create and use a route somewhere you know to make sure you keep 
 
 ## How does it work?
 
-<b>Creating a route</b>:<br/> First, go to "Markers & Routes", select the "Routes" tab, and then select the "New Route" button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
+**Creating a route :**
 
-<b>Editing a route</b>:<br/> Select your route on the "Markers & Routes" page and then select "Edit Route". From here you can add and remove waypoints, as well as editing the name and description of the route.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-<b>Sharing a route</b>:<br/> Select your route on the "Markers & Routes" page and then select the option to "Share" using all of the usual share options available to you.
+**Editing a route :**
+
+ Select your route on the *"Markers and Routes"* page and then select *"Edit Route"*. From here you can add and remove waypoints, as well as editing the name and description of the route.
+
+**Sharing a route :**
+
+ Select your route on the *"Markers and Routes"* page and then select the option to *"Share"* using all of the usual share options available to you.
 
