@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.home
 
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -136,7 +137,7 @@ fun HomeScreen(
             val uiState = settingsViewModel.state.collectAsStateWithLifecycle()
             val languageViewModel: LanguageViewModel = hiltViewModel()
             val languageUiState = languageViewModel.state.collectAsStateWithLifecycle()
-            val localContext = LocalContext.current as MainActivity
+            val localActivity = LocalActivity.current as MainActivity
             Settings(
                 onNavigateUp = { navController.navigateUp() },
                 uiState = uiState.value,
@@ -144,7 +145,7 @@ fun HomeScreen(
                 supportedLanguages = languageUiState.value.supportedLanguages,
                 onLanguageSelected = { selectedLanguage ->
                     languageViewModel.updateLanguage(selectedLanguage)
-                    settingsViewModel.updateLanguage(localContext)
+                    settingsViewModel.updateLanguage(localActivity)
                  },
                 selectedLanguageIndex = languageUiState.value.selectedLanguageIndex
             )
