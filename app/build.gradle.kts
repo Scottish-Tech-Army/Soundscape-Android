@@ -48,6 +48,28 @@ android {
         versionCode = 107
         versionName = "0.0.106"
 
+        // Maintaining this list means that we can exclude translations that aren't complete yet
+        resourceConfigurations.addAll(listOf(
+            "da",
+            "de",
+            "el",
+            "en",
+            "en-rGB",
+            "es",
+            "fi",
+            "fr",
+            "fr-rCA",
+            "it",
+            "ja",
+            "nb",
+            "nl",
+            "pt",
+            "pt-rBR",
+            //"ru", in progress
+            "sv",
+            "uk"
+        ))
+
         // Retrieve the tile provider URL and API key from local.properties. This is not under
         // version control and must be configured by each developer locally. GitHub actions fill in
         // local.properties from a secret.
