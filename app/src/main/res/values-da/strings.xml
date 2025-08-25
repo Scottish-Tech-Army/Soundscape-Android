@@ -61,7 +61,7 @@
     <string name="route_update_success_title">"Opdatering fuldført!"</string>
     <string name="waypoint_title">"Vejpunkt"</string>
     <string name="universal_links_alert_action_marker">"Gem som mærke"</string>
-    <string name="universal_links_marker_share_message">Jeg har delt et Soundscape-mærke med dig! \"%s\"</string>
+    <string name="universal_links_marker_share_message">Jeg har delt et Soundscape-mærke med dig! *\"%s\"*</string>
     <string name="user_activity_save_marker_title">"Gem mærke"</string>
     <string name="routes_title">"Ruter"</string>
     <string name="routes_action_deleted">"Rute er slettet"</string>
@@ -77,7 +77,7 @@
     <string name="markers_sort_button_sort_by_distance">"Afstand"</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">"Sorteret efter afstand"</string>
     <string name="markers_no_markers_title">"Introduktion til mærker"</string>
-    <string name="markers_no_markers_hint_1">Opret mærker til dine foretrukne destinationer, vejpunkter på en rute eller de steder, du vil have udtalt. Du skal blot vælge en placering eller din aktuelle placering på startskærmen og vælge \"Gem som Mærke\".</string>
+    <string name="markers_no_markers_hint_1">Opret mærker til dine foretrukne destinationer, vejpunkter på en rute eller de steder, du vil have udtalt. Du skal blot vælge en placering eller din aktuelle placering på startskærmen og vælge *\"Gem som Mærke\"*.</string>
     <string name="markers_no_markers_hint_2">"Prøv at markere dit hjem, indgangen til dit arbejde eller dit yndlingssted i parken."</string>
     <string name="markers_edit_screen_title_edit">"Rediger mærke"</string>
     <string name="markers_generic_name">"Markør"</string>
@@ -190,7 +190,7 @@
     <string name="help_configuration_section_title">"Konfiguration af Soundscape"</string>
     <string name="settings_help_section_beacons_and_pois">"Lydfyr og lydbeskeder"</string>
     <string name="settings_help_section_home_screen_buttons">"Knapper på startskærmen"</string>
-    <string name="help_config_voices_content">Soundscape kan bruge alle de stemmer, du har downloadet i appen iOS-indstillinger, bortset fra Siri-stemmerne, som ikke er tilgængelige til Soundscape. Vi anbefaler, at du vælger en af stemmerne \"Forbedret\", da de har en meget højere stemmekvalitet, men for at gøre det skal du først hente en forbedret stemme. Du kan downloade stemmer i appen iOS-indstillinger ved at gå til Tilgængelighed &gt; Oplæst indhold &gt; Stemmer og trykke på en stemme. I Soundscape-appen kan du vælge den stemme, du vil bruge, ved at gå til Indstillinger i hovedmenuen og derefter vælge \"Stemme\".</string>
+    <string name="help_config_voices_content">Soundscape kan bruge alle de stemmer, du har downloadet i appen iOS-indstillinger, bortset fra Siri-stemmerne, som ikke er tilgængelige til Soundscape. Vi anbefaler, at du vælger en af stemmerne \"Forbedret\", da de har en meget højere stemmekvalitet, men for at gøre det skal du først hente en forbedret stemme. Du kan downloade stemmer i appen iOS-indstillinger ved at gå til Tilgængelighed &gt; Oplæst indhold &gt; Stemmer og trykke på en stemme. I Soundscape-appen kan du vælge den stemme, du vil bruge, ved at gå til Indstillinger i hovedmenuen og derefter vælge *\"Stemme\"*.</string>
     <string name="help_offline_page_title">"Hvorfor arbejder Soundscape offline?"</string>
     <string name="help_offline_description">"Når der ikke er nogen internetforbindelse eller et udfald i Soundscape-tjenesterne, skifter Soundscape til en offlinetilstand. Ikke desto mindre vil Soundscape fortsætte med at fungere, men nogle funktioner kan være begrænsede."</string>
     <string name="help_offline_limitations_heading">"Begrænsninger"</string>
@@ -206,10 +206,10 @@
     <string name="help_text_section_title_when">"Hvornår ville jeg bruge det?"</string>
     <string name="help_text_section_title_how">"Hvordan virker det?"</string>
     <string name="terms_of_use_title">"Vilkår for anvendelse"</string>
-    <string name="terms_of_use_message">Din brug af Soundscape er underlagt vilkårene i %s og vilkårene nedenfor (tilsammen \"Vilkår for anvendelse\").</string>
+    <string name="terms_of_use_message">Din brug af Soundscape er underlagt vilkårene i %s og vilkårene nedenfor (tilsammen *\"Vilkår for anvendelse\"*).</string>
     <string name="terms_of_use_service_agreement">"Scottish Tech Army-serviceaftale"</string>
     <string name="terms_of_use_accept_checkbox_acc_label">"Acceptér vilkår for anvendelse"</string>
-    <string name="terms_of_use_medical_safety_disclaimer">Du anerkender, at Soundscape (1) ikke er designet, beregnet eller stillet til rådighed som medicinsk udstyr, og (2) ikke er designet eller beregnet til at erstatte professionel medicinsk rådgivning, diagnose, behandling eller vurdering og ikke bør bruges til at erstatte eller som erstatning for professionel medicinsk rådgivning, diagnose, behandling eller vurdering.\n\nSikkerhedsmeddelelse\nSoundscape er et navigationshjælpemiddel og bør ikke bruges i stedet for mobilitetsfærdigheder, at være opmærksom på dine omgivelser og god dømmekraft. Vær forsigtig, når du navigerer i dit miljø, da de kortlægningsdata, der er indarbejdet i Soundscape-programmet, stammer fra et tredjepartsprogram, og derfor kan der være begrænsninger med nøjagtigheden af de viste oplysninger.</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Du anerkender, at Soundscape (1) ikke er designet, beregnet eller stillet til rådighed som medicinsk udstyr, og (2) ikke er designet eller beregnet til at erstatte professionel medicinsk rådgivning, diagnose, behandling eller vurdering og ikke bør bruges til at erstatte eller som erstatning for professionel medicinsk rådgivning, diagnose, behandling eller vurdering.\n\nSikkerhedsmeddelelse\n\nSoundscape er et navigationshjælpemiddel og bør ikke bruges i stedet for mobilitetsfærdigheder, at være opmærksom på dine omgivelser og god dømmekraft. Vær forsigtig, når du navigerer i dit miljø, da de kortlægningsdata, der er indarbejdet i Soundscape-programmet, stammer fra et tredjepartsprogram, og derfor kan der være begrænsninger med nøjagtigheden af de viste oplysninger.</string>
     <string name="first_launch_soundscape_language">"Sproget i Soundscape"</string>
     <string name="first_launch_soundscape_language_text">"Vælg det sprog, Soundscape skal bruge. Du kan altid ændre dit valg i appindstillingerne."</string>
     <string name="first_launch_welcome_title">"Velkommen!"</string>
@@ -411,4 +411,27 @@
     <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s togstation</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annuller søgning</string>
     <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Sporvogns stop</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Nord</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Nordøst</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Øst</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">Sydøst</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">Syd</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Sydvest</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Vest</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Nordvest</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">NØ</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">Ø</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SØ</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SV</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">V</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NV</string>
+    <string name="first_launch_change_language" tools:ignore="MissingTranslation">Ændre Sprog</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">at ændre det sprog, der bruges til appen</string>
+    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Metrostation</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s metrostation</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Færgeterminal</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s færge_terminal</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Administrer lyd</string>
 </resources>
