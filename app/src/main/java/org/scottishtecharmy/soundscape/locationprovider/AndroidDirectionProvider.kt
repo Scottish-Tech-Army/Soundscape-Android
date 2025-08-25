@@ -19,7 +19,8 @@ class AndroidDirectionProvider(context : Context) :
     private var lastUpdateValue = 0.0
 
     override fun destroy() {
-        fusedOrientationProviderClient.removeOrientationUpdates(listener)
+        if(::listener.isInitialized)
+            fusedOrientationProviderClient.removeOrientationUpdates(listener)
     }
 
     @SuppressLint("MissingPermission")
