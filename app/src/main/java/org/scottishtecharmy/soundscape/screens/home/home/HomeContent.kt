@@ -17,12 +17,16 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material.icons.filled.Stop
+import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -69,6 +73,8 @@ fun HomeContent(
     streetPreviewFunctions: StreetPreviewFunctions,
     routeFunctions: RouteFunctions,
     goToAppSettings: (Context) -> Unit,
+    fullscreenMap: MutableState<Boolean>,
+    serviceRunning: Boolean
 ) {
     val context = LocalContext.current
 
@@ -230,6 +236,16 @@ fun HomeContent(
                                             stringResource(R.string.beacon_action_mute_beacon),
                                     )
                                 }
+                                Button(
+                                    onClick = { fullscreenMap.value = !fullscreenMap.value },
+                                    colors = currentAppButtonColors
+                                )
+                                {
+                                    Icon(
+                                        imageVector = Icons.Rounded.Fullscreen,
+                                        contentDescription = stringResource(R.string.location_detail_full_screen_hint)
+                                    )
+                                }
                             }
                         }
                     }
@@ -249,27 +265,29 @@ fun HomeContent(
                     )
                 }
             } else {
-                Column {
-                    Text(
-                        stringResource(R.string.permissions_required),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .mediumPadding()
-                    )
-                    NavigationButton(
-                        onClick = {
-                            goToAppSettings(context)
-                        },
-                        text = stringResource(R.string.permissions_button),
-                        horizontalPadding = spacing.small,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .mediumPadding()
-                    )
+                if(!serviceRunning) {
+                    Column {
+                        Text(
+                            stringResource(R.string.permissions_required),
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .mediumPadding()
+                        )
+                        NavigationButton(
+                            onClick = {
+                                goToAppSettings(context)
+                            },
+                            text = stringResource(R.string.permissions_button),
+                            horizontalPadding = spacing.small,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .mediumPadding()
+                        )
+                    }
                 }
             }
         }
@@ -291,7 +309,9 @@ fun StreetPreviewHomeContent() {
         streetPreviewFunctions = StreetPreviewFunctions(null),
         routeFunctions = RouteFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
-        goToAppSettings = {}
+        goToAppSettings = {},
+        fullscreenMap = remember { mutableStateOf(false) },
+        serviceRunning = true
     )
 }
 
@@ -334,6 +354,8 @@ fun PreviewHomeContent() {
         streetPreviewFunctions = StreetPreviewFunctions(null),
         routeFunctions = RouteFunctions(null),
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
-        goToAppSettings = {}
+        goToAppSettings = {},
+        fullscreenMap = remember { mutableStateOf(false) },
+        serviceRunning = true
     )
 }

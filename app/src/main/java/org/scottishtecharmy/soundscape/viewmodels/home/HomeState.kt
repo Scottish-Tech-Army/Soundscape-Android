@@ -15,5 +15,6 @@ data class HomeState(
     var isSearching: Boolean = false,
     var searchItems: List<LocationDescription>? = null,
     var routesTabSelected: Boolean = true,
-    var currentRouteData: RoutePlayerState = RoutePlayerState()
+    var currentRouteData: RoutePlayerState = RoutePlayerState(),
+    var serviceRunning: Boolean = false,
 )
