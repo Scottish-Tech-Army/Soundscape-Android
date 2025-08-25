@@ -133,6 +133,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun startServiceIfAllowed() {
+        when (ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )) {
+            android.content.pm.PackageManager.PERMISSION_GRANTED -> {
+                if (!soundscapeServiceConnection.serviceBoundState.value) {
+                    startSoundscapeService()
+                    soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume")
+        startServiceIfAllowed()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
@@ -203,9 +223,6 @@ class MainActivity : AppCompatActivity() {
             // No need to carry on with the rest of the initialization as we are switching activities
             return
         }
-
-        checkAndRequestNotificationPermissions()
-        soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 
         lifecycleScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
@@ -370,8 +387,7 @@ class MainActivity : AppCompatActivity() {
             soundscapeServiceConnection.stopService()
         }
         else {
-            startSoundscapeService()
-            soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
+            startServiceIfAllowed()
         }
     }
 

@@ -151,7 +151,8 @@ class DocumentationScreens {
                 rateSoundscape = { },
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                goToAppSettings = {}
             )
         }
     }
@@ -192,7 +193,8 @@ class DocumentationScreens {
                 rateSoundscape = { },
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                goToAppSettings = {}
             )
         }
     }

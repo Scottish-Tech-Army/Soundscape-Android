@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,9 +24,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.R
@@ -63,8 +67,11 @@ fun HomeContent(
     modifier: Modifier = Modifier,
     streetPreviewState: StreetPreviewState,
     streetPreviewFunctions: StreetPreviewFunctions,
-    routeFunctions: RouteFunctions
+    routeFunctions: RouteFunctions,
+    goToAppSettings: (Context) -> Unit,
 ) {
+    val context = LocalContext.current
+
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
         modifier = modifier
@@ -241,6 +248,29 @@ fun HomeContent(
                             .mediumPadding()
                     )
                 }
+            } else {
+                Column {
+                    Text(
+                        stringResource(R.string.permissions_required),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .mediumPadding()
+                    )
+                    NavigationButton(
+                        onClick = {
+                            goToAppSettings(context)
+                        },
+                        text = stringResource(R.string.permissions_button),
+                        horizontalPadding = spacing.small,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .mediumPadding()
+                    )
+                }
             }
         }
     }
@@ -260,7 +290,8 @@ fun StreetPreviewHomeContent() {
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
         streetPreviewFunctions = StreetPreviewFunctions(null),
         routeFunctions = RouteFunctions(null),
-        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
+        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
+        goToAppSettings = {}
     )
 }
 
@@ -302,6 +333,7 @@ fun PreviewHomeContent() {
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewFunctions = StreetPreviewFunctions(null),
         routeFunctions = RouteFunctions(null),
-        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) }
+        getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
+        goToAppSettings = {}
     )
 }

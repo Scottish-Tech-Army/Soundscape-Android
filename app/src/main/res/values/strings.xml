@@ -513,6 +513,9 @@
 <string name="first_launch_permissions_motion">"Motion and Fitness"</string>
 <!-- Text to indicate that a permission is required -->
 <string name="first_launch_permissions_required">"This permission is required"</string>
+<!-- Text to indicate that a permission is required -->
+<string name="permissions_required" tools:ignore="MissingTranslation">"The app requires location permissions to be able to run."</string>
+<string name="permissions_button" tools:ignore="MissingTranslation">"Change the permissions in app settings"</string>
 <!-- Title text for screen to choose an audio beacon -->
 <string name="first_launch_beacon_title">"Choose an Audio Beacon"</string>
 <!-- Message text that explains what an audio beacon is -->
