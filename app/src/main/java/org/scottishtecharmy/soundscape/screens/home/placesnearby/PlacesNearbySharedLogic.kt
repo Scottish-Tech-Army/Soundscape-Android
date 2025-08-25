@@ -36,16 +36,17 @@ class PlacesNearbySharedLogic(
             }
         }
     }
-    private var monitorJob = Job()
+    private var monitorJob: Job? = null
     private fun stopMonitoringFlows() {
-        monitorJob.cancel()
+        monitorJob?.cancel()
+        monitorJob = null
     }
 
     data class LocationAndGridState(val location: LngLatAlt?, val gridState: GridState?)
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringFlows() {
         monitorJob = Job()
-        viewModelScope.launch(monitorJob) {
+        viewModelScope.launch(monitorJob!!) {
 
             val gridFlow = soundscapeServiceConnection.getGridStateFlow()!!
             val locationFlow = soundscapeServiceConnection.getLocationFlow()!!
