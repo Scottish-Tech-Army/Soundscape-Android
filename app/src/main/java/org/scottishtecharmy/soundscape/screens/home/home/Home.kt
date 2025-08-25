@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -75,6 +76,7 @@ fun Home(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
+    goToAppSettings: (Context) -> Unit
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
@@ -159,7 +161,8 @@ fun Home(
                     onMapLongClick = onMapLongClick,
                     streetPreviewState = state.streetPreviewState,
                     routeFunctions = routeFunctions,
-                    streetPreviewFunctions = streetPreviewFunctions
+                    streetPreviewFunctions = streetPreviewFunctions,
+                    goToAppSettings = goToAppSettings
                 )
             }
         }
@@ -236,6 +239,7 @@ fun HomePreview() {
             onToggleSearch = {},
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
+            goToAppSettings = {}
         )
     }
 }
@@ -263,6 +267,7 @@ fun HomeSearchPreview() {
             onToggleSearch = {},
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
+            goToAppSettings = {}
         )
     }
 }
@@ -304,6 +309,7 @@ fun HomeRoutePreview() {
             onToggleSearch = {},
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
+            goToAppSettings = {}
         )
     }
 }

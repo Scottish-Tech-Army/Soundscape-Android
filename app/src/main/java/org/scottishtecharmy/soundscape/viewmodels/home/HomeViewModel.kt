@@ -1,5 +1,9 @@
 package org.scottishtecharmy.soundscape.viewmodels.home
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -33,8 +37,8 @@ class HomeViewModel
     private val _searchText: MutableStateFlow<String> = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchText.asStateFlow()
 
-    private var job = Job()
-    private var spJob = Job()
+    private var job : Job? = null
+    private var spJob : Job? = null
 
     init {
         handleMonitoring()
@@ -74,7 +78,7 @@ class HomeViewModel
     private fun startMonitoringLocation() {
         Log.d(TAG, "ViewModel startMonitoringLocation")
         job = Job()
-        viewModelScope.launch(job) {
+        viewModelScope.launch(job!!) {
             // Observe location updates from the service
             soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
                 if (value != null) {
@@ -83,7 +87,7 @@ class HomeViewModel
                 }
             }
         }
-        viewModelScope.launch(job) {
+        viewModelScope.launch(job!!) {
             // Observe orientation updates from the service
             soundscapeServiceConnection.getOrientationFlow()?.collectLatest { value ->
                 if (value != null) {
@@ -91,7 +95,7 @@ class HomeViewModel
                 }
             }
         }
-        viewModelScope.launch(job) {
+        viewModelScope.launch(job!!) {
             // Observe beacon location update from the service so we can show it on the map
             soundscapeServiceConnection.getBeaconFlow()?.collectLatest { value ->
                 Log.d(TAG, "beacon collected $value")
@@ -102,7 +106,7 @@ class HomeViewModel
                 }
             }
         }
-        viewModelScope.launch(job) {
+        viewModelScope.launch(job!!) {
             // Observe current route from the service so we can show it on the map
             soundscapeServiceConnection.getCurrentRouteFlow()?.collectLatest { value ->
                 _state.update { it.copy(currentRouteData = value) }
@@ -112,7 +116,7 @@ class HomeViewModel
 
     private fun stopMonitoringLocation() {
         Log.d(TAG, "stopMonitoringLocation")
-        job.cancel()
+        job?.cancel()
     }
 
     /**
@@ -123,7 +127,7 @@ class HomeViewModel
     private fun startMonitoringStreetPreviewState() {
         Log.d(TAG, "startMonitoringStreetPreviewState")
         spJob = Job()
-        viewModelScope.launch(spJob) {
+        viewModelScope.launch(spJob!!) {
             // Observe street preview mode from the service so we can update state
             soundscapeServiceConnection.getStreetPreviewModeFlow()?.collect { value ->
                 Log.d(TAG, "Street Preview Mode: $value")
@@ -141,7 +145,7 @@ class HomeViewModel
 
     private fun stopMonitoringStreetPreviewState() {
         Log.d(TAG, "stopMonitoringStreetPreviewState")
-        spJob.cancel()
+        spJob?.cancel()
     }
 
 //
@@ -264,6 +268,13 @@ class HomeViewModel
 
     fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
         _state.update { it.copy(routesTabSelected = pickRoutes) }
+    }
+
+    fun goToAppSettings(context: Context) {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri = Uri.fromParts("package", "org.scottishtecharmy.soundscape", null)
+        intent.data = uri
+        context.startActivity(intent)
     }
 
 companion object {

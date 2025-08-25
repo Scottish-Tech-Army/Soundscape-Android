@@ -31,6 +31,7 @@ class SettingsViewModel @Inject constructor(
     private val _state: MutableStateFlow<SettingsUiState> = MutableStateFlow(SettingsUiState())
     val state: StateFlow<SettingsUiState> = _state.asStateFlow()
     private val coroutineScope = CoroutineScope(Job())
+    private var serviceBoundJob: Job? = null
 
     init {
         viewModelScope.launch {
@@ -38,10 +39,10 @@ class SettingsViewModel @Inject constructor(
             // demonstrate settings changes.
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
-                val job = Job()
                 if (it) {
                     val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine!!
-                    viewModelScope.launch(job) {
+                    serviceBoundJob = Job()
+                    viewModelScope.launch(serviceBoundJob!!) {
                         audioEngine.ttsRunningStateChange.collectLatest { initialized ->
                             if (initialized) {
                                 // Only once the TextToSpeech engine is initialized can we populate the
@@ -95,7 +96,7 @@ class SettingsViewModel @Inject constructor(
                 }
                 else
                 {
-                    job.cancel()
+                    serviceBoundJob?.cancel()
                 }
             }
         }
