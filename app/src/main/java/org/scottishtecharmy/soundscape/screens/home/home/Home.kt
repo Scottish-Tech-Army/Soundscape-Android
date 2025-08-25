@@ -83,6 +83,7 @@ fun Home(
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val fullscreenMap = remember { mutableStateOf(false) }
     val keyboardOpen = keyboardAsState()
+    val routePlaying = (state.currentRouteData.routeData != null)
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -116,7 +117,7 @@ fun Home(
                     HomeBottomAppBar(bottomButtonFunctions)
             },
             floatingActionButton = {
-                if(!keyboardOpen.value)
+                if((!keyboardOpen.value) && (fullscreenMap.value || !routePlaying))
                     FullScreenMapFab(fullscreenMap)
             },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -162,7 +163,9 @@ fun Home(
                     streetPreviewState = state.streetPreviewState,
                     routeFunctions = routeFunctions,
                     streetPreviewFunctions = streetPreviewFunctions,
-                    goToAppSettings = goToAppSettings
+                    goToAppSettings = goToAppSettings,
+                    fullscreenMap = fullscreenMap,
+                    serviceRunning = state.serviceRunning
                 )
             }
         }

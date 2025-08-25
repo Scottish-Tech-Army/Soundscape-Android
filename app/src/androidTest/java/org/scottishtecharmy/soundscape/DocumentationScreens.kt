@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.navigation.NavController
@@ -152,7 +154,7 @@ class DocumentationScreens {
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-                goToAppSettings = {}
+                goToAppSettings = { }
             )
         }
     }
@@ -194,7 +196,7 @@ class DocumentationScreens {
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-                goToAppSettings = {}
+                goToAppSettings = { }
             )
         }
     }
