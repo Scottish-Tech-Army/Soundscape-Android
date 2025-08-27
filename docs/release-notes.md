@@ -7,7 +7,7 @@ has_toc: false
 
 # Release notes
 
-# 0.0.106
+# 0.0.110
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
 Issues tagged _user-facing_ are those which describe issues from a user perspective. 
 
@@ -22,10 +22,14 @@ Issues tagged _user-facing_ are those which describe issues from a user perspect
   * Fixed memory leak when entering Sleep mode
   * Fix for OnePlus Pro8 startup crash
   * Fix for Honor X8c crash relating to text to speech engine
+  * A fix for a locking issue in audio beacon destruction
 * Improved Media Control buttons behaviour when there's only 1 audio beacon in a route. Instead of trying to skip/preview they fallback to their other behaviour e.g. "My location"
 * Audio focus is now maintained when switching between audio beacons in a route
 * Initial Ukrainian language support has been added
-* Settings now includes the ability to select the TTS engine to use as well as the voice from within that engine. Audio engine support is also much more robust.  
+* Settings now includes the ability to select the TTS engine to use as well as the voice from within that engine. Audio engine support is also much more robust.
+* Locales from all voices are listed for TTS engines and not just those from the chosen locale
+* New option in Settings to disable graphical maps from screen
+* Improved behaviour when permissions haven't been allowed - no crashing and the user is prompted to change the permissions with a link to the app settings
 
 ### Longer term known issues
 The largest issues which are being worked on are:
