@@ -294,6 +294,17 @@ fun Settings(
                 summary = { Text(text = themeContrastDescriptions[themeContrastValues.indexOf(it)], color = textColor) },
             )
 
+            switchPreference(
+                key = MainActivity.SHOW_MAP_KEY,
+                defaultValue = MainActivity.SHOW_MAP_DEFAULT,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_show_map),
+                        color = textColor
+                    )
+                },
+            )
+
 //          Disabling hints just results in the Android default "Double tap to Activate" being read
 //          out instead. Our hints are better, so don't allow disabling them.
 //            switchPreference(

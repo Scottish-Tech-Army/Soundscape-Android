@@ -21,9 +21,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.preference.PreferenceManager
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -49,6 +53,10 @@ fun SaveAndEditMarkerDialog(
     modifier: Modifier = Modifier,
     dialogState: MutableState<Boolean>
 ) {
+    val context = LocalContext.current
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
+
     var name by rememberSaveable { mutableStateOf(locationDescription.name) }
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val objectId = locationDescription.databaseId
@@ -99,7 +107,7 @@ fun SaveAndEditMarkerDialog(
             }
         },
         floatingActionButton = {
-            FullScreenMapFab(fullscreenMap)
+            if(showMap) FullScreenMapFab(fullscreenMap)
         },
         content = { padding ->
             if(fullscreenMap.value) {
@@ -113,7 +121,8 @@ fun SaveAndEditMarkerDialog(
                     routeData = null,
                     onMapLongClick = { false },
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxSize(),
+                    showMap = showMap
                 )
             } else {
                 Column(
@@ -165,7 +174,8 @@ fun SaveAndEditMarkerDialog(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1.0f)
-                            .smallPadding()
+                            .smallPadding(),
+                        showMap = showMap
                     )
                 }
             }

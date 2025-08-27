@@ -34,10 +34,13 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -79,6 +82,8 @@ fun Home(
     goToAppSettings: (Context) -> Unit
 ) {
     val context = LocalContext.current
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val fullscreenMap = remember { mutableStateOf(false) }
@@ -117,7 +122,7 @@ fun Home(
                     HomeBottomAppBar(bottomButtonFunctions)
             },
             floatingActionButton = {
-                if((!keyboardOpen.value) && (fullscreenMap.value || !routePlaying))
+                if((!keyboardOpen.value) && showMap && (fullscreenMap.value || !routePlaying))
                     FullScreenMapFab(fullscreenMap)
             },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -132,7 +137,8 @@ fun Home(
                         userLocation = location,
                         userSymbolRotation = state.heading,
                         onMapLongClick = onMapLongClick,
-                        modifier = modifier.fillMaxSize()
+                        modifier = modifier.fillMaxSize(),
+                        showMap = showMap
                     )
                 }
             } else {
@@ -165,7 +171,8 @@ fun Home(
                     streetPreviewFunctions = streetPreviewFunctions,
                     goToAppSettings = goToAppSettings,
                     fullscreenMap = fullscreenMap,
-                    serviceRunning = state.serviceRunning
+                    serviceRunning = state.serviceRunning,
+                    showMap = showMap
                 )
             }
         }

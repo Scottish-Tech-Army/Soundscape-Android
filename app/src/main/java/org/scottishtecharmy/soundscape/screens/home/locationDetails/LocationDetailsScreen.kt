@@ -34,7 +34,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.preference.PreferenceManager
 import com.google.gson.GsonBuilder
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -120,6 +123,8 @@ fun LocationDetails(
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
 
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(LocalContext.current)
+    val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
     val dialogState = remember { mutableStateOf(false) }
     val fullscreenMap = remember { mutableStateOf(false) }
     val description = remember { mutableStateOf(locationDescription) }
@@ -169,7 +174,8 @@ fun LocationDetails(
                         userLocation = location ?: LngLatAlt(),
                         userSymbolRotation = heading,
                         routeData = null,
-                        modifier = modifier.fillMaxSize()
+                        modifier = modifier.fillMaxSize(),
+                        showMap = showMap
                     )
                 } else {
                     Column(
@@ -219,13 +225,14 @@ fun LocationDetails(
                             userLocation = location ?: LngLatAlt(),
                             userSymbolRotation = heading,
                             routeData = null,
-                            modifier = modifier.fillMaxWidth().aspectRatio(1.0f)
+                            modifier = modifier.fillMaxWidth().aspectRatio(1.0f),
+                            showMap = showMap
                         )
                     }
                 }
             },
             floatingActionButton = {
-                FullScreenMapFab(fullscreenMap)
+                if(showMap) FullScreenMapFab(fullscreenMap)
             }
         )
     }
