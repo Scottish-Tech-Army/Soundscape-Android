@@ -35,7 +35,7 @@
     <string name="location_detail_action_beacon">"Iniciar señal de audio"</string>
     <string name="location_detail_action_beacon_hint">Establecer una señal de audio en esta ubicación</string>
     <string name="location_detail_action_save_hint">Guardar esta ubicación como marcador</string>
-    <string name="location_detail_action_edit_hint">editar marcador</string>
+    <string name="location_detail_action_edit_hint">Editar marcador</string>
     <string name="location_detail_action_share_hint">Compartir esta ubicación</string>
     <string name="location_detail_action_preview_hint">Iniciar vista previa en esta ubicación</string>
     <string name="location_detail_add_waypoint_existing_hint">Eliminar este marcador de la ruta.</string>
