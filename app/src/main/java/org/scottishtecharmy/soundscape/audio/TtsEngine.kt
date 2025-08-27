@@ -16,13 +16,14 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.analytics
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import java.util.Collections
 import java.util.Locale
 
 class TtsEngine(val audioEngine: NativeAudioEngine,
                 val engineLabelAndName: String?) :
     TextToSpeech.OnInitListener {
 
-    private var ttsSockets = HashMap<String, Array<ParcelFileDescriptor>>()
+    private var ttsSockets = Collections.synchronizedMap(HashMap<String, Array<ParcelFileDescriptor>>())
     private var currentUtteranceId: String? = null
     private var textToSpeechInitialized : Boolean = false
     private var utteranceIncrementingCount : Int = 0
@@ -104,15 +105,17 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
     }
 
     private fun clearOutUtteranceSockets(utteranceId : String) {
-        val sockets = ttsSockets[utteranceId]
-        if(sockets != null ) {
-            Log.d(TAG, "Closing socket pair $utteranceId")
-            sockets[0].closeWithError("Finished")
-            sockets[1].close()
-        } else {
-            Log.d(TAG, "No socket pair $utteranceId")
+        synchronized(ttsSockets) {
+            val sockets = ttsSockets[utteranceId]
+            if (sockets != null) {
+                Log.d(TAG, "Closing socket pair $utteranceId")
+                sockets[0].closeWithError("Finished")
+                sockets[1].close()
+            } else {
+                Log.d(TAG, "No socket pair $utteranceId")
+            }
+            ttsSockets.remove(utteranceId)
         }
-        ttsSockets.remove(utteranceId)
     }
 
     fun updateSpeech(sharedPreferences: SharedPreferences): Boolean {
@@ -288,12 +291,14 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         currentUtteranceId = null
 
         // Close all of the previously queued sockets to terminate their playback
-        for(ttsSocketPair in ttsSockets){
-            Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
-            ttsSocketPair.value[0].closeWithError("Finished")
-            ttsSocketPair.value[1].close()
+        synchronized(ttsSockets) {
+            for(ttsSocketPair in ttsSockets){
+                Log.d("TTS", "Close socket pair for " + ttsSocketPair.value[1].fd.toString())
+                ttsSocketPair.value[0].closeWithError("Finished")
+                ttsSocketPair.value[1].close()
+            }
+            ttsSockets.clear()
         }
-        ttsSockets.clear()
     }
 
     fun createTextToSpeech(
