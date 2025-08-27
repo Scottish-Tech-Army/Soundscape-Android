@@ -520,6 +520,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 TRACE("First beacon in queue - PlayNow");
                 beacon->PlayNow();
                 m_Beacons.insert(beacon);
+                m_QueuedBeaconPlaying = true;
             }
             m_QueuedBeacons.push_back(beacon);
             //TRACE("Queue of %zu", m_QueuedBeacons.size());
