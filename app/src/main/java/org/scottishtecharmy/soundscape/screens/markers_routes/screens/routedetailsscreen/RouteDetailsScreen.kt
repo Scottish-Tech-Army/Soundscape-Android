@@ -40,6 +40,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
+import androidx.preference.PreferenceManager
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -102,6 +105,9 @@ fun RouteDetailsScreen(
 ) {
     // Observe the UI state from the ViewModel
     val context = LocalContext.current
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
+
     val firstWaypoint = uiState.route?.markers?.firstOrNull()?.getLngLatAlt() ?: LngLatAlt()
     val thisRoutePlaying = (routePlayerState.routeData?.route?.routeId == routeId)
     val fullscreenMap = remember { mutableStateOf(false) }
@@ -130,7 +136,7 @@ fun RouteDetailsScreen(
             )
         },
         floatingActionButton = {
-            FullScreenMapFab(fullscreenMap)
+            if(showMap) FullScreenMapFab(fullscreenMap)
         }
     ) { innerPadding ->
         if(fullscreenMap.value) {
@@ -142,7 +148,8 @@ fun RouteDetailsScreen(
                 mapCenter = firstWaypoint,
                 userLocation = userLocation,
                 userSymbolRotation = heading,
-                modifier = modifier.fillMaxSize()
+                modifier = modifier.fillMaxSize(),
+                showMap = showMap
             )
         } else {
             Box(
@@ -256,7 +263,8 @@ fun RouteDetailsScreen(
                                 mapCenter = firstWaypoint,
                                 userLocation = userLocation,
                                 userSymbolRotation = heading,
-                                modifier = modifier.fillMaxWidth().weight(1f).smallPadding()
+                                modifier = modifier.fillMaxWidth().weight(1f).smallPadding(),
+                                showMap = showMap
                             )
                             Spacer(modifier = Modifier.size(spacing.medium))
 

@@ -74,8 +74,8 @@ fun HomeContent(
     routeFunctions: RouteFunctions,
     goToAppSettings: (Context) -> Unit,
     fullscreenMap: MutableState<Boolean>,
-    serviceRunning: Boolean
-) {
+    serviceRunning: Boolean,
+    showMap: Boolean) {
     val context = LocalContext.current
 
     Column(
@@ -137,17 +137,20 @@ fun HomeContent(
                                     modifier = Modifier.smallPadding()
                                 )
                             }
-                            Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
-                                MapContainerLibre(
-                                    beaconLocation = beaconState?.location,
-                                    routeData = routePlayerState.routeData,
-                                    mapCenter = location,
-                                    allowScrolling = false,
-                                    userLocation = location,
-                                    userSymbolRotation = heading,
-                                    onMapLongClick = onMapLongClick,
-                                    modifier = Modifier.fillMaxWidth().extraSmallPadding()
-                                )
+                            if(showMap) {
+                                Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
+                                    MapContainerLibre(
+                                        beaconLocation = beaconState?.location,
+                                        routeData = routePlayerState.routeData,
+                                        mapCenter = location,
+                                        allowScrolling = false,
+                                        userLocation = location,
+                                        userSymbolRotation = heading,
+                                        onMapLongClick = onMapLongClick,
+                                        modifier = Modifier.fillMaxWidth().extraSmallPadding(),
+                                        showMap = true
+                                    )
+                                }
                             }
                             Row(modifier = Modifier
                                     .fillMaxWidth()
@@ -236,15 +239,17 @@ fun HomeContent(
                                             stringResource(R.string.beacon_action_mute_beacon),
                                     )
                                 }
-                                Button(
-                                    onClick = { fullscreenMap.value = !fullscreenMap.value },
-                                    colors = currentAppButtonColors
-                                )
-                                {
-                                    Icon(
-                                        imageVector = Icons.Rounded.Fullscreen,
-                                        contentDescription = stringResource(R.string.location_detail_full_screen_hint)
+                                if(showMap) {
+                                    Button(
+                                        onClick = { fullscreenMap.value = !fullscreenMap.value },
+                                        colors = currentAppButtonColors
                                     )
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Rounded.Fullscreen,
+                                            contentDescription = stringResource(R.string.location_detail_full_screen_hint)
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -261,7 +266,8 @@ fun HomeContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f)
-                            .mediumPadding()
+                            .mediumPadding(),
+                        showMap = showMap
                     )
                 }
             } else {
@@ -311,7 +317,8 @@ fun StreetPreviewHomeContent() {
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
         goToAppSettings = {},
         fullscreenMap = remember { mutableStateOf(false) },
-        serviceRunning = true
+        serviceRunning = true,
+        showMap = true
     )
 }
 
@@ -356,6 +363,7 @@ fun PreviewHomeContent() {
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
         goToAppSettings = {},
         fullscreenMap = remember { mutableStateOf(false) },
-        serviceRunning = true
+        serviceRunning = true,
+        showMap = true
     )
 }

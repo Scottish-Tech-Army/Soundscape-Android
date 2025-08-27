@@ -923,6 +923,8 @@
 <string name="settings_travel_recording" tools:ignore="MissingTranslation">"Enable recording of travel"</string>
 <!-- Settings option for enabling a map styling which has improved accessibility -->
 <string name="settings_accessible_map" tools:ignore="MissingTranslation">"Enable accessible map styling"</string>
+<!-- Settings option for showing or hiding the map on the screen -->
+<string name="settings_show_map" tools:ignore="MissingTranslation">"Show maps on screen"</string>
 <!-- Settings title for various debugging options to aid developers -->
 <string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug settings"</string>
 <!-- Menu option for sharing the recorded travel route via another app -->
