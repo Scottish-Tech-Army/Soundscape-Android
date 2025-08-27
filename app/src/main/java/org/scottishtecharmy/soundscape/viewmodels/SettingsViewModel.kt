@@ -52,6 +52,7 @@ class SettingsViewModel @Inject constructor(
                                 val audioEngineVoiceTypes = audioEngine.getAvailableSpeechVoices()
                                 val voiceTypes = mutableListOf<String>()
 
+                                // The list of voices will start of with those in the current locale
                                 val locale = getCurrentLocale()
                                 for (type in audioEngineVoiceTypes) {
                                     if (!type.isNetworkConnectionRequired &&
@@ -62,18 +63,16 @@ class SettingsViewModel @Inject constructor(
                                         voiceTypes.add(type.name)
                                     }
                                 }
-                                if(voiceTypes.isEmpty()) {
-                                    // I found that with some alternate Text to Speech engines
-                                    // installed (e.g. Vocalizer TTS) the locale language doesn't
-                                    // always match. If we found no voices, try again without checking
-                                    // the language.
-                                    for (type in audioEngineVoiceTypes) {
-                                        if (!type.isNetworkConnectionRequired &&
-                                            !type.features.contains("notInstalled")
-                                        ) {
-                                            // The Voice don't contain any description, just a text string
-                                            voiceTypes.add(type.name)
-                                        }
+                                // And then we add all the others. Because we don't support all
+                                // languages it's useful to be able to select a voice from a different
+                                // locale than the one that the app is currently using.
+                                for (type in audioEngineVoiceTypes) {
+                                    if (!type.isNetworkConnectionRequired &&
+                                        !type.features.contains("notInstalled") &&
+                                        type.locale.language != locale.language
+                                    ) {
+                                        // The Voice don't contain any description, just a text string
+                                        voiceTypes.add(type.name)
                                     }
                                 }
 
