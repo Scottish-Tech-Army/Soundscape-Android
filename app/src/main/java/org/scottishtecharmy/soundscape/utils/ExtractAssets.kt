@@ -133,11 +133,18 @@ private fun processStyle(applicationContext: Context, inputFilename: String, out
     val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
     inputStyleStream.bufferedReader().useLines { lines ->
         lines.forEach { line ->
-            if (line.contains("PROTOMAPS_SERVER_URL")) {
+           if (line.contains("PROTOMAPS_SERVER_URL")) {
                 val newline = line.replace(
                     "PROTOMAPS_SERVER_URL",
-                    "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
+//                    "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
+                    "pmtiles://file://${applicationContext.filesDir.path}/offline-maps/scotland-extract-file.pmtiles"
                 )
+//                val newline = "\"tiles\": [\n" +
+//                        "\"pmtiles://file://${applicationContext.filesDir.path}/offline-maps/scotland-extract-file.pmtiles\",\n" +
+//                        "\"pmtiles://file://${applicationContext.filesDir.path}/offline-maps/gb-extract-file.pmtiles\"\n" +
+//                        "],"
+//                val newline = "\"url\": \"pmtiles://file://${applicationContext.filesDir.path}/offline-maps/gb-extract-file.pmtiles\""
+
                 outputStyleStream.write(newline.toByteArray())
             } else {
                 outputStyleStream.write(line.toByteArray())
