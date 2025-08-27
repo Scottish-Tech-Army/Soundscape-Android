@@ -80,8 +80,14 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         Log.d(TAG, "Open TTS engine: $engineLabelAndName")
         textToSpeech = if (engineLabelAndName.isNullOrEmpty())
             TextToSpeech(context, this)
-        else
+        else {
+            val bundle = Bundle().apply {
+                putString("engine", engineLabelAndName)
+                putString("voice", textToSpeechVoiceType)
+            }
+            Firebase.analytics.logEvent("TTSEngine", bundle)
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
+        }
     }
 
     fun checkTextToSpeechInitialization(block: Boolean) : Boolean {
