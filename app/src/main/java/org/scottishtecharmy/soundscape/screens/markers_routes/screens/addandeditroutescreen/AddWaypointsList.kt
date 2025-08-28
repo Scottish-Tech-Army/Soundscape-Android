@@ -43,7 +43,8 @@ fun AddWaypointsList(
     routeList: MutableList<LocationDescription>,
     onClickFolder: (String, String) -> Unit,
     userLocation: LngLatAlt?,
-    onSelectLocation: (LocationDescription) -> Unit
+    onSelectLocation: (LocationDescription) -> Unit,
+    getCurrentLocationDescription: () -> LocationDescription
 ) {
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState) {
@@ -165,6 +166,29 @@ fun AddWaypointsList(
         }
 
         if (placesNearbyUiState.level == 0) {
+            userLocation?.let { currentLocation ->
+                items(1) {
+                    val summaryDescription = LocationDescription(
+                        "Current location",
+                        location = currentLocation
+                    )
+                    val fullerDescription = getCurrentLocationDescription()
+                    LocationItem(
+                        item = summaryDescription,
+                        decoration = LocationItemDecoration(
+                            location = true,
+                            editRoute = EnabledFunction(false),
+                            details = EnabledFunction(
+                                true,
+                                {
+                                    onSelectLocation(fullerDescription)
+                                }
+                            ),
+                        ),
+                        userLocation = currentLocation
+                    )
+                }
+            }
             items(locations) { locationDescription ->
                 LocationItem(
                     item = locationDescription,

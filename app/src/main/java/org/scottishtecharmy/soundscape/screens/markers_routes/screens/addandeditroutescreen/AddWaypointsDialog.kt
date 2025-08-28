@@ -32,7 +32,8 @@ fun AddWaypointsDialog(
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
     createAndAddMarker: (LocationDescription, String, String) -> Unit,
-    userLocation: LngLatAlt?
+    userLocation: LngLatAlt?,
+    getCurrentLocationDescription: () -> LocationDescription,
 ) {
     val saveMarkerDialog = remember { mutableStateOf(false) }
 
@@ -78,7 +79,8 @@ fun AddWaypointsDialog(
                     saveMarkerDialog.value = true
                     onSelectLocation(location)
                 },
-                userLocation = userLocation
+                userLocation = userLocation,
+                getCurrentLocationDescription = getCurrentLocationDescription
             )
         }
     }
@@ -90,7 +92,7 @@ fun AddWaypointsScreenPopulatedPreview() {
     AddWaypointsDialog(
         modifier = Modifier,
         onAddWaypointComplete = { },
-        userLocation = null,
+        userLocation = LngLatAlt(),
         uiState =
             AddAndEditRouteUiState(
                 routeMembers =
@@ -121,7 +123,8 @@ fun AddWaypointsScreenPopulatedPreview() {
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
-        createAndAddMarker = {_,_,_ -> }
+        createAndAddMarker = {_,_,_ -> },
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
     )
 }
 
@@ -138,6 +141,7 @@ fun AddWaypointsScreenPreview() {
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
-        createAndAddMarker = {_,_,_ -> }
+        createAndAddMarker = {_,_,_ -> },
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
     )
 }

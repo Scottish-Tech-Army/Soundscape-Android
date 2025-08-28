@@ -127,6 +127,7 @@ fun AddAndEditRouteScreenVM(
     modifier: Modifier,
     userLocation: LngLatAlt?,
     editRoute: Boolean,
+    getCurrentLocationDescription: () -> LocationDescription,
     viewModel: AddAndEditRouteViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -152,7 +153,8 @@ fun AddAndEditRouteScreenVM(
         onSelectLocation = { location -> viewModel.onSelectLocation(location) },
         createAndAddMarker = { location, successMessage, failureMessage ->
             viewModel.createAndAddMarker(location, successMessage, failureMessage)
-        }
+        },
+        getCurrentLocationDescription = getCurrentLocationDescription
     )
 }
 
@@ -175,7 +177,8 @@ fun AddAndEditRouteScreen(
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
-    createAndAddMarker: (LocationDescription, String, String) -> Unit
+    createAndAddMarker: (LocationDescription, String, String) -> Unit,
+    getCurrentLocationDescription: () -> LocationDescription,
 ) {
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
@@ -256,7 +259,8 @@ fun AddAndEditRouteScreen(
             onSelectLocation = onSelectLocation,
             createAndAddMarker = createAndAddMarker,
             modifier = modifier,
-            userLocation = location
+            userLocation = location,
+            getCurrentLocationDescription = getCurrentLocationDescription
         )
     }
     else {
@@ -455,7 +459,8 @@ fun NewRouteScreenPreview() {
         onClickBack = {},
         onSelectLocation = {_ ->},
         createAndAddMarker = {_,_,_ ->},
-        userLocation = LngLatAlt()
+        userLocation = LngLatAlt(),
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
     )
 }
 
@@ -481,6 +486,7 @@ fun EditRouteScreenPreview() {
         onClickBack = {},
         onSelectLocation = {_ ->},
         createAndAddMarker = {_,_,_ ->},
-        userLocation = LngLatAlt()
+        userLocation = LngLatAlt(),
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
     )
 }
