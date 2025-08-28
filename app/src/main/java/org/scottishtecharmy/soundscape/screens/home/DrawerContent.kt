@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home
 
 import android.content.SharedPreferences
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Markunread
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
@@ -32,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
@@ -49,6 +52,7 @@ fun DrawerContent(
 ) {
     val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
+    val activity = LocalActivity.current as MainActivity
 
     ModalDrawerSheet(
         drawerContainerColor = MaterialTheme.colorScheme.background,
@@ -145,6 +149,16 @@ fun DrawerContent(
 //                    label = stringResource(R.string.share_title),
 //                    icon = Icons.Rounded.IosShare,
 //                )
+
+                DrawerMenuItem(
+                    onClick = {
+                        val fileUrl = "https://pub-f73ac907cdc34ff688a56797c608ab4b.r2.dev/scotland-extract-file.pmtiles"
+                        val outputFileName = "scotland-extract-file.pmtiles"
+                        activity.offlineDownloader.startDownload(fileUrl, outputFileName, "Offline maps", "Downloading extract...")
+                    },
+                    label = "Offline maps",
+                    Icons.Rounded.Download
+                )
 
                 DrawerMenuItem(
                     onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },

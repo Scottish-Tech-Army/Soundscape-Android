@@ -2,7 +2,9 @@ package org.scottishtecharmy.soundscape.utils
 
 import android.content.Context
 import android.content.res.AssetManager
+import android.os.Environment
 import android.util.Log
+import ch.poole.geo.pmtiles.Reader
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import java.io.File
@@ -131,20 +133,31 @@ private fun processStyle(applicationContext: Context, inputFilename: String, out
     val outputStyleStream =
         File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
     val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
+
+    // Find any local downloaded file
+    val extractDir = applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+    var extractFile: File? = null
+    extractDir?.let { directory ->
+        if(directory.exists() && directory.isDirectory) {
+            // Find the first extract within the directory
+            val files = directory.listFiles()
+            files?.firstOrNull()?.let { file ->
+                extractFile = file
+            }
+        }
+    }
+
+    var urlReplacement = "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
+    if(extractFile != null)
+        urlReplacement = "pmtiles://file://$extractFile"
+
     inputStyleStream.bufferedReader().useLines { lines ->
         lines.forEach { line ->
            if (line.contains("PROTOMAPS_SERVER_URL")) {
                 val newline = line.replace(
                     "PROTOMAPS_SERVER_URL",
-//                    "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
-                    "pmtiles://file://${applicationContext.filesDir.path}/offline-maps/scotland-extract-file.pmtiles"
+                    urlReplacement
                 )
-//                val newline = "\"tiles\": [\n" +
-//                        "\"pmtiles://file://${applicationContext.filesDir.path}/offline-maps/scotland-extract-file.pmtiles\",\n" +
-//                        "\"pmtiles://file://${applicationContext.filesDir.path}/offline-maps/gb-extract-file.pmtiles\"\n" +
-//                        "],"
-//                val newline = "\"url\": \"pmtiles://file://${applicationContext.filesDir.path}/offline-maps/gb-extract-file.pmtiles\""
-
                 outputStyleStream.write(newline.toByteArray())
             } else {
                 outputStyleStream.write(line.toByteArray())
