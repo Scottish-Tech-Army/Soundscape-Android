@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetai
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
+import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
@@ -72,6 +73,19 @@ data class RouteFunctions(val viewModel: HomeViewModel?) {
 data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {
     val go = { viewModel?.streetPreviewGo() }
     val exit = { viewModel?.streetPreviewExit() }
+}
+
+fun getCurrentLocationDescription(viewModel: HomeViewModel, state: HomeState): LocationDescription
+{
+    if(state.location != null) {
+        val location = LngLatAlt(
+            state.location!!.longitude,
+            state.location!!.latitude
+        )
+        return viewModel.getLocationDescription(location) ?: LocationDescription("", location)
+    } else {
+        return LocationDescription("", LngLatAlt())
+    }
 }
 
 @Composable
@@ -108,17 +122,7 @@ fun HomeScreen(
                 preferences = preferences,
                 onMapLongClick = onMapLongClickListener,
                 bottomButtonFunctions = bottomButtonFunctions,
-                getCurrentLocationDescription = {
-                    if(state.value.location != null) {
-                        val location = LngLatAlt(
-                            state.value.location!!.longitude,
-                            state.value.location!!.latitude
-                        )
-                        viewModel.getLocationDescription(location) ?: LocationDescription("", location)
-                    } else {
-                        LocationDescription("", LngLatAlt())
-                    }
-                },
+                getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
                 searchText = searchText.value,
                 onToggleSearch = viewModel::onToggleSearch,
                 onSearchTextChange = viewModel::onSearchTextChange,
@@ -245,7 +249,8 @@ fun HomeScreen(
                 viewModel = addAndEditRouteViewModel,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 userLocation = state.value.location,
-                editRoute = (command == "edit")
+                editRoute = (command == "edit"),
+                getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
             )
         }
 
