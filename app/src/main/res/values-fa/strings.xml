@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">لغو</string>
+    <string name="general_alert_done">تمام</string>
+    <string name="general_loading_start">در حال آماده‌سازی</string>
+    <string name="general_error_location_services_find_location_error">در تشخیص موقعیت شما دچار اشکال شده‌ایم.</string>
+    <string name="general_error_add_marker_error">در نشانه‌گذاری این محل دچار اشکال شده‌ایم. بعداً دوباره امتحان کنید.</string>
+    <string name="settings_screen_title">تنظیمات</string>
+    <string name="settings_about_app">درباره‌ی ساند‌اسکیپ</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">واحد اندازه‌گیری</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">فوت و مایل</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">متر و کیلومتر</string>
+    <string name="voice_settings_speaking_rate">سرعت گفتار</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">موتور صوتی</string>
+    <string name="voice_voices">صدای موتور صوتی</string>
+    <string name="beacon_settings_style">نوع جهت‌نمای صوتی</string>
+    <string name="beacon_styles_current">جدید</string>
+    <string name="beacon_styles_original">قدیمی</string>
+    <string name="beacon_styles_flare">فروزش</string>
+    <string name="beacon_styles_shimmer">درخشش</string>
+    <string name="beacon_styles_tactile">کوبش</string>
+    <string name="beacon_styles_ping">زنگ</string>
+    <string name="beacon_styles_drop">برخورد</string>
+    <string name="beacon_styles_signal">سیگنال</string>
+    <string name="beacon_styles_signal_slow">سیگنال (کند)</string>
+    <string name="beacon_styles_signal_very_slow">سیگنال (بسیار کند)</string>
+    <string name="beacon_styles_mallet">مضراب</string>
+    <string name="beacon_styles_mallet_slow">مضراب (کند)</string>
+    <string name="beacon_styles_mallet_very_slow">مضراب (بسیار کند)</string>
 </resources>
