@@ -56,6 +56,7 @@ android {
             "en",
             "en-rGB",
             "es",
+            "fa",
             "fi",
             "fr",
             "fr-rCA",

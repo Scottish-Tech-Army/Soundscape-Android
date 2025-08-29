@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+<!-- Name of the app - should be Soundscape in all languages -->
+<string name="app_name" translatable="false">Soundscape</string>
+<!-- Text for button to cancel dialog -->
+<string name="general_alert_cancel">"لغو"</string>
+<!-- Text for button to accept as done a dialog  -->
+<string name="general_alert_done">"انجام شد"</string>
+<!-- Text displayed whilst app is starting Street Preview mode -->
+<string name="general_loading_start">"در حال آماده‌سازی…"</string>
+<!-- Error message that Soundscape is having trouble determining current location -->
+<string name="general_error_location_services_find_location_error">"در پیدا کردن موقعیت مکانی فعلی شما مشکل داریم."</string>
+<!-- Error message that Soundscape is having trouble adding a marker to this location.-->
+<string name="general_error_add_marker_error">"در علامت‌گذاری این مکان مشکل داریم. لطفاً بعداً دوباره امتحان کنید."</string>
+<!-- Menu button to get to the Settings page -->
+<string name="settings_screen_title">"تنظیمات"</string>
+<!-- Menu button to information about the Soundscape app -->
+<string name="settings_about_app">"درباره Soundscape"</string>
+<!-- In the Settings page the title of the section for the units of measurement e.g. metric or imperial -->
+<string name="settings_section_units" tools:ignore="MissingTranslation">"واحد اندازه‌گیری"</string>
+<!-- The option for setting the units of measurement to miles and feet -->
+<string name="settings_units_imperial" tools:ignore="MissingTranslation">"امپریال (فوت)"</string>
+<!-- The option for setting the units of measurement to kilometers and meters -->
+<string name="settings_units_metric" tools:ignore="MissingTranslation">"متریک (متر)"</string>
+<!-- Title for option to set the speed of the text-to-speech voice. -->
+<string name="voice_settings_speaking_rate">"سرعت گفتار"</string>
+<!-- Title for option to select the text-to-speech engine to use. -->
+<string name="voice_engine"  tools:ignore="MissingTranslation">"موتور تبدیل متن به گفتار"</string>
+<!-- Title for option to select the text-to-speech voice to use. -->
+<string name="voice_voices">"صداها"</string>
+<!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
+<string name="beacon_settings_style">"سبک‌های صوتی"</string>
+<!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
+<string name="beacon_styles_current">"فعلی"</string>
+<!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
+<string name="beacon_styles_original">"اصلی"</string>
+<!-- Name of a beacon style. In this context, "flare" refers to a bright burst of light. The audio for this beacon style is bright and fun -->
+<string name="beacon_styles_flare">"شعله"</string>
+<!-- Name of a beacon style. In this context, "shimmer" is used as a synonym for "flare". The audio for this beacon is bright and fun (just as with the style refered to by beacon.styles.flare), but it is a bit softer than the "Flare" style. -->
+<string name="beacon_styles_shimmer">"سوسو"</string>
+<!-- Name of a beacon style. This beacon style name is intended to hint at the percussive, tapping, nature of the beacon audio. -->
+<string name="beacon_styles_tactile">"لمسی"</string>
+<!-- Name of a beacon style. Refers to a short high pitched ringing sound that repeats in this beacon style. -->
+<string name="beacon_styles_ping">"پینگ"</string>
+<!-- Name of a beacon style. This beacon style is based on the sound of an object being dropped on a hard floor, hence the name "Drop" is alluding to that sound. -->
+<string name="beacon_styles_drop">"افتادن"</string>
+<!-- Name of a beacon style. This name is alluding to the radar-like nature of this beacon (hence "signal") which has an impulse which repeats over and over -->
+<string name="beacon_styles_signal">"سیگنال"</string>
+<!-- Name of a beacon style. "Signal" is used in the same way here as in the string with key 'beacon.styles.signal'. The difference here is that this version is a slower version of the beacon audio. -->
+<string name="beacon_styles_signal_slow">"سیگنال (آهسته)"</string>
+<!-- Name of a beacon style. "Signal" is used in the same way here as in the string with key 'beacon.styles.signal'. The difference here is that this version is a much slower version of the beacon audio. -->
+<string name="beacon_styles_signal_very_slow">"سیگنال (خیلی آهسته)"</string>
+<!-- Name of a beacon style. This beacon style has a similar timbre to the sound that is generated when a mallet is used to play the xylophone, hence the name "mallet". -->
+<string name="beacon_styles_mallet">"چکش"</string>
+<!-- Name of a beacon style. "Mallet" is used in the same way here as in the string with key 'beacon.styles.mallet'. The difference here is that this version is a slower version of the beacon audio. -->
+<string name="beacon_styles_mallet_slow">"چکش (آهسته)"</string>
+<!-- Name of a beacon style. "Mallet" is used in the same way here as in the string with key 'beacon.styles.mallet'. The difference here is that this version is a much slower version of the beacon audio. -->
+<string name="beacon_styles_mallet_very_slow">"چکش (خیلی آهسته)"</string>
+<!-- Title for section in settings for audio beacons -->
+<string name="beacon_audio_beacon">"نشانه ی صوتی"</string>
+<!-- Mute Beacon text description -->
+<string name="beacon_action_mute_beacon">"بی‌صدا کردن نشانه ی صوتی"</string>
+<!-- Talkback hint for the mute button which sets the volume on the audio beacon to zero. -->
+<string name="beacon_action_mute_beacon_acc_hint">"بی‌صدا کردن نشانه ی صوتی."</string>
+<!-- Unmute Beacon text description -->
+<string name="beacon_action_unmute_beacon">"با‌صدا کردن نشانه ی صوتی"</string>
+<!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
+<string name="beacon_action_unmute_beacon_acc_hint">"با‌صدا کردن نشانه ی صوتی."</string>
+<!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
+<string name="preview_title">"پیش‌نمایش خیابان Soundscape"</string>
+<!-- Text for button to go to the next intersection -->
+<string name="preview_go_title">"برو"</string>
+<!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
+<string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">"برو به نزدیکترین تقاطع"</string>
+<!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
+<string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
+<!-- Title for a setting to include unnamed roads -->
+<string name="preview_include_unnamed_roads_title">"جاده‌های بی‌نام"</string>
+<!-- Location Details page title. This page shows information about the location including the address and a map. -->
+<string name="location_detail_title_default">"جزئیات مکان"</string>
+<!-- Title for the action to start playing an audio beacon -->
+<string name="location_detail_action_beacon">"شروع نشانه ی صوتی"</string>
+<!-- Talkback hint for the action to set an audio beacon at this location -->
+<string name="location_detail_action_beacon_hint">"یک نشانه ی صوتی در این مکان تنظیم کنید"</string>
+<!-- Talkback hint for the action to save marker -->
+<string name="location_detail_action_save_hint">"این مکان را به عنوان نشانگر ذخیره کنید"</string>
+<!-- Talkback hint for the action to edit marker -->
+<string name="location_detail_action_edit_hint">"ویرایش نشانگر"</string>
+<!-- Talkback hint for the action to share -->
+<string name="location_detail_action_share_hint">"اشتراک‌گذاری این مکان"</string>
+<!-- Talkback hint for the action to preview -->
+<string name="location_detail_action_preview_hint">"شروع پیش‌نمایش در این مکان"</string>
+<!-- Accessibility hint for markers in a list which could be removed from the list -->
+<string name="location_detail_add_waypoint_existing_hint">"این نشانگر را از مسیر خود حذف کنید."</string>
+<!-- Accessibility hint for markers in a list that can be added to a list -->
+<string name="location_detail_add_waypoint_new_hint">"این نشانگر را به مسیر خود اضافه کنید."</string>
+<!-- Talkback hint for button that makes map full screen -->
+<string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">"تمام‌صفحه کردن نقشه"</string>
+<!-- Talkback hint for button that stops map being full screen -->
+<string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">"خروج از حالت تمام‌صفحه نقشه"</string>
+<!-- Title for the action to start playing the audio for a route -->
+<string name="route_detail_action_start_route">"شروع مسیر"</string>
+<!-- Title for the action to stop playing the audio for a route -->
+<string name="route_detail_action_stop_route">"توقف مسیر"</string>
+<!-- Text for the action to start editing a route -->
+<string name="route_detail_action_edit">"ویرایش مسیر"</string>
+<!-- Talkback hint for the action to start the route -->
+<string name="route_detail_action_start_route_hint">"این مسیر را شروع کنید"</string>
+<!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
+<string name="route_detail_action_start_route_disabled_hint">"قبل از شروع مسیر، نقاط بین راهی را اضافه کنید"</string>
+<!-- Talkback hint for the action to stop the route -->
+<string name="route_detail_action_stop_route_hint">"این مسیر را متوقف کنید"</string>
+<!-- Talkback hint for the action to share -->
+<string name="route_detail_action_share_hint">"اشتراک‌گذاری این مسیر"</string>
+<!-- Accessibility hint for the edit button on the Route Detail screen -->
+<string name="route_detail_action_edit_hint">"ویرایش این مسیر"</string>
+<!-- Add button on the Route list screen -->
+<string name="route_detail_action_create">"مسیر جدید"</string>
+<!-- Talkback hint for the add button on the Route list screen -->
+<string name="route_detail_action_create_hint">"ایجاد یک مسیر جدید"</string>
+<!-- Accessibility Text displayed for when a route ends and the route was completed, %s is name of the route, "Route Completed! Home to Work" -->
+<string name="route_end_completed_accessibility">"مسیر تکمیل شد! %s"</string>
+<!-- Title text of the button used to move to the previous waypoint -->
+<string name="route_detail_action_previous">"نقطه بین راهی قبلی"</string>
+<!-- Hint text of the button used to move to the previous waypoint -->
+<string name="route_detail_action_previous_hint">"دو ضربه بزنید تا نشانه ی صوتی روی نقطه بین راهی قبلی تنظیم شود"</string>
+<!-- Title text of the button used to move to the next waypoint -->
+<string name="route_detail_action_next">"نقطه بین راهی بعدی"</string>
+<!-- Hint text of the button used to move to the next waypoint -->
+<string name="route_detail_action_next_hint">"دو ضربه بزنید تا نشانه ی صوتی روی نقطه بین راهی بعدی تنظیم شود"</string>
+<!-- Label for the description field of a route -->
+<string name="route_detail_edit_description">"توضیحات"</string>
+<!-- Label for the button used to add waypoints to a route -->
+<string name="route_detail_edit_waypoints_button">"افزودن نقاط بین راهی"</string>
+<!-- Label for the delete route button -->
+<string name="route_detail_edit_delete">"حذف مسیر"</string>
+<!-- Title for the alert displayed when a route or tour is updated -->
+<string name="route_update_success_title">"بروزرسانی کامل شد!"</string>
+<!-- Title of a waypoint used in a route, this is used in the form "Waypoint 1", "Waypoint 2" etc. -->
+<string name="waypoint_title">"نقطه بین راهی"</string>
+<!-- Alert action to save as marker -->
+<string name="universal_links_alert_action_marker">"به عنوان نشانگر ذخیره کن"</string>
+<!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
+<string name="universal_links_marker_share_message">"من یک نشانگر Soundscape را با شما به اشتراک گذاشتم! *\"%s\"*"</string>
+<!-- Title for button to save the location from the location details page as a marker. -->
+<string name="user_activity_save_marker_title">"ذخیره نشانگر"</string>
+<!-- Title of the option for displaying a the user's list of saved routes -->
+<string name="routes_title">"مسیرها"</string>
+<!-- Feedback given when a route is deleted -->
+<string name="routes_action_deleted">"مسیر حذف شد"</string>
+<!-- Title of the view that is shown when the user navigates to the routes list, but they have not yet created any routes -->
+<string name="routes_no_routes_title">"شروع کار با نقاط بین راهی مسیر"</string>
+<!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains how a route is a set of ordered markers. -->
+<string name="routes_no_routes_hint_1">"با سازماندهی مجموعه‌ای از نشانگرها به عنوان نقاط بین راهی در یک مسیر، برای خود یا شخص دیگری مسیری ایجاد کنید."</string>
+<!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains that the beacon will automatically shift between the route waypoints as they walk the route. -->
+<string name="routes_no_routes_hint_2">"هنگام حرکت در مسیر با Soundscape، در هنگام رسیدن به هر نقطه بین راهی مطلع خواهید شد و نشانه ی صوتی به طور خودکار به نقطه بین راهی بعدی پیشروی خواهد کرد."</string>
+<!-- Text for a button that will cause the list of routes to be sorted by their names -->
+<string name="routes_sort_by_name">"مرتب‌سازی بر اساس نام"</string>
+<!-- Text for a button that will cause the list of routes to be sorted by their distance from the user -->
+<string name="routes_sort_by_distance">"مرتب‌سازی بر اساس فاصله"</string>
+<!-- Title of Markers page. Markers are locations that the user has selected and added a name for.  -->
+<string name="markers_title">"نشانگرها"</string>
+<!-- Button text to delete a marker -->
+<string name="markers_action_delete">"حذف نشانگر"</string>
+<!-- Sort by category, Name. Used when a user is presented an option to sort a location list by name. -->
+<string name="markers_sort_button_sort_by_name">"نام"</string>
+<!-- Sort by category, Name. This is the Talkback label used when a user a location list is sorted by name. -->
+<string name="markers_sort_button_sort_by_name_voiceover">"بر اساس نام مرتب شده است"</string>
+<!-- Sort by category, Distance. Used when a user is presented an option to sort a location list by distance. -->
+<string name="markers_sort_button_sort_by_distance">"فاصله"</string>
+<!-- Sort by category, Distance. This is the Talkback label used when a user a location list is sorted by distance. -->
+<string name="markers_sort_button_sort_by_distance_voiceover">"بر اساس فاصله مرتب شده است"</string>
+<!-- Title for markers page when no markers exist -->
+<string name="markers_no_markers_title">"شروع کار با نشانگرها"</string>
+<!-- Text that explains to the user what "markers" are and how they can be used. Ensure "Save as Marker" is translated to be the same as "universal_links.alert.action.marker". Quotes written as \" -->
+<string name="markers_no_markers_hint_1">"نشانگرهایی را برای مقاصد مورد علاقه خود، نقاط بین راهی در یک مسیر، یا هر مکانی که می‌خواهید اعلام شود، ایجاد کنید. به سادگی یک مکان، یا حتی موقعیت مکانی فعلی خود را، از صفحه اصلی انتخاب کنید و *\"ذخیره به عنوان نشانگر\"* را انتخاب کنید."</string>
+<!-- Additional text that explains how users can use markers. This string is displayed below the string with key "markers.no_markers.hint.1" -->
+<string name="markers_no_markers_hint_2">"خانه‌تان، ورودی محل کارتان یا مکان مورد علاقه خود در پارک را علامت‌گذاری کنید."</string>
+<!-- Title of page for editing markers -->
+<string name="markers_edit_screen_title_edit">"ویرایش نشانگر"</string>
+<!-- Text used when calling out makers -->
+<string name="markers_generic_name">"نشانگر"</string>
+<!-- Marker Information, %s is the name of the marker e.g.  "Marker. <Starbucks>" -->
+<string name="markers_marker_with_name">"نشانگر. %s"</string>
+<!-- Notification when a marker is created -->
+<string name="markers_marker_created">"نشانگر ایجاد شد"</string>
+<!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
+<string name="markers_annotation">"یادداشت"</string>
+<!-- Description text for the search field, "destination" should be translated the same as it is in "first_launch.prompt.message" -->
+<string name="search_choose_destination">"انتخاب مقصد"</string>
+<!-- Search using current location -->
+<string name="search_use_current_location">"موقعیت مکانی فعلی"</string>
+<!-- Nearby Places screen title -->
+<string name="search_nearby_screen_title">"مکان‌های نزدیک"</string>
+<!-- Markers and routes screen titles -->
+<string name="search_view_markers">"نشانگرها و مسیرها"</string>
+<!-- Accessibility hint when the user selects the markers button on the home screen -->
+<string name="search_button_markers_accessibility_hint">"انتخاب یا ویرایش نشانگرهای ذخیره شده شما"</string>
+<!-- Accessibility hint when the user selects the nearby places button on the home screen -->
+<string name="search_button_nearby_accessibility_hint">"کاوش رستوران‌ها، ایستگاه‌های حمل‌ونقل و موارد دیگر در نزدیکی"</string>
+<!-- Accessibility hint when the user selects the current location button on the home screen -->
+<string name="search_button_current_location_accessibility_hint">"پیش‌نمایش، علامت‌گذاری یا اشتراک‌گذاری موقعیت مکانی فعلی خود با یک دوست"</string>
+<!-- Places nearby that shows all of the places -->
+<string name="filter_all">"همه مکان‌ها"</string>
+<!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
+<string name="filter_transit">"حمل‌ونقل عمومی"</string>
+<!-- Places nearby filter that shows food and drink relates places e.g. restaurants and cafes -->
+<string name="filter_food_drink">"غذا و نوشیدنی"</string>
+<!-- Places nearby filter that shows grocery shops -->
+<string name="filter_groceries">"خواربار و فروشگاه‌های رفاه"</string>
+<!-- Places nearby filter that shows banks and cash machines -->
+<string name="filter_banks">"بانک‌ها و دستگاه‌های خودپرداز"</string>
+<!-- Title for the button panel at the bottom of the home view.-->
+<string name="callouts_panel_title">"اطرافم را بشنو"</string>
+<!-- Settings option to allow audio callouts - callouts are the descriptions of the nearby roads. -->
+<string name="callouts_allow_callouts">"اجازه دادن به اعلامیه‌ها"</string>
+<!-- Settings option to allow finer control of which places are called out - in this case places and landmarks -->
+<string name="callouts_places_and_landmarks">"مکان‌ها و نقاط دیدنی"</string>
+<!-- Settings option to allow finer control of which places are called out - in this case mobility relates places -->
+<string name="callouts_mobility">"تحرک"</string>
+<!-- Title for a setting under the Manage Callouts settings section. This toggle enables or disables periodic callouts that inform the user about their distance from the location of the audio beacon. -->
+<string name="callouts_audio_beacon">"فاصله تا نشانه ی صوتی"</string>
+<!-- Help title for automatic callouts -->
+<string name="callouts_automatic_callouts">"اعلامیه‌های خودکار"</string>
+<!-- Speech callout indicating that there's no useful information available -->
+<string name="callouts_nothing_to_call_out_now">"در حال حاضر چیزی برای اعلام نیست"</string>
+<!-- Button text for the hear my surroundings button which calls out nearby markers -->
+<string name="callouts_nearby_markers">"نشانگرهای نزدیک"</string>
+<!-- Sleep Title, Sleep. Putting the app in an idle state for a period of time. -->
+<string name="sleep_sleep">"خواب"</string>
+<!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
+<string name="sleep_sleeping">"در حال خواب"</string>
+<!-- Text for sleep page explaining what it does -->
+<string name="sleep_sleeping_message">"Soundscape در حال حاضر در حالت خواب است. این کار از استفاده Soundscape از خدمات مکان‌یابی یا دانلود داده جلوگیری می‌کند. این باعث صرفه‌جویی در مصرف باتری می‌شود زمانی که از Soundscape استفاده نمی‌کنید. برای بیدار کردن Soundscape، روی دکمه زیر ضربه بزنید."</string>
+<!-- Talkback hint for the sleep button to indicate what it does -->
+<string name="sleep_sleep_acc_hint">"Soundscape را به حالت خواب ببرد"</string>
+<!-- Text for large button on sleep screen which wakes the app up -->
+<string name="sleep_wake_up_now">"اکنون بیدار شو"</string>
+<!-- Callout that a road junction is getting near -->
+<string name="intersection_approaching_intersection">"نزدیک شدن به تقاطع"</string>
+<!-- Notification, %s is a point of interest, "At Starbucks" -->
+<string name="directions_at_poi">"در %s"</string>
+<!-- Text for button on home page that callous the current user location -->
+<string name="directions_my_location">"موقعیت مکانی من"</string>
+<!-- Notification announced to the user that they are near a location, %s is a physical address or the name of a place, examples: "Near 123 Columbia Street", "Near Starbucks" -->
+<string name="directions_near_name">"نزدیک %s"</string>
+<!-- Notification, %s street name, "<Pike Street>, goes left -->
+<string name="directions_name_goes_left">"%s، به چپ می‌رود"</string>
+<!-- Notification, %s street name, "<Pike Street>, goes right -->
+<string name="directions_name_goes_right">"%s، به راست می‌رود"</string>
+<!-- Notification, %s street name, "<Pike Street>, continues ahead -->
+<string name="directions_name_continues_ahead">"%s، مستقیم ادامه می‌یابد"</string>
+<!-- Notification orientation, ahead. Used as the direction name in sentences such as "<Pike Street>, <ahead>". -->
+<string name="directions_direction_ahead">"مستقیم"</string>
+<!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie" -->
+<string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">"نزدیک %1$s و نزدیک به %2$s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_n">"سفر به شمال"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_ne">"سفر به شمال شرقی"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_e">"سفر به شرق"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_se">"سفر به جنوب شرقی"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_s">"سفر به جنوب"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_sw">"سفر به جنوب غربی"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_w">"سفر به غرب"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_traveling_nw">"سفر به شمال غربی"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_n">"رو به شمال"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_ne">"رو به شمال شرقی"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_e">"رو به شرق"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_se">"رو به جنوب شرقی"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_s">"رو به جنوب"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_sw">"رو به جنوب غربی"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_w">"رو به غرب"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
+<string name="directions_facing_nw">"رو به شمال غربی"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_n">"به سمت شمال"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_ne">"به سمت شمال شرقی"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_e">"به سمت شرق"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_se">"به سمت جنوب شرقی"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_s">"به سمت جنوب"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_sw">"به سمت جنوب غربی"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_w">"به سمت غرب"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
+<string name="directions_heading_nw">"به سمت شمال غربی"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_n">"سفر به شمال در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_ne">"سفر به شمال شرقی در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_e">"سفر به شرق در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_se">"سفر به جنوب شرقی در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_s">"سفر به جنوب در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_sw">"سفر به جنوب غربی در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_w">"سفر به غرب در امتداد %s"</string>
+<!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
+<string name="directions_along_traveling_nw">"سفر به شمال غربی در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_n">"رو به شمال در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_ne">"رو به شمال شرقی در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_e">"رو به شرق در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_se">"رو به جنوب شرقی در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_s">"رو به جنوب در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_sw">"رو به جنوب غربی در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_w">"رو به غرب در امتداد %s"</string>
+<!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
+<string name="directions_along_facing_nw">"رو به شمال غربی در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_n">"به سمت شمال در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_ne">"به سمت شمال شرقی در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_e">"به سمت شرق در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_se">"به سمت جنوب شرقی در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_s">"به سمت جنوب در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_sw">"به سمت جنوب غربی در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
+<string name="directions_along_heading_w">"به سمت غرب در امتداد %s"</string>
+<!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. %s is a road name -->
+<string name="directions_along_heading_nw">"به سمت شمال غربی در امتداد %s"</string>
+<!-- Direction, North -->
+<string name="directions_cardinal_north" tools:ignore="MissingTranslation">"شمال"</string>
+<!-- Direction, North East -->
+<string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">"شمال شرقی"</string>
+<!-- Direction, East -->
+<string name="directions_cardinal_east" tools:ignore="MissingTranslation">"شرق"</string>
+<!-- Direction, South East -->
+<string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">"جنوب شرقی"</string>
+<!-- Direction, South -->
+<string name="directions_cardinal_south" tools:ignore="MissingTranslation">"جنوب"</string>
+<!-- Direction, South West -->
+<string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">"جنوب غربی"</string>
+<!-- Direction, West -->
+<string name="directions_cardinal_west" tools:ignore="MissingTranslation">"غرب"</string>
+<!-- Direction, North West -->
+<string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">"شمال غربی"</string>
+<!-- Direction, Abbreviation for North -->
+<string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">"ش"</string>
+<!-- Direction, Abbreviation for North East -->
+<string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">"ش‌شرق"</string>
+<!-- Direction, Abbreviation for East -->
+<string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">"شرق"</string>
+<!-- Direction, Abbreviation for South East -->
+<string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">"ج‌شرق"</string>
+<!-- Direction, Abbreviation for South -->
+<string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">"ج"</string>
+<!-- Direction, Abbreviation for South West -->
+<string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">"ج‌غرب"</string>
+<!-- Direction, Abbreviation for West -->
+<string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">"غرب"</string>
+<!-- Direction, Abbreviation for North West -->
+<string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">"ش‌غرب"</string>
+<!-- Preserve meters unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 meters" -->
+<string name="distance_format_meters">"%s متر"</string>
+<!-- Preserve km unit - Do not convert but can translate abbreviation of kilometer. Distance string. %s is a number, "15 km" -->
+<string name="distance_format_km">"%s کیلومتر"</string>
+<!-- Preserve feet unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 feet" -->
+<string name="distance_format_feet">"%s فوت"</string>
+<!-- Preserve miles unit - Do not convert but can translate. Distance string, plural.%s is a plural number, "15 miles" -->
+<string name="distance_format_miles">"%s مایل"</string>
+<!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
+<string name="ui_action_button_my_location">"مکان\nمن"</string>
+<!-- Accessibility Notification, ...hear about your current location. -->
+<string name="ui_action_button_my_location_acc_hint">"درباره موقعیت فعلی خود بشنوید"</string>
+<!-- Similar to `callouts.nearby_markers`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
+<string name="ui_action_button_nearby_markers">"نشانگرهای\nنزدیک"</string>
+<!-- Accessibility Notification, ...hear about nearby places that you have marked -->
+<string name="ui_action_button_nearby_markers_acc_hint">"درباره مکان‌های نزدیکی که علامت‌گذاری کرده‌اید بشنوید"</string>
+<!-- Similar to `help.orient.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
+<string name="ui_action_button_around_me">"اطراف\nمن"</string>
+<!-- Accessibility Notification, ...hear about places in the four quadrants around you -->
+<string name="ui_action_button_around_me_acc_hint">"درباره مکان‌ها در چهار ربع اطراف خود بشنوید"</string>
+<!-- Similar to `help.explore.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
+<string name="ui_action_button_ahead_of_me">"جلوی\nمن"</string>
+<!-- Accessibility Notification, ...hear about places in front of you -->
+<string name="ui_action_button_ahead_of_me_acc_hint">"درباره مکان‌های جلوی خود بشنوید"</string>
+<!-- Title for menu -->
+<string name="ui_menu">"منو"</string>
+<!-- Talkback hint for the menu button -->
+<string name="ui_menu_hint">"باز کردن منو"</string>
+<!-- Button title when menu is open - close menu -->
+<string name="ui_menu_close">"بستن منو"</string>
+<!-- Button, Continue to progress to the next stage-->
+<string name="ui_continue">"ادامه"</string>
+<!-- Title in settings to Manage Callouts preferences-->
+<string name="menu_manage_callouts">"مدیریت اعلامیه‌ها"</string>
+<!-- Title for Help and Tutorials screen-->
+<string name="menu_help_and_tutorials">"راهنما و آموزش‌ها"</string>
+<!-- Title, Rate the app in App Store -->
+<string name="menu_rate">"امتیاز دهید"</string>
+<!-- Screen Back button title -->
+<string name="ui_back_button_title">"بازگشت"</string>
+<!-- Title of the screen that lists all of the details for a route -->
+<string name="behavior_experiences_route_nav_title">"جزئیات مسیر"</string>
+<!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint, %3$s is the waypoint index, %4$s is the total number of waypoints.  "Beacon set on control 1. 450 feet away. 1 of 4." -->
+<string name="behavior_scavenger_hunt_callout_next_flag">"نشانه ی صوتی روی %1$s، %2$s فاصله، %3$s از %4$s تنظیم شد"</string>
+<!-- Help section title, Configuring Soundscape -->
+<string name="help_configuration_section_title">"پیکربندی Soundscape"</string>
+<!-- Help section title. This section contains help articles on the audio beacon and the automatic callout features. -->
+<string name="settings_help_section_beacons_and_pois">"نشانه ی صوتی‌ها و POI‌ها"</string>
+<!-- Help section title -->
+<string name="settings_help_section_home_screen_buttons">"دکمه‌های صفحه اصلی"</string>
+<!-- Help content describing how user can choose a voice and download additional voices -->
+<string name="help_config_voices_content">"Soundscape می‌تواند از هر یک از صداهایی که در تنظیمات خروجی تبدیل متن به گفتار در تلفن اندرویدی خود دانلود کرده‌اید استفاده کند. در برنامه Soundscape، می‌توانید با رفتن به تنظیمات از منوی اصلی و سپس انتخاب *\"صداها\"*، صدایی غیر از صدای پیش‌فرض اندروید را انتخاب کنید."</string>
+<!-- Help Page Title, Offline -->
+<string name="help_offline_page_title">"چرا Soundscape آفلاین کار می‌کند؟"</string>
+<!-- Help Description, Offline -->
+<string name="help_offline_description">"هنگامی که اتصال اینترنت وجود ندارد یا اختلالی در خدمات Soundscape وجود دارد، Soundscape به حالت آفلاین منتقل می‌شود. با این حال، Soundscape به کار خود ادامه خواهد داد، اما برخی از عملکردها ممکن است محدود شوند."</string>
+<!-- Help Limitations Title, Offline -->
+<string name="help_offline_limitations_heading">"محدودیت‌ها"</string>
+<!-- Help Limitations Description, Offline -->
+<string name="help_offline_limitations_description">"اعلامیه‌ها اگر در منطقه‌ای باشید که قبلاً از آنجا عبور کرده‌اید و در تاریخچه اعلامیه‌های شما ذخیره شده است، همچنان کار خواهند کرد. به همین ترتیب، می‌توانید یک نشانه ی صوتی قرار دهید یا نشانگری روی مکان‌هایی که در تاریخچه اعلامیه‌های شما ذخیره شده‌اند، ایجاد کنید."</string>
+<!-- Help Troubleshooting Title, Offline -->
+<string name="help_offline_troubleshooting_heading">"چه کاری می‌توانید انجام دهید؟"</string>
+<!-- Help Troubleshooting Description, Offline -->
+<string name="help_offline_troubleshooting_description">"Soundscape تلاش خواهد کرد تا زمانی که تلفن شما به Wi-Fi متصل است یا داده تلفن همراه فعال است و در منطقه‌ای با سیگنال خوب هستید، به عملکرد عادی خود بازگردد. اگر تلفن شما اتصال اینترنت خوبی دارد، اما Soundscape به عملکرد عادی خود بازنمی‌گردد، ممکن است اختلالی در خدمات Soundscape وجود داشته باشد."</string>
+<!-- Help Title, Around Me -->
+<string name="help_orient_page_title">"اطراف من"</string>
+<!-- Help Title, Ahead of Me -->
+<string name="help_explore_page_title">"جلوی من"</string>
+<!-- Help Title, Creating Markers -->
+<string name="help_creating_markers_page_title">"ایجاد نشانگرها"</string>
+<!-- Help Title, Customizing Markers -->
+<string name="help_edit_markers_page_title">"شخصی‌سازی نشانگرها"</string>
+<!-- Help Title, This is a help topic related to using the media control buttons on headphones -->
+<string name="help_remote_page_title">"استفاده از کنترل‌های رسانه"</string>
+<!-- Help Tutorial, Hint when disabled while route guidance is active -->
+<!-- Help Tutorial, "What is it?" section title -->
+<string name="help_text_section_title_what">"چیست؟"</string>
+<!-- Help Tutorial, "When would I use it?" section title -->
+<string name="help_text_section_title_when">"چه زمانی از آن استفاده کنم؟"</string>
+<!-- Help Tutorial, "How does it work?" section title -->
+<string name="help_text_section_title_how">"چگونه کار می‌کند؟"</string>
+<!-- Title Terms of Use -->
+<string name="terms_of_use_title">"شرایط استفاده"</string>
+<!-- Notification message to accept or decline the terms in the Company Service Agreement, Quotes written as \" -->
+<string name="terms_of_use_message">"استفاده شما از Soundscape تابع شرایط %s و شرایط زیر است (که در مجموع *\"شرایط استفاده\"* نامیده می‌شوند)."</string>
+<!-- Title of the link to the Company Services Agreement. This value will be used in the placeholder %s that appears in the terms_of_use.message string -->
+<string name="terms_of_use_service_agreement">"توافقنامه خدمات ارتش فناوری اسکاتلند"</string>
+<!-- Terms of use checkbox accessibility label -->
+<string name="terms_of_use_accept_checkbox_acc_label">"پذیرش شرایط استفاده"</string>
+<!-- App's medical device and safety disclaimer, "(1)" and (2)" are used for an inline, numbered list -->
+<string name="terms_of_use_medical_safety_disclaimer">"شما تایید می‌کنید که Soundscape (1) به عنوان یک دستگاه پزشکی طراحی، در نظر گرفته یا ارائه نشده است و (2) برای جایگزینی یا به عنوان جایگزینی برای مشاوره پزشکی حرفه‌ای، تشخیص، درمان یا قضاوت طراحی یا در نظر گرفته نشده است و نباید برای جایگزینی یا به عنوان جایگزینی برای مشاوره پزشکی حرفه‌ای، تشخیص، درمان یا قضاوت استفاده شود.\n\nاعلامیه ایمنی\n\nSoundscape یک کمک ناوبری است و نباید به جای مهارت‌های حرکتی، آگاهی از محیط اطراف و قضاوت خوب استفاده شود. هنگام حرکت در محیط خود احتیاط کنید زیرا داده‌های نقشه‌برداری گنجانده شده در برنامه Soundscape از یک برنامه شخص ثالث جمع‌آوری شده‌اند و بنابراین، ممکن است محدودیت‌هایی در دقت اطلاعات ارائه شده وجود داشته باشد."</string>
+<!-- Notification, Soundscape Language -->
+<string name="first_launch_soundscape_language">"زبان Soundscape"</string>
+<!-- Notification, introduction to Soundscape Language -->
+<string name="first_launch_soundscape_language_text">"زبانی را که می‌خواهید Soundscape از آن استفاده کند، انتخاب کنید. همیشه می‌توانید انتخاب خود را در تنظیمات برنامه تغییر دهید."</string>
+<!-- Title text for the welcome screen in the first launch experience -->
+<string name="first_launch_welcome_title">"خوش آمدید!"</string>
+<!-- Short description included in the welcome screen in the first launch experience -->
+<string name="first_launch_welcome_description">"با اطمینان با صدای فضایی Soundscape حرکت کنید"</string>
+<!-- Button text to get started with app setup -->
+<string name="first_launch_welcome_button">"شروع کنید"</string>
+<!-- Title text for the screen that tells users how they can listen to Soundscape audio -->
+<string name="first_launch_headphones_title">"گوش دادن به Soundscape"</string>
+<!-- Message text for the screen that tells users how they can listen to Soundscape audio -->
+<string name="first_launch_headphones_message_1">"Soundscape با هر جفت هدفونی عالی کار می‌کند. اگر می‌خواهید از هدفون استفاده کنید، اکنون آنها را بردارید."</string>
+<!-- Message text for the screen that tells users how they can listen to Soundscape audio -->
+<string name="first_launch_headphones_message_2">"اگر هدفون ندارید یا ترجیح می‌دهید از آن استفاده نکنید، اشکالی ندارد! Soundscape با بلندگوهای گوشی شما کار خواهد کرد."</string>
+<!-- Title text for the screen that introduces Soundscape callouts -->
+<string name="first_launch_callouts_title">"اطراف خود را بشنوید"</string>
+<!-- Message text for the screen that introduces Soundscape callouts -->
+<string name="first_launch_callouts_message">"Soundscape به شما کمک می‌کند تا با اعلام جاده‌ها، تقاطع‌ها و نقاط مورد علاقه هنگام نزدیک شدن به آنها، از موقعیت خود و مسیری که می‌روید آگاه باشید."</string>
+<!-- Text for button that plays example callouts -->
+<string name="first_launch_callouts_listen">"به مثالی از آنچه Soundscape ممکن است در پیاده‌روی بعدی شما اعلام کند، گوش دهید"</string>
+<!-- Accessibility text for button that plays example callouts -->
+<string name="first_launch_callouts_listen_accessibility_label">"گوش دهید"</string>
+<!-- Example callout for a coffee shop / cafe -->
+<string name="first_launch_callouts_example_1">"کافه"</string>
+<!-- Example callout for a generic street name. In the US, a generic street name is "Main Street" but this might vary by locale -->
+<string name="first_launch_callouts_example_3">"خیابان اصلی به چپ می‌رود"</string>
+<!-- Example callout for a generic street name. In the US, a generic street name is "Main Street" but this might vary by locale -->
+<string name="first_launch_callouts_example_4">"خیابان اصلی به راست می‌رود"</string>
+<!-- Title text for screen that asks for location permissions -->
+<string name="first_launch_permissions_title">"ناوبری با Soundscape"</string>
+<!-- Message text for screen that asks for location permissions -->
+<string name="first_launch_permissions_message">"هنگام ناوبری با Soundscape، توسط یک نشانه ی صوتی هدایت خواهید شد. برای انجام این کار، Soundscape از شما می‌خواهد که مجوزهای زیر را فعال کنید:"</string>
+<!-- Title text for permission to use iOS Location Services -->
+<string name="first_launch_permissions_location">"خدمات مکان‌یابی با مکان دقیق"</string>
+<!-- Title text for permission to use iOS Motion and Fitness data -->
+<string name="first_launch_permissions_motion">"حرکت و تناسب اندام"</string>
+<!-- Text to indicate that a permission is required -->
+<string name="first_launch_permissions_required">"این مجوز الزامی است"</string>
+<!-- Title text for screen to choose an audio beacon -->
+<string name="first_launch_beacon_title">"انتخاب نشانه ی صوتی"</string>
+<!-- Message text that explains what an audio beacon is -->
+<string name="first_launch_beacon_message_1">"هنگام ناوبری با Soundscape، نشانه ی  صوتی را در جهت مقصد خود خواهید شنید. با دنبال کردن صدای آن، همیشه خواهید دانست که به کدام سمت بروید."</string>
+<!-- Message text to tell the user to listen to the audio beacons and prompts the user to select their preference -->
+<string name="first_launch_beacon_message_2">"به نشانه‌های صوتی موجود گوش دهید و ترجیح خود را انتخاب کنید."</string>
+<!-- Message text to tell the user that the audio beacon can be changed in app settings -->
+<string name="first_launch_beacon_message_3">"این مورد را می‌توان بعداً در تنظیمات برنامه تغییر داد."</string>
+<!-- Title text for last screen in the first launch experience -->
+<string name="first_launch_prompt_title">"همه چیز آماده است!"</string>
+<!-- Message text for the last screen in the first launch experience, "destination" should be translated the same as it is in "search.choose_destination" -->
+<string name="first_launch_prompt_message">"شما برای اولین پیاده‌روی خود با Soundscape آماده‌اید. برای امتحان آن همین حالا، فقط یک مقصد نزدیک را انتخاب کنید، نشانه ی صوتی را شروع کنید، و آن را در جهت مقصد خود خواهید شنید."</string>
+<!-- Button for the last screen in the first launch experience -->
+<string name="first_launch_prompt_button">"پایان"</string>
+<!-- Button to change the configured language for the UI -->
+<string name="first_launch_change_language" tools:ignore="MissingTranslation">"تغییر زبان"</string>
+<!-- Hint for configuring the language -->
+<string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">"برای تغییر زبان مورد استفاده برنامه"</string>
+<!-- Notification, Information on what a beacon is used for -->
+<string name="help_text_destination_beacons_what">"تنظیم یک نشانه ی صوتی روی یک مکان نزدیک به Soundscape اجازه می‌دهد تا با پخش صدای نشانه ی قابل شنیدن که از جهت آن مکان می‌آید، شما را مطلع نگه دارد. این بیکن را می‌توان در صفحه اصلی بی‌صدا یا با‌صدا کرد. علاوه بر این، Soundscape اطلاعاتی در مورد مکان از جمله فاصله تا آن و آدرس خیابان آن را در صورت معلوم بودن، در صفحه اصلی نمایش می‌دهد."</string>
+<!-- Notification, Information on when to use a beacon -->
+<string name="help_text_destination_beacons_when">"تنظیم نشانه ی صوتی زمانی مفید است که می‌خواهید هنگام کاوش در یک منطقه جدید، یک نقطه عطف آشنا را ردیابی کنید یا زمانی که به جایی می‌روید و می‌خواهید در طول مسیر از محیط اطراف خود مطلع شوید. ویژگی نشانه ی صوتی به شما دستورالعمل‌های گام به گام نمی‌دهد، اما یک صدای شنیدنی مداوم به شما می‌دهد که جهت بیکن را نسبت به موقعیت فعلی شما می‌گوید. با استفاده از بیکن صوتی، مهارت‌های جهت‌یابی موجود خود، و حتی برنامه ناوبری مورد علاقه خود، می‌توانید نحوه رسیدن به مکان‌های نزدیک را خودتان انتخاب کنید."</string>
+<!-- Notification, Information how to set a beacon. Ensure that "Set a Beacon" is translated the same as `universal_links.alert.action.beacon`. Quotes written as \" -->
+<string name="help_text_destination_beacons_how_1">"**برای تنظیم یک نشانه ی صوتی:**\n\n ابتدا جزئیات یک مکان را با استفاده از نوار جستجو برای جستجوی یک مکان، یا با ضربه زدن بر روی یکی از دکمه‌های *\"مکان‌های نزدیک\"*، *\"نشانگرهای ذخیره‌شده\"*، یا *\"موقعیت مکانی فعلی\"* و انتخاب یک مکان مشاهده کنید. از صفحه جزئیات مکان می‌توانید دکمه *\"شروع نشانه ی صوتی\"* را انتخاب کنید. با ضربه زدن بر روی این دکمه به صفحه اصلی بازخواهید گشت و یک نشانه ی  شنیدنی که از جهت مکان انتخابی شما می‌آید، روشن می‌شود. نام مکان انتخابی شما همراه با فاصله و آدرس فیزیکی آن، در صورت موجود بودن، اکنون در صفحه اصلی برنامه نمایش داده خواهد شد."</string>
+<!-- Notification, Information how to set a beacon continued. Ensure that "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
+<string name="help_text_destination_beacons_how_2">"**برای حذف نشانه ی صوتی فعلی:**\n\n کافیست دکمه *\"توقف نشانه ی صوتی\"* را در صفحه اصلی فشار دهید."</string>
+<!-- Notification, Information how to set a beacon continued. Ensure that "Mute Beacon" is translated the same as `beacon.action.mute_beacon` and "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
+<string name="help_text_destination_beacons_how_3">"**برای بی‌صدا کردن نشانه ی شنیدنی:**\n\n روی دکمه *\"بی‌صدا کردن نشانه ی صوتی\"* در کنار دکمه *\"توقف نشانه ی صوتی\"* در صفحه اصلی ضربه بزنید."</string>
+<!-- Notification, Information about what a callout is. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts`. Quotes written as \" -->
+<string name="help_text_automatic_callouts_what">"Soundscape می‌تواند با اعلام نام چیزهایی در اطراف شما از جهتی که در آن قرار دارند، شما را از آنها مطلع کند. این برنامه این کار را به طور خودکار برای انواع چیزها مانند کسب‌وکارها، ایستگاه‌های اتوبوس و حتی تقاطع‌ها انجام خواهد داد. می‌توانید آنچه را که برنامه به طور خودکار اعلام می‌کند در بخش *\"مدیریت اعلامیه‌ها\"* از صفحه *\"تنظیمات\"* پیکربندی کنید، و می‌توانید در صورت تمایل به سکوت برنامه، همه اعلامیه‌ها را خاموش کنید."</string>
+<!-- Notification, Information on when you will hear callouts. -->
+<string name="help_text_automatic_callouts_when_1">"**کاوش در یک منطقه جدید:**\n\n اعلامیه‌های خودکار را روشن کنید و در اطراف قدم بزنید تا از همه فروشگاه‌ها، رستوران‌ها و موارد مشابه که از کنار آنها عبور می‌کنید، مطلع شوید."</string>
+<!-- Notification, Information on when you will hear callouts continued. -->
+<string name="help_text_automatic_callouts_when_2">"**پیاده‌روی به یک مکان خاص:**\n\n هنگامی که در مسیر خود به یک مکان خاص هستید، اعلامیه‌های تقاطع‌ها می‌توانند به ویژه مفید باشند. اعلامیه‌های تقاطع‌ها در مورد طرح تقاطع‌ها هنگام نزدیک شدن به آنها به شما اطلاع می‌دهند و هنگام خروج از آنها، جاده‌ای که در آن هستید را تأیید می‌کنند."</string>
+<!-- Notification, Information on when you will hear callouts continued. Ensure that "My Location" is translated the same as `directions.my_location` and "Nearby Markers" is translated the same as `callouts.nearby_markers` and "Around Me" is translated the same as `help.orient.page_title` and "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
+<string name="help_text_automatic_callouts_when_3">"**هنگامی که نیاز به سکوت دارید:**\n\n وقتی می‌خواهید از یک جاده عبور کنید یا فقط نیاز دارید برنامه ساکت باشد، می‌توانید اعلامیه‌ها را خاموش کنید. وقتی اعلامیه‌ها خاموش هستند، برنامه فقط در صورتی به شما اطلاعات می‌دهد که به صورت دستی روی یکی از دکمه‌های *\"موقعیت مکانی من\"*، *\"نشانگرهای نزدیک\"*، *\"اطراف من\"*، یا *\"جلوی من\"* ضربه بزنید."</string>
+<!-- Notification, Information how to turn on callouts. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Callouts Off" is translated the same as `callouts.callouts_off` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
+<string name="help_text_automatic_callouts_how_1">"**روشن یا خاموش کردن اعلامیه‌ها:**\n\n خاموش کردن اعلامیه‌ها برنامه را ساکت می‌کند. اعلامیه‌ها را می‌توان در بخش *\"مدیریت اعلامیه‌ها\"* از صفحه *\"تنظیمات\"* روشن یا خاموش کرد، جایی که می‌توانید روی گزینه *\"اجازه دادن به اعلامیه‌ها\"* ضربه بزنید تا اعلامیه‌ها را روشن یا خاموش کنید. همچنین می‌توانید با استفاده از دستور *\"پرش به جلو\"* (دو ضربه و نگه داشتن) اگر هدفون شما دکمه‌های کنترل رسانه دارد، اعلامیه‌ها را روشن یا خاموش کنید. یا می‌توانید از دکمه *\"خواب\"* در گوشه بالا سمت راست صفحه اصلی استفاده کنید تا Soundscape از اعلام کردن جلوگیری کند تا زمانی که خودتان آن را بیدار کنید."</string>
+<!-- Notification, Information how to turn on callouts continued. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
+<string name="help_text_automatic_callouts_how_2">"**مدیریت اعلامیه‌هایی که می‌شنوید:**\n\n برای انتخاب انواع چیزهایی که Soundscape به طور خودکار اعلام می‌کند، به صفحه *\"تنظیمات\"* از طریق منو در صفحه *\"خانه\"* بروید. بخش *\"مدیریت اعلامیه‌ها\"* از صفحه *\"تنظیمات\"* شامل لیستی از انواع چیزهایی است که برنامه می‌تواند اعلام کند. هر مورد دارای یک دکمه روشن/خاموش است که می‌توانید آن را روشن یا خاموش کنید. اگر می‌خواهید تمام اعلامیه‌ها را خاموش کنید، روی گزینه *\"اجازه دادن به اعلامیه‌ها\"* در بالای لیست ضربه بزنید."</string>
+<!-- Notification, Information about what My Location does. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
+<string name="help_text_my_location_what">"دکمه *\"موقعیت مکانی من\"* به سرعت اطلاعاتی را به شما می‌دهد که به شما کمک می‌کند بفهمید در حال حاضر کجا هستید. *\"موقعیت مکانی من\"* در مورد موقعیت فعلی شما از جمله مواردی مانند جهتی که رو به آن هستید، محل جاده‌ها یا تقاطع‌های نزدیک، و محل نقاط مورد علاقه نزدیک به شما می‌گوید."</string>
+<!-- Notification, Information on when you would need to use My Location. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
+<string name="help_text_my_location_when">"*\"موقعیت مکانی من\"* زمانی مفید است که نیاز دارید بفهمید کجا هستید یا به کدام جهت اصلی رو به رو هستید."</string>
+<!-- Notification, Information how to use My Location. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
+<string name="help_text_my_location_how">"مانند هر چهار دکمه در پایین صفحه اصلی، قبل از فشار دادن دکمه *\"موقعیت مکانی من\"*، گوشی خود را به گونه‌ای نگه دارید که صفحه تخت (رو به آسمان) باشد و بالای گوشی در جهتی باشد که رو به رو هستید. این مانند یک قطب‌نما عمل می‌کند که به برنامه می‌گوید به کدام سمت رو به رو هستید. به سادگی روی دکمه *\"موقعیت مکانی من\"* ضربه بزنید و گوش دهید."</string>
+<!-- Notification, Information about what Nearby Markers does. Ensure that "Nearby Markers" is translated the same as `callouts.nearby_markers`. Quotes written as \" -->
+<string name="help_text_nearby_markers_what">"دکمه *\"نشانگرهای نزدیک\"* در مورد حداکثر چهار نشانگر که نزدیک‌ترین به شما هستند به شما می‌گوید. *\"نشانگرهای نزدیک\"* قصد دارد به شما کمک کند تا با استفاده از مکان‌هایی که قبلاً می‌شناسید، خود را جهت‌یابی کنید."</string>
+<!-- Notification, Information about when to use Nearby Markers. Ensure that "Nearby Markers" is translated the same as `callouts.nearby_markers`. Quotes written as \" -->
+<string name="help_text_nearby_markers_when">"هنگامی که در تلاش برای جهت‌یابی و orient کردن خود نسبت به محیط اطراف هستید، از *\"نشانگرهای نزدیک\"* استفاده کنید تا در مورد موقعیت مکانی جاهایی که می‌شناسید بشنوید."</string>
+<!-- Notification, Information about how to use Nearby Markers. Ensure that "Nearby Markers" is translated the same as `callouts.nearby_markers`. Quotes written as \" -->
+<string name="help_text_nearby_markers_how">"مانند هر چهار دکمه در پایین صفحه اصلی، قبل از فشار دادن دکمه *\"نشانگرهای نزدیک\"*، گوشی خود را به گونه‌ای نگه دارید که صفحه تخت (رو به آسمان) باشد و بالای گوشی در جهتی باشد که رو به رو هستید. این مانند یک قطب‌نما عمل می‌کند که به برنامه می‌گوید به کدام سمت رو به رو هستید. به سادگی روی دکمه *\"نشانگرهای نزدیک\"* ضربه بزنید و حداکثر چهار نشانگر نزدیک به خود را خواهید شنید."</string>
+<!-- Notification, Information about what Around Me does. Ensure that "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
+<string name="help_text_around_me_what">"دکمه *\"اطراف من\"* در مورد یک چیز در هر یک از چهار ربع اطراف شما (جلو، راست، پشت و چپ) به شما می‌گوید. *\"اطراف من\"* قصد دارد به شما کمک کند تا خود را با محیط اطراف خود جهت‌یابی کنید."</string>
+<!-- Notification, Information about when to use Around Me. Ensure that "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
+<string name="help_text_around_me_when">"هنگامی که در تلاش برای جهت‌یابی و orient کردن خود نسبت به محیط اطراف هستید، از *\"اطراف من\"* استفاده کنید تا در مورد چیزهای اطراف خود بشنوید."</string>
+<!-- Notification, Information about how to use Around Me. Ensure that "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
+<string name="help_text_around_me_how">"مانند هر چهار دکمه در پایین صفحه اصلی، قبل از فشار دادن دکمه *\"اطراف من\"*، گوشی خود را به گونه‌ای نگه دارید که صفحه تخت (رو به آسمان) باشد و بالای گوشی در جهتی باشد که رو به رو هستید. این مانند یک قطب‌نما عمل می‌کند که به برنامه می‌گوید به کدام سمت رو به رو هستید. به سادگی روی دکمه *\"اطراف من\"* ضربه بزنید و چهار نقطه مورد علاقه را که در اطراف شما قرار گرفته‌اند، خواهید شنید."</string>
+<!-- Notification, Information about what Ahead of Me does. Ensure that "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
+<string name="help_text_ahead_of_me_what">"دکمه *\"جلوی من\"* در مورد چهار چیز جلوی شما به شما می‌گوید. *\"جلوی من\"* قصد دارد به شما کمک کند تا هنگام یادگیری در مورد یک منطقه جدید، مسیر پیش روی خود را کشف کنید."</string>
+<!-- Notification, Information about when to use Ahead of Me. Ensure that "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
+<string name="help_text_ahead_of_me_when">"هنگامی که در خیابان قدم می‌زنید، از *\"جلوی من\"* استفاده کنید تا مکان‌ها و چیزهای پیش رو در هر دو طرف خیابان را کشف کنید."</string>
+<!-- Notification, Information about how to use Ahead of Me. Ensure that "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
+<string name="help_text_ahead_of_me_how">"مانند هر چهار دکمه در پایین صفحه اصلی، قبل از فشار دادن دکمه *\"جلوی من\"*، گوشی خود را به گونه‌ای نگه دارید که صفحه تخت (رو به آسمان) باشد و بالای گوشی در جهتی باشد که رو به رو هستید. این مانند یک قطب‌نما عمل می‌کند که به برنامه می‌گوید به کدام سمت رو به رو هستید. به سادگی روی دکمه *\"جلوی من\"* ضربه بزنید و چندین نقطه مورد علاقه را که همگی تقریباً جلوی شما هستند، خواهید شنید."</string>
+<!-- Notification, Information about what headphone media controls do in Soundscape. Keep HTML tags. -->
+<string name="help_text_remote_control_what">"شما می‌توانید با کمک دکمه‌های کنترل رسانه روی هدفون خود به برخی از ویژگی‌های Soundscape دسترسی پیدا کنید. این عملکرد با هر هدفون سیمی یا بلوتوثی که دارای دکمه‌های کنترل رسانه مانند پخش، مکث، بعدی، قبلی و سایرین است، کار می‌کند. هدفون‌های مختلف ممکن است شامل دکمه‌های متفاوتی باشند، بنابراین لطفاً به لیست اقدامات زیر مراجعه کنید تا مشخص کنید کدام یک برای شما در دسترس هستند."</string>
+<!-- Notification, Information about when to use media controls on headphones. -->
+<string name="help_text_remote_control_when">"کنترل‌های رسانه هدفون را می‌توان در حالی که Soundscape در حال اجرا است استفاده کرد. این هم در حالی که شما در حال حاضر در Soundscape هستید و هم در حالی که Soundscape در پس‌زمینه است و حتی در حالی که دستگاه شما قفل است، صادق است. با این حال توجه داشته باشید که دکمه‌های کنترل رسانه هدفون با Soundscape کار نخواهند کرد اگر با برنامه دیگری در حال پخش صدا مانند موسیقی، پادکست یا ویدئو هستید."</string>
+<!-- Notification, Information about how to use media controls on headphones. Ensure that "My Location" is translated the same as `directions.my_location` and "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
+<string name="help_text_remote_control_how">"با استفاده از دکمه‌های کنترل رسانه روی هدفون خود می‌توانید به ویژگی‌های زیر در Soundscape دسترسی پیدا کنید:\n\n⏯ پخش/مکث: همه اعلامیه‌های فعلی را بی‌صدا کنید و اگر نشانه ی  صوتی تنظیم شده است، صدای نشانه ی صوتی را تغییر دهید. \n\n⏭ بعدی: *\"موقعیت مکانی من\"* را اعلام کنید.\n\n⏮ قبلی: آخرین اعلامیه را تکرار کنید.\n\n⏩ پرش به جلو: اعلامیه‌ها را روشن و خاموش کنید.\n\n⏪ پرش به عقب: *\"اطراف من\"* را اعلام کنید."</string>
+<!-- Notification, Markers content -->
+<string name="help_text_markers_content_1">"با Soundscape، می‌توانید دنیای خود و هر چیزی را که به آن اهمیت می‌دهید، علامت‌گذاری کنید."</string>
+<!-- Notification, Markers content continued -->
+<string name="help_text_markers_content_2">"شما می‌توانید چیزهایی را که شخصی و مرتبط با شما هستند مانند خانه، محل کار و فروشگاه مواد غذایی مورد علاقه خود علامت‌گذاری کنید. می‌توانید هر مکان یا آدرس را علامت‌گذاری کنید، اما همچنین می‌توانید چیزهایی را علامت‌گذاری کنید که به طور سنتی در نقشه‌ها در دسترس نیستند، برای مثال، ورودی ساختمان‌ها یا پارک‌ها، دکمه‌های فشار برای پیاده‌روی، گذرگاه‌های عابر پیاده یا پل‌ها، ایستگاه‌های اتوبوس یا حتی درخت مورد علاقه سگ خود را علامت‌گذاری کنید و از آنها به عنوان مرجع در طول پیاده‌روی خود استفاده کنید."</string>
+<!-- Notification, Markers content continued -->
+<string name="help_text_markers_content_3">"برای تجربه مکان‌های علامت‌گذاری شده، Soundscape به طور خودکار مکان‌های علامت‌گذاری شده را هنگام عبور یا نزدیک شدن به آنها اعلام می‌کند، یا همچنین می‌توانید از دکمه نشانگرهای نزدیک در پایین صفحه اصلی Soundscape استفاده کنید تا یک اعلامیه فضایی از مکان‌های علامت‌گذاری شده در اطراف خود بشنوید. علاوه بر این، شما این امکان را دارید که یک نشانه ی صوتی را روی هر مکان علامت‌گذاری شده تنظیم کنید. هنگامی که این کار را انجام می‌دهید، نشانه ی صوتی Soundscape که با آن آشنا هستید، شنیده خواهد شد و می‌توانید آن را مانند معمول کار کنید."</string>
+<!-- Notification, Creating Markers help content, Quotation marks are written as \" -->
+<string name="help_text_creating_markers_content_1">"شما می‌توانید نشانگرها را به سه روش ایجاد کنید: جستجو برای مکانی که می‌خواهید ذخیره کنید با استفاده از نوار جستجو، پیدا کردن مکانی با استفاده از دکمه *\"مکان‌های نزدیک\"*، یا استفاده از دکمه *\"استفاده از موقعیت مکانی فعلی\"*، که همه آنها را می‌توان در صفحه اصلی Soundscape یافت. هنگامی که مکان مورد نظر خود را پیدا کردید، انتخاب آن شما را به صفحه *\"جزئیات مکان\"* می‌برد. در این صفحه، دکمه *\"ذخیره نشانگر\"* را انتخاب کنید."</string>
+<!-- Notification, Creating Markers help content continued, Quotation marks are written as \" -->
+<string name="help_text_creating_markers_content_2">"اکنون گزینه شخصی‌سازی این نشانگر را خواهید داشت. این مرحله اختیاری است. اگر می‌خواهید، می‌توانید نام نشانگر را تغییر دهید و همچنین یک یادداشت اضافه کنید که همراه با نشانگر اعلام می‌شود تا اطلاعات اضافی ارائه دهد. پس از اتمام، دکمه *\"انجام شد\"* را برای ذخیره نشانگر خود انتخاب کنید."</string>
+<!-- Notification, Customizing Markers help content. "Markers and Routes" should be translated the same as the string with key 'search.view_markers'. Quotes written as \" -->
+<string name="help_text_customizing_markers_content_1">"اگر می‌خواهید نشانگری را که قبلاً ایجاد کرده‌اید تغییر نام دهید، یا یادداشتی به آن اضافه کنید، می‌توانید با انتخاب نشانگر از تب *\"نشانگرها\"* در صفحه *\"نشانگرها و مسیرها\"*، سپس انتخاب دکمه *\"ویرایش نشانگر\"* این کار را انجام دهید. می‌توانید از این برای دادن نام‌های مستعار توصیفی یا مفید به نشانگرها، و همچنین دادن توضیحات طولانی‌تر به آنها با استفاده از فیلد یادداشت استفاده کنید."</string>
+<!-- Notification, Customizing Markers help content continued -->
+<string name="help_text_customizing_markers_content_2">"از این صفحه ویرایش، می‌توانید نشانگر را در صورت عدم نیاز دیگر، حذف کنید."</string>
+<!-- Help content explaining what the "routes" feature is -->
+<string name="help_text_routes_content_what">"مسیرها مجموعه‌ای از نقاط بین راهی هستند. در هنگام رسیدن به هر نقطه بین راهی مطلع خواهید شد و نشانه ی صوتی به طور خودکار به نقطه بین راهی بعدی پیشروی خواهد کرد."</string>
+<!-- Help content explaining when a user might choose to use the routes feature -->
+<string name="help_text_routes_content_when">"شما ممکن است بخواهید مسیری را در جایی که می‌شناسید ایجاد و استفاده کنید تا مطمئن شوید که در مسیر می‌مانید، یا ممکن است بخواهید از آن به عنوان ابزاری برای آشنایی خود در طول یک سفر جدید استفاده کنید."</string>
+<!-- Help content explaining how a user can create a route. Quotes written as \" -->
+<string name="help_text_routes_content_how_1">"**ایجاد یک مسیر:**\n\n ابتدا به *\"نشانگرها و مسیرها\"* بروید، تب *\"مسیرها\"* را انتخاب کنید و سپس دکمه *\"مسیر جدید\"* را انتخاب کنید. یک نام و یک توضیح اختیاری برای مسیر بدهید، سپس نقاط بین راهی را هنگام حرکت اضافه کنید یا آنها را از لیست نشانگرهای خود انتخاب کنید. می‌توانید ترتیب نقاط بین راهی در طول یک مسیر را در هر زمان با ویرایش مسیر تغییر دهید."</string>
+<!-- Help content explaining how a user can edit a route. Quotes written as \" -->
+<string name="help_text_routes_content_how_2">"**ویرایش یک مسیر:**\n\n مسیر خود را در صفحه *\"نشانگرها و مسیرها\"* انتخاب کنید و سپس *\"ویرایش مسیر\"* را انتخاب کنید. از اینجا می‌توانید نقاط بین راهی را اضافه و حذف کنید، و همچنین نام و توضیحات مسیر را ویرایش کنید."</string>
+<!-- Help content explaining how a user can share a route. "Share" should be translated in the same way as it is for the key `share.title`. Quotes written as \" -->
+<string name="help_text_routes_content_how_3">"**اشتراک‌گذاری یک مسیر:**\n\n مسیر خود را در صفحه *\"نشانگرها و مسیرها\"* انتخاب کنید و سپس گزینه *\"اشتراک‌گذاری\"* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمولی که در دسترس شماست، انتخاب کنید."</string>
+<!-- Open Street Map term. Pedestrians can cross a street here; e.g., zebra crossing. Known as crosswalks in American English, and crossings in British English. -->
+<string name="osm_tag_crossing">"گذرگاه عابر پیاده"</string>
+<!-- Open Street Map term. Used to describe the type of the feature which is currently under construction. -->
+<string name="osm_tag_construction">"ساخت‌وساز"</string>
+<!-- Open Street Map term. NOT DEFINED IN OSM -->
+<string name="osm_tag_dangerous_area">"منطقه خطرناک"</string>
+<!-- Open Street Map term. This refers to a village, town or city townhall, which is often the seat of the mayor, or may be merely a community meeting place. -->
+<string name="osm_tag_townhall">"تالار شهر"</string>
+<!-- Open Street Map term. For flights of steps on footways and paths.. -->
+<string name="osm_tag_steps">"پله‌ها"</string>
+<!-- Open Street Map term. An elevator (or lift) is used to travel vertically, providing passenger and freight access between pathways at different floor levels. -->
+<string name="osm_tag_elevator">"آسانسور"</string>
+<!-- Open Street Map term. A walking path is is a generic path, either multi-use or unspecified usage, open to all pedestrians and not intended for motorized vehicles. -->
+<string name="osm_tag_walking_path">"مسیر پیاده‌روی"</string>
+<!-- Open Street Map term. Is a road or an area mainly or exclusively for pedestrians in which some vehicle traffic may be authorized (e.g. emergency, taxi, delivery, ...). Typically found in shopping areas, town centres, places with tourism attractions and recreation/civic areas, where wide expanses of hard surface are provided for pedestrians to walk. -->
+<string name="osm_tag_pedestrian_street">"خیابان عابر پیاده"</string>
+<!-- Open Street Map term. A bicycle path is is a generic path, either multi-use or unspecified usage, open to all cyclists and not intended for motorized vehicles. May be shared with pedestrians. -->
+<string name="osm_tag_bicycle_path">"مسیر دوچرخه"</string>
+<!-- Open Street Map term. Used for roads that are used for accessing residential areas and in residential areas but which are not normally used as through routes. -->
+<string name="osm_tag_residential_street">"خیابان مسکونی"</string>
+<!-- Open Street Map term. Used in two senses: 1. As a service way for access to buildings or places 2. Frontage road parallel to a major road. -->
+<string name="osm_tag_service_road">"جاده خدماتی"</string>
+<!-- Open Street Map term. Any highway, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
+<string name="osm_tag_road">"جاده"</string>
+<!-- Open Street Map term. Any road, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
+<string name="osm_tag_highway">"بزرگراه"</string>
+<!-- Open Street Map term. Any highway that has a given name. Used as a display name for place or a location. %s is an highway name, such as "London Highway". -->
+<string name="osm_tag_highway_named">"بزرگراه %s"</string>
+<!-- Open Street Map term. Any highway that has a reference number or name. Used as a display name for place or a location. %s is an highway id, such as "Highway 520" or "Highway B". -->
+<string name="osm_tag_highway_refed">"بزرگراه %s"</string>
+<!-- Open Street Map term. An intersection is a junction where two or more roads meet or cross. -->
+<string name="osm_tag_intersection">"تقاطع"</string>
+<!-- Open Street Map term. A roundabout is a type of circular intersection or junction in which road traffic is permitted to flow in one direction around a central island. -->
+<string name="osm_tag_roundabout">"فلکه"</string>
+<!-- Open Street Map term. Used to describe a road or highway leading to and from a major highway e.g., a freeway or motorway. -->
+<string name="osm_tag_highway_ramp">"رمپ بزرگراه"</string>
+<!-- Open Street Map term. Used as to describe the section of highway where two or more roads or highways merge with one another. -->
+<string name="osm_tag_merging_lane">"خط ادغام"</string>
+<!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
+<string name="osm_tag_office_building">"ساختمان اداری"</string>
+<!-- Open Street Map term. Used for any generic building that is used as a school. -->
+<string name="osm_tag_school_building">"ساختمان مدرسه"</string>
+<!-- Open Street Map term. Used as a display name for place or a location. -->
+<string name="osm_tag_covered_pavilion">"آلاچیق سرپوشیده"</string>
+<!-- Open Street Map term. A small local shop carrying a variety of everyday products, mostly including single-serving food items such as milk, bread, snacks, groceries to over-the-counter medications, household items, stationery, and small auto supplies such as fuses. -->
+<string name="osm_tag_convenience_store">"فروشگاه رفاه"</string>
+<!-- Open Street Map term. A doorway through which people can enter or exit a building. -->
+<string name="osm_tag_building_entrance">"ورودی ساختمان"</string>
+<!-- Open Street Map term. Used to designate a place or an area where all employees, passengers or a large crowd assemble in case of an emergency in an installation, building or a public place. -->
+<string name="osm_tag_assembly_point">"نقطه تجمع"</string>
+<!-- Open Street Map term. Used to describe fence-like barriers positioned along paths, footways, cycleways or tracks which serve to either slow cycle access or prevent it entirely depending on spacing and layout. -->
+<string name="osm_tag_cycle_barrier">"مانع دوچرخه"</string>
+<!-- Open Street Map term. Used to describe a barrier to allow one person at a time to pass. Use this for small turnstiles like the ones in supermarkets or some subways. -->
+<string name="osm_tag_turnstile">"گرداننده"</string>
+<!-- Open Street Map term. Used to describe a hole in the road surface which is covered with a series of bars that allow wheeled vehicles but not animals to cross. -->
+<string name="osm_tag_cattle_grid">"گاوکش"</string>
+<!-- Open Street Map term. A gate is a section in a wall or fence which can be opened to allow or restrict access. They are usually made of wood or metal. -->
+<string name="osm_tag_gate">"دروازه"</string>
+<!-- Open Street Map term. Used to refer to a public toilet. -->
+<string name="osm_tag_restroom">"توالت"</string>
+<!-- Open Street Map term. Used to describe a facility used by the public, customers, or other authorised users for parking motor vehicles, such as cars and trucks, commonly known as a car park (British English) or parking lot (American English). -->
+<string name="osm_tag_parking_lot">"پارکینگ"</string>
+<!-- Open Street Map term. Used to describe the entry/exit point to a parking area. -->
+<string name="osm_tag_parking_entrance">"ورودی پارکینگ"</string>
+<!-- Open Street Map term. A place for people to sit. -->
+<string name="osm_tag_bench">"نیمکت"</string>
+<!-- Open Street Map term. Used for the locating the point where taxis wait, not the point where passengers wait. -->
+<string name="osm_tag_taxi_waiting_area">"منطقه انتظار تاکسی"</string>
+<!-- Open Street Map term. A place where letters and parcels may be sent or collected.. -->
+<string name="osm_tag_post_office">"اداره پست"</string>
+<!-- Open Street Map term. A physical box used as a facility for the public to deposit outgoing postal items, such as letters and other small goods, intended for collection by the operator.. -->
+<string name="osm_tag_post_box">"صندوق پستی"</string>
+<!-- Open Street Map term. A single small container for depositing garbage that is easily accessible for pedestrians. -->
+<string name="osm_tag_waste_basket">"سطل زباله"</string>
+<!-- Open Street Map term. A place where people can bathe under water sprays. May be run as a local amenity by the government, or part of commercial provisions. -->
+<string name="osm_tag_shower">"دوش"</string>
+<!-- Open Street Map term. Refers to any parking space designed for bicycles, where one can leave a pedal cycle unattended in reasonable security. -->
+<string name="osm_tag_bike_parking">"پارکینگ دوچرخه"</string>
+<!-- Open Street Map term. An informal place with sit-down facilities selling beverages and light meals and/or snacks. -->
+<string name="osm_tag_cafe">"کافه"</string>
+<!-- Open Street Map term. Generally a formal eating places with sit-down facilities selling full meals served by waiters and often licensed (where allowed) to sell alcoholic drinks. -->
+<string name="osm_tag_restaurant">"رستوران"</string>
+<!-- Open Street Map term. A public telephone, phone box, or telephone on a stand or wall. Usually you pay to use them, often only via a pre-pay card. -->
+<string name="osm_tag_telephone">"تلفن"</string>
+<!-- Open Street Map term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
+<string name="osm_tag_gas_station">"پمپ بنزین"</string>
+<!-- Open Street Map term. A financial establishment where customers can, among other services, deposit and withdraw money, take loans, make investments and transfer funds. This definition encompasses banks, credit unions, building societies, and other similar establishments. It does not include money lenders or financial offices that are not banks -->
+<string name="osm_tag_bank">"بانک"</string>
+<!-- Open Street Map term. An automated teller machine (ATM), or automatic banking machine (ABM), or "cash machine", is a computerised telecommunications device that provides the clients of a financial institution with access to financial transactions in a public space without the need for a cashier, human clerk or bank teller. -->
+<string name="osm_tag_atm">"دستگاه خودپرداز"</string>
+<!-- Open Street Map term. Used as a display name for place or a location. %s is a bank name, such as "Chase ATM". -->
+<string name="osm_tag_atm_named">"خودپرداز %s"</string>
+<!-- Open Street Map term. Used as a display name for place or a location. %s is an ATM id, such as "ATM 7" or "ATM B". -->
+<string name="osm_tag_atm_refed">"خودپرداز %s"</string>
+<!-- Open Street Map term. A bus stop is a place where passengers can board or alight from a bus. Its position may be marked by a shelter, pole, bus lay-by, or road markings. -->
+<string name="osm_tag_bus_stop">"ایستگاه اتوبوس"</string>
+<!-- Open Street Map term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
+<string name="osm_tag_bus_stop_named">"ایستگاه اتوبوس %s"</string>
+<!-- Open Street Map term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
+<string name="osm_tag_recycling_bin">"سطل بازیافت"</string>
+<!-- Open Street Map term. A water feature with cultural, decorational or historical significance or which serves a recreational purpose. -->
+<string name="osm_tag_fountain">"فواره"</string>
+<!-- Open Street Map term. This covers places such as mosques, churches, cathedrals, synagogues, temples, etc. -->
+<string name="osm_tag_place_of_worship">"مکان عبادت"</string>
+<!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
+<string name="osm_tag_water_fountain">"آب‌خوری"</string>
+<!-- Open Street Map term. A facility used to clean the exterior and, in some cases, the interior of motor vehicles. -->
+<string name="osm_tag_car_wash">"کارواش"</string>
+<!-- Open Street Map term. A machine which dispenses items such as snacks, beverages, alcohol, cigarettes, lottery tickets, cologne, consumer products and even gold and gems to customers automatically, after the customer inserts currency or credit into the machine. -->
+<string name="osm_tag_vending_machine">"دستگاه فروش خودکار"</string>
+<!-- Open Street Map term. Outdoor (sometimes indoor) areas specifically designed for children to play. -->
+<string name="osm_tag_playground">"زمین بازی"</string>
+<!-- Open Street Map term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
+<string name="osm_tag_sports_field">"زمین ورزشی"</string>
+<!-- Open Street Map term. A place built for swimming as a recreational activity or sport. -->
+<string name="osm_tag_swimming_pool">"استخر شنا"</string>
+<!-- Open Street Map term. A distinguishable planned space, usually outdoors, set aside for the display, cultivation, and enjoyment of plants and other forms of nature. -->
+<string name="osm_tag_garden">"باغ"</string>
+<!-- Open Street Map term. An area of open space for recreational use, usually designed and in semi-natural state with grassy areas, trees and bushes. Parks are usually urban, but not always. -->
+<string name="osm_tag_park">"پارک"</string>
+<!-- Open Street Map term. A table with benches, ideal for food and rest. -->
+<string name="osm_tag_picnic_table">"میز پیک‌نیک"</string>
+<!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
+<string name="osm_tag_picnic_area">"منطقه پیک‌نیک"</string>
+<!-- Title in menu of button to share the app with others -->
+<string name="share_title">"اشتراک‌گذاری"</string>
+<!-- Title of the Frequently Asked Questions page -->
+<string name="faq_title">"سوالات متداول"</string>
+<!-- Abbreviated title "FAQ" standing for "Frequently Asked Questions" -->
+<string name="faq_title_abbreviated">"سوالات متداول"</string>
+<!-- Title of the "Tips and Tricks" section in the help content -->
+<string name="faq_tips_title">"نکات"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_section_what_is_soundscape">"Soundscape چیست و چگونه باید از آن استفاده کنم؟"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_when_to_use_soundscape_question">"چه زمانی باید از Soundscape استفاده کنم؟"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. ’Lighting up your way with sound’ is a marketing tagline for the app. Intersection - A junction where two or more roads meet or cross. 3D sound is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. Quotes written as \" -->
+<string name="faq_when_to_use_soundscape_answer">"Soundscape دارای ویژگی‌ها و مزایایی است که طیف وسیعی از سناریوها و مقیاس‌های زمانی را پوشش می‌دهد. علاوه بر این، ارزش Soundscape برای شما ممکن است در طول زمان تغییر کند، بنابراین نحوه استفاده امروز شما ممکن است با نحوه استفاده شما در سه ماه آینده متفاوت باشد. مردم اغلب در مورد برنامه‌ها از نظر *\"این برنامه برای حل چه مشکلی خوب است؟\"* فکر می‌کنند. Soundscape قطعاً می‌تواند بر اساس مورد به مورد مورد استفاده قرار گیرد، زمانی که شما نیاز اطلاعاتی خاصی دارید – مانند ردیابی یک مقصد در مسیر رسیدن به آن، کمک به جهت‌یابی خود هنگام خروج از ایستگاه مترو، جهت‌یابی هنگام خروج از ماشین، یا پیدا کردن نام خیابان‌ها برای، یا فاصله تا، تقاطع بعدی. با این حال، فلسفه پشت Soundscape *\"روشن کردن دنیای شما با صدا\"* است، که برای استفاده در هر زمان که بیرون هستید طراحی شده است تا آگاهی محیطی از اطراف شما را فراهم کند، مانند نگه داشتن شما از نام خیابان‌هایی که در آن هستید، جهتی که در آن حرکت می‌کنید، و نام کسب‌وکارهایی که از کنار آنها عبور می‌کنید. در این حالت استفاده، کاربران ما Soundscape را به عنوان یک *\"برنامه همراه خوب\"*، که از *\"شانس\"* پشتیبانی می‌کند، برای *\"پر کردن شکاف‌ها در نقشه ذهنی شما\"* و ایجاد *\"اعتماد به نفس بیشتر هنگام پیاده‌روی\"* یاد کرده‌اند. در اینجا چند نمونه دیگر از نحوه استفاده کاربران ما از Soundscape در زندگی خود آورده شده است:\n\n\"Soundscape به من کمک کرد تا بعد از پیاده شدن از اتوبوس و حرکت در مسیر اشتباه، به مسیر صحیح بازگردم.\"\n\n\"حتی در شهری که 3 سال در آن زندگی کرده‌ام، با Soundscape تصویری بهبود یافته از آنچه در اطرافم است، ساخته‌ام.\"\n\n\"صدای سه بعدی تجربه پیاده‌روی من را افزایش می‌دهد، زیرا احساس می‌کنم بیشتر با محیط خود ارتباط دارم…اکنون که این برنامه را برای استفاده دارم، احتمال بیشتری دارد که مسیر جدیدی را امتحان کنم.\"\n\n\"من دلتنگ شانس پیاده‌روی و توجه به چیزها هستم. داشتن Soundscape خوب است – برای شنیدن درباره چیزهای اطرافم نیازی به تلاش نیست. اطلاعات رابطه‌ای مفید است و یک برنامه عالی برای آگاهی موقعیتی و کاوش در کریدورهای تجاری است.\"\n\n\"[من از Soundscape استفاده کردم] تا یک میخانه را در مرکز یورک پیدا کنم. [من] از طیف وسیعی از گزینه‌های آن برای ابتدا مکان‌یابی و سپس پیدا کردن آن استفاده کردم. این من را تا 3 متری درب برد – عالی!\""</string>
+<!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. -->
+<string name="faq_markers_function_question">"نشانگرها چه هستند و چگونه می‌توانم بیشترین بهره را از آنها ببرم؟"</string>
+<!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. 'The list' is referring to the list of places that appears when you add a new Marker. Quotes written as \" -->
+<string name="faq_markers_function_answer">"نشانگرها مکان‌هایی هستند که شما ذخیره کرده‌اید. آنها می‌توانند مکان‌هایی باشند که در داخل برنامه قابل کشف هستند، یا می‌توانند مکان‌های کاملاً جدیدی باشند که خودتان اضافه کرده‌اید. می‌توانید موقعیت مکانی فعلی خود را با انتخاب دکمه *\"استفاده از موقعیت مکانی فعلی\"* در صفحه اصلی و سپس انتخاب *\"ذخیره به عنوان نشانگر\"* به عنوان نشانگر ذخیره کنید. می‌توانید مکان‌های دیگر را با جستجو برای مکانی که می‌خواهید ذخیره کنید با استفاده از نوار جستجو، یا پیدا کردن مکانی با استفاده از دکمه *\"مکان‌های نزدیک\"*، که هر دو در صفحه اصلی Soundscape یافت می‌شوند، به عنوان نشانگر ذخیره کنید. هنگامی که مکان مورد نظر خود را پیدا کردید، انتخاب آن شما را به صفحه *\"جزئیات مکان\"* می‌برد. در این صفحه، دکمه *\"ذخیره به عنوان نشانگر\"* را انتخاب کنید."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_section_getting_the_best_experience">"چگونه بهترین تجربه را از Soundscape داشته باشم؟"</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_what_can_I_set_question">"چه چیزی را می‌توانم به عنوان نشانه ی صوتی تنظیم کنم؟"</string>
+<!-- An 'audio beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross., Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. Point of interest - A specific location that someone may find useful or interesting. Quotation marks are written as \" -->
+<string name="faq_what_can_I_set_answer">"می‌توانید یک نشانه ی صوتی را روی هر کسب‌وکار، مکان، نقطه مورد علاقه، آدرس یا تقاطع تنظیم کنید. چند راه برای افزودن یک مکان به عنوان نشانگر وجود دارد. ابتدا، جزئیات یک مکان را با استفاده از نوار جستجو برای جستجوی یک مکان، یا با ضربه زدن بر روی یکی از دکمه‌های *\"مکان‌های نزدیک\"*، *\"نشانگرهای ذخیره‌شده\"*، یا *\"موقعیت مکانی فعلی\"* و انتخاب یک مکان مشاهده کنید. از صفحه جزئیات مکان می‌توانید دکمه *\"شروع نشانه ی صوتی\"* را انتخاب کنید. با ضربه زدن بر روی این دکمه به صفحه اصلی بازخواهید گشت و یک نشانه ی شنیدنی که از جهت مکان انتخابی شما می‌آید، روشن می‌شود. نام مکان انتخابی شما همراه با فاصله و آدرس فیزیکی آن، در صورت موجود بودن، اکنون در صفحه اصلی برنامه نمایش داده خواهد شد."</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_how_to_use_beacon_question">"چگونه از نشانه ی صوتی مانند یک حرفه‌ای استفاده کنم؟"</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'As the crow flies' is as expression which means roughly 'in a straight line'.'Spatilized' is referring to 'spatial audio' or '3D audio' which is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. 'Sweep the phone' is referring to rotating the phone around to point it in different directions. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
+<string name="faq_how_to_use_beacon_answer">"می‌توانید نشانه ی شنیدنی را به عنوان *\"فانوس دریایی برای گوش‌ها\"* تصور کنید، که شما را از موقعیت مقصد نسبت به موقعیت شما، در یک خط مستقیم، مطلع می‌کند. مانند یک فانوس دریایی، به شما نمی‌گوید چگونه به آنجا برسید – ممکن است لازم باشد در طول مسیر انتخاب‌های ناوبری زیادی انجام دهید، درست مانند یک قایق بادبانی که باید *\"تاکتیک‌های\"* استراتژیک زیادی برای نزدیک شدن به فانوس دریایی انجام دهد. صدای ریتمیک مداوم نشانه ی شنیدنی از جهت مقصد، فضایی شده است و به شما کمک می‌کند تا هنگام پیاده‌روی از موقعیت مقصد نسبت به خودتان آگاه باشید. هنگامی که مستقیماً به سمت مقصد می‌روید، یا تلفن را به سمت مقصد می‌گیرید، صدای *\"زنگ\"* با فرکانس بالاتر شنیده خواهد شد. این ویژگی به شما امکان می‌دهد تا جهت مقصد را با دقت تعیین کنید زیرا در محیط‌های پر سر و صدا گاهی اوقات تشخیص جهت صدای ریتمیک دشوار است. هنگام جستجوی *\"زنگ\"* با فرکانس بالاتر، تلفن را صاف نگه دارید و به آرامی آن را بچرخانید؛ چرخاندن سر خود به همان جهت تلفن، بهترین تجربه صدای فضایی را برای شما تضمین می‌کند.\n\nاستعاره فانوس دریایی برای طراحی نشانه ی صوتی دارای چندین پیامد طبیعی است:\n\n1. هنگام استفاده از نشانه ی صوتی، هیچ جهت *\"درستی\"* برای سفر وجود ندارد، بلکه با Soundscape شما انتخاب می‌کنید که چگونه به آنجا برسید؛\n\n2. *\"زنگ\"* با فرکانس بالاتر فقط به شما کمک می‌کند تا جهت مقصد را با دقت تعیین کنید – این نشانه‌ای از نحوه رسیدن شما به آنجا نیست؛\n\n3. اگر به طور کلی می‌دانید چگونه به مقصد خود برسید، ممکن است بخواهید نشانه ی صوتی را برای اکثر سفر خود بی‌صدا کنید و فقط زمانی که به مقصد نزدیک می‌شوید آن را روشن کنید."</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_why_does_beacon_disappear_question">"چرا نشانه ی شنیدنی گاهی ناپدید می‌شود؟"</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_why_does_beacon_disappear_answer">"نشانه ی شنیدنی Soundscape اساساً یک نشانه جهت‌گیری است که به شما می‌گوید مقصد شما نسبت به جهتی که رو به آن هستید کجاست. وقتی Soundscape در مورد جهتی که رو به آن هستید نامطمئن است، صدای نشانه ی صوتی را کاهش می‌دهد. اغلب این اتفاق زمانی می‌افتد که با تلفن در جیب یا کیف خود راه می‌رفته‌اید و از حرکت باز می‌ایستید، مانند عبور از خیابان. نشانه ی صوتی دوباره با صدای بلندتری پخش خواهد شد پس از اینکه دوباره شروع به حرکت کنید، یا اگر تلفن را صاف نگه دارید و آن را به جهتی که رو به آن هستید، بگیرید."</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_beacon_on_address_question">"آیا می‌توانم نشانه ی صوتی را روی یک آدرس تنظیم کنم؟"</string>
+<!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench., A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Talkback' is an Android feature to help people who are visually impaired use the phone. Quotes written as \" -->
+<string name="faq_beacon_on_address_answer">"بله می‌توانید. آدرس‌ها به طور پیش‌فرض لیست نشده‌اند اما با استفاده از فیلد جستجو قابل یافتن هستند. برای ذخیره این آدرس تا نیازی به جستجوی مجدد آن نداشته باشید، می‌توانید آن را از صفحه اصلی با انتخاب دکمه *\"ذخیره به عنوان نشانگر\"* به عنوان نشانگر اضافه کنید."</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_beacon_on_home_question">"چگونه نشانه صوتی را روی خانه خود تنظیم کنم؟"</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Marker - A location that has been marked as important by the user or application; this can be an address, a business or a custom place such as an entrance, a bus stop or a bench. "Start Audio Beacon" should be translated the same as "location_detail.action.beacon". Quotes written as \" -->
+<string name="faq_beacon_on_home_answer">"Soundscape از تنظیم نشانه ی صوتی روی آدرس‌ها پشتیبانی می‌کند. برای تنظیم نشانه ی صوتی روی خانه خود، یا هر آدرس دیگری، مکانی را از صفحه اصلی Soundscape جستجو کنید. در صفحه *\"جزئیات مکان\"*، روی دکمه *\"شروع نشانه ی صوتی\"* ضربه بزنید."</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_how_close_to_destination_question">"وقتی نشانه ی صوتی را روی مقصدی تنظیم می‌کنم، Soundscape چقدر به مقصد نزدیکم می‌کند؟"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. -->
+<string name="faq_how_close_to_destination_answer">"Soundscape می‌تواند موقعیت مقصد شما را تا چند متری تعیین کند، اما نه کمتر. هنگامی که Soundscape تشخیص دهد که به مقصد خود نزدیک هستید، یک اعلامیه نهایی می‌شنوید که مقصد شما نزدیک است و نشانه ی صوتی خاموش می‌شود."</string>
+<!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_turn_beacon_back_on_question">"آیا می‌توانم نشانه ی صوتی را دوباره روشن کنم وقتی به مقصد نزدیک هستم؟"</string>
+<!-- Preserve meter unit - Do not convert. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. "Location Services" refers to the feature of the same name in iOS. It should be translated in the same manner that it is in the Settings app under Settings > Privacy > Location Services.  Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
+<string name="faq_turn_beacon_back_on_answer">"بله، می‌توانید نشانه ی صوتی را پس از خاموش شدن توسط Soundscape با انتخاب دکمه *\"با‌صدا کردن نشانه ی صوتی\"* دوباره روشن کنید؛ با این حال، از آنجایی که خدمات مکان‌یابی فقط تا حدود 10 متر دقیق است، نمی‌توانیم رفتار نشانه ی صوتی را زمانی که در فاصله چند متری مقصد خود هستید، تضمین کنیم."</string>
+<!-- Intersection - A junction where two or more roads meet or cross. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_road_names_question">"چرا Soundscape نام جاده‌ها را دو بار هنگام نزدیک شدن به یک تقاطع اعلام می‌کند؟"</string>
+<!-- Intersection - A junction where two or more roads meet or cross. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. 'Spatial audio' is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. 'T' here refers to the shape of the intersection, it's a three way intersection that resembles the shape of the letter 'T'. -->
+<string name="faq_road_names_answer">"برای سازگاری با پیکربندی‌های مختلف تقاطع‌ها، Soundscape تقاطع‌ها را به عنوان بخش‌هایی از جاده‌ها توصیف می‌کند که از یک نقطه مشترک جدا می‌شوند. Soundscape از صدای فضایی برای نشان دادن نام جاده‌ای که به چپ می‌رود، نام جاده‌ای که مستقیم ادامه می‌یابد، و نام جاده‌ای که به راست می‌رود، به این ترتیب استفاده می‌کند. اگر توصیف تقاطع با جاده‌ای که در آن هستید به جای جاده‌ای در سمت چپ شروع شود، پس تقاطع یک T است که جاده شما مستقیم ادامه می‌یابد و یک جاده از سمت راست قطع می‌شود. به همین ترتیب، اگر توصیف فقط شامل جاده‌ای به چپ و راست باشد، می‌دانید که جاده شما در یک T در جلوی شما به پایان می‌رسد. این روش توصیف تقاطع‌ها همچنین از حالتی پشتیبانی می‌کند که یک جاده در یک تقاطع نام خود را تغییر می‌دهد."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_why_not_every_business_question">"چرا Soundscape هر کسب‌وکاری را که از کنار آن عبور می‌کنم اعلام نمی‌کند؟"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_why_not_every_business_answer">"Soundscape به گونه‌ای طراحی شده است که بیش از حد پرحرف نباشد. علاوه بر این، از Open Street Map به عنوان منبع داده پشتیبان خود استفاده می‌کند. Open Street Map (OSM، https://www.openstreetmap.org/) یک نقشه جهان است که توسط جامعه توسعه یافته و ویرایش می‌شود و به افراد متکی است تا داده‌ها را وارد و مدیریت کنند. اگر یک کسب‌وکار یا نقطه مورد علاقه توسط Soundscape اعلام نشود، محتمل‌ترین دلیل این است که کسب‌وکار توسط یکی از اعضای جامعه OSM هنوز اضافه یا در برخی موارد به روز نشده است."</string>
+<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. -->
+<string name="faq_callouts_stopping_in_vehicle_question">"چرا برخی از اعلامیه‌ها وقتی در خودرو هستم متوقف می‌شوند؟"</string>
+<!-- Intersection - A junction where two or more roads meet or cross. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, Approaching Intersection, Oxford Street goes left, Regents Street Continues ahead, Oxford Street goes right. Or Approaching Intersection, High Street continues ahead, Richmond Avenue goes right. -->
+<string name="faq_callouts_stopping_in_vehicle_answer">"برای جلوگیری از زیاد شدن اعلامیه‌ها، برخی از دسته‌ها، مانند تقاطع‌ها، هنگام سفر با وسیله نقلیه به طور خودکار اعلام نمی‌شوند."</string>
+<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. -->
+<string name="faq_miss_a_callout_question">"اگر اعلامیه‌ای را متوجه نشدم یا به دلیل صدای محیط آن را از دست دادم چه؟"</string>
+<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Quotes written as \". -->
+<string name="faq_miss_a_callout_answer">"Soundscape لیستی از اعلامیه‌های اخیر شما را دارد تا بتوانید اعلامیه‌هایی را که ممکن است از دست داده باشید، دوباره مرور کنید. برای یافتن این مورد، روی نوار جستجو در صفحه اصلی Soundscape ضربه بزنید. در پایین این صفحه، بخشی برای *\"اعلامیه‌های اخیر\"* وجود دارد که اعلامیه از دست رفته شما در آن لیست شده است."</string>
+<!-- Soundscape frequently asked questions -->
+<string name="faq_section_how_soundscape_works">"Soundscape چگونه کار می‌کند؟"</string>
+<!-- Soundscape frequently asked questions -->
+<string name="faq_supported_phones_question">"Soundscape روی چه گوشی‌هایی اجرا می‌شود؟"</string>
+<!-- Android 11 phones and later -->
+<string name="faq_supported_phones_answer">"Soundscape برای اندروید در حال حاضر برای گوشی‌های اندرویدی که اندروید 11 یا بالاتر را اجرا می‌کنند، در دسترس است."</string>
+<!-- Soundscape frequently asked questions  -->
+<string name="faq_supported_headsets_question">"از چه هدفون‌هایی باید با Soundscape استفاده کنم؟"</string>
+<!-- Soundscape frequently asked questions-->
+<string name="faq_supported_headsets_answer">"انتخاب هدفون شما برای استفاده با Soundscape یک موضوع سلیقه شخصی است و هر گزینه مزایا و معایب خاص خود را دارد. تنها الزام خاص، استفاده از یک جفت هدفون استریو است تا بتوانید از اعلامیه‌های صوتی فضایی سه بعدی Soundscape بهره‌مند شوید."</string>
+<!-- Soundscape frequently asked questions -->
+<string name="faq_battery_impact_question">"Soundscape چگونه بر باتری گوشی من تأثیر می‌گذارد؟"</string>
+<!-- Sleep - To put the app in an idle state for a period of time. Snooze - To put the app in an idle state that is interrupted by user movement. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_battery_impact_answer">"عمر باتری به طور قابل توجهی بسته به اینکه کدام گوشی را دارید و چقدر قدیمی است، متفاوت است. بیشترین مصرف باتری روشن بودن صفحه نمایش است، بنابراین برای به حداکثر رساندن عمر باتری گوشی خود، باید صفحه را تا حد امکان قفل نگه دارید. برای کمک به حداقل رساندن تأثیر بر باتری گوشی شما، Soundscape اکنون دارای حالت خواب است. برای کاهش بیشتر میزان مصرف باتری، هنگامی که از Soundscape استفاده نمی‌کنید، باید آن را از طریق App Switcher گوشی خود به اجبار ببندید."</string>
+<!-- Sleep - To put the app in an idle state for a period of time. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_sleep_mode_battery_question">"چگونه از حالت خواب برای به حداقل رساندن تأثیر Soundscape بر باتری گوشی خود استفاده کنم؟"</string>
+<!-- Sleep - To put the app in an idle state for a period of time. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. "Location Services" refers to the feature of the same name in iOS. It should be translated in the same manner that it is in the Settings app under Settings > Privacy > Location Services. Quotes written as \" -->
+<string name="faq_sleep_mode_battery_answer">"برای قرار دادن Soundscape در حالت خواب، دکمه *\"خواب\"* را در گوشه بالا سمت راست صفحه انتخاب کنید. وقتی این گزینه را انتخاب می‌کنید، Soundscape تا زمانی که دوباره آن را بیدار کنید، از خدمات مکان‌یابی و داده تلفن همراه استفاده نخواهد کرد."</string>
+<!-- Snooze - To put the app in an idle state that is interrupted by user movement. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_snooze_mode_battery_question">"چگونه از حالت چرت زدن برای به حداقل رساندن تأثیر Soundscape بر باتری گوشی خود استفاده کنم؟"</string>
+<!-- Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Wake Up - To restore the app from a sleep (idle) state. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
+<string name="faq_snooze_mode_battery_answer">"برای قرار دادن Soundscape در حالت چرت زدن، دکمه *\"خواب\"* را در گوشه بالا سمت راست صفحه انتخاب کنید. هنگامی که Soundscape در حالت خواب قرار گرفت، دکمه *\"هنگام ترک کردن بیدار شو\"* را انتخاب کنید و Soundscape تا زمانی که مکان فعلی خود را ترک کنید، به حالت کم مصرف می‌رود."</string>
+<!-- A question about how different headsets affect the phone's battery consumption -->
+<string name="faq_headset_battery_impact_question">"انتخاب هدفون من چگونه بر عمر باتری گوشی من تأثیر می‌گذارد؟"</string>
+<!-- An answer to the question about how different headsets affect the phone's battery consumption. -->
+<string name="faq_headset_battery_impact_answer">"در آزمایش‌های ما، مصرف باتری هدفون‌های بلوتوث قابل مقایسه با هدفون‌های سیمی است و نباید عامل مهمی برای در نظر گرفتن در هنگام انتخاب هدفون باشد."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_background_battery_impact_question">"اجرای Soundscape در پس‌زمینه چگونه بر عمر باتری گوشی من تأثیر می‌گذارد؟"</string>
+<!-- 'Location Services' in the name of the iPhone feature that gives an app the iPhones location. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_background_battery_impact_answer">"Soundscape یک برنامه مکان‌محور است و از خدمات مکان‌یابی برای تعیین موقعیت شما استفاده می‌کند. در آزمایش‌های ما، Soundscape باتری بیشتری از میانگین برنامه نقشه‌برداری مصرف نمی‌کند؛ اما اگر نگران مصرف باتری هنگام استفاده از گوشی خود هستید، نکات زیر به کاهش مصرف کمک می‌کند:\n\n1. صفحه نمایش را تا حد امکان هنگام عدم تعامل با برنامه خاموش نگه دارید.\n\n2. هنگامی که از برنامه استفاده نمی‌کنید، آن را ببندید. Soundscape به طور مداوم از خدمات مکان‌یابی استفاده می‌کند تا همیشه موقعیت شما را بداند، حتی زمانی که حرکت نمی‌کنید. فراموش نکنید که برنامه را هنگام از سرگیری سفر خود دوباره راه‌اندازی کنید.\n\n3. در هوای سرد، گوشی خود را گرم نگه دارید زیرا باتری‌ها در دماهای سردتر عملکرد ضعیف‌تری دارند."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_mobile_data_use_question">"Soundscape چقدر داده تلفن همراه مصرف می‌کند؟"</string>
+<!-- Wi-Fi - The set of standards for delivering digital information over high-frequency, wireless local area networks, defined by IEEE 802.11. 'Force close' is referring to the way to completely close an iPhone app rather than just putting it in to the background. "Sleep" should be translated the in the same way as the string for key "sleep.sleep". Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_mobile_data_use_answer">"میزان داده تلفن همراه مصرفی بستگی به نحوه استفاده شما از Soundscape دارد. ما Soundscape را طوری طراحی کرده‌ایم که وقتی در بیرون از خانه هستید، فقط مقدار کمی داده مصرف کند، مثلاً با ذخیره کردن نقاط هنگام پیاده‌روی، نیازی نیست هر بار که به جایی که قبلاً بوده‌اید برمی‌گردید، دوباره آنها را دانلود کنید. برای کاهش میزان داده تلفن همراه مصرفی، اطمینان حاصل کنید که تا حد امکان به Wi-Fi متصل هستید، به ویژه برای دانلود برنامه. هنگامی که از Soundscape استفاده نمی‌کنید، باید از دکمه *\"خواب\"* برای قرار دادن Soundscape در حالت خواب یا بستن اجباری برنامه استفاده کنید."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_difference_from_map_apps_question">"Soundscape چه تفاوتی با سایر برنامه‌های نقشه دارد؟"</string>
+<!-- Wayfinding - The process or activity of ascertaining one’s position and planning and following a route. 3D sound is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. Intersection - A junction where two or more roads meet or cross. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using spatial audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_difference_from_map_apps_answer">"Soundscape توضیحی محیطی از اطراف شما را برای کمک به کاوش و جهت‌یابی ارائه می‌دهد. با استفاده از صدای فضایی، Soundscape نقاط مورد علاقه، پارک‌ها، جاده‌ها و تقاطع‌ها را از جهتی که به طور فیزیکی در محیط نزدیک شما قرار دارند، هنگام پیاده‌روی اعلام می‌کند. به عنوان مثال، اگر از کنار یک فروشگاه در سمت راست خود عبور کنید، نام فروشگاه را از سمت راست خود می‌شنوید. همانطور که به یک تقاطع نزدیک می‌شوید، هر نام جاده را که از جهتی که به آن می‌رود شنیده می‌شود، شروع از سمت چپ شما، مستقیم و سپس سمت راست شما، خواهید شنید.\n\nبه جای دستورالعمل‌های گام به گام که اغلب توسط سایر برنامه‌های نقشه ارائه می‌شود، Soundscape یک نشانه ی صوتی شنیدنی را در جهت مقصد شما پخش می‌کند، و به شما این امکان را می‌دهد که با افزایش آگاهی از محیط اطراف و موقعیت مقصد خود، به روش خود به آنجا بروید. Soundscape برای اجرا در پس‌زمینه طراحی شده است، به شما این امکان را می‌دهد که از یک برنامه جهت‌یابی گام به گام استفاده کنید، در حالی که همچنان آگاهی محیطی را هنگام رسیدن به مقصد خود ارائه می‌دهد."</string>
+<!-- Wayfinding - The process or activity of ascertaining one’s position and planning and following a route. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_use_with_wayfinding_apps_question">"چگونه از Soundscape با یک برنامه جهت‌یابی استفاده کنم؟"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross. -->
+<string name="faq_use_with_wayfinding_apps_answer">"Soundscape به عنوان یک برنامه آگاهی‌بخش طراحی شده است تا جزئیاتی را در مورد محیط شما که ممکن است از آنها آگاه نباشید، پر کند. در حالی که به عنوان یک برنامه ناوبری گام به گام طراحی نشده است، می‌تواند در کنار چنین برنامه‌هایی برای ارائه اطلاعات مکمل استفاده شود. برای استفاده از Soundscape با این برنامه‌ها، ابتدا برنامه ناوبری خود را شروع کنید. سپس، به Soundscape بروید و یک نشانه ی صوتی را روی همان مقصد برنامه ناوبری تنظیم کنید. در این مرحله، هر دو برنامه در حال اجرا خواهند بود و شما دستورالعمل‌های پیاده‌روی را از برنامه ناوبری خود خواهید شنید، در حالی که از Soundscape به‌روزرسانی‌هایی در مورد نقاط مورد علاقه، تقاطع‌ها و فاصله شما تا مقصد را دریافت خواهید کرد."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_controlling_what_you_hear_question">"چگونه آنچه را که در Soundscape می‌شنوم و زمان شنیدن آن را کنترل کنم؟"</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. A 'beacon' or 'audio beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross. Point of interest - A specific location that someone may find useful or interesting. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
+<string name="faq_controlling_what_you_hear_answer">"Soundscape چندین راه برای کنترل آنچه می‌شنوید و زمان آن را فراهم می‌کند:\n\n1. بلافاصله تمام صدا را متوقف کنید: با دو انگشت روی صفحه دوبار ضربه بزنید تا بلافاصله تمام صدا، از جمله هر اعلامیه در حال پخش و نشانه ی صوتی در صورت روشن بودن، خاموش شود. اعلامیه‌ها به طور خودکار هنگام نزدیک شدن به تقاطع یا نقطه مورد علاقه بعدی از سر گرفته می‌شوند، اما نشانه ی صوتی شنیدنی خیر. دکمه *\"با‌صدا کردن نشانه ی صوتی\"* را در صفحه اصلی انتخاب کنید تا دوباره نشانه ی صوتی را بشنوید.\n\n2. توقف اعلامیه‌های خودکار: هنگامی که در حال سفر نیستید یا به مقصدی رسیده‌اید، احتمالاً نیازی نخواهید داشت که Soundscape همچنان شما را از چیزهای اطراف مطلع کند. به جای خروج از برنامه، می‌توانید Soundscape را در حالت چرت زدن قرار دهید و زمانی که ترک می‌کنید دوباره بیدار می‌شود، یا می‌توانید Soundscape را در حالت خواب قرار دهید و تا زمانی که خودتان آن را روشن کنید، خاموش می‌ماند. یا می‌توانید *\"تنظیمات\"* را از منو انتخاب کنید و در بخش *\"مدیریت اعلامیه‌ها\"* تمام اعلامیه‌ها را خاموش کنید.\n\n3. توقف نشانه ی صوتی: چندین سناریو وجود دارد که ممکن است مقصدی را تنظیم کنید، اما نیازی به روشن بودن نشانه ی شنیدنی نداشته باشید. به عنوان مثال، ممکن است دقیقاً بدانید چگونه به مقصد خود برسید، اما می‌خواهید به‌روزرسانی‌های خودکار در مورد فاصله خود تا مقصد را دریافت کنید. یا، ممکن است تقریباً بدانید چگونه به مقصد خود برسید، و فقط زمانی که به مقصد نزدیک می‌شوید به نشانه ی صوتی نیاز دارید. در هر صورت، می‌توانید با تغییر دکمه *\"بی‌صدا کردن نشانه ی صوتی\"*/*\"با‌صدا کردن نشانه ی صوتی\"* در صفحه اصلی، زمان شنیدن نشانه ی صوتی را انتخاب کنید."</string>
+<!-- A frequently asked question about how the user should hold their phone -->
+<string name="faq_holding_phone_flat_question">"آیا باید همیشه گوشی را در دست بگیرم؟"</string>
+<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Quotes written as \" -->
+<string name="faq_holding_phone_flat_answer">"خیر! هنگام پیاده‌روی می‌توانید گوشی را در کیف یا جیب یا هر جای مناسب دیگری قرار دهید. Soundscape از جهتی که راه می‌روید برای تشخیص اینکه کدام اعلامیه‌ها را در سمت چپ و راست شما اعلام کند استفاده خواهد کرد. هنگامی که از حرکت باز می‌ایستید، Soundscape نمی‌داند که به کدام سمت رو به رو هستید. اگر نشانه ی شنیدنی روشن باشد، متوجه خواهید شد که صدای آن کم می‌شود تا زمانی که دوباره شروع به حرکت کنید. می‌توانید گوشی را بیرون بیاورید تا دکمه‌های مکان و کاوش را در پایین صفحه فشار دهید، اما مطمئن شوید که گوشی را به گونه‌ای نگه دارید که بالای گوشی در جهتی باشد که رو به رو هستید و صفحه به سمت آسمان باشد. در این حالت *\"صاف\"*، Soundscape از قطب‌نمای گوشی برای تعیین جهت شما استفاده می‌کند و اعلامیه‌های فضایی دقیق را ارائه می‌دهد. اگر نشانه ی صوتی روشن باشد، همچنین متوجه خواهید شد که صدای آن به حجم کامل بازمی‌گردد."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_what_is_osm_question">"Open Street Map چیست و چرا از آن برای Soundscape استفاده می‌کنیم؟"</string>
+<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment.  -->
+<string name="faq_what_is_osm_answer">"Soundscape برای ارائه اطلاعات اعلامیه‌ها در برنامه، از داده‌های نقشه جغرافیایی استفاده می‌کند. منبع اصلی نقشه که ما استفاده می‌کنیم Open Street Map (www.openstreetmap.org) است که یک پلتفرم نقشه‌برداری غنی و توسط جامعه تولید و ویرایش شده است، که به سازمان‌ها و افراد امکان می‌دهد کیفیت و جزئیات اطلاعات ارائه شده و دسترسی‌پذیری فضاهای خود را با استفاده از ابزارهای نویسندگی نقشه Open Street Map بهبود بخشند."</string>
+<!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_tip_beacon_quiet">"اگر گوشی خود را در جیب خود بگذارید و از حرکت باز ایستید، صدای نشانه ی صوتی آرام‌تر می‌شود زیرا Soundscape نمی‌تواند تشخیص دهد که به کدام سمت رو به رو هستید. این مشکل را با شروع دوباره به راه رفتن، یا بیرون آوردن گوشی و نگه داشتن آن به صورت صاف حل کنید."</string>
+<!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. "Start Audio Beacon" should be translated the same as "location_detail.action.beacon" Quotes written as \" -->
+<string name="faq_tip_setting_beacon_on_address">"می‌توانید نشانه ی صوتی را روی هر آدرسی تنظیم کنید. از صفحه اصلی Soundscape، آدرس را جستجو کنید. پس از انتخاب آدرس در نتایج جستجو، صفحه *\"جزئیات مکان\"* نمایش داده می‌شود و گزینه‌ای برای *\"شروع نشانه ی صوتی\"* روی آدرس دارد. به این ترتیب، می‌توانید نشانه ی صوتی را روی کسب‌وکارها، مکان‌ها، نقاط مورد علاقه و اقامتگاه‌هایی که در Open Street Maps نیستند، تنظیم کنید."</string>
+<!-- 'Nearby Places' is a screen in the app that shows a list of places that are close to the user. Quotes written as \" -->
+<string name="faq_tip_finding_bus_stops">"می‌توانید ایستگاه‌های اتوبوس نزدیک را با انتخاب فیلتر *\"حمل‌ونقل عمومی\"* در لیست مکان‌های نزدیک پیدا کنید."</string>
+<!-- Preserve meters unit - Do not convert. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
+<string name="faq_tip_turning_beacon_off">"می‌توانید صدای ریتمیک نشانه ی صوتی را با استفاده از دکمه بی‌صدا کردن در صفحه اصلی روشن و خاموش کنید. اگر نشانه ی صوتی بی‌صدا باشد، همچنان هر 50 متر یا بیشتر، به‌روزرسانی‌هایی در مورد فاصله شما تا مقصد دریافت خواهید کرد."</string>
+<!-- 'Manage Callouts' is the name of one of the sections on the Soundscape Settings screen. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
+<string name="faq_tip_turning_off_auto_callouts">"اگر هنوز می‌خواهید با Soundscape تعامل داشته باشید اما نمی‌خواهید اعلامیه‌های خودکار را بشنوید، می‌توانید با رفتن به بخش *\"مدیریت اعلامیه‌ها\"* از صفحه *\"تنظیمات\"* از طریق منو، اعلامیه‌ها را خاموش کنید. یا، اگر قصد استفاده از Soundscape را ندارید، می‌توانید آن را با استفاده از دکمه *\"خواب\"* در صفحه اصلی، در حالت خواب یا چرت زدن قرار دهید."</string>
+<!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
+<string name="faq_tip_hold_phone_flat">"Soundscape بهترین عملکرد را زمانی دارد که گوشی را به صورت صاف با صفحه رو به آسمان و بالای گوشی رو به دور از شما نگه دارید."</string>
+<!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Manage Markers' is the name of one of the options in the Soundscape menu. Quotes written as \" -->
+<string name="faq_tip_create_marker_at_bus_stop">"اگر مسیر اتوبوسی وجود دارد که به طور منظم از آن استفاده می‌کنید، ایستگاه‌های سوار و پیاده شدن خود را به عنوان نشانگر تنظیم کنید. به این ترتیب آنها ذخیره می‌شوند تا بتوانید به راحتی آنها را دوباره پیدا کنید، فقط از منو به *\"مدیریت نشانگرها\"* بروید و آنها را در لیست پیدا کنید. می‌توانید یک نشانه ی صوتی روی آنها تنظیم کنید و به‌روزرسانی‌های دوره‌ای در مورد فاصله خود تا ایستگاه خروجی خود دریافت خواهید کرد. توجه: می‌توانید صدای ریتمیک را خاموش کنید و همچنان به‌روزرسانی‌های فاصله را در طول مسیر دریافت خواهید کرد."</string>
+<!-- No language has been selected by the user, shown in the onboarding screens if the system language isn't supported by the app -->
+<string name="no_language_selected">زبانی انتخاب نشده است</string>
+<!-- Notifications are a type of Android permission required to run the app -->
+<string name="first_launch_permissions_notification">اعلان‌ها</string>
+<!-- Message appears as notification when app is running -->
+<string name="notification_text" tools:ignore="MissingTranslation">"ما این سرویس مکان‌یابی را در پیش‌زمینه اجرا می‌کنیم"</string>
+<!-- Option to cancel searching for a location -->
+<string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">"لغو جستجو"</string>
+<!-- OSM tag for train station -->
+<string name="osm_tag_train_station" tools:ignore="MissingTranslation">"ایستگاه قطار"</string>
+<!-- OSM tag for train station preceded by its name e.g. "Milngavie Train station" -->
+<string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">"ایستگاه قطار %s"</string>
+<!-- OSM tag for tram stop -->
+<string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">"ایستگاه تراموا"</string>
+<!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
+<string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">"ایستگاه تراموا %s"</string>
+<!-- OSM tag for subway station (underground trains) -->
+<string name="osm_tag_subway" tools:ignore="MissingTranslation">"ایستگاه مترو"</string>
+<!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
+<string name="osm_tag_subway_named" tools:ignore="MissingTranslation">"ایستگاه مترو %s"</string>
+<!-- OSM tag for ferry terminal -->
+<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">"پایانه کشتی"</string>
+<!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
+<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">"پایانه کشتی %s"</string>
+<!-- Title for settings page group of audio settings -->
+<string name="menu_manage_audio" tools:ignore="MissingTranslation">"مدیریت صدا"</string>
+<!-- Title for settings page group of audio settings -->
+<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"مدیریت دسترسی‌پذیری"</string>
+<!-- App theme light/dark description -->
+<string name="settings_theme_light_dark" tools:ignore="MissingTranslation">"پوسته روشن یا تیره"</string>
+<!-- App theme setting for automatic light/dark based on system -->
+<string name="settings_theme_auto" tools:ignore="MissingTranslation">"خودکار"</string>
+<!-- App theme setting for light (as opposed to dark) -->
+<string name="settings_theme_is_light" tools:ignore="MissingTranslation">"استفاده از پوسته روشن"</string>
+<!-- App theme setting for light (as opposed to dark) -->
+<string name="settings_theme_light" tools:ignore="MissingTranslation">"روشن"</string>
+<!-- App theme setting for dark (as opposed to light) -->
+<string name="settings_theme_dark" tools:ignore="MissingTranslation">"تیره"</string>
+<!-- App theme setting title for color contrast -->
+<string name="settings_theme_contrast" tools:ignore="MissingTranslation">"کنتراست پوسته"</string>
+<!-- App theme options for contrast setting - regular is the lowest contrast -->
+<string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">"عادی"</string>
+<!-- App theme options for contrast setting - medium is the middle contrast  -->
+<string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">"متوسط"</string>
+<!-- App theme options for contrast setting - high has the most contrast-->
+<string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">"بالا"</string>
+<!-- Description for an item in a list e.g. "Blah is choice 2 out of 3" -->
+<string name="settings_list_item_description" tools:ignore="MissingTranslation">"%1$s انتخاب %2$s از %3$s است"</string>
+<!-- Setting hints for keeping or using a value from a list-->
+<string name="settings_keep_value" tools:ignore="MissingTranslation">"نگه داشتن"</string>
+<string name="settings_use_value" tools:ignore="MissingTranslation">"استفاده"</string>
+<!-- Button text for exiting Street Preview mode -->
+<string name="street_preview_exit" tools:ignore="MissingTranslation">"خروج از پیش‌نمایش خیابان"</string>
+<!-- Settings option for enabling recording of travel locations -->
+<string name="settings_travel_recording" tools:ignore="MissingTranslation">"فعال کردن ضبط سفر"</string>
+<!-- Settings option for enabling a map styling which has improved accessibility -->
+<string name="settings_accessible_map" tools:ignore="MissingTranslation">"فعال کردن استایل نقشه قابل دسترسی"</string>
+<!-- Settings title for various debugging options to aid developers -->
+<string name="settings_debug_heading" tools:ignore="MissingTranslation">"تنظیمات اشکال‌زدایی"</string>
+<!-- Menu option for sharing the recorded travel route via another app -->
+<string name="menu_share_recorded_route" tools:ignore="MissingTranslation">"اشتراک‌گذاری ضبط سفر"</string>
+<!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
+<string name="confect_name_to_via" tools:ignore="MissingTranslation">"%1$s به %2$s از طریق %3$s"</string>
+<!-- Road description of path to another road e.g. "Path to Moor Road" -->
+<string name="confect_name_to" tools:ignore="MissingTranslation">"%1$s به %2$s"</string>
+<!-- Road description of path joining two roads e.g. "Path that joins Roselea Drive and Moor Road" -->
+<string name="confect_name_joins" tools:ignore="MissingTranslation">"%1$s که %2$s و %3$s را به هم متصل می‌کند"</string>
+<!-- Road description for path via steps/tunnel/bridge e.g. "Path via bridge" -->
+<string name="confect_name_via" tools:ignore="MissingTranslation">"%1$s از طریق %2$s"</string>
+<!-- Description for pavement next to road e.g. "Pavement next to Clober Road" -->
+<string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">پیاده‌رو کنار %1$s</string>
+<!-- Sidewalk description -->
+<string name="confect_name_pavement" tools:ignore="MissingTranslation">"پیاده‌رو"</string>
+<!-- Dead end road description - a road that goes nowhere -->
+<string name="confect_name_dead_end" tools:ignore="MissingTranslation">"بن بست"</string>
+<!-- Text for the About Soundscape menu option. It describes what the app does -->
+<string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape به کاوش در استفاده از فناوری نوآورانه مبتنی بر صدا می‌پردازد تا افراد را قادر سازد تا آگاهی غنی‌تری از محیط اطراف خود ایجاد کنند، در نتیجه اعتماد به نفس بیشتری پیدا کرده و توانمندتر شوند تا با استفاده از نشانه‌های صوتی سه بعدی، آگاهی محیطی را غنی کرده و راهی جدید برای ارتباط با محیط را فراهم کنند.</string>
+<!-- Licensing strings -->
+<string name="copyright_notices" translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
+<string name="osm_copyright" translatable="false">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.</string>
+<string name="openmaptiles_copyright" translatable="false">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.</string>
+<string name="fmod_copyright" translatable="false">[Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.](https://www.fmod.com/legal) takes care of the audio playback.</string>
+<!-- BSD 2-clause -->
+<string name="maplibre_copyright" translatable="false">[©MapLibre](https://github.com/maplibre/maplibre-native/blob/main/LICENSE.md) performs the map rendering for the UI.</string>
+<!-- Eclipse -->
+<string name="junit_copyright" translatable="false">[junit-team/junit4](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) for unit testing.</string>
+<!-- Apache 2.0 -->
+<string name="apache_notices" translatable="false">The remainder of the licenses are all Apache 2.0:</string>
+<string name="rtree_copyright" translatable="false">[rtree2](https://github.com/davidmoten/rtree2/blob/master/LICENCE) makes our local geo-search much more efficient.</string>
+<string name="realm_copyright" translatable="false">[Realm](https://github.com/realm/realm-kotlin/blob/main/LICENSE) takes care of our database.</string>
+<string name="moshi_copyright" translatable="false">[square/moshi](https://github.com/square/moshi/blob/master/LICENSE.txt) for GeoJSON parsing.</string>
+<string name="retrofit_copyright" translatable="false">[square/retrofit](https://github.com/square/retrofit/blob/trunk/LICENSE.txt) HTTP client abstraction.</string>
+<string name="okhttp_copyright" translatable="false">[square/okhttp](https://github.com/square/okhttp/blob/master/LICENSE.txt) underlying HTTP client.</string>
+<string name="otto_copyright" translatable="false">[square/otto](https://github.com/square/otto/blob/master/LICENSE.txt) to provide an event bus.</string>
+<string name="leak_canary_copyright" translatable="false">[square/leakcanary](https://github.com/square/leakcanary/blob/main/LICENSE.txt) for adding mermaid diagrams to Dokka documentation.</string>
+<string name="gpx_parser_copyright" translatable="false">[ticofab/android-gpx-parser](github.com/ticofab/android-gpx-parser/blob/master/LICENSE) for GPX parsing.</string>
+<string name="preferences_copyright" translatable="false">[zhanghai/ComposePreference](https://github.com/zhanghai/ComposePreference/blob/master/LICENSE) for a simple settings UI.</string>
+<string name="dokka_mermaid_copyright" translatable="false">[glureau/dokka-mermaid](https://github.com/glureau/dokka-mermaid/blob/main/LICENSE) for adding mermaid diagrams to Dokka documentation.</string>
+</resources>
