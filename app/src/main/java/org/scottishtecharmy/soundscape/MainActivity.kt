@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
@@ -133,24 +134,55 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startServiceIfAllowed() {
-        when (ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )) {
-            android.content.pm.PackageManager.PERMISSION_GRANTED -> {
-                if (!soundscapeServiceConnection.serviceBoundState.value) {
-                    startSoundscapeService()
-                    soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
-                }
-            }
-        }
-    }
+    private var locationPermissionGranted = -1
+    private var notificationPermissionGranted = -1
 
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume")
-        startServiceIfAllowed()
+
+        val locationPermission = when (ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        ) {
+            android.content.pm.PackageManager.PERMISSION_GRANTED -> 1
+            else -> 0
+        }
+
+        val notificationPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            when (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            )
+            ) {
+                android.content.pm.PackageManager.PERMISSION_GRANTED -> 1
+                else -> 0
+            }
+        } else
+            1
+
+        var change = false
+        if(locationPermissionGranted == -1)
+            locationPermissionGranted = locationPermission
+        else {
+            change = (locationPermissionGranted != locationPermission)
+            locationPermissionGranted = locationPermission
+        }
+        if(notificationPermissionGranted == -1)
+            notificationPermissionGranted = notificationPermission
+        else {
+            change = change || (notificationPermissionGranted != notificationPermission)
+            notificationPermissionGranted = notificationPermission
+        }
+
+        if(change) {
+            Log.d(TAG, "Permissions have changed $locationPermission -> $locationPermissionGranted and $notificationPermission -> $notificationPermissionGranted")
+            when(locationPermissionGranted) {
+                0 -> setServiceState(false)
+                1 -> setServiceState(true)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -224,6 +256,9 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        checkAndRequestNotificationPermissions()
+        soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
+
         lifecycleScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
@@ -263,7 +298,8 @@ class MainActivity : AppCompatActivity() {
                     preferences = sharedPreferences,
                     rateSoundscape = {
                         this.rateSoundscape()
-                    }
+                    },
+                    permissionsRequired = remember { locationPermissionGranted != 1}
                 )
             }
         }
@@ -382,12 +418,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setServiceState(newServiceState: Boolean) {
-        if(!newServiceState) {
-            soundscapeServiceConnection.stopService()
+    var serviceSleeping = false
+    fun setServiceState(newServiceState: Boolean, sleeping: Boolean? = null) {
+        Log.d(TAG, "setServiceState $newServiceState, sleeping = $sleeping, serviceSleeping = $serviceSleeping")
+        if(!serviceSleeping || (sleeping == false)) {
+            if (!newServiceState) {
+                soundscapeServiceConnection.stopService()
+            } else {
+                checkAndRequestNotificationPermissions()
+                soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
+            }
         }
-        else {
-            startServiceIfAllowed()
+        if(sleeping != null) {
+            serviceSleeping = sleeping
         }
     }
 
@@ -397,6 +440,7 @@ class MainActivity : AppCompatActivity() {
      * It also tries to bind to the service to update the UI with location updates.
      */
     private fun startSoundscapeService() {
+        Log.e(TAG, "startSoundscapeService")
         val serviceIntent = Intent(this, SoundscapeService::class.java)
         startForegroundService(serviceIntent)
     }

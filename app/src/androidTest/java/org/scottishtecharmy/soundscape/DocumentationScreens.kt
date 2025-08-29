@@ -154,7 +154,8 @@ class DocumentationScreens {
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-                goToAppSettings = { }
+                goToAppSettings = { },
+                permissionsRequired = false
             )
         }
     }
@@ -196,7 +197,8 @@ class DocumentationScreens {
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-                goToAppSettings = { }
+                goToAppSettings = { },
+                permissionsRequired = false
             )
         }
     }
@@ -268,7 +270,8 @@ class DocumentationScreens {
                 createAndAddMarker = { _, _, _ -> },
                 editRoute = true,
                 routeObjectId = 1,
-                placesNearbyUiState = PlacesNearbyUiState()
+                placesNearbyUiState = PlacesNearbyUiState(),
+                getCurrentLocationDescription = { LocationDescription("Current Location", location) },
             )
         }
     }
