@@ -136,6 +136,7 @@ data object MockLanguagePreviewData {
         Language("English", "en", "US"),
         Language("English (UK)", "en", "GB"),
         Language("Español", "es", "ES"),
+        Language("فارسی", "fa", "IR"),
         Language("Suomi", "fi", "FI"),
         Language("Français", "fr", "FR"),
         Language("Français (Canada)", "fr", "CA"),
