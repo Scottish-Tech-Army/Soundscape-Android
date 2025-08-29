@@ -469,4 +469,7 @@
     <string name="voice_engine" tools:ignore="MissingTranslation">Text-to-Speech Engine</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Change Language</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">to change the language used for the app</string>
+    <string name="permissions_required" tools:ignore="MissingTranslation">The app requires location permissions to be able to run.</string>
+    <string name="permissions_button" tools:ignore="MissingTranslation">Change the permissions in app settings</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">Show maps on screen</string>
 </resources>
