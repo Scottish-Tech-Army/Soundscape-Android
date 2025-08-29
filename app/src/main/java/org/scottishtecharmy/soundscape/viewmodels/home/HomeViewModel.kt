@@ -54,10 +54,8 @@ class HomeViewModel
                     startMonitoringLocation()
                     // And start monitoring the street preview state
                     startMonitoringStreetPreviewState()
-                    _state.update { it.copy(serviceRunning = true) }
                 } else {
                     // The service has gone away so remove the current location marker
-                    _state.update { it.copy(location = null, serviceRunning = false) }
                     stopMonitoringStreetPreviewState()
                     stopMonitoringLocation()
                 }

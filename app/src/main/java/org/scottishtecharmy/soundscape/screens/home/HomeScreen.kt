@@ -93,7 +93,8 @@ fun HomeScreen(
     navController: NavHostController,
     preferences: SharedPreferences,
     viewModel: HomeViewModel = hiltViewModel(),
-    rateSoundscape: () -> Unit
+    rateSoundscape: () -> Unit,
+    permissionsRequired: Boolean
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
     val searchText = viewModel.searchText.collectAsStateWithLifecycle()
@@ -130,7 +131,8 @@ fun HomeScreen(
                 routeFunctions = routeFunctions,
                 streetPreviewFunctions = streetPreviewFunctions,
                 goToAppSettings = viewModel::goToAppSettings,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                permissionsRequired = permissionsRequired
             )
         }
 

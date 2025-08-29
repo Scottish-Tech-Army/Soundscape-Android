@@ -79,7 +79,8 @@ fun Home(
     searchText: String,
     onSearchTextChange: (String) -> Unit,
     onToggleSearch: () -> Unit,
-    goToAppSettings: (Context) -> Unit
+    goToAppSettings: (Context) -> Unit,
+    permissionsRequired: Boolean
 ) {
     val context = LocalContext.current
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -171,7 +172,7 @@ fun Home(
                     streetPreviewFunctions = streetPreviewFunctions,
                     goToAppSettings = goToAppSettings,
                     fullscreenMap = fullscreenMap,
-                    serviceRunning = state.serviceRunning,
+                    permissionsRequired = permissionsRequired,
                     showMap = showMap
                 )
             }
@@ -212,7 +213,10 @@ fun HomeTopAppBar(
             IconButton(
                 enabled = true,
                 onClick = {
-                    (context as MainActivity).setServiceState(false)
+                    (context as MainActivity).setServiceState(
+                        newServiceState = false,
+                        sleeping = true
+                    )
                     onNavigate(HomeRoutes.Sleep.route)
                 },
                 modifier = Modifier.talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
@@ -249,7 +253,8 @@ fun HomePreview() {
             onToggleSearch = {},
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
-            goToAppSettings = {}
+            goToAppSettings = {},
+            permissionsRequired = false
         )
     }
 }
@@ -277,7 +282,8 @@ fun HomeSearchPreview() {
             onToggleSearch = {},
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
-            goToAppSettings = {}
+            goToAppSettings = {},
+            permissionsRequired = false
         )
     }
 }
@@ -319,7 +325,8 @@ fun HomeRoutePreview() {
             onToggleSearch = {},
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
-            goToAppSettings = {}
+            goToAppSettings = {},
+            permissionsRequired = false
         )
     }
 }

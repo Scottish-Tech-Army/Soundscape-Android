@@ -28,7 +28,7 @@ import org.scottishtecharmy.soundscape.ui.theme.largePadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 private fun exitSleep(context: MainActivity, navController: NavHostController) {
-    context.setServiceState(true)
+    context.setServiceState(newServiceState = true, sleeping = false)
     navController.popBackStack(HomeRoutes.Home.route, false)
 }
 

@@ -74,7 +74,7 @@ fun HomeContent(
     routeFunctions: RouteFunctions,
     goToAppSettings: (Context) -> Unit,
     fullscreenMap: MutableState<Boolean>,
-    serviceRunning: Boolean,
+    permissionsRequired: Boolean,
     showMap: Boolean) {
     val context = LocalContext.current
 
@@ -271,7 +271,7 @@ fun HomeContent(
                     )
                 }
             } else {
-                if(!serviceRunning) {
+                if(permissionsRequired) {
                     Column {
                         Text(
                             stringResource(R.string.permissions_required),
@@ -317,7 +317,7 @@ fun StreetPreviewHomeContent() {
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
         goToAppSettings = {},
         fullscreenMap = remember { mutableStateOf(false) },
-        serviceRunning = true,
+        permissionsRequired = false,
         showMap = true
     )
 }
@@ -363,7 +363,7 @@ fun PreviewHomeContent() {
         getCurrentLocationDescription = { LocationDescription("Current location", LngLatAlt()) },
         goToAppSettings = {},
         fullscreenMap = remember { mutableStateOf(false) },
-        serviceRunning = true,
+        permissionsRequired = false,
         showMap = true
     )
 }
