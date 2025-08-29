@@ -27,4 +27,5 @@
     <string name="beacon_styles_mallet">مضراب</string>
     <string name="beacon_styles_mallet_slow">مضراب (کند)</string>
     <string name="beacon_styles_mallet_very_slow">مضراب (بسیار کند)</string>
+    <string name="beacon_audio_beacon">جهت‌نمای صوتی</string>
 </resources>
