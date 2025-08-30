@@ -5,67 +5,67 @@
     <!-- Text for button to cancel dialog -->
 <string name="general_alert_cancel">لغو</string>
     <!-- Text for button to accept as done a dialog  -->
-<string name="general_alert_done">انجام شد</string>
+<string name="general_alert_done">تمام</string>
     <!-- Text displayed whilst app is starting Street Preview mode -->
 <string name="general_loading_start">در حال آماده‌سازی…</string>
     <!-- Error message that Soundscape is having trouble determining current location -->
-<string name="general_error_location_services_find_location_error">در پیدا کردن موقعیت مکانی فعلی شما مشکل داریم.</string>
+<string name="general_error_location_services_find_location_error">در تشخیص موقعیت شما دچار اشکال هستیم.</string>
     <!-- Error message that Soundscape is having trouble adding a marker to this location.-->
-<string name="general_error_add_marker_error">در علامت‌گذاری این مکان مشکل داریم. لطفاً بعداً دوباره امتحان کنید.</string>
+<string name="general_error_add_marker_error">در نشانه‌گذاری این محل دچار اشکال هستیم. بعداً دوباره امتحان کنید.</string>
     <!-- Menu button to get to the Settings page -->
 <string name="settings_screen_title">تنظیمات</string>
     <!-- Menu button to information about the Soundscape app -->
-<string name="settings_about_app">درباره Soundscape</string>
+<string name="settings_about_app">درباره‌ی ساند‌اسکیپ</string>
     <!-- In the Settings page the title of the section for the units of measurement e.g. metric or imperial -->
 <string name="settings_section_units" tools:ignore="MissingTranslation">واحد اندازه‌گیری</string>
     <!-- The option for setting the units of measurement to miles and feet -->
-<string name="settings_units_imperial" tools:ignore="MissingTranslation">امپریال (فوت)</string>
+<string name="settings_units_imperial" tools:ignore="MissingTranslation">فوت و مایل</string>
     <!-- The option for setting the units of measurement to kilometers and meters -->
-<string name="settings_units_metric" tools:ignore="MissingTranslation">متریک (متر)</string>
+<string name="settings_units_metric" tools:ignore="MissingTranslation">متر و کیلومتر</string>
     <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">سرعت گفتار</string>
     <!-- Title for option to select the text-to-speech engine to use. -->
-<string name="voice_engine" tools:ignore="MissingTranslation">موتور تبدیل متن به گفتار</string>
+<string name="voice_engine" tools:ignore="MissingTranslation">موتور صوتی</string>
     <!-- Title for option to select the text-to-speech voice to use. -->
-<string name="voice_voices">صداها</string>
+<string name="voice_voices">صدای موتور صوتی</string>
     <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
-<string name="beacon_settings_style">سبک‌های صوتی</string>
+<string name="beacon_settings_style">نوع جهت‌نمای صوتی</string>
     <!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
-<string name="beacon_styles_current">فعلی</string>
+<string name="beacon_styles_current">جدید</string>
     <!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
-<string name="beacon_styles_original">اصلی</string>
+<string name="beacon_styles_original">قدیمی</string>
     <!-- Name of a beacon style. In this context, "flare" refers to a bright burst of light. The audio for this beacon style is bright and fun -->
-<string name="beacon_styles_flare">شعله</string>
+<string name="beacon_styles_flare">جرقه‌ی پر‌نور</string>
     <!-- Name of a beacon style. In this context, "shimmer" is used as a synonym for "flare". The audio for this beacon is bright and fun (just as with the style refered to by beacon.styles.flare), but it is a bit softer than the "Flare" style. -->
-<string name="beacon_styles_shimmer">سوسو</string>
+<string name="beacon_styles_shimmer">جرقه‌ی کم‌نور</string>
     <!-- Name of a beacon style. This beacon style name is intended to hint at the percussive, tapping, nature of the beacon audio. -->
-<string name="beacon_styles_tactile">لمسی</string>
+<string name="beacon_styles_tactile">ضربه</string>
     <!-- Name of a beacon style. Refers to a short high pitched ringing sound that repeats in this beacon style. -->
-<string name="beacon_styles_ping">پینگ</string>
+<string name="beacon_styles_ping">زنگ</string>
     <!-- Name of a beacon style. This beacon style is based on the sound of an object being dropped on a hard floor, hence the name "Drop" is alluding to that sound. -->
-<string name="beacon_styles_drop">افتادن</string>
+<string name="beacon_styles_drop">برخورد</string>
     <!-- Name of a beacon style. This name is alluding to the radar-like nature of this beacon (hence "signal") which has an impulse which repeats over and over -->
 <string name="beacon_styles_signal">سیگنال</string>
     <!-- Name of a beacon style. "Signal" is used in the same way here as in the string with key 'beacon.styles.signal'. The difference here is that this version is a slower version of the beacon audio. -->
-<string name="beacon_styles_signal_slow">سیگنال (آهسته)</string>
+<string name="beacon_styles_signal_slow">سیگنال (کند)</string>
     <!-- Name of a beacon style. "Signal" is used in the same way here as in the string with key 'beacon.styles.signal'. The difference here is that this version is a much slower version of the beacon audio. -->
-<string name="beacon_styles_signal_very_slow">سیگنال (خیلی آهسته)</string>
+<string name="beacon_styles_signal_very_slow">سیگنال (بسیار کند)</string>
     <!-- Name of a beacon style. This beacon style has a similar timbre to the sound that is generated when a mallet is used to play the xylophone, hence the name "mallet". -->
-<string name="beacon_styles_mallet">چکش</string>
+<string name="beacon_styles_mallet">مضراب</string>
     <!-- Name of a beacon style. "Mallet" is used in the same way here as in the string with key 'beacon.styles.mallet'. The difference here is that this version is a slower version of the beacon audio. -->
-<string name="beacon_styles_mallet_slow">چکش (آهسته)</string>
+<string name="beacon_styles_mallet_slow">مضراب (کند)</string>
     <!-- Name of a beacon style. "Mallet" is used in the same way here as in the string with key 'beacon.styles.mallet'. The difference here is that this version is a much slower version of the beacon audio. -->
-<string name="beacon_styles_mallet_very_slow">چکش (خیلی آهسته)</string>
+<string name="beacon_styles_mallet_very_slow">مضراب (بسیار کند)</string>
     <!-- Title for section in settings for audio beacons -->
-<string name="beacon_audio_beacon">نشانه ی صوتی</string>
+<string name="beacon_audio_beacon">جهت‌نمای صوتی</string>
     <!-- Mute Beacon text description -->
-<string name="beacon_action_mute_beacon">بی‌صدا کردن نشانه ی صوتی</string>
+<string name="beacon_action_mute_beacon">بستن صدای جهت‌نما</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to zero. -->
-<string name="beacon_action_mute_beacon_acc_hint">جهت‌نمای صوتی را ساکت می‌کند.</string>
+<string name="beacon_action_mute_beacon_acc_hint">صدای جهت‌نمای صوتی را قطع می‌کند.</string>
     <!-- Unmute Beacon text description -->
-<string name="beacon_action_unmute_beacon">با‌صدا کردن نشانه ی صوتی</string>
+<string name="beacon_action_unmute_beacon">باز کردن صدای جهت‌نما</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
-<string name="beacon_action_unmute_beacon_acc_hint">با‌صدا کردن نشانه ی صوتی.</string>
+<string name="beacon_action_unmute_beacon_acc_hint">صدای جهت‌نمای صوتی را متصل می‌کند.</string>
     <!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
 <string name="preview_title">آشنایی با محل</string>
     <!-- Text for button to go to the next intersection -->
@@ -91,13 +91,13 @@
     <!-- Talkback hint for the action to preview -->
 <string name="location_detail_action_preview_hint">شروع پیش‌نمایش در این مکان</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list -->
-<string name="location_detail_add_waypoint_existing_hint">این نشانگر را از مسیر خود حذف کنید.</string>
+<string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید.</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
-<string name="location_detail_add_waypoint_new_hint">این نشانگر را به مسیر خود اضافه کنید.</string>
+<string name="location_detail_add_waypoint_new_hint">این نشانه را به مسیر خود اضافه کنید.</string>
     <!-- Talkback hint for button that makes map full screen -->
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">تمام‌صفحه کردن نقشه</string>
     <!-- Talkback hint for button that stops map being full screen -->
-<string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">خروج از حالت تمام‌صفحه نقشه</string>
+<string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">خروج از حالت تمام‌صفحه‌ی نقشه</string>
     <!-- Title for the action to start playing the audio for a route -->
 <string name="route_detail_action_start_route">شروع مسیر</string>
     <!-- Title for the action to stop playing the audio for a route -->
@@ -105,9 +105,9 @@
     <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">ویرایش مسیر</string>
     <!-- Talkback hint for the action to start the route -->
-<string name="route_detail_action_start_route_hint">این مسیر را شروع کنید</string>
+<string name="route_detail_action_start_route_hint">این مسیر را فعال کنید.</string>
     <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
-<string name="route_detail_action_start_route_disabled_hint">قبل از شروع مسیر، نقاط بین راهی را اضافه کنید</string>
+<string name="route_detail_action_start_route_disabled_hint">پیش از شروع مسیر، نقاط بین‌راهی را اضافه کنید.</string>
     <!-- Talkback hint for the action to stop the route -->
 <string name="route_detail_action_stop_route_hint">این مسیر را متوقف کنید</string>
     <!-- Talkback hint for the action to share -->
