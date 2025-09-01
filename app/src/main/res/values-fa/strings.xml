@@ -69,9 +69,9 @@
     <!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
 <string name="preview_title">آشنایی با محل</string>
     <!-- Text for button to go to the next intersection -->
-<string name="preview_go_title">برو</string>
+<string name="preview_go_title">حرکت</string>
     <!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
-<string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">برو به نزدیکترین تقاطع</string>
+<string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">برو به نزدیک‌ترین تقاطع</string>
     <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
 <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
     <!-- Title for a setting to include unnamed roads -->
