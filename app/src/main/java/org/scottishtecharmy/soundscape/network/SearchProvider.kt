@@ -19,11 +19,12 @@ import java.util.concurrent.TimeUnit
  * This is a proof of concept for using the photon search engine https://github.com/komoot/photon
  * In testing it returned by far the best search results and can be run on a relatively modest
  * server. This is using the demo server at https://photon.komoot.io/
- *  @param q is the search string to use. Photon supports partial string searches and so this can
+ *  @param searchString is the search string to use. Photon supports partial string searches and so this can
  *  be as little as 3 characters long.
  *  @param latitude
  *  @param longitude If these are passed in, then results are prioritized based on that location.
  *  @param limit is the number of results to return.
+ *  @param language is the language to use for the search.
  */
 interface PhotonSearchProvider {
     @Headers(
@@ -35,7 +36,7 @@ interface PhotonSearchProvider {
         @Query("q") searchString: String,
         @Query("lat") latitude: Double? = null,
         @Query("lon") longitude: Double? = null,
-        @Query("lang") language: String = Locale.getDefault().language,
+        @Query("lang") language: String? = null,
         @Query("limit") limit: UInt = 5U,
         @Query("location_bias_scale") bias: Float = 0.2f
     ): Call<FeatureCollection>
@@ -48,7 +49,7 @@ interface PhotonSearchProvider {
     fun reverseGeocodeLocation(
         @Query("lat") latitude: Double? = null,
         @Query("lon") longitude: Double? = null,
-        @Query("lang") language: String = Locale.getDefault().language,
+        @Query("lang") language: String? = null
     ): Call<FeatureCollection>
 
     companion object {
