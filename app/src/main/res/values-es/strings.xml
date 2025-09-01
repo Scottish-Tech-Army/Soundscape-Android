@@ -447,8 +447,8 @@
     <string name="settings_keep_value" tools:ignore="MissingTranslation">mantener</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">uso</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Salir Street Preview</string>
-    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Habilita grabar de viaje</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Habilita mapa accesible styling</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Habilitar grabación de viaje</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Habilitar estilo de mapa accesible</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Ajustes de depuración</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Grabación compartida de viajes</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s a %2$s vía %3$s</string>
