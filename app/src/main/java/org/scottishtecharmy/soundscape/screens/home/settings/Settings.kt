@@ -90,13 +90,14 @@ fun ListPreferenceItem(description: String,
                 if (value == currentValue) stringResource(R.string.settings_keep_value)
                 else stringResource(R.string.settings_use_value)
             )
-            .talkbackDescription(
-                stringResource(R.string.settings_list_item_description).format(
-                    value,
-                    index + 1,
-                    listSize
-                )
-            ),
+//            .talkbackDescription(
+//                stringResource(R.string.settings_list_item_description).format(
+//                    value,
+//                    index + 1,
+//                    listSize
+//                )
+//            )
+            ,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
