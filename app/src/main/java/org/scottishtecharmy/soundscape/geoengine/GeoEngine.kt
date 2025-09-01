@@ -25,6 +25,8 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -71,6 +73,27 @@ data class PositionedString(
     val type: AudioType = AudioType.STANDARD,
     val heading: Double? = null
 )
+
+fun getPhotonLanguage(sharedPreferences: SharedPreferences?) : String? {
+
+    var lang : String? = Locale.getDefault().language
+    if(sharedPreferences != null) {
+        val languageMode = sharedPreferences.getString(SEARCH_LANGUAGE_KEY, SEARCH_LANGUAGE_DEFAULT)
+        when (languageMode) {
+            "auto" -> {}
+            else -> lang = languageMode
+        }
+    }
+
+    // The photon server is built with only English, French, German and local strings.
+    // Passing any other language returns an error, so don't pass a language in those cases.
+    // The results then will be in the local language.
+    when (lang) {
+        "en", "fr", "de" -> {}
+        else -> lang = null
+    }
+    return lang
+}
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 class GeoEngine {
@@ -530,6 +553,7 @@ class GeoEngine {
                         searchString = searchString,
                         latitude = location.latitude,
                         longitude = location.longitude,
+                        language = getPhotonLanguage(sharedPreferences)
                     ).execute()
                     .body()
             } catch (e: Exception) {

@@ -927,6 +927,8 @@
 <string name="settings_show_map" tools:ignore="MissingTranslation">"Show maps on screen"</string>
 <!-- Settings title for various debugging options to aid developers -->
 <string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug settings"</string>
+<!-- Settings title for choosing the languages returned by search -->
+<string name="settings_search_results_language" tools:ignore="MissingTranslation">"Search language"</string>
 <!-- Menu option for sharing the recorded travel route via another app -->
 <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">"Share recording of travel"</string>
 <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->

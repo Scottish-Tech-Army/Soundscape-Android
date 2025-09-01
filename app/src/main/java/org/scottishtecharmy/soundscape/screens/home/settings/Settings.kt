@@ -168,6 +168,19 @@ fun Settings(
         "Metric",
     )
 
+    val searchLanguageDescriptions = listOf(
+        stringResource(R.string.settings_theme_auto),
+        "Français",
+        "English",
+        "Deutsch"
+    )
+    val searchLanguageValues = listOf(
+        "auto",
+        "fr",
+        "en",
+        "de"
+    )
+
     ProvidePreferenceLocals {
         LazyColumn (modifier = modifier.background(backgroundColor)){
             stickyHeader {
@@ -408,6 +421,21 @@ fun Settings(
                     modifier = Modifier.smallPadding()
                 )
             }
+            listPreference(
+                key = MainActivity.SEARCH_LANGUAGE_KEY,
+                defaultValue = MainActivity.SEARCH_LANGUAGE_DEFAULT,
+                values = searchLanguageValues,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_search_results_language),
+                        color = textColor
+                    )
+                },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(searchLanguageDescriptions[searchLanguageValues.indexOf(value)], value, currentValue, onClick, searchLanguageValues.indexOf(value), searchLanguageValues.size)
+                },
+                summary = { Text(text = searchLanguageDescriptions[searchLanguageValues.indexOf(it)], color = textColor) },
+            )
 
             item {
                 Text(
