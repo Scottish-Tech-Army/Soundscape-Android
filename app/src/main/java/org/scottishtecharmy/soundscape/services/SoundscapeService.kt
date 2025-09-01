@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.services
 
 import android.content.Context
 import android.annotation.SuppressLint
+import android.app.ForegroundServiceStartNotAllowedException
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -13,6 +14,7 @@ import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Binder
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
@@ -22,6 +24,8 @@ import androidx.core.app.ServiceCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -191,15 +195,16 @@ class SoundscapeService : MediaSessionService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (!running) {
-            running = true
-            startAsForegroundService()
+            if(startAsForegroundService()) {
+                running = true
 
-            locationProvider.start(this)
-            directionProvider.start(audioEngine, locationProvider)
+                locationProvider.start(this)
+                directionProvider.start(audioEngine, locationProvider)
 
-            // Reminds the user every hour that the Soundscape service is still running in the background
-            startServiceStillRunningTicker()
-            geoEngine.start(application, locationProvider, directionProvider, this)
+                // Reminds the user every hour that the Soundscape service is still running in the background
+                startServiceStillRunningTicker()
+                geoEngine.start(application, locationProvider, directionProvider, this)
+            }
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -270,16 +275,25 @@ class SoundscapeService : MediaSessionService() {
      *
      * This needs to be called within 10 seconds of starting the service or the system will throw an exception.
      */
-    private fun startAsForegroundService() {
+    private fun startAsForegroundService() : Boolean {
 
-        // promote service to foreground service
-        // FOREGROUND_SERVICE_TYPE_LOCATION needs to be in AndroidManifest.xml
-        ServiceCompat.startForeground(
-            this,
-            NOTIFICATION_ID,
-            getNotification(),
-            ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
-        )
+        try {
+            ServiceCompat.startForeground(
+                this,
+                NOTIFICATION_ID,
+                getNotification(),
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
+            )
+        } catch (e: Exception) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                && e is ForegroundServiceStartNotAllowedException
+            ) {
+                Firebase.analytics.logEvent("startAsForegroundServiceError", null)
+                Log.e(TAG, "**** startAsForegroundService failed *********: $e")
+                return false
+            }
+        }
+        return true
     }
 
     /**
@@ -338,6 +352,12 @@ class SoundscapeService : MediaSessionService() {
             .setSmallIcon(R.drawable.nearby_markers_24px)
             .setOngoing(true)
             .setContentIntent(notifyPendingIntent)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Without this, the notification doesn't appear for 10 seconds, we want it to appear
+            // immediately.
+            builder.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE)
+        }
 
         return builder.build()
     }
