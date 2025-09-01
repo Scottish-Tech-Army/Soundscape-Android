@@ -75,21 +75,21 @@
     <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
 <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
     <!-- Title for a setting to include unnamed roads -->
-<string name="preview_include_unnamed_roads_title">جاده‌های بی‌نام</string>
+<string name="preview_include_unnamed_roads_title">خیابان‌های بدون نام</string>
     <!-- Location Details page title. This page shows information about the location including the address and a map. -->
 <string name="location_detail_title_default">جزئیات مکان</string>
     <!-- Title for the action to start playing an audio beacon -->
-<string name="location_detail_action_beacon">شروع نشانه ی صوتی</string>
+<string name="location_detail_action_beacon">فعال‌سازی جهت‌نمای صوتی</string>
     <!-- Talkback hint for the action to set an audio beacon at this location -->
-<string name="location_detail_action_beacon_hint">یک نشانه ی صوتی در این مکان تنظیم کنید</string>
+<string name="location_detail_action_beacon_hint">جهت‌نمای صوتی را برای این مکان فعال کنید</string>
     <!-- Talkback hint for the action to save marker -->
-<string name="location_detail_action_save_hint">این مکان را به عنوان نشانگر ذخیره کنید</string>
+<string name="location_detail_action_save_hint">این مکان را نشانه‌گذاری و ذخیره کنید</string>
     <!-- Talkback hint for the action to edit marker -->
-<string name="location_detail_action_edit_hint">ویرایش نشانگر</string>
+<string name="location_detail_action_edit_hint">ویرایش نشانه</string>
     <!-- Talkback hint for the action to share -->
-<string name="location_detail_action_share_hint">اشتراک‌گذاری این مکان</string>
+<string name="location_detail_action_share_hint">این مکان را به اشتراک بگذارید</string>
     <!-- Talkback hint for the action to preview -->
-<string name="location_detail_action_preview_hint">شروع پیش‌نمایش در این مکان</string>
+<string name="location_detail_action_preview_hint">با این مکان آشنا شوید</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list -->
 <string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید.</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
@@ -113,25 +113,25 @@
     <!-- Talkback hint for the action to share -->
 <string name="route_detail_action_share_hint">اشتراک‌گذاری این مسیر</string>
     <!-- Accessibility hint for the edit button on the Route Detail screen -->
-<string name="route_detail_action_edit_hint">ویرایش این مسیر</string>
+<string name="route_detail_action_edit_hint">این مسیر را ویرایش کنید</string>
     <!-- Add button on the Route list screen -->
 <string name="route_detail_action_create">مسیر جدید</string>
     <!-- Talkback hint for the add button on the Route list screen -->
-<string name="route_detail_action_create_hint">ایجاد یک مسیر جدید</string>
+<string name="route_detail_action_create_hint">یک مسیر جدید ایجاد کنید</string>
     <!-- Accessibility Text displayed for when a route ends and the route was completed, %s is name of the route, "Route Completed! Home to Work" -->
-<string name="route_end_completed_accessibility">مسیر تکمیل شد! %s</string>
+<string name="route_end_completed_accessibility">پایان مسیر! %s</string>
     <!-- Title text of the button used to move to the previous waypoint -->
-<string name="route_detail_action_previous">نقطه بین راهی قبلی</string>
+<string name="route_detail_action_previous">نقطه‌ی بین‌راهی قبلی</string>
     <!-- Hint text of the button used to move to the previous waypoint -->
-<string name="route_detail_action_previous_hint">دو ضربه بزنید تا نشانه ی صوتی روی نقطه بین راهی قبلی تنظیم شود</string>
+<string name="route_detail_action_previous_hint">دو ضربه بزنید تا جهت‌نمای صوتی روی نقطه‌ی بین‌راهی قبلی تنظیم شود</string>
     <!-- Title text of the button used to move to the next waypoint -->
-<string name="route_detail_action_next">نقطه بین راهی بعدی</string>
+<string name="route_detail_action_next">نقطه‌ی بین‌راهی بعدی</string>
     <!-- Hint text of the button used to move to the next waypoint -->
-<string name="route_detail_action_next_hint">دو ضربه بزنید تا نشانه ی صوتی روی نقطه بین راهی بعدی تنظیم شود</string>
+<string name="route_detail_action_next_hint">دو ضربه بزنید تا جهت‌نمای صوتی روی نقطه‌ی بین‌راهی بعدی تنظیم شود</string>
     <!-- Label for the description field of a route -->
 <string name="route_detail_edit_description">توضیحات</string>
     <!-- Label for the button used to add waypoints to a route -->
-<string name="route_detail_edit_waypoints_button">افزودن نقاط بین راهی</string>
+<string name="route_detail_edit_waypoints_button">افزودن نقاط بین‌راهی</string>
     <!-- Label for the delete route button -->
 <string name="route_detail_edit_delete">حذف مسیر</string>
     <!-- Title for the alert displayed when a route or tour is updated -->
@@ -179,13 +179,13 @@
     <!-- Title of page for editing markers -->
 <string name="markers_edit_screen_title_edit">ویرایش نشانگر</string>
     <!-- Text used when calling out makers -->
-<string name="markers_generic_name">نشانگر</string>
+<string name="markers_generic_name">نشانه</string>
     <!-- Marker Information, %s is the name of the marker e.g.  "Marker. <Starbucks>" -->
-<string name="markers_marker_with_name">نشانگر. %s</string>
+<string name="markers_marker_with_name">نشانه. %s</string>
     <!-- Notification when a marker is created -->
-<string name="markers_marker_created">نشانگر ایجاد شد</string>
+<string name="markers_marker_created">نشانه ایجاد شد</string>
     <!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
-<string name="markers_annotation">یادداشت</string>
+<string name="markers_annotation">توضیحات</string>
     <!-- Description text for the search field, "destination" should be translated the same as it is in "first_launch.prompt.message" -->
 <string name="search_choose_destination">انتخاب مقصد</string>
     <!-- Search using current location -->
@@ -193,13 +193,13 @@
     <!-- Nearby Places screen title -->
 <string name="search_nearby_screen_title">مکان‌های نزدیک</string>
     <!-- Markers and routes screen titles -->
-<string name="search_view_markers">نشانگرها و مسیرها</string>
+<string name="search_view_markers">نشانه‌ها و مسیر‌ها</string>
     <!-- Accessibility hint when the user selects the markers button on the home screen -->
-<string name="search_button_markers_accessibility_hint">انتخاب یا ویرایش نشانگرهای ذخیره شده شما</string>
+<string name="search_button_markers_accessibility_hint">نشانه‌هایی را که ذخیره کرده‌اید انتخاب یا ویرایش کنید</string>
     <!-- Accessibility hint when the user selects the nearby places button on the home screen -->
-<string name="search_button_nearby_accessibility_hint">کاوش رستوران‌ها، ایستگاه‌های حمل‌ونقل و موارد دیگر در نزدیکی</string>
+<string name="search_button_nearby_accessibility_hint">از رستوران گرفته تا ایستگاه اتوبوس، می‌توانید اینجا به‌دنبال مکان‌های مختلف در اطرافتان بگردید</string>
     <!-- Accessibility hint when the user selects the current location button on the home screen -->
-<string name="search_button_current_location_accessibility_hint">پیش‌نمایش، علامت‌گذاری یا اشتراک‌گذاری موقعیت مکانی فعلی خود با یک دوست</string>
+<string name="search_button_current_location_accessibility_hint">می‌توانید با استفاده از این گزینه، مشخصات موقعیت مکانی فعلی خود را مشاهده نمایید، آن را نشانه‌گذاری کرده یا با دوستانتان به‌اشتراک بگذارید</string>
     <!-- Places nearby that shows all of the places -->
 <string name="filter_all">همه مکان‌ها</string>
     <!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
