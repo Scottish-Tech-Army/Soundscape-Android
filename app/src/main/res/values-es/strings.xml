@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="general_alert_cancel">"Cancelar"</string>
-    <string name="general_alert_done">"Listo"</string>
+    <string name="general_alert_done">Hecho</string>
     <string name="general_loading_start">"Preparando todo…"</string>
     <string name="general_error_location_services_find_location_error">"Tenemos problemas para encontrar su ubicación actual."</string>
     <string name="general_error_add_marker_error">"Tenemos problemas para marcar este lugar. Vuelva a intentarlo más tarde."</string>
@@ -469,4 +469,7 @@
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Auto</string>
     <string name="settings_theme_light" tools:ignore="MissingTranslation">Claro</string>
     <string name="settings_theme_dark" tools:ignore="MissingTranslation">Oscuro</string>
+    <string name="permissions_required" tools:ignore="MissingTranslation">La aplicación requiere permisos de ubicación para poder ejecutarse.</string>
+    <string name="permissions_button" tools:ignore="MissingTranslation">Cambiar los permisos en la configuración de la aplicación</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">Mostrar mapas en pantalla</string>
 </resources>
