@@ -458,8 +458,8 @@
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Увімкнути доступний стиль карти</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Налаштування налагодження</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Поділитися записом подорожі</string>
-    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s на %2$s через %3$s</string>
-    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s на %2$s</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s у напрямку %2$s через %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s у напрямку %2$s</string>
     <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s that приєднується до %2$s і %3$s</string>
     <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s через %2$s</string>
     <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">Тротуар поруч із %1$s</string>
