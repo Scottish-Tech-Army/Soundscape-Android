@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">الغاء</string>
+    <string name="general_alert_done">تم</string>
+    <string name="general_error_location_services_find_location_error">نواجه مشكلة في العثور على موقعك الحالي.</string>
+    <string name="general_error_add_marker_error">نحن نواجه مشكلة في وضع علامة على هذا المكان. حاول مرة أخرى لاحقًا.</string>
+    <string name="general_loading_start">جاري العثور على الاتجاهات</string>
+    <string name="settings_screen_title">إعدادات</string>
+    <string name="settings_about_app">حول soundscape</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">وحدات القياس</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">"نظام القياس البريطاني  بالقدم"</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">القياس بالمتر</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">محركات \n نص إلى كلام</string>
+    <string name="voice_settings_speaking_rate">سرعه القراءه</string>
+    <string name="voice_voices">أصوات</string>
+    <string name="beacon_settings_style">أنماط الصوت</string>
+    <string name="beacon_styles_current">الحالي</string>
+    <string name="beacon_styles_original">عام</string>
+    <string name="beacon_styles_flare">توهج</string>
+    <string name="beacon_styles_shimmer">وميض</string>
+    <string name="beacon_styles_tactile">طبيعه</string>
+    <string name="beacon_styles_ping">صوت الرنين</string>
+    <string name="beacon_styles_drop">يسقط</string>
+    <string name="beacon_styles_signal">إشارة</string>
+    <string name="beacon_styles_signal_slow">إشارة (بطيئة)</string>
+    <string name="beacon_styles_signal_very_slow">إشارة (بطيئة جدا)</string>
+    <string name="beacon_styles_mallet">مطرقة</string>
+    <string name="beacon_styles_mallet_slow">مطرقة (بطيئة)</string>
+    <string name="beacon_styles_mallet_very_slow">مطرقة (بطيئة جدا)</string>
+    <string name="beacon_audio_beacon">التوجيه بالاشارات الصوتيه</string>
+    <string name="beacon_action_mute_beacon">كتم الاشاره الصوتيه</string>
+    <string name="beacon_action_mute_beacon_acc_hint">كتم صوت الاشاره الصوتيه</string>
+    <string name="beacon_action_unmute_beacon">الغاء كتم الاشاره الصوتيه</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">الغاء كتم صوت الاشاره الصوتيه</string>
+    <string name="preview_title">وضع عرض الشارع Soundscape</string>
+    <string name="preview_go_title">يذهب</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و"</string>
+    <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
+    <string name="location_detail_title_default">تفاصيل الموقع</string>
+    <string name="location_detail_action_beacon">ابدا التوجيه بالاشاره الصوتيه</string>
+    <string name="location_detail_action_beacon_hint">اضف الاشاره الصوتيه لهذا الموقع</string>
+    <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة</string>
+    <string name="location_detail_action_edit_hint">تعديل النقاط المفضله</string>
+    <string name="location_detail_action_share_hint">شارك هذا الموقع</string>
+    <string name="location_detail_action_preview_hint">ابدا معاينه هذا الموقع</string>
+    <string name="location_detail_add_waypoint_existing_hint">أزل هذه العلامة من طريقك.</string>
+    <string name="location_detail_add_waypoint_new_hint">أضف هذه العلامة إلى طريقك.</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">اجعل الخريطة ملء الشاشة</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">الخروج من خريطة ملء الشاشة</string>
+    <string name="route_detail_action_start_route">ابدأ الطريق</string>
+    <string name="route_detail_action_stop_route">ايقاف الطريق</string>
+    <string name="route_detail_action_edit">تحرير الطريق</string>
+    <string name="route_detail_action_start_route_hint">ابدأ هذا الطريق</string>
+    <string name="route_detail_action_start_route_disabled_hint">"أضف نقاط  قبل بدء الطريق"</string>
+    <string name="route_detail_action_stop_route_hint">توقف عن هذا الطريق</string>
+    <string name="route_detail_action_share_hint">شارك هذا الطريق</string>
+    <string name="route_detail_action_edit_hint">تحرير هذا الطريق</string>
+    <string name="route_detail_action_create">طريق جديد</string>
+    <string name="route_detail_action_create_hint">إنشاء طريق جديد</string>
+    <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك</string>
+    <string name="route_detail_action_previous">نقطة الطريق السابقة</string>
+    <string name="route_detail_action_previous_hint">اضغط مرتين لضبط الاشاره على النقطه السابقه</string>
+    <string name="route_detail_action_next">نقطة الطريق التالية</string>
+    <string name="route_detail_action_next_hint">اضغط مرتين لضبط الاشاره على النقطه التاليه</string>
+    <string name="route_detail_edit_description">وصف</string>
+    <string name="route_detail_edit_waypoints_button">أضف نقاط الطرق</string>
+    <string name="route_detail_edit_delete">حذف الطريق</string>
+    <string name="route_update_success_title">تحديث كامل!</string>
+    <string name="waypoint_title">نقطة الطريق</string>
+    <string name="universal_links_alert_action_marker">حفظ كعلامة</string>
+    <string name="universal_links_marker_share_message">لقد شاركت معك علامة شريط الصوت معك! *\"</string>
+    <string name="user_activity_save_marker_title">حفظ العلامة</string>
+    <string name="routes_title">الطرق</string>
 </resources>
