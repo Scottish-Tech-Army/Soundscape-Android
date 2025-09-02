@@ -137,7 +137,7 @@
     <!-- Title for the alert displayed when a route or tour is updated -->
 <string name="route_update_success_title">به‌روز‌رسانی کامل شد!</string>
     <!-- Title of a waypoint used in a route, this is used in the form "Waypoint 1", "Waypoint 2" etc. -->
-<string name="waypoint_title">نقطه بین راهی</string>
+<string name="waypoint_title">نقطه‌ی بین‌راهی</string>
     <!-- Alert action to save as marker -->
 <string name="universal_links_alert_action_marker">نشانه‌گذاری و ذخیره</string>
     <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
@@ -153,19 +153,19 @@
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains how a route is a set of ordered markers. -->
 <string name="routes_no_routes_hint_1">با کنار هم چیدن تعدادی نشانه به‌عنوان نقاط بین‌راهی، برای خود یا دیگران یک مسیر ایجاد کنید.</string>
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains that the beacon will automatically shift between the route waypoints as they walk the route. -->
-<string name="routes_no_routes_hint_2">هنگام حرکت در مسیر با Soundscape، در هنگام رسیدن به هر نقطه بین راهی مطلع خواهید شد و نشانه ی صوتی به طور خودکار به نقطه بین راهی بعدی پیشروی خواهد کرد.</string>
+<string name="routes_no_routes_hint_2">هنگام حرکت در مسیری که در ساند‌اسکیپ ایجاد کرده‌اید، برنامه شما را از رسیدن به هر یک از نقاط بین‌راهی در امتداد مسیر مطلع خواهد ساخت و جهت‌نمای صوتی به‌طور خودکار روی نقطه‌ی بین‌راهی بعدی تنظیم خواهد شد.</string>
     <!-- Text for a button that will cause the list of routes to be sorted by their names -->
 <string name="routes_sort_by_name">مرتب‌سازی بر اساس نام</string>
     <!-- Text for a button that will cause the list of routes to be sorted by their distance from the user -->
 <string name="routes_sort_by_distance">مرتب‌سازی بر اساس فاصله</string>
     <!-- Title of Markers page. Markers are locations that the user has selected and added a name for.  -->
-<string name="markers_title">نشانگرها</string>
+<string name="markers_title">نشانه‌ها</string>
     <!-- Button text to delete a marker -->
-<string name="markers_action_delete">حذف نشانگر</string>
+<string name="markers_action_delete">حذف نشانه</string>
     <!-- Sort by category, Name. Used when a user is presented an option to sort a location list by name. -->
 <string name="markers_sort_button_sort_by_name">نام</string>
     <!-- Sort by category, Name. This is the Talkback label used when a user a location list is sorted by name. -->
-<string name="markers_sort_button_sort_by_name_voiceover">بر اساس نام مرتب شده است</string>
+<string name="markers_sort_button_sort_by_name_voiceover">ترتیب‌بندی بر اساس نام</string>
     <!-- Sort by category, Distance. Used when a user is presented an option to sort a location list by distance. -->
 <string name="markers_sort_button_sort_by_distance">فاصله</string>
     <!-- Sort by category, Distance. This is the Talkback label used when a user a location list is sorted by distance. -->
@@ -173,9 +173,9 @@
     <!-- Title for markers page when no markers exist -->
 <string name="markers_no_markers_title">ایجاد نشانه</string>
     <!-- Text that explains to the user what "markers" are and how they can be used. Ensure "Save as Marker" is translated to be the same as "universal_links.alert.action.marker". Quotes written as \" -->
-<string name="markers_no_markers_hint_1">نشانگرهایی را برای مقاصد مورد علاقه خود، نقاط بین راهی در یک مسیر، یا هر مکانی که می‌خواهید اعلام شود، ایجاد کنید. به سادگی یک مکان، یا حتی موقعیت مکانی فعلی خود را، از صفحه اصلی انتخاب کنید و *\"ذخیره به عنوان نشانگر\"* را انتخاب کنید.</string>
+<string name="markers_no_markers_hint_1">مقصد‌های دل‌خواه، نقاط بین‌راهی یا هر جای دیگری را که می‌خواهید به شما اعلام شود نشانه‌گذاری کنید. تنها یک مکان معین یا حتی موقعیت مکانی فعلی خود را از صفحه‌ی اصلی انتخاب کرده و گزینه‌ی *\"نشانه‌گذاری و ذخیره\"* را فعال نمایید.</string>
     <!-- Additional text that explains how users can use markers. This string is displayed below the string with key "markers.no_markers.hint.1" -->
-<string name="markers_no_markers_hint_2">خانه‌تان، ورودی محل کارتان یا مکان مورد علاقه خود در پارک را علامت‌گذاری کنید.</string>
+<string name="markers_no_markers_hint_2">برای مثال، منزل، محل کار یا نقطه‌ی دل‌خواهتان در پارک را نشانه‌گذاری کنید.</string>
     <!-- Title of page for editing markers -->
 <string name="markers_edit_screen_title_edit">ویرایش نشانه</string>
     <!-- Text used when calling out makers -->
@@ -231,15 +231,15 @@
     <!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
 <string name="sleep_sleeping">در وضعیت نیمه‌خاموش</string>
     <!-- Text for sleep page explaining what it does -->
-<string name="sleep_sleeping_message">Soundscape در حال حاضر در حالت خواب است. این کار از استفاده Soundscape از خدمات مکان‌یابی یا دانلود داده جلوگیری می‌کند. این باعث صرفه‌جویی در مصرف باتری می‌شود زمانی که از Soundscape استفاده نمی‌کنید. برای بیدار کردن Soundscape، روی دکمه زیر ضربه بزنید.</string>
+<string name="sleep_sleeping_message">در حال حاضر ساند‌اسکیپ در حالت نیمه‌خاموش قرار دارد. در این حالت، خدمات موقعیت مکانی و دانلود داده متوقف می‌گردد تا مصرف باتری کاهش یابد. برای خروج از این حالت، روی دکمه‌ی زیر ضربه بزنید.</string>
     <!-- Talkback hint for the sleep button to indicate what it does -->
-<string name="sleep_sleep_acc_hint">Soundscape را به حالت خواب ببرد</string>
+<string name="sleep_sleep_acc_hint">ساند‌اسکیپ را در حالت نیمه‌خاموش قرار می‌دهد</string>
     <!-- Text for large button on sleep screen which wakes the app up -->
-<string name="sleep_wake_up_now">اکنون بیدار شو</string>
+<string name="sleep_wake_up_now">خروج از حالت نیمه‌خاموش</string>
     <!-- Callout that a road junction is getting near -->
-<string name="intersection_approaching_intersection">نزدیک شدن به تقاطع</string>
+<string name="intersection_approaching_intersection">به تقاطع نزدیک می‌شوید</string>
     <!-- Notification, %s is a point of interest, "At Starbucks" -->
-<string name="directions_at_poi">در %s</string>
+<string name="directions_at_poi">در محل %s</string>
     <!-- Text for button on home page that callous the current user location -->
 <string name="directions_my_location">موقعیت مکانی من</string>
     <!-- Notification announced to the user that they are near a location, %s is a physical address or the name of a place, examples: "Near 123 Columbia Street", "Near Starbucks" -->
@@ -257,19 +257,19 @@
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
 <string name="directions_traveling_n">در حال حرکت در جهت شمال</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_ne">سفر به شمال شرقی</string>
+<string name="directions_traveling_ne">در حال حرکت در جهت شمال شرقی</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_e">سفر به شرق</string>
+<string name="directions_traveling_e">در حال حرکت در جهت شرق</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_se">سفر به جنوب شرقی</string>
+<string name="directions_traveling_se">در حال حرکت در جهت جنوب شرقی</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_s">سفر به جنوب</string>
+<string name="directions_traveling_s">در حال حرکت در جهت جنوب</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_sw">سفر به جنوب غربی</string>
+<string name="directions_traveling_sw">در حال حرکت در جهت جنوب غربی</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_w">سفر به غرب</string>
+<string name="directions_traveling_w">در حال حرکت در جهت غرب</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_nw">سفر به شمال غربی</string>
+<string name="directions_traveling_nw">در حال حرکت در جهت شمال غربی</string>
     <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
 <string name="directions_facing_n">رو به شمال</string>
     <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street -->
