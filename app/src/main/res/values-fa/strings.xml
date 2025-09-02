@@ -169,15 +169,15 @@
     <!-- Sort by category, Distance. Used when a user is presented an option to sort a location list by distance. -->
 <string name="markers_sort_button_sort_by_distance">فاصله</string>
     <!-- Sort by category, Distance. This is the Talkback label used when a user a location list is sorted by distance. -->
-<string name="markers_sort_button_sort_by_distance_voiceover">بر اساس فاصله مرتب شده است</string>
+<string name="markers_sort_button_sort_by_distance_voiceover">ترتیب‌بندی بر اساس فاصله</string>
     <!-- Title for markers page when no markers exist -->
-<string name="markers_no_markers_title">شروع کار با نشانگرها</string>
+<string name="markers_no_markers_title">ایجاد نشانه</string>
     <!-- Text that explains to the user what "markers" are and how they can be used. Ensure "Save as Marker" is translated to be the same as "universal_links.alert.action.marker". Quotes written as \" -->
 <string name="markers_no_markers_hint_1">نشانگرهایی را برای مقاصد مورد علاقه خود، نقاط بین راهی در یک مسیر، یا هر مکانی که می‌خواهید اعلام شود، ایجاد کنید. به سادگی یک مکان، یا حتی موقعیت مکانی فعلی خود را، از صفحه اصلی انتخاب کنید و *\"ذخیره به عنوان نشانگر\"* را انتخاب کنید.</string>
     <!-- Additional text that explains how users can use markers. This string is displayed below the string with key "markers.no_markers.hint.1" -->
 <string name="markers_no_markers_hint_2">خانه‌تان، ورودی محل کارتان یا مکان مورد علاقه خود در پارک را علامت‌گذاری کنید.</string>
     <!-- Title of page for editing markers -->
-<string name="markers_edit_screen_title_edit">ویرایش نشانگر</string>
+<string name="markers_edit_screen_title_edit">ویرایش نشانه</string>
     <!-- Text used when calling out makers -->
 <string name="markers_generic_name">نشانه</string>
     <!-- Marker Information, %s is the name of the marker e.g.  "Marker. <Starbucks>" -->
@@ -201,27 +201,27 @@
     <!-- Accessibility hint when the user selects the current location button on the home screen -->
 <string name="search_button_current_location_accessibility_hint">می‌توانید با استفاده از این گزینه، مشخصات موقعیت مکانی فعلی خود را مشاهده نمایید، آن را نشانه‌گذاری کرده یا با دوستانتان به‌اشتراک بگذارید</string>
     <!-- Places nearby that shows all of the places -->
-<string name="filter_all">همه مکان‌ها</string>
+<string name="filter_all">همه‌ی مکان‌ها</string>
     <!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
 <string name="filter_transit">حمل‌ونقل عمومی</string>
     <!-- Places nearby filter that shows food and drink relates places e.g. restaurants and cafes -->
 <string name="filter_food_drink">غذا و نوشیدنی</string>
     <!-- Places nearby filter that shows grocery shops -->
-<string name="filter_groceries">خواربار و فروشگاه‌های رفاه</string>
+<string name="filter_groceries">بقالی و سوپرمارکت</string>
     <!-- Places nearby filter that shows banks and cash machines -->
-<string name="filter_banks">بانک‌ها و دستگاه‌های خودپرداز</string>
+<string name="filter_banks">بانک و دستگاه خودپرداز</string>
     <!-- Title for the button panel at the bottom of the home view.-->
-<string name="callouts_panel_title">اطرافم را بشنو</string>
+<string name="callouts_panel_title">شنیدن مکان‌های اطراف</string>
     <!-- Settings option to allow audio callouts - callouts are the descriptions of the nearby roads. -->
-<string name="callouts_allow_callouts">اجازه دادن به اعلامیه‌ها</string>
+<string name="callouts_allow_callouts">اجازه به اعلان‌ها</string>
     <!-- Settings option to allow finer control of which places are called out - in this case places and landmarks -->
-<string name="callouts_places_and_landmarks">مکان‌ها و نقاط دیدنی</string>
+<string name="callouts_places_and_landmarks">مکان‌ها و نقاط شاخص</string>
     <!-- Settings option to allow finer control of which places are called out - in this case mobility relates places -->
 <string name="callouts_mobility">تحرک</string>
     <!-- Title for a setting under the Manage Callouts settings section. This toggle enables or disables periodic callouts that inform the user about their distance from the location of the audio beacon. -->
-<string name="callouts_audio_beacon">فاصله تا نشانه ی صوتی</string>
+<string name="callouts_audio_beacon">فاصله تا جهت‌نمای صوتی</string>
     <!-- Help title for automatic callouts -->
-<string name="callouts_automatic_callouts">اعلامیه‌های خودکار</string>
+<string name="callouts_automatic_callouts">اعلان‌های خودکار</string>
     <!-- Speech callout indicating that there's no useful information available -->
 <string name="callouts_nothing_to_call_out_now">در حال حاضر هیچ‌گونه اطلاعات مفیدی وجود ندارد</string>
     <!-- Button text for the hear my surroundings button which calls out nearby markers -->
@@ -255,7 +255,7 @@
     <!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie" -->
 <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">نزدیک %1$s و نزدیک به %2$s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_traveling_n">سفر به شمال</string>
+<string name="directions_traveling_n">در حال حرکت در جهت شمال</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
 <string name="directions_traveling_ne">سفر به شمال شرقی</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
