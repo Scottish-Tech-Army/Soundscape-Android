@@ -6,8 +6,12 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
+import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.home.USER_POSITION_MARKER_NAME
 
 class CalloutHistoryTest {
 
@@ -66,5 +70,34 @@ class CalloutHistoryTest {
         val location = LngLatAlt(0.0, 0.0, 0.0) // Example location
         history.trim(UserGeometry(location))
         assertEquals(0, history.size())
+    }
+
+    @Test
+    fun testAdaptiveLocationFilter() {
+        val filter = LocationUpdateFilter(0,100.0)
+
+        var calloutCount = 0
+        val destination = LngLatAlt()
+        var distanceAway = 200000.0
+
+        val ruler = CheapRuler(0.0)
+
+        while (distanceAway >= 0.0) {
+            distanceAway -= 10.0
+
+            val remoteLocation =  ruler.destination(destination, distanceAway, 0.0)
+            val userGeometry = UserGeometry(
+                location = remoteLocation,
+                timestampMilliseconds = 1,
+                ruler = ruler
+            )
+            if(filter.shouldUpdate(userGeometry, destination)) {
+                println("Updating on $distanceAway")
+                calloutCount = calloutCount + 1
+                filter.update(userGeometry)
+            }
+        }
+        println("Callout count: $calloutCount")
+        assert(calloutCount == 41)
     }
 }

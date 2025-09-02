@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import kotlin.math.floor
 
 /**
  * This class acts as a filter for throttling the frequency of computation which is initiated by
@@ -26,7 +28,8 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
 
     private fun shouldUpdate(userGeometry: UserGeometry,
                              updateTimeInterval: Long,
-                             updateDistanceInterval: Double)
+                             updateDistanceInterval: Double,
+                             destination : LngLatAlt? = null)
         : Boolean {
 
         if((lastLocation == null) || (lastTime == 0L)) {
@@ -37,6 +40,25 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
             val distance = userGeometry.ruler.distance(userGeometry.location, geometry.location)
             val timeDifference = userGeometry.timestampMilliseconds - lastTime
 
+            // Adaptive distance addition
+            if(destination != null) {
+                val newDistance = userGeometry.ruler.distance(destination, userGeometry.location)
+                val adaptiveDistance = when {
+                    // Only announce the distance on large changes of value if we are far away
+                    (newDistance > 50000.0) -> 10000.0
+                    (newDistance > 5000.0) -> 5000.0
+                    (newDistance > 1000.0) -> 1000.0
+                    else -> 0.0
+                }
+                if (adaptiveDistance != 0.0) {
+                    // See if we've crossed a threshold
+                    val lastDistance = userGeometry.ruler.distance(destination, geometry.location)
+                    return ((floor(lastDistance / adaptiveDistance)) !=
+                            (floor(newDistance/adaptiveDistance)) &&
+                            (timeDifference >= updateTimeInterval))
+                }
+            }
+
             if ((distance >= updateDistanceInterval) && (timeDifference >= updateTimeInterval)) {
                 return true
             }
@@ -46,8 +68,8 @@ open class LocationUpdateFilter(minTimeMilliseconds: Long, private val minDistan
         return false
     }
 
-    fun shouldUpdate(userGeometry: UserGeometry) : Boolean {
-        return shouldUpdate(userGeometry, minTimeMs, minDistance)
+    fun shouldUpdate(userGeometry: UserGeometry, destination : LngLatAlt? = null) : Boolean {
+        return shouldUpdate(userGeometry, minTimeMs, minDistance, destination)
     }
 
     private val inVehicleTimeIntervalMultiplier = 4
