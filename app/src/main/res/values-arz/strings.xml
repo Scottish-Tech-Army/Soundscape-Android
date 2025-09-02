@@ -166,4 +166,101 @@
     <string name="directions_along_facing_sw">مواجهة الجنوب الغربي على طول</string>
     <string name="directions_along_facing_w">مواجهة الغرب على طول</string>
     <string name="directions_along_facing_nw">مواجهة الشمال الغربي على طول</string>
+    <string name="directions_along_heading_n">يتجه شمالًا على طول</string>
+    <string name="directions_along_heading_ne">يتجه شمال شرق على طول</string>
+    <string name="directions_along_heading_e">التوجه شرقًا على طول</string>
+    <string name="directions_along_heading_se">يتجه جنوب شرق على طول</string>
+    <string name="directions_along_heading_s">يتجه جنوبًا على طول</string>
+    <string name="directions_along_heading_sw">يتجه جنوب غرب على طول</string>
+    <string name="directions_along_heading_w">يتجه غربًا على طول</string>
+    <string name="directions_along_heading_nw">يتجه شمال غرب على طول</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">شمال</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">الشمال الشرقي</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">شرق</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">جنوب شرق</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">جنوب</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">الجنوب الغربي</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">الغرب</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">الشمال الغربي</string>
+    <string name="distance_format_meters">امطار</string>
+    <string name="distance_format_km">كيلو متر</string>
+    <string name="distance_format_feet">قدم</string>
+    <string name="distance_format_miles">ميل</string>
+    <string name="ui_action_button_my_location">موقع</string>
+    <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
+    <string name="ui_action_button_nearby_markers">علامات</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">حول الأماكن القريبة التي حددتها</string>
+    <string name="ui_action_button_around_me">أنا</string>
+    <string name="ui_action_button_around_me_acc_hint">اسمع عن الأماكن في الأرباع الأربعة من حولك</string>
+    <string name="ui_action_button_ahead_of_me">مني</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">اسمع عن أماكن امامك في</string>
+    <string name="ui_menu">القائمه</string>
+    <string name="ui_menu_hint">افتح القائمة</string>
+    <string name="ui_menu_close">إغلاق القائمة</string>
+    <string name="ui_continue">تابع</string>
+    <string name="menu_manage_callouts">إدارة وسيلة الشرح</string>
+    <string name="menu_help_and_tutorials">المساعدة والدروس</string>
+    <string name="menu_rate">قيم</string>
+    <string name="ui_back_button_title">رجوع</string>
+    <string name="behavior_experiences_route_nav_title">تفاصيل الطريق</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">اشاره وضعت على</string>
+    <string name="help_configuration_section_title">تكوين Soundscape</string>
+    <string name="settings_help_section_beacons_and_pois">اشارات</string>
+    <string name="settings_help_section_home_screen_buttons">أزرار الشاشة الرئيسية</string>
+    <string name="help_config_voices_content">يمكن لـ SoundScape استخدام أي من الأصوات التي قمت بتنزيلها على هاتف Android الخاص بك في إعدادات إخراج النص إلى كلام. ضمن تطبيق SoundScape ، يمكنك تحديد صوت آخر غير نظام Android الافتراضي من خلال الانتقال إلى الإعدادات من القائمة الرئيسية ثم تحديد *\"الأصوات\" *.</string>
+    <string name="help_offline_page_title">لماذا يعمل SoundScape في وضع عدم الاتصال؟</string>
+    <string name="help_offline_description">عندما لا يكون هناك اتصال بالإنترنت أو انقطاع في خدمات soundscape ، ينتقل Soundscape إلى وضع غير متصل. ومع ذلك ، ستستمر SoundScape في العمل ، ولكن قد تكون بعض الوظائف محدودة.</string>
+    <string name="help_offline_limitations_heading">القيود</string>
+    <string name="help_offline_limitations_description">ستستمر وسائل الشرح في العمل إذا كنت في منطقة تمشي بها من قبل وتم تخزينها في سجل وسيلة الشرح الخاصة بك. وبالمثل ، يمكنك وضع منارة صوتية أو إنشاء علامة على الأماكن التي تم تخزينها في سجل وسيلة الشرح الخاصة بك.</string>
+    <string name="help_offline_troubleshooting_heading">ماذا يمكنك أن تفعل؟</string>
+    <string name="help_offline_troubleshooting_description">سيحاول SoundScape استئناف التشغيل العادي عندما يتم توصيل هاتفك بالواي فاي أو يتم تمكين البيانات الخلوية وأنت في منطقة ذات إشارة جيدة. إذا كان هاتفك يحتوي على اتصال جيد للإنترنت ، لكن Soundscape لا يستأنف التشغيل العادي ، فقد يكون هناك انقطاع في خدمات شريط الصوت.</string>
+    <string name="help_orient_page_title">حاولي</string>
+    <string name="help_explore_page_title">أمامي</string>
+    <string name="help_creating_markers_page_title">إنشاء علامات</string>
+    <string name="help_edit_markers_page_title">تخصيص علاقات</string>
+    <string name="help_remote_page_title">باستخدام عناصر التحكم في الوسائط</string>
+    <string name="help_text_section_title_what">ما هذا؟</string>
+    <string name="help_text_section_title_when">متى يمكنني استخدامه؟</string>
+    <string name="help_text_section_title_how">كيف تعمل؟</string>
+    <string name="terms_of_use_title">شروط الاستخدام</string>
+    <string name="terms_of_use_message">والمصطلحات المنصوص عليها أدناه (معًا ، *\"شروط الاستخدام\" *).</string>
+    <string name="terms_of_use_service_agreement">اتفاقية خدمات جيش التكنولوجيا الاسكتلندية</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">قبول شروط الاستخدام</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Soundscape هي مساعدة في التنقل ويجب عدم استخدامها بدلاً من مهارات التنقل ، والدروع في محيطك ، والحكم الجيد. توخي الحذر عند التنقل في بيئتك حيث يتم التقاط بيانات التعيين المدمجة في برنامج Soundscape من برنامج طرف ثالث ، وبالتالي ، قد تكون هناك قيود على دقة المعلومات المقدمة.</string>
+    <string name="first_launch_soundscape_language">لغة soundscape</string>
+    <string name="first_launch_soundscape_language_text">حدد اللغة التي ترغب في استخدام SoundScape. يمكنك دائمًا تغيير اختيارك في إعدادات التطبيق.</string>
+    <string name="first_launch_welcome_title">مرحباً!</string>
+    <string name="first_launch_welcome_description">انتقل بثقة باستخدام الصوت المكاني</string>
+    <string name="first_launch_welcome_button">ابدأ</string>
+    <string name="first_launch_headphones_title">الاستماع إلى soundscape</string>
+    <string name="first_launch_headphones_message_1">يعمل SoundScape بشكل رائع مع أي زوج من سماعات الرأس. إذا كنت ترغب في استخدام سماعات الرأس ، فانتقل إليها الآن.</string>
+    <string name="first_launch_headphones_message_2">إذا لم يكن لديك سماعات الرأس أو تفضل عدم استخدامها ، فلا بأس! ستعمل SoundScape مع مكبرات الصوت على هاتفك.</string>
+    <string name="first_launch_callouts_title">اسمع محيطك</string>
+    <string name="first_launch_callouts_message">تساعدك SoundScape على البقاء على دراية بمكان وجودك وأين تسير عن طريق استدعاء الطرق والتقاطعات ونقاط الاهتمام أثناء الاقتراب منها.</string>
+    <string name="first_launch_callouts_listen">استمع إلى مثال على ما قد يتصل به Soundscape في مسيرتك القادمة</string>
+    <string name="first_launch_callouts_listen_accessibility_label">يستمع</string>
+    <string name="first_launch_callouts_example_1">مقهى</string>
+    <string name="first_launch_callouts_example_3">يذهب الشارع الرئيسي إلى اليسار</string>
+    <string name="first_launch_callouts_example_4">الشارع الرئيسي يتجه يمينا</string>
+    <string name="first_launch_permissions_title">التنقل مع soundscape</string>
+    <string name="first_launch_permissions_message">عند التنقل مع SoundScape ، سيتم توجيهك بواسطة منارة صوتية. للقيام بذلك ، يحتاجك Soundscape إلى تمكين الأذونات التالية:</string>
+    <string name="first_launch_permissions_location">خدمات الموقع مع موقع دقيق</string>
+    <string name="first_launch_permissions_motion">الحركة واللياقة</string>
+    <string name="first_launch_permissions_required">هذا الإذن مطلوب</string>
+    <string name="permissions_required" tools:ignore="MissingTranslation">يتطلب التطبيق أذونات الموقع لتكون قادرة على التشغيل.</string>
+    <string name="permissions_button" tools:ignore="MissingTranslation">تغيير الأذونات في إعدادات التطبيق</string>
+    <string name="first_launch_beacon_title">اختر الاشار الصوطي</string>
+    <string name="first_launch_beacon_message_1">عند التنقل باستخدام SoundScape ، سوف تسمع منارة الصوت في اتجاه وجهتك. باتباع صوته ، ستعرف دائمًا أي طريقة للذهاب.</string>
+    <string name="first_launch_beacon_message_2">استمع إلى منارات الصوت المتاحة وحدد تفضيلاتك.</string>
+    <string name="first_launch_beacon_message_3">يمكن تغيير هذا لاحقًا في إعدادات التطبيق.</string>
+    <string name="first_launch_prompt_title">لقد اتممت الاعداد</string>
+    <string name="first_launch_prompt_message">أنت مستعد للمشي الأول مع Soundscape. لتجربتها الآن ، فقط اختر وجهة قريبة ، وابدأ منارة الصوت ، وسوف تسمعها في اتجاه وجهتك.</string>
+    <string name="first_launch_prompt_button">ينهي</string>
+    <string name="first_launch_change_language" tools:ignore="MissingTranslation">تغيير اللغة</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">لتغيير اللغة المستخدمة للتطبيق</string>
+    <string name="help_text_destination_beacons_what">يتيح إعداد منارة على موقع قريب أن يتيح Soundscape لإطلاعك على تشغيل صوت منارة مسموع قادم من اتجاه هذا الموقع. يمكن أن يكون هذا المنارة صامتًا أو غير مختلط على الشاشة الرئيسية. بالإضافة إلى ذلك ، يعرض Soundscape معلومات حول الموقع على الشاشة الرئيسية بما في ذلك المسافة إليه وعنوانها في الشارع إذا كان معروفًا.</string>
+    <string name="help_text_destination_beacons_when">يعد إعداد منارة مفيدًا عندما ترغب في تتبع معلم مألوف أثناء استكشاف منطقة جديدة أو عندما تتجه إلى مكان ما وتريد إبلاغ محيطك على طول الطريق. لا تمنحك ميزة Beacon اتجاهات الدوران ، ولكنها تمنحك صوتًا مسموعًا مستمرًا يخبرك بالاتجاه إلى المنارة ، بالنسبة إلى المكان الذي تقع فيه حاليًا. باستخدام منارة الصوت ، ومهاراتك الحالية في مجال التراجع ، وحتى تطبيق التنقل المفضل لديك ، يمكنك اختيار كيفية الوصول إلى المواقع القريبة بنفسك.</string>
+    <string name="help_text_destination_beacons_how_1">أولاً ، عرض تفاصيل الموقع إما عن طريق استخدام شريط البحث للبحث عن مكان ، أو النقر على أحد الأزرار *\"القريبة\" *، *\"العلامات المحفوظة\" *، أو *\"الموقع الحالي\" *واختيار موقع. من شاشة تفاصيل الموقع ، يمكنك تحديد زر * \"ابدأ الصوت منارة\" *. سوف يعيدك هذا التنصت على الشاشة الرئيسية وتشغيل منارة مسموعة قادمة من اتجاه المكان الذي حددته. سيتم الآن عرض اسم المكان الذي حددته مع المسافة والعنوان الفعلي ، إذا كان ذلك متاحًا ، على شاشة التطبيق الرئيسية.</string>
+    <string name="help_text_destination_beacons_how_2">ما عليك سوى الضغط على زر * \"STOP BEACON\" * على الشاشة الرئيسية.</string>
+    <string name="help_text_destination_beacons_how_3">اضغط على زر * \"MUTE BEACON\" * بجوار زر * \"STOP BEACON\" * على الشاشة الرئيسية.</string>
 </resources>
