@@ -135,23 +135,23 @@
     <!-- Label for the delete route button -->
 <string name="route_detail_edit_delete">حذف مسیر</string>
     <!-- Title for the alert displayed when a route or tour is updated -->
-<string name="route_update_success_title">بروزرسانی کامل شد!</string>
+<string name="route_update_success_title">به‌روز‌رسانی کامل شد!</string>
     <!-- Title of a waypoint used in a route, this is used in the form "Waypoint 1", "Waypoint 2" etc. -->
 <string name="waypoint_title">نقطه بین راهی</string>
     <!-- Alert action to save as marker -->
-<string name="universal_links_alert_action_marker">به عنوان نشانگر ذخیره کن</string>
+<string name="universal_links_alert_action_marker">نشانه‌گذاری و ذخیره</string>
     <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
-<string name="universal_links_marker_share_message">من یک نشانگر Soundscape را با شما به اشتراک گذاشتم! *\"%s\"*</string>
+<string name="universal_links_marker_share_message">یک نشانه‌ی ساند‌اسکیپ را با شما به‌اشتراک گذاشته‌ام! *\"%s\"*</string>
     <!-- Title for button to save the location from the location details page as a marker. -->
-<string name="user_activity_save_marker_title">ذخیره نشانگر</string>
+<string name="user_activity_save_marker_title">ذخیره‌ی نشانه</string>
     <!-- Title of the option for displaying a the user's list of saved routes -->
 <string name="routes_title">مسیرها</string>
     <!-- Feedback given when a route is deleted -->
 <string name="routes_action_deleted">مسیر حذف شد</string>
     <!-- Title of the view that is shown when the user navigates to the routes list, but they have not yet created any routes -->
-<string name="routes_no_routes_title">شروع کار با نقاط بین راهی مسیر</string>
+<string name="routes_no_routes_title">ایجاد نقاط بین‌راهی در مسیر</string>
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains how a route is a set of ordered markers. -->
-<string name="routes_no_routes_hint_1">با سازماندهی مجموعه‌ای از نشانگرها به عنوان نقاط بین راهی در یک مسیر، برای خود یا شخص دیگری مسیری ایجاد کنید.</string>
+<string name="routes_no_routes_hint_1">با کنار هم چیدن تعدادی نشانه به‌عنوان نقاط بین‌راهی، برای خود یا دیگران یک مسیر ایجاد کنید.</string>
     <!-- This text is displayed to the user when they navigate to the routes list but have not yet created any routes. It explains that the beacon will automatically shift between the route waypoints as they walk the route. -->
 <string name="routes_no_routes_hint_2">هنگام حرکت در مسیر با Soundscape، در هنگام رسیدن به هر نقطه بین راهی مطلع خواهید شد و نشانه ی صوتی به طور خودکار به نقطه بین راهی بعدی پیشروی خواهد کرد.</string>
     <!-- Text for a button that will cause the list of routes to be sorted by their names -->
@@ -223,13 +223,13 @@
     <!-- Help title for automatic callouts -->
 <string name="callouts_automatic_callouts">اعلامیه‌های خودکار</string>
     <!-- Speech callout indicating that there's no useful information available -->
-<string name="callouts_nothing_to_call_out_now">در حال حاضر چیزی برای اعلام نیست</string>
+<string name="callouts_nothing_to_call_out_now">در حال حاضر هیچ‌گونه اطلاعات مفیدی وجود ندارد</string>
     <!-- Button text for the hear my surroundings button which calls out nearby markers -->
-<string name="callouts_nearby_markers">نشانگرهای نزدیک</string>
+<string name="callouts_nearby_markers">نشانه‌های نزدیک</string>
     <!-- Sleep Title, Sleep. Putting the app in an idle state for a period of time. -->
-<string name="sleep_sleep">خواب</string>
+<string name="sleep_sleep">حالت نیمه‌خاموش</string>
     <!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
-<string name="sleep_sleeping">در حال خواب</string>
+<string name="sleep_sleeping">در وضعیت نیمه‌خاموش</string>
     <!-- Text for sleep page explaining what it does -->
 <string name="sleep_sleeping_message">Soundscape در حال حاضر در حالت خواب است. این کار از استفاده Soundscape از خدمات مکان‌یابی یا دانلود داده جلوگیری می‌کند. این باعث صرفه‌جویی در مصرف باتری می‌شود زمانی که از Soundscape استفاده نمی‌کنید. برای بیدار کردن Soundscape، روی دکمه زیر ضربه بزنید.</string>
     <!-- Talkback hint for the sleep button to indicate what it does -->
