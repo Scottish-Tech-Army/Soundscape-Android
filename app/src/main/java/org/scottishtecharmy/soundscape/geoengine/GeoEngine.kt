@@ -152,8 +152,12 @@ class GeoEngine {
     ) : UserGeometry {
 
         var latLng = LngLatAlt(0.0, 0.0)
+        var errorDistance = 0.0
+        var errorHeading = 0.0
         if(location != null) {
             latLng = LngLatAlt(location.longitude, location.latitude)
+            errorDistance = if(location.hasAccuracy()) location.accuracy.toDouble() else 0.0
+            errorHeading = if(location.hasBearingAccuracy()) location.bearingAccuracyDegrees.toDouble() else 0.0
         }
         if(ruler.needsReplacing(latLng.latitude))
             ruler = CheapRuler(latLng.latitude)
@@ -197,6 +201,8 @@ class GeoEngine {
 
         return UserGeometry(
             location = latLng,
+            errorDistance = errorDistance,
+            errorHeading = errorHeading,
             phoneHeading = phoneHeading,
             fovDistance = 50.0,
             speed = speed,

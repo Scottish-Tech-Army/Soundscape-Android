@@ -48,6 +48,8 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
                    private val headingMode: HeadingMode = HeadingMode.CourseAuto,
                    private var travelHeading: Double? = null,
                    private var headHeading: Double? = null,
+                   val errorDistance: Double = 0.0,
+                   val errorHeading: Double = 0.0,
                    val inStreetPreview: Boolean = false)
 {
     private val automotiveRangeMultiplier = 6.0
