@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistance
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 
 class AutoCallout(
@@ -157,10 +158,10 @@ class AutoCallout(
         // Trim history based on location and current time
         poiCalloutHistory.trim(userGeometry)
 
-        // Get nearby markers
-        val markers = gridState.markerTree?.getNearestCollection(
-            userGeometry.location,
-            userGeometry.getSearchDistance(),
+        // Get nearby markers that are ahead of us in our field of view
+        val triangle = getFovTriangle(userGeometry)
+        val markers = gridState.markerTree?.getNearestCollectionWithinTriangle(
+            triangle,
             5,
             userGeometry.ruler
         )
@@ -289,14 +290,24 @@ class AutoCallout(
                             intersectionCallout.locationFilter = intersectionFilter
                             trackedCallout = intersectionCallout
                         }
-                        else {
+                        if((intersectionCallout == null) || userGeometry.inStreetPreview) {
                             // Get normal callouts for nearby POIs, for the destination, and for beacons
                             val poiCallout = buildCalloutForNearbyPOI(userGeometry, gridState)
 
                             // Update time/location filter for our new position
                             if (poiCallout != null) {
                                 poiCallout.locationFilter = poiFilter
-                                trackedCallout = poiCallout
+                                if(userGeometry.inStreetPreview) {
+                                    // In Street Preview we want to add the call outs on to any intersection that
+                                    // is being called out.
+                                    if(trackedCallout != null) {
+                                        trackedCallout.positionedStrings += poiCallout.positionedStrings
+                                    }
+                                    else
+                                        trackedCallout = poiCallout
+                                }
+                                else
+                                    trackedCallout = poiCallout
                             }
                         }
                     }
