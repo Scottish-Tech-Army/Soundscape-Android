@@ -385,7 +385,7 @@ fun LocationDetailsPreview() {
         },
         navController = NavHostController(LocalContext.current),
         location = null,
-        heading = 0.0F,
+        heading = 45.0F,
         saveMarker = {_,_,_ ->},
         deleteMarker = {},
         shareLocation = {_,_ ->}

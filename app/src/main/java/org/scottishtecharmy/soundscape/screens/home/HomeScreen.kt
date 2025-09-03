@@ -251,6 +251,7 @@ fun HomeScreen(
                 viewModel = addAndEditRouteViewModel,
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 userLocation = state.value.location,
+                heading = state.value.heading,
                 editRoute = (command == "edit"),
                 getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
             )
