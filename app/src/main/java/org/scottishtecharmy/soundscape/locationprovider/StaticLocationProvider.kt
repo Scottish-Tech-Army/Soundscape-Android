@@ -18,6 +18,7 @@ class StaticLocationProvider(private var location: LngLatAlt) :
         passiveLocation.longitude = location.longitude
         passiveLocation.accuracy = 0.0F
         mutableLocationFlow.value = passiveLocation
+        mutableFilteredLocationFlow.value = passiveLocation
     }
 
     override fun updateLocation(newLocation: LngLatAlt, heading: Float, speed: Float) {
@@ -29,5 +30,6 @@ class StaticLocationProvider(private var location: LngLatAlt) :
         passiveLocation.bearingAccuracyDegrees = 10.0F
         passiveLocation.speed = speed
         mutableLocationFlow.value = passiveLocation
+        mutableFilteredLocationFlow.value = passiveLocation
     }
 }

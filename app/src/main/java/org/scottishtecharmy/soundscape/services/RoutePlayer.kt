@@ -109,7 +109,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     fun startMonitoringLocation() {
         coroutineScope.launch {
             // Observe location updates from the service
-            service.locationProvider.locationFlow.collect { value ->
+            service.locationProvider.filteredLocationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
                         if(autoProgressRoute) {
@@ -155,7 +155,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             if (index < route.markers.size) {
                 val location = route.markers[index].getLngLatAlt()
 
-                val currentLocation = service.locationProvider.locationFlow.value
+                val currentLocation = service.locationProvider.filteredLocationFlow.value
                 if(currentLocation != null) {
                     val distance =
                         location.createCheapRuler().distance(

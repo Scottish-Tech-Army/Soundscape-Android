@@ -15,8 +15,11 @@ abstract class LocationProvider {
         return mutableLocationFlow.value != null
     }
 
-    // Flow to return Location objects
+    // Flow to return raw Location objects
     val mutableLocationFlow = MutableStateFlow<Location?>(null)
     var locationFlow: StateFlow<Location?> = mutableLocationFlow
+
+    val mutableFilteredLocationFlow = MutableStateFlow<Location?>(null)
+    var filteredLocationFlow: StateFlow<Location?> = mutableFilteredLocationFlow
 }
 

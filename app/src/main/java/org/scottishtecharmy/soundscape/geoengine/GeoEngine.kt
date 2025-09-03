@@ -221,7 +221,7 @@ class GeoEngine {
         headingMode: UserGeometry.HeadingMode
     ) : UserGeometry {
         return createUserGeometry(
-            location = locationProvider.locationFlow.value,
+            location = locationProvider.filteredLocationFlow.value,
             orientation = directionProvider.orientationFlow.value,
             headingMode = headingMode,
             mapMatchFilter = mapMatchFilter
@@ -374,7 +374,7 @@ class GeoEngine {
         Log.e(TAG, "startTileGridService")
         locationMonitoringJob?.cancel()
         locationMonitoringJob = coroutineScope.launch {
-            locationProvider.locationFlow.collect { newLocation ->
+            locationProvider.filteredLocationFlow.collect { newLocation ->
 
                 newLocation?.let { location ->
 
@@ -395,17 +395,20 @@ class GeoEngine {
 
                     runBlocking {
                         withContext(gridState.treeContext) {
-                            // Update the nearest road filter with our new location
-                            val mapMatchTime = measureTime {
-                                mapMatchFilter.filter(
-                                    LngLatAlt(location.longitude, location.latitude),
-                                    gridState,
-                                    FeatureCollection(),
-                                    false
-                                )
+                            // Update the nearest road filter with our new location. For the map
+                            // matching we use the unfiltered location
+                            locationProvider.locationFlow.value?.let() { unfilteredLocation ->
+                                val mapMatchTime = measureTime {
+                                    mapMatchFilter.filter(
+                                        LngLatAlt(unfilteredLocation.longitude, unfilteredLocation.latitude),
+                                        gridState,
+                                        FeatureCollection(),
+                                        false
+                                    )
+                                }
+                                val matchedWay = mapMatchFilter.matchedWay
+                                println("MapMatch: $mapMatchTime to get ${matchedWay?.getName()}")
                             }
-                            val matchedWay = mapMatchFilter.matchedWay
-                            println("MapMatch: $mapMatchTime to get ${matchedWay?.getName()}")
                         }
                     }
 
@@ -448,7 +451,7 @@ class GeoEngine {
                 val geometry = withTimeoutOrNull(100) {
                     combine(
                         directionProvider.orientationFlow,
-                        locationProvider.locationFlow,
+                        locationProvider.filteredLocationFlow,
 
                         ) { orientation: DeviceOrientation?, location: Location? ->
 
