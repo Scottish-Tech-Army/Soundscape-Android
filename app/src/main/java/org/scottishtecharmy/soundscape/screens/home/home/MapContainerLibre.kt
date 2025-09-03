@@ -131,6 +131,43 @@ fun PreviewFullScreenMapFab(){
     FullScreenMapFab(remember { mutableStateOf(false) })
 }
 
+fun updateRouteMarkers(
+    sm: SymbolManager,
+    annotationList: MutableList<Symbol>,
+    routeData: RouteWithMarkers?,
+    routeMarkers: MutableState<List<Symbol>?>
+) {
+    // Remove any previous markers
+    routeMarkers.value?.let { markers ->
+        for (marker in markers) {
+            sm.delete(marker)
+        }
+        routeMarkers.value = null
+    }
+
+    if (routeData != null) {
+        val markersList = emptyList<Symbol>().toMutableList()
+        for ((index, waypoint) in routeData.markers.withIndex()) {
+            val markerOptions = SymbolOptions()
+                .withLatLng(
+                    LatLng(
+                        waypoint.latitude,
+                        waypoint.longitude
+                    )
+                )
+                .withIconImage(LOCATION_MARKER_NAME.format(index))
+                .withIconAnchor("bottom")
+                .withIconSize(1.5f)
+            val marker = sm.create(markerOptions)
+            if (marker != null) {
+                annotationList.add(marker)
+                markersList.add(marker)
+            }
+        }
+        routeMarkers.value = markersList
+    }
+}
+
 /**
  * A map disable component that uses maplibre.
  *
@@ -193,6 +230,7 @@ fun MapContainerLibre(
                     .withIconSize(1.5f)
             }
 
+            val currentRouteData = remember { mutableStateOf<RouteWithMarkers?>(routeData) }
             val routeMarkers = remember { mutableStateOf<List<Symbol>?>(null) }
             val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
             val symbol = remember { mutableStateOf<Symbol?>(null) }
@@ -265,7 +303,7 @@ fun MapContainerLibre(
                         }
 
                         if (accessibleMapEnabled) {
-                            val lineToColorMap = mapOf<String, Int>(
+                            val lineToColorMap = mapOf(
                                 "aeroway_runway" to foregroundColor,
                                 "aeroway_taxiway" to foregroundColor,
                                 "tunnel_motorway_link_casing" to foregroundColor,
@@ -389,13 +427,28 @@ fun MapContainerLibre(
                         sm.iconAllowOverlap = true
                         sm.iconIgnorePlacement = true
 
+                        val annotationList = mutableListOf<Symbol>()
                         // update with a new symbol at specified lat/lng
                         val sym = sm.create(symbolOptions)
-                        sm.update(sym)
+                        symbol.value = sym
+                        annotationList.add(sym)
+
+                        if (beaconLocation != null) {
+                            val markerOptions = SymbolOptions()
+                                .withLatLng(beaconLocation.toLatLng())
+                                .withIconImage(LOCATION_MARKER_NAME.format(0))
+                                .withIconAnchor("bottom")
+                                .withIconSize(1.5f)
+                            val beacon = sm.create(markerOptions)
+                            beaconLocationMarker.value = beacon
+                            annotationList.add(beacon)
+                        }
+
+                        updateRouteMarkers(sm, annotationList, routeData, routeMarkers)
 
                         // Update our remembered state with the symbol manager and symbol
+                        sm.update(annotationList)
                         symbolManager.value = sm
-                        symbol.value = sym
 
                         mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
                         mapLibre.uiSettings.isZoomGesturesEnabled = true
@@ -440,30 +493,14 @@ fun MapContainerLibre(
                 }
             }
 
-            // We have to manually retrigger painting if we want to change the data displayed in our
-            // layer i.e. route and beacon markers.
-            val currentRouteData = remember { mutableStateOf<RouteWithMarkers?>(null) }
-            if ((routeData != currentRouteData.value) && (symbolManager.value != null)) {
-                currentRouteData.value = routeData
-                routeMarkers.value?.let { markers ->
-                    for (marker in markers) {
-                        symbolManager.value?.delete(marker)
-                    }
-                    routeMarkers.value = null
-                }
-                map.getMapAsync { mapLibre ->
-                    mapLibre.triggerRepaint()
-                }
-            }
-            val currentBeaconMarker = remember { mutableStateOf<LngLatAlt?>(null) }
-            if ((beaconLocation != currentBeaconMarker.value) && (symbolManager.value != null)) {
-                currentBeaconMarker.value = beaconLocation
-                beaconLocationMarker.value?.let { currentBeacon ->
-                    symbolManager.value?.delete(currentBeacon)
-                    beaconLocationMarker.value = null
-                }
-                map.getMapAsync { mapLibre ->
-                    mapLibre.triggerRepaint()
+            // Check if the route has been updated
+            if (routeData != currentRouteData.value) {
+                symbolManager.value?.let() { sm ->
+                    // And add new ones
+                    val annotationList = mutableListOf<Symbol>()
+                    updateRouteMarkers(sm, annotationList, routeData, routeMarkers)
+                    sm.update(annotationList)
+                    currentRouteData.value = routeData
                 }
             }
 
@@ -473,7 +510,6 @@ fun MapContainerLibre(
                 update = { mapView ->
                     coroutineScope.launch {
                         mapView.getMapAsync { mapLibre ->
-
                             mapLibre.cameraPosition = cameraPosition
                             symbol.value?.let { sym ->
                                 if (userLocation != null) {
@@ -481,48 +517,6 @@ fun MapContainerLibre(
                                     sym.latLng = userLocation.toLatLng()
                                     sym.iconRotate = userSymbolRotation
                                     symbolManager.value?.update(sym)
-                                }
-                            }
-
-                            if ((symbolManager.value != null) and
-                                (beaconLocation != null) and
-                                (beaconLocationMarker.value == null)
-                            ) {
-                                val markerOptions = SymbolOptions()
-                                    .withLatLng(beaconLocation!!.toLatLng())
-                                    .withIconImage(LOCATION_MARKER_NAME.format(0))
-                                    .withIconAnchor("bottom")
-                                    .withIconSize(1.5f)
-                                val sym = symbolManager.value?.create(markerOptions)
-                                symbolManager.value?.update(sym)
-                                beaconLocationMarker.value = sym
-                            }
-
-                            if ((symbolManager.value != null) and
-                                (routeData != null) and
-                                (routeMarkers.value == null)
-                            ) {
-
-                                if (routeData?.markers != null) {
-                                    val markersList = emptyList<Symbol>().toMutableList()
-                                    for ((index, waypoint) in routeData.markers.withIndex()) {
-                                        val markerOptions = SymbolOptions()
-                                            .withLatLng(
-                                                LatLng(
-                                                    waypoint.latitude,
-                                                    waypoint.longitude
-                                                )
-                                            )
-                                            .withIconImage(LOCATION_MARKER_NAME.format(index))
-                                            .withIconAnchor("bottom")
-                                            .withIconSize(1.5f)
-                                        val sym = symbolManager.value?.create(markerOptions)
-                                        if (sym != null) {
-                                            symbolManager.value?.update(sym)
-                                            markersList.add(sym)
-                                        }
-                                    }
-                                    routeMarkers.value = markersList
                                 }
                             }
                         }
