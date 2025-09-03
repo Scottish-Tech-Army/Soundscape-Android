@@ -253,7 +253,7 @@
     <!-- Notification orientation, ahead. Used as the direction name in sentences such as "<Pike Street>, <ahead>". -->
 <string name="directions_direction_ahead">مستقیم</string>
     <!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie" -->
-<string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">نزدیک %1$s و نزدیک به %2$s</string>
+<string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">نزدیک %1$s و در نزدیکی %2$s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
 <string name="directions_traveling_n">در حال حرکت در جهت شمال</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
@@ -303,21 +303,21 @@
     <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
 <string name="directions_heading_nw">به سمت شمال غربی</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_n">سفر به شمال در امتداد %s</string>
+<string name="directions_along_traveling_n">در حال حرکت در جهت شمال در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_ne">سفر به شمال شرقی در امتداد %s</string>
+<string name="directions_along_traveling_ne">در حال حرکت در جهت شمال شرقی در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_e">سفر به شرق در امتداد %s</string>
+<string name="directions_along_traveling_e">در حال حرکت در جهت شرق در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_se">سفر به جنوب شرقی در امتداد %s</string>
+<string name="directions_along_traveling_se">در حال حرکت در جهت جنوب شرقی در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_s">سفر به جنوب در امتداد %s</string>
+<string name="directions_along_traveling_s">در حال حرکت در جهت جنوب در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_sw">سفر به جنوب غربی در امتداد %s</string>
+<string name="directions_along_traveling_sw">در حال حرکت در جهت جنوب غربی در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_w">سفر به غرب در امتداد %s</string>
+<string name="directions_along_traveling_w">در حال حرکت در جهت غرب در امتداد %s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_nw">سفر به شمال غربی در امتداد %s</string>
+<string name="directions_along_traveling_nw">در حال حرکت در جهت شمال غربی در امتداد %s</string>
     <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
 <string name="directions_along_facing_n">رو به شمال در امتداد %s</string>
     <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
@@ -369,9 +369,9 @@
     <!-- Direction, Abbreviation for North -->
 <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">ش</string>
     <!-- Direction, Abbreviation for North East -->
-<string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">ش‌شرق</string>
+<string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">ش‌ش‌ق</string>
     <!-- Direction, Abbreviation for East -->
-<string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">شرق</string>
+<string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">ش‌ق</string>
     <!-- Direction, Abbreviation for South East -->
 <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">ج‌شرق</string>
     <!-- Direction, Abbreviation for South -->
@@ -379,9 +379,9 @@
     <!-- Direction, Abbreviation for South West -->
 <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">ج‌غرب</string>
     <!-- Direction, Abbreviation for West -->
-<string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">غرب</string>
+<string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">غ</string>
     <!-- Direction, Abbreviation for North West -->
-<string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">ش‌غرب</string>
+<string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">ش‌غ</string>
     <!-- Preserve meters unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 meters" -->
 <string name="distance_format_meters">%s متر</string>
     <!-- Preserve km unit - Do not convert but can translate abbreviation of kilometer. Distance string. %s is a number, "15 km" -->
