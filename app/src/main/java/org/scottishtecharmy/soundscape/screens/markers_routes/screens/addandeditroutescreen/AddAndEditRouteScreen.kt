@@ -128,7 +128,8 @@ fun AddAndEditRouteScreenVM(
     userLocation: LngLatAlt?,
     editRoute: Boolean,
     getCurrentLocationDescription: () -> LocationDescription,
-    viewModel: AddAndEditRouteViewModel = hiltViewModel()
+    viewModel: AddAndEditRouteViewModel = hiltViewModel(),
+    heading: Float
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val placesNearbyUiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
@@ -150,6 +151,7 @@ fun AddAndEditRouteScreenVM(
         },
         onClickBack = { viewModel.onClickBack() },
         userLocation = userLocation,
+        heading = heading,
         onSelectLocation = { location -> viewModel.onSelectLocation(location) },
         createAndAddMarker = { location, successMessage, failureMessage ->
             viewModel.createAndAddMarker(location, successMessage, failureMessage)
@@ -179,6 +181,7 @@ fun AddAndEditRouteScreen(
     onSelectLocation: (LocationDescription) -> Unit,
     createAndAddMarker: (LocationDescription, String, String) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription,
+    heading: Float,
 ) {
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
@@ -260,6 +263,7 @@ fun AddAndEditRouteScreen(
             createAndAddMarker = createAndAddMarker,
             modifier = modifier,
             userLocation = location,
+            heading = heading,
             getCurrentLocationDescription = getCurrentLocationDescription
         )
     }
@@ -449,6 +453,8 @@ fun NewRouteScreenPreview() {
         uiState = AddAndEditRouteUiState(),
         placesNearbyUiState = PlacesNearbyUiState(),
         editRoute = false,
+        userLocation = LngLatAlt(),
+        heading = 45.0F,
         onClearErrorMessage = {},
         onResetDoneAction = {},
         onNameChange = {},
@@ -459,8 +465,7 @@ fun NewRouteScreenPreview() {
         onClickBack = {},
         onSelectLocation = {_ ->},
         createAndAddMarker = {_,_,_ ->},
-        userLocation = LngLatAlt(),
-        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }
 
@@ -476,6 +481,8 @@ fun EditRouteScreenPreview() {
         ),
         placesNearbyUiState = PlacesNearbyUiState(),
         editRoute = true,
+        userLocation = LngLatAlt(),
+        heading = 45.0F,
         onClearErrorMessage = {},
         onResetDoneAction = {},
         onNameChange = {},
@@ -486,7 +493,6 @@ fun EditRouteScreenPreview() {
         onClickBack = {},
         onSelectLocation = {_ ->},
         createAndAddMarker = {_,_,_ ->},
-        userLocation = LngLatAlt(),
-        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }

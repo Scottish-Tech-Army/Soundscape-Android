@@ -338,7 +338,7 @@ fun RoutesDetailsPopulatedPreview() {
         shareRoute = {},
         clearErrorMessage = {},
         userLocation = null,
-        heading = 0.0F,
+        heading = 45.0F,
         routePlayerState = RoutePlayerState()
     )
 }
@@ -357,7 +357,7 @@ fun RoutesDetailsLoadingPreview() {
         shareRoute = {},
         clearErrorMessage = {},
         userLocation = null,
-        heading = 0.0F,
+        heading = 45.0F,
         routePlayerState = RoutePlayerState()
     )
 }
@@ -376,7 +376,7 @@ fun RoutesDetailsEmptyPreview() {
         shareRoute = {},
         clearErrorMessage = {},
         userLocation = null,
-        heading = 0.0F,
+        heading = 45.0F,
         routePlayerState = RoutePlayerState()
     )
 }

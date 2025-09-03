@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.navigation.NavController
@@ -254,10 +252,14 @@ class DocumentationScreens {
 
         runScreenTest("routeEdit") {
             AddAndEditRouteScreen(
+                routeObjectId = 1,
                 navController = NavController(targetContext),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 uiState = uiState,
+                placesNearbyUiState = PlacesNearbyUiState(),
+                editRoute = true,
                 userLocation = location,
+                heading = 45.0f,
                 onClearErrorMessage = { },
                 onResetDoneAction = { },
                 onNameChange = { },
@@ -268,9 +270,6 @@ class DocumentationScreens {
                 onClickBack = { },
                 onSelectLocation = { },
                 createAndAddMarker = { _, _, _ -> },
-                editRoute = true,
-                routeObjectId = 1,
-                placesNearbyUiState = PlacesNearbyUiState(),
                 getCurrentLocationDescription = { LocationDescription("Current Location", location) },
             )
         }

@@ -34,6 +34,7 @@ fun AddWaypointsDialog(
     createAndAddMarker: (LocationDescription, String, String) -> Unit,
     userLocation: LngLatAlt?,
     getCurrentLocationDescription: () -> LocationDescription,
+    heading: Float,
 ) {
     val saveMarkerDialog = remember { mutableStateOf(false) }
 
@@ -48,7 +49,7 @@ fun AddWaypointsDialog(
             SaveAndEditMarkerDialog(
                 locationDescription = placesNearbyUiState.markerDescription!!,
                 location = placesNearbyUiState.userLocation,
-                heading = 0.0F,
+                heading = heading,
                 saveMarker = { description, success, failure ->
                     createAndAddMarker(description, success, failure)
                 },
@@ -90,9 +91,6 @@ fun AddWaypointsDialog(
 @Composable
 fun AddWaypointsScreenPopulatedPreview() {
     AddWaypointsDialog(
-        modifier = Modifier,
-        onAddWaypointComplete = { },
-        userLocation = LngLatAlt(),
         uiState =
             AddAndEditRouteUiState(
                 routeMembers =
@@ -120,11 +118,15 @@ fun AddWaypointsScreenPopulatedPreview() {
             ),
         placesNearbyUiState = PlacesNearbyUiState(),
         routeList = emptyList<LocationDescription>().toMutableList(),
+        modifier = Modifier,
+        onAddWaypointComplete = { },
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
         createAndAddMarker = {_,_,_ -> },
-        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
+        userLocation = LngLatAlt(),
+        heading = 45.0F,
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }
 
@@ -132,16 +134,17 @@ fun AddWaypointsScreenPopulatedPreview() {
 @Composable
 fun AddWaypointsScreenPreview() {
     AddWaypointsDialog(
-        modifier = Modifier,
-        onAddWaypointComplete = {},
         uiState = AddAndEditRouteUiState(),
-        userLocation = null,
         placesNearbyUiState = PlacesNearbyUiState(),
         routeList = emptyList<LocationDescription>().toMutableList(),
+        modifier = Modifier,
+        onAddWaypointComplete = {},
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
         createAndAddMarker = {_,_,_ -> },
-        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) }
+        userLocation = null,
+        heading = 45.0F,
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }
