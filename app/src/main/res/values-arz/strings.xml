@@ -8,9 +8,9 @@
     <string name="settings_screen_title">إعدادات</string>
     <string name="settings_about_app">حول soundscape</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">وحدات القياس</string>
-    <string name="settings_units_imperial" tools:ignore="MissingTranslation">"نظام القياس البريطاني  بالقدم"</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">نظام القياس البريطاني بالقدم</string>
     <string name="settings_units_metric" tools:ignore="MissingTranslation">القياس بالمتر</string>
-    <string name="voice_engine" tools:ignore="MissingTranslation">محركات \n نص إلى كلام</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">محركات نص إلى كلام</string>
     <string name="voice_settings_speaking_rate">سرعه القراءه</string>
     <string name="voice_voices">أصوات</string>
     <string name="beacon_settings_style">أنماط الصوت</string>
@@ -35,12 +35,12 @@
     <string name="preview_title">وضع عرض الشارع Soundscape</string>
     <string name="preview_go_title">يذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
     <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
     <string name="location_detail_action_beacon">ابدا التوجيه بالاشاره الصوتيه</string>
     <string name="location_detail_action_beacon_hint">اضف الاشاره الصوتيه لهذا الموقع</string>
-    <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة\n\nاحفظ هذا الموقع كعلامة</string>
+    <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة</string>
     <string name="location_detail_action_edit_hint">تعديل النقاط المفضله</string>
     <string name="location_detail_action_share_hint">شارك هذا الموقع</string>
     <string name="location_detail_action_preview_hint">ابدا معاينه هذا الموقع</string>
@@ -52,13 +52,13 @@
     <string name="route_detail_action_stop_route">ايقاف الطريق</string>
     <string name="route_detail_action_edit">تحرير الطريق</string>
     <string name="route_detail_action_start_route_hint">ابدأ هذا الطريق</string>
-    <string name="route_detail_action_start_route_disabled_hint">"أضف نقاط  قبل بدء الطريق"</string>
+    <string name="route_detail_action_start_route_disabled_hint">أضف نقاط قبل بدء الطريق</string>
     <string name="route_detail_action_stop_route_hint">توقف عن هذا الطريق</string>
     <string name="route_detail_action_share_hint">شارك هذا الطريق</string>
     <string name="route_detail_action_edit_hint">تحرير هذا الطريق</string>
     <string name="route_detail_action_create">طريق جديد</string>
     <string name="route_detail_action_create_hint">إنشاء طريق جديد</string>
-    <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك</string>
+    <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك %s</string>
     <string name="route_detail_action_previous">نقطة الطريق السابقة</string>
     <string name="route_detail_action_previous_hint">اضغط مرتين لضبط الاشاره على النقطه السابقه</string>
     <string name="route_detail_action_next">نقطة الطريق التالية</string>
@@ -69,7 +69,7 @@
     <string name="route_update_success_title">تحديث كامل!</string>
     <string name="waypoint_title">نقطة الطريق</string>
     <string name="universal_links_alert_action_marker">‬حفظ كعلامة</string>
-    <string name="universal_links_marker_share_message">لقد شاركت معك علامة شريط الصوت معك! *\"</string>
+    <string name="universal_links_marker_share_message">لقد شاركت معك علامة شريط الصوت معك! *\"%s\"*</string>
     <string name="user_activity_save_marker_title">حفظ العلامة</string>
     <string name="routes_title">الطرق</string>
     <string name="routes_action_deleted">تم حذف الطريق</string>
@@ -89,7 +89,7 @@
     <string name="markers_no_markers_hint_2">حاول وضع علامة على منزلك ، أو مدخل عملك ، أو مكانك المفضل في الحديقة.</string>
     <string name="markers_edit_screen_title_edit">تحرير العلامات</string>
     <string name="markers_generic_name">علامة</string>
-    <string name="markers_marker_with_name">علامه</string>
+    <string name="markers_marker_with_name">علامه %s</string>
     <string name="markers_marker_created">تم إنشاء علامة</string>
     <string name="markers_annotation">التعليقات التوضيحية</string>
     <string name="search_choose_destination">اختر الوجهة</string>
@@ -118,12 +118,12 @@
     <string name="sleep_sleep_acc_hint">ضع soundscape للنوم</string>
     <string name="sleep_wake_up_now">استيقظ الآن</string>
     <string name="intersection_approaching_intersection">تقترب من التقاطع</string>
-    <string name="directions_at_poi">في</string>
+    <string name="directions_at_poi">في %s</string>
     <string name="directions_my_location">موقعي</string>
-    <string name="directions_near_name">قريب</string>
-    <string name="directions_name_goes_left">يتجه يسارا</string>
-    <string name="directions_name_goes_right">يتجه يمينا</string>
-    <string name="directions_name_continues_ahead">يستمر الى الامام</string>
+    <string name="directions_near_name">قريب %s</string>
+    <string name="directions_name_goes_left">%s, يتجه يسارا</string>
+    <string name="directions_name_goes_right">%s, يتجه يمينا</string>
+    <string name="directions_name_continues_ahead">%s, يستمر الى الامام</string>
     <string name="directions_direction_ahead">إلى الأمام</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من وبالقرب من</string>
     <string name="directions_traveling_n">السفر شمالا</string>
@@ -150,30 +150,30 @@
     <string name="directions_heading_sw">يتجه جنوب غرب</string>
     <string name="directions_heading_w">يتجه غربًا</string>
     <string name="directions_heading_nw">يتجه شمال غرب</string>
-    <string name="directions_along_traveling_n">السفر شمالا على طول</string>
-    <string name="directions_along_traveling_ne">السفر شمال شرق على طولالسفر شمال شرق على طول</string>
-    <string name="directions_along_traveling_e">السفر شرقا على طول</string>
-    <string name="directions_along_traveling_se">السفر جنوب شرق على طول</string>
-    <string name="directions_along_traveling_s">السفر جنوبا على طول</string>
-    <string name="directions_along_traveling_sw">السفر جنوب غرب على طول</string>
-    <string name="directions_along_traveling_w">السفر غربا على طول</string>
-    <string name="directions_along_traveling_nw">السفر شمال غرب على طول</string>
-    <string name="directions_along_facing_n">مواجهة الشمال على طول</string>
-    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي على طول</string>
-    <string name="directions_along_facing_e">مواجهة الشرق على طول</string>
-    <string name="directions_along_facing_se">في مواجهة الجنوب الشرقي على طول</string>
-    <string name="directions_along_facing_s">مواجهة الجنوب على طول</string>
-    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي على طول</string>
-    <string name="directions_along_facing_w">مواجهة الغرب على طول</string>
-    <string name="directions_along_facing_nw">مواجهة الشمال الغربي على طول</string>
-    <string name="directions_along_heading_n">يتجه شمالًا على طول</string>
-    <string name="directions_along_heading_ne">يتجه شمال شرق على طول</string>
-    <string name="directions_along_heading_e">التوجه شرقًا على طول</string>
-    <string name="directions_along_heading_se">يتجه جنوب شرق على طول</string>
-    <string name="directions_along_heading_s">يتجه جنوبًا على طول</string>
-    <string name="directions_along_heading_sw">يتجه جنوب غرب على طول</string>
-    <string name="directions_along_heading_w">يتجه غربًا على طول</string>
-    <string name="directions_along_heading_nw">يتجه شمال غرب على طول</string>
+    <string name="directions_along_traveling_n">السفر شمالا على طول %s</string>
+    <string name="directions_along_traveling_ne">السفر شمال شرق على طولالسفر شمال شرق على طول %s</string>
+    <string name="directions_along_traveling_e">السفر شرقا على طول %s</string>
+    <string name="directions_along_traveling_se">السفر جنوب شرق على طول %s</string>
+    <string name="directions_along_traveling_s">السفر جنوبا على طول %s</string>
+    <string name="directions_along_traveling_sw">السفر جنوب غرب على طول %s</string>
+    <string name="directions_along_traveling_w">السفر غربا على طول %s</string>
+    <string name="directions_along_traveling_nw">السفر شمال غرب على طول %s</string>
+    <string name="directions_along_facing_n">مواجهة الشمال على طول %s</string>
+    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي على طول %s</string>
+    <string name="directions_along_facing_e">مواجهة الشرق على طول %s</string>
+    <string name="directions_along_facing_se">في مواجهة الجنوب الشرقي على طول %s</string>
+    <string name="directions_along_facing_s">مواجهة الجنوب على طول %s</string>
+    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي على طول %s</string>
+    <string name="directions_along_facing_w">مواجهة الغرب على طول %s</string>
+    <string name="directions_along_facing_nw">مواجهة الشمال الغربي على طول %s</string>
+    <string name="directions_along_heading_n">يتجه شمالًا على طول %s</string>
+    <string name="directions_along_heading_ne">يتجه شمال شرق على طول %s</string>
+    <string name="directions_along_heading_e">التوجه شرقًا على طول %s</string>
+    <string name="directions_along_heading_se">يتجه جنوب شرق على طول %s</string>
+    <string name="directions_along_heading_s">يتجه جنوبًا على طول %s</string>
+    <string name="directions_along_heading_sw">يتجه جنوب غرب على طول %s</string>
+    <string name="directions_along_heading_w">يتجه غربًا على طول %s</string>
+    <string name="directions_along_heading_nw">يتجه شمال غرب على طول %s</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">شمال</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">الشمال الشرقي</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">شرق</string>
@@ -182,10 +182,10 @@
     <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">الجنوب الغربي</string>
     <string name="directions_cardinal_west" tools:ignore="MissingTranslation">الغرب</string>
     <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">الشمال الغربي</string>
-    <string name="distance_format_meters">امطار</string>
-    <string name="distance_format_km">كيلو متر</string>
-    <string name="distance_format_feet">قدم</string>
-    <string name="distance_format_miles">ميل</string>
+    <string name="distance_format_meters">%s امطار</string>
+    <string name="distance_format_km">%s كيلو متر</string>
+    <string name="distance_format_feet">%s قدم</string>
+    <string name="distance_format_miles">%s ميل</string>
     <string name="ui_action_button_my_location">موقع</string>
     <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
     <string name="ui_action_button_nearby_markers">علامات</string>
@@ -315,8 +315,8 @@
     <string name="osm_tag_service_road">طريق الخدمة</string>
     <string name="osm_tag_road">طريق</string>
     <string name="osm_tag_highway">الطريق السريع</string>
-    <string name="osm_tag_highway_named">الطريق السريع</string>
-    <string name="osm_tag_highway_refed">الطريق السريع</string>
+    <string name="osm_tag_highway_named">%s الطريق السريع</string>
+    <string name="osm_tag_highway_refed">الطريق السريع %s</string>
     <string name="osm_tag_intersection">التقاطع</string>
     <string name="osm_tag_roundabout">دوار</string>
     <string name="osm_tag_highway_ramp">الطريق السريع الطريق المنحدر</string>
@@ -347,7 +347,7 @@
     <string name="osm_tag_gas_station">محطة بنزين</string>
     <string name="osm_tag_bank">بنك</string>
     <string name="osm_tag_atm">أجهزة الصراف الآلي</string>
-    <string name="osm_tag_atm_named">أجهزة الصراف الآلي</string>
+    <string name="osm_tag_atm_named">%s أجهزة الصراف الآلي</string>
     <string name="osm_tag_atm_refed">أجهزة الصراف الآلي\n\n%s</string>
     <string name="osm_tag_bus_stop_named">محطة الحافلات\n\n%s</string>
     <string name="osm_tag_recycling_bin">سلة المهملات</string>
