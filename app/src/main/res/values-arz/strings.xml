@@ -11,7 +11,7 @@
     <string name="settings_units_imperial" tools:ignore="MissingTranslation">نظام القياس البريطاني بالقدم</string>
     <string name="settings_units_metric" tools:ignore="MissingTranslation">القياس بالمتر</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">محركات نص إلى كلام</string>
-    <string name="voice_settings_speaking_rate">سرعه القراءه</string>
+    <string name="voice_settings_speaking_rate">سرعة القراءه</string>
     <string name="voice_voices">أصوات</string>
     <string name="beacon_settings_style">أنماط الصوت</string>
     <string name="beacon_styles_current">الحالي</string>
@@ -27,18 +27,18 @@
     <string name="beacon_styles_mallet">مطرقة</string>
     <string name="beacon_styles_mallet_slow">مطرقة (بطيئة)</string>
     <string name="beacon_styles_mallet_very_slow">مطرقة (بطيئة جدا)</string>
-    <string name="beacon_audio_beacon">التوجيه بالاشارات الصوتيه</string>
-    <string name="beacon_action_mute_beacon">كتم الاشاره الصوتيه</string>
-    <string name="beacon_action_mute_beacon_acc_hint">كتم صوت الاشاره الصوتيه</string>
-    <string name="beacon_action_unmute_beacon">الغاء كتم الاشاره الصوتيه</string>
+    <string name="beacon_audio_beacon">منارة الصوت</string>
+    <string name="beacon_action_mute_beacon">كتم المناره</string>
+    <string name="beacon_action_mute_beacon_acc_hint">كتم صوت المناره الصوتيه</string>
+    <string name="beacon_action_unmute_beacon">الغاء كتم صوت المناره</string>
     <string name="beacon_action_unmute_beacon_acc_hint">الغاء كتم صوت الاشاره الصوتيه</string>
     <string name="preview_title">وضع عرض الشارع Soundscape</string>
-    <string name="preview_go_title">يذهب</string>
+    <string name="preview_go_title">اذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
     <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
-    <string name="location_detail_action_beacon">ابدا التوجيه بالاشاره الصوتيه</string>
+    <string name="location_detail_action_beacon">ابدأ منارة الصوت</string>
     <string name="location_detail_action_beacon_hint">اضف الاشاره الصوتيه لهذا الموقع</string>
     <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة</string>
     <string name="location_detail_action_edit_hint">تعديل النقاط المفضله</string>
@@ -125,7 +125,7 @@
     <string name="directions_name_goes_right">%s, يتجه يمينا</string>
     <string name="directions_name_continues_ahead">%s, يستمر الى الامام</string>
     <string name="directions_direction_ahead">إلى الأمام</string>
-    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من وبالقرب من</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من</string>
     <string name="directions_traveling_n">السفر شمالا</string>
     <string name="directions_traveling_ne">السفر شمال شرق</string>
     <string name="directions_traveling_e">السفر شرقا</string>
@@ -203,7 +203,7 @@
     <string name="menu_rate">قيم</string>
     <string name="ui_back_button_title">رجوع</string>
     <string name="behavior_experiences_route_nav_title">تفاصيل الطريق</string>
-    <string name="behavior_scavenger_hunt_callout_next_flag">اشاره وضعت على</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">%1$s\nو\n% 2$s\n%3$s\n%4$sاشاره وضعت على</string>
     <string name="help_configuration_section_title">تكوين Soundscape</string>
     <string name="settings_help_section_beacons_and_pois">اشارات</string>
     <string name="settings_help_section_home_screen_buttons">أزرار الشاشة الرئيسية</string>
@@ -379,4 +379,98 @@
     <string name="faq_why_does_beacon_disappear_question">لماذا تختفي منارة مسموعة في بعض الأحيان؟</string>
     <string name="faq_why_does_beacon_disappear_answer">يعد منارة Soundscape المسموعة في الأساس إشارة اتجاهية ، وتخبرك أين تكون وجهتك بالنسبة للاتجاه الذي تواجهه. عندما يكون Soundscape غير متأكد من الاتجاه الذي تواجهه ، فإنه يقلل من حجم المنارة. غالبًا ما يحدث هذا إذا كنت تمشي مع الهاتف المخزن في جيب أو حقيبة ، وتتوقف عن الحركة ، مثل عبور الشارع. سوف يزداد صوت المنارة بمجرد البدء في التحرك مرة أخرى ، أو إذا كنت تمسك بالهاتف مسطحًا وتوجهه في الاتجاه الذي تواجهه.</string>
     <string name="faq_beacon_on_address_question">هل يمكنني تعيين منارة على عنوان؟</string>
+    <string name="help_text_customizing_markers_content_2">من شاشة التحرير هذه ، يمكنك أيضًا حذف علامة إذا لم تعد بحاجة إليها.</string>
+    <string name="osm_tag_residential_street">الشارع السكني</string>
+    <string name="osm_tag_bus_stop">محطة الحافلات</string>
+    <string name="faq_tips_title">نصائح</string>
+    <string name="faq_beacon_on_address_answer">نعم يمكنك. لا يتم سرد العناوين افتراضيًا ولكن يمكن العثور عليها باستخدام حقل البحث. لحفظ هذا العنوان حتى لا تحتاج إلى البحث عنه مرة أخرى ، يمكنك إضافته كعلامة من الشاشة الرئيسية عن طريق تحديد زر * \"حفظ كعلامة\" *.</string>
+    <string name="faq_beacon_on_home_question">كيف يمكنني تعيين منارة على منزلي؟</string>
+    <string name="faq_beacon_on_home_answer">يدعم SoundScape إعداد منارات على العناوين. لتعيين منارة على منزلك ، أو أي عنوان آخر ، ابحث عن موقع من شاشة Soundscape الرئيسية. على شاشة * \"تفاصيل الموقع\" * ، انقر فوق الزر * \"ابدأ الصوت منارة\" *.</string>
+    <string name="faq_how_close_to_destination_question">عندما قمت بتعيين منارة على وجهة ، ما مدى قرب Soundscape إلى الوجهة؟</string>
+    <string name="faq_how_close_to_destination_answer">يمكن لـ SoundScape تحديد موقع وجهتك إلى عدة أمتار ، ولكن ليس أقل. عندما تحدد SoundScape أنك قريب من وجهتك ، ستسمع وسيلة شرح نهائية تفيد بأن وجهتك في مكان قريب ، وسيتم إيقاف المنارة.</string>
+    <string name="faq_turn_beacon_back_on_question">هل يمكنني إعادة منارة مرة أخرى عندما أكون على مقربة من وجهتي؟</string>
+    <string name="faq_turn_beacon_back_on_answer">نعم ، يمكنك تشغيل Beacon مرة أخرى بمجرد تشغيل Soundscape عن طريق تحديد \"Unmute Beacon Button\" *؛ ومع ذلك ، نظرًا لأن خدمات الموقع دقيقة فقط إلى حوالي 10 أمتار ، لا يمكننا ضمان سلوك المنارة عندما تكون على بعد بضعة أمتار من وجهتك.</string>
+    <string name="faq_road_names_question">لماذا ينادي Soundscape أسماء الطرق مرتين عندما أقترب من التقاطع؟</string>
+    <string name="faq_road_names_answer">لاستيعاب مجموعة متنوعة من تكوينات التقاطع ، تصف Soundscape التقاطعات بأنها شرائح من الطرق التي تغادر من نقطة مشتركة. يستخدم SoundScape الصوت المكاني للإشارة إلى اسم الطريق الذي يذهب إلى اليسار ، واسم الطريق الذي يستمر مباشرة للأمام ، واسم الطريق الذي يذهب إلى اليمين ، بهذا الترتيب. إذا بدأ وصف التقاطع بالطريق الذي تسير فيه بدلاً من واحد إلى اليسار ، فإن التقاطع هو مع الطريق الذي تستمر فيه إلى الأمام ويتقاطع طريق من اليمين. وبالمثل ، إذا كان الوصف يتضمن فقط طريقًا إلى اليسار وإلى اليمين ، فستعرف أن الطريق الذي تتواجد فيه على طرف فيك. تدعم طريقة وصف التقاطعات هذه الحالة عندما يغير الطريق اسمًا عند التقاطع.</string>
+    <string name="faq_why_not_every_business_question">لماذا لا تعلن Soundscape عن كل عمل أقوم بتمريره؟</string>
+    <string name="faq_why_not_every_business_answer">تم تصميم Soundscape لا ليكون شطيًا جدًا. بالإضافة إلى ذلك ، يستخدم خريطة الشارع المفتوحة كمصدر للبيانات الخلفية. Open Street Map (OSM ، https://www.openstreetmap.org/) هي خريطة ذات طابع مجتمعي ومُحرّر في العالم ، تعتمد على الأفراد ، لإدخال البيانات وترتيبها. إذا لم يتم الإعلان عن شركة أو نقطة اهتمام من قبل SoundScape ، فإن السبب الأكثر احتمالًا هو أنه لم تتم إضافة الأعمال ، أو في بعض الحالات ، من قبل أحد أعضاء مجتمع OSM حتى الآن.</string>
+    <string name="faq_callouts_stopping_in_vehicle_question">لماذا تتوقف بعض الشرح عندما أكون في سيارة؟</string>
+    <string name="faq_callouts_stopping_in_vehicle_answer">من أجل إيقاف عدد وسائل الشرح تصبح ساحقة ، لا يتم الإعلان عن بعض الفئات ، مثل التقاطعات ، تلقائيًا عند السفر في سيارة.</string>
+    <string name="faq_miss_a_callout_question">ماذا لو لم أفهم وسيلة شرح أو أفتقدها بسبب الضوضاء المحيطة؟</string>
+    <string name="faq_miss_a_callout_answer">يحتوي SoundScape على قائمة بالرسالة المساعدة الحديثة الخاصة بك بحيث يمكنك إعادة النظر في وسائل الشراعة التي قد تكون قد فاتتك. للعثور على هذا ، اضغط على شريط البحث على الشاشة الرئيسية لمكشكش. في الجزء السفلي من هذه الصفحة ، يوجد قسم لـ * \"وسيلة شرح حديثة\" * حيث سيتم سرد وسيلة الشرح التي فاتتك.</string>
+    <string name="faq_section_how_soundscape_works">كيف يعمل Soundscape؟</string>
+    <string name="faq_supported_phones_question">ما هو الهاتف الذي يعمل عليه Soundscape؟</string>
+    <string name="faq_supported_phones_answer">SoundScape لنظام Android متاح حاليًا لهواتف Android التي تعمل بنظام Android 11 أو لاحقًا.</string>
+    <string name="faq_supported_headsets_question">ما هي سماعات الرأس التي يجب أن أستخدمها مع Soundscape؟\n\nThanks</string>
+    <string name="faq_supported_headsets_answer">ما هي سماعات الرأس التي تستخدمها مع SoundScape هي مسألة تفضيل شخصي ، ويأتي كل خيار مع الفوائد والمقايضات. الشرط الوحيد المحدد هو استخدام زوج من سماعات الرأس الاستريو بحيث يمكنك الاستفادة من شرح الصوت المكاني ثلاثي الأبعاد من Soundscape.</string>
+    <string name="faq_battery_impact_question">كيف تؤثر Soundscape على بطارية هاتفي؟</string>
+    <string name="faq_battery_impact_answer">يختلف عمر البطارية بشكل كبير اعتمادًا على الهاتف الذي تملكه وكم هو عمره. أكبر استنزاف على بطاريتك هو وجود الشاشة ، لذا لزيادة عمر بطارية هاتفك إلى الحد الأقصى ، يجب أن تبقي الشاشة مغلقة كلما أمكن ذلك. للمساعدة في تقليل التأثير على بطاقة Soundsbate للبطارية ، أصبح الآن وضع نوم. لتقليل كمية البطارية التي تستخدمها ، عندما لا تستخدم Soundscape ، يجب أن تجبره على إغلاقه عبر محول تطبيقات الهواتف.</string>
+    <string name="faq_sleep_mode_battery_question">كيف يمكنني استخدام وضع السكون لتقليل تأثير Soundscape على بطارية هاتفي؟</string>
+    <string name="faq_sleep_mode_battery_answer">لوضع Soundscape في وضع السكون ، حدد زر * \"Sleep\" * في الزاوية العلوية اليمنى من الشاشة. عند تحديد هذا ، سيتوقف هذا الشريط Soundscape عن استخدام خدمات الموقع وبيانات الهاتف المحمول حتى تختار إيقاظه مرة أخرى.</string>
+    <string name="faq_snooze_mode_battery_question">كيف يمكنني استخدام وضع الغفوة لتقليل تأثير Soundscape على بطارية هاتفي؟</string>
+    <string name="faq_snooze_mode_battery_answer">لوضع Soundscape في وضع الغفوة ، حدد زر * \"Sleep\" * في الزاوية اليمنى العليا من الشاشة. بمجرد أن يكون SoundScape في وضع النوم ، حدد زر * \"استيقظ عندما أغادر\" * وسيذهب SoundScape إلى حالة طاقة منخفضة حتى تترك موقعك الحالي.</string>
+    <string name="faq_headset_battery_impact_question">كيف يؤثر اختياري لسماعات الرأس على عمر بطارية هاتفي؟</string>
+    <string name="faq_headset_battery_impact_answer">في اختباراتنا ، يكون استهلاك البطارية لسماعات الرأس Bluetooth قابلة للمقارنة مع سماعات الرأس السلكية ويجب ألا يكون عاملاً مهمًا في الاعتبار عند اختيار سماعات الرأس.</string>
+    <string name="faq_background_battery_impact_question">كيف يؤثر تشغيل Soundscape في الخلفية على عمر بطارية هاتفي؟</string>
+    <string name="faq_background_battery_impact_answer">3. في الطقس البارد ، حافظ على هاتفك دافئًا حيث تؤدي البطاريات أداءً أكثر سوءًا في درجات الحرارة الباردة.</string>
+    <string name="faq_mobile_data_use_question">ما مقدار بيانات الأجهزة المحمولة التي تستخدمها Soundscape؟</string>
+    <string name="faq_mobile_data_use_answer">تعتمد كمية بيانات الهاتف المحمول المستخدمة على كيفية استخدام SoundScape. لقد قمنا بتصميم Soundscape لاستخدام كمية صغيرة فقط من البيانات عندما تكون خارجًا ، ومن خلال القيام بأشياء مثل حفظ النقاط أثناء التجول حتى لا تحتاج إلى تنزيلها مرة أخرى في كل مرة تعود فيها إلى مكان ما كنت بالفعل. لتقليل كمية بيانات الهاتف المحمول التي تستخدمها ، تأكد من توصيل Wi-Fi كلما كان ذلك ممكنًا ، خاصة لتنزيل التطبيق. عندما لا تستخدم Soundscape ، يجب عليك استخدام زر * \"Sleep\" * لوضع Soundscape للنوم أو إغلاق التطبيق.</string>
+    <string name="faq_difference_from_map_apps_question">كيف يختلف SoundScape عن تطبيقات الخريطة الأخرى؟</string>
+    <string name="faq_difference_from_map_apps_answer">بدلاً من الدوران عن طريق الاتجاهات التي يتم توفيرها في كثير من الأحيان من قبل تطبيقات الخريطة الأخرى ، ستعمل Soundscape على منارة مسموعة في اتجاه وجهتك ، مما يمكّنك من شق طريقك إلى هناك بشروطك باستخدام وعيك المتزايد بمحيطك وموقع وجهتك. تم تصميم SoundScape لتشغيله في الخلفية ، مما يتيح لك استخدام تطبيق Turn by Turn Turnes ، كل ذلك مع الاستمرار في توفير الوعي البيئي وأنت تشق طريقك إلى وجهتك.</string>
+    <string name="faq_use_with_wayfinding_apps_question">كيف يمكنني استخدام Soundscape مع تطبيق لإنشاء الطريق؟</string>
+    <string name="faq_use_with_wayfinding_apps_answer">تم تصميم SoundScape كتطبيق توعية للمساعدة في ملء التفاصيل حول بيئتك التي قد لا تكون على دراية بها. على الرغم من أنه غير مصمم كتطبيق تنقل بدوره ، إلا أنه يمكن استخدامه جنبًا إلى جنب مع هذه التطبيقات لتوفير معلومات تكميلية. لاستخدام SoundScape مع هذه التطبيقات ، ابدأ تطبيق التنقل أولاً. بعد ذلك ، انتقل إلى Soundscape وقم بتعيين منارة على نفس الوجهة كما في تطبيق التنقل. في هذه المرحلة ، سيتم تشغيل كلا التطبيقات وستسمع اتجاهات المشي من تطبيق التنقل الخاص بك ، مع الحصول على تحديثات حول نقاط الاهتمام والتقاطعات ومسافة وجهتك من SoundScape.</string>
+    <string name="faq_controlling_what_you_hear_question">كيف أتحكم في ما أسمعه وعندما أسمعه في Soundscape؟</string>
+    <string name="faq_controlling_what_you_hear_answer">يوفر Soundscape عدة طرق للتحكم في ما تسمعه ومتى:\n1. أوقف على الفور كل الصوت: انقر فوق الشاشة المزدوجة مع إصبعين لإيقاف كل الصوت على الفور ، بما في ذلك أي وسيلة شرح يتم تشغيلها حاليًا والمنارة إذا كانت قيد التشغيل. ستستأنف الشرح تلقائيًا عند الاقتراب من التقاطع التالي أو نقطة الاهتمام ، لكن منارة مسموعة لن تفعل ذلك. حدد * \"Unmute Beacon Button\" * على الشاشة الرئيسية لاستئناف سماع المنارة.\n2. أوقف وسائل الشرح التلقائية: عندما لا تسافر أو تصل إلى وجهة ، فربما لن تحتاج إلى شريط صوتي لمواصلة إخطارك بالأشياء من حولك. بدلاً من الخروج من التطبيق ، يمكنك وضع Soundscape في وضع الغفوة وسيستيقظ مرة أخرى عند المغادرة ، أو يمكنك وضع Soundscape في وضع السكون وسيبقى بعيدًا حتى تختار تشغيله مرة أخرى. بدلاً من ذلك ، يمكنك تحديد * \"الإعدادات\" * من القائمة واختيار إيقاف تشغيل جميع الشرح في القسم * \"إدارة الشرح\" *.</string>
+    <string name="faq_holding_phone_flat_question">هل أحتاج إلى حمل الهاتف في يدي طوال الوقت؟</string>
+    <string name="faq_holding_phone_flat_answer">لا! أثناء المشي ، يمكنك وضع الهاتف بعيدًا في حقيبة أو جيب أو في أي مكان مناسب. ستستخدم SoundScape الاتجاه الذي تسير فيه لمعرفة أيسستس يجب أن تعلن على يسارك وإلى يمينك. عندما تتوقف عن الحركة ، لا يعرف Soundscape الاتجاه الذي تواجهه. إذا كانت المنارة المسموعة قيد التشغيل ، فستلاحظ أنها تهدأ حتى تبدأ في التحرك مرة أخرى. يمكنك سحب الهاتف للخارج للضغط على أزرار الموقع وأزرار الاستكشاف في أسفل الشاشة في أي وقت ولكن تأكد من حمل الهاتف مع الجزء العلوي من الهاتف يشير إلى الاتجاه الذي تواجهه مع الشاشة إلى السماء. في هذا الموضع * \"Flat\" * ، ستستخدم SoundScape بوصلة الهاتف لتحديد الطريقة التي تواجه بها وتوفر شرح مكاني دقيق. إذا كان المنارة قيد التشغيل ، ستلاحظ أيضًا أنه يعود إلى حجم كامل.</string>
+    <string name="faq_what_is_osm_question">ما هي خريطة الشارع المفتوحة ولماذا نستخدمها في Soundscape؟</string>
+    <string name="faq_what_is_osm_answer">يعتمد SoundScape على بيانات الخريطة الجغرافية لتوفير وسيلة شرح المعلومات في التطبيق. مصدر الخريطة الأساسي الذي نستخدمه هو Open Street Map (www.openstreetmap.org) وهو عبارة عن منصة رسم الخرائط التي تم إنشاؤها في المجتمع الغني ، والتي تمكن المؤسسات والأفراد من تحسين جودة المعلومات المقدمة والوصول إلى مساحاتها باستخدام أدوات تأليف خريطة خريطة الشارع المفتوحة.</string>
+    <string name="faq_tip_beacon_quiet">إذا وضعت هاتفك في جيبك وتوقفت عن التحرك ، فسيصبح صوت Beacon أكثر هدوءًا لأن Soundscape لا يمكن أن يحدد الطريقة التي تواجهها. حل هذا من خلال البدء في المشي مرة أخرى ، أو سحب هاتفك إلى الخارج وعقده مسطحًا.</string>
+    <string name="faq_tip_setting_beacon_on_address">يمكنك تعيين منارة على أي عنوان. من شاشة Soundscape الرئيسية ، ابحث عن العنوان. بعد تحديد العنوان في نتائج البحث ، سيتم عرض شاشة * \"تفاصيل الموقع\" * ولديها خيار ل * \"بدء صوتي منارة\" * على العنوان. وبهذه الطريقة ، يمكنك تعيين منارة على الشركات والأماكن ونقاط الاهتمام والمساكن التي لا تكون في خرائط الشوارع المفتوحة.</string>
+    <string name="faq_tip_finding_bus_stops">يمكنك العثور على محطات الحافلات القريبة عن طريق تحديد مرشح * \"النقل العام\" * في قائمة الأماكن القريبة.</string>
+    <string name="faq_tip_turning_beacon_off">يمكنك تشغيل وإيقاف الصوت الإيقاعي للمعارة باستخدام زر كتم الصوت على الشاشة الرئيسية. إذا كان منارة صامتة ، فستظل تحصل على تحديثات حول المسافة إلى وجهتك كل 50 مترًا أو نحو ذلك.</string>
+    <string name="faq_tip_turning_off_auto_callouts">إذا كنت لا تزال ترغب في التفاعل مع SoundScape ولكنك لا ترغب في سماع شرح تلقائي ، فيمكنك إيقاف تشغيل وسيلة شرح عن طريق الانتقال إلى * \"إدارة وسيلة الشرح\" * من صفحة \"إعدادات\" * \" * من القائمة. أو ، إذا لم تكن تستخدم SoundScape ، فيمكنك وضعه في وضع النوم أو الغفوة باستخدام زر * \"Sleep\" * على الشاشة الرئيسية.</string>
+    <string name="faq_tip_hold_phone_flat">يعمل SoundScape بشكل أفضل عندما تمسك الهاتف مسطحًا مع الشاشة التي تواجه السماء وأعلى الهاتف يشير بعيدًا عنك.</string>
+    <string name="faq_tip_create_marker_at_bus_stop">إذا كان هناك طريق للحافلة تأخذك بانتظام ، فقم بتعيين التوقف والخروج من العلامات. وبهذه الطريقة ، سيتم حفظها حتى تتمكن من العثور عليها مرة أخرى بسهولة ، فقط انتقل إلى * \"إدارة العلامات\" * من القائمة والعثور عليها في القائمة. يمكنك تعيين منارة عليها وستحصل على تحديثات دورية حول مدى قربك من توقفك. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات عن بعد على طول الطريق.</string>
+    <string name="no_language_selected">لم يتم اختيار لغة</string>
+    <string name="first_launch_permissions_notification">إشعارات</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">نحن ندير خدمة الموقع هذه في المقدمة</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">إلغاء البحث</string>
+    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">محطة القطار\n\n ،</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">محطة القطار</string>
+    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">توقف الترام</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">توقف الترام</string>
+    <string name="osm_tag_subway" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">العبارة</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">إدارة الصوت</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">إدارة إمكانية الوصول</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">موضوع خفيف أو مظلم</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">آلي</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">استخدم موضوع الضوء</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">ضوء</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">مظلم</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">التباين موضوع</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">عادي</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">متوسط</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">عالي</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">هو الاختيار\n\nخارج</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">يحفظ</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">يستخدم</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">انهاء معاينه الشارع</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">تمكين تسجيل السفر</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">تفعيل الخرائط القابله للوصول</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">عرض الخرائط على الشاشة</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">إعدادات التصحيح</string>
+    <string name="settings_search_results_language" tools:ignore="MissingTranslation">لغة البحث</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">مشاركة تسجيل السفر</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">ل\n\nعبر</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">إلى</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">هذا ينضم\n\nو</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">عبر</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">الرصيف بجانب الطريقه</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">الرصيف</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">طريق مسدود</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">يستكشف SoundScape استخدام التكنولوجيا المبتكرة القائمة على الصوت لتمكين الناس من بناء وعي أكثر ثراءً بمحيطهم ، وبالتالي يصبحون أكثر ثقة وتمكينًا للالتفاف.</string>
 </resources>
