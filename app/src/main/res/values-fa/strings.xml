@@ -373,11 +373,11 @@
     <!-- Direction, Abbreviation for East -->
 <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">ش‌ق</string>
     <!-- Direction, Abbreviation for South East -->
-<string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">ج‌شرق</string>
+<string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">ج‌ش‌ق</string>
     <!-- Direction, Abbreviation for South -->
 <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">ج</string>
     <!-- Direction, Abbreviation for South West -->
-<string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">ج‌غرب</string>
+<string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">ج‌غ</string>
     <!-- Direction, Abbreviation for West -->
 <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">غ</string>
     <!-- Direction, Abbreviation for North West -->
@@ -391,74 +391,74 @@
     <!-- Preserve miles unit - Do not convert but can translate. Distance string, plural.%s is a plural number, "15 miles" -->
 <string name="distance_format_miles">%s مایل</string>
     <!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
-<string name="ui_action_button_my_location">مکان\nمن</string>
+<string name="ui_action_button_my_location">موقعیت\nمن</string>
     <!-- Accessibility Notification, ...hear about your current location. -->
-<string name="ui_action_button_my_location_acc_hint">درباره موقعیت فعلی خود بشنوید</string>
+<string name="ui_action_button_my_location_acc_hint">از مشخصات موقعیت مکانی فعلی خود مطلع شوید</string>
     <!-- Similar to `callouts.nearby_markers`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
-<string name="ui_action_button_nearby_markers">نشانگرهای\nنزدیک</string>
+<string name="ui_action_button_nearby_markers">نشانههای\nنزدیک</string>
     <!-- Accessibility Notification, ...hear about nearby places that you have marked -->
-<string name="ui_action_button_nearby_markers_acc_hint">درباره مکان‌های نزدیکی که علامت‌گذاری کرده‌اید بشنوید</string>
+<string name="ui_action_button_nearby_markers_acc_hint">درباره‌ی مکان‌های نزدیکی که نشانه‌گذاری کرده‌اید بدانید</string>
     <!-- Similar to `help.orient.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_around_me">اطراف\nمن</string>
     <!-- Accessibility Notification, ...hear about places in the four quadrants around you -->
-<string name="ui_action_button_around_me_acc_hint">درباره مکان‌ها در چهار ربع اطراف خود بشنوید</string>
+<string name="ui_action_button_around_me_acc_hint">درباره‌ی مکان‌هایی که در چهار طرفتان قرار دارد بدانید</string>
     <!-- Similar to `help.explore.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
-<string name="ui_action_button_ahead_of_me">جلوی\nمن</string>
+<string name="ui_action_button_ahead_of_me">مقابل من</string>
     <!-- Accessibility Notification, ...hear about places in front of you -->
-<string name="ui_action_button_ahead_of_me_acc_hint">درباره مکان‌های جلوی خود بشنوید</string>
+<string name="ui_action_button_ahead_of_me_acc_hint">درباره‌ی مکان‌هایی که در مقابلتان قرار دارد بدانید</string>
     <!-- Title for menu -->
 <string name="ui_menu">منو</string>
     <!-- Talkback hint for the menu button -->
-<string name="ui_menu_hint">باز کردن منو</string>
+<string name="ui_menu_hint">منو باز شود</string>
     <!-- Button title when menu is open - close menu -->
 <string name="ui_menu_close">بستن منو</string>
     <!-- Button, Continue to progress to the next stage-->
 <string name="ui_continue">ادامه</string>
     <!-- Title in settings to Manage Callouts preferences-->
-<string name="menu_manage_callouts">مدیریت اعلامیه‌ها</string>
+<string name="menu_manage_callouts">مدیریت اعلان‌ها</string>
     <!-- Title for Help and Tutorials screen-->
-<string name="menu_help_and_tutorials">راهنما و آموزش‌ها</string>
+<string name="menu_help_and_tutorials">راهنما و نکات آموزشی</string>
     <!-- Title, Rate the app in App Store -->
-<string name="menu_rate">امتیاز دهید</string>
+<string name="menu_rate">امتیاز‌دهی</string>
     <!-- Screen Back button title -->
 <string name="ui_back_button_title">بازگشت</string>
     <!-- Title of the screen that lists all of the details for a route -->
 <string name="behavior_experiences_route_nav_title">جزئیات مسیر</string>
     <!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint, %3$s is the waypoint index, %4$s is the total number of waypoints.  "Beacon set on control 1. 450 feet away. 1 of 4." -->
-<string name="behavior_scavenger_hunt_callout_next_flag">نشانه ی صوتی روی %1$s، %2$s فاصله، %3$s از %4$s تنظیم شد</string>
+<string name="behavior_scavenger_hunt_callout_next_flag">جهت‌نمای صوتی روی %1$s تنظیم شد، %2$s فاصله، %3$s از %4$s</string>
     <!-- Help section title, Configuring Soundscape -->
-<string name="help_configuration_section_title">پیکربندی Soundscape</string>
+<string name="help_configuration_section_title">پیکربندی ساند‌اسکیپ</string>
     <!-- Help section title. This section contains help articles on the audio beacon and the automatic callout features. -->
-<string name="settings_help_section_beacons_and_pois">نشانه ی صوتی‌ها و POI‌ها</string>
+<string name="settings_help_section_beacons_and_pois">جهت‌نما‌ها و اعلان‌ها</string>
     <!-- Help section title -->
-<string name="settings_help_section_home_screen_buttons">دکمه‌های صفحه اصلی</string>
+<string name="settings_help_section_home_screen_buttons">دکمه‌های صفحه‌ی اصلی</string>
     <!-- Help content describing how user can choose a voice and download additional voices -->
-<string name="help_config_voices_content">Soundscape می‌تواند از هر یک از صداهایی که در تنظیمات خروجی تبدیل متن به گفتار در تلفن اندرویدی خود دانلود کرده‌اید استفاده کند. در برنامه Soundscape، می‌توانید با رفتن به تنظیمات از منوی اصلی و سپس انتخاب *\"صداها\"*، صدایی غیر از صدای پیش‌فرض اندروید را انتخاب کنید.</string>
+<string name="help_config_voices_content">ساند‌اسکیپ می‌تواند از هر صدایی که شما در قسمت تنظیمات خروجی موتور صوتی روی گوشی اندرویدی خود دانلود کرده‌اید استفاده کند. شما می‌توانید در اپلیکیشن ساند‌اسکیپ از صدایی غیر از صدای پیش‌فرض اندروید استفاده نمایید. برای این کار، از منوی اصلی گزینه‌ی تنظیمات و سپس *\"صدای موتور صوتی\"* را انتخاب کنید.</string>
     <!-- Help Page Title, Offline -->
-<string name="help_offline_page_title">چرا Soundscape آفلاین کار می‌کند؟</string>
+<string name="help_offline_page_title">چرا ساند‌اسکیپ آفلاین کار می‌کند؟</string>
     <!-- Help Description, Offline -->
-<string name="help_offline_description">هنگامی که اتصال اینترنت وجود ندارد یا اختلالی در خدمات Soundscape وجود دارد، Soundscape به حالت آفلاین منتقل می‌شود. با این حال، Soundscape به کار خود ادامه خواهد داد، اما برخی از عملکردها ممکن است محدود شوند.</string>
+<string name="help_offline_description">هنگام قطعی اینترنت یا بروز اختلال در خدمات ساند‌اسکیپ، اپلیکیشن وارد حالت آفلاین می‌شود. با این حال، ساند‌اسکیپ به کار خود ادامه خواهد داد اما ممکن است در استفاده از برخی امکانات اپلیکیشن محدودیت‌هایی به‌وجود آید.</string>
     <!-- Help Limitations Title, Offline -->
 <string name="help_offline_limitations_heading">محدودیت‌ها</string>
     <!-- Help Limitations Description, Offline -->
-<string name="help_offline_limitations_description">اعلامیه‌ها اگر در منطقه‌ای باشید که قبلاً از آنجا عبور کرده‌اید و در تاریخچه اعلامیه‌های شما ذخیره شده است، همچنان کار خواهند کرد. به همین ترتیب، می‌توانید یک نشانه ی صوتی قرار دهید یا نشانگری روی مکان‌هایی که در تاریخچه اعلامیه‌های شما ذخیره شده‌اند، ایجاد کنید.</string>
+<string name="help_offline_limitations_description">اعلان‌ها در صورتی که در محدوده‌ای حضور داشته باشید که قبلاً از آنجا عبور کرده‌اید و در فهرست اعلان‌های گذشته‌ی شما ذخیره شده است، همچنان کار خواهند کرد. به‌همین ترتیب، شما می‌توانید برای مکان‌هایی که در فهرست اعلان‌های گذشته‌ی شما ذخیره شده‌اند، جهت‌نمای صوتی یا نشانه ایجاد نمایید.</string>
     <!-- Help Troubleshooting Title, Offline -->
 <string name="help_offline_troubleshooting_heading">چه کاری می‌توانید انجام دهید؟</string>
     <!-- Help Troubleshooting Description, Offline -->
-<string name="help_offline_troubleshooting_description">Soundscape تلاش خواهد کرد تا زمانی که تلفن شما به Wi-Fi متصل است یا داده تلفن همراه فعال است و در منطقه‌ای با سیگنال خوب هستید، به عملکرد عادی خود بازگردد. اگر تلفن شما اتصال اینترنت خوبی دارد، اما Soundscape به عملکرد عادی خود بازنمی‌گردد، ممکن است اختلالی در خدمات Soundscape وجود داشته باشد.</string>
+<string name="help_offline_troubleshooting_description">تا زمانی که گوشی شما به وایفای متصل باشد یا اینکه شما در منطقه‌ای با آنتن‌دهی خوب حضور داشته باشید و نِت گوشیتان نیز فعال باشد، ساند‌اسکیپ تلاش خواهد کرد به عمل‌کرد عادی خود باز گردد. اگر اتصال شما به اینترنت پایدار است اما ساند‌اسکیپ به عمل‌کرد عادی خود باز نمی‌گردد، در این صورت ممکن است در خدمات ساند‌اسکیپ مشکلی بروز کرده باشد.</string>
     <!-- Help Title, Around Me -->
 <string name="help_orient_page_title">اطراف من</string>
     <!-- Help Title, Ahead of Me -->
-<string name="help_explore_page_title">جلوی من</string>
+<string name="help_explore_page_title">مقابل من</string>
     <!-- Help Title, Creating Markers -->
-<string name="help_creating_markers_page_title">ایجاد نشانگرها</string>
+<string name="help_creating_markers_page_title">ایجاد نشانه</string>
     <!-- Help Title, Customizing Markers -->
-<string name="help_edit_markers_page_title">شخصی‌سازی نشانگرها</string>
+<string name="help_edit_markers_page_title">شخصی‌سازی نشانه‌ها</string>
     <!-- Help Title, This is a help topic related to using the media control buttons on headphones -->
-<string name="help_remote_page_title">استفاده از کنترل‌های رسانه</string>
+<string name="help_remote_page_title">استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری</string>
     <!-- Help Tutorial, Hint when disabled while route guidance is active -->
 <!-- Help Tutorial, "What is it?" section title -->
-<string name="help_text_section_title_what">چیست؟</string>
+<string name="help_text_section_title_what">این چیست؟</string>
     <!-- Help Tutorial, "When would I use it?" section title -->
 <string name="help_text_section_title_when">چه زمانی از آن استفاده کنم؟</string>
     <!-- Help Tutorial, "How does it work?" section title -->
@@ -466,33 +466,33 @@
     <!-- Title Terms of Use -->
 <string name="terms_of_use_title">شرایط استفاده</string>
     <!-- Notification message to accept or decline the terms in the Company Service Agreement, Quotes written as \" -->
-<string name="terms_of_use_message">استفاده شما از Soundscape تابع شرایط %s و شرایط زیر است (که در مجموع *\"شرایط استفاده\"* نامیده می‌شوند).</string>
+<string name="terms_of_use_message">استفاده‌ی شما از ساند‌اسکیپ تابع شرایط %s و شرایط مصرح در زیر می‌باشد (که در مجموع *\"شرایط استفاده\"* نامیده می‌شود).</string>
     <!-- Title of the link to the Company Services Agreement. This value will be used in the placeholder %s that appears in the terms_of_use.message string -->
-<string name="terms_of_use_service_agreement">توافقنامه خدمات ارتش فناوری اسکاتلند</string>
+<string name="terms_of_use_service_agreement">Scottish Tech Army Services Agreement</string>
     <!-- Terms of use checkbox accessibility label -->
 <string name="terms_of_use_accept_checkbox_acc_label">پذیرش شرایط استفاده</string>
     <!-- App's medical device and safety disclaimer, "(1)" and (2)" are used for an inline, numbered list -->
-<string name="terms_of_use_medical_safety_disclaimer">شما تایید می‌کنید که Soundscape (1) به عنوان یک دستگاه پزشکی طراحی، در نظر گرفته یا ارائه نشده است و (2) برای جایگزینی یا به عنوان جایگزینی برای مشاوره پزشکی حرفه‌ای، تشخیص، درمان یا قضاوت طراحی یا در نظر گرفته نشده است و نباید برای جایگزینی یا به عنوان جایگزینی برای مشاوره پزشکی حرفه‌ای، تشخیص، درمان یا قضاوت استفاده شود.\n\nاعلامیه ایمنی\n\nSoundscape یک کمک ناوبری است و نباید به جای مهارت‌های حرکتی، آگاهی از محیط اطراف و قضاوت خوب استفاده شود. هنگام حرکت در محیط خود احتیاط کنید زیرا داده‌های نقشه‌برداری گنجانده شده در برنامه Soundscape از یک برنامه شخص ثالث جمع‌آوری شده‌اند و بنابراین، ممکن است محدودیت‌هایی در دقت اطلاعات ارائه شده وجود داشته باشد.</string>
+<string name="terms_of_use_medical_safety_disclaimer">شما تأیید می‌نمایید که ساند‌اسکیپ (۱( با هدف استفاده به‌عنوان یک وسیله‌ی پزشکی تولید و ارائه نگردیده است و (۲) نباید به‌عنوان یک ابزار جایگزین برای توصیه‌های حرفه‌ای پزشکی یا اقدامات تشخیصی و درمانی مورد استفاده قرار گیرد.\n\nهشدار ایمنی\n\nساند‌اسکیپ یک ابزار مسیریابی کمکی می‌باشد و نباید جای مهارت‌های جهت‌یابی، آگاهی محیطی و رجوع به عقل سلیم را بگیرد. هنگام تردد در محیط پیرامونتان، همواره جانب احتیاط را رعایت نمایید چرا که داده‌های نقشه‌برداری که در ساند‌اسکیپ مورد استفاده قرار می‌گیرد، از یک برنامه‌ی ثالث دریافت می‌شود و بنابراین، ممکن است که در میزان دقت اطلاعاتی که به شما ارائه می‌گردد محدودیت‌هایی وجود داشته باشد.</string>
     <!-- Notification, Soundscape Language -->
-<string name="first_launch_soundscape_language">زبان Soundscape</string>
+<string name="first_launch_soundscape_language">زبان ساند‌اسکیپ</string>
     <!-- Notification, introduction to Soundscape Language -->
-<string name="first_launch_soundscape_language_text">زبانی را که می‌خواهید Soundscape از آن استفاده کند، انتخاب کنید. همیشه می‌توانید انتخاب خود را در تنظیمات برنامه تغییر دهید.</string>
+<string name="first_launch_soundscape_language_text">زبانی را که می‌خواهید ساند‌اسکیپ از آن استفاده کند انتخاب نمایید. شما همیشه می‌توانید انتخاب خود را در قسمت تنظیمات اپلیکیشن تغییر دهید.</string>
     <!-- Title text for the welcome screen in the first launch experience -->
 <string name="first_launch_welcome_title">خوش آمدید!</string>
     <!-- Short description included in the welcome screen in the first launch experience -->
-<string name="first_launch_welcome_description">با اطمینان با صدای فضایی Soundscape حرکت کنید</string>
+<string name="first_launch_welcome_description">با بهره‌گیری از فن‌آوری صوتی سه‌بعدی در ساند‌اسکیپ، استوار گام بردارید</string>
     <!-- Button text to get started with app setup -->
-<string name="first_launch_welcome_button">شروع کنید</string>
+<string name="first_launch_welcome_button">شروع</string>
     <!-- Title text for the screen that tells users how they can listen to Soundscape audio -->
-<string name="first_launch_headphones_title">گوش دادن به Soundscape</string>
+<string name="first_launch_headphones_title">گوش دادن به ساند‌اسکیپ</string>
     <!-- Message text for the screen that tells users how they can listen to Soundscape audio -->
 <string name="first_launch_headphones_message_1">Soundscape با هر جفت هدفونی عالی کار می‌کند. اگر می‌خواهید از هدفون استفاده کنید، اکنون آنها را بردارید.</string>
     <!-- Message text for the screen that tells users how they can listen to Soundscape audio -->
-<string name="first_launch_headphones_message_2">اگر هدفون ندارید یا ترجیح می‌دهید از آن استفاده نکنید، اشکالی ندارد! Soundscape با بلندگوهای گوشی شما کار خواهد کرد.</string>
+<string name="first_launch_headphones_message_2">اگر هندزفری ندارید یا ترجیح می‌دهید از آن استفاده نکنید، اشکالی ندارد! ساند‌اسکیپ با بلندگو‌های گوشی شما کار خواهد کرد.</string>
     <!-- Title text for the screen that introduces Soundscape callouts -->
-<string name="first_launch_callouts_title">اطراف خود را بشنوید</string>
+<string name="first_launch_callouts_title">درباره‌ی محیط پیرامون خود بدانید</string>
     <!-- Message text for the screen that introduces Soundscape callouts -->
-<string name="first_launch_callouts_message">Soundscape به شما کمک می‌کند تا با اعلام جاده‌ها، تقاطع‌ها و نقاط مورد علاقه هنگام نزدیک شدن به آنها، از موقعیت خود و مسیری که می‌روید آگاه باشید.</string>
+<string name="first_launch_callouts_message">ساند‌اسکیپ با اعلام مکان‌های مختلف به شما در طول راه - همچون خیابان‌ها، تقاطع‌ها و نقاط دل‌خواه - شما را یاری می‌کند تا نسبت به موقعیت فعلی و مسیر حرکتتان به‌سمت مقصد آگاه شوید.</string>
     <!-- Text for button that plays example callouts -->
 <string name="first_launch_callouts_listen">به مثالی از آنچه Soundscape ممکن است در پیاده‌روی بعدی شما اعلام کند، گوش دهید</string>
     <!-- Accessibility text for button that plays example callouts -->
