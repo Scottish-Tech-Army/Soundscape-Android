@@ -125,7 +125,7 @@
     <string name="directions_name_goes_right">%s, يتجه يمينا</string>
     <string name="directions_name_continues_ahead">%s, يستمر الى الامام</string>
     <string name="directions_direction_ahead">إلى الأمام</string>
-    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من % 1$s و % 2$s</string>
     <string name="directions_traveling_n">السفر شمالا</string>
     <string name="directions_traveling_ne">السفر شمال شرق</string>
     <string name="directions_traveling_e">السفر شرقا</string>
@@ -223,7 +223,7 @@
     <string name="help_text_section_title_when">متى يمكنني استخدامه؟</string>
     <string name="help_text_section_title_how">كيف تعمل؟</string>
     <string name="terms_of_use_title">شروط الاستخدام</string>
-    <string name="terms_of_use_message">والمصطلحات المنصوص عليها أدناه (معًا ، *\"شروط الاستخدام\" *).</string>
+    <string name="terms_of_use_message">يخضع استخدامك لـ Soundscape لشروط %s والشروط التالية (يشار إليها مجتمعة باسم * \"شروط الاستخدام\").والمصطلحات المنصوص عليها أدناه (معًا ، *\"شروط الاستخدام\" *).</string>
     <string name="terms_of_use_service_agreement">اتفاقية خدمات جيش التكنولوجيا الاسكتلندية</string>
     <string name="terms_of_use_accept_checkbox_acc_label">قبول شروط الاستخدام</string>
     <string name="terms_of_use_medical_safety_disclaimer">Soundscape هي مساعدة في التنقل ويجب عدم استخدامها بدلاً من مهارات التنقل ، والدروع في محيطك ، والحكم الجيد. توخي الحذر عند التنقل في بيئتك حيث يتم التقاط بيانات التعيين المدمجة في برنامج Soundscape من برنامج طرف ثالث ، وبالتالي ، قد تكون هناك قيود على دقة المعلومات المقدمة.</string>
@@ -437,13 +437,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">نحن ندير خدمة الموقع هذه في المقدمة</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">إلغاء البحث</string>
     <string name="osm_tag_train_station" tools:ignore="MissingTranslation">محطة القطار\n\n ،</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">محطة القطار</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s\nمحطة قطار</string>
     <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">توقف الترام</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">توقف الترام</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s\nمحطة الترام</string>
     <string name="osm_tag_subway" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
     <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">العبارة</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s\nالعبارة</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">إدارة الصوت</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">إدارة إمكانية الوصول</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">موضوع خفيف أو مظلم</string>
@@ -455,7 +455,7 @@
     <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">عادي</string>
     <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">متوسط</string>
     <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">عالي</string>
-    <string name="settings_list_item_description" tools:ignore="MissingTranslation">هو الاختيار\n\nخارج</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">% 1$s \nهو \n% 2$s \nالمحدد من \n% 3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">يحفظ</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">يستخدم</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">انهاء معاينه الشارع</string>
