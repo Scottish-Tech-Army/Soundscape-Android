@@ -26,6 +26,8 @@ import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.analytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.crashlytics.crashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -142,7 +144,8 @@ class SoundscapeService : MediaSessionService() {
     private var mediaSession: MediaSession? = null
     private val mediaPlayer = SoundscapeDummyMediaPlayer()
 
-    private var running: Boolean = false
+    var running: Boolean = false
+    var started: Boolean = false
 
     private var binder: SoundscapeBinder? = null
 
@@ -196,14 +199,18 @@ class SoundscapeService : MediaSessionService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (!running) {
             if(startAsForegroundService()) {
+                // Reminds the user every hour that the Soundscape service is still running in the background
+                startServiceStillRunningTicker()
                 running = true
+            }
 
+            if(!started) {
+                Firebase.crashlytics.log("Start geo-engine")
                 locationProvider.start(this)
                 directionProvider.start(audioEngine, locationProvider)
 
-                // Reminds the user every hour that the Soundscape service is still running in the background
-                startServiceStillRunningTicker()
                 geoEngine.start(application, locationProvider, directionProvider, this)
+                started = true
             }
         }
 
@@ -213,7 +220,7 @@ class SoundscapeService : MediaSessionService() {
     @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
-        Log.d(TAG, "onCreate")
+        Log.d(TAG, "onCreate $running")
 
         if (!running) {
 
@@ -258,6 +265,7 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.destroy()
         directionProvider.destroy()
+        started = false
 
         abandonAudioFocus()
 
@@ -278,6 +286,14 @@ class SoundscapeService : MediaSessionService() {
     private fun startAsForegroundService() : Boolean {
 
         try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                // Code to simulate startForeground failing
+                if(startForegroundShouldFail) {
+                    startForegroundShouldFail = false
+                    throw ForegroundServiceStartNotAllowedException("Simulated startForeground failure")
+                }
+            }
+
             ServiceCompat.startForeground(
                 this,
                 NOTIFICATION_ID,
@@ -288,11 +304,13 @@ class SoundscapeService : MediaSessionService() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
                 && e is ForegroundServiceStartNotAllowedException
             ) {
+                Firebase.crashlytics.log("ForegroundServiceStartNotAllowedException caught")
                 Firebase.analytics.logEvent("startAsForegroundServiceError", null)
-                Log.e(TAG, "**** startAsForegroundService failed *********: $e")
+                FirebaseCrashlytics.getInstance().setCustomKey("Service start success", "false")
                 return false
             }
         }
+        FirebaseCrashlytics.getInstance().setCustomKey("Service start success", "true")
         return true
     }
 
@@ -624,6 +642,9 @@ class SoundscapeService : MediaSessionService() {
         private const val CHANNEL_ID = "SoundscapeService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"
         private const val NOTIFICATION_ID = 100000
+
+//      Variable used when simulating startForeground failure - only for debug usage
+        private var startForegroundShouldFail = false
     }
 }
 
