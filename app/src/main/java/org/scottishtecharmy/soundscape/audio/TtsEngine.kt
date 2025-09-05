@@ -14,6 +14,7 @@ import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.analytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Collections
@@ -86,7 +87,10 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
                 putString("engine", engineLabelAndName)
                 putString("voice", textToSpeechVoiceType)
             }
+            // Log an event so that we can get statistics
             Firebase.analytics.logEvent("TTSEngine", bundle)
+            // And set a custom key so that any crashes we get we know which TTS engine is in use
+            FirebaseCrashlytics.getInstance().setCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
         }
     }

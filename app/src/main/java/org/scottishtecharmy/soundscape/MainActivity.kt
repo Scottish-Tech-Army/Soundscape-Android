@@ -28,6 +28,8 @@ import androidx.preference.PreferenceManager
 import com.google.android.play.core.review.ReviewException
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.model.ReviewErrorCode
+import com.google.firebase.Firebase
+import com.google.firebase.crashlytics.crashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -181,6 +183,13 @@ class MainActivity : AppCompatActivity() {
             when(locationPermissionGranted) {
                 0 -> setServiceState(false)
                 1 -> setServiceState(true)
+            }
+        } else {
+            if(soundscapeServiceConnection.soundscapeService?.running == false) {
+                // This can happen if the service failed to move to the foreground.
+                // Simply start the service now
+                Firebase.crashlytics.log("Attempt to start non-running service from onResume")
+                setServiceState(true)
             }
         }
     }
