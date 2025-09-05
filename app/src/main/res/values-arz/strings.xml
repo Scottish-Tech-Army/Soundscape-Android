@@ -29,9 +29,9 @@
     <string name="beacon_styles_mallet_very_slow">مطرقة (بطيئة جدا)</string>
     <string name="beacon_audio_beacon">منارة الصوت</string>
     <string name="beacon_action_mute_beacon">كتم المناره</string>
-    <string name="beacon_action_mute_beacon_acc_hint">كتم صوت المناره الصوتيه</string>
+    <string name="beacon_action_mute_beacon_acc_hint">كتم منارة الصوت.</string>
     <string name="beacon_action_unmute_beacon">الغاء كتم صوت المناره</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">الغاء كتم صوت الاشاره الصوتيه</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">إلغاء كتم منارة الصوت.</string>
     <string name="preview_title">وضع عرض الشارع Soundscape</string>
     <string name="preview_go_title">اذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
@@ -75,7 +75,7 @@
     <string name="routes_action_deleted">تم حذف الطريق</string>
     <string name="routes_no_routes_title">البدء مع نقاط الطريقه</string>
     <string name="routes_no_routes_hint_1">قم بإنشاء طريق لنفسك أو لشخص آخر من خلال تنظيم مجموعة من العلامات كنقاط طريق على الطريق.</string>
-    <string name="routes_no_routes_hint_2">أثناء الخروج من طريقك باستخدام SoundScape ، سيتم إبلاغك عند الوصول إلى كل نقطة الطريق ، وسيتقدم منارة الصوت تلقائيًا إلى نقطة الطريق التالية</string>
+    <string name="routes_no_routes_hint_2">أثناء الخروج من طريقك باستخدام SoundScape ، سيتم إبلاغك عند الوصول إلى كل نقطة الطريق ، وسيتقدم منارة الصوت تلقائيًا إلى نقطة الطريق التالية.</string>
     <string name="routes_sort_by_name">فرز بالاسم</string>
     <string name="routes_sort_by_distance">فرز عن طريق المسافة</string>
     <string name="markers_title">علامات</string>
@@ -226,7 +226,7 @@
     <string name="terms_of_use_message">يخضع استخدامك لـ Soundscape لشروط %s والشروط التالية (يشار إليها مجتمعة باسم * \"شروط الاستخدام\").والمصطلحات المنصوص عليها أدناه (معًا ، *\"شروط الاستخدام\" *).</string>
     <string name="terms_of_use_service_agreement">اتفاقية خدمات جيش التكنولوجيا الاسكتلندية</string>
     <string name="terms_of_use_accept_checkbox_acc_label">قبول شروط الاستخدام</string>
-    <string name="terms_of_use_medical_safety_disclaimer">Soundscape هي مساعدة في التنقل ويجب عدم استخدامها بدلاً من مهارات التنقل ، والدروع في محيطك ، والحكم الجيد. توخي الحذر عند التنقل في بيئتك حيث يتم التقاط بيانات التعيين المدمجة في برنامج Soundscape من برنامج طرف ثالث ، وبالتالي ، قد تكون هناك قيود على دقة المعلومات المقدمة.</string>
+    <string name="terms_of_use_medical_safety_disclaimer">أنت تقر بأن Soundscape (1) غير مصمم أو مقصود أو إتاحته كجهاز طبي ، و (2) غير مصمم أو المقصود منه أن يكون بديلاً عن المشورة الطبية المهنية أو التشخيص أو العلاج أو الحكم ولا ينبغي استخدامه لاستبدال أو كبديل للمشورة الطبية المهنية أو التشخيص أو العلاج أو الحكم.\n↵\nإشعار السلامة\n↵\nSoundscape هي مساعدة في التنقل ويجب عدم استخدامها بدلاً من مهارات التنقل ، والدروع في محيطك ، والحكم الجيد. توخي الحذر عند التنقل في بيئتك حيث يتم التقاط بيانات التعيين المدمجة في برنامج Soundscape من برنامج طرف ثالث ، وبالتالي ، قد تكون هناك قيود على دقة المعلومات المقدمة.</string>
     <string name="first_launch_soundscape_language">لغة soundscape</string>
     <string name="first_launch_soundscape_language_text">حدد اللغة التي ترغب في استخدام SoundScape. يمكنك دائمًا تغيير اختيارك في إعدادات التطبيق.</string>
     <string name="first_launch_welcome_title">مرحباً!</string>
