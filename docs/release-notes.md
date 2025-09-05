@@ -7,11 +7,23 @@ has_toc: false
 
 # Release notes
 
-# 0.0.110
+# 0.0.114
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
-Issues tagged _user-facing_ are those which describe issues from a user perspective. 
 
-## New since 0.0.96
+## New changes since 0.0.110
+* *Current Location* now appears as an option in the *Add Waypoint* screen
+* Improvements have been made to deal with cases where permissions (location and notifications) have been revoked.
+* Initial Persian language support has been added and various additions to other languages.
+* The *Search* feature was broken for many languages, it is now fixed. There's also a new *Settings* option to force *Search* results to use English. A use case for this would be a Spanish speaker travelling in Japan. Instead of getting results in the local Japanese language it may be easier to have the English results e.g. Tokyo instead of 東京都.
+* Street Preview calls out a single POI after each jump
+* Marker callouts now use a field-of-view to prevent calling out markers which have been passed
+* Distance to beacons is now adaptive for long journeys. The frequency of the callouts increases as the beacon gets closer.
+* GPS location filtering had been broken and so although the map matching to the current street worked well, beacons were unstable. The filtering has been re-instated and the beacons behaviour is back to what it should be.
+* *Save Marker* screen wasn't reflecting the user direction
+* A long term issue where the graphical map wasn't updating beacons and routes immediately has been fixed.
+* More analytics added to track text to speech engine usage and startup errors.
+
+## Changes between 0.0.96 and 0.0.110
 * A new option in settings to select miles and feet instead of kilometers and meters.
 * Improved light and dark themes and defaulting to use the system setting.
 * Improved handling of locations shared from Google Maps especially those of places with names containing non-ASCII characters.
@@ -33,6 +45,8 @@ Issues tagged _user-facing_ are those which describe issues from a user perspect
 
 ### Longer term known issues
 The largest issues which are being worked on are:
+* [Offline mapping](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/236) has been tested as a proof of concept but still requires a lot of work.
+* [Route playback](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/667) has various imperfections which are being worked on.
 * [Improving mapping data](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/605) to try and improve both search, the graphical maps and the contents of Places Nearby.
 * [Callouts for roundabouts need work](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/442). We have a plan for this, but it's not yet implemented.
 * [Support for Street Preview is very preliminary](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/528), especially when it comes to use by people with a visual impairment.
