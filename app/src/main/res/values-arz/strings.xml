@@ -125,7 +125,7 @@
     <string name="directions_name_goes_right">%s, يتجه يمينا</string>
     <string name="directions_name_continues_ahead">%s, يستمر الى الامام</string>
     <string name="directions_direction_ahead">إلى الأمام</string>
-    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من % 1$s و % 2$s</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من %1$s و %2$s</string>
     <string name="directions_traveling_n">السفر شمالا</string>
     <string name="directions_traveling_ne">السفر شمال شرق</string>
     <string name="directions_traveling_e">السفر شرقا</string>
@@ -203,7 +203,7 @@
     <string name="menu_rate">قيم</string>
     <string name="ui_back_button_title">رجوع</string>
     <string name="behavior_experiences_route_nav_title">تفاصيل الطريق</string>
-    <string name="behavior_scavenger_hunt_callout_next_flag">%1$s\nو\n% 2$s\n%3$s\n%4$sاشاره وضعت على</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">%1$s\nو\n%2$s\n%3$s\n%4$sاشاره وضعت على</string>
     <string name="help_configuration_section_title">تكوين Soundscape</string>
     <string name="settings_help_section_beacons_and_pois">اشارات</string>
     <string name="settings_help_section_home_screen_buttons">أزرار الشاشة الرئيسية</string>
@@ -441,7 +441,7 @@
     <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">توقف الترام</string>
     <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s\nمحطة الترام</string>
     <string name="osm_tag_subway" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s محطة مترو الأنفاق</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s\nالعبارة</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">إدارة الصوت</string>
@@ -455,7 +455,7 @@
     <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">عادي</string>
     <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">متوسط</string>
     <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">عالي</string>
-    <string name="settings_list_item_description" tools:ignore="MissingTranslation">% 1$s \nهو \n% 2$s \nالمحدد من \n% 3$s</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s \nهو \n%2$s \nالمحدد من \n%3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">يحفظ</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">يستخدم</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">انهاء معاينه الشارع</string>
