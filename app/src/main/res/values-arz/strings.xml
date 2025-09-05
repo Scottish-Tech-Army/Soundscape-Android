@@ -465,11 +465,11 @@
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">إعدادات التصحيح</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">لغة البحث</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">مشاركة تسجيل السفر</string>
-    <string name="confect_name_to_via" tools:ignore="MissingTranslation">ل\n\nعبر</string>
-    <string name="confect_name_to" tools:ignore="MissingTranslation">إلى</string>
-    <string name="confect_name_joins" tools:ignore="MissingTranslation">هذا ينضم\n\nو</string>
-    <string name="confect_name_via" tools:ignore="MissingTranslation">عبر</string>
-    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">الرصيف بجانب الطريقه</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$sل\n\n%2$sعبر\n\n%3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$sل\n\n%2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$sهذا ينضم\n\n%2$sو\n\n%3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$sعبر\n\n%2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">الرصيف بجانب\n\n%1$s</string>
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">الرصيف</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">طريق مسدود</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">يستكشف SoundScape استخدام التكنولوجيا المبتكرة القائمة على الصوت لتمكين الناس من بناء وعي أكثر ثراءً بمحيطهم ، وبالتالي يصبحون أكثر ثقة وتمكينًا للالتفاف.</string>
