@@ -1,3 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">hætta við</string>
+    <string name="general_alert_done">lokið</string>
+    <string name="general_loading_start">Götuhermir</string>
+    <string name="general_error_location_services_find_location_error">illa gengur að finna staðsetningu</string>
+    <string name="general_error_add_marker_error">erfiðleikar við að merkja staðsetningu. Reynið síðar</string>
+    <string name="settings_screen_title">Stillingar</string>
+    <string name="settings_about_app">Um Soundscape</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Mælieiningar</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Mílur, fet, tommur</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrakerfi</string>
+    <string name="voice_settings_speaking_rate">Talhraði</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Talgerfilsvél</string>
+    <string name="voice_voices">Raddir</string>
+    <string name="beacon_settings_style">Hljóðstíll</string>
+    <string name="beacon_styles_current">´nýjasti Stíll</string>
+    <string name="beacon_styles_original">upprunalegur viti</string>
+    <string name="beacon_styles_flare">Blossi</string>
+    <string name="beacon_styles_shimmer">Skyn</string>
+    <string name="beacon_styles_tactile">Taktíl</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Fall</string>
+    <string name="beacon_styles_signal">Merki</string>
+    <string name="beacon_styles_signal_slow">Merki, hægt</string>
+    <string name="beacon_styles_signal_very_slow">Merki, mjög hægt</string>
+    <string name="beacon_styles_mallet">Sleggja</string>
+    <string name="beacon_styles_mallet_slow">Sleggja, hægt</string>
+    <string name="beacon_styles_mallet_very_slow">Sleggja, mjög hæt</string>
+    <string name="beacon_audio_beacon">Hljóðviti</string>
+    <string name="beacon_action_mute_beacon">slökkva á hljóðmerki vita</string>
+    <string name="beacon_action_mute_beacon_acc_hint">slökkva á hljóðmerki vita</string>
+    <string name="beacon_action_unmute_beacon">virkja hljóðmerki vita</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">virkja hljóðmerki vita</string>
+    <string name="preview_title">Soundscape götusýn</string>
+    <string name="preview_go_title">fara á næstu gatnamót</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
 </resources>
