@@ -186,9 +186,9 @@
     <string name="distance_format_km">%s كيلو متر</string>
     <string name="distance_format_feet">%s قدم</string>
     <string name="distance_format_miles">%s ميل</string>
-    <string name="ui_action_button_my_location">موقع</string>
+    <string name="ui_action_button_my_location">موقع\n↵ي</string>
     <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
-    <string name="ui_action_button_nearby_markers">علامات</string>
+    <string name="ui_action_button_nearby_markers">قريب\n\n\nعلامات</string>
     <string name="ui_action_button_nearby_markers_acc_hint">حول الأماكن القريبة التي حددتها</string>
     <string name="ui_action_button_around_me">أنا</string>
     <string name="ui_action_button_around_me_acc_hint">اسمع عن الأماكن في الأرباع الأربعة من حولك</string>
