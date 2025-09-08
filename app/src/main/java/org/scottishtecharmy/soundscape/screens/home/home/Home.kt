@@ -73,6 +73,7 @@ fun Home(
     bottomButtonFunctions: BottomButtonFunctions,
     getCurrentLocationDescription: () -> LocationDescription,
     rateSoundscape: () -> Unit,
+    contactSupport: () -> Unit,
     routeFunctions: RouteFunctions,
     streetPreviewFunctions : StreetPreviewFunctions,
     modifier: Modifier = Modifier,
@@ -99,6 +100,7 @@ fun Home(
                 onNavigate = onNavigate,
                 drawerState = drawerState,
                 rateSoundscape = rateSoundscape,
+                contactSupport = contactSupport,
                 shareRecording = { (context as MainActivity).shareRecording() },
                 preferences = preferences
             )
@@ -248,6 +250,7 @@ fun HomePreview() {
                 )
             },
             rateSoundscape = {},
+            contactSupport = {},
             searchText = "Lille",
             onSearchTextChange = {},
             onToggleSearch = {},
@@ -277,6 +280,7 @@ fun HomeSearchPreview() {
                 )
             },
             rateSoundscape = {},
+            contactSupport = {},
             searchText = "Lille",
             onSearchTextChange = {},
             onToggleSearch = {},
@@ -320,6 +324,7 @@ fun HomeRoutePreview() {
                 )
             },
             rateSoundscape = {},
+            contactSupport = {},
             searchText = "Lille",
             onSearchTextChange = {},
             onToggleSearch = {},

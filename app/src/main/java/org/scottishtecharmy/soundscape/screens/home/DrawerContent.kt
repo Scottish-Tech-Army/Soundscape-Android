@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
+import androidx.compose.material.icons.rounded.Markunread
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
@@ -41,6 +42,7 @@ fun DrawerContent(
     drawerState: DrawerState,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
+    contactSupport: () -> Unit,
     shareRecording: () -> Unit,
     preferences: SharedPreferences?
 ) {
@@ -125,6 +127,12 @@ fun DrawerContent(
                     icon = Icons.Rounded.Star,
                 )
 
+                DrawerMenuItem(
+                    onClick = { contactSupport() },
+                    label = stringResource(R.string.menu_contact_support),
+                    icon = Icons.Rounded.Markunread,
+                )
+
 // This is supposed to share the app with someone else (not the location)
 //                DrawerMenuItem(
 //                    onClick = { shareLocation() },
@@ -154,6 +162,7 @@ fun DrawerContent(
 fun PreviewDrawerContent() {
     DrawerContent(
         DrawerState(DrawerValue.Open) { true },
+        { },
         { },
         { },
         { },

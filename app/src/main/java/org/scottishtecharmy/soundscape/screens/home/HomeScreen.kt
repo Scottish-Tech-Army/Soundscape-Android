@@ -94,6 +94,7 @@ fun HomeScreen(
     preferences: SharedPreferences,
     viewModel: HomeViewModel = hiltViewModel(),
     rateSoundscape: () -> Unit,
+    contactSupport: () -> Unit,
     permissionsRequired: Boolean
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
@@ -128,6 +129,7 @@ fun HomeScreen(
                 onToggleSearch = viewModel::onToggleSearch,
                 onSearchTextChange = viewModel::onSearchTextChange,
                 rateSoundscape = rateSoundscape,
+                contactSupport = contactSupport,
                 routeFunctions = routeFunctions,
                 streetPreviewFunctions = streetPreviewFunctions,
                 goToAppSettings = viewModel::goToAppSettings,

@@ -417,9 +417,11 @@
 <!-- Title in settings to Manage Callouts preferences-->
 <string name="menu_manage_callouts">"Manage Callouts"</string>
 <!-- Title for Help and Tutorials screen-->
-<string name="menu_help_and_tutorials">"Help and Tutorials"</string>
 <!-- Title, Rate the app in App Store -->
 <string name="menu_rate">"Rate"</string>
+<string name="menu_help_and_tutorials">"Help and Tutorials"</string>
+<!-- Title for menu option to contact support by email -->
+<string name="menu_contact_support" tools:ignore="MissingTranslation">"Contact support"</string>
 <!-- Screen Back button title -->
 <string name="ui_back_button_title">"Back"</string>
 <!-- Title of the screen that lists all of the details for a route -->
