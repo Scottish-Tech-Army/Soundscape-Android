@@ -30,6 +30,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var autoProgressRoute = true
     private val coroutineScope = CoroutineScope(Job())
     private var localizedContext: Context
+    private var locationMonitoringJob: Job? = null
     init {
         val configLocale = getCurrentLocale()
         val configuration = Configuration(context.applicationContext.resources.configuration)
@@ -63,8 +64,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             waypoints
         )
         // We don't auto progress this route, as we want to allow setting the beacon at the current
-        // location and keeping it active. If auto progress were set, that beacon would immediately
-        // stop because it is nearby.
+        // location and keeping it active.
         autoProgressRoute = false
         _currentRouteFlow.update {
             it.copy(
@@ -75,7 +75,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         }
         play()
         Log.d(TAG, toString())
-        startMonitoringLocation()
     }
 
     /** startRoute starts playback of a route from the database.
@@ -106,8 +105,14 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         startMonitoringLocation()
     }
 
+    fun stopMonitoringLocation() {
+        locationMonitoringJob?.cancel()
+    }
+
     fun startMonitoringLocation() {
-        coroutineScope.launch {
+        Log.d(TAG, "startMonitoringLocation")
+        locationMonitoringJob?.cancel()
+        locationMonitoringJob = coroutineScope.launch {
             // Observe location updates from the service
             service.locationProvider.filteredLocationFlow.collect { value ->
                 if (value != null) {
@@ -115,24 +120,25 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                         if(autoProgressRoute) {
                             if(currentMarker < route.markers.size) {
                                 val location = route.markers[currentMarker].getLngLatAlt()
-                                if (distance(
-                                        location.latitude,
-                                        location.longitude,
-                                        value.latitude,
-                                        value.longitude
-                                    ) < 15.0
-                                ) {
+                                val distanceToWaypoint = distance(
+                                    location.latitude,
+                                    location.longitude,
+                                    value.latitude,
+                                    value.longitude
+                                )
+                                if (distanceToWaypoint < 15.0) {
                                     if ((currentMarker + 1) < route.markers.size) {
                                         // We're within 15m of the marker, move on to the next one
+                                        Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
                                         moveToNext()
                                     } else {
                                         // We've reached the end of the route
                                         // Announce the end of the route
+                                        Log.d(TAG, "End of route  ${coroutineContext[Job]}")
                                         val endOfRouteText = localizedContext.getString(
                                             R.string.route_end_completed_accessibility,
                                             route.route.name
                                         )
-                                        service.audioEngine.clearTextToSpeechQueue()
                                         service.audioEngine.createTextToSpeech(
                                             endOfRouteText,
                                             AudioType.STANDARD
@@ -141,6 +147,8 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                         // Stop the beacon
                                         stopRoute()
                                     }
+                                } else {
+                                    Log.d(TAG, "Waypoint $distanceToWaypoint away")
                                 }
                             }
                         }
@@ -189,6 +197,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             currentWaypoint = 0
         )}
         currentRouteData = null
+        stopMonitoringLocation()
     }
 
     fun play() {
