@@ -1,14 +1,18 @@
 package org.scottishtecharmy.soundscape
 
 import android.Manifest
+import android.accessibilityservice.AccessibilityServiceInfo
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.accessibility.AccessibilityManager
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,6 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -40,6 +45,7 @@ import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.processMaps
+import java.util.Locale
 import javax.inject.Inject
 
 data class ThemeState(
@@ -219,11 +225,6 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        println("${Build.FINGERPRINT}")
-        println("${Build.MODEL}")
-        println("${Build.BRAND}")
-        println("${Build.PRODUCT}")
-
         // Unpack map assets
         processMaps(applicationContext)
 
@@ -308,6 +309,9 @@ class MainActivity : AppCompatActivity() {
                     rateSoundscape = {
                         this.rateSoundscape()
                     },
+                    contactSupport = {
+                        this.contactSupport()
+                    },
                     permissionsRequired = remember { locationPermissionGranted != 1}
                 )
             }
@@ -338,6 +342,61 @@ class MainActivity : AppCompatActivity() {
                 @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
                 Log.e(TAG, "Error requesting review: $reviewErrorCode")
             }
+        }
+    }
+
+    fun talkBackDescription(context: Context): String {
+        val am = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+        if (!am.isEnabled) {
+            return "Off<br/>"
+        }
+
+        var resultsString = "TouchExploration Enabled: ${am.isTouchExplorationEnabled}<br/>"
+
+        val enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_SPOKEN)
+        for (serviceInfo in enabledServices) {
+            resultsString += "AccessibilityService: ${serviceInfo.id}<br/>"
+        }
+
+        return resultsString
+    }
+
+    fun contactSupport() {
+
+        // Get information from the phone that we'd like to pass on to support
+        val appVersion = BuildConfig.VERSION_NAME
+        val androidVersion = Build.VERSION.RELEASE
+        val model = Build.MODEL
+        val brand = Build.BRAND
+        val product = Build.PRODUCT
+        val manufacturer = Build.MANUFACTURER
+        val language = Locale.getDefault().language + "-" + Locale.getDefault().country
+        val speechEngine = sharedPreferences.getString(SPEECH_ENGINE_KEY, SPEECH_ENGINE_DEFAULT)
+        val subjectText = "Soundscape Feedback (Android $androidVersion, $brand $model, $language, $appVersion)"
+        val talkbackStatus = talkBackDescription(applicationContext)
+
+        val bodyText =
+            "-----------------------------<br/>" +
+            "Product: $product<br/>" +
+            "Manufacturer: $manufacturer<br/>" +
+            "TTS engine: $speechEngine<br/>" +
+            "Talkback: $talkbackStatus" +
+            "-----------------------------<br/>" +
+            "<br/>"
+
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = "mailto:".toUri()
+            putExtra(Intent.EXTRA_EMAIL, arrayOf("soundscapeAndroid@scottishtecharmy.support"))
+            putExtra(Intent.EXTRA_SUBJECT, subjectText)
+            putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText, 0))
+        }
+
+        Log.e(TAG, Html.fromHtml(bodyText, 0).toString())
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            val alternativeIntent = Intent.createChooser(intent, "");
+            startActivity(alternativeIntent)
         }
     }
 
