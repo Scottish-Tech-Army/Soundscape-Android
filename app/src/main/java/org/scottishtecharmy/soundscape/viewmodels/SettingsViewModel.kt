@@ -23,7 +23,8 @@ class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
     data class SettingsUiState(
         // Data for the ViewMode that affects the UI
-        var beaconTypes : List<Int> = emptyList(),
+        var beaconDescriptions : List<Int> = emptyList(),
+        var beaconValues : List<String> = emptyList(),
         var engineTypes : List<String> = emptyList(),
         var voiceTypes : List<String> = emptyList()
     )
@@ -78,11 +79,14 @@ class SettingsViewModel @Inject constructor(
 
                                 val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
                                 val beaconTypes = mutableListOf<Int>()
+                                val beaconValues = mutableListOf<String>()
                                 for (type in audioEngineBeaconTypes) {
                                     beaconTypes.add(getBeaconResourceId(type))
+                                    beaconValues.add(type)
                                 }
                                 _state.value = SettingsUiState(
-                                    beaconTypes = beaconTypes,
+                                    beaconDescriptions = beaconTypes,
+                                    beaconValues = beaconValues,
                                     voiceTypes = voiceTypes,
                                     engineTypes = audioEngineTypes.map { engine -> "${engine.label}:::${engine.name}" }
                                 )
