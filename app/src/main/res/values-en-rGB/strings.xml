@@ -473,4 +473,5 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">Change the permissions in app settings</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Show maps on screen</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Search language</string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation">Contact support</string>
 </resources>
