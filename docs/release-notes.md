@@ -13,7 +13,7 @@ We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/S
 ## New changes since 0.0.110
 * *Current Location* now appears as an option in the *Add Waypoint* screen
 * Improvements have been made to deal with cases where permissions (location and notifications) have been revoked.
-* Initial Persian language support has been added and various additions to other languages.
+* Initial Persian and Arabic language support has been added and various additions to other languages. We welcome suggested improvements on Weblate <https://hosted.weblate.org/projects/soundscape-android/android-app/>
 * The *Search* feature was broken for many languages, it is now fixed. There's also a new *Settings* option to force *Search* results to use English. A use case for this would be a Spanish speaker travelling in Japan. Instead of getting results in the local Japanese language it may be easier to have the English results e.g. Tokyo instead of 東京都.
 * Street Preview calls out a single POI after each jump
 * Marker callouts now use a field-of-view to prevent calling out markers which have been passed
@@ -22,6 +22,9 @@ We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/S
 * *Save Marker* screen wasn't reflecting the user direction
 * A long term issue where the graphical map wasn't updating beacons and routes immediately has been fixed.
 * More analytics added to track text to speech engine usage and startup errors.
+* Route playback had a race so that it wasn't always playing back correctly after the first route played.
+* Beacon setting now works across all languages, though it still doesn't playback audio as the selections are made.
+
 
 ## Changes between 0.0.96 and 0.0.110
 * A new option in settings to select miles and feet instead of kilometers and meters.
