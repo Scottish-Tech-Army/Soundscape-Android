@@ -50,6 +50,7 @@ android {
 
         // Maintaining this list means that we can exclude translations that aren't complete yet
         resourceConfigurations.addAll(listOf(
+            "arz",
             "da",
             "de",
             "el",
