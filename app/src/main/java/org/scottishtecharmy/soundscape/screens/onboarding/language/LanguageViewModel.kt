@@ -50,6 +50,7 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
     private fun getAllLanguages(): List<Language> {
         val allLanguages = mutableListOf<Language>()
 
+        addIfSpeechSupports(allLanguages, Language("العربية المصرية", "arz", "EG"))
         addIfSpeechSupports(allLanguages, Language("Dansk", "da", "DK"))
         addIfSpeechSupports(allLanguages, Language("Deutsch", "de", "DE"))
         addIfSpeechSupports(allLanguages, Language("Ελληνικά", "el", "GR"))
