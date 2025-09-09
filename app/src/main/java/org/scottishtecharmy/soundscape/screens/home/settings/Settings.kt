@@ -133,7 +133,9 @@ fun Settings(
     selectedLanguageIndex: Int,
 )
 {
-    val beaconTypes = uiState.beaconTypes.map { stringResource(it) }
+    val beaconValues = uiState.beaconValues
+    val beaconDescriptions = uiState.beaconDescriptions.map { stringResource(it) }
+
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
     val themeContrastDescriptions = listOf(
@@ -343,7 +345,7 @@ fun Settings(
             listPreference(
                 key = MainActivity.BEACON_TYPE_KEY,
                 defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
-                values = beaconTypes,
+                values = beaconValues,
                 title = {
                     Text(
                         text = stringResource(R.string.beacon_settings_style),
@@ -351,7 +353,7 @@ fun Settings(
                     )
                 },
                 item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, value, currentValue, onClick, beaconTypes.indexOf(value), beaconTypes.size)
+                    ListPreferenceItem(beaconDescriptions[beaconValues.indexOf(value)], value, currentValue, onClick, beaconValues.indexOf(value), beaconValues.size)
                 },
                 summary = { Text(text = it, color = textColor) },
             )
