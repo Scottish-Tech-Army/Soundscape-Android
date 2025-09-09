@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
@@ -30,11 +31,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.TestTags
@@ -98,7 +101,8 @@ fun LanguageDropDownMenu(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
                 .testTag(TestTags.LANGUAGE_DROPDOWN_MENU)
-                .selectableGroup(),
+                .selectableGroup()
+                .heightIn(max = LocalConfiguration.current.screenHeightDp.dp * 0.9f)
         ) {
             allLanguages.forEachIndexed { index, language ->
                 val isSelected = remember { index == selectedLanguageIndex }
@@ -159,6 +163,5 @@ fun LanguageDropDownMenuPreview(){
         allLanguages = MockLanguagePreviewData.languages,
         onLanguageSelected = {},
         selectedLanguageIndex = -1,
-
     )
 }
