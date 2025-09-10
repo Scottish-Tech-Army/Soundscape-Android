@@ -31,11 +31,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.fromHtml
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.preference.PreferenceManager
 import com.google.gson.GsonBuilder
+import org.commonmark.node.Node
+import org.commonmark.parser.Parser
+import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
@@ -247,7 +255,18 @@ private fun LocationDescriptionButtonsSection(
     onNavigateUp: () -> Unit,
     dialogState: MutableState<Boolean>
 ) {
-    val shareMessage = stringResource(R.string.universal_links_marker_share_message)
+    val parser: Parser = Parser.builder().build()
+    val document: Node? = parser.parse(stringResource(R.string.universal_links_marker_share_message))
+    val renderer = HtmlRenderer.builder().build()
+    val shareMessage = AnnotatedString.fromHtml(
+        htmlString = renderer.render(document),
+        linkStyles = TextLinkStyles(
+            style = SpanStyle(
+                textDecoration = TextDecoration.Underline,
+            )
+        )
+    ).text
+
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
     ) {
