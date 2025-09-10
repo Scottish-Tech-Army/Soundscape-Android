@@ -14,18 +14,27 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.commonmark.node.Node
+import org.commonmark.parser.Parser
+import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
@@ -70,7 +79,14 @@ fun MarkersScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         val context = LocalContext.current
-
+        val noMarkersText = stringResource(R.string.markers_no_markers_hint_1)
+        val noMarkerHtmlText = remember(uiState.entries.isEmpty()) {
+                val parser: Parser = Parser.builder().build()
+                val document: Node? =
+                    parser.parse(noMarkersText)
+                val renderer = HtmlRenderer.builder().build()
+                renderer.render(document)
+        }
         // Display error message if it exists
         LaunchedEffect(uiState.errorMessage) {
             uiState.errorMessage?.let { message ->
@@ -117,7 +133,14 @@ fun MarkersScreen(
                         }
                         Box(modifier = Modifier.padding(top = spacing.small)) {
                             Text(
-                                stringResource(R.string.markers_no_markers_hint_1),
+                                text = AnnotatedString.fromHtml(
+                                    htmlString = noMarkerHtmlText,
+                                    linkStyles = TextLinkStyles(
+                                        style = SpanStyle(
+                                            textDecoration = TextDecoration.Underline,
+                                        )
+                                    )
+                                ),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 textAlign = TextAlign.Center,
