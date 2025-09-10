@@ -590,29 +590,29 @@
     <!-- Notification, Markers content continued -->
 <string name="help_text_markers_content_3">وقتی به مکان‌هایی که قبلاً آنها را نشانه‌گذاری کرده‌اید نزدیک می‌شوید، ساند‌اسکیپ به‌طور خودکار این موضوع را به شما اعلام می‌کند. شما همچنین می‌توانید با ضربه زدن روی دکمه‌ی نشانه‌های نزدیک در قسمت پایین صفحه‌ی اصلی، از وجود مکان‌های نشانه‌گذاری‌شده در اطراف خود مطلع شوید. ضمناً این امکان برای شما فراهم است که جهت‌نمای صوتی را روی هر مکانی که نشانه‌گذاری کرده‌اید تنظیم نمایید. با انجام این کار، صدای آشنای جهت‌نمای صوتی را خواهید شنید و می‌توانید از آن به‌شکل معمول برای مسیریابی استفاده کنید.</string>
     <!-- Notification, Creating Markers help content, Quotation marks are written as \" -->
-<string name="help_text_creating_markers_content_1">شما می‌توانید نشانگرها را به سه روش ایجاد کنید: جستجو برای مکانی که می‌خواهید ذخیره کنید با استفاده از نوار جستجو، پیدا کردن مکانی با استفاده از دکمه *\"مکان‌های نزدیک\"*، یا استفاده از دکمه *\"استفاده از موقعیت مکانی فعلی\"*، که همه آنها را می‌توان در صفحه اصلی Soundscape یافت. هنگامی که مکان مورد نظر خود را پیدا کردید، انتخاب آن شما را به صفحه *\"جزئیات مکان\"* می‌برد. در این صفحه، دکمه *\"ذخیره نشانگر\"* را انتخاب کنید.</string>
+<string name="help_text_creating_markers_content_1">شما می‌توانید به سه روش نشانه ایجاد کنید: یافتن یک مکان معین برای نشانه‌گذاری با استفاده از نوار جستجو، انتخاب یکی از مکان‌های نزدیکتان از طریق دکمه‌ی *\"مکان‌های نزدیک\"* یا مشخص کردن محلی که در آن قرار دارید به‌عنوان مکان مورد نظر از طریق دکمه‌ی *\"استفاده از موقعیت مکانی فعلی\"*. همه‌ی این گزینه‌ها در صفحه‌ی اصلی ساند‌اسکیپ قرار گرفته‌اند. هنگامی که مکان مورد نظرتان را انتخاب کنید، به صفحه‌ی *\"جزئیات موقعیت مکانی\"* هدایت می‌شوید. در این صفحه، روی دکمه‌ی *\"نشانه‌گذاری و ذخیره\"* بزنید.</string>
     <!-- Notification, Creating Markers help content continued, Quotation marks are written as \" -->
 <string name="help_text_creating_markers_content_2">شما اکنون می‌توانید نشانه‌ای که ایجاد کرده‌اید را شخصی‌سازی نمایید. البته این مرحله اختیاریست. شما می‌توانید در این مرحله نام نشانه‌ای که ایجاد نموده‌اید را تغییر داده و پاره‌ای توضیحات نیز به آن اضافه کنید. زمانی که کارتان در این مرحله تکمیل شد، دکمه‌ی *\"تمام\"* را بزنید تا نشانه ذخیره گردد.</string>
     <!-- Notification, Customizing Markers help content. "Markers and Routes" should be translated the same as the string with key 'search.view_markers'. Quotes written as \" -->
-<string name="help_text_customizing_markers_content_1">اگر می‌خواهید نشانگری را که قبلاً ایجاد کرده‌اید تغییر نام دهید، یا یادداشتی به آن اضافه کنید، می‌توانید با انتخاب نشانگر از تب *\"نشانگرها\"* در صفحه *\"نشانگرها و مسیرها\"*، سپس انتخاب دکمه *\"ویرایش نشانگر\"* این کار را انجام دهید. می‌توانید از این برای دادن نام‌های مستعار توصیفی یا مفید به نشانگرها، و همچنین دادن توضیحات طولانی‌تر به آنها با استفاده از فیلد یادداشت استفاده کنید.</string>
+<string name="help_text_customizing_markers_content_1">در صورتی که می‌خواهید نام نشانه‌ای که قبلاً ایجاد کرده‌اید را تغییر داده یا توضیحی به آن اضافه کنید، می‌توانید این کار را با انتخاب نشانه‌ی مورد نظرتان از سربرگ *\"نشانه‌ها\"* در صفحه‌ی *\"نشانه‌ها و مسیرها\"* و سپس ضربه زدن روی دکمه‌ی *\"ویرایش نشانه\"* انجام دهید.</string>
     <!-- Notification, Customizing Markers help content continued -->
-<string name="help_text_customizing_markers_content_2">از این صفحه ویرایش، می‌توانید نشانگر را در صورت عدم نیاز دیگر، حذف کنید.</string>
+<string name="help_text_customizing_markers_content_2">از این صفحه‌ی ویرایش، شما همچنین می‌توانید نشانه‌ای که دیگر به آن نیاز ندارید را حذف نمایید.</string>
     <!-- Help content explaining what the "routes" feature is -->
-<string name="help_text_routes_content_what">مسیرها مجموعه‌ای از نقاط بین راهی هستند. در هنگام رسیدن به هر نقطه بین راهی مطلع خواهید شد و نشانه ی صوتی به طور خودکار به نقطه بین راهی بعدی پیشروی خواهد کرد.</string>
+<string name="help_text_routes_content_what">هر مسیر از یک رشته نقطه‌ی بین‌راهی تشکیل می‌گردد. هنگامی که در امتداد مسیر به هر یک از نقاط بین‌راهی می‌رسید، ساند‌اسکیپ شما را از این موضوع مطلع خواهد ساخت و جهت‌نمای صوتی به‌طور خودکار روی نقطه‌ی بین‌راهی بعدی تنظیم می‌شود.</string>
     <!-- Help content explaining when a user might choose to use the routes feature -->
-<string name="help_text_routes_content_when">شما ممکن است بخواهید مسیری را در جایی که می‌شناسید ایجاد و استفاده کنید تا مطمئن شوید که در مسیر می‌مانید، یا ممکن است بخواهید از آن به عنوان ابزاری برای آشنایی خود در طول یک سفر جدید استفاده کنید.</string>
+<string name="help_text_routes_content_when">شما می‌توانید از قابلیت ایجاد مسیر در ساند‌اسکیپ هم در محیط‌های آشنا و هم درمحیط‌هایی که برایتان تازگی دارد استفاده نمایید. مزیت استفاده از این قابلیت در یک محیط آشنا آن است که شما به این شیوه قادر خواهید بود اطمینان حاصل کنید در طول راه از مسیر خود منحرف نمی‌شوید. اما استفاده از این قابلیت در محیط‌های نا‌آشنا به شما این امکان را می‌دهد تا مسیری که باید در آن حرکت کنید را بهتر بشناسید.</string>
     <!-- Help content explaining how a user can create a route. Quotes written as \" -->
-<string name="help_text_routes_content_how_1">**ایجاد یک مسیر:**\n\n ابتدا به *\"نشانگرها و مسیرها\"* بروید، تب *\"مسیرها\"* را انتخاب کنید و سپس دکمه *\"مسیر جدید\"* را انتخاب کنید. یک نام و یک توضیح اختیاری برای مسیر بدهید، سپس نقاط بین راهی را هنگام حرکت اضافه کنید یا آنها را از لیست نشانگرهای خود انتخاب کنید. می‌توانید ترتیب نقاط بین راهی در طول یک مسیر را در هر زمان با ویرایش مسیر تغییر دهید.</string>
+<string name="help_text_routes_content_how_1">**ایجاد یک مسیر جدید:**\n\nابتدا به صفحه‌ی *\"نشانه‌ها و مسیرها\"* بروید. در این صفحه، سربرگ *\"مسیرها\"* را انتخاب نموده و سپس روی دکمه‌ی *\"مسیر جدید\"* ضربه بزنید. مسیر جدید را نام‌گذاری کنید و در صورت تمایل برای آن توضیحی نیز بنویسید. سپس نقاط بین‌راهی را هنگام حرکت در امتداد مسیر به آن اضافه کنید یا از نشانه‌هایی که قبلاً ایجاد کرده‌اید برای این منظور استفاده نمایید. شما همواره می‌توانید با استفاده از گزینه‌ی ویرایش مسیر ترتیب نقاط بین‌راهی را تغییر دهید.</string>
     <!-- Help content explaining how a user can edit a route. Quotes written as \" -->
 <string name="help_text_routes_content_how_2">**ویرایش یک مسیر:**\n\n مسیر خود را در صفحه *\"نشانگرها و مسیرها\"* انتخاب کنید و سپس *\"ویرایش مسیر\"* را انتخاب کنید. از اینجا می‌توانید نقاط بین راهی را اضافه و حذف کنید، و همچنین نام و توضیحات مسیر را ویرایش کنید.</string>
     <!-- Help content explaining how a user can share a route. "Share" should be translated in the same way as it is for the key `share.title`. Quotes written as \" -->
-<string name="help_text_routes_content_how_3">**اشتراک‌گذاری یک مسیر:**\n\n مسیر خود را در صفحه *\"نشانگرها و مسیرها\"* انتخاب کنید و سپس گزینه *\"اشتراک‌گذاری\"* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمولی که در دسترس شماست، انتخاب کنید.</string>
+<string name="help_text_routes_content_how_3">**اشتراک‌گذاری یک مسیر:**\n\nمسیر خود را در صفحه‌ی *\"نشانه‌ها و مسیرها\"* مشخص نموده و سپس گزینه‌ی *\"اشتراک‌گذاری\"* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمول که در دسترس شماست انتخاب کنید.</string>
     <!-- Open Street Map term. Pedestrians can cross a street here; e.g., zebra crossing. Known as crosswalks in American English, and crossings in British English. -->
-<string name="osm_tag_crossing">گذرگاه عابر پیاده</string>
+<string name="osm_tag_crossing">خط عابر پیاده</string>
     <!-- Open Street Map term. Used to describe the type of the feature which is currently under construction. -->
-<string name="osm_tag_construction">ساخت‌وساز</string>
+<string name="osm_tag_construction">عملیات ساختمانی</string>
     <!-- Open Street Map term. NOT DEFINED IN OSM -->
-<string name="osm_tag_dangerous_area">منطقه خطرناک</string>
+<string name="osm_tag_dangerous_area">محدوده‌ی پرخطر</string>
     <!-- Open Street Map term. This refers to a village, town or city townhall, which is often the seat of the mayor, or may be merely a community meeting place. -->
 <string name="osm_tag_townhall">تالار شهر</string>
     <!-- Open Street Map term. For flights of steps on footways and paths.. -->
@@ -963,4 +963,5 @@
     <string name="dokka_mermaid_copyright" translatable="false">[glureau/dokka-mermaid](https://github.com/glureau/dokka-mermaid/blob/main/LICENSE) for adding mermaid diagrams to Dokka documentation.</string>
     <string name="permissions_required" tools:ignore="MissingTranslation">مجوز‌های مکان‌یابی برای اجرای اپلیکیشن الزامی می‌باشد.</string>
     <string name="permissions_button" tools:ignore="MissingTranslation">مجوز‌ها را در قسمت تنظیمات اپلیکیشن تغییر دهید</string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation">تماس با پشتیبانی</string>
 </resources>
