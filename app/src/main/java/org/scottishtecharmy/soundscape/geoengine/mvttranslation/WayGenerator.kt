@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import java.util.Locale
 import kotlin.collections.set
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
@@ -55,6 +56,24 @@ class Intersection : Feature() {
         properties?.set("members", members.size)
         properties?.set("type", if(intersectionType == IntersectionType.TILE_EDGE) "tile_edge" else "intersection")
     }
+
+    fun updateName(gridState: GridState? = null,
+                   localizedContext: Context? = null) {
+        val updatedName = StringBuilder()
+        val namesUsed = emptySet<String>().toMutableSet()
+        for (way in members) {
+            val segmentName = way.getName(way.intersections[WayEnd.START.id] == this, gridState, localizedContext, nonGenericOnly = false)
+            if (!namesUsed.contains(segmentName.toString())) {
+                if (updatedName.isNotEmpty()) {
+                    updatedName.append("/")
+                }
+                updatedName.append(segmentName)
+                namesUsed.add(segmentName.toString())
+            }
+        }
+        name = updatedName.toString()
+        properties?.set("name", name)
+    }
 }
 
 enum class WayType(
@@ -93,6 +112,15 @@ class Way : Feature() {
         if(name == null) {
             // Un-named way, so use "class" property
             name = properties?.get("class").toString()
+            var locale = Locale.getDefault()
+            if(localizedContext != null)
+                locale = localizedContext.resources.configuration.getLocales().get(0)
+            name = name.replaceFirstChar {
+                if (it.isLowerCase())
+                    it.titlecase(locale)
+                else
+                    it.toString()
+            }
 
             if(gridState != null) {
                 confectNamesForRoad(this, gridState)
@@ -666,42 +694,17 @@ class WayGenerator {
                 way.length
             }.toMutableList()
 
-            // Name the intersection
-            val name = StringBuilder()
-            val osmIds = arrayListOf<Double>()
-            val namesUsed = emptySet<String>().toMutableSet()
-            for(way in intersection.value.members) {
-                var segmentName = way.properties?.get("name")
-                if(segmentName == null) {
-                    segmentName = way.properties?.get("class")
-                    if(segmentName != null) {
-                        val str = segmentName.toString()
-                        if(str.isNotEmpty()) {
-                            str.replaceFirstChar { it.uppercaseChar() }
-                        }
-                        if(name.isNotEmpty()) {
-                            name.append("/")
-                        }
-                        name.append(str)
-                    }
-                } else {
-                    if(!namesUsed.contains(segmentName.toString())) {
-                        if(name.isNotEmpty()) {
-                            name.append("/")
-                        }
-                        name.append("$segmentName")
-                        namesUsed.add(segmentName.toString())
-                    }
-                }
+            // Naming the intersection is now done as a separate pass after the name confection has
+            // taken place
+            //intersection.value.updateName()
 
+            val osmIds = arrayListOf<Double>()
+            for(way in intersection.value.members) {
                 val id = way.properties?.get("osm_ids").toString().toDouble()
                 osmIds.add(id)
             }
-            intersection.value.name = name.toString()
-
             intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
             intersection.value.properties = hashMapOf()
-            intersection.value.properties?.set("name", intersection.value.name)
             intersection.value.foreign = hashMapOf()
             intersection.value.foreign?.set("feature_type", "highway")
             intersection.value.foreign?.set("feature_value", "gd_intersection")
