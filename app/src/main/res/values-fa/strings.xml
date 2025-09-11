@@ -604,7 +604,7 @@
     <!-- Help content explaining how a user can create a route. Quotes written as \" -->
 <string name="help_text_routes_content_how_1">**ایجاد یک مسیر جدید:**\n\nابتدا به صفحه‌ی *\"نشانه‌ها و مسیرها\"* بروید. در این صفحه، سربرگ *\"مسیرها\"* را انتخاب نموده و سپس روی دکمه‌ی *\"مسیر جدید\"* ضربه بزنید. مسیر جدید را نام‌گذاری کنید و در صورت تمایل برای آن توضیحی نیز بنویسید. سپس نقاط بین‌راهی را هنگام حرکت در امتداد مسیر به آن اضافه کنید یا از نشانه‌هایی که قبلاً ایجاد کرده‌اید برای این منظور استفاده نمایید. شما همواره می‌توانید با استفاده از گزینه‌ی ویرایش مسیر ترتیب نقاط بین‌راهی را تغییر دهید.</string>
     <!-- Help content explaining how a user can edit a route. Quotes written as \" -->
-<string name="help_text_routes_content_how_2">**ویرایش یک مسیر:**\n\n مسیر خود را در صفحه *\"نشانگرها و مسیرها\"* انتخاب کنید و سپس *\"ویرایش مسیر\"* را انتخاب کنید. از اینجا می‌توانید نقاط بین راهی را اضافه و حذف کنید، و همچنین نام و توضیحات مسیر را ویرایش کنید.</string>
+<string name="help_text_routes_content_how_2">**ویرایش یک مسیر:**\n\nمسیر خود را در صفحه‌ی *\"نشانه‌ها و مسیرها\"* انتخاب کرده و سپس گزینه‌ی *\"ویرایش مسیر\"* را فعال نمایید. از اینجا می‌توانید نقاط بین‌راهی را اضافه یا حذف نموده و نیز نام و توضیحات مسیر را ویرایش کنید.</string>
     <!-- Help content explaining how a user can share a route. "Share" should be translated in the same way as it is for the key `share.title`. Quotes written as \" -->
 <string name="help_text_routes_content_how_3">**اشتراک‌گذاری یک مسیر:**\n\nمسیر خود را در صفحه‌ی *\"نشانه‌ها و مسیرها\"* مشخص نموده و سپس گزینه‌ی *\"اشتراک‌گذاری\"* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمول که در دسترس شماست انتخاب کنید.</string>
     <!-- Open Street Map term. Pedestrians can cross a street here; e.g., zebra crossing. Known as crosswalks in American English, and crossings in British English. -->
@@ -614,21 +614,21 @@
     <!-- Open Street Map term. NOT DEFINED IN OSM -->
 <string name="osm_tag_dangerous_area">محدوده‌ی پرخطر</string>
     <!-- Open Street Map term. This refers to a village, town or city townhall, which is often the seat of the mayor, or may be merely a community meeting place. -->
-<string name="osm_tag_townhall">تالار شهر</string>
+<string name="osm_tag_townhall">شهرداری</string>
     <!-- Open Street Map term. For flights of steps on footways and paths.. -->
-<string name="osm_tag_steps">پله‌ها</string>
+<string name="osm_tag_steps">پله‌کان</string>
     <!-- Open Street Map term. An elevator (or lift) is used to travel vertically, providing passenger and freight access between pathways at different floor levels. -->
 <string name="osm_tag_elevator">آسانسور</string>
     <!-- Open Street Map term. A walking path is is a generic path, either multi-use or unspecified usage, open to all pedestrians and not intended for motorized vehicles. -->
-<string name="osm_tag_walking_path">مسیر پیاده‌روی</string>
+<string name="osm_tag_walking_path">مسیر پیاده</string>
     <!-- Open Street Map term. Is a road or an area mainly or exclusively for pedestrians in which some vehicle traffic may be authorized (e.g. emergency, taxi, delivery, ...). Typically found in shopping areas, town centres, places with tourism attractions and recreation/civic areas, where wide expanses of hard surface are provided for pedestrians to walk. -->
-<string name="osm_tag_pedestrian_street">خیابان عابر پیاده</string>
+<string name="osm_tag_pedestrian_street">خیابان ویژه‌ی عابرین پیاده</string>
     <!-- Open Street Map term. A bicycle path is is a generic path, either multi-use or unspecified usage, open to all cyclists and not intended for motorized vehicles. May be shared with pedestrians. -->
-<string name="osm_tag_bicycle_path">مسیر دوچرخه</string>
+<string name="osm_tag_bicycle_path">مسیر ویژه‌ی دوچرخه</string>
     <!-- Open Street Map term. Used for roads that are used for accessing residential areas and in residential areas but which are not normally used as through routes. -->
 <string name="osm_tag_residential_street">خیابان مسکونی</string>
     <!-- Open Street Map term. Used in two senses: 1. As a service way for access to buildings or places 2. Frontage road parallel to a major road. -->
-<string name="osm_tag_service_road">جاده خدماتی</string>
+<string name="osm_tag_service_road">کنارگذر</string>
     <!-- Open Street Map term. Any highway, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
 <string name="osm_tag_road">جاده</string>
     <!-- Open Street Map term. Any road, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
@@ -644,7 +644,7 @@
     <!-- Open Street Map term. Used to describe a road or highway leading to and from a major highway e.g., a freeway or motorway. -->
 <string name="osm_tag_highway_ramp">رمپ بزرگراه</string>
     <!-- Open Street Map term. Used as to describe the section of highway where two or more roads or highways merge with one another. -->
-<string name="osm_tag_merging_lane">خط ادغام</string>
+<string name="osm_tag_merging_lane">لاین ادغام</string>
     <!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
 <string name="osm_tag_office_building">ساختمان اداری</string>
     <!-- Open Street Map term. Used for any generic building that is used as a school. -->
@@ -652,21 +652,21 @@
     <!-- Open Street Map term. Used as a display name for place or a location. -->
 <string name="osm_tag_covered_pavilion">آلاچیق سرپوشیده</string>
     <!-- Open Street Map term. A small local shop carrying a variety of everyday products, mostly including single-serving food items such as milk, bread, snacks, groceries to over-the-counter medications, household items, stationery, and small auto supplies such as fuses. -->
-<string name="osm_tag_convenience_store">فروشگاه رفاه</string>
+<string name="osm_tag_convenience_store">بقالی</string>
     <!-- Open Street Map term. A doorway through which people can enter or exit a building. -->
 <string name="osm_tag_building_entrance">ورودی ساختمان</string>
     <!-- Open Street Map term. Used to designate a place or an area where all employees, passengers or a large crowd assemble in case of an emergency in an installation, building or a public place. -->
-<string name="osm_tag_assembly_point">نقطه تجمع</string>
+<string name="osm_tag_assembly_point">نقطه‌ی تجمع</string>
     <!-- Open Street Map term. Used to describe fence-like barriers positioned along paths, footways, cycleways or tracks which serve to either slow cycle access or prevent it entirely depending on spacing and layout. -->
 <string name="osm_tag_cycle_barrier">مانع دوچرخه</string>
     <!-- Open Street Map term. Used to describe a barrier to allow one person at a time to pass. Use this for small turnstiles like the ones in supermarkets or some subways. -->
-<string name="osm_tag_turnstile">گرداننده</string>
+<string name="osm_tag_turnstile">گیت گردان</string>
     <!-- Open Street Map term. Used to describe a hole in the road surface which is covered with a series of bars that allow wheeled vehicles but not animals to cross. -->
-<string name="osm_tag_cattle_grid">گاوکش</string>
+<string name="osm_tag_cattle_grid">مانع عبور دام</string>
     <!-- Open Street Map term. A gate is a section in a wall or fence which can be opened to allow or restrict access. They are usually made of wood or metal. -->
-<string name="osm_tag_gate">دروازه</string>
+<string name="osm_tag_gate">گیت</string>
     <!-- Open Street Map term. Used to refer to a public toilet. -->
-<string name="osm_tag_restroom">توالت</string>
+<string name="osm_tag_restroom">توالت عمومی</string>
     <!-- Open Street Map term. Used to describe a facility used by the public, customers, or other authorised users for parking motor vehicles, such as cars and trucks, commonly known as a car park (British English) or parking lot (American English). -->
 <string name="osm_tag_parking_lot">پارکینگ</string>
     <!-- Open Street Map term. Used to describe the entry/exit point to a parking area. -->
@@ -674,11 +674,11 @@
     <!-- Open Street Map term. A place for people to sit. -->
 <string name="osm_tag_bench">نیمکت</string>
     <!-- Open Street Map term. Used for the locating the point where taxis wait, not the point where passengers wait. -->
-<string name="osm_tag_taxi_waiting_area">منطقه انتظار تاکسی</string>
+<string name="osm_tag_taxi_waiting_area">ایستگاه تاکسی</string>
     <!-- Open Street Map term. A place where letters and parcels may be sent or collected.. -->
-<string name="osm_tag_post_office">اداره پست</string>
+<string name="osm_tag_post_office">اداره‌ی پست</string>
     <!-- Open Street Map term. A physical box used as a facility for the public to deposit outgoing postal items, such as letters and other small goods, intended for collection by the operator.. -->
-<string name="osm_tag_post_box">صندوق پستی</string>
+<string name="osm_tag_post_box">صندوق پست</string>
     <!-- Open Street Map term. A single small container for depositing garbage that is easily accessible for pedestrians. -->
 <string name="osm_tag_waste_basket">سطل زباله</string>
     <!-- Open Street Map term. A place where people can bathe under water sprays. May be run as a local amenity by the government, or part of commercial provisions. -->
@@ -710,7 +710,7 @@
     <!-- Open Street Map term. A water feature with cultural, decorational or historical significance or which serves a recreational purpose. -->
 <string name="osm_tag_fountain">فواره</string>
     <!-- Open Street Map term. This covers places such as mosques, churches, cathedrals, synagogues, temples, etc. -->
-<string name="osm_tag_place_of_worship">مکان عبادت</string>
+<string name="osm_tag_place_of_worship">عبادتگاه</string>
     <!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
 <string name="osm_tag_water_fountain">آب‌خوری</string>
     <!-- Open Street Map term. A facility used to clean the exterior and, in some cases, the interior of motor vehicles. -->
@@ -720,7 +720,7 @@
     <!-- Open Street Map term. Outdoor (sometimes indoor) areas specifically designed for children to play. -->
 <string name="osm_tag_playground">زمین بازی</string>
     <!-- Open Street Map term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
-<string name="osm_tag_sports_field">زمین ورزشی</string>
+<string name="osm_tag_sports_field">زمین ورزش</string>
     <!-- Open Street Map term. A place built for swimming as a recreational activity or sport. -->
 <string name="osm_tag_swimming_pool">استخر شنا</string>
     <!-- Open Street Map term. A distinguishable planned space, usually outdoors, set aside for the display, cultivation, and enjoyment of plants and other forms of nature. -->
@@ -728,21 +728,21 @@
     <!-- Open Street Map term. An area of open space for recreational use, usually designed and in semi-natural state with grassy areas, trees and bushes. Parks are usually urban, but not always. -->
 <string name="osm_tag_park">پارک</string>
     <!-- Open Street Map term. A table with benches, ideal for food and rest. -->
-<string name="osm_tag_picnic_table">میز پیک‌نیک</string>
+<string name="osm_tag_picnic_table">میز پیکنیک</string>
     <!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
-<string name="osm_tag_picnic_area">منطقه پیک‌نیک</string>
+<string name="osm_tag_picnic_area">محدوده‌ی پیکنیک</string>
     <!-- Title in menu of button to share the app with others -->
 <string name="share_title">اشتراک‌گذاری</string>
     <!-- Title of the Frequently Asked Questions page -->
-<string name="faq_title">سوالات متداول</string>
+<string name="faq_title">پرسش‌های متداول</string>
     <!-- Abbreviated title "FAQ" standing for "Frequently Asked Questions" -->
-<string name="faq_title_abbreviated">سوالات متداول</string>
+<string name="faq_title_abbreviated">پرسش‌های متداول</string>
     <!-- Title of the "Tips and Tricks" section in the help content -->
-<string name="faq_tips_title">نکات</string>
+<string name="faq_tips_title">نکات کاربردی</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
-<string name="faq_section_what_is_soundscape">Soundscape چیست و چگونه باید از آن استفاده کنم؟</string>
+<string name="faq_section_what_is_soundscape">ساند‌اسکیپ چیست و چگونه باید از آن استفاده کنم؟</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
-<string name="faq_when_to_use_soundscape_question">چه زمانی باید از Soundscape استفاده کنم؟</string>
+<string name="faq_when_to_use_soundscape_question">چه زمانی باید از ساند‌اسکیپ استفاده کنم؟</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. ’Lighting up your way with sound’ is a marketing tagline for the app. Intersection - A junction where two or more roads meet or cross. 3D sound is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. Quotes written as \" -->
 <string name="faq_when_to_use_soundscape_answer">Soundscape دارای ویژگی‌ها و مزایایی است که طیف وسیعی از سناریوها و مقیاس‌های زمانی را پوشش می‌دهد. علاوه بر این، ارزش Soundscape برای شما ممکن است در طول زمان تغییر کند، بنابراین نحوه استفاده امروز شما ممکن است با نحوه استفاده شما در سه ماه آینده متفاوت باشد. مردم اغلب در مورد برنامه‌ها از نظر *\"این برنامه برای حل چه مشکلی خوب است؟\"* فکر می‌کنند. Soundscape قطعاً می‌تواند بر اساس مورد به مورد مورد استفاده قرار گیرد، زمانی که شما نیاز اطلاعاتی خاصی دارید – مانند ردیابی یک مقصد در مسیر رسیدن به آن، کمک به جهت‌یابی خود هنگام خروج از ایستگاه مترو، جهت‌یابی هنگام خروج از ماشین، یا پیدا کردن نام خیابان‌ها برای، یا فاصله تا، تقاطع بعدی. با این حال، فلسفه پشت Soundscape *\"روشن کردن دنیای شما با صدا\"* است، که برای استفاده در هر زمان که بیرون هستید طراحی شده است تا آگاهی محیطی از اطراف شما را فراهم کند، مانند نگه داشتن شما از نام خیابان‌هایی که در آن هستید، جهتی که در آن حرکت می‌کنید، و نام کسب‌وکارهایی که از کنار آنها عبور می‌کنید. در این حالت استفاده، کاربران ما Soundscape را به عنوان یک *\"برنامه همراه خوب\"*، که از *\"شانس\"* پشتیبانی می‌کند، برای *\"پر کردن شکاف‌ها در نقشه ذهنی شما\"* و ایجاد *\"اعتماد به نفس بیشتر هنگام پیاده‌روی\"* یاد کرده‌اند. در اینجا چند نمونه دیگر از نحوه استفاده کاربران ما از Soundscape در زندگی خود آورده شده است:\n\n\"Soundscape به من کمک کرد تا بعد از پیاده شدن از اتوبوس و حرکت در مسیر اشتباه، به مسیر صحیح بازگردم.\"\n\n\"حتی در شهری که 3 سال در آن زندگی کرده‌ام، با Soundscape تصویری بهبود یافته از آنچه در اطرافم است، ساخته‌ام.\"\n\n\"صدای سه بعدی تجربه پیاده‌روی من را افزایش می‌دهد، زیرا احساس می‌کنم بیشتر با محیط خود ارتباط دارم…اکنون که این برنامه را برای استفاده دارم، احتمال بیشتری دارد که مسیر جدیدی را امتحان کنم.\"\n\n\"من دلتنگ شانس پیاده‌روی و توجه به چیزها هستم. داشتن Soundscape خوب است – برای شنیدن درباره چیزهای اطرافم نیازی به تلاش نیست. اطلاعات رابطه‌ای مفید است و یک برنامه عالی برای آگاهی موقعیتی و کاوش در کریدورهای تجاری است.\"\n\n\"[من از Soundscape استفاده کردم] تا یک میخانه را در مرکز یورک پیدا کنم. [من] از طیف وسیعی از گزینه‌های آن برای ابتدا مکان‌یابی و سپس پیدا کردن آن استفاده کردم. این من را تا 3 متری درب برد – عالی!\"</string>
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. -->
