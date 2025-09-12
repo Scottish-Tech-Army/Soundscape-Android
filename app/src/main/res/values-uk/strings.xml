@@ -473,4 +473,5 @@
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Змінити мову</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Показувати карту на екрані</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Мова пошуку</string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation">Звернутися до служби підтримки</string>
 </resources>
