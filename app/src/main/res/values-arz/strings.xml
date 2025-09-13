@@ -473,4 +473,5 @@
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">الرصيف</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">طريق مسدود</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">يستكشف SoundScape استخدام التكنولوجيا المبتكرة القائمة على الصوت لتمكين الناس من بناء وعي أكثر ثراءً بمحيطهم ، وبالتالي يصبحون أكثر ثقة وتمكينًا للالتفاف.</string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation">الاتصال للدعم</string>
 </resources>
