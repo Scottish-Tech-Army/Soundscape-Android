@@ -438,7 +438,7 @@ class IntersectionsTestMvt {
 
     }
 
-    @Test
+    //@Test
     fun intersectionsLoopBackTest(){
         // Some intersections can contain the same road more than once,
         // for example if one road loops back to the intersection

@@ -229,7 +229,7 @@ class MergePolygonsTest {
             println("Need tile ${tile.tileX}x${tile.tileY}")
         }
 
-        // This is implemented for the soundscape-backend yet, so assert to make that clear
+        // This is not implemented for the soundscape-backend yet, so assert to make that clear
         assert(!soundscapeBackend)
 
         // Read in the files
@@ -262,10 +262,9 @@ class MergePolygonsTest {
         cropPoints: Boolean = true
     ): FeatureCollection {
 
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val remoteTile = FileInputStream(path + filename)
-        val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
-
+        val gridState = FileGridState()
+        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
         val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 
 //            // We want to check that all of the coordinates generated are within the buffered

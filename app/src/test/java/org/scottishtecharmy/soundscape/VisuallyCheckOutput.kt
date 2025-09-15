@@ -119,7 +119,7 @@ class VisuallyCheckOutput {
     fun roadsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), MAX_ZOOM_LEVEL, 1)
+        val gridState = getGridStateForLocation(failandTestLocation, MAX_ZOOM_LEVEL, 1)
         val testRoadsCollection = gridState.getFeatureCollection(TreeId.ROADS)
         val roads = moshi.adapter(FeatureCollection::class.java).toJson(testRoadsCollection)
         // copy and paste into GeoJSON.io
@@ -130,7 +130,7 @@ class VisuallyCheckOutput {
     fun intersectionsFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), MAX_ZOOM_LEVEL, 1)
+        val gridState = getGridStateForLocation(failandTestLocation, MAX_ZOOM_LEVEL, 1)
         // get the Intersections Feature Collection.
         val testIntersectionsCollection = gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 
@@ -143,7 +143,7 @@ class VisuallyCheckOutput {
     fun poiFeatureCollection(){
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         // convert coordinates to tile
-        val gridState = getGridStateForLocation(LngLatAlt(51.43860066718254, -2.69439697265625), MAX_ZOOM_LEVEL, 1)
+        val gridState = getGridStateForLocation(failandTestLocation, MAX_ZOOM_LEVEL, 1)
         // get the POI Feature Collection.
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 

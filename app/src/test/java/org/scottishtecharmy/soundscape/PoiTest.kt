@@ -139,8 +139,8 @@ class PoiTest {
             when(index) {
                 0 -> assert(furthestName == "Woodburn Way Car Park")
                 1 -> assert(furthestName == "No. 1 Boutique")
-                2 -> assert(furthestName == "Allander Flooring")
-                3 -> assert(furthestName == "Jessie Biscuit")
+                2 -> assert(furthestName == "Florella")
+                3 -> assert(furthestName == "W & J Lewis")
             }
 
             featuresToDraw.addFeature(polygon)
