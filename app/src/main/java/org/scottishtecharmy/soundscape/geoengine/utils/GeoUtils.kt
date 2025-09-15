@@ -279,23 +279,23 @@ fun getBoundingBoxOfPolygon(polygon: Polygon): BoundingBox{
  * MultiPolygon object with multiple polygons.
  * @return A Bounding Box for the MultiPolygon.
  */
-fun getBoundingBoxOfMultiPolygon(multiPolygon: MultiPolygon): BoundingBox {
-    var westLon = Int.MAX_VALUE.toDouble()
-    var southLat = Int.MAX_VALUE.toDouble()
-    var eastLon = Int.MIN_VALUE.toDouble()
-    var northLat = Int.MIN_VALUE.toDouble()
-
+fun getBoundingBoxesOfMultiPolygon(multiPolygon: MultiPolygon): List<BoundingBox> {
+    val boundingBoxes = mutableListOf<BoundingBox>()
     for (polygon in multiPolygon.coordinates) {
-        for (linearRing in polygon) {
-            for (point in linearRing) {
-                westLon = min(westLon, point.longitude)
-                southLat = min(southLat, point.latitude)
-                eastLon = max(eastLon, point.longitude)
-                northLat = max(northLat, point.latitude)
-            }
+        var westLon = Int.MAX_VALUE.toDouble()
+        var southLat = Int.MAX_VALUE.toDouble()
+        var eastLon = Int.MIN_VALUE.toDouble()
+        var northLat = Int.MIN_VALUE.toDouble()
+        // Just use the outer ring of each polygon
+        for (point in polygon[0]) {
+            westLon = min(westLon, point.longitude)
+            southLat = min(southLat, point.latitude)
+            eastLon = max(eastLon, point.longitude)
+            northLat = max(northLat, point.latitude)
         }
+        boundingBoxes.add(BoundingBox(westLon, southLat, eastLon, northLat))
     }
-    return BoundingBox(westLon, southLat, eastLon, northLat)
+    return boundingBoxes
 }
 
 /**
@@ -381,49 +381,61 @@ fun bearingFromTwoPoints(
  * The Polygon to test.
  * @return If coordinate is in polygon.
  */
-fun polygonContainsCoordinates(lngLatAlt: LngLatAlt, polygon: Polygon): Boolean {
+fun regionContainsCoordinates(lngLatAlt: LngLatAlt, regionCoordinates: ArrayList<LngLatAlt>): Boolean {
 
     var intersections = 0
-    for (coordinate in polygon.coordinates) {
-        for (i in 1 until coordinate.size) {
-            val v1 = coordinate[i - 1]
-            val v2 = coordinate[i]
+    for (i in 1 until regionCoordinates.size) {
+        val v1 = regionCoordinates[i - 1]
+        val v2 = regionCoordinates[i]
 
-            if (lngLatAlt == v2) {
+        if (lngLatAlt == v2) {
+            return true
+        }
+
+        if (v1.latitude == v2.latitude
+            && v1.latitude == lngLatAlt.latitude
+            && lngLatAlt.longitude > (if (v1.longitude > v2.longitude) v2.longitude else v1.longitude)
+            && lngLatAlt.longitude < if (v1.longitude < v2.longitude) v2.longitude else v1.longitude
+        ) {
+            // Is horizontal polygon boundary
+            return true
+        }
+
+        if (lngLatAlt.latitude > (if (v1.latitude < v2.latitude) v1.latitude else v2.latitude)
+            && lngLatAlt.latitude <= (if (v1.latitude < v2.latitude) v2.latitude else v1.latitude)
+            && lngLatAlt.longitude <= (if (v1.longitude < v2.longitude) v2.longitude else v1.longitude)
+
+        ) {
+            val intersection =
+                (lngLatAlt.latitude - v1.latitude) * (v2.longitude - v1.longitude) / (v2.latitude - v1.latitude) + v1.longitude
+
+            if (intersection == lngLatAlt.longitude) {
+                // Is other boundary
                 return true
             }
 
-            if (v1.latitude == v2.latitude
-                && v1.latitude == lngLatAlt.latitude
-                && lngLatAlt.longitude > (if (v1.longitude > v2.longitude) v2.longitude else v1.longitude)
-                && lngLatAlt.longitude < if (v1.longitude < v2.longitude) v2.longitude else v1.longitude
-            ) {
-                // Is horizontal polygon boundary
-                return true
-            }
-
-            if (lngLatAlt.latitude > (if (v1.latitude < v2.latitude) v1.latitude else v2.latitude)
-                && lngLatAlt.latitude <= (if (v1.latitude < v2.latitude) v2.latitude else v1.latitude)
-                && lngLatAlt.longitude <= (if (v1.longitude < v2.longitude) v2.longitude else v1.longitude)
-
-            ) {
-                val intersection =
-                    (lngLatAlt.latitude - v1.latitude) * (v2.longitude - v1.longitude) / (v2.latitude - v1.latitude) + v1.longitude
-
-                if (intersection == lngLatAlt.longitude) {
-                    // Is other boundary
-                    return true
-                }
-
-                if (v1.longitude == v2.longitude || lngLatAlt.longitude <= intersection) {
-                    intersections++
-                }
+            if (v1.longitude == v2.longitude || lngLatAlt.longitude <= intersection) {
+                intersections++
             }
         }
     }
 
     return intersections % 2 != 0
 }
+
+fun polygonContainsCoordinates(lngLatAlt: LngLatAlt, polygon: Polygon): Boolean {
+    return regionContainsCoordinates(lngLatAlt, polygon.coordinates[0])
+}
+
+fun multiPolygonContainsCoordinates(lngLatAlt: LngLatAlt, multiPolygon: MultiPolygon): Boolean {
+
+    for(polygon in multiPolygon.coordinates)
+        if(regionContainsCoordinates(lngLatAlt, polygon[0]))
+            return true
+
+    return false
+}
+
 
 /**
  * Return a destination coordinate based on a starting point, bearing and distance.
@@ -691,6 +703,20 @@ fun lineStringIsCircular(path: LineString): Boolean {
  * Polygon that we are working out the distance from
  * @return The closest distance of the point to the Polygon
  */
+fun distanceToRegion(
+    pointCoordinates: LngLatAlt,
+    lineString: LineString,
+    ruler: Ruler,
+    nearestPoint: LngLatAlt? = null) : Double
+{
+    val pdh = ruler.distanceToLineString(pointCoordinates, lineString)
+    if(nearestPoint != null) {
+        nearestPoint.latitude = pdh.point.latitude
+        nearestPoint.longitude = pdh.point.longitude
+    }
+    return pdh.distance
+}
+
 fun distanceToPolygon(
     pointCoordinates: LngLatAlt,
     polygon: Polygon,
@@ -701,13 +727,37 @@ fun distanceToPolygon(
     // We're only looking at the outer ring, which is really just a LineString
     val lineString = LineString()
     lineString.coordinates = polygon.coordinates[0]
+    return if(polygonContainsCoordinates(pointCoordinates, polygon))
+        0.0
+    else
+        distanceToRegion(pointCoordinates, lineString, ruler, nearestPoint)
+}
 
-    val pdh = ruler.distanceToLineString(pointCoordinates, lineString)
-    if(nearestPoint != null) {
-        nearestPoint.latitude = pdh.point.latitude
-        nearestPoint.longitude = pdh.point.longitude
+fun distanceToMultiPolygon(
+    pointCoordinates: LngLatAlt,
+    polygon: MultiPolygon,
+    ruler: Ruler,
+    nearestPoint: LngLatAlt? = null)
+        : Double {
+
+    // Check each polygon in turn
+    var shortestDistance = Double.POSITIVE_INFINITY
+    for(region in polygon.coordinates) {
+        if(
+            polygonContainsCoordinates(
+            pointCoordinates, Polygon(region[0])
+            )
+        ) {
+            return 0.0
+        }
+        // We're only looking at the outer ring, which is really just a LineString
+        val lineString = LineString()
+        lineString.coordinates = region[0]
+        val distance = distanceToRegion(pointCoordinates, lineString, ruler, nearestPoint)
+        if(distance < shortestDistance)
+            shortestDistance = distance
     }
-    return pdh.distance
+    return shortestDistance
 }
 
 /**
