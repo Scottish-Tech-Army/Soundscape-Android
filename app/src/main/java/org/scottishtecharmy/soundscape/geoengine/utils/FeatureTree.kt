@@ -120,16 +120,18 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                     // The rtree only supports points, lines, rectangles and circles. Let's create
                     // a bounding box for the polygon and use that in rtree. We can then validate
                     // the search results in a second pass.
-                    val box = getBoundingBoxOfMultiPolygon(multiPolygon)
-                    rtreeList.add(
-                        EntryDefault(
-                            feature,
-                            Geometries.rectangleGeographic(
-                                box.westLongitude, box.southLatitude,
-                                box.eastLongitude, box.northLatitude
+                    val boxes = getBoundingBoxesOfMultiPolygon(multiPolygon)
+                    for(box in boxes) {
+                        rtreeList.add(
+                            EntryDefault(
+                                feature,
+                                Geometries.rectangleGeographic(
+                                    box.westLongitude, box.southLatitude,
+                                    box.eastLongitude, box.northLatitude
+                                )
                             )
                         )
-                    )
+                    }
                 }
 
                 else -> {
@@ -173,7 +175,20 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             }
 
             is Rectangle -> {
-                return distanceToPolygon(from, entry.value().geometry as Polygon, ruler)
+                if(entry.value().geometry.type == "Polygon") {
+                    return distanceToPolygon(
+                        from,
+                        entry.value().geometry as Polygon,
+                        ruler
+                    )
+                }
+                else if(entry.value().geometry.type == "MultiPolygon") {
+                    // Deal with each polygon within the multipolygon
+                    return distanceToMultiPolygon(
+                        from,
+                        entry.value().geometry as MultiPolygon,
+                        ruler)
+                }
             }
         }
         return Double.POSITIVE_INFINITY
@@ -584,8 +599,12 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             )
         ) { entry ->
             // We can get here if the point is in a line, so we need to double check it's a polygon
-            if(entry.value().geometry.type == "Polygon")
+            if(entry.value().geometry.type == "Polygon") {
                 polygonContainsCoordinates(location, entry.value().geometry as Polygon)
+            }
+            else if(entry.value().geometry.type == "MultiPolygon") {
+                multiPolygonContainsCoordinates(location, entry.value().geometry as MultiPolygon)
+            }
             else
                 false
         }

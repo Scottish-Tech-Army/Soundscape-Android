@@ -13,7 +13,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfMultiLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfMultiPoint
-import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfMultiPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getCenterOfBoundingBox
@@ -33,6 +32,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxesOfMultiPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.lineStringsIntersect
 import org.scottishtecharmy.soundscape.geoengine.utils.mergePolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.straightLinesIntersect
@@ -212,15 +212,16 @@ class GeoUtilsTest {
                 )
             )
         }
-        val boundingBoxOfMultiPolygon = getBoundingBoxOfMultiPolygon(multiPolygonObject)
+        val boundingBoxesOfMultiPolygon = getBoundingBoxesOfMultiPolygon(multiPolygonObject)
+        val firstBox = boundingBoxesOfMultiPolygon[0]
         // min lon
-        Assert.assertEquals(0.0, boundingBoxOfMultiPolygon.westLongitude, 0.000001)
+        Assert.assertEquals(0.0, firstBox.westLongitude, 0.000001)
         //min lat
-        Assert.assertEquals(0.0, boundingBoxOfMultiPolygon.southLatitude, 0.000001)
+        Assert.assertEquals(0.0, firstBox.southLatitude, 0.000001)
         //max lon
-        Assert.assertEquals(2.0, boundingBoxOfMultiPolygon.eastLongitude, 0.000001)
+        Assert.assertEquals(2.0, firstBox.eastLongitude, 0.000001)
         // max lat
-        Assert.assertEquals(2.0, boundingBoxOfMultiPolygon.northLatitude, 0.000001)
+        Assert.assertEquals(2.0, firstBox.northLatitude, 0.000001)
 
     }
 

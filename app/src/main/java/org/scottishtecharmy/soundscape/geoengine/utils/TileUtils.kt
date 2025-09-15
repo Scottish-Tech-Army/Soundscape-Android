@@ -275,18 +275,12 @@ fun getDistanceToFeature(
         "Polygon" -> {
             val polygon = feature.geometry as Polygon
             val nearestPoint = LngLatAlt()
-            var distance = distanceToPolygon(
+            val distance = distanceToPolygon(
                 currentLocation,
                 polygon,
                 ruler,
                 nearestPoint
             )
-            // TODO: Could we return negative distance and then interpret that differently in the
-            //  caller?
-            // If we are inside the polygon, return 0m
-            if(polygonContainsCoordinates(currentLocation, polygon)) {
-                distance = 0.0
-            }
             return PointAndDistanceAndHeading(nearestPoint, distance)
         }
 
