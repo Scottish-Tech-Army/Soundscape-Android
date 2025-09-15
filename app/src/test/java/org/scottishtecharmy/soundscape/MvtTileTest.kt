@@ -7,7 +7,6 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.GridState
-import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -28,7 +27,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileOutputStream
 import kotlin.math.abs
 import kotlin.sequences.forEach
@@ -56,6 +54,30 @@ class FileGridState(
         validateContext = false
     }
 
+    fun getTile(x: Int, y: Int, zoomLevel: Int): VectorTile.Tile? {
+        var result: VectorTile.Tile? = null
+        fileTileReader?.let { reader ->
+            val fileTile = reader.getTile(zoomLevel, x, y)
+
+            // Turn the byte array into a VectorTile
+            when (reader.tileCompression.toInt()) {
+                1 -> {
+                    // No compression
+                    result = VectorTile.Tile.parseFrom(fileTile)
+                }
+
+                2 -> {
+                    // Gzip compression
+                    val decompressedTile = decompressGzip(fileTile!!)
+                    result = VectorTile.Tile.parseFrom(decompressedTile)
+                }
+
+                else -> assert(false)
+            }
+        }
+        return result
+    }
+
     /**
      * updateTile is overrider in FileGridState to get the tile data from the unit test resources
      * directory.
@@ -66,46 +88,35 @@ class FileGridState(
         featureCollections: Array<FeatureCollection>,
         intersectionMap: HashMap<LngLatAlt, Intersection>
     ): Boolean {
-        var ret = false
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        try {
-            val remoteTile = FileInputStream(path + "${x}x${y}x${zoomLevel}.mvt")
-            val result = VectorTile.Tile.parseFrom(remoteTile)
-            if (result != null) {
-                val tileFeatureCollection = vectorTileToGeoJson(
-                    tileX = x,
-                    tileY = y,
-                    mvt = result,
-                    intersectionMap = intersectionMap,
-                    tileZoom = zoomLevel)
-                val collections = processTileFeatureCollection(tileFeatureCollection)
 
-                for ((index, collection) in collections.withIndex()) {
-                    featureCollections[index].plusAssign(collection)
-                }
+        val tile = getTile(x, y, zoomLevel)
+        val tileFeatureCollection = vectorTileToGeoJson(
+            tileX = x,
+            tileY = y,
+            mvt = tile!!,
+            intersectionMap = intersectionMap,
+            tileZoom = zoomLevel
+        )
+        val collections = processTileFeatureCollection(tileFeatureCollection)
 
-                ret = true
-            } else {
-                println("Failed to load tile from file")
-            }
-        } catch(e:Exception) {
-            println("$e")
+        for ((index, collection) in collections.withIndex()) {
+            featureCollections[index].plusAssign(collection)
         }
-        return ret
+
+        return true
     }
 }
 
 private fun vectorTileToGeoJsonFromFile(
     tileX: Int,
     tileY: Int,
-    filename: String,
     intersectionMap:  HashMap<LngLatAlt, Intersection>,
     cropPoints: Boolean = true
 ): FeatureCollection {
 
-    val path = "src/test/res/org/scottishtecharmy/soundscape/"
-    val remoteTile = FileInputStream(path + filename)
-    val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
+    val gridState = FileGridState()
+    gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+    val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
 
     return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, MAX_ZOOM_LEVEL)
 }
@@ -178,6 +189,7 @@ fun getGridStateForLocation(
 ): GridState {
 
     val gridState = FileGridState(zoomLevel, gridSize)
+    gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
     runBlocking {
 
         val enabledCategories = emptySet<String>().toMutableSet()
@@ -204,9 +216,9 @@ class MvtTileTest {
         //  1. It gets a vector tile from the protomaps server
         //  2. Parses it with the code auto-generated from the vector_tile.proto specification
         //  3. Prints it out
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val remoteTile = FileInputStream(path + "16093x10211x15.mvt")
-        val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
+        val gridState = FileGridState()
+        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        val tile = gridState.getTile(16093, 10211, 15)!!
         assert(tile.layersList.isNotEmpty())
 
         for (layer in tile.layersList) {
@@ -229,7 +241,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonMilngavie() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, "15991x10212x15.mvt", intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("milngavie.geojson")
@@ -240,7 +252,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonEdinburgh() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, "16093x10211x15.mvt", intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("edinburgh.geojson")
@@ -251,7 +263,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonByresRoad() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, "15992x10223x15.mvt", intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("byresroad.geojson")
@@ -364,7 +376,7 @@ class MvtTileTest {
         for (x in 15990..15992) {
             for (y in 10212..10213) {
                 val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}x15.mvt", intersectionMap)
+                val geojson = vectorTileToGeoJsonFromFile(x, y, intersectionMap)
                 for (feature in geojson) {
                     featureCollection.addFeature(feature)
                 }
@@ -417,7 +429,7 @@ class MvtTileTest {
         // problem, but we do add "distance_to".
 
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, "15990x10212x15.mvt", intersectionMap)
+        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, intersectionMap)
         println(featureCollection.features[0].id)
         val newFeatureCollection = FeatureCollection()
         newFeatureCollection.plusAssign(featureCollection)
@@ -562,7 +574,9 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
+        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
         val settlementGrid = FileGridState(12, 3)
+        settlementGrid.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -699,6 +713,7 @@ class MvtTileTest {
         // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
 
         val gridState = FileGridState()
+        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
 
         // The center of each grid
         for(x in 16093 until 16097) {
@@ -770,5 +785,32 @@ class MvtTileTest {
         val outputFile = FileOutputStream("low-zoom.geojson")
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
+    }
+
+    @Test
+    fun testParsing() {
+
+        val gridState = FileGridState()
+        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+
+        data class Region(val name: String, val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
+        val regions = listOf (
+            Region("Edinburgh", 16090, 10207, 16095, 10212),
+            Region("London", 16328, 10866, 16418, 10928),
+            Region("Birmingham", 16181, 10722, 16237, 10783)
+        )
+        for(region in regions) {
+            println("Test ${region.name}")
+            for(x in region.minX until region.maxX) {
+                for (y in region.minY until region.maxY) {
+                    runBlocking {
+                        val featureCollections =
+                            Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                        gridState.updateTile(x, y, featureCollections, intersectionMap)
+                    }
+                }
+            }
+        }
     }
 }

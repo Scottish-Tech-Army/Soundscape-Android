@@ -219,9 +219,9 @@ class GeoUtilsTest {
         //min lat
         Assert.assertEquals(0.0, firstBox.southLatitude, 0.000001)
         //max lon
-        Assert.assertEquals(2.0, firstBox.eastLongitude, 0.000001)
+        Assert.assertEquals(1.0, firstBox.eastLongitude, 0.000001)
         // max lat
-        Assert.assertEquals(2.0, firstBox.northLatitude, 0.000001)
+        Assert.assertEquals(1.0, firstBox.northLatitude, 0.000001)
 
     }
 

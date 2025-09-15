@@ -34,6 +34,13 @@ jobs:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
 
+      - name: Setup offline maps for tests
+        run: |
+          pwd 
+          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
+          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles
+          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
+
 #      Setting up the tile and search providers from secrets won't work for runners which are
 #      triggered from forks e.g. to test a pull request. The tests that require tiles check if the
 #      tile provider exists, so we leave in this code so that if it's triggered by "Run workflow"

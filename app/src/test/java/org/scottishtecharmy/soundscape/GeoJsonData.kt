@@ -60,3 +60,4 @@ val sixtyAcresCloseTestLocation = LngLatAlt(-2.693002695425122,51.43938442591545
 val longAshtonRoadTestLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
 val woodlandWayTestLocation = LngLatAlt(-2.695517313268283, 51.44082881061331)
 val centralManchesterTestLocation = LngLatAlt(-2.239529, 53.480408)
+val failandTestLocation = LngLatAlt(-2.69439697265625, 51.43860066718254)

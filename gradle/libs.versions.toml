@@ -48,6 +48,7 @@ okhttp = "5.1.0"
 playServicesLocation = "21.3.0"
 preferenceKtx = "1.2.1"
 protobufKotlinLite = "4.31.1"
+pmtilesreader = "0.3.6"
 reorderable = "2.5.1"
 retrofit = "3.0.0"
 review = "2.0.2"
@@ -121,6 +122,7 @@ moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", ver
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
+pmtilesreader = { module = "ch.poole.geo.pmtiles-reader:Reader", version.ref = "pmtilesreader" }
 reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 review = { module = "com.google.android.play:review", version.ref = "review" }

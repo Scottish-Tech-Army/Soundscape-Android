@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
 import android.util.Log
+import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,12 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
 import retrofit2.awaitResponse
+import vector_tile.VectorTile
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
+import java.util.zip.GZIPInputStream
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 
@@ -26,14 +33,58 @@ open class ProtomapsGridState(
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
-    override fun start(applicationContext: Context) {
-        tileClient = ProtomapsTileClient(applicationContext)
+    var fileTileReader: Reader? = null
+
+    override fun start(applicationContext: Context?, offlineExtractPath: String) {
+        if(applicationContext != null)
+            tileClient = ProtomapsTileClient(applicationContext)
+
+        // Create a range reader for the local file
+        if(offlineExtractPath.isNotEmpty())
+            fileTileReader = Reader(File(offlineExtractPath))
     }
 
     /**
      * updateTile is responsible for getting data from the protomaps server and translating it from
      * MVT format into a set of FeatureCollections.
      */
+    fun decompressGzip(compressedData: ByteArray): ByteArray? {
+        // Create a ByteArrayInputStream from the compressed data
+        val byteArrayInputStream = ByteArrayInputStream(compressedData)
+        var gzipInputStream: GZIPInputStream? = null
+        val outputStream = ByteArrayOutputStream()
+
+        try {
+            // Wrap the ByteArrayInputStream with GZIPInputStream
+            gzipInputStream = GZIPInputStream(byteArrayInputStream)
+
+            // Buffer for reading decompressed data
+            val buffer = ByteArray(1024) // Adjust buffer size as needed
+            var len: Int
+
+            // Read from GZIPInputStream and write to ByteArrayOutputStream
+            while (gzipInputStream.read(buffer).also { len = it } > 0) {
+                outputStream.write(buffer, 0, len)
+            }
+
+            return outputStream.toByteArray()
+
+        } catch (e: IOException) {
+            // Handle potential IOExceptions during decompression
+            e.printStackTrace() // Log the error or handle it appropriately
+            return null
+        } finally {
+            // Ensure streams are closed
+            try {
+                gzipInputStream?.close()
+                outputStream.close()
+                byteArrayInputStream.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
     override suspend fun updateTile(
         x: Int,
         y: Int,
@@ -44,13 +95,38 @@ open class ProtomapsGridState(
         withContext(Dispatchers.IO) {
             try {
                 val startTime = System.currentTimeMillis()
-                val service =
-                    tileClient.retrofitInstance?.create(ITileDAO::class.java)
-                val tileReq =
-                    async {
-                        service?.getVectorTileWithCache(x, y, zoomLevel)
+
+                // Try getting the tile from the file
+                var result : VectorTile.Tile? = null
+                fileTileReader?.let { reader ->
+                    var fileTile : ByteArray? = null
+                    fileTile = reader.getTile(zoomLevel, x, y)
+
+                    // Turn the byte array into a VectorTile
+                    when(reader.tileCompression.toInt()) {
+                        1 -> {
+                            // No compression
+                            result = VectorTile.Tile.parseFrom(fileTile)
+                        }
+                        2 -> {
+                            // Gzip compression
+                            val decompressedTile = decompressGzip(fileTile)
+                            result = VectorTile.Tile.parseFrom(decompressedTile)
+                        }
+                        else -> assert(false)
                     }
-                val result = tileReq.await()?.awaitResponse()?.body()
+                }
+
+                if(result == null) {
+                    val service =
+                        tileClient.retrofitInstance?.create(ITileDAO::class.java)
+                    val tileReq =
+                        async {
+                            service?.getVectorTileWithCache(x, y, zoomLevel)
+                        }
+                    result = tileReq.await()?.awaitResponse()?.body()
+                }
+
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
                     Log.e(TAG, "Tile size ${result.serializedSize}")
