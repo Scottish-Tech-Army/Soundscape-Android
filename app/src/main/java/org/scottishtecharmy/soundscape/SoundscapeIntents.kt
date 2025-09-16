@@ -25,7 +25,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
-import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -47,7 +46,7 @@ class SoundscapeIntents
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 val geocodeListener =
                     Geocoder.GeocodeListener { addresses ->
-                        Log.d(TAG, "getFromLocationName results count " + addresses.size.toString())
+                        Log.d(TAG, "getFromLocationName $location has ${addresses.size} result")
                         val address = addresses.firstOrNull()
                         if (address != null) {
                             Log.d(TAG, "$address")
@@ -78,53 +77,62 @@ class SoundscapeIntents
             }
         }
 
-        private fun getRedirectUrl(
-            url: String,
-            context: Context,
-        ) {
-            CoroutineScope(Dispatchers.IO).launch {
-                var urlTmp: URL? = null
-                var connection: HttpURLConnection? = null
-
-                try {
-                    Log.d(TAG, "Open URL $url")
-                    urlTmp = URL(url)
-                } catch (e1: MalformedURLException) {
-                    e1.printStackTrace()
-                }
-
-                try {
-                    Log.d(TAG, "Open connection")
-                    connection = urlTmp!!.openConnection() as HttpURLConnection
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-                try {
-                    connection!!.responseCode
-                    Log.d(TAG, "Response ${connection.responseCode}")
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-
-                val redUrl = connection!!.url.toString()
-                connection.disconnect()
-
-                // Parse URL
-                Log.d(TAG, "Maps URL: $redUrl")
-                val decodedUrl = URLDecoder.decode(redUrl, "UTF-8")
-                Log.d(TAG, "Decoded maps URL: $decodedUrl")
-
-                // The URL will have the text description of the location, followed by some data
-                // which includes the FTID of the place. The FTID is a Google place identifier, but
-                // that isn't useful unless we pay Google for an API key and use the API to decode
-                // it. We'll just try and use text description instead.
-
-                // Strip off initial https://www.google.com/maps/place/ and anything after "/data="
-                val placeName = decodedUrl.substringAfter("maps/place/").substringBefore("/data=")
-                Log.d(TAG, "Place name: $placeName")
-                useGeocoderToGetAddress(placeName, context)
-            }
+    private fun getRedirectUrl(
+        url: String,
+        context: Context?,
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            getRedirectUrlSync(url, context)
         }
+    }
+
+    fun getRedirectUrlSync(
+        url: String,
+        context: Context?,
+    ) : String {
+        var urlTmp: URL? = null
+        var connection: HttpURLConnection? = null
+
+        try {
+            Log.d(TAG, "Open URL $url")
+            urlTmp = URL(url)
+
+            Log.d(TAG, "Open connection")
+            connection = urlTmp.openConnection() as HttpURLConnection
+            Log.d(TAG, "Response ${connection.responseCode}")
+
+            val redUrl = connection.url.toString()
+            connection.disconnect()
+
+            if(connection.responseCode != 200)
+                return ""
+
+            // Parse URL
+            Log.d(TAG, "Maps URL: $redUrl")
+            val decodedUrl = URLDecoder.decode(redUrl, "UTF-8")
+            Log.d(TAG, "Decoded maps URL: $decodedUrl")
+
+            // The URL will have the text description of the location, followed by some data
+            // which includes the FTID of the place. The FTID is a Google place identifier, but
+            // that isn't useful unless we pay Google for an API key and use the API to decode
+            // it. We'll just try and use text description instead.
+
+            // Strip off initial https://www.google.com/maps/place/ and anything after "/data="
+            val placeName =
+                decodedUrl.substringAfter("maps/place/").substringBefore("/")
+            Log.d(TAG, "Place name: $placeName")
+            if (context == null)
+                return placeName
+
+            // For unit tests we pass in a null context and so don't get this far
+            useGeocoderToGetAddress(placeName, context)
+            return placeName
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return ""
+        }
+    }
 
     private fun inputStreamToJson(inputStream: InputStream): JSONObject? {
         return try {
