@@ -33,15 +33,15 @@ open class ProtomapsGridState(
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
-    var fileTileReader: Reader? = null
+    var fileTileReaders: MutableList<Reader> = mutableListOf<Reader>()
 
-    override fun start(applicationContext: Context?, offlineExtractPath: String) {
+    override fun start(applicationContext: Context?, offlineExtractPaths: List<String>) {
         if(applicationContext != null)
             tileClient = ProtomapsTileClient(applicationContext)
 
         // Create a range reader for the local file
-        if(offlineExtractPath.isNotEmpty())
-            fileTileReader = Reader(File(offlineExtractPath))
+        for(extract in offlineExtractPaths)
+            fileTileReaders.add(Reader(File(extract)))
     }
 
     /**
@@ -96,27 +96,32 @@ open class ProtomapsGridState(
             try {
                 val startTime = System.currentTimeMillis()
 
-                // Try getting the tile from the file
+                // Try getting the tile from each file in turn
                 var result : VectorTile.Tile? = null
-                fileTileReader?.let { reader ->
-                    var fileTile : ByteArray? = null
+                for(reader in fileTileReaders) {
+                    var fileTile: ByteArray? = null
                     fileTile = reader.getTile(zoomLevel, x, y)
 
                     // Turn the byte array into a VectorTile
-                    when(reader.tileCompression.toInt()) {
+                    when (reader.tileCompression.toInt()) {
                         1 -> {
                             // No compression
                             result = VectorTile.Tile.parseFrom(fileTile)
                         }
+
                         2 -> {
                             // Gzip compression
                             val decompressedTile = decompressGzip(fileTile)
                             result = VectorTile.Tile.parseFrom(decompressedTile)
                         }
+
                         else -> assert(false)
                     }
+                    if(result != null)
+                        break
                 }
 
+                // Fallback to network
                 if(result == null) {
                     val service =
                         tileClient.retrofitInstance?.create(ITileDAO::class.java)

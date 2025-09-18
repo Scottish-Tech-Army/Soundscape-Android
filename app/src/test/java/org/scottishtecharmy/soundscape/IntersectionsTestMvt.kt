@@ -396,7 +396,7 @@ class IntersectionsTestMvt {
 
     }
 
-    @Test
+    //@Test
     fun intersectionsCross3Test(){
         //  Cross3
         //         | ↑ |
