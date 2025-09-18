@@ -848,9 +848,9 @@
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_what_is_osm_question">اوپن‌استریت‌مپ چیست و چرا از آن برای ساند‌اسکیپ استفاده می‌کنیم؟</string>
     <!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment.  -->
-<string name="faq_what_is_osm_answer">Soundscape برای ارائه اطلاعات اعلامیه‌ها در برنامه، از داده‌های نقشه جغرافیایی استفاده می‌کند. منبع اصلی نقشه که ما استفاده می‌کنیم Open Street Map (www.openstreetmap.org) است که یک پلتفرم نقشه‌برداری غنی و توسط جامعه تولید و ویرایش شده است، که به سازمان‌ها و افراد امکان می‌دهد کیفیت و جزئیات اطلاعات ارائه شده و دسترسی‌پذیری فضاهای خود را با استفاده از ابزارهای نویسندگی نقشه Open Street Map بهبود بخشند.</string>
+<string name="faq_what_is_osm_answer">ساند‌اسکیپ برای ارائه‌ی اعلان‌های خود از داده‌های موجود در نقشه‌های جغرافیایی بهره می‌گیرد. منبع اصلی ما برای دریافت این داده‌ها اوپن‌استریت‌مپ می‌باشد (www.openstreetmap.org). اوپن‌استریت‌مپ یک بستر غنی نقشه‌برداریست که داده‌های آن توسط کاربران گردآوری و ثبت می‌گردد. این پلتفرم به اشخاص و سازمان‌ها امکان می‌دهد تا کیفیت و دقت داده‌های ارائه شده و دسترسی‌پذیری فضا‌های خود را با استفاده از ابزارهای نقشه‌نگاری اوپن‌استریت‌مپ بهبود بخشند.</string>
     <!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
-<string name="faq_tip_beacon_quiet">اگر گوشی خود را در جیب خود بگذارید و از حرکت باز ایستید، صدای نشانه ی صوتی آرام‌تر می‌شود زیرا Soundscape نمی‌تواند تشخیص دهد که به کدام سمت رو به رو هستید. این مشکل را با شروع دوباره به راه رفتن، یا بیرون آوردن گوشی و نگه داشتن آن به صورت صاف حل کنید.</string>
+<string name="faq_tip_beacon_quiet">اگر گوشی خود را در جیبتان گذاشته و از حرکت باز ایستید، صدای جهت‌نمای صوتی کاهش می‌یابد زیرا ساند‌اسکیپ نمی‌تواند جهت شما را تشخیص دهد. برای حل این مشکل، دوباره شروع به حرکت نمایید یا گوشی را از جیبتان خارج کرده و آن را به حالت افقی نگه دارید.</string>
     <!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. "Start Audio Beacon" should be translated the same as "location_detail.action.beacon" Quotes written as \" -->
 <string name="faq_tip_setting_beacon_on_address">شما می‌توانید جهت‌نمای صوتی را روی هر آدرسی تنظیم کنید. آدرس مورد نظر خود را در صفحه‌ی اصلی ساند‌اسکیپ جستجو نمایید. پس از مشخص کردن آدرس دل‌خواهتان از میان نتایج جستجو، یک صفحه‌ی *«جزئیات موقعیت مکانی»* برای شما نمایش داده خواهد شد که حاوی یک گزینه‌ی *«فعال‌سازی جهت‌نمای صوتی»* برای مقصد انتخابی شما می‌باشد. به این ترتیب، شما می‌توانید جهت‌نمای صوتی را روی کسب‌وکار‌ها، نقاط شاخص، منازل مسکونی یا مکان‌های دیگری که در نقشه‌های اوپن‌استریت‌مپ وجود ندارند تنظیم نمایید.</string>
     <!-- 'Nearby Places' is a screen in the app that shows a list of places that are close to the user. Quotes written as \" -->
@@ -858,17 +858,17 @@
     <!-- Preserve meters unit - Do not convert. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_tip_turning_beacon_off">شما می‌توانید صدای ریتمیک جهت‌نمای صوتی را با استفاده از دکمه‌ی بستن صدای جهت‌نما در صفحه‌ی اصلی خاموش و روشن کنید. در صورت بسته بودن صدای جهت‌نما، شما همچنان در ارتباط با فاصله‌تان تا مقصد حدوداً هر ۵۰ متر یک بار به‌روزرسانی دریافت خواهید کرد.</string>
     <!-- 'Manage Callouts' is the name of one of the sections on the Soundscape Settings screen. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_tip_turning_off_auto_callouts">اگر هنوز می‌خواهید با Soundscape تعامل داشته باشید اما نمی‌خواهید اعلامیه‌های خودکار را بشنوید، می‌توانید با رفتن به بخش *\"مدیریت اعلامیه‌ها\"* از صفحه *\"تنظیمات\"* از طریق منو، اعلامیه‌ها را خاموش کنید. یا، اگر قصد استفاده از Soundscape را ندارید، می‌توانید آن را با استفاده از دکمه *\"خواب\"* در صفحه اصلی، در حالت خواب یا چرت زدن قرار دهید.</string>
+<string name="faq_tip_turning_off_auto_callouts">اگر می‌خواهید همچنان از ساند‌اسکیپ استفاده نمایید اما نیازی به شنیدن اعلان‌های خودکار ندارید، می‌توانید آنها را در قسمت *«مدیریت اعلان‌ها»* از منوی *«تنظیمات»* خاموش کنید. همچنین، در صورت عدم نیاز به استفاده از ساند‌اسکیپ، می‌توانید آن را با ضربه زدن روی دکمه‌ی *«حالت خواب»* در صفحه‌ی اصلی، در یکی از دو وضعیت خواب یا چرت قرار دهید.</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
-<string name="faq_tip_hold_phone_flat">Soundscape بهترین عملکرد را زمانی دارد که گوشی را به صورت صاف با صفحه رو به آسمان و بالای گوشی رو به دور از شما نگه دارید.</string>
+<string name="faq_tip_hold_phone_flat">برای داشتن تجربه‌ی بهتر هنگام استفاده از ساند‌اسکیپ، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در امتداد جهتی باشد که شما رو به آن ایستاده‌اید.</string>
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Manage Markers' is the name of one of the options in the Soundscape menu. Quotes written as \" -->
-<string name="faq_tip_create_marker_at_bus_stop">اگر مسیر اتوبوسی وجود دارد که به طور منظم از آن استفاده می‌کنید، ایستگاه‌های سوار و پیاده شدن خود را به عنوان نشانگر تنظیم کنید. به این ترتیب آنها ذخیره می‌شوند تا بتوانید به راحتی آنها را دوباره پیدا کنید، فقط از منو به *\"مدیریت نشانگرها\"* بروید و آنها را در لیست پیدا کنید. می‌توانید یک نشانه ی صوتی روی آنها تنظیم کنید و به‌روزرسانی‌های دوره‌ای در مورد فاصله خود تا ایستگاه خروجی خود دریافت خواهید کرد. توجه: می‌توانید صدای ریتمیک را خاموش کنید و همچنان به‌روزرسانی‌های فاصله را در طول مسیر دریافت خواهید کرد.</string>
+<string name="faq_tip_create_marker_at_bus_stop">اگر یک مسیر خاص را با اتوبوس مرتباً طی می‌کنید، ایستگاه‌هایی را که در آن سوار و پیاده می‌شوید نشانه‌گذاری و ذخیره نمایید. به این ترتیب، می‌توانید دوباره آنها را به‌راحتی پیدا کنید. فقط کافیست به قسمت *«مدیریت نشانه‌ها»* در منو مراجعه کرده و آنها را در فهرست بیابید. شما همچنین می‌توانید جهت‌نمای صوتی را روی نشانه‌هایی که ایجاد می‌کنید تنظیم نموده و به این روش از فاصله‌ی خود تا ایستگاه مورد نظرتان به‌طور منظم مطلع شوید. توجه داشته باشید که شما می‌توانید در صورت تمایل صدای ریتمیک جهت‌نمای صوتی را خاموش کرده و همچنان به‌روزرسانی‌های فاصله تا مقصد را در طول مسیر دریافت نمایید.</string>
     <!-- No language has been selected by the user, shown in the onboarding screens if the system language isn't supported by the app -->
-<string name="no_language_selected">زبانی انتخاب نشده است</string>
+<string name="no_language_selected">هیچ زبانی انتخاب نشده است</string>
     <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">اعلان‌ها</string>
     <!-- Message appears as notification when app is running -->
-<string name="notification_text" tools:ignore="MissingTranslation">ما این سرویس مکان‌یابی را در پیش‌زمینه اجرا می‌کنیم</string>
+<string name="notification_text" tools:ignore="MissingTranslation">این سرویس مکان‌یابی را در پیش‌زمینه اجرا می‌کنیم</string>
     <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">لغو جستجو</string>
     <!-- OSM tag for train station -->
@@ -884,19 +884,19 @@
     <!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
 <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">ایستگاه مترو %s</string>
     <!-- OSM tag for ferry terminal -->
-<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
+<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">اسکله</string>
     <!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
-<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">پایانه کشتی %s</string>
+<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">اسکله‌ی %s</string>
     <!-- Title for settings page group of audio settings -->
 <string name="menu_manage_audio" tools:ignore="MissingTranslation">مدیریت صدا</string>
     <!-- Title for settings page group of audio settings -->
 <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">مدیریت دسترسی‌پذیری</string>
     <!-- App theme light/dark description -->
-<string name="settings_theme_light_dark" tools:ignore="MissingTranslation">پوسته روشن یا تیره</string>
+<string name="settings_theme_light_dark" tools:ignore="MissingTranslation">پوسته‌ی روشن یا تیره</string>
     <!-- App theme setting for automatic light/dark based on system -->
 <string name="settings_theme_auto" tools:ignore="MissingTranslation">خودکار</string>
     <!-- App theme setting for light (as opposed to dark) -->
-<string name="settings_theme_is_light" tools:ignore="MissingTranslation">استفاده از پوسته روشن</string>
+<string name="settings_theme_is_light" tools:ignore="MissingTranslation">استفاده از پوسته‌ی روشن</string>
     <!-- App theme setting for light (as opposed to dark) -->
 <string name="settings_theme_light" tools:ignore="MissingTranslation">روشن</string>
     <!-- App theme setting for dark (as opposed to light) -->
@@ -910,18 +910,18 @@
     <!-- App theme options for contrast setting - high has the most contrast-->
 <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">بالا</string>
     <!-- Description for an item in a list e.g. "Blah is choice 2 out of 3" -->
-<string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s انتخاب %2$s از %3$s است</string>
+<string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s گزینه‌ی %2$s از %3$s است</string>
     <!-- Setting hints for keeping or using a value from a list-->
 <string name="settings_keep_value" tools:ignore="MissingTranslation">نگه داشتن</string>
-    <string name="settings_use_value" tools:ignore="MissingTranslation">استفاده</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">از این گزینه استفاده کنید</string>
     <!-- Button text for exiting Street Preview mode -->
-<string name="street_preview_exit" tools:ignore="MissingTranslation">خروج از پیش‌نمایش خیابان</string>
+<string name="street_preview_exit" tools:ignore="MissingTranslation">خروج از حالت آشنایی با محل</string>
     <!-- Settings option for enabling recording of travel locations -->
-<string name="settings_travel_recording" tools:ignore="MissingTranslation">فعال کردن ضبط سفر</string>
+<string name="settings_travel_recording" tools:ignore="MissingTranslation">فعال‌سازی ضبط سفر</string>
     <!-- Settings option for enabling a map styling which has improved accessibility -->
-<string name="settings_accessible_map" tools:ignore="MissingTranslation">فعال کردن استایل نقشه قابل دسترسی</string>
+<string name="settings_accessible_map" tools:ignore="MissingTranslation">نمایش نقشه‌ی دسترسی‌پذیر</string>
     <!-- Settings title for various debugging options to aid developers -->
-<string name="settings_debug_heading" tools:ignore="MissingTranslation">تنظیمات اشکال‌زدایی</string>
+<string name="settings_debug_heading" tools:ignore="MissingTranslation">تنظیمات رفع اشکال</string>
     <!-- Menu option for sharing the recorded travel route via another app -->
 <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">اشتراک‌گذاری ضبط سفر</string>
     <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
@@ -964,4 +964,5 @@
     <string name="permissions_required" tools:ignore="MissingTranslation">مجوز‌های مکان‌یابی برای اجرای اپلیکیشن الزامی می‌باشد.</string>
     <string name="permissions_button" tools:ignore="MissingTranslation">مجوز‌ها را در قسمت تنظیمات اپلیکیشن تغییر دهید</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">تماس با پشتیبانی</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">نمایش نقشه روی صفحه</string>
 </resources>
