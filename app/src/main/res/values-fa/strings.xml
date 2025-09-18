@@ -923,23 +923,23 @@
     <!-- Settings title for various debugging options to aid developers -->
 <string name="settings_debug_heading" tools:ignore="MissingTranslation">تنظیمات رفع اشکال</string>
     <!-- Menu option for sharing the recorded travel route via another app -->
-<string name="menu_share_recorded_route" tools:ignore="MissingTranslation">اشتراک‌گذاری ضبط سفر</string>
+<string name="menu_share_recorded_route" tools:ignore="MissingTranslation">اشتراک‌گذاری سفر ضبط‌شده</string>
     <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
-<string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s به %2$s از طریق %3$s</string>
+<string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s به %2$s از مسیر %3$s</string>
     <!-- Road description of path to another road e.g. "Path to Moor Road" -->
 <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s به %2$s</string>
     <!-- Road description of path joining two roads e.g. "Path that joins Roselea Drive and Moor Road" -->
 <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s که %2$s و %3$s را به هم متصل می‌کند</string>
     <!-- Road description for path via steps/tunnel/bridge e.g. "Path via bridge" -->
-<string name="confect_name_via" tools:ignore="MissingTranslation">%1$s از طریق %2$s</string>
+<string name="confect_name_via" tools:ignore="MissingTranslation">%1$s از مسیر %2$s</string>
     <!-- Description for pavement next to road e.g. "Pavement next to Clober Road" -->
 <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">پیاده‌رو کنار %1$s</string>
     <!-- Sidewalk description -->
 <string name="confect_name_pavement" tools:ignore="MissingTranslation">پیاده‌رو</string>
     <!-- Dead end road description - a road that goes nowhere -->
-<string name="confect_name_dead_end" tools:ignore="MissingTranslation">بن بست</string>
+<string name="confect_name_dead_end" tools:ignore="MissingTranslation">بن‌بست</string>
     <!-- Text for the About Soundscape menu option. It describes what the app does -->
-<string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape به کاوش در استفاده از فناوری نوآورانه مبتنی بر صدا می‌پردازد تا افراد را قادر سازد تا آگاهی غنی‌تری از محیط اطراف خود ایجاد کنند، در نتیجه اعتماد به نفس بیشتری پیدا کرده و توانمندتر شوند تا با استفاده از نشانه‌های صوتی سه بعدی، آگاهی محیطی را غنی کرده و راهی جدید برای ارتباط با محیط را فراهم کنند.</string>
+<string name="about_soundscape" tools:ignore="MissingTranslation">ساند‌اسکیپ با کاوش در عرصه‌ی فن‌آوری‌های نوین صوتی می‌کوشد کاربران را قادر سازد تصویر کامل‌تری از محیط پیرامون در ذهن خود ترسیم کرده و در نتیجه با اعتماد به نفس و توانمندی بیشتری در جامعه تردد نمایند.</string>
     <!-- Licensing strings -->
 <string name="copyright_notices" translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
     <string name="osm_copyright" translatable="false">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.</string>
@@ -965,4 +965,5 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">مجوز‌ها را در قسمت تنظیمات اپلیکیشن تغییر دهید</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">تماس با پشتیبانی</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">نمایش نقشه روی صفحه</string>
+    <string name="settings_search_results_language" tools:ignore="MissingTranslation">جستجوی زبان</string>
 </resources>
