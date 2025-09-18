@@ -46,6 +46,12 @@ import kotlin.io.path.nameWithoutExtension
  * over the network. It also sets validateContext to false as it assumes that the tests are all
  * running in a single context.
  */
+
+val offlineExtracts = listOf(
+    "src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles",
+)
 class FileGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
     gridSize: Int = GRID_SIZE) : ProtomapsGridState(zoomLevel, gridSize) {
@@ -56,8 +62,10 @@ class FileGridState(
 
     fun getTile(x: Int, y: Int, zoomLevel: Int): VectorTile.Tile? {
         var result: VectorTile.Tile? = null
-        fileTileReader?.let { reader ->
+        for(reader in fileTileReaders) {
             val fileTile = reader.getTile(zoomLevel, x, y)
+            if(fileTile == null)
+                continue
 
             // Turn the byte array into a VectorTile
             when (reader.tileCompression.toInt()) {
@@ -90,6 +98,8 @@ class FileGridState(
     ): Boolean {
 
         val tile = getTile(x, y, zoomLevel)
+        // If the tile isn't included in offlineExtracts then this will assert
+        assert(tile != null)
         val tileFeatureCollection = vectorTileToGeoJson(
             tileX = x,
             tileY = y,
@@ -115,7 +125,7 @@ private fun vectorTileToGeoJsonFromFile(
 ): FeatureCollection {
 
     val gridState = FileGridState()
-    gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+    gridState.start(null, offlineExtracts)
     val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
 
     return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, MAX_ZOOM_LEVEL)
@@ -189,7 +199,7 @@ fun getGridStateForLocation(
 ): GridState {
 
     val gridState = FileGridState(zoomLevel, gridSize)
-    gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+    gridState.start(null, offlineExtracts)
     runBlocking {
 
         val enabledCategories = emptySet<String>().toMutableSet()
@@ -217,7 +227,7 @@ class MvtTileTest {
         //  2. Parses it with the code auto-generated from the vector_tile.proto specification
         //  3. Prints it out
         val gridState = FileGridState()
-        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        gridState.start(null, offlineExtracts)
         val tile = gridState.getTile(16093, 10211, 15)!!
         assert(tile.layersList.isNotEmpty())
 
@@ -574,9 +584,9 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
-        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        gridState.start(null, offlineExtracts)
         val settlementGrid = FileGridState(12, 3)
-        settlementGrid.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        settlementGrid.start(null, offlineExtracts)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -713,7 +723,7 @@ class MvtTileTest {
         // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
 
         val gridState = FileGridState()
-        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        gridState.start(null, offlineExtracts)
 
         // The center of each grid
         for(x in 16093 until 16097) {
@@ -791,13 +801,13 @@ class MvtTileTest {
     fun testParsing() {
 
         val gridState = FileGridState()
-        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        gridState.start(null, offlineExtracts)
 
         data class Region(val name: String, val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
         val regions = listOf (
             Region("Edinburgh", 16090, 10207, 16095, 10212),
-            Region("London", 16328, 10866, 16418, 10928),
-            Region("Birmingham", 16181, 10722, 16237, 10783)
+            Region("Bristol", 16128, 10880, 16192, 10944),
+            Region("Manchester", 16128, 10560, 16192, 10624),
         )
         for(region in regions) {
             println("Test ${region.name}")

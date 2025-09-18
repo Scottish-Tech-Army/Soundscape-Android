@@ -38,7 +38,9 @@ jobs:
         run: |
           pwd 
           ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/cardiff-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/glasgow-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/manchester-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles
           ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
 
 #      Setting up the tile and search providers from secrets won't work for runners which are

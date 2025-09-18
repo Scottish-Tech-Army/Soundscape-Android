@@ -263,7 +263,7 @@ class MergePolygonsTest {
     ): FeatureCollection {
 
         val gridState = FileGridState()
-        gridState.start(null, "src/test/res/org/scottishtecharmy/soundscape/united-kingdom.pmtiles")
+        gridState.start(null, offlineExtracts)
         val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
         val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 
