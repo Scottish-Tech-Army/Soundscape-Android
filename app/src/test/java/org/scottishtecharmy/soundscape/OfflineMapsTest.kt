@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileInputStream
+import kotlin.String
 
 class OfflineMapsTest {
 
@@ -35,7 +36,7 @@ class OfflineMapsTest {
             var highlight = ""
             if(index == mostCentral)
                 highlight = "*"
-            println("$highlight ${extract.properties} - ${shortestDistance}")
+            println("$highlight ${extract.properties} - $shortestDistance")
         }
 
         val simple = tree.getNearestCollection(location, 250000.0, 5, CheapRuler(location.latitude))
@@ -67,7 +68,48 @@ class OfflineMapsTest {
 
     /**
      * This test demonstrates the organising of the manifest by continent and country
+     *
+     * Continents -> Countries -> Cities
+     *                         -> Provinces/States
+     *
      */
+    private fun addCountry(continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>>,
+                           country: String,
+                           continent: String,
+                           countryFeature: Feature? = null) {
+
+        val countriesWithinContinent = continents[continent]!!
+        if(!countriesWithinContinent.contains(country)) {
+            countriesWithinContinent[country] = mutableMapOf()
+        }
+        if(countryFeature != null) {
+            val regionMap = countriesWithinContinent[country] as MutableMap<String, Feature>
+            regionMap["country"] = countryFeature
+        }
+    }
+    private fun addCityCluster(continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>>,
+                               country: String,
+                               continent: String,
+                               cityClusterFeature: Feature) {
+
+        addCountry(continents, country, continent)
+        val regionMap = (continents[continent]!!)[country]  as MutableMap<String, Feature>
+        val cityClusterName = cityClusterFeature.properties?.get("anchor_city")
+        regionMap[cityClusterName as String] = cityClusterFeature
+    }
+
+    private fun addProvince(continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>>,
+                            country: String,
+                            continent: String,
+                            provinceFeature: Feature) {
+
+        addCountry(continents, country, continent)
+        val regionMap = (continents[continent]!!)[country]  as MutableMap<String, Feature>
+        val provinceName = provinceFeature.properties?.get("name")
+        if(provinceName != null)
+            regionMap[provinceName as String] = provinceFeature
+    }
+
     @Test
     fun testHierarchyGenerationFromManifest() {
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
@@ -80,7 +122,7 @@ class OfflineMapsTest {
 
         // This code just makes a map of continents to countries to provinces
 
-        val continents: MutableMap<String, MutableMap<String, Any>> = mutableMapOf()
+        val continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>> = mutableMapOf()
         for (feature in collection) {
             val continent = feature.properties?.get("continent")
             continent?. let { continent ->
@@ -90,26 +132,35 @@ class OfflineMapsTest {
                     continents[continent as String] = mutableMapOf()
                 }
 
-                if (feature.properties?.get("feature_type") == "country") {
-                    // Add new country
-                    val name = feature.properties?.get("name") as String
-                    val countriesMap = continents[continent]!!
-                    countriesMap[name] = feature
-                }
-                else {
-                    // This Feature is not a country, but is a province of some kind
-                    val countryName = feature.properties?.get("country_name") as String
-                    val countriesMap = continents[continent]!!
-
-                    if (!countriesMap.contains(countryName)) {
-                        countriesMap[countryName] = mutableMapOf<String, MutableMap<String, Feature>>()
+                val featureType = feature.properties?.get("feature_type") as String
+                when (featureType) {
+                    "country" -> {
+                        val name = feature.properties?.get("name") as String
+                        addCountry(
+                            continents,
+                            name,
+                            continent as String,
+                            feature
+                        )
                     }
-                    val regionMap = countriesMap[countryName] as MutableMap<String, Feature>
-                    val name = feature.properties?.get("name")
-                    if (name == null)
-                        println("Bug with unusual Russian region")
-                    else
-                        regionMap[name as String] = feature
+                    "city_cluster" -> {
+                        val countryName = feature.properties?.get("anchor_country") as String
+                        addCityCluster(
+                            continents,
+                            countryName,
+                            continent as String,
+                            feature
+                        )
+                    }
+                    else -> {
+                        val countryName = feature.properties?.get("country_name") as String
+                        addProvince(
+                            continents,
+                            countryName,
+                            continent as String,
+                            feature
+                        )
+                    }
                 }
             }
         }
@@ -118,22 +169,28 @@ class OfflineMapsTest {
         for (continent in continents) {
             println("${continent.key} ->")
             for(country in continent.value) {
-                val states = country.value
-                if(states is MutableMap<*, *>) {
-                    println("\t${country.key} ->")
-                    for (state in states) {
-                        val feature = state.value as Feature
-                        val extractSize = feature.properties?.get("extract-size") as Double
-                        val formattedSize = String.format("%.2fMB", extractSize / 1024 / 1024)
-                        val extractName = feature.properties?.get("filename")
-                        println("\t\t${state.key}, $extractName $formattedSize")
-                    }
-                } else {
-                    val feature = country.value as Feature
+                val countryMembers = country.value
+                println("\t${country.key} ->")
+                for (member in countryMembers) {
+                    val feature = member.value
                     val extractSize = feature.properties?.get("extract-size") as Double
                     val formattedSize = String.format("%.2fMB", extractSize / 1024 / 1024)
                     val extractName = feature.properties?.get("filename")
-                    println("\t${country.key}, $extractName $formattedSize")
+
+                    val memberCities = StringBuilder()
+                    val cities = feature.properties?.get("city_names") as List<String>?
+                    if(cities != null) {
+                        if(cities.size > 1) {
+                            memberCities.append(" (")
+                            for ((index, city) in cities.withIndex()) {
+                                if (index != 0)
+                                    memberCities.append(", ")
+                                memberCities.append(city)
+                            }
+                            memberCities.append(")")
+                        }
+                    }
+                    println("\t\t${member.key}${memberCities}, $extractName $formattedSize")
                 }
             }
         }
