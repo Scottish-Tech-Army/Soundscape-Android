@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import org.scottishtecharmy.soundscape.R
@@ -107,7 +108,8 @@ fun PlacesNearbyList(
                     icon = folderItem.icon,
                     onClick = {
                         onClickFolder(folderItem.filter, folderItem.name)
-                    }
+                    },
+                    modifier = Modifier.testTag("placesNearby-$index")
                 )
             }
         } else {
@@ -131,7 +133,8 @@ fun PlacesNearbyList(
                             }
                         )
                     ),
-                    userLocation = uiState.userLocation
+                    userLocation = uiState.userLocation,
+                    modifier = Modifier.testTag("placesNearby-$index")
                 )
             }
         }

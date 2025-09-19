@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
@@ -65,6 +66,7 @@ fun DrawerContent(
                             }
                         }
                     },
+                    modifier = Modifier.testTag("menuDrawerBack")
                 ) {
                     Icon(
                         Icons.AutoMirrored.Rounded.ArrowBack,
@@ -108,11 +110,13 @@ fun DrawerContent(
                     onClick = { onNavigate(HomeRoutes.Settings.route) },
                     label = stringResource(R.string.settings_screen_title),
                     icon = Icons.Rounded.Settings,
+                    modifier = Modifier.testTag("menuSettings")
                 )
                 DrawerMenuItem(
                     onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help_and_tutorials}") },
                     label = stringResource(R.string.menu_help_and_tutorials),
                     Icons.AutoMirrored.Rounded.HelpOutline,
+                    modifier = Modifier.testTag("menuHelpAndTutorials")
                 )
 
 // Not implemented yet
@@ -125,12 +129,14 @@ fun DrawerContent(
                     onClick = { rateSoundscape() },
                     label = stringResource(R.string.menu_rate),
                     icon = Icons.Rounded.Star,
+                    modifier = Modifier.testTag("menuRate")
                 )
 
                 DrawerMenuItem(
                     onClick = { contactSupport() },
                     label = stringResource(R.string.menu_contact_support),
                     icon = Icons.Rounded.Markunread,
+                    modifier = Modifier.testTag("menuContactSupport")
                 )
 
 // This is supposed to share the app with someone else (not the location)
@@ -144,6 +150,7 @@ fun DrawerContent(
                     onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
                     label = stringResource(R.string.settings_about_app),
                     Icons.AutoMirrored.Rounded.HelpOutline,
+                    modifier = Modifier.testTag("menuAboutSoundscape")
                 )
 
                 if (recordingEnabled) {
@@ -151,6 +158,7 @@ fun DrawerContent(
                         onClick = { shareRecording() },
                         label = stringResource(R.string.menu_share_recorded_route),
                         icon = Icons.Rounded.Share,
+                        modifier = Modifier.testTag("menuShareRecording")
                     )
                 }
             }

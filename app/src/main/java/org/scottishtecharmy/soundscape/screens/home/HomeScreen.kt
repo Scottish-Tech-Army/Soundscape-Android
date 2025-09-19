@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -88,6 +91,7 @@ fun getCurrentLocationDescription(viewModel: HomeViewModel, state: HomeState): L
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun HomeScreen(
     navController: NavHostController,
@@ -133,7 +137,9 @@ fun HomeScreen(
                 routeFunctions = routeFunctions,
                 streetPreviewFunctions = streetPreviewFunctions,
                 goToAppSettings = viewModel::goToAppSettings,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
                 permissionsRequired = permissionsRequired
             )
         }
@@ -149,7 +155,9 @@ fun HomeScreen(
             Settings(
                 onNavigateUp = { navController.navigateUp() },
                 uiState = uiState.value,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
                 supportedLanguages = languageUiState.value.supportedLanguages,
                 onLanguageSelected = { selectedLanguage ->
                     languageViewModel.updateLanguage(selectedLanguage)
@@ -164,7 +172,9 @@ fun HomeScreen(
             // Always just pop back out of settings, don't add to the queue
             LanguageScreen(
                 onNavigate = { navController.navigateUp() },
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
             )
         }
 
@@ -182,7 +192,9 @@ fun HomeScreen(
                 location = state.value.location,
                 navController = navController,
                 heading = state.value.heading,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
             )
         }
 
@@ -191,7 +203,10 @@ fun HomeScreen(
             MarkersAndRoutesScreen(
                 navController = navController,
                 viewModel = viewModel,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing))
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
         }
 
         composable(HomeRoutes.RouteDetails.route + "/{routeId}") { backStackEntry ->
@@ -199,7 +214,9 @@ fun HomeScreen(
             RouteDetailsScreenVM(
                 routeId = routeId.toLong(),
                 navController = navController,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
                 userLocation = state.value.location,
                 heading = state.value.heading,
                 routePlayerState = state.value.currentRouteData
@@ -251,7 +268,9 @@ fun HomeScreen(
                 routeObjectId = uiState.routeObjectId,
                 navController = navController,
                 viewModel = addAndEditRouteViewModel,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
                 userLocation = state.value.location,
                 heading = state.value.heading,
                 editRoute = (command == "edit"),
@@ -264,19 +283,25 @@ fun HomeScreen(
             HelpScreen(
                 topic = topic,
                 navController = navController,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
             )
         }
         composable(HomeRoutes.Sleep.route) {
             SleepScreenVM(
                 navController = navController,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
             )
         }
         composable(HomeRoutes.PlacesNearby.route) {
             PlacesNearbyScreenVM(
                 homeNavController = navController,
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
             )
         }
     }

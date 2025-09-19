@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
@@ -94,6 +95,8 @@ fun TermsScreen(
                 Checkbox(
                     checked = checkedState.value,
                     onCheckedChange = null,
+                    modifier.testTag("termsScreenAgree")
+
                 )
                 Text(
                     text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
@@ -112,7 +115,9 @@ fun TermsScreen(
                     onClick = {
                         onNavigate()
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("termsScreenContinueButton"),
                     enabled = checkedState.value
                 )
             }

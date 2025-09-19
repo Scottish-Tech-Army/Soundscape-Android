@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -151,7 +152,8 @@ fun AudioBeacons(
                         isSelected = beacon == selectedBeacon,
                         onSelect = {
                             onBeaconSelected(beacon)
-                        }
+                        },
+                        modifier = Modifier.testTag("${beacon}Button"),
                     )
                 }
             }
@@ -166,7 +168,9 @@ fun AudioBeacons(
                     onClick = {
                         onContinue()
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("audioBeaconsContinueButton"),
                     enabled = selectedBeacon != null,
                 )
             }

@@ -26,10 +26,11 @@ fun AudioBeaconItem(
     text: String,
     isSelected: Boolean,
     onSelect: () -> Unit,
-    foregroundColor: Color
+    foregroundColor: Color,
+    modifier: Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             // Accessibility recommendation for the size of a clickable thing
             .padding(horizontal = spacing.small, vertical = spacing.medium)
             .fillMaxWidth()
@@ -44,7 +45,7 @@ fun AudioBeaconItem(
                 Icons.Rounded.Done,
                 contentDescription = null,
                 tint = foregroundColor,
-                modifier = Modifier
+                modifier = modifier
                     .size(spacing.icon)
             )
         }
@@ -56,7 +57,7 @@ fun AudioBeaconItem(
         )
         Row(
             horizontalArrangement = Arrangement.End,
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .padding(end = spacing.small)
         ) {
@@ -64,7 +65,7 @@ fun AudioBeaconItem(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
                 tint = foregroundColor,
-                modifier = Modifier
+                modifier = modifier
                     .size(spacing.icon)
             )
         }
