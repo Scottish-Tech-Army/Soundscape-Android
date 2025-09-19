@@ -43,7 +43,7 @@
     <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة</string>
     <string name="location_detail_action_edit_hint">تعديل النقاط المفضله</string>
     <string name="location_detail_action_share_hint">شارك هذا الموقع</string>
-    <string name="location_detail_action_preview_hint">ابدا معاينه هذا الموقع</string>
+    <string name="location_detail_action_preview_hint">ابدء معايناة هذا الموقع</string>
     <string name="location_detail_add_waypoint_existing_hint">أزل هذه العلامة من طريقك.</string>
     <string name="location_detail_add_waypoint_new_hint">أضف هذه العلامة إلى طريقك.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">اجعل الخريطة ملء الشاشة</string>
@@ -66,7 +66,7 @@
     <string name="route_detail_edit_description">وصف</string>
     <string name="route_detail_edit_waypoints_button">أضف نقاط الطرق</string>
     <string name="route_detail_edit_delete">حذف الطريق</string>
-    <string name="route_update_success_title">تحديث كامل!</string>
+    <string name="route_update_success_title">اكتمل التحديث!</string>
     <string name="waypoint_title">نقطة الطريق</string>
     <string name="universal_links_alert_action_marker">‬حفظ كعلامة</string>
     <string name="universal_links_marker_share_message">لقد شاركت معك علامة شريط الصوت معك! *\"%s\"*</string>
@@ -81,9 +81,9 @@
     <string name="markers_title">علامات</string>
     <string name="markers_action_delete">حذف العلامات</string>
     <string name="markers_sort_button_sort_by_name">اسم</string>
-    <string name="markers_sort_button_sort_by_name_voiceover">مرتبة بالاسم</string>
+    <string name="markers_sort_button_sort_by_name_voiceover">الترتيب بالاسم</string>
     <string name="markers_sort_button_sort_by_distance">مسافة</string>
-    <string name="markers_sort_button_sort_by_distance_voiceover">مرتبة عن طريق المسافة</string>
+    <string name="markers_sort_button_sort_by_distance_voiceover">الترتيب عن طريق المسافة</string>
     <string name="markers_no_markers_title">البدء مع العلامات</string>
     <string name="markers_no_markers_hint_1">قم بإنشاء علامات لوجهاتك المفضلة أو نقاط الطريق على الطريق أو أي مواقع تريدها. ما عليك سوى اختيار موقع ، أو حتى موقعك الحالي ، من الشاشة الرئيسية وحدد *\"حفظ كعلامة\" *.</string>
     <string name="markers_no_markers_hint_2">حاول وضع علامة على منزلك ، أو مدخل عملك ، أو مكانك المفضل في الحديقة.</string>
@@ -114,8 +114,8 @@
     <string name="callouts_nearby_markers">علامات قريبة</string>
     <string name="sleep_sleep">وضع الخمول</string>
     <string name="sleep_sleeping">خامل</string>
-    <string name="sleep_sleeping_message">Soundscape نائم حاليًا. هذا يمنع Soundscape من استخدام خدمات الموقع أو تنزيل البيانات. هذا يحفظ البطارية عندما لا تستخدم Soundscape. اضغط على الزر أدناه لإيقاظ Soundscape.</string>
-    <string name="sleep_sleep_acc_hint">ضع soundscape للنوم</string>
+    <string name="sleep_sleeping_message">Soundscape ساكن حاليًا. هذا يمنع Soundscape من استخدام خدمات الموقع أو تنزيل البيانات. هذا يحفظ البطارية عندما لا تستخدم Soundscape. اضغط على الزر أدناه لإيقاظ Soundscape.</string>
+    <string name="sleep_sleep_acc_hint">ضع soundscape في السكون</string>
     <string name="sleep_wake_up_now">استيقظ الآن</string>
     <string name="intersection_approaching_intersection">تقترب من التقاطع</string>
     <string name="directions_at_poi">في %s</string>
@@ -150,23 +150,23 @@
     <string name="directions_heading_sw">يتجه جنوب غرب</string>
     <string name="directions_heading_w">يتجه غربًا</string>
     <string name="directions_heading_nw">يتجه شمال غرب</string>
-    <string name="directions_along_traveling_n">السفر شمالا على طول %s</string>
-    <string name="directions_along_traveling_ne">السفر شمال شرق على طول %s</string>
-    <string name="directions_along_traveling_e">السفر شرقا على طول %s</string>
-    <string name="directions_along_traveling_se">السفر جنوب شرق على طول %s</string>
-    <string name="directions_along_traveling_s">السفر جنوبا على طول %s</string>
-    <string name="directions_along_traveling_sw">السفر جنوب غرب على طول %s</string>
-    <string name="directions_along_traveling_w">السفر غربا على طول %s</string>
-    <string name="directions_along_traveling_nw">السفر شمال غرب على طول %s</string>
-    <string name="directions_along_facing_n">مواجهة الشمال على طول %s</string>
-    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي على طول %s</string>
-    <string name="directions_along_facing_e">مواجهة الشرق على طول %s</string>
-    <string name="directions_along_facing_se">في مواجهة الجنوب الشرقي على طول %s</string>
-    <string name="directions_along_facing_s">مواجهة الجنوب على طول %s</string>
-    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي على طول %s</string>
-    <string name="directions_along_facing_w">مواجهة الغرب على طول %s</string>
-    <string name="directions_along_facing_nw">مواجهة الشمال الغربي على طول %s</string>
-    <string name="directions_along_heading_n">يتجه شمالًا على طول %s</string>
+    <string name="directions_along_traveling_n">السفر شمالا للامام %s</string>
+    <string name="directions_along_traveling_ne">السفر شمال شرق للامام %s</string>
+    <string name="directions_along_traveling_e">السفر شرقا للامام %s</string>
+    <string name="directions_along_traveling_se">السفر جنوب شرق للامام %s</string>
+    <string name="directions_along_traveling_s">السفر جنوبا للامام %s</string>
+    <string name="directions_along_traveling_sw">السفر جنوب غرب للامام %s</string>
+    <string name="directions_along_traveling_w">السفر غربا للامام %s</string>
+    <string name="directions_along_traveling_nw">السفر شمال غرب للامام %s</string>
+    <string name="directions_along_facing_n">مواجهة الشمال للامام %s</string>
+    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي للامام %s</string>
+    <string name="directions_along_facing_e">مواجهة الشرق للامام %s</string>
+    <string name="directions_along_facing_se">في مواجهة الجنوب الشرقي للامام %s</string>
+    <string name="directions_along_facing_s">مواجهة الجنوب للامام %s</string>
+    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي للامام %s</string>
+    <string name="directions_along_facing_w">مواجهة الغرب للامام %s</string>
+    <string name="directions_along_facing_nw">مواجهة الشمال الغربي للامام %s</string>
+    <string name="directions_along_heading_n">يتجه شمالًا مباشره \n %s</string>
     <string name="directions_along_heading_ne">يتجه شمال شرق على طول %s</string>
     <string name="directions_along_heading_e">التوجه شرقًا على طول %s</string>
     <string name="directions_along_heading_se">يتجه جنوب شرق على طول %s</string>
@@ -458,7 +458,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s \nهو \n%2$s \nالمحدد من \n%3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">يحفظ</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">يستخدم</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">انهاء معاينه الشارع</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">انهاء معاينة الشارع</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">تمكين تسجيل السفر</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">تفعيل الخرائط القابله للوصول</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">عرض الخرائط على الشاشة</string>
