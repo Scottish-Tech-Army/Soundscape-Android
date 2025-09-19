@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
@@ -126,7 +127,10 @@ fun Home(
             },
             floatingActionButton = {
                 if((!keyboardOpen.value) && showMap && (fullscreenMap.value || !routePlaying))
-                    FullScreenMapFab(fullscreenMap)
+                    FullScreenMapFab(
+                        fullscreenMap,
+                        Modifier.testTag("homeFullScreenMap")
+                )
             },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
@@ -202,7 +206,9 @@ fun HomeTopAppBar(
                 onClick = {
                     coroutineScope.launch { drawerState.open() }
                 },
-                modifier = Modifier.talkbackHint(stringResource(R.string.ui_menu_hint))
+                modifier = Modifier
+                    .talkbackHint(stringResource(R.string.ui_menu_hint))
+                    .testTag("topBarMenu")
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Menu,
@@ -221,7 +227,9 @@ fun HomeTopAppBar(
                     )
                     onNavigate(HomeRoutes.Sleep.route)
                 },
-                modifier = Modifier.talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
+                modifier = Modifier
+                    .talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
+                    .testTag("topBarSleep")
             ) {
                 Icon(Icons.Rounded.Snooze,
                     contentDescription = stringResource(R.string.sleep_sleep),

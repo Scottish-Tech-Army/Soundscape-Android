@@ -22,6 +22,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -138,7 +139,9 @@ fun SaveAndEditMarkerDialog(
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     CustomTextField(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("markerName"),
                         value = name,
                         onValueChange = {
                             println("onValueChange $it")
@@ -152,7 +155,9 @@ fun SaveAndEditMarkerDialog(
                         style = MaterialTheme.typography.bodyMedium,
                     )
                     CustomTextField(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("markerAnnotation"),
                         value = annotation,
                         onValueChange = {
                             println("onValueChange $it")

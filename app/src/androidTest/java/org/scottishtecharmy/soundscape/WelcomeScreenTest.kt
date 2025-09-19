@@ -3,7 +3,9 @@ package org.scottishtecharmy.soundscape
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.test.core.app.ApplicationProvider
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -36,8 +38,10 @@ class WelcomeScreenTest {
         composeTestRule.onNodeWithText(stringWelcomeDescription).assertIsDisplayed()
         composeTestRule.onNodeWithText(stringWelcomeGetStarted).assertIsDisplayed()
 
+        composeTestRule.onNodeWithTag("welcomeScreenContinueButton").assertIsDisplayed()
+
         // Delay so I can see it appear on my device screen. Remove when using CI
-        //Thread.sleep(5000)
+        Thread.sleep(5000)
 
     }
 }

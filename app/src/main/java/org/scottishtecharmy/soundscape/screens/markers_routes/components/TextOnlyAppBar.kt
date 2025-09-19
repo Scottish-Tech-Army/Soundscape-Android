@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
@@ -23,7 +24,8 @@ fun TextOnlyAppBar(title : String = "",
             Text(
                 modifier = Modifier
                     .clickable { onNavigateUp() }
-                    .extraSmallPadding(),
+                    .extraSmallPadding()
+                    .testTag("flexibleAppBarLeft"),
                 text = navigationButtonTitle,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.headlineSmall,
@@ -33,7 +35,8 @@ fun TextOnlyAppBar(title : String = "",
             Text(
                 modifier = Modifier
                     .clickable { onRightButton() }
-                    .extraSmallPadding(),
+                    .extraSmallPadding()
+                    .testTag("flexibleAppBarRight"),
                 text = rightButtonTitle,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.headlineSmall

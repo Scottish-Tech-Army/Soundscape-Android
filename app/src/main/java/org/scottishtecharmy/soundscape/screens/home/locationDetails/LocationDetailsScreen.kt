@@ -30,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -275,7 +276,9 @@ private fun LocationDescriptionButtonsSection(
             text = stringResource(R.string.location_detail_action_beacon),
             talkbackHint = stringResource(R.string.location_detail_action_beacon_hint),
             color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.defaultMinSize(minHeight = spacing.targetSize)
+            modifier = Modifier
+                .defaultMinSize(minHeight = spacing.targetSize)
+                .testTag("locationDetailsStartBeacon")
         ) {
             createBeacon(locationDescription.location)
         }
@@ -286,7 +289,9 @@ private fun LocationDescriptionButtonsSection(
                 text = stringResource(R.string.markers_edit_screen_title_edit),
                 talkbackHint = stringResource(R.string.location_detail_action_edit_hint),
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.defaultMinSize(minHeight = spacing.targetSize)
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .testTag("locationDetailsEditMarker")
             ) {
                 dialogState.value = true
             }
@@ -296,7 +301,9 @@ private fun LocationDescriptionButtonsSection(
                 text = stringResource(R.string.universal_links_alert_action_marker),
                 talkbackHint = stringResource(R.string.location_detail_action_save_hint),
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.defaultMinSize(minHeight = spacing.targetSize)
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .testTag("locationDetailsSaveAsMarker")
             ) {
                 dialogState.value = true
             }
@@ -307,7 +314,9 @@ private fun LocationDescriptionButtonsSection(
             text = stringResource(R.string.preview_title),
             talkbackHint = stringResource(R.string.location_detail_action_preview_hint),
             color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.defaultMinSize(minHeight = spacing.targetSize)
+            modifier = Modifier
+                .defaultMinSize(minHeight = spacing.targetSize)
+                .testTag("locationDetailsStreetPreview")
         ) {
             enableStreetPreview(locationDescription.location)
             onNavigateUp()
@@ -318,7 +327,9 @@ private fun LocationDescriptionButtonsSection(
             text = stringResource(R.string.share_title),
             talkbackHint = stringResource(R.string.location_detail_action_share_hint),
             color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.defaultMinSize(minHeight = spacing.targetSize)
+            modifier = Modifier
+                .defaultMinSize(minHeight = spacing.targetSize)
+                .testTag("locationDetailsShare")
         ) {
             shareLocation(shareMessage, locationDescription)
             onNavigateUp()

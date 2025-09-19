@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -39,7 +40,10 @@ fun CustomTextField(
         singleLine = isSingleLine,
         trailingIcon = {
             if (value.isNotEmpty()) {
-                IconButton(onClick = { onValueChange("") }) {
+                IconButton(
+                    onClick = { onValueChange("") },
+                    modifier = Modifier.testTag("clearTextField")
+                ) {
                     Icon(
                         Icons.Filled.Clear,
                         contentDescription = "Clear Text",

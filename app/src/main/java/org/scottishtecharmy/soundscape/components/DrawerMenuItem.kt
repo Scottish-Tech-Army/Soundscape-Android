@@ -5,10 +5,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-fun DrawerMenuItem(onClick: () -> Unit, label: String, icon: ImageVector) {
+fun DrawerMenuItem(onClick: () -> Unit, label: String, icon: ImageVector, modifier: Modifier) {
     NavigationDrawerItem(
         label = { Text(
             text = label,
@@ -22,6 +23,7 @@ fun DrawerMenuItem(onClick: () -> Unit, label: String, icon: ImageVector) {
             )
         },
         selected = false,
-        onClick = { onClick() }
+        onClick = { onClick() },
+        modifier = modifier
     )
 }

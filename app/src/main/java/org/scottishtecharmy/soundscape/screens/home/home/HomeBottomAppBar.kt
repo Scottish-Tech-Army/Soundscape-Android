@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -87,32 +88,44 @@ fun HomeBottomAppBar(
                     icon = painterResource(R.drawable.my_location_24px),
                     text = stringResource(R.string.ui_action_button_my_location),
                     onClick = { bottomButtonFunctions.myLocation() },
-                    modifier = Modifier.weight(1f).fillMaxHeight()
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
                         .semantics { onClick(label = myLocationHint, action = { false }) }
+                        .testTag("homeMyLocation")
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.around_me_24px),
                     text = stringResource(R.string.ui_action_button_around_me),
                     onClick = { bottomButtonFunctions.aroundMe() },
-                    modifier = Modifier.weight(1f).fillMaxHeight()
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
                         .semantics { onClick(label = aroundMeHint, action = { false }) }
+                        .testTag("homeAroundMe")
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.ahead_of_me_24px),
                     text = stringResource(R.string.ui_action_button_ahead_of_me),
                     onClick = { bottomButtonFunctions.aheadOfMe() },
-                    modifier = Modifier.weight(1f).fillMaxHeight()
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
                         .semantics { onClick(label = aheadOfMeHint, action = { false }) }
+                        .testTag("homeAheadOfMe")
                 )
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.nearby_markers_24px),
                     text = stringResource(R.string.ui_action_button_nearby_markers),
                     onClick = { bottomButtonFunctions.nearbyMarkers() },
-                    modifier = Modifier.weight(1f).fillMaxHeight()
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
                         .semantics { onClick(label = nearbyMarkersHint, action = { false }) }
+                        .testTag("homeNearbyMarkers")
                 )
             }
         }

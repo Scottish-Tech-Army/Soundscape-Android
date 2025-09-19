@@ -29,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -100,7 +101,8 @@ fun HomeContent(
                     horizontalPadding = spacing.small,
                     modifier = Modifier
                         .semantics { heading() }
-                        .talkbackHint(stringResource(R.string.search_button_nearby_accessibility_hint)),
+                        .talkbackHint(stringResource(R.string.search_button_nearby_accessibility_hint))
+                        .testTag("homePlacesNearby")
                 )
                 // Markers and routes
                 NavigationButton(
@@ -109,7 +111,9 @@ fun HomeContent(
                     },
                     text = stringResource(R.string.search_view_markers),
                     horizontalPadding = spacing.small,
-                    modifier = Modifier.talkbackHint(stringResource(R.string.search_button_markers_accessibility_hint)),
+                    modifier = Modifier
+                        .talkbackHint(stringResource(R.string.search_button_markers_accessibility_hint))
+                        .testTag("homeMarkersAndRoutes")
                 )
                 // Current location
                 NavigationButton(
@@ -121,7 +125,9 @@ fun HomeContent(
                     },
                     text = stringResource(R.string.search_use_current_location),
                     horizontalPadding = spacing.small,
-                    modifier = Modifier.talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint)),
+                    modifier = Modifier
+                        .talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint))
+                        .testTag("homeCurrentLocation")
                 )
             }
             if (location != null) {
@@ -161,7 +167,9 @@ fun HomeContent(
                             ) {
                                 Button(
                                     onClick = { routeFunctions.skipPrevious() },
-                                    colors = currentAppButtonColors)
+                                    colors = currentAppButtonColors,
+                                    modifier = Modifier.testTag("routeSkipPrevious")
+                                )
                                 {
                                     Icon(
                                         modifier = Modifier.talkbackHint(
@@ -177,7 +185,8 @@ fun HomeContent(
                                 }
                                 Button(
                                     onClick = { routeFunctions.skipNext() },
-                                    colors = currentAppButtonColors
+                                    colors = currentAppButtonColors,
+                                    modifier = Modifier.testTag("routeSkipNext")
                                 )
                                 {
                                     Icon(
@@ -200,7 +209,8 @@ fun HomeContent(
                                             onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}")
                                         }
                                     },
-                                    colors = currentAppButtonColors
+                                    colors = currentAppButtonColors,
+                                    modifier = Modifier.testTag("routeStopOrDetails")
                                 )
                                 {
                                     if (routePlayerState.beaconOnly) {
@@ -219,7 +229,8 @@ fun HomeContent(
                                 }
                                 Button(
                                     onClick = { routeFunctions.mute() },
-                                    colors = currentAppButtonColors
+                                    colors = currentAppButtonColors,
+                                    modifier = Modifier.testTag("routeMute")
                                 )
                                 {
                                     Icon(
@@ -242,7 +253,8 @@ fun HomeContent(
                                 if(showMap) {
                                     Button(
                                         onClick = { fullscreenMap.value = !fullscreenMap.value },
-                                        colors = currentAppButtonColors
+                                        colors = currentAppButtonColors,
+                                        modifier = Modifier.testTag("routeFullScreenMap")
                                     )
                                     {
                                         Icon(

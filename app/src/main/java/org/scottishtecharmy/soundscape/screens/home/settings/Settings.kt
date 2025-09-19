@@ -31,7 +31,6 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
-import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
