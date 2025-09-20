@@ -9,7 +9,7 @@
     <!-- Text displayed whilst app is starting Street Preview mode -->
 <string name="general_loading_start">در حال آماده‌سازی…</string>
     <!-- Error message that Soundscape is having trouble determining current location -->
-<string name="general_error_location_services_find_location_error">در تشخیص موقعیت شما دچار اشکال هستیم.</string>
+<string name="general_error_location_services_find_location_error">در تشخیص موقعیت مکانی فعلی شما دچار اشکال هستیم.</string>
     <!-- Error message that Soundscape is having trouble adding a marker to this location.-->
 <string name="general_error_add_marker_error">در نشانه‌گذاری این محل دچار اشکال هستیم. بعداً دوباره امتحان کنید.</string>
     <!-- Menu button to get to the Settings page -->
@@ -17,7 +17,7 @@
     <!-- Menu button to information about the Soundscape app -->
 <string name="settings_about_app">درباره‌ی ساند‌اسکیپ</string>
     <!-- In the Settings page the title of the section for the units of measurement e.g. metric or imperial -->
-<string name="settings_section_units" tools:ignore="MissingTranslation">واحد اندازه‌گیری</string>
+<string name="settings_section_units" tools:ignore="MissingTranslation">واحد‌های اندازه‌گیری</string>
     <!-- The option for setting the units of measurement to miles and feet -->
 <string name="settings_units_imperial" tools:ignore="MissingTranslation">فوت و مایل</string>
     <!-- The option for setting the units of measurement to kilometers and meters -->
@@ -29,7 +29,7 @@
     <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">صدای موتور صوتی</string>
     <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
-<string name="beacon_settings_style">نوع جهت‌نمای صوتی</string>
+<string name="beacon_settings_style">صدای جهت‌نمای صوتی</string>
     <!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
 <string name="beacon_styles_current">جدید</string>
     <!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
@@ -43,7 +43,7 @@
     <!-- Name of a beacon style. Refers to a short high pitched ringing sound that repeats in this beacon style. -->
 <string name="beacon_styles_ping">زنگ</string>
     <!-- Name of a beacon style. This beacon style is based on the sound of an object being dropped on a hard floor, hence the name "Drop" is alluding to that sound. -->
-<string name="beacon_styles_drop">برخورد</string>
+<string name="beacon_styles_drop">افتادن</string>
     <!-- Name of a beacon style. This name is alluding to the radar-like nature of this beacon (hence "signal") which has an impulse which repeats over and over -->
 <string name="beacon_styles_signal">سیگنال</string>
     <!-- Name of a beacon style. "Signal" is used in the same way here as in the string with key 'beacon.styles.signal'. The difference here is that this version is a slower version of the beacon audio. -->
@@ -61,11 +61,11 @@
     <!-- Mute Beacon text description -->
 <string name="beacon_action_mute_beacon">بستن صدای جهت‌نما</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to zero. -->
-<string name="beacon_action_mute_beacon_acc_hint">صدای جهت‌نمای صوتی را قطع می‌کند.</string>
+<string name="beacon_action_mute_beacon_acc_hint">صدای جهت‌نمای صوتی را قطع کنید.</string>
     <!-- Unmute Beacon text description -->
 <string name="beacon_action_unmute_beacon">باز کردن صدای جهت‌نما</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
-<string name="beacon_action_unmute_beacon_acc_hint">صدای جهت‌نمای صوتی را متصل می‌کند.</string>
+<string name="beacon_action_unmute_beacon_acc_hint">صدای جهت‌نمای صوتی را متصل کنید.</string>
     <!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
 <string name="preview_title">آشنایی با محل</string>
     <!-- Text for button to go to the next intersection -->
@@ -77,27 +77,27 @@
     <!-- Title for a setting to include unnamed roads -->
 <string name="preview_include_unnamed_roads_title">خیابان‌های بدون نام</string>
     <!-- Location Details page title. This page shows information about the location including the address and a map. -->
-<string name="location_detail_title_default">جزئیات مکان</string>
+<string name="location_detail_title_default">جزئیات موقعیت مکانی</string>
     <!-- Title for the action to start playing an audio beacon -->
 <string name="location_detail_action_beacon">فعال‌سازی جهت‌نمای صوتی</string>
     <!-- Talkback hint for the action to set an audio beacon at this location -->
-<string name="location_detail_action_beacon_hint">جهت‌نمای صوتی را برای این مکان فعال کنید</string>
+<string name="location_detail_action_beacon_hint">جهت‌نمای صوتی را روی این مکان تنظیم کنید</string>
     <!-- Talkback hint for the action to save marker -->
 <string name="location_detail_action_save_hint">این مکان را نشانه‌گذاری و ذخیره کنید</string>
     <!-- Talkback hint for the action to edit marker -->
-<string name="location_detail_action_edit_hint">ویرایش نشانه</string>
+<string name="location_detail_action_edit_hint">نشانه را ویرایش کنید</string>
     <!-- Talkback hint for the action to share -->
 <string name="location_detail_action_share_hint">این مکان را به اشتراک بگذارید</string>
     <!-- Talkback hint for the action to preview -->
-<string name="location_detail_action_preview_hint">با این مکان آشنا شوید</string>
+<string name="location_detail_action_preview_hint">با محدوده‌ی اطراف این مکان آشنا شوید</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list -->
 <string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید.</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
 <string name="location_detail_add_waypoint_new_hint">این نشانه را به مسیر خود اضافه کنید.</string>
     <!-- Talkback hint for button that makes map full screen -->
-<string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">تمام‌صفحه کردن نقشه</string>
+<string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید</string>
     <!-- Talkback hint for button that stops map being full screen -->
-<string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">خروج از حالت تمام‌صفحه‌ی نقشه</string>
+<string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">نقشه را از حالت تمام‌صفحه خارج کنید</string>
     <!-- Title for the action to start playing the audio for a route -->
 <string name="route_detail_action_start_route">شروع مسیر</string>
     <!-- Title for the action to stop playing the audio for a route -->
@@ -105,13 +105,13 @@
     <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">ویرایش مسیر</string>
     <!-- Talkback hint for the action to start the route -->
-<string name="route_detail_action_start_route_hint">این مسیر را فعال کنید.</string>
+<string name="route_detail_action_start_route_hint">این مسیر را فعال کنید</string>
     <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
-<string name="route_detail_action_start_route_disabled_hint">پیش از شروع مسیر، نقاط بین‌راهی را اضافه کنید.</string>
+<string name="route_detail_action_start_route_disabled_hint">پیش از شروع مسیر نقاط بین‌راهی را اضافه کنید</string>
     <!-- Talkback hint for the action to stop the route -->
 <string name="route_detail_action_stop_route_hint">این مسیر را متوقف کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="route_detail_action_share_hint">اشتراک‌گذاری این مسیر</string>
+<string name="route_detail_action_share_hint">این مسیر را به اشتراک بگذارید</string>
     <!-- Accessibility hint for the edit button on the Route Detail screen -->
 <string name="route_detail_action_edit_hint">این مسیر را ویرایش کنید</string>
     <!-- Add button on the Route list screen -->
@@ -135,13 +135,13 @@
     <!-- Label for the delete route button -->
 <string name="route_detail_edit_delete">حذف مسیر</string>
     <!-- Title for the alert displayed when a route or tour is updated -->
-<string name="route_update_success_title">به‌روز‌رسانی کامل شد!</string>
+<string name="route_update_success_title">به‌روزرسانی کامل شد!</string>
     <!-- Title of a waypoint used in a route, this is used in the form "Waypoint 1", "Waypoint 2" etc. -->
 <string name="waypoint_title">نقطه‌ی بین‌راهی</string>
     <!-- Alert action to save as marker -->
 <string name="universal_links_alert_action_marker">نشانه‌گذاری و ذخیره</string>
     <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
-<string name="universal_links_marker_share_message">یک نشانه‌ی ساند‌اسکیپ را با شما به‌اشتراک گذاشته‌ام! *\"%s\"*</string>
+<string name="universal_links_marker_share_message">یک نشانه‌ی ساند‌اسکیپ را با شما به اشتراک گذاشته‌ام! *\"%s\"*</string>
     <!-- Title for button to save the location from the location details page as a marker. -->
 <string name="user_activity_save_marker_title">ذخیره‌ی نشانه</string>
     <!-- Title of the option for displaying a the user's list of saved routes -->
@@ -173,9 +173,9 @@
     <!-- Title for markers page when no markers exist -->
 <string name="markers_no_markers_title">ایجاد نشانه</string>
     <!-- Text that explains to the user what "markers" are and how they can be used. Ensure "Save as Marker" is translated to be the same as "universal_links.alert.action.marker". Quotes written as \" -->
-<string name="markers_no_markers_hint_1">مقصد‌های دل‌خواه، نقاط بین‌راهی یا هر جای دیگری را که می‌خواهید به شما اعلام شود نشانه‌گذاری کنید. تنها یک مکان معین یا حتی موقعیت مکانی فعلی خود را از صفحه‌ی اصلی انتخاب کرده و گزینه‌ی *\"نشانه‌گذاری و ذخیره\"* را فعال نمایید.</string>
+<string name="markers_no_markers_hint_1">مقصد‌های دل‌خواه، نقاط بین‌راهی یا هر جای دیگری که می‌خواهید به شما اعلام شود را نشانه‌گذاری کنید. تنها کافیست یک مکان معین یا حتی موقعیت مکانی فعلی خود را از صفحه‌ی اصلی انتخاب کرده و گزینه‌ی *«نشانه‌گذاری و ذخیره»* را فعال نمایید.</string>
     <!-- Additional text that explains how users can use markers. This string is displayed below the string with key "markers.no_markers.hint.1" -->
-<string name="markers_no_markers_hint_2">برای مثال، منزل، محل کار یا نقطه‌ی دل‌خواهتان در پارک را نشانه‌گذاری کنید.</string>
+<string name="markers_no_markers_hint_2">برای مثال، منزل، ورودی محل کار یا نقطه‌ی دل‌خواهتان در پارک را نشانه‌گذاری کنید.</string>
     <!-- Title of page for editing markers -->
 <string name="markers_edit_screen_title_edit">ویرایش نشانه</string>
     <!-- Text used when calling out makers -->
@@ -193,17 +193,17 @@
     <!-- Nearby Places screen title -->
 <string name="search_nearby_screen_title">مکان‌های نزدیک</string>
     <!-- Markers and routes screen titles -->
-<string name="search_view_markers">نشانه‌ها و مسیر‌ها</string>
+<string name="search_view_markers">نشانه‌ها و مسیرها</string>
     <!-- Accessibility hint when the user selects the markers button on the home screen -->
 <string name="search_button_markers_accessibility_hint">نشانه‌هایی را که ذخیره کرده‌اید انتخاب یا ویرایش کنید</string>
     <!-- Accessibility hint when the user selects the nearby places button on the home screen -->
-<string name="search_button_nearby_accessibility_hint">از رستوران گرفته تا ایستگاه اتوبوس، می‌توانید اینجا به‌دنبال مکان‌های مختلف در اطرافتان بگردید</string>
+<string name="search_button_nearby_accessibility_hint">مکان‌های مختلف اطرافتان را مشاهده نمایید</string>
     <!-- Accessibility hint when the user selects the current location button on the home screen -->
-<string name="search_button_current_location_accessibility_hint">می‌توانید با استفاده از این گزینه، مشخصات موقعیت مکانی فعلی خود را مشاهده نمایید، آن را نشانه‌گذاری کرده یا با دوستانتان به‌اشتراک بگذارید</string>
+<string name="search_button_current_location_accessibility_hint">جزئیات موقعیت مکانی فعلی خود را مشاهده نمایید، آن را نشانه‌گذاری کنید یا با دوستانتان به اشتراک بگذارید</string>
     <!-- Places nearby that shows all of the places -->
 <string name="filter_all">همه‌ی مکان‌ها</string>
     <!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
-<string name="filter_transit">حمل‌ونقل عمومی</string>
+<string name="filter_transit">حمل‌و‌نقل عمومی</string>
     <!-- Places nearby filter that shows food and drink relates places e.g. restaurants and cafes -->
 <string name="filter_food_drink">غذا و نوشیدنی</string>
     <!-- Places nearby filter that shows grocery shops -->
@@ -211,7 +211,7 @@
     <!-- Places nearby filter that shows banks and cash machines -->
 <string name="filter_banks">بانک و دستگاه خودپرداز</string>
     <!-- Title for the button panel at the bottom of the home view.-->
-<string name="callouts_panel_title">شنیدن مکان‌های اطراف</string>
+<string name="callouts_panel_title">آشنایی با محیط</string>
     <!-- Settings option to allow audio callouts - callouts are the descriptions of the nearby roads. -->
 <string name="callouts_allow_callouts">اجازه به اعلان‌ها</string>
     <!-- Settings option to allow finer control of which places are called out - in this case places and landmarks -->
@@ -227,15 +227,15 @@
     <!-- Button text for the hear my surroundings button which calls out nearby markers -->
 <string name="callouts_nearby_markers">نشانه‌های نزدیک</string>
     <!-- Sleep Title, Sleep. Putting the app in an idle state for a period of time. -->
-<string name="sleep_sleep">حالت نیمه‌خاموش</string>
+<string name="sleep_sleep">حالت خواب</string>
     <!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
-<string name="sleep_sleeping">در وضعیت نیمه‌خاموش</string>
+<string name="sleep_sleeping">در حالت خواب</string>
     <!-- Text for sleep page explaining what it does -->
-<string name="sleep_sleeping_message">در حال حاضر ساند‌اسکیپ در حالت نیمه‌خاموش قرار دارد. در این حالت، خدمات موقعیت مکانی و دانلود داده متوقف می‌گردد تا مصرف باتری کاهش یابد. برای خروج از این حالت، روی دکمه‌ی زیر ضربه بزنید.</string>
+<string name="sleep_sleeping_message">در حال حاضر ساند‌اسکیپ در حالت خواب قرار دارد. در این حالت، خدمات مکان‌یابی و دانلود داده متوقف می‌گردد تا مصرف باتری کاهش یابد. برای خروج از حالت خواب، روی دکمه‌ی زیر ضربه بزنید.</string>
     <!-- Talkback hint for the sleep button to indicate what it does -->
-<string name="sleep_sleep_acc_hint">ساند‌اسکیپ را در حالت نیمه‌خاموش قرار می‌دهد</string>
+<string name="sleep_sleep_acc_hint">ساند‌اسکیپ را در حالت خواب قرار دهید</string>
     <!-- Text for large button on sleep screen which wakes the app up -->
-<string name="sleep_wake_up_now">خروج از حالت نیمه‌خاموش</string>
+<string name="sleep_wake_up_now">خروج از حالت خواب</string>
     <!-- Callout that a road junction is getting near -->
 <string name="intersection_approaching_intersection">به تقاطع نزدیک می‌شوید</string>
     <!-- Notification, %s is a point of interest, "At Starbucks" -->
