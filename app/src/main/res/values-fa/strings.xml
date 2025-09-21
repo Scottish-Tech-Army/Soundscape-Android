@@ -391,9 +391,9 @@
     <!-- Preserve miles unit - Do not convert but can translate. Distance string, plural.%s is a plural number, "15 miles" -->
 <string name="distance_format_miles">%s مایل</string>
     <!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
-<string name="ui_action_button_my_location">موقعیت\nمن</string>
+<string name="ui_action_button_my_location">موقعیت\nمکانی من</string>
     <!-- Accessibility Notification, ...hear about your current location. -->
-<string name="ui_action_button_my_location_acc_hint">از مشخصات موقعیت مکانی فعلی خود مطلع شوید</string>
+<string name="ui_action_button_my_location_acc_hint">درباره‌ی موقعیت مکانی فعلی خود بدانید</string>
     <!-- Similar to `callouts.nearby_markers`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_nearby_markers">نشانههای\nنزدیک</string>
     <!-- Accessibility Notification, ...hear about nearby places that you have marked -->
@@ -403,13 +403,13 @@
     <!-- Accessibility Notification, ...hear about places in the four quadrants around you -->
 <string name="ui_action_button_around_me_acc_hint">درباره‌ی مکان‌هایی که در چهار طرفتان قرار دارد بدانید</string>
     <!-- Similar to `help.explore.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
-<string name="ui_action_button_ahead_of_me">مقابل من</string>
+<string name="ui_action_button_ahead_of_me">مقابل\nمن</string>
     <!-- Accessibility Notification, ...hear about places in front of you -->
 <string name="ui_action_button_ahead_of_me_acc_hint">درباره‌ی مکان‌هایی که در مقابلتان قرار دارد بدانید</string>
     <!-- Title for menu -->
 <string name="ui_menu">منو</string>
     <!-- Talkback hint for the menu button -->
-<string name="ui_menu_hint">منو باز شود</string>
+<string name="ui_menu_hint">منو را باز کنید</string>
     <!-- Button title when menu is open - close menu -->
 <string name="ui_menu_close">بستن منو</string>
     <!-- Button, Continue to progress to the next stage-->
@@ -417,7 +417,7 @@
     <!-- Title in settings to Manage Callouts preferences-->
 <string name="menu_manage_callouts">مدیریت اعلان‌ها</string>
     <!-- Title for Help and Tutorials screen-->
-<string name="menu_help_and_tutorials">راهنما و نکات آموزشی</string>
+<string name="menu_help_and_tutorials">راهنما و مطالب آموزشی</string>
     <!-- Title, Rate the app in App Store -->
 <string name="menu_rate">امتیاز‌دهی</string>
     <!-- Screen Back button title -->
@@ -433,7 +433,7 @@
     <!-- Help section title -->
 <string name="settings_help_section_home_screen_buttons">دکمه‌های صفحه‌ی اصلی</string>
     <!-- Help content describing how user can choose a voice and download additional voices -->
-<string name="help_config_voices_content">ساند‌اسکیپ می‌تواند از هر صدایی که شما در قسمت تنظیمات خروجی موتور صوتی روی گوشی اندرویدی خود دانلود کرده‌اید استفاده کند. شما می‌توانید در اپلیکیشن ساند‌اسکیپ از صدایی غیر از صدای پیش‌فرض اندروید استفاده نمایید. برای این کار، از منوی اصلی گزینه‌ی تنظیمات و سپس *\"صدای موتور صوتی\"* را انتخاب کنید.</string>
+<string name="help_config_voices_content">ساند‌اسکیپ می‌تواند از هر صدایی که شما در قسمت تنظیمات خروجی موتور صوتی روی گوشی اندرویدی خود دانلود کرده‌اید استفاده کند. شما می‌توانید در اپلیکیشن ساند‌اسکیپ از صدایی غیر از صدای پیش‌فرض اندروید استفاده نمایید. برای این کار، از منوی اصلی گزینه‌ی تنظیمات و سپس *«صدای موتور صوتی»* را انتخاب کنید.</string>
     <!-- Help Page Title, Offline -->
 <string name="help_offline_page_title">چرا ساند‌اسکیپ آفلاین کار می‌کند؟</string>
     <!-- Help Description, Offline -->
@@ -443,7 +443,7 @@
     <!-- Help Limitations Description, Offline -->
 <string name="help_offline_limitations_description">اعلان‌ها در صورتی که در محدوده‌ای حضور داشته باشید که قبلاً از آنجا عبور کرده‌اید و در فهرست اعلان‌های گذشته‌ی شما ذخیره شده است، همچنان کار خواهند کرد. به‌همین ترتیب، شما می‌توانید برای مکان‌هایی که در فهرست اعلان‌های گذشته‌ی شما ذخیره شده‌اند، جهت‌نمای صوتی یا نشانه ایجاد نمایید.</string>
     <!-- Help Troubleshooting Title, Offline -->
-<string name="help_offline_troubleshooting_heading">چه کاری می‌توانید انجام دهید؟</string>
+<string name="help_offline_troubleshooting_heading">چه کار می‌توانید بکنید؟</string>
     <!-- Help Troubleshooting Description, Offline -->
 <string name="help_offline_troubleshooting_description">تا زمانی که گوشی شما به وایفای متصل باشد یا اینکه شما در منطقه‌ای با آنتن‌دهی خوب حضور داشته باشید و نِت گوشیتان نیز فعال باشد، ساند‌اسکیپ تلاش خواهد کرد به عمل‌کرد عادی خود باز گردد. اگر اتصال شما به اینترنت پایدار است اما ساند‌اسکیپ به عمل‌کرد عادی خود باز نمی‌گردد، در این صورت ممکن است در خدمات ساند‌اسکیپ مشکلی بروز کرده باشد.</string>
     <!-- Help Title, Around Me -->
@@ -530,13 +530,13 @@
     <!-- Button to change the configured language for the UI -->
 <string name="first_launch_change_language" tools:ignore="MissingTranslation">تغییر زبان</string>
     <!-- Hint for configuring the language -->
-<string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">برای تغییر زبان مورد استفاده در اپلیکیشن</string>
+<string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">زبان اپلیکیشن را تغییر دهید</string>
     <!-- Notification, Information on what a beacon is used for -->
 <string name="help_text_destination_beacons_what">هنگامی که جهت‌نمای صوتی را روی یک مکان معین در نزدیکی خود تنظیم می‌کنید، ساند‌اسکیپ با پخش یک علامت صوتی خاص به شما اطلاع می‌دهد که آن مکان در کدام جهت قرار دارد. شما می‌توانید صدای جهت‌نما را در صفحه‌ی اصلی اپلیکیشن قطع یا وصل نمایید. به‌علاوه، ساند‌اسکیپ اطلاعاتی همچون فاصله‌ی شما تا مقصد و در صورت امکان نام خیابانی که مقصد در آن واقع شده است را نیز در صفحه‌ی اصلی نمایش می‌دهد.</string>
     <!-- Notification, Information on when to use a beacon -->
-<string name="help_text_destination_beacons_when">استفاده از جهت‌نمای صوتی هنگامی مفید است که شما در یک محیط نا‌آشنا قرار داشته باشید و بخواهید به‌طور مستمر از موقعیت خود نسبت به یک نقطه‌ی مشخص در آن محدوده مطلع شوید. شما همچنین می‌توانید از این قابلیت در طول مسیرتان به‌سمت مقصد استفاده نمایید تا در ارتباط با آنچه در اطرافتان قرار دارد آگاهی کسب کنید. جهت‌نمای صوتی به شما دستور‌العمل‌های مسیریابی گام‌به‌گام نمی‌دهد؛ اما برای شما یک علامت صوتی ممتد پخش می‌کند تا به‌کمک آن بتوانید موقعیت خود نسبت به مکانی که جهت‌نما روی آن تنظیم شده است را تشخیص دهید. شما می‌توانید با استفاده از جهت‌نمای صوتی در ساند‌اسکیپ و با اتکا به مهارت‌های جهت‌یابیتان تصمیم بگیرید که چگونه می‌خواهید خود را به مقصدتان برسانید. همچنین این امکان برای شما فراهم است که همزمان با ساند‌اسکیپ از یک اپلیکیشن مسیریابی دیگر نیز استفاده نمایید.</string>
+<string name="help_text_destination_beacons_when">استفاده از جهت‌نمای صوتی هنگامی مفید است که شما در یک محیط نا‌آشنا قرار داشته باشید و بخواهید به‌طور مداوم از موقعیت خود نسبت به یک نقطه‌ی مشخص در آن محدوده مطلع شوید. شما همچنین می‌توانید از این قابلیت در طول مسیرتان به‌سمت مقصد استفاده نمایید تا در ارتباط با آنچه در اطرافتان قرار دارد آگاهی کسب کنید. جهت‌نمای صوتی به شما دستور‌العمل‌های مسیریابی گام‌به‌گام نمی‌دهد؛ اما برای شما یک علامت صوتی ممتد پخش می‌کند تا به‌کمک آن بتوانید موقعیت خود نسبت به مکانی که جهت‌نما روی آن تنظیم شده است را تشخیص دهید. شما می‌توانید با استفاده از جهت‌نمای صوتی در ساند‌اسکیپ و با اتکا به مهارت‌های جهت‌یابیتان تصمیم بگیرید که چگونه می‌خواهید خود را به مقصدتان برسانید. همچنین این امکان برای شما فراهم است که همزمان با ساند‌اسکیپ از یک اپلیکیشن مسیریابی دیگر نیز استفاده نمایید.</string>
     <!-- Notification, Information how to set a beacon. Ensure that "Set a Beacon" is translated the same as `universal_links.alert.action.beacon`. Quotes written as \" -->
-<string name="help_text_destination_beacons_how_1">**برای تنظیم جهت‌نمای صوتی:**\n\nابتدا یک مکان معین را با استفاده از نوار جستجو یا با ضربه زدن روی یکی از گزینه‌های *\"مکان‌های نزدیک\"*، *\"نشانه‌های ذخیره‌شده\"* یا *\"موقعیت مکانی فعلی\"* انتخاب نموده و وارد صفحه‌ی جزئیات آن شوید. سپس روی دکمه‌ی *\"فعال‌سازی جهت‌نمای صوتی\"* ضربه بزنید تا جهت‌نما روی مکان مورد نظر شما تنظیم شود. پس از انجام این کار، شما به صفحه‌ی اصلی اپلیکیشن بازگردانده خواهید شد و یک علامت صوتی ممتد در جهت مکانی که انتخاب کرده‌اید برایتان پخش می‌گردد. اکنون نام مکان انتخابی شما به‌همراه فاصله و آدرس آن (در صورتی که موجود باشد) روی صفحه‌ی اصلی نمایش داده می‌شود.</string>
+<string name="help_text_destination_beacons_how_1">**برای تنظیم جهت‌نمای صوتی:**\n\nابتدا یک مکان معین را با استفاده از نوار جستجو یا با ضربه زدن روی یکی از گزینه‌های *«مکان‌های نزدیک»*، *«نشانه‌های ذخیره‌شده»* یا *«موقعیت مکانی فعلی»* انتخاب نموده و وارد صفحه‌ی جزئیات آن شوید. سپس روی دکمه‌ی *«فعال‌سازی جهت‌نمای صوتی»* ضربه بزنید تا جهت‌نما روی مکان مورد نظر شما تنظیم شود. پس از انجام این کار، شما به صفحه‌ی اصلی اپلیکیشن بازگردانده خواهید شد و یک علامت صوتی ممتد در جهت مکانی که انتخاب کرده‌اید برایتان پخش می‌گردد. اکنون نام مکان انتخابی شما به‌همراه فاصله و آدرس آن (در صورتی که موجود باشد) روی صفحه‌ی اصلی نمایش داده می‌شود.</string>
     <!-- Notification, Information how to set a beacon continued. Ensure that "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
 <string name="help_text_destination_beacons_how_2">**برای حذف جهت‌نمای صوتی فعلی:**\n\nتنها کافیست روی دکمه‌ی *\"توقف جهت‌نما\"* در صفحه‌ی اصلی ضربه بزنید.</string>
     <!-- Notification, Information how to set a beacon continued. Ensure that "Mute Beacon" is translated the same as `beacon.action.mute_beacon` and "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
