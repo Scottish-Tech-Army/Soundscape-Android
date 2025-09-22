@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="general_alert_cancel">"Cancelar"</string>
-    <string name="general_alert_done">Hecho</string>
+    <string name="general_alert_done">Listo</string>
     <string name="general_loading_start">"Preparando todo…"</string>
     <string name="general_error_location_services_find_location_error">"Tenemos problemas para encontrar su ubicación actual."</string>
     <string name="general_error_add_marker_error">"Tenemos problemas para marcar este lugar. Vuelva a intentarlo más tarde."</string>
