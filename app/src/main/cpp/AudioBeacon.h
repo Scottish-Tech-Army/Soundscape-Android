@@ -13,7 +13,9 @@ namespace soundscape {
 
         virtual ~PositionedAudio();
 
-        void UpdateGeometry(double heading, double latitude, double longitude);
+        void UpdateGeometry(double listenerLatitude, double listenerLongitude,
+                            double heading, double latitude, double longitude,
+                            double proximityNear);
 
         // CreateAudioSource returns whether or not the audio source should
         // be placed in the list of queued beacons.

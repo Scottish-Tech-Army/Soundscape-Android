@@ -26,27 +26,35 @@ namespace soundscape {
      */
     class PositioningMode {
     public:
-        enum Type {
+        enum AudioType {
             STANDARD,
             LOCALIZED,
             RELATIVE,
             COMPASS
         };
-        Type m_Type = STANDARD;
+        AudioType m_AudioType = STANDARD;
+
+        enum AudioMode {
+            HEADING_ONLY,
+            HEADING_AND_PROXIMITY
+        };
+        AudioMode m_AudioMode = HEADING_ONLY;
+
         double m_Latitude = 0.0;
         double m_Longitude = 0.0;
         double m_Heading = 0.0;
 
         PositioningMode() = default;
-        PositioningMode(Type audio_type, double latitude, double longitude, double heading) :
-                m_Type(audio_type),
+        PositioningMode(AudioType audio_type, AudioMode audio_mode, double latitude, double longitude, double heading) :
+                m_AudioType(audio_type),
+                m_AudioMode(audio_mode),
                 m_Latitude(latitude),
                 m_Longitude(longitude),
                 m_Heading(heading) {
         }
 
         [[nodiscard]] FMOD_MODE Get3DFlags() const {
-            switch(m_Type) {
+            switch(m_AudioType) {
                 default:
                 // No positioning
                 case STANDARD: return FMOD_2D;
@@ -71,7 +79,8 @@ namespace soundscape {
         void UpdateGeometry(double listenerLatitude,
                             double listenerLongitude,
                             double listenerHeading,
-                            bool focusGained, bool duckingAllowed);
+                            bool focusGained, bool duckingAllowed,
+                            double proximityNear);
         FMOD::System * GetFmodSystem() const { return m_pSystem; };
         FMOD::ChannelGroup * GetBeaconGroup() const { return m_pBeaconChannelGroup; };
         FMOD::ChannelGroup * GetSpeechGroup() const { return m_pSpeechChannelGroup; };

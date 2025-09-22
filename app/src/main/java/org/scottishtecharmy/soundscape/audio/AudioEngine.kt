@@ -7,14 +7,14 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.Locale
 
 interface AudioEngine {
-    fun createBeacon(location: LngLatAlt) : Long
+    fun createBeacon(location: LngLatAlt, headingOnly: Boolean) : Long
     fun destroyBeacon(beaconHandle : Long)
     fun toggleBeaconMute() : Boolean
     fun createTextToSpeech(text: String, type: AudioType, latitude: Double = Double.NaN, longitude: Double = Double.NaN, heading: Double = Double.NaN) : Long
     fun createEarcon(asset: String, type: AudioType, latitude: Double = Double.NaN, longitude: Double = Double.NaN, heading: Double = Double.NaN) : Long
     fun clearTextToSpeechQueue()
     fun getQueueDepth() : Long
-    fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?, focusGained: Boolean, duckingAllowed: Boolean)
+    fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
     fun setBeaconType(beaconType: String)
     fun getListOfBeaconTypes() : Array<String>
     fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo>

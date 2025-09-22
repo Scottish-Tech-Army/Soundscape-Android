@@ -53,7 +53,12 @@ namespace soundscape {
 
         virtual FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) { return FMOD_ERR_BADCOMMAND; };
 
-        virtual void UpdateGeometry(double degrees_off_axis);
+        enum SourceMode {
+            DIRECTION_MODE,
+            FAR_MODE,
+            NEAR_MODE
+        };
+        virtual void UpdateGeometry(double degrees_off_axis, SourceMode mode);
 
         void UpdateAudioConfig(int sample_rate, int audio_format, int channel_count) {
             m_SampleRate = sample_rate;
@@ -72,6 +77,7 @@ namespace soundscape {
         StaticPcmReadCallback(FMOD_SOUND *sound, void *data, unsigned int data_length);
 
         std::atomic<double> m_DegreesOffAxis;
+        std::atomic<BeaconAudioSource::SourceMode> m_Mode = DIRECTION_MODE;
     };
 
     class BeaconBufferGroup : public BeaconAudioSource {
@@ -91,7 +97,7 @@ namespace soundscape {
         FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) override;
 
     private:
-        void UpdateCurrentBufferFromHeading();
+        void UpdateCurrentBufferFromHeadingAndLocation();
 
         enum PlayState {
             PLAYING_INTRO,
@@ -104,6 +110,8 @@ namespace soundscape {
         const BeaconDescriptor *m_pDescription;
         std::unique_ptr<BeaconBuffer> m_pIntro;
         std::unique_ptr<BeaconBuffer> m_pOutro;
+        std::unique_ptr<BeaconBuffer> m_pNear;
+        std::unique_ptr<BeaconBuffer> m_pFar;
         std::vector<std::unique_ptr<BeaconBuffer> > m_pBuffers;
         BeaconBuffer *m_pCurrentBuffer = nullptr;
         unsigned long m_BytePos = 0;
@@ -135,7 +143,7 @@ namespace soundscape {
         ~EarconSource() override = default;
 
         void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
-        void UpdateGeometry(double degrees_off_axis) override;
+        void UpdateGeometry(double degrees_off_axis, SourceMode mode) override;
 
     private:
         std::string m_Asset;

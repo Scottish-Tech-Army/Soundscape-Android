@@ -88,7 +88,8 @@ class GpxDrivenProvider  {
                         interpolatedPoint.longitude,
                         heading,
                         focusGained = true,
-                        duckingAllowed = false
+                        duckingAllowed = false,
+                        15.0
                     )
 
                     currentStep++

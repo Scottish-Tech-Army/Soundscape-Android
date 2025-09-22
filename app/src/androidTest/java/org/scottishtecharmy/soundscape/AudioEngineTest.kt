@@ -42,7 +42,8 @@ class AudioEngineTest {
                 listenerLongitude = 0.0,
                 listenerHeading = orientation,
                 focusGained = true,
-                duckingAllowed = false)
+                duckingAllowed = false,
+                proximityNear = 15.0)
             Thread.sleep(delayMilliseconds)
             time += delayMilliseconds
             orientation += delta
@@ -67,14 +68,14 @@ class AudioEngineTest {
     fun soundBeacon() {
         val audioEngine = initializeAudioEngine()
 
-        val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
+        val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
         moveListener(audioEngine, 4000)
         audioEngine.destroyBeacon(beacon)
 
         audioEngine.createTextToSpeech("Beacon here!", AudioType.LOCALIZED)
         moveListener(audioEngine, 4000)
 
-        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
+        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
         moveListener(audioEngine, 4000)
         audioEngine.destroyBeacon(beacon3)
 
@@ -92,7 +93,7 @@ class AudioEngineTest {
             Log.d(TAG, "Test beacon type $beaconType")
             audioEngine.setBeaconType(beaconType)
 
-            val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
+            val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
             moveListener(audioEngine, 6000)
             audioEngine.destroyBeacon(beacon)
         }
@@ -185,7 +186,8 @@ class AudioEngineTest {
             listenerLatitude = 1.0,
             listenerHeading = 0.0,
             focusGained = true,
-            duckingAllowed = false
+            duckingAllowed = false,
+            proximityNear = 15.0
         )
         audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_POI, AudioType.LOCALIZED, 1.0, 2.0)
         Thread.sleep(2000)

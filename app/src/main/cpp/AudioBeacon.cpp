@@ -58,7 +58,7 @@ void PositionedAudio::InitFmodSound() {
         result = m_pSystem->playSound(m_pSound, channelGroup, true, &m_pChannel);
         ERROR_CHECK(result);
 
-        switch(m_Mode.m_Type) {
+        switch(m_Mode.m_AudioType) {
             default:
             case PositioningMode::STANDARD:
                 break;
@@ -135,13 +135,32 @@ double PositionedAudio::GetHeadingOffset(double heading, double latitude, double
 
     return degrees_off_axis;
 }
-void PositionedAudio::UpdateGeometry(double heading, double latitude, double longitude) {
+void PositionedAudio::UpdateGeometry(double listenerLatitude, double listenerLongitude,
+                                     double heading, double latitude, double longitude,
+                                     double proximityNear) {
+    // The beacons have two modes:
+    //  1. Directional - when the beacon is further away it sounds from its direction.
+    //  2. Proximity - when the beacon is close by the sound changes to be a sound based on the
+    //     distance to the destination.
+    BeaconAudioSource::SourceMode mode = BeaconAudioSource::DIRECTION_MODE;
+
+    // If the beacon signals proximity as well as heading then we need to see how far we are from
+    // the listener.
+    if(m_Mode.m_AudioMode == PositioningMode::HEADING_AND_PROXIMITY) {
+        auto d = distance(listenerLatitude, listenerLongitude, m_Mode.m_Latitude,
+                          m_Mode.m_Longitude);
+        if (d < proximityNear) {
+            mode = BeaconAudioSource::NEAR_MODE;
+        } else if (d < (2 * proximityNear)) {
+            mode = BeaconAudioSource::FAR_MODE;
+        };
+    }
     if(isnan(heading)) {
         // If dimmable, the audio is placed behind us if there's no heading
-        m_pAudioSource->UpdateGeometry(m_Dimmable ? 180.0 : 0.0);
+        m_pAudioSource->UpdateGeometry(m_Dimmable ? 180.0 : 0.0, mode);
     } else {
         auto degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
-        m_pAudioSource->UpdateGeometry(degrees_off_axis);
+        m_pAudioSource->UpdateGeometry(degrees_off_axis, mode);
     }
     //TRACE("%f %f -> %f (%f %f), %dm", heading, beacon_heading, degrees_off_axis, lat_delta, long_delta, dist)
 }

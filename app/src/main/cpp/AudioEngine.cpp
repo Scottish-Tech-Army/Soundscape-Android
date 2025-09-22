@@ -345,7 +345,8 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
     void
     AudioEngine::UpdateGeometry(double listenerLatitude, double listenerLongitude,
-                                double listenerHeading, bool focusGained, bool duckingAllowed) {
+                                double listenerHeading, bool focusGained, bool duckingAllowed,
+                                double proximityNear) {
         const FMOD_VECTOR up = {0.0f, 1.0f, 0.0f};
 
         //
@@ -425,7 +426,9 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                     continue;
                 }
 
-                (*it)->UpdateGeometry(listenerHeading, listenerLatitude, listenerLongitude);
+                (*it)->UpdateGeometry(listenerLatitude, listenerLongitude,
+                                      listenerHeading, listenerLatitude, listenerLongitude,
+                                      proximityNear);
                 ++it;
             }
             if(!m_QueuedBeacons.empty()) {
@@ -604,13 +607,14 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroy(JNIEnv *env
 extern "C"
 JNIEXPORT void JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_updateGeometry(JNIEnv *env MAYBE_UNUSED,
-                                                                           jobject thiz MAYBE_UNUSED,
-                                                                           jlong engine_handle,
-                                                                           jdouble latitude,
-                                                                           jdouble longitude,
-                                                                           jdouble heading,
-                                                                           jboolean focus_gained,
-                                                                           jboolean ducking_allowed) {
+                               jobject thiz MAYBE_UNUSED,
+                               jlong engine_handle,
+                               jdouble latitude,
+                               jdouble longitude,
+                               jdouble heading,
+                               jboolean focus_gained,
+                               jboolean ducking_allowed,
+                               jdouble proximity_near) {
     auto* ae =
             reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
 
@@ -620,7 +624,8 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_updateGeometry(JNIE
                 longitude,
                 heading,
                 focus_gained,
-                ducking_allowed);
+                ducking_allowed,
+                proximity_near);
     } else {
         TRACE("UpdateGeometry failed - no AudioEngine");
     }
@@ -670,7 +675,8 @@ JNIEXPORT jlong JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(JNIEnv *env MAYBE_UNUSED,
                                      jobject thiz MAYBE_UNUSED,
                                      jlong engine_handle,
-                                     jint mode,
+                                     jint audio_type,
+                                     jboolean heading_only,
                                      jdouble latitude,
                                      jdouble longitude,
                                      jdouble heading) {
@@ -680,7 +686,8 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(
         auto beacon = std::make_unique<soundscape::Beacon>(
                 ae,
                 soundscape::PositioningMode(
-                        static_cast<soundscape::PositioningMode::Type>(mode),
+                        static_cast<soundscape::PositioningMode::AudioType>(audio_type),
+                        heading_only ? soundscape::PositioningMode::HEADING_ONLY : soundscape::PositioningMode::HEADING_AND_PROXIMITY,
                         latitude,
                         longitude,
                         heading
@@ -753,7 +760,8 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
         auto tts = std::make_unique<soundscape::TextToSpeech>(
                 ae,
                 soundscape::PositioningMode(
-                        static_cast<soundscape::PositioningMode::Type>(mode),
+                        static_cast<soundscape::PositioningMode::AudioType>(mode),
+                        soundscape::PositioningMode::HEADING_ONLY,
                         latitude,
                         longitude,
                         heading),
@@ -802,7 +810,8 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
                 ae,
                 asset,
                 soundscape::PositioningMode(
-                        static_cast<soundscape::PositioningMode::Type>(mode),
+                        static_cast<soundscape::PositioningMode::AudioType>(mode),
+                        soundscape::PositioningMode::HEADING_ONLY,
                         latitude,
                         longitude,
                         heading
