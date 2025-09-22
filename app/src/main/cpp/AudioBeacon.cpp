@@ -100,6 +100,7 @@ void PositionedAudio::InitFmodSound() {
 }
 
 void PositionedAudio::Init(double degrees_off_axis,
+                           bool proximityBeacon,
                            int sampleRate,
                            int audioFormat,
                            int channelCount)
@@ -107,7 +108,8 @@ void PositionedAudio::Init(double degrees_off_axis,
     bool queued = CreateAudioSource(degrees_off_axis,
                                     sampleRate,
                                     audioFormat,
-                                    channelCount);
+                                    channelCount,
+                                    proximityBeacon);
 
     //TRACE("%s %p", __FUNCTION__, this);
 
@@ -146,14 +148,16 @@ void PositionedAudio::UpdateGeometry(double listenerLatitude, double listenerLon
 
     // If the beacon signals proximity as well as heading then we need to see how far we are from
     // the listener.
-    if(m_Mode.m_AudioMode == PositioningMode::HEADING_AND_PROXIMITY) {
+    if(m_Mode.m_AudioMode == PositioningMode::PROXIMITY) {
         auto d = distance(listenerLatitude, listenerLongitude, m_Mode.m_Latitude,
                           m_Mode.m_Longitude);
         if (d < proximityNear) {
             mode = BeaconAudioSource::NEAR_MODE;
         } else if (d < (2 * proximityNear)) {
             mode = BeaconAudioSource::FAR_MODE;
-        };
+        } else {
+            mode = BeaconAudioSource::TOO_FAR_MODE;
+        }
     }
     if(isnan(heading)) {
         // If dimmable, the audio is placed behind us if there's no heading

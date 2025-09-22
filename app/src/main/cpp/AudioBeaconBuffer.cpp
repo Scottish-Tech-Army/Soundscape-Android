@@ -26,6 +26,18 @@ FMOD_SOUND_FORMAT AudioFormatToFmodFormat(int audioFormat) {
     }
 }
 
+int FmodFormatToAudioFormat(FMOD_SOUND_FORMAT audioFormat) {
+    switch (audioFormat) {
+        case FMOD_SOUND_FORMAT_PCM8:
+            return 0;
+        default:
+        case FMOD_SOUND_FORMAT_PCM16:
+            return 1;
+        case FMOD_SOUND_FORMAT_PCMFLOAT:
+            return 2;
+    }
+}
+
 BeaconBuffer::BeaconBuffer(FMOD::System *system, const std::string &filename, double max_angle)
             : m_MaxAngle(max_angle),
               m_Name(filename)
@@ -38,6 +50,33 @@ BeaconBuffer::BeaconBuffer(FMOD::System *system, const std::string &filename, do
         result = sound->getLength(&m_BufferSize, FMOD_TIMEUNIT_RAWBYTES);
         ERROR_CHECK(result);
 
+        // Fill in metadata about the sound
+        FMOD_SOUND_TYPE type;
+        FMOD_SOUND_FORMAT format;
+        int channels;
+        int bits;
+        sound->getFormat(&type, &format, &channels, &bits);
+        m_BufferAudioFormat = FmodFormatToAudioFormat(format);
+        m_BufferChannelCount = channels;
+
+        unsigned int sample_length;
+        result = sound->getLength(&sample_length, FMOD_TIMEUNIT_PCM);
+        ERROR_CHECK(result);
+        unsigned int ms_duration;
+        result = sound->getLength(&ms_duration, FMOD_TIMEUNIT_MS);
+        ERROR_CHECK(result);
+        m_BufferSampleRate = (sample_length * 1000) / (ms_duration);
+        // Round sample rate to nearest expected value
+        int sampleRates[] = {16000, 22050, 32000, 44100, 48000};
+        for(int i = 0; i < (sizeof(sampleRates) / sizeof(int)) - 1; ++i) {
+            if((m_BufferSampleRate) < ((sampleRates[i] + sampleRates[i+1]) / 2))
+            {
+                m_BufferSampleRate = sampleRates[i];
+                break;
+            }
+        }
+
+        // Create buffer and read in the data
         m_pBuffer = std::make_unique<unsigned char[]>(m_BufferSize);
 
         unsigned int bytes_read;
@@ -86,6 +125,7 @@ unsigned int BeaconBuffer::Read(void *data, unsigned int data_length, unsigned l
 //
 //
 BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae,
+                                     const BeaconDescriptor *beacon_descriptor,
                                      PositionedAudio *parent,
                                      double degrees_off_axis,
                                      int sample_rate,
@@ -98,7 +138,7 @@ BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae,
                     channel_count)
 {
     TRACE("Create BeaconBufferGroup %p", this);
-    m_pDescription = ae->GetBeaconDescriptor();
+    m_pDescription = beacon_descriptor;
 
     auto system = ae->GetFmodSystem();
     for(const auto &asset: m_pDescription->m_Beacons) {
@@ -108,17 +148,15 @@ BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae,
         m_pBuffers.push_back(std::move(buffer));
     }
 
+    UpdateAudioConfig(m_pBuffers[0]->m_BufferSampleRate,
+                      m_pBuffers[0]->m_BufferAudioFormat,
+                      m_pBuffers[0]->m_BufferChannelCount);
+
     m_pIntro = std::make_unique<BeaconBuffer>(system,
                                               "file:///android_asset/Route/Route_Start.wav",
                                               180.0);
     m_pOutro = std::make_unique<BeaconBuffer>(system,
                                               "file:///android_asset/Route/Route_End.wav",
-                                              180.0);
-    m_pNear = std::make_unique<BeaconBuffer>(system,
-                                              "file:///android_asset/Route/Proximity_Close.wav",
-                                              180.0);
-    m_pFar = std::make_unique<BeaconBuffer>(system,
-                                              "file:///android_asset/Route/Proximity_Far.wav",
                                               180.0);
 }
 
@@ -135,6 +173,9 @@ void BeaconBufferGroup::Stop() {
 void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode)
 {
     TRACE("BeaconBufferGroup CreateSound %p", this);
+
+    if(mode.m_AudioMode == PositioningMode::PROXIMITY)
+        m_Mode = TOO_FAR_MODE;
 
     FMOD_CREATESOUNDEXINFO extra_info;
     memset(&extra_info, 0, sizeof(FMOD_CREATESOUNDEXINFO));
@@ -178,11 +219,15 @@ void BeaconBufferGroup::UpdateCurrentBufferFromHeadingAndLocation()
             break;
         }
         case BeaconAudioSource::NEAR_MODE: {
-            m_pCurrentBuffer = m_pNear.get();
+            m_pCurrentBuffer = m_pBuffers[NEAR_INDEX].get();
             break;
         }
         case BeaconAudioSource::FAR_MODE: {
-            m_pCurrentBuffer = m_pFar.get();
+            m_pCurrentBuffer = m_pBuffers[FAR_INDEX].get();
+            break;
+        }
+        case BeaconAudioSource::TOO_FAR_MODE: {
+            m_pCurrentBuffer = nullptr;
             break;
         }
     }
@@ -195,19 +240,26 @@ FMOD_RESULT F_CALL BeaconBufferGroup::PcmReadCallback(void *data, unsigned int d
     }
     UpdateCurrentBufferFromHeadingAndLocation();
 
-    unsigned int bytes_read = m_pCurrentBuffer->Read(data, data_length, m_BytePos, m_PlayState != PLAYING_BEACON);
-    m_BytePos += bytes_read;
-    if(m_PlayState == PLAYING_INTRO) {
-        if(m_BytePos >= m_pIntro->GetBufferSize()) {
-            m_PlayState = PLAYING_BEACON;
-            m_BytePos = 0;
+    if(m_pCurrentBuffer == nullptr) {
+        // In proximity mode, this is reached when we're too far away from the location and we
+        // just want silence
+        memset((unsigned char *)data, 0, data_length);
+    } else {
+        unsigned int bytes_read = m_pCurrentBuffer->Read(data, data_length, m_BytePos,
+                                                         m_PlayState != PLAYING_BEACON);
+        m_BytePos += bytes_read;
+        if (m_PlayState == PLAYING_INTRO) {
+            if (m_BytePos >= m_pIntro->GetBufferSize()) {
+                m_PlayState = PLAYING_BEACON;
+                m_BytePos = 0;
+            }
+        } else if (m_PlayState == PLAYING_OUTRO) {
+            if (m_BytePos >= m_pIntro->GetBufferSize()) {
+                m_PlayState = PLAYING_COMPLETE;
+            }
         }
-    } else if(m_PlayState == PLAYING_OUTRO) {
-        if(m_BytePos >= m_pIntro->GetBufferSize()) {
-            m_PlayState = PLAYING_COMPLETE;
-        }
+        // TRACE("BBG callback %p: %u @ %lu into %u", m_pCurrentBuffer, bytes_read, m_BytePos, data_length);
     }
-    // TRACE("BBG callback %p: %u @ %lu into %u", m_pCurrentBuffer, bytes_read, m_BytePos, data_length);
 
     return FMOD_OK;
 }
