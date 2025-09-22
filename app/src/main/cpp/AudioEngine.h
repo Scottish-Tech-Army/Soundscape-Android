@@ -35,10 +35,10 @@ namespace soundscape {
         AudioType m_AudioType = STANDARD;
 
         enum AudioMode {
-            HEADING_ONLY,
-            HEADING_AND_PROXIMITY
+            HEADING,
+            PROXIMITY
         };
-        AudioMode m_AudioMode = HEADING_ONLY;
+        AudioMode m_AudioMode = HEADING;
 
         double m_Latitude = 0.0;
         double m_Longitude = 0.0;

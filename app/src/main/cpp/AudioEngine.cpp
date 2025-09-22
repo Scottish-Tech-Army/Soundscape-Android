@@ -683,15 +683,16 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeBeacon(
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if(ae) {
 
-        auto beacon = std::make_unique<soundscape::Beacon>(
+        auto beacon = std::make_unique<soundscape::BeaconWithProximity>(
                 ae,
                 soundscape::PositioningMode(
                         static_cast<soundscape::PositioningMode::AudioType>(audio_type),
-                        heading_only ? soundscape::PositioningMode::HEADING_ONLY : soundscape::PositioningMode::HEADING_AND_PROXIMITY,
+                        soundscape::PositioningMode::HEADING,
                         latitude,
                         longitude,
                         heading
-                )
+                ),
+                heading_only
         );
         if (not beacon) {
             TRACE("Failed to create audio beacon");
@@ -719,8 +720,8 @@ JNIEXPORT void JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon(JNIEnv *env MAYBE_UNUSED,
                                                                                 jobject thiz MAYBE_UNUSED,
                                                                                 jlong beacon_handle) {
-    auto beacon = reinterpret_cast<soundscape::Beacon*>(beacon_handle);
-    auto ae = beacon->m_pEngine;
+    auto beacon = reinterpret_cast<soundscape::BeaconWithProximity*>(beacon_handle);
+    auto ae = beacon->m_HeadingBeacon.m_pEngine;
     delete beacon;
     if(ae) {
         ae->BeaconDestroyed();
@@ -761,7 +762,7 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
                 ae,
                 soundscape::PositioningMode(
                         static_cast<soundscape::PositioningMode::AudioType>(mode),
-                        soundscape::PositioningMode::HEADING_ONLY,
+                        soundscape::PositioningMode::HEADING,
                         latitude,
                         longitude,
                         heading),
@@ -811,7 +812,7 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
                 asset,
                 soundscape::PositioningMode(
                         static_cast<soundscape::PositioningMode::AudioType>(mode),
-                        soundscape::PositioningMode::HEADING_ONLY,
+                        soundscape::PositioningMode::HEADING,
                         latitude,
                         longitude,
                         heading

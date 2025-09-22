@@ -24,6 +24,10 @@ namespace soundscape {
 
         [[nodiscard]] bool CheckIsActive(double degrees_off_axis) const;
 
+        int m_BufferSampleRate;
+        int m_BufferAudioFormat;
+        int m_BufferChannelCount;
+
     private:
         double m_MaxAngle;
         std::string m_Name;
@@ -56,7 +60,8 @@ namespace soundscape {
         enum SourceMode {
             DIRECTION_MODE,
             FAR_MODE,
-            NEAR_MODE
+            NEAR_MODE,
+            TOO_FAR_MODE
         };
         virtual void UpdateGeometry(double degrees_off_axis, SourceMode mode);
 
@@ -83,6 +88,7 @@ namespace soundscape {
     class BeaconBufferGroup : public BeaconAudioSource {
     public:
         BeaconBufferGroup(const AudioEngine *ae,
+                          const BeaconDescriptor *beacon_descriptor,
                           PositionedAudio *parent,
                           double degrees_off_axis,
                           int sample_rate,
@@ -110,8 +116,6 @@ namespace soundscape {
         const BeaconDescriptor *m_pDescription;
         std::unique_ptr<BeaconBuffer> m_pIntro;
         std::unique_ptr<BeaconBuffer> m_pOutro;
-        std::unique_ptr<BeaconBuffer> m_pNear;
-        std::unique_ptr<BeaconBuffer> m_pFar;
         std::vector<std::unique_ptr<BeaconBuffer> > m_pBuffers;
         BeaconBuffer *m_pCurrentBuffer = nullptr;
         unsigned long m_BytePos = 0;

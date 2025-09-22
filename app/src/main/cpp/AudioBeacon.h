@@ -7,6 +7,20 @@ namespace soundscape {
 
     class AudioEngine;
 
+    enum {
+        NEAR_INDEX = 0,
+        FAR_INDEX = 1
+    };
+    const BeaconDescriptor msc_ProximityDescriptor =
+    {
+        "Proximity",
+        36,
+        {
+            {"file:///android_asset/Route/Proximity_Close.wav" ,0}, // NEAR_INDEX
+            {"file:///android_asset/Route/Proximity_Far.wav" ,0},   // FAR_INDEX
+        }
+    };
+
     class PositionedAudio {
     public:
         PositionedAudio(AudioEngine *engine, PositioningMode mode, bool dimmable = false, std::string utterance_id = "");
@@ -22,7 +36,8 @@ namespace soundscape {
         virtual bool CreateAudioSource(double degrees_off_axis,
                                        int sampleRate,
                                        int audioFormat,
-                                       int channelCount) = 0;
+                                       int channelCount,
+                                       bool proximityBeacon) = 0;
         bool IsEof() { return m_Eof; }
         void Eof() { m_Eof = true; }
         void PlayNow();
@@ -36,6 +51,7 @@ namespace soundscape {
 
     protected:
         void Init(double degrees_off_axis,
+                  bool proximityBeacon = false,
                   int sampleRate = 44100,
                   int audioFormat = 1,
                   int channelCount = 1);
@@ -70,7 +86,7 @@ namespace soundscape {
             // Update the geometry first so that the initial audio sample is the correct one
             // for the direction
             auto degrees_off_axis = GetHeadingOffset(listener_heading, listener_latitude, listener_longitude);
-            Init(degrees_off_axis);
+            Init(degrees_off_axis, mode.m_AudioMode == PositioningMode::PROXIMITY);
         }
 
     protected:
@@ -78,9 +94,12 @@ namespace soundscape {
         bool CreateAudioSource(double degrees_off_axis,
                                int sampleRate,
                                int audioFormat,
-                               int channelCount) final
+                               int channelCount,
+                               bool proximityBeacon) final
         {
             m_pAudioSource = std::make_unique<BeaconBufferGroup>(m_pEngine,
+                                                                 proximityBeacon?
+                                                                    &msc_ProximityDescriptor : m_pEngine->GetBeaconDescriptor(),
                                                                  this,
                                                                  degrees_off_axis,
                                                                  sampleRate,
@@ -90,6 +109,23 @@ namespace soundscape {
             return false;
         }
     };
+
+    class BeaconWithProximity {
+    public:
+        BeaconWithProximity(AudioEngine *engine, PositioningMode mode, bool heading_only) :
+            m_HeadingBeacon(engine, mode)
+        {
+            if(!heading_only) {
+                mode.m_AudioMode = PositioningMode::PROXIMITY;
+                mode.m_AudioType = PositioningMode::STANDARD;
+                m_pProximityBeacon = std::make_unique<soundscape::Beacon>(engine, mode);
+            }
+        }
+
+        Beacon m_HeadingBeacon;
+        std::unique_ptr<Beacon> m_pProximityBeacon;
+    };
+
 
     class TextToSpeech : public PositionedAudio {
     public:
@@ -108,7 +144,8 @@ namespace soundscape {
         bool CreateAudioSource(double degrees_off_axis,
                                int sampleRate,
                                int audioFormat,
-                               int channelCount) final
+                               int channelCount,
+                               bool proximityBeacon) final
         {
             m_pAudioSource = std::make_unique<TtsAudioSource>(this,
                                                               m_TtsSocket,
@@ -138,7 +175,8 @@ namespace soundscape {
         bool CreateAudioSource(double degrees_off_axis,
                                int sampleRate,
                                int audioFormat,
-                               int channelCount) final
+                               int channelCount,
+                               bool proximityBeacon) final
         {
             m_pAudioSource = std::make_unique<EarconSource>(this, m_Asset);
             // Earcons are queued along with the TextToSpeech audio

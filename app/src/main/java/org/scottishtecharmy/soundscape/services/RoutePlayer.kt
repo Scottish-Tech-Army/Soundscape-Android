@@ -124,9 +124,9 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                     value.latitude,
                                     value.longitude
                                 )
-                                if (distanceToWaypoint < 15.0) {
+                                if (distanceToWaypoint < 12.0) {
                                     if ((currentMarker + 1) < route.markers.size) {
-                                        // We're within 15m of the marker, move on to the next one
+                                        // We're within 12m of the marker, move on to the next one
                                         Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
                                         moveToNext()
                                     } else {
