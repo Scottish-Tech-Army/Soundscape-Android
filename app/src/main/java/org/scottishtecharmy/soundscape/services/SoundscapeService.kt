@@ -401,12 +401,12 @@ class SoundscapeService : MediaSessionService() {
             Realm.deleteRealm(config)
         }*/
 
-    fun createBeacon(location: LngLatAlt?) {
+    fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {
         if(location == null) return
 
         requestAudioFocus()
         val oldBeacon = audioBeacon
-        audioBeacon = audioEngine.createBeacon(location)
+        audioBeacon = audioEngine.createBeacon(location, headingOnly)
         if (oldBeacon != 0L) {
             audioEngine.destroyBeacon(oldBeacon)
         }

@@ -44,7 +44,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
 
     private external fun create() : Long
     private external fun destroy(engineHandle: Long)
-    private external fun createNativeBeacon(engineHandle: Long, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
+    private external fun createNativeBeacon(engineHandle: Long, audioType: Int, headingOnly: Boolean, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
     private external fun toggleNativeBeaconMute(engineHandle: Long) : Boolean
     external fun createNativeTextToSpeech(engineHandle: Long,
@@ -62,7 +62,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun getQueueDepth(engineHandle: Long) : Long
-    private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean)
+    private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
 
@@ -80,7 +80,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         if(service == null) {
             geometryUpdateJob = engineCoroutineScope.launch {
                 while (isActive) { // Loop while the coroutine is active
-                    updateGeometry(0.0, 0.0, 0.0, true, true)
+                    updateGeometry(0.0, 0.0, 0.0, true, true, 15.0)
                     delay(100L) // Wait for 100 milliseconds
                 }
             }
@@ -208,7 +208,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         }
     }
 
-    override fun createBeacon(location: LngLatAlt) : Long
+    override fun createBeacon(location: LngLatAlt, headingOnly: Boolean) : Long
     {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
@@ -216,6 +216,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                 return createNativeBeacon(
                     engineHandle,
                     AudioType.LOCALIZED.type,
+                    headingOnly,
                     location.latitude,
                     location.longitude,
                     0.0)
@@ -357,7 +358,8 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                                 listenerLongitude: Double,
                                 listenerHeading: Double?,
                                 focusGained: Boolean,
-                                duckingAllowed: Boolean)
+                                duckingAllowed: Boolean,
+                                proximityNear: Double)
     {        synchronized(engineMutex) {
             if(engineHandle != 0L)
                 updateGeometry(
@@ -366,7 +368,8 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                     listenerLongitude,
                     listenerHeading ?: 50000.0,
                     focusGained,
-                    duckingAllowed
+                    duckingAllowed,
+                    15.0
                 )
         }
     }

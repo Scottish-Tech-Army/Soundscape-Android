@@ -365,7 +365,8 @@ class GeoEngine {
             userGeometry.location.longitude,
             userGeometry.presentationHeading(),
             soundscapeService.audioFocusGained,
-            soundscapeService.duckingAllowed
+            soundscapeService.duckingAllowed,
+            15.0
         )
     }
 

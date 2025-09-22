@@ -27,7 +27,7 @@ data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val current
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteWithMarkers? = null
     private var currentMarker = -1
-    private var autoProgressRoute = true
+    private var standaloneBeacon = true
     private val coroutineScope = CoroutineScope(Job())
     private var localizedContext: Context
     private var locationMonitoringJob: Job? = null
@@ -63,9 +63,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             RouteEntity(0, beaconName, ""),
             waypoints
         )
-        // We don't auto progress this route, as we want to allow setting the beacon at the current
-        // location and keeping it active.
-        autoProgressRoute = false
+        standaloneBeacon = true
         _currentRouteFlow.update {
             it.copy(
                 routeData = currentRouteData,
@@ -91,7 +89,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             val route = routeDao.getRouteWithMarkers(routeId)
             currentMarker = 0
             currentRouteData = route
-            autoProgressRoute = true
+            standaloneBeacon = false
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
@@ -117,7 +115,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             service.locationProvider.filteredLocationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
-                        if(autoProgressRoute) {
+                        if(!standaloneBeacon) {
                             if(currentMarker < route.markers.size) {
                                 val location = route.markers[currentMarker].getLngLatAlt()
                                 val distanceToWaypoint = distance(
@@ -185,7 +183,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                     )
                 }
 
-                service.createBeacon(location)
+                service.createBeacon(location, standaloneBeacon)
             }
         }
     }

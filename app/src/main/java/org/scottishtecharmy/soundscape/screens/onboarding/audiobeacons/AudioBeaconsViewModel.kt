@@ -43,7 +43,7 @@ class AudioBeaconsViewModel @Inject constructor(@param:ApplicationContext val co
         audioEngine.setBeaconType(type)
         if(beacon != 0L)
             audioEngine.destroyBeacon(beacon)
-        beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0))
+        beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
         _state.value = state.value.copy(selectedBeacon = type)
         // Store the preference for future use
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)

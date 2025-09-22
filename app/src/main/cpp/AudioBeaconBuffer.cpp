@@ -114,6 +114,12 @@ BeaconBufferGroup::BeaconBufferGroup(const AudioEngine *ae,
     m_pOutro = std::make_unique<BeaconBuffer>(system,
                                               "file:///android_asset/Route/Route_End.wav",
                                               180.0);
+    m_pNear = std::make_unique<BeaconBuffer>(system,
+                                              "file:///android_asset/Route/Proximity_Close.wav",
+                                              180.0);
+    m_pFar = std::make_unique<BeaconBuffer>(system,
+                                              "file:///android_asset/Route/Proximity_Far.wav",
+                                              180.0);
 }
 
 BeaconBufferGroup::~BeaconBufferGroup()
@@ -149,7 +155,7 @@ void BeaconBufferGroup::CreateSound(FMOD::System *system, FMOD::Sound **sound, c
     ERROR_CHECK(result);
 }
 
-void BeaconBufferGroup::UpdateCurrentBufferFromHeading()
+void BeaconBufferGroup::UpdateCurrentBufferFromHeadingAndLocation()
 {
     if(m_PlayState == PLAYING_INTRO) {
         m_pCurrentBuffer = m_pIntro.get();
@@ -159,15 +165,27 @@ void BeaconBufferGroup::UpdateCurrentBufferFromHeading()
         return;
     }
 
-    for(const auto &buffer: m_pBuffers)
-    {
-        if(buffer->CheckIsActive(m_DegreesOffAxis)) {
-            m_pCurrentBuffer = buffer.get();
+    switch(m_Mode) {
+        case BeaconAudioSource::DIRECTION_MODE: {
+            for (const auto &buffer: m_pBuffers) {
+                if (buffer->CheckIsActive(m_DegreesOffAxis)) {
+                    m_pCurrentBuffer = buffer.get();
+                    break;
+                }
+            }
+            if (m_pCurrentBuffer == nullptr)
+                m_pCurrentBuffer = m_pBuffers[0].get();
+            break;
+        }
+        case BeaconAudioSource::NEAR_MODE: {
+            m_pCurrentBuffer = m_pNear.get();
+            break;
+        }
+        case BeaconAudioSource::FAR_MODE: {
+            m_pCurrentBuffer = m_pFar.get();
             break;
         }
     }
-    if(m_pCurrentBuffer == nullptr)
-        m_pCurrentBuffer = m_pBuffers[0].get();
 }
 
 FMOD_RESULT F_CALL BeaconBufferGroup::PcmReadCallback(void *data, unsigned int data_length)
@@ -175,7 +193,7 @@ FMOD_RESULT F_CALL BeaconBufferGroup::PcmReadCallback(void *data, unsigned int d
     if(m_PlayState == PLAYING_COMPLETE) {
         return FMOD_ERR_FILE_EOF;
     }
-    UpdateCurrentBufferFromHeading();
+    UpdateCurrentBufferFromHeadingAndLocation();
 
     unsigned int bytes_read = m_pCurrentBuffer->Read(data, data_length, m_BytePos, m_PlayState != PLAYING_BEACON);
     m_BytePos += bytes_read;
@@ -304,9 +322,10 @@ FMOD_RESULT F_CALL BeaconAudioSource::StaticPcmReadCallback(FMOD_SOUND* sound, v
     return FMOD_OK;
 }
 
-void BeaconAudioSource::UpdateGeometry(double degrees_off_axis)
+void BeaconAudioSource::UpdateGeometry(double degrees_off_axis, BeaconAudioSource::SourceMode mode)
 {
     m_DegreesOffAxis = degrees_off_axis;
+    m_Mode = mode;
 }
 
 //
@@ -329,7 +348,7 @@ void EarconSource::CreateSound(FMOD::System *system, FMOD::Sound **sound, const 
     m_pSound = *sound;
 }
 
-void EarconSource::UpdateGeometry(double degrees_off_axis)
+void EarconSource::UpdateGeometry(double degrees_off_axis, BeaconAudioSource::SourceMode mode)
 {
     if(m_pSound != nullptr) {
         FMOD_OPENSTATE state;
