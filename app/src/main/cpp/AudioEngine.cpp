@@ -338,7 +338,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
     void
     AudioEngine::BeaconDestroyed() {
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
-        if (m_Beacons.empty()) {
+        if (m_Beacons.empty() && m_QueuedBeacons.empty()) {
             NotifyAllBeaconsCleared(__LINE__);
         }
     }

@@ -512,6 +512,21 @@ class SoundscapeService : MediaSessionService() {
         return (depth > 0)
     }
 
+    fun speakText(text: String,
+                  type: AudioType,
+                  latitude: Double = Double.NaN,
+                  longitude: Double = Double.NaN,
+                  heading: Double = Double.NaN) {
+
+        if (!requestAudioFocus()) {
+            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
+            return
+        }
+        Log.d(TAG, "speakText $text")
+        audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
+    }
+
+
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) {
 
         if(callout == null) return
