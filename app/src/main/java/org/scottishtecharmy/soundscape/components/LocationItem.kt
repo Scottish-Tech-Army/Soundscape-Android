@@ -30,7 +30,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.tooling.preview.Preview
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
@@ -66,8 +66,10 @@ fun LocationItem(
     val context = LocalContext.current
     var distanceString = ""
     if(userLocation != null) {
-        distanceString = formatDistance(
-            item.location.createCheapRuler().distance(userLocation, item.location),
+        val ruler = item.location.createCheapRuler()
+        distanceString = formatDistanceAndDirection(
+            ruler.distance(userLocation, item.location),
+            ruler.bearing(userLocation, item.location),
             context
         )
     }

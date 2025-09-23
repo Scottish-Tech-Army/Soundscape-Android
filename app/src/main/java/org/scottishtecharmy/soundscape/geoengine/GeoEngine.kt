@@ -39,6 +39,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -658,7 +659,7 @@ class GeoEngine {
                         if(feature == null) continue
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
                         val name = getTextForFeature(localizedContext, feature)
-                        val text = "${name.text}. ${formatDistance(poiLocation.distance, localizedContext)}"
+                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedContext)}"
                         list.add(
                             PositionedString(
                                 text,
@@ -711,7 +712,7 @@ class GeoEngine {
 
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
                         val name = getTextForFeature(localizedContext, feature)
-                        val text = "${name.text}. ${formatDistance(poiLocation.distance, localizedContext)}"
+                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedContext)}"
                         list.add(
                             PositionedString(
                                 text,
@@ -781,8 +782,9 @@ class GeoEngine {
                             val featureText = getTextForFeature(localizedContext, feature)
                             val markerLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
                             val text = "${featureText.text}. ${
-                                formatDistance(
+                                formatDistanceAndDirection(
                                     markerLocation.distance,
+                                    markerLocation.heading,
                                     localizedContext
                                 )
                             }"
@@ -1087,7 +1089,7 @@ fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
         metric = (unitsString == "Metric")
 }
 
-fun formatDistance(distance: Double, localizedContext: Context?) : String {
+fun formatDistanceAndDirection(distance: Double, heading: Double?, localizedContext: Context?) : String {
     var units = distance
     var bigUnitDivisor = 100
     if(!metric) {
@@ -1100,18 +1102,25 @@ fun formatDistance(distance: Double, localizedContext: Context?) : String {
     val roundedDistance =
         ((units + (roundToNearest / 2)) / roundToNearest).toInt() * roundToNearest
 
+    var distanceText: String
     if (roundedDistance < 1000) {
-        return localizedContext?.getString(
+        distanceText = localizedContext?.getString(
             if(metric) R.string.distance_format_meters else R.string.distance_format_feet,
             roundedDistance.toInt().toString()
         ) ?: format("%f metres", roundedDistance)
     } else {
         val bigUnits = (roundedDistance.toInt() / 10).toFloat() / bigUnitDivisor
-        return localizedContext?.getString(
+        distanceText = localizedContext?.getString(
             if(metric) R.string.distance_format_km else R.string.distance_format_miles,
             "%.2f".format(bigUnits)
         )  ?: format("%f km", bigUnits)
     }
+
+    var headingText = ""
+    if(heading != null && localizedContext != null) {
+        headingText = ", " + localizedContext.getString(getCompassLabel(heading.toInt()))
+    }
+    return format("$distanceText$headingText")
 }
 
 fun localReverseGeocode(location: LngLatAlt,

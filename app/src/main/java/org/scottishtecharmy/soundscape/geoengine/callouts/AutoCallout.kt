@@ -16,7 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -47,7 +47,7 @@ class AutoCallout(
         }
 
         val distance = userGeometry.ruler.distance(userGeometry.location, userGeometry.currentBeacon)
-        val distanceString = formatDistance(distance, localizedContext)
+        val distanceString = formatDistanceAndDirection(distance, null, localizedContext)
         var text = localizedContext?.getString(R.string.callouts_audio_beacon) ?: "Distance to the audio beacon"
         text += " $distanceString"
 
