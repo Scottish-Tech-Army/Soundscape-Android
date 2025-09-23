@@ -17,7 +17,7 @@ import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -171,7 +171,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                     val beaconSetText = localizedContext.getString(
                         R.string.behavior_scavenger_hunt_callout_next_flag,
                         route.markers[index].name,
-                        formatDistance(distance, localizedContext),
+                        formatDistanceAndDirection(distance, null, localizedContext),
                         (index + 1).toString(),
                         (route.markers.size).toString()
                     )

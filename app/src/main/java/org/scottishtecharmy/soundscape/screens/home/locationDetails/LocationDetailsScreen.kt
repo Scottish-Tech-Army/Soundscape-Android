@@ -47,7 +47,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.geoengine.formatDistance
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
@@ -335,8 +335,10 @@ private fun LocationDescriptionTextsSection(
     val distanceString = remember(userLocation) {
         // If the location changes, recalculate the distance string
         if(userLocation == null) return@remember ""
-        return@remember formatDistance(
-            userLocation.createCheapRuler().distance(userLocation, locationDescription.location),
+        val ruler = userLocation.createCheapRuler()
+        return@remember formatDistanceAndDirection(
+            ruler.distance(userLocation, locationDescription.location),
+            ruler.bearing(userLocation, locationDescription.location),
             context)
     }
 
