@@ -4,13 +4,23 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
 
+private fun normalize(deg: Int) : Int {
+    var tmp = deg
+    while (tmp < 0) tmp += 360
+    while (tmp > 360) tmp -= 360
+
+    return tmp
+}
+
+
 fun getCompassLabelFacingDirection(localizedContext: Context,
                                    degrees: Int,
                                    inMotion: Boolean,
                                    inVehicle: Boolean
 ): String{
+    val normalizedDegrees = normalize(degrees)
     if(!inMotion) {
-        return when (degrees) {
+        return when (normalizedDegrees) {
             in 338..360, in 0..22 -> localizedContext.getString(R.string.directions_facing_n)
             in 23..67 -> localizedContext.getString(R.string.directions_facing_ne)
             in 68..112 -> localizedContext.getString(R.string.directions_facing_e)
@@ -22,7 +32,7 @@ fun getCompassLabelFacingDirection(localizedContext: Context,
             else -> ""
         }
     } else if(inVehicle) {
-        return when (degrees) {
+        return when (normalizedDegrees) {
             in 338..360, in 0..22 -> localizedContext.getString(R.string.directions_traveling_n)
             in 23..67 -> localizedContext.getString(R.string.directions_traveling_ne)
             in 68..112 -> localizedContext.getString(R.string.directions_traveling_e)
@@ -34,7 +44,7 @@ fun getCompassLabelFacingDirection(localizedContext: Context,
             else -> ""
         }
     } else {
-        return when (degrees) {
+        return when (normalizedDegrees) {
             in 338..360, in 0..22 -> localizedContext.getString(R.string.directions_heading_n)
             in 23..67 -> localizedContext.getString(R.string.directions_heading_ne)
             in 68..112 -> localizedContext.getString(R.string.directions_heading_e)
@@ -54,8 +64,9 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
                                         inMotion: Boolean,
                                         inVehicle: Boolean
 ):String{
+    val normalizedDegrees = normalize(degrees)
     if(!inMotion) {
-        return when (degrees) {
+        return when (normalizedDegrees) {
             in 338..360, in 0..22 -> localizedContext.getString(
                 R.string.directions_along_facing_n,
                 placeholder
@@ -91,7 +102,7 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
             else -> ""
         }
     } else if(inVehicle) {
-        return when (degrees) {
+        return when (normalizedDegrees) {
             in 338..360, in 0..22 -> localizedContext.getString(
                 R.string.directions_along_traveling_n,
                 placeholder
@@ -127,7 +138,7 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
             else -> ""
         }
     } else {
-        return when (degrees) {
+        return when (normalizedDegrees) {
             in 338..360, in 0..22 -> localizedContext.getString(
                 R.string.directions_along_heading_n,
                 placeholder
@@ -166,7 +177,8 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
 }
 
 fun getCompassLabel(degrees: Int):Int {
-    return when (degrees) {
+    val normalizedDegrees = normalize(degrees)
+    return when (normalizedDegrees) {
         in 338..360, in 0..22 -> R.string.directions_cardinal_north
         in 23..67 -> R.string.directions_cardinal_north_east
         in 68..112 -> R.string.directions_cardinal_east
