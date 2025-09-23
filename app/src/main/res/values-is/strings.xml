@@ -35,4 +35,35 @@
     <string name="preview_title">Soundscape götusýn</string>
     <string name="preview_go_title">fara á næstu gatnamót</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og"</string>
+    <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
+    <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
+    <string name="location_detail_action_beacon">hljóð viti</string>
+    <string name="location_detail_action_beacon_hint">setja hljóðvita hér</string>
+    <string name="location_detail_action_save_hint">vista þessa staðsetningu sem merki</string>
+    <string name="location_detail_action_edit_hint">uppfæra merki</string>
+    <string name="location_detail_action_share_hint">deila staðsetningu</string>
+    <string name="location_detail_action_preview_hint">hefja forskoðun hér</string>
+    <string name="location_detail_add_waypoint_existing_hint">fjarlægja merki úr leið</string>
+    <string name="location_detail_add_waypoint_new_hint">bæta merki við leið</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">stækka kort til að fylla skjá</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">fara úr fullum skjá</string>
+    <string name="route_detail_action_start_route">upphaf leiðar</string>
+    <string name="route_detail_action_stop_route">ljúka leið</string>
+    <string name="route_detail_action_edit">uppfæra leið</string>
+    <string name="route_detail_action_start_route_hint">hefja leið</string>
+    <string name="route_detail_action_start_route_disabled_hint">bæta við punktum áður en leið er hafin</string>
+    <string name="route_detail_action_stop_route_hint">stöðva leið</string>
+    <string name="route_detail_action_share_hint">deila leið</string>
+    <string name="route_detail_action_edit_hint">uppfæra leið</string>
+    <string name="route_detail_action_create">ný leið</string>
+    <string name="route_detail_action_create_hint">búa til nýja leið</string>
+    <string name="route_end_completed_accessibility">leið lokiðleið lokið</string>
+    <string name="route_detail_action_previous">fyrri leiðarpunktur</string>
+    <string name="route_detail_action_previous_hint">ýttu tvisvr til að færa vitan á síðasta punkt</string>
+    <string name="route_detail_action_next">næsti leiðarpunktur</string>
+    <string name="route_detail_action_next_hint">ýttu tvisvar til að færa vitan á næsta pukt</string>
+    <string name="route_detail_edit_waypoints_button">bæta við punkti</string>
+    <string name="route_detail_edit_delete">eyða leið</string>
+    <string name="route_update_success_title">uppfærslu lokið</string>
 </resources>
