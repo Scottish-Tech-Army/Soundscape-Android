@@ -1,0 +1,40 @@
+appId: org.scottishtecharmy.soundscape
+---
+- launchApp:
+    clearState: false
+- tapOn:
+    id: homePlacesNearby
+- tapOn:
+    id: placesNearby-0
+
+- repeat:
+    while:
+        notVisible:
+            id: placesNearby-20
+    commands:
+        - swipe:
+            start: 50%, 90% # From (90% of width, 50% of height)
+            end: 50%, 10% # To (10% of width, 50% of height)- tapOn:
+- tapOn:
+    id: appBarLeft
+- tapOn:
+    id: placesNearby-1
+- tapOn:
+    id: appBarLeft
+- tapOn:
+    id: placesNearby-2
+- tapOn:
+    id: appBarLeft
+- tapOn:
+    id: placesNearby-3
+- tapOn:
+    id: appBarLeft
+- tapOn:
+    id: placesNearby-4
+- tapOn:
+    id: appBarLeft
+- tapOn:
+    id: placesNearby-5
+- tapOn:
+    id: appBarLeft
+

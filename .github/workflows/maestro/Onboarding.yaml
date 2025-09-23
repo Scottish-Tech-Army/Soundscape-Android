@@ -1,0 +1,52 @@
+appId: org.scottishtecharmy.soundscape
+---
+- launchApp:
+    clearState: true
+- swipe:
+    direction: UP
+    duration: 1000
+- tapOn:
+    id: welcomeScreenContinueButton
+- swipe:
+    direction: UP
+    duration: 1000
+- tapOn:
+    id: languageScreenContinueButton
+- swipe:
+    direction: UP
+    duration: 1000
+- tapOn:
+    id: navigatingScreenContinueButton
+- tapOn:
+    id: permission_allow_foreground_only_button
+- tapOn:
+    id: permission_allow_button
+- swipe:
+    direction: UP
+    duration: 1000
+- tapOn:
+    id: listeningScreenContinueButton
+- swipe:
+    direction: UP
+    duration: 1000
+- tapOn:
+    id: hearingScreenContinueButton
+- tapOn:
+    id: CurrentButton
+- swipe:
+    direction: UP
+    duration: 2000
+- tapOn:
+    id: audioBeaconsContinueButton
+- swipe:
+    direction: UP
+    duration: 2000
+- tapOn:
+    id: termsScreenAgree
+- tapOn:
+    id: termsScreenContinueButton
+- swipe:
+    direction: UP
+    duration: 1000
+- tapOn:
+    id: finishScreenContinueButton
