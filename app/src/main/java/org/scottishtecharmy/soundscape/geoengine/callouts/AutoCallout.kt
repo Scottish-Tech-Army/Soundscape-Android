@@ -178,17 +178,30 @@ class AutoCallout(
         val uniquelyNamedPOIs = emptyMap<String,Feature>().toMutableMap()
         pois.features.filter { feature ->
 
+            val name = getTextForFeature(localizedContext, feature)
+            val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
+
+            val callout = TrackedCallout(
+                userGeometry,
+                name.text,
+                nearestPoint.point,
+                positionedStrings = emptyList(),
+                feature.geometry.type == "Point",
+                name.generic
+            )
             if(userGeometry.currentBeacon != null) {
                 // If the feature is within 1m of the current beacon, don't call it out
                 if(getDistanceToFeature(userGeometry.currentBeacon, feature, userGeometry.ruler).distance < 1.0) {
+                    // We do want to add it to the POI history though so that when it's no longer
+                    // the currentBeacon it doesn't immediately get called out.
+                    if (!poiCalloutHistory.find(callout))
+                        poiCalloutHistory.add(callout)
+
                     return@filter true
                 }
             }
 
-            val name = getTextForFeature(localizedContext, feature)
             val category = feature.foreign?.get("category") as String?
-
-            val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
             if(category == null) {
                 true
             } else {
@@ -197,14 +210,6 @@ class AutoCallout(
                     true
                 } else {
                     // Check the history and if the POI has been called out recently then we skip it
-                    val callout = TrackedCallout(
-                        userGeometry,
-                        name.text,
-                        nearestPoint.point,
-                        positionedStrings = emptyList(),
-                        feature.geometry.type == "Point",
-                        name.generic
-                    )
                     if (poiCalloutHistory.find(callout)) {
                         println("Discard ${callout.trackedText}")
                         // Filter out
