@@ -10,7 +10,7 @@ has_toc: false
 # 0.0.118
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
 
-## New changes since 0.0.118
+## New changes since 0.0.116
 * Fixed race when announcing "Route completed".
 * Included direction in UI everywhere that there's a distance.
 * Callout marker annotations when they are present.
@@ -22,7 +22,7 @@ We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/S
 * Use confected names when constructing intersection names. This improves the naming of some intersections with un-named paths.
 * Fixes for where markdown was seeping into the UI.
 
-## New changes since 0.0.110
+## Changes between 0.0.110 and 0.0.116
 * *Current Location* now appears as an option in the *Add Waypoint* screen
 * Improvements have been made to deal with cases where permissions (location and notifications) have been revoked.
 * Initial Persian and Arabic language support has been added and various additions to other languages. We welcome suggested improvements on Weblate <https://hosted.weblate.org/projects/soundscape-android/android-app/>
