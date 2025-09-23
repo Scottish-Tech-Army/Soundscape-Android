@@ -132,7 +132,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                     } else {
                                         // We've reached the end of the route
                                         // Announce the end of the route
-                                        Log.d(TAG, "End of route  ${coroutineContext[Job]}")
+                                        Log.d(TAG, "End of route ${coroutineContext[Job]}")
                                         val endOfRouteText = localizedContext.getString(
                                             R.string.route_end_completed_accessibility,
                                             route.route.name
@@ -176,7 +176,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                         (route.markers.size).toString()
                     )
 
-                    service.audioEngine.clearTextToSpeechQueue()
                     service.audioEngine.createTextToSpeech(
                         beaconSetText,
                         AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
