@@ -228,11 +228,12 @@ fun getDistanceToFeature(
     when (feature.geometry.type) {
         "Point" -> {
             val point = feature.geometry as Point
-            val distanceToFeaturePoint = ruler.distance(
-                currentLocation,
-                LngLatAlt(point.coordinates.longitude, point.coordinates.latitude)
-            )
-            return PointAndDistanceAndHeading(point.coordinates, distanceToFeaturePoint)
+            val distanceToFeaturePoint = ruler.distance(currentLocation,point.coordinates)
+            val heading = ruler.bearing(currentLocation, point.coordinates)
+            return PointAndDistanceAndHeading(
+                point.coordinates,
+                distanceToFeaturePoint,
+                heading)
         }
 
         "MultiPoint" -> {
@@ -248,7 +249,8 @@ fun getDistanceToFeature(
                 }
             }
             // this is the closest point to the current location from the collection of points
-            return PointAndDistanceAndHeading(nearestPoint, shortestDistance)
+            val heading = ruler.bearing(currentLocation, nearestPoint)
+            return PointAndDistanceAndHeading(nearestPoint, shortestDistance, heading)
         }
 
         "LineString" -> {
@@ -281,7 +283,8 @@ fun getDistanceToFeature(
                 ruler,
                 nearestPoint
             )
-            return PointAndDistanceAndHeading(nearestPoint, distance)
+            val heading = ruler.bearing(currentLocation, nearestPoint)
+            return PointAndDistanceAndHeading(nearestPoint, distance, heading)
         }
 
         "MultiPolygon" -> {
@@ -303,7 +306,8 @@ fun getDistanceToFeature(
                 }
             }
             // this is the shortest distance from current location to the collection of Polygons
-            return PointAndDistanceAndHeading(nearestPoint, shortestDistance)
+            val heading = ruler.bearing(currentLocation, nearestPoint)
+            return PointAndDistanceAndHeading(nearestPoint, shortestDistance, heading)
         }
 
         else -> {
