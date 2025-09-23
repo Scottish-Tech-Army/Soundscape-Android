@@ -35,7 +35,7 @@
     <string name="preview_title">Soundscape götusýn</string>
     <string name="preview_go_title">fara á næstu gatnamót</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %s"</string>
     <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
     <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
     <string name="location_detail_action_beacon">hljóð viti</string>
@@ -58,7 +58,7 @@
     <string name="route_detail_action_edit_hint">uppfæra leið</string>
     <string name="route_detail_action_create">ný leið</string>
     <string name="route_detail_action_create_hint">búa til nýja leið</string>
-    <string name="route_end_completed_accessibility">leið lokiðleið lokið</string>
+    <string name="route_end_completed_accessibility">leið lokiðleið lokið %s</string>
     <string name="route_detail_action_previous">fyrri leiðarpunktur</string>
     <string name="route_detail_action_previous_hint">ýttu tvisvr til að færa vitan á síðasta punkt</string>
     <string name="route_detail_action_next">næsti leiðarpunktur</string>
