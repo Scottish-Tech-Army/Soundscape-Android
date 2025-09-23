@@ -7,8 +7,20 @@ has_toc: false
 
 # Release notes
 
-# 0.0.114
+# 0.0.118
 We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
+
+## New changes since 0.0.118
+* Fixed race when announcing "Route completed".
+* Included direction in UI everywhere that there's a distance.
+* Callout marker annotations when they are present.
+* Don't callout a marker when it was a beacon and we just reached it and moved the route on to the next beacon
+* Remove over zealous clearing of the speech queue which was throwing away some useful speech
+* Add proximity beacon to audio engine to mimic iOS. When playing back routes there's a 'hum' starts as you near the next Waypoint.
+* Under the hood support started for offline map extracts - a little way off having support in the app, but the groundwork has been laid.
+* Improve exception handling in Google maps redirect code - fixes one of the last remaining crashes that we've seen.
+* Use confected names when constructing intersection names. This improves the naming of some intersections with un-named paths.
+* Fixes for where markdown was seeping into the UI.
 
 ## New changes since 0.0.110
 * *Current Location* now appears as an option in the *Add Waypoint* screen
