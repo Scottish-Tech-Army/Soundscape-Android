@@ -778,9 +778,9 @@ class GeoEngine {
                     val list: MutableList<PositionedString> = mutableListOf()
                     if(nearestMarkers != null) {
                         for (feature in nearestMarkers.features) {
+                            val featureText = getTextForFeature(localizedContext, feature)
                             val markerLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                            val name = feature.properties?.get("name")
-                            val text = "$name. ${
+                            val text = "${featureText.text}. ${
                                 formatDistance(
                                     markerLocation.distance,
                                     localizedContext
@@ -1009,9 +1009,17 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
 
     if(isMarker) {
         // If the feature is a Marker, return the unadulterated name along with prefix indicating
-        // that it's a Marker.
-        return if(name != null)
-                TextForFeature(localizedContext.getString(R.string.markers_marker_with_name, name), false)
+        // that it's a Marker and any extra description (annotation).
+        val description = feature.properties?.get("description")
+        var text = name
+        if(description != null) {
+            if(text != null)
+                text += ", $description"
+            else
+                text = description as String
+        }
+        return if(text != null)
+                TextForFeature(localizedContext.getString(R.string.markers_marker_with_name, text), false)
             else
                 TextForFeature(localizedContext.getString(R.string.markers_generic_name), false)
     }
