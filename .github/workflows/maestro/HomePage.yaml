@@ -1,0 +1,25 @@
+appId: org.scottishtecharmy.soundscape
+---
+- launchApp:
+    clearState: false
+
+- tapOn:
+    id: homeMyLocation
+- tapOn:
+    id: homeAroundMe
+- tapOn:
+    id: homeAheadOfMe
+- tapOn:
+    id: homeNearbyMarkers
+- tapOn:
+    id: topBarSleep
+- tapOn:
+    id: sleepWakeUpNow
+- tapOn:
+    id: topBarMenu
+- tapOn:
+    id: menuAboutSoundscape
+- tapOn:
+    id: appBarLeft
+- tapOn:
+    id: menuSettings
