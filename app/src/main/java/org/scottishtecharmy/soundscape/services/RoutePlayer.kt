@@ -137,7 +137,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                             R.string.route_end_completed_accessibility,
                                             route.route.name
                                         )
-                                        service.audioEngine.createTextToSpeech(
+                                        service.speakText(
                                             endOfRouteText,
                                             AudioType.STANDARD
                                         )
@@ -176,7 +176,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                         (route.markers.size).toString()
                     )
 
-                    service.audioEngine.createTextToSpeech(
+                    service.speakText(
                         beaconSetText,
                         AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
                     )
