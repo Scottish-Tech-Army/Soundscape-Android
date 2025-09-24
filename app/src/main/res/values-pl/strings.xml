@@ -8,15 +8,15 @@
     <string name="settings_screen_title">Ustawienia</string>
     <string name="settings_about_app">Informacje o aplikacji Soundscape</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">Jednostki miary</string>
-    <string name="settings_units_imperial" tools:ignore="MissingTranslation">System imperialny (stopy)</string>
-    <string name="settings_units_metric" tools:ignore="MissingTranslation">System metryczny (metry)</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Imperialne (stopy)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Metryczne (metry)</string>
     <string name="voice_settings_speaking_rate">Szybkość mowy</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Silnik syntezy mowy (TTS)</string>
     <string name="voice_voices">Wybór głosu TTS</string>
     <string name="beacon_settings_style">Style dźwięku</string>
     <string name="beacon_styles_current">Aktualny</string>
     <string name="beacon_styles_original">Oryginalny</string>
-    <string name="beacon_styles_flare">Rozbłysk</string>
+    <string name="beacon_styles_flare">Błysk</string>
     <string name="beacon_styles_shimmer">Połysk</string>
     <string name="beacon_styles_tactile">Stukot</string>
     <string name="beacon_styles_ping">Ping</string>
@@ -30,16 +30,16 @@
     <string name="beacon_audio_beacon">Dźwięk naprowadzający</string>
     <string name="beacon_action_mute_beacon">Wycisz dźwięk naprowadzający</string>
     <string name="beacon_action_mute_beacon_acc_hint">wycisz dźwięk naprowadzający.</string>
-    <string name="beacon_action_unmute_beacon">Wyłącz wyciszenie dźwięku naprowadzającego</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">wyłącz wyciszenie dźwięku naprowadzającego.</string>
+    <string name="beacon_action_unmute_beacon">Włącz dźwięk naprowadzający</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">włącz dźwięk naprowadzający.</string>
     <string name="preview_title">Podgląd ulicy w Soundscape</string>
-    <string name="preview_go_title">Przejdź</string>
+    <string name="preview_go_title">Idź</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Przejdź do najbliższego skrzyżowania</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" i %s"</string>
     <string name="preview_include_unnamed_roads_title">Ulice bez nazwy</string>
     <string name="location_detail_title_default">Szczegóły lokalizacji</string>
     <string name="location_detail_action_beacon">Uruchom dźwięk naprowadzający</string>
-    <string name="location_detail_action_beacon_hint">ustaw dźwięk naprowadzający w tym miejscu</string>
+    <string name="location_detail_action_beacon_hint">ustaw dźwięk naprowadzający w tej lokalizacji</string>
     <string name="location_detail_action_save_hint">zapisz to miejsce jako znacznik (pinezkę)</string>
     <string name="location_detail_action_edit_hint">edytuj znacznik (pinezkę)</string>
     <string name="location_detail_action_share_hint">udostępnij to miejsce</string>
@@ -47,12 +47,12 @@
     <string name="location_detail_add_waypoint_existing_hint">usuń ten znacznik (pinezkę) z trasy.</string>
     <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik (pinezkę) do trasy.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Wyświetl mapę na pełnym ekranie</string>
-    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Wyjdź z trybu pełnoekranowego mapy</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Zamknij tryb pełnoekranowy mapy</string>
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
     <string name="route_detail_action_edit">Edytuj trasę</string>
     <string name="route_detail_action_start_route_hint">rozpocznij tę trasę</string>
-    <string name="route_detail_action_start_route_disabled_hint">dodaj punkty trasy przed rozpoczęciem trasy</string>
+    <string name="route_detail_action_start_route_disabled_hint">Dodaj punkty trasy, aby rozpocząć trasę</string>
     <string name="route_detail_action_stop_route_hint">zatrzymaj tę trasę</string>
     <string name="route_detail_action_share_hint">udostępnij tę trasę</string>
     <string name="route_detail_action_edit_hint">edytuj tę trasę</string>
@@ -74,7 +74,7 @@
     <string name="routes_title">Trasy</string>
     <string name="routes_action_deleted">Usunięto trasę</string>
     <string name="routes_no_routes_title">Pierwsze kroki z punktami trasy</string>
-    <string name="routes_no_routes_hint_1">Utwórz trasę dla siebie lub kogoś innego, porządkując zestaw znaczników (pinezek) jako punkty trasy.</string>
+    <string name="routes_no_routes_hint_1">Utwórz trasę dla siebie lub dla kogoś innego, organizując zestaw znaczników (pinezek) jako punkty trasy.</string>
     <string name="routes_no_routes_hint_2">Podczas pokonywania trasy z Soundscape otrzymasz informację o dotarciu do każdego punktu trasy, a Dźwięk naprowadzający automatycznie przełączy się na następny punkt trasy.</string>
     <string name="routes_sort_by_name">Sortuj według nazwy</string>
     <string name="routes_sort_by_distance">Sortuj według odległości</string>
