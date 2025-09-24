@@ -33,6 +33,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getNormalizedFromGpsMapCo
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 
 class TileUtilsTest {
@@ -416,6 +417,29 @@ class TileUtilsTest {
 
         // Should only be the nearest intersection in this Feature Collection
         assert(nearestIntersection != null)
+    }
+
+    @Test
+    fun distanceToPolygon() {
+        val userGeometry = UserGeometry(
+            LngLatAlt(-2.657279900280031, 51.430461188129385),
+            90.0,
+            50.0
+        )
+        val expectedNearestPoint = LngLatAlt(-2.6492421, 51.4306040)
+        val ruler = CheapRuler(userGeometry.location.latitude)
+        val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
+        val poiTree = gridState.getFeatureTree(TreeId.POIS)
+        val fc = poiTree.getAllCollection()
+        for(feature in fc) {
+            if(feature.geometry.type == "Polygon") {
+                println("${feature.properties?.get("name")}")
+                val nearestPoint = getDistanceToFeature(userGeometry.location, feature, ruler).point
+                val offset = ruler.distance(nearestPoint, expectedNearestPoint)
+                assert(offset < 1.0)
+                break
+            }
+        }
     }
 
     @Test
