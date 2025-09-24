@@ -11,19 +11,19 @@
     <string name="settings_units_imperial" tools:ignore="MissingTranslation">Imperialne (stopy)</string>
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metryczne (metry)</string>
     <string name="voice_settings_speaking_rate">Szybkość mowy</string>
-    <string name="voice_engine" tools:ignore="MissingTranslation">Silnik syntezy mowy (TTS)</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Syntezator mowy (TTS)</string>
     <string name="voice_voices">Wybór głosu TTS</string>
-    <string name="beacon_settings_style">Style dźwięku</string>
-    <string name="beacon_styles_current">Aktualny</string>
+    <string name="beacon_settings_style">Ustaw dźwięk nawigacji</string>
+    <string name="beacon_styles_current">Najnowszy</string>
     <string name="beacon_styles_original">Oryginalny</string>
     <string name="beacon_styles_flare">Błysk</string>
-    <string name="beacon_styles_shimmer">Połysk</string>
+    <string name="beacon_styles_shimmer">Lśnienie</string>
     <string name="beacon_styles_tactile">Stukot</string>
-    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_ping">Pikanie</string>
     <string name="beacon_styles_drop">Upadek</string>
-    <string name="beacon_styles_signal">Sygnał</string>
-    <string name="beacon_styles_signal_slow">Sygnał (wolny)</string>
-    <string name="beacon_styles_signal_very_slow">Sygnał (bardzo wolny)</string>
+    <string name="beacon_styles_signal">Pulsujący</string>
+    <string name="beacon_styles_signal_slow">Pulsujący (wolny)</string>
+    <string name="beacon_styles_signal_very_slow">Pulsujący (bardzo wolny)</string>
     <string name="beacon_styles_mallet">Pałeczka</string>
     <string name="beacon_styles_mallet_slow">Pałeczka (wolna)</string>
     <string name="beacon_styles_mallet_very_slow">Pałeczka (bardzo wolna)</string>
@@ -34,7 +34,7 @@
     <string name="beacon_action_unmute_beacon_acc_hint">włącz dźwięk naprowadzający.</string>
     <string name="preview_title">Podgląd ulicy w Soundscape</string>
     <string name="preview_go_title">Idź</string>
-    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Przejdź do najbliższego skrzyżowania</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Idź do najbliższego skrzyżowania</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" i %s"</string>
     <string name="preview_include_unnamed_roads_title">Ulice bez nazwy</string>
     <string name="location_detail_title_default">Szczegóły lokalizacji</string>
@@ -51,11 +51,11 @@
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
     <string name="route_detail_action_edit">Edytuj trasę</string>
-    <string name="route_detail_action_start_route_hint">rozpocznij tę trasę</string>
+    <string name="route_detail_action_start_route_hint">rozpocznij trasę</string>
     <string name="route_detail_action_start_route_disabled_hint">Dodaj punkty trasy, aby rozpocząć trasę</string>
-    <string name="route_detail_action_stop_route_hint">zatrzymaj tę trasę</string>
-    <string name="route_detail_action_share_hint">udostępnij tę trasę</string>
-    <string name="route_detail_action_edit_hint">edytuj tę trasę</string>
+    <string name="route_detail_action_stop_route_hint">zatrzymaj trasę</string>
+    <string name="route_detail_action_share_hint">udostępnij trasę</string>
+    <string name="route_detail_action_edit_hint">edytuj trasę</string>
     <string name="route_detail_action_create">Nowa trasa</string>
     <string name="route_detail_action_create_hint">utwórz nową trasę</string>
     <string name="route_end_completed_accessibility">Trasa ukończona! %s</string>
@@ -66,12 +66,12 @@
     <string name="route_detail_edit_description">Opis</string>
     <string name="route_detail_edit_waypoints_button">Dodaj punkty trasy</string>
     <string name="route_detail_edit_delete">Usuń trasę</string>
-    <string name="route_update_success_title">Aktualizacja zakończona!</string>
-    <string name="waypoint_title">Punkt trasy</string>
+    <string name="route_update_success_title">Aktualizacja trasy zakończona!</string>
+    <string name="waypoint_title">Punkt</string>
     <string name="universal_links_alert_action_marker">Zapisz jako znacznik (pinezka)</string>
-    <string name="universal_links_marker_share_message">Udostępniono Ci znacznik (pinezka) Soundscape! *\\\"%s\\\"*</string>
-    <string name="user_activity_save_marker_title">Zapisz znacznik (pinezka)</string>
-    <string name="routes_title">Trasy</string>
+    <string name="universal_links_marker_share_message">Udostępniono Ci znacznik (pinezkę) Soundscape! *\\\"%s\\\"*</string>
+    <string name="user_activity_save_marker_title">Zapisz znacznik (pinezkę)</string>
+    <string name="routes_title">Zapisane trasy</string>
     <string name="routes_action_deleted">Usunięto trasę</string>
     <string name="routes_no_routes_title">Pierwsze kroki z punktami trasy</string>
     <string name="routes_no_routes_hint_1">Utwórz trasę dla siebie lub dla kogoś innego, organizując zestaw znaczników (pinezek) jako punkty trasy.</string>
