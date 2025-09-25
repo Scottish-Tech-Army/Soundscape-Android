@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,7 +47,9 @@ fun MarkersAndRoutesTabs(
                 !routesTabSelected  && (item == ScreensForMarkersAndRoutes.Markers)
 
             NavigationBarItem(
-                modifier = Modifier.mediumPadding(),
+                modifier = Modifier
+                    .mediumPadding()
+                    .testTag(if(item == ScreensForMarkersAndRoutes.Routes)"RoutesTab" else "MarkersTab"),
                 selected = isSelected,
                 onClick = { setRoutesAndMarkersTab(item == ScreensForMarkersAndRoutes.Routes) },
                 label = {

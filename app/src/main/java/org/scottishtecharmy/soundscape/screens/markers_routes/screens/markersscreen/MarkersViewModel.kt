@@ -124,5 +124,9 @@ fun sortMarkers(
                     0.0
             }
     }
+    for((index, marker) in sortedMarkers.withIndex()) {
+        marker.orderId = index.toLong()
+    }
+
     return sortedMarkers
 }

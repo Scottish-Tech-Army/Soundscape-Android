@@ -1,0 +1,14 @@
+appId: org.scottishtecharmy.soundscape
+env:
+  ID: ${ID}
+---
+- repeat:
+      while:
+          notVisible:
+              id:  ${ID}
+      commands:
+          - swipe:
+                start: 50%, 70%
+                end: 50%, 10%
+- tapOn:
+    id: ${ID}

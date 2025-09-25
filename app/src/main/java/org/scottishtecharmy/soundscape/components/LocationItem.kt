@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -86,6 +87,7 @@ fun LocationItem(
                    decoration.editRoute.functionBoolean(!decoration.editRoute.value)
                 }
             }
+            .testTag("LocationItem-${item.name}-${item.orderId}")
             .clearAndSetSemantics {
                 if (decoration.editRoute.enabled) {
                     // Provide a clearer description of the current state and what
