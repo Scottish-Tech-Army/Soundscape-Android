@@ -1,0 +1,62 @@
+appId: org.scottishtecharmy.soundscape
+---
+- launchApp:
+        clearState: false
+
+- runFlow:
+        file: SwipeUpAndTap.yaml
+        env:
+              ID: 'homeCurrentLocation'
+- tapOn:
+        id: locationDetailsStartBeacon
+- runFlow:
+        file: SwipeUpAndTap.yaml
+        env:
+              ID: 'routeStopOrDetails'
+- runFlow:
+        file: SwipeUpAndTap.yaml
+        env:
+              ID: 'homeCurrentLocation'
+- tapOn:
+        id: locationDetailsSaveAsMarker
+- tapOn:
+        id: clearTextField
+- tapOn:
+        id: markerName
+- tapOn: A
+- tapOn:
+        id: flexibleAppBarRight
+- tapOn:
+        id: appBarLeft
+- runFlow:
+        file: SwipeDownAndTap.yaml
+        env:
+              ID: 'homePlacesNearby'
+- tapOn:
+        id: placesNearby-0
+- tapOn:
+        id: placesNearby-0
+- tapOn:
+        id: locationDetailsSaveAsMarker
+- tapOn:
+        id: clearTextField
+- tapOn:
+        id: markerName
+- tapOn: B
+- tapOn:
+        id: flexibleAppBarRight
+- tapOn:
+        id: appBarLeft
+- tapOn:
+        id: appBarLeft
+- tapOn:
+        id: appBarLeft
+- tapOn:
+        id: homeMarkersAndRoutes
+- tapOn:
+        id: MarkersTab
+# We should have two markers, A which is closest and B which is farther away
+- assertVisible:
+        id: 'LocationItem-A-0'
+- assertVisible:
+        id: 'LocationItem-B-1'

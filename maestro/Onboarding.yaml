@@ -1,0 +1,58 @@
+appId: org.scottishtecharmy.soundscape
+---
+- launchApp:
+    clearState: true
+    permissions:
+        all: deny
+        notifications: allow
+        location: allow
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "welcomeScreenContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "languageScreenContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "navigatingScreenContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "listeningScreenContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "hearingScreenContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "CurrentButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "audioBeaconsContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "termsScreenAgree"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "termsScreenContinueButton"
+
+- runFlow: 
+    file: SwipeUpAndTap.yaml
+    env:
+      ID: "finishScreenContinueButton"

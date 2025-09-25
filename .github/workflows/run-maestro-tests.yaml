@@ -14,7 +14,7 @@ on:
     branches: [ "main", "test-tags" ]
 
 jobs:
-  test:
+  maestro-test:
     runs-on: ubuntu-latest
     environment: development
 
@@ -54,7 +54,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Install Maestro
-        run: MAESTRO_VERSION=1.40.3 MAESTRO_DIR=.maestro curl -Ls 'https://get.maestro.mobile.dev' | bash
+        run: MAESTRO_VERSION=1.40.3 curl -Ls 'https://get.maestro.mobile.dev' | bash
 
       - name: Maestro Tests
         id: maestro-tests
@@ -64,13 +64,25 @@ jobs:
           api-level: 34
           arch: x86_64
           ram-size: 2048M
+          enable-hw-keyboard: false
           target: default
           script: |
             adb logcat -c                             # clear logs
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
             adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
-            maestro test --format=junit --output=report.xml --no-ansi .maestro  
+            adb install app/build/outputs/apk/debug/app-debug.apk
+            mkdir maestro_outputs
+            $HOME/.maestro/bin/maestro test --format=junit --output=report1.xml --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml
+            $HOME/.maestro/bin/maestro test --format=junit --output=report2.xml --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml
+            $HOME/.maestro/bin/maestro test --format=junit --output=report3.xml --test-output-dir=maestro_outputs --no-ansi maestro/LocationDetails.yaml
+            $HOME/.maestro/bin/maestro test --format=junit --output=report4.xml --test-output-dir=maestro_outputs --no-ansi maestro/PlacesNearby.yaml
+
+      - name: Upload maestro reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-reports
+          path: maestro_outputs
 
       - name: Upload Failing Test Report Log
         if: steps.maestro-tests.outcome != 'success'        # upload the generated log on failure of the tests job
