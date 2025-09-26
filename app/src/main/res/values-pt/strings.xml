@@ -307,7 +307,7 @@
     <string name="osm_tag_restroom">"WC Público"</string>
     <string name="osm_tag_parking_lot">"Parque de Estacionamento"</string>
     <string name="osm_tag_parking_entrance">"Entrada de Parque de Estacionamento"</string>
-    <string name="osm_tag_bench">"Banco"</string>
+    <string name="osm_tag_bench">Banco para sentar</string>
     <string name="osm_tag_taxi_waiting_area">"Praça de Táxis"</string>
     <string name="osm_tag_post_office">"Correios"</string>
     <string name="osm_tag_post_box">"Marco do Correio"</string>
@@ -318,7 +318,7 @@
     <string name="osm_tag_restaurant">"Restaurante"</string>
     <string name="osm_tag_telephone">"Telefone Público"</string>
     <string name="osm_tag_gas_station">"Posto de Combustível"</string>
-    <string name="osm_tag_bank">"Banco"</string>
+    <string name="osm_tag_bank">Agência bancária</string>
     <string name="osm_tag_atm">"Caixa Multibanco"</string>
     <string name="osm_tag_atm_named">"Caixa Multibanco %s"</string>
     <string name="osm_tag_atm_refed">"Caixa Multibanco %s"</string>
