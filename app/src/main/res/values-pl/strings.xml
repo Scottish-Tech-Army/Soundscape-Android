@@ -44,8 +44,8 @@
     <string name="location_detail_action_edit_hint">edytuj znacznik (pinezkę)</string>
     <string name="location_detail_action_share_hint">udostępnij to miejsce</string>
     <string name="location_detail_action_preview_hint">rozpocznij podgląd w tym miejscu</string>
-    <string name="location_detail_add_waypoint_existing_hint">usuń ten znacznik (pinezkę) z trasy.</string>
-    <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik (pinezkę) do trasy.</string>
+    <string name="location_detail_add_waypoint_existing_hint">usuń ten znacznik z trasy.</string>
+    <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik do trasy.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Wyświetl mapę na pełnym ekranie</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Zamknij tryb pełnoekranowy mapy</string>
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
@@ -72,7 +72,7 @@
     <string name="universal_links_marker_share_message">Udostępniono Ci znacznik (pinezkę) Soundscape! *\\\"%s\\\"*</string>
     <string name="user_activity_save_marker_title">Zapisz znacznik (pinezkę)</string>
     <string name="routes_title">Zapisane trasy</string>
-    <string name="routes_action_deleted">Usunięto trasę</string>
+    <string name="routes_action_deleted">Trasa usunięta</string>
     <string name="routes_no_routes_title">Pierwsze kroki z punktami trasy</string>
     <string name="routes_no_routes_hint_1">Utwórz trasę dla siebie lub dla kogoś innego, organizując zestaw znaczników (pinezek) jako punkty trasy.</string>
     <string name="routes_no_routes_hint_2">Podczas pokonywania trasy z Soundscape otrzymasz informację o dotarciu do każdego punktu trasy, a Dźwięk naprowadzający automatycznie przełączy się na następny punkt trasy.</string>
@@ -90,9 +90,9 @@
     <string name="markers_edit_screen_title_edit">Edytuj znacznik (pinezkę)</string>
     <string name="markers_generic_name">Znacznik (pinezka)</string>
     <string name="markers_marker_with_name">Znacznik (pinezka). %s</string>
-    <string name="markers_marker_created">Utworzono znacznik (pinezkę)</string>
+    <string name="markers_marker_created">Znacznik utworzony</string>
     <string name="markers_annotation">Adnotacja</string>
-    <string name="search_choose_destination">Wybierz cel</string>
+    <string name="search_choose_destination">Wybierz miejsce docelowe</string>
     <string name="search_use_current_location">Bieżąca lokalizacja</string>
     <string name="search_nearby_screen_title">Miejsca w pobliżu</string>
     <string name="search_view_markers">Znaczniki (pinezki) i trasy</string>
@@ -113,7 +113,7 @@
     <string name="callouts_nothing_to_call_out_now">W tej chwili brak informacji</string>
     <string name="callouts_nearby_markers">Bliskie znaczniki mapy (pinezki)</string>
     <string name="sleep_sleep">Tryb uśpienia</string>
-    <string name="sleep_sleeping">Uśpione</string>
+    <string name="sleep_sleeping">W trybie uśpienia</string>
     <string name="sleep_sleeping_message">Soundscape jest obecnie uśpione. To uniemożliwia korzystanie z usług lokalizacji i pobieranie danych. Dzięki temu oszczędzasz baterię, gdy nie korzystasz z Soundscape. Stuknij przycisk poniżej, aby wybudzić Soundscape.</string>
     <string name="sleep_sleep_acc_hint">uśpij Soundscape</string>
     <string name="sleep_wake_up_now">Wybudź teraz</string>
