@@ -243,7 +243,7 @@
     <string name="first_launch_welcome_button">Rozpocznij</string>
     <string name="first_launch_headphones_title">Słuchanie Soundscape</string>
     <string name="first_launch_headphones_message_1">Soundscape działa świetnie z dowolnymi słuchawkami. Jeśli chcesz ich użyć, przygotuj je teraz.</string>
-    <string name="first_launch_headphones_message_2">Jeśli nie masz słuchawek lub wolisz z nich nie korzystać, to w porządku! Soundscape zadziała z głośnikami w telefonie.</string>
+    <string name="first_launch_headphones_message_2">Jeśli nie masz słuchawek lub wolisz ich nie używać, to w porządku! Soundscape będzie działać za pomocą głośników telefonu.</string>
     <string name="first_launch_callouts_title">Usłysz swoje otoczenie</string>
     <string name="first_launch_callouts_message">Soundscape pomaga Ci wiedzieć, gdzie jesteś i dokąd zmierzasz, informując o ulicach, skrzyżowaniach i interesujących miejscach, gdy się do nich zbliżasz.</string>
     <string name="first_launch_callouts_listen">Posłuchaj przykładu tego, co Soundscape może odczytać podczas Twojego następnego spaceru</string>
@@ -252,7 +252,7 @@
     <string name="first_launch_callouts_example_3">Ulica Główna biegnie w lewo</string>
     <string name="first_launch_callouts_example_4">Ulica Główna biegnie w prawo</string>
     <string name="first_launch_permissions_title">Nawigacja z Soundscape</string>
-    <string name="first_launch_permissions_message">Podczas nawigacji z Soundscape będzie Cię prowadzić dźwięk naprowadzający. Aby to działało, Soundscape potrzebuje, abyś włączył(a) następujące uprawnienia:</string>
+    <string name="first_launch_permissions_message">Podczas nawigacji za pomocą Soundscape będziesz prowadzony przez dźwięk naprowadzający. Aby to działało, Soundscape potrzebuje, abyś udzielił następujących uprawnień:</string>
     <string name="first_launch_permissions_location">Usługi lokalizacji z dokładną lokalizacją</string>
     <string name="first_launch_permissions_motion">Ruch i kondycja</string>
     <string name="first_launch_permissions_required">To uprawnienie jest wymagane</string>
