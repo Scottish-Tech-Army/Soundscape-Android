@@ -253,8 +253,8 @@
     <string name="first_launch_callouts_example_4">Ulica Główna biegnie w prawo</string>
     <string name="first_launch_permissions_title">Nawigacja z Soundscape</string>
     <string name="first_launch_permissions_message">Podczas nawigacji za pomocą Soundscape będziesz prowadzony przez dźwięk naprowadzający. Aby to działało, Soundscape potrzebuje, abyś udzielił następujących uprawnień:</string>
-    <string name="first_launch_permissions_location">Usługi lokalizacji z dokładną lokalizacją</string>
-    <string name="first_launch_permissions_motion">Ruch i kondycja</string>
+    <string name="first_launch_permissions_location">Usługi lokalizacji (dokładna lokalizacja)</string>
+    <string name="first_launch_permissions_motion">Ruch i aktywność</string>
     <string name="first_launch_permissions_required">To uprawnienie jest wymagane</string>
     <string name="permissions_required" tools:ignore="MissingTranslation">Aplikacja wymaga uprawnień do lokalizacji, aby działać.</string>
     <string name="permissions_button" tools:ignore="MissingTranslation">Zmień uprawnienia w ustawieniach aplikacji</string>
