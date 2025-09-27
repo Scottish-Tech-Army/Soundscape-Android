@@ -36,7 +36,7 @@
     <string name="preview_go_title">Idź</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Idź do najbliższego skrzyżowania</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" i %s"</string>
-    <string name="preview_include_unnamed_roads_title">Ulice bez nazwy</string>
+    <string name="preview_include_unnamed_roads_title">Drogi bez nazwy</string>
     <string name="location_detail_title_default">Szczegóły lokalizacji</string>
     <string name="location_detail_action_beacon">Uruchom dźwięk naprowadzający</string>
     <string name="location_detail_action_beacon_hint">ustaw dźwięk naprowadzający w tej lokalizacji</string>
@@ -68,7 +68,7 @@
     <string name="route_detail_edit_delete">Usuń trasę</string>
     <string name="route_update_success_title">Aktualizacja trasy zakończona!</string>
     <string name="waypoint_title">Punkt</string>
-    <string name="universal_links_alert_action_marker">Zapisz jako znacznik (pinezka)</string>
+    <string name="universal_links_alert_action_marker">Zapisz jako znacznik (pinezkę)</string>
     <string name="universal_links_marker_share_message">Udostępniono Ci znacznik (pinezkę) Soundscape! *\\\"%s\\\"*</string>
     <string name="user_activity_save_marker_title">Zapisz znacznik (pinezkę)</string>
     <string name="routes_title">Zapisane trasy</string>
@@ -85,7 +85,7 @@
     <string name="markers_sort_button_sort_by_distance">Odległość</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">Posortowano według odległości</string>
     <string name="markers_no_markers_title">Pierwsze kroki ze znacznikami (pinezkami)</string>
-    <string name="markers_no_markers_hint_1">Twórz znaczniki (pinezki) dla swoich ulubionych celów, punktów trasy lub dowolnych lokalizacji, o których chcesz otrzymywać komunikaty. Wybierz lokalizację — nawet bieżącą — na ekranie głównym i wybierz *\\\"Zapisz jako znacznik (pinezka)\\\"*.</string>
+    <string name="markers_no_markers_hint_1">Twórz znaczniki (pinezki) dla swoich ulubionych celów, punktów trasy lub dowolnych lokalizacji, o których chcesz otrzymywać komunikaty. Wybierz lokalizację — nawet bieżącą — na ekranie głównym i wybierz *\\\"Zapisz jako znacznik (pinezkę)\\\"*.</string>
     <string name="markers_no_markers_hint_2">Spróbuj oznaczyć swój dom, wejście do pracy lub ulubione miejsce w parku.</string>
     <string name="markers_edit_screen_title_edit">Edytuj znacznik (pinezkę)</string>
     <string name="markers_generic_name">Znacznik (pinezka)</string>
@@ -104,18 +104,18 @@
     <string name="filter_food_drink">Jedzenie i napoje</string>
     <string name="filter_groceries">Sklepy spożywcze i osiedlowe</string>
     <string name="filter_banks">Banki i bankomaty</string>
-    <string name="callouts_panel_title">Słuchaj otoczenia</string>
+    <string name="callouts_panel_title">Słuchaj opisu otoczenia</string>
     <string name="callouts_allow_callouts">Włącz powiadomienia głosowe</string>
     <string name="callouts_places_and_landmarks">Miejsca i punkty orientacyjne</string>
-    <string name="callouts_mobility">Mobilność</string>
-    <string name="callouts_audio_beacon">Odległość do dźwięku naprowadzającego</string>
+    <string name="callouts_mobility">Poruszanie się</string>
+    <string name="callouts_audio_beacon">Odległość do celu naprowadzania</string>
     <string name="callouts_automatic_callouts">Automatyczne powiadomienia głosowe</string>
     <string name="callouts_nothing_to_call_out_now">W tej chwili brak informacji</string>
     <string name="callouts_nearby_markers">Bliskie znaczniki mapy (pinezki)</string>
     <string name="sleep_sleep">Tryb uśpienia</string>
-    <string name="sleep_sleeping">W trybie uśpienia</string>
+    <string name="sleep_sleeping">Aplikacja w trybie uśpienia</string>
     <string name="sleep_sleeping_message">Soundscape jest obecnie w trybie uśpienia. Uniemożliwia to korzystanie przez Soundscape z usług lokalizacyjnych oraz pobieranie danych. Dzięki temu oszczędzasz baterię, gdy nie używasz aplikacji. Stuknij przycisk poniżej, aby obudzić Soundscape.</string>
-    <string name="sleep_sleep_acc_hint">uśpij Soundscape</string>
+    <string name="sleep_sleep_acc_hint">Przełącz Soundscape w tryb uśpienia</string>
     <string name="sleep_wake_up_now">Wybudź teraz</string>
     <string name="intersection_approaching_intersection">Zbliżasz się do skrzyżowania</string>
     <string name="directions_at_poi">Przy %s</string>
@@ -124,7 +124,7 @@
     <string name="directions_name_goes_left">%s, skręca w lewo</string>
     <string name="directions_name_goes_right">%s, skręca w prawo</string>
     <string name="directions_name_continues_ahead">%s prowadzi prosto</string>
-    <string name="directions_direction_ahead">na wprost</string>
+    <string name="directions_direction_ahead">przed tobą</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">W pobliżu %1$s i niedaleko %2$s</string>
     <string name="directions_traveling_n">Poruszasz się na północ</string>
     <string name="directions_traveling_ne">Poruszasz się na północny wschód</string>
@@ -182,24 +182,24 @@
     <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Południowy zachód</string>
     <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Zachód</string>
     <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Północny zachód</string>
-    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
-    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">NE</string>
-    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">E</string>
-    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SE</string>
-    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
-    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SW</string>
-    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">W</string>
-    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NW</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">Płn</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">Płn. wsch.</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">Wsch.</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">Płd. wsch.</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">Płd.</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">Płd. zach.</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">Zach.</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">Płn. zach.</string>
     <string name="distance_format_meters">%s metrów</string>
     <string name="distance_format_km">%s km</string>
     <string name="distance_format_feet">%s stóp</string>
     <string name="distance_format_miles">%s mil</string>
     <string name="ui_action_button_my_location">Moja\nlokaliz</string>
-    <string name="ui_action_button_my_location_acc_hint">usłysz informację o swojej aktualnej lokalizacji</string>
+    <string name="ui_action_button_my_location_acc_hint">Odsłuchaj informacji o swojej aktualnej lokalizacji</string>
     <string name="ui_action_button_nearby_markers">Bliskie\npinezki</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">o oznaczonych przez Ciebie miejscach w pobliżu</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Informacje o oznaczonych przez Ciebie pobliskich miejscach</string>
     <string name="ui_action_button_around_me">Wokół\nmnie</string>
-    <string name="ui_action_button_around_me_acc_hint">usłyszysz informacje o miejscach w czterech strefach wokół ciebie</string>
+    <string name="ui_action_button_around_me_acc_hint">Odsłuchaj informacje o miejscach w czterech kierunkach wokół ciebie</string>
     <string name="ui_action_button_ahead_of_me">Przede\nmną</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">usłyszysz informacje o miejscach przed tobą</string>
     <string name="ui_menu">Menu</string>
@@ -212,15 +212,15 @@
     <string name="menu_contact_support" tools:ignore="MissingTranslation">Skontaktuj się z pomocą techniczną</string>
     <string name="ui_back_button_title">Wstecz</string>
     <string name="behavior_experiences_route_nav_title">Szczegóły trasy</string>
-    <string name="behavior_scavenger_hunt_callout_next_flag">Ustawiono dźwięk naprowadzający na %1$s, w odległości %2$s, %3$s z %4$s</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">Ustawiono naprowadzanie na %1$s, w odległości %2$s, %3$s z %4$s</string>
     <string name="help_configuration_section_title">Konfigurowanie Soundscape</string>
-    <string name="settings_help_section_beacons_and_pois">Dźwięki naprowadzające i powiadomienia</string>
+    <string name="settings_help_section_beacons_and_pois">Naprowadzanie audio i powiadomienia</string>
     <string name="settings_help_section_home_screen_buttons">Przyciski ekranu głównego</string>
-    <string name="help_config_voices_content">Soundscape może korzystać z dowolnych głosów pobranych na telefon z Androidem w ustawieniach funkcji Text-to-speech. W aplikacji Soundscape możesz wybrać inny głos niż domyślny Android, przechodząc w menu głównym do Ustawień, a następnie wybierając „Wybór głosu TTS”.</string>
+    <string name="help_config_voices_content">Soundscape może korzystać z dowolnych głosów pobranych na twoje urządzenie Android w ustawieniach funkcji Text-to-speech. W aplikacji Soundscape możesz wybrać inny głos niż domyślny w systemie Android, przechodząc w menu głównym do Ustawień, a następnie wybierając „Wybór głosu TTS”.</string>
     <string name="help_offline_page_title">Dlaczego Soundscape działa w trybie offline?</string>
     <string name="help_offline_description">Gdy nie ma połączenia z internetem lub występuje awaria usług Soundscape, aplikacja przechodzi w tryb offline. Mimo to Soundscape nadal będzie działać, jednak niektóre funkcje mogą być ograniczone.</string>
     <string name="help_offline_limitations_heading">Ograniczenia</string>
-    <string name="help_offline_limitations_description">Powiadomienia będą nadal działać, jeśli jesteś w okolicy wcześniej przez Ciebie odwiedzonej i zapisanej w historii powiadomień. Podobnie możesz ustawić dźwięk naprowadzający lub utworzyć znacznik (pinezkę) dla miejsc zapisanych w historii powiadomień.</string>
+    <string name="help_offline_limitations_description">Powiadomienia będą nadal działać, jeśli jesteś w okolicy wcześniej przez Ciebie odwiedzonej i zapisanej w historii powiadomień. Podobnie możesz ustawić naprowadznie lub utworzyć znacznik (pinezkę) dla miejsc zapisanych w historii powiadomień.</string>
     <string name="help_offline_troubleshooting_heading">Co możesz zrobić?</string>
     <string name="help_offline_troubleshooting_description">Soundscape spróbuje wznowić normalne działanie, gdy telefon będzie połączony z siecią Wi‑Fi lub gdy dane komórkowe będą włączone i znajdziesz się w obszarze z dobrym zasięgiem. Jeśli telefon ma dobre połączenie z internetem, a mimo to Soundscape nie wraca do normalnego działania, może to oznaczać awarię usług Soundscape.</string>
     <string name="help_orient_page_title">Wokół mnie</string>
@@ -231,48 +231,48 @@
     <string name="help_text_section_title_what">Co to jest?</string>
     <string name="help_text_section_title_when">Kiedy używać?</string>
     <string name="help_text_section_title_how">Jak to działa?</string>
-    <string name="terms_of_use_title">Warunki korzystania</string>
+    <string name="terms_of_use_title">Warunki korzystania z Soundscape</string>
     <string name="terms_of_use_message">Korzystanie z Soundscape podlega warunkom %s oraz warunkom przedstawionym poniżej (łącznie zwanymi „Warunkami użytkowania”).</string>
     <string name="terms_of_use_service_agreement">Umowa o świadczenie usług Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Akceptuję warunki użytkowania</string>
-    <string name="terms_of_use_medical_safety_disclaimer">Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.\n\nOstrzeżenie dotyczące bezpieczeństwa\n\nSoundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w otoczeniu, ponieważ dane mapowe włączone do programu Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.\n\nOstrzeżenie dotyczące bezpieczeństwa\n\nSoundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w swoim otoczeniu, ponieważ dane mapowe użyte programie Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.</string>
     <string name="first_launch_soundscape_language">Język aplikacji Soundscape</string>
-    <string name="first_launch_soundscape_language_text">Wybierz język, którego ma używać Soundscape. Zawsze możesz zmienić ten wybór w ustawieniach aplikacji.</string>
+    <string name="first_launch_soundscape_language_text">Wybierz język, którego ma używać Soundscape. Zawsze możesz zmienić swój wybór w ustawieniach aplikacji.</string>
     <string name="first_launch_welcome_title">Witamy!</string>
     <string name="first_launch_welcome_description">Nawiguj pewniej dzięki przestrzennemu dźwiękowi Soundscape</string>
     <string name="first_launch_welcome_button">Rozpocznij</string>
     <string name="first_launch_headphones_title">Słuchanie Soundscape</string>
-    <string name="first_launch_headphones_message_1">Soundscape działa świetnie z dowolnymi słuchawkami. Jeśli chcesz ich użyć, przygotuj je teraz.</string>
+    <string name="first_launch_headphones_message_1">Soundscape działa świetnie z dowolnymi słuchawkami. Jeśli chcesz ich użyć, załóż je teraz.</string>
     <string name="first_launch_headphones_message_2">Jeśli nie masz słuchawek lub wolisz ich nie używać, to w porządku! Soundscape będzie działać za pomocą głośników telefonu.</string>
-    <string name="first_launch_callouts_title">Usłysz swoje otoczenie</string>
+    <string name="first_launch_callouts_title">Usłysz informacje o swoim otoczeniu</string>
     <string name="first_launch_callouts_message">Soundscape pomaga Ci wiedzieć, gdzie jesteś i dokąd zmierzasz, informując o ulicach, skrzyżowaniach i interesujących miejscach, gdy się do nich zbliżasz.</string>
     <string name="first_launch_callouts_listen">Posłuchaj przykładu tego, co Soundscape może odczytać podczas Twojego następnego spaceru</string>
-    <string name="first_launch_callouts_listen_accessibility_label">Posłuchaj</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Odsłuchaj</string>
     <string name="first_launch_callouts_example_1">Kawiarnia</string>
-    <string name="first_launch_callouts_example_3">Ulica Główna biegnie w lewo</string>
-    <string name="first_launch_callouts_example_4">Ulica Główna biegnie w prawo</string>
+    <string name="first_launch_callouts_example_3">Ulica Słoneczna biegnie w lewo</string>
+    <string name="first_launch_callouts_example_4">Ulica Słoneczna biegnie w prawo</string>
     <string name="first_launch_permissions_title">Nawigacja z Soundscape</string>
-    <string name="first_launch_permissions_message">Podczas nawigacji za pomocą Soundscape będziesz prowadzony przez dźwięk naprowadzający. Aby to działało, Soundscape potrzebuje, abyś udzielił następujących uprawnień:</string>
+    <string name="first_launch_permissions_message">Podczas nawigacji za pomocą Soundscape będziesz prowadzony przez dźwięk naprowadzający. Aby działać, Soundscape potrzebuje, abyś udzielił następujących uprawnień:</string>
     <string name="first_launch_permissions_location">Usługi lokalizacji (dokładna lokalizacja)</string>
-    <string name="first_launch_permissions_motion">Ruch i aktywność</string>
+    <string name="first_launch_permissions_motion">Ruch i aktywność fizyczna</string>
     <string name="first_launch_permissions_required">To uprawnienie jest wymagane</string>
     <string name="permissions_required" tools:ignore="MissingTranslation">Aplikacja wymaga uprawnień do lokalizacji, aby działać.</string>
     <string name="permissions_button" tools:ignore="MissingTranslation">Zmień uprawnienia w ustawieniach aplikacji</string>
     <string name="first_launch_beacon_title">Wybierz dźwięk naprowadzający</string>
-    <string name="first_launch_beacon_message_1">Podczas nawigacji z Soundscape usłyszysz dźwięk naprowadzający dochodzący z kierunku Twojego miejsca docelowego. Podążając za jego dźwiękiem zawsze będziesz wiedzieć, w którą stronę iść.</string>
+    <string name="first_launch_beacon_message_1">Podczas nawigacji z Soundscape usłyszysz dźwięk naprowadzający dochodzący z kierunku Twojego miejsca docelowego. Podążając za tym dźwiękiem zawsze będziesz wiedzieć, w którą stronę iść.</string>
     <string name="first_launch_beacon_message_2">Posłuchaj dostępnych dźwięków naprowadzających i wybierz ten, który Ci odpowiada.</string>
     <string name="first_launch_beacon_message_3">Możesz to później zmienić w ustawieniach aplikacji.</string>
     <string name="first_launch_prompt_title">Wszystko gotowe!</string>
-    <string name="first_launch_prompt_message">Jesteś gotowy na pierwszy spacer z Soundscape. Aby spróbować od razu, wybierz pobliskie miejsce docelowe, uruchom dźwięk naprowadzający i usłyszysz go dochodzącego z kierunku wybranego miejsca.</string>
-    <string name="first_launch_prompt_button">Zakończ</string>
+    <string name="first_launch_prompt_message">Jesteś gotowy na pierwszy spacer z Soundscape. Aby spróbować, wybierz pobliskie miejsce docelowe, uruchom naprowadzanie i usłyszysz dzwięk naprowadzający dochodzący z kierunku wybranego miejsca.</string>
+    <string name="first_launch_prompt_button">Rozpocznij</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Zmień język</string>
-    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">aby zmienić język używany w aplikacji</string>
-    <string name="help_text_destination_beacons_what">Ustawienie dźwięku naprowadzającego na pobliską lokalizację pozwala Soundscape informować Cię, odtwarzając dźwięk dochodzący z kierunku tej lokalizacji. Ten dźwięk można wyciszyć lub włączyć ponownie na ekranie głównym. Dodatkowo Soundscape wyświetla na ekranie głównym informacje o tej lokalizacji, w tym odległość oraz adres, jeśli jest znany.</string>
-    <string name="help_text_destination_beacons_when">Ustawienie dźwięku naprowadzającego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">zmiana języka używanego w aplikacji</string>
+    <string name="help_text_destination_beacons_what">Ustawienie naprowadzania na pobliską lokalizację pozwala Soundscape prowadzić cię, odtwarzając dźwięk dochodzący z kierunku tej lokalizacji. Ten dźwięk można wyciszyć lub włączyć ponownie na ekranie głównym. Dodatkowo Soundscape wyświetla na ekranie głównym informacje o tej lokalizacji, w tym odległość oraz adres, jeśli jest znany.</string>
+    <string name="help_text_destination_beacons_when">Ustawienie naprowadzania dzwiękowego jest przydatne, gdy chcesz mieć na oku znany punkt orientacyjny podczas eksplorowania nowej okolicy lub gdy dokądś idziesz i chcesz być informowany(-a) o otoczeniu po drodze. Funkcja ta nie podaje wskazówek zakręt po zakręcie, ale zapewnia ciągły dźwięk informujący o kierunku do celu względem Twojego bieżącego położenia. Korzystając z dźwięku naprowadzającego, własnych umiejętności orientacji w terenie, a nawet ulubionej aplikacji nawigacyjnej, możesz samodzielnie wybrać, jak dotrzeć do pobliskich miejsc.</string>
     <string name="help_text_destination_beacons_how_1">**Aby ustawić dźwięk naprowadzający :**\n\n Najpierw wyświetl szczegóły lokalizacji, korzystając z paska wyszukiwania, aby wyszukać miejsce, albo stukając jeden z przycisków *\\\"Miejsca w pobliżu\\\"*, *\\\"Zapisane znaczniki (pinezki)\\\"* lub *\\\"Bieżąca lokalizacja\\\"* i wybierając lokalizację. Na ekranie szczegółów lokalizacji możesz wybrać przycisk *\\\"Uruchom dźwięk naprowadzający\\\"*. Stuknięcie spowoduje powrót do ekranu głównego i włączenie dźwięku naprowadzającego dochodzącego z kierunku wybranego miejsca. Nazwa wybranego miejsca wraz z odległością i adresem (jeśli są dostępne) zostaną teraz wyświetlone na głównym ekranie aplikacji.</string>
     <string name="help_text_destination_beacons_how_2">**Aby usunąć bieżący dźwięk naprowadzający :**\n\n Wystarczy nacisnąć przycisk *\\\"Zatrzymaj dźwięk naprowadzający\\\"* na ekranie głównym.</string>
     <string name="help_text_destination_beacons_how_3">**Aby wyciszyć dźwięk naprowadzający :**\n\n Stuknij przycisk *\\\"Wycisz dźwięk naprowadzający\\\"* obok przycisku *\\\"Zatrzymaj dźwięk naprowadzający\\\"* na ekranie głównym.</string>
-    <string name="help_text_automatic_callouts_what">Soundscape może informować Cię o obiektach w Twoim otoczeniu w chwili, gdy się do nich zbliżasz, wymawiając ich nazwy z kierunku, w którym się znajdują. Aplikacja robi to automatycznie dla różnych miejsc, takich jak firmy, przystanki autobusowe, a nawet skrzyżowania. Możesz skonfigurować, o czym aplikacja będzie informować, w sekcji *\\\"Zarządzaj powiadomieniami\\\"* na ekranie *\\\"Ustawienia\\\"*, a także wyłączyć wszystkie powiadomienia, gdy chcesz, aby aplikacja była cicha.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape może informować Cię o obiektach w twoim otoczeniu w chwili, gdy się do nich zbliżasz, wymawiając ich nazwy z kierunku, w którym się znajdują. Aplikacja robi to automatycznie dla różnych miejsc, takich jak firmy, przystanki autobusowe, a nawet skrzyżowania. Możesz skonfigurować, o czym aplikacja będzie informować, w sekcji *\\\"Zarządzaj powiadomieniami\\\"* na ekranie *\\\"Ustawienia\\\"*, a także wyłączyć wszystkie powiadomienia, gdy chcesz, aby aplikacja była cicha.</string>
     <string name="help_text_automatic_callouts_when_1">**Odkrywanie nowej okolicy :**\n\n Włącz automatyczne powiadomienia i przespaceruj się, aby usłyszeć o mijanych sklepach, restauracjach i podobnych miejscach.</string>
     <string name="help_text_automatic_callouts_when_2">Idąc do określonego miejsca:\n\nGdy zmierzasz do konkretnego punktu, automatyczne powiadomienia o skrzyżowaniach mogą być szczególnie przydatne. Powiadomienia o skrzyżowaniach informują o układzie skrzyżowań podczas zbliżania się do nich i potwierdzają, którą ulicą się poruszasz, gdy je opuszczasz.</string>
     <string name="help_text_automatic_callouts_when_3">Gdy potrzebujesz ciszy:\n\nJeśli zamierzasz przejść przez jezdnię lub po prostu potrzebujesz, aby aplikacja była cicha, możesz wyłączyć powiadomienia. Gdy powiadomienia są wyłączone, aplikacja przekaże informacje tylko wtedy, gdy ręcznie naciśniesz jeden z przycisków „Moja lokalizacja”, „Bliskie znaczniki mapy (pinezki)”, „Wokół mnie” lub „Przede mną”.</string>
@@ -295,13 +295,13 @@
     <string name="help_text_remote_control_how">Możesz uzyskać dostęp do następujących funkcji Soundscape, używając przycisków sterowania mediami w słuchawkach:\n\n⏯ Odtwarzanie/Pauza: Wycisza bieżące powiadomienia, a jeśli ustawiony jest dźwięk naprowadzający, przełącza jego odtwarzanie.\n\n⏭ Dalej: Wywołuje „Moja lokalizacja”.\n\n⏮ Wstecz: Powtarza ostatnie powiadomienie.\n\n⏩ Przewiń do przodu: Przełącza powiadomienia (włącz/wyłącz).\n\n⏪ Przewiń do tyłu: Wywołuje „Wokół mnie”.</string>
     <string name="help_text_markers_content_1">Dzięki Soundscape możesz oznaczać swoje otoczenie i wszystko, co dla Ciebie ważne.</string>
     <string name="help_text_markers_content_2">Możesz oznaczać miejsca osobiste i ważne dla Ciebie, takie jak dom, biuro czy ulubiony sklep spożywczy. Możesz oznaczyć dowolne miejsce lub adres, a także elementy, które zwykle nie są dostępne w mapach, na przykład wejścia do budynków lub parków, przyciski dla pieszych, przejścia dla pieszych lub mosty, przystanki autobusowe, a nawet ulubione drzewo Twojego psa — i używać ich jako punktów odniesienia podczas spaceru.</string>
-    <string name="help_text_markers_content_3">Aby skorzystać z oznaczonych miejsc, Soundscape automatycznie ogłasza oznaczone miejsca, gdy przechodzisz obok nich lub się do nich zbliżasz. Możesz też użyć przycisku „Bliskie znaczniki mapy (pinezki)” na dole ekranu głównego Soundscape, aby usłyszeć przestrzenne powiadomienia o oznaczonych miejscach wokół Ciebie. Dodatkowo możesz ustawić dźwięk naprowadzający dla dowolnego oznaczonego miejsca — wtedy usłyszysz znajomy dźwięk naprowadzający i będziesz mógł nim sterować jak zwykle.</string>
+    <string name="help_text_markers_content_3">Aby skorzystać z oznaczonych miejsc, Soundscape automatycznie mówi o oznaczonych miejsca, gdy przechodzisz obok nich lub się do nich zbliżasz. Możesz też użyć przycisku „Bliskie znaczniki mapy (pinezki)” na dole ekranu głównego Soundscape, aby usłyszeć przestrzenne powiadomienia o oznaczonych miejscach wokół Ciebie. Dodatkowo możesz ustawić dźwięk naprowadzający dla dowolnego oznaczonego miejsca — wtedy usłyszysz znajomy dźwięk naprowadzający i będziesz mógł go używać jak zwykle.</string>
     <string name="help_text_creating_markers_content_1">Znaczniki (pinezki) możesz tworzyć na trzy sposoby: wyszukując miejsce do zapisania za pomocą paska wyszukiwania, znajdując je przyciskiem *\\\"Miejsca w pobliżu\\\"* lub używając przycisku *\\\"Użyj bieżącej lokalizacji\\\"* — wszystkie te opcje znajdziesz na ekranie głównym Soundscape. Po znalezieniu miejsca wybierz je, aby przejść do strony *\\\"Szczegóły lokalizacji\\\"*. Na tej stronie wybierz przycisk *\\\"Zapisz znacznik (pinezkę)\\\"*.</string>
-    <string name="help_text_creating_markers_content_2">Teraz będziesz mieć możliwość dostosowania tego znacznika (pinezki). Ten krok jest opcjonalny. Jeśli chcesz, możesz zmienić nazwę znacznika (pinezki) oraz dodać adnotację, która zostanie odczytana razem ze znacznikiem, dostarczając dodatkowych informacji. Gdy skończysz, wybierz przycisk *\\\"Gotowe\\\"*, aby zapisać znacznik (pinezkę).</string>
+    <string name="help_text_creating_markers_content_2">Teraz będziesz mieć możliwość modyfikacji tego znacznika (pinezki). Ten krok jest opcjonalny. Jeśli chcesz, możesz zmienić nazwę znacznika (pinezki) oraz dodać adnotację, która zostanie odczytana razem ze znacznikiem, dostarczając dodatkowych informacji. Gdy skończysz, wybierz przycisk *\\\"Gotowe\\\"*, aby zapisać znacznik (pinezkę).</string>
     <string name="help_text_customizing_markers_content_1">Jeśli chcesz zmienić nazwę wcześniej utworzonego znacznika lub dodać do niego adnotację, wybierz ten znacznik na karcie „Znaczniki (pinezki)” na stronie „Znaczniki (pinezki) i trasy”, a następnie naciśnij przycisk „Edytuj znacznik”. Możesz w ten sposób nadać znacznikom opisowe lub przydatne nazwy oraz dodać dłuższy opis w polu adnotacji.</string>
     <string name="help_text_customizing_markers_content_2">Na tym ekranie edycji możesz też usunąć znacznik (pinezkę), jeśli nie jest już potrzebny.</string>
     <string name="help_text_routes_content_what">Trasy to ciąg punktów trasy. Po dotarciu do każdego punktu zostaniesz poinformowany, a Dźwięk naprowadzający automatycznie przełączy się na następny punkt.</string>
-    <string name="help_text_routes_content_when">Możesz chcieć utworzyć i używać trasę w miejscu, które znasz, aby upewnić się, że jesteś na właściwej drodze, albo użyć jej jako narzędzia pomagającego zapoznać się z trasą podczas nowej podróży.</string>
+    <string name="help_text_routes_content_when">Możesz utworzyć i używać trasę w miejscu, które znasz, aby upewnić się, że jesteś na właściwej drodze, albo użyć jej jako narzędzia pomagającego zapoznać się z trasą podczas nowej podróży.</string>
     <string name="help_text_routes_content_how_1">Tworzenie trasy:\n\nNajpierw przejdź do \"Znaczniki (pinezki) i Trasy\", wybierz kartę \"Trasy\", a następnie naciśnij przycisk \"Nowa trasa\". Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy Znaczników (pinezek). Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.</string>
     <string name="help_text_routes_content_how_2">Edycja trasy:\n\nWybierz swoją trasę na stronie \"Znaczniki (pinezki) i Trasy\", a następnie wybierz \"Edytuj trasę\". Stąd możesz dodawać i usuwać punkty trasy oraz edytować nazwę i opis trasy.</string>
     <string name="help_text_routes_content_how_3">Udostępnianie trasy:\n\nWybierz trasę na stronie \"Znaczniki (pinezki) i Trasy\", a następnie wybierz opcję \"Udostępnij\" i skorzystaj z dostępnych sposobów udostępniania.</string>
@@ -312,7 +312,7 @@
     <string name="osm_tag_steps">Schody</string>
     <string name="osm_tag_elevator">Winda</string>
     <string name="osm_tag_walking_path">Ścieżka dla pieszych</string>
-    <string name="osm_tag_pedestrian_street">Ulica piesza</string>
+    <string name="osm_tag_pedestrian_street">Droga dla pieszych</string>
     <string name="osm_tag_bicycle_path">Ścieżka rowerowa</string>
     <string name="osm_tag_residential_street">Ulica osiedlowa</string>
     <string name="osm_tag_service_road">Droga serwisowa</string>
@@ -323,9 +323,9 @@
     <string name="osm_tag_intersection">Skrzyżowanie</string>
     <string name="osm_tag_roundabout">Rondo</string>
     <string name="osm_tag_highway_ramp">Zjazd z drogi</string>
-    <string name="osm_tag_merging_lane">Pas włączania</string>
+    <string name="osm_tag_merging_lane">Pas włączający się do ruchu</string>
     <string name="osm_tag_office_building">Budynek biurowy</string>
-    <string name="osm_tag_school_building">Budynek szkolny</string>
+    <string name="osm_tag_school_building">Szkoła</string>
     <string name="osm_tag_covered_pavilion">Zadaszony pawilon</string>
     <string name="osm_tag_convenience_store">Sklep osiedlowy</string>
     <string name="osm_tag_building_entrance">Wejście do budynku</string>
@@ -354,7 +354,7 @@
     <string name="osm_tag_atm_refed">Bankomat %s</string>
     <string name="osm_tag_bus_stop">Przystanek autobusowy</string>
     <string name="osm_tag_bus_stop_named">Przystanek autobusowy %s</string>
-    <string name="osm_tag_recycling_bin">Pojemnik do recyklingu</string>
+    <string name="osm_tag_recycling_bin">Kosz na recykling</string>
     <string name="osm_tag_fountain">Fontanna</string>
     <string name="osm_tag_place_of_worship">Miejsce kultu religijnego</string>
     <string name="osm_tag_water_fountain">Fontanna z wodą pitną</string>
@@ -373,28 +373,28 @@
     <string name="faq_tips_title">Wskazówki</string>
     <string name="faq_section_what_is_soundscape">Czym jest Soundscape i jak z niego korzystać?</string>
     <string name="faq_when_to_use_soundscape_question">Kiedy warto korzystać z Soundscape?</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape ma funkcje i korzyści przydatne w różnych sytuacjach i w różnym czasie. Warto też pamiętać, że użyteczność aplikacji może zmieniać się z czasem — sposób, w jaki korzystasz z niej dziś, może różnić się od tego za kilka miesięcy. Często myślimy o aplikacjach z perspektywy: „jaki problem ta aplikacja pomaga rozwiązać?”. Soundscape można oczywiście używać ad hoc, gdy potrzebujesz konkretnej informacji — na przykład, śledzić cel w drodze do niego, zorientować się po wyjściu ze stacji metra, odnaleźć się po wysiadce z auta czy sprawdzić nazwę ulicy lub odległość do najbliższego skrzyżowania. Filozofia Soundscape to jednak „oświetlanie świata dźwiękiem” — aplikacja ma działać zawsze, gdy jesteś poza domem, dostarczając ambientowej świadomości otoczenia: informuje o nazwach mijanych ulic, kierunku, w którym zmierzasz, czy o firmach, które mijasz. W tym trybie nasi użytkownicy nazywają Soundscape „miłym towarzyszem”, który sprzyja odkrywaniu i „uzupełnianiu braków w mapie mentalnej”, dając większą pewność podczas chodzenia. Oto kilka przykładów, jak użytkownicy włączają Soundscape do codziennego życia:\n\n„Soundscape pomogło mi wrócić na właściwą trasę po tym, jak wysiadłem z autobusu i skierowałem się w złą stronę.”\n\n„Nawet w mieście, w którym mieszkam od 3 lat, dzięki Soundscape lepiej poznałem otoczenie.”\n\n„Dźwięk 3D wzbogaca moją wędrówkę — czuję większe połączenie z otoczeniem… teraz chętniej spróbuję nowej trasy, mając aplikację.”\n\n„Brakuje mi przypadkowych odkryć podczas spacerów. Soundscape to fajny dodatek — nie trzeba się starać, żeby usłyszeć, co jest wokół. Informacje relacyjne są przydatne i to świetna aplikacja do orientacji oraz eksploracji pasa handlowego.”\n\n„Użyłem Soundscape, żeby zlokalizować pub w centrum Yorku. Wykorzystałem różne opcje, najpierw, żeby go namierzyć, a potem faktycznie znaleźć. Doprowadziło mnie do drzwi na odległość około 3 metrów — rewelacja!”</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape ma funkcje i zalety przydatne w różnych sytuacjach i w różnym czasie. Warto też pamiętać, że użyteczność aplikacji może zmieniać się z czasem — sposób, w jaki korzystasz z niej dziś, może różnić się od tego za kilka miesięcy. Często myślimy o aplikacjach z perspektywy: „jaki problem ta aplikacja pomaga rozwiązać?”. Soundscape można oczywiście używać ad hoc, gdy potrzebujesz konkretnej informacji — na przykład, pomagać w utrzymaniu prawidłowego kierunku do celu w drodze do niego, zorientować się w terenie po wyjściu ze stacji metra, odnaleźć się po wysiadce z auta czy sprawdzić nazwę ulicy lub odległość do najbliższego skrzyżowania. Filozofia Soundscape to jednak „oświetlanie świata dźwiękiem” — aplikacja ma działać zawsze, gdy jesteś poza domem, dostarczając świadomości pobliskiego otoczenia: informuje o nazwach mijanych ulic, kierunku, w którym zmierzasz, czy o firmach, które mijasz. W tym trybie nasi użytkownicy nazywają Soundscape „miłym towarzyszem”, który sprzyja odkrywaniu nowych miejsc i „uzupełnianiu braków w mapie mentalnej”, dając większą pewność podczas poruszania się. Oto kilka przykładów, jak użytkownicy włączają Soundscape do codziennego życia:\n\n„Soundscape pomogło mi wrócić na właściwą trasę po tym, jak wysiadłem z autobusu i poszedłem w złą stronę.”\n\n„Nawet w mieście, w którym mieszkam od 3 lat, dzięki Soundscape lepiej poznałem otoczenie.”\n\n„Dźwięk 3D wzbogaca moją wędrówkę — czuję większe połączenie z otoczeniem… teraz chętniej spróbuję nowej trasy, mając tą aplikację.”\n\n„Brakuje mi przypadkowych odkryć podczas spacerów. Soundscape to fajny dodatek — nie trzeba się starać, żeby usłyszeć, co jest wokół. Informacje relacyjne są przydatne i to świetna aplikacja do orientacji oraz eksploracji pasa handlowego.”\n\n„Użyłem Soundscape, żeby zlokalizować pub w centrum Yorku. Wykorzystałem różne opcje, najpierw, żeby go namierzyć, a potem faktycznie znaleźć. Doprowadziło mnie do drzwi na odległość około 3 metrów — rewelacja!”</string>
     <string name="faq_markers_function_question">Czym są Znaczniki (pinezki) i jak najlepiej z nich korzystać?</string>
     <string name="faq_markers_function_answer">Znaczniki (pinezki) to zapisane przez Ciebie miejsca. Mogą to być miejsca dostępne w aplikacji albo całkiem nowe lokalizacje dodane samodzielnie. Możesz zapisać swoją bieżącą lokalizację jako znacznik, wybierając na ekranie głównym przycisk *\"Użyj bieżącej lokalizacji\"*, a następnie *\"Zapisz jako znacznik (pinezka)\"*. Inne lokalizacje zapiszesz jako znacznik, wyszukując miejsce w pasku wyszukiwania lub znajdując je przez przycisk *\"Miejsca w pobliżu\"* — oba te elementy znajdziesz na ekranie głównym Soundscape. Gdy znajdziesz interesujące Cię miejsce, jego wybór przeniesie Cię do strony *\"Szczegóły lokalizacji\"*. Na tej stronie wybierz przycisk *\"Zapisz jako znacznik (pinezka)\"*.</string>
     <string name="faq_section_getting_the_best_experience">Jak najlepiej wykorzystać Soundscape?</string>
     <string name="faq_what_can_I_set_question">Co mogę ustawić jako dźwięk naprowadzający?</string>
     <string name="faq_what_can_I_set_answer">Możesz ustawić dźwięk naprowadzający na dowolnej firmie, miejscu, punkcie zainteresowania, adresie lub skrzyżowaniu. Lokalizację możesz dodać jako znacznik (pinezka) na kilka sposobów. Najpierw wyświetl szczegóły lokalizacji, używając paska wyszukiwania do znalezienia miejsca albo stukając jeden z przycisków *\"Miejsca w pobliżu\"*, *\"Zapisane znaczniki (pinezki)\"* lub *\"Bieżąca lokalizacja\"* i wybierając lokalizację. Na ekranie szczegółów lokalizacji możesz wybrać przycisk *\"Włącz dźwięk naprowadzający\"*. Stuknięcie go spowoduje powrót do ekranu głównego i włączenie dźwiękowego sygnału naprowadzającego dochodzącego z kierunku wybranego miejsca. Nazwa wybranego miejsca wraz z odległością i adresem, jeśli są dostępne, zostaną teraz wyświetlone na głównym ekranie aplikacji.</string>
     <string name="faq_how_to_use_beacon_question">Jak używać dźwięku naprowadzającego jak ekspert?</string>
-    <string name="faq_how_to_use_beacon_answer">Możesz traktować dźwięk naprowadzający jak *\"latarnię morską dla uszu\"*, informującą, gdzie znajduje się Twój cel względem Twojej pozycji — w linii prostej. Jak latarnia, nie mówi, jak tam dotrzeć — po drodze możesz podjąć wiele decyzji nawigacyjnych, tak jak żaglówka musi wykonać wiele strategicznych *\"zwrotów\"*, by zbliżyć się do latarni. Ciągły, rytmiczny dźwięk sygnału naprowadzającego jest odtwarzany przestrzennie z kierunku celu i pomaga utrzymywać świadomość położenia celu względem Ciebie w trakcie marszu. Gdy idziesz dokładnie w stronę celu albo skierujesz telefon w stronę celu, usłyszysz wyżej brzmiący *\"dzwonek\"*. Funkcja ta pozwala precyzyjnie namierzyć kierunek celu, ponieważ w głośnym otoczeniu kierunek rytmicznego dźwięku bywa trudny do uchwycenia. Szukając wyżej brzmiącego *\"dzwonka\"*, trzymaj telefon płasko i powoli nim zamiataj; obrócenie głowy w tym samym kierunku co telefon zapewni najlepsze wrażenia z dźwięku przestrzennego.\n\nMetafora latarni, na której oparto projekt dźwięku naprowadzającego, ma kilka naturalnych konsekwencji:\n\n1. Nie ma *\"właściwego\"* kierunku, w którym należy iść, używając dźwięku naprowadzającego — w Soundscape to Ty decydujesz, jak tam dotrzeć;\n\n2. Wyżej brzmiący *\"dzwonek\"* pomaga jedynie wskazać kierunek celu — nie podpowiada, jak masz tam dojść;\n\n3. Jeśli ogólnie wiesz, jak dotrzeć do celu, możesz wyciszyć dźwięk naprowadzający przez większość drogi i włączyć go dopiero wtedy, gdy będziesz bliżej celu.</string>
+    <string name="faq_how_to_use_beacon_answer">Możesz traktować dźwięk naprowadzający jak *\"latarnię morską dla uszu\"*, informującą, gdzie znajduje się Twój cel względem Twojej pozycji — w linii prostej. Tak jak latarnia, nie mówi, jak tam dotrzeć — po drodze możesz podjąć wiele decyzji nawigacyjnych, tak jak żaglówka musi wykonać wiele strategicznych *\"zwrotów\"*, by zbliżyć się do latarni. Ciągły, rytmiczny dźwięk sygnału naprowadzającego jest odtwarzany przestrzennie z kierunku celu i pomaga utrzymywać świadomość położenia celu względem Ciebie w trakcie marszu. Gdy idziesz dokładnie w stronę celu albo skierujesz telefon w stronę celu, usłyszysz wysokotonowy *\"dzwonek\"*. Funkcja ta pozwala precyzyjnie namierzyć kierunek celu, ponieważ w głośnym otoczeniu kierunek rytmicznego dźwięku bywa trudny do uchwycenia. Szukając wysokotonowego *\"dzwonka\"*, trzymaj telefon płasko i powoli nim obracaj; obrócenie głowy w tym samym kierunku co telefon zapewni najlepsze wrażenia z dźwięku przestrzennego.\n\nMetafora latarni, na której oparto projekt dźwięku naprowadzającego, ma kilka naturalnych konsekwencji:\n\n1. Nie ma *\"właściwego\"* kierunku, w którym należy iść, używając dźwięku naprowadzającego — w Soundscape to Ty decydujesz, jak tam dotrzeć;\n\n2. Wysokotonowy *\"dzwonek\"* pomaga jedynie wskazać kierunek celu — nie podpowiada, jak masz tam dojść;\n\n3. Jeśli ogólnie wiesz, jak dotrzeć do celu, możesz wyciszyć dźwięk naprowadzający przez większość drogi i włączyć go dopiero wtedy, gdy będziesz bliżej celu.</string>
     <string name="faq_why_does_beacon_disappear_question">Dlaczego czasem dźwięk naprowadzający znika?</string>
     <string name="faq_why_does_beacon_disappear_answer">Dźwięk naprowadzający w Soundscape jest zasadniczo wskazówką kierunkową, mówiącą, gdzie znajduje się cel względem kierunku, w którym jesteś zwrócony/a. Gdy Soundscape nie jest pewien, w którą stronę patrzysz, ścisza dźwięk naprowadzający. Najczęściej dzieje się tak, gdy idziesz z telefonem w kieszeni lub torbie i zatrzymujesz się, np. aby przejść przez ulicę. Dźwięk znów się wzmocni, gdy ponownie ruszysz lub gdy trzymasz telefon płasko i skierujesz go w stronę, w którą patrzysz.</string>
     <string name="faq_beacon_on_address_question">Czy mogę ustawić dźwięk naprowadzający na adres?</string>
     <string name="faq_beacon_on_address_answer">Tak, możesz. Adresy nie są domyślnie wyświetlane, ale można je znaleźć, używając pola wyszukiwania. Aby zachować ten adres i nie szukać go ponownie, możesz dodać go jako znacznik (pinezka) z ekranu głównego, wybierając przycisk *\"Zapisz jako znacznik (pinezka)\"*.</string>
     <string name="faq_beacon_on_home_question">Jak ustawić dźwięk naprowadzający na swój dom?</string>
     <string name="faq_beacon_on_home_answer">Soundscape umożliwia ustawianie dźwięków naprowadzających na adresy. Aby ustawić dźwięk naprowadzający na dom lub inny adres, wyszukaj lokalizację z głównego ekranu Soundscape. Na ekranie „Szczegóły lokalizacji” naciśnij przycisk „Włącz dźwięk naprowadzający”.</string>
-    <string name="faq_how_close_to_destination_question">Gdy ustawię dźwięk naprowadzający na cel, jak blisko Soundscape doprowadzi mnie do celu?</string>
+    <string name="faq_how_close_to_destination_question">Gdy ustawię dźwięk naprowadzający na cel, jak blisko celu Soundscape mnie doprowadzi?</string>
     <string name="faq_how_close_to_destination_answer">Soundscape może określić położenie celu z dokładnością do kilku metrów, ale nie mniejszą. Gdy aplikacja stwierdzi, że jesteś blisko celu, usłyszysz końcowy komunikat, że cel jest w pobliżu, a dźwięk naprowadzający zostanie wyłączony.</string>
     <string name="faq_turn_beacon_back_on_question">Czy mogę ponownie włączyć dźwięk naprowadzający, gdy jestem blisko celu?</string>
     <string name="faq_turn_beacon_back_on_answer">Tak, możesz ponownie włączyć dźwięk naprowadzający, gdy Soundscape go wyłączy, wybierając *\"przycisk wyłączania wyciszenia dźwięku naprowadzającego\"*; jednak ponieważ Usługi lokalizacji są dokładne jedynie do około 10 metrów, nie możemy zagwarantować działania dźwięku naprowadzającego, gdy jesteś w odległości kilku metrów od celu.</string>
     <string name="faq_road_names_question">Dlaczego Soundscape dwukrotnie wymawia nazwy ulic, gdy zbliżam się do skrzyżowania?</string>
-    <string name="faq_road_names_answer">Aby uwzględnić różne konfiguracje skrzyżowań, Soundscape opisuje skrzyżowania jako odcinki dróg wychodzące z jednego punktu. Aplikacja używa dźwięku przestrzennego, aby podać nazwę drogi po lewej, nazwę drogi idącej prosto oraz nazwę drogi po prawej — w tej właśnie kolejności. Jeśli opis skrzyżowania zaczyna się od drogi, po której jedziesz, zamiast od drogi po lewej, oznacza to, że mamy do czynienia ze skrzyżowaniem w kształcie litery T, gdzie droga, na której się znajdujesz, ciągnie się dalej, a inna droga przecina ją od prawej. Podobnie, jeśli opis zawiera tylko drogę po lewej i po prawej, oznacza to, że droga, którą jedziesz, kończy się skrzyżowaniem T przed Tobą. Ten sposób opisu umożliwia też obsługę sytuacji, gdy nazwa drogi zmienia się na skrzyżowaniu.</string>
-    <string name="faq_why_not_every_business_question">Dlaczego Soundscape nie ogłasza nazw wszystkich mijanych firm?</string>
-    <string name="faq_why_not_every_business_answer">Soundscape jest zaprojektowany tak, aby nie być zbyt rozmownym. Dodatkowo korzysta z OpenStreetMap jako źródła danych. OpenStreetMap (OSM) to mapa tworzona i edytowana przez społeczność — to użytkownicy wprowadzają i aktualizują dane. Jeśli jakaś firma lub punkt zainteresowania nie jest ogłaszany przez Soundscape, najprawdopodobniejszą przyczyną jest to, że nie został jeszcze dodany lub zaktualizowany w OSM przez członka społeczności.</string>
+    <string name="faq_road_names_answer">Aby uwzględnić różne konfiguracje skrzyżowań, Soundscape opisuje skrzyżowania jako odcinki dróg wychodzące z jednego punktu. Aplikacja używa dźwięku przestrzennego, aby podać nazwę drogi po lewej, nazwę drogi idącej prosto oraz nazwę drogi po prawej — w tej właśnie kolejności. Jeśli opis skrzyżowania zaczyna się od drogi, po której jedziesz, zamiast od drogi po lewej, oznacza to, że mamy do czynienia ze skrzyżowaniem w kształcie litery T, gdzie droga, na której się znajdujesz, ciągnie się dalej, a inna droga przecina ją od prawej. Podobnie, jeśli opis zawiera tylko drogę po lewej i po prawej, oznacza to, że droga, którą jedziesz, kończy się skrzyżowaniem w kształcie litery T przed Tobą. Ten sposób opisu umożliwia też obsługę sytuacji, gdy nazwa drogi zmienia się na skrzyżowaniu.</string>
+    <string name="faq_why_not_every_business_question">Dlaczego Soundscape nie wypowiada nazw wszystkich mijanych firm?</string>
+    <string name="faq_why_not_every_business_answer">Soundscape jest zaprojektowany tak, aby nie być zbyt gadatliwym. Dodatkowo korzysta z OpenStreetMap jako źródła danych. OpenStreetMap (OSM) to mapa tworzona i edytowana przez społeczność — to użytkownicy wprowadzają i aktualizują dane. Jeśli jakaś firma lub punkt zainteresowania nie jest ogłaszany przez Soundscape, najprawdopodobniejszą przyczyną jest to, że nie został jeszcze dodany lub zaktualizowany w OSM przez członka społeczności.</string>
     <string name="faq_callouts_stopping_in_vehicle_question">Dlaczego niektóre powiadomienia przestają się odtwarzać, gdy jadę pojazdem?</string>
     <string name="faq_callouts_stopping_in_vehicle_answer">Aby uniknąć nadmiaru komunikatów, niektóre kategorie — na przykład skrzyżowania — nie są ogłaszane automatycznie, gdy poruszasz się pojazdem.</string>
     <string name="faq_miss_a_callout_question">Co jeśli nie zrozumiem komunikatu lub przegapię go z powodu hałasu otoczenia?</string>
@@ -405,7 +405,7 @@
     <string name="faq_supported_headsets_question">Jakie słuchawki powinienem używać z Soundscape?</string>
     <string name="faq_supported_headsets_answer">Wybór słuchawek do Soundscape zależy od osobistych preferencji — każda opcja ma swoje zalety i wady. Jedynym konkretnym wymaganiem jest użycie słuchawek stereo, aby móc korzystać z przestrzennych, trójwymiarowych dźwiękowych powiadomień Soundscape.</string>
     <string name="faq_battery_impact_question">Jak Soundscape wpływa na baterię mojego telefonu?</string>
-    <string name="faq_battery_impact_answer">Czas pracy baterii zależy w dużym stopniu od modelu i wieku telefonu. Największym zużyciem energii jest włączony ekran, więc aby wydłużyć żywotność baterii warto jak najczęściej blokować ekran. Aby ograniczyć wpływ na baterię, Soundscape posiada Tryb uśpienia. Aby dodatkowo zmniejszyć zużycie baterii, gdy nie korzystasz z Soundscape, wymuś zamknięcie aplikacji za pomocą przełącznika aplikacji w telefonie.</string>
+    <string name="faq_battery_impact_answer">Czas pracy baterii zależy w dużym stopniu od modelu i wieku telefonu. Największym konsumentem energii jest włączony ekran, więc aby wydłużyć czas działania baterii warto jak najczęściej wyłączać ekran. Aby ograniczyć wpływ na baterię, Soundscape posiada Tryb uśpienia. Aby dodatkowo zmniejszyć zużycie energii, gdy nie korzystasz z Soundscape, wymuś zamknięcie aplikacji za pomocą menu aplikacji w telefonie.</string>
     <string name="faq_sleep_mode_battery_question">Jak używać Trybu uśpienia, aby zminimalizować wpływ Soundscape na baterię telefonu?</string>
     <string name="faq_sleep_mode_battery_answer">Aby przełączyć Soundscape w Tryb uśpienia, wybierz przycisk „Tryb uśpienia” w prawym górnym rogu ekranu. Po wybraniu tej opcji Soundscape przestanie korzystać z Usług lokalizacji i danych mobilnych, dopóki ponownie go nie obudzisz.</string>
     <string name="faq_snooze_mode_battery_question">Jak używać Trybu drzemki, aby zminimalizować wpływ Soundscape na baterię telefonu?</string>
@@ -413,11 +413,11 @@
     <string name="faq_headset_battery_impact_question">Jak wybór słuchawek wpływa na czas pracy baterii w moim telefonie?</string>
     <string name="faq_headset_battery_impact_answer">W naszych testach zużycie baterii przez słuchawki Bluetooth jest porównywalne z słuchawkami przewodowymi i nie powinno być istotnym czynnikiem przy wyborze słuchawek.</string>
     <string name="faq_background_battery_impact_question">Jak uruchomienie Soundscape w tle wpływa na czas pracy baterii mojego telefonu?</string>
-    <string name="faq_background_battery_impact_answer">Soundscape to aplikacja oparta na lokalizacji i korzysta z Usług lokalizacji, aby określić Twoje położenie. W naszych testach Soundscape nie zużywa więcej baterii niż przeciętna aplikacja mapowa; jeśli jednak obawiasz się zużycia baterii, oto kilka porad, które pomogą je obniżyć:\n\n1. Gdy nie korzystasz z aplikacji, jak najczęściej wyłączaj wyświetlacz.\n\n2. Gdy nie używasz aplikacji, zamknij ją. Soundscape, działając, stale korzysta z usług lokalizacji, aby znać Twoje położenie, nawet gdy się nie poruszasz. Nie zapomnij ponownie uruchomić aplikacji, gdy wznowisz podróż.\n\n3. W chłodne dni trzymaj telefon w cieple, ponieważ baterie gorzej działają w niskich temperaturach.</string>
+    <string name="faq_background_battery_impact_answer">Soundscape to aplikacja oparta na lokalizacji i korzysta z Usług lokalizacji, aby określić Twoje położenie. W naszych testach Soundscape nie zużywa więcej energii niż przeciętna aplikacja z mapami; jeśli jednak martwisz się o zużycia energii, oto kilka porad, które pomogą je obniżyć:\n\n1. Gdy nie korzystasz z aplikacji, jak najczęściej wyłączaj wyświetlacz.\n\n2. Gdy nie używasz aplikacji, zamknij ją. Soundscape, działając, stale korzysta z usług lokalizacji, aby znać Twoje położenie, nawet gdy się nie poruszasz. Nie zapomnij ponownie uruchomić aplikacji, gdy wznowisz podróż.\n\n3. W chłodne dni trzymaj telefon w cieple, ponieważ baterie gorzej działają w niskich temperaturach.</string>
     <string name="faq_mobile_data_use_question">Ile danych komórkowych zużywa Soundscape?</string>
     <string name="faq_mobile_data_use_answer">Ilość używanych danych mobilnych zależy od tego, jak korzystasz z Soundscape. Aplikację zaprojektowano tak, aby korzystała z niewielkiej ilości danych podczas poruszania się — np. zapisuje punkty podczas spaceru, dzięki czemu nie trzeba ich pobierać ponownie przy kolejnych wizytach. Aby zmniejszyć użycie danych mobilnych, łącz się z Wi‑Fi, gdy to możliwe, szczególnie przy pobieraniu aplikacji. Gdy nie używasz Soundscape, użyj przycisku „Tryb uśpienia”, aby uśpić aplikację, lub wymuś jej zamknięcie.</string>
-    <string name="faq_difference_from_map_apps_question">Czym różni się Soundscape od innych aplikacji mapowych?</string>
-    <string name="faq_difference_from_map_apps_answer">Soundscape zapewnia dźwiękowy opis otoczenia, wspierając eksplorację i orientację w terenie. Dzięki przestrzennemu dźwiękowi Soundscape zapowiada punkty zainteresowania, parki, drogi i skrzyżowania z kierunku, w którym faktycznie się znajdują w Twoim najbliższym otoczeniu podczas marszu. Na przykład, jeśli mijasz sklep po prawej, usłyszysz jego nazwę z prawej strony. Gdy zbliżasz się do skrzyżowania, usłyszysz nazwy dróg z kierunków, w które prowadzą, zaczynając od lewej, na wprost i po prawej.\n\nZamiast nawigacji krok po kroku, jaką oferują inne aplikacje mapowe, Soundscape odtwarza dźwięk naprowadzający w kierunku celu, dając Ci możliwość dotarcia tam na własnych zasadach, dzięki zwiększonej świadomości otoczenia i położenia celu. Soundscape jest zaprojektowany do pracy w tle, dzięki czemu możesz jednocześnie używać aplikacji z nawigacją krok po kroku, a jednocześnie otrzymywać informacje zwiększające świadomość otoczenia w drodze do celu.</string>
+    <string name="faq_difference_from_map_apps_question">Czym różni się Soundscape od innych aplikacji z mapami?</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape zapewnia dźwiękowy opis otoczenia, wspierając eksplorację i orientację w terenie. Dzięki przestrzennemu dźwiękowi Soundscape zapowiada punkty zainteresowania, parki, drogi i skrzyżowania z kierunku, w którym faktycznie się znajdują w twoim najbliższym otoczeniu podczas wędrówki. Na przykład, jeśli mijasz sklep po prawej, usłyszysz jego nazwę z prawej strony. Gdy zbliżasz się do skrzyżowania, usłyszysz nazwy dróg z kierunków, w które prowadzą, zaczynając od lewej, następnie na wprost i po prawej.\n\nZamiast nawigacji krok po kroku, jaką oferują inne aplikacje, Soundscape odtwarza dźwięk naprowadzający w kierunku celu, dając Ci możliwość dotarcia tam na własnych zasadach, dzięki zwiększonej świadomości otoczenia i położenia celu. Soundscape jest zaprojektowany do pracy w tle, dzięki czemu możesz jednocześnie używać innej aplikacji z nawigacją krok po kroku, a jednocześnie otrzymywać informacje zwiększające świadomość otoczenia w drodze do celu.</string>
     <string name="faq_use_with_wayfinding_apps_question">Jak używać Soundscape razem z aplikacją nawigacyjną?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape został zaprojektowany jako aplikacja zwiększająca świadomość otoczenia, uzupełniająca informacje o Twoim środowisku. Nie jest to aplikacja do nawigacji krok po kroku, ale może działać równolegle z takimi aplikacjami, dostarczając informacji uzupełniających. Aby używać Soundscape razem z aplikacją nawigacyjną, najpierw uruchom aplikację nawigacyjną. Następnie przejdź do Soundscape i ustaw dźwięk naprowadzający na ten sam cel, co w aplikacji nawigacyjnej. Wówczas obie aplikacje będą działać jednocześnie: usłyszysz wskazówki marszu z aplikacji nawigacyjnej, a od Soundscape – informacje o punktach zainteresowania, skrzyżowaniach i odległości do celu.</string>
     <string name="faq_controlling_what_you_hear_question">Jak kontrolować to, co słyszę i kiedy to słyszę w Soundscape?</string>
@@ -438,13 +438,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Ta usługa lokalizacji działa na pierwszym planie</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Anuluj wyszukiwanie</string>
     <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Stacja kolejowa</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s – stacja kolejowa</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">Stacja kolejowa – %s</string>
     <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Przystanek tramwajowy</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s – przystanek tramwajowy</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">Przystanek tramwajowy – %s</string>
     <string name="osm_tag_subway" tools:ignore="MissingTranslation">Stacja metra</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s – stacja metra</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">Stacja metra – %s</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal promowy</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s – terminal promowy</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal promowy– %s</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Zarządzanie dźwiękiem</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Zarządzanie ułatwieniami dostępu</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Jasny lub ciemny motyw</string>
@@ -461,11 +461,11 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">użyj</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Wyjdź z podglądu ulicy</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Włącz nagrywanie trasy</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Włącz styl mapy o podwyższonej dostępności</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Włącz styl mapy z ułatwieniami dostępności</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Wyświetlaj mapę na ekranie</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Ustawienia debugowania</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Język wyszukiwania</string>
-    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Udostępnij nagraną trasę</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Udostępnij zapis podróży</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s do %2$s przez %3$s</string>
     <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s do %2$s</string>
     <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s łączy %2$s i %3$s</string>
