@@ -238,11 +238,11 @@
     <string name="terms_of_use_medical_safety_disclaimer">Przyjmujesz do wiadomości, że Soundscape (1) nie jest zaprojektowany, przeznaczony ani udostępniony jako urządzenie medyczne oraz (2) nie jest zaprojektowany ani przeznaczony do zastąpienia profesjonalnej porady medycznej, diagnozy, leczenia ani oceny i nie powinien być używany jako zamiennik profesjonalnej porady medycznej, diagnozy, leczenia ani oceny.\n\nOstrzeżenie dotyczące bezpieczeństwa\n\nSoundscape jest narzędziem nawigacyjnym i nie powinien być używany zamiast umiejętności poruszania się, świadomości otoczenia oraz zdrowego rozsądku. Zachowaj ostrożność podczas poruszania się w otoczeniu, ponieważ dane mapowe włączone do programu Soundscape pochodzą od podmiotu trzeciego i mogą mieć ograniczoną dokładność.</string>
     <string name="first_launch_soundscape_language">Język aplikacji Soundscape</string>
     <string name="first_launch_soundscape_language_text">Wybierz język, którego ma używać Soundscape. Zawsze możesz zmienić ten wybór w ustawieniach aplikacji.</string>
-    <string name="first_launch_welcome_title">Witaj!</string>
+    <string name="first_launch_welcome_title">Witamy!</string>
     <string name="first_launch_welcome_description">Nawiguj pewniej dzięki przestrzennemu dźwiękowi Soundscape</string>
     <string name="first_launch_welcome_button">Rozpocznij</string>
     <string name="first_launch_headphones_title">Słuchanie Soundscape</string>
-    <string name="first_launch_headphones_message_1">Soundscape działa świetnie z dowolnymi słuchawkami. Jeśli chcesz używać słuchawek, załóż je teraz.</string>
+    <string name="first_launch_headphones_message_1">Soundscape działa świetnie z dowolnymi słuchawkami. Jeśli chcesz ich użyć, przygotuj je teraz.</string>
     <string name="first_launch_headphones_message_2">Jeśli nie masz słuchawek lub wolisz z nich nie korzystać, to w porządku! Soundscape zadziała z głośnikami w telefonie.</string>
     <string name="first_launch_callouts_title">Usłysz swoje otoczenie</string>
     <string name="first_launch_callouts_message">Soundscape pomaga Ci wiedzieć, gdzie jesteś i dokąd zmierzasz, informując o ulicach, skrzyżowaniach i interesujących miejscach, gdy się do nich zbliżasz.</string>
