@@ -218,7 +218,7 @@
     <string name="settings_help_section_home_screen_buttons">Przyciski ekranu głównego</string>
     <string name="help_config_voices_content">Soundscape może korzystać z dowolnych głosów pobranych na telefon z Androidem w ustawieniach funkcji Text-to-speech. W aplikacji Soundscape możesz wybrać inny głos niż domyślny Android, przechodząc w menu głównym do Ustawień, a następnie wybierając „Wybór głosu TTS”.</string>
     <string name="help_offline_page_title">Dlaczego Soundscape działa w trybie offline?</string>
-    <string name="help_offline_description">Gdy nie ma połączenia z internetem lub występuje awaria usług Soundscape, Soundscape przechodzi w tryb offline. Aplikacja nadal działa, ale niektóre funkcje mogą być ograniczone.</string>
+    <string name="help_offline_description">Gdy nie ma połączenia z internetem lub występuje awaria usług Soundscape, aplikacja przechodzi w tryb offline. Mimo to Soundscape nadal będzie działać, jednak niektóre funkcje mogą być ograniczone.</string>
     <string name="help_offline_limitations_heading">Ograniczenia</string>
     <string name="help_offline_limitations_description">Powiadomienia będą nadal działać, jeśli jesteś w okolicy wcześniej przez Ciebie odwiedzonej i zapisanej w historii powiadomień. Podobnie możesz ustawić dźwięk naprowadzający lub utworzyć znacznik (pinezkę) dla miejsc zapisanych w historii powiadomień.</string>
     <string name="help_offline_troubleshooting_heading">Co możesz zrobić?</string>
