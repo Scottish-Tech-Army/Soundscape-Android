@@ -260,10 +260,10 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">Zmień uprawnienia w ustawieniach aplikacji</string>
     <string name="first_launch_beacon_title">Wybierz dźwięk naprowadzający</string>
     <string name="first_launch_beacon_message_1">Podczas nawigacji z Soundscape usłyszysz dźwięk naprowadzający dochodzący z kierunku Twojego miejsca docelowego. Podążając za jego dźwiękiem zawsze będziesz wiedzieć, w którą stronę iść.</string>
-    <string name="first_launch_beacon_message_2">Posłuchaj dostępnych dźwięków naprowadzających i wybierz preferowany.</string>
+    <string name="first_launch_beacon_message_2">Posłuchaj dostępnych dźwięków naprowadzających i wybierz ten, który Ci odpowiada.</string>
     <string name="first_launch_beacon_message_3">Możesz to później zmienić w ustawieniach aplikacji.</string>
     <string name="first_launch_prompt_title">Wszystko gotowe!</string>
-    <string name="first_launch_prompt_message">Możesz wyruszyć na pierwszy spacer z Soundscape. Aby wypróbować to teraz, wybierz pobliski cel, uruchom dźwięk naprowadzający i usłyszysz go dochodzący z kierunku celu.</string>
+    <string name="first_launch_prompt_message">Jesteś gotowy na pierwszy spacer z Soundscape. Aby spróbować od razu, wybierz pobliskie miejsce docelowe, uruchom dźwięk naprowadzający i usłyszysz go dochodzącego z kierunku wybranego miejsca.</string>
     <string name="first_launch_prompt_button">Zakończ</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Zmień język</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">aby zmienić język używany w aplikacji</string>
