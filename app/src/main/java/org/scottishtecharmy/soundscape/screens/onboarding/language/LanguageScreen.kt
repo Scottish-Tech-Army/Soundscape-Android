@@ -148,6 +148,7 @@ data object MockLanguagePreviewData {
         Language("日本語", "ja", "JP"),
         Language("Norsk", "nb", "NO"),
         Language("Nederlands", "nl", "NL"),
+        Language("Polski", "pl", "PL"),
         Language("Português (Brasil)", "pt", "BR"),
         Language("Português (Portugal)", "pt", "PT"),
         Language("Svenska", "sv", "SE"),
