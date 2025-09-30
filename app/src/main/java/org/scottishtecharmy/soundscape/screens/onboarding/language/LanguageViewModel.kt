@@ -65,6 +65,7 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         addIfSpeechSupports(allLanguages, Language("日本語", "ja", "JP"))
         addIfSpeechSupports(allLanguages, Language("Norsk", "nb", "NO"))
         addIfSpeechSupports(allLanguages, Language("Nederlands", "nl", "NL"))
+        addIfSpeechSupports(allLanguages, Language("Polski", "pl", "PL"))
         addIfSpeechSupports(allLanguages, Language("Português (Portugal)", "pt", "PT"))
         addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt", "BR"))
         addIfSpeechSupports(allLanguages, Language("Svenska", "sv", "SE"))

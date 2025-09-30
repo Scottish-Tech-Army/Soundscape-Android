@@ -65,6 +65,7 @@ android {
             "ja",
             "nb",
             "nl",
+            "pl",
             "pt",
             "pt-rBR",
             //"ru", in progress
