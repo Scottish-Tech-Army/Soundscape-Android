@@ -9,12 +9,6 @@ const double DEGREES_TO_RADIANS = 2.0 * M_PI / 360.0;
 const double RADIANS_TO_DEGREES = 1.0 / DEGREES_TO_RADIANS;
 const double EARTH_RADIUS_METERS = 6378137.0;   //  Original Soundscape uses 6378137.0 not 6371000.0
 
-// We use this for FMOD coordinates so that we can just pass in straight GPS values as if they
-// were X/Y coordinates. We can only do this because we're always close enough to our beacons to
-// consider the earth as flat. FMOD_DISTANCE_FACTOR is set to the number of metres per degree of
-// longitude/latitude.
-const float FMOD_DISTANCE_FACTOR = static_cast<float>((2.0 * M_PI * EARTH_RADIUS_METERS) / 360.0);
-
 inline double toRadians(double degrees)
 {
     return degrees * DEGREES_TO_RADIANS;
