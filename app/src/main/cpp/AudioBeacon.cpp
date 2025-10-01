@@ -43,8 +43,10 @@ void PositionedAudio::InitFmodSound() {
     double heading, current_latitude, current_longitude;
     m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
 
-    result = m_pSound->set3DMinMaxDistance(10.0f * FMOD_DISTANCE_FACTOR,
-                                           5000.0f * FMOD_DISTANCE_FACTOR);
+    // Sound is as loud as it gets when 10m away and never gits softer if the
+    // distance goes above 500m
+    result = m_pSound->set3DMinMaxDistance(10.0f,
+                                           500.0f);
     ERROR_CHECK(result);
 
     {
