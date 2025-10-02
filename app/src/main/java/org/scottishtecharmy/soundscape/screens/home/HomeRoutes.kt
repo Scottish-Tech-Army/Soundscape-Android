@@ -44,4 +44,8 @@ sealed class HomeRoutes(
         route = "language_screen",
         title = "LanguageScreen",
     )
+    data object OfflineMaps : HomeRoutes(
+        route = "offline_maps",
+        title = "OfflineMaps",
+    )
 }

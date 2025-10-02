@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
+import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -299,6 +300,16 @@ fun HomeScreen(
         composable(HomeRoutes.PlacesNearby.route) {
             PlacesNearbyScreenVM(
                 homeNavController = navController,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+        // Language choosing screen
+        composable(HomeRoutes.OfflineMaps.route) {
+            // Always just pop back out of settings, don't add to the queue
+            OfflineMapsScreenVM(
+                navController = navController,
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }

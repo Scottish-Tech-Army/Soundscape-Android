@@ -6,11 +6,33 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.database.Cursor
-import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
-import java.io.File
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.network.IManifestDAO
+import org.scottishtecharmy.soundscape.network.ManifestClient
+import retrofit2.awaitResponse
+import androidx.core.net.toUri
+
+suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
+
+    return withContext(Dispatchers.IO) {
+        val manifestClient = ManifestClient(applicationContext)
+
+        val service =
+            manifestClient.retrofitInstance?.create(IManifestDAO::class.java)
+        val manifestReq =
+            async {
+                service?.getManifest()
+            }
+        manifestReq.await()?.awaitResponse()?.body()
+    }
+}
 
 class OfflineDownloader(private val context: Context) {
 
@@ -56,7 +78,7 @@ class OfflineDownloader(private val context: Context) {
                 DownloadManager.STATUS_SUCCESSFUL -> {
                     val downloadedFileUriString = cursor.getString(localUriIndex)
                     Log.i(TAG, "Download $id successful. File URI: $downloadedFileUriString")
-                    Toast.makeText(context, "Download successful: ${Uri.parse(downloadedFileUriString).lastPathSegment}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Download successful: ${downloadedFileUriString.toUri().lastPathSegment}", Toast.LENGTH_LONG).show()
                     // You can now use the downloadedFileUriString (e.g., to get a File path if needed,
                     // or open an InputStream from the content URI)
                     // Example: Get file path if it's in app's directory
@@ -106,7 +128,7 @@ class OfflineDownloader(private val context: Context) {
 
     fun startDownload(fileUrl: String, outputFileName: String, title: String = "File Download", description: String = "Downloading...") {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val request = DownloadManager.Request(Uri.parse(fileUrl))
+        val request = DownloadManager.Request(fileUrl.toUri())
 
         // --- Basic Request Configuration ---
         request.setTitle(title) // Title for the download notification
@@ -156,9 +178,10 @@ class OfflineDownloader(private val context: Context) {
         }
         // For Android N (API 24) and above, you might need to specify Context.RECEIVER_NOT_EXPORTED
         // if your receiver is not meant to be exported. For older versions, this flag doesn't exist.
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context.registerReceiver(onDownloadComplete, intentFilter, Context.RECEIVER_NOT_EXPORTED)
         } else {
+            @Suppress("UnspecifiedRegisterReceiverFlag")
             context.registerReceiver(onDownloadComplete, intentFilter)
         }
         Log.d(TAG, "Download completion receiver registered.")
@@ -170,14 +193,14 @@ class OfflineDownloader(private val context: Context) {
             Log.d(TAG, "Download completion receiver unregistered.")
         } catch (e: IllegalArgumentException) {
             // Receiver wasn't registered, ignore.
-            Log.d(TAG, "Receiver already unregistered or not registered.")
+            Log.d(TAG, "Receiver already unregistered or not registered $e")
         }
     }
 
     private fun unregisterReceiverSilently() {
         try {
             context.unregisterReceiver(onDownloadComplete)
-        } catch (e: IllegalArgumentException) {
+        } catch (_: IllegalArgumentException) {
             // Ignore if not registered
         }
     }

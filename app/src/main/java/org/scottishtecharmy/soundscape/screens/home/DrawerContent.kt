@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home
 
 import android.content.SharedPreferences
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,7 +33,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
-import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
@@ -52,7 +50,6 @@ fun DrawerContent(
 ) {
     val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
-    val activity = LocalActivity.current as MainActivity
 
     ModalDrawerSheet(
         drawerContainerColor = MaterialTheme.colorScheme.background,
@@ -152,12 +149,11 @@ fun DrawerContent(
 
                 DrawerMenuItem(
                     onClick = {
-                        val fileUrl = "https://pub-f73ac907cdc34ff688a56797c608ab4b.r2.dev/scotland-extract-file.pmtiles"
-                        val outputFileName = "scotland-extract-file.pmtiles"
-                        activity.offlineDownloader.startDownload(fileUrl, outputFileName, "Offline maps", "Downloading extract...")
+                        onNavigate(HomeRoutes.OfflineMaps.route)
                     },
                     label = "Offline maps",
-                    Icons.Rounded.Download
+                    Icons.Rounded.Download,
+                    modifier = Modifier.testTag("menuOfflineMaps")
                 )
 
                 DrawerMenuItem(
