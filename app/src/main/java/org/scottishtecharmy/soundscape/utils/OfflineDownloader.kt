@@ -4,20 +4,19 @@ import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.database.Cursor
-import android.os.Build
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
+import androidx.core.net.toUri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.network.IManifestDAO
 import org.scottishtecharmy.soundscape.network.ManifestClient
+import org.scottishtecharmy.soundscape.utils.OfflineDownloader.Companion.TAG
 import retrofit2.awaitResponse
-import androidx.core.net.toUri
 
 suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
 
@@ -34,6 +33,42 @@ suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureColle
     }
 }
 
+/**
+ * OfflineMapsBroadcastReceiver is declared in AndroidManifest.xml as a receiver. Even if the app
+ * is not running it will be able to receive the broadcast when a download completes. This is
+ * important because at that point we want to record the download as having succeeded.
+  */
+class OfflineMapsBroadcastReceiver : BroadcastReceiver() {
+
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action.equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
+            val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+            val query = DownloadManager.Query().setFilterById(id)
+            val cursor = manager.query(query)
+            if (cursor != null && cursor.moveToFirst()) {
+                if (cursor.count > 0) {
+
+                    val statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
+                    val status = cursor.getInt(statusIndex)
+                    val fileIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
+                    val file = cursor.getString(fileIndex)
+                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                        println("DOWNLOAD SUCCESS - $file")
+                    } else {
+                        val messageIndex = cursor.getColumnIndex(DownloadManager.COLUMN_REASON)
+                        val message = cursor.getInt(messageIndex)
+                        println("DOWNLOAD FAILED for $file - $message")
+                    }
+                }
+            } else {
+                Log.e(TAG, "Download ID $id not found in DownloadManager query after completion.")
+            }
+            cursor?.close()
+        }
+    }
+}
+
 class OfflineDownloader(private val context: Context) {
 
     companion object {
@@ -41,26 +76,6 @@ class OfflineDownloader(private val context: Context) {
     }
 
     private var downloadId: Long = -1L
-
-    // BroadcastReceiver to listen for download completion
-    private val onDownloadComplete: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(ctxt: Context, intent: Intent) {
-            val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-            if (downloadId == id) {
-                if (intent.action == DownloadManager.ACTION_DOWNLOAD_COMPLETE) {
-                    handleDownloadCompletion(id)
-                } else if (intent.action == DownloadManager.ACTION_NOTIFICATION_CLICKED) {
-                    // Handle notification click if needed - e.g. open downloads app or your app
-                    Log.d(TAG, "Download notification clicked for ID: $id")
-
-                    // Example: Open the Android Downloads UI
-                    val downloadsIntent = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
-                    downloadsIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    context.startActivity(downloadsIntent)
-                }
-            }
-        }
-    }
 
     private fun handleDownloadCompletion(id: Long) {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
@@ -79,11 +94,6 @@ class OfflineDownloader(private val context: Context) {
                     val downloadedFileUriString = cursor.getString(localUriIndex)
                     Log.i(TAG, "Download $id successful. File URI: $downloadedFileUriString")
                     Toast.makeText(context, "Download successful: ${downloadedFileUriString.toUri().lastPathSegment}", Toast.LENGTH_LONG).show()
-                    // You can now use the downloadedFileUriString (e.g., to get a File path if needed,
-                    // or open an InputStream from the content URI)
-                    // Example: Get file path if it's in app's directory
-                    // val file = File(Uri.parse(downloadedFileUriString).path!!)
-                    // if(file.exists()){ Log.d(TAG, "File exists at: ${file.absolutePath}") }
                 }
                 DownloadManager.STATUS_FAILED -> {
                     val reason = cursor.getInt(reasonIndex)
@@ -102,11 +112,10 @@ class OfflineDownloader(private val context: Context) {
                     Log.i(TAG, "Download $id running.")
                 }
             }
-            cursor.close()
         } else {
             Log.e(TAG, "Download ID $id not found in DownloadManager query after completion.")
         }
-        unregisterReceiver() // Unregister after handling
+        cursor?.close()
     }
 
 
@@ -158,79 +167,35 @@ class OfflineDownloader(private val context: Context) {
             downloadId = downloadManager.enqueue(request)
             Log.i(TAG, "Download enqueued with ID: $downloadId for URL: $fileUrl")
             Toast.makeText(context, "Download started...", Toast.LENGTH_SHORT).show()
-
-            // Register receiver for download completion and notification click
-            registerReceiver()
-
         } catch (e: Exception) {
             Log.e(TAG, "Error enqueuing download for $fileUrl", e)
             Toast.makeText(context, "Failed to start download: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun registerReceiver() {
-        // Unregister first if already registered to avoid multiple registrations
-        unregisterReceiverSilently()
-
-        val intentFilter = IntentFilter().apply {
-            addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-            addAction(DownloadManager.ACTION_NOTIFICATION_CLICKED)
-        }
-        // For Android N (API 24) and above, you might need to specify Context.RECEIVER_NOT_EXPORTED
-        // if your receiver is not meant to be exported. For older versions, this flag doesn't exist.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            context.registerReceiver(onDownloadComplete, intentFilter, Context.RECEIVER_NOT_EXPORTED)
-        } else {
-            @Suppress("UnspecifiedRegisterReceiverFlag")
-            context.registerReceiver(onDownloadComplete, intentFilter)
-        }
-        Log.d(TAG, "Download completion receiver registered.")
-    }
-
-    fun unregisterReceiver() {
-        try {
-            context.unregisterReceiver(onDownloadComplete)
-            Log.d(TAG, "Download completion receiver unregistered.")
-        } catch (e: IllegalArgumentException) {
-            // Receiver wasn't registered, ignore.
-            Log.d(TAG, "Receiver already unregistered or not registered $e")
-        }
-    }
-
-    private fun unregisterReceiverSilently() {
-        try {
-            context.unregisterReceiver(onDownloadComplete)
-        } catch (_: IllegalArgumentException) {
-            // Ignore if not registered
-        }
-    }
-
-
-    // Optional: Query download status by ID
-    fun getDownloadStatus(id: Long): Pair<Int, Int>? { // Returns Pair<Status, Reason>
+    fun getDownloadStatus(): Pair<Int, Int>? { // Returns Pair<Status, Reason>
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val query = DownloadManager.Query().setFilterById(id)
+        val query = DownloadManager.Query().setFilterById(downloadId)
         val cursor: Cursor? = downloadManager.query(query)
         var result: Pair<Int, Int>? = null
         if (cursor != null && cursor.moveToFirst()) {
-            val statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
-            val reasonIndex = cursor.getColumnIndex(DownloadManager.COLUMN_REASON)
-            val status = cursor.getInt(statusIndex)
-            val reason = cursor.getInt(reasonIndex)
-            result = Pair(status, reason)
-            cursor.close()
+            val bytesIndex = cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)
+            val totalBytesIndex = cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES)
+            val bytes = cursor.getInt(bytesIndex)
+            val totalBytes = cursor.getInt(totalBytesIndex)
+            result = Pair(bytes, totalBytes)
+        } else {
+            // We reach here if the download was cancelled
         }
+        cursor?.close()
         return result
     }
 
-    // Optional: Cancel a download
-    fun cancelDownload(id: Long) {
-        if (id != -1L) {
+    fun cancelDownload() {
+        if (downloadId != -1L) {
             val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            downloadManager.remove(id)
-            Log.i(TAG, "Attempted to cancel download with ID: $id")
-            // Note: Unregistering receiver is typically done on completion/failure or when
-            // the component managing this download is destroyed.
+            downloadManager.remove(downloadId)
+            Log.i(TAG, "Attempted to cancel download with ID: $downloadId")
         }
     }
 }
