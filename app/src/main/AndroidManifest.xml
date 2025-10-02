@@ -98,6 +98,17 @@
             -->
         </activity>
 
+        <receiver
+            android:name=".utils.OfflineMapsBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".services.SoundscapeService"
             android:stopWithTask="true"

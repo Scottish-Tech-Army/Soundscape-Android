@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import androidx.activity.compose.LocalActivity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,22 +21,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
+import java.io.File
 
 @Composable
 fun OfflineMapsScreenVM(
@@ -45,12 +46,21 @@ fun OfflineMapsScreenVM(
     viewModel: OfflineMapsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val localActivity = LocalActivity.current as MainActivity
+
+    BackHandler(enabled = true) {
+        // Ignore any back swipes when downloading content. Instead we should probably have a dialog
+        // pop up at this point to check whether the user would really like to cancel the download.
+        if(!uiState.isDownloading) {
+            navController.navigateUp()
+        }
+    }
+
     OfflineMapsScreen(
         navController = navController,
         uiState = uiState,
         modifier = modifier,
-        extractSelected = { viewModel.download(localActivity, it) }
+        extractSelected = { name, feature -> viewModel.download(name, feature) },
+        cancelDownload = { viewModel.cancelDownload() }
     )
 }
 
@@ -59,19 +69,48 @@ fun OfflineMapsScreen(
     navController: NavHostController,
     uiState: OfflineMapsUiState,
     modifier: Modifier,
-    extractSelected: (Feature) -> Unit) {
-
+    extractSelected: (String, Feature) -> Unit,
+    cancelDownload: () -> Unit)
+{
     Scaffold(
         modifier = modifier,
         topBar = {
-            CustomAppBar(
-                title ="Offline Maps",
-                navigationButtonTitle = stringResource(R.string.ui_back_button_title),
-                onNavigateUp = {
-                    navController.navigateUp()
-                },
+            FlexibleAppBar(
+                title = "Offline Maps",
+                leftSide = {
+                    IconWithTextButton(
+                        text = if(uiState.isDownloading) stringResource(R.string.general_alert_cancel) else stringResource(R.string.ui_back_button_title),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.testTag("appBarLeft")
+                    ) {
+                        if(uiState.isDownloading)
+                            cancelDownload()
+                        else
+                            navController.navigateUp()
+                    }
+                }
             )
         },
+//        bottomBar = {
+//            if (uiState.isDownloading) {
+//                Column(modifier = Modifier) {
+//                    CustomButton(
+//                        onClick = {
+//                            cancelDownload()
+//                        },
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .mediumPadding(),
+//                        buttonColor = MaterialTheme.colorScheme.errorContainer,
+//                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
+//                        shape = RoundedCornerShape(spacing.small),
+//                        text = "Cancel download",
+//                        textStyle = MaterialTheme.typography.bodyLarge,
+//                        fontWeight = FontWeight.Bold,
+//                    )
+//                }
+//            }
+//        },
         content = { padding ->
             if (uiState.isLoading) {
                 Column(
@@ -85,6 +124,26 @@ fun OfflineMapsScreen(
                     Text(
                         text = "Loading list of offline maps...",
                         style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            } else if (uiState.isDownloading) {
+                Column(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        .background(MaterialTheme.colorScheme.surface),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Downloading ${uiState.downloadingExtractName}",
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = "${uiState.downloadProgress}%",
+                        style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 }
@@ -183,20 +242,24 @@ fun OfflineMapsScreen(
                             verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                         ) {
                             itemsIndexed(uiState.nearbyExtracts.features) { index, extract ->
-                                var name = ""
+                                var name : String
                                 val description = StringBuilder()
-                                if (extract.properties?.get("feature_type") == "country") {
-                                    name = extract.properties?.get("name").toString()
-                                } else if (extract.properties?.get("feature_type") == "city_cluster") {
-                                    name = extract.properties?.get("anchor_city").toString()
-                                    val cities = extract.properties?.get("city_names")
-                                    if (cities != null) {
-                                        for (city in cities as List<*>) {
-                                            if (city != cities.first())
-                                                description.append(", ")
-                                            description.append(city)
+                                val featureType = extract.properties?.get("feature_type")
+                                when (featureType) {
+                                    "city_cluster" -> {
+                                        name = extract.properties?.get("anchor_city").toString()
+                                        val cities = extract.properties?.get("city_names")
+                                        if (cities != null) {
+                                            for (city in cities as List<*>) {
+                                                if (city != cities.first())
+                                                    description.append(", ")
+                                                description.append(city)
+                                            }
                                         }
                                     }
+
+                                    else ->
+                                        name = extract.properties?.get("name").toString()
                                 }
                                 val size = extract.properties?.get("extract-size-string")
                                 if (size != null) {
@@ -204,7 +267,7 @@ fun OfflineMapsScreen(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .clickable {
-                                                extractSelected(extract)
+                                                extractSelected(name, extract)
                                             }
                                             .padding(spacing.extraSmall),
                                         horizontalArrangement = SpaceBetween,
@@ -238,6 +301,55 @@ fun OfflineMapsScreen(
                                 }
                             }
                         }
+                    }
+                    if(uiState.downloadedExtracts.isNotEmpty()) {
+                        HorizontalDivider(modifier = Modifier.padding(spacing.small))
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .defaultMinSize(minHeight = spacing.targetSize),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = SpaceBetween,
+                        ) {
+                            Text(
+                                text = "Maps already downloaded:",
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.align(Alignment.CenterVertically)
+                            )
+                        }
+
+                        LazyColumn(
+                            modifier = modifier.fillMaxWidth(),
+                            verticalArrangement = Arrangement.spacedBy(spacing.tiny),
+                        ) {
+                            itemsIndexed(uiState.downloadedExtracts) { index, extract ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+
+                                        }
+                                        .padding(spacing.extraSmall),
+                                    horizontalArrangement = SpaceBetween,
+                                ) {
+                                    Column(
+                                        modifier = Modifier
+                                            .padding(spacing.small)
+                                            .align(Alignment.CenterVertically)
+                                            .weight(1F),
+                                    ) {
+                                        Text(
+                                            text = extract.name,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurface,
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
@@ -293,10 +405,12 @@ fun OfflineMapsScreenPreview() {
                 "22000 MB",
                 23*1024*1024*1024L
             ),
-            externalStorages = listOf(externalStorage)
+            externalStorages = listOf(externalStorage),
+            downloadedExtracts = listOf(File("/path/to/glasgow-united-kingdom.pmtiles"), File("/path/to/united-kingdom.pmtiles"))
         ),
         modifier = Modifier,
-        extractSelected = {_ -> }
+        extractSelected = {_,_ -> },
+        cancelDownload = {}
     )
 }
 
@@ -313,6 +427,26 @@ fun OfflineMapsScreenLoadingPreview() {
             externalStorages = emptyList()
         ),
         modifier = Modifier,
-        extractSelected = {_ -> }
+        extractSelected = {_,_ -> },
+        cancelDownload = {}
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OfflineMapsScreenDownloadingPreview() {
+
+    OfflineMapsScreen(
+        rememberNavController(),
+        OfflineMapsUiState(
+            isLoading = false,
+            isDownloading = true,
+            nearbyExtracts = FeatureCollection(),
+            internalStorage = null,
+            externalStorages = emptyList()
+        ),
+        modifier = Modifier,
+        extractSelected = {_,_ -> },
+        cancelDownload = {}
     )
 }

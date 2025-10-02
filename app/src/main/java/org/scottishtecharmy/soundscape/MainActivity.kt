@@ -44,7 +44,6 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.processMaps
 import java.util.Locale
 import javax.inject.Inject
@@ -231,9 +230,6 @@ class MainActivity : AppCompatActivity() {
         println("${Build.BRAND}")
         println("${Build.PRODUCT}")
 
-        // Create downloader to handle getting any offline maps
-        offlineDownloader = OfflineDownloader(applicationContext)
-
         // Unpack map assets
         processMaps(applicationContext)
 
@@ -330,7 +326,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
         super.onDestroy()
-        offlineDownloader.unregisterReceiver()
     }
 
     private fun rateSoundscape() {
@@ -511,8 +506,6 @@ class MainActivity : AppCompatActivity() {
             serviceSleeping = sleeping
         }
     }
-
-    lateinit var offlineDownloader: OfflineDownloader
 
     /**
      * Creates and starts the Soundscape foreground service.
