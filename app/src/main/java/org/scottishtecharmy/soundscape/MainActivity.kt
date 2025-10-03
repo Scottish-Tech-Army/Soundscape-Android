@@ -44,6 +44,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
 import java.util.Locale
 import javax.inject.Inject
@@ -230,9 +231,6 @@ class MainActivity : AppCompatActivity() {
         println("${Build.BRAND}")
         println("${Build.PRODUCT}")
 
-        // Unpack map assets
-        processMaps(applicationContext)
-
         // Debug - dump preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         for (pref in sharedPreferences.all) {
@@ -246,6 +244,15 @@ class MainActivity : AppCompatActivity() {
         // Get starting values
         handlePreferenceChange(THEME_LIGHTNESS_KEY, sharedPreferences)
         handlePreferenceChange(THEME_CONTRAST_KEY, sharedPreferences)
+
+        // Validate offline map directory
+        getOfflineMapStorage(this)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val path = sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)!!
+
+        // Unpack map assets
+        processMaps(applicationContext, path)
 
         // When opening a JSON file containing a route from Android File we can end up with two
         // instances of the app running. This check ensures that we have only one instance.
@@ -351,7 +358,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun talkBackDescription(context: Context): String {
-        val am = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
+        val am = context.getSystemService(ACCESSIBILITY_SERVICE) as AccessibilityManager
         if (!am.isEnabled) {
             return "Off<br/>"
         }
@@ -400,7 +407,7 @@ class MainActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
-            val alternativeIntent = Intent.createChooser(intent, "");
+            val alternativeIntent = Intent.createChooser(intent, "")
             startActivity(alternativeIntent)
         }
     }
@@ -556,6 +563,8 @@ class MainActivity : AppCompatActivity() {
         const val MEASUREMENT_UNITS_KEY = "MeasurementUnits"
         const val SEARCH_LANGUAGE_DEFAULT = "auto"
         const val SEARCH_LANGUAGE_KEY = "SearchLanguage"
+        const val SELECTED_STORAGE_DEFAULT = ""
+        const val SELECTED_STORAGE_KEY = "SelectedStorage"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }

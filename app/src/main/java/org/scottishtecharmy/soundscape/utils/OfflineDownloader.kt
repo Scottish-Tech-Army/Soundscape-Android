@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
@@ -17,6 +18,7 @@ import org.scottishtecharmy.soundscape.network.IManifestDAO
 import org.scottishtecharmy.soundscape.network.ManifestClient
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader.Companion.TAG
 import retrofit2.awaitResponse
+import java.io.File
 
 suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
 
@@ -135,7 +137,7 @@ class OfflineDownloader(private val context: Context) {
     }
 
 
-    fun startDownload(fileUrl: String, outputFileName: String, title: String = "File Download", description: String = "Downloading...") {
+    fun startDownload(fileUrl: String, outputFilePath: String, title: String = "File Download", description: String = "Downloading...") {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val request = DownloadManager.Request(fileUrl.toUri())
 
@@ -143,17 +145,8 @@ class OfflineDownloader(private val context: Context) {
         request.setTitle(title) // Title for the download notification
         request.setDescription(description) // Description for the download notification
 
-        // --- Destination ---
-        // Save to app-specific directory on external storage (recommended for app files)
-        // This directory is private to your app but on external storage.
-        // It's automatically cleaned up when the app is uninstalled.
-        val destinationDir = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-        if (destinationDir != null && (!destinationDir.exists() || !destinationDir.isDirectory)) {
-            destinationDir.mkdirs() // Ensure the directory exists
-        }
-        // Setting destination to a file inside your app's external files directory
-        // The file will be named outputFileName within the 'downloads' sub-folder of your app's external files dir.
-        request.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, outputFileName)
+        val path = File(outputFilePath)
+        request.setDestinationUri(path.toUri())
 
         // --- Network Type ---
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
