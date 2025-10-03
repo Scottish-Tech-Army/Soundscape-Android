@@ -105,7 +105,6 @@ fun AudioBeacons(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            // TODO translations
             Text(
                 text = stringResource(R.string.first_launch_beacon_title),
                 style = MaterialTheme.typography.titleLarge,

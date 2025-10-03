@@ -3,9 +3,15 @@ package org.scottishtecharmy.soundscape.utils
 import android.content.Context
 import android.os.Environment
 import android.os.StatFs
+import android.system.Os.mkdir
 import android.text.format.Formatter
 import android.util.Log
+import androidx.core.content.edit
+import androidx.preference.PreferenceManager
+import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.utils.StorageUtils.StorageSpace
 import java.io.File
+import kotlin.text.isEmpty
 
 object StorageUtils {
 
@@ -97,4 +103,48 @@ object StorageUtils {
         }
         return storageSpaces
     }
+}
+
+fun getOfflineMapStorage(context: Context): List<StorageSpace> {
+    var defaultPath = ""
+
+    // Create a list of available storages
+    val storages: MutableList<StorageSpace> = emptyList<StorageSpace>().toMutableList()
+
+// The DownloadManager can't write to internal storage, so we ignore it. Android devices have
+// "external storage" that is emulated on internal storage so it's not an issue.
+//    val internalSpace = StorageUtils.getInternalStorageSpace(context)
+//    internalSpace?.let {
+//        defaultPath = it.path
+//        storages.add(internalSpace)
+//    }
+
+    val externalAppSpecificSpaces = StorageUtils.getExternalStorageSpacesAppSpecific(context)
+    for(storage in externalAppSpecificSpaces) {
+        storages.add(storage)
+        if (storage.isPrimary)
+            defaultPath = storage.path
+        else if(defaultPath.isEmpty())
+            defaultPath = storage.path
+    }
+
+    // Check that the preference is set
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
+    if((path == null) || path.isEmpty()) {
+        // Default path is to the first external storage
+        path = defaultPath
+        sharedPreferences.edit(commit = true) { putString(MainActivity.SELECTED_STORAGE_KEY, path) }
+    }
+
+    // Ensure that the directories exist
+    val filesDir = File(path)
+    if(filesDir.exists() && filesDir.isDirectory) {
+        val downloadsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
+        if(!downloadsDir.exists()) {
+            downloadsDir.mkdir()
+        }
+    }
+
+    return storages
 }

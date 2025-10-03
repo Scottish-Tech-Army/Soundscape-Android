@@ -6,6 +6,7 @@ import android.text.format.Formatter
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -22,6 +24,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.downloadAndParseManifest
+import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.io.File
 import javax.inject.Inject
 import kotlin.collections.HashMap
@@ -41,8 +44,8 @@ data class OfflineMapsUiState(
     val downloadedExtracts: List<File> = emptyList(),
 
     // Storage status
-    val internalStorage: StorageUtils.StorageSpace? = null,
-    val externalStorages: List<StorageUtils.StorageSpace> = emptyList()
+    val currentPath: String = "",
+    val storages: List<StorageUtils.StorageSpace> = emptyList()
 )
 
 @HiltViewModel
@@ -55,6 +58,17 @@ class OfflineMapsViewModel @Inject constructor(
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
 
+    fun findExtracts(path: String) : List<File> {
+        // Find any extracts that we have downloaded
+        val extractsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
+        var files: Array<File>? = null
+        if (extractsDir.exists() && extractsDir.isDirectory) {
+            // Find the first extract within the directory
+            files = extractsDir.listFiles()
+        }
+        return files?.toList() ?: emptyList()
+    }
+
     init {
         viewModelScope.launch {
             // Create downloader to handle getting any offline maps
@@ -64,32 +78,16 @@ class OfflineMapsViewModel @Inject constructor(
             if(fc != null) {
                 val tree = FeatureTree(fc)
 
-                val internalSpace = StorageUtils.getInternalStorageSpace(appContext)
-                internalSpace?.let {
-                    Log.d("StorageCheck", "Internal Storage:\n$it")
-                } ?: Log.e("StorageCheck", "Could not get internal storage info.")
+                val storages = getOfflineMapStorage(appContext)
 
-                val externalAppSpecificSpaces = StorageUtils.getExternalStorageSpacesAppSpecific(appContext)
-                if (externalAppSpecificSpaces.isNotEmpty()) {
-                    externalAppSpecificSpaces.forEach {
-                        Log.d("StorageCheck", "External App-Specific Volume:\n$it")
-                    }
-                }
-
-                // Find any extracts that we have downloaded
-                val extractDir = appContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-                var files: Array<File>? = null
-                extractDir?.let { directory ->
-                    if(directory.exists() && directory.isDirectory) {
-                        // Find the first extract within the directory
-                        files = directory.listFiles()
-                    }
-                }
+                val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
+                var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
+                val files = findExtracts(path)
 
                 _uiState.value = _uiState.value.copy(
-                    downloadedExtracts = files?.toList() ?: emptyList(),
-                    internalStorage = internalSpace,
-                    externalStorages = externalAppSpecificSpaces
+                    downloadedExtracts = files,
+                    storages = storages,
+                    currentPath = path
                 )
 
                 soundscapeServiceConnection.serviceBoundState.collect {
@@ -160,7 +158,9 @@ class OfflineMapsViewModel @Inject constructor(
                     )
 
                     if(bytesSoFar == totalBytes) {
+                        val files = findExtracts(_uiState.value.currentPath)
                         _uiState.value = _uiState.value.copy(
+                            downloadedExtracts = files,
                             isDownloading = false
                         )
                     }
@@ -189,9 +189,10 @@ class OfflineMapsViewModel @Inject constructor(
         val filename = feature.properties?.get("filename")
         if(filename != null) {
             val fileUrl = "https://commcouncil.scot/$filename"
+            val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  filename as String
             offlineDownloader.startDownload(
                 fileUrl,
-                filename as String,
+                path,
                 "Soundscape offline maps",
                 "Downloading $filename extract"
             )

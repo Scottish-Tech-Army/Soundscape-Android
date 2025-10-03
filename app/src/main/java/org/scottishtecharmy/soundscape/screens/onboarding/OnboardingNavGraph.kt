@@ -17,6 +17,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.navigating.NavigatingScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.OfflineStorageOnboardingScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
@@ -72,6 +73,14 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.AudioBeacons.route) {
             AudioBeaconsScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.OfflineStorage.route) },
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+        composable(OnboardingScreens.OfflineStorage.route) {
+            OfflineStorageOnboardingScreenVM(
                 onNavigate = { navController.navigate(OnboardingScreens.Terms.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.AssetManager
 import android.os.Environment
 import android.util.Log
-import ch.poole.geo.pmtiles.Reader
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import java.io.File
@@ -128,16 +127,16 @@ private fun createDir(dir: File) {
     }
 }
 
-private fun processStyle(applicationContext: Context, inputFilename: String, outputFilename: String) {
+private fun processStyle(applicationContext: Context, offlineStoragePath: String, inputFilename: String, outputFilename: String) {
     val filesDir = applicationContext.filesDir.toString()
     val outputStyleStream =
         File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
     val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
 
     // Find any local downloaded file
-    val extractDir = applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+    val extractsDir =File(offlineStoragePath, Environment.DIRECTORY_DOWNLOADS)
     var extractFile: File? = null
-    extractDir?.let { directory ->
+    extractsDir?.let { directory ->
         if(directory.exists() && directory.isDirectory) {
             // Find the first extract within the directory
             val files = directory.listFiles()
@@ -168,11 +167,11 @@ private fun processStyle(applicationContext: Context, inputFilename: String, out
     outputStyleStream.close()
 }
 
-fun processMaps(applicationContext: Context) {
+fun processMaps(applicationContext: Context, offlineStrorage: String) {
     // Extract the maplibre style assets
     extractAssets(applicationContext, "osm-liberty-accessible", "osm-liberty-accessible")
 
     // Update extracted style.json with protomaps server URI
-    processStyle(applicationContext, "style.json", "processedStyle.json")
-    processStyle(applicationContext, "originalStyle.json", "processedOriginalStyle.json")
+    processStyle(applicationContext, offlineStrorage, "style.json", "processedStyle.json")
+    processStyle(applicationContext, offlineStrorage, "originalStyle.json", "processedOriginalStyle.json")
 }
