@@ -8,6 +8,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -45,7 +46,9 @@ import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
+import org.scottishtecharmy.soundscape.utils.isMidDownload
 import org.scottishtecharmy.soundscape.utils.processMaps
+import java.io.File
 import java.util.Locale
 import javax.inject.Inject
 
@@ -252,7 +255,7 @@ class MainActivity : AppCompatActivity() {
         val path = sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)!!
 
         // Unpack map assets
-        processMaps(applicationContext, path)
+        processMaps(applicationContext, File(path, Environment.DIRECTORY_DOWNLOADS).path)
 
         // When opening a JSON file containing a route from Android File we can end up with two
         // instances of the app running. This check ensures that we have only one instance.
@@ -300,6 +303,13 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        // If we're in the middle of downloading offline maps then we should jump straight to the
+        // offline maps screen
+        val id = isMidDownload(File(path, Environment.DIRECTORY_DOWNLOADS).path)
+        if(id != -1L) {
+            navigator.navigate(HomeRoutes.OfflineMaps.route + "/$id")
         }
 
         setContent {

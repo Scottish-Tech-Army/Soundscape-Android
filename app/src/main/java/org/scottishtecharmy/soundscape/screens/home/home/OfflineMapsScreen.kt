@@ -10,11 +10,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -23,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,15 +38,18 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
-import java.io.File
 
 @Composable
 fun OfflineMapsScreenVM(
     navController: NavHostController,
+    downloadId: Long,
     modifier: Modifier,
     viewModel: OfflineMapsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    if(downloadId != -1L)
+        viewModel.midDownload(downloadId)
 
     BackHandler(enabled = true) {
         // Ignore any back swipes when downloading content. Instead we should probably have a dialog
@@ -63,9 +63,71 @@ fun OfflineMapsScreenVM(
         navController = navController,
         uiState = uiState,
         modifier = modifier,
-        extractSelected = { name, feature -> viewModel.download(name, feature) },
+        extractSelectedForDownload = { name, feature -> viewModel.download(name, feature) },
+        localExtractSelected = { _, feature -> viewModel.delete( feature) },
         cancelDownload = { viewModel.cancelDownload() }
     )
+}
+
+@Composable
+fun OfflineExtract(extract: Feature, extractSelected: (String, Feature) -> Unit) {
+    var name: String
+    val description = StringBuilder()
+    val featureType = extract.properties?.get("feature_type")
+    when (featureType) {
+        "city_cluster" -> {
+            name = extract.properties?.get("anchor_city").toString()
+            val cities = extract.properties?.get("city_names")
+            if (cities != null) {
+                for (city in cities as List<*>) {
+                    if (city != cities.first())
+                        description.append(", ")
+                    description.append(city)
+                }
+            }
+        }
+
+        else ->
+            name = extract.properties?.get("name").toString()
+    }
+    val size = extract.properties?.get("extract-size-string")
+    if (size != null) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    extractSelected(name, extract)
+                }
+                .padding(spacing.extraSmall),
+            horizontalArrangement = SpaceBetween,
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(spacing.small)
+                    .align(Alignment.CenterVertically)
+                    .weight(1F),
+            ) {
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+                if (description.isNotEmpty()) {
+                    Text(
+                        text = description.toString(),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+            }
+            Text(
+                text = size.toString(),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.align(Alignment.CenterVertically)
+            )
+        }
+    }
 }
 
 @Composable
@@ -73,7 +135,8 @@ fun OfflineMapsScreen(
     navController: NavHostController,
     uiState: OfflineMapsUiState,
     modifier: Modifier,
-    extractSelected: (String, Feature) -> Unit,
+    extractSelectedForDownload: (String, Feature) -> Unit,
+    localExtractSelected: (String, Feature) -> Unit,
     cancelDownload: () -> Unit)
 {
     Scaffold(
@@ -107,7 +170,7 @@ fun OfflineMapsScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Loading list of offline maps...",
+                        text = "Loading...",
                         style = MaterialTheme.typography.headlineSmall,
                         color = MaterialTheme.colorScheme.onSurface
                     )
@@ -122,7 +185,12 @@ fun OfflineMapsScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Downloading ${uiState.downloadingExtractName}",
+                        text = "Downloading",
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = uiState.downloadingExtractName,
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.onSurface
                     )
@@ -137,45 +205,45 @@ fun OfflineMapsScreen(
                     modifier = modifier
                         .fillMaxSize()
                         .padding(padding)
-                        .background(MaterialTheme.colorScheme.surface),
+                        .background(MaterialTheme.colorScheme.surface)
+                        .verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .defaultMinSize(minHeight = spacing.targetSize),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = SpaceBetween,
-                    ) {
-                        Text(
-                            text = "Offline map storage:",
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.align(Alignment.CenterVertically)
-                        )
-                    }
 
-                    LazyColumn(
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(spacing.extraSmall))
-                            .fillMaxWidth()
-                    ) {
-                        itemsIndexed(uiState.storages) { index, storage ->
+                    for(storage in uiState.storages) {
+                        if(storage.path == uiState.currentPath)
                             StorageItem(
-                                index,
-                                if (storage.isExternal) "External" else "Internal",
+                                0,
+                                storage.description,
                                 storage.availableString + " free",
-                                storage.path == uiState.currentPath,
+                                false,
                                 { },
                                 foregroundColor = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier.testTag("storageButton-$index"),
+                                modifier = Modifier.testTag("storageButton"),
                             )
-                        }
                     }
 
+                    if(uiState.downloadedExtracts != null) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .defaultMinSize(minHeight = spacing.targetSize),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = SpaceBetween,
+                        ) {
+                            Text(
+                                text = "Maps already downloaded:",
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.align(Alignment.CenterVertically)
+                            )
+                        }
+                        for(extract in uiState.downloadedExtracts.features) {
+                            OfflineExtract(extract, localExtractSelected)
+                        }
+                    }
                     HorizontalDivider(modifier = Modifier.padding(spacing.small))
-
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -191,119 +259,15 @@ fun OfflineMapsScreen(
                         )
                     }
                     if (uiState.nearbyExtracts != null) {
-                        LazyColumn(
-                            modifier = modifier.fillMaxWidth(),
-                            verticalArrangement = Arrangement.spacedBy(spacing.tiny),
-                        ) {
-                            itemsIndexed(uiState.nearbyExtracts.features) { index, extract ->
-                                var name : String
-                                val description = StringBuilder()
-                                val featureType = extract.properties?.get("feature_type")
-                                when (featureType) {
-                                    "city_cluster" -> {
-                                        name = extract.properties?.get("anchor_city").toString()
-                                        val cities = extract.properties?.get("city_names")
-                                        if (cities != null) {
-                                            for (city in cities as List<*>) {
-                                                if (city != cities.first())
-                                                    description.append(", ")
-                                                description.append(city)
-                                            }
-                                        }
-                                    }
-
-                                    else ->
-                                        name = extract.properties?.get("name").toString()
-                                }
-                                val size = extract.properties?.get("extract-size-string")
-                                if (size != null) {
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .clickable {
-                                                extractSelected(name, extract)
-                                            }
-                                            .padding(spacing.extraSmall),
-                                        horizontalArrangement = SpaceBetween,
-                                    ) {
-                                        Column(
-                                            modifier = Modifier
-                                                .padding(spacing.small)
-                                                .align(Alignment.CenterVertically)
-                                                .weight(1F),
-                                        ) {
-                                            Text(
-                                                text = name,
-                                                style = MaterialTheme.typography.bodyLarge,
-                                                color = MaterialTheme.colorScheme.onSurface,
-                                            )
-                                            if (description.isNotEmpty()) {
-                                                Text(
-                                                    text = description.toString(),
-                                                    style = MaterialTheme.typography.bodySmall,
-                                                    color = MaterialTheme.colorScheme.onSurface,
-                                                )
-                                            }
-                                        }
-                                        Text(
-                                            text = size.toString(),
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            color = MaterialTheme.colorScheme.onSurface,
-                                            modifier = Modifier.align(Alignment.CenterVertically)
-                                        )
-                                    }
-                                }
-                            }
+                        for(extract in uiState.nearbyExtracts.features) {
+                            OfflineExtract(extract, extractSelectedForDownload)
                         }
-                    }
-                    if(uiState.downloadedExtracts.isNotEmpty()) {
-                        HorizontalDivider(modifier = Modifier.padding(spacing.small))
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .defaultMinSize(minHeight = spacing.targetSize),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = SpaceBetween,
-                        ) {
-                            Text(
-                                text = "Maps already downloaded:",
-                                style = MaterialTheme.typography.headlineSmall,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier.align(Alignment.CenterVertically)
-                            )
-                        }
-
-                        LazyColumn(
-                            modifier = modifier.fillMaxWidth(),
-                            verticalArrangement = Arrangement.spacedBy(spacing.tiny),
-                        ) {
-                            itemsIndexed(uiState.downloadedExtracts) { index, extract ->
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clickable {
-
-                                        }
-                                        .padding(spacing.extraSmall),
-                                    horizontalArrangement = SpaceBetween,
-                                ) {
-                                    Column(
-                                        modifier = Modifier
-                                            .padding(spacing.small)
-                                            .align(Alignment.CenterVertically)
-                                            .weight(1F),
-                                    ) {
-                                        Text(
-                                            text = extract.name,
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            color = MaterialTheme.colorScheme.onSurface,
-                                        )
-                                    }
-                                }
-                            }
-                        }
-
+                    } else {
+                        Text(
+                            text = "Loading list of offline maps",
+                            style = MaterialTheme.typography.headlineSmall,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
                     }
                 }
             }
@@ -311,7 +275,7 @@ fun OfflineMapsScreen(
     )
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, fontScale = 1.5f)
 @Composable 
 fun OfflineMapsScreenPreview() {
     val fc = FeatureCollection()
@@ -337,6 +301,7 @@ fun OfflineMapsScreenPreview() {
 
     val externalStorage = StorageUtils.StorageSpace(
         "/path/to/external",
+        description = "SD",
         isExternal = true,
         isPrimary = false,
         128*1024*1024*1024L,
@@ -346,6 +311,7 @@ fun OfflineMapsScreenPreview() {
     )
     val internalStorage = StorageUtils.StorageSpace(
         "/path/to/internal",
+        description = "Internal shared storage",
         isExternal = false,
         isPrimary = false,
         64*1024*1024*1024L,
@@ -359,10 +325,9 @@ fun OfflineMapsScreenPreview() {
         isDownloading = false,
         downloadingExtractName = "",
         downloadProgress = 0,
-        downloadProgressBytes = Pair(0, 0),
         nearbyExtracts = fc,
-        downloadedExtracts = listOf(File("/path/to/glasgow-united-kingdom.pmtiles"), File("/path/to/united-kingdom.pmtiles")),
-        currentPath = "/path/to/external",
+        downloadedExtracts = fc,
+        currentPath = "/path/to/internal",
         storages = listOf(internalStorage, externalStorage),
     )
 
@@ -370,7 +335,8 @@ fun OfflineMapsScreenPreview() {
         rememberNavController(),
         modifier = Modifier,
         uiState = uiState,
-        extractSelected = {_,_ -> },
+        extractSelectedForDownload = {_,_ -> },
+        localExtractSelected = {_,_ ->},
         cancelDownload = {}
     )
 }
@@ -387,7 +353,8 @@ fun OfflineMapsScreenLoadingPreview() {
             storages = emptyList()
         ),
         modifier = Modifier,
-        extractSelected = {_,_ -> },
+        extractSelectedForDownload = {_,_ -> },
+        localExtractSelected = {_,_ ->},
         cancelDownload = {}
     )
 }
@@ -402,10 +369,12 @@ fun OfflineMapsScreenDownloadingPreview() {
             isLoading = false,
             isDownloading = true,
             nearbyExtracts = FeatureCollection(),
-            storages = emptyList()
+            storages = emptyList(),
+            downloadingExtractName = "United Kingdom"
         ),
         modifier = Modifier,
-        extractSelected = {_,_ -> },
+        extractSelectedForDownload = {_,_ -> },
+        localExtractSelected = {_,_ ->},
         cancelDownload = {}
     )
 }

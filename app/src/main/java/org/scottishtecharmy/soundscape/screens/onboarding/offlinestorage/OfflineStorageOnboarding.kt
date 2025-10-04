@@ -134,6 +134,7 @@ fun OfflineStorageOnboardingScreen(
 fun OfflineStorageOnboardingScreenPreview() {
     val internalStorage = StorageUtils.StorageSpace(
         "/path/to/internal",
+        description = "Internal",
         isExternal = false,
         isPrimary = false,
         64*1024*1024*1024L,
@@ -143,6 +144,7 @@ fun OfflineStorageOnboardingScreenPreview() {
     )
     val externalStorage1 = StorageUtils.StorageSpace(
         "/path/to/external1",
+        description = "External",
         isExternal = true,
         isPrimary = false,
         128*1024*1024*1024L,
@@ -152,6 +154,7 @@ fun OfflineStorageOnboardingScreenPreview() {
     )
     val externalStorage2 = StorageUtils.StorageSpace(
         "/path/to/external2",
+        description = "SD",
         isExternal = true,
         isPrimary = true,
         128*1024*1024*1024L,

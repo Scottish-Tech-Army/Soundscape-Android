@@ -305,11 +305,13 @@ fun HomeScreen(
                     .semantics { testTagsAsResourceId = true }
             )
         }
-        // Language choosing screen
-        composable(HomeRoutes.OfflineMaps.route) {
-            // Always just pop back out of settings, don't add to the queue
+
+        composable(HomeRoutes.OfflineMaps.route + "/{downloadId}") { backStackEntry ->
+            val downloadId = backStackEntry.arguments?.getString("downloadId") ?: "-1"
+
             OfflineMapsScreenVM(
                 navController = navController,
+                downloadId = downloadId.toLong(),
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }

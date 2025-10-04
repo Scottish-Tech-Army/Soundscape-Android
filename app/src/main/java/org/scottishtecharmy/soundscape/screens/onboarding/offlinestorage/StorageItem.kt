@@ -5,10 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
@@ -53,32 +51,38 @@ fun StorageItem(
                 onSelect()
             }
     ) {
-        if (isSelected) {
-            Icon(
-                Icons.Rounded.Done,
-                contentDescription = null,
-                tint = foregroundColor
-            )
-        }
-        Spacer(modifier = Modifier.width(spacing.medium))
-        Text(
-            text = name,
-            style = MaterialTheme.typography.bodyMedium,
-            color = foregroundColor,
-            modifier = Modifier.align(Alignment.CenterVertically)
-        )
         Row(
-            horizontalArrangement = Arrangement.End,
+            horizontalArrangement = Arrangement.Start,
             modifier = modifier
                 .fillMaxWidth()
                 .padding(end = spacing.small)
-                .align(Alignment.CenterVertically)
         ) {
-            Text(
-                text = freeSpace,
-                style = MaterialTheme.typography.bodyMedium,
-                color = foregroundColor,
-            )
+            Column {
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = foregroundColor,
+                    modifier = Modifier
+                        .padding(horizontal = spacing.small)
+                )
+                Text(
+                    text = freeSpace,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = foregroundColor,
+                    modifier = Modifier
+                        .padding(horizontal = spacing.small)
+                )
+            }
+            if (isSelected) {
+                Icon(
+                    Icons.Rounded.Done,
+                    contentDescription = null,
+                    tint = foregroundColor,
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(spacing.medium)
+                )
+            }
         }
     }
 
@@ -90,7 +94,7 @@ fun StorageItem(
     )
 }
 
-@Preview
+@Preview(fontScale = 1.5f)
 @Composable
 fun StorageItemPreview() {
     Column(
@@ -98,8 +102,8 @@ fun StorageItemPreview() {
     ) {
         StorageItem(
             0,
-            "Internal",
-            "22 GB",
+            "Internal shared storage",
+            "22.35 GB free",
             true,
             {},
             MaterialTheme.colorScheme.onSurface,
