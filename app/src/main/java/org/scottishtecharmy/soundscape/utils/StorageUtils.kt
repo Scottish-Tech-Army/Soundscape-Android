@@ -3,12 +3,16 @@ package org.scottishtecharmy.soundscape.utils
 import android.content.Context
 import android.os.Environment
 import android.os.StatFs
-import android.system.Os.mkdir
+import android.os.storage.StorageManager
+import android.os.storage.StorageVolume
 import android.text.format.Formatter
 import android.util.Log
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.StorageUtils.StorageSpace
 import java.io.File
 import kotlin.text.isEmpty
@@ -19,6 +23,7 @@ object StorageUtils {
 
     data class StorageSpace(
         val path: String,
+        val description: String,
         val isExternal: Boolean,
         val isPrimary: Boolean = false,
         val totalBytes: Long,
@@ -38,34 +43,6 @@ object StorageUtils {
     }
 
     /**
-     * Gets free space information for internal storage (app-specific files directory).
-     */
-    fun getInternalStorageSpace(context: Context): StorageSpace? {
-        return try {
-            val internalFilesDir = context.filesDir // App's private internal storage
-            if (internalFilesDir == null || internalFilesDir.path.isNullOrEmpty()) {
-                Log.e(TAG, "Internal files directory is null or path is empty.")
-                return null
-            }
-            val statFs = StatFs(internalFilesDir.path)
-            val totalBytes = statFs.blockCountLong * statFs.blockSizeLong
-            val availableBytes = statFs.availableBlocksLong * statFs.blockSizeLong
-            val freeBytes = statFs.freeBlocksLong * statFs.blockSizeLong
-            StorageSpace(
-                path = internalFilesDir.absolutePath,
-                isExternal = false,
-                isPrimary = false,
-                totalBytes = totalBytes,
-                availableBytes = availableBytes,
-                availableString = Formatter.formatFileSize(context, availableBytes),
-                freeBytes = freeBytes)
-        } catch (e: Exception) {
-            Log.e(TAG, "Error getting internal storage space: ${e.message}", e)
-            null
-        }
-    }
-
-    /**
      * Gets free space information for all available external storage volumes
      * using app-specific directories.
      * This is generally the recommended approach for handling external storage.
@@ -79,6 +56,7 @@ object StorageUtils {
         } catch (_: Exception) { null }
 
 
+        val sm = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
         for (dir in externalFilesDirs) {
             // dir can be null if a storage device is not mounted, etc.
             try {
@@ -87,9 +65,13 @@ object StorageUtils {
                 val availableBytes = statFs.availableBlocksLong * statFs.blockSizeLong
                 val freeBytes = statFs.freeBlocksLong * statFs.blockSizeLong
                 val isPrimary = primaryExternalStoragePath != null && dir.absolutePath.startsWith(primaryExternalStoragePath)
+                val sv: StorageVolume? = sm.getStorageVolume(dir)
+                val description = sv?.getDescription(context) ?: "External Storage"
+
                 storageSpaces.add(
                     StorageSpace(
                         path = dir.absolutePath,
+                        description = description,
                         isExternal = true,
                         isPrimary = isPrimary,
                         totalBytes = totalBytes,
@@ -147,4 +129,60 @@ fun getOfflineMapStorage(context: Context): List<StorageSpace> {
     }
 
     return storages
+}
+
+fun getMetadata(pmtilesPath: String) : Feature? {
+    val geojsonFile = File("$pmtilesPath.geojson")
+    if (geojsonFile.exists() && geojsonFile.isFile) {
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val feature = adapter.fromJson(geojsonFile.readText())
+        if(feature != null) {
+            if(feature.type == "Feature")
+                return feature as Feature
+        }
+    }
+    return null
+}
+
+fun findExtracts(path: String) : FeatureCollection? {
+    // Find any extracts that we have downloaded
+    val extractsDir = File(path)
+    if (extractsDir.exists() && extractsDir.isDirectory) {
+        // Find files within the directory and filter for those ending with ".pmtiles". It is
+        // possible to have metadata for .pmtiles files that failed to download, so we have to
+        // search for the .pmtiles files first and then get the metadata for them.
+        val files = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList() ?: emptyList()
+        val extractCollection = FeatureCollection()
+        for(file in files) {
+            println(file.path)
+            val progressFile = File("${file.path}.progress")
+            if (progressFile.exists()) {
+                // We're still downloading this file, so don't use it
+                println(progressFile.path)
+                continue
+            }
+
+            val feature = getMetadata(file.path)
+            if(feature != null)
+                extractCollection.addFeature(feature)
+            else
+                println("No metadata")
+        }
+        return extractCollection
+    }
+    return null
+}
+
+fun isMidDownload(path: String) : Long {
+    val extractsDir = File(path)
+    if (extractsDir.exists() && extractsDir.isDirectory) {
+        val files =
+            extractsDir.listFiles { file -> file.name.endsWith(".progress") }?.toList()
+                ?: emptyList()
+
+        if(files.isNotEmpty()) {
+            return files[0].readText().toLong()
+        }
+    }
+    return -1
 }

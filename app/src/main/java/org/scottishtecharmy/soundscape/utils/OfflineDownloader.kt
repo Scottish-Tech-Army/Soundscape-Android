@@ -1,24 +1,24 @@
 package org.scottishtecharmy.soundscape.utils
 
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
 import android.database.Cursor
-import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.network.IManifestDAO
 import org.scottishtecharmy.soundscape.network.ManifestClient
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader.Companion.TAG
 import retrofit2.awaitResponse
 import java.io.File
+import java.io.FileOutputStream
 
 suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
 
@@ -34,39 +34,21 @@ suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureColle
         manifestReq.await()?.awaitResponse()?.body()
     }
 }
-
-/**
- * OfflineMapsBroadcastReceiver is declared in AndroidManifest.xml as a receiver. Even if the app
- * is not running it will be able to receive the broadcast when a download completes. This is
- * important because at that point we want to record the download as having succeeded.
-  */
-class OfflineMapsBroadcastReceiver : BroadcastReceiver() {
-
-    override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action.equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
-            val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-            val query = DownloadManager.Query().setFilterById(id)
-            val cursor = manager.query(query)
-            if (cursor != null && cursor.moveToFirst()) {
-                if (cursor.count > 0) {
-
-                    val statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
-                    val status = cursor.getInt(statusIndex)
-                    val fileIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
-                    val file = cursor.getString(fileIndex)
-                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
-                        println("DOWNLOAD SUCCESS - $file")
-                    } else {
-                        val messageIndex = cursor.getColumnIndex(DownloadManager.COLUMN_REASON)
-                        val message = cursor.getInt(messageIndex)
-                        println("DOWNLOAD FAILED for $file - $message")
-                    }
-                }
-            } else {
-                Log.e(TAG, "Download ID $id not found in DownloadManager query after completion.")
-            }
-            cursor?.close()
+fun deleteAllProgressFiles(context: Context) {
+    // Delete all progress files
+    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val path = sharedPreferences.getString(
+        MainActivity.SELECTED_STORAGE_KEY,
+        MainActivity.SELECTED_STORAGE_DEFAULT
+    )
+    val extractsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
+    if (extractsDir.exists() && extractsDir.isDirectory) {
+        val files =
+            extractsDir.listFiles { file -> file.name.endsWith(".progress") }?.toList()
+                ?: emptyList()
+        for (file in files) {
+            Log.d(TAG, "Delete progress file: ${file.path}")
+            file.delete()
         }
     }
 }
@@ -78,48 +60,6 @@ class OfflineDownloader(private val context: Context) {
     }
 
     private var downloadId: Long = -1L
-
-    private fun handleDownloadCompletion(id: Long) {
-        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val query = DownloadManager.Query().setFilterById(id)
-        val cursor: Cursor? = downloadManager.query(query)
-
-        if (cursor != null && cursor.moveToFirst()) {
-            val statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
-            val reasonIndex = cursor.getColumnIndex(DownloadManager.COLUMN_REASON) // For error details
-            val localUriIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
-
-            val status = cursor.getInt(statusIndex)
-
-            when (status) {
-                DownloadManager.STATUS_SUCCESSFUL -> {
-                    val downloadedFileUriString = cursor.getString(localUriIndex)
-                    Log.i(TAG, "Download $id successful. File URI: $downloadedFileUriString")
-                    Toast.makeText(context, "Download successful: ${downloadedFileUriString.toUri().lastPathSegment}", Toast.LENGTH_LONG).show()
-                }
-                DownloadManager.STATUS_FAILED -> {
-                    val reason = cursor.getInt(reasonIndex)
-                    val reasonText = getDownloadErrorReason(reason)
-                    Log.e(TAG, "Download $id failed. Reason: $reasonText (Code: $reason)")
-                    Toast.makeText(context, "Download failed: $reasonText", Toast.LENGTH_LONG).show()
-                }
-                DownloadManager.STATUS_PAUSED -> {
-                    Log.w(TAG, "Download $id paused.")
-                    Toast.makeText(context, "Download paused", Toast.LENGTH_SHORT).show()
-                }
-                DownloadManager.STATUS_PENDING -> {
-                    Log.i(TAG, "Download $id pending.")
-                }
-                DownloadManager.STATUS_RUNNING -> {
-                    Log.i(TAG, "Download $id running.")
-                }
-            }
-        } else {
-            Log.e(TAG, "Download ID $id not found in DownloadManager query after completion.")
-        }
-        cursor?.close()
-    }
-
 
     private fun getDownloadErrorReason(reasonCode: Int): String {
         return when (reasonCode) {
@@ -135,7 +75,6 @@ class OfflineDownloader(private val context: Context) {
             else -> "Unknown Error Code: $reasonCode"
         }
     }
-
 
     fun startDownload(fileUrl: String, outputFilePath: String, title: String = "File Download", description: String = "Downloading...") {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
@@ -160,27 +99,73 @@ class OfflineDownloader(private val context: Context) {
             downloadId = downloadManager.enqueue(request)
             Log.i(TAG, "Download enqueued with ID: $downloadId for URL: $fileUrl")
             Toast.makeText(context, "Download started...", Toast.LENGTH_SHORT).show()
+
+            // Create a file to store the id and show that download is in progress
+            val progressFile = FileOutputStream("$outputFilePath.progress")
+            progressFile.write("$downloadId".toByteArray())
+            progressFile.close()
+
         } catch (e: Exception) {
             Log.e(TAG, "Error enqueuing download for $fileUrl", e)
             Toast.makeText(context, "Failed to start download: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 
-    fun getDownloadStatus(): Pair<Int, Int>? { // Returns Pair<Status, Reason>
+    data class DownloadStatus (
+        val bytesSoFar: Long,
+        val totalBytes: Long,
+        val localFilename: String,
+        val managerStatus: Int
+    )
+    fun getDownloadStatus(): DownloadStatus? {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val query = DownloadManager.Query().setFilterById(downloadId)
         val cursor: Cursor? = downloadManager.query(query)
-        var result: Pair<Int, Int>? = null
+        var result: DownloadStatus? = null
         if (cursor != null && cursor.moveToFirst()) {
-            val bytesIndex = cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)
-            val totalBytesIndex = cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES)
-            val bytes = cursor.getInt(bytesIndex)
-            val totalBytes = cursor.getInt(totalBytesIndex)
-            result = Pair(bytes, totalBytes)
-        } else {
+            val statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
+            val status = cursor.getInt(statusIndex)
+            var bytes = -1L
+            var totalBytes = -1L
+            var filePath: String? = null
+            if(status != DownloadManager.STATUS_FAILED) {
+                val bytesIndex =
+                    cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)
+                val totalBytesIndex = cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES)
+                bytes = cursor.getLong(bytesIndex)
+                totalBytes = cursor.getLong(totalBytesIndex)
+
+                println("$bytes/$totalBytes status=$status")
+                if(bytes == totalBytes) {
+                    val localUriIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
+                    val localUri = cursor.getString(localUriIndex)
+                    val fileUri = ("$localUri.progress").toUri()
+
+                    // We're complete, so remove the progress file
+                    filePath = fileUri.path
+                    if(filePath != null) {
+                        val progressFile = File(filePath)
+                        println("Deleting ${progressFile.path}")
+                        progressFile.delete()
+                    }
+                }
+            }
+            result = DownloadStatus(
+                bytes,
+                totalBytes,
+                filePath ?: "",
+                status
+            )
+       } else {
             // We reach here if the download was cancelled
         }
         cursor?.close()
+
+        if(result == null) {
+            // Download has failed or was cancelled, delete all progress file
+            deleteAllProgressFiles(context)
+        }
+
         return result
     }
 
@@ -190,5 +175,9 @@ class OfflineDownloader(private val context: Context) {
             downloadManager.remove(downloadId)
             Log.i(TAG, "Attempted to cancel download with ID: $downloadId")
         }
+    }
+
+    fun midDownload(id: Long) {
+        downloadId = id
     }
 }

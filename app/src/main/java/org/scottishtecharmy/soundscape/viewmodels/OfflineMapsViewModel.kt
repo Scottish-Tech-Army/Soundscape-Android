@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
+import android.app.DownloadManager
 import android.content.Context
 import android.os.Environment
 import android.text.format.Formatter
@@ -21,11 +22,14 @@ import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.downloadAndParseManifest
+import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 import kotlin.collections.HashMap
 
@@ -35,13 +39,12 @@ data class OfflineMapsUiState(
     val downloadingExtractName:String = "",
 
     val downloadProgress: Int = 0,
-    val downloadProgressBytes: Pair<Long, Long> = Pair(0L, 0L),
 
     // Extracts in manifest to choose from
     val nearbyExtracts: FeatureCollection? = null,
 
     // Offline extracts in storage
-    val downloadedExtracts: List<File> = emptyList(),
+    val downloadedExtracts: FeatureCollection? = null,
 
     // Storage status
     val currentPath: String = "",
@@ -58,38 +61,26 @@ class OfflineMapsViewModel @Inject constructor(
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
 
-    fun findExtracts(path: String) : List<File> {
-        // Find any extracts that we have downloaded
-        val extractsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
-        var files: Array<File>? = null
-        if (extractsDir.exists() && extractsDir.isDirectory) {
-            // Find the first extract within the directory
-            files = extractsDir.listFiles()
-        }
-        return files?.toList() ?: emptyList()
-    }
-
     init {
         viewModelScope.launch {
             // Create downloader to handle getting any offline maps
             offlineDownloader = OfflineDownloader(appContext)
 
+            val storages = getOfflineMapStorage(appContext)
+
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
+            var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
+            val extractCollection = findExtracts(File(path, Environment.DIRECTORY_DOWNLOADS).path)
+            _uiState.value = _uiState.value.copy(
+                downloadedExtracts = extractCollection,
+                storages = storages,
+                currentPath = path,
+                isLoading = false
+            )
+
             val fc = downloadAndParseManifest(appContext)
             if(fc != null) {
                 val tree = FeatureTree(fc)
-
-                val storages = getOfflineMapStorage(appContext)
-
-                val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
-                var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
-                val files = findExtracts(path)
-
-                _uiState.value = _uiState.value.copy(
-                    downloadedExtracts = files,
-                    storages = storages,
-                    currentPath = path
-                )
-
                 soundscapeServiceConnection.serviceBoundState.collect {
                     Log.d(TAG, "serviceBoundState $it")
                     if(it) {
@@ -118,7 +109,6 @@ class OfflineMapsViewModel @Inject constructor(
                             }
                             _uiState.value = _uiState.value.copy(
                                 nearbyExtracts = extracts,
-                                isLoading = false
                             )
                         }
                     }
@@ -129,7 +119,6 @@ class OfflineMapsViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        //offlineDownloader.unregisterReceiver()
         stopProgressUpdates()
     }
 
@@ -140,33 +129,34 @@ class OfflineMapsViewModel @Inject constructor(
     private fun startProgressUpdates() {
         progressJob = viewModelScope.launch {
             while (isActive) { // This loop will run as long as the coroutine is active
-                val progress = offlineDownloader.getDownloadStatus()
-                if(progress != null) {
-                    // The status from DownloadManager is a Pair of (bytesSoFar, totalBytes)
-                    val bytesSoFar = progress.first.toLong()
-                    val totalBytes = progress.second.toLong()
+                val downloadStatus = offlineDownloader.getDownloadStatus()
+                if(downloadStatus != null) {
+                    val bytesSoFar = downloadStatus.bytesSoFar.toDouble()
+                    val totalBytes = downloadStatus.totalBytes.toDouble()
 
                     val percentage = if (totalBytes > 0) {
-                        ((bytesSoFar * 100) / totalBytes).toInt()
+                        ((bytesSoFar / totalBytes) * 100.0).toInt()
                     } else {
                         0
                     }
 
                     _uiState.value = _uiState.value.copy(
                         downloadProgress = percentage,
-                        downloadProgressBytes = Pair(bytesSoFar, totalBytes)
                     )
 
-                    if(bytesSoFar == totalBytes) {
-                        val files = findExtracts(_uiState.value.currentPath)
+                    if(downloadStatus.managerStatus == DownloadManager.STATUS_SUCCESSFUL) {
+                        val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
+                        val extractCollection = findExtracts(extractsDir.path)
                         _uiState.value = _uiState.value.copy(
-                            downloadedExtracts = files,
+                            downloadedExtracts = extractCollection,
                             isDownloading = false
                         )
+                        break
                     }
                 } else {
                     Log.e(TAG, "Download progress is null, it has been cancelled")
                     stopProgressUpdates()
+                    break
                 }
                 delay(500)
             }
@@ -181,15 +171,47 @@ class OfflineMapsViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(
             isDownloading = false,
             downloadProgress = 0,
-            downloadProgressBytes = Pair(0L, 0L)
         )
+    }
+
+    fun delete(feature: Feature) {
+        val filename = feature.properties?.get("filename")
+        if(filename != null) {
+            val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
+            if (extractsDir.exists() && extractsDir.isDirectory) {
+                val files = extractsDir.listFiles { file ->
+                    file.name.startsWith(filename as String)
+                }?.toList() ?: emptyList()
+
+                // Delete whatever we find
+                for(file in files)
+                    file.delete()
+
+                // Update the UI to reflect the deletions
+                val extractCollection = findExtracts(_uiState.value.currentPath)
+                _uiState.value = _uiState.value.copy(
+                    downloadedExtracts = extractCollection
+                )
+            }
+        }
     }
 
     fun download(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
-            val fileUrl = "https://commcouncil.scot/$filename"
             val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  filename as String
+
+            // Before starting the download, we delete any previous version
+            val file = File(path)
+            file.delete()
+
+            // Write out the feature metadata to a file
+            val adapter = GeoJsonObjectMoshiAdapter()
+            val metadataOutputFile = FileOutputStream("$path.geojson")
+            metadataOutputFile.write(adapter.toJson(feature).toByteArray())
+            metadataOutputFile.close()
+
+            val fileUrl = "https://commcouncil.scot/$filename"
             offlineDownloader.startDownload(
                 fileUrl,
                 path,
@@ -207,6 +229,15 @@ class OfflineMapsViewModel @Inject constructor(
 
     fun cancelDownload() {
         offlineDownloader.cancelDownload()
+    }
+
+    fun midDownload(downloadId: Long) {
+        offlineDownloader.midDownload(downloadId)
+        _uiState.value = _uiState.value.copy(
+            downloadingExtractName = "Test?",
+            isDownloading = true
+        )
+        startProgressUpdates()
     }
 
     companion object {

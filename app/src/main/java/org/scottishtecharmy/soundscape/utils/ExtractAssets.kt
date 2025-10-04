@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.utils
 
 import android.content.Context
 import android.content.res.AssetManager
-import android.os.Environment
 import android.util.Log
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
@@ -133,16 +132,15 @@ private fun processStyle(applicationContext: Context, offlineStoragePath: String
         File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
     val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
 
-    // Find any local downloaded file
-    val extractsDir =File(offlineStoragePath, Environment.DIRECTORY_DOWNLOADS)
+    // Get locally downloaded files
+    val extractCollection = findExtracts(offlineStoragePath)
     var extractFile: File? = null
-    extractsDir?.let { directory ->
-        if(directory.exists() && directory.isDirectory) {
-            // Find the first extract within the directory
-            val files = directory.listFiles()
-            files?.firstOrNull()?.let { file ->
-                extractFile = file
-            }
+    if(extractCollection != null) {
+        if(extractCollection.features.isNotEmpty()) {
+            // Pick first one to use as the source
+            val filename = extractCollection.features[0].properties?.get("filename")
+            if (filename != null)
+                extractFile = File(offlineStoragePath, filename as String)
         }
     }
 
@@ -167,11 +165,11 @@ private fun processStyle(applicationContext: Context, offlineStoragePath: String
     outputStyleStream.close()
 }
 
-fun processMaps(applicationContext: Context, offlineStrorage: String) {
+fun processMaps(applicationContext: Context, offlineStorage: String) {
     // Extract the maplibre style assets
     extractAssets(applicationContext, "osm-liberty-accessible", "osm-liberty-accessible")
 
     // Update extracted style.json with protomaps server URI
-    processStyle(applicationContext, offlineStrorage, "style.json", "processedStyle.json")
-    processStyle(applicationContext, offlineStrorage, "originalStyle.json", "processedOriginalStyle.json")
+    processStyle(applicationContext, offlineStorage, "style.json", "processedStyle.json")
+    processStyle(applicationContext, offlineStorage, "originalStyle.json", "processedOriginalStyle.json")
 }
