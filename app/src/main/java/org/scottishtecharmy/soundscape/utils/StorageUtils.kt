@@ -154,14 +154,6 @@ fun findExtracts(path: String) : FeatureCollection? {
         val files = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList() ?: emptyList()
         val extractCollection = FeatureCollection()
         for(file in files) {
-            println(file.path)
-            val progressFile = File("${file.path}.progress")
-            if (progressFile.exists()) {
-                // We're still downloading this file, so don't use it
-                println(progressFile.path)
-                continue
-            }
-
             val feature = getMetadata(file.path)
             if(feature != null)
                 extractCollection.addFeature(feature)
@@ -177,7 +169,7 @@ fun isMidDownload(path: String) : Long {
     val extractsDir = File(path)
     if (extractsDir.exists() && extractsDir.isDirectory) {
         val files =
-            extractsDir.listFiles { file -> file.name.endsWith(".progress") }?.toList()
+            extractsDir.listFiles { file -> file.name.endsWith(".downloadId") }?.toList()
                 ?: emptyList()
 
         if(files.isNotEmpty()) {
