@@ -52,9 +52,19 @@ import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
+import org.maplibre.android.style.layers.Property
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.android.style.sources.VectorSource
+import org.maplibre.geojson.FeatureCollection
+import org.maplibre.geojson.MultiPolygon
+import org.maplibre.geojson.Polygon
+import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
+import org.scottishtecharmy.soundscape.utils.findExtracts
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -167,6 +177,31 @@ fun updateRouteMarkers(
         }
         routeMarkers.value = markersList
     }
+}
+
+private fun getSourceUri(appContext: Context, forceNetworkSource: Boolean) : String {
+
+    var urlReplacement = "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
+    if(!forceNetworkSource) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
+        val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
+
+        // Get locally downloaded files
+        val extractCollection = findExtracts(path)
+        var extractFile: File? = null
+        if(extractCollection != null) {
+            if(extractCollection.features.isNotEmpty()) {
+                // Pick first one to use as the source
+                val filename = extractCollection.features[0].properties?.get("filename")
+                if (filename != null)
+                    extractFile = File(path, filename as String)
+            }
+        }
+        if(extractFile != null)
+            urlReplacement = "pmtiles://file://$extractFile"
+    }
+
+    return urlReplacement
 }
 
 /**
@@ -294,6 +329,11 @@ fun MapContainerLibre(
                     val styleUrl =
                         Uri.fromFile(File("$filesDir/osm-liberty-accessible/$styleName")).toString()
                     mapLibre.setStyle(styleUrl) { style ->
+
+                        // Dynamically add tile source to our style
+                        val tileSource = getSourceUri(context, false)
+                        val vectorSource = VectorSource("openmaptiles", tileSource)
+                        style.addSource(vectorSource)
 
                         // Add the icons we might need to the style
                         //  - user location
