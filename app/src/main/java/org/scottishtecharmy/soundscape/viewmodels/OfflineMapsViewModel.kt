@@ -235,7 +235,7 @@ class OfflineMapsViewModel @Inject constructor(
     fun midDownload(downloadId: Long) {
         offlineDownloader.midDownload(downloadId)
         _uiState.value = _uiState.value.copy(
-            downloadingExtractName = "Test?",
+            downloadingExtractName = "",
             isDownloading = true
         )
         startProgressUpdates()

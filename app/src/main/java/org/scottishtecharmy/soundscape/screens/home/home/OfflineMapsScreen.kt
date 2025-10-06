@@ -20,6 +20,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -32,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.OfflineMapExtractDetails
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.StorageItem
@@ -66,40 +69,66 @@ fun OfflineMapsScreenVM(
         navController = navController,
         uiState = uiState,
         modifier = modifier,
-        extractSelectedForDownload = { name, feature -> viewModel.download(name, feature) },
-        localExtractSelected = { _, feature -> viewModel.delete( feature) },
+        downloadExtract = { name, feature -> viewModel.download(name, feature) },
+        deleteExtract = { feature -> viewModel.delete( feature) },
         cancelDownload = { viewModel.cancelDownload() }
     )
 }
 
-@Composable
-fun OfflineExtract(extract: Feature, extractSelected: (String, Feature) -> Unit) {
-    var name: String
-    val description = StringBuilder()
-    val featureType = extract.properties?.get("feature_type")
-    when (featureType) {
-        "city_cluster" -> {
-            name = extract.properties?.get("anchor_city").toString()
-            val cities = extract.properties?.get("city_names")
-            if (cities != null) {
-                for (city in cities as List<*>) {
-                    if (city != cities.first())
-                        description.append(", ")
-                    description.append(city)
+class ExtractDetails(
+    extract: Feature
+) {
+    var name = ""
+    var description = ""
+
+    init {
+        val descriptionBuilder = StringBuilder()
+        val featureType = extract.properties?.get("feature_type")
+        when (featureType) {
+            "city_cluster" -> {
+                name = extract.properties?.get("anchor_city").toString()
+                val cities = extract.properties?.get("city_names")
+                if (cities != null) {
+                    descriptionBuilder.append("Larger cities within map are ")
+                    for (city in cities as List<*>) {
+                        if (city != cities.first())
+                            descriptionBuilder.append(", ")
+                        descriptionBuilder.append(city)
+                    }
+                }
+                description = descriptionBuilder.toString()
+            }
+            "admin1" -> {
+                name = extract.properties?.get("name").toString()
+                val countryName = extract.properties?.get("country_name")
+                description = if(countryName != null) {
+                    "Region within $countryName"
+                } else {
+                    "Region"
                 }
             }
+            "country" -> {
+                name = extract.properties?.get("name").toString()
+                description = "Country"
+            }
         }
-
-        else ->
-            name = extract.properties?.get("name").toString()
     }
+}
+
+
+@Composable
+fun OfflineExtract(
+    extract: Feature,
+    extractSelected: (String, Feature) -> Unit)
+{
+    val details = remember(extract) { ExtractDetails(extract) }
     val size = extract.properties?.get("extract-size-string")
     if (size != null) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
-                    extractSelected(name, extract)
+                    extractSelected(details.name, extract)
                 }
                 .padding(spacing.extraSmall),
             horizontalArrangement = SpaceBetween,
@@ -111,13 +140,13 @@ fun OfflineExtract(extract: Feature, extractSelected: (String, Feature) -> Unit)
                     .weight(1F),
             ) {
                 Text(
-                    text = name,
+                    text = details.name,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
-                if (description.isNotEmpty()) {
+                if (details.description.isNotEmpty()) {
                     Text(
-                        text = description.toString(),
+                        text = details.description.toString(),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
@@ -138,32 +167,60 @@ fun OfflineMapsScreen(
     navController: NavHostController,
     uiState: OfflineMapsUiState,
     modifier: Modifier,
-    extractSelectedForDownload: (String, Feature) -> Unit,
-    localExtractSelected: (String, Feature) -> Unit,
+    downloadExtract: (String, Feature) -> Unit,
+    deleteExtract: (Feature) -> Unit,
     cancelDownload: () -> Unit)
 {
+    val extractDetailsFeature = remember { mutableStateOf(null as Feature?) }
+    val localExtractDetails =  remember { mutableStateOf(false) }
     Scaffold(
         modifier = modifier,
         topBar = {
             FlexibleAppBar(
-                title = "Offline Maps",
+                title = if(extractDetailsFeature.value != null)
+                            "Offline map details"
+                        else
+                            "Offline Maps",
                 leftSide = {
                     IconWithTextButton(
                         text = if(uiState.isDownloading) stringResource(R.string.general_alert_cancel) else stringResource(R.string.ui_back_button_title),
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.testTag("appBarLeft")
                     ) {
-                        if(uiState.isDownloading)
+                        if(extractDetailsFeature.value != null) {
+                            extractDetailsFeature.value = null
+                        }
+                        else if(uiState.isDownloading) {
                             cancelDownload()
-                        else
+                        }
+                        else {
                             navController.navigateUp()
+                        }
                     }
                 }
             )
         },
 
         content = { padding ->
-            if (uiState.isLoading) {
+            if(extractDetailsFeature.value != null) {
+                OfflineMapExtractDetails(
+                    extractDetailsFeature.value!!,
+                    { name, feature ->
+                        downloadExtract(name, feature)
+                        extractDetailsFeature.value = null
+                    },
+                    {
+                        deleteExtract(it)
+                        extractDetailsFeature.value = null
+                    },
+                    localExtractDetails.value,
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        .background(MaterialTheme.colorScheme.surface),
+                )
+            }
+            else if (uiState.isLoading) {
                 Column(
                     modifier = modifier
                         .fillMaxSize()
@@ -243,7 +300,13 @@ fun OfflineMapsScreen(
                             )
                         }
                         for(extract in uiState.downloadedExtracts.features) {
-                            OfflineExtract(extract, localExtractSelected)
+                            OfflineExtract(
+                                extract,
+                                { _, extract ->
+                                    extractDetailsFeature.value = extract
+                                    localExtractDetails.value = true
+                                }
+                            )
                         }
                     }
                     HorizontalDivider(modifier = Modifier.padding(spacing.small))
@@ -263,7 +326,13 @@ fun OfflineMapsScreen(
                     }
                     if (uiState.nearbyExtracts != null) {
                         for(extract in uiState.nearbyExtracts.features) {
-                            OfflineExtract(extract, extractSelectedForDownload)
+                            OfflineExtract(
+                                extract,
+                                { _, extract ->
+                                    extractDetailsFeature.value = extract
+                                    localExtractDetails.value = false
+                                },
+                            )
                         }
                     } else {
                         Text(
@@ -291,6 +360,15 @@ fun OfflineMapsScreenPreview() {
     properties["city_names"] = listOf("Bristol", "Bath", "Cardiff", "Birmingham", "Exeter", "Northampton", "Chesterfield")
     city.properties = properties
 
+    val state = Feature()
+    val properties3: HashMap<String, Any?> = hashMapOf()
+    properties3["feature_type"] = "admin1"
+    properties3["name"] = "Scotland"
+    properties3["country_name"] = "United Kingdom"
+    properties3["extract-size"] = 0.5*1024*1024*1024
+    properties3["extract-size-string"] = "0.4 GB"
+    state.properties = properties3
+
     val country = Feature()
     val properties2: HashMap<String, Any?> = hashMapOf()
     properties2["feature_type"] = "country"
@@ -300,6 +378,7 @@ fun OfflineMapsScreenPreview() {
     country.properties = properties2
 
     fc.addFeature(city)
+    fc.addFeature(state)
     fc.addFeature(country)
 
     val externalStorage = StorageUtils.StorageSpace(
@@ -338,8 +417,8 @@ fun OfflineMapsScreenPreview() {
         rememberNavController(),
         modifier = Modifier,
         uiState = uiState,
-        extractSelectedForDownload = {_,_ -> },
-        localExtractSelected = {_,_ ->},
+        downloadExtract = { _, _ -> },
+        deleteExtract = { _ ->},
         cancelDownload = {}
     )
 }
@@ -356,8 +435,8 @@ fun OfflineMapsScreenLoadingPreview() {
             storages = emptyList()
         ),
         modifier = Modifier,
-        extractSelectedForDownload = {_,_ -> },
-        localExtractSelected = {_,_ ->},
+        downloadExtract = { _, _ -> },
+        deleteExtract = { _ ->},
         cancelDownload = {}
     )
 }
@@ -376,8 +455,8 @@ fun OfflineMapsScreenDownloadingPreview() {
             downloadingExtractName = "United Kingdom"
         ),
         modifier = Modifier,
-        extractSelectedForDownload = {_,_ -> },
-        localExtractSelected = {_,_ ->},
+        downloadExtract = { _, _ -> },
+        deleteExtract = { _ ->},
         cancelDownload = {}
     )
 }
