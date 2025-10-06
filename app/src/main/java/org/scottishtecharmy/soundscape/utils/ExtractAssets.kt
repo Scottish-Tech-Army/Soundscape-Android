@@ -126,50 +126,7 @@ private fun createDir(dir: File) {
     }
 }
 
-private fun processStyle(applicationContext: Context, offlineStoragePath: String, inputFilename: String, outputFilename: String) {
-    val filesDir = applicationContext.filesDir.toString()
-    val outputStyleStream =
-        File("$filesDir/osm-liberty-accessible/$outputFilename").outputStream()
-    val inputStyleStream = File("$filesDir/osm-liberty-accessible/$inputFilename").inputStream()
-
-    // Get locally downloaded files
-    val extractCollection = findExtracts(offlineStoragePath)
-    var extractFile: File? = null
-    if(extractCollection != null) {
-        if(extractCollection.features.isNotEmpty()) {
-            // Pick first one to use as the source
-            val filename = extractCollection.features[0].properties?.get("filename")
-            if (filename != null)
-                extractFile = File(offlineStoragePath, filename as String)
-        }
-    }
-
-    var urlReplacement = "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
-    if(extractFile != null)
-        urlReplacement = "pmtiles://file://$extractFile"
-
-    inputStyleStream.bufferedReader().useLines { lines ->
-        lines.forEach { line ->
-           if (line.contains("PROTOMAPS_SERVER_URL")) {
-                val newline = line.replace(
-                    "PROTOMAPS_SERVER_URL",
-                    urlReplacement
-                )
-                outputStyleStream.write(newline.toByteArray())
-            } else {
-                outputStyleStream.write(line.toByteArray())
-            }
-        }
-    }
-    inputStyleStream.close()
-    outputStyleStream.close()
-}
-
 fun processMaps(applicationContext: Context, offlineStorage: String) {
     // Extract the maplibre style assets
     extractAssets(applicationContext, "osm-liberty-accessible", "osm-liberty-accessible")
-
-    // Update extracted style.json with protomaps server URI
-    processStyle(applicationContext, offlineStorage, "style.json", "processedStyle.json")
-    processStyle(applicationContext, offlineStorage, "originalStyle.json", "processedOriginalStyle.json")
 }
