@@ -51,6 +51,7 @@ import java.io.File
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
+import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.sources.GeoJsonSource
@@ -226,7 +227,8 @@ fun MapContainerLibre(
     modifier: Modifier = Modifier,
     editBeaconLocation: Boolean = false,
     onMapLongClick: OnMapLongClickListener,
-    showMap: Boolean
+    showMap: Boolean,
+    overlayGeoJson: String = ""
 ) {
     if(showMap) {
         val context = LocalContext.current
@@ -325,13 +327,15 @@ fun MapContainerLibre(
                 // init map first time it is displayed
                 map.getMapAsync { mapLibre ->
                     val styleName =
-                        if (accessibleMapEnabled) "processedStyle.json" else "processedOriginalStyle.json"
+                        if (accessibleMapEnabled) "style.json" else "originalStyle.json"
                     val styleUrl =
                         Uri.fromFile(File("$filesDir/osm-liberty-accessible/$styleName")).toString()
                     mapLibre.setStyle(styleUrl) { style ->
 
-                        // Dynamically add tile source to our style
-                        val tileSource = getSourceUri(context, false)
+                        // Dynamically add tile source to our style. We force use of the network
+                        // tile server when we're displaying overlays for offline extracts to ensure
+                        // that the map is available for the extract region.
+                        val tileSource = getSourceUri(context, overlayGeoJson.isEmpty())
                         val vectorSource = VectorSource("openmaptiles", tileSource)
                         style.addSource(vectorSource)
 
@@ -491,6 +495,25 @@ fun MapContainerLibre(
                         sm.update(annotationList)
                         symbolManager.value = sm
 
+                        if(overlayGeoJson.isNotEmpty()) {
+                            // Create a GeoJson Source from our feature GeoJSON which
+                            // was generated from the GeoEngine tile grid.
+                            val tileGeoJson = FeatureCollection.fromJson(overlayGeoJson)
+                            val geojsonSource = GeoJsonSource("current-grid", tileGeoJson)
+                            // Add our new source
+                            style.addSource(geojsonSource)
+                            // And our new layer
+                            val layer = LineLayer("current-grid", "current-grid")
+                                .withProperties(
+                                    PropertyFactory.lineCap(Property.LINE_CAP_SQUARE),
+                                    PropertyFactory.lineJoin(Property.LINE_JOIN_MITER),
+                                    PropertyFactory.lineOpacity(0.7f),
+                                    PropertyFactory.lineWidth(4f),
+                                    PropertyFactory.lineColor("#ff000")
+                                )
+                            style.addLayer(layer)
+                        }
+
                         mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
                         mapLibre.uiSettings.isZoomGesturesEnabled = true
                         // The map rotation is set by the compass heading, so we disable it from the UI
@@ -526,11 +549,63 @@ fun MapContainerLibre(
                         }
                     }
 
-                    mapLibre.cameraPosition = CameraPosition.Builder()
-                        .target(mapCenter.toLatLng())
-                        .zoom(15.0) // we set the zoom only at init
-                        .bearing(0.0)
-                        .build()
+                    var overlayBounds: LatLngBounds? = null
+                    if(overlayGeoJson.isNotEmpty()) {
+                        val tileGeoJson = FeatureCollection.fromJson(overlayGeoJson)
+
+                        val boundsBuilder = LatLngBounds.Builder()
+                        var pointsFound = 0
+
+                        tileGeoJson.features()?.forEach { feature ->
+                            when (val geometry = feature.geometry()) {
+                                is Polygon -> {
+                                    geometry.coordinates().forEach { ring ->
+                                        ring.forEach { point ->
+                                            boundsBuilder.include(
+                                                LatLng(
+                                                    point.coordinates()[1],
+                                                    point.coordinates()[0]
+                                                )
+                                            )
+                                            pointsFound++
+                                        }
+                                    }
+                                }
+
+                                is MultiPolygon -> {
+                                    geometry.coordinates().forEach { polygon ->
+                                        polygon.forEach { ring ->
+                                            ring.forEach { point ->
+                                                boundsBuilder.include(
+                                                    LatLng(
+                                                        point.coordinates()[1],
+                                                        point.coordinates()[0]
+                                                    )
+                                                )
+                                                pointsFound++
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (pointsFound > 0) {
+                            overlayBounds = boundsBuilder.build()
+                        }
+                    }
+                    if(overlayBounds != null) {
+                        mapLibre.cameraPosition = mapLibre.getCameraForLatLngBounds(
+                            overlayBounds,
+                            intArrayOf( 50,50,50,50)
+                        )!!
+                    } else {
+                        mapLibre.cameraPosition = CameraPosition.Builder()
+                            .target(mapCenter.toLatLng())
+                            .zoom(15.0) // we set the zoom only at init
+                            .bearing(0.0)
+                            .build()
+                    }
                 }
             }
 
