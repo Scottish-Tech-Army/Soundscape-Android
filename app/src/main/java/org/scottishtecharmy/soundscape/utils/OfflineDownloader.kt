@@ -44,10 +44,10 @@ fun deleteAllProgressFiles(context: Context) {
     val extractsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
     if (extractsDir.exists() && extractsDir.isDirectory) {
         val files =
-            extractsDir.listFiles { file -> file.name.endsWith(".progress") }?.toList()
+            extractsDir.listFiles { file -> file.name.endsWith(".downloadId") }?.toList()
                 ?: emptyList()
         for (file in files) {
-            Log.d(TAG, "Delete progress file: ${file.path}")
+            Log.d(TAG, "Delete downloadId file: ${file.path}")
             file.delete()
         }
     }
@@ -84,7 +84,7 @@ class OfflineDownloader(private val context: Context) {
         request.setTitle(title) // Title for the download notification
         request.setDescription(description) // Description for the download notification
 
-        val path = File(outputFilePath)
+        val path = File("$outputFilePath.downloading")
         request.setDestinationUri(path.toUri())
 
         // --- Network Type ---
@@ -101,7 +101,7 @@ class OfflineDownloader(private val context: Context) {
             Toast.makeText(context, "Download started...", Toast.LENGTH_SHORT).show()
 
             // Create a file to store the id and show that download is in progress
-            val progressFile = FileOutputStream("$outputFilePath.progress")
+            val progressFile = FileOutputStream("$outputFilePath.downloadId")
             progressFile.write("$downloadId".toByteArray())
             progressFile.close()
 
@@ -114,7 +114,6 @@ class OfflineDownloader(private val context: Context) {
     data class DownloadStatus (
         val bytesSoFar: Long,
         val totalBytes: Long,
-        val localFilename: String,
         val managerStatus: Int
     )
     fun getDownloadStatus(): DownloadStatus? {
@@ -139,21 +138,26 @@ class OfflineDownloader(private val context: Context) {
                 if(bytes == totalBytes) {
                     val localUriIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
                     val localUri = cursor.getString(localUriIndex)
-                    val fileUri = ("$localUri.progress").toUri()
+                    val fileUri = localUri.toUri()
 
-                    // We're complete, so remove the progress file
-                    filePath = fileUri.path
+                    // We're complete
+                    filePath = fileUri.path?.removeSuffix(".downloading")
                     if(filePath != null) {
-                        val progressFile = File(filePath)
-                        println("Deleting ${progressFile.path}")
-                        progressFile.delete()
+                        // Remove the progress file
+                        val downloadIdFile = File("$filePath.downloadId")
+                        val deleteSuccess = downloadIdFile.delete()
+                        println("Deleting ${downloadIdFile.path} returned $deleteSuccess")
+
+                        // And rename our complete downloaded file
+                        val downloadedFile = File(fileUri.path!!)
+                        val renameSuccess = downloadedFile.renameTo(File(filePath))
+                        println("Renaming ${downloadedFile.path} returned $renameSuccess")
                     }
                 }
             }
             result = DownloadStatus(
                 bytes,
                 totalBytes,
-                filePath ?: "",
                 status
             )
        } else {

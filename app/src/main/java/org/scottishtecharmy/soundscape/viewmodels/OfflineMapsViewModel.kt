@@ -158,8 +158,9 @@ class OfflineMapsViewModel @Inject constructor(
                     stopProgressUpdates()
                     break
                 }
-                delay(500)
+                delay(1000)
             }
+            println("Done monitoring progress")
         }
     }
 
