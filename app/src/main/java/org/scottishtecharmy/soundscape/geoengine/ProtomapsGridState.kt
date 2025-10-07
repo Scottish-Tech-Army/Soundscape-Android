@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
-import android.os.Environment
 import android.util.Log
 import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.CloseableCoroutineDispatcher
@@ -37,13 +36,21 @@ open class ProtomapsGridState(
     var fileTileReaders: MutableList<Reader> = mutableListOf<Reader>()
 
     override fun start(applicationContext: Context?, offlineExtractPaths: List<String>) {
-        if(applicationContext != null)
+        if((tileClient == null) && (applicationContext != null))
             tileClient = ProtomapsTileClient(applicationContext)
 
         // Create a range reader for the local file
         for(extract in offlineExtractPaths)
             fileTileReaders.add(Reader(File(extract)))
     }
+
+    override fun stop() {
+        super.stop()
+        for(reader in fileTileReaders)
+            reader.close()
+        fileTileReaders.clear()
+    }
+
 
     /**
      * updateTile is responsible for getting data from the protomaps server and translating it from
@@ -99,33 +106,41 @@ open class ProtomapsGridState(
 
                 // Try getting the tile from each file in turn
                 var result : VectorTile.Tile? = null
-                for(reader in fileTileReaders) {
-                    var fileTile: ByteArray? = null
-                    fileTile = reader.getTile(zoomLevel, x, y)
+                for((index,reader) in fileTileReaders.withIndex()) {
+                    val fileTile: ByteArray? = reader.getTile(zoomLevel, x, y)
+                    if(fileTile != null) {
+                        // Turn the byte array into a VectorTile
+                        when (reader.tileCompression.toInt()) {
+                            1 -> {
+                                // No compression
+                                result = VectorTile.Tile.parseFrom(fileTile)
+                            }
 
-                    // Turn the byte array into a VectorTile
-                    when (reader.tileCompression.toInt()) {
-                        1 -> {
-                            // No compression
-                            result = VectorTile.Tile.parseFrom(fileTile)
+                            2 -> {
+                                // Gzip compression
+                                val decompressedTile = decompressGzip(fileTile)
+                                result = VectorTile.Tile.parseFrom(decompressedTile)
+                            }
+
+                            else -> assert(false)
                         }
-
-                        2 -> {
-                            // Gzip compression
-                            val decompressedTile = decompressGzip(fileTile)
-                            result = VectorTile.Tile.parseFrom(decompressedTile)
-                        }
-
-                        else -> assert(false)
                     }
-                    if(result != null)
+                    if(result != null) {
+                        if(index != 0) {
+                            // Move the file reader to the top of the queue for next time it it's
+                            // not there already. There will be some hysteresis as there is overlap
+                            // between all possible extracts.
+                            val workingReader = fileTileReaders.removeAt(index)
+                            fileTileReaders.add(0, workingReader)
+                        }
                         break
+                    }
                 }
 
                 // Fallback to network
                 if(result == null) {
                     val service =
-                        tileClient.retrofitInstance?.create(ITileDAO::class.java)
+                        tileClient?.retrofitInstance?.create(ITileDAO::class.java)
                     val tileReq =
                         async {
                             service?.getVectorTileWithCache(x, y, zoomLevel)

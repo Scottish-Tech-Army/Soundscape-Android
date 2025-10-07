@@ -165,6 +165,25 @@ fun findExtracts(path: String) : FeatureCollection? {
     return null
 }
 
+fun findExtractPaths(path: String) : List<String> {
+    // Find any extracts that we have downloaded
+    val extractsDir = File(path)
+    if (extractsDir.exists() && extractsDir.isDirectory) {
+        // Find files within the directory and filter for those ending with ".pmtiles". It is
+        // possible to have metadata for .pmtiles files that failed to download, so we have to
+        // search for the .pmtiles files first and then get the metadata for them.
+        val fileList = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList()
+        if(fileList != null) {
+            val returnList = mutableListOf<String>()
+            for (file in fileList) {
+                returnList += file.path
+            }
+            return returnList
+        }
+    }
+    return emptyList()
+}
+
 fun isMidDownload(path: String) : Long {
     val extractsDir = File(path)
     if (extractsDir.exists() && extractsDir.isDirectory) {

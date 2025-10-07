@@ -3,8 +3,6 @@ package org.scottishtecharmy.soundscape.utils
 import android.content.Context
 import android.content.res.AssetManager
 import android.util.Log
-import org.scottishtecharmy.soundscape.BuildConfig
-import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream

@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.MIN_MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
@@ -289,7 +290,7 @@ fun vectorTileToGeoJson(tileX: Int,
     // The main TileGrid is at the MAX_ZOOM_LEVEL and we parse transportation, poi and building
     // layers. However, we also create TileGrids at lower zoom levels to get towns, cities etc. from
     // the place layer.
-    val layerIds = if(tileZoom == MAX_ZOOM_LEVEL) {
+    val layerIds = if(tileZoom >= MIN_MAX_ZOOM_LEVEL) {
         arrayOf("transportation", "poi", "building")
     } else {
         arrayOf("place")

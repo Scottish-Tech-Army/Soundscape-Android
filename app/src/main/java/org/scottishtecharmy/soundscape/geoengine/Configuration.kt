@@ -11,7 +11,8 @@ package org.scottishtecharmy.soundscape.geoengine
  * means of transport e.g. inter city train. The lower zoom levels mean that we can search for
  * the nearest village or town instead of just the nearest street or road.
  */
-const val MAX_ZOOM_LEVEL = 15
+const val MAX_ZOOM_LEVEL = 14
+const val MIN_MAX_ZOOM_LEVEL = 14
 const val GRID_SIZE = 2
 
 /**
@@ -23,6 +24,8 @@ const val GRID_SIZE = 2
  */
 const val PROTOMAPS_SERVER_PATH = "protomaps"
 const val PROTOMAPS_SUFFIX = "mvt"
+
+const val MANIFEST_NAME = "manifest.geojson.gz"
 
 /**
  * It's also useful to be able to use tiles served up locally when testing. When I

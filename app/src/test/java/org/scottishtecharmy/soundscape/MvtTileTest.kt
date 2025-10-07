@@ -52,6 +52,11 @@ val offlineExtracts = listOf(
     "src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles",
     "src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles",
 )
+val offlineExtracts14 = listOf(
+    "src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom-14.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom-14.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom-14.pmtiles",
+)
 class FileGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
     gridSize: Int = GRID_SIZE) : ProtomapsGridState(zoomLevel, gridSize) {
@@ -199,7 +204,9 @@ fun getGridStateForLocation(
 ): GridState {
 
     val gridState = FileGridState(zoomLevel, gridSize)
-    gridState.start(null, offlineExtracts)
+    gridState.start(
+        null,
+        if(zoomLevel == MAX_ZOOM_LEVEL) offlineExtracts else offlineExtracts14)
     runBlocking {
 
         val enabledCategories = emptySet<String>().toMutableSet()
@@ -228,7 +235,7 @@ class MvtTileTest {
         //  3. Prints it out
         val gridState = FileGridState()
         gridState.start(null, offlineExtracts)
-        val tile = gridState.getTile(16093, 10211, 15)!!
+        val tile = gridState.getTile(16093/2, 10211/2, 14)!!
         assert(tile.layersList.isNotEmpty())
 
         for (layer in tile.layersList) {
@@ -251,7 +258,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonMilngavie() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15991, 10212, intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(15991/2, 10212/2, intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("milngavie.geojson")
@@ -262,7 +269,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonEdinburgh() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(16093, 10211, intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(16093/2, 10211/2, intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("edinburgh.geojson")
@@ -273,7 +280,7 @@ class MvtTileTest {
     @Test
     fun testVectorToGeoJsonByresRoad() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15992, 10223, intersectionMap)
+        val geojson = vectorTileToGeoJsonFromFile(15992/2, 10223/2, intersectionMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputFile = FileOutputStream("byresroad.geojson")
@@ -299,9 +306,8 @@ class MvtTileTest {
      */
     @Test
     fun testVectorToGeoJsonGrid() {
-
         // Make a large grid to aid analysis
-        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 14, 1)
 
         // Check that the de-duplication of the points worked (without that there are two points
         // for Graeme Pharmacy, one each from two separate tiles).
@@ -337,9 +343,48 @@ class MvtTileTest {
             outputCollection.addFeature(intersection.value)
         }
 
-        val outputFile = FileOutputStream("2x2.geojson")
+        val outputFile = FileOutputStream("2x2-14.geojson")
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
+    }
+
+    /**
+     * testZoomLevels was used to compare the output from two grids, one at zoom level 14 and the
+     * other at zoom level 15.
+     */
+    //@Test
+    fun testZoomLevels() {
+        // Make two grids of the same region but different zoom levels
+        val gridState14 = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 14, 1)
+        val gridState15 = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 15, 2)
+
+        for(treeId in TreeId.entries) {
+            if(treeId == TreeId.MAX_COLLECTION_ID)
+                break
+
+            val featureCollection14 = gridState14.featureTrees[treeId.id].getAllCollection()
+            val featureCollection15 = gridState15.featureTrees[treeId.id].getAllCollection()
+
+            if(treeId == TreeId.ROADS_AND_PATHS) {
+                val adapter = GeoJsonObjectMoshiAdapter()
+                val outputFile14 = FileOutputStream("2x2-14.geojson")
+                outputFile14.write(adapter.toJson(featureCollection14).toByteArray())
+                outputFile14.close()
+                val outputFile15 = FileOutputStream("2x2-15.geojson")
+                outputFile15.write(adapter.toJson(featureCollection15).toByteArray())
+                outputFile15.close()
+            }
+
+            if((featureCollection14.features.size) != featureCollection15.features.size) {
+                println("$treeId - ${featureCollection14.features.size} ${featureCollection15.features.size}")
+                if((treeId != TreeId.INTERPOLATIONS) && (treeId != TreeId.ROADS) && (treeId != TreeId.ROADS_AND_PATHS))
+                    assert(false)
+            }
+        }
+
+        // If we get here then all of the POIS are present. Because the grid sizes are different
+        // there are extra ROADS and PATHS joining the tiles together which accounts for the different
+        // numbers of roads, paths and interpolations.
     }
 
     /**
@@ -383,8 +428,8 @@ class MvtTileTest {
 
         // Make a large grid to aid analysis
         val featureCollection = FeatureCollection()
-        for (x in 15990..15992) {
-            for (y in 10212..10213) {
+        for (x in 7995..7995) {
+            for (y in 5106..5107) {
                 val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
                 val geojson = vectorTileToGeoJsonFromFile(x, y, intersectionMap)
                 for (feature in geojson) {
@@ -439,7 +484,7 @@ class MvtTileTest {
         // problem, but we do add "distance_to".
 
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-        val featureCollection = vectorTileToGeoJsonFromFile(15990, 10212, intersectionMap)
+        val featureCollection = vectorTileToGeoJsonFromFile(15990/2, 10212/2, intersectionMap)
         println(featureCollection.features[0].id)
         val newFeatureCollection = FeatureCollection()
         newFeatureCollection.plusAssign(featureCollection)
@@ -726,8 +771,8 @@ class MvtTileTest {
         gridState.start(null, offlineExtracts)
 
         // The center of each grid
-        for(x in 16093 until 16097) {
-            for (y in 10210 until 10215) {
+        for(x in 8046 until 8048) {
+            for (y in 5105 until 5107) {
 
                 // Get top left of tile
                 val location = getLatLonTileWithOffset(x, y, MAX_ZOOM_LEVEL, 0.0, 0.0)
@@ -805,9 +850,9 @@ class MvtTileTest {
 
         data class Region(val name: String, val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
         val regions = listOf (
-            Region("Edinburgh", 16090, 10207, 16095, 10212),
-            Region("Bristol", 16128, 10880, 16192, 10944),
-            Region("Manchester", 16128, 10560, 16192, 10624),
+            Region("Edinburgh", 16090/2, 10207/2, 16095/2, 10212/2),
+            Region("Bristol", 16128/2, 10880/2, 16192/2, 10944/2),
+            Region("Manchester", 16128/2, 10560/2, 16192/2, 10624/2),
         )
         for(region in regions) {
             println("Test ${region.name}")
@@ -822,5 +867,97 @@ class MvtTileTest {
                 }
             }
         }
+    }
+
+    // Put this function inside the MvtTileTest class or at the top level of the file
+    private fun levenshteinDamerauRatio(needleString: String, haystackString: String): Double {
+        // A clean-room implementation of Levenshtein distance
+        val len1 = needleString.length
+        val len2 = haystackString.length
+
+        // Create a DP table to store distances
+        val dp = Array(len1 + 1) { IntArray(len2 + 1) }
+
+        for (i in 0..len1) {
+            for (j in 0..len2) {
+                when {
+                    i == 0 -> dp[i][j] = j // Cost of deleting all chars from s2
+                    j == 0 -> dp[i][j] = i // Cost of inserting all chars from s1
+                    else -> {
+                        // If characters are the same, cost is the same as the previous state
+                        val cost = if (needleString[i - 1] == haystackString[j - 1]) 0 else 1
+
+                        // Find the minimum cost from three possible operations:
+                        val deletionCost = dp[i - 1][j] + 1       // Deletion
+                        val insertionCost = dp[i][j - 1] + 1       // Insertion
+                        val substitutionCost = dp[i - 1][j - 1] + cost // Substitution
+
+                        dp[i][j] = minOf(deletionCost, insertionCost, substitutionCost)
+
+                        // --- Damerau-Levenshtein Addition ---
+                        // Check for transposition of adjacent characters
+                        if (i > 1 && j > 1 &&
+                            needleString[i - 1] == haystackString[j - 2] &&
+                            needleString[i - 2] == haystackString[j - 1]
+                        ) {
+                            // If a transposition is found, compare its cost with the current minimum
+                            val transpositionCost = dp[i - 2][j - 2] + 1
+                            dp[i][j] = minOf(dp[i][j], transpositionCost)
+                        }
+                    }
+                }
+            }
+        }
+        // The final value in the DP table is the Damerau-Levenshtein distance
+        // Normalize the distance to a ratio. A lower ratio means a better match.
+        val maxLen = maxOf(len1, len2)
+        if (maxLen == 0) return 0.0
+        return dp[len1][len2] / maxLen.toDouble()
+    }
+
+    fun fuzzySearchFeatureCollection(featureCollection: FeatureCollection,
+                                     needleString: String,
+                                     bestStringSoFar: String,
+                                     bestDistanceSoFar: Double) : Pair<Double, String> {
+        var bestMatch : String = bestStringSoFar
+        var bestDistance = bestDistanceSoFar
+        for (feature in featureCollection) {
+            val name = feature.properties?.get("name") as? String
+            if (name != null) {
+                // Calculate the Levenshtein distance ratio between the POI name and our test string
+                val distance = levenshteinDamerauRatio(needleString, name)
+
+                // If this string is closer than the best one we've found so far, update it
+                if (distance < bestDistance) {
+                    bestDistance = distance
+                    bestMatch = name
+                    println("Found new best match: '$name' (Distance: $distance)")
+                }
+
+                // An optional optimization: if a perfect match is found, we can stop searching.
+                if (distance == 0.0) {
+                    break
+                }
+            }
+        }
+        return Pair(bestDistance, bestMatch)
+    }
+
+
+    @Test
+    fun testFuzzySearch() {
+        // Make a large grid to aid analysis
+        val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), 14, 1)
+        val testString = "Costa coffee" // Our string with typos
+
+        println("Searching for strings similar to: '$testString'")
+        val pois = gridState.getFeatureCollection(TreeId.POIS)
+        val roads = gridState.getFeatureCollection(TreeId.ROADS)
+        val (newBestDistance, newBestMatch) = fuzzySearchFeatureCollection(pois, testString, "", Double.MAX_VALUE)
+        val (newestBestDistance, newestBestMatch) = fuzzySearchFeatureCollection(roads, testString, newBestMatch, newBestDistance)
+
+        println("\n--- Search Complete ---")
+        println("Original String: '$testString'")
+        println("Best Match Found: '$newestBestMatch' with a distance of $newestBestDistance.")
     }
 }

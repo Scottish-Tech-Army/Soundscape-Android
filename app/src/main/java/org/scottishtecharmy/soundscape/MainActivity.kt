@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.StrictMode
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -205,6 +206,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+//      Enable the following code to generate stack traces when tracking down "A resource failed to
+//      call close messages in the log.
+//
+//        StrictMode.setVmPolicy(
+//            StrictMode.VmPolicy.Builder()
+//                     .detectLeakedClosableObjects()
+//                     .penaltyListener(ContextCompat.getMainExecutor(this)) { violation ->
+//                         Log.e("MainActivity", "StrictMode VmPolicy violation", violation)
+//                     }
+//                     .build()
+//        )
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
             installSplashScreen()

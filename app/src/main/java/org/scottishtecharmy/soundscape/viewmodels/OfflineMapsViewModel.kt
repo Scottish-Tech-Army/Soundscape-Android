@@ -25,6 +25,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.StorageUtils
+import org.scottishtecharmy.soundscape.utils.deleteAllProgressFiles
 import org.scottishtecharmy.soundscape.utils.downloadAndParseManifest
 import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
@@ -34,7 +35,6 @@ import javax.inject.Inject
 import kotlin.collections.HashMap
 
 data class OfflineMapsUiState(
-    val isLoading: Boolean = true,
     val isDownloading: Boolean = false,
     val downloadingExtractName:String = "",
 
@@ -54,12 +54,13 @@ data class OfflineMapsUiState(
 @HiltViewModel
 class OfflineMapsViewModel @Inject constructor(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
-    @ApplicationContext appContext: Context
+    @param:ApplicationContext val appContext: Context
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OfflineMapsUiState())
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
+    var urlRedirect = ""
 
     init {
         viewModelScope.launch {
@@ -74,12 +75,12 @@ class OfflineMapsViewModel @Inject constructor(
             _uiState.value = _uiState.value.copy(
                 downloadedExtracts = extractCollection,
                 storages = storages,
-                currentPath = path,
-                isLoading = false
+                currentPath = path
             )
 
-            val fc = downloadAndParseManifest(appContext)
+            val (fc, redirect) = downloadAndParseManifest(appContext)
             if(fc != null) {
+                urlRedirect = redirect
                 val tree = FeatureTree(fc)
                 soundscapeServiceConnection.serviceBoundState.collect {
                     Log.d(TAG, "serviceBoundState $it")
@@ -88,16 +89,6 @@ class OfflineMapsViewModel @Inject constructor(
                             val location = LngLatAlt(androidLocation.longitude, androidLocation.latitude)
                             // Containing polygons gives offline maps that include the current location
                             val extracts = tree.getContainingPolygons(location)
-
-//                            // Nearest gives offline maps that are closest to the current location
-//                            // and can include much more distant ones. More useful for when we add
-//                            // support for multiple extracts.
-//                            val extracts = tree.getNearestCollection(
-//                                location,
-//                                1000000.0,
-//                                20,
-//                                CheapRuler(location.latitude)
-//                            )
 
                             for(extract in extracts.features) {
                                 val size = extract.properties?.get("extract-size") as Double
@@ -144,7 +135,13 @@ class OfflineMapsViewModel @Inject constructor(
                         downloadProgress = percentage,
                     )
 
-                    if(downloadStatus.managerStatus == DownloadManager.STATUS_SUCCESSFUL) {
+                    if(downloadStatus.managerStatus == DownloadManager.STATUS_FAILED) {
+                        // Tidy up after failed download
+                        deleteAllProgressFiles(appContext)
+                    }
+
+                    if((downloadStatus.managerStatus == DownloadManager.STATUS_SUCCESSFUL) ||
+                        (downloadStatus.managerStatus == DownloadManager.STATUS_FAILED)) {
                         val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
                         val extractCollection = findExtracts(extractsDir.path)
                         _uiState.value = _uiState.value.copy(
@@ -189,7 +186,7 @@ class OfflineMapsViewModel @Inject constructor(
                     file.delete()
 
                 // Update the UI to reflect the deletions
-                val extractCollection = findExtracts(_uiState.value.currentPath)
+                val extractCollection = findExtracts(extractsDir.path)
                 _uiState.value = _uiState.value.copy(
                     downloadedExtracts = extractCollection
                 )
@@ -212,7 +209,7 @@ class OfflineMapsViewModel @Inject constructor(
             metadataOutputFile.write(adapter.toJson(feature).toByteArray())
             metadataOutputFile.close()
 
-            val fileUrl = "https://commcouncil.scot/$filename"
+            val fileUrl = "$urlRedirect$filename"
             offlineDownloader.startDownload(
                 fileUrl,
                 path,
