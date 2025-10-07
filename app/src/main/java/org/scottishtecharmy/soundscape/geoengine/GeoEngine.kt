@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.location.Location
 import android.net.Uri
+import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
@@ -64,6 +65,7 @@ import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import java.lang.String.format
 
 
@@ -275,8 +277,11 @@ class GeoEngine {
             recordingsStorageDir.mkdirs()
         }
 
-        gridState.start(application)
-        settlementGrid.start(application)
+        val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
+        val offlineExtractPaths =  findExtractPaths(extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS)
+
+        gridState.start(application, offlineExtractPaths)
+        settlementGrid.start(application, offlineExtractPaths)
 
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)

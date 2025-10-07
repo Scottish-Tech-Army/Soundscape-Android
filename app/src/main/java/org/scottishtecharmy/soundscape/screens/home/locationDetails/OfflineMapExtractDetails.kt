@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.Delete
@@ -24,10 +26,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -55,7 +59,7 @@ fun OfflineMapExtractDetails(
     val adapter = GeoJsonObjectMoshiAdapter()
 
     Column(
-        modifier = modifier,
+        modifier = modifier.verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(spacing.small),
     ) {
         MapExtractTextsSection(
@@ -66,7 +70,7 @@ fun OfflineMapExtractDetails(
         HorizontalDivider()
         MapExtractButtonsSection(
             deleteExtract = { deleteExtract(extract) },
-            downloadExtract = { downloadExtract(details.name, extract) },
+            downloadExtract = { downloadExtract(details.localName, extract) },
             local = local
         )
 
@@ -99,7 +103,7 @@ private fun MapExtractButtonsSection(
         if(local) {
             IconWithTextButton(
                 icon = Icons.Filled.Delete,
-                text = "Delete offline map",
+                text = stringResource(R.string.offline_map_details_delete),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
@@ -109,7 +113,7 @@ private fun MapExtractButtonsSection(
         } else {
             IconWithTextButton(
                 icon = Icons.Filled.Download,
-                text = "Download offline map",
+                text = stringResource(R.string.offline_map_details_download),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
@@ -130,21 +134,27 @@ private fun MapExtractTextsSection(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
     ) {
         Text(
-            text = "Map name: " + details.name,
+            text = stringResource(R.string.offline_map_details_name).format(details.localName),
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
         )
+        if(details.alternateName.isNotEmpty())
+            Text(
+                text = details.alternateName,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
         val size = extract.properties?.get("extract-size-string")
-        if(size != null) {
-            val sizeString = if(local)
-                "Size on phone: " + size as String
+        if (size != null) {
+            val sizeString = if (local)
+                stringResource(R.string.offline_map_details_size_on_phone).format(size)
             else
-                "Download size: " + size as String
+                stringResource(R.string.offline_map_details_size_on_server).format(size)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
             ) {
-                if(local)
+                if (local)
                     Icon(
                         imageVector = Icons.Filled.SdStorage,
                         contentDescription = null,
@@ -163,20 +173,29 @@ private fun MapExtractTextsSection(
                 )
             }
         }
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(spacing.small),
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Map,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface,
-            )
-            Text(
-                text = details.description,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+        if (extract.properties?.get("feature_type") == "city_cluster") {
+            val cities = details.localCities.ifEmpty { details.alternateCities }
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(spacing.small),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Map,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurface,
+                )
+                Text(
+                    text = stringResource(R.string.offline_map_details_city_list).format(cities),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+            if(details.alternateCities.isNotEmpty() &&  details.localCities.isNotEmpty())
+                Text(
+                    text = stringResource(R.string.offline_map_details_alternate_city_list).format(details.alternateCities),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
         }
     }
 }
@@ -185,7 +204,7 @@ private fun MapExtractTextsSection(
 @Composable
 fun OfflineMapExtractDetailsPreview() {
 
-    val geojson = "{\"geometry\":{\"coordinates\":[[[-122.96915039986946,37.99873320994975],[-123.26677281849926,37.99666737454134],[-123.27881573612977,38.8974515792339],[-122.12613231818196,38.901366771718415],[-122.12694587978226,38.56226888429727],[-121.68414374217957,38.56079344929706],[-121.69065575488919,37.78058710763911],[-121.31813082063552,37.778070210414974],[-121.32982831815029,36.87711386897666],[-122.45144613722326,36.88103273247048],[-122.45186425531398,37.08993803868671],[-122.86555789729708,37.088671343767786],[-122.8673898155377,37.3324341952235],[-122.96318056822776,37.33193196725721],[-122.96915039986946,37.99873320994975]]],\"type\":\"Polygon\"},\"properties\":{\"anchor_lat\":37.784262651527904,\"continent\":\"North America\",\"anchor_pop_max\":3450000.0,\"anchor_country\":\"United States of America\",\"extract-size\":2.9363229E8,\"countries\":[\"United States of America\"],\"city_count\":7.0,\"anchor_iso_a3\":\"USA\",\"feature_type\":\"city_cluster\",\"iso_a3s\":[\"USA\"],\"filename\":\"san-francisco-united-states-of-america.pmtiles\",\"anchor_lon\":-122.39959956304557,\"dbscan_cluster_id\":78.0,\"extract-size-string\":\"294 MB\",\"total_pop_max\":8129114.0,\"anchor_city\":\"San Francisco\",\"city_names\":[\"Berkeley\",\"Oakland\",\"San Francisco\",\"San Jose\",\"San Mateo\",\"Santa Rosa\",\"Vallejo\"]},\"type\":\"Feature\"}"
+    val geojson = "{\"type\": \"Feature\", \"geometry\": {\"type\": \"Polygon\", \"coordinates\": [[[139.81691185318002, 37.56831909920214], [139.81452073905476, 37.84856243009939], [139.86499116717772, 37.84884359203526], [139.86341400048522, 38.03211295423315], [141.00240215693833, 38.03278598895171], [140.99885371261206, 37.500096384164024], [141.45101968072916, 37.49735188393407], [141.4398807979843, 36.59634687676648], [141.20879156854664, 36.59795080805193], [141.20471272846316, 36.147418099935344], [141.08364793550157, 36.14807554122666], [141.08328622945226, 36.099285004209975], [139.97284530020468, 36.09951739243942], [139.96894767976792, 36.66802927279343], [139.7042382614323, 36.66653760928801], [139.69471400090455, 37.56755097639593], [139.81691185318002, 37.56831909920214]]]}, \"properties\": {\"name\": \"Iwaki\", \"iso_a2\": \"JP\", \"feature_type\": \"city_cluster\", \"name_local\": \"いわき市\", \"city_names\": [\"Hitachi\", \"Nihommatsu\", \"Kōriyama\", \"Hitachi-ota\", \"Sukagawa\", \"Shirakawa\", \"Iwaki\"], \"city_local_names\": [\"日立\", \"二本松\", \"郡山市\", \"常陸太田\", \"須賀川市\", \"白河\", \"いわき市\"], \"extract-size\": 87491126, \"extract-size-string\":\"0.4GB\", \"filename\": \"iwaki-jp.pmtiles\"}}"
     val adapter = GeoJsonObjectMoshiAdapter()
     val feature = adapter.fromJson(geojson) as Feature
 

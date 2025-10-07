@@ -164,7 +164,12 @@ fun HomeScreen(
                     languageViewModel.updateLanguage(selectedLanguage)
                     settingsViewModel.updateLanguage(localActivity)
                  },
-                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex
+                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex,
+                storages = uiState.value.storages,
+                onStorageSelected = { path ->
+                    settingsViewModel.selectStorage(path)
+                },
+                selectedStorageIndex = uiState.value.selectedStorageIndex,
             )
         }
 

@@ -7,6 +7,10 @@ import com.squareup.moshi.Moshi
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody.Companion.toResponseBody
+import okio.GzipSource
+import okio.buffer
+import org.scottishtecharmy.soundscape.geoengine.MANIFEST_NAME
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
 import retrofit2.Call
@@ -16,7 +20,7 @@ import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 
 interface IManifestDAO {
-    @GET("manifest.geojson")
+    @GET(MANIFEST_NAME)
     fun getManifest(): Call<FeatureCollection>
 }
 
@@ -26,24 +30,60 @@ class ManifestClient(val applicationContext: Context) {
 
     private var retrofit : Retrofit? = null
 
-    private val cacheSize = (10 * 1024 * 1024).toLong() // 5MB cache size
-    private val myCache = Cache(applicationContext.cacheDir, cacheSize)
+    var redirect = ""
 
     private val okHttpClient = OkHttpClient.Builder()
-        .cache(myCache)
         .addInterceptor { chain ->
+            val originalRequest = chain.request()
+
             val onlineCacheControl = CacheControl.Builder()
-                .maxAge(1, TimeUnit.DAYS)
+                .maxAge(1, TimeUnit.HOURS)
                 .build()
-            val request = chain
-                .request()
+
+            val request = originalRequest
                 .newBuilder()
                 .header("Cache-Control", onlineCacheControl.toString())
                 .removeHeader("Pragma")
                 .build()
 
-            // Add the modified request to the chain.
-            chain.proceed(request)
+            val response = chain.proceed(request)
+
+            // Get the request associated with the final response.
+            // Its URL will be the one after any redirects.
+            val finalRequest = response.request
+            val finalUrl = finalRequest.url
+            println("Final (after redirect) URL: $finalUrl")
+            redirect = finalUrl.toString().removeSuffix(MANIFEST_NAME)
+
+            // 6. Return the response to continue the chain
+            response
+        }
+        .addInterceptor { chain ->
+            val response = chain.proceed(chain.request())
+
+            // Check if this is the response we want to force-decompress
+            if (response.isSuccessful && response.request.url.toString().endsWith(MANIFEST_NAME)) {
+                // Despite what the headers say, we know it's gzipped.
+                // Let's decompress it manually.
+                val responseBody = response.body
+                // Create a GzipSource to read the compressed data from the response body's source
+                val gzipSource = GzipSource(responseBody.source())
+                // The decompressed data is read from the buffered GzipSource
+                val decompressedData = gzipSource.buffer().readUtf8()
+                gzipSource.close()
+                // Create a new response body with the decompressed string
+                val decompressedBody = decompressedData.toResponseBody(responseBody.contentType())
+
+                // Build a new response with the decompressed body
+                response.newBuilder()
+                    .body(decompressedBody)
+                    // Remove the incorrect content-length header of the compressed body
+                    .removeHeader("Content-Length")
+                    .build()
+            } else {
+                // Not the response we're looking for, leave it untouched
+                response
+            }
         }
         .build()
 

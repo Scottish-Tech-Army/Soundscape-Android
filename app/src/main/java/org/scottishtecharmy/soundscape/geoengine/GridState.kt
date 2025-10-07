@@ -67,7 +67,7 @@ open class GridState(
 ) {
 
     // HTTP connection to tile server
-    internal lateinit var tileClient: TileClient
+    internal var tileClient: TileClient? = null
 
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
@@ -83,7 +83,7 @@ open class GridState(
     internal var markerTree : FeatureTree? = null
 
     open fun start(applicationContext: Context? = null, offlineExtractPaths: List<String> = emptyList()) {}
-    fun stop() {
+    open fun stop() {
         // Clean up tile cache and feature trees
         clearTileCache()
         for(tree in featureTrees) {

@@ -19,7 +19,8 @@ data class OfflineStorageOnboardingUiState(
     // Storage status
     val storages: List<StorageUtils.StorageSpace> = emptyList(),
 
-    val currentPath: String = ""
+    val currentPath: String = "",
+    val selectedStorageIndex: Int = -1
 )
 
 @HiltViewModel
@@ -35,8 +36,16 @@ class OffscreenStorageOnboardingViewModel @Inject constructor(@param:Application
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
         var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
 
+        var currentIndex = -1
+        for((index, storage) in storages.withIndex()) {
+            if (storage.path == path) {
+                currentIndex = index
+                break
+            }
+        }
         _uiState.value = _uiState.value.copy(
             currentPath = path!!,
+            selectedStorageIndex = currentIndex,
             storages = storages
         )
     }
@@ -45,8 +54,16 @@ class OffscreenStorageOnboardingViewModel @Inject constructor(@param:Application
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         sharedPreferences.edit(commit = true) { putString(MainActivity.SELECTED_STORAGE_KEY, path) }
 
+        var currentIndex = -1
+        for((index, storage) in _uiState.value.storages.withIndex()) {
+            if (storage.path == path) {
+                currentIndex = index
+                break
+            }
+        }
         _uiState.value = _uiState.value.copy(
             currentPath = path,
+            selectedStorageIndex = currentIndex
         )
     }
 }

@@ -38,7 +38,7 @@ import org.scottishtecharmy.soundscape.utils.StorageUtils
 
 @Composable
 fun OfflineStorageOnboardingScreenVM(
-    onNavigate: () -> Unit,
+    onNavigate: (() -> Unit)?,
     modifier: Modifier = Modifier,
     viewModel: OffscreenStorageOnboardingViewModel = hiltViewModel()
 ) {
@@ -54,7 +54,7 @@ fun OfflineStorageOnboardingScreenVM(
 
 @Composable
 fun OfflineStorageOnboardingScreen(
-    onNavigate: () -> Unit,
+    onNavigate: (() -> Unit)?,
     uiState: OfflineStorageOnboardingUiState,
     onStorageSelected: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -74,7 +74,7 @@ fun OfflineStorageOnboardingScreen(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = "Offline map storage",
+                text = stringResource(R.string.offline_map_storage_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -85,10 +85,7 @@ fun OfflineStorageOnboardingScreen(
             Spacer(modifier = Modifier.height(spacing.large))
 
             Text(
-                text = "So that Soundscape can be used without an Internet connection " +
-                        "it is possible to download maps and store them on the phone. The default " +
-                        "storage is any external storage on your phone, but you can select an " +
-                        "alternative destination here.",
+                text = stringResource(R.string.offline_map_storage_description),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.smallPadding()
@@ -96,35 +93,24 @@ fun OfflineStorageOnboardingScreen(
 
             Spacer(modifier = Modifier.height(spacing.large))
 
-            LazyColumn(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(spacing.extraSmall))
-                    .fillMaxWidth()
-                    .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
-                    .background(MaterialTheme.colorScheme.surfaceContainer)
-            ) {
-                itemsIndexed(uiState.storages) { index, storage ->
-                    StorageItem(
-                        index,
-                        if(storage.isExternal) "External" else "Internal",
-                        storage.availableString + " free",
-                        storage.path == uiState.currentPath,
-                        { onStorageSelected(storage.path) },
-                        foregroundColor = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.testTag("storageButton-$index"),
-                    )
-                }
-            }
+            StorageDropDownMenu(
+                storages = uiState.storages,
+                onStorageSelected = onStorageSelected,
+                selectedStorageIndex = uiState.selectedStorageIndex,
+                modifier = Modifier.smallPadding()
+            )
 
             Spacer(modifier = Modifier.height(spacing.large))
 
-            OnboardButton(
-                text = stringResource(R.string.ui_continue),
-                onClick = { onNavigate() },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("offlineStorageOnboardingScreenContinueButton"),
-            )
+            if(onNavigate != null) {
+                OnboardButton(
+                    text = stringResource(R.string.ui_continue),
+                    onClick = { onNavigate() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("offlineStorageOnboardingScreenContinueButton"),
+                )
+            }
         }
     }
 }
@@ -163,7 +149,7 @@ fun OfflineStorageOnboardingScreenPreview() {
         30*1024*1024*1024L
     )
     OfflineStorageOnboardingScreen(
-        onNavigate = {},
+        onNavigate = null,
         OfflineStorageOnboardingUiState(
             storages = listOf(internalStorage, externalStorage1, externalStorage2),
             currentPath = "/path/to/external2"

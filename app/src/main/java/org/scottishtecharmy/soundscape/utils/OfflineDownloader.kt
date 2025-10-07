@@ -20,18 +20,23 @@ import retrofit2.awaitResponse
 import java.io.File
 import java.io.FileOutputStream
 
-suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
+suspend fun downloadAndParseManifest(applicationContext: Context) : Pair<FeatureCollection?, String> {
 
-    return withContext(Dispatchers.IO) {
-        val manifestClient = ManifestClient(applicationContext)
+    try {
+        return withContext(Dispatchers.IO) {
+            val manifestClient = ManifestClient(applicationContext)
 
-        val service =
-            manifestClient.retrofitInstance?.create(IManifestDAO::class.java)
-        val manifestReq =
-            async {
-                service?.getManifest()
-            }
-        manifestReq.await()?.awaitResponse()?.body()
+            val service =
+                manifestClient.retrofitInstance?.create(IManifestDAO::class.java)
+            val manifestReq =
+                async {
+                    service?.getManifest()
+                }
+            Pair(manifestReq.await()?.awaitResponse()?.body(), manifestClient.redirect)
+        }
+    } catch (e: Exception) {
+        Log.e(TAG, "Error downloading manifest", e)
+        return Pair(null, "")
     }
 }
 fun deleteAllProgressFiles(context: Context) {

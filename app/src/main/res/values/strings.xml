@@ -947,6 +947,42 @@
 <string name="confect_name_pavement" tools:ignore="MissingTranslation">"Sidewalk"</string>
 <!-- Dead end road description - a road that goes nowhere -->
 <string name="confect_name_dead_end" tools:ignore="MissingTranslation">"dead end"</string>
+<!-- Offscreen maps screen title -->
+<string name="offline_maps_title" tools:ignore="MissingTranslation">"Offline maps"</string>
+<!-- Offscreen maps details title -->
+<string name="offline_map_details_title" tools:ignore="MissingTranslation">"Offline map details"</string>
+<!-- Offscreen maps still loading message -->
+<string name="offline_maps_loading" tools:ignore="MissingTranslation">"Loading…"</string>
+<!-- Offscreen maps downloading message -->
+<string name="offline_maps_downloading" tools:ignore="MissingTranslation">"Downloading"</string>
+<!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
+<string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
+<!-- Offscreen maps storage title -->
+<string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %s which has %s free"</string>
+<!-- Offscreen maps title of list of downloaded maps-->
+<string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded:"</string>
+<!-- Offscreen maps title of list of nearby maps-->
+<string name="offline_maps_nearby" tools:ignore="MissingTranslation">"Nearby offline maps:"</string>
+<!-- Offscreen maps text shown whilst downloading offline map manifest -->
+<string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">"Loading list of offline maps"</string>
+<!-- Offscreen map details screen delete downloaded map -->
+<string name="offline_map_details_delete" tools:ignore="MissingTranslation">"Delete offline map"</string>
+<!-- Offscreen map details screen download map from cloud -->
+<string name="offline_map_details_download" tools:ignore="MissingTranslation">"Download offline map"</string>
+<!-- Offscreen map details screen size of map on phone, %s is size e.g. 1.3GB -->
+<string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">"Size on phone: %s"</string>
+<!-- Offscreen map details screen size of map on server, %s is size e.g. 1.3GB -->
+<string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">"Download size: %s"</string>
+<!-- Offscreen map details extract name -->
+<string name="offline_map_details_name" tools:ignore="MissingTranslation">"Map name: %s"</string>
+<!-- Offscreen map details prefix to list of cities within extract -->
+<string name="offline_map_details_city_list" tools:ignore="MissingTranslation">"Map includes these places: %s"</string>
+<!-- Offscreen map details prefix to list of cities within extract in alternate language -->
+<string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">"Those places also known as: %s"</string>
+<!-- Offscreen map storage settings title -->
+<string name="offline_map_storage_title" tools:ignore="MissingTranslation">"Offline map storage"</string>
+<!-- Offscreen map storage description of use -->
+<string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->
