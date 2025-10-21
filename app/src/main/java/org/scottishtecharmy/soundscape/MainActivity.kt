@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.os.StrictMode
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -269,7 +268,7 @@ class MainActivity : AppCompatActivity() {
         val path = sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)!!
 
         // Unpack map assets
-        processMaps(applicationContext, File(path, Environment.DIRECTORY_DOWNLOADS).path)
+        processMaps(applicationContext)
 
         // When opening a JSON file containing a route from Android File we can end up with two
         // instances of the app running. This check ensures that we have only one instance.
