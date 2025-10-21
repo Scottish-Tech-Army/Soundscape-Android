@@ -957,8 +957,8 @@
 <string name="offline_maps_downloading" tools:ignore="MissingTranslation">"Downloading"</string>
 <!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
 <string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
-<!-- Offscreen maps storage title -->
-<string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %s which has %s free"</string>
+<!-- Offscreen maps storage storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
+<string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %1$s which has %2$s free"</string>
 <!-- Offscreen maps title of list of downloaded maps-->
 <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded:"</string>
 <!-- Offscreen maps title of list of nearby maps-->

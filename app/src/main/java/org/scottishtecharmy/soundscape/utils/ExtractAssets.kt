@@ -124,7 +124,7 @@ private fun createDir(dir: File) {
     }
 }
 
-fun processMaps(applicationContext: Context, offlineStorage: String) {
+fun processMaps(applicationContext: Context) {
     // Extract the maplibre style assets
     extractAssets(applicationContext, "osm-liberty-accessible", "osm-liberty-accessible")
 }

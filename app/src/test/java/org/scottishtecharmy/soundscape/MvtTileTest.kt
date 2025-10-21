@@ -81,7 +81,7 @@ class FileGridState(
 
                 2 -> {
                     // Gzip compression
-                    val decompressedTile = decompressGzip(fileTile!!)
+                    val decompressedTile = decompressGzip(fileTile)
                     result = VectorTile.Tile.parseFrom(decompressedTile)
                 }
 
@@ -206,7 +206,7 @@ fun getGridStateForLocation(
     val gridState = FileGridState(zoomLevel, gridSize)
     gridState.start(
         null,
-        if(zoomLevel == MAX_ZOOM_LEVEL) offlineExtracts else offlineExtracts14)
+        offlineExtracts)
     runBlocking {
 
         val enabledCategories = emptySet<String>().toMutableSet()

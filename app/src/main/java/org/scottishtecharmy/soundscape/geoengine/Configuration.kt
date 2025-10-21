@@ -22,7 +22,7 @@ const val GRID_SIZE = 2
  * and the tiles are at
  *    https://server/protomaps/{z}/{x}/{y}.mvt
  */
-const val PROTOMAPS_SERVER_PATH = "protomaps"
+const val PROTOMAPS_SERVER_PATH = "world"
 const val PROTOMAPS_SUFFIX = "mvt"
 
 const val MANIFEST_NAME = "manifest.geojson.gz"
