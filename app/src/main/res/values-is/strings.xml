@@ -371,4 +371,26 @@
     <string name="faq_supported_phones_question">Hvernig síma keyrir Soundscape á?</string>
     <string name="faq_supported_phones_answer">"Soundscape fyrir Android er hægt að nota með símum sem keyra  Android 11 eða nýlegri útgáfur"</string>
     <string name="faq_supported_headsets_question">hverskonar heyrnartól ætti ég að nota með Soundscape?</string>
+    <string name="faq_supported_headsets_answer">Val á herynartólum fer eftir smekk notanda en mælt er með að nota heyrnartól sem útiloka ekki umhverfishljóð. Heyrnartólin þurfa að styðja sterio til að nýta þá virkni sem færir hljóð til í sterósviðinu eftir staðsetttningu</string>
+    <string name="faq_battery_impact_question">Hvaða áhrif hefur Soundscape á rafhlöðu símans?</string>
+    <string name="faq_battery_impact_answer">líftími rafhlöðu fer eftir aldri og tegund síma. Skjárinn tekur orku og því er mæt með að hafa hann læstann. Einnig er hægt að setja Soundscape í dvala ef ekki er verið að nota það</string>
+    <string name="faq_sleep_mode_battery_question">Hvernig nota ég í dvala ham til að spara rafhlöðuna?</string>
+    <string name="faq_sleep_mode_battery_answer">til að setja Soundscape í dvala veldu og virkjaðu í dvala hnappinn á heimaskjánnum. Við það hættir Soundscape að sækja gögn og dregur úr allri virknidreugr</string>
+    <string name="faq_snooze_mode_battery_question">hvernig nýti ég möguleikann á því að láta Soundscape lura til að spara rafhlöðu?</string>
+    <string name="faq_snooze_mode_battery_answer">Til að láta Soundscape lúra veldu setja í dvala af heimaskjánnum og veldu vakna þegar ég held af stað</string>
+    <string name="faq_headset_battery_impact_question">hvernig hefur val á heyrnartólum áhrif á rafhlöðu?</string>
+    <string name="faq_headset_battery_impact_answer">ekki hefur fundist merkjanlegur munur á virkni mismunandi heyrnartóla á endingu rafhlöðu. Sambærilegar niðurstöður sjást hvort sem um er að ræða bluetooth eða snúru</string>
+    <string name="faq_background_battery_impact_question">Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakrunni?</string>
+    <string name="faq_background_battery_impact_answer">"Soundscape byggir á gögnum um staðsettningu  og er notkun rafhlöðu sabærileg við önnur lík forrit. Til að hámarka endingu raflöðu er hægt að minnka birtustig á skjánnum, setja forritið í dvala þegar ekki er verið að nota það og passa upp á hitastig símans sem eyðir meira ef hann er kaldur"</string>
+    <string name="faq_mobile_data_use_question">hvert er ugang gagnanotkunar Soundscape?</string>
+    <string name="faq_mobile_data_use_answer">Sú notkun miðast af því hvernig Soundscape er notað. Reynt er að halda notkun í lágmarki og með því að setja forritið í dvala eða slökkva á því þegar það er ekki í notkun er ekki um umtalsverða notkun að ræða</string>
+    <string name="faq_difference_from_map_apps_question">hver er sérstaða Soundscape fram yfir önnur smbærileg forrit?</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape byggir á tækni sem notar steríosvið heyrnartóla og gefur upplýsingar eftir raunstöðu þeirra. Forritið gerir notanda kleift að ölast upplýsingar um umhverfi sitt sem gera þeim kleift að sannreyna stöðu sína og geta því tekið viðeigandi ákvarðandir í kjölfar þess. Þetta opnar möguleika á könnun og ferðum sem annars myndu reynast erfiðar</string>
+    <string name="faq_use_with_wayfinding_apps_question">hvernig nota ég Soundscape með öðrum forritum sem búa til leiðir?</string>
+    <string name="faq_use_with_wayfinding_apps_answer">"Soundscape er hugsað til að gefa upplýsingar  sem bæta við notkun a forritum sem gefa skref fyrir skref leiðsögn. Heppilegt er að hefja leiðsögn og setja svo hljoðvita á sama punkt í gegnum Soundscape Þannig gefur forritið upplýsingar umpukta, merki og gatnmót semstyðja við leiðbeiningar frá öðrum forritum"</string>
+    <string name="faq_controlling_what_you_hear_question">hvernig stýri ég upplýsingagjöf frá Soundscape?</string>
+    <string name="faq_controlling_what_you_hear_answer">"hægt er að stýra upplýsingagjöf með ýmsum hætti. Með því að tappa tvisvar á skjáinn með teimur fingrum hættir öll upplýsingagjöf. Hún hefst svo aftur þegar komið er að næstu gatnamótum eða punkti  en virkja þarf hljóðvitann aftur frá heimaskjá.  Hægt er að setja forritið i dvala, slökkva á tilkynningum undir liðnum stillingar og virkja og afvirkja hljóðvita af heimaskjá"</string>
+    <string name="faq_holding_phone_flat_question">Þarf ég að halda á símanum?</string>
+    <string name="faq_holding_phone_flat_answer">Þegar þú gengur getur þú sett símann í vasann. Soundscape reiknar út stefnu útfrá gögnum semforritið safnar. Þegar þú stoppar lækkar hljóðstyrkur í hljóðvita en þá má beina símanum til að átta sig á staðsettningu hljóðvita</string>
+    <string name="faq_what_is_osm_question">hvað er open streetmap og hversvega er það notað af Soundscape?</string>
 </resources>
