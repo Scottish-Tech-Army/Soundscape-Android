@@ -121,10 +121,10 @@ If an un-named Way starts or ends nearer an Entrance then we can add that contex
 * **Does it end near an Landmark or Place?**
 If an un-named Way starts or ends nearer a Landmark then we can also add that context e.g. *"Service road to St. Giles Cathedral"*.
 
-* **Is it a dead-end**
+* **Is it a dead-end?**
 The app marks as a dead end any un-named Ways which don't lead anywhere.
 
-* **Does it Way pass any steps?**
+* **Does it pass any steps?**
 If the un-named Way passes over a bridge, through a tunnel or up/down steps then this is noted and added to the context. This is separate to the destination tagging so context such as *"Path over bridge to Lennox Park"* is possible.
 
 These contexts are added in order and so it's possible to have *"Path to Park Lane via steps"* in one direction and *"Path to Lennox Park via steps* in the other direction. The named street gets priority leaving the park, but the park is used when entering it.
@@ -140,7 +140,7 @@ There are various additional contexts we hope to add in the future including:
 Now that we have the map data in a format that we can easily use, generating callouts really is fairly straightforward.
 
 ### Callouts when walking
-When walking the audio callouts that can happen are (in order of priority):
+When walking, the audio callouts that can happen are (in order of priority):
 
 1. Describe how far away the current destination is
 1. Describe an upcoming intersection
