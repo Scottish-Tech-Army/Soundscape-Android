@@ -27,8 +27,8 @@ Things we're interested in on the initial screens:
 
 * Is there any text on the screens that you are unable to read or where words are split across 
   lines?
-* Do you just hear silence when you click the **Listen** button on the **Hear Your Surroundings** page?
-* Do you only hear silence when selecting the different beacon sounds on the **Choose an Audio Beacon** page?
+* Do you just hear silence when you click the **Listen** button on the **Hear Your Surroundings** screen?
+* Do you only hear silence when selecting the different beacon sounds on the **Choose an Audio Beacon** screen?
 
 Please report any of these issues via the Help Desk.
 
@@ -59,8 +59,8 @@ This uses a bit more of the UI, but once set up it should be fairly straightforw
 #### Create some Markers
 Markers are points on the map which can be added together to make a route. Markers can be saved from
 the Location Details screen, but there are many ways to get to that.
-1. A long tap on the map on the home screen, or the map on the _Current Location_ screen will bring up a Location Details page for that location.
-1. The _Current Location_ button on the main screen brings up the Location Details for the  current location. The map there is scrollable and you can zoom in and out. It's possible to save markers, move to a new point, long tap and save another marker.
+1. A long tap on the map on the home screen, or the map on the _Current Location_ screen will bring up a Location Details screen for that location.
+1. The _Current Location_ button on the main screen brings up the Location Details for the current location. The map there is scrollable and you can zoom in and out. It's possible to save markers, move to a new point, long tap and save another marker.
 1. The _Places Nearby_ button on the home screen shows nearby points that can be clicked on for Location Details.
 1. The search bar will bring up results which can be clicked on for Location Details.
 
