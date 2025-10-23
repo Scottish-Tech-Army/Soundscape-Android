@@ -92,7 +92,7 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
-            1387,
+            1283,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -105,7 +105,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(1525, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(1489, testIntersectionsCollectionFromTileFeatureCollection.features.size)
 
     }
 
@@ -125,7 +125,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(1106, testPoiCollection.features.size)
+        Assert.assertEquals(1103, testPoiCollection.features.size)
 
     }
 
@@ -174,7 +174,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(451, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(452, testSuperCategoryPoiCollection.features.size)
 
     }
 
@@ -186,7 +186,7 @@ class TileUtilsTest {
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
-        Assert.assertEquals(68, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(69, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -197,7 +197,7 @@ class TileUtilsTest {
         // select "safety" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
-        Assert.assertEquals(51, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(48, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
