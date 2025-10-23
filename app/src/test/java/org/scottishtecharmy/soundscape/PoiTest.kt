@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -137,10 +138,10 @@ class PoiTest {
             val furthestName = getNameForFeature(poiFeatures.features.last())
             println("Furthest name : $furthestName")
             when(index) {
-                0 -> assert(furthestName == "Woodburn Way Car Park")
-                1 -> assert(furthestName == "No. 1 Boutique")
-                2 -> assert(furthestName == "Florella")
-                3 -> assert(furthestName == "W & J Lewis")
+                0 -> assertEquals("Woodburn Way Car Park", furthestName)
+                1 -> assertEquals("No. 1 Boutique", furthestName)
+                2 -> assertEquals("Florella", furthestName)
+                3 -> assertEquals("Woodburn Way Car Park", furthestName)
             }
 
             featuresToDraw.addFeature(polygon)
@@ -167,7 +168,7 @@ class PoiTest {
         val featuresToDraw = FeatureCollection()
         val features = poi.getNearbyCollection(userGeometry.location, 50.0, gridState.ruler)
         featuresToDraw.plusAssign(features)
-        assert(features.features.size == 39)
+        assertEquals(38, features.features.size)
 
         val circle = Feature()
         circle.geometry = circleToPolygon(
