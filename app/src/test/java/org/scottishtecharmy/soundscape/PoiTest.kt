@@ -90,10 +90,10 @@ class PoiTest {
             val name = getNameForFeature(nearestFeature!!)
             println("Nearest feature: $name")
             when(index) {
-                0 -> assert(name == "bridge")
-                1 -> assert(name == "Creature Comforts")
-                2 -> assert(name == "The Scottish Gantry")
-                3 -> assert(name == "Garvie & Co")
+                0 -> assertEquals("bridge", name)
+                1 -> assertEquals("Creature Comforts", name)
+                2 -> assertEquals("The Scottish Gantry", name)
+                3 -> assertEquals("Garvie & Co", name)
             }
 
             featuresToDraw.addFeature(polygon)
@@ -129,10 +129,10 @@ class PoiTest {
             val nearestName = getNameForFeature(poiFeatures.features[0])
             println("Nearest name : $nearestName")
             when(index) {
-                0 -> assert(nearestName == "bridge")
-                1 -> assert(nearestName == "Creature Comforts")
-                2 -> assert(nearestName == "The Scottish Gantry")
-                3 -> assert(nearestName == "Garvie & Co")
+                0 -> assertEquals("bridge", nearestName)
+                1 -> assertEquals("Creature Comforts", nearestName)
+                2 -> assertEquals("The Scottish Gantry", nearestName)
+                3 -> assertEquals("Garvie & Co", nearestName)
             }
 
             val furthestName = getNameForFeature(poiFeatures.features.last())

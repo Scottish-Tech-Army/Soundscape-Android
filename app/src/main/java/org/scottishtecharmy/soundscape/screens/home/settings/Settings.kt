@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,9 +32,12 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
+import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.MockStoragePreviewData
+import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.StorageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
@@ -51,6 +55,9 @@ fun SettingsPreview() {
         MockLanguagePreviewData.languages,
         {},
         4,
+        MockStoragePreviewData.storages,
+        {},
+        0
     )
 }
 
@@ -82,7 +89,7 @@ fun ListPreferenceItem(description: String,
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surfaceContainer)
             .smallPadding()
-            .clickable {
+            .clickable(role = Role.RadioButton) {
                 onClick()
             }
             .talkbackHint(
@@ -130,6 +137,9 @@ fun Settings(
     supportedLanguages: List<Language>,
     onLanguageSelected: (Language) -> Unit,
     selectedLanguageIndex: Int,
+    storages: List<StorageUtils.StorageSpace>,
+    onStorageSelected: (String) -> Unit,
+    selectedStorageIndex: Int,
 )
 {
     val beaconValues = uiState.beaconValues
@@ -332,6 +342,21 @@ fun Settings(
 //                    )
 //                },
 //            )
+
+            item {
+                Text(
+                    text = stringResource(R.string.offline_map_storage_title),
+                    color = textColor,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.semantics { heading() },
+                )
+                StorageDropDownMenu(
+                    storages = storages,
+                    onStorageSelected = onStorageSelected,
+                    selectedStorageIndex = selectedStorageIndex,
+                    modifier = Modifier.smallPadding()
+                )
+            }
 
             item {
                 Text(

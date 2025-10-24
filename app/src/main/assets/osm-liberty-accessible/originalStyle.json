@@ -6,12 +6,6 @@
     "maputnik:renderer": "mbgljs",
     "openmaptiles:version": "3.x"
   },
-  "sources": {
-    "openmaptiles": {
-      "type": "vector",
-      "url":"PROTOMAPS_SERVER_URL"
-    }
-  },
   "sprite": "file:///data/user/0/org.scottishtecharmy.soundscape/files/osm-liberty-accessible/osm-liberty",
   "glyphs": "file:///data/user/0/org.scottishtecharmy.soundscape/files/osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
   "layers": [

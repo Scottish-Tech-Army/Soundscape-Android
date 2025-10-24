@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
@@ -80,7 +81,7 @@ fun LocationItem(
             .background(MaterialTheme.colorScheme.surface)
             .smallPadding()
             .fillMaxWidth()
-            .clickable{
+            .clickable(role = Role.Button) {
                 if (decoration.details.enabled) {
                     decoration.details.functionLocation(item)
                 } else if (decoration.editRoute.enabled) {
@@ -204,7 +205,7 @@ fun FolderItem(
             .background(MaterialTheme.colorScheme.surface)
             .smallPadding()
             .fillMaxWidth()
-            .clickable{
+            .clickable(role = Role.Button) {
                 onClick()
             },
         verticalAlignment = Alignment.CenterVertically

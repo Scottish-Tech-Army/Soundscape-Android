@@ -122,12 +122,16 @@
 <string name="route_end_completed_accessibility">"Route Completed! %s"</string>
 <!-- Title text of the button used to move to the previous waypoint -->
 <string name="route_detail_action_previous">"Previous Waypoint"</string>
-<!-- Hint text of the button used to move to the previous waypoint -->
-<string name="route_detail_action_previous_hint">"Double tap to set the beacon on the previous waypoint"</string>
+<!-- Hint text of the button used to move to the previous waypoint, always preceded by "Double tap to " -->
+<string name="route_detail_action_previous_hint">"move the beacon to the previous waypoint"</string>
+<!-- Hint text of the button used to move to the previous waypoint when it's been disabled -->
+<string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">"Inactive as the route is already at the start"</string>
 <!-- Title text of the button used to move to the next waypoint -->
 <string name="route_detail_action_next">"Next Waypoint"</string>
-<!-- Hint text of the button used to move to the next waypoint -->
-<string name="route_detail_action_next_hint">"Double tap to set the beacon on the next waypoint"</string>
+<!-- Hint text of the button used to move to the next waypoint, always preceded by "Double tap to " -->
+<string name="route_detail_action_next_hint">"move the beacon to the next waypoint"</string>
+<!-- Hint text of the button used to move to the next waypoint when it's been disabled -->
+<string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">"Inactive as the route is already at the end"</string>
 <!-- Label for the description field of a route -->
 <string name="route_detail_edit_description">"Description"</string>
 <!-- Label for the button used to add waypoints to a route -->
@@ -185,7 +189,7 @@
 <!-- Notification when a marker is created -->
 <string name="markers_marker_created">"Marker created"</string>
 <!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
-<string name="markers_annotation">"Annotation"</string>
+<string name="markers_annotation">"Additional notes"</string>
 <!-- Description text for the search field, "destination" should be translated the same as it is in "first_launch.prompt.message" -->
 <string name="search_choose_destination">"Choose destination"</string>
 <!-- Search using current location -->
@@ -947,6 +951,58 @@
 <string name="confect_name_pavement" tools:ignore="MissingTranslation">"Sidewalk"</string>
 <!-- Dead end road description - a road that goes nowhere -->
 <string name="confect_name_dead_end" tools:ignore="MissingTranslation">"dead end"</string>
+<!-- Offscreen maps screen title -->
+<string name="offline_maps_title" tools:ignore="MissingTranslation">"Offline maps"</string>
+<!-- Offscreen maps details title -->
+<string name="offline_map_details_title" tools:ignore="MissingTranslation">"Offline map details"</string>
+<!-- Offscreen maps still loading message -->
+<string name="offline_maps_loading" tools:ignore="MissingTranslation">"Loading…"</string>
+<!-- Offscreen maps downloading message -->
+<string name="offline_maps_downloading" tools:ignore="MissingTranslation">"Downloading"</string>
+<!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
+<string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
+<!-- Offscreen maps storage storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
+<string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %1$s which has %2$s free"</string>
+<!-- Offscreen maps title of list of downloaded maps-->
+<string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded:"</string>
+<!-- Offscreen maps title of list of nearby maps-->
+<string name="offline_maps_nearby" tools:ignore="MissingTranslation">"Nearby offline maps:"</string>
+<!-- Offscreen maps text shown whilst downloading offline map manifest -->
+<string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">"Loading list of offline maps"</string>
+<!-- Offscreen map details screen delete downloaded map -->
+<string name="offline_map_details_delete" tools:ignore="MissingTranslation">"Delete offline map"</string>
+<!-- Offscreen map details screen download map from cloud -->
+<string name="offline_map_details_download" tools:ignore="MissingTranslation">"Download offline map"</string>
+<!-- Offscreen map details screen size of map on phone, %s is size e.g. 1.3GB -->
+<string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">"Size on phone: %s"</string>
+<!-- Offscreen map details screen size of map on server, %s is size e.g. 1.3GB -->
+<string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">"Download size: %s"</string>
+<!-- Offscreen map details extract name -->
+<string name="offline_map_details_name" tools:ignore="MissingTranslation">"Map name: %s"</string>
+<!-- Offscreen map details prefix to list of cities within extract -->
+<string name="offline_map_details_city_list" tools:ignore="MissingTranslation">"Map includes these places: %s"</string>
+<!-- Offscreen map details prefix to list of cities within extract in alternate language -->
+<string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">"Those places also known as: %s"</string>
+<!-- Offscreen map storage settings title -->
+<string name="offline_map_storage_title" tools:ignore="MissingTranslation">"Offline map storage"</string>
+<!-- Offscreen map storage description of use -->
+<string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
+<!-- Content description for button which clears text edit boxes -->
+<string name="text_field_clear_text" tools:ignore="MissingTranslation">Clear Text</string>
+<!-- Content description for marker name - always preceded by "Double tap to " -->
+<string name="marker_name_description_hint" tools:ignore="MissingTranslation">edit the marker name</string>
+<!-- Content description for annotation edit text field  - always preceded by "Double tap to " -->
+<string name="annotation_description_hint" tools:ignore="MissingTranslation">add an optional note to help you recognize this marker later</string>
+<!-- Content description for route name - always preceded by "Double tap to " -->
+<string name="route_name_description_hint" tools:ignore="MissingTranslation">edit the route name</string>
+<!-- Content description for route description edit text field  - always preceded by "Double tap to " -->
+<string name="route_description_description_hint" tools:ignore="MissingTranslation">add an optional description for this route</string>
+<!-- Content description for floating action button which adds an item -->
+<string name="fab_add_item" tools:ignore="MissingTranslation">Add Item</string>
+<!-- Content description for floating action button which adds a route -->
+<string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
+<!-- Describes current waypoint in route. -->
+<string name="route_waypoint_progress" tools:ignore="MissingTranslation">"Route %1$s at waypoint %2$s of %3$s"</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->

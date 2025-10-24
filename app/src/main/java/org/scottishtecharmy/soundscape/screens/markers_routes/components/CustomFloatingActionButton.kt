@@ -61,7 +61,7 @@ fun LargeCustomFloatingActionButtonPreview() {
         CustomFloatingActionButton(
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-            contentDescription = "Add Item",
+            contentDescription = stringResource(R.string.fab_add_item),
             iconSize = spacing.targetSize * 2 // Example of customizing the icon size
         )
     }
@@ -81,7 +81,7 @@ fun SmallCustomFloatingActionButtonPreview() {
         CustomFloatingActionButton(
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-            contentDescription = "Add Item",
+            contentDescription = stringResource(R.string.fab_add_item),
             iconSize = spacing.targetSize // Example of customizing the icon size
         )
 
@@ -101,7 +101,7 @@ fun SmallCustomFloatingActionButtonWithTextPreview() {
         CustomFloatingActionButton(
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-            contentDescription = "Add Route",
+            contentDescription = stringResource(R.string.fab_add_route),
             iconSize = spacing.targetSize // Example of customizing the icon size
         )
         CustomTextButton(

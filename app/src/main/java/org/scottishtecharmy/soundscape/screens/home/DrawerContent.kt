@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Markunread
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
@@ -145,6 +146,15 @@ fun DrawerContent(
 //                    label = stringResource(R.string.share_title),
 //                    icon = Icons.Rounded.IosShare,
 //                )
+
+                DrawerMenuItem(
+                    onClick = {
+                        onNavigate(HomeRoutes.OfflineMaps.route + "/-1")
+                    },
+                    label = "Offline maps",
+                    Icons.Rounded.Download,
+                    modifier = Modifier.testTag("menuOfflineMaps")
+                )
 
                 DrawerMenuItem(
                     onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },

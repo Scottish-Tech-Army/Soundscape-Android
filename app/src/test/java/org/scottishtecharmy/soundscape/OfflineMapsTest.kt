@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.MANIFEST_NAME
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -9,6 +10,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileInputStream
+import java.util.zip.GZIPInputStream
 import kotlin.String
 
 class OfflineMapsTest {
@@ -51,7 +53,7 @@ class OfflineMapsTest {
     @Test
     fun testManifestInFeatureTree() {
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
-        val metadataFile = FileInputStream(path + "manifest.geojson").bufferedReader().use { it.readText() }
+        val metadataFile = GZIPInputStream(FileInputStream(path + MANIFEST_NAME)).bufferedReader().use { it.readText() }
 
         // Load in the metadata GeoJSON file
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -78,13 +80,15 @@ class OfflineMapsTest {
                            continent: String,
                            countryFeature: Feature? = null) {
 
-        val countriesWithinContinent = continents[continent]!!
-        if(!countriesWithinContinent.contains(country)) {
-            countriesWithinContinent[country] = mutableMapOf()
-        }
-        if(countryFeature != null) {
-            val regionMap = countriesWithinContinent[country] as MutableMap<String, Feature>
-            regionMap["country"] = countryFeature
+        val countriesWithinContinent = continents[continent]
+        if(countriesWithinContinent != null) {
+            if (!countriesWithinContinent.contains(country)) {
+                countriesWithinContinent[country] = mutableMapOf()
+            }
+            if (countryFeature != null) {
+                val regionMap = countriesWithinContinent[country] as MutableMap<String, Feature>
+                regionMap["country"] = countryFeature
+            }
         }
     }
     private fun addCityCluster(continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>>,
@@ -93,9 +97,11 @@ class OfflineMapsTest {
                                cityClusterFeature: Feature) {
 
         addCountry(continents, country, continent)
-        val regionMap = (continents[continent]!!)[country]  as MutableMap<String, Feature>
-        val cityClusterName = cityClusterFeature.properties?.get("anchor_city")
-        regionMap[cityClusterName as String] = cityClusterFeature
+        val regionMap = (continents[continent]!!)[country]
+        if(regionMap != null) {
+            val cityClusterName = cityClusterFeature.properties?.get("anchor_city")
+            regionMap[cityClusterName as String] = cityClusterFeature
+        }
     }
 
     private fun addProvince(continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>>,
@@ -104,17 +110,19 @@ class OfflineMapsTest {
                             provinceFeature: Feature) {
 
         addCountry(continents, country, continent)
-        val regionMap = (continents[continent]!!)[country]  as MutableMap<String, Feature>
-        val provinceName = provinceFeature.properties?.get("name")
-        if(provinceName != null)
-            regionMap[provinceName as String] = provinceFeature
+        val regionMap = (continents[continent]!!)[country]
+        if(regionMap != null) {
+            val provinceName = provinceFeature.properties?.get("name")
+            if (provinceName != null)
+                regionMap[provinceName as String] = provinceFeature
+        }
     }
 
     @Test
     fun testHierarchyGenerationFromManifest() {
         val path = "src/test/res/org/scottishtecharmy/soundscape/"
         val metadataFile =
-            FileInputStream(path + "manifest.geojson").bufferedReader().use { it.readText() }
+            GZIPInputStream(FileInputStream(path + MANIFEST_NAME)).bufferedReader().use { it.readText() }
 
         // Load in the metadata GeoJSON file
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -124,7 +132,19 @@ class OfflineMapsTest {
 
         val continents: MutableMap<String, MutableMap<String, MutableMap<String, Feature>>> = mutableMapOf()
         for (feature in collection) {
-            val continent = feature.properties?.get("continent")
+            var continent = feature.properties?.get("continent")
+            val isoA2 = feature.properties?.get("iso_a2")
+            if(continent == null) {
+                continent = when(isoA2) {
+                    "US","CA" -> "North America"
+                    "CN","JP","IN","RU" -> "Asia"
+                    "DE","PL" -> "Europe"
+                    "BR" -> "South America"
+                    "AU" -> "Oceania"
+                    else -> null
+                }
+            }
+
             continent?. let { continent ->
 
                 // Add any continents that we haven't previously seen
@@ -144,7 +164,7 @@ class OfflineMapsTest {
                         )
                     }
                     "city_cluster" -> {
-                        val countryName = feature.properties?.get("anchor_country") as String
+                        val countryName = feature.properties?.get("anchor_iso_a2") as String
                         addCityCluster(
                             continents,
                             countryName,
@@ -153,7 +173,7 @@ class OfflineMapsTest {
                         )
                     }
                     else -> {
-                        val countryName = feature.properties?.get("country_name") as String
+                        val countryName = feature.properties?.get("iso_a2") as String
                         addProvince(
                             continents,
                             countryName,

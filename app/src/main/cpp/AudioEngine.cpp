@@ -175,7 +175,11 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         result = m_pSystem->init(32, FMOD_INIT_NORMAL, nullptr);
         ERROR_CHECK(result);
 
-        result = m_pSystem->set3DSettings(1.0, FMOD_DISTANCE_FACTOR, 1.0f);
+        // The final parameter here is how much attenuation per metre to apply to
+        // sounds. Set to a very low value means that far and near beacons sound
+        // at nearly the same volume. Currently it applies to all positioned audio,
+        // so speech, earcons and beacons.
+        result = m_pSystem->set3DSettings(1.0, 1.0, 0.01f);
         ERROR_CHECK(result);
 
         // Create the channel groups

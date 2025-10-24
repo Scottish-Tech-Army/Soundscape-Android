@@ -54,8 +54,7 @@ class TileUtilsTest {
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.foreign!!["feature_type"])
         }
-        // The tile contains 37 road segments
-        Assert.assertEquals(38, testRoadsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 38 else 135, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -67,7 +66,7 @@ class TileUtilsTest {
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
             Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(4, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 4 else 8, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -77,7 +76,7 @@ class TileUtilsTest {
         for (feature in testCrossingsFeatureCollection) {
             Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(103, testCrossingsFeatureCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 103 else 300, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
@@ -92,7 +91,7 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
-            1283,
+            if(MAX_ZOOM_LEVEL == 15) 1387 else 4719,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -105,8 +104,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(1489, testIntersectionsCollectionFromTileFeatureCollection.features.size)
-
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 1525 else 5524, testIntersectionsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -117,7 +115,7 @@ class TileUtilsTest {
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
             Assert.assertEquals("entrance", feature.foreign!!["feature_type"])
         }
-        Assert.assertEquals(38, testEntrancesCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 38 else 363, testEntrancesCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -125,8 +123,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(1103, testPoiCollection.features.size)
-
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 1106 else 3303, testPoiCollection.features.size)
     }
 
     @Test
@@ -137,7 +134,7 @@ class TileUtilsTest {
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
-        Assert.assertEquals(275, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 275 else 672, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -148,7 +145,7 @@ class TileUtilsTest {
         // select "object" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
-        Assert.assertEquals(83, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 83 else 198, testSuperCategoryPoiCollection.features.size)
 
         for(feature in testSuperCategoryPoiCollection)
             println("${feature.foreign?.get("feature_type")} - ${feature.foreign?.get("feature_value")}")
@@ -162,7 +159,7 @@ class TileUtilsTest {
         // select "information" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("information", testPoiCollection)
-        Assert.assertEquals(4, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 4 else 7, testSuperCategoryPoiCollection.features.size)
 
     }
 
@@ -174,8 +171,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(452, testSuperCategoryPoiCollection.features.size)
-
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 451 else 1270, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -186,7 +182,7 @@ class TileUtilsTest {
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
-        Assert.assertEquals(69, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 68 else 189, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -197,7 +193,7 @@ class TileUtilsTest {
         // select "safety" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
-        Assert.assertEquals(48, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 51 else 258, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -426,7 +422,7 @@ class TileUtilsTest {
             90.0,
             50.0
         )
-        val expectedNearestPoint = LngLatAlt(-2.6492421, 51.4306040)
+        val expectedNearestPoint = LngLatAlt(-2.6504250, 51.4304580)
         val ruler = CheapRuler(userGeometry.location.latitude)
         val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
@@ -467,7 +463,7 @@ class TileUtilsTest {
             userGeometry.location,
             fovIntersectionsFeatureCollection
         )
-        Assert.assertEquals(5.97, sortedByDistanceToTest.features[0].foreign?.get("distance_to") as Double, 0.1)
+        Assert.assertEquals(6.24, sortedByDistanceToTest.features[0].foreign?.get("distance_to") as Double, 0.1)
         Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].foreign?.get("distance_to") as Double, 0.1)
 
     }
@@ -690,7 +686,7 @@ class TileUtilsTest {
         val nearestIntersectionPoint = nearestIntersection!!.geometry as Point
         val distanceToNearestIntersection =
             userGeometry.ruler.distance(userGeometry.location, nearestIntersectionPoint.coordinates)
-        Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
+        Assert.assertEquals(6.24, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
         val nearestIntersectionRoadNames = getIntersectionRoadNames(

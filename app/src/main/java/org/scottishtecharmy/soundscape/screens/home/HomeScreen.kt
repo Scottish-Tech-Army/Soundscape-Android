@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
+import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -163,7 +164,12 @@ fun HomeScreen(
                     languageViewModel.updateLanguage(selectedLanguage)
                     settingsViewModel.updateLanguage(localActivity)
                  },
-                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex
+                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex,
+                storages = uiState.value.storages,
+                onStorageSelected = { path ->
+                    settingsViewModel.selectStorage(path)
+                },
+                selectedStorageIndex = uiState.value.selectedStorageIndex,
             )
         }
 
@@ -299,6 +305,18 @@ fun HomeScreen(
         composable(HomeRoutes.PlacesNearby.route) {
             PlacesNearbyScreenVM(
                 homeNavController = navController,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(HomeRoutes.OfflineMaps.route + "/{downloadId}") { backStackEntry ->
+            val downloadId = backStackEntry.arguments?.getString("downloadId") ?: "-1"
+
+            OfflineMapsScreenVM(
+                navController = navController,
+                downloadId = downloadId.toLong(),
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }

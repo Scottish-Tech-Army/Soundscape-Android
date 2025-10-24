@@ -9,6 +9,7 @@ sealed class OnboardingScreens(val route: String)
     data object Hearing : OnboardingScreens("hearing")
     data object Navigating : OnboardingScreens("navigating")
     data object AudioBeacons : OnboardingScreens("audiobeacons")
+    data object OfflineStorage : OnboardingScreens("offlinestorage")
     data object Terms : OnboardingScreens("terms")
     data object Finish : OnboardingScreens("finish")
 }

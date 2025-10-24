@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -13,8 +14,13 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 
 class PlacesNearbySharedLogic(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
@@ -91,6 +97,41 @@ class PlacesNearbySharedLogic(
                     )
                 }
             }
+        }
+    }
+}
+
+fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<LocationDescription> {
+    val location = uiState.userLocation ?: LngLatAlt()
+    val ruler = CheapRuler(location.latitude)
+    return if (uiState.filter == "intersections") {
+        uiState.nearbyIntersections.features.filter { feature ->
+            // Filter out un-named intersections
+            feature.properties?.get("name").toString().isNotEmpty()
+        }.map { feature ->
+            LocationDescription(
+                name = feature.properties?.get("name").toString(),
+                location = getDistanceToFeature(location, feature, ruler).point
+            )
+        }.sortedBy {
+            uiState.userLocation?.let { location ->
+                ruler.distance(location, it.location)
+            } ?: 0.0
+        }
+    } else {
+        uiState.nearbyPlaces.features.filter { feature ->
+            // Filter based on any folder selected
+            featureIsInFilterGroup(feature, uiState.filter) &&
+                    getTextForFeature(context, feature).text.isNotEmpty()
+        }.map { feature ->
+            LocationDescription(
+                name = getTextForFeature(context, feature).text,
+                location = getDistanceToFeature(location, feature, ruler).point
+            )
+        }.sortedBy {
+            uiState.userLocation?.let { location ->
+                ruler.distance(location, it.location)
+            } ?: 0.0
         }
     }
 }

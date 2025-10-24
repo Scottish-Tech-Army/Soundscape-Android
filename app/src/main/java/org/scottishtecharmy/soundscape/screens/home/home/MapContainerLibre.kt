@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Environment
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -51,10 +52,27 @@ import java.io.File
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
+import ch.poole.geo.pmtiles.Reader
+import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
+import org.maplibre.android.style.layers.Property
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.android.style.sources.VectorSource
+import org.maplibre.android.tile.TileOperation
+import org.maplibre.geojson.FeatureCollection
+import org.maplibre.geojson.MultiPolygon
+import org.maplibre.geojson.Polygon
+import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
+import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import kotlin.io.path.Path
+import kotlin.io.path.fileSize
 
 
 const val USER_POSITION_MARKER_NAME = "USER_POSITION_MARKER_NAME"
@@ -169,6 +187,48 @@ fun updateRouteMarkers(
     }
 }
 
+private fun getSourceUri(appContext: Context, location: LngLatAlt?, forceNetworkSource: Boolean) : String {
+
+    var urlReplacement = "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json"
+    if(!forceNetworkSource) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
+        val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
+
+        // Get locally downloaded files
+        val offlineExtractPaths =  findExtractPaths(extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS)
+        if(offlineExtractPaths.isNotEmpty()) {
+            if(location == null){
+                urlReplacement = "pmtiles://file://${offlineExtractPaths[0]}"
+            } else {
+                // We have a location and more than one offline extract, so pick the largest one
+                // that includes our location
+                val tileXY = getXYTile(location, MAX_ZOOM_LEVEL)
+                var largestSize = 0L
+                for(extract in offlineExtractPaths) {
+                    val reader = Reader(File(extract))
+                    val fileTile = reader.getTile(MAX_ZOOM_LEVEL, tileXY.first, tileXY.second)
+                    reader.close()
+                    if(fileTile != null) {
+                        // This extract contains our location, check its size
+                        val fileSize = Path(extract).fileSize()
+                        if(fileSize > largestSize) {
+                            urlReplacement = "pmtiles://file://$extract"
+                            largestSize = fileSize
+                            println("Choosing $extract")
+                        } else {
+                            println("Rejecting $extract due to smaller size")
+                        }
+                    } else {
+                        println("Rejecting $extract due to no tile")
+                    }
+                }
+            }
+        }
+    }
+
+    return urlReplacement
+}
+
 /**
  * A map disable component that uses maplibre.
  *
@@ -191,7 +251,8 @@ fun MapContainerLibre(
     modifier: Modifier = Modifier,
     editBeaconLocation: Boolean = false,
     onMapLongClick: OnMapLongClickListener,
-    showMap: Boolean
+    showMap: Boolean,
+    overlayGeoJson: String = ""
 ) {
     if(showMap) {
         val context = LocalContext.current
@@ -290,10 +351,23 @@ fun MapContainerLibre(
                 // init map first time it is displayed
                 map.getMapAsync { mapLibre ->
                     val styleName =
-                        if (accessibleMapEnabled) "processedStyle.json" else "processedOriginalStyle.json"
+                        if (accessibleMapEnabled) "style.json" else "originalStyle.json"
                     val styleUrl =
                         Uri.fromFile(File("$filesDir/osm-liberty-accessible/$styleName")).toString()
                     mapLibre.setStyle(styleUrl) { style ->
+
+                        // Dynamically add tile source to our style. We force use of the network
+                        // tile server when we're displaying overlays for offline extracts to ensure
+                        // that the map is available for the extract region.
+                        val tileSource = getSourceUri(context, mapCenter, overlayGeoJson.isNotEmpty())
+
+                        println("tileSource: $tileSource")
+
+                        val vectorSource = VectorSource("openmaptiles", tileSource)
+                        if(tileSource.startsWith("pmtiles")) {
+                            vectorSource.isVolatile = true
+                        }
+                        style.addSource(vectorSource)
 
                         // Add the icons we might need to the style
                         //  - user location
@@ -451,6 +525,25 @@ fun MapContainerLibre(
                         sm.update(annotationList)
                         symbolManager.value = sm
 
+                        if(overlayGeoJson.isNotEmpty()) {
+                            // Create a GeoJson Source from our feature GeoJSON which
+                            // was generated from the GeoEngine tile grid.
+                            val tileGeoJson = FeatureCollection.fromJson(overlayGeoJson)
+                            val geojsonSource = GeoJsonSource("current-grid", tileGeoJson)
+                            // Add our new source
+                            style.addSource(geojsonSource)
+                            // And our new layer
+                            val layer = LineLayer("current-grid", "current-grid")
+                                .withProperties(
+                                    PropertyFactory.lineCap(Property.LINE_CAP_SQUARE),
+                                    PropertyFactory.lineJoin(Property.LINE_JOIN_MITER),
+                                    PropertyFactory.lineOpacity(0.7f),
+                                    PropertyFactory.lineWidth(4f),
+                                    PropertyFactory.lineColor("#ff000")
+                                )
+                            style.addLayer(layer)
+                        }
+
                         mapLibre.uiSettings.setAttributionMargins(15, 0, 0, 15)
                         mapLibre.uiSettings.isZoomGesturesEnabled = true
                         // The map rotation is set by the compass heading, so we disable it from the UI
@@ -486,11 +579,63 @@ fun MapContainerLibre(
                         }
                     }
 
-                    mapLibre.cameraPosition = CameraPosition.Builder()
-                        .target(mapCenter.toLatLng())
-                        .zoom(15.0) // we set the zoom only at init
-                        .bearing(0.0)
-                        .build()
+                    var overlayBounds: LatLngBounds? = null
+                    if(overlayGeoJson.isNotEmpty()) {
+                        val tileGeoJson = FeatureCollection.fromJson(overlayGeoJson)
+
+                        val boundsBuilder = LatLngBounds.Builder()
+                        var pointsFound = 0
+
+                        tileGeoJson.features()?.forEach { feature ->
+                            when (val geometry = feature.geometry()) {
+                                is Polygon -> {
+                                    geometry.coordinates().forEach { ring ->
+                                        ring.forEach { point ->
+                                            boundsBuilder.include(
+                                                LatLng(
+                                                    point.coordinates()[1],
+                                                    point.coordinates()[0]
+                                                )
+                                            )
+                                            pointsFound++
+                                        }
+                                    }
+                                }
+
+                                is MultiPolygon -> {
+                                    geometry.coordinates().forEach { polygon ->
+                                        polygon.forEach { ring ->
+                                            ring.forEach { point ->
+                                                boundsBuilder.include(
+                                                    LatLng(
+                                                        point.coordinates()[1],
+                                                        point.coordinates()[0]
+                                                    )
+                                                )
+                                                pointsFound++
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (pointsFound > 0) {
+                            overlayBounds = boundsBuilder.build()
+                        }
+                    }
+                    if(overlayBounds != null) {
+                        mapLibre.cameraPosition = mapLibre.getCameraForLatLngBounds(
+                            overlayBounds,
+                            intArrayOf( 50,50,50,50)
+                        )!!
+                    } else {
+                        mapLibre.cameraPosition = CameraPosition.Builder()
+                            .target(mapCenter.toLatLng())
+                            .zoom(15.0) // we set the zoom only at init
+                            .bearing(0.0)
+                            .build()
+                    }
                 }
             }
 

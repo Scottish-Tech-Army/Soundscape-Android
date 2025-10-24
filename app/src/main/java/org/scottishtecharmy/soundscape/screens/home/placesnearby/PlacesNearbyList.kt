@@ -26,12 +26,6 @@ import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
-import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
-import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -58,38 +52,7 @@ fun PlacesNearbyList(
     )
     val context = LocalContext.current
     val locations = remember(uiState) {
-        val location = uiState.userLocation ?: LngLatAlt()
-        val ruler = CheapRuler(location.latitude)
-        if(uiState.filter == "intersections") {
-            uiState.nearbyIntersections.features.filter { feature ->
-                // Filter out un-named intersections
-                feature.properties?.get("name").toString().isNotEmpty()
-            }.map { feature ->
-                LocationDescription(
-                    name = feature.properties?.get("name").toString(),
-                    location = getDistanceToFeature(location, feature, ruler).point
-                )
-            }.sortedBy {
-                uiState.userLocation?.let { location ->
-                    ruler.distance(location, it.location)
-                } ?: 0.0
-            }
-        } else {
-            uiState.nearbyPlaces.features.filter { feature ->
-                // Filter based on any folder selected
-                featureIsInFilterGroup(feature, uiState.filter) &&
-                getTextForFeature(context, feature).text.isNotEmpty()
-            }.map { feature ->
-                LocationDescription(
-                    name = getTextForFeature(context, feature).text,
-                    location = getDistanceToFeature(location, feature, ruler).point
-                )
-            }.sortedBy {
-                uiState.userLocation?.let { location ->
-                    ruler.distance(location, it.location)
-                } ?: 0.0
-            }
-        }
+        filterLocations(uiState, context)
     }
 
     LazyColumn(

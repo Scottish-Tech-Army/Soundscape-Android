@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -330,27 +332,18 @@ fun AddAndEditRouteScreen(
                             .padding(padding)
                             .extraSmallPadding()
                     ) {
-                        Text(
-                            modifier = Modifier.padding(top = spacing.small, bottom = spacing.extraSmall),
-                            text = stringResource(R.string.markers_sort_button_sort_by_name),
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
                         CustomTextField(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .extraSmallPadding(),
+                            fieldName = stringResource(R.string.markers_sort_button_sort_by_name),
+                            fieldHint = stringResource(R.string.route_name_description_hint),
+                            modifier = Modifier.fillMaxWidth(),
                             value = uiState.name,
                             onValueChange = onNameChange
                         )
-                        Text(
-                            modifier = Modifier.padding(top = spacing.medium, bottom = spacing.extraSmall),
-                            text = stringResource(R.string.route_detail_edit_description),
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
+                        Spacer(modifier = Modifier.height(spacing.medium))
                         CustomTextField(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .extraSmallPadding(),
+                            fieldName = stringResource(R.string.route_detail_edit_description),
+                            fieldHint = stringResource(R.string.route_description_description_hint),
+                            modifier = Modifier.fillMaxWidth(),
                             value = uiState.description,
                             onValueChange = onDescriptionChange
                         )
@@ -359,7 +352,7 @@ fun AddAndEditRouteScreen(
                             thickness = spacing.tiny,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .smallPadding(),
+                                .mediumPadding(),
                         )
                         // Display the list of markers in the route
                         if(routeMembers.isEmpty()) {
