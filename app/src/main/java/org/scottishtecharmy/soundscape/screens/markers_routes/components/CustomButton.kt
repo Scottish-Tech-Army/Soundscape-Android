@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,7 +30,7 @@ fun CustomButton(
     textStyle: TextStyle? = MaterialTheme.typography.labelSmall, // TextStyle for button text with set default
     fontWeight: FontWeight
 ) {
-    var colors = currentAppButtonColors
+    var colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors()
     if((buttonColor != null) && (contentColor != null)) {
         colors = ButtonDefaults.buttonColors(
             containerColor = buttonColor, // Customizable button background color

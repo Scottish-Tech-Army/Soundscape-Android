@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +30,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -167,7 +169,7 @@ fun HomeContent(
                             ) {
                                 Button(
                                     onClick = { routeFunctions.skipPrevious() },
-                                    colors = currentAppButtonColors,
+                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                     modifier = Modifier.testTag("routeSkipPrevious")
                                 )
                                 {
@@ -185,7 +187,7 @@ fun HomeContent(
                                 }
                                 Button(
                                     onClick = { routeFunctions.skipNext() },
-                                    colors = currentAppButtonColors,
+                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                     modifier = Modifier.testTag("routeSkipNext")
                                 )
                                 {
@@ -209,7 +211,7 @@ fun HomeContent(
                                             onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}")
                                         }
                                     },
-                                    colors = currentAppButtonColors,
+                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                     modifier = Modifier.testTag("routeStopOrDetails")
                                 )
                                 {
@@ -229,7 +231,7 @@ fun HomeContent(
                                 }
                                 Button(
                                     onClick = { routeFunctions.mute() },
-                                    colors = currentAppButtonColors,
+                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                     modifier = Modifier.testTag("routeMute")
                                 )
                                 {
@@ -253,7 +255,7 @@ fun HomeContent(
                                 if(showMap) {
                                     Button(
                                         onClick = { fullscreenMap.value = !fullscreenMap.value },
-                                        colors = currentAppButtonColors,
+                                        colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                         modifier = Modifier.testTag("routeFullScreenMap")
                                     )
                                     {
