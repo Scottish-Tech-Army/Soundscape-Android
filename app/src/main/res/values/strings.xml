@@ -123,11 +123,15 @@
 <!-- Title text of the button used to move to the previous waypoint -->
 <string name="route_detail_action_previous">"Previous Waypoint"</string>
 <!-- Hint text of the button used to move to the previous waypoint, always preceded by "Double tap to " -->
-<string name="route_detail_action_previous_hint">"set the beacon on the previous waypoint"</string>
+<string name="route_detail_action_previous_hint">"move the beacon to the previous waypoint"</string>
+<!-- Hint text of the button used to move to the previous waypoint when it's been disabled -->
+<string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">"Inactive as the route is already at the start"</string>
 <!-- Title text of the button used to move to the next waypoint -->
 <string name="route_detail_action_next">"Next Waypoint"</string>
 <!-- Hint text of the button used to move to the next waypoint, always preceded by "Double tap to " -->
-<string name="route_detail_action_next_hint">"set the beacon on the next waypoint"</string>
+<string name="route_detail_action_next_hint">"move the beacon to the next waypoint"</string>
+<!-- Hint text of the button used to move to the next waypoint when it's been disabled -->
+<string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">"Inactive as the route is already at the end"</string>
 <!-- Label for the description field of a route -->
 <string name="route_detail_edit_description">"Description"</string>
 <!-- Label for the button used to add waypoints to a route -->
@@ -997,6 +1001,8 @@
 <string name="fab_add_item" tools:ignore="MissingTranslation">Add Item</string>
 <!-- Content description for floating action button which adds a route -->
 <string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
+<!-- Describes current waypoint in route. -->
+<string name="route_waypoint_progress" tools:ignore="MissingTranslation">"Route %1$s at waypoint %2$s of %3$s"</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->
