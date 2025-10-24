@@ -122,12 +122,12 @@
 <string name="route_end_completed_accessibility">"Route Completed! %s"</string>
 <!-- Title text of the button used to move to the previous waypoint -->
 <string name="route_detail_action_previous">"Previous Waypoint"</string>
-<!-- Hint text of the button used to move to the previous waypoint -->
-<string name="route_detail_action_previous_hint">"Double tap to set the beacon on the previous waypoint"</string>
+<!-- Hint text of the button used to move to the previous waypoint, always preceded by "Double tap to " -->
+<string name="route_detail_action_previous_hint">"set the beacon on the previous waypoint"</string>
 <!-- Title text of the button used to move to the next waypoint -->
 <string name="route_detail_action_next">"Next Waypoint"</string>
-<!-- Hint text of the button used to move to the next waypoint -->
-<string name="route_detail_action_next_hint">"Double tap to set the beacon on the next waypoint"</string>
+<!-- Hint text of the button used to move to the next waypoint, always preceded by "Double tap to " -->
+<string name="route_detail_action_next_hint">"set the beacon on the next waypoint"</string>
 <!-- Label for the description field of a route -->
 <string name="route_detail_edit_description">"Description"</string>
 <!-- Label for the button used to add waypoints to a route -->
@@ -185,7 +185,7 @@
 <!-- Notification when a marker is created -->
 <string name="markers_marker_created">"Marker created"</string>
 <!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
-<string name="markers_annotation">"Annotation"</string>
+<string name="markers_annotation">"Additional notes"</string>
 <!-- Description text for the search field, "destination" should be translated the same as it is in "first_launch.prompt.message" -->
 <string name="search_choose_destination">"Choose destination"</string>
 <!-- Search using current location -->
@@ -983,6 +983,20 @@
 <string name="offline_map_storage_title" tools:ignore="MissingTranslation">"Offline map storage"</string>
 <!-- Offscreen map storage description of use -->
 <string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
+<!-- Content description for button which clears text edit boxes -->
+<string name="text_field_clear_text" tools:ignore="MissingTranslation">Clear Text</string>
+<!-- Content description for marker name - always preceded by "Double tap to " -->
+<string name="marker_name_description_hint" tools:ignore="MissingTranslation">edit the marker name</string>
+<!-- Content description for annotation edit text field  - always preceded by "Double tap to " -->
+<string name="annotation_description_hint" tools:ignore="MissingTranslation">add an optional note to help you recognize this marker later</string>
+<!-- Content description for route name - always preceded by "Double tap to " -->
+<string name="route_name_description_hint" tools:ignore="MissingTranslation">edit the route name</string>
+<!-- Content description for route description edit text field  - always preceded by "Double tap to " -->
+<string name="route_description_description_hint" tools:ignore="MissingTranslation">add an optional description for this route</string>
+<!-- Content description for floating action button which adds an item -->
+<string name="fab_add_item" tools:ignore="MissingTranslation">Add Item</string>
+<!-- Content description for floating action button which adds a route -->
+<string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->
