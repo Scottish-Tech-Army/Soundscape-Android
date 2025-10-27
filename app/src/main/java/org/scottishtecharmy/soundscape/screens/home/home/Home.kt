@@ -46,6 +46,10 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
@@ -117,7 +121,8 @@ fun Home(
                     HomeTopAppBar(
                         drawerState,
                         coroutineScope,
-                        onNavigate
+                        onNavigate,
+                        state.streetPreviewState.enabled != StreetPreviewEnabled.OFF
                     )
                 }
             },
@@ -191,13 +196,14 @@ fun Home(
 fun HomeTopAppBar(
     drawerState: DrawerState,
     coroutineScope: CoroutineScope,
-    onNavigate: (String) -> Unit
+    onNavigate: (String) -> Unit,
+    streetPreviewState: Boolean
 ) {
     val context = LocalContext.current
     TopAppBar(
         title = {
             Text(
-                text = stringResource(R.string.app_name),
+                text = if(streetPreviewState) (stringResource(R.string.preview_title)) else (stringResource(R.string.app_name)),
                 modifier = Modifier.semantics { this.invisibleToUser() },
             )
         },
@@ -320,6 +326,44 @@ fun HomeRoutePreview() {
                 heading = 90f,
                 location = LngLatAlt(10.0, 10.0),
                 currentRouteData = routePlayerState
+            ),
+            onNavigate = {},
+            preferences = null,
+            onMapLongClick = { false },
+            bottomButtonFunctions = BottomButtonFunctions(null),
+            getCurrentLocationDescription = {
+                LocationDescription(
+                    "Current Location",
+                    LngLatAlt()
+                )
+            },
+            rateSoundscape = {},
+            contactSupport = {},
+            searchText = "Lille",
+            onSearchTextChange = {},
+            onToggleSearch = {},
+            routeFunctions = RouteFunctions(null),
+            streetPreviewFunctions = StreetPreviewFunctions(null),
+            goToAppSettings = {},
+            permissionsRequired = false
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun StreetPreview() {
+    SoundscapeTheme {
+        Home(
+            state = HomeState(
+                streetPreviewState = StreetPreviewState(
+                    StreetPreviewEnabled.ON,
+                    listOf(
+                        StreetPreviewChoice(45.0, "Main Street", Way())
+                    )
+                ),
+                heading = 90f,
+                location = LngLatAlt(10.0, 10.0)
             ),
             onNavigate = {},
             preferences = null,
