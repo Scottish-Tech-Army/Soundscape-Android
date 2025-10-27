@@ -91,6 +91,7 @@ fun LocationDetailsScreen(
                 description,
                 successMessage,
                 failureMessage)
+            navController.popBackStack(HomeRoutes.Home.route, false)
         },
         deleteMarker = { id ->
             viewModel.deleteMarker(id)
@@ -98,6 +99,7 @@ fun LocationDetailsScreen(
         },
         enableStreetPreview = { loc ->
             viewModel.enableStreetPreview(loc)
+            navController.popBackStack(HomeRoutes.Home.route, false)
         },
         getLocationDescription = { locationForDescription ->
             viewModel.getLocationDescription(locationForDescription) ?:
@@ -108,6 +110,7 @@ fun LocationDetailsScreen(
         },
         shareLocation = { message, description ->
             viewModel.shareLocation(context, message, description)
+            navController.popBackStack(HomeRoutes.Home.route, false)
         },
         location = location,
         heading = heading,
@@ -153,7 +156,9 @@ fun LocationDetails(
             topBar = {
                 CustomAppBar(
                     title = stringResource(R.string.location_detail_title_default),
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = {
+                        navController.popBackStack()
+                   },
                 )
             },
             content = { padding ->
@@ -205,7 +210,6 @@ fun LocationDetails(
                             locationDescription = description.value,
                             enableStreetPreview = enableStreetPreview,
                             shareLocation = shareLocation,
-                            onNavigateUp = { navController.popBackStack() },
                             dialogState = dialogState
                         )
 
@@ -253,7 +257,6 @@ private fun LocationDescriptionButtonsSection(
     locationDescription: LocationDescription,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, locationDescription : LocationDescription) -> Unit,
-    onNavigateUp: () -> Unit,
     dialogState: MutableState<Boolean>
 ) {
     val parser: Parser = Parser.builder().build()
@@ -319,7 +322,6 @@ private fun LocationDescriptionButtonsSection(
                 .testTag("locationDetailsStreetPreview")
         ) {
             enableStreetPreview(locationDescription.location)
-            onNavigateUp()
         }
 
         IconWithTextButton(
@@ -332,7 +334,6 @@ private fun LocationDescriptionButtonsSection(
                 .testTag("locationDetailsShare")
         ) {
             shareLocation(shareMessage, locationDescription)
-            onNavigateUp()
         }
     }
 }
