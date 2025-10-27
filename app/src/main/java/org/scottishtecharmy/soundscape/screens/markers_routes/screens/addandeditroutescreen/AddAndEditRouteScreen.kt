@@ -194,9 +194,6 @@ fun AddAndEditRouteScreen(
         }
         mutableStateOf(members)
     }
-    val editableRouteList = remember(routeMembers) {
-        routeMembers.toMutableList()
-    }
 
     val lazyListState = rememberLazyListState()
     val location by remember(userLocation) {mutableStateOf(userLocation)}
@@ -245,19 +242,30 @@ fun AddAndEditRouteScreen(
         AddWaypointsDialog(
             uiState = uiState,
             placesNearbyUiState = placesNearbyUiState,
-            routeList = editableRouteList,
             onAddWaypointComplete = {
-                // Update indices
-                for((index, marker) in editableRouteList.withIndex()) {
+                // Create the final list of markers within the route
+                val members = uiState.routeMembers
+                    .filter{ marker ->
+                        !uiState.toggledMembers.contains(marker)
+                    }
+                    .toMutableList()
+                for(marker in uiState.toggledMembers) {
+                    if(!uiState.routeMembers.contains(marker))
+                        members.add(marker)
+                }
+                val nonMutableMembers = members.toList()
+                for((index, marker) in nonMutableMembers.withIndex()) {
                     marker.orderId = index.toLong()
                 }
-                routeMembers = editableRouteList
+                routeMembers = nonMutableMembers
                 addWaypointDialog = false
             },
             onClickFolder = onClickFolder,
             onClickBack = {
-                if(placesNearbyUiState.level == 0)
+                if(placesNearbyUiState.level == 0) {
                     addWaypointDialog = false
+                    uiState.toggledMembers.clear()
+                }
                 else
                     onClickBack()
             },
@@ -312,7 +320,9 @@ fun AddAndEditRouteScreen(
                         Modifier
                             .fillMaxWidth()
                             .smallPadding(),
-                        onClick = { addWaypointDialog = true },
+                        onClick = {
+                            addWaypointDialog = true
+                        },
                         shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.route_detail_edit_waypoints_button),
                         textStyle = MaterialTheme.typography.bodyLarge,
