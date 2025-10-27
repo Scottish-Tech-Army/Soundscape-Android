@@ -18,10 +18,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -38,19 +40,19 @@ import org.scottishtecharmy.soundscape.screens.home.placesnearby.filterLocations
 fun AddWaypointsList(
     uiState: AddAndEditRouteUiState,
     placesNearbyUiState: PlacesNearbyUiState,
-    routeList: MutableList<LocationDescription>,
     onClickFolder: (String, String) -> Unit,
     userLocation: LngLatAlt?,
     onSelectLocation: (LocationDescription) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription
 ) {
+    val update = remember { mutableStateOf(true) }
     // Create our list of locations, with those already in the route first
-    val locations = remember(uiState) {
+    val locations = remember(uiState.routeMembers, uiState.markers) {
         mutableStateListOf<LocationDescription>()
             .apply {
-                addAll(routeList)
+                addAll(uiState.routeMembers)
                 addAll(uiState.markers.filter { marker ->
-                    routeList.none { routeMember ->
+                    uiState.routeMembers.none { routeMember ->
                         routeMember.databaseId == marker.databaseId
                     }
                 }
@@ -58,13 +60,16 @@ fun AddWaypointsList(
         }
     }
     // Set the switches for those in the route to true
-    val routeMember = remember(uiState) {
+    val routeMember = remember(update.value, uiState.routeMembers, uiState.markers) {
         mutableStateMapOf<LocationDescription, Boolean>()
             .apply {
-                uiState.markers.associateWith { false }.also { putAll(it) }
-                routeList.associateWith { true }.also { putAll(it) }
+                uiState.markers.associateWith { uiState.toggledMembers.contains(it) }.also { putAll(it) }
+                uiState.routeMembers.associateWith { !uiState.toggledMembers.contains(it) }.also { putAll(it) }
             }
     }
+    update.value = false
+
+    println("TOGGLED MEMBERS size ${uiState.toggledMembers.size}")
 
     // Add PlacesNearby entries
     val levelZeroFolders = listOf(
@@ -157,6 +162,7 @@ fun AddWaypointsList(
                 }
             }
             items(locations) { locationDescription ->
+                val currentState = routeMember[locationDescription] == true
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(
@@ -164,13 +170,13 @@ fun AddWaypointsList(
                         editRoute = EnabledFunction(
                             enabled = true,
                             functionBoolean = {
-                                routeMember[locationDescription] = it
-                                if (it)
-                                    routeList.add(locationDescription)
+                                if (uiState.toggledMembers.contains(locationDescription))
+                                    uiState.toggledMembers.remove(locationDescription)
                                 else
-                                    routeList.remove(locationDescription)
+                                    uiState.toggledMembers.add(locationDescription)
+                                update.value = true
                             },
-                            value = routeMember[locationDescription] == true,
+                            value = currentState,
                             hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),
                             hintWhenOff = stringResource(R.string.location_detail_add_waypoint_new_hint)
                         )
@@ -180,4 +186,41 @@ fun AddWaypointsList(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AddWaypointsListPreview() {
+    AddWaypointsList(
+        uiState =
+            AddAndEditRouteUiState(
+                routeMembers =
+                    mutableListOf(
+                        LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = 1L),
+                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
+                        LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
+                    ),
+                markers =
+                    mutableListOf(
+                        LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = 1L),
+                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
+                        LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
+                        LocationDescription(name = "Waypoint 4", location = LngLatAlt(), databaseId = 4L),
+                        LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = 5L),
+                        LocationDescription(name = "Waypoint 6", location = LngLatAlt(), databaseId = 6L),
+                        LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = 7L),
+                        LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = 8L),
+                    ),
+                toggledMembers =
+                    mutableListOf(
+                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
+                        LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = 5L),
+                    )
+            ),
+        placesNearbyUiState = PlacesNearbyUiState(),
+        onClickFolder = {_,_ -> },
+        onSelectLocation = {_ -> },
+        userLocation = LngLatAlt(),
+        getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
+    )
 }
