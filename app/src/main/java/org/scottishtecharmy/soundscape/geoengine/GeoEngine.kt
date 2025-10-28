@@ -1002,6 +1002,7 @@ data class TextForFeature(val text: String = "", val generic: Boolean= false)
 fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFeature {
     var generic = false
     val name = feature.properties?.get("name") as String?
+    val featureType = feature.foreign?.get("feature_type")
     val featureValue = feature.foreign?.get("feature_value")
     val isMarker = feature.foreign?.get("category") == "marker"
 
@@ -1046,6 +1047,13 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
             localizedContext.getString(namedTransit.first, name)
         else
             localizedContext.getString(namedTransit.second)
+    }
+
+    if(featureType == "entrance") {
+        text = if (name != null)
+            localizedContext.getString(R.string.osm_tag_entrance_named, name)
+        else
+            localizedContext.getString(R.string.osm_tag_entrance_unnamed)
     }
 
     if (text == null) {

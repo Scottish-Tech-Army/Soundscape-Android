@@ -740,6 +740,10 @@
 <string name="osm_tag_picnic_table">"Picnic Table"</string>
 <!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
 <string name="osm_tag_picnic_area">"Picnic Area"</string>
+<!-- Open Street Map term. An entrance is where there is access to a building. -->
+<string name="osm_tag_entrance_unnamed" tools:ignore="MissingTranslation">"Entrance"</string>
+<!-- Open Street Map term. An entrance is where there is access to a building and in this case it has a name %s e.g. Entrance to Supermarket -->
+<string name="osm_tag_entrance_named" tools:ignore="MissingTranslation">"Entrance to %s"</string>
 <!-- Title in menu of button to share the app with others -->
 <string name="share_title">"Share"</string>
 <!-- Title of the Frequently Asked Questions page -->
