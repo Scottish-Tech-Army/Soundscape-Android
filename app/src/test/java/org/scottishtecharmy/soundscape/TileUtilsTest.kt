@@ -115,7 +115,7 @@ class TileUtilsTest {
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
             Assert.assertEquals("entrance", feature.foreign!!["feature_type"])
         }
-        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 38 else 363, testEntrancesCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 38 else 139, testEntrancesCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -123,7 +123,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 1106 else 3303, testPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 1106 else 3079, testPoiCollection.features.size)
     }
 
     @Test
@@ -171,7 +171,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 451 else 1270, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 451 else 1254, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
