@@ -546,6 +546,7 @@ open class GridState(
         // POIS includes bus stops and crossings
         tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.TRANSIT_STOPS.id])
         tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.CROSSINGS.id])
+        tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.ENTRANCES.id])
 
         return  tileData
     }
