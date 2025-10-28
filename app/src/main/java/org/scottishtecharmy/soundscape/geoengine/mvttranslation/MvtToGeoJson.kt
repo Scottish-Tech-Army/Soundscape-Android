@@ -427,13 +427,14 @@ fun vectorTileToGeoJson(tileX: Int,
                             }
                         }
 
-                        if(layer.name == "poi") {
+                        if(layer.name == "poi" || layer.name == "building") {
                             if(properties?.get("name") != null) {
                                 val entranceDetails = EntranceDetails(properties["name"]?.toString(),
                                     null,
+                                    properties["layer"]?.toString(),
                                     true,
                                     id)
-                                entranceMatching.addPolygon(polygon, entranceDetails)
+                                entranceMatching.addGeometry(polygon, entranceDetails)
                             }
                         }
                     }
@@ -450,10 +451,13 @@ fun vectorTileToGeoJson(tileX: Int,
                             )
 
                             if(properties?.get("class") == "entrance") {
-                                val entranceDetails = EntranceDetails(properties["name"]?.toString(),
+                                val entranceDetails = EntranceDetails(
+                                    properties["name"]?.toString(),
                                     properties["subclass"]?.toString(),
-                                    false, id)
-                                entranceMatching.addPolygon(point, entranceDetails)
+                                    properties["layer"]?.toString(),
+                                    false,
+                                    id)
+                                entranceMatching.addGeometry(point, entranceDetails)
                                 entrance = true
                             }
                         }
