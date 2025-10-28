@@ -579,6 +579,15 @@ fun vectorTileToGeoJson(tileX: Int,
             }
         }
     }
+
+    entranceMatching.generateEntrances(
+        collection,
+        mapPolygonFeatures,
+        tileX,
+        tileY,
+        tileZoom
+    )
+
     // Add all of the polygon features
     for (featureList in mapPolygonFeatures) {
         for(feature in featureList.value) {
@@ -588,8 +597,6 @@ fun vectorTileToGeoJson(tileX: Int,
         mapPointFeatures.remove(featureList.key)
         mapBuildingFeatures.remove(featureList.key)
     }
-
-    entranceMatching.generateEntrances(collection, tileX, tileY, tileZoom)
 
     // And then add the remaining non-duplicated point features
     for (feature in mapPointFeatures) {

@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.featureHasEntrances
 import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -120,7 +121,8 @@ fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<Locati
         }
     } else {
         uiState.nearbyPlaces.features.filter { feature ->
-            // Filter based on any folder selected
+            // Filter based on any folder selected and filter out POIs with entrances
+            !featureHasEntrances(feature) &&
             featureIsInFilterGroup(feature, uiState.filter) &&
                     getTextForFeature(context, feature).text.isNotEmpty()
         }.map { feature ->
