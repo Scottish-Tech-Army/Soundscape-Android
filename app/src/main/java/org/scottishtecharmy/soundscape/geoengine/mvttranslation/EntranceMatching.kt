@@ -13,17 +13,29 @@ class EntranceMatching {
      * up entrances to their POI polygons.
      */
     private val buildingNodes : HashMap< Int, ArrayList<EntranceDetails>> = hashMapOf()
+    private val addedIds : MutableSet<Double> = emptySet<Double>().toMutableSet()
+
 
     /**
-     * addLine is called for any line feature that is being added to the FeatureCollection.
-     * @param line is a new `transportation` layer line to add to the map
+     * addGeometry is called for any buildings that are found within a tile and all entrance nodes
+     * @param pointArray is either a polygon or a point
      * @param details describes the line that is being added.
      *
      */
-    fun addPolygon(line : ArrayList<Pair<Int, Int>>,
-                details : EntranceDetails
+    fun addGeometry(pointArray : ArrayList<Pair<Int, Int>>,
+                   details : EntranceDetails
     ) {
-        for (point in line) {
+        if(addedIds.contains(details.osmId)) {
+            if(details.layer == null) {
+                // There's no layer specified in the new details so there's no extra information
+                return
+            }
+        }
+        addedIds.add(details.osmId)
+
+        // If we're adding a polygon don't duplicate the first point by including the last point
+        val dropCount = if(pointArray.size > 1) 1 else 0
+        for (point in pointArray.dropLast(dropCount)) {
             if((point.first < 0) || (point.first > 4095) ||
                 (point.second < 0) || (point.second > 4095)) {
                 continue
@@ -36,6 +48,13 @@ class EntranceMatching {
                 buildingNodes[coordinateKey] = arrayListOf(details.copy())
             }
             else {
+                // Remove any previous entries for this osmID as they didn't have a level set
+                for(node in buildingNodes[coordinateKey]!!) {
+                    if(node.osmId == details.osmId) {
+                        buildingNodes[coordinateKey]?.remove(node)
+                        break
+                    }
+                }
                 buildingNodes[coordinateKey]?.add(details.copy())
             }
         }
@@ -56,45 +75,116 @@ class EntranceMatching {
 
             // Generate an entrance with a matching POI polygon
             var entranceDetails : EntranceDetails? = null
-            var poiDetails : EntranceDetails? = null
             for(node in nodes) {
                 if(!node.poi) {
                     // We have an entrance!
                     entranceDetails = node
-                } else {
-                    poiDetails = node
                 }
             }
 
             // If we have an entrance at this point then we generate a feature to represent it
             // using the POI that it is coincident with if there is one.
             if(entranceDetails != null) {
-                // Turn our coordinate key back into tile relative x,y coordinates
-                val x = key.shr(12)
-                val y = key.and(0xfff)
-                // Convert the tile relative coordinate into a LatLngAlt
-                val point = arrayListOf(Pair(x, y))
-                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+                var name = entranceDetails.name
+                var poiDetails : EntranceDetails? = null
+                if(name == null) {
+                    // We don't have a name for the entrance, so get one from the coincident POI.
+                    // Where there are multiple buildings, try and match the `layer` of the entrance
+                    // with that of the POI. If there is no `layer` then it means that it is zero.
+                    // There's also the confusing factor of `layer` vs. `level`. `level` is what is
+                    // used inside and `layer` is really for outside use showing where roads pass
+                    // over or under each other. However, I've found cases of both being used for
+                    // entrances:
+                    //
+                    // https://www.openstreetmap.org/node/2032127103 could be Buchanan Street Galleries
+                    // of the Royal Concert Hall (it's the former and the layer can be used here)
+                    //
+                    // https://www.openstreetmap.org/node/2039002274 is on level 1 and matches the
+                    // Main Concourse, but there's all sorts of confusion here as the adjacent
+                    // https://www.openstreetmap.org/node/2039002279 is part of the Grand Central
+                    // Hotel only, so doesn't even get named as a station entrance.
+                    var poiCount = 0
+                    for (node in nodes) {
+                        if (node.poi) {
+                            if(node.layer == entranceDetails.layer) {
+                                poiCount++
+                                if (poiCount > 1) {
+                                    // There are multiple buildings at this point and we don't know
+                                    // which the entrance belongs to, so rather than be wrong, don't
+                                    // label it.
+                                    poiDetails = null
+                                    break
+                                }
+                                poiDetails = node
+                            }
+                        }
+                    }
+                    // We didn't find a perfect match, lets try for a match where we don't compare
+                    // the layers
+                    if(poiDetails == null) {
+                        for (node in nodes) {
+                            if (node.poi) {
+                                poiCount++
+                                if (poiCount > 1) {
+                                    // There are multiple buildings at this point and we don't know
+                                    // which the entrance belongs to, so rather than be wrong, don't
+                                    // label it.
+                                    println("Multiple buildings found for entrance ${entranceDetails.osmId.toLong() / 10}, skipping it")
+                                    poiDetails = null
+                                    break
+                                }
+                                poiDetails = node
+                            }
+                        }
+                    }
+                }
 
-                // Create our entrance feature to match those from soundscape-backend
-                val entrance = Feature()
-                entrance.geometry =
-                    Point(coordinates[0].longitude, coordinates[0].latitude)
-                entrance.foreign = HashMap()
-                entrance.foreign!!["feature_type"] = "entrance"
-                entrance.foreign!!["feature_value"] = entranceDetails.entranceType
-                val osmIds = arrayListOf<Double>()
-                osmIds.add(entranceDetails.osmId)
-                entrance.foreign!!["osm_ids"] = osmIds
+                when(entranceDetails.entranceType) {
+                    // Filter on the type of entrances that we want to add using values from:
+                    //    https://taginfo.openstreetmap.org/keys/entrance#values
+                    // Amongst others we're excluding home which are for individual homes, garage,
+                    // service and emergency entrances
+                    //
+                    "yes",
+                    "main",
+                    "staircase",
+                    "shop",
+                    "secondary",
+                    "restaurant",
+                    "office",
+                    "entrance" -> {
+                        // Turn our coordinate key back into tile relative x,y coordinates
+                        val x = key.shr(12)
+                        val y = key.and(0xfff)
+                        // Convert the tile relative coordinate into a LatLngAlt
+                        val point = arrayListOf(Pair(x, y))
+                        val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
 
-                entrance.properties = HashMap()
-                entrance.properties!!["name"] = entranceDetails.name
-                if(entranceDetails.name == null)
-                    entrance.properties!!["name"] = poiDetails?.name
+                        // Create our entrance feature to match those from soundscape-backend
+                        val entrance = Feature()
+                        entrance.geometry =
+                            Point(coordinates[0].longitude, coordinates[0].latitude)
+                        entrance.foreign = HashMap()
+                        entrance.foreign!!["feature_type"] = "entrance"
+                        entrance.foreign!!["feature_value"] = entranceDetails.entranceType
+                        val osmIds = arrayListOf<Double>()
 
-                collection.addFeature(entrance)
+                        osmIds.add(entranceDetails.osmId)
+                        entrance.foreign!!["osm_ids"] = osmIds
 
-//                println("Entrance: ${poiDetails?.name} ${entranceDetails.entranceType} ")
+                        entrance.properties = HashMap()
+                        if(name == null)
+                            name = poiDetails?.name
+                        if (name != null) {
+                            entrance.properties!!["name"] = name
+                            collection.addFeature(entrance)
+                            println("Entrance: $name ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
+                        }
+                    }
+                    else -> {
+                        // Ignore other types of entrance for now
+                    }
+                }
             }
         }
     }
@@ -103,6 +193,7 @@ class EntranceMatching {
 data class EntranceDetails(
     val name : String?,
     val entranceType : String?,
+    val layer: String?,
     val poi: Boolean,
     val osmId : Double,
 )
