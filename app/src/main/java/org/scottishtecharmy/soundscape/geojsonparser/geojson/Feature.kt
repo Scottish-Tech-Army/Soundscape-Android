@@ -32,3 +32,15 @@ open class Feature() : GeoJsonObject() {
         type = "Feature"
     }
 }
+
+fun cloneHashMap(source: HashMap<String, Any?>?) : HashMap<String, Any?>? {
+    if (source == null)
+        return null
+
+    val result: HashMap<String, Any?> = hashMapOf()
+    for ((key, value) in source) {
+        result[key] = value
+    }
+    return result
+}
+

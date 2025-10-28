@@ -108,6 +108,10 @@ fun getPoiFeatureCollectionBySuperCategory(
     return tempFeatureCollection
 }
 
+fun featureHasEntrances(feature: Feature): Boolean {
+    return (feature.properties?.get("has_entrances") == "yes")
+}
+
 fun featureIsInFilterGroup(feature: Feature, filter: String): Boolean {
 
     val tags = when(filter) {

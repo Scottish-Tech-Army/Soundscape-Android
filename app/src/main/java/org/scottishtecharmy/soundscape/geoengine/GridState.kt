@@ -718,8 +718,8 @@ open class GridState(
     ): FeatureCollection {
         val entrancesFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "entrance") {
+            feature.properties?.let { properties ->
+                if (properties["entrance"] == "yes") {
                     entrancesFeatureCollection.addFeature(feature)
                 }
             }

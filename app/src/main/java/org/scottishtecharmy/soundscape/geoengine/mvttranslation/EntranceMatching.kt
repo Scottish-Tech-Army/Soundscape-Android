@@ -2,7 +2,12 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.cloneHashMap
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.iterator
 
 class EntranceMatching {
 
@@ -61,7 +66,7 @@ class EntranceMatching {
     }
 
     /**
-     * generateIntersections goes through our hash map and adds an intersection feature to the
+     * generateEntrances goes through our hash map and adds an intersection feature to the
      * collection wherever it finds out.
      * @param collection is where the new intersection features are added
      * @param tileX the tile x coordinate so that the tile relative location of the intersection can
@@ -69,7 +74,11 @@ class EntranceMatching {
      * @param tileY the tile y coordinate so that the tile relative location of the intersection can
      *      * be turned into a latitude/longitude
      */
-    fun generateEntrances(collection: FeatureCollection, tileX : Int, tileY : Int, tileZoom : Int) {
+    fun generateEntrances(collection: FeatureCollection,
+                          poiMap : HashMap<Double, MutableList<Feature>>,
+                          tileX : Int,
+                          tileY : Int,
+                          tileZoom : Int) {
         // Add points for the intersections that we found
         for ((key, nodes) in buildingNodes) {
 
@@ -85,56 +94,52 @@ class EntranceMatching {
             // If we have an entrance at this point then we generate a feature to represent it
             // using the POI that it is coincident with if there is one.
             if(entranceDetails != null) {
-                var name = entranceDetails.name
                 var poiDetails : EntranceDetails? = null
-                if(name == null) {
-                    // We don't have a name for the entrance, so get one from the coincident POI.
-                    // Where there are multiple buildings, try and match the `layer` of the entrance
-                    // with that of the POI. If there is no `layer` then it means that it is zero.
-                    // There's also the confusing factor of `layer` vs. `level`. `level` is what is
-                    // used inside and `layer` is really for outside use showing where roads pass
-                    // over or under each other. However, I've found cases of both being used for
-                    // entrances:
-                    //
-                    // https://www.openstreetmap.org/node/2032127103 could be Buchanan Street Galleries
-                    // of the Royal Concert Hall (it's the former and the layer can be used here)
-                    //
-                    // https://www.openstreetmap.org/node/2039002274 is on level 1 and matches the
-                    // Main Concourse, but there's all sorts of confusion here as the adjacent
-                    // https://www.openstreetmap.org/node/2039002279 is part of the Grand Central
-                    // Hotel only, so doesn't even get named as a station entrance.
-                    var poiCount = 0
-                    for (node in nodes) {
-                        if (node.poi) {
-                            if(node.layer == entranceDetails.layer) {
-                                poiCount++
-                                if (poiCount > 1) {
-                                    // There are multiple buildings at this point and we don't know
-                                    // which the entrance belongs to, so rather than be wrong, don't
-                                    // label it.
-                                    poiDetails = null
-                                    break
-                                }
-                                poiDetails = node
+                // Where there are multiple buildings, try and match the `layer` of the entrance
+                // with that of the POI. If there is no `layer` then it means that it is zero.
+                // There's also the confusing factor of `layer` vs. `level`. `level` is what is
+                // used inside and `layer` is really for outside use showing where roads pass
+                // over or under each other. However, I've found cases of both being used for
+                // entrances:
+                //
+                // https://www.openstreetmap.org/node/2032127103 could be Buchanan Street Galleries
+                // of the Royal Concert Hall (it's the former and the layer can be used here)
+                //
+                // https://www.openstreetmap.org/node/2039002274 is on level 1 and matches the
+                // Main Concourse, but there's all sorts of confusion here as the adjacent
+                // https://www.openstreetmap.org/node/2039002279 is part of the Grand Central
+                // Hotel only, so doesn't even get named as a station entrance.
+                var poiCount = 0
+                for (node in nodes) {
+                    if (node.poi) {
+                        if(node.layer == entranceDetails.layer) {
+                            poiCount++
+                            if (poiCount > 1) {
+                                // There are multiple buildings at this point and we don't know
+                                // which the entrance belongs to, so rather than be wrong, don't
+                                // label it.
+                                poiDetails = null
+                                break
                             }
+                            poiDetails = node
                         }
                     }
-                    // We didn't find a perfect match, lets try for a match where we don't compare
-                    // the layers
-                    if(poiDetails == null) {
-                        for (node in nodes) {
-                            if (node.poi) {
-                                poiCount++
-                                if (poiCount > 1) {
-                                    // There are multiple buildings at this point and we don't know
-                                    // which the entrance belongs to, so rather than be wrong, don't
-                                    // label it.
-                                    println("Multiple buildings found for entrance ${entranceDetails.osmId.toLong() / 10}, skipping it")
-                                    poiDetails = null
-                                    break
-                                }
-                                poiDetails = node
+                }
+                // We didn't find a perfect match, lets try for a match where we don't compare
+                // the layers
+                if(poiDetails == null) {
+                    for (node in nodes) {
+                        if (node.poi) {
+                            poiCount++
+                            if (poiCount > 1) {
+                                // There are multiple buildings at this point and we don't know
+                                // which the entrance belongs to, so rather than be wrong, don't
+                                // label it.
+                                println("Multiple buildings found for entrance ${entranceDetails.osmId.toLong() / 10}, skipping it")
+                                poiDetails = null
+                                break
                             }
+                            poiDetails = node
                         }
                     }
                 }
@@ -153,32 +158,39 @@ class EntranceMatching {
                     "restaurant",
                     "office",
                     "entrance" -> {
-                        // Turn our coordinate key back into tile relative x,y coordinates
-                        val x = key.shr(12)
-                        val y = key.and(0xfff)
-                        // Convert the tile relative coordinate into a LatLngAlt
-                        val point = arrayListOf(Pair(x, y))
-                        val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+                        if(poiDetails != null) {
+                            // If there's no matching POI then there's no entrance feature to make
+                            val poiList = poiMap[poiDetails.osmId]
+                            if((poiList != null) && (poiList.isNotEmpty())) {
+                                val poi = poiList[0]
 
-                        // Create our entrance feature to match those from soundscape-backend
-                        val entrance = Feature()
-                        entrance.geometry =
-                            Point(coordinates[0].longitude, coordinates[0].latitude)
-                        entrance.foreign = HashMap()
-                        entrance.foreign!!["feature_type"] = "entrance"
-                        entrance.foreign!!["feature_value"] = entranceDetails.entranceType
-                        val osmIds = arrayListOf<Double>()
+                                // Turn our coordinate key back into tile relative x,y coordinates
+                                val x = key.shr(12)
+                                val y = key.and(0xfff)
+                                // Convert the tile relative coordinate into a LatLngAlt
+                                val point = arrayListOf(Pair(x, y))
+                                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
 
-                        osmIds.add(entranceDetails.osmId)
-                        entrance.foreign!!["osm_ids"] = osmIds
+                                // We're going to duplicate the POI, but change it to being a point
+                                // instead of a polygon, and add the entrance name if it has one
+                                val entrance = Feature()
+                                entrance.geometry =
+                                    Point(coordinates[0].longitude, coordinates[0].latitude)
+                                entrance.foreign = cloneHashMap(poi.foreign)
+                                entrance.properties = cloneHashMap(poi.properties)
+                                entrance.properties?.set("entrance", "yes")
 
-                        entrance.properties = HashMap()
-                        if(name == null)
-                            name = poiDetails?.name
-                        if (name != null) {
-                            entrance.properties!!["name"] = name
-                            collection.addFeature(entrance)
-                            println("Entrance: $name ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
+                                if(entranceDetails.name != null)
+                                    entrance.properties?.set("entrance_name", entranceDetails.name)
+
+                                collection.addFeature(entrance)
+                                println("Entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
+
+                                // We're also going to mark the POI to indicate that it has entrances.
+                                // This will be used by PlacesNearby so that it will only display
+                                // the entrances and not the POI itself.
+                                poi.properties?.set("has_entrances", "yes")
+                            }
                         }
                     }
                     else -> {
