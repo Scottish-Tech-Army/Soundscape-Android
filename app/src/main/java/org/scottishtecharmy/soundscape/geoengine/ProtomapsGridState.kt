@@ -166,7 +166,7 @@ open class ProtomapsGridState(
                     }
                     val addTime = measureTimeMillis {
                         for ((index, collection) in collections!!.withIndex()) {
-                            featureCollections[index].plusAssign(collection)
+                            featureCollections[index] += collection
                         }
                     }
 

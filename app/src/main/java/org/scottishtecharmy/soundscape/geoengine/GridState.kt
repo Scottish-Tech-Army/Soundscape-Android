@@ -398,7 +398,7 @@ open class GridState(
             }
             // Add the tile FeatureCollections into the grid
             for ((index, collection) in tileCollections.withIndex()) {
-                featureCollections[index].plusAssign(collection)
+                featureCollections[index] += collection
             }
             gridIntersections.add(intersectionMap)
         }
@@ -459,22 +459,19 @@ open class GridState(
         featureCollections[TreeId.SETTLEMENT_HAMLET.id] = category ?: FeatureCollection()
 
         // Create a merged collection of places and landmarks, as used by whatsAroundMe and aheadOfMe
-        featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.PLACE_POIS.id])
-        featureCollections[TreeId.PLACES_AND_LANDMARKS.id].plusAssign(featureCollections[TreeId.LANDMARK_POIS.id])
+        featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.PLACE_POIS.id]
+        featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.LANDMARK_POIS.id]
 
         // Create merged collection of currently selected super categories
         if(enabledCategories.contains(PLACES_AND_LANDMARKS_KEY)) {
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id].plusAssign(
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
                 featureCollections[TreeId.PLACE_POIS.id]
-            )
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id].plusAssign(
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
                 featureCollections[TreeId.LANDMARK_POIS.id]
-            )
         }
         if(enabledCategories.contains(MOBILITY_KEY)) {
-            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id].plusAssign(
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
                 featureCollections[TreeId.MOBILITY_POIS.id]
-            )
         }
     }
 
@@ -535,7 +532,7 @@ open class GridState(
         // is made up for by the ease of searching a single collection.
         tileData[TreeId.ROADS.id] = getRoadsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.ROADS_AND_PATHS.id] = getPathsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
-        tileData[TreeId.ROADS_AND_PATHS.id].plusAssign(tileData[TreeId.ROADS.id])
+        tileData[TreeId.ROADS_AND_PATHS.id] += tileData[TreeId.ROADS.id]
         tileData[TreeId.INTERSECTIONS.id] = getIntersectionsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
@@ -544,9 +541,8 @@ open class GridState(
         tileData[TreeId.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
 
         // POIS includes bus stops and crossings
-        tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.TRANSIT_STOPS.id])
-        tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.CROSSINGS.id])
-        tileData[TreeId.POIS.id].plusAssign(tileData[TreeId.ENTRANCES.id])
+        tileData[TreeId.POIS.id].plusAssignDeduplicate(tileData[TreeId.TRANSIT_STOPS.id])
+        tileData[TreeId.POIS.id] += tileData[TreeId.CROSSINGS.id]
 
         return  tileData
     }
@@ -606,7 +602,7 @@ open class GridState(
         for (feature in tileFeatureCollection) {
             val featureValue = feature.foreign?.get("feature_value")
             when(featureValue) {
-                "bus_stop","tram_stop","subway","train_station","ferry_terminal" -> transitStopFeatureCollection.addFeature(feature)
+                "bus_stop","tram_stop","subway","station","train_station","ferry_terminal" -> transitStopFeatureCollection.addFeature(feature)
             }
         }
         return transitStopFeatureCollection
@@ -719,7 +715,7 @@ open class GridState(
         val entrancesFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
             feature.properties?.let { properties ->
-                if (properties["entrance"] == "yes") {
+                if (properties.contains("entrance")) {
                     entrancesFeatureCollection.addFeature(feature)
                 }
             }
@@ -747,7 +743,10 @@ open class GridState(
                 }
             }
             feature.properties?.let { properties ->
-                if (properties["class"] == "edgePoint") {
+                if (properties["class"] == "edgePoint" ||
+                    properties["class"] == "rail" ||
+                    properties["class"] == "transit"
+                ) {
                     add = false
                 }
             }

@@ -115,7 +115,7 @@ fun featureHasEntrances(feature: Feature): Boolean {
 fun featureIsInFilterGroup(feature: Feature, filter: String): Boolean {
 
     val tags = when(filter) {
-        "transit" -> listOf("bus_stop", "train_station", "tram_stop", "ferry_terminal", "subway")
+        "transit" -> listOf("bus_stop", "train_station", "tram_stop", "ferry_terminal", "station")
         "food_and_drink" -> listOf(
             "restaurant", "fast_food", "cafe", "bar", "ice_cream", "pub", "coffee_shop")
         "parks" -> listOf(

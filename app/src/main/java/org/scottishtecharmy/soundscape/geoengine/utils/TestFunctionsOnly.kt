@@ -303,7 +303,7 @@ fun getIntersectionRoadNamesRelativeDirections(
 
     for (road in intersectionRoadNames) {
         // Our roads are all now pre-split when we parse them in from MVT
-        newFeatureCollection.plusAssign(getFeaturesWithRoadDirection(road, intersectionRelativeDirections))
+        newFeatureCollection += getFeaturesWithRoadDirection(road, intersectionRelativeDirections)
     }
 
     return sortFeatureCollectionByDirectionProperty(newFeatureCollection)
