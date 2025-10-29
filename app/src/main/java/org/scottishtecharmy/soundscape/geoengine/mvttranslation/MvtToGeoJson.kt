@@ -432,6 +432,7 @@ fun vectorTileToGeoJson(tileX: Int,
                                 val entranceDetails = EntranceDetails(properties["name"]?.toString(),
                                     null,
                                     properties["layer"]?.toString(),
+                                    null,
                                     true,
                                     id)
                                 entranceMatching.addGeometry(polygon, entranceDetails)
@@ -451,14 +452,21 @@ fun vectorTileToGeoJson(tileX: Int,
                             )
 
                             if(properties?.get("class") == "entrance") {
-                                val entranceDetails = EntranceDetails(
-                                    properties["name"]?.toString(),
-                                    properties["subclass"]?.toString(),
-                                    properties["layer"]?.toString(),
-                                    false,
-                                    id)
-                                entranceMatching.addGeometry(point, entranceDetails)
-                                entrance = true
+                                // If the access is set to no, then don't add the entrance
+                                if((properties.get("access") != "no")) {
+
+                                    // Add the entrance
+                                    val entranceDetails = EntranceDetails(
+                                        properties["name"]?.toString(),
+                                        properties["subclass"]?.toString(),
+                                        properties["layer"]?.toString(),
+                                        properties,
+                                        false,
+                                        id
+                                    )
+                                    entranceMatching.addGeometry(point, entranceDetails)
+                                    entrance = true
+                                }
                             }
                         }
                     }
@@ -583,6 +591,7 @@ fun vectorTileToGeoJson(tileX: Int,
     entranceMatching.generateEntrances(
         collection,
         mapPolygonFeatures,
+        mapBuildingFeatures,
         tileX,
         tileY,
         tileZoom
@@ -685,6 +694,9 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
 
                     // These are the features which we don't add to POI (for now at least)
                     "cycle_barrier",
+                    "bicycle_parking",
+                    "waste_basket",
+                    "vacant",
                     "bollard",
                     "gate" -> {
                         return hashMapOf()

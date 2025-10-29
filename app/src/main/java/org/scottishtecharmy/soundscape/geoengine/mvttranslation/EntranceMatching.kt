@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.cloneHashMap
 import kotlin.collections.component1
@@ -76,6 +75,7 @@ class EntranceMatching {
      */
     fun generateEntrances(collection: FeatureCollection,
                           poiMap : HashMap<Double, MutableList<Feature>>,
+                          buildingMap: HashMap<Double, Feature>,
                           tileX : Int,
                           tileY : Int,
                           tileZoom : Int) {
@@ -88,6 +88,7 @@ class EntranceMatching {
                 if(!node.poi) {
                     // We have an entrance!
                     entranceDetails = node
+                    break
                 }
             }
 
@@ -157,20 +158,25 @@ class EntranceMatching {
                     "secondary",
                     "restaurant",
                     "office",
+                    "subway_entrance",
                     "entrance" -> {
+
+                        // Turn our coordinate key back into tile relative x,y coordinates
+                        val x = key.shr(12)
+                        val y = key.and(0xfff)
+                        // Convert the tile relative coordinate into a LatLngAlt
+                        val point = arrayListOf(Pair(x, y))
+                        val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
+
                         if(poiDetails != null) {
                             // If there's no matching POI then there's no entrance feature to make
                             val poiList = poiMap[poiDetails.osmId]
-                            if((poiList != null) && (poiList.isNotEmpty())) {
-                                val poi = poiList[0]
+                            val poi = if((poiList != null) && (poiList.isNotEmpty()))
+                                poiList[0]
+                            else
+                                buildingMap[poiDetails.osmId]
 
-                                // Turn our coordinate key back into tile relative x,y coordinates
-                                val x = key.shr(12)
-                                val y = key.and(0xfff)
-                                // Convert the tile relative coordinate into a LatLngAlt
-                                val point = arrayListOf(Pair(x, y))
-                                val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
-
+                            if(poi != null) {
                                 // We're going to duplicate the POI, but change it to being a point
                                 // instead of a polygon, and add the entrance name if it has one
                                 val entrance = Feature()
@@ -178,19 +184,54 @@ class EntranceMatching {
                                     Point(coordinates[0].longitude, coordinates[0].latitude)
                                 entrance.foreign = cloneHashMap(poi.foreign)
                                 entrance.properties = cloneHashMap(poi.properties)
-                                entrance.properties?.set("entrance", "yes")
+                                entrance.properties?.set("entrance", entranceDetails.entranceType)
+
+                                // This is an entrance, so remove any marking that the POI has
+                                entrance.properties?.remove("has_entrances")
 
                                 if(entranceDetails.name != null)
                                     entrance.properties?.set("entrance_name", entranceDetails.name)
 
                                 collection.addFeature(entrance)
-                                println("Entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
+                                println("POI entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
 
                                 // We're also going to mark the POI to indicate that it has entrances.
                                 // This will be used by PlacesNearby so that it will only display
                                 // the entrances and not the POI itself.
                                 poi.properties?.set("has_entrances", "yes")
+                                continue
                             }
+                        }
+                        // Try and figure out how to name the entrance from its properties.
+                        val entrance = Feature()
+                        entrance.geometry =
+                            Point(coordinates[0].longitude, coordinates[0].latitude)
+                        entrance.foreign = HashMap()
+                        entrance.properties = HashMap()
+
+                        var confected = (entranceDetails.name != null)
+                        if(entranceDetails.entranceType == "subway_entrance") {
+                            // Subway station entrances
+                            entrance.properties?.set("class", "railway")
+                            entrance.properties?.set("subclass", "subway")
+                            entrance.foreign?.set("feature_type", "railway")
+                            entrance.foreign?.set("feature_value", "subway")
+                            confected = true
+                        }
+                        else if((entranceDetails.properties?.get("railway") == "train_station_entrance") ||
+                                (entranceDetails.properties?.get("railway") == "entrance")) {
+                            // Train station entrances
+                            entrance.properties?.set("class", "railway")
+                            entrance.properties?.set("subclass", "station")
+                            entrance.foreign?.set("feature_type", "railway")
+                            entrance.foreign?.set("feature_value", "station")
+                            confected = true
+                        }
+                        if(confected)  {
+                            entrance.properties?.set("entrance", entranceDetails.entranceType)
+                            entrance.properties?.set("name", entranceDetails.name)
+                            collection.addFeature(entrance)
+                            println("Confected Entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.properties?.get("class")} ${entrance.properties?.get("subclass")}")
                         }
                     }
                     else -> {
@@ -206,6 +247,7 @@ data class EntranceDetails(
     val name : String?,
     val entranceType : String?,
     val layer: String?,
+    val properties: HashMap<String, Any?>?,
     val poi: Boolean,
     val osmId : Double,
 )

@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -13,6 +14,8 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
@@ -51,11 +54,6 @@ val offlineExtracts = listOf(
     "src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles",
     "src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles",
     "src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles",
-)
-val offlineExtracts14 = listOf(
-    "src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom-14.pmtiles",
-    "src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom-14.pmtiles",
-    "src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom-14.pmtiles",
 )
 class FileGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
@@ -115,7 +113,7 @@ class FileGridState(
         val collections = processTileFeatureCollection(tileFeatureCollection)
 
         for ((index, collection) in collections.withIndex()) {
-            featureCollections[index].plusAssign(collection)
+            featureCollections[index] += collection
         }
 
         return true
@@ -285,6 +283,16 @@ class MvtTileTest {
 
         val outputFile = FileOutputStream("byresroad.geojson")
         outputFile.write(adapter.toJson(geojson).toByteArray())
+        outputFile.close()
+    }
+
+    @Test
+    fun testVectorToGeoJsonGlasgowQueenStreet() {
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val gridState = getGridStateForLocation(LngLatAlt(-4.251169, 55.862550), 14, 2)
+        val outputCollection = gridState.getFeatureTree(TreeId.POIS).getAllCollection()
+        val outputFile = FileOutputStream("glasgow-queen-street.geojson")
+        outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
     }
 
@@ -487,7 +495,7 @@ class MvtTileTest {
         val featureCollection = vectorTileToGeoJsonFromFile(15990/2, 10212/2, intersectionMap)
         println(featureCollection.features[0].id)
         val newFeatureCollection = FeatureCollection()
-        newFeatureCollection.plusAssign(featureCollection)
+        newFeatureCollection += featureCollection
         val featureReference = featureCollection.features[0]
         featureReference.id = "Blah"
         println(featureCollection.features[0].id)
@@ -794,8 +802,8 @@ class MvtTileTest {
 
         // Output the GeoJson and check that there's no data left from other tiles.
         val collection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
-        collection.plusAssign(gridState.getFeatureCollection(TreeId.INTERSECTIONS))
-        collection.plusAssign(gridState.getFeatureCollection(TreeId.POIS))
+        collection += gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+        collection += gridState.getFeatureCollection(TreeId.POIS)
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
 
@@ -834,9 +842,9 @@ class MvtTileTest {
             feature.properties?.set("marker-color", "#0000ff")
         }
         val outputCollection = cityCollection
-        outputCollection.plusAssign(townCollection)
-        outputCollection.plusAssign(villageCollection)
-        outputCollection.plusAssign(hamletCollection)
+        outputCollection += townCollection
+        outputCollection += villageCollection
+        outputCollection += hamletCollection
         val outputFile = FileOutputStream("low-zoom.geojson")
         outputFile.write(adapter.toJson(outputCollection).toByteArray())
         outputFile.close()
@@ -959,5 +967,138 @@ class MvtTileTest {
         println("\n--- Search Complete ---")
         println("Original String: '$testString'")
         println("Best Match Found: '$newestBestMatch' with a distance of $newestBestDistance.")
+    }
+
+    class DummyEntranceGridState(
+        zoomLevel: Int = MAX_ZOOM_LEVEL,
+        gridSize: Int = GRID_SIZE) : ProtomapsGridState(zoomLevel, gridSize) {
+
+        init {
+            validateContext = false
+        }
+
+        /**
+         * updateTile is overrider in FileGridState to get the tile data from the unit test resources
+         * directory.
+         */
+        override suspend fun updateTile(
+            x: Int,
+            y: Int,
+            featureCollections: Array<FeatureCollection>,
+            intersectionMap: HashMap<LngLatAlt, Intersection>
+        ): Boolean {
+
+            // We're not parsing a tile here, just creating some data using the entrance matcher
+            // as if they were found in a tile
+            val matcher = EntranceMatching()
+
+            val namedSubwayEntranceDetails = EntranceDetails(
+                "St Enoch",
+                "subway_entrance",
+                null,
+                null,
+                false,
+                39240178581.0
+            )
+            val unNamedSubwayEntranceDetails = EntranceDetails(
+                null,
+                "subway_entrance",
+                null,
+                null,
+                false,
+                1.0
+            )
+            val namedEntranceDetails = EntranceDetails(
+                "North Portland Street",
+                "secondary",
+                null,
+                null,
+                false,
+                11853457811.0
+            )
+            val unNamedEntranceDetails = EntranceDetails(
+                null,
+                "yes",
+                null,
+                null,
+                false,
+                116357026611.0
+            )
+            val poi = EntranceDetails(
+                "St Enoch Shopping Centre",
+                null,
+                null,
+                null,
+                true,
+                52992372.0
+            )
+            val namedStationEntranceDetails = EntranceDetails(
+                "St Enoch",
+                "subway_entrance",
+                null,
+                null,
+                false,
+                39240178581.0
+            )
+
+            val railwayStationEntranceProperties = HashMap<String, Any?>()
+            railwayStationEntranceProperties["railway"] = "train_station_entrance"
+            val unNamedStationEntranceDetails = EntranceDetails(
+                null,
+                "yes",
+                null,
+                railwayStationEntranceProperties,
+                false,
+                2.0
+            )
+
+            val poiMap = hashMapOf<Double, MutableList<Feature>>()
+            val poiFeature = Feature()
+            poiFeature.properties = HashMap()
+            poiFeature.foreign = HashMap()
+            poiFeature.properties?.set("name", "St Enoch Shopping Centre")
+            poiFeature.properties?.set("class", "shop")
+            poiFeature.properties?.set("subclass", "mall")
+            poiFeature.properties?.set("osm_ids", "52992372")
+            poiMap[52992372.0] = listOf(poiFeature).toMutableList()
+
+            matcher.addGeometry(arrayListOf(Pair(100,100)), namedSubwayEntranceDetails)
+            matcher.addGeometry(arrayListOf(Pair(200,200)), unNamedSubwayEntranceDetails)
+            matcher.addGeometry(arrayListOf(Pair(300,300)), namedEntranceDetails)
+
+            matcher.addGeometry(arrayListOf(Pair(400,400)), unNamedEntranceDetails)
+            matcher.addGeometry(arrayListOf(Pair(400,400)), poi)
+
+            matcher.addGeometry(arrayListOf(Pair(500,500)), unNamedStationEntranceDetails)
+
+            val collection = FeatureCollection()
+            matcher.generateEntrances(collection, poiMap, HashMap(), 5000,5000, 14)
+
+            val collections = processTileFeatureCollection(collection)
+
+            for ((index, collection) in collections.withIndex()) {
+                featureCollections[index] += collection
+            }
+
+            return true
+        }
+    }
+
+    @Test
+    fun entranceMatcherTest() {
+        val gridState = DummyEntranceGridState()
+        gridState.start(null, emptyList())
+
+        runBlocking {
+            val featureCollections =
+                Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+            val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+            gridState.updateTile(0, 0, featureCollections, intersectionMap)
+
+            // The 3 entrances should appear as entrances and POIS and two of them as transit stops
+            assertEquals(5, featureCollections[TreeId.ENTRANCES.id].features.size)
+            assertEquals(5, featureCollections[TreeId.POIS.id].features.size)
+            assertEquals(3, featureCollections[TreeId.TRANSIT_STOPS.id].features.size)
+        }
     }
 }

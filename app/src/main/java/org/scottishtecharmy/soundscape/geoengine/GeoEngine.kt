@@ -1002,7 +1002,7 @@ data class TextForFeature(val text: String = "", val generic: Boolean= false)
 fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFeature {
     var generic = false
     val name = feature.properties?.get("name") as String?
-    val isEntrance = (feature.properties?.get("entrance") == "yes")
+    val entranceType = feature.properties?.get("entrance") as String?
     val featureValue = feature.foreign?.get("feature_value")
     val isMarker = feature.foreign?.get("category") == "marker"
 
@@ -1049,14 +1049,41 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
             localizedContext.getString(namedTransit.second)
     }
 
-    if(isEntrance) {
-        val entranceName = feature.properties?.get("entrance_name")
-        text = if(entranceName != null)
-            localizedContext.getString(R.string.osm_tag_entrance_named_with_name, entranceName, name)
-        else if (name != null)
-            localizedContext.getString(R.string.osm_tag_entrance_with_name, name)
+    if(entranceType != null) {
+        // Features which are an entrance can have the following properties:
+        //  An entrance name e.g. "Main Street"
+        //  A name for the POI/building that they are an entrance for e.g. Charing Cross
+        //  A name for the type of POI that they are an entrance for e.g. Subway
+        //
+        // Possible name combinations could be:
+        //      "Main Street" entrance to "Charing Cross" "Subway"
+        //      "Main Street" entrance to "Charing Cross"
+        //      "Main Street" entrance to "Subway"
+        //      Entrance to "Charing Cross" "Subway"
+        //      Entrance to "Subway"
+        //      Entrance to "Charing Cross"
+
+        val entranceName = feature.properties?.get("entrance_name") as String?
+        val destinationName = text      // The transit naming has already been done above
+
+        val entranceText =
+            if(entranceType == "main")
+                localizedContext.getString(R.string.osm_tag_main_entrance)
+            else
+                localizedContext.getString(R.string.osm_tag_entrance)
+
+
+        text = if(entranceName != null) {
+            localizedContext.getString(
+                R.string.osm_tag_entrance_named_with_destination,
+                destinationName,
+                entranceText,
+                entranceName,
+
+            )
+        }
         else
-            localizedContext.getString(R.string.osm_tag_entrance_unnamed)
+            localizedContext.getString(R.string.osm_tag_entrance_with_destination, destinationName, entranceText)
     }
 
     if (text == null) {

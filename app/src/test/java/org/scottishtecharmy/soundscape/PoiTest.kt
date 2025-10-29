@@ -145,7 +145,7 @@ class PoiTest {
             }
 
             featuresToDraw.addFeature(polygon)
-            featuresToDraw.plusAssign(poiFeatures)
+            featuresToDraw += poiFeatures
         }
 
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -167,8 +167,8 @@ class PoiTest {
 
         val featuresToDraw = FeatureCollection()
         val features = poi.getNearbyCollection(userGeometry.location, 50.0, gridState.ruler)
-        featuresToDraw.plusAssign(features)
-        assertEquals(36, features.features.size)
+        featuresToDraw += features
+        assertEquals(33, features.features.size)
 
         val circle = Feature()
         circle.geometry = circleToPolygon(
@@ -208,13 +208,13 @@ class PoiTest {
         // Make a FeatureCollection containing all of the super category Features. If the
         // classification hasn't missed anything, then this should include all the POIs.
         val joint = FeatureCollection()
-        joint.plusAssign(info)
-        joint.plusAssign(objects)
-        joint.plusAssign(places)
-        joint.plusAssign(landmarks)
-        joint.plusAssign(mobility)
-        joint.plusAssign(safety)
-        joint.plusAssign(entrances)
+        joint += info
+        joint += objects
+        joint += places
+        joint += landmarks
+        joint += mobility
+        joint += safety
+        joint += entrances
         diffFeatureCollections(features, joint)
 
         // The differences between these two collections are all un-categorised OSM tags
