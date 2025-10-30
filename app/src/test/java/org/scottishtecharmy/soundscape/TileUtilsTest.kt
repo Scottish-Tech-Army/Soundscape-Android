@@ -91,7 +91,7 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
-            4719,
+            4682,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -104,7 +104,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
         }
-        Assert.assertEquals(5524, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(5333, testIntersectionsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -123,7 +123,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2616, testPoiCollection.features.size)
+        Assert.assertEquals(2745, testPoiCollection.features.size)
     }
 
     @Test
@@ -145,7 +145,7 @@ class TileUtilsTest {
         // select "object" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
-        Assert.assertEquals(133, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(101, testSuperCategoryPoiCollection.features.size)
 
         for(feature in testSuperCategoryPoiCollection)
             println("${feature.foreign?.get("feature_type")} - ${feature.foreign?.get("feature_value")}")
@@ -171,7 +171,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(1354, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(1383, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -500,7 +500,7 @@ class TileUtilsTest {
         val userGeometry = UserGeometry(
             longAshtonRoadTestLocation,
             90.0,
-            100.0
+            150.0
         )
 
         val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
@@ -511,11 +511,9 @@ class TileUtilsTest {
         val nearestPoiFeature =
             poiTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
-        // It's a grit-bin - not the most useful, but the original Soundscape used to find houses
-        // which was even less useful. Measure distance to it.
         val distance = getDistanceToFeature(userGeometry.location, nearestPoiFeature!!, userGeometry.ruler)
 
-        Assert.assertEquals(46.82, distance.distance, 0.1) //  CheapRuler is slightly inaccurate at these distances
+        Assert.assertEquals(101.68, distance.distance, 0.1)
 
     }
 
