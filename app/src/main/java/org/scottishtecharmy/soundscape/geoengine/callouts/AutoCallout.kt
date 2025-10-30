@@ -201,7 +201,7 @@ class AutoCallout(
                 }
             }
 
-            val category = feature.foreign?.get("category") as String?
+            val category = feature.properties?.get("category") as String?
             if(category == null) {
                 true
             } else {
@@ -218,7 +218,7 @@ class AutoCallout(
                         if (!uniquelyNamedPOIs.containsKey(name.text)) {
                             // Don't filter out
                             uniquelyNamedPOIs[name.text] = feature
-                            val earcon = when(feature.foreign?.get("category")) {
+                            val earcon = when(feature.properties?.get("category")) {
                                 "information" -> NativeAudioEngine.EARCON_INFORMATION_ALERT
                                 "safety" -> NativeAudioEngine.EARCON_SENSE_SAFETY
                                 "mobility" -> NativeAudioEngine.EARCON_SENSE_MOBILITY

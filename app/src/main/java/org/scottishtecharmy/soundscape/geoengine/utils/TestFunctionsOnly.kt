@@ -94,56 +94,6 @@ fun getTilesForRegion(
 }
 
 /**
- * Get the road names/ref/road type that make up the intersection. Intersection objects only
- * contain "osm_ids" so we need to hook the osm_ids up with the information from the roads
- * feature collection
- * @param intersectionFeature
- * A single intersection
- * @param roadsFeatureCollection
- * A roads feature collection.
- * @return A Feature Collection that contains the roads that make up the nearest intersection.
- */
-fun getIntersectionRoadNames(
-    intersectionFeature: Feature?,
-    roadsFeatureCollection: FeatureCollection
-): FeatureCollection {
-
-    val intersectionRoads = FeatureCollection()
-    if(intersectionFeature == null) return intersectionRoads
-
-    val osmIds = intersectionFeature.foreign?.get("osm_ids") as? List<*> ?: return intersectionRoads
-
-    for (item in osmIds) {
-        for (roadFeature in roadsFeatureCollection) {
-            val roadOsmIds = roadFeature.foreign?.get("osm_ids") as? List<*> ?: return intersectionRoads
-            if (roadOsmIds.firstOrNull() == item) {
-                intersectionRoads.addFeature(roadFeature)
-            }
-        }
-    }
-    return intersectionRoads
-}
-
-fun removeDuplicates(
-    intersectionToCheck: Feature?
-): Feature? {
-
-    if(intersectionToCheck == null) return null
-
-    val osmIdsAtIntersection =
-        intersectionToCheck.foreign?.get("osm_ids") as? List<*>
-            ?: // Handle case where osmIds is null
-            return null // Or handle the error differently
-
-    val uniqueOsmIds = osmIdsAtIntersection.toSet()
-    val cleanOsmIds = uniqueOsmIds.toList() // Convert back to list for potential modification
-
-    val intersectionClean = intersectionToCheck
-    intersectionClean.foreign?.set("osm_ids", cleanOsmIds)
-    return intersectionClean
-}
-
-/**
  * Given an intersection Feature and a road Feature will return the bearing of the road to the
  * intersection
  * @param intersection
@@ -267,7 +217,6 @@ fun mergeRoadAndDirectionFeatures(
     newFeature.geometry = road.geometry
     @Suppress("unchecked_cast") // Suppress warning
     road.properties?.clone().also { newFeature.properties = it as? HashMap<String, Any?>? }
-    newFeature.foreign = road.foreign
     newFeature.type = road.type
     newFeature.bbox = road.bbox
     val fineBeLikeThat = direction.properties?.get("Direction")

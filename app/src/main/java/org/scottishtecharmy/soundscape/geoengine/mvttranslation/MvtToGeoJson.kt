@@ -523,13 +523,11 @@ fun vectorTileToGeoJson(tileX: Int,
                                     }
                                 } else {
                                     val interpolatedFeature = Feature()
-                                    val foreign: HashMap<String, Any?> = hashMapOf()
-                                    foreign["osm_id"] = id
-                                    interpolatedFeature.foreign = foreign
                                     interpolatedFeature.geometry =
                                         MultiPoint(ArrayList(interpolatedNodes))
                                     interpolatedFeature.properties = hashMapOf()
                                     interpolatedFeature.properties!!["class"] = "edgePoint"
+                                    interpolatedFeature.properties!!["osm_id"] = id
                                     mapInterpolatedNodes[id] = interpolatedFeature
                                 }
                             }
@@ -554,14 +552,12 @@ fun vectorTileToGeoJson(tileX: Int,
                 // And map the tags
                 val geoFeature = Feature()
                 geoFeature.geometry = geometry
-                properties!!["osm_ids"] = id
+                properties!!["osm_id"] = id
                 geoFeature.properties = properties
-                val foreign = translateProperties(properties, id)
-                if(foreign.isNotEmpty()) {
-                    geoFeature.foreign = foreign
+                if(translateProperties(properties, id)) {
                     if ((layer.name == "poi") || (layer.name == "place")) {
                         // If this is an un-named garden, then we can discard it
-                        if(foreign["feature_value"] == "garden") {
+                        if(properties["feature_value"] == "garden") {
                             if(!properties.containsKey("name"))
                                 continue
                         }
@@ -646,9 +642,10 @@ fun vectorTileToGeoJson(tileX: Int,
  * @return a map of properties that can be used in the same way as those from soundscape-backend
  */
 
-fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap<String, Any?> {
-    val foreign : HashMap<String, Any?> = hashMapOf()
+fun translateProperties(properties: HashMap<String, Any?>?, id: Double) : Boolean {
     if(properties != null) {
+        var featureType : String? = null
+        var featureValue : String? = null
         for(property in properties) {
             if (property.key == "class") {
                 // This mapping is constructed from the class description in:
@@ -676,31 +673,31 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                     "service_construction",
                     "track_construction",
                     "raceway_construction" -> {
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = property.value
+                        featureType = "highway"
+                        featureValue = property.value?.toString()
                     }
 
                     "crossing" -> {
                         if(properties["crossing"] == "unmarked") {
                             if((properties["tactile_paving"] == "no") || (!properties.containsKey("tactile_paving"))) {
                                 // Unmarked crossings without tactile paving should be ignored.
-                                return hashMapOf()
+                                return false
                             }
                         }
 
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = property.value
+                        featureType = "highway"
+                        featureValue = property.value?.toString()
                     }
 
                     "path" -> {
                         // Paths can have a more descriptive type in their subclass
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = properties["subclass"]
+                        featureType = "highway"
+                        featureValue = properties["subclass"]?.toString()
                     }
 
                     "bus" -> {
-                        foreign["feature_type"] = "highway"
-                        foreign["feature_value"] = "bus_stop"
+                        featureType = "highway"
+                        featureValue = "bus_stop"
                     }
 
                     // These are the features which we don't add to POI (for now at least)
@@ -711,27 +708,22 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                     "vacant",
                     "bollard",
                     "gate" -> {
-                        return hashMapOf()
+                        return false
                     }
 
                     else -> {
-                        foreign["feature_type"] = property.value
-                        val subclass = properties["subclass"]
-                        if(subclass != null) {
-                            foreign["feature_value"] = subclass
-                        }
+                        featureType = property.value?.toString()
+                        featureValue = properties["subclass"]?.toString()
                     }
                 }
             } else if (property.key == "building") {
                 // This is used for mapping warehouses
-                foreign["feature_type"] = property.key
-                foreign["feature_value"] = property.value
+                featureType = property.key
+                featureValue = property.value?.toString()
             }
         }
+        properties["feature_type"] = featureType
+        properties["feature_value"] = featureValue
     }
-    val osmIds = arrayListOf<Double>()
-    osmIds.add(id)
-    foreign["osm_ids"] = osmIds
-
-    return foreign
+    return true
 }

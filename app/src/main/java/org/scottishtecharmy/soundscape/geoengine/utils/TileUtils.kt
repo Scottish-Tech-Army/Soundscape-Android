@@ -98,10 +98,10 @@ fun getPoiFeatureCollectionBySuperCategory(
     val superCategorySet = getSuperCategoryElements(superCategory)
 
     for (feature in poiFeatureCollection) {
-        feature.foreign?.let { foreign ->
-            if (superCategorySet.contains(foreign["feature_type"]) or superCategorySet.contains(foreign["feature_value"])) {
+        feature.properties?.let { properties ->
+            if (superCategorySet.contains(properties["feature_type"]) or superCategorySet.contains(properties["feature_value"])) {
                 tempFeatureCollection.addFeature(feature)
-                feature.foreign?.put("category", superCategory)
+                feature.properties?.put("category", superCategory)
             }
         }
     }
@@ -129,8 +129,8 @@ fun featureIsInFilterGroup(feature: Feature, filter: String): Boolean {
     if(tags.isEmpty()) return true
 
     for (tag in tags) {
-        feature.foreign?.let { foreign ->
-            if (foreign["feature_value"] == tag) {
+        feature.properties?.let { properties ->
+            if (properties["feature_value"] == tag) {
                 return true
             }
         }
@@ -143,7 +143,7 @@ fun featureIsInFilterGroup(feature: Feature, filter: String): Boolean {
  * the existingSet. It returns false if it's the first time, or there's no OSM id.
  */
 fun isDuplicateByOsmId(existingSet : MutableSet<Any>, feature : Feature) : Boolean {
-    val osmId = feature.foreign?.get("osm_ids")
+    val osmId = feature.properties?.get("osm_id")
     if (osmId != null) {
         if(existingSet.contains(osmId))
             return true
@@ -171,7 +171,7 @@ fun deduplicateFeatureCollection(outputFeatureCollection: FeatureCollection,
  * Given a FeatureCollection checks for duplicate OSM IDs and removes them.
  * @param featureCollection
  * A Feature Collection.
- * @return a Feature Collection object with Features with duplicate "osm_ids" removed.
+ * @return a Feature Collection object with Features with duplicate osm ids removed.
  */
 fun removeDuplicateOsmIds(
     featureCollection: FeatureCollection
@@ -335,7 +335,7 @@ fun getDistanceToFeatureCollection(
     featureCollection: FeatureCollection
 ): FeatureCollection {
     for (feature in featureCollection) {
-        feature.foreign?.put(
+        feature.properties?.put(
             "distance_to",
             getDistanceToFeature(currentLocation, feature, currentLocation.createCheapRuler()).distance
         )
@@ -361,7 +361,7 @@ fun sortedByDistanceTo(
         featureCollection
     )
     val featuresSortedByDistanceList = featuresWithDistance.features
-        .sortedBy {(it.foreign?.get("distance_to") as? Number)?.toDouble() ?: Double.MAX_VALUE
+        .sortedBy {(it.properties?.get("distance_to") as? Number)?.toDouble() ?: Double.MAX_VALUE
         }
     // loop through the list of sorted Features and add to a new Feature Collection
     val featuresSortedByDistance = FeatureCollection()
@@ -613,13 +613,13 @@ fun mergeAllPolygonsInFeatureCollection(
     // but with any duplicated polygons merged.
     val resultantFeatureCollection = FeatureCollection()
 
-    // Create a HashMap of any polygons with the same osm_ids. Each hash map entry contains a List
+    // Create a HashMap of any polygons with the same osm_id. Each hash map entry contains a List
     // of FeatureCollections. Each FeatureCollections contains one or more polygons. When there's
     // more than one, they've been tested to see if they overlap.
     val features = hashMapOf<Any, MutableList<FeatureCollection> >()
     for (feature in polygonFeatureCollection.features) {
         if(feature.geometry.type == "Polygon") {
-            val osmId = feature.foreign?.get("osm_ids")
+            val osmId = feature.properties?.get("osm_id")
             if (osmId != null) {
                 if (!features.containsKey(osmId)) {
                     // This is the first feature with this osm_id
@@ -728,7 +728,6 @@ fun mergePolygons(
     // create a new Polygon with a single outer ring using the coordinates from the JTS merged geometry
     val mergedPolygon = Feature().also { feature ->
         feature.properties = polygon1.properties
-        feature.foreign = polygon1.foreign
         feature.type = "Feature"
         feature.geometry = Polygon().also { polygon ->
             //Convert JTS to GeoJSON coordinates

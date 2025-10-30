@@ -387,17 +387,17 @@ class MvtTileTest {
 
         val adapter = GeoJsonObjectMoshiAdapter()
         println(adapter.toJson(searchResults))
-        assert(searchResults.features.size == 1)
+        assertEquals(1, searchResults.features.size)
 
         // Check that we can find the containing polygons for a point
         val tree = gridState.featureTrees[TreeId.POIS.id]
         val fc1 = tree.getContainingPolygons(LngLatAlt(-4.316401, 55.939941))
-        assert(fc1.features.size == 1)
-        assert(fc1.features[0].properties?.get("name") == "Tesco Customer Car Park")
+        assertEquals(1, fc1.features.size)
+        assertEquals("Tesco Customer Car Park", fc1.features[0].properties?.get("name"))
 
         val fc2 = tree.getContainingPolygons(LngLatAlt(-4.312885, 55.942237))
-        assert(fc2.features.size == 1)
-        assert(fc2.features[0].properties?.get("name") == "Milngavie Town Hall")
+        assertEquals(1, fc2.features.size)
+        assertEquals("Milngavie Town Hall", fc2.features[0].properties?.get("name"))
 
 //        val fc3 = tree.getContainingPolygons(LngLatAlt(-4.296998, 55.948270))
 //        assert(fc3.features.size == 2)
@@ -405,7 +405,7 @@ class MvtTileTest {
 //        assert(fc3.features[1].properties?.get("class") == "parking")
 
         val fc4 = tree.getContainingPolygons(LngLatAlt(-4.316641241312027,55.94160200415631))
-        assert(fc4.features.size == 1)
+        assertEquals(1, fc4.features.size)
 
         val outputCollection = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id].getAllCollection()
         for(intersection in gridState.gridIntersections) {
@@ -653,10 +653,10 @@ class MvtTileTest {
                         val geoPointFeature = Feature()
                         val pointGeometry = Point(location.longitude, location.latitude)
                         geoPointFeature.geometry = pointGeometry
-                        val foreign: HashMap<String, Any?> = hashMapOf()
-                        foreign["nearestRoad"] = bestMatch.properties?.get("name")
-                        foreign["direction"] = heading
-                        geoPointFeature.properties = foreign
+                        val properties: HashMap<String, Any?> = hashMapOf()
+                        properties["nearestRoad"] = bestMatch.properties?.get("name")
+                        properties["direction"] = heading
+                        geoPointFeature.properties = properties
                         geojson.addFeature(geoPointFeature)
                     }
 
@@ -1117,11 +1117,10 @@ class MvtTileTest {
             val poiMap = hashMapOf<Double, MutableList<Feature>>()
             val poiFeature = Feature()
             poiFeature.properties = HashMap()
-            poiFeature.foreign = HashMap()
             poiFeature.properties?.set("name", "St Enoch Shopping Centre")
             poiFeature.properties?.set("class", "shop")
             poiFeature.properties?.set("subclass", "mall")
-            poiFeature.properties?.set("osm_ids", "52992372")
+            poiFeature.properties?.set("osm_id", "52992372")
             poiMap[52992372.0] = listOf(poiFeature).toMutableList()
 
             matcher.addGeometry(arrayListOf(Pair(100,100)), namedSubwayEntranceDetails)
