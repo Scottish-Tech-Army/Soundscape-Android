@@ -312,10 +312,8 @@ class GeoEngine {
                     val properties : HashMap<String, Any?> = hashMapOf()
                     properties["name"] = marker.name
                     properties["description"] = marker.fullAddress
+                    properties["category"] ="marker"
                     geoFeature.properties = properties
-                    val foreign : HashMap<String, Any?> = hashMapOf()
-                    foreign["category"] ="marker"
-                    geoFeature.foreign = foreign
                     featureCollection.addFeature(geoFeature)
                 }
                 runBlocking {
@@ -1002,8 +1000,8 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
     var generic = false
     val name = feature.properties?.get("name") as String?
     val entranceType = feature.properties?.get("entrance") as String?
-    val featureValue = feature.foreign?.get("feature_value")
-    val isMarker = feature.foreign?.get("category") == "marker"
+    val featureValue = feature.properties?.get("feature_value")
+    val isMarker = feature.properties?.get("category") == "marker"
 
     if(localizedContext == null) {
         if(name == null) {

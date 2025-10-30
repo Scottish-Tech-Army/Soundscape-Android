@@ -543,16 +543,8 @@ class WayGenerator(val transit: Boolean = false) {
             }
             newFeature.properties?.set("segmentIndex", segmentIndex.toString())
         }
-        feature.foreign?.let { foreign ->
-
-            newFeature.foreign = hashMapOf()
-            for((key, prop) in foreign) {
-                newFeature.foreign!![key] = prop
-            }
-        }
         newFeature.geometry = currentSegment
         way.properties = newFeature.properties
-        way.foreign = newFeature.foreign
         way.type = newFeature.type
         way.geometry = newFeature.geometry
         way.length = currentSegmentLength
@@ -697,23 +689,15 @@ class WayGenerator(val transit: Boolean = false) {
             // Naming the intersection is now done as a separate pass after the name confection has
             // taken place
             //intersection.value.updateName()
-
-            val osmIds = arrayListOf<Double>()
-            for(way in intersection.value.members) {
-                val id = way.properties?.get("osm_ids").toString().toDouble()
-                osmIds.add(id)
-            }
             intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
             intersection.value.properties = hashMapOf()
-            intersection.value.foreign = hashMapOf()
             if(transit) {
-                intersection.value.foreign?.set("feature_type", "transit")
-                intersection.value.foreign?.set("feature_value", "transit_intersection")
+                intersection.value.properties?.set("feature_type", "transit")
+                intersection.value.properties?.set("feature_value", "transit_intersection")
             } else {
-                intersection.value.foreign?.set("feature_type", "highway")
-                intersection.value.foreign?.set("feature_value", "gd_intersection")
+                intersection.value.properties?.set("feature_type", "highway")
+                intersection.value.properties?.set("feature_value", "gd_intersection")
             }
-            intersection.value.foreign?.set("osm_ids", osmIds)
             intersectionCollection.addFeature(intersection.value)
 
             if(!transit)

@@ -53,7 +53,6 @@ object GeoJsonData
     const val FEATURE_COLLECTION_JSON = "{\"features\":[{\"geometry\":{\"coordinates\":[0.5, 0.5],\"type\":\"Point\"},\"properties\":{\"name\":\"Very interesting point\",\"address\":\"Null Island Street\"},\"type\":\"Feature\"},{\"geometry\":{\"coordinates\":[[[0.0,1.0],[0.0,0.0],[1.0,0.0],[1.0,1.0],[0.0,1.0]]],\"type\":\"Polygon\"},\"properties\":{\"name\":\"Null Island\"},\"type\":\"Feature\"}],\"type\":\"FeatureCollection\"}"
     const val EMPTY_FEATURE_COLLECTION_JSON = "{\"features\":[],\"type\":\"FeatureCollection\"}"
     const val GEOMETRY_COLLECTION_JSON = "{\"geometries\":[{\"coordinates\":[0.5,0.5],\"type\":\"Point\"},{\"coordinates\":[[[0.0,1.0],[0.0,0.0],[1.0,0.0],[1.0,1.0],[0.0,1.0]]],\"type\":\"Polygon\"},{\"coordinates\":[[0.0,0.0],[1.0,1.0]],\"type\":\"LineString\"}],\"properties\":{\"key\":\"value\"},\"type\":\"GeometryCollection\"}"
-    const val FEATURE_COLLECTION_NULL_PROPERTIES_TEST_JSON = "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[0.5, 0.5]},\"properties\":null}]}"
 }
 
 val sixtyAcresCloseTestLocation = LngLatAlt(-2.693002695425122,51.43938442591545)

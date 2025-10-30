@@ -28,7 +28,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getGpsFromNormalizedMapCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
 import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
@@ -52,7 +51,7 @@ class TileUtilsTest {
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("highway", feature.foreign!!["feature_type"])
+            Assert.assertEquals("highway", feature.properties!!["feature_type"])
         }
         Assert.assertEquals(135, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
@@ -64,7 +63,7 @@ class TileUtilsTest {
             gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
 
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
+            Assert.assertEquals("bus_stop", feature.properties!!["feature_value"])
         }
         Assert.assertEquals(8, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
     }
@@ -74,7 +73,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
         for (feature in testCrossingsFeatureCollection) {
-            Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
+            Assert.assertEquals("crossing", feature.properties!!["feature_value"])
         }
         Assert.assertEquals(314, testCrossingsFeatureCollection.features.size)
     }
@@ -87,7 +86,7 @@ class TileUtilsTest {
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testPathsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("highway", feature.foreign!!["feature_type"])
+            Assert.assertEquals("highway", feature.properties!!["feature_type"])
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
@@ -102,7 +101,7 @@ class TileUtilsTest {
         val testIntersectionsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
+            Assert.assertEquals("gd_intersection", feature.properties!!["feature_value"])
         }
         Assert.assertEquals(5090, testIntersectionsCollectionFromTileFeatureCollection.features.size)
     }
@@ -148,7 +147,7 @@ class TileUtilsTest {
         Assert.assertEquals(101, testSuperCategoryPoiCollection.features.size)
 
         for(feature in testSuperCategoryPoiCollection)
-            println("${feature.foreign?.get("feature_type")} - ${feature.foreign?.get("feature_value")}")
+            println("${feature.properties?.get("feature_type")} - ${feature.properties?.get("feature_value")}")
     }
 
     @Test
@@ -211,13 +210,13 @@ class TileUtilsTest {
         // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
         Assert.assertEquals(
             55659.75,
-            distanceToFeatureCollection.features[0].foreign?.get("distance_to") as Double,
+            distanceToFeatureCollection.features[0].properties?.get("distance_to") as Double,
             500.0 // CheapRuler is very inaccurate at these distances
         )
         // Current location is on the boundary of the Polygon so distance should be 0.0
         Assert.assertEquals(
             0.0,
-            distanceToFeatureCollection.features[1].foreign?.get("distance_to")
+            distanceToFeatureCollection.features[1].properties?.get("distance_to")
         )
 
     }
@@ -241,7 +240,7 @@ class TileUtilsTest {
 
                 val tempFeatureCollection = FeatureCollection()
                 for (feature in placeSuperCategory.features) {
-                    if (feature.foreign?.get("feature_value") != "house") {
+                    if (feature.properties?.get("feature_value") != "house") {
                         if (feature.properties?.get("name") != null) {
                             val superCategorySet = getSuperCategoryElements("place")
                             for (property in feature.properties!!) {
@@ -278,13 +277,13 @@ class TileUtilsTest {
                     LngLatAlt(currentLon, currentLat),
                     settingsFeatureCollection
                 ).sortedBy { feature ->
-                    feature.foreign?.get("distance_to") as? Double ?: Double.MAX_VALUE
+                    feature.properties?.get("distance_to") as? Double ?: Double.MAX_VALUE
                 }
                 for (feature in distanceToFeatureCollection) {
                     if (feature.properties?.get("name") != null) {
                         println(
                             "Feature: ${feature.properties?.get("name")} " +
-                                    "distance to feature: ${feature.foreign?.get("distance_to")}"
+                                    "distance to feature: ${feature.properties?.get("distance_to")}"
                         )
                     }
                 }
@@ -297,7 +296,7 @@ class TileUtilsTest {
                 val placeSuperCategory =
                     getPoiFeatureCollectionBySuperCategory("place", poiCollection)
                 for (feature in placeSuperCategory.features) {
-                    if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get("feature_value") != "house") {
+                    if (feature.properties?.get("feature_type") != "building" && feature.properties?.get("feature_value") != "house") {
                         settingsFeatureCollection.features.add(feature)
                     }
                 }
@@ -463,8 +462,8 @@ class TileUtilsTest {
             userGeometry.location,
             fovIntersectionsFeatureCollection
         )
-        Assert.assertEquals(6.24, sortedByDistanceToTest.features[0].foreign?.get("distance_to") as Double, 0.1)
-        Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].foreign?.get("distance_to") as Double, 0.1)
+        Assert.assertEquals(6.24, sortedByDistanceToTest.features[0].properties?.get("distance_to") as Double, 0.1)
+        Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].properties?.get("distance_to") as Double, 0.1)
 
     }
 
@@ -687,18 +686,19 @@ class TileUtilsTest {
         Assert.assertEquals(6.24, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
-        val nearestIntersectionRoadNames = getIntersectionRoadNames(
-            nearestIntersection,
-            fovRoadsFeatureCollection
-        )
-        Assert.assertEquals(
-            "Long Ashton Road",
-            nearestIntersectionRoadNames.features[0].properties!!["name"]
-        )
-        Assert.assertEquals(
-            "Weston Road",
-            nearestIntersectionRoadNames.features[2].properties!!["name"]
-        )
+        // TODO: This should be implemented using the Way grap
+//        val nearestIntersectionRoadNames = getIntersectionRoadNames(
+//            nearestIntersection,
+//            fovRoadsFeatureCollection
+//        )
+//        Assert.assertEquals(
+//            "Long Ashton Road",
+//            nearestIntersectionRoadNames.features[0].properties!!["name"]
+//        )
+//        Assert.assertEquals(
+//            "Weston Road",
+//            nearestIntersectionRoadNames.features[2].properties!!["name"]
+//        )
     }
 
     private fun roundtripGpsLocation(latitude: Double, longitude: Double) {

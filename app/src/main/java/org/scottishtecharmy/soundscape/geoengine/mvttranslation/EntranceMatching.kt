@@ -182,7 +182,6 @@ class EntranceMatching {
                                 val entrance = Feature()
                                 entrance.geometry =
                                     Point(coordinates[0].longitude, coordinates[0].latitude)
-                                entrance.foreign = cloneHashMap(poi.foreign)
                                 entrance.properties = cloneHashMap(poi.properties)
                                 entrance.properties?.set("entrance", entranceDetails.entranceType)
 
@@ -206,7 +205,6 @@ class EntranceMatching {
                         val entrance = Feature()
                         entrance.geometry =
                             Point(coordinates[0].longitude, coordinates[0].latitude)
-                        entrance.foreign = HashMap()
                         entrance.properties = HashMap()
 
                         var confected = (entranceDetails.name != null)
@@ -214,8 +212,8 @@ class EntranceMatching {
                             // Subway station entrances
                             entrance.properties?.set("class", "railway")
                             entrance.properties?.set("subclass", "subway")
-                            entrance.foreign?.set("feature_type", "railway")
-                            entrance.foreign?.set("feature_value", "subway")
+                            entrance.properties?.set("feature_type", "railway")
+                            entrance.properties?.set("feature_value", "subway")
                             confected = true
                         }
                         else if((entranceDetails.properties?.get("railway") == "train_station_entrance") ||
@@ -223,8 +221,8 @@ class EntranceMatching {
                             // Train station entrances
                             entrance.properties?.set("class", "railway")
                             entrance.properties?.set("subclass", "station")
-                            entrance.foreign?.set("feature_type", "railway")
-                            entrance.foreign?.set("feature_value", "station")
+                            entrance.properties?.set("feature_type", "railway")
+                            entrance.properties?.set("feature_value", "station")
                             confected = true
                         }
                         if(confected)  {

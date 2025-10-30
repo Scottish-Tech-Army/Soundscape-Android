@@ -102,16 +102,16 @@ class MergePolygonsTest {
         for (duplicate in duplicateFeaturesFeatureCollection) {
             // Find the original Feature
             val originalFeature = notDuplicateFeaturesFeatureCollection.features.find {
-                it.foreign?.get("osm_ids") == duplicate.foreign?.get("osm_ids")
+                it.properties?.get("osm_ids") == duplicate.properties?.get("osm_ids")
             }
 
             // Merge duplicate polygons
             if (originalFeature != null && originalFeature.geometry.type == "Polygon" && duplicate.geometry.type == "Polygon") {
                 mergedPolygonsFeatureCollection.features.add(mergePolygons(originalFeature, duplicate))
                 // Add to the set
-                originalFeature.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
+                originalFeature.properties?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
                 // Add to the set
-                duplicate.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
+                duplicate.properties?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
             } else {
                 // TODO Merge the linestrings so we get a contiguous road/path
                 if (duplicate.geometry.type == "LineString" || duplicate.geometry.type == "Point"){
@@ -182,7 +182,6 @@ class MergePolygonsTest {
         // create a new Polygon with a single outer ring using the coordinates from the JTS merged geometry
         val mergedPolygon = Feature().also { feature ->
             feature.properties = polygon1.properties
-            feature.foreign = polygon1.foreign
             feature.type = "Feature"
             feature.geometry = Polygon().also { polygon ->
                 //Convert JTS to GeoJSON coordinates

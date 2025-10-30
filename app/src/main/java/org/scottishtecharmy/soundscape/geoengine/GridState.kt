@@ -573,15 +573,15 @@ open class GridState(
 
 
         for (feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "highway"
-                    && foreign["feature_value"] != "gd_intersection"
-                    && foreign["feature_value"] != "footway"
-                    && foreign["feature_value"] != "path"
-                    && foreign["feature_value"] != "cycleway"
-                    && foreign["feature_value"] != "bridleway"
-                    && foreign["feature_value"] != "bus_stop"
-                    && foreign["feature_value"] != "crossing") {
+            feature.properties?.let { properties ->
+                if (properties["feature_type"] == "highway"
+                    && properties["feature_value"] != "gd_intersection"
+                    && properties["feature_value"] != "footway"
+                    && properties["feature_value"] != "path"
+                    && properties["feature_value"] != "cycleway"
+                    && properties["feature_value"] != "bridleway"
+                    && properties["feature_value"] != "bus_stop"
+                    && properties["feature_value"] != "crossing") {
                     // We're only going to add linestrings to the roads feature collection
                     when(feature.geometry.type) {
                         "LineString", "MultiLineString" ->
@@ -600,9 +600,9 @@ open class GridState(
         val transitFeatureCollection = FeatureCollection()
 
         for (feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
-                if ((foreign["feature_type"] == "transit") ||
-                    (foreign["feature_type"] == "rail") && (foreign["feature_value"] == "rail")) {
+            feature.properties?.let { properties ->
+                if ((properties["feature_type"] == "transit") ||
+                    (properties["feature_type"] == "rail") && (properties["feature_value"] == "rail")) {
                     when(feature.geometry.type) {
                         "LineString", "MultiLineString" ->
                             transitFeatureCollection.addFeature(feature)
@@ -625,8 +625,8 @@ open class GridState(
     ): FeatureCollection{
         val transitStopFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
-            if(feature.foreign?.get("feature_type") != "transit") {
-                val featureValue = feature.foreign?.get("feature_value")
+            if(feature.properties?.get("feature_type") != "transit") {
+                val featureValue = feature.properties?.get("feature_value")
                 when (featureValue) {
                     "bus_stop", "tram_stop", "subway", "station", "train_station", "ferry_terminal" ->
                         transitStopFeatureCollection.addFeature(feature)
@@ -646,8 +646,8 @@ open class GridState(
     private fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
         val crossingsFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "crossing") {
+            feature.properties?.let { properties ->
+                if (properties["feature_type"] == "highway" && properties["feature_value"] == "crossing") {
                     crossingsFeatureCollection.addFeature(feature)
                 }
             }
@@ -688,12 +688,12 @@ open class GridState(
         val pathsFeatureCollection = FeatureCollection()
 
         for(feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
+            feature.properties?.let { properties ->
                 // We're only going to add linestrings to the roads feature collection
                 when(feature.geometry.type) {
                     "LineString", "MultiLineString" -> {
-                        if (foreign["feature_type"] == "highway")
-                            when (foreign["feature_value"]) {
+                        if (properties["feature_type"] == "highway")
+                            when (properties["feature_value"]) {
                                 "footway" -> pathsFeatureCollection.addFeature(feature)
                                 "path" -> pathsFeatureCollection.addFeature(feature)
                                 "cycleway" -> pathsFeatureCollection.addFeature(feature)
@@ -718,8 +718,8 @@ open class GridState(
         val intersectionsFeatureCollection = FeatureCollection()
         // Split out the intersections into their own intersections FeatureCollection
         for (feature in tileFeatureCollection) {
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "highway" && foreign["feature_value"] == "gd_intersection") {
+            feature.properties?.let { properties ->
+                if (properties["feature_type"] == "highway" && properties["feature_value"] == "gd_intersection") {
                     val intersection = feature as Intersection
                     if(intersection.intersectionType != IntersectionType.TILE_EDGE) {
                         // Only add intersections that are not tile edges
@@ -763,9 +763,9 @@ open class GridState(
         val poiFeaturesCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
             var add = true
-            feature.foreign?.let { foreign ->
-                if (foreign["feature_type"] == "highway" ||
-                    foreign["feature_type"] == "gd_entrance_list"
+            feature.properties?.let { properties ->
+                if (properties["feature_type"] == "highway" ||
+                    properties["feature_type"] == "gd_entrance_list"
                 ) {
                     add = false
                 }
