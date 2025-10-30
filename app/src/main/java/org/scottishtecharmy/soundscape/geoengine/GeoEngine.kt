@@ -1089,8 +1089,10 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
     if (text == null) {
         val osmClass =
             feature.properties?.get("class") as String? ?: return TextForFeature("", true)
+        val osmSubClass =
+            feature.properties?.get("subclass") as String?
 
-        val id = ResourceMapper.getResourceId(osmClass)
+        val id = ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(osmSubClass)
         text = if (id == null) {
             osmClass.replace("_", " ")
         } else {
