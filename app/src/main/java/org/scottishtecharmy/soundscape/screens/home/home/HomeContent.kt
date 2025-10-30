@@ -153,53 +153,54 @@ fun HomeContent(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
         modifier = modifier
     ) {
-        searchBar()
+        if (streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
+            StreetPreview(streetPreviewState, heading, streetPreviewFunctions)
+        }
+        else {
+            searchBar()
+        }
 
         Column(
             verticalArrangement = Arrangement.spacedBy(spacing.small),
             modifier = Modifier.verticalScroll(rememberScrollState()),
         ) {
-            if (streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
-                StreetPreview(streetPreviewState, heading, streetPreviewFunctions)
-            } else {
-                // Places Nearby
-                NavigationButton(
-                    onClick = {
-                        onNavigate(HomeRoutes.PlacesNearby.route)
-                    },
-                    text = stringResource(R.string.search_nearby_screen_title),
-                    horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .semantics { heading() }
-                        .talkbackHint(stringResource(R.string.search_button_nearby_accessibility_hint))
-                        .testTag("homePlacesNearby")
-                )
-                // Markers and routes
-                NavigationButton(
-                    onClick = {
-                        onNavigate(HomeRoutes.MarkersAndRoutes.route)
-                    },
-                    text = stringResource(R.string.search_view_markers),
-                    horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .talkbackHint(stringResource(R.string.search_button_markers_accessibility_hint))
-                        .testTag("homeMarkersAndRoutes")
-                )
-                // Current location
-                NavigationButton(
-                    onClick = {
-                        if (location != null) {
-                            val ld = getCurrentLocationDescription()
-                            onNavigate(generateLocationDetailsRoute(ld))
-                        }
-                    },
-                    text = stringResource(R.string.search_use_current_location),
-                    horizontalPadding = spacing.small,
-                    modifier = Modifier
-                        .talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint))
-                        .testTag("homeCurrentLocation")
-                )
-            }
+            // Places Nearby
+            NavigationButton(
+                onClick = {
+                    onNavigate(HomeRoutes.PlacesNearby.route)
+                },
+                text = stringResource(R.string.search_nearby_screen_title),
+                horizontalPadding = spacing.small,
+                modifier = Modifier
+                    .semantics { heading() }
+                    .talkbackHint(stringResource(R.string.search_button_nearby_accessibility_hint))
+                    .testTag("homePlacesNearby")
+            )
+            // Markers and routes
+            NavigationButton(
+                onClick = {
+                    onNavigate(HomeRoutes.MarkersAndRoutes.route)
+                },
+                text = stringResource(R.string.search_view_markers),
+                horizontalPadding = spacing.small,
+                modifier = Modifier
+                    .talkbackHint(stringResource(R.string.search_button_markers_accessibility_hint))
+                    .testTag("homeMarkersAndRoutes")
+            )
+            // Current location
+            NavigationButton(
+                onClick = {
+                    if (location != null) {
+                        val ld = getCurrentLocationDescription()
+                        onNavigate(generateLocationDetailsRoute(ld))
+                    }
+                },
+                text = stringResource(R.string.search_use_current_location),
+                horizontalPadding = spacing.small,
+                modifier = Modifier
+                    .talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint))
+                    .testTag("homeCurrentLocation")
+            )
             if (location != null) {
                 if (routePlayerState.routeData != null) {
                     Card(modifier = Modifier

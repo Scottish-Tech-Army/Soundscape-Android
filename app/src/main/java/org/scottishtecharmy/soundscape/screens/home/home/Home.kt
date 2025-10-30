@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Snooze
 import androidx.compose.material3.DrawerState
@@ -136,7 +137,8 @@ fun Home(
                         drawerState,
                         coroutineScope,
                         onNavigate,
-                        state.streetPreviewState.enabled != StreetPreviewEnabled.OFF
+                        state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
+                        streetPreviewFunctions
                     )
                 }
             },
@@ -216,7 +218,8 @@ fun HomeTopAppBar(
     drawerState: DrawerState,
     coroutineScope: CoroutineScope,
     onNavigate: (String) -> Unit,
-    streetPreviewState: Boolean
+    streetPreviewState: Boolean,
+    streetPreviewFunctions: StreetPreviewFunctions
 ) {
     val context = LocalContext.current
     FlexibleAppBar(
@@ -241,24 +244,41 @@ fun HomeTopAppBar(
             }
         },
         rightSide = {
-            IconButton(
-                enabled = true,
-                onClick = {
-                    (context as MainActivity).setServiceState(
-                        newServiceState = false,
-                        sleeping = true
+            if(streetPreviewState) {
+                IconButton(
+                    enabled = true,
+                    onClick = {
+                        streetPreviewFunctions.exit()
+                    },
+                    modifier = Modifier
+                        .talkbackHint(stringResource(R.string.street_preview_exit))
+                ) {
+                    Icon(
+                        Icons.Rounded.ExitToApp,
+                        contentDescription = stringResource(R.string.street_preview_exit),
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
-                    onNavigate(HomeRoutes.Sleep.route)
-                },
-                modifier = Modifier
-                    .talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
-                    .testTag("topBarSleep")
-            ) {
-                Icon(
-                    Icons.Rounded.Snooze,
-                    contentDescription = stringResource(R.string.sleep_sleep),
-                    tint = MaterialTheme.colorScheme.onSurface,
-                )
+                }
+            } else {
+                IconButton(
+                    enabled = true,
+                    onClick = {
+                        (context as MainActivity).setServiceState(
+                            newServiceState = false,
+                            sleeping = true
+                        )
+                        onNavigate(HomeRoutes.Sleep.route)
+                    },
+                    modifier = Modifier
+                        .talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
+                        .testTag("topBarSleep")
+                ) {
+                    Icon(
+                        Icons.Rounded.Snooze,
+                        contentDescription = stringResource(R.string.sleep_sleep),
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
             }
         },
     )
