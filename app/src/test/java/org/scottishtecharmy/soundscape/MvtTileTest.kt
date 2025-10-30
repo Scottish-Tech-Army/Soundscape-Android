@@ -35,6 +35,7 @@ import kotlin.math.abs
 import kotlin.sequences.forEach
 import kotlin.system.measureTimeMillis
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
@@ -291,14 +292,54 @@ class MvtTileTest {
         val adapter = GeoJsonObjectMoshiAdapter()
         val gridState = getGridStateForLocation(LngLatAlt(-4.251169, 55.862550), 14, 2)
 
+        val missingResourceMapperStrings : MutableSet<String> = emptySet<String>().toMutableSet()
         for(treeId in TreeId.entries) {
             if (treeId == TreeId.MAX_COLLECTION_ID)
                 break
 
+
+            val collection = gridState.getFeatureTree(treeId).getAllCollection()
+            when(treeId) {
+                TreeId.ROADS,
+                TreeId.ROADS_AND_PATHS,
+                TreeId.INTERPOLATIONS,
+                TreeId.INTERSECTIONS,
+                TreeId.SETTLEMENT_CITY,
+                TreeId.SETTLEMENT_TOWN,
+                TreeId.SETTLEMENT_VILLAGE,
+                TreeId.SETTLEMENT_HAMLET,
+                TreeId.TRANSIT ->
+                    {}
+
+                else -> {
+                    for (feature in collection) {
+                        val osmClass = feature.properties?.get("class") as String?
+                        val osmSubClass = feature.properties?.get("subclass") as String?
+
+                        if((osmClass == null) && (osmSubClass == null))
+                            continue
+
+                        val id =
+                            ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(
+                                osmSubClass
+                            )
+                        if (id == null) {
+                            if(osmClass != null)
+                                missingResourceMapperStrings.add(osmClass)
+                            if(osmSubClass != null)
+                                missingResourceMapperStrings.add(osmSubClass)
+                        }
+                    }
+                }
+            }
             val outputFile = FileOutputStream("glasgow-queen-street-${treeId.description}.geojson")
-            outputFile.write(adapter.toJson(gridState.getFeatureTree(treeId).getAllCollection()).toByteArray())
+            outputFile.write(adapter.toJson(collection).toByteArray())
             outputFile.close()
         }
+        println("Missing tags from ResourceMapper:")
+        for(tag in missingResourceMapperStrings)
+            println("  $tag")
+
     }
 
     /** This test reads in a 2x2 array of vector tiles and merges them into a single GeoJSON.
