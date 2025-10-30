@@ -478,7 +478,7 @@ fun convertBackToTileCoordinates(location: LngLatAlt,
     return Pair(xInt, yInt)
 }
 
-class WayGenerator {
+class WayGenerator(val transit: Boolean = false) {
 
     /**
     * highwayPoints is a sparse map which maps from a location within the tile to a list of
@@ -706,12 +706,18 @@ class WayGenerator {
             intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
             intersection.value.properties = hashMapOf()
             intersection.value.foreign = hashMapOf()
-            intersection.value.foreign?.set("feature_type", "highway")
-            intersection.value.foreign?.set("feature_value", "gd_intersection")
+            if(transit) {
+                intersection.value.foreign?.set("feature_type", "transit")
+                intersection.value.foreign?.set("feature_value", "transit_intersection")
+            } else {
+                intersection.value.foreign?.set("feature_type", "highway")
+                intersection.value.foreign?.set("feature_value", "gd_intersection")
+            }
             intersection.value.foreign?.set("osm_ids", osmIds)
             intersectionCollection.addFeature(intersection.value)
 
-            intersectionMap[intersection.key] = intersection.value
+            if(!transit)
+                intersectionMap[intersection.key] = intersection.value
         }
     }
 }

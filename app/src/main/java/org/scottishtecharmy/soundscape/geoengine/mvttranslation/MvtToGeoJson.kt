@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.MIN_MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
@@ -10,7 +11,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
+import java.io.FileOutputStream
 
 fun pointIsOffTile(x: Int, y: Int) : Boolean {
     return (x < 0 || y < 0 || x >= 4096 || y >= 4096)
@@ -285,6 +288,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
     val collection = FeatureCollection()
     val wayGenerator = WayGenerator()
+    val transitGenerator = WayGenerator(transit = true)
     val entranceMatching = EntranceMatching()
 
     // The main TileGrid is at the MAX_ZOOM_LEVEL and we parse transportation, poi and building
@@ -490,7 +494,10 @@ fun vectorTileToGeoJson(tileX: Int,
                             if(feature.id == 0L) {
                                 println("Feature ID is zero for ${name.toString()}")
                             }
-                            wayGenerator.addLine(line)
+                            if((properties?.get("class") == "transit") || (properties?.get("class") == "rail"))
+                                transitGenerator.addLine(line)
+                            else
+                                wayGenerator.addLine(line)
                             val interpolatedNodes : MutableList<LngLatAlt> = mutableListOf()
                             val clippedLines = convertGeometryAndClipLineToTile(tileX,
                                                                                 tileY,
@@ -571,7 +578,10 @@ fun vectorTileToGeoJson(tileX: Int,
                         if(geoFeature.geometry.type != "LineString") {
                             collection.addFeature(geoFeature)
                         } else {
-                            wayGenerator.addFeature(geoFeature)
+                            if((properties.get("class") == "transit") || (properties.get("class") == "rail"))
+                                transitGenerator.addFeature(geoFeature)
+                            else
+                                wayGenerator.addFeature(geoFeature)
                         }
                     } else {
                         mapBuildingFeatures[id] = geoFeature
@@ -618,6 +628,7 @@ fun vectorTileToGeoJson(tileX: Int,
     }
     // Add intersections
     wayGenerator.generateWays(collection, collection, intersectionMap, tileX, tileY, tileZoom)
+    transitGenerator.generateWays(collection, collection, intersectionMap, tileX, tileY, tileZoom)
 
     return collection
 }
@@ -696,6 +707,7 @@ fun translateProperties(properties: HashMap<String, Any?>?, id: Double): HashMap
                     "cycle_barrier",
                     "bicycle_parking",
                     "waste_basket",
+                    "grit_bin",
                     "vacant",
                     "bollard",
                     "gate" -> {

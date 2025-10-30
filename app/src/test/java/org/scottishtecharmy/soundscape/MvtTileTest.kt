@@ -290,10 +290,15 @@ class MvtTileTest {
     fun testVectorToGeoJsonGlasgowQueenStreet() {
         val adapter = GeoJsonObjectMoshiAdapter()
         val gridState = getGridStateForLocation(LngLatAlt(-4.251169, 55.862550), 14, 2)
-        val outputCollection = gridState.getFeatureTree(TreeId.POIS).getAllCollection()
-        val outputFile = FileOutputStream("glasgow-queen-street.geojson")
-        outputFile.write(adapter.toJson(outputCollection).toByteArray())
-        outputFile.close()
+
+        for(treeId in TreeId.entries) {
+            if (treeId == TreeId.MAX_COLLECTION_ID)
+                break
+
+            val outputFile = FileOutputStream("glasgow-queen-street-${treeId.description}.geojson")
+            outputFile.write(adapter.toJson(gridState.getFeatureTree(treeId).getAllCollection()).toByteArray())
+            outputFile.close()
+        }
     }
 
     /** This test reads in a 2x2 array of vector tiles and merges them into a single GeoJSON.

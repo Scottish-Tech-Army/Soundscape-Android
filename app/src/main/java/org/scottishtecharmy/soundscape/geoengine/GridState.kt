@@ -35,28 +35,30 @@ import kotlin.time.TimeSource
 
 enum class TreeId(
     val id: Int,
+    val description: String
 ) {
-    ROADS(0),
-    ROADS_AND_PATHS(1),
-    INTERSECTIONS(2),
-    ENTRANCES(3),
-    CROSSINGS(4),
-    POIS(5),
-    TRANSIT_STOPS(6),
-    INTERPOLATIONS(7),
-    INFORMATION_POIS(8),
-    OBJECT_POIS(9),
-    PLACE_POIS(10),
-    LANDMARK_POIS(11),
-    MOBILITY_POIS(12),
-    SAFETY_POIS(13),
-    PLACES_AND_LANDMARKS(14),
-    SELECTED_SUPER_CATEGORIES(15),
-    SETTLEMENT_CITY(16),
-    SETTLEMENT_TOWN(17),
-    SETTLEMENT_VILLAGE(18),
-    SETTLEMENT_HAMLET(19),
-    MAX_COLLECTION_ID(20),
+    ROADS(0, "Roads"),
+    ROADS_AND_PATHS(1, "Roads and Paths"),
+    INTERSECTIONS(2, "Intersections"),
+    ENTRANCES(3, "Entrances"),
+    CROSSINGS(4, "Crossings"),
+    POIS(5, "Pois"),
+    TRANSIT_STOPS(6, "Transit Stops"),
+    INTERPOLATIONS(7, "Interpolations"),
+    INFORMATION_POIS(8, "Information POIs"),
+    OBJECT_POIS(9, "Object POIs"),
+    PLACE_POIS(10, "Place POIs"),
+    LANDMARK_POIS(11, "Landmark POIs"),
+    MOBILITY_POIS(12, "Mobility POIs"),
+    SAFETY_POIS(13, "Safey POIs"),
+    PLACES_AND_LANDMARKS(14, "Places and Landmarks"),
+    SELECTED_SUPER_CATEGORIES(15, "Selected Super Categories"),
+    SETTLEMENT_CITY(16, "Cities"),
+    SETTLEMENT_TOWN(17, "Towns"),
+    SETTLEMENT_VILLAGE(18, "Villages"),
+    SETTLEMENT_HAMLET(19, "Hamlets"),
+    TRANSIT(20, "Transit"),
+    MAX_COLLECTION_ID(21, ""),
 }
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
@@ -537,6 +539,7 @@ open class GridState(
         tileData[TreeId.ENTRANCES.id] = getEntrancesFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.POIS.id] = getPointsOfInterestFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.TRANSIT_STOPS.id] = getTransitStopsFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
+        tileData[TreeId.TRANSIT.id] = getTransitFeatureCollectionFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.CROSSINGS.id] = getCrossingsFromTileFeatureCollection(tileFeatureCollection)
         tileData[TreeId.INTERPOLATIONS.id] = getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection)
 
@@ -588,6 +591,26 @@ open class GridState(
         return roadsFeatureCollection
     }
 
+    private fun getTransitFeatureCollectionFromTileFeatureCollection(
+        tileFeatureCollection: FeatureCollection
+    ): FeatureCollection {
+
+        val transitFeatureCollection = FeatureCollection()
+
+        for (feature in tileFeatureCollection) {
+            feature.foreign?.let { foreign ->
+                if ((foreign["feature_type"] == "transit") ||
+                    (foreign["feature_type"] == "rail") && (foreign["feature_value"] == "rail")) {
+                    when(feature.geometry.type) {
+                        "LineString", "MultiLineString" ->
+                            transitFeatureCollection.addFeature(feature)
+                    }
+                }
+            }
+        }
+        return transitFeatureCollection
+    }
+
     /**
      * Given a valid Tile feature collection this will parse the collection and return a bus stops
      * feature collection. Uses the "bus_stop" feature_value to extract bus stops from GeoJSON.
@@ -600,9 +623,12 @@ open class GridState(
     ): FeatureCollection{
         val transitStopFeatureCollection = FeatureCollection()
         for (feature in tileFeatureCollection) {
-            val featureValue = feature.foreign?.get("feature_value")
-            when(featureValue) {
-                "bus_stop","tram_stop","subway","station","train_station","ferry_terminal" -> transitStopFeatureCollection.addFeature(feature)
+            if(feature.foreign?.get("feature_type") != "transit") {
+                val featureValue = feature.foreign?.get("feature_value")
+                when (featureValue) {
+                    "bus_stop", "tram_stop", "subway", "station", "train_station", "ferry_terminal" ->
+                        transitStopFeatureCollection.addFeature(feature)
+                }
             }
         }
         return transitStopFeatureCollection
