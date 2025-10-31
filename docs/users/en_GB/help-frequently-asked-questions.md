@@ -5,7 +5,7 @@ parent: Using Soundscape
 has_toc: false
 ---
 
-# Frequently Asked Questions
+# Frekwintly Ast Kweschins
 
 ## What is Soundscape and how should I use it?
 
