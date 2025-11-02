@@ -52,7 +52,7 @@ class OfflineMapsTest {
      */
     @Test
     fun testManifestInFeatureTree() {
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
+        val path = "src/test/res/org/scottishtecharmy/soundscape/test-maps/"
         val metadataFile = GZIPInputStream(FileInputStream(path + MANIFEST_NAME)).bufferedReader().use { it.readText() }
 
         // Load in the metadata GeoJSON file
@@ -99,7 +99,7 @@ class OfflineMapsTest {
         addCountry(continents, country, continent)
         val regionMap = (continents[continent]!!)[country]
         if(regionMap != null) {
-            val cityClusterName = cityClusterFeature.properties?.get("anchor_city")
+            val cityClusterName = cityClusterFeature.properties?.get("name")
             regionMap[cityClusterName as String] = cityClusterFeature
         }
     }
@@ -120,7 +120,7 @@ class OfflineMapsTest {
 
     @Test
     fun testHierarchyGenerationFromManifest() {
-        val path = "src/test/res/org/scottishtecharmy/soundscape/"
+        val path = "src/test/res/org/scottishtecharmy/soundscape/test-maps/"
         val metadataFile =
             GZIPInputStream(FileInputStream(path + MANIFEST_NAME)).bufferedReader().use { it.readText() }
 
@@ -164,7 +164,7 @@ class OfflineMapsTest {
                         )
                     }
                     "city_cluster" -> {
-                        val countryName = feature.properties?.get("anchor_iso_a2") as String
+                        val countryName = feature.properties?.get("iso_a2") as String
                         addCityCluster(
                             continents,
                             countryName,

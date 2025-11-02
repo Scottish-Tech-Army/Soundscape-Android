@@ -26,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          lfs: true
+          submodules: recursive
           fetch-depth: 0
 
       - name: Check latest commit is less than a day
@@ -46,6 +48,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          lfs: true
+          submodules: recursive
           fetch-depth: 0
 
       - name: Setup tile and search providers
@@ -77,18 +81,6 @@ jobs:
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
-
-      - name: Setup offline maps for tests
-        run: |
-          pwd 
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
-          # On Cloudflare the manifest may be redirected and we need to get that location and use
-          # it to access the other files
-          redirect=$(wget https://commcouncil.scot/manifest.geojson.gz --spider -O /dev/null 2>&1 | grep "Location: " | sed 's/Location: \/\(.*\)\/manifest\.geojson\.gz.*/\1/g')
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/$redirect/bristol-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/$redirect/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/$redirect/manchester-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
 
       - name: Run lint over the repo
         run: ./gradlew lint
