@@ -119,6 +119,7 @@ class OfflineMapsViewModel @Inject constructor(
     // Add this new function to your ViewModel
     private fun startProgressUpdates() {
         progressJob = viewModelScope.launch {
+            var delayCount = 4
             while (isActive) { // This loop will run as long as the coroutine is active
                 val downloadStatus = offlineDownloader.getDownloadStatus()
                 if(downloadStatus != null) {
@@ -137,18 +138,28 @@ class OfflineMapsViewModel @Inject constructor(
 
                     if(downloadStatus.managerStatus == DownloadManager.STATUS_FAILED) {
                         // Tidy up after failed download
+                        println("Download failed")
                         deleteAllProgressFiles(appContext)
                     }
 
                     if((downloadStatus.managerStatus == DownloadManager.STATUS_SUCCESSFUL) ||
                         (downloadStatus.managerStatus == DownloadManager.STATUS_FAILED)) {
-                        val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
-                        val extractCollection = findExtracts(extractsDir.path)
-                        _uiState.value = _uiState.value.copy(
-                            downloadedExtracts = extractCollection,
-                            isDownloading = false
-                        )
-                        break
+                        if (delayCount > 0) {
+                            // We want to allow the status to be displayed at 100% before moving
+                            // back to the overview screen. This should likely be in the UI code
+                            // rather than the view model...
+                            --delayCount
+                        }
+                        else {
+                            val extractsDir =
+                                File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
+                            val extractCollection = findExtracts(extractsDir.path)
+                            _uiState.value = _uiState.value.copy(
+                                downloadedExtracts = extractCollection,
+                                isDownloading = false
+                            )
+                            break
+                        }
                     }
                 } else {
                     Log.e(TAG, "Download progress is null, it has been cancelled")
