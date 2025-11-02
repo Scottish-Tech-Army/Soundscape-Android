@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape.geoengine
 import android.content.Context
 import android.util.Log
 import ch.poole.geo.pmtiles.Reader
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +40,11 @@ open class ProtomapsGridState(
     override fun start(applicationContext: Context?, offlineExtractPaths: List<String>) {
         if((tileClient == null) && (applicationContext != null))
             tileClient = ProtomapsTileClient(applicationContext)
+
+        if(offlineExtractPaths.isEmpty())
+           Firebase.analytics.logEvent("GridNoOfflineMap", null)
+        else
+            Firebase.analytics.logEvent("GridWithOfflineMap", null)
 
         // Create a range reader for the local file
         for(extract in offlineExtractPaths)
