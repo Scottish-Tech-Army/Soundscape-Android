@@ -52,9 +52,9 @@ import kotlin.io.path.nameWithoutExtension
  */
 
 val offlineExtracts = listOf(
-    "src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles",
-    "src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles",
-    "src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/test-maps/20251031-1111-bristol-gb.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/test-maps/20251031-1111-glasgow-gb.pmtiles",
+    "src/test/res/org/scottishtecharmy/soundscape/test-maps/20251031-1111-liverpool-gb.pmtiles",
 )
 class FileGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
