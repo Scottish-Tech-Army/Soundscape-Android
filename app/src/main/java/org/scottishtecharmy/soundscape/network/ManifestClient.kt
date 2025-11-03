@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.GzipSource
 import okio.buffer
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.MANIFEST_NAME
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
@@ -54,6 +55,7 @@ class ManifestClient(val applicationContext: Context) {
             val finalUrl = finalRequest.url
             println("Final (after redirect) URL: $finalUrl")
             redirect = finalUrl.toString().removeSuffix(MANIFEST_NAME)
+            println("redirect set to: $redirect")
 
             // 6. Return the response to continue the chain
             response
@@ -91,7 +93,7 @@ class ManifestClient(val applicationContext: Context) {
     fun buildRetrofit() : Retrofit {
         moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         return Retrofit.Builder()
-            .baseUrl("https://commcouncil.scot")
+            .baseUrl(BuildConfig.EXTRACT_PROVIDER_URL)
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi!!))
             .build()

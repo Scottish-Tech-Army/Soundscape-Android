@@ -47,11 +47,13 @@ jobs:
           TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
           SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
           SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          EXTRACT_PROVIDER_URL: ${{ secrets.EXTRACT_PROVIDER_URL }}
         run: |
           echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
           echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
           echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
           echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          echo extractProviderUrl="EXTRACT_PROVIDER_URL" >> local.properties
 
       - name: Run lint over the repo
         run: ./gradlew lint
