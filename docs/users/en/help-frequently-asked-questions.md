@@ -12,6 +12,9 @@ has_toc: false
 ### When should I use Soundscape?
 Soundscape has features and benefits that span a variety of scenarios and time scales. Furthermore, Soundscape’s value to you may evolve over time so how you use it today may differ from how you will use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape certainly can be used on a case by case basis when you have a specific information need – such as keeping track of a destination as you make your way there, helping to orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is one of *"lighting up your world with sound"*, designed to be used anytime you are out and about to provide ambient awareness of your surroundings, such as keeping you aware of the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, to *"fill in the gaps in your mental map"* and provide more *"confidence when walking"*. Here are some other examples of how our users are incorporating Soundscape into their life:
 
+Extra para to see if it confuses things in Weblate. 
+* Bonus: Try out bullet points.
+
 "Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
 
 "Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
@@ -21,6 +24,9 @@ Soundscape has features and benefits that span a variety of scenarios and time s
 "I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
 
 "[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
+
+### Why is there an extra section here now?
+This is to see if Weblate is smart enough to figure out that this is a new section, and leave the translation blank, or it ends up mis-aligning things.  (Even if it does align them, though, I don't know how — might be some approximation.)
 
 ### What are Markers and how do I get the most out of them?
 Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *"Use Current Location"* button on the home screen and then selecting *"Save as Marker"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *"Places Nearby"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *"Location Details"* page. On this page, select the button called *"Save as Marker"*.
