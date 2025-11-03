@@ -1,5 +1,5 @@
 [versions]
-agp = "8.11.1"
+agp = "8.13.0"
 commonmark = "0.25.1"
 kotlin = "2.2.0"
 protobuf-plugin = "0.9.5"
