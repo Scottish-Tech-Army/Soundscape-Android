@@ -9,7 +9,6 @@ import androidx.compose.ui.semantics.getOrNull
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.fail
 import java.nio.file.Path
-import kotlin.io.path.absolute
 import kotlin.io.path.createDirectories
 import kotlin.io.path.writeText
 
@@ -25,10 +24,10 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     fun dumpSemanticsNode(indent: String, info: SemanticsNode) {
         sb.append(indent)
             .append("- ")
-            .append((info.config.getOrNull(SemanticsProperties.TestTag)?.let { "[$it] " }) ?: "")
-            .append(info.config.getOrNull(SemanticsProperties.Text)?.joinToString("") { it.text } ?: "")
+            .append((info.config.getOrNull(SemanticsProperties.TestTag)?.let { "[$it] " }) ?: "[] ")
+            .append(info.config.getOrNull(SemanticsProperties.Text)?.joinToString("") { it.text } ?: "''")
             .append("  ")
-            .append(info.layoutInfo())
+            .append(info.boundsInRoot.toShortString())
             .append("\n")
     }
 
@@ -44,19 +43,6 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     return sb.toString()
 }
 
-/**
- * Dumps the full layout and semantics tree as a deterministic string.
- * Includes modifiers, bounds, and semantics properties.
- *
- * @author ChatGPT (via Hugh Greene)
- */
-private fun SemanticsNode.layoutInfo(): String {
-    val bounds = this.boundsInRoot
-    // Simplified modifier info for testing (truncate long chains)
-    val modifiers = this.layoutInfo.getModifierInfo().joinToString(", ") { it.toString().take(150) }
-    return "(bounds=${bounds.toShortString()}, modifiers=[$modifiers])"
-}
-
 private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
     "(${left.toInt()},${top.toInt()} - ${right.toInt()},${bottom.toInt()})"
 
@@ -68,11 +54,13 @@ private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
  */
 fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
     val context = InstrumentationRegistry.getInstrumentation().context
-    val snapshot = dumpLayoutTree()
-
     val baselineSubpathString = "baselines/$filename"
     val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
-    val filesDir = context.filesDir.toPath()
+
+    val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+    val filesDir = targetContext.filesDir.toPath()
+
+    val snapshot = dumpLayoutTree()
 
     when {
         // If no baseline in assets, create a new one on the Android device for review.

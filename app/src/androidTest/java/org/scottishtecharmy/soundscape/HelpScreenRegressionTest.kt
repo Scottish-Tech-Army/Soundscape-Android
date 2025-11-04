@@ -2,7 +2,6 @@
 
 package org.scottishtecharmy.soundscape
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -40,7 +39,7 @@ class HelpScreenRegressionTest {
 
         // Compare against baseline file
         composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/menu_help_and_tutorials.txt"
+            "baselines/help_screen_layouts/menu_help_and_tutorials.txt"
         )
     }
 }
