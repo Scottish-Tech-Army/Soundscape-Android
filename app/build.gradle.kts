@@ -2,6 +2,8 @@ import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectories
 
 plugins {
     alias(libs.plugins.android.application)
@@ -30,6 +32,7 @@ android {
         }
     }
 
+    @Suppress("UnstableApiUsage")
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
@@ -320,4 +323,39 @@ dependencies {
 
     // PMTiles reading libraries
     implementation(libs.pmtilesreader)
+}
+
+tasks.register<Exec>("pullComposeBaselines") {
+    fun adbPath(): String {
+        // Get the Android SDK path directly from Gradle
+        val sdkDir = project.extensions
+            .getByType<com.android.build.gradle.BaseExtension>()
+            .sdkDirectory
+            .absolutePath
+        val adbExtension = if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+            ".exe"
+        } else {
+            ""
+        }
+        return "$sdkDir/platform-tools/adb$adbExtension"
+    }
+
+    val applicationId = android.namespace
+    val localTargetDir = "$projectDir/src/androidTest/assets/baselines"
+
+    doFirst {
+        Path(localTargetDir).createDirectories()
+        println("Pulling Compose baseline snapshots from emulator to '$localTargetDir'")
+    }
+
+    // Use adb to pull the whole folder
+    commandLine(adbPath(), "pull",
+        "/data/data/$applicationId/files/baselines",
+        localTargetDir
+    )
+
+    doLast {
+        println("Baselines copied from emulator to '$localTargetDir'. " +
+                "You can now review the changes and commit them.")
+    }
 }
