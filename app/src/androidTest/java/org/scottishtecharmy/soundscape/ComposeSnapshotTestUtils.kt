@@ -67,7 +67,7 @@ private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
  * - If mismatched, prints a diff
  */
 fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
-    val context = InstrumentationRegistry.getInstrumentation().targetContext
+    val context = InstrumentationRegistry.getInstrumentation().context
     val snapshot = dumpLayoutTree()
 
     val baselineSubpathString = "baselines/$filename"
