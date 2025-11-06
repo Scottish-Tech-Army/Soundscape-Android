@@ -19,5 +19,5 @@ Soundscape works best when you hold the phone flat with the screen facing the sk
 
 You can turn on and off the rhythmic sound of the beacon using the mute button on the home screen. If the beacon is muted you will still get updates about your distance to your destination every 50 meters or so.
 
-If you still want to interact with Soundscape but don’t want to hear automatic callouts you can turn callouts off by going to the *"Manage Callouts"* section of the *"Settings"* page from the menu. Or, if you aren’t going to be using Soundscape you can put it in either Sleep or Snooze mode using the *"Sleep"* button on the home screen.
+If you still want to interact with Soundscape but don’t want to hear automatic callouts you can turn callouts off by going to the *"Manage Callouts"* section of the *"Settings"* screen from the menu. Or, if you aren’t going to be using Soundscape you can put it in either Sleep or Snooze mode using the *"Sleep"* button on the home screen.
 

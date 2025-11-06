@@ -7,7 +7,7 @@ has_toc: false
 
 # Markers
 
-With Soundscape, you can mark your world and anything you care about.
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
 You can mark things that are personal and relevant to you like your home, your office and your preferred grocery store. You can mark any place or address, but you can also mark things that might traditionally not be available in maps, for example, entrances to buildings or parks, push-to-walk buttons, pedestrian crossings or bridges, bus stops or even your dog’s favorite tree and use these as references along your walk.
 
