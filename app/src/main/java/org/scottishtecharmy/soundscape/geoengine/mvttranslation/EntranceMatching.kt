@@ -136,7 +136,7 @@ class EntranceMatching {
                                 // There are multiple buildings at this point and we don't know
                                 // which the entrance belongs to, so rather than be wrong, don't
                                 // label it.
-                                println("Multiple buildings found for entrance ${entranceDetails.osmId.toLong() / 10}, skipping it")
+                                //println("Multiple buildings found for entrance ${entranceDetails.osmId.toLong() / 10}, skipping it")
                                 poiDetails = null
                                 break
                             }
@@ -193,7 +193,7 @@ class EntranceMatching {
                                     entrance.properties?.set("entrance_name", entranceDetails.name)
 
                                 collection.addFeature(entrance)
-                                println("POI entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
+                                //println("POI entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
 
                                 // We're also going to mark the POI to indicate that it has entrances.
                                 // This will be used by PlacesNearby so that it will only display
@@ -231,7 +231,7 @@ class EntranceMatching {
                             entrance.properties?.set("entrance", entranceDetails.entranceType)
                             entrance.properties?.set("name", entranceDetails.name)
                             collection.addFeature(entrance)
-                            println("Confected Entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.properties?.get("class")} ${entrance.properties?.get("subclass")}")
+                            //println("Confected Entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.properties?.get("class")} ${entrance.properties?.get("subclass")}")
                         }
                     }
                     else -> {
