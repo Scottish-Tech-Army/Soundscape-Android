@@ -263,7 +263,7 @@ class MergePolygonsTest {
     ): FeatureCollection {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts)
+        gridState.start(null, offlineExtracts, true)
         val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
         val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 

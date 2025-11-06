@@ -129,7 +129,7 @@ private fun vectorTileToGeoJsonFromFile(
 ): FeatureCollection {
 
     val gridState = FileGridState()
-    gridState.start(null, offlineExtracts)
+    gridState.start(null, offlineExtracts, true)
     val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
 
     return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, MAX_ZOOM_LEVEL)
@@ -205,7 +205,8 @@ fun getGridStateForLocation(
     val gridState = FileGridState(zoomLevel, gridSize)
     gridState.start(
         null,
-        offlineExtracts)
+        offlineExtracts,
+        true)
     runBlocking {
 
         val enabledCategories = emptySet<String>().toMutableSet()
@@ -233,7 +234,7 @@ class MvtTileTest {
         //  2. Parses it with the code auto-generated from the vector_tile.proto specification
         //  3. Prints it out
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts)
+        gridState.start(null, offlineExtracts, true)
         val tile = gridState.getTile(16093/2, 10211/2, 14)!!
         assert(tile.layersList.isNotEmpty())
 
@@ -683,9 +684,9 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts)
+        gridState.start(null, offlineExtracts, true)
         val settlementGrid = FileGridState(12, 3)
-        settlementGrid.start(null, offlineExtracts)
+        settlementGrid.start(null, offlineExtracts, true)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -822,7 +823,7 @@ class MvtTileTest {
         // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts)
+        gridState.start(null, offlineExtracts, true)
 
         // The center of each grid
         for(x in 8046 until 8048) {
@@ -900,7 +901,7 @@ class MvtTileTest {
     fun testParsing() {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts)
+        gridState.start(null, offlineExtracts, true)
 
         data class Region(val name: String, val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
         val regions = listOf (
@@ -1133,7 +1134,7 @@ class MvtTileTest {
     @Test
     fun entranceMatcherTest() {
         val gridState = DummyEntranceGridState()
-        gridState.start(null, emptyList())
+        gridState.start(null, emptyList(), true)
 
         runBlocking {
             val featureCollections =

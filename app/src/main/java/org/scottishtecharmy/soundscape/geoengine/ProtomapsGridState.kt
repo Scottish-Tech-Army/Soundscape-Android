@@ -37,14 +37,18 @@ open class ProtomapsGridState(
 
     var fileTileReaders: MutableList<Reader> = mutableListOf<Reader>()
 
-    override fun start(applicationContext: Context?, offlineExtractPaths: List<String>) {
+    override fun start(applicationContext: Context?,
+                       offlineExtractPaths: List<String>,
+                       isUnitTesting: Boolean) {
         if((tileClient == null) && (applicationContext != null))
             tileClient = ProtomapsTileClient(applicationContext)
 
-        if(offlineExtractPaths.isEmpty())
-           Firebase.analytics.logEvent("GridNoOfflineMap", null)
-        else
-            Firebase.analytics.logEvent("GridWithOfflineMap", null)
+        if(!isUnitTesting) {
+            if (offlineExtractPaths.isEmpty())
+                Firebase.analytics.logEvent("GridNoOfflineMap", null)
+            else
+                Firebase.analytics.logEvent("GridWithOfflineMap", null)
+        }
 
         // Create a range reader for the local file
         for(extract in offlineExtractPaths)
