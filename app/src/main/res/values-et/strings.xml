@@ -1,3 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">Katkesta</string>
+    <string name="general_alert_done">Valmis</string>
+    <string name="general_loading_start">Sätin asju valmis…</string>
+    <string name="general_error_location_services_find_location_error">Meil ei õnnestu sinu asukohta tuvastada.</string>
+    <string name="general_error_add_marker_error">Meil ei õnnestu seda asukohta märgistada. Palun proovi hiljem uuesti.</string>
+    <string name="settings_screen_title">Seadistused</string>
+    <string name="settings_about_app">Rakenduse teave: Soundscape</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Mõõtühikud</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Inglise mõõdustik (jalad)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Meetermõõdustik (meetrid)</string>
+    <string name="voice_settings_speaking_rate">Rääkimise kiirus</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Kõnesünteesimootor</string>
+    <string name="voice_voices">Hääled</string>
+    <string name="beacon_settings_style">Helistiilid</string>
 </resources>
