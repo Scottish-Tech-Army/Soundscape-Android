@@ -1,3 +1,0 @@
-[submodule "app/src/test/res/org/scottishtecharmy/soundscape/test-maps"]
-	path = app/src/test/res/org/scottishtecharmy/soundscape/test-maps
-	url = https://github.com/davecraig/test-maps.git

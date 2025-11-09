@@ -52,7 +52,7 @@ class OfflineMapsTest {
      */
     @Test
     fun testManifestInFeatureTree() {
-        val path = "src/test/res/org/scottishtecharmy/soundscape/test-maps/"
+        val path = "src/test/res/org/scottishtecharmy/soundscape/"
         val metadataFile = GZIPInputStream(FileInputStream(path + MANIFEST_NAME)).bufferedReader().use { it.readText() }
 
         // Load in the metadata GeoJSON file
@@ -120,7 +120,7 @@ class OfflineMapsTest {
 
     @Test
     fun testHierarchyGenerationFromManifest() {
-        val path = "src/test/res/org/scottishtecharmy/soundscape/test-maps/"
+        val path = "src/test/res/org/scottishtecharmy/soundscape/"
         val metadataFile =
             GZIPInputStream(FileInputStream(path + MANIFEST_NAME)).bufferedReader().use { it.readText() }
 
