@@ -26,8 +26,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          lfs: true
-          submodules: recursive
           fetch-depth: 0
 
       - name: Check latest commit is less than a day
@@ -48,9 +46,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          lfs: true
-          submodules: recursive
           fetch-depth: 0
+
+      - name: Setup offline maps for tests
+        run: |
+          pwd
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
 
       - name: Setup tile and search providers
         env:
@@ -90,19 +94,6 @@ jobs:
       # Run Tests Build
       - name: Run gradle tests
         run: ./gradlew test
-
-      # Generate the screenshots from the Preview code
-      - name: Generate screenshots
-        continue-on-error: true # The screenshots are unreliable, awaiting Google fix
-        run : ./gradlew  updateDebugScreenshotTest
-
-      # Upload screenshots as an artifact
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshot-previews
-          path: ${{ env.main_project_module }}/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/
 
       # Create APK Debug
       - name: Build apk debug project (APK)
