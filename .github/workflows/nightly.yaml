@@ -68,7 +68,7 @@ jobs:
           echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
           echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
           echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
-          echo extractProviderUrl="EXTRACT_PROVIDER_URL" >> local.properties
+          echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
 
       - name: Decode Google services
         env:
