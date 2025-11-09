@@ -42,8 +42,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 35
-        versionCode = 121
-        versionName = "0.0.120"
+        versionCode = 122
+        versionName = "0.0.121"
 
         // Maintaining this list means that we can exclude translations that aren't complete yet
         resourceConfigurations.addAll(listOf(
