@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.protobuf)
-    alias(libs.plugins.screenshot)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.google.services)
@@ -29,8 +28,6 @@ android {
             enableSplit = false
         }
     }
-
-    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
         create("release") {
@@ -210,7 +207,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose.android)
     implementation(libs.androidx.media3.session)
     implementation(libs.androidx.lifecycle.process)
-    implementation(libs.screenshot.validation.api)
 
 
     testImplementation(libs.junit)
@@ -282,8 +278,6 @@ dependencies {
     implementation (libs.maplibre.annotations)
 //    implementation (libs.maplibre.compose.material3)
 
-    // Screenshots for tests
-    //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
     androidTestImplementation(libs.androidx.uiautomator)
 
     // Protobuf
