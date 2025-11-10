@@ -50,7 +50,6 @@ object StorageUtils {
     fun getExternalStorageSpacesAppSpecific(context: Context): List<StorageSpace> {
         val storageSpaces = mutableListOf<StorageSpace>()
         val externalFilesDirs: Array<File> = context.getExternalFilesDirs(null)
-
         val primaryExternalStoragePath = try {
             Environment.getExternalStorageDirectory()?.absolutePath
         } catch (_: Exception) { null }
@@ -58,7 +57,11 @@ object StorageUtils {
 
         val sm = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
         for (dir in externalFilesDirs) {
-            // dir can be null if a storage device is not mounted, etc.
+            if (dir == null) {
+                // dir can be null if a storage device is not mounted, etc.
+                continue
+            }
+
             try {
                 val statFs = StatFs(dir.path)
                 val totalBytes = statFs.blockCountLong * statFs.blockSizeLong
@@ -80,7 +83,7 @@ object StorageUtils {
                         freeBytes = freeBytes)
                 )
             } catch (e: Exception) {
-                Log.e(TAG, "Error getting external storage space for ${dir.path}: ${e.message}", e)
+                Log.e(TAG, "Error getting external storage space: ${e.message}")
             }
         }
         return storageSpaces
