@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Pulse dos veces para silenciar la señal de audio."</string>
     <string name="beacon_action_unmute_beacon">"Reactivar señal"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Pulse dos veces para reactivar la señal de audio."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Ir"</string>
     <string name="preview_include_unnamed_roads_title">"Carreteras sin nombre"</string>
     <string name="location_detail_title_default">"Detalles de la ubicación"</string>
