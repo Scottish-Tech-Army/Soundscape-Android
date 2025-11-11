@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Tocca due volte per creare un nuovo percorso"</string>
     <string name="route_end_completed_accessibility">"Percorso completato! %s"</string>
     <string name="route_detail_action_previous">"Waypoint precedente"</string>
-    <string name="route_detail_action_previous_hint">"Tocca due volte per impostare l'audiofaro sul waypoint precedente"</string>
+    <string name="route_detail_action_previous_hint">Tocca due volte per impostare l\'audiofaro sul waypoint precedente</string>
     <string name="route_detail_action_next">"Waypoint successivo"</string>
-    <string name="route_detail_action_next_hint">"Tocca due volte per impostare l'audiofaro sul waypoint successivo"</string>
+    <string name="route_detail_action_next_hint">Tocca due volte per impostare l\'audiofaro sul waypoint successivo</string>
     <string name="route_detail_edit_description">"Descrizione"</string>
     <string name="route_detail_edit_waypoints_button">"Aggiungi waypoint"</string>
     <string name="route_detail_edit_delete">"Elimina Percorso"</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">"Indicatore"</string>
     <string name="markers_marker_with_name">"Indicatore, %s"</string>
     <string name="markers_marker_created">"Indicatore creato"</string>
-    <string name="markers_annotation">"Annotazione"</string>
+    <string name="markers_annotation">Annotazione</string>
     <string name="search_choose_destination">"Scegli la destinazione"</string>
     <string name="search_use_current_location">"Posizione attuale"</string>
     <string name="search_nearby_screen_title">"Luoghi nelle vicinanze"</string>
