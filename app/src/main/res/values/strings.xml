@@ -605,7 +605,7 @@
 <!-- Notification, Customizing Markers help content. "Markers and Routes" should be translated the same as the string with key 'search.view_markers'. Quotes written as \" -->
 <string name="help_text_customizing_markers_content_1">If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as giving them a longer description using the annotation field.</string>
 <!-- Notification, Customizing Markers help content continued -->
-<string name="help_text_customizing_markers_content_2">"From this *\"Edit\"* screen you can also delete a marker if you no longer need it. "</string>
+<string name="help_text_customizing_markers_content_2">"From this *\"Edit\"* screen you can also delete a marker if you no longer need it."</string>
 <!-- Help content explaining what the "routes" feature is -->
 <string name="help_text_routes_content_what">"Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint."</string>
 <!-- Help content explaining when a user might choose to use the routes feature -->
