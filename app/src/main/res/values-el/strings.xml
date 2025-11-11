@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Πατήστε δύο φορές για σίγαση του ηχητικού σήματος."</string>
     <string name="beacon_action_unmute_beacon">"Κατάργηση σίγασης ηχητικού σήματος"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Πατήστε δύο φορές για να καταργήσετε τη σίγαση του ηχητικού σήματος."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Μετάβαση"</string>
     <string name="preview_include_unnamed_roads_title">"Μη κατονομαζόμενες οδικές αρτηρίες"</string>
     <string name="location_detail_title_default">"Λεπτομέρειες τοποθεσίας"</string>
