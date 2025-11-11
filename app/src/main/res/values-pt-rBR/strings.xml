@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Dê um toque duplo para ativar o mudo do sinalizador sonoro."</string>
     <string name="beacon_action_unmute_beacon">"Desativar Mudo do Sinalizador"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Dê um toque duplo para desativar o mudo do sinalizador sonoro."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Ir"</string>
     <string name="preview_include_unnamed_roads_title">"Ruas Sem Nome"</string>
     <string name="location_detail_title_default">"Detalhes da Localização"</string>
