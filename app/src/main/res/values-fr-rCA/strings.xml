@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Appuyez deux fois pour désactiver le son de la balise sonore."</string>
     <string name="beacon_action_unmute_beacon">"Réactiver le son de la balise"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Appuyez deux fois pour réactiver le son de la balise sonore."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Atteindre"</string>
     <string name="preview_include_unnamed_roads_title">"Routes sans nom"</string>
     <string name="location_detail_title_default">"Détails de l’emplacement"</string>
