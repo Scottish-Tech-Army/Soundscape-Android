@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"音声ビーコンをミュートするにはダブルタップします。"</string>
     <string name="beacon_action_unmute_beacon">"ビーコンのミュートを解除"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"音声ビーコンのミュートを解除するにはダブルタップします。"</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"移動"</string>
     <string name="preview_include_unnamed_roads_title">"無名道路"</string>
     <string name="location_detail_title_default">"場所の詳細"</string>
