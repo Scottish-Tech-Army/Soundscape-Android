@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Dubbeltik om een nieuwe route te maken"</string>
     <string name="route_end_completed_accessibility">"Route voltooid! %s"</string>
     <string name="route_detail_action_previous">"Vorige routepunt"</string>
-    <string name="route_detail_action_previous_hint">"Dubbeltik om het baken op het vorige routepunt in te stellen"</string>
+    <string name="route_detail_action_previous_hint">Dubbeltik om het baken op het vorige routepunt in te stellen</string>
     <string name="route_detail_action_next">"Volgende routepunt"</string>
-    <string name="route_detail_action_next_hint">"Dubbeltik om het baken op het volgende routepunt in te stellen"</string>
+    <string name="route_detail_action_next_hint">Dubbeltik om het baken op het volgende routepunt in te stellen</string>
     <string name="route_detail_edit_description">"Beschrijving"</string>
     <string name="route_detail_edit_waypoints_button">"Routepunten toevoegen"</string>
     <string name="route_detail_edit_delete">"Route verwijderen"</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">"Markering"</string>
     <string name="markers_marker_with_name">"Markering. %s"</string>
     <string name="markers_marker_created">"Markering gemaakt"</string>
-    <string name="markers_annotation">"Annotatie"</string>
+    <string name="markers_annotation">Annotatie</string>
     <string name="search_choose_destination">"Bestemming kiezen"</string>
     <string name="search_use_current_location">"Huidige locatie"</string>
     <string name="search_nearby_screen_title">"Plaatsen in de buurt"</string>
