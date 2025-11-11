@@ -34,6 +34,7 @@ import androidx.compose.ui.semantics.collectionInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -250,18 +251,15 @@ fun OfflineMapsScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = stringResource(R.string.offline_maps_downloading),
-                        style = MaterialTheme.typography.headlineLarge,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Text(
-                        text = uiState.downloadingExtractName,
+                        text = stringResource(R.string.offline_maps_downloading).format(uiState.downloadingExtractName),
+                        textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     LinearProgressIndicator (
                         progress = { uiState.downloadProgress / 100f },
-                        modifier = Modifier.padding(spacing.medium),
+                        modifier = Modifier
+                            .padding(spacing.medium)
                     )
                     Text(
                         text = "${uiState.downloadProgress}%",
