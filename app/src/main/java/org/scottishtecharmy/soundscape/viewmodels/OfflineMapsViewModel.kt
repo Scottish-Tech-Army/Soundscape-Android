@@ -205,7 +205,7 @@ class OfflineMapsViewModel @Inject constructor(
         }
     }
 
-    fun download(name: String, feature: Feature) {
+    fun download(name: String, feature: Feature, wifiOnly: Boolean) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
             val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  filename as String
@@ -224,6 +224,7 @@ class OfflineMapsViewModel @Inject constructor(
             offlineDownloader.startDownload(
                 fileUrl,
                 path,
+                wifiOnly,
                 "Soundscape offline maps",
                 "Downloading $filename extract"
             )

@@ -71,7 +71,7 @@ fun OfflineMapsScreenVM(
         navController = navController,
         uiState = uiState,
         modifier = modifier,
-        downloadExtract = { name, feature -> viewModel.download(name, feature) },
+        downloadExtract = { name, feature, wifiOnly -> viewModel.download(name, feature, wifiOnly) },
         deleteExtract = { feature -> viewModel.delete( feature) },
         cancelDownload = { viewModel.cancelDownload() }
     )
@@ -176,7 +176,7 @@ fun OfflineMapsScreen(
     navController: NavHostController,
     uiState: OfflineMapsUiState,
     modifier: Modifier,
-    downloadExtract: (String, Feature) -> Unit,
+    downloadExtract: (String, Feature, Boolean) -> Unit,
     deleteExtract: (Feature) -> Unit,
     cancelDownload: () -> Unit
 )
@@ -227,8 +227,8 @@ fun OfflineMapsScreen(
             if(extractDetailsFeature.value != null) {
                 OfflineMapExtractDetails(
                     extractDetailsFeature.value!!,
-                    { name, feature ->
-                        downloadExtract(name, feature)
+                    { name, feature, wifiOnly ->
+                        downloadExtract(name, feature, wifiOnly)
                         extractDetailsFeature.value = null
                     },
                     {
@@ -466,7 +466,7 @@ fun OfflineMapsScreenPreview() {
         rememberNavController(),
         modifier = Modifier,
         uiState = uiState,
-        downloadExtract = { _, _ -> },
+        downloadExtract = { _,_,_ -> },
         deleteExtract = { _ ->},
         cancelDownload = {}
     )
@@ -485,7 +485,7 @@ fun OfflineMapsScreenDownloadingPreview() {
             downloadingExtractName = "United Kingdom"
         ),
         modifier = Modifier,
-        downloadExtract = { _, _ -> },
+        downloadExtract = { _,_,_ -> },
         deleteExtract = { _ ->},
         cancelDownload = {}
     )

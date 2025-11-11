@@ -995,6 +995,8 @@
 <string name="offline_map_storage_title" tools:ignore="MissingTranslation">"Offline map storage"</string>
 <!-- Offscreen map storage description of use -->
 <string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
+<!-- Offscreen map download option to use WiFi Only and not mobile data -->
+<string name="offline_map_wifi_only" tools:ignore="MissingTranslation">"Use WiFi only for map download"</string>
 <!-- Content description for button which clears text edit boxes -->
 <string name="text_field_clear_text" tools:ignore="MissingTranslation">Clear Text</string>
 <!-- Content description for marker name - always preceded by "Double tap to " -->
