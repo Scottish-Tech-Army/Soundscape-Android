@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Dubbelknacka om du vill skapa en ny rutt"</string>
     <string name="route_end_completed_accessibility">"Rutten är avklarad! %s"</string>
     <string name="route_detail_action_previous">"Föregående brytpunkt"</string>
-    <string name="route_detail_action_previous_hint">"Dubbelknacka om du vill ställa in ljudfyren på föregående brytpunkt"</string>
+    <string name="route_detail_action_previous_hint">Dubbelknacka om du vill ställa in ljudfyren på föregående brytpunkt</string>
     <string name="route_detail_action_next">"Nästa brytpunkt"</string>
-    <string name="route_detail_action_next_hint">"Dubbelknacka om du vill ställa in ljudfyren på nästa brytpunkt"</string>
+    <string name="route_detail_action_next_hint">Dubbelknacka om du vill ställa in ljudfyren på nästa brytpunkt</string>
     <string name="route_detail_edit_description">"Beskrivning"</string>
     <string name="route_detail_edit_waypoints_button">"Lägg till brytpunkter"</string>
     <string name="route_detail_edit_delete">"Ta bort rutten"</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">"Platsmarkör"</string>
     <string name="markers_marker_with_name">"Platsmarkör. %s"</string>
     <string name="markers_marker_created">"Platsmarkör har skapats"</string>
-    <string name="markers_annotation">"Anteckning"</string>
+    <string name="markers_annotation">Anteckning</string>
     <string name="search_choose_destination">"Välj mål"</string>
     <string name="search_use_current_location">"Aktuell plats"</string>
     <string name="search_nearby_screen_title">"Platser i närheten"</string>
