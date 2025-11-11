@@ -81,7 +81,12 @@ class OfflineDownloader(private val context: Context) {
         }
     }
 
-    fun startDownload(fileUrl: String, outputFilePath: String, title: String = "File Download", description: String = "Downloading...") {
+    fun startDownload(fileUrl: String,
+                      outputFilePath: String,
+                      wifiOnly: Boolean,
+                      title: String = "File Download",
+                      description: String = "Downloading...") {
+
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val request = DownloadManager.Request(fileUrl.toUri())
 
@@ -93,9 +98,8 @@ class OfflineDownloader(private val context: Context) {
         request.setDestinationUri(path.toUri())
 
         // --- Network Type ---
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
-        request.setAllowedOverMetered(false) // Allow download over metered connections (e.g. cellular)
-        request.setAllowedOverRoaming(false) // Disallow download over roaming
+        request.setAllowedOverMetered(!wifiOnly) // Whether to allow download over metered connections (e.g. cellular)
+        request.setAllowedOverRoaming(!wifiOnly) // Whether to allow download over roaming
 
         // --- Notification Visibility ---
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)

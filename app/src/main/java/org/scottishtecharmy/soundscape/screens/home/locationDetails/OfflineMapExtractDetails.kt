@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CloudDownload
@@ -16,18 +17,22 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.SdStorage
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
@@ -40,11 +45,12 @@ import org.scottishtecharmy.soundscape.screens.home.home.ExtractDetails
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.ui.theme.tinyPadding
 
 @Composable
 fun OfflineMapExtractDetails(
     extract: Feature,
-    downloadExtract: (String, Feature) -> Unit,
+    downloadExtract: (String, Feature, Boolean) -> Unit,
     deleteExtract: (Feature) -> Unit,
     local: Boolean,
     modifier: Modifier = Modifier) {
@@ -70,7 +76,7 @@ fun OfflineMapExtractDetails(
         HorizontalDivider()
         MapExtractButtonsSection(
             deleteExtract = { deleteExtract(extract) },
-            downloadExtract = { downloadExtract(details.localName, extract) },
+            downloadExtract = { wifiOnly -> downloadExtract(details.localName, extract, wifiOnly) },
             local = local
         )
 
@@ -84,8 +90,10 @@ fun OfflineMapExtractDetails(
             onMapLongClick = { latLong ->
                 true
             },
-            showMap = true,
-            modifier = modifier.fillMaxWidth().aspectRatio(1.0f),
+            showMap = showMap,
+            modifier = modifier
+                .fillMaxWidth()
+                .aspectRatio(1.0f),
             overlayGeoJson = adapter.toJson(fc)
         )
     }
@@ -93,10 +101,11 @@ fun OfflineMapExtractDetails(
 
 @Composable
 private fun MapExtractButtonsSection(
-    downloadExtract: () -> Unit,
+    downloadExtract: (wifiOnly : Boolean) -> Unit,
     deleteExtract: () -> Unit,
     local: Boolean
 ) {
+    val wifiOnly = remember { mutableStateOf(true) }
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
     ) {
@@ -111,6 +120,27 @@ private fun MapExtractButtonsSection(
                 onClick = deleteExtract
             )
         } else {
+            Row(
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
+                    .toggleable(
+                        value = wifiOnly.value,
+                        onValueChange = { wifiOnly.value = it },
+                        role = Role.Checkbox,
+                    )
+                    .tinyPadding(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.offline_map_wifi_only),
+                    modifier = Modifier.weight(1f),
+                    fontSize = 20.sp)
+                Checkbox(
+                    checked = wifiOnly.value,
+                    onCheckedChange = null
+                )
+            }
             IconWithTextButton(
                 icon = Icons.Filled.Download,
                 text = stringResource(R.string.offline_map_details_download),
@@ -118,7 +148,7 @@ private fun MapExtractButtonsSection(
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
                     .testTag("offlineMapDownload"),
-                onClick = downloadExtract
+                onClick = { downloadExtract(wifiOnly.value) }
             )
         }
     }
@@ -213,7 +243,7 @@ fun OfflineMapExtractDetailsPreview() {
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.surface),
     ) {
-        OfflineMapExtractDetails(feature, { _,_ -> }, { _ -> }, false)
-        OfflineMapExtractDetails (feature, { _,_ -> }, { _ -> }, true)
+        OfflineMapExtractDetails(feature, { _,_,_ -> }, { _ -> }, false)
+        OfflineMapExtractDetails (feature, { _,_,_ -> }, { _ -> }, true)
     }
 }
