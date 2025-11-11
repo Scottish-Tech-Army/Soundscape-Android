@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Doppeltippen, um das Audiobeacon stummzuschalten."</string>
     <string name="beacon_action_unmute_beacon">"Stummschaltung des Beacons aufheben"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Doppeltippen, um die Stummschaltung des Audiobeacons aufzuheben."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Los"</string>
     <string name="preview_include_unnamed_roads_title">"Unbenannte Straßen"</string>
     <string name="location_detail_title_default">"Standortdetails"</string>
