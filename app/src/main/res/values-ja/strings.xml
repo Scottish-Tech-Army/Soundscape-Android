@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"ダブル タップして新しいルートを作成します"</string>
     <string name="route_end_completed_accessibility">"ルートが終了しました! %s"</string>
     <string name="route_detail_action_previous">"以前のウェイポイント"</string>
-    <string name="route_detail_action_previous_hint">"ダブル タップすると、以前のウェイポイントにビーコンを設定します"</string>
+    <string name="route_detail_action_previous_hint">ダブル タップすると、以前のウェイポイントにビーコンを設定します</string>
     <string name="route_detail_action_next">"次のウェイポイント"</string>
-    <string name="route_detail_action_next_hint">"ダブル タップすると、次のウェイポイントにビーコンを設定します"</string>
+    <string name="route_detail_action_next_hint">ダブル タップすると、次のウェイポイントにビーコンを設定します</string>
     <string name="route_detail_edit_description">"説明"</string>
     <string name="route_detail_edit_waypoints_button">"ウェイポイントを追加"</string>
     <string name="route_detail_edit_delete">"ルートを削除する"</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">"マーカー"</string>
     <string name="markers_marker_with_name">"マーカー。%s"</string>
     <string name="markers_marker_created">"マーカーを作成しました"</string>
-    <string name="markers_annotation">"コメント"</string>
+    <string name="markers_annotation">コメント</string>
     <string name="search_choose_destination">"目的地を選択"</string>
     <string name="search_use_current_location">"現在地"</string>
     <string name="search_nearby_screen_title">"近くの場所"</string>
