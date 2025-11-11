@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Dubbelknacka om du vill stänga av ljudfyren."</string>
     <string name="beacon_action_unmute_beacon">"Sätt på ljudfyr"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Dubbelknacka om du vill sätta på ljudfyren."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"OK"</string>
     <string name="preview_include_unnamed_roads_title">"Vägar utan namn"</string>
     <string name="location_detail_title_default">"Platsuppgifter"</string>
