@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">create a new route</string>
     <string name="route_end_completed_accessibility">Route Completed! %s</string>
     <string name="route_detail_action_previous">Previous Waypoint</string>
-    <string name="route_detail_action_previous_hint">set the beacon on the previous waypoint</string>
+    <string name="route_detail_action_previous_hint">move the beacon to the previous waypoint</string>
     <string name="route_detail_action_next">Next Waypoint</string>
-    <string name="route_detail_action_next_hint">set the beacon on the next waypoint</string>
+    <string name="route_detail_action_next_hint">move the beacon to the next waypoint</string>
     <string name="route_detail_edit_description">Description</string>
     <string name="route_detail_edit_waypoints_button">Add Waypoints</string>
     <string name="route_detail_edit_delete">Delete Route</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">Marker</string>
     <string name="markers_marker_with_name">Marker. %s</string>
     <string name="markers_marker_created">Marker created</string>
-    <string name="markers_annotation">Annotation</string>
+    <string name="markers_annotation">Additional notes</string>
     <string name="search_choose_destination">Choose destination</string>
     <string name="search_use_current_location">Current Location</string>
     <string name="search_nearby_screen_title">Places Nearby</string>
@@ -262,11 +262,11 @@
     <string name="help_text_remote_control_what">You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.</string>
     <string name="help_text_remote_control_when">Headphone media controls can be used while Soundscape is running. This is true whether you are currently in Soundscape or while Soundscape is in the background and even while your device is locked. Note however that headphone media control buttons will not work with Soundscape if you are playing audio like music, podcasts or videos with another app.</string>
     <string name="help_text_remote_control_how">You can access the following features in Soundscape using your the media control buttons on your headphones:\n\n⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio. \n\n⏭ Next: Callout *\"My Location\"*.\n\n⏮ Previous: Repeat last callout.\n\n⏩ Skip Forward: Toggle callouts On and Off.\n\n⏪ Skip Backward: Callout *\"Around Me\"*.</string>
-    <string name="help_text_markers_content_1">With Soundscape, you can mark your world and anything you care about.</string>
+    <string name="help_text_markers_content_1">With Soundscape, you can mark your world and anything you care about, like pins in a map.</string>
     <string name="help_text_markers_content_2">You can mark things that are personal and relevant to you like your home, your office and your preferred grocery store. You can mark any place or address, but you can also mark things that might traditionally not be available in maps, for example, entrances to buildings or parks, push-to-walk buttons, pedestrian crossings or bridges, bus stops or even your dog’s favourite tree and use these as references along your walk.</string>
     <string name="help_text_markers_content_3">To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the Nearby markers button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.</string>
-    <string name="help_text_creating_markers_content_1">You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* page. On this page, select the button called *\"Save Marker\"*.</string>
-    <string name="help_text_creating_markers_content_2">You will now have the option to customise this marker. This step is optional. If you want to, you can change the name of the marker and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *\"Done\"* button to save your Marker.</string>
+    <string name="help_text_creating_markers_content_1">You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save Marker\"* button.</string>
+    <string name="help_text_creating_markers_content_2">You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *\"Done\"* button to save your Marker.</string>
     <string name="help_text_customizing_markers_content_1">If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as giving them a longer description using the annotation field.</string>
     <string name="help_text_customizing_markers_content_2">From this Edit screen, you can also delete a marker if you no longer need it.</string>
     <string name="help_text_routes_content_what">Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.</string>
@@ -474,4 +474,6 @@
     <string name="settings_show_map" tools:ignore="MissingTranslation">Show maps on screen</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Search language</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">Contact support</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactive as the route is already at the start</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Inactive as the route is already at the end</string>
 </resources>
