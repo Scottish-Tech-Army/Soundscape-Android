@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Doppelt tippen, um eine neue Route zu erstellen"</string>
     <string name="route_end_completed_accessibility">"Route abgeschlossen! %s"</string>
     <string name="route_detail_action_previous">"Vorheriger Wegpunkt"</string>
-    <string name="route_detail_action_previous_hint">"Tippen Sie doppelt, um das Beacon auf dem vorherigen Wegpunkt zu platzieren"</string>
+    <string name="route_detail_action_previous_hint">Tippen Sie doppelt, um das Beacon auf dem vorherigen Wegpunkt zu platzieren</string>
     <string name="route_detail_action_next">"Nächster Wegpunkt"</string>
-    <string name="route_detail_action_next_hint">"Tippen Sie doppelt, um das Beacon auf dem nächsten Wegpunkt zu platzieren"</string>
+    <string name="route_detail_action_next_hint">Tippen Sie doppelt, um das Beacon auf dem nächsten Wegpunkt zu platzieren</string>
     <string name="route_detail_edit_description">"Beschreibung"</string>
     <string name="route_detail_edit_waypoints_button">"Wegpunkte hinzufügen"</string>
     <string name="route_detail_edit_delete">"Route löschen"</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">"Markierung"</string>
     <string name="markers_marker_with_name">"Markierung. %s"</string>
     <string name="markers_marker_created">"Markierung erstellt"</string>
-    <string name="markers_annotation">"Anmerkung"</string>
+    <string name="markers_annotation">Anmerkung</string>
     <string name="search_choose_destination">"Ziel auswählen"</string>
     <string name="search_use_current_location">"Aktueller Standort"</string>
     <string name="search_nearby_screen_title">"Orte in der Nähe"</string>
