@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Cliquez (avec le stylet) deux fois pour créer un Itinéraire"</string>
     <string name="route_end_completed_accessibility">"Itinéraire terminé ! %s"</string>
     <string name="route_detail_action_previous">"Point de repère précédent"</string>
-    <string name="route_detail_action_previous_hint">"Appuyer deux fois pour définir une balise sur le point de repère suivant"</string>
+    <string name="route_detail_action_previous_hint">Appuyer deux fois pour définir une balise sur le point de repère suivant</string>
     <string name="route_detail_action_next">"Prochain point de repère"</string>
-    <string name="route_detail_action_next_hint">"Appuyer deux fois pour définir une balise sur le prochain point de repère"</string>
+    <string name="route_detail_action_next_hint">Appuyer deux fois pour définir une balise sur le prochain point de repère</string>
     <string name="route_detail_edit_description">"Description"</string>
     <string name="route_detail_edit_waypoints_button">"Ajouter des points de repère"</string>
     <string name="route_detail_edit_delete">"Supprimer l’Itinéraire"</string>
@@ -83,7 +83,7 @@
     <string name="markers_generic_name">"Marqueur"</string>
     <string name="markers_marker_with_name">"Marqueur. %s"</string>
     <string name="markers_marker_created">"Marqueur créé"</string>
-    <string name="markers_annotation">"Annotation"</string>
+    <string name="markers_annotation">Annotation</string>
     <string name="search_choose_destination">"Choisissez la destination"</string>
     <string name="search_use_current_location">"Emplacement actuel"</string>
     <string name="search_nearby_screen_title">"Emplacements à proximité"</string>
