@@ -32,7 +32,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.preference.PreferenceManager
@@ -58,6 +57,7 @@ import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -200,14 +200,12 @@ fun HomeTopAppBar(
     streetPreviewState: Boolean
 ) {
     val context = LocalContext.current
-    TopAppBar(
-        title = {
-            Text(
-                text = if(streetPreviewState) (stringResource(R.string.preview_title)) else (stringResource(R.string.app_name)),
-                modifier = Modifier.semantics { this.invisibleToUser() },
-            )
-        },
-        navigationIcon = {
+    FlexibleAppBar(
+        title = if (streetPreviewState)
+                    (stringResource(R.string.preview_title))
+                else
+                    (stringResource(R.string.home_screen_title)),
+        leftSide = {
             IconButton(
                 onClick = {
                     coroutineScope.launch { drawerState.open() }
@@ -223,7 +221,7 @@ fun HomeTopAppBar(
                 )
             }
         },
-        actions = {
+        rightSide = {
             IconButton(
                 enabled = true,
                 onClick = {
