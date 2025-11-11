@@ -67,7 +67,7 @@
 <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
 <string name="beacon_action_unmute_beacon_acc_hint">"unmute the audio beacon."</string>
 <!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
-<string name="preview_title">"Soundscape Street Preview"</string>
+<string name="preview_title">"Street Preview"</string>
 <!-- Text for button to go to the next intersection -->
 <string name="preview_go_title">"Go"</string>
 <!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
@@ -1011,6 +1011,8 @@
 <string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
 <!-- Describes current waypoint in route. -->
 <string name="route_waypoint_progress" tools:ignore="MissingTranslation">"Route %1$s at waypoint %2$s of %3$s"</string>
+<!-- Home screen title -->
+<string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape Home</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->
