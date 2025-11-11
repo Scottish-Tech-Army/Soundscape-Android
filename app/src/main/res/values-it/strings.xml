@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Tocca due volte per disattivare l'audio dell'audiofaro."</string>
     <string name="beacon_action_unmute_beacon">"Attiva audio audiofaro"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Tocca due volte per attivare l'audio dell'audiofaro."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Vai"</string>
     <string name="preview_include_unnamed_roads_title">"Strade senza nome"</string>
     <string name="location_detail_title_default">"Dettagli posizione"</string>
