@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Kaksoisnapauta hiljentääksesi äänimajakan."</string>
     <string name="beacon_action_unmute_beacon">"Poista majakan hiljennys"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Kaksoisnapauta poistaaksesi äänimajakan hiljennyksen."</string>
-    <string name="preview_title">"Soundscape Street Preview"</string>
+    <string name="preview_title">Soundscape Street Preview</string>
     <string name="preview_go_title">"Lähde"</string>
     <string name="preview_include_unnamed_roads_title">"Nimettömät tiet"</string>
     <string name="location_detail_title_default">"Sijainnin tiedot"</string>
