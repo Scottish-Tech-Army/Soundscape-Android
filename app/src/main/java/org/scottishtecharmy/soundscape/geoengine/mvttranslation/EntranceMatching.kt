@@ -17,8 +17,7 @@ class EntranceMatching {
      * up entrances to their POI polygons.
      */
     private val buildingNodes : HashMap< Int, ArrayList<EntranceDetails>> = hashMapOf()
-    private val addedIds : MutableSet<Double> = emptySet<Double>().toMutableSet()
-
+    private val addedIds = mutableSetOf<Double>()
 
     /**
      * addGeometry is called for any buildings that are found within a tile and all entrance nodes

@@ -175,7 +175,7 @@ class AutoCallout(
             markers
         )
 
-        val uniquelyNamedPOIs = emptyMap<String,Feature>().toMutableMap()
+        val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         pois.features.filter { feature ->
 
             val name = getTextForFeature(localizedContext, feature)

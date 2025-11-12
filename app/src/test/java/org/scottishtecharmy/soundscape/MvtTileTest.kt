@@ -223,7 +223,7 @@ fun getGridStateForLocation(
         true)
     runBlocking {
 
-        val enabledCategories = emptySet<String>().toMutableSet()
+        val enabledCategories = mutableSetOf<String>()
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
         enabledCategories.add(MOBILITY_KEY)
 
@@ -319,7 +319,7 @@ class MvtTileTest {
         val adapter = GeoJsonObjectMoshiAdapter()
         val gridState = getGridStateForLocation(LngLatAlt(-4.251169, 55.862550), 14, 2)
 
-        val missingResourceMapperStrings : MutableSet<String> = emptySet<String>().toMutableSet()
+        val missingResourceMapperStrings = mutableSetOf<String>()
         for(treeId in TreeId.entries) {
             if (treeId == TreeId.MAX_COLLECTION_ID)
                 break
@@ -728,7 +728,7 @@ class MvtTileTest {
         val autoCallout = AutoCallout(null, null)
         val callOutText = FileOutputStream(calloutFilename)
 
-        val enabledCategories = emptySet<String>().toMutableSet()
+        val enabledCategories = mutableSetOf<String>()
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
         enabledCategories.add(MOBILITY_KEY)
 

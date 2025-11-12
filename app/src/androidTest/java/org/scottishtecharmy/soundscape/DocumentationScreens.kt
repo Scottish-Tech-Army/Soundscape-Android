@@ -234,8 +234,7 @@ class DocumentationScreens {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         val route = routeToShops
-        val members: MutableList<LocationDescription> =
-            emptyList<LocationDescription>().toMutableList()
+        val members = mutableListOf<LocationDescription>()
         for ((index, marker) in route.markers.withIndex()) {
             members.add(
                 LocationDescription(

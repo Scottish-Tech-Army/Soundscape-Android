@@ -148,7 +148,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val sortedFovIntersections = sortedByDistanceTo(userGeometry.mapMatchedLocation?.point ?: userGeometry.location, trimmedIntersections)
 
     // Inspect each intersection so as to skip trivial ones
-    val nonTrivialIntersections = emptyList<Pair<Int, Intersection>>().toMutableList()
+    val nonTrivialIntersections = mutableListOf<Pair<Int, Intersection>>()
 
     for (intersection in sortedFovIntersections.features) {
         val intersectionLocation = (intersection.geometry as Point).coordinates

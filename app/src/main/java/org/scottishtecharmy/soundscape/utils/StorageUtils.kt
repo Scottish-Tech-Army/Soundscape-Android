@@ -94,7 +94,7 @@ fun getOfflineMapStorage(context: Context): List<StorageSpace> {
     var defaultPath = ""
 
     // Create a list of available storages
-    val storages: MutableList<StorageSpace> = emptyList<StorageSpace>().toMutableList()
+    val storages = mutableListOf<StorageSpace>()
 
 // The DownloadManager can't write to internal storage, so we ignore it. Android devices have
 // "external storage" that is emulated on internal storage so it's not an issue.

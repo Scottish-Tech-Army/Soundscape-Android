@@ -77,7 +77,7 @@ class AddAndEditRouteViewModel @Inject constructor(
 
     // Function to initialize an importedRoute
     fun initializeRoute(routeData: RouteWithMarkers) {
-        val routeMembers = emptyList<LocationDescription>().toMutableList()
+        val routeMembers = mutableListOf<LocationDescription>()
         for ((index, waypoint) in routeData.markers.withIndex()) {
             routeMembers.add(
                 LocationDescription(

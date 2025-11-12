@@ -347,7 +347,7 @@ class GeoEngine {
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
     fun createSuperCategoriesSet() : Set<String> {
-        val enabledCategories = emptySet<String>().toMutableSet()
+        val enabledCategories = mutableSetOf<String>()
         if (sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
             enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
 

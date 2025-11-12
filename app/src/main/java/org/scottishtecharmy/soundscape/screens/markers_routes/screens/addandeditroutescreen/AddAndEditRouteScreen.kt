@@ -73,7 +73,7 @@ private data class SimpleMarkerData(
 private data class SimpleRouteData(
     var name: String = "",
     var description: String = "",
-    var waypoints: MutableList<SimpleMarkerData> = emptyList<SimpleMarkerData>().toMutableList()
+    var waypoints: MutableList<SimpleMarkerData> = mutableListOf()
 )
 
 fun generateRouteDetailsRoute(routeData: RouteWithMarkers): String {

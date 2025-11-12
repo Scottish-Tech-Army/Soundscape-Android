@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import java.util.Locale
+import kotlin.collections.mutableListOf
 import kotlin.collections.set
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
@@ -33,8 +34,7 @@ enum class IntersectionType(
 }
 
 class Intersection : Feature() {
-    var members: MutableList<Way> =
-        emptyList<Way>().toMutableList()    // Ways that make up this intersection
+    var members = mutableListOf<Way>()
     var name = ""                                                       // Name of the intersection
     var location =
         LngLatAlt()                                          // Location of the intersection
@@ -60,7 +60,7 @@ class Intersection : Feature() {
     fun updateName(gridState: GridState? = null,
                    localizedContext: Context? = null) {
         val updatedName = StringBuilder()
-        val namesUsed = emptySet<String>().toMutableSet()
+        val namesUsed = mutableSetOf<String>()
         for (way in members) {
             val segmentName = way.getName(way.intersections[WayEnd.START.id] == this, gridState, localizedContext, nonGenericOnly = false)
             if (!namesUsed.contains(segmentName.toString())) {
@@ -487,9 +487,9 @@ class WayGenerator(val transit: Boolean = false) {
      * entry will have information for more than one line.
     */
     private val highwayNodes : HashMap< Int, Int> = hashMapOf()
-    private val wayFeatures : MutableList<Feature> = emptyList<Feature>().toMutableList()
+    private val wayFeatures = mutableListOf<Feature>()
 
-    private val ways : MutableList<Way> = emptyList<Way>().toMutableList()
+    private val ways = mutableListOf<Way>()
 
     private val intersections : HashMap<LngLatAlt, Intersection> = hashMapOf()
 

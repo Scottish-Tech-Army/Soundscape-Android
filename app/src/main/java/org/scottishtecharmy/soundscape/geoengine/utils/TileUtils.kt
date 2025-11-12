@@ -570,7 +570,7 @@ fun checkWhetherIntersectionIsOfInterest(
         return -1
 
     var needsFurtherChecking = 0
-    val setOfNames = emptySet<String>().toMutableSet()
+    val setOfNames = mutableListOf<String>()
     for (way in intersection.members) {
         val roadName = way.properties?.get("name")
         val isMatch = testNearestRoad.properties?.get("name") == roadName
@@ -623,7 +623,7 @@ fun mergeAllPolygonsInFeatureCollection(
             if (osmId != null) {
                 if (!features.containsKey(osmId)) {
                     // This is the first feature with this osm_id
-                    features[osmId] = emptyList<FeatureCollection>().toMutableList()
+                    features[osmId] = mutableListOf()
                 }
                 var foundOverlap = false
                 for(featureCollection in features[osmId]!!) {
@@ -683,7 +683,7 @@ fun polygonOuterRingToCoordinateArray(polygon: Polygon?, geometryFactory: Geomet
 fun polygonInteriorRingsToCoordinateArray(polygon: Polygon?, geometryFactory: GeometryFactory) : Array<LinearRing>? {
     if(polygon == null) return null
 
-    val result: MutableList<LinearRing> = emptyList<LinearRing>().toMutableList()
+    val result = mutableListOf<LinearRing>()
     val innerRings = polygon.getInteriorRings()
     for(ring in innerRings) {
         result.add(geometryFactory.createLinearRing(
@@ -1608,7 +1608,7 @@ fun addPoiDestinations(way: Way,
     val startIntersection = way.intersections[WayEnd.START.id]
     val endIntersection = way.intersections[WayEnd.END.id]
     if(startIntersection != null) {
-        val waysFromStart = emptyList<Pair<Boolean, Way>>().toMutableList()
+        val waysFromStart = mutableListOf<Pair<Boolean, Way>>()
         way.followWays(startIntersection, waysFromStart)
         // When followWays from the start intersection will head towards the end of the line
         endLocation = if(waysFromStart.last().first)
@@ -1617,7 +1617,7 @@ fun addPoiDestinations(way: Way,
             (waysFromStart.last().second.geometry as LineString).coordinates.first()
     }
     if(endIntersection != null) {
-        val waysFromEnd = emptyList<Pair<Boolean, Way>>().toMutableList()
+        val waysFromEnd = mutableListOf<Pair<Boolean, Way>>()
         way.followWays(endIntersection, waysFromEnd)
         // When followWays from the end intersection will head towards the start of the line
         startLocation = if(waysFromEnd.last().first)
@@ -1762,7 +1762,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
                 if(road.isSidewalkOrCrossing())
                     continue
 
-                val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+                val ways = mutableListOf<Pair<Boolean, Way>>()
                 var brunnelOrStepsValue = ""
                 road.followWays(intersection.value, ways) { way, _ ->
                     // Break out when the next way has a name and note if it passes a bridge,
@@ -1789,7 +1789,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
         }
         // Check for dead ends
         for (road in intersection.value.members) {
-            val ways = emptyList<Pair<Boolean, Way>>().toMutableList()
+            val ways = mutableListOf<Pair<Boolean, Way>>()
             road.followWays(intersection.value, ways)
             val way = ways.last()
             if ((way.first and (way.second.intersections[WayEnd.END.id] == null)) or

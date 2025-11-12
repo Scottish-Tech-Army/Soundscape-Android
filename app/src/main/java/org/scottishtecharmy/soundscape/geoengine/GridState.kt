@@ -180,7 +180,7 @@ open class GridState(
                     1.0, 1.0
                 )
 
-                val tileEdgeList = emptyList<Intersection>().toMutableList()
+                val tileEdgeList = mutableListOf<Intersection>()
                 for (intersectionList in newGridIntersections) {
                     for (intersection in intersectionList) {
                         if (intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
@@ -262,8 +262,7 @@ open class GridState(
 
             // We have a new centralBoundingBox, so update the tiles
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-            val newGridIntersections: MutableList<HashMap<LngLatAlt, Intersection>> =
-                emptyList<HashMap<LngLatAlt, Intersection>>().toMutableList()
+            val newGridIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
             if (updateTileGrid(tileGrid, featureCollections, newGridIntersections, isUnitTesting)) {
                 // We have got a new grid, so create our new central region
                 centralBoundingBox = tileGrid.centralBoundingBox

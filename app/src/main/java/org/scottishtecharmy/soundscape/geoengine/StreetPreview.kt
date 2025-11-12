@@ -111,8 +111,7 @@ class StreetPreview {
                         if(thisIntersection != null) {
                             // Now follow the road out of our current intersection, and find the
                             // next intersection.
-                            val ways: MutableList<Pair<Boolean, Way>> =
-                                emptyList<Pair<Boolean, Way>>().toMutableList()
+                            val ways = mutableListOf<Pair<Boolean, Way>>()
                             road.way.followWays(thisIntersection, ways) { way, previousWay ->
                                 if(previousWay != null) {
                                     if((way.wayType == WayType.JOINER) ||
