@@ -35,7 +35,7 @@ class MvtPerformanceTest {
         tileY: Int,
         filename: String,
         cropPoints: Boolean = true
-    ): FeatureCollection {
+    ):  Array<FeatureCollection>? {
 
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val remoteTile = context.assets.open(filename)
@@ -52,9 +52,9 @@ class MvtPerformanceTest {
         val featureCollection = FeatureCollection()
         for (x in 15990..15992) {
             for (y in 10212..10213) {
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
-                for (feature in geojson) {
-                    featureCollection.addFeature(feature)
+                val geojsonArray = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+                for (fc in geojsonArray!!) {
+                    featureCollection += fc
                 }
             }
         }

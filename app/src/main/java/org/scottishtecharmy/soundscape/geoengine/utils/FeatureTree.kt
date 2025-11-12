@@ -364,7 +364,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             //
             data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
 
-            val unsortedList = emptyList<EntryWithDistance>().toMutableList()
+            val unsortedList = mutableListOf<EntryWithDistance>()
             for (entry in resultsWithinTriangle) {
                 unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, triangle.origin, ruler)))
             }
@@ -461,7 +461,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             // Deduplicate returned entries and add them to a list ready to sort by distance
             val deduplicationSet = mutableSetOf<Feature>()
             data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
-            val unsortedList = emptyList<EntryWithDistance>().toMutableList()
+            val unsortedList = mutableListOf<EntryWithDistance>()
             for (entry in distanceResults) {
                 if(!deduplicationSet.contains(entry.value())) {
                     unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, location, ruler)))

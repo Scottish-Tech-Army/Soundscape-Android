@@ -165,7 +165,7 @@ fun updateRouteMarkers(
     }
 
     if (routeData != null) {
-        val markersList = emptyList<Symbol>().toMutableList()
+        val markersList = mutableListOf<Symbol>()
         for ((index, waypoint) in routeData.markers.withIndex()) {
             val markerOptions = SymbolOptions()
                 .withLatLng(

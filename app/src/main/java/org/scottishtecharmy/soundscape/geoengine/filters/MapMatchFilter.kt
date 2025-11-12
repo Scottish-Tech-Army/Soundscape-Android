@@ -294,7 +294,7 @@ class RoadFollower(val parent: MapMatchFilter,
                                newWay: Way,
                                colorIndexOffset: Int) : RoadFollower {
         // Create a new follower which is a copy of this one, but with an extended route
-        val newRoute = emptyList<Way>().toMutableList()
+        val newRoute = mutableListOf<Way>()
 
         val (minIndex, maxIndex) = getRouteIntersectionIndices(newWay)
         if(minIndex != maxIndex) {
@@ -344,7 +344,7 @@ class RoadFollower(val parent: MapMatchFilter,
             return false
         }
 
-        val newRoute = emptyList<Way>().toMutableList()
+        val newRoute = mutableListOf<Way>()
         if(route.first().doesIntersect(newWay).first != null) {
             if(!route.first().intersections.contains(null)) {
                 newRoute.add(newWay)
@@ -586,7 +586,7 @@ class MapMatchFilter {
     //
 
 
-    val followerList: MutableList<RoadFollower> = emptyList<RoadFollower>().toMutableList()
+    val followerList: MutableList<RoadFollower> = mutableListOf<RoadFollower>()
     var matchedLocation: PointAndDistanceAndHeading? = null
     var matchedWay: Way? = null
     var matchedFollower: RoadFollower? = null
@@ -720,7 +720,7 @@ class MapMatchFilter {
 
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
-        val freshetList = emptyList<Pair<RoadFollowerStatus, String>>().toMutableList()
+        val freshetList = mutableListOf<Pair<RoadFollowerStatus, String>>()
         val followerIterator = followerList.listIterator()
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()

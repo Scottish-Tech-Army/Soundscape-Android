@@ -38,7 +38,7 @@ fun StreetPreview(
             // Find best match
             var bestChoice = -1
             var bestHeading = Double.POSITIVE_INFINITY
-            val roads = emptySet<String>().toMutableSet()
+            val roads = mutableSetOf<String>()
             for ((index, choice) in state.choices.withIndex()) {
                 val headingDelta = calculateHeadingOffset(choice.heading, heading.toDouble())
                 if (headingDelta < bestHeading) {
