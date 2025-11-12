@@ -10,7 +10,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegme
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -33,9 +32,8 @@ enum class IntersectionType(
     TILE_EDGE(1)
 }
 
-class Intersection : Feature() {
+class Intersection : MvtFeature() {
     var members = mutableListOf<Way>()
-    var name = ""                                                       // Name of the intersection
     var location =
         LngLatAlt()                                          // Location of the intersection
     var intersectionType = IntersectionType.REGULAR
@@ -63,16 +61,15 @@ class Intersection : Feature() {
         val namesUsed = mutableSetOf<String>()
         for (way in members) {
             val segmentName = way.getName(way.intersections[WayEnd.START.id] == this, gridState, localizedContext, nonGenericOnly = false)
-            if (!namesUsed.contains(segmentName.toString())) {
+            if (!namesUsed.contains(segmentName)) {
                 if (updatedName.isNotEmpty()) {
                     updatedName.append("/")
                 }
                 updatedName.append(segmentName)
-                namesUsed.add(segmentName.toString())
+                namesUsed.add(segmentName)
             }
         }
         name = updatedName.toString()
-        properties?.set("name", name)
     }
 }
 
@@ -91,7 +88,7 @@ enum class WayEnd(
 }
 
 private val DirectionLookup = Direction.entries.toTypedArray()
-class Way : Feature() {
+class Way : MvtFeature() {
     var length = 0.0                            // We could easily calculate this from the segments.
 
     var intersections = arrayOf<Intersection?>(null, null)  // Intersections at either end
@@ -105,17 +102,16 @@ class Way : Feature() {
 
         var destinationModifier: Any? = null
         var passesModifier: Any?
-        var name = properties?.get("name")
         val genericName = (name == null)
         var passesString = ""
 
         if(name == null) {
             // Un-named way, so use "class" property
-            name = properties?.get("class").toString()
+            name = featureClass.toString()
             var locale = Locale.getDefault()
             if(localizedContext != null)
                 locale = localizedContext.resources.configuration.getLocales().get(0)
-            name = name.replaceFirstChar {
+            name = name!!.replaceFirstChar {
                 if (it.isLowerCase())
                     it.titlecase(locale)
                 else
@@ -193,7 +189,7 @@ class Way : Feature() {
                 if(nonGenericOnly && genericName) {
                     return ""
                 }
-                return name.toString()
+                return name!!
             }
         }
     }
@@ -252,7 +248,6 @@ class Way : Feature() {
             return false
 
         // It's not a connector if it's named
-        val name = properties?.get("name")
         if(name != null)
             return false
 
@@ -274,7 +269,7 @@ class Way : Feature() {
                 }
                 // And then return true if it's the pavement for this Way
                 val pavement = way.properties?.get("pavement")
-                return ((pavement != null) && (pavement == mainWay.properties?.get("name")))
+                return ((pavement != null) && (pavement == mainWay.name))
             }
         }
         return false
@@ -487,7 +482,7 @@ class WayGenerator(val transit: Boolean = false) {
      * entry will have information for more than one line.
     */
     private val highwayNodes : HashMap< Int, Int> = hashMapOf()
-    private val wayFeatures = mutableListOf<Feature>()
+    private val wayFeatures = mutableListOf<MvtFeature>()
 
     private val ways = mutableListOf<Way>()
 
@@ -518,7 +513,7 @@ class WayGenerator(val transit: Boolean = false) {
         }
     }
 
-    fun addFeature(feature: Feature) {
+    fun addFeature(feature: MvtFeature) {
         wayFeatures.add(feature)
     }
     /**
@@ -529,24 +524,26 @@ class WayGenerator(val transit: Boolean = false) {
     *  every segment between intersections. Now we generate the intersections and add the Ways directly
     *  to them. Let's do this in a separate class for now so that we can test it.
     */
-    fun addSegmentFeatureToWay(feature: Feature,
+    fun addSegmentFeatureToWay(feature: MvtFeature,
                                currentSegment: LineString,
                                currentSegmentLength: Double,
                                segmentIndex: Int,
                                way: Way) {
         // Add feature with the segment up until this point
-        val newFeature = Feature()
+        val newProperties = hashMapOf<String, Any?>()
         feature.properties?.let { properties ->
-            newFeature.properties = hashMapOf()
             for((key, prop) in properties) {
-                newFeature.properties!![key] = prop
+                newProperties[key] = prop
             }
-            newFeature.properties?.set("segmentIndex", segmentIndex.toString())
+            newProperties["segmentIndex"] = segmentIndex.toString()
         }
-        newFeature.geometry = currentSegment
-        way.properties = newFeature.properties
-        way.type = newFeature.type
-        way.geometry = newFeature.geometry
+        way.properties = newProperties
+        way.name = feature.name
+        way.featureClass = feature.featureClass
+        way.featureSubClass = feature.featureSubClass
+        way.featureType = feature.featureType
+        way.featureValue = feature.featureValue
+        way.geometry = currentSegment
         way.length = currentSegmentLength
     }
 
@@ -680,29 +677,26 @@ class WayGenerator(val transit: Boolean = false) {
             when(way.geometry.type) {
                 "LineString", "MultiLineString" ->
                 {
-                    way.properties?.let { properties ->
-                        if(roadsOnlyWaysCollection != null) {
-                            if (properties["feature_type"] == "highway") {
-                                val featureValue = properties["feature_value"]
-                                when (featureValue) {
-                                    "bus_stop", "crossing" -> {} // Don't add
-                                    "footway", "path", "cycleway", "bridleway" -> {
-                                        // These are paths
-                                        mainWaysCollection.addFeature(way)
-                                    }
-
-                                    else -> {
-                                        // These are roads
-                                        mainWaysCollection.addFeature(way)
-                                        roadsOnlyWaysCollection.addFeature(way)
-                                    }
+                    if(roadsOnlyWaysCollection != null) {
+                        if (way.featureType == "highway") {
+                            when (way.featureValue) {
+                                "bus_stop", "crossing" -> {} // Don't add
+                                "footway", "path", "cycleway", "bridleway" -> {
+                                    // These are paths
+                                    mainWaysCollection.addFeature(way)
                                 }
-                            } else {
-                                leftOverCollection.addFeature(way)
+
+                                else -> {
+                                    // These are roads
+                                    mainWaysCollection.addFeature(way)
+                                    roadsOnlyWaysCollection.addFeature(way)
+                                }
                             }
                         } else {
-                            mainWaysCollection.addFeature(way)
+                            leftOverCollection.addFeature(way)
                         }
+                    } else {
+                        mainWaysCollection.addFeature(way)
                     }
                 }
                 else -> leftOverCollection.addFeature(way)
@@ -722,10 +716,10 @@ class WayGenerator(val transit: Boolean = false) {
             intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
             intersection.value.properties = hashMapOf()
             if(transit) {
-                intersection.value.properties?.set("feature_type", "transit")
-                intersection.value.properties?.set("feature_value", "transit_intersection")
+                intersection.value.featureType = "transit"
+                intersection.value.featureValue = "transit_intersection"
             } else {
-                intersection.value.properties?.set("feature_type", "highway")
+                intersection.value.featureType = "highway"
             }
             if(!transit) {
                 if(intersectionCollection != null) {

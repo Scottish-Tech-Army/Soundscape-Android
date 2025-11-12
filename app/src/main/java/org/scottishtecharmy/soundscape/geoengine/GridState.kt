@@ -14,6 +14,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMAR
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
@@ -528,65 +529,6 @@ open class GridState(
 }
 
 /**
- * Given a valid Tile feature collection this will parse the collection and return a roads
- * feature collection. Uses the "highway" feature_type to extract roads from GeoJSON.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only roads.
- */
-fun getRoadsFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection {
-
-    val roadsFeatureCollection = FeatureCollection()
-
-    // Original Soundscape excludes the below feature_value (s) even though they have the
-    // feature_type == highway
-    // and creates a separate Paths Feature Collection for them
-    // "footway", "path", "cycleway", "bridleway"
-
-
-    for (feature in tileFeatureCollection) {
-        feature.properties?.let { properties ->
-            if (properties["feature_type"] == "highway"
-                && properties["feature_value"] != "footway"
-                && properties["feature_value"] != "path"
-                && properties["feature_value"] != "cycleway"
-                && properties["feature_value"] != "bridleway"
-                && properties["feature_value"] != "bus_stop"
-                && properties["feature_value"] != "crossing") {
-                // We're only going to add linestrings to the roads feature collection
-                when(feature.geometry.type) {
-                    "LineString", "MultiLineString" ->
-                        roadsFeatureCollection.addFeature(feature)
-                }
-            }
-        }
-    }
-    return roadsFeatureCollection
-}
-
-private fun getTransitFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection {
-
-    val transitFeatureCollection = FeatureCollection()
-
-    for (feature in tileFeatureCollection) {
-        feature.properties?.let { properties ->
-            if ((properties["feature_type"] == "transit") ||
-                (properties["feature_type"] == "rail") && (properties["feature_value"] == "rail")) {
-                when(feature.geometry.type) {
-                    "LineString", "MultiLineString" ->
-                        transitFeatureCollection.addFeature(feature)
-                }
-            }
-        }
-    }
-    return transitFeatureCollection
-}
-
-/**
  * Given a valid Tile feature collection this will parse the collection and return a bus stops
  * feature collection. Uses the "bus_stop" feature_value to extract bus stops from GeoJSON.
  * @param tileFeatureCollection
@@ -598,9 +540,9 @@ private fun getTransitStopsFeatureCollectionFromTileFeatureCollection(
 ): FeatureCollection{
     val transitStopFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        if(feature.properties?.get("feature_type") != "transit") {
-            val featureValue = feature.properties?.get("feature_value")
-            when (featureValue) {
+        val mvtFeature = feature as MvtFeature
+        if(mvtFeature.featureType  != "transit") {
+            when (mvtFeature.featureValue) {
                 "bus_stop", "tram_stop", "subway", "station", "train_station", "ferry_terminal" ->
                     transitStopFeatureCollection.addFeature(feature)
             }
@@ -619,10 +561,9 @@ private fun getTransitStopsFeatureCollectionFromTileFeatureCollection(
 private fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
     val crossingsFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        feature.properties?.let { properties ->
-            if (properties["feature_type"] == "highway" && properties["feature_value"] == "crossing") {
-                crossingsFeatureCollection.addFeature(feature)
-            }
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "highway" && mvtFeature.featureValue == "crossing") {
+            crossingsFeatureCollection.addFeature(feature)
         }
     }
     return crossingsFeatureCollection
@@ -638,10 +579,9 @@ private fun getCrossingsFromTileFeatureCollection(tileFeatureCollection: Feature
 private fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection{
     val interpolationPointsFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
-        feature.properties?.let { properties ->
-            if (properties["class"] == "edgePoint") {
-                interpolationPointsFeatureCollection.addFeature(feature)
-            }
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureClass == "edgePoint") {
+            interpolationPointsFeatureCollection.addFeature(feature)
         }
     }
     return interpolationPointsFeatureCollection
@@ -661,18 +601,17 @@ private fun getPathsFeatureCollectionFromTileFeatureCollection(
     val pathsFeatureCollection = FeatureCollection()
 
     for(feature in tileFeatureCollection) {
-        feature.properties?.let { properties ->
-            // We're only going to add linestrings to the roads feature collection
-            when(feature.geometry.type) {
-                "LineString", "MultiLineString" -> {
-                    if (properties["feature_type"] == "highway")
-                        when (properties["feature_value"]) {
-                            "footway" -> pathsFeatureCollection.addFeature(feature)
-                            "path" -> pathsFeatureCollection.addFeature(feature)
-                            "cycleway" -> pathsFeatureCollection.addFeature(feature)
-                            "bridleway" -> pathsFeatureCollection.addFeature(feature)
-                        }
-                }
+        // We're only going to add linestrings to the roads feature collection
+        val mvtFeature = feature as MvtFeature
+        when(mvtFeature.geometry.type) {
+            "LineString", "MultiLineString" -> {
+                if (mvtFeature.featureType == "highway")
+                    when (mvtFeature.featureValue) {
+                        "footway" -> pathsFeatureCollection.addFeature(feature)
+                        "path" -> pathsFeatureCollection.addFeature(feature)
+                        "cycleway" -> pathsFeatureCollection.addFeature(feature)
+                        "bridleway" -> pathsFeatureCollection.addFeature(feature)
+                    }
             }
         }
     }
@@ -711,22 +650,17 @@ private fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
     val poiFeaturesCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
         var add = true
-        feature.properties?.let { properties ->
-            if (properties["feature_type"] == "highway" ||
-                properties["feature_type"] == "gd_entrance_list"
-            ) {
-                add = false
-            }
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "highway") {
+            add = false
         }
-        feature.properties?.let { properties ->
-            if (properties["class"] == "edgePoint" ||
-                properties["class"] == "rail" ||
-                properties["class"] == "transit"
-            ) {
-                add = false
-            }
+        if (mvtFeature.featureClass == "edgePoint" ||
+            mvtFeature.featureClass == "rail" ||
+            mvtFeature.featureClass == "transit"
+        ) {
+            add = false
         }
-        if (add) poiFeaturesCollection.addFeature(feature)
+        if (add) poiFeaturesCollection.addFeature(mvtFeature)
     }
 
     return poiFeaturesCollection

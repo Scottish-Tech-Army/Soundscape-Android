@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.MIN_MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.getRoadsFeatureCollectionFromTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -22,6 +21,16 @@ fun pointIsOffTile(x: Int, y: Int) : Boolean {
 fun sampleToFractionOfTile(sample: Int) : Double {
     return (sample.toDouble() + 0.5) / 4096.0
 }
+
+open class MvtFeature : Feature() {
+    var osmId : Long = 0L
+    var name : String? = null
+    var featureClass : String? = null
+    var featureSubClass : String? = null
+    var featureType : String? = null
+    var featureValue : String? = null
+}
+
 
 private fun parseGeometry(
     cropToTile: Boolean,
@@ -284,7 +293,7 @@ fun vectorTileToGeoJson(tileX: Int,
                         mvt: VectorTile.Tile,
                         intersectionMap:  HashMap<LngLatAlt, Intersection>,
                         cropPoints: Boolean = true,
-                        tileZoom: Int = MAX_ZOOM_LEVEL): Array<FeatureCollection>? {
+                        tileZoom: Int = MAX_ZOOM_LEVEL): Array<FeatureCollection> {
 
     val collection = FeatureCollection()
     val wayGenerator = WayGenerator()
@@ -302,9 +311,9 @@ fun vectorTileToGeoJson(tileX: Int,
 
     // POI can have duplicate entries for polygons and points and also duplicates in the Buildings
     // layer we de-duplicate them with these maps.
-    val mapPolygonFeatures : HashMap<Double, MutableList<Feature>> = hashMapOf()
-    val mapBuildingFeatures : HashMap<Double, Feature> = hashMapOf()
-    val mapPointFeatures : HashMap<Double, Feature> = hashMapOf()
+    val mapPolygonFeatures : HashMap<Long, MutableList<Feature>> = hashMapOf()
+    val mapBuildingFeatures : HashMap<Long, Feature> = hashMapOf()
+    val mapPointFeatures : HashMap<Long, Feature> = hashMapOf()
 
     for(layer in mvt.layersList) {
         if(!layerIds.contains(layer.name)) {
@@ -312,12 +321,14 @@ fun vectorTileToGeoJson(tileX: Int,
         }
         //println("Process layer: " + layer.name)
 
-        val mapInterpolatedNodes : HashMap<Double, Feature> = hashMapOf()
+        val mapInterpolatedNodes : HashMap<Long, Feature> = hashMapOf()
         for (feature in layer.featuresList) {
 
             var entrance = false
-            // We use Double to store the OSM id as JSON doesn't support Long
-            val id = feature.id.toDouble()
+            val id = feature.id
+            var name : String? = null
+            var featureClass : String? = null
+            var featureSubClass : String? = null
 
             // Convert coordinates to GeoJSON. This is where we find out how many features
             // we're actually dealing with as there can be multiple features that have the
@@ -352,10 +363,17 @@ fun vectorTileToGeoJson(tileX: Int,
                 }
 
                 if (!firstInPair) {
-                    if (properties == null) {
-                        properties = HashMap()
+                    when(key) {
+                        "name" -> name = value.toString()
+                        "class" -> featureClass = value.toString()
+                        "subclass" -> featureSubClass = value.toString()
+                        else -> {
+                            if (properties == null) {
+                                properties = HashMap()
+                            }
+                            properties[key] = value
+                        }
                     }
-                    properties[key] = value
                     firstInPair = true
                 } else
                     firstInPair = false
@@ -363,7 +381,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
             if(layer.name == "building") {
                 // Check that we have a name, otherwise we're not interested
-                if((properties == null) || (properties["name"] == null))
+                if(name == null)
                     continue
             }
 
@@ -432,10 +450,10 @@ fun vectorTileToGeoJson(tileX: Int,
                         }
 
                         if(layer.name == "poi" || layer.name == "building") {
-                            if(properties?.get("name") != null) {
-                                val entranceDetails = EntranceDetails(properties["name"]?.toString(),
+                            if(name != null) {
+                                val entranceDetails = EntranceDetails(name,
                                     null,
-                                    properties["layer"]?.toString(),
+                                    properties?.get("layer")?.toString(),
                                     null,
                                     true,
                                     id)
@@ -455,15 +473,15 @@ fun vectorTileToGeoJson(tileX: Int,
                                 Point(coordinates[0].longitude, coordinates[0].latitude)
                             )
 
-                            if(properties?.get("class") == "entrance") {
+                            if(featureClass == "entrance") {
                                 // If the access is set to no, then don't add the entrance
-                                if((properties.get("access") != "no")) {
+                                if((properties?.get("access") != "no")) {
 
                                     // Add the entrance
                                     val entranceDetails = EntranceDetails(
-                                        properties["name"]?.toString(),
-                                        properties["subclass"]?.toString(),
-                                        properties["layer"]?.toString(),
+                                        name,
+                                        featureSubClass,
+                                        properties?.get("layer")?.toString(),
                                         properties,
                                         false,
                                         id
@@ -482,19 +500,13 @@ fun vectorTileToGeoJson(tileX: Int,
                         feature.geometryList
                     )
 
-                    var name : Any? = null
-                    properties?.let {
-                        name = properties["name"]
-                        properties["name"] = name
-                    }
-
                     if(layer.name == "transportation")
                     {
                         for (line in lines) {
-                            if(feature.id == 0L) {
-                                println("Feature ID is zero for ${name.toString()}")
+                            if(id == 0L) {
+                                println("Feature ID is zero for $name")
                             }
-                            if((properties?.get("class") == "transit") || (properties?.get("class") == "rail"))
+                            if((featureClass == "transit") || (featureClass == "rail"))
                                 transitGenerator.addLine(line)
                             else
                                 wayGenerator.addLine(line)
@@ -522,12 +534,12 @@ fun vectorTileToGeoJson(tileX: Int,
                                         currentLine.coordinates.add(node)
                                     }
                                 } else {
-                                    val interpolatedFeature = Feature()
+                                    val interpolatedFeature = MvtFeature()
                                     interpolatedFeature.geometry =
                                         MultiPoint(ArrayList(interpolatedNodes))
                                     interpolatedFeature.properties = hashMapOf()
-                                    interpolatedFeature.properties!!["class"] = "edgePoint"
-                                    interpolatedFeature.properties!!["osm_id"] = id
+                                    interpolatedFeature.featureClass = "edgePoint"
+                                    interpolatedFeature.osmId = id
                                     mapInterpolatedNodes[id] = interpolatedFeature
                                 }
                             }
@@ -550,15 +562,18 @@ fun vectorTileToGeoJson(tileX: Int,
 
             for (geometry in listOfGeometries) {
                 // And map the tags
-                val geoFeature = Feature()
+                val geoFeature = MvtFeature()
                 geoFeature.geometry = geometry
-                properties!!["osm_id"] = id
+                geoFeature.osmId = id
+                geoFeature.name = name
+                geoFeature.featureClass = featureClass
+                geoFeature.featureSubClass = featureSubClass
                 geoFeature.properties = properties
-                if(translateProperties(properties, id)) {
+                if(translateProperties(geoFeature)) {
                     if ((layer.name == "poi") || (layer.name == "place")) {
                         // If this is an un-named garden, then we can discard it
-                        if(properties["feature_value"] == "garden") {
-                            if(!properties.containsKey("name"))
+                        if(geoFeature.featureValue == "garden") {
+                            if(name == null)
                                 continue
                         }
                         if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
@@ -574,7 +589,7 @@ fun vectorTileToGeoJson(tileX: Int,
                         if(geoFeature.geometry.type != "LineString") {
                             collection.addFeature(geoFeature)
                         } else {
-                            if((properties.get("class") == "transit") || (properties.get("class") == "rail"))
+                            if((featureClass == "transit") || (featureClass == "rail"))
                                 transitGenerator.addFeature(geoFeature)
                             else
                                 wayGenerator.addFeature(geoFeature)
@@ -657,96 +672,84 @@ fun vectorTileToGeoJson(tileX: Int,
  * foreign properties that nearer matches those returned by the soundscape-backend.
  *
  * @param properties is a map of the tags from the MVT feature
- * @param id is the feature id which is ((OSM_ID * 10) + offset) where offset is
- *   1 for an OSM node
- *   2 for an OSM  way
- *   3 for an OSM  relation
  *
  * @return a map of properties that can be used in the same way as those from soundscape-backend
  */
 
-fun translateProperties(properties: HashMap<String, Any?>?, id: Double) : Boolean {
-    if(properties != null) {
-        var featureType : String? = null
-        var featureValue : String? = null
-        for(property in properties) {
-            if (property.key == "class") {
-                // This mapping is constructed from the class description in:
-                // https://github.com/davecraig/openmaptiles/blob/master/layers/transportation/transportation.yaml
-                when (property.value) {
-                    "motorway",
-                    "trunk",
-                    "primary",
-                    "secondary",
-                    "tertiary",
-                    "minor",
-                    "service",
-                    "track",
-                    "raceway",
-                    "busway",
-                    "bus_guideway",
-                    "ferry",
-                    "motorway_construction",
-                    "trunk_construction",
-                    "primary_construction",
-                    "secondary_construction",
-                    "tertiary_construction",
-                    "minor_construction",
-                    "path_construction",
-                    "service_construction",
-                    "track_construction",
-                    "raceway_construction" -> {
-                        featureType = "highway"
-                        featureValue = property.value?.toString()
-                    }
-
-                    "crossing" -> {
-                        if(properties["crossing"] == "unmarked") {
-                            if((properties["tactile_paving"] == "no") || (!properties.containsKey("tactile_paving"))) {
-                                // Unmarked crossings without tactile paving should be ignored.
-                                return false
-                            }
-                        }
-
-                        featureType = "highway"
-                        featureValue = property.value?.toString()
-                    }
-
-                    "path" -> {
-                        // Paths can have a more descriptive type in their subclass
-                        featureType = "highway"
-                        featureValue = properties["subclass"]?.toString()
-                    }
-
-                    "bus" -> {
-                        featureType = "highway"
-                        featureValue = "bus_stop"
-                    }
-
-                    // These are the features which we don't add to POI (for now at least)
-                    "cycle_barrier",
-                    "bicycle_parking",
-                    "waste_basket",
-                    "grit_bin",
-                    "vacant",
-                    "bollard",
-                    "gate" -> {
-                        return false
-                    }
-
-                    else -> {
-                        featureType = property.value?.toString()
-                        featureValue = properties["subclass"]?.toString()
-                    }
-                }
-            } else if (property.key == "building") {
-                // This is used for mapping warehouses
-                featureType = property.key
-                featureValue = property.value?.toString()
-            }
+fun translateProperties(feature: MvtFeature) : Boolean {
+    // This mapping is constructed from the class description in:
+    // https://github.com/davecraig/openmaptiles/blob/master/layers/transportation/transportation.yaml
+    when (feature.featureClass) {
+        "motorway",
+        "trunk",
+        "primary",
+        "secondary",
+        "tertiary",
+        "minor",
+        "service",
+        "track",
+        "raceway",
+        "busway",
+        "bus_guideway",
+        "ferry",
+        "motorway_construction",
+        "trunk_construction",
+        "primary_construction",
+        "secondary_construction",
+        "tertiary_construction",
+        "minor_construction",
+        "path_construction",
+        "service_construction",
+        "track_construction",
+        "raceway_construction" -> {
+            feature.featureType = "highway"
+            feature.featureValue = feature.featureClass
         }
-        properties["feature_type"] = featureType
-        properties["feature_value"] = featureValue
+
+        "crossing" -> {
+            if(feature.properties?.get("crossing") == "unmarked") {
+                if((feature.properties?.get("tactile_paving") == "no") || (feature.properties?.containsKey("tactile_paving") == false)) {
+                    // Unmarked crossings without tactile paving should be ignored.
+                    return false
+                }
+            }
+
+            feature.featureType = "highway"
+            feature.featureValue = feature.featureClass
+        }
+
+        "path" -> {
+            // Paths can have a more descriptive type in their subclass
+            feature.featureType = "highway"
+            feature.featureValue = feature.featureSubClass
+        }
+
+        "bus" -> {
+            feature.featureType = "highway"
+            feature.featureValue = "bus_stop"
+        }
+
+        // These are the features which we don't add to POI (for now at least)
+        "cycle_barrier",
+        "bicycle_parking",
+        "waste_basket",
+        "grit_bin",
+        "vacant",
+        "bollard",
+        "gate" -> {
+            return false
+        }
+
+        else -> {
+            feature.featureType = feature.featureClass
+            feature.featureValue = feature.featureSubClass
+        }
     }
+    val building = feature.properties?.get("building")
+    if (building != null) {
+        feature.featureType = "building"
+        feature.featureValue = building.toString()
+    }
+
     return true
 }

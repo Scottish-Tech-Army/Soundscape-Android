@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
@@ -178,7 +179,7 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         pois.features.filter { feature ->
 
-            val name = getTextForFeature(localizedContext, feature)
+            val name = getTextForFeature(localizedContext, feature as MvtFeature)
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 
             val callout = TrackedCallout(

@@ -6,6 +6,7 @@ import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.ToJson
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter.Companion.OPTIONS
 
@@ -57,6 +58,16 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
     override fun toJson(writer: JsonWriter, value: Feature?) {
         if (value == null) {
             throw NullPointerException("Feature was null! Wrap in .nullSafe() to write nullable values.")
+        }
+
+        if(value is MvtFeature) {
+            // We're going to populate the properties with the values that we have stored.
+            value.properties?.set("name", value.name)
+            value.properties?.set("osm_id", value.osmId)
+            value.properties?.set("class", value.featureClass)
+            value.properties?.set("subclass", value.featureSubClass)
+            value.properties?.set("feature_type", value.featureType)
+            value.properties?.set("feature_value", value.featureValue)
         }
 
         writer.beginObject()

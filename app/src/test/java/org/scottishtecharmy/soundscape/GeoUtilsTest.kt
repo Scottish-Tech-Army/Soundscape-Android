@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.pixelXYToLatLon
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
@@ -886,8 +887,8 @@ class GeoUtilsTest {
             )
         }
 
-        val feature1 = Feature()
-        val feature2 = Feature()
+        val feature1 = MvtFeature()
+        val feature2 = MvtFeature()
         feature1.geometry = polygon1
         feature2.geometry = polygon2
 
@@ -956,8 +957,8 @@ class GeoUtilsTest {
             )
         }
 
-        val feature1 = Feature()
-        val feature2 = Feature()
+        val feature1 = MvtFeature()
+        val feature2 = MvtFeature()
         feature1.geometry = polygon1
         feature2.geometry = polygon2
 

@@ -761,9 +761,9 @@ class MapMatchFilter {
                             addSidewalk(way, roadTree, gridState.ruler)
 
                             val matchedPavement = matched.properties?.get("pavement")
-                            val matchedName = matched.properties?.get("name")
+                            val matchedName = matched.name
                             val wayPavement = way.properties?.get("pavement")
-                            val wayName = way.properties?.get("name")
+                            val wayName = way.name
 
                             if((matchedPavement != null) &&
                                ((matchedPavement == wayName) || (matchedPavement == wayPavement))) {

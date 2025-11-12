@@ -5,10 +5,9 @@ import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
-import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
-import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.isDuplicateByOsmId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -90,7 +89,7 @@ class MergePolygonsTest {
         val duplicateFeaturesFeatureCollection = FeatureCollection()
 
         for (feature in getGeoJsonForLocationFeatureCollection.features) {
-            if (!isDuplicateByOsmId(processOsmIds, feature)) {
+            if (!isDuplicateByOsmId(processOsmIds, feature as MvtFeature)) {
                 notDuplicateFeaturesFeatureCollection.features.add(feature)
             } else {
                 duplicateFeaturesFeatureCollection.features.add(feature)
@@ -130,7 +129,7 @@ class MergePolygonsTest {
 
         // Add original Features but excluding the Polygons that were merged
         for (feature in notDuplicateFeaturesFeatureCollection.features) {
-            if (!isDuplicateByOsmId(originalPolygonsUsedInMerge, feature)) { // Check object identity
+            if (!isDuplicateByOsmId(originalPolygonsUsedInMerge, feature as MvtFeature)) { // Check object identity
                 finalFeatureCollection.features.add(feature)
             }
         }
