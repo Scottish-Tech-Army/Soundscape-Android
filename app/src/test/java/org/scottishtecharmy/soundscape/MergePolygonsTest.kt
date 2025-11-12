@@ -5,8 +5,10 @@ import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.isDuplicateByOsmId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -239,8 +241,10 @@ class MergePolygonsTest {
                 "${tile.tileX}x${tile.tileY}x${MAX_ZOOM_LEVEL}.mvt",
                 intersectionMap
             )
-            for (feature in geojson) {
-                featureCollection.addFeature(feature)
+            for(collection in geojson!!) {
+                for (feature in collection) {
+                    featureCollection.addFeature(feature)
+                }
             }
         }
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -257,7 +261,7 @@ class MergePolygonsTest {
         filename: String,
         intersectionMap:  HashMap<LngLatAlt, Intersection>,
         cropPoints: Boolean = true
-    ): FeatureCollection {
+    ): Array<FeatureCollection>? {
 
         val gridState = FileGridState()
         gridState.start(null, offlineExtractPath, true)
@@ -290,6 +294,7 @@ class MergePolygonsTest {
 //                assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
 //                assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
 //            }
+
         return featureCollection
     }
 }

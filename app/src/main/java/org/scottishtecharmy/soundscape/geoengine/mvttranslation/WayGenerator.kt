@@ -550,9 +550,11 @@ class WayGenerator(val transit: Boolean = false) {
         way.length = currentSegmentLength
     }
 
-    fun generateWays(intersectionCollection: FeatureCollection,
-                     waysCollection: FeatureCollection,
-                     intersectionMap:  HashMap<LngLatAlt, Intersection>,
+    fun generateWays(intersectionCollection: FeatureCollection?,
+                     mainWaysCollection: FeatureCollection,
+                     roadsOnlyWaysCollection: FeatureCollection?,
+                     leftOverCollection: FeatureCollection,
+                     intersectionMap:  HashMap<LngLatAlt, Intersection>?,
                      xTile: Int,
                      yTile: Int,
                      tileZoom : Int) {
@@ -675,9 +677,37 @@ class WayGenerator(val transit: Boolean = false) {
             }
         }
         for(way in ways) {
-            waysCollection.addFeature(way)
-        }
+            when(way.geometry.type) {
+                "LineString", "MultiLineString" ->
+                {
+                    way.properties?.let { properties ->
+                        if(roadsOnlyWaysCollection != null) {
+                            if (properties["feature_type"] == "highway") {
+                                val featureValue = properties["feature_value"]
+                                when (featureValue) {
+                                    "bus_stop", "crossing" -> {} // Don't add
+                                    "footway", "path", "cycleway", "bridleway" -> {
+                                        // These are paths
+                                        mainWaysCollection.addFeature(way)
+                                    }
 
+                                    else -> {
+                                        // These are roads
+                                        mainWaysCollection.addFeature(way)
+                                        roadsOnlyWaysCollection.addFeature(way)
+                                    }
+                                }
+                            } else {
+                                leftOverCollection.addFeature(way)
+                            }
+                        } else {
+                            mainWaysCollection.addFeature(way)
+                        }
+                    }
+                }
+                else -> leftOverCollection.addFeature(way)
+            }
+        }
         for(intersection in intersections) {
 
             // Sort the members by length of the Way, shortest first. This is important for when we
@@ -696,12 +726,15 @@ class WayGenerator(val transit: Boolean = false) {
                 intersection.value.properties?.set("feature_value", "transit_intersection")
             } else {
                 intersection.value.properties?.set("feature_type", "highway")
-                intersection.value.properties?.set("feature_value", "gd_intersection")
             }
-            intersectionCollection.addFeature(intersection.value)
-
-            if(!transit)
-                intersectionMap[intersection.key] = intersection.value
+            if(!transit) {
+                if(intersectionCollection != null) {
+                    if (intersection.value.intersectionType != IntersectionType.TILE_EDGE)
+                        intersectionCollection.addFeature(intersection.value)
+                }
+                if(intersectionMap != null)
+                    intersectionMap[intersection.key] = intersection.value
+            }
         }
     }
 }
