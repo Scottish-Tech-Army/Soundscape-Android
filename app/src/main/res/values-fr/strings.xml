@@ -474,4 +474,37 @@
     <string name="settings_theme_dark" tools:ignore="MissingTranslation">Sombre</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Afficher les cartes à l’écran</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Langue de recherche</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactif car le parcours est déjà au début</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Inactif car le trajet est déjà arrivé à son terme</string>
+    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">entrée</string>
+    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">entrée principale</string>
+    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s par %3$s</string>
+    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%2$s du %1$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">Cartes hors ligne</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">Détails de la carte hors ligne</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">Chargement…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Télécharger %s</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s libre</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">Les cartes sont enregistrées sur %1$s qui dispose de %2$s libres</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Cartes déjà téléchargées :</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Cartes hors ligne à proximité :</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Chargement de la liste des cartes hors ligne</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Supprimer la carte hors ligne</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">Télécharger la carte hors ligne</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Taille sur téléphone : %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Taille du téléchargement : %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nom de la carte : %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">La carte inclut les lieux suivants : %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Ces lieux sont également connus sous le nom de : %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Stockage de cartes hors ligne</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Pour utiliser Soundscape sans connexion Internet, il est possible de télécharger des cartes et de les enregistrer sur votre téléphone. Par défaut, l\'enregistrement se fait sur la mémoire externe de votre téléphone, mais vous pouvez choisir un autre emplacement ici.</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">Effacer le texte</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">ajoutez une note facultative pour vous aider à reconnaître ce marqueur plus tard</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">modifier le nom de l\'itinéraire</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">ajouter une description facultative pour cet itinéraire</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">Ajouter un élément</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">Ajouter un itinéraire</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Itinéraire %1$s au point de passage %2$s de %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">Accueil Soundscape</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">modifier le nom du marqueur</string>
 </resources>
