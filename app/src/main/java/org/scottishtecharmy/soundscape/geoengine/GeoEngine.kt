@@ -35,6 +35,7 @@ import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
@@ -306,11 +307,11 @@ class GeoEngine {
 
                 val featureCollection = FeatureCollection()
                 for (marker in markers) {
-                    val geoFeature = Feature()
+                    val geoFeature = MvtFeature()
                     geoFeature.geometry =
                         Point(marker.longitude, marker.latitude)
                     val properties : HashMap<String, Any?> = hashMapOf()
-                    properties["name"] = marker.name
+                    geoFeature.name = marker.name
                     properties["description"] = marker.fullAddress
                     properties["category"] ="marker"
                     geoFeature.properties = properties
@@ -633,10 +634,10 @@ class GeoEngine {
                                 // we are not already calling out in another direction.
                                 for(feature in featureCollection) {
                                     var duplicate = false
-                                    val featureName = getTextForFeature(localizedContext, feature).text
+                                    val featureName = getTextForFeature(localizedContext, feature as MvtFeature).text
                                     for (otherFeature in featuresByDirection) {
                                         if (otherFeature == null) continue
-                                        val otherName = getTextForFeature(localizedContext, otherFeature).text
+                                        val otherName = getTextForFeature(localizedContext, otherFeature as MvtFeature).text
                                         if (featureName == otherName) duplicate = true
                                     }
                                     if (!duplicate) {
@@ -660,7 +661,7 @@ class GeoEngine {
 
                         if(feature == null) continue
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                        val name = getTextForFeature(localizedContext, feature)
+                        val name = getTextForFeature(localizedContext, feature as MvtFeature)
                         val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedContext)}"
                         list.add(
                             PositionedString(
@@ -713,7 +714,7 @@ class GeoEngine {
                     for (feature in featuresAhead) {
 
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                        val name = getTextForFeature(localizedContext, feature)
+                        val name = getTextForFeature(localizedContext, feature as MvtFeature)
                         val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedContext)}"
                         list.add(
                             PositionedString(
@@ -781,7 +782,7 @@ class GeoEngine {
                     val list: MutableList<PositionedString> = mutableListOf()
                     if(nearestMarkers != null) {
                         for (feature in nearestMarkers.features) {
-                            val featureText = getTextForFeature(localizedContext, feature)
+                            val featureText = getTextForFeature(localizedContext, feature as MvtFeature)
                             val markerLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
                             val text = "${featureText.text}. ${
                                 formatDistanceAndDirection(
@@ -996,16 +997,16 @@ data class TextForFeature(val text: String = "", val generic: Boolean= false)
  * @return a NameForFeature object containing the name and a flag indicating if it is a generic
  * name from the OSM tag rather than an actual name.
  */
-fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFeature {
+fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextForFeature {
     var generic = false
-    val name = feature.properties?.get("name") as String?
+    val name = feature.name
     val entranceType = feature.properties?.get("entrance") as String?
-    val featureValue = feature.properties?.get("feature_value")
+    val featureValue = feature.featureValue
     val isMarker = feature.properties?.get("category") == "marker"
 
     if(localizedContext == null) {
         if(name == null) {
-            val osmClass = feature.properties?.get("class") as String?
+            val osmClass = feature.featureClass
             return TextForFeature(osmClass ?: "", true)
         }
 
@@ -1085,9 +1086,9 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
 
     if (text == null) {
         val osmClass =
-            feature.properties?.get("class") as String? ?: return TextForFeature("", true)
+            feature.featureClass ?: return TextForFeature("", true)
         val osmSubClass =
-            feature.properties?.get("subclass") as String?
+            feature.featureSubClass
 
         val id = ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(osmSubClass)
         text = if (id == null) {
@@ -1176,7 +1177,7 @@ fun localReverseGeocode(location: LngLatAlt,
     val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
     val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
     if(nearestBusStop != null) {
-        val busStopText = getTextForFeature(localizedContext, nearestBusStop)
+        val busStopText = getTextForFeature(localizedContext, nearestBusStop as MvtFeature)
         if(!busStopText.generic) {
             return LocationDescription(
                 name = localizedContext?.getString(R.string.directions_near_name)
@@ -1190,10 +1191,10 @@ fun localReverseGeocode(location: LngLatAlt,
     val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
     val insidePois = gridPoiTree.getContainingPolygons(location)
     for(poi in insidePois) {
-        val name = poi.properties?.get("name")
-        if(name != null) {
+        val mvtPoi = poi as MvtFeature
+        if(mvtPoi.name != null) {
             return LocationDescription(
-                name = localizedContext?.getString(R.string.directions_at_poi)?.format(name as String) ?: "At $name",
+                name = localizedContext?.getString(R.string.directions_at_poi)?.format(mvtPoi.name) ?: "At ${mvtPoi.name}",
                 location = location,
             )
         }
@@ -1206,19 +1207,20 @@ fun localReverseGeocode(location: LngLatAlt,
     // villages, suburbs               | 2 km
     // hamlets, farms, neighbourhoods  |  1 km
     //
-    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET).getNearestFeature(location, settlementGrid.ruler, 1000.0)
-    var nearestSettlementName = nearestSettlement?.properties?.get("name")
+    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
+        .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
+    var nearestSettlementName = nearestSettlement?.name
     if(nearestSettlementName == null) {
-        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getNearestFeature(location, settlementGrid.ruler, 2000.0)
-        nearestSettlementName = nearestSettlement?.properties?.get("name")
+        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
+        nearestSettlementName = nearestSettlement?.name
         if(nearestSettlementName == null) {
             nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-                .getNearestFeature(location, settlementGrid.ruler, 4000.0)
-            nearestSettlementName = nearestSettlement?.properties?.get("name")
+                .getNearestFeature(location, settlementGrid.ruler, 4000.0) as MvtFeature?
+            nearestSettlementName = nearestSettlement?.name
             if (nearestSettlementName == null) {
                 nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-                    .getNearestFeature(location, settlementGrid.ruler, 15000.0)
-                nearestSettlementName = nearestSettlement?.properties?.get("name")
+                    .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
+                nearestSettlementName = nearestSettlement?.name
             }
         }
     }

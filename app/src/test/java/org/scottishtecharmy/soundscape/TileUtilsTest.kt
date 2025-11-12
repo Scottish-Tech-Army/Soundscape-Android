@@ -17,6 +17,7 @@ import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -55,8 +56,9 @@ class TileUtilsTest {
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("highway", feature.properties!!["feature_type"])
             Assert.assertTrue("Feature should be of type Way", feature is Way)
+            val way = feature as Way
+            Assert.assertEquals("highway", way.featureType)
         }
         Assert.assertEquals(135, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
@@ -68,7 +70,8 @@ class TileUtilsTest {
             gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
 
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("bus_stop", feature.properties!!["feature_value"])
+            val mvtFeature = feature as MvtFeature
+            Assert.assertEquals("bus_stop", mvtFeature.featureValue)
         }
         Assert.assertEquals(8, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
     }
@@ -78,7 +81,8 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
         for (feature in testCrossingsFeatureCollection) {
-            Assert.assertEquals("crossing", feature.properties!!["feature_value"])
+            val mvtFeature = feature as MvtFeature
+            Assert.assertEquals("crossing", mvtFeature.featureValue)
         }
         Assert.assertEquals(314, testCrossingsFeatureCollection.features.size)
     }
@@ -91,7 +95,8 @@ class TileUtilsTest {
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testPathsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("highway", feature.properties!!["feature_type"])
+            val mvtFeature = feature as MvtFeature
+            Assert.assertEquals("highway", mvtFeature.featureType)
             Assert.assertTrue("Feature should be of type Way", feature is Way)
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
@@ -152,8 +157,10 @@ class TileUtilsTest {
             getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
         Assert.assertEquals(101, testSuperCategoryPoiCollection.features.size)
 
-        for(feature in testSuperCategoryPoiCollection)
-            println("${feature.properties?.get("feature_type")} - ${feature.properties?.get("feature_value")}")
+        for(feature in testSuperCategoryPoiCollection) {
+            val mvtFeature = feature as MvtFeature
+            println("${mvtFeature.featureType} - ${mvtFeature.featureValue}")
+        }
     }
 
     @Test
@@ -246,8 +253,9 @@ class TileUtilsTest {
 
                 val tempFeatureCollection = FeatureCollection()
                 for (feature in placeSuperCategory.features) {
-                    if (feature.properties?.get("feature_value") != "house") {
-                        if (feature.properties?.get("name") != null) {
+                    val mvtFeature = feature as MvtFeature
+                    if (mvtFeature.featureValue != "house") {
+                        if (mvtFeature.name != null) {
                             val superCategorySet = getSuperCategoryElements("place")
                             for (property in feature.properties!!) {
                                 if (superCategorySet.contains(property.value)) {
@@ -286,9 +294,10 @@ class TileUtilsTest {
                     feature.properties?.get("distance_to") as? Double ?: Double.MAX_VALUE
                 }
                 for (feature in distanceToFeatureCollection) {
-                    if (feature.properties?.get("name") != null) {
+                    val mvtFeature = feature as MvtFeature
+                    if (mvtFeature.name != null) {
                         println(
-                            "Feature: ${feature.properties?.get("name")} " +
+                            "Feature: ${mvtFeature.name} " +
                                     "distance to feature: ${feature.properties?.get("distance_to")}"
                         )
                     }
@@ -302,7 +311,8 @@ class TileUtilsTest {
                 val placeSuperCategory =
                     getPoiFeatureCollectionBySuperCategory("place", poiCollection)
                 for (feature in placeSuperCategory.features) {
-                    if (feature.properties?.get("feature_type") != "building" && feature.properties?.get("feature_value") != "house") {
+                    val mvtFeature = feature as MvtFeature
+                    if (mvtFeature.featureType != "building" && mvtFeature.featureValue != "house") {
                         settingsFeatureCollection.features.add(feature)
                     }
                 }
@@ -434,7 +444,8 @@ class TileUtilsTest {
         val fc = poiTree.getAllCollection()
         for(feature in fc) {
             if(feature.geometry.type == "Polygon") {
-                println("${feature.properties?.get("name")}")
+                val mvtFeature = feature as MvtFeature
+                println("${mvtFeature.name}")
                 val nearestPoint = getDistanceToFeature(userGeometry.location, feature, ruler).point
                 val offset = ruler.distance(nearestPoint, expectedNearestPoint)
                 assert(offset < 1.0)
@@ -492,11 +503,11 @@ class TileUtilsTest {
         // This should pick up four road segments in the FoV
         Assert.assertEquals(4, fovRoadsFeatureCollection.features.size)
         val nearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-            .getNearestFeature(userGeometry.location, userGeometry.ruler)
+            .getNearestFeature(userGeometry.location, userGeometry.ruler) as MvtFeature
         // Should only be the nearest road in this Feature Collection
         assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
-        Assert.assertEquals("Weston Road", nearestRoad!!.properties!!["name"])
+        Assert.assertEquals("Weston Road", nearestRoad.name)
     }
 
     @Test

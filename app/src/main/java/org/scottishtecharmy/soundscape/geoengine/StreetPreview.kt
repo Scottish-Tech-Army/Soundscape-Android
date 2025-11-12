@@ -122,11 +122,11 @@ class StreetPreview {
                                             way.properties?.get("brunnel") !=
                                             previousWay.properties?.get("brunnel")
                                         ) or (
-                                            way.properties?.get("name") !=
-                                            previousWay.properties?.get("name")
+                                            way.name !=
+                                            previousWay.name
                                         ) or (
-                                            way.properties?.get("class") !=
-                                            previousWay.properties?.get("class")
+                                            way.featureClass !=
+                                            previousWay.featureClass
                                         )
                                     }
                                 } else

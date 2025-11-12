@@ -17,7 +17,7 @@ class EntranceMatching {
      * up entrances to their POI polygons.
      */
     private val buildingNodes : HashMap< Int, ArrayList<EntranceDetails>> = hashMapOf()
-    private val addedIds = mutableSetOf<Double>()
+    private val addedIds = mutableSetOf<Long>()
 
     /**
      * addGeometry is called for any buildings that are found within a tile and all entrance nodes
@@ -73,8 +73,8 @@ class EntranceMatching {
      *      * be turned into a latitude/longitude
      */
     fun generateEntrances(collection: FeatureCollection,
-                          poiMap : HashMap<Double, MutableList<Feature>>,
-                          buildingMap: HashMap<Double, Feature>,
+                          poiMap : HashMap<Long, MutableList<Feature>>,
+                          buildingMap: HashMap<Long, Feature>,
                           tileX : Int,
                           tileY : Int,
                           tileZoom : Int) {
@@ -178,10 +178,14 @@ class EntranceMatching {
                             if(poi != null) {
                                 // We're going to duplicate the POI, but change it to being a point
                                 // instead of a polygon, and add the entrance name if it has one
-                                val entrance = Feature()
+                                val entrance = MvtFeature()
                                 entrance.geometry =
                                     Point(coordinates[0].longitude, coordinates[0].latitude)
                                 entrance.properties = cloneHashMap(poi.properties)
+                                entrance.featureClass = (poi as MvtFeature).featureClass
+                                entrance.featureSubClass = poi.featureSubClass
+                                entrance.featureType = poi.featureType
+                                entrance.featureValue = poi.featureValue
                                 entrance.properties?.set("entrance", entranceDetails.entranceType)
 
                                 // This is an entrance, so remove any marking that the POI has
@@ -201,7 +205,7 @@ class EntranceMatching {
                             }
                         }
                         // Try and figure out how to name the entrance from its properties.
-                        val entrance = Feature()
+                        val entrance = MvtFeature()
                         entrance.geometry =
                             Point(coordinates[0].longitude, coordinates[0].latitude)
                         entrance.properties = HashMap()
@@ -209,26 +213,26 @@ class EntranceMatching {
                         var confected = (entranceDetails.name != null)
                         if(entranceDetails.entranceType == "subway_entrance") {
                             // Subway station entrances
-                            entrance.properties?.set("class", "railway")
-                            entrance.properties?.set("subclass", "subway")
-                            entrance.properties?.set("feature_type", "railway")
-                            entrance.properties?.set("feature_value", "subway")
+                            entrance.featureClass = "railway"
+                            entrance.featureSubClass = "subway"
+                            entrance.featureType = "railway"
+                            entrance.featureValue = "subway"
                             confected = true
                         }
                         else if((entranceDetails.properties?.get("railway") == "train_station_entrance") ||
                                 (entranceDetails.properties?.get("railway") == "entrance")) {
                             // Train station entrances
-                            entrance.properties?.set("class", "railway")
-                            entrance.properties?.set("subclass", "station")
-                            entrance.properties?.set("feature_type", "railway")
-                            entrance.properties?.set("feature_value", "station")
+                            entrance.featureClass = "railway"
+                            entrance.featureSubClass = "station"
+                            entrance.featureType = "railway"
+                            entrance.featureValue = "station"
                             confected = true
                         }
                         if(confected)  {
                             entrance.properties?.set("entrance", entranceDetails.entranceType)
-                            entrance.properties?.set("name", entranceDetails.name)
+                            entrance.name = entranceDetails.name
                             collection.addFeature(entrance)
-                            //println("Confected Entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.properties?.get("class")} ${entrance.properties?.get("subclass")}")
+                            //println("Confected Entrance: ${entrance.name} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.featureClass} ${entrance.featureSubClass}")
                         }
                     }
                     else -> {
@@ -246,5 +250,5 @@ data class EntranceDetails(
     val layer: String?,
     val properties: HashMap<String, Any?>?,
     val poi: Boolean,
-    val osmId : Double,
+    val osmId : Long,
 )

@@ -96,7 +96,8 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         var bestRoad: Way? = null
         var bestRoadDistance = Double.MAX_VALUE
         for(road in fovRoads.features) {
-            if(nearestRoad.properties?.get("pavement") == road.properties?.get("name")) {
+            val way = road as Way
+            if(nearestRoad.properties?.get("pavement") == way.name) {
                 if(userGeometry.mapMatchedLocation?.point != null) {
                     val roadDistance =
                         userGeometry.ruler.distanceToLineString(userGeometry.mapMatchedLocation.point, road.geometry as LineString)
@@ -352,7 +353,7 @@ fun addIntersectionCalloutFromDescription(
 
     val trackedCallout = TrackedCallout(
         description.userGeometry,
-        intersectionName,
+        intersectionName!!,
         intersectionLocation,
         positionedStrings = List(1) {
             PositionedString(
