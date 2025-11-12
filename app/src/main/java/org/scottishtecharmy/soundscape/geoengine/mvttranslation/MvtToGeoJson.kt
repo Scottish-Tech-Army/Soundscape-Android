@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.MIN_MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.getRoadsFeatureCollectionFromTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
@@ -11,9 +13,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import vector_tile.VectorTile
-import java.io.FileOutputStream
 
 fun pointIsOffTile(x: Int, y: Int) : Boolean {
     return (x < 0 || y < 0 || x >= 4096 || y >= 4096)
@@ -284,7 +284,7 @@ fun vectorTileToGeoJson(tileX: Int,
                         mvt: VectorTile.Tile,
                         intersectionMap:  HashMap<LngLatAlt, Intersection>,
                         cropPoints: Boolean = true,
-                        tileZoom: Int = MAX_ZOOM_LEVEL): FeatureCollection {
+                        tileZoom: Int = MAX_ZOOM_LEVEL): Array<FeatureCollection>? {
 
     val collection = FeatureCollection()
     val wayGenerator = WayGenerator()
@@ -622,11 +622,34 @@ fun vectorTileToGeoJson(tileX: Int,
     for (feature in mapBuildingFeatures) {
         collection.addFeature(feature.value)
     }
-    // Add intersections
-    wayGenerator.generateWays(collection, collection, intersectionMap, tileX, tileY, tileZoom)
-    transitGenerator.generateWays(collection, collection, intersectionMap, tileX, tileY, tileZoom)
 
-    return collection
+    val tileData = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+    // Add intersections
+    wayGenerator.generateWays(
+        tileData[TreeId.INTERSECTIONS.id],
+        tileData[TreeId.ROADS_AND_PATHS.id],
+        tileData[TreeId.ROADS.id],
+        collection,
+        intersectionMap,
+        tileX, tileY, tileZoom)
+
+    // We're currently throwing away intersections for transit lines
+    transitGenerator.generateWays(
+        null,
+        tileData[TreeId.TRANSIT.id],
+        null,
+        collection,
+        null,
+        tileX, tileY, tileZoom)
+
+    // TODO:
+    //  This is the first step towards categorising Features as we go rather than returning
+    //  a full FeatureCollection and leaving it up to the GridState. For example, we can stop
+    //  WayGenerators from putting their results into the global collection and put them into the
+    //  filtered collections immediately.
+    processTileFeatureCollection(tileData, collection)
+
+    return tileData
 }
 
 /**

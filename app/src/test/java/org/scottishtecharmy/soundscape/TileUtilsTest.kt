@@ -16,6 +16,8 @@ import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
@@ -34,6 +36,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import java.io.FileOutputStream
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -52,6 +56,7 @@ class TileUtilsTest {
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.properties!!["feature_type"])
+            Assert.assertTrue("Feature should be of type Way", feature is Way)
         }
         Assert.assertEquals(135, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
@@ -87,6 +92,7 @@ class TileUtilsTest {
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testPathsCollectionFromTileFeatureCollection) {
             Assert.assertEquals("highway", feature.properties!!["feature_type"])
+            Assert.assertTrue("Feature should be of type Way", feature is Way)
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
@@ -101,7 +107,7 @@ class TileUtilsTest {
         val testIntersectionsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("gd_intersection", feature.properties!!["feature_value"])
+            Assert.assertTrue("Feature should be of type Intersection", feature is Intersection)
         }
         Assert.assertEquals(5090, testIntersectionsCollectionFromTileFeatureCollection.features.size)
     }
@@ -122,7 +128,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2757, testPoiCollection.features.size)
+        Assert.assertEquals(2625, testPoiCollection.features.size)
     }
 
     @Test

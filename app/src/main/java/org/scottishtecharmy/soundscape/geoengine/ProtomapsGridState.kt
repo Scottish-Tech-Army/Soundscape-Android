@@ -182,18 +182,14 @@ open class ProtomapsGridState(
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
                     Log.e(TAG, "Tile size ${result.serializedSize}")
-                    var tileFeatureCollection: FeatureCollection?
+                    var collections: Array<FeatureCollection>?
                     val mvtParseTime = measureTimeMillis {
-                        tileFeatureCollection = vectorTileToGeoJson(
+                        collections = vectorTileToGeoJson(
                             tileX = x,
                             tileY = y,
                             mvt = result,
                             intersectionMap = intersectionMap,
                             tileZoom = zoomLevel)
-                    }
-                    var collections: Array<FeatureCollection>?
-                    val processTime = measureTimeMillis {
-                        collections = processTileFeatureCollection(tileFeatureCollection!!)
                     }
                     val addTime = measureTimeMillis {
                         for ((index, collection) in collections!!.withIndex()) {
@@ -203,7 +199,6 @@ open class ProtomapsGridState(
 
                     Log.e(TAG, "Request time $requestTime")
                     Log.e(TAG, "MVT parse time $mvtParseTime")
-                    Log.e(TAG, "processTileFeatureCollection $processTime")
                     Log.e(TAG, "Add to FeatureCollection time $addTime")
 
                     ret = true
