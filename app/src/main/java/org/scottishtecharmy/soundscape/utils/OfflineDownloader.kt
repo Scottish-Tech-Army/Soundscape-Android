@@ -74,7 +74,7 @@ class OfflineDownloader {
         // We want a long timeout here to allow for network caching to happen behind the scenes
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(3, TimeUnit.MINUTES)
-            .readTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(3, TimeUnit.MINUTES)
             .build()
 
         val retrofit = Retrofit.Builder()
@@ -108,6 +108,7 @@ class OfflineDownloader {
                 var retries = 5
                 while (retries > 0) {
                     Log.d(TAG, "Download attempt $retries")
+                    _downloadState.value = DownloadState.Caching
                     val response = downloadService.downloadFile(fileUrl)
                     if (response.isSuccessful) {
                         response.body()?.let { body ->
