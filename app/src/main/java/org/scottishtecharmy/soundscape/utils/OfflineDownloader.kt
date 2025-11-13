@@ -1,24 +1,32 @@
 package org.scottishtecharmy.soundscape.utils
 
-import android.app.DownloadManager
 import android.content.Context
-import android.database.Cursor
-import android.os.Environment
 import android.util.Log
-import android.widget.Toast
-import androidx.core.net.toUri
-import androidx.preference.PreferenceManager
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.MainActivity
+import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.network.IDownloadService
 import org.scottishtecharmy.soundscape.network.IManifestDAO
 import org.scottishtecharmy.soundscape.network.ManifestClient
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader.Companion.TAG
+import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
+import java.lang.Thread.sleep
+import java.util.concurrent.TimeUnit
 
 suspend fun downloadAndParseManifest(applicationContext: Context) : Pair<FeatureCollection?, String> {
 
@@ -39,158 +47,165 @@ suspend fun downloadAndParseManifest(applicationContext: Context) : Pair<Feature
         return Pair(null, "")
     }
 }
-fun deleteAllProgressFiles(context: Context) {
-    // Delete all progress files
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    val path = sharedPreferences.getString(
-        MainActivity.SELECTED_STORAGE_KEY,
-        MainActivity.SELECTED_STORAGE_DEFAULT
-    )
-    val extractsDir = File(path, Environment.DIRECTORY_DOWNLOADS)
-    if (extractsDir.exists() && extractsDir.isDirectory) {
-        val files =
-            extractsDir.listFiles { file -> file.name.endsWith(".downloadId") }?.toList()
-                ?: emptyList()
-        for (file in files) {
-            Log.d(TAG, "Delete downloadId file: ${file.path}")
-            file.delete()
-        }
-    }
+
+// --- Download State Management ---
+sealed class DownloadState {
+    object Idle : DownloadState()
+    object Caching : DownloadState()
+    data class Downloading(val progress: Int) : DownloadState() // Progress as a per mil (0-1000)
+    object Success : DownloadState()
+    data class Error(val message: String) : DownloadState()
+    object Canceled : DownloadState()
 }
 
-class OfflineDownloader(private val context: Context) {
+class OfflineDownloader {
 
     companion object {
         const val TAG = "OfflineDownloader"
     }
 
-    private var downloadId: Long = -1L
+    private var downloadJob: Job? = null
+    private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.Idle)
+    val downloadState: StateFlow<DownloadState> = _downloadState.asStateFlow()
 
-    private fun getDownloadErrorReason(reasonCode: Int): String {
-        return when (reasonCode) {
-            DownloadManager.ERROR_CANNOT_RESUME -> "Cannot Resume"
-            DownloadManager.ERROR_DEVICE_NOT_FOUND -> "Device Not Found"
-            DownloadManager.ERROR_FILE_ALREADY_EXISTS -> "File Already Exists"
-            DownloadManager.ERROR_FILE_ERROR -> "File Error"
-            DownloadManager.ERROR_HTTP_DATA_ERROR -> "HTTP Data Error"
-            DownloadManager.ERROR_INSUFFICIENT_SPACE -> "Insufficient Space"
-            DownloadManager.ERROR_TOO_MANY_REDIRECTS -> "Too Many Redirects"
-            DownloadManager.ERROR_UNHANDLED_HTTP_CODE -> "Unhandled HTTP Code"
-            DownloadManager.ERROR_UNKNOWN -> "Unknown Error"
-            else -> "Unknown Error Code: $reasonCode"
-        }
+    private val downloadService: IDownloadService
+
+    init {
+        // We want a long timeout here to allow for network caching to happen behind the scenes
+        val okHttpClient = OkHttpClient.Builder()
+            .connectTimeout(3, TimeUnit.MINUTES)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://placeholder.com/") // Base URL is required but will be overridden by @Url
+            .client(okHttpClient)
+            .build()
+
+        downloadService = retrofit.create(IDownloadService::class.java)
     }
 
-    fun startDownload(fileUrl: String,
-                      outputFilePath: String,
-                      wifiOnly: Boolean,
-                      title: String = "File Download",
-                      description: String = "Downloading...") {
-
-        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val request = DownloadManager.Request(fileUrl.toUri())
-
-        // --- Basic Request Configuration ---
-        request.setTitle(title) // Title for the download notification
-        request.setDescription(description) // Description for the download notification
-
-        val path = File("$outputFilePath.downloading")
-        request.setDestinationUri(path.toUri())
-
-        // --- Network Type ---
-        request.setAllowedOverMetered(!wifiOnly) // Whether to allow download over metered connections (e.g. cellular)
-        request.setAllowedOverRoaming(!wifiOnly) // Whether to allow download over roaming
-
-        // --- Notification Visibility ---
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-
-        try {
-            downloadId = downloadManager.enqueue(request)
-            Log.i(TAG, "Download enqueued with ID: $downloadId for URL: $fileUrl")
-            Toast.makeText(context, "Download started...", Toast.LENGTH_SHORT).show()
-
-            // Create a file to store the id and show that download is in progress
-            val progressFile = FileOutputStream("$outputFilePath.downloadId")
-            progressFile.write("$downloadId".toByteArray())
-            progressFile.close()
-
-        } catch (e: Exception) {
-            Log.e(TAG, "Error enqueuing download for $fileUrl", e)
-            Toast.makeText(context, "Failed to start download: ${e.message}", Toast.LENGTH_LONG).show()
+    fun startDownload(
+        fileUrl: String,
+        outputFilePath: String,
+        extractSize: Double?
+    ) {
+        if (downloadJob?.isActive == true) {
+            Log.w(TAG, "Download is already in progress.")
+            return
         }
-    }
 
-    data class DownloadStatus (
-        val bytesSoFar: Long,
-        val totalBytes: Long,
-        val managerStatus: Int
-    )
-    fun getDownloadStatus(): DownloadStatus? {
-        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val query = DownloadManager.Query().setFilterById(downloadId)
-        val cursor: Cursor? = downloadManager.query(query)
-        var result: DownloadStatus? = null
-        if (cursor != null && cursor.moveToFirst()) {
-            val statusIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS)
-            val status = cursor.getInt(statusIndex)
-            var bytes = -1L
-            var totalBytes = -1L
-            var filePath: String? = null
-            if(status != DownloadManager.STATUS_FAILED) {
-                val bytesIndex =
-                    cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)
-                val totalBytesIndex = cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES)
-                bytes = cursor.getLong(bytesIndex)
-                totalBytes = cursor.getLong(totalBytesIndex)
+        downloadJob = CoroutineScope(Dispatchers.IO).launch {
+            Log.i(TAG, "Starting download for URL: $fileUrl")
 
-                println("$bytes/$totalBytes status=$status")
-                if(bytes == totalBytes) {
-                    val localUriIndex = cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
-                    val localUri = cursor.getString(localUriIndex)
-                    val fileUri = localUri.toUri()
+            val tempFile = File("$outputFilePath.downloading")
+            val finalFile = File(outputFilePath)
 
-                    // We're complete
-                    filePath = fileUri.path?.removeSuffix(".downloading")
-                    if(filePath != null) {
-                        // Remove the progress file
-                        val downloadIdFile = File("$filePath.downloadId")
-                        val deleteSuccess = downloadIdFile.delete()
-                        println("Deleting ${downloadIdFile.path} returned $deleteSuccess")
+            try {
+                // Ensure parent directories exist
+                tempFile.parentFile?.mkdirs()
 
-                        // And rename our complete downloaded file
-                        val downloadedFile = File(fileUri.path!!)
-                        val renameSuccess = downloadedFile.renameTo(File(filePath))
-                        println("Renaming ${downloadedFile.path} returned $renameSuccess")
+                var retries = 5
+                while (retries > 0) {
+                    Log.d(TAG, "Download attempt $retries")
+                    val response = downloadService.downloadFile(fileUrl)
+                    if (response.isSuccessful) {
+                        response.body()?.let { body ->
+                            saveFile(this, body, tempFile.path) { progress ->
+                                _downloadState.value = DownloadState.Downloading(progress)
+                            }
+                            retries = 0
+                            // Rename the file on successful completion
+                            if (tempFile.renameTo(finalFile)) {
+                                _downloadState.value = DownloadState.Success
+                                Log.i(TAG, "Download successful. File saved to: ${finalFile.path}")
+                            } else {
+                                throw Exception("Failed to rename file from ${tempFile.name} to ${finalFile.name}")
+                            }
+                        } ?: throw Exception("Response body was null.")
+                    } else {
+                        if(response.code() == 503) {
+                            // The server is likely copying the extract into it's cache and is
+                            // asking that we try again a little later. The caching runs at roughly
+                            // 25MB/sec and we know the size of the extract, so back off appropriately
+                            var cachingDuration = 30
+                            if(retries == 5) {
+                                if(extractSize != null) {
+                                    cachingDuration = (extractSize / 25000000.0).toInt()
+                                }
+                            } else
+                                cachingDuration = 15
+
+                            // For a 2GB file, over all of our retries we would have an initial
+                            // timeout of 80 seconds followed by 4 more 15 second timeouts
+                            Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
+                            _downloadState.value = DownloadState.Caching
+                            while(cachingDuration > 0) {
+                                ensureActive()
+                                sleep(1000)
+                                --cachingDuration
+                            }
+                            --retries
+                        } else {
+                            throw Exception("Download failed with code: ${response.code()} and message: ${response.message()}")
+                        }
                     }
                 }
+            } catch (e: CancellationException) {
+                // Handle coroutine cancellation
+                _downloadState.value = DownloadState.Canceled
+                tempFile.delete() // Clean up partial file
+                Log.i(TAG, "Download was canceled $e")
+            } catch (e: Exception) {
+                // Handle other errors (network, file I/O, etc.)
+                _downloadState.value =
+                    DownloadState.Error(e.message ?: "An unknown error occurred")
+                tempFile.delete() // Clean up partial file
+                Log.e(TAG, "Download failed", e)
             }
-            result = DownloadStatus(
-                bytes,
-                totalBytes,
-                status
-            )
-       } else {
-            // We reach here if the download was cancelled
         }
-        cursor?.close()
+    }
 
-        if(result == null) {
-            // Download has failed or was cancelled, delete all progress file
-            deleteAllProgressFiles(context)
+    private fun saveFile(scope: CoroutineScope,
+                         body: ResponseBody,
+                         filePath: String,
+                         onProgress: (Int) -> Unit) {
+        var inputStream: InputStream? = null
+        var outputStream: FileOutputStream? = null
+
+        try {
+            val fileReader = ByteArray(4096)
+            val fileSize = body.contentLength()
+            var fileSizeDownloaded: Long = 0
+
+            inputStream = body.byteStream()
+            outputStream = FileOutputStream(filePath)
+
+            while (true) {
+                // Check if the coroutine has been cancelled
+                scope.ensureActive()
+
+                val read = inputStream.read(fileReader)
+                if (read == -1) {
+                    break
+                }
+                outputStream.write(fileReader, 0, read)
+                fileSizeDownloaded += read
+
+                // Calculate and emit progress as a value out of 1000
+                val progress = ((fileSizeDownloaded * 1000) / fileSize).toInt()
+                onProgress(progress)
+            }
+            outputStream.flush()
+        } finally {
+            inputStream?.close()
+            outputStream?.close()
         }
-
-        return result
     }
 
     fun cancelDownload() {
-        if (downloadId != -1L) {
-            val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            downloadManager.remove(downloadId)
-            Log.i(TAG, "Attempted to cancel download with ID: $downloadId")
+        if (downloadJob?.isActive == true) {
+            downloadJob?.cancel()
         }
-    }
-
-    fun midDownload(id: Long) {
-        downloadId = id
     }
 }

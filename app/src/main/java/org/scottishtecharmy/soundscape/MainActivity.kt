@@ -46,9 +46,7 @@ import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
-import org.scottishtecharmy.soundscape.utils.isMidDownload
 import org.scottishtecharmy.soundscape.utils.processMaps
-import java.io.File
 import java.util.Locale
 import javax.inject.Inject
 
@@ -316,13 +314,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        // If we're in the middle of downloading offline maps then we should jump straight to the
-        // offline maps screen
-        val id = isMidDownload(File(path, Environment.DIRECTORY_DOWNLOADS).path)
-        if(id != -1L) {
-            navigator.navigate(HomeRoutes.OfflineMaps.route + "/$id")
         }
 
         setContent {
