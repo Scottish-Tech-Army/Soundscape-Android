@@ -124,11 +124,8 @@ class OfflineMapsViewModel @Inject constructor(
     fun download(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
-            val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  filename as String
-
-            // Before starting the download, we delete any previous version
-            val file = File(path)
-            file.delete()
+            val trimmedFilename = (filename as String).substringAfter("-").substringAfter("-")
+            val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  trimmedFilename
 
             // Write out the feature metadata to a file
             val adapter = GeoJsonObjectMoshiAdapter()

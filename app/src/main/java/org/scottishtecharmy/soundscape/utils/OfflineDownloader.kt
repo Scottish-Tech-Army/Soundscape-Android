@@ -115,6 +115,8 @@ class OfflineDownloader {
                                 _downloadState.value = DownloadState.Downloading(progress)
                             }
                             retries = 0
+                            // Delete any file that already exists
+                            finalFile.delete()
                             // Rename the file on successful completion
                             if (tempFile.renameTo(finalFile)) {
                                 _downloadState.value = DownloadState.Success
