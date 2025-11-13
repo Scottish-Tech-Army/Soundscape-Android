@@ -149,7 +149,7 @@ fun DrawerContent(
 
                 DrawerMenuItem(
                     onClick = {
-                        onNavigate(HomeRoutes.OfflineMaps.route + "/-1")
+                        onNavigate(HomeRoutes.OfflineMaps.route)
                     },
                     label = "Offline maps",
                     Icons.Rounded.Download,

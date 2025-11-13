@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
-import android.app.DownloadManager
 import android.content.Context
 import android.os.Environment
 import android.text.format.Formatter
@@ -10,11 +9,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
@@ -23,9 +19,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.StorageUtils
-import org.scottishtecharmy.soundscape.utils.deleteAllProgressFiles
 import org.scottishtecharmy.soundscape.utils.downloadAndParseManifest
 import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
@@ -35,10 +31,7 @@ import javax.inject.Inject
 import kotlin.collections.HashMap
 
 data class OfflineMapsUiState(
-    val isDownloading: Boolean = false,
     val downloadingExtractName:String = "",
-
-    val downloadProgress: Int = 0,
 
     // Extracts in manifest to choose from
     val nearbyExtracts: FeatureCollection? = null,
@@ -60,12 +53,14 @@ class OfflineMapsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(OfflineMapsUiState())
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
+    lateinit  var downloadState: StateFlow<DownloadState>
     var urlRedirect = ""
 
     init {
         viewModelScope.launch {
             // Create downloader to handle getting any offline maps
-            offlineDownloader = OfflineDownloader(appContext)
+            offlineDownloader = OfflineDownloader()
+            downloadState = offlineDownloader.downloadState
 
             val storages = getOfflineMapStorage(appContext)
 
@@ -108,81 +103,6 @@ class OfflineMapsViewModel @Inject constructor(
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        stopProgressUpdates()
-    }
-
-    // Add this new property to your ViewModel
-    private var progressJob: Job? = null
-
-    // Add this new function to your ViewModel
-    private fun startProgressUpdates() {
-        progressJob = viewModelScope.launch {
-            var delayCount = 4
-            while (isActive) { // This loop will run as long as the coroutine is active
-                val downloadStatus = offlineDownloader.getDownloadStatus()
-                if(downloadStatus != null) {
-                    val bytesSoFar = downloadStatus.bytesSoFar.toDouble()
-                    val totalBytes = downloadStatus.totalBytes.toDouble()
-
-                    val percentage = if (totalBytes > 0) {
-                        ((bytesSoFar / totalBytes) * 100.0).toInt()
-                    } else {
-                        0
-                    }
-
-                    _uiState.value = _uiState.value.copy(
-                        downloadProgress = percentage,
-                    )
-
-                    if(downloadStatus.managerStatus == DownloadManager.STATUS_FAILED) {
-                        // Tidy up after failed download
-                        println("Download failed")
-                        deleteAllProgressFiles(appContext)
-                    }
-
-                    if((downloadStatus.managerStatus == DownloadManager.STATUS_SUCCESSFUL) ||
-                        (downloadStatus.managerStatus == DownloadManager.STATUS_FAILED)) {
-                        if (delayCount > 0) {
-                            // We want to allow the status to be displayed at 100% before moving
-                            // back to the overview screen. This should likely be in the UI code
-                            // rather than the view model...
-                            --delayCount
-                        }
-                        else {
-                            val extractsDir =
-                                File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
-                            val extractCollection = findExtracts(extractsDir.path)
-                            _uiState.value = _uiState.value.copy(
-                                downloadedExtracts = extractCollection,
-                                isDownloading = false
-                            )
-                            break
-                        }
-                    }
-                } else {
-                    Log.e(TAG, "Download progress is null, it has been cancelled")
-                    stopProgressUpdates()
-                    break
-                }
-                delay(1000)
-            }
-            println("Done monitoring progress")
-        }
-    }
-
-    // Add this function to stop the updates
-    private fun stopProgressUpdates() {
-        progressJob?.cancel()
-        progressJob = null
-        // Reset progress state when stopping
-        _uiState.value = _uiState.value.copy(
-            isDownloading = false,
-            downloadProgress = 0,
-        )
-    }
-
     fun delete(feature: Feature) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
@@ -196,16 +116,12 @@ class OfflineMapsViewModel @Inject constructor(
                 for(file in files)
                     file.delete()
 
-                // Update the UI to reflect the deletions
-                val extractCollection = findExtracts(extractsDir.path)
-                _uiState.value = _uiState.value.copy(
-                    downloadedExtracts = extractCollection
-                )
+                refreshExtracts()
             }
         }
     }
 
-    fun download(name: String, feature: Feature, wifiOnly: Boolean) {
+    fun download(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
             val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  filename as String
@@ -220,20 +136,16 @@ class OfflineMapsViewModel @Inject constructor(
             metadataOutputFile.write(adapter.toJson(feature).toByteArray())
             metadataOutputFile.close()
 
+            val extractSize = feature.properties?.get("extract-size") as Double?
             val fileUrl = "$urlRedirect$filename"
             offlineDownloader.startDownload(
                 fileUrl,
                 path,
-                wifiOnly,
-                "Soundscape offline maps",
-                "Downloading $filename extract"
+                extractSize
             )
             _uiState.value = _uiState.value.copy(
-                downloadingExtractName = name,
-                isDownloading = true
+                downloadingExtractName = name
             )
-
-            startProgressUpdates()
         }
     }
 
@@ -241,13 +153,13 @@ class OfflineMapsViewModel @Inject constructor(
         offlineDownloader.cancelDownload()
     }
 
-    fun midDownload(downloadId: Long) {
-        offlineDownloader.midDownload(downloadId)
+    fun refreshExtracts() {
+        // Update the UI to reflect the deletions
+        val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
+        val extractCollection = findExtracts(extractsDir.path)
         _uiState.value = _uiState.value.copy(
-            downloadingExtractName = "",
-            isDownloading = true
+            downloadedExtracts = extractCollection
         )
-        startProgressUpdates()
     }
 
     companion object {

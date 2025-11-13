@@ -311,12 +311,9 @@ fun HomeScreen(
             )
         }
 
-        composable(HomeRoutes.OfflineMaps.route + "/{downloadId}") { backStackEntry ->
-            val downloadId = backStackEntry.arguments?.getString("downloadId") ?: "-1"
-
+        composable(HomeRoutes.OfflineMaps.route) { backStackEntry ->
             OfflineMapsScreenVM(
                 navController = navController,
-                downloadId = downloadId.toLong(),
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }

@@ -967,6 +967,8 @@
 <string name="offline_maps_loading" tools:ignore="MissingTranslation">"Loading…"</string>
 <!-- Offscreen maps downloading message -->
 <string name="offline_maps_downloading" tools:ignore="MissingTranslation">"Downloading %s"</string>
+<!-- Offscreen maps caching message -->
+<string name="offline_maps_caching" tools:ignore="MissingTranslation">"Server is preparing %s for download"</string>
 <!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
 <string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
 <!-- Offscreen maps storage storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->

@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,10 +22,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CollectionInfo
@@ -47,31 +50,100 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.OfflineMapEx
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.screens.talkbackHidden
+import org.scottishtecharmy.soundscape.screens.talkbackLive
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun OfflineMapsScreenVM(
     navController: NavHostController,
-    downloadId: Long,
     modifier: Modifier,
     viewModel: OfflineMapsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val progress = remember { mutableIntStateOf(0) }
+    val progressForBar = remember { mutableIntStateOf(0) }
+    val downloading = remember { mutableStateOf(false) }
+    val caching = remember { mutableStateOf(false) }
+    val userMessage = remember { mutableStateOf("") }
+    val context = LocalContext.current
 
-    LaunchedEffect(downloadId) {
-        if (downloadId != -1L)
-            viewModel.midDownload(downloadId)
+    // In your Composable or Activity/Fragment
+    LaunchedEffect(Unit) {
+        var lastUpdateTime = 0L
+        val throttleDuration = 5.seconds.inWholeMilliseconds
+
+        viewModel.downloadState.collect { state ->
+            when (state) {
+                is DownloadState.Idle -> {
+                    println("Idle!")
+                    downloading.value = false
+                    caching.value = false
+                }
+                is DownloadState.Caching -> {
+                    caching.value = true
+                    downloading.value = true
+                }
+                is DownloadState.Downloading -> {
+                    val currentTime = System.currentTimeMillis()
+                    if(caching.value)
+                        caching.value = false
+
+                    if((progressForBar.intValue != state.progress / 10)  &&
+                       (currentTime - lastUpdateTime) > throttleDuration) {
+                        progressForBar.intValue = (state.progress / 10)
+                        lastUpdateTime = currentTime
+                    }
+                    if (progress.intValue != state.progress) {
+                        progress.intValue = state.progress
+                    }
+                    if(!downloading.value)
+                        downloading.value = true
+                }
+                is DownloadState.Success -> {
+                    println("Success!")
+                    downloading.value = false
+                    caching.value = false
+                    userMessage.value = "Download complete"
+                    viewModel.refreshExtracts()
+                }
+                is DownloadState.Error -> {
+                    println("Error!")
+                    userMessage.value = state.message
+                    downloading.value = false
+                    caching.value = false
+                }
+                is DownloadState.Canceled -> {
+                    println("Cancelled!")
+                    downloading.value = false
+                    caching.value = false
+                    userMessage.value = "Download cancelled"
+                }
+            }
+        }
+    }
+    // Display error message if it exists
+    LaunchedEffect(userMessage.value) {
+        if(userMessage.value.isNotEmpty()) {
+            Toast.makeText(context, userMessage.value, Toast.LENGTH_LONG).show()
+            userMessage.value = ""
+        }
     }
 
     OfflineMapsScreen(
         navController = navController,
         uiState = uiState,
+        progressPrecise = progress.intValue,
+        progressForBar = progressForBar.intValue,
+        downloading = downloading.value,
+        caching = caching.value,
         modifier = modifier,
-        downloadExtract = { name, feature, wifiOnly -> viewModel.download(name, feature, wifiOnly) },
+        downloadExtract = { name, feature -> viewModel.download(name, feature) },
         deleteExtract = { feature -> viewModel.delete( feature) },
         cancelDownload = { viewModel.cancelDownload() }
     )
@@ -176,7 +248,11 @@ fun OfflineMapsScreen(
     navController: NavHostController,
     uiState: OfflineMapsUiState,
     modifier: Modifier,
-    downloadExtract: (String, Feature, Boolean) -> Unit,
+    progressPrecise: Int,
+    progressForBar: Int,
+    downloading: Boolean,
+    caching: Boolean,
+    downloadExtract: (String, Feature) -> Unit,
     deleteExtract: (Feature) -> Unit,
     cancelDownload: () -> Unit
 )
@@ -188,7 +264,7 @@ fun OfflineMapsScreen(
         if(extractDetailsFeature.value != null) {
             // Swipe back exits offset details page
             extractDetailsFeature.value = null
-        } else if(!uiState.isDownloading) {
+        } else if(!downloading) {
             // Ignore any back swipes when downloading content. Instead we should probably have a dialog
             // pop up at this point to check whether the user would really like to cancel the download.
             navController.navigateUp()
@@ -205,14 +281,14 @@ fun OfflineMapsScreen(
                             stringResource(R.string.offline_maps_title),
                 leftSide = {
                     IconWithTextButton(
-                        text = if(uiState.isDownloading) stringResource(R.string.general_alert_cancel) else stringResource(R.string.ui_back_button_title),
+                        text = if(downloading) stringResource(R.string.general_alert_cancel) else stringResource(R.string.ui_back_button_title),
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.testTag("appBarLeft")
                     ) {
                         if(extractDetailsFeature.value != null) {
                             extractDetailsFeature.value = null
                         }
-                        else if(uiState.isDownloading) {
+                        else if(downloading) {
                             cancelDownload()
                         }
                         else {
@@ -227,8 +303,8 @@ fun OfflineMapsScreen(
             if(extractDetailsFeature.value != null) {
                 OfflineMapExtractDetails(
                     extractDetailsFeature.value!!,
-                    { name, feature, wifiOnly ->
-                        downloadExtract(name, feature, wifiOnly)
+                    { name, feature ->
+                        downloadExtract(name, feature)
                         extractDetailsFeature.value = null
                     },
                     {
@@ -241,7 +317,7 @@ fun OfflineMapsScreen(
                         .padding(padding)
                         .background(MaterialTheme.colorScheme.surface),
                 )
-            } else if (uiState.isDownloading) {
+            } else if (downloading) {
                 Column(
                     modifier = modifier
                         .fillMaxSize()
@@ -251,21 +327,27 @@ fun OfflineMapsScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = stringResource(R.string.offline_maps_downloading).format(uiState.downloadingExtractName),
+                        text = stringResource(
+                            if(caching)
+                                R.string.offline_maps_caching
+                            else
+                                R.string.offline_maps_downloading).format(uiState.downloadingExtractName),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineLarge,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.talkbackLive()
                     )
                     LinearProgressIndicator (
-                        progress = { uiState.downloadProgress / 100f },
+                        progress = { progressForBar.toFloat() / 100.0f },
                         modifier = Modifier
                             .padding(spacing.medium)
                     )
                     Text(
-                        text = "${uiState.downloadProgress}%",
+                        text = "${progressPrecise / 10.0}%",
+                        textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.onSurface,
-                        modifier=Modifier.talkbackHidden()
+                        modifier = Modifier.talkbackHidden()
                     )
                 }
             } else {
@@ -453,9 +535,7 @@ fun OfflineMapsScreenPreview() {
     )
 
     val uiState = OfflineMapsUiState(
-        isDownloading = false,
         downloadingExtractName = "",
-        downloadProgress = 0,
         nearbyExtracts = fc,
         downloadedExtracts = fc,
         currentPath = "/path/to/internal",
@@ -466,7 +546,11 @@ fun OfflineMapsScreenPreview() {
         rememberNavController(),
         modifier = Modifier,
         uiState = uiState,
-        downloadExtract = { _,_,_ -> },
+        progressForBar = 49,
+        progressPrecise = 491,
+        downloading = false,
+        caching = false,
+        downloadExtract = { _,_ -> },
         deleteExtract = { _ ->},
         cancelDownload = {}
     )
@@ -479,13 +563,16 @@ fun OfflineMapsScreenDownloadingPreview() {
     OfflineMapsScreen(
         rememberNavController(),
         OfflineMapsUiState(
-            isDownloading = true,
             nearbyExtracts = FeatureCollection(),
             storages = emptyList(),
             downloadingExtractName = "United Kingdom"
         ),
         modifier = Modifier,
-        downloadExtract = { _,_,_ -> },
+        progressForBar = 49,
+        progressPrecise = 491,
+        downloading = true,
+        caching = true,
+        downloadExtract = { _,_ -> },
         deleteExtract = { _ ->},
         cancelDownload = {}
     )
