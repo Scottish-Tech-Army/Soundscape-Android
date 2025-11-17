@@ -103,13 +103,18 @@ class OfflineMapsViewModel @Inject constructor(
         }
     }
 
+    private fun translateToLocalFilenameFrom(filename: String) : String {
+        return filename.substringAfter("-").substringAfter("-")
+    }
+
     fun delete(feature: Feature) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
+            val localFilename = translateToLocalFilenameFrom(filename as String)
             val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
             if (extractsDir.exists() && extractsDir.isDirectory) {
                 val files = extractsDir.listFiles { file ->
-                    file.name.startsWith(filename as String)
+                    file.name.startsWith(localFilename)
                 }?.toList() ?: emptyList()
 
                 // Delete whatever we find
@@ -124,8 +129,8 @@ class OfflineMapsViewModel @Inject constructor(
     fun download(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename")
         if(filename != null) {
-            val trimmedFilename = (filename as String).substringAfter("-").substringAfter("-")
-            val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  trimmedFilename
+            val localFilename = translateToLocalFilenameFrom(filename as String)
+            val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  localFilename
 
             // Write out the feature metadata to a file
             val adapter = GeoJsonObjectMoshiAdapter()
