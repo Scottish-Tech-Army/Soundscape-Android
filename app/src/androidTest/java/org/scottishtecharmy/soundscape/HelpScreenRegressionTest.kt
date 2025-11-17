@@ -39,7 +39,7 @@ class HelpScreenRegressionTest {
 
         // Compare against baseline file
         composeTestRule.assertLayoutMatchesHybridBaseline(
-            "baselines/help_screen_layouts/menu_help_and_tutorials.txt"
+            "help_screen_layouts/menu_help_and_tutorials.txt"
         )
     }
 }

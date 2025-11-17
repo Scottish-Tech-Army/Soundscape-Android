@@ -69,8 +69,8 @@ fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
                 generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
             fail("No baseline found in 'assets/$baselineSubpathString'. " +
                     "A new one has been written to: '${androidSideBaselineFile}'. " +
-                    "Copy it into 'src/androidTest/assets/baselines/' once reviewed, " +
-                    "manually or using the Gradle 'pullComposeBaselines' task.")
+                    "Copy it into 'src/androidTest/assets/baselines/' using the Gradle " +
+                    "'extractComposeBaselines' task, then review before committing.")
         }
 
         // If baseline exists but differs, print diff and fail.
@@ -81,8 +81,8 @@ fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
                 generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
             println("New snapshot written to: ${androidSideBaselineFile}")
             fail("Layout structure does not match baseline. See diff above. " +
-                    "If new structure is correct, copy it over the existing baseline in " +
-                    "'src/androidTest/assets/baselines/'.")
+                    "Copy it into 'src/androidTest/assets/baselines/' using the Gradle " +
+                    "'extractComposeBaselines' task, then review the changes before committing.")
         }
 
         else -> println("Layout matches baseline.")

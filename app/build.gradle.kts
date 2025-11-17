@@ -339,47 +339,10 @@ fun adbPath(): String {
     return "$sdkDir/platform-tools/adb$adbExtension"
 }
 
-val sdCardBaselineDir: String = "/sdcard/"
-//val sdCardBaselineDir: String = "/sdcard/${android.namespace}/files/baselines"
-
-tasks.register<Exec>("copyComposeBaselinesToSdCard") {
-    val applicationId = android.namespace
-
-    doFirst {
-        Path(sdCardBaselineDir).createDirectories()
-        println("Copying Compose baseline snapshots from emulator app dir to sdcard")
-    }
-
-    isIgnoreExitValue = false
-    // Use adb to pull the whole folder
-    commandLine(adbPath(), "exec-out", "run-as", android.namespace,
-//        "whoami"
-        "sh", "-c", "cp -r /data/user/0/$applicationId/files/baselines $sdCardBaselineDir"
-    )
-
-    doLast {
-        println("Baselines copied from emulator to sdcard.")
-    }
-}
-
 tasks.register<Exec>("pullComposeBaselines") {
-    dependsOn("copyComposeBaselinesToSdCard")
-
-    fun adbPath(): String {
-        // Get the Android SDK path directly from Gradle
-        val sdkDir = project.extensions
-            .getByType<com.android.build.gradle.BaseExtension>()
-            .sdkDirectory
-            .absolutePath
-        val adbExtension = if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
-            ".exe"
-        } else {
-            ""
-        }
-        return "$sdkDir/platform-tools/adb$adbExtension"
-    }
-
     val localTargetDir = "$projectDir/src/androidTest/assets/baselines"
+    val tarFile = File(localTargetDir, "baselines.tar")
+    outputs.file(tarFile)
 
     doFirst {
         Path(localTargetDir).createDirectories()
@@ -387,14 +350,51 @@ tasks.register<Exec>("pullComposeBaselines") {
     }
 
     isIgnoreExitValue = false
-    // Use adb to pull the whole folder
-    commandLine(adbPath(), "pull", sdCardBaselineDir, localTargetDir)
+    standardOutput = tarFile.outputStream()
+    // Use adb to pull the whole folder as a TAR file.
+    commandLine(adbPath(), "exec-out",
+        "run-as",
+        project.android.namespace,
+        "tar",
+        "-C",
+        "files",
+        "-cf",
+        "-",
+        "baselines"
+    )
+}
+
+tasks.register<Copy>("extractComposeBaselines") {
+    val pullTask = tasks.findByName("pullComposeBaselines")!!
+    dependsOn(pullTask)
+
+    val tarPath = pullTask.outputs.files.singleFile
+    from(tarTree(tarPath))
+    val localTargetDir = tarPath.parentFile
+    into(localTargetDir)
+    // Remove leading 'baselines/' from entries if desired
+    eachFile {
+        // Strip the top-level "baselines" folder
+        if (relativePath.segments.firstOrNull() == "baselines") {
+            relativePath = RelativePath(
+                relativePath.isFile,
+                *relativePath.segments.drop(1).toTypedArray()
+            )
+        }
+    }
+    // Normalise line-endings of expected text files on Windows.
+    if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+        filesMatching(listOf("**/*.txt")) {
+            // The filter closure is called with the line contents stripped of any platform's line
+            // endings, and the return value has local line endings added, so we just return "it".
+            filter { it }
+        }
+    }
+    includeEmptyDirs = false
 
     doLast {
-        exec {
-            commandLine(adbPath(), "shell", "rm", "-rf", sdCardBaselineDir)
-        }
-        println("Baselines moved from emulator sdcard to '$localTargetDir'. " +
+        tarPath.delete()
+        println("Baselines moved from emulator to '$localTargetDir'. " +
                 "You can now review the changes and commit them.")
     }
 }
