@@ -7,18 +7,19 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.StorageUtils
@@ -27,7 +28,6 @@ import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.io.File
 import java.io.FileOutputStream
-import javax.inject.Inject
 import kotlin.collections.HashMap
 
 data class OfflineMapsUiState(
@@ -44,10 +44,10 @@ data class OfflineMapsUiState(
     val storages: List<StorageUtils.StorageSpace> = emptyList()
 )
 
-@HiltViewModel
-class OfflineMapsViewModel @Inject constructor(
-    private val soundscapeServiceConnection: SoundscapeServiceConnection,
-    @param:ApplicationContext val appContext: Context
+@HiltViewModel(assistedFactory = OfflineMapsViewModel.Factory::class)
+class OfflineMapsViewModel @AssistedInject constructor(
+    @param:ApplicationContext val appContext: Context,
+    @Assisted private val locationDescription: LocationDescription
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OfflineMapsUiState())
@@ -56,6 +56,11 @@ class OfflineMapsViewModel @Inject constructor(
     lateinit  var downloadState: StateFlow<DownloadState>
     var urlRedirect = ""
 
+    // Add this factory interface inside the ViewModel class
+    @dagger.assisted.AssistedFactory
+    interface Factory {
+        fun create(locationDescription: LocationDescription): OfflineMapsViewModel
+    }
     init {
         viewModelScope.launch {
             // Create downloader to handle getting any offline maps
@@ -77,28 +82,22 @@ class OfflineMapsViewModel @Inject constructor(
             if(fc != null) {
                 urlRedirect = redirect
                 val tree = FeatureTree(fc)
-                soundscapeServiceConnection.serviceBoundState.collect {
-                    Log.d(TAG, "serviceBoundState $it")
-                    if(it) {
-                        soundscapeServiceConnection.getLocationFlow()?.value?.let { androidLocation ->
-                            val location = LngLatAlt(androidLocation.longitude, androidLocation.latitude)
-                            // Containing polygons gives offline maps that include the current location
-                            val extracts = tree.getContainingPolygons(location)
 
-                            for(extract in extracts.features) {
-                                val size = extract.properties?.get("extract-size") as Double
-                                val properties: HashMap<String, Any?> = extract.properties!!
-                                properties["extract-size-string"] = Formatter.formatFileSize(appContext, size.toLong())
-                                extract.properties = properties
+                val location = locationDescription.location
+                // Containing polygons gives offline maps that include the current location
+                val extracts = tree.getContainingPolygons(location)
 
-                                Log.d(TAG, "extract: ${extract.properties}")
-                            }
-                            _uiState.value = _uiState.value.copy(
-                                nearbyExtracts = extracts,
-                            )
-                        }
-                    }
+                for(extract in extracts.features) {
+                    val size = extract.properties?.get("extract-size") as Double
+                    val properties: HashMap<String, Any?> = extract.properties!!
+                    properties["extract-size-string"] = Formatter.formatFileSize(appContext, size.toLong())
+                    extract.properties = properties
+
+                    Log.d(TAG, "extract: ${extract.properties}")
                 }
+                _uiState.value = _uiState.value.copy(
+                    nearbyExtracts = extracts,
+                )
             }
         }
     }

@@ -17,8 +17,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -107,6 +105,12 @@ fun Home(
                 rateSoundscape = rateSoundscape,
                 contactSupport = contactSupport,
                 shareRecording = { (context as MainActivity).shareRecording() },
+                offlineMaps = {
+                    // Generate a LocationDescription for our current location and
+                    // pass it in to the OfflineMapScreen
+                    val ld = LocationDescription("", state.location ?: LngLatAlt())
+                    onNavigate(generateOfflineMapScreenRoute(ld))
+                },
                 preferences = preferences
             )
         },

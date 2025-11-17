@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Navigation
 import androidx.compose.material.icons.filled.ShareLocation
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -55,6 +56,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
+import org.scottishtecharmy.soundscape.screens.home.home.generateOfflineMapScreenRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -112,6 +114,9 @@ fun LocationDetailsScreen(
             viewModel.shareLocation(context, message, description)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
+        offlineMaps = { locationDescription ->
+            navController.navigate(generateOfflineMapScreenRoute(locationDescription))
+        },
         location = location,
         heading = heading,
         modifier = modifier,
@@ -132,6 +137,7 @@ fun LocationDetails(
     deleteMarker: (objectId: Long) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
+    offlineMaps: (locationDescription: LocationDescription) -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
 
@@ -210,6 +216,7 @@ fun LocationDetails(
                             locationDescription = description.value,
                             enableStreetPreview = enableStreetPreview,
                             shareLocation = shareLocation,
+                            offlineMaps = offlineMaps,
                             dialogState = dialogState
                         )
 
@@ -257,6 +264,7 @@ private fun LocationDescriptionButtonsSection(
     locationDescription: LocationDescription,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, locationDescription : LocationDescription) -> Unit,
+    offlineMaps: (locationDescription: LocationDescription) -> Unit,
     dialogState: MutableState<Boolean>
 ) {
     val parser: Parser = Parser.builder().build()
@@ -334,6 +342,17 @@ private fun LocationDescriptionButtonsSection(
                 .testTag("locationDetailsShare")
         ) {
             shareLocation(shareMessage, locationDescription)
+        }
+
+        IconWithTextButton(
+            icon = Icons.Rounded.Download,
+            text = stringResource(R.string.offline_maps_nearby),
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .defaultMinSize(minHeight = spacing.targetSize)
+                .testTag("locationDetailsOfflineMaps")
+        ) {
+            offlineMaps(locationDescription)
         }
     }
 }
@@ -421,6 +440,7 @@ fun LocationDetailsPreview() {
         heading = 45.0F,
         saveMarker = {_,_,_ ->},
         deleteMarker = {},
-        shareLocation = {_,_ ->}
+        shareLocation = {_,_ ->},
+        offlineMaps = {_ ->}
     )
 }

@@ -43,9 +43,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.gson.GsonBuilder
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.OfflineMapExtractDetails
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
@@ -57,14 +60,27 @@ import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import kotlin.time.Duration.Companion.seconds
+
+fun generateOfflineMapScreenRoute(locationDescription: LocationDescription): String {
+    // Generate JSON for the LocationDescription and append it to the route
+    val json = GsonBuilder().create().toJson(locationDescription)
+    return "${HomeRoutes.OfflineMaps.route}/${URLEncoder.encode(json, StandardCharsets.UTF_8.toString())}"
+}
 
 @Composable
 fun OfflineMapsScreenVM(
     navController: NavHostController,
     modifier: Modifier,
-    viewModel: OfflineMapsViewModel = hiltViewModel(),
+    locationDescription: LocationDescription
 ) {
+    // Pass the locationDescription into the view model on creation
+    val viewModel: OfflineMapsViewModel = hiltViewModel<OfflineMapsViewModel, OfflineMapsViewModel.Factory>(
+        creationCallback = { factory -> factory.create(locationDescription) }
+    )
+
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val progress = remember { mutableIntStateOf(0) }
     val progressForBar = remember { mutableIntStateOf(0) }
@@ -88,6 +104,8 @@ fun OfflineMapsScreenVM(
                 is DownloadState.Caching -> {
                     caching.value = true
                     downloading.value = true
+                    progress.intValue = 0
+                    progressForBar.intValue = 0
                 }
                 is DownloadState.Downloading -> {
                     val currentTime = System.currentTimeMillis()

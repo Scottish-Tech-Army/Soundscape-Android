@@ -959,24 +959,24 @@
 <string name="confect_name_pavement" tools:ignore="MissingTranslation">"Sidewalk"</string>
 <!-- Dead end road description - a road that goes nowhere -->
 <string name="confect_name_dead_end" tools:ignore="MissingTranslation">"dead end"</string>
-<!-- Offscreen maps screen title -->
+<!-- Offscreen maps screen title - offline maps are map files which can be downloaded by the app so that the app can work without Internet -->
 <string name="offline_maps_title" tools:ignore="MissingTranslation">"Offline maps"</string>
-<!-- Offscreen maps details title -->
+<!-- Offscreen maps details title - this screen describes a single offline map extract that can be downloaded.  -->
 <string name="offline_map_details_title" tools:ignore="MissingTranslation">"Offline map details"</string>
 <!-- Offscreen maps still loading message -->
 <string name="offline_maps_loading" tools:ignore="MissingTranslation">"Loading…"</string>
-<!-- Offscreen maps downloading message -->
+<!-- Offscreen maps downloading message - this indicates to the user that the map is being downloaded. The %s is the name of the map -->
 <string name="offline_maps_downloading" tools:ignore="MissingTranslation">"Downloading %s"</string>
-<!-- Offscreen maps caching message -->
-<string name="offline_maps_caching" tools:ignore="MissingTranslation">"Server is preparing %s for download"</string>
+<!-- Offscreen maps caching message - This message appear whilst the server is preparing the offline map named %s for download. -->
+<string name="offline_maps_caching" tools:ignore="MissingTranslation">"Server is preparing %s for download. This can take a few minutes and then the download will start automatically."</string>
 <!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
 <string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
 <!-- Offscreen maps storage storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
 <string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %1$s which has %2$s free"</string>
 <!-- Offscreen maps title of list of downloaded maps-->
-<string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded:"</string>
+<string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded"</string>
 <!-- Offscreen maps title of list of nearby maps-->
-<string name="offline_maps_nearby" tools:ignore="MissingTranslation">"Nearby offline maps:"</string>
+<string name="offline_maps_nearby" tools:ignore="MissingTranslation">"Nearby offline maps"</string>
 <!-- Offscreen maps text shown whilst downloading offline map manifest -->
 <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">"Loading list of offline maps"</string>
 <!-- Offscreen map details screen delete downloaded map -->
