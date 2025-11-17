@@ -325,7 +325,46 @@ dependencies {
     implementation(libs.pmtilesreader)
 }
 
+fun adbPath(): String {
+    // Get the Android SDK path directly from Gradle
+    val sdkDir = project.extensions
+        .getByType<com.android.build.gradle.BaseExtension>()
+        .sdkDirectory
+        .absolutePath
+    val adbExtension = if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+        ".exe"
+    } else {
+        ""
+    }
+    return "$sdkDir/platform-tools/adb$adbExtension"
+}
+
+val sdCardBaselineDir: String = "/sdcard/"
+//val sdCardBaselineDir: String = "/sdcard/${android.namespace}/files/baselines"
+
+tasks.register<Exec>("copyComposeBaselinesToSdCard") {
+    val applicationId = android.namespace
+
+    doFirst {
+        Path(sdCardBaselineDir).createDirectories()
+        println("Copying Compose baseline snapshots from emulator app dir to sdcard")
+    }
+
+    isIgnoreExitValue = false
+    // Use adb to pull the whole folder
+    commandLine(adbPath(), "exec-out", "run-as", android.namespace,
+//        "whoami"
+        "sh", "-c", "cp -r /data/user/0/$applicationId/files/baselines $sdCardBaselineDir"
+    )
+
+    doLast {
+        println("Baselines copied from emulator to sdcard.")
+    }
+}
+
 tasks.register<Exec>("pullComposeBaselines") {
+    dependsOn("copyComposeBaselinesToSdCard")
+
     fun adbPath(): String {
         // Get the Android SDK path directly from Gradle
         val sdkDir = project.extensions
@@ -340,7 +379,6 @@ tasks.register<Exec>("pullComposeBaselines") {
         return "$sdkDir/platform-tools/adb$adbExtension"
     }
 
-    val applicationId = android.namespace
     val localTargetDir = "$projectDir/src/androidTest/assets/baselines"
 
     doFirst {
@@ -348,14 +386,15 @@ tasks.register<Exec>("pullComposeBaselines") {
         println("Pulling Compose baseline snapshots from emulator to '$localTargetDir'")
     }
 
+    isIgnoreExitValue = false
     // Use adb to pull the whole folder
-    commandLine(adbPath(), "pull",
-        "/data/data/$applicationId/files/baselines",
-        localTargetDir
-    )
+    commandLine(adbPath(), "pull", sdCardBaselineDir, localTargetDir)
 
     doLast {
-        println("Baselines copied from emulator to '$localTargetDir'. " +
+        exec {
+            commandLine(adbPath(), "shell", "rm", "-rf", sdCardBaselineDir)
+        }
+        println("Baselines moved from emulator sdcard to '$localTargetDir'. " +
                 "You can now review the changes and commit them.")
     }
 }
