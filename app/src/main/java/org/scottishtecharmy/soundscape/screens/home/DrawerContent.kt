@@ -46,6 +46,7 @@ fun DrawerContent(
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
     shareRecording: () -> Unit,
+    offlineMaps: () -> Unit,
     preferences: SharedPreferences?
 ) {
     val scope = rememberCoroutineScope()
@@ -148,9 +149,7 @@ fun DrawerContent(
 //                )
 
                 DrawerMenuItem(
-                    onClick = {
-                        onNavigate(HomeRoutes.OfflineMaps.route)
-                    },
+                    onClick = { offlineMaps() },
                     label = "Offline maps",
                     Icons.Rounded.Download,
                     modifier = Modifier.testTag("menuOfflineMaps")
@@ -180,10 +179,11 @@ fun DrawerContent(
 fun PreviewDrawerContent() {
     DrawerContent(
         DrawerState(DrawerValue.Open) { true },
-        { },
-        { },
-        { },
-        { },
-        null
+        onNavigate = { },
+        rateSoundscape = { },
+        contactSupport = { },
+        shareRecording = { },
+        offlineMaps = { },
+        preferences = null
     )
 }

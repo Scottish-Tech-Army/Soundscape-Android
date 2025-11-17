@@ -311,9 +311,17 @@ fun HomeScreen(
             )
         }
 
-        composable(HomeRoutes.OfflineMaps.route) { backStackEntry ->
+        composable(HomeRoutes.OfflineMaps.route + "/{json}") { navBackStackEntry ->
+
+            // Parse the LocationDescription out of the json provided by the caller
+            val gson = GsonBuilder().create()
+            val urlEncodedJson = navBackStackEntry.arguments?.getString("json")
+            val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
+            val locationDescription = gson.fromJson(json, LocationDescription::class.java)
+
             OfflineMapsScreenVM(
                 navController = navController,
+                locationDescription = locationDescription,
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }

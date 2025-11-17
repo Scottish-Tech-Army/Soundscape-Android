@@ -105,7 +105,8 @@ class OfflineDownloader {
                 // Ensure parent directories exist
                 tempFile.parentFile?.mkdirs()
 
-                var retries = 5
+                val maxRetries = 10
+                var retries = maxRetries
                 while (retries > 0) {
                     Log.d(TAG, "Download attempt $retries")
                     _downloadState.value = DownloadState.Caching
@@ -129,18 +130,15 @@ class OfflineDownloader {
                     } else {
                         if(response.code() == 503) {
                             // The server is likely copying the extract into it's cache and is
-                            // asking that we try again a little later. The caching runs at roughly
-                            // 25MB/sec and we know the size of the extract, so back off appropriately
-                            var cachingDuration = 30
-                            if(retries == 5) {
+                            // asking that we try again a little later. We're going to guess that
+                            // the caching runs at around 10MB/sec and as we know the size of the
+                            // extract, we can back off appropriately.
+                            var cachingDuration = 15
+                            if(retries == maxRetries) {
                                 if(extractSize != null) {
-                                    cachingDuration = (extractSize / 25000000.0).toInt()
+                                    cachingDuration = (extractSize / 10000000.0).toInt()
                                 }
-                            } else
-                                cachingDuration = 15
-
-                            // For a 2GB file, over all of our retries we would have an initial
-                            // timeout of 80 seconds followed by 4 more 15 second timeouts
+                            }
                             Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
                             _downloadState.value = DownloadState.Caching
                             while(cachingDuration > 0) {
