@@ -402,7 +402,7 @@ class MvtTileTest {
         // Check that the de-duplication of the points worked (without that there are two points
         // for Graeme Pharmacy, one each from two separate tiles).
         val searchResults = searchFeaturesByName(
-            gridState.featureTrees[TreeId.POIS.id].getAllCollection(),
+            gridState.getFeatureTree(TreeId.POIS).getAllCollection(),
             "Graeme")
 
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -410,7 +410,7 @@ class MvtTileTest {
         assertEquals(1, searchResults.features.size)
 
         // Check that we can find the containing polygons for a point
-        val tree = gridState.featureTrees[TreeId.POIS.id]
+        val tree = gridState.getFeatureTree(TreeId.POIS)
         val fc1 = tree.getContainingPolygons(LngLatAlt(-4.316401, 55.939941))
         assertEquals(1, fc1.features.size)
         assertEquals("Tesco Customer Car Park", (fc1.features[0] as MvtFeature).name)
@@ -422,8 +422,8 @@ class MvtTileTest {
         val fc3 = tree.getContainingPolygons(LngLatAlt(-4.316641241312027,55.94160200415631))
         assertEquals(1, fc3.features.size)
 
-        val outputCollection = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id].getAllCollection()
-        outputCollection += gridState.featureTrees[TreeId.POIS.id].getAllCollection()
+        val outputCollection = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
+        outputCollection += gridState.getFeatureTree(TreeId.POIS).getAllCollection()
         for(intersection in gridState.gridIntersections) {
             intersection.value.toFeature()
             outputCollection.addFeature(intersection.value)
@@ -448,8 +448,8 @@ class MvtTileTest {
             if(treeId == TreeId.MAX_COLLECTION_ID)
                 break
 
-            val featureCollection14 = gridState14.featureTrees[treeId.id].getAllCollection()
-            val featureCollection15 = gridState15.featureTrees[treeId.id].getAllCollection()
+            val featureCollection14 = gridState14.getFeatureTree(treeId).getAllCollection()
+            val featureCollection15 = gridState15.getFeatureTree(treeId).getAllCollection()
 
             if(treeId == TreeId.ROADS_AND_PATHS) {
                 val adapter = GeoJsonObjectMoshiAdapter()
@@ -857,15 +857,15 @@ class MvtTileTest {
     fun testGridCache() {
 
         // This test 'moves' from the center of one tile to the center of the next to see how tile
-        // caching behaves. We're using Edinburgh which we already have tile from 16092-16096 and
-        // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
+        // caching behaves.
 
         val gridState = FileGridState()
         gridState.start(null, offlineExtractPath, true)
 
         // The center of each grid
-        for(x in 8046 until 8048) {
-            for (y in 5105 until 5107) {
+        var count = 0
+        for(x in 7990 until 8010) {
+            for (y in 5100 until 5120) {
 
                 // Get top left of tile
                 val location = getLatLonTileWithOffset(x, y, MAX_ZOOM_LEVEL, 0.0, 0.0)
@@ -882,16 +882,16 @@ class MvtTileTest {
                 }
             }
         }
-        val adapter = GeoJsonObjectMoshiAdapter()
-        val mapMatchingOutput = FileOutputStream("total-output.geojson")
-
-        // Output the GeoJson and check that there's no data left from other tiles.
-        val collection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
-        collection += gridState.getFeatureCollection(TreeId.INTERSECTIONS)
-        collection += gridState.getFeatureCollection(TreeId.POIS)
-        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
-        mapMatchingOutput.close()
-
+        println("Total updates $count")
+//        val adapter = GeoJsonObjectMoshiAdapter()
+//        val mapMatchingOutput = FileOutputStream("total-output.geojson")
+//
+//        // Output the GeoJson and check that there's no data left from other tiles.
+//        val collection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+//        collection += gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+//        collection += gridState.getFeatureCollection(TreeId.POIS)
+//        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
+//        mapMatchingOutput.close()
     }
 
     @Test
@@ -906,22 +906,22 @@ class MvtTileTest {
 
 
         val adapter = GeoJsonObjectMoshiAdapter()
-        val cityCollection = gridState.featureTrees[TreeId.SETTLEMENT_CITY.id].getAllCollection()
+        val cityCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_CITY).getAllCollection()
         for(feature in cityCollection) {
             feature.properties?.set("marker-size", "large")
             feature.properties?.set("marker-color", "#ff0000")
         }
-        val townCollection = gridState.featureTrees[TreeId.SETTLEMENT_TOWN.id].getAllCollection()
+        val townCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_TOWN).getAllCollection()
         for(feature in townCollection) {
             feature.properties?.set("marker-size", "medium")
             feature.properties?.set("marker-color", "#ffff00")
         }
-        val villageCollection = gridState.featureTrees[TreeId.SETTLEMENT_VILLAGE.id].getAllCollection()
+        val villageCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getAllCollection()
         for(feature in villageCollection) {
             feature.properties?.set("marker-size", "small")
             feature.properties?.set("marker-color", "#00ff00")
         }
-        val hamletCollection = gridState.featureTrees[TreeId.SETTLEMENT_HAMLET.id].getAllCollection()
+        val hamletCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_HAMLET).getAllCollection()
         for(feature in hamletCollection) {
             feature.properties?.set("marker-size", "small")
             feature.properties?.set("marker-color", "#0000ff")

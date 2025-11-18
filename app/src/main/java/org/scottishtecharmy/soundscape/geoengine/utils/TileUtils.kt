@@ -1648,7 +1648,7 @@ fun addPoiDestinations(way: Way,
     // Does the unnamed way start or end near inside a POI? If we don't do this check, we can end
     // up with confusing confections inside parks where a path is described "to Park" when the
     // whole path is within the park, but one end is nearer the edge of it.
-    val poiTree = gridState.featureTrees[TreeId.POIS.id]
+    val poiTree = gridState.getFeatureTree(TreeId.POIS)
     val polygonStartPoi = poiTree.getContainingPolygons(startLocation).features.firstOrNull()
     val polygonEndPoi = poiTree.getContainingPolygons(endLocation).features.firstOrNull()
     if((polygonEndPoi != null) || (polygonStartPoi != null)) {
@@ -1661,20 +1661,20 @@ fun addPoiDestinations(way: Way,
 
     // Does the unnamed way start or end near an entrance? These should take priority over other
     // types of POI as they are likely the most useful
-    val entrancesTree = gridState.featureTrees[TreeId.ENTRANCES.id]
+    val entrancesTree = gridState.getFeatureTree(TreeId.ENTRANCES)
     if (startPoi == null)
         startPoi = checkNearbyPoi(entrancesTree, startLocation, polygonEndPoi, gridState.ruler)
     if (endPoi == null)
         endPoi = checkNearbyPoi(entrancesTree, endLocation, polygonStartPoi, gridState.ruler)
 
     // Does the unnamed way start or end near a Landmark or a place?
-    val placesAndLandmarkTree = gridState.featureTrees[TreeId.PLACES_AND_LANDMARKS.id]
+    val placesAndLandmarkTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
     if (startPoi == null)
         startPoi = checkNearbyPoi(placesAndLandmarkTree, startLocation, polygonEndPoi, gridState.ruler)
     if (endPoi == null)
         endPoi = checkNearbyPoi(placesAndLandmarkTree, endLocation, polygonStartPoi, gridState.ruler)
 
-    val safetyTree = gridState.featureTrees[TreeId.SAFETY_POIS.id]
+    val safetyTree = gridState.getFeatureTree(TreeId.SAFETY_POIS)
     if (startPoi == null) {
         startPoi = safetyTree.getContainingPolygons(startLocation).features.firstOrNull()
     }
@@ -1708,7 +1708,7 @@ fun confectNamesForRoad(road: Way,
 
     // rtree searches take time and so we should avoid them where possible.
 
-    val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+    val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
     if (road.name == null) {
 
         if (addSidewalk(road, roadTree, gridState.ruler)) {
