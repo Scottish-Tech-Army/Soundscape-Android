@@ -979,6 +979,8 @@
 <string name="offline_maps_nearby" tools:ignore="MissingTranslation">"Nearby offline maps"</string>
 <!-- Offscreen maps text shown whilst downloading offline map manifest -->
 <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">"Loading list of offline maps"</string>
+<!-- Offscreen maps text shown when downloading the manifest failed -->
+<string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">"Failed to download offline map data"</string>
 <!-- Offscreen map details screen delete downloaded map -->
 <string name="offline_map_details_delete" tools:ignore="MissingTranslation">"Delete offline map"</string>
 <!-- Offscreen map details screen download map from cloud -->

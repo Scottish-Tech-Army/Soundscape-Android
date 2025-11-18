@@ -14,6 +14,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -31,7 +32,9 @@ import java.io.FileOutputStream
 import kotlin.collections.HashMap
 
 data class OfflineMapsUiState(
-    val downloadingExtractName:String = "",
+    val downloadingExtractName: String = "",
+
+    val manifestError: Boolean = false,
 
     // Extracts in manifest to choose from
     val nearbyExtracts: FeatureCollection? = null,
@@ -54,7 +57,6 @@ class OfflineMapsViewModel @AssistedInject constructor(
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
     lateinit  var downloadState: StateFlow<DownloadState>
-    var urlRedirect = ""
 
     // Add this factory interface inside the ViewModel class
     @dagger.assisted.AssistedFactory
@@ -78,15 +80,16 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 currentPath = path
             )
 
-            val (fc, redirect) = downloadAndParseManifest(appContext)
+            val fc = downloadAndParseManifest(appContext)
             if(fc != null) {
-                urlRedirect = redirect
                 val tree = FeatureTree(fc)
 
                 val location = locationDescription.location
+                println("Location $location")
                 // Containing polygons gives offline maps that include the current location
                 val extracts = tree.getContainingPolygons(location)
 
+                println("Extracts ${extracts.features.size}")
                 for(extract in extracts.features) {
                     val size = extract.properties?.get("extract-size") as Double
                     val properties: HashMap<String, Any?> = extract.properties!!
@@ -96,7 +99,11 @@ class OfflineMapsViewModel @AssistedInject constructor(
                     Log.d(TAG, "extract: ${extract.properties}")
                 }
                 _uiState.value = _uiState.value.copy(
-                    nearbyExtracts = extracts,
+                    nearbyExtracts = extracts
+                )
+            } else {
+                _uiState.value = _uiState.value.copy(
+                    manifestError = true
                 )
             }
         }
@@ -138,7 +145,7 @@ class OfflineMapsViewModel @AssistedInject constructor(
             metadataOutputFile.close()
 
             val extractSize = feature.properties?.get("extract-size") as Double?
-            val fileUrl = "$urlRedirect$filename"
+            val fileUrl = "${BuildConfig.EXTRACT_PROVIDER_URL}$filename"
             offlineDownloader.startDownload(
                 fileUrl,
                 path,

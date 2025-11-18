@@ -28,7 +28,7 @@ import java.io.InputStream
 import java.lang.Thread.sleep
 import java.util.concurrent.TimeUnit
 
-suspend fun downloadAndParseManifest(applicationContext: Context) : Pair<FeatureCollection?, String> {
+suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
 
     for (retry in 1..4) {
         try {
@@ -42,14 +42,20 @@ suspend fun downloadAndParseManifest(applicationContext: Context) : Pair<Feature
                         service?.getManifest()
                     }
 
-                Pair(manifestReq.await()?.awaitResponse()?.body(), manifestClient.redirect)
+                val result = manifestReq.await()?.awaitResponse()?.body()
+                    ?: throw Exception("Manifest response null")
+
+                result
+
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error downloading manifest $retry", e)
         }
+        sleep(500)
     }
     // All retries failed
-    return Pair(null, "")
+    Log.e(TAG, "Error downloading manifest after all retries")
+    return null
 }
 // --- Download State Management ---
 sealed class DownloadState {
