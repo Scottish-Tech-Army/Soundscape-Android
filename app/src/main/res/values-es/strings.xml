@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Pulse dos veces para silenciar la señal de audio."</string>
     <string name="beacon_action_unmute_beacon">"Reactivar señal"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Pulse dos veces para reactivar la señal de audio."</string>
-    <string name="preview_title">Soundscape Street Preview</string>
+    <string name="preview_title">Street Preview</string>
     <string name="preview_go_title">"Ir"</string>
     <string name="preview_include_unnamed_roads_title">"Carreteras sin nombre"</string>
     <string name="location_detail_title_default">"Detalles de la ubicación"</string>
@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Pulse dos veces para crear una nueva ruta"</string>
     <string name="route_end_completed_accessibility">"Ruta completada. %s"</string>
     <string name="route_detail_action_previous">"Punto de ruta anterior"</string>
-    <string name="route_detail_action_previous_hint">Pulse dos veces para establecer la señal en el punto de ruta anterior</string>
+    <string name="route_detail_action_previous_hint">mover la señal en el punto de ruta anterior</string>
     <string name="route_detail_action_next">"Siguiente punto de ruta"</string>
-    <string name="route_detail_action_next_hint">Pulse dos veces para establecer la señal en el siguiente punto de ruta</string>
+    <string name="route_detail_action_next_hint">mover la señal en el siguiente punto de ruta</string>
     <string name="route_detail_edit_description">"Descripción"</string>
     <string name="route_detail_edit_waypoints_button">"Agregar puntos de ruta"</string>
     <string name="route_detail_edit_delete">"Eliminar ruta"</string>
@@ -267,7 +267,7 @@
     <string name="help_text_markers_content_2">"Puede marcar las cosas que son personales y relevantes para usted, como su casa, su oficina y su tienda de comestibles preferida. Puede marcar cualquier lugar o dirección, pero también cosas que podrían no estar disponible tradicionalmente en mapas, por ejemplos, entradas a edificios o parques, lugares con pulsador para cruzar la calle, pasos de cebra o puentes, paradas de autobús o incluso el árbol favorito de su perro y usarlos como referencia durante su paseo."</string>
     <string name="help_text_markers_content_3">"Para que conozca los lugares marcados, Soundscape avisará automáticamente de ellos mientras pasa a pie o se aproxima a ellos o bien, puede usar el botón Marcadores cercanos de la parte inferior de la pantalla principal de Soundscape para oír un aviso espacial de los lugares marcados a su alrededor. Además, tiene la capacidad de establecer una señal de audio en cualquier lugar marcado. Cuando haga esto, se oirá la señal de audio de Soundscape que conoce y podrá actuar de la manera habitual."</string>
     <string name="help_text_creating_markers_content_1">Puede crear marcadores de tres maneras: buscando el lugar que desea guardar usando la barra de búsqueda, buscando un lugar con el botón \"Lugares cercanos\" o usando el botón \"Usar ubicación actual\", todo ello en la pantalla principal de Soundscape. Una vez que haya encontrado el lugar que desea, al seleccionarlo, irá a la página \"Detalles de la ubicación\". En esta página, seleccione el botón \"Guardar marcador\".</string>
-    <string name="help_text_creating_markers_content_2">Tendrá la opción de personalizar este marcador. Este paso es opcional. Si lo desea, puede cambiar el nombre del marcador y también agregar una anotación que se oirá con el marcador para proporcionar información adicional. Una vez que acabó, seleccione el botón \"Listo\" para guardar el marcador.</string>
+    <string name="help_text_creating_markers_content_2">Tendrá la opción de personalizar este marcador. Si lo desea, puede cambiar el nombre del marcador y también agregar una anotación que se oirá con el marcador para proporcionar información adicional. Una vez que acabó, seleccione el botón \"Listo\" para guardar el marcador.</string>
     <string name="help_text_customizing_markers_content_1">Si desea cambiar el nombre de un marcador que ha creado anteriormente, o agregarle una anotación, puede hacerlo seleccionando el marcador en la pestaña \"Marcadores\" de la página \"Marcadores y rutas\" y, luego, \"Editar marcador\" . Puede usarlo para asignar a los marcadores sobrenombres útiles o descriptivos, así como para proporcionarles una descripción más larga con el campo de anotación.</string>
     <string name="help_text_customizing_markers_content_2">En esta pantalla Editar, también puede eliminar un marcador si ya no lo necesita.</string>
     <string name="help_text_routes_content_what">"Las rutas son una serie de puntos de ruta. Se le informará a su llegada a cada uno de ellos y la señal de audio avanzará automáticamente hasta el siguiente."</string>
@@ -474,4 +474,39 @@
     <string name="settings_show_map" tools:ignore="MissingTranslation">Mostrar mapas en pantalla</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">Contacto con soporte</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Idioma de búsqueda</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactivo ya que la ruta está al inicio</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Inactivo porque la ruta ya ha llegado al final</string>
+    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">entrada</string>
+    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">entrada principal</string>
+    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s de %3$s</string>
+    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%2$s del %1$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">Mapas sin conexión</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">Detalles del mapa sin conexión</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">Cargando…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Descargando %s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">El servidor está preparando %s para su descarga. Esto puede tardar unos minutos y luego la descarga comenzará automáticamente.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s Libre</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">Los mapas se guardan en %1$s, que tiene %2$s libre</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Mapas ya descargados</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Mapas sin conexión cercanos</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Cargando lista de mapas sin conexión</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Eliminar el mapa sin conexión</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">Descargar mapa sin conexión</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Tamaño en el teléfono: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Tamaño de la descarga: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nombre del mapa: %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">El mapa incluye estos lugares: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Esos lugares también conocidos como: %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Almacenamiento de mapas sin conexión</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Para poder usar Soundscape sin conexión a internet, es posible descargar mapas y guardarlos en el teléfono. El almacenamiento predeterminado es cualquier almacenamiento externo del teléfono, pero aquí puedes seleccionar otra ubicación.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Utilice la conexión Wi-Fi solo para descargar mapas</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">Borrar texto</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">editar el nombre del marcador</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">añade una nota opcional para ayudarte a reconocer este marcador más adelante</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">editar el nombre de la ruta</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">añadir una descripción opcional para esta ruta</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">Agregar elemento</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">Agregar ruta</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Ruta %1$s en el punto de ruta %2$s de %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">Inicio de Soundscape</string>
 </resources>
