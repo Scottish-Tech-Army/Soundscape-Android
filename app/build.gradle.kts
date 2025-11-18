@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.tasks.AndroidTestTask
 import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
@@ -339,18 +340,23 @@ fun adbPath(): String {
     return "$sdkDir/platform-tools/adb$adbExtension"
 }
 
+// NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the "androidTest" source set name here, but
+// there's no easy way to get it.
+val composeBaselinesTempTargetDir = "${project.layout.buildDirectory.get()}/tmp/androidTest-baselines"
+
+// We deliberately do not declare this as a Task output, otherwise the Gradle may hold the file
+// open for monitoring, preventing it from being deleted.
+val composeBaselinesTarFile = File(composeBaselinesTempTargetDir, "baselines.tar")
+
 tasks.register<Exec>("pullComposeBaselines") {
-    val localTargetDir = "$projectDir/src/androidTest/assets/baselines"
-    val tarFile = File(localTargetDir, "baselines.tar")
-    outputs.file(tarFile)
 
     doFirst {
-        Path(localTargetDir).createDirectories()
-        println("Pulling Compose baseline snapshots from emulator to '$localTargetDir'")
+        Path(composeBaselinesTempTargetDir).createDirectories()
+        println("Pulling Compose baseline snapshots from emulator to '$composeBaselinesTarFile'")
     }
 
     isIgnoreExitValue = false
-    standardOutput = tarFile.outputStream()
+    standardOutput = composeBaselinesTarFile.outputStream()
     // Use adb to pull the whole folder as a TAR file.
     commandLine(adbPath(), "exec-out",
         "run-as",
@@ -368,9 +374,14 @@ tasks.register<Copy>("extractComposeBaselines") {
     val pullTask = tasks.findByName("pullComposeBaselines")!!
     dependsOn(pullTask)
 
-    val tarPath = pullTask.outputs.files.singleFile
-    from(tarTree(tarPath))
-    val localTargetDir = tarPath.parentFile
+    doFirst {
+        println(this.taskDependencies.toString())
+    }
+
+    from(tarTree(composeBaselinesTarFile))
+    // NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the path here, but I don't know of a
+    // better way to get it.
+    val localTargetDir = "$projectDir/src/androidTest/assets/baselines"
     into(localTargetDir)
     // Remove leading 'baselines/' from entries if desired
     eachFile {
@@ -393,8 +404,16 @@ tasks.register<Copy>("extractComposeBaselines") {
     includeEmptyDirs = false
 
     doLast {
-        tarPath.delete()
+        if (composeBaselinesTarFile.exists()) {
+            composeBaselinesTarFile.delete()
+        }
         println("Baselines moved from emulator to '$localTargetDir'. " +
                 "You can now review the changes and commit them.")
+    }
+}
+
+tasks.configureEach {
+    if (this is AndroidTestTask) {
+       finalizedBy("extractComposeBaselines")
     }
 }

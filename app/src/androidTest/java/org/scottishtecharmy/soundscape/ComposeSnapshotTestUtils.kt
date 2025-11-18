@@ -27,7 +27,7 @@ fun ComposeTestRule.dumpLayoutTree(): String {
             .append((info.config.getOrNull(SemanticsProperties.TestTag)?.let { "[$it] " }) ?: "[] ")
             .append(info.config.getOrNull(SemanticsProperties.Text)?.joinToString("") { it.text } ?: "''")
             .append("  ")
-            .append(info.boundsInRoot.toShortString())
+            .append(info.layoutInfo())
             .append("\n")
     }
 
@@ -41,6 +41,22 @@ fun ComposeTestRule.dumpLayoutTree(): String {
 
     dump(onRoot(useUnmergedTree = true).fetchSemanticsNode())
     return sb.toString()
+}
+
+/**
+ * Dumps the full layout and semantics tree as a deterministic string.
+ * Includes modifiers, bounds, and semantics properties.
+ *
+ * @author ChatGPT (via Hugh Greene)
+ */
+private fun SemanticsNode.layoutInfo(): String {
+    val bounds = this.boundsInRoot
+    // Simplified modifier info for testing (truncate long chains)
+    val modifiers = this.layoutInfo.getModifierInfo().joinToString(", ") {
+        // Strip explicit object IDs, because they might appear as meaningless diffs.
+        it.toString().replace(Regex("@[0-9a-f]+"), "@<id>")
+    }
+    return "(bounds=${bounds.toShortString()}, modifiers=[$modifiers])"
 }
 
 private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
@@ -62,30 +78,32 @@ fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
 
     val snapshot = dumpLayoutTree()
 
-    when {
+    if (baselineText == null) {
         // If no baseline in assets, create a new one on the Android device for review.
-        baselineText == null -> {
-            val androidSideBaselineFile =
-                generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
-            fail("No baseline found in 'assets/$baselineSubpathString'. " +
-                    "A new one has been written to: '${androidSideBaselineFile}'. " +
-                    "Copy it into 'src/androidTest/assets/baselines/' using the Gradle " +
-                    "'extractComposeBaselines' task, then review before committing.")
-        }
-
-        // If baseline exists but differs, print diff and fail.
-        snapshot.trim() != baselineText.trim() -> {
+        val androidSideBaselineFile =
+            generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
+        fail("No baseline found in 'assets/$baselineSubpathString'. " +
+                "A new one will be written to '${androidSideBaselineFile}' under " +
+                "'src/androidTest/assets/baselines/'; review then commit it.")
+    }
+    else {
+        // We check the result of the diff, rather than comparing the baseline and snapshot
+        // directly, because the line endings may differ, and the diff ignores those.
+        val diff = generateDiff(baselineText, snapshot)
+        if (diff.isNotEmpty()) {
+            // If baseline exists but differs, print diff and fail.
             println("\nLayout structure changed! Diff:\n")
-            println(generateDiff(baselineText, snapshot))
+            println(diff)
             val androidSideBaselineFile =
                 generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
             println("New snapshot written to: ${androidSideBaselineFile}")
             fail("Layout structure does not match baseline. See diff above. " +
-                    "Copy it into 'src/androidTest/assets/baselines/' using the Gradle " +
-                    "'extractComposeBaselines' task, then review the changes before committing.")
+                    "An updated version will be copied into ${androidSideBaselineFile} under " +
+                    "'src/androidTest/assets/baselines/'; review the changes before committing.")
         }
-
-        else -> println("Layout matches baseline.")
+        else {
+            println("Layout matches baseline.")
+        }
     }
 }
 
