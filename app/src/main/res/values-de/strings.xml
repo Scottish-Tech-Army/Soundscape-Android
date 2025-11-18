@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="general_alert_cancel">"Abbrechen"</string>
     <string name="general_alert_done">"Fertig"</string>
     <string name="general_loading_start">"Vorbereitung…"</string>
@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Doppeltippen, um das Audiobeacon stummzuschalten."</string>
     <string name="beacon_action_unmute_beacon">"Stummschaltung des Beacons aufheben"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Doppeltippen, um die Stummschaltung des Audiobeacons aufzuheben."</string>
-    <string name="preview_title">Soundscape Street Preview</string>
+    <string name="preview_title">Street Preview</string>
     <string name="preview_go_title">"Los"</string>
     <string name="preview_include_unnamed_roads_title">"Unbenannte Straßen"</string>
     <string name="location_detail_title_default">"Standortdetails"</string>
@@ -405,4 +405,12 @@
     <string name="faq_tip_create_marker_at_bus_stop">Wenn es eine Busstrecke gibt, die Sie regelmäßig fahren, versehen Sie Ihre Ein- und Ausstiegshaltestellen mit Markierungen. Auf diese Weise werden sie gespeichert, sodass Sie sie leicht wiederfinden können. Gehen Sie einfach im Menü auf *„Markierungen verwalten“*, und suchen Sie sie in der Liste. Sie können ein Beacon an den Haltestellen platzieren und regelmäßige Updates darüber erhalten, wie nah Sie an der Ausstiegshaltestelle sind. Hinweis: Sie können den rhythmischen Ton ausschalten und weiterhin Entfernungsupdates unterwegs erhalten.</string>
     <string name="first_launch_permissions_notification">Mitteilung</string>
     <string name="no_language_selected">Keine Sprache ausgewählt</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Maßeinheiten</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Imperial (Fuß)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisch (Meter)</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Text-zu-Sprache</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Gehen Sie zur nächsten Kreuzung</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" und %s"</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Machen Sie die Karte voll Bildschirm</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Verhindere, dass die Karte im Vollbildmodus angezeigt wird</string>
 </resources>
