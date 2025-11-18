@@ -539,7 +539,7 @@ fun MapContainerLibre(
                                     PropertyFactory.lineJoin(Property.LINE_JOIN_MITER),
                                     PropertyFactory.lineOpacity(0.7f),
                                     PropertyFactory.lineWidth(4f),
-                                    PropertyFactory.lineColor("#ff000")
+                                    PropertyFactory.lineColor("#000000")
                                 )
                             style.addLayer(layer)
                         }
