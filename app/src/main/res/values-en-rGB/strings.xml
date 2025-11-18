@@ -486,8 +486,8 @@
     <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Downloading %s</string>
     <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s free</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Maps are saved to %1$s which has %2$s free</string>
-    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Maps already downloaded:</string>
-    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Nearby offline maps:</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Maps already downloaded</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Nearby offline maps</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Loading list of offline maps</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Delete offline map</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Download offline map</string>
@@ -507,4 +507,6 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Route %1$s at waypoint %2$s of %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape Home</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Server is preparing %s for download. This can take a few minutes and then the download will start automatically.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Use WiFi only for map download</string>
 </resources>
