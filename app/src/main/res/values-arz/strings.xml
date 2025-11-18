@@ -192,7 +192,7 @@
     <string name="ui_action_button_nearby_markers_acc_hint">حول الأماكن القريبة التي حددتها</string>
     <string name="ui_action_button_around_me">ما\nحولي</string>
     <string name="ui_action_button_around_me_acc_hint">اسمع عن الأماكن في الاتجاهات الأربعة من حولك</string>
-    <string name="ui_action_button_ahead_of_me">أمامي</string>
+    <string name="ui_action_button_ahead_of_me">ما\nامامي</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">اسمع عن أماكن امامك</string>
     <string name="ui_menu">القائمه</string>
     <string name="ui_menu_hint">افتح القائمة</string>
