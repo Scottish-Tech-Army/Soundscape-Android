@@ -15,6 +15,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
+import android.os.Environment
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -23,6 +25,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 
 class MvtPerformanceTest {
 
@@ -176,7 +180,16 @@ class MvtPerformanceTest {
         val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
         println(directory)
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext())
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        getOfflineMapStorage(context)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
+        val offlineExtractPaths =  findExtractPaths(path + "/" + Environment.DIRECTORY_DOWNLOADS)
+        gridState.start(
+            ApplicationProvider.getApplicationContext(),
+            offlineExtractPaths
+        )
 
         val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), MAX_ZOOM_LEVEL)
         val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), MAX_ZOOM_LEVEL)
@@ -246,10 +259,10 @@ class MvtPerformanceTest {
         if(!tileProviderAvailable())
             return
 
-        val newYork = BoundingBox(-74.0231755, 40.7120699, -73.9197845, 40.8303351)
-        testGridCache(newYork)
-        val yaounde = BoundingBox(11.4402869, 3.7493240, 11.6208422, 3.9353452)
-        testGridCache(yaounde)
+//        val newYork = BoundingBox(-74.0231755, 40.7120699, -73.9197845, 40.8303351)
+//        testGridCache(newYork)
+//        val yaounde = BoundingBox(11.4402869, 3.7493240, 11.6208422, 3.9353452)
+//        testGridCache(yaounde)
         val edinburgh = BoundingBox(-3.3568399, 55.9005448, -3.0921694, 55.9919155)
         testGridCache(edinburgh, 1)
 
