@@ -166,7 +166,7 @@
     <string name="directions_along_facing_sw">مواجهة الجنوب الغربي للامام %s</string>
     <string name="directions_along_facing_w">مواجهة الغرب للامام %s</string>
     <string name="directions_along_facing_nw">مواجهة الشمال الغربي للامام %s</string>
-    <string name="directions_along_heading_n">يتجه شمالًا مباشره \n %s</string>
+    <string name="directions_along_heading_n">الاتجاه شمالاً مباشرة %s</string>
     <string name="directions_along_heading_ne">يتجه شمال شرق على طول %s</string>
     <string name="directions_along_heading_e">التوجه شرقًا على طول %s</string>
     <string name="directions_along_heading_se">يتجه جنوب شرق على طول %s</string>
@@ -190,9 +190,9 @@
     <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
     <string name="ui_action_button_nearby_markers">علامات\nقريبه</string>
     <string name="ui_action_button_nearby_markers_acc_hint">حول الأماكن القريبة التي حددتها</string>
-    <string name="ui_action_button_around_me">حولي</string>
+    <string name="ui_action_button_around_me">ما\nحولي</string>
     <string name="ui_action_button_around_me_acc_hint">اسمع عن الأماكن في الاتجاهات الأربعة من حولك</string>
-    <string name="ui_action_button_ahead_of_me">ما \n↵\nامامي</string>
+    <string name="ui_action_button_ahead_of_me">أمامي</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">اسمع عن أماكن امامك</string>
     <string name="ui_menu">القائمه</string>
     <string name="ui_menu_hint">افتح القائمة</string>
@@ -474,4 +474,33 @@
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">طريق مسدود</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">يستكشف SoundScape استخدام التكنولوجيا المبتكرة القائمة على الصوت لتمكين الناس من بناء وعي أكثر ثراءً بمحيطهم ، وبالتالي يصبحون أكثر ثقة وتمكينًا للالتفاف.</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">الاتصال للدعم</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">غير نشط لأن المسار موجود بالفعل في البداية</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">غير نشط لأن المسار موجود بالفعل في النهاية</string>
+    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">مدخل</string>
+    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">المدخل الرئيسي</string>
+    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s fمن %3$s</string>
+    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">خرائط دون اتصال</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">تفاصيل الخريطة الغير متصلة</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">تحميل…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">جارٍ تنزيل%s</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">بالقرب من باستخدام خرائط غير متصلة بالانترنت</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">جارٍ تحميل قائمة الخرائط غير المتصلة بالإنترنت</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">حذف الخريطة غير المتصلة بالإنترنت</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">تحميل الخرائط الغير متصلة بالانترنت</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">المساحة على الهاتف: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">حجم التحميل: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">:اسم الخريطة %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">تتضمن الخريطة هذه الاماكن: %s</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">لكي يمكن استخدام Soundscape دون الاتصال بالإنترنت، من الممكن تنزيل الخرائط وتخزينها على الهاتف. وحدة التخزين الافتراضية هي أي وحدة تخزين خارجية على هاتفك، ولكن يمكنك تحديد وجهة بديلة هنا.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">استخدم WiFi فقط لتنزيل الخريطة</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">محو النص</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">تحرير اسم العلامة</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">أضف ملاحظة اختيارية لمساعدتك في التعرف على هذه العلامة لاحقًا</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">تحرير اسم الطريق</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">أضف وصفًا اختياريًا لهذا المسار</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">إضافة عنصر</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">إضافة الطريق</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">قم بتوجيه %1$s عند نقطة الطريق %2$s من %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">الصفحة الرئيسية ساوندسكيب</string>
 </resources>
