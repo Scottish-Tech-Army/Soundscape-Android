@@ -4,8 +4,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import com.squareup.moshi.Moshi
-import okhttp3.Cache
-import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.GzipSource
@@ -18,7 +16,6 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import java.util.concurrent.TimeUnit
 
 interface IManifestDAO {
     @GET(MANIFEST_NAME)
@@ -31,35 +28,7 @@ class ManifestClient(val applicationContext: Context) {
 
     private var retrofit : Retrofit? = null
 
-    var redirect = ""
-
     private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor { chain ->
-            val originalRequest = chain.request()
-
-            val onlineCacheControl = CacheControl.Builder()
-                .maxAge(1, TimeUnit.HOURS)
-                .build()
-
-            val request = originalRequest
-                .newBuilder()
-                .header("Cache-Control", onlineCacheControl.toString())
-                .removeHeader("Pragma")
-                .build()
-
-            val response = chain.proceed(request)
-
-            // Get the request associated with the final response.
-            // Its URL will be the one after any redirects.
-            val finalRequest = response.request
-            val finalUrl = finalRequest.url
-            println("Final (after redirect) URL: $finalUrl")
-            redirect = finalUrl.toString().removeSuffix(MANIFEST_NAME)
-            println("redirect set to: $redirect")
-
-            // 6. Return the response to continue the chain
-            response
-        }
         .addInterceptor { chain ->
             val response = chain.proceed(chain.request())
 

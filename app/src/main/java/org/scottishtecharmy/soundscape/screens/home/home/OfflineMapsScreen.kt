@@ -468,9 +468,12 @@ fun OfflineMapsScreen(
                         }
                     } else {
                         Text(
-                            text = stringResource(R.string.offline_maps_loading_manifest),
+                            text = stringResource(if (uiState.manifestError) R.string.offline_maps_manifest_failed else R.string.offline_maps_loading_manifest),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = MaterialTheme.colorScheme.onSurface
+                            color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier
+                                .talkbackLive()
+                                .mediumPadding()
                         )
                     }
                 }
