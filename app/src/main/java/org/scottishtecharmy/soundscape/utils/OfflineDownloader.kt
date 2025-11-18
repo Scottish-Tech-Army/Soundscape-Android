@@ -30,24 +30,27 @@ import java.util.concurrent.TimeUnit
 
 suspend fun downloadAndParseManifest(applicationContext: Context) : Pair<FeatureCollection?, String> {
 
-    try {
-        return withContext(Dispatchers.IO) {
-            val manifestClient = ManifestClient(applicationContext)
+    for (retry in 1..4) {
+        try {
+            return withContext(Dispatchers.IO) {
+                val manifestClient = ManifestClient(applicationContext)
 
-            val service =
-                manifestClient.retrofitInstance?.create(IManifestDAO::class.java)
-            val manifestReq =
-                async {
-                    service?.getManifest()
-                }
-            Pair(manifestReq.await()?.awaitResponse()?.body(), manifestClient.redirect)
+                val service =
+                    manifestClient.retrofitInstance?.create(IManifestDAO::class.java)
+                val manifestReq =
+                    async {
+                        service?.getManifest()
+                    }
+
+                Pair(manifestReq.await()?.awaitResponse()?.body(), manifestClient.redirect)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error downloading manifest $retry", e)
         }
-    } catch (e: Exception) {
-        Log.e(TAG, "Error downloading manifest", e)
-        return Pair(null, "")
     }
+    // All retries failed
+    return Pair(null, "")
 }
-
 // --- Download State Management ---
 sealed class DownloadState {
     object Idle : DownloadState()
