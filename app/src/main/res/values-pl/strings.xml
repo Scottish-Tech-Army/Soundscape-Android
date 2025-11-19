@@ -32,7 +32,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">wycisz dźwięk naprowadzający.</string>
     <string name="beacon_action_unmute_beacon">Włącz dźwięk naprowadzający</string>
     <string name="beacon_action_unmute_beacon_acc_hint">włącz dźwięk naprowadzający.</string>
-    <string name="preview_title">Podgląd ulicy w Soundscape</string>
+    <string name="preview_title">Podgląd ulicy</string>
     <string name="preview_go_title">Idź</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Idź do najbliższego skrzyżowania</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" i %s"</string>
@@ -91,7 +91,7 @@
     <string name="markers_generic_name">Znacznik (pinezka)</string>
     <string name="markers_marker_with_name">Znacznik (pinezka). %s</string>
     <string name="markers_marker_created">Znacznik utworzony</string>
-    <string name="markers_annotation">Adnotacja</string>
+    <string name="markers_annotation">Adnotacje użytkownika</string>
     <string name="search_choose_destination">Wybierz miejsce docelowe</string>
     <string name="search_use_current_location">Bieżąca lokalizacja</string>
     <string name="search_nearby_screen_title">Miejsca w pobliżu</string>
@@ -474,4 +474,39 @@
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">Chodnik</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">ślepa uliczka</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape bada wykorzystanie innowacyjnej technologii opartej na dźwięku, aby umożliwić ludziom zbudowanie pełniejszej świadomości otoczenia, co zwiększa ich pewność siebie i daje większą niezależność w poruszaniu się.</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Funkcja nieaktywna, brak wcześniejszych punktów trasy</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Funkcja nieaktywna, brak kolejnych punktów trasy</string>
+    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">wejście</string>
+    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">główne wejście</string>
+    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s od %3$s</string>
+    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">Mapy offline</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">Szczegóły mapy offline</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">Wczytywanie listy map…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Pobieranie %s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Serwer przygotowuje %s do pobrania. Pobieranie rozpocznie się automatycznie w ciągu kilku minut.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s wolne</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">Mapy są zapisywane do %1$s, pozostało %2$s wolnego miejsca</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Pobrane mapy</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Mapy offline w pobliżu</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Wczytywanie listy map offline</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Usuń mapę offline</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">Pobierz mapę offline</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Rozmiar w pamięci urządzenia: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Rozmiar plików do pobrania: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nazwa mapy: %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Mapa zawiera następujące lokalizacje: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Miejsca znane też jako: %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Ścieżka zapisu map offline</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Aby umożliwić używanie Soundscape bez połączenia z internetem można pobierać i zapisywać mapy w pamięci urządzenia. Domyślna lokalizacja zapisu to pamięć zewnętrzna urządzenia ale można wybrać tutaj inną ścieżkę zapisu.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Pobieranie map tylko przez sieci WiFi</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">Usuń tekst</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">edytuj nazwę markera (pinezki)</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">Dodaj opcjonalną adnotację aby łatwiej rozpoznawać ten marker (pinezkę)</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">edytuj nazwę trasy</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">dodaj opcjonalny opis trasy</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">Dodaj element</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">Dodaj trasę</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Trasa %1$s, punkt trasy %2$s z %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape - Ekran główny</string>
 </resources>
