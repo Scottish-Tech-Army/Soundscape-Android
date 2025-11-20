@@ -509,4 +509,5 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">Добавить маршрут</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Маршрут %1$s: путевая точка %2$s из %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Главный экран Soundscape</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Не удалось загрузить данные офлайн‑карт</string>
 </resources>
