@@ -509,4 +509,5 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Rute %1$s ved veipunkt %2$s av %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape-startskjerm</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape utforsker bruken av nyskapende lydbasert teknologi for å hjelpe folk med å få en rikere bevissthet om omgivelsene sine, slik at de blir mer selvsikre og i stand til å ta seg rundt.</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Kunne ikke laste ned data for offline-kart</string>
 </resources>
