@@ -509,4 +509,5 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">Dodaj trasę</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Trasa %1$s, punkt trasy %2$s z %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape - Ekran główny</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Nie udało się pobrać danych map offline</string>
 </resources>
