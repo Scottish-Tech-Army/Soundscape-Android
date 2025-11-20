@@ -509,4 +509,5 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Reitti %1$s, reittipiste %2$s/%3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscapen aloitusnäyttö</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape tutkii innovatiivisen ääniperusteisen teknologian käyttöä, jotta ihmiset voivat rakentaa rikkaamman käsityksen ympäristöstään ja siten tulla itsevarmemmiksi sekä pystyvämmiksi liikkumaan.</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Offline-karttatietojen lataus epäonnistui</string>
 </resources>
