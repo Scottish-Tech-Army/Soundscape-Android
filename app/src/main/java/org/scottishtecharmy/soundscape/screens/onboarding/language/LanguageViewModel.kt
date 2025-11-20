@@ -61,6 +61,7 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         addIfSpeechSupports(allLanguages, Language("Suomi", "fi", "FI"))
         addIfSpeechSupports(allLanguages, Language("Français (France)", "fr", "FR"))
         addIfSpeechSupports(allLanguages, Language("Français (Canada)", "fr", "CA"))
+        addIfSpeechSupports(allLanguages, Language("Íslenska", "is", "IS"))
         addIfSpeechSupports(allLanguages, Language("Italiano", "it", "IT"))
         addIfSpeechSupports(allLanguages, Language("日本語", "ja", "JP"))
         addIfSpeechSupports(allLanguages, Language("Norsk", "nb", "NO"))
@@ -68,6 +69,7 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         addIfSpeechSupports(allLanguages, Language("Polski", "pl", "PL"))
         addIfSpeechSupports(allLanguages, Language("Português (Portugal)", "pt", "PT"))
         addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt", "BR"))
+        addIfSpeechSupports(allLanguages, Language("Русский", "ru", "RU"))
         addIfSpeechSupports(allLanguages, Language("Svenska", "sv", "SE"))
         addIfSpeechSupports(allLanguages, Language("українська", "uk", "UK"))
 
