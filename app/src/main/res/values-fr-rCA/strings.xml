@@ -509,4 +509,5 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">Ajouter un itinéraire</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Itinéraire %1$s au point de passage %2$s de %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Accueil Soundscape</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Échec du téléchargement des données de la carte hors ligne</string>
 </resources>
