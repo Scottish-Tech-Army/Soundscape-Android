@@ -509,5 +509,5 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Route %1$s, Wegpunkt %2$s von %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape-Startbildschirm</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape erforscht den Einsatz innovativer, audio-basierter Technik, um Menschen zu ermöglichen, ein besseres Bewusstsein für ihre Umgebung zu entwickeln und dadurch selbstsicherer und unabhängiger unterwegs zu sein.</string>
-    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Beim Herunterladen der Offline-Kartendaten ist ein Fehler aufgetreten.</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Beim Herunterladen der Offline-Kartendaten ist ein Fehler aufgetreten</string>
 </resources>
