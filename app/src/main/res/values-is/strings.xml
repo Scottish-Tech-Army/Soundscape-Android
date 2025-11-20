@@ -509,4 +509,5 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Leið %1$s, punktur %2$s af %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Heimaskjár Soundscape</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape kannar notkun nýstárlegrar hljóðtækni til að gera fólki kleift að byggja upp ríkari meðvitund um umhverfi sitt og þannig auka sjálfstraust og sjálfstæði við ferðir.</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Mistókst að hlaða niður ónettengdum kortagögnum</string>
 </resources>
