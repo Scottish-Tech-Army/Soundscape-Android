@@ -509,4 +509,5 @@
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">تم تنزيل الخرائط بالفعل</string>
     <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">تُعرف هذه الأماكن أيضًا باسم: %s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">تخزين خرائط دون اتصال</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">فشل تنزيل بيانات الخريطة غير المتصلة بالإنترنت</string>
 </resources>
