@@ -123,11 +123,11 @@
     <!-- Title text of the button used to move to the previous waypoint -->
 <string name="route_detail_action_previous">نقطه‌ی بین‌راهی قبلی</string>
     <!-- Hint text of the button used to move to the previous waypoint -->
-<string name="route_detail_action_previous_hint">دو ضربه بزنید تا جهت‌نمای صوتی روی نقطه‌ی بین‌راهی قبلی تنظیم شود</string>
+<string name="route_detail_action_previous_hint">جهت‌نما را به نقطه‌ی بین‌راهی قبلی منتقل کنید</string>
     <!-- Title text of the button used to move to the next waypoint -->
 <string name="route_detail_action_next">نقطه‌ی بین‌راهی بعدی</string>
     <!-- Hint text of the button used to move to the next waypoint -->
-<string name="route_detail_action_next_hint">دو ضربه بزنید تا جهت‌نمای صوتی روی نقطه‌ی بین‌راهی بعدی تنظیم شود</string>
+<string name="route_detail_action_next_hint">جهت‌نما را به نقطه‌ی بین‌راهی بعدی منتقل کنید</string>
     <!-- Label for the description field of a route -->
 <string name="route_detail_edit_description">توضیحات</string>
     <!-- Label for the button used to add waypoints to a route -->
@@ -185,7 +185,7 @@
     <!-- Notification when a marker is created -->
 <string name="markers_marker_created">نشانه ایجاد شد</string>
     <!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
-<string name="markers_annotation">توضیحات</string>
+<string name="markers_annotation">یادداشت‌های اضافی</string>
     <!-- Description text for the search field, "destination" should be translated the same as it is in "first_launch.prompt.message" -->
 <string name="search_choose_destination">انتخاب مقصد</string>
     <!-- Search using current location -->
@@ -480,7 +480,7 @@
     <!-- Title text for the welcome screen in the first launch experience -->
 <string name="first_launch_welcome_title">خوش آمدید!</string>
     <!-- Short description included in the welcome screen in the first launch experience -->
-<string name="first_launch_welcome_description">با بهره‌گیری از فن‌آوری صوتی سه‌بعدی در ساند‌اسکیپ، مسیر خود را با اطمینان بپیمایید!</string>
+<string name="first_launch_welcome_description">با بهره‌گیری از فن‌آوری صوتی سه‌بعدی در ساند‌اسکیپ، مسیر خود را با اطمینان بپیمایید</string>
     <!-- Button text to get started with app setup -->
 <string name="first_launch_welcome_button">شروع</string>
     <!-- Title text for the screen that tells users how they can listen to Soundscape audio -->
@@ -596,7 +596,7 @@
     <!-- Notification, Customizing Markers help content. "Markers and Routes" should be translated the same as the string with key 'search.view_markers'. Quotes written as \" -->
 <string name="help_text_customizing_markers_content_1">در صورتی که می‌خواهید نام نشانه‌ای که قبلاً ایجاد کرده‌اید را تغییر داده یا توضیحی به آن اضافه کنید، می‌توانید این کار را با انتخاب نشانه‌ی مورد نظرتان از سربرگ *«نشانه‌ها»* در صفحه‌ی *«نشانه‌ها و مسیرها»* و سپس ضربه زدن روی دکمه‌ی *«ویرایش نشانه»* انجام دهید.</string>
     <!-- Notification, Customizing Markers help content continued -->
-<string name="help_text_customizing_markers_content_2">"در این صفحه‌ی ویرایش، شما همچنین می‌توانید نشانه‌ای که دیگر به آن نیاز ندارید را حذف نمایید. "</string>
+<string name="help_text_customizing_markers_content_2">از صفحه‌ی *«ویرایش»* می‌توانید در صورتی که دیگر به آن نیاز ندارید، نشانه را حذف کنید.</string>
     <!-- Help content explaining what the "routes" feature is -->
 <string name="help_text_routes_content_what">هر مسیر از یک رشته نقطه‌ی بین‌راهی تشکیل می‌گردد. هنگامی که در امتداد مسیر به هر یک از نقاط بین‌راهی می‌رسید، ساند‌اسکیپ شما را از این موضوع مطلع خواهد ساخت و جهت‌نمای صوتی به‌طور خودکار روی نقطه‌ی بین‌راهی بعدی تنظیم می‌شود.</string>
     <!-- Help content explaining when a user might choose to use the routes feature -->
@@ -945,4 +945,39 @@
     <string name="menu_contact_support" tools:ignore="MissingTranslation">تماس با پشتیبانی</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">نمایش نقشه روی صفحه</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">جستجوی زبان</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">غیرفعال است زیرا مسیر هم‌اکنون در ابتدا قرار دارد</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">غیرفعال است زیرا مسیر هم‌اکنون در انتها قرار دارد</string>
+    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">ورودی</string>
+    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">ورودی اصلی</string>
+    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%2$s %1$s از %3$s</string>
+    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%2$s %1$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">نقشه‌های آفلاین</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">جزئیات نقشه‌ی آفلاین</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">در حال بارگذاری…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">در حال دانلود %s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">سرور در حال آماده‌سازی %s برای دانلود است. این کار ممکن است چند دقیقه طول بکشد و سپس دانلود به‌صورت خودکار آغاز خواهد شد.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s فضای آزاد</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">نقشه‌ها در %1$s ذخیره می‌شوند که %2$s فضای آزاد دارد</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">نقشه‌های دانلودشده</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">نقشه‌های آفلاین نزدیک</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">در حال بارگذاری فهرست نقشه‌های آفلاین</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">حذف نقشه‌ی آفلاین</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">دانلود نقشه‌ی آفلاین</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">حجم روی گوشی: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">حجم دانلود: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">نام نقشه: %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">نقشه شامل این مکان‌ها است: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">این مکان‌ها همچنین با نام‌های زیر شناخته می‌شوند: %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">ذخیره‌ی نقشه‌ی آفلاین</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">برای اینکه بتوان از ساند‌اسکیپ بدون اتصال به اینترنت استفاده نمود، می‌توان نقشه‌ها را دانلود و روی تلفن ذخیره کرد. محل پیش‌فرض ذخیره‌سازی هر حافظه‌ی خارجی موجود در گوشی شما است، اما می‌توانید در اینجا یک مقصد دیگر انتخاب کنید.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">فقط از وای‌فای برای دانلود نقشه استفاده شود</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">پاک کردن متن</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">نام نشانه را ویرایش کنید</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">یک یادداشت اختیاری اضافه کنید تا بعداً این نشانه را راحت‌تر بشناسید</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">نام مسیر را ویرایش کنید</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">یک توضیح اختیاری برای این مسیر اضافه کنید</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">افزودن مورد</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">افزودن مسیر</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">در مسیر %1$s، نقطه‌ی بین‌راهی %2$s از %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">صفحه‌ی اصلی ساند‌اسکیپ</string>
 </resources>
