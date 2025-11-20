@@ -509,4 +509,5 @@
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape Home</string>
     <string name="offline_maps_caching" tools:ignore="MissingTranslation">Server is preparing %s for download. This can take a few minutes and then the download will start automatically.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Use WiFi only for map download</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Failed to download offline map data</string>
 </resources>
