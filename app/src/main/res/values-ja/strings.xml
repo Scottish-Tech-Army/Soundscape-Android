@@ -509,4 +509,5 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">ルート %1$s、ウェイポイント %2$s／%3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape ホーム</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape は、革新的な音声ベースの技術の活用を通じて、人々が周囲の環境に対するより豊かな認識を築けるようにし、その結果、外出時の自信と自立を高めることを目指すアプリです。</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">オフライン地図データのダウンロードに失敗しました。</string>
 </resources>
