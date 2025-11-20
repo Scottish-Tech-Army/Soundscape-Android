@@ -509,4 +509,5 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">Agregar ruta</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Ruta %1$s en el punto de ruta %2$s de %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Inicio de Soundscape</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Error al descargar los datos del mapa sin conexión</string>
 </resources>
