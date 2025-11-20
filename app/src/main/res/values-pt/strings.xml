@@ -509,4 +509,5 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">Adicionar Rota</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Rota %1$s, ponto de passagem %2$s de %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Ecrã Principal do Soundscape</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Não foi possível transferir os dados do mapa offline.</string>
 </resources>
