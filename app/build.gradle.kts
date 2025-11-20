@@ -58,6 +58,7 @@ android {
             "fi",
             "fr",
             "fr-rCA",
+            "is",
             "it",
             "ja",
             "nb",
@@ -65,7 +66,7 @@ android {
             "pl",
             "pt",
             "pt-rBR",
-            //"ru", in progress
+            "ru",
             "sv",
             "uk"
         ))

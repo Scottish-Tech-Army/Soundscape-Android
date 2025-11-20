@@ -144,6 +144,7 @@ data object MockLanguagePreviewData {
         Language("Suomi", "fi", "FI"),
         Language("Français", "fr", "FR"),
         Language("Français (Canada)", "fr", "CA"),
+        Language("Íslenska", "is", "IS"),
         Language("Italiano", "it", "IT"),
         Language("日本語", "ja", "JP"),
         Language("Norsk", "nb", "NO"),
@@ -151,6 +152,7 @@ data object MockLanguagePreviewData {
         Language("Polski", "pl", "PL"),
         Language("Português (Brasil)", "pt", "BR"),
         Language("Português (Portugal)", "pt", "PT"),
+        Language("Русский", "ru", "RU"),
         Language("Svenska", "sv", "SE"),
         Language("українська", "uk", "UK")
     )
