@@ -980,4 +980,5 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">افزودن مسیر</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">در مسیر %1$s، نقطه‌ی بین‌راهی %2$s از %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">صفحه‌ی اصلی ساند‌اسکیپ</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">دانلود داده‌های نقشه‌ی آفلاین با شکست مواجه شد</string>
 </resources>
