@@ -2,9 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="general_alert_cancel">hætta við</string>
     <string name="general_alert_done">lokið</string>
-    <string name="general_loading_start">Götuhermir</string>
-    <string name="general_error_location_services_find_location_error">illa gengur að finna staðsetningu</string>
-    <string name="general_error_add_marker_error">erfiðleikar við að merkja staðsetningu. Reynið síðar</string>
+    <string name="general_loading_start">Götuhermir…</string>
+    <string name="general_error_location_services_find_location_error">illa gengur að finna staðsetningu.</string>
+    <string name="general_error_add_marker_error">erfiðleikar við að merkja staðsetningu. Reynið síðar.</string>
     <string name="settings_screen_title">Stillingar</string>
     <string name="settings_about_app">Um Soundscape</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">Mælieiningar</string>
@@ -29,10 +29,10 @@
     <string name="beacon_styles_mallet_very_slow">Sleggja, mjög hæt</string>
     <string name="beacon_audio_beacon">Hljóðviti</string>
     <string name="beacon_action_mute_beacon">slökkva á hljóðmerki vita</string>
-    <string name="beacon_action_mute_beacon_acc_hint">slökkva á hljóðmerki vita</string>
+    <string name="beacon_action_mute_beacon_acc_hint">slökkva á hljóðmerki vita.</string>
     <string name="beacon_action_unmute_beacon">virkja hljóðmerki vita</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">virkja hljóðmerki vita</string>
-    <string name="preview_title">Soundscape götusýn</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">virkja hljóðmerki vita.</string>
+    <string name="preview_title">Götuforskoðun</string>
     <string name="preview_go_title">fara á næstu gatnamót</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %s"</string>
@@ -44,13 +44,13 @@
     <string name="location_detail_action_edit_hint">uppfæra merki</string>
     <string name="location_detail_action_share_hint">deila staðsetningu</string>
     <string name="location_detail_action_preview_hint">hefja forskoðun hér</string>
-    <string name="location_detail_add_waypoint_existing_hint">fjarlægja merki úr leið</string>
-    <string name="location_detail_add_waypoint_new_hint">bæta merki við leið</string>
+    <string name="location_detail_add_waypoint_existing_hint">fjarlægja merki úr leið.</string>
+    <string name="location_detail_add_waypoint_new_hint">bæta merki við leið.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">stækka kort til að fylla skjá</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">fara úr fullum skjá</string>
     <string name="route_detail_action_start_route">upphaf leiðar</string>
     <string name="route_detail_action_stop_route">ljúka leið</string>
-    <string name="route_detail_action_edit">uppfæra leið</string>
+    <string name="route_detail_action_edit">Uppfæra Leið</string>
     <string name="route_detail_action_start_route_hint">hefja leið</string>
     <string name="route_detail_action_start_route_disabled_hint">bæta við punktum áður en leið er hafin</string>
     <string name="route_detail_action_stop_route_hint">stöðva leið</string>
@@ -60,12 +60,12 @@
     <string name="route_detail_action_create_hint">búa til nýja leið</string>
     <string name="route_end_completed_accessibility">leið lokiðleið lokið %s</string>
     <string name="route_detail_action_previous">fyrri leiðarpunktur</string>
-    <string name="route_detail_action_previous_hint">ýttu tvisvr til að færa vitan á síðasta punkt</string>
+    <string name="route_detail_action_previous_hint">flytja hljóðvitann á fyrri leiðarpunkt</string>
     <string name="route_detail_action_next">næsti leiðarpunktur</string>
-    <string name="route_detail_action_next_hint">ýttu tvisvar til að færa vitan á næsta pukt</string>
+    <string name="route_detail_action_next_hint">flytja hljóðvitann á næsta leiðarpunkt</string>
     <string name="route_detail_edit_waypoints_button">bæta við punkti</string>
     <string name="route_detail_edit_delete">eyða leið</string>
-    <string name="route_update_success_title">uppfærslu lokið</string>
+    <string name="route_update_success_title">uppfærslu lokið!</string>
     <string name="route_detail_edit_description">Lýsing</string>
     <string name="waypoint_title">punktur</string>
     <string name="universal_links_alert_action_marker">vista sem merki</string>
@@ -74,24 +74,24 @@
     <string name="routes_title">leiðir</string>
     <string name="routes_action_deleted">leið eytt</string>
     <string name="routes_no_routes_title">fyrstu skref með leiðar punkta</string>
-    <string name="routes_no_routes_hint_1">búðu til leið fyrir þig eða aðra með því að raða saman punktum</string>
-    <string name="routes_no_routes_hint_2">þegar sounscape leið er hafin færðu upplýsingar þegar þú kemur að punkti og athyli færist á næsta punkt</string>
+    <string name="routes_no_routes_hint_1">búðu til leið fyrir þig eða aðra með því að raða saman punktum.</string>
+    <string name="routes_no_routes_hint_2">þegar sounscape leið er hafin færðu upplýsingar þegar þú kemur að punkti og athyli færist á næsta punkt.</string>
     <string name="routes_sort_by_name">raða eftir nafni</string>
     <string name="routes_sort_by_distance">raða eftir fjarlægð</string>
-    <string name="markers_title">merki</string>
+    <string name="markers_title">Merki</string>
     <string name="markers_action_delete">eyða merki</string>
     <string name="markers_sort_button_sort_by_name">nafn</string>
     <string name="markers_sort_button_sort_by_name_voiceover">raðað eftir nafni</string>
     <string name="markers_sort_button_sort_by_distance">fjarlægð</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">raðað eftir fjalægð</string>
     <string name="markers_no_markers_title">byrjað með merki</string>
-    <string name="markers_no_markers_hint_1">búðu til merki fyrir uppáhalds leiðir, áfangastaði eða aðra punkta með því að velja punkt og velja vista punkt</string>
-    <string name="markers_no_markers_hint_2">Prófaðu að merkja heimili, skóla eða vinustað</string>
-    <string name="markers_edit_screen_title_edit">uppfæra merki</string>
-    <string name="markers_generic_name">merki</string>
+    <string name="markers_no_markers_hint_1">búðu til merki fyrir uppáhalds leiðir, áfangastaði eða aðra punkta með því að velja punkt og velja vista punkt.</string>
+    <string name="markers_no_markers_hint_2">Prófaðu að merkja heimili, skóla eða vinustað.</string>
+    <string name="markers_edit_screen_title_edit">Uppfæra Merki</string>
+    <string name="markers_generic_name">Merki</string>
     <string name="markers_marker_with_name">merki sent %s</string>
     <string name="markers_marker_created">merki búið til</string>
-    <string name="markers_annotation">umsögn</string>
+    <string name="markers_annotation">Aðrar athugasemdir</string>
     <string name="search_choose_destination">veldu áfangastað</string>
     <string name="search_use_current_location">staðsetning</string>
     <string name="search_nearby_screen_title">nálægir staðir</string>
@@ -114,7 +114,7 @@
     <string name="callouts_nearby_markers">nálæg merki</string>
     <string name="sleep_sleep">fara í dvala</string>
     <string name="sleep_sleeping">í dvala</string>
-    <string name="sleep_sleeping_message">soundscape er í dvala. Þetta kemur í veg fyrir niðurhal á gögnum. og sparar rafhlöðu. Virkjaðu hnappinn fyrir neðan til að vekja soundscape</string>
+    <string name="sleep_sleeping_message">soundscape er í dvala. Þetta kemur í veg fyrir niðurhal á gögnum. og sparar rafhlöðu. Virkjaðu hnappinn fyrir neðan til að vekja soundscape.</string>
     <string name="sleep_sleep_acc_hint">setja Soundscape í dvala</string>
     <string name="sleep_wake_up_now">úr dvala</string>
     <string name="intersection_approaching_intersection">nálgast gatnamót</string>
@@ -128,12 +128,12 @@
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">nálægt %1$s %2$s</string>
     <string name="directions_traveling_n">á leið í norður</string>
     <string name="directions_traveling_ne">á leið í norð austur</string>
-    <string name="directions_traveling_e">á leið í austur</string>
+    <string name="directions_traveling_e">Að ferðast austur</string>
     <string name="directions_traveling_se">á leið í suð austur</string>
-    <string name="directions_traveling_s">á leið í suður</string>
+    <string name="directions_traveling_s">Að ferðast suður</string>
     <string name="directions_traveling_sw">á leið í suð vestur</string>
-    <string name="directions_traveling_w">á leið í vestur</string>
-    <string name="directions_traveling_nw">á leið í norð vestur</string>
+    <string name="directions_traveling_w">Að ferðast vestur</string>
+    <string name="directions_traveling_nw">Ferðast norðvestur</string>
     <string name="directions_facing_n">stefnir í norður</string>
     <string name="directions_facing_ne">stefnir í norð austur</string>
     <string name="directions_facing_e">stefnir í austur</string>
@@ -194,13 +194,13 @@
     <string name="distance_format_km">%s km</string>
     <string name="distance_format_feet">%s fet</string>
     <string name="distance_format_miles">%s mílur</string>
-    <string name="ui_action_button_my_location">mín staðsettning</string>
+    <string name="ui_action_button_my_location">Mín\nStaðsettning</string>
     <string name="ui_action_button_my_location_acc_hint">heyra um staðsettningu</string>
-    <string name="ui_action_button_nearby_markers">nálæg merki</string>
+    <string name="ui_action_button_nearby_markers">Nálæg\nMerki</string>
     <string name="ui_action_button_nearby_markers_acc_hint">um nálæg merki sem þú hefur vistað</string>
-    <string name="ui_action_button_around_me">í kringum mig</string>
+    <string name="ui_action_button_around_me">Í kringum\nMig</string>
     <string name="ui_action_button_around_me_acc_hint">fáðu upplýsingar um staði í kringum þig eftir höfuðáttum</string>
-    <string name="ui_action_button_ahead_of_me">fyrir framan mig</string>
+    <string name="ui_action_button_ahead_of_me">Fyrir\nFraman\nMig</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">fáðu upplýsingar um staði fyrir framan þig</string>
     <string name="ui_menu">valmöguleikar</string>
     <string name="ui_menu_hint">opna valmöguleika</string>
@@ -216,13 +216,13 @@
     <string name="help_configuration_section_title">Soundscape stillingar</string>
     <string name="settings_help_section_beacons_and_pois">hljóðvitar og tilkynningar</string>
     <string name="settings_help_section_home_screen_buttons">heimaskjar</string>
-    <string name="help_config_voices_content">Soundscape getur notað raddir sem þú hefur halað niður. Þú getur valið rödd í talgervils stillingum</string>
-    <string name="help_offline_page_title">Hversvegna er Soundscape án net möguleika</string>
-    <string name="help_offline_description">Þegar nettenging er ekki til staðar fer forritið í ham án tenginga og ákveðin virkni er takmörkuð</string>
+    <string name="help_config_voices_content">Soundscape getur notað raddir sem þú hefur halað niður. Þú getur valið rödd í talgervils stillingum.</string>
+    <string name="help_offline_page_title">Hversvegna er Soundscape án net möguleika?</string>
+    <string name="help_offline_description">Þegar nettenging er ekki til staðar fer forritið í ham án tenginga og ákveðin virkni er takmörkuð.</string>
     <string name="help_offline_limitations_heading">takmarkanir</string>
-    <string name="help_offline_limitations_description">tilkynningar halda áfram að virka og kort sem hafa verið höluð niður og vistuð merki virka á nettengingar</string>
+    <string name="help_offline_limitations_description">tilkynningar halda áfram að virka og kort sem hafa verið höluð niður og vistuð merki virka á nettengingar.</string>
     <string name="help_offline_troubleshooting_heading">hvað getur þú gert?</string>
-    <string name="help_offline_troubleshooting_description">Soundscape reynir að endurvirkja nettengdar aðgerðir þegar nettenging næst</string>
+    <string name="help_offline_troubleshooting_description">Soundscape reynir að endurvirkja nettengdar aðgerðir þegar nettenging næst.</string>
     <string name="help_orient_page_title">í kringum mig</string>
     <string name="help_explore_page_title">fyrir framan mig</string>
     <string name="help_creating_markers_page_title">merki búin til</string>
@@ -232,47 +232,47 @@
     <string name="help_text_section_title_when">hvenar skal nota?</string>
     <string name="help_text_section_title_how">hvernig virkar það?</string>
     <string name="terms_of_use_title">notkunarskilmálar</string>
-    <string name="terms_of_use_message">notkun soundscape er háð eftirfarandi skilmálum %s</string>
+    <string name="terms_of_use_message">notkun soundscape er háð eftirfarandi skilmálum %s.</string>
     <string name="terms_of_use_service_agreement">Sáttmáli Scottish tec army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">samþykkja skilmála</string>
-    <string name="terms_of_use_medical_safety_disclaimer">Soundscape kemur ekki í staðinn fyrir færni í áttun og umferli. Gætið ávallt fyllsta öryggis, beitið dómgreind og árvekni við notkun. Forritið notar kortaupplýsingar frá þriðja aðila sem gætu verið ón´´akvæmar.</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Þú viðurkennir að Soundscape (1) er ekki hannað, ætlað eða gert aðgengilegt sem lækningatæki og (2) er ekki hannað eða ætlað til að koma í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats og ætti ekki að vera notað í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats.\n\nÖryggistilkynning\n\nSoundscape er leiðsögutæki og ætti ekki að nota í stað hreyfifærni, meðvitundar um umhverfi þitt og góðrar dómgreindar. Gætið varúðar þegar þið röltið um umhverfið þar sem kortlagningargögnin sem eru hluti af Soundscape forritinu eru tekin úr þriðja aðila forriti og því geta verið takmarkanir á nákvæmni upplýsinganna sem kynntar eru.</string>
     <string name="first_launch_soundscape_language">tungumál Soundscape</string>
-    <string name="first_launch_soundscape_language_text">veldu tungumál fyrir Soundscape</string>
-    <string name="first_launch_welcome_title">velkominn</string>
+    <string name="first_launch_soundscape_language_text">veldu tungumál fyrir Soundscape.</string>
+    <string name="first_launch_welcome_title">velkominn!</string>
     <string name="first_launch_welcome_description">farðu ferða þinna af áræðni með Soundscape</string>
     <string name="first_launch_welcome_button">hafist handa</string>
     <string name="first_launch_headphones_title">hlustað á Soundscape</string>
-    <string name="first_launch_headphones_message_1">soundscape virkar með hvaða heyrnartolum sem er. Ef vilt nota heyrnartól virkjaðu þau núna</string>
-    <string name="first_launch_headphones_message_2">ef þú ert ekki með heryrnartól eða kýst að sleppa þeim virkar Soundscape með hátalaranum á símanum</string>
+    <string name="first_launch_headphones_message_1">soundscape virkar með hvaða heyrnartolum sem er. Ef vilt nota heyrnartól virkjaðu þau núna.</string>
+    <string name="first_launch_headphones_message_2">ef þú ert ekki með heryrnartól eða kýst að sleppa þeim virkar Soundscape með hátalaranum á símanum.</string>
     <string name="first_launch_callouts_title">hlustað á umhverfið</string>
-    <string name="first_launch_callouts_message">Soundscape gerir þér kleft að vita hvar þú ert</string>
+    <string name="first_launch_callouts_message">Soundscape gerir þér kleft að vita hvar þú ert.</string>
     <string name="first_launch_callouts_listen">hlustaðu á dæmi um upplýsingar sem Soundscape gefur</string>
     <string name="first_launch_callouts_listen_accessibility_label">hlusta</string>
     <string name="first_launch_callouts_example_1">kaffihús</string>
     <string name="first_launch_callouts_example_3">aðalgata til vinstri</string>
     <string name="first_launch_callouts_example_4">aðalgata til hægri</string>
     <string name="first_launch_permissions_title">á ferðinni með Soundscape</string>
-    <string name="first_launch_permissions_message">Þegar þú ferðast með Soundscape er notast við hljóðvita. til þess þarf að veita eftirfarandi leyfi</string>
+    <string name="first_launch_permissions_message">Þegar þú ferðast með Soundscape er notast við hljóðvita. til þess þarf að veita eftirfarandi leyfi:</string>
     <string name="first_launch_permissions_location">staðsettning með nákvæmri staðsettningu</string>
     <string name="first_launch_permissions_motion">hreyfing og líkamlegt ástand</string>
     <string name="first_launch_permissions_required">þetta leyfi er nauðsynlegt</string>
-    <string name="permissions_required" tools:ignore="MissingTranslation">forritið þarf leyfi fyrir staðsettningu til að virka</string>
-    <string name="help_text_my_location_when">notaðu mín staðsettning til að fá upplýsingar um staðsettningu og höfuðátt</string>
-    <string name="help_text_my_location_what">Mín staðsettning hnappurinn gefur upplýsingar u stefnu í höfuðáttum, nálæg gatnamót og aðra áhugaverða staði</string>
-    <string name="help_text_my_location_how">fyrir mín staðsettning hnappinn og hina hnappana neðst á skjánnum er best að snúa símnum með skjáinn beint upp og hleðslu rauf að notanda. þannig fær síminn rétta stefnu. Svo er hnappurinn virkjaður og hlustað</string>
+    <string name="permissions_required" tools:ignore="MissingTranslation">forritið þarf leyfi fyrir staðsettningu til að virka.</string>
+    <string name="help_text_my_location_when">notaðu mín staðsettning til að fá upplýsingar um staðsettningu og höfuðátt.</string>
+    <string name="help_text_my_location_what">Mín staðsettning hnappurinn gefur upplýsingar u stefnu í höfuðáttum, nálæg gatnamót og aðra áhugaverða staði.</string>
+    <string name="help_text_my_location_how">fyrir mín staðsettning hnappinn og hina hnappana neðst á skjánnum er best að snúa símnum með skjáinn beint upp og hleðslu rauf að notanda. þannig fær síminn rétta stefnu. Svo er hnappurinn virkjaður og hlustað.</string>
     <string name="help_text_nearby_markers_what">hnappurinn nálæg merki gefur upplýsingar um allt að fjögur, nálæg, vistuð merki. Þetta getur verið hjálplegt til að átta sig á stöðu.</string>
-    <string name="help_text_nearby_markers_when">Þegar verið er að ná áttum má nota nálæg merki til að átta sig á umhverfinu</string>
-    <string name="help_text_nearby_markers_how">heppligast er að snúa símanum með skjáinn upp, hleðslu rauf að notanda og toppinn beint fram. Þetta gefur ´símanum rétta stefnu</string>
-    <string name="help_text_around_me_what">Í kringum mig hnappurinn segjir frá atriðum sem skiptast í fjórðunga eftir höfuðáttum. þetta er heppilegt til að finna stöðu í umhverfinu</string>
-    <string name="help_text_around_me_when">þegar unnið er með áttun og stefnu er notast við í kringum mig hnappinn</string>
-    <string name="help_text_around_me_how">Eins og með alla takkana neðst á skjánnum skal snúa símanum með skjáinn upp og toppinn beint fram. Þetta gefur símanum rétta stefnu</string>
-    <string name="help_text_ahead_of_me_what">fyrir framan mig hnappurinn greinir frá fjórum atriðum fyrir framan notanda og er ætlað til að afla upplýsinga um uppkomandi staði</string>
-    <string name="help_text_ahead_of_me_when">prófaðu að nota fyrir framan mig hnappinn þegar þú gengur niður götu sem þú þekkir. Það mun gefa upplýsingar um það sem er framundan</string>
-    <string name="help_text_routes_content_what">Leið er röð af merkjum semer raðað saman. Þegar komið er að punkti færrist athyglin yfir á næsta punkt</string>
-    <string name="help_text_routes_content_when">hægt er að ota leiðir til að skerpa á þekktum leiðum eða fara á nýjar slóðir</string>
-    <string name="help_text_routes_content_how_1">til að búa til leið: opnaðu merki og leiðir, veldu ný leið og raðaðu merkjum til að mynda leið. Alltaf er hægt að uppfæra leiðir með því að velja uppfæra</string>
-    <string name="help_text_routes_content_how_2">veldu uppfæra úr listanum yfir merki og leiðir. Hér er hægt að eyða, bæta við punktum sem og breyta nafni og lýsingu</string>
-    <string name="help_text_routes_content_how_3">veldu leið af listanum yfir merki og leiðir og virkjaðu deila hnappinn og finndu viðtakanda</string>
+    <string name="help_text_nearby_markers_when">Þegar verið er að ná áttum má nota nálæg merki til að átta sig á umhverfinu.</string>
+    <string name="help_text_nearby_markers_how">heppligast er að snúa símanum með skjáinn upp, hleðslu rauf að notanda og toppinn beint fram. Þetta gefur ´símanum rétta stefnu.</string>
+    <string name="help_text_around_me_what">Í kringum mig hnappurinn segjir frá atriðum sem skiptast í fjórðunga eftir höfuðáttum. þetta er heppilegt til að finna stöðu í umhverfinu.</string>
+    <string name="help_text_around_me_when">þegar unnið er með áttun og stefnu er notast við í kringum mig hnappinn.</string>
+    <string name="help_text_around_me_how">Eins og með alla takkana neðst á skjánnum skal snúa símanum með skjáinn upp og toppinn beint fram. Þetta gefur símanum rétta stefnu.</string>
+    <string name="help_text_ahead_of_me_what">fyrir framan mig hnappurinn greinir frá fjórum atriðum fyrir framan notanda og er ætlað til að afla upplýsinga um uppkomandi staði.</string>
+    <string name="help_text_ahead_of_me_when">prófaðu að nota fyrir framan mig hnappinn þegar þú gengur niður götu sem þú þekkir. Það mun gefa upplýsingar um það sem er framundan.</string>
+    <string name="help_text_routes_content_what">Leið er röð af merkjum semer raðað saman. Þegar komið er að punkti færrist athyglin yfir á næsta punkt.</string>
+    <string name="help_text_routes_content_when">hægt er að ota leiðir til að skerpa á þekktum leiðum eða fara á nýjar slóðir.</string>
+    <string name="help_text_routes_content_how_1">**Að búa til leið:**\n\nFyrst skaltu fara í *\"Merki og leiðir\"*, velja flipann *\"Leiðir\"* og síðan hnappinn *\"Ný leið\"*. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.</string>
+    <string name="help_text_routes_content_how_2">**Uppfæra leið :**\n\nVeldu leiðina þína á skjánum *\"Merki og leiðir\"* og síðan *\"Uppfæra leið\"*. Héðan geturðu bætt við og fjarlægt leiðarpunkta, auk þess að breyta nafni og lýsingu leiðarinnar.</string>
+    <string name="help_text_routes_content_how_3">**Deila leið :**\n\nVeldu leiðina þína á skjánum *\"Merki og leiðir\"* og veldu síðan valkostinn *\"Deila\"* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.</string>
     <string name="osm_tag_crossing">gangbraut</string>
     <string name="osm_tag_construction">vinnusvæði</string>
     <string name="osm_tag_dangerous_area">hættulegt svæði</string>
@@ -296,7 +296,7 @@
     <string name="osm_tag_school_building">skólabygging</string>
     <string name="osm_tag_covered_pavilion">yfirbyggt svæði</string>
     <string name="osm_tag_convenience_store">matvörubúð</string>
-    <string name="osm_tag_building_entrance">inngangur</string>
+    <string name="osm_tag_building_entrance">Inngangur byggingarinnar</string>
     <string name="osm_tag_assembly_point">samkomusvæði</string>
     <string name="osm_tag_cycle_barrier">hjólreiða hindrun</string>
     <string name="osm_tag_turnstile">krossgata</string>
@@ -333,64 +333,180 @@
     <string name="osm_tag_swimming_pool">sundlaug</string>
     <string name="osm_tag_garden">garður</string>
     <string name="osm_tag_park">grænt svæði</string>
-    <string name="osm_tag_picnic_table">bekkur með borði</string>
-    <string name="osm_tag_picnic_area">bekkur með borði</string>
+    <string name="osm_tag_picnic_table">Bekkur með borði</string>
+    <string name="osm_tag_picnic_area">Svæði fyrir lautarferðir</string>
     <string name="share_title">deila</string>
     <string name="faq_title">algengar spurningar</string>
     <string name="faq_title_abbreviated">spurt og svarað</string>
     <string name="faq_tips_title">góð ráð</string>
     <string name="faq_section_what_is_soundscape">hvað er Soundscape og hvernig er það notað?</string>
     <string name="faq_when_to_use_soundscape_question">Hvenar skal nota Soundscape?</string>
-    <string name="faq_when_to_use_soundscape_answer">\"notaði Soundscape til að finna sjoppu í nágrenninu, fór þangað og fékk mér pulsu!\"</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape hefur eiginleika og kosti sem spanna fjölbreyttar aðstæður og tímaramma. Þar að auki getur gildi Soundscape fyrir þig þróast með tímanum, þannig að notkun þín í dag getur verið önnur en eftir þrjá mánuði. Fólk hugsar oft um öpp út frá því að hugsa um *„hvaða vandamál leysir þetta app vel?“* Hægt er að nota Soundscape í hverju tilviki fyrir sig þegar þú hefur sérstaka upplýsingaþörf – eins og að fylgjast með áfangastað á leiðinni þangað, hjálpa þér að átta þig þegar þú kemur út úr neðanjarðarlestarstöð, átta þig þegar þú stígur út úr bíl eða finna götunöfnin fyrir næstu gatnamót eða fjarlægðina að þeim. Hins vegar er heimspekin á bak við Soundscape sú að *„lýsa upp heiminn þinn með hljóði“*, hannað til að vera notað hvenær sem þú ert á ferðinni til að veita umhverfisvitund, eins og að halda þér meðvituðum um nöfn gatnanna sem þú ert á, í hvaða átt þú ert að fara og nöfn fyrirtækja sem þú ert að fara framhjá. Í þessum notkunarmáta hafa notendur okkar vísað til Soundscape sem *„góðs fylgiforrits“*, sem styður *„tilviljun“*, til að *„fylla í eyðurnar í hugarkortinu þínu“* og veita meira *„öryggi þegar maður gengur“*. Hér eru nokkur önnur dæmi um hvernig notendur okkar eru að fella Soundscape inn í líf sitt:\n\n„Soundscape hjálpaði mér að komast aftur á rétta braut eftir að ég fór úr strætó og fór í ranga átt.“\n\n„Jafnvel í bænum þar sem ég hef búið í 3 ár hef ég byggt upp betri mynd af því sem er í kringum mig [með Soundscape].“\n\n„Þrívíddarhljóðið eykur upplifun mína af göngu, þar sem ég finn mig tengdari umhverfi mínu ... Ég er líklegri til að prófa nýja leið núna þegar ég hef forritið til að nota.“\n\n„Ég sakna tilviljunarinnar við að ganga um og taka eftir hlutum. Að hafa Soundscape er fínt - það krefst engra fyrirhafnar að heyra um hluti í kringum mig. Tengslaupplýsingarnar eru gagnlegar og er frábært forrit til að átta sig á aðstæðum og kanna viðskiptagöng.“\n\n„[Ég notaði Soundscape] til að finna krá í miðri York. [Ég] notaði ýmsa möguleika til að finna hana fyrst og svo í raun og veru. Það færði mig innan við þriggja metra frá dyrunum – frábært!“</string>
     <string name="faq_markers_function_question">hvað eru merki og hvernig nýti ég þau?</string>
-    <string name="faq_markers_function_answer">merki eru staðir sem þú hefur vistað, fkundið með leit eða öðrum hætti innan Soundscape. Hægt er að vista punkta sem merki með því að velja vista merki. Með því að virkja punkt færðu nánari upplýsingar og getur valið að vista sem merki</string>
+    <string name="faq_markers_function_answer">Merki eru staðir sem þú hefur vistað. Þau geta verið staðir sem finnast í forritinu eða alveg nýir staðir sem þú bættir við sjálfur. Þú getur vistað núverandi staðsetningu sem merki með því að velja hnappinn *\"Notaðu núverandi staðsetningu\"* á heimaskjánum og síðan velja *\"vista sem merki\"*. Þú getur vistað aðrar staðsetningar sem merki með því að leita að þeim með leitarstikunni eða finna stað með hnappinum *\"nálægir staðir\",* sem báðir eru á heimaskjánum í Soundscape. Þegar þú hefur fundið staðinn sem þú vilt og valið hann opnast skjárinn *\"upplýsingar um staðsetningu\"*. Á þessum skjá skaltu velja hnappinn *\"vista sem merki\"*.</string>
     <string name="faq_section_getting_the_best_experience">hvernig nýti ég Soundscape sem best?</string>
     <string name="faq_what_can_I_set_question">hvað get ég virkjað sem hljóðvita?</string>
-    <string name="faq_what_can_I_set_answer">Þú getur sett hljóðvita á hvaða punkt sem er sjáanalegur í Soundscape</string>
+    <string name="faq_what_can_I_set_answer">Þú getur sett hljóðvita á hvaða fyrirtæki, stað, áhugaverðan stað, heimilisfang eða gatnamót sem er. Það eru nokkrar leiðir til að bæta við hljóðvita á stað: skoðaðu upplýsingar um stað með því að leita að stað með leitarstikunni eða ýta á einn af hnöppunum *\"nálægir staðir\"*, *\"vistað merki\"* eða *\"Notaðu núverandi staðsetningu\"* og velja stað. Á skjánum *\"upplýsingar um staðsetningu\"* geturðu valið hnappinn *\"hljóð viti\"*. Að ýta á hann fer þig aftur á heimaskjáinn og kveikir á hljóðvita sem heyrist frá þeirri átt sem staðurinn er í. Nafn staðarins sem þú valdir ásamt fjarlægð og heimilisfangi, ef tiltækt, verður nú sýnt á aðalskjánum í forritinu.</string>
     <string name="faq_how_to_use_beacon_question">hvernig nota ég hljóðvita eins og fagmaður?</string>
-    <string name="faq_how_to_use_beacon_answer">Hljóðviti er eins og vit sem gefur upplýsingar um stefnu og fjalrægð frá áfangastað. upplesin boð um stefnu og fjalægð og hljóðmerki gfa uppl´upplýsingar um stefnu í átt að punktinum þó svo að notandi þurfi að laga leiðarval að aðstæðum. Með því að beina símanum frá vinstri til hægri og öfugt má finna nákvæmlega í hvaða átt skuli halda þó svo að laga þurfi leiðarval að aðstæðum</string>
+    <string name="faq_how_to_use_beacon_answer">Þú getur hugsað um hljóðmerkið sem *vita fyrir eyrun* sem lætur þig vita hvar áfangastaðurinn þinn er miðað við staðsetningu þína, í beinni loftlínu. Eins og viti segir hann þér ekki hvernig á að komast þangað – þú gætir þurft að taka margar leiðsagnarvalkostir á leiðinni, rétt eins og seglbátur þarf að taka margar stefnumótandi *beygjur* til að komast nær vitanum. Samfelldur taktfastur hljóðmerkisins er rúmfræðilega aðlagað frá átt áfangastaðarins og hjálpar þér að vera meðvitaður um staðsetningu áfangastaðarins miðað við þig þegar þú gengur. Þegar þú gengur beint í átt að áfangastaðnum, eða beinir símanum að áfangastaðnum, heyrist hærri *hringur*. Þessi eiginleiki gerir þér kleift að ákvarða nákvæmlega átt áfangastaðarins þar sem átt taktfasta hljóðsins getur stundum verið erfið að nema í háværu umhverfi. Þegar þú leitar að hærri *hring* skaltu halda símanum flatt og sveipa símanum hægt; að snúa höfðinu til að benda í sömu átt og síminn mun tryggja að þú fáir bestu rúmfræðilegu hljóðupplifunina.\n\nVitansmyndlíkingin fyrir hönnun vitans hefur nokkrar eðlilegar afleiðingar:\n\n1. Það er engin *rétt* átt til að ferðast með vitanum, heldur velurðu með Soundscape hvernig þú kemst þangað;\n\n2. Hærri *hringing* hjálpar þér aðeins að ákvarða stefnu áfangastaðarins – það er ekki vísbending um hvernig þú ættir að komast þangað;\n\n3. Ef þú veist almennt hvernig á að komast á áfangastaðinn gætirðu viljað slökkva á vitanum stærstan hluta ferðarinnar og kveikja aðeins á honum þegar þú nálgast áfangastaðinn.</string>
     <string name="faq_why_does_beacon_disappear_question">hversvegna hverfur hljóðvitinn stundum?</string>
-    <string name="faq_why_does_beacon_disappear_answer">vitinn beinir notanda í ´rétta átt. Soundscape nýtir þrívíddar hljóð til að hjalpa notanda að átta sig á staðsettningu vitans. Ef notandi nemur staðar lækkar hljóð eða hættir. Það fer svo aftur í gang þegar notandi heldur áfram eða ef símanum er haldið með skjáinn upp og færður til</string>
+    <string name="faq_why_does_beacon_disappear_answer">Hljóðmerki Soundscape er í grundvallaratriðum stefnuvísbending sem segir þér hvert áfangastaðurinn þinn er miðað við þá átt sem þú snýrð í. Þegar Soundscape er óviss um í hvaða átt þú snýrð lækkar það hljóðstyrk merkisins. Oftast gerist þetta ef þú hefur verið að ganga með símann geymdan í vasa eða tösku og hættir að hreyfa þig, til dæmis til að fara yfir götu. Merkið verður háværara þegar þú byrjar að hreyfa þig aftur, eða ef þú heldur símanum flatt og beinir honum í þá átt sem þú snýrð í.</string>
     <string name="faq_beacon_on_address_question">get ég sett vita á heiilisfang?</string>
-    <string name="faq_beacon_on_address_answer">já, það er hægt ef heimliisfangið finnst í gegnum leit í Soundscape</string>
+    <string name="faq_beacon_on_address_answer">Já, þú getur það. Heimilisföng eru ekki sjálfgefin á listanum en hægt er að finna þau með leitarreitnum. Til að vista þetta heimilisfang svo þú þurfir ekki að leita að því aftur geturðu bætt því við sem merki á heimaskjánum með því að velja hnappinn *\"Vista sem merki\"*.</string>
     <string name="faq_beacon_on_home_question">hvernig set ég vita á heimili mitt?</string>
-    <string name="faq_beacon_on_home_answer">soundscape styður að vitar séu settir á heimilisföng. Sláið inn í leitarglugga sem er að finna á heimaskjá, veljið punktinn og vistið sem merki eða virkja hljóðvita</string>
+    <string name="faq_beacon_on_home_answer">Soundscape styður að vitar séu settir á heimilisföng. Sláið inn í leitarglugga sem er að finna á heimaskjá, veljið punktinn og vistið sem merki eða virkja hljóðvita.</string>
     <string name="faq_how_close_to_destination_question">þegar ég set vita á stað hvrsu ´nálægt honum mun Soundscape koma mér?</string>
-    <string name="faq_how_close_to_destination_answer">Soundscape getur veitt nákvæmni allt að nokkrum metrum. Þegar komið er að völdum punkti eða merki lætur forritið vita og endar leiðsögn</string>
+    <string name="faq_how_close_to_destination_answer">Soundscape getur veitt nákvæmni allt að nokkrum metrum. Þegar komið er að völdum punkti eða merki lætur forritið vita og endar leiðsögn.</string>
     <string name="faq_turn_beacon_back_on_question">Get ég virkjað vitann aftur þegar ég nálgast áfangastað?</string>
-    <string name="faq_turn_beacon_back_on_answer">já, þú getur virkjað vitann aftur þegar Soundscape hefur slökkt á honum en óvíst er hvernig gps skilyrði reynast til að koma þér nær</string>
+    <string name="faq_turn_beacon_back_on_answer">já, þú getur virkjað vitann aftur þegar Soundscape hefur slökkt á honum en óvíst er hvernig gps skilyrði reynast til að koma þér nær.</string>
     <string name="faq_road_names_question">hversvegna tilkynnir Soundscape tvisvar um götuheiti þegar ég nálgast gatnamót?</string>
     <string name="faq_road_names_answer">Soundscape segjir frá þeim götum sem tilheyra gatnamótunum og gefur viðeigandi tilkynningar um götur fyrir framan, aftan, vinstri og hægri. Þessi boð heyrast á mismunandi stöðum í heyrnarsviðinu séu heyrnartól notuð.</string>
     <string name="faq_why_not_every_business_question">hversvegna segir Soundscape ekki frá öllum stöðum sem ég nálgast?</string>
-    <string name="faq_why_not_every_business_answer">Soundscape er hannað til að veita ekki of mikið af upplýsingum. Auk þess vinnur Soundscape með open streetmap gangagrunninn sem er samfélagsdrifinn grunnur þar sem hver sem er getur bætt inn og uppfært punkta. Ef til vill er staður sem ekki er lesinn upp ekki merktur inn á grunninn</string>
+    <string name="faq_why_not_every_business_answer">Soundscape er hannað til að veita ekki of mikið af upplýsingum. Auk þess vinnur Soundscape með open streetmap gangagrunninn sem er samfélagsdrifinn grunnur þar sem hver sem er getur bætt inn og uppfært punkta. Ef til vill er staður sem ekki er lesinn upp ekki merktur inn á grunninn.</string>
     <string name="faq_callouts_stopping_in_vehicle_question">hversvegna hætta sumar tilkynningar þegar ég er í bíl?</string>
-    <string name="faq_callouts_stopping_in_vehicle_answer">Til að koma í veg fyrir of miklar upplýsingar greinir Soundscape á milli þess þegar notandi er í bíl eða á gangi. og miðlar upplýsingum eftir því</string>
+    <string name="faq_callouts_stopping_in_vehicle_answer">Til að koma í veg fyrir of miklar upplýsingar greinir Soundscape á milli þess þegar notandi er í bíl eða á gangi. og miðlar upplýsingum eftir því.</string>
     <string name="faq_miss_a_callout_question">Hvað geri ég ef ég missi af tilkynningu eða skil hana ekki?</string>
-    <string name="faq_miss_a_callout_answer">Soundscape heldur lista yfir nýlegar tilkynningar. Þær má finna með því að fara inn í leit á heimaskjánnum og velja nýlegar tilkynningar</string>
+    <string name="faq_miss_a_callout_answer">Soundscape geymir lista yfir nýlegar tilkynningar svo þú getir farið yfir tilkynningar sem þú missti af. Til að finna þetta, bankaðu á leitarstikuna á heimaskjánum í Soundscape. Neðst á þessum skjá er hluti sem heitir *\"Nýlegar tilkynningar\"* þar sem tilkynningin sem þú missti af verður skráð.</string>
     <string name="faq_section_how_soundscape_works">Hvernig virkar Soundscape?</string>
     <string name="faq_supported_phones_question">Hvernig síma keyrir Soundscape á?</string>
-    <string name="faq_supported_phones_answer">Soundscape fyrir Android er hægt að nota með símum sem keyra Android 11 eða nýlegri útgáfur</string>
+    <string name="faq_supported_phones_answer">Soundscape fyrir Android er hægt að nota með símum sem keyra Android 11 eða nýlegri útgáfur.</string>
     <string name="faq_supported_headsets_question">hverskonar heyrnartól ætti ég að nota með Soundscape?</string>
-    <string name="faq_supported_headsets_answer">Val á herynartólum fer eftir smekk notanda en mælt er með að nota heyrnartól sem útiloka ekki umhverfishljóð. Heyrnartólin þurfa að styðja sterio til að nýta þá virkni sem færir hljóð til í sterósviðinu eftir staðsetttningu</string>
+    <string name="faq_supported_headsets_answer">Val á herynartólum fer eftir smekk notanda en mælt er með að nota heyrnartól sem útiloka ekki umhverfishljóð. Heyrnartólin þurfa að styðja sterio til að nýta þá virkni sem færir hljóð til í sterósviðinu eftir staðsetttningu.</string>
     <string name="faq_battery_impact_question">Hvaða áhrif hefur Soundscape á rafhlöðu símans?</string>
-    <string name="faq_battery_impact_answer">líftími rafhlöðu fer eftir aldri og tegund síma. Skjárinn tekur orku og því er mæt með að hafa hann læstann. Einnig er hægt að setja Soundscape í dvala ef ekki er verið að nota það</string>
+    <string name="faq_battery_impact_answer">líftími rafhlöðu fer eftir aldri og tegund síma. Skjárinn tekur orku og því er mæt með að hafa hann læstann. Einnig er hægt að setja Soundscape í dvala ef ekki er verið að nota það.</string>
     <string name="faq_sleep_mode_battery_question">Hvernig nota ég í dvala ham til að spara rafhlöðuna?</string>
-    <string name="faq_sleep_mode_battery_answer">til að setja Soundscape í dvala veldu og virkjaðu í dvala hnappinn á heimaskjánnum. Við það hættir Soundscape að sækja gögn og dregur úr allri virknidreugr</string>
+    <string name="faq_sleep_mode_battery_answer">til að setja Soundscape í dvala veldu og virkjaðu í dvala hnappinn á heimaskjánnum. Við það hættir Soundscape að sækja gögn og dregur úr allri virknidreugr.</string>
     <string name="faq_snooze_mode_battery_question">hvernig nýti ég möguleikann á því að láta Soundscape lura til að spara rafhlöðu?</string>
-    <string name="faq_snooze_mode_battery_answer">Til að láta Soundscape lúra veldu setja í dvala af heimaskjánnum og veldu vakna þegar ég held af stað</string>
+    <string name="faq_snooze_mode_battery_answer">Til að láta Soundscape lúra veldu setja í dvala af heimaskjánnum og veldu vakna þegar ég held af stað.</string>
     <string name="faq_headset_battery_impact_question">hvernig hefur val á heyrnartólum áhrif á rafhlöðu?</string>
-    <string name="faq_headset_battery_impact_answer">ekki hefur fundist merkjanlegur munur á virkni mismunandi heyrnartóla á endingu rafhlöðu. Sambærilegar niðurstöður sjást hvort sem um er að ræða bluetooth eða snúru</string>
+    <string name="faq_headset_battery_impact_answer">ekki hefur fundist merkjanlegur munur á virkni mismunandi heyrnartóla á endingu rafhlöðu. Sambærilegar niðurstöður sjást hvort sem um er að ræða bluetooth eða snúru.</string>
     <string name="faq_background_battery_impact_question">Hvaða áhrif hefur það á rafhlöðu að keyra Soundscape í bakrunni?</string>
-    <string name="faq_background_battery_impact_answer">Soundscape byggir á gögnum um staðsettningu og er notkun rafhlöðu sabærileg við önnur lík forrit. Til að hámarka endingu raflöðu er hægt að minnka birtustig á skjánnum, setja forritið í dvala þegar ekki er verið að nota það og passa upp á hitastig símans sem eyðir meira ef hann er kaldur</string>
+    <string name="faq_background_battery_impact_answer">Soundscape er staðsetningarforrit sem notar staðsetningarþjónustu til að ákvarða staðsetningu þína. Í prófunum okkar notar Soundscape ekki meiri rafhlöðu en meðalkortaforrit; en ef þú hefur áhyggjur af rafhlöðunotkun þegar þú notar símann þinn, þá eru eftirfarandi nokkur ráð sem geta hjálpað til við að draga úr notkun:\n\n1. Slökktu á skjánum eins mikið og mögulegt er þegar þú ert ekki að nota forritið.\n\n2. Þegar þú ert ekki að nota forritið skaltu loka því. Soundscape notar staðsetningarþjónustu stöðugt þegar það er í gangi svo að það viti alltaf staðsetningu þína, jafnvel þegar þú ert ekki á hreyfingu. Ekki gleyma að endurræsa forritið þegar þú heldur áfram ferð þinni.\n\n3. Í köldu veðri skaltu halda símanum heitum þar sem rafhlöðurnar virka verr í kaldara hitastigi.</string>
     <string name="faq_mobile_data_use_question">hvert er ugang gagnanotkunar Soundscape?</string>
-    <string name="faq_mobile_data_use_answer">Sú notkun miðast af því hvernig Soundscape er notað. Reynt er að halda notkun í lágmarki og með því að setja forritið í dvala eða slökkva á því þegar það er ekki í notkun er ekki um umtalsverða notkun að ræða</string>
+    <string name="faq_mobile_data_use_answer">Sú notkun miðast af því hvernig Soundscape er notað. Reynt er að halda notkun í lágmarki og með því að setja forritið í dvala eða slökkva á því þegar það er ekki í notkun er ekki um umtalsverða notkun að ræða.</string>
     <string name="faq_difference_from_map_apps_question">hver er sérstaða Soundscape fram yfir önnur smbærileg forrit?</string>
-    <string name="faq_difference_from_map_apps_answer">Soundscape byggir á tækni sem notar steríosvið heyrnartóla og gefur upplýsingar eftir raunstöðu þeirra. Forritið gerir notanda kleift að ölast upplýsingar um umhverfi sitt sem gera þeim kleift að sannreyna stöðu sína og geta því tekið viðeigandi ákvarðandir í kjölfar þess. Þetta opnar möguleika á könnun og ferðum sem annars myndu reynast erfiðar</string>
+    <string name="faq_difference_from_map_apps_answer">Hljóðmyndin veitir lýsingu á umhverfi þínu til að auðvelda könnun og leiðsögn. Með því að nota rúmfræðilegt hljóð mun Hljóðmyndin kalla fram áhugaverða staði, almenningsgarða, vegi og gatnamót frá þeirri átt sem þau eru í þínu nánasta umhverfi þegar þú gengur. Til dæmis, ef þú ferð fram hjá verslun hægra megin við þig, munt þú heyra nafn verslunarinnar hljóma frá hægri. Þegar þú nálgast gatnamót munt þú heyra hvert götuheiti hljóma frá þeirri átt sem þau fara í, byrjað til vinstri, áfram og til hægri.\n\nÍ stað leiðbeininga beygju fyrir beygju eins og oft er gefið í öðrum kortaforritum, mun Hljóðmyndin spila hljóðmerki í átt að áfangastaðnum þínum, sem gerir þér kleift að komast þangað á þínum forsendum með aukinni vitund um umhverfi þitt og staðsetningu áfangastaðarins. Hljóðmyndin er hönnuð til að keyra í bakgrunni, sem gerir þér kleift að nota leiðbeiningarforrit beygju fyrir beygju, en heldur áfram að veita umhverfisvitund á leiðinni að áfangastaðnum þínum.</string>
     <string name="faq_use_with_wayfinding_apps_question">hvernig nota ég Soundscape með öðrum forritum sem búa til leiðir?</string>
-    <string name="faq_use_with_wayfinding_apps_answer">Soundscape er hugsað til að gefa upplýsingar sem bæta við notkun a forritum sem gefa skref fyrir skref leiðsögn. Heppilegt er að hefja leiðsögn og setja svo hljoðvita á sama punkt í gegnum Soundscape Þannig gefur forritið upplýsingar umpukta, merki og gatnmót semstyðja við leiðbeiningar frá öðrum forritum</string>
+    <string name="faq_use_with_wayfinding_apps_answer">Soundscape er hugsað til að gefa upplýsingar sem bæta við notkun a forritum sem gefa skref fyrir skref leiðsögn. Heppilegt er að hefja leiðsögn og setja svo hljoðvita á sama punkt í gegnum Soundscape Þannig gefur forritið upplýsingar umpukta, merki og gatnmót semstyðja við leiðbeiningar frá öðrum forritum.</string>
     <string name="faq_controlling_what_you_hear_question">hvernig stýri ég upplýsingagjöf frá Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">hægt er að stýra upplýsingagjöf með ýmsum hætti. Með því að tappa tvisvar á skjáinn með teimur fingrum hættir öll upplýsingagjöf. Hún hefst svo aftur þegar komið er að næstu gatnamótum eða punkti en virkja þarf hljóðvitann aftur frá heimaskjá. Hægt er að setja forritið i dvala, slökkva á tilkynningum undir liðnum stillingar og virkja og afvirkja hljóðvita af heimaskjá</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape býður upp á nokkrar leiðir til að stjórna því hvað þú heyrir og hvenær:\n\n1. Stöðva allt hljóð strax: Ýttu tvisvar á skjáinn með tveimur fingrum til að slökkva strax á öllu hljóði, þar á meðal öllum uppköllum sem eru í gangi og vísirinn ef hann er kveiktur. Uppköll halda sjálfkrafa áfram þegar þú nálgast næstu gatnamót eða áhugaverðan stað, en hljóðvísirinn gerir það ekki. Veldu *\"kveikja á hljóðnema vísirsins\"* á aðalskjánum til að halda áfram að heyra í vísirnum.\n\n2. Stöðva sjálfvirk uppköll: Þegar þú ert ekki á ferðinni eða hefur náð áfangastað þarftu líklega ekki að Soundscape haldi áfram að láta þig vita af hlutum í kringum þig. Í stað þess að hætta í appinu geturðu sett Soundscape í blundham og það vaknar aftur þegar þú ferð, eða þú getur sett Soundscape í svefnham og það verður slökkt þar til þú velur að kveikja aftur á því. Einnig er hægt að velja *\"Stillingar\"* úr valmyndinni og velja að slökkva á öllum uppköllum í *\"Stjórna uppköllum\"* hlutanum.\n\n3. Stöðva vísinn: Það eru nokkrar aðstæður þar sem þú gætir stillt áfangastað en ekki þurft að kveikja á hljóðvísinum. Til dæmis gætirðu vitað nákvæmlega hvernig á að komast á áfangastaðinn en vilt fá sjálfvirkar uppfærslur um hversu langt þú ert frá honum. Eða þú gætir vitað nokkurn veginn hvernig á að komast á áfangastaðinn og þarft aðeins hljóðvísinn þegar þú nálgast áfangastaðinn. Hvað sem því líður geturðu valið hvenær þú vilt heyra vísinn með því að ýta á hnappinn *\"þagga vísinn\"*/*\"kveikja á hljóðvísinum\"* á aðalskjánum.</string>
     <string name="faq_holding_phone_flat_question">Þarf ég að halda á símanum?</string>
-    <string name="faq_holding_phone_flat_answer">Þegar þú gengur getur þú sett símann í vasann. Soundscape reiknar út stefnu útfrá gögnum semforritið safnar. Þegar þú stoppar lækkar hljóðstyrkur í hljóðvita en þá má beina símanum til að átta sig á staðsettningu hljóðvita</string>
+    <string name="faq_holding_phone_flat_answer">Þegar þú gengur getur þú sett símann í vasann. Soundscape reiknar út stefnu útfrá gögnum semforritið safnar. Þegar þú stoppar lækkar hljóðstyrkur í hljóðvita en þá má beina símanum til að átta sig á staðsettningu hljóðvita.</string>
     <string name="faq_what_is_osm_question">hvað er open streetmap og hversvega er það notað af Soundscape?</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Óvirkt þar sem leiðin er þegar í upphafi</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Óvirkt þar sem leiðin er þegar í enda</string>
+    <string name="permissions_button" tools:ignore="MissingTranslation">Breyta leyfum í stillingum forritsins</string>
+    <string name="first_launch_beacon_title">Veldu hljóðvita</string>
+    <string name="first_launch_beacon_message_1">Þegar þú ferðast með Soundscape heyrir þú hljóðvitann í þá átt sem áfangastaðurinn er. Með því að fylgja hljóðinu munt þú alltaf vita hvaða leið þú átt að fara.</string>
+    <string name="first_launch_beacon_message_2">Hlusta á tiltæka hljóðvita og veldu þann sem þér hentar best.</string>
+    <string name="first_launch_beacon_message_3">Þetta má breyta síðar í stillingum forritsins.</string>
+    <string name="first_launch_prompt_title">Allt klárt!</string>
+    <string name="first_launch_prompt_message">Þú ert tilbúinn fyrir fyrstu gönguna með Soundscape. Til að prófa núna skaltu velja nálægan áfangastað, hefja hljóðvitann og þú munt heyra hann úr átt áfangastaðarins.</string>
+    <string name="first_launch_prompt_button">Lokið</string>
+    <string name="first_launch_change_language" tools:ignore="MissingTranslation">Breyta tungumáli</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">til að breyta tungumálinu sem forritið notar</string>
+    <string name="help_text_destination_beacons_what">Með því að setja hljóðvita á nálægan stað getur Soundscape haldið þér upplýstum með því að spila hljóðvita úr þeirri átt sem staðurinn er. Hljóðvitann má bæla eða virkja aftur á heimaskjánum. Einnig sýnir Soundscape upplýsingar um staðinn á heimaskjánum, þar á meðal fjarlægðina að honum og heimilisfang hans, ef það er til.</string>
+    <string name="help_text_destination_beacons_when">Það er gagnlegt að setja hljóðvita þegar þú vilt fylgjast með þekktu kennileiti meðan þú kannar nýtt svæði, eða þegar þú ert á leið einhvers staðar og vilt fá upplýsingar um umhverfið á leiðinni. Hljóðvitinn gefur ekki skref-fyrir-skref leiðbeiningar; hann spilar samfellda hljóðsögn sem segir þér í hvaða átt hljóðvitinn er miðað við núverandi staðsetningu þína. Með því að nota hljóðvitann ásamt færni þinni í leiðsögn og jafnvel uppáhalds leiðsagnarforritinu þínu geturðu sjálfur valið hvernig þú ferð að ná til staðarins.</string>
+    <string name="help_text_destination_beacons_how_1">**Til að setja hljóðvita:**\n\nFyrst skoðaðu upplýsingar um stað með því að nota leitargluggann eða ýta á einn af hnöppunum *\"Nálægir staðir\"*, *\"Vistað merki\"* eða *\"Staðsetning\"* og velja stað. Á upplýsingasíðu staðarins geturðu valið hnappinn *\"hljóð viti\"*. Þegar þú ýtir á hann skilar hann þér á heimaskjáinn og kveikir hljóðvita sem kemur úr þeirri átt sem þú valdir. Nafn staðarins ásamt fjarlægð og heimilisfangi, ef tiltækt, verður nú sýnt á aðalskjánum.</string>
+    <string name="help_text_destination_beacons_how_2">**Til að fjarlægja núverandi hljóðvita:**\n\nÝttu einfaldlega á hnappinn *\"Slökkva á hljóðvita\"* á heimaskjánum.</string>
+    <string name="help_text_destination_beacons_how_3">**Til að bæla hljóðvitann:**\n\nÝttu á hnappinn *\"slökkva á hljóðmerki vita\"* við hliðina á hnappnum *\"Slökkva á hljóðvita\"* á heimaskjánum.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að kalla upp nafn þeirra úr þeirri átt sem þau eru. Forritið gerir þetta sjálfkrafa fyrir ýmsa hluti eins og fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvað forritið kallar sjálfkrafa í hlutanum *\"Stilla tilkynningar\"* í *\"Stillingar\"*-skjánum, og þú getur slökkt á öllum tilkynningum þegar þú vilt hafa forritið hljótt.</string>
+    <string name="help_text_automatic_callouts_when_1">**Þegar verið er að kanna nýtt svæði:**\n\nKveiktu á sjálfvirkum tilkynningum og gengðu um til að heyra um mismunandi verslanir, veitingastaði og fleira þegar þú ferð framhjá þeim.</string>
+    <string name="help_text_automatic_callouts_when_2">**Að ganga að ákveðnum stað:**\n\nÞegar þú ert á leið að tilteknum stað geta sjálfvirkar tilkynningar um gatnamót verið sérstaklega gagnlegar. Gatnamóta-tilkynningar segja þér um uppbyggingu gatnamóta þegar þú nálgast þau og staðfesta veginn sem þú ert á þegar þú yfirgefur þau.</string>
+    <string name="help_text_automatic_callouts_when_3">**Þegar þú þarft þögn:**\n\nÞegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökkt mun forritið aðeins gefa þér upplýsingar ef þú ýtir sjálfur á einn af hnöppunum *\"mín staðsettning\"*, *\"nálæg merki\"*, *\"í kringum mig\"* eða *\"fyrir framan mig\"*.</string>
+    <string name="help_text_automatic_callouts_how_1">**Að kveikja á eða slökkva á tilkynningum:**\n\nAð slökkva á tilkynningum gerir forritið hljótt. Þú getur kveikt á eða slökkt á tilkynningum í hlutanum *\"Stilla tilkynningar\"* á *\"Stillingar\"*-skjánum þar sem þú getur ýtt á rofann *\"Heimila tilkynningar\"* til að kveikja eða slökkva á þeim. Þú getur einnig kveikt á eða slökkt á tilkynningum með því að nota \"stökkva áfram\" skipunina (tvísmelltu og haltu niðri) ef heyrnartólin þín hafa stjórnhnappa. Einnig getur þú notað hnappinn *\"fara í dvala\"* efst í hægra horninu á heimaskjánum til að stöðva Soundscape frá að gefa tilkynningar þar til þú velur að vekja það aftur.</string>
+    <string name="help_text_automatic_callouts_how_2">**Að stjórna hvaða tilkynningar þú heyrir:**\n\nTil að velja hvaða tegundir atriða Soundscape mun kalla sjálfkrafa, farðu í *\"Stillingar\"*-skjáinn úr valmyndinni á *\"Heimaskjá\"*. Hluti *\"Stilla tilkynningar\"* í *\"Stillingar\"*-skjánum inniheldur lista yfir tegundir atriða sem forritið getur kallað upp. Hver liður hefur rofa sem þú getur kveikt eða slökkt á. Ef þú vilt slökkva á öllum tilkynningum skaltu ýta á rofann *\"Heimila tilkynningar\"* efst á listanum.</string>
+    <string name="help_text_ahead_of_me_how">Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *\"fyrir framan mig\"* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *\"fyrir framan mig\"* hnappinn og þú munt heyra nokkur áhugaverð staði sem eru um það bil fyrir framan þig.</string>
+    <string name="help_text_remote_control_what">Þú getur nálgast ákveðna eiginleika í Soundscape með hjálp fjölmiðlastýringahnappa á heyrnartólunum þínum. Þetta virkar með bæði snúru- og Bluetooth-heyrnartólum sem hafa hnappa eins og Spila, Hlé, Næsta, Fyrra o.s.frv. Mismunandi heyrnartól geta haft mismunandi hnappa, svo skoðaðu listann yfir aðgerðir hér að neðan til að sjá hvaða hnöppum þú hefur aðgang að.</string>
+    <string name="help_text_remote_control_when">Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er í gangi. Þetta gildir hvort sem þú ert í Soundscape, forritið keyrir í bakgrunni eða tækið er læst. Athugaðu samt að fjölmiðlahnappar á heyrnartólum virka ekki fyrir Soundscape ef annað forrit er að spila hljóð, til dæmis tónlist, hlaðvörp eða myndbönd.</string>
+    <string name="help_text_remote_control_how">Þú getur notað eftirfarandi aðgerðir í Soundscape með fjölmiðlastýringahnöppum heyrnartóla þinna:\n\n⏯ Spila/Hlé: Þegja núverandi tilkynningar og ef hljóðviti er settur, kveikja eða slökkva á hljóðvitanum.\n\n⏭ Næsta: Lesa upp *\"mín staðsettning\"*.\n\n⏮ Fyrra: Endurtaka síðustu tilkynningu.\n\n⏩ Sleppa áfram: Kveikja/slökkva á sjálfvirkum tilkynningum.\n\n⏪ Sleppa aftur á bak: Lesa upp *\"í kringum mig\"*.</string>
+    <string name="help_text_markers_content_1">Með Soundscape geturðu merkt heiminn þinn og það sem þér þykir mikilvægt, eins og nál á korti.</string>
+    <string name="help_text_markers_content_2">Þú getur merkt hluti sem eru persónulegir og þér mikilvægir, eins og heimilið þitt, vinnustaðinn eða uppáhalds matvöruverslunina þína. Þú getur merkt hvaða stað eða heimilisfang sem er en einnig hluti sem venjulega eru ekki á kortum, til dæmis innganga að byggingum eða görðum, hnappa fyrir gangbrautarljós, gangbrautir eða brýr, strætóstopp eða jafnvel uppáhaldstré hundsins þíns, og nota þessi atriði sem viðmiðun við gönguferðir.</string>
+    <string name="help_text_markers_content_3">Til að heyra um vistuð merki mun Soundscape sjálfkrafa tilkynna þau þegar þú gengur framhjá eða nálgast þau, eða þú getur notað hnappinn *\"nálæg merki\"* neðst á heimaskjánum til að heyra tilkynningar um vistuð merki sem heyrist frá þeim áttum þar sem þau eru. In addition, þú getur sett hljóðvita á hvaða vistað merki sem er. Þá heyrist hljóðviti Soundscape sem þú þekkir og þú getur notað hann eins og venjulega.</string>
+    <string name="help_text_creating_markers_content_1">Þú getur búið til merki á þrjá vegu: með því að leita að staðnum sem þú vilt vista með leitarstikunni, finna stað með hnappinum *\"nálægir staðir\"*, eða nota hnappinn *\"Notaðu núverandi staðsetningu\"*, sem allir eru á heimaskjánum í Soundscape. Þegar þú hefur fundið staðinn sem þú vilt, veldu hann og þá opnast skjárinn *\"upplýsingar um staðsetningu\"*. Á þessum skjá skaltu velja hnappinn *\"vista merki\"*.</string>
+    <string name="help_text_creating_markers_content_2">Nú færðu kost á að sérsníða þetta merki. Þú getur breytt nafni merkisins og bætt við athugasemd sem verður lesin upp ásamt merkinu til að gefa frekari upplýsingar. Þegar þú ert búinn skaltu velja *\"lokið\"* til að vista merkið.</string>
+    <string name="help_text_customizing_markers_content_1">Ef þú vilt endurnefna merki sem þú bjóst til eða bæta við athugasemd geturðu valið merkið í flipanum *\"merki\"* á síðunni *\"merki og leiðir\"* og síðan valið hnappinn *\"uppfæra merki\"*. Með þessu geturðu gefið merkjum lýsandi eða gagnleg gælunöfn og bætt við lengri lýsingu í athugasemdarreitinn.</string>
+    <string name="help_text_customizing_markers_content_2">Frá þessum *\"Uppfæra\"* skjá geturðu einnig eytt merki ef þú þarft það ekki lengur.</string>
+    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">Inngangur</string>
+    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">aðalinngangur</string>
+    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s frá %3$s</string>
+    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="faq_what_is_osm_answer">Soundscape byggir á landfræðilegum kortagögnum til að veita raddtilkynningar í forritinu. Aðal kortagjafinn sem við notum er Open Street Map (www.openstreetmap.org), ríkt samfélagsritað kortakerfi sem gerir stofnunum og einstaklingum kleift að bæta gæði og nákvæmni upplýsinga og aðgengi rýma sinna með ritunarverkfærum Open Street Map.</string>
+    <string name="faq_tip_beacon_quiet">Ef þú setur símann í vasann og hættir að hreyfa þig dofnar hljóðvitinn því Soundscape getur ekki greint hvaða átt þú snýrð. Leystu þetta með því að byrja aftur að ganga eða taka símann upp og halda honum flötum.</string>
+    <string name="faq_tip_setting_beacon_on_address">Þú getur sett hljóðvita á hvaða heimilisfang sem er. Frá aðalskjá Soundscape skaltu leita að heimilisfanginu. Eftir að þú velur heimilisfangið úr leitarniðurstöðunum opnast skjárinn *\"upplýsingar um staðsetningu\"* sem hefur valkostinn *\"hljóð viti\"* á því heimilisfangi. Á þennan hátt geturðu stillt hljóðvita á fyrirtæki, staði, áhugaverða staði og íbúðarhúsnæði sem eru ekki í Open Street Map.</string>
+    <string name="faq_tip_finding_bus_stops">Þú getur fundið nærliggjandi strætóstopp með því að velja síuna *\"almenningssamgöngur\"* í listanum *\"nálægir staðir\"*.</string>
+    <string name="faq_tip_turning_beacon_off">Þú getur kveikt og slökkt á taktfast hljóði hljóðvita með þögunarhnappnum á heimaskjánum. Ef hljóðvitinn er þaggaður færð þú samt reglulega uppfærslur um fjarlægðina að áfangastaðnum, um það bil á 50 metra fresti.</string>
+    <string name="faq_tip_turning_off_auto_callouts">Ef þú vilt enn eiga samskipti við Soundscape en vilt ekki heyra sjálfvirkar tilkynningar geturðu slökkt á tilkynningum undir *\"Stilla tilkynningar\"* í *\"Stillingar\"* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape geturðu sett það í annað hvort dvalarham eða lúra (Snooze) með hnappnum *\"fara í dvala\"* á heimaskjánum.</string>
+    <string name="faq_tip_hold_phone_flat">Soundscape virkar best þegar þú heldur símanum flötum með skjáinn snúinn upp að himni og topp síma snúinn frá þér.</string>
+    <string name="faq_tip_create_marker_at_bus_stop">Ef þú ferð reglulega með ákveðna strætóleið skaltu setja ástigningarsæti og útskipunarstopp sem merki. Þannig verða þau vistuð svo auðvelt sé að finna þau aftur; farðu í *\"Stjórna merkjum\"* úr valmyndinni og finndu þau í listanum. Þú getur sett hljóðvita á þau og fengið reglulegar uppfærslur um hve nálægt þú ert niðurstigningarstöðinni. Ath: þú getur slökkt á taktfast hljóðinu en fengið samt fjarlægjuuppfærslur á leiðinni.</string>
+    <string name="no_language_selected">Ekkert tungumál valið</string>
+    <string name="first_launch_permissions_notification">Tilkynningar</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Við erum að keyra þessa staðsetningarþjónustu í forgrunni</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">hætta við leit</string>
+    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">lestastöð</string>
+    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s lestastöð</string>
+    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">sporvagnastopp</string>
+    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s sporvagnastopp</string>
+    <string name="osm_tag_subway" tools:ignore="MissingTranslation">neðanjarðarlestarstöð</string>
+    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s neðanjarðarlestarstöð</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">ferjuhöfn</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Hljóðstillingar</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Aðgengisstillingar</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Ljóst eða dökkt þema</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">Sjálfvirkt</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Nota ljóst þema</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">Ljóst</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">Dökkt</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Andstæða þema</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Venjulegt</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Miðlungs</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">Hátt</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s er val %2$s af %3$s</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">halda</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">nota</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Hætta við forskoðun götunnar</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Virkja skráningu ferða</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Virkja aðgengilegan kortastíl</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">Sýna kort á skjánum</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Stillingar fyrir villuleit</string>
+    <string name="settings_search_results_language" tools:ignore="MissingTranslation">Leitartungumál</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Deila ferðaupptöku</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s til %2$s um %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s til %2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s sem tengir %2$s og %3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s um %2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">Gangstígur við %1$s</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">Gangstígur</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">blindgata</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">Ónettengd kort</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">Upplýsingar um ónettengt kort</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">Hleður…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Sækir %s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Þjónninn undirbýr %s fyrir niðurhal. Þetta getur tekið nokkrar mínútur og síðan byrjar niðurhalið sjálfkrafa.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s laust pláss</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">Kort eru vistuð á %1$s sem hefur %2$s laust pláss</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Niðurhlaðin kort</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Nálæg niðurhlaðin kort</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Sæki lista yfir niðurhlaðin kort</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Eyða niðurhlaðnu korti</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">Hlaða niður korti</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Stærð í símanum: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Stærð niðurhals: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nafn korts: %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kortið inniheldur eftirfarandi staði: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Þessir staðir eru einnig þekktir sem: %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Geymsla fyrir offline-kort</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Til að Soundscape virki án nettengingar er hægt að hlaða niður kortum og vista þau í símanum. Sjálfgefið er að nota ytri geymslu í símanum þínum, en hér geturðu valið annan stað.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Nota aðeins Wi‑Fi til að hlaða niður kortum</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">Hreinsa texta</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">breyta nafni merkisins</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">bæta við valfrjálsri athugasemd til að auðkenna þetta merki síðar</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">breyta nafni leiðarinnar</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">bæta við valfrjálsri lýsingu á þessari leið</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">Bæta við atriði</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">Bæta við leið</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Leið %1$s, punktur %2$s af %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">Heimaskjár Soundscape</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape kannar notkun nýstárlegrar hljóðtækni til að gera fólki kleift að byggja upp ríkari meðvitund um umhverfi sitt og þannig auka sjálfstraust og sjálfstæði við ferðir.</string>
 </resources>
