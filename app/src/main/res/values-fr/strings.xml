@@ -509,4 +509,5 @@
     <string name="marker_name_description_hint" tools:ignore="MissingTranslation">modifier le nom du marqueur</string>
     <string name="offline_maps_caching" tools:ignore="MissingTranslation">Le serveur prépare %s pour le téléchargement. Cela peut prendre quelques minutes, puis le téléchargement démarrera automatiquement.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Utilisez le Wi-Fi uniquement pour télécharger les cartes</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Échec du téléchargement des données de la carte hors ligne</string>
 </resources>
