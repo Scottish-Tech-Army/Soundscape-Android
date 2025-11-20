@@ -509,4 +509,5 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Route %1$s, routepunt %2$s van %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape-startscherm</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape onderzoekt het gebruik van innovatieve, op audio gebaseerde technologie om mensen te helpen een rijker bewustzijn van hun omgeving op te bouwen, zodat ze zich zelfverzekerder en zelfstandiger kunnen verplaatsen.</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Het downloaden van offline kaartgegevens is mislukt</string>
 </resources>
