@@ -502,9 +502,9 @@
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Usar apenas Wi-Fi para transferir o mapa</string>
     <string name="text_field_clear_text" tools:ignore="MissingTranslation">Limpar Texto</string>
     <string name="marker_name_description_hint" tools:ignore="MissingTranslation">editar o nome do marco</string>
-    <string name="annotation_description_hint" tools:ignore="MissingTranslation">Faça duplo toque para adicionar uma nota opcional que o ajude a reconhecer este marco mais tarde</string>
-    <string name="route_name_description_hint" tools:ignore="MissingTranslation">Faça duplo toque para editar o nome da rota</string>
-    <string name="route_description_description_hint" tools:ignore="MissingTranslation">Faça duplo toque para adicionar uma descrição opcional à rota</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">adicionar uma nota opcional que o ajude a reconhecer este marco mais tarde</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">editar o nome da rota</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">adicionar uma descrição opcional à rota</string>
     <string name="fab_add_item" tools:ignore="MissingTranslation">Adicionar Item</string>
     <string name="fab_add_route" tools:ignore="MissingTranslation">Adicionar Rota</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Rota %1$s, ponto de passagem %2$s de %3$s</string>
