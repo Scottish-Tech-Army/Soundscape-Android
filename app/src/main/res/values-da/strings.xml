@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Dobbelttryk for at oprette en ny rute"</string>
     <string name="route_end_completed_accessibility">"Rute afsluttet! %s"</string>
     <string name="route_detail_action_previous">"Forrige waypoint"</string>
-    <string name="route_detail_action_previous_hint">Dobbelttryk for at flytte lydfyret til det forrige vejpunkt</string>
+    <string name="route_detail_action_previous_hint">flytte lydfyret til det forrige vejpunkt</string>
     <string name="route_detail_action_next">"Næste waypoint"</string>
-    <string name="route_detail_action_next_hint">Dobbelttryk for at flytte lydfyret til det næste vejpunkt</string>
+    <string name="route_detail_action_next_hint">flytte lydfyret til det næste vejpunkt</string>
     <string name="route_detail_edit_description">"Beskrivelse"</string>
     <string name="route_detail_edit_waypoints_button">"Tilføj vejpunkter"</string>
     <string name="route_detail_edit_delete">"Slet rute"</string>
