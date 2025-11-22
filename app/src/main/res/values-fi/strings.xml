@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Kaksoisnapauta luodaksesi uuden reitin"</string>
     <string name="route_end_completed_accessibility">"Reitti kuljettu! %s"</string>
     <string name="route_detail_action_previous">"Edellinen reittipiste"</string>
-    <string name="route_detail_action_previous_hint">Kaksoisnapauta siirtääksesi äänimajakan edelliseen reittipisteeseen</string>
+    <string name="route_detail_action_previous_hint">siirtääksesi äänimajakan edelliseen reittipisteeseen</string>
     <string name="route_detail_action_next">"Seuraava reittipiste"</string>
-    <string name="route_detail_action_next_hint">Kaksoisnapauta siirtääksesi äänimajakan seuraavaan reittipisteeseen</string>
+    <string name="route_detail_action_next_hint">siirtääksesi äänimajakan seuraavaan reittipisteeseen</string>
     <string name="route_detail_edit_description">"Kuvaus"</string>
     <string name="route_detail_edit_waypoints_button">"Lisää reittipisteitä"</string>
     <string name="route_detail_edit_delete">"Poista reitti"</string>
