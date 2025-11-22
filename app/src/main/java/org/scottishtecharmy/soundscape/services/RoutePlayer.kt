@@ -52,6 +52,8 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         Log.e(TAG, "startBeacon")
         currentMarker = 0
 
+        Firebase.analytics.logEvent("startBeacon", null)
+
         val marker = MarkerEntity(
             name = beaconName,
             longitude = beaconLocation.longitude,
