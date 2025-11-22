@@ -501,10 +501,10 @@
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Para que o Soundscape possa ser usado sem conexão com a Internet, é possível baixar mapas e armazená-los no telefone. O local de armazenamento padrão é qualquer armazenamento externo do seu aparelho, mas você pode selecionar um destino alternativo aqui.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Usar apenas Wi‑Fi para download de mapas</string>
     <string name="text_field_clear_text" tools:ignore="MissingTranslation">Dê um toque duplo para limpar o texto</string>
-    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">Dê um toque duplo para editar o nome do favorito</string>
-    <string name="annotation_description_hint" tools:ignore="MissingTranslation">Dê um toque duplo para adicionar uma nota opcional que o ajude a reconhecer este favorito mais tarde</string>
-    <string name="route_name_description_hint" tools:ignore="MissingTranslation">Dê um toque duplo para editar o nome da rota</string>
-    <string name="route_description_description_hint" tools:ignore="MissingTranslation">Dê um toque duplo para adicionar uma descrição opcional para esta rota</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">para editar o nome do favorito</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">adicionar uma nota opcional que o ajude a reconhecer este favorito mais tarde</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">editar o nome da rota</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">adicionar uma descrição opcional para esta rota</string>
     <string name="fab_add_item" tools:ignore="MissingTranslation">Dê um toque duplo para adicionar um item</string>
     <string name="fab_add_route" tools:ignore="MissingTranslation">Dê um toque duplo para adicionar uma rota</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Rota %1$s no localizador %2$s de %3$s</string>
