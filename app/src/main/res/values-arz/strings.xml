@@ -60,9 +60,9 @@
     <string name="route_detail_action_create_hint">إنشاء طريق جديد</string>
     <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك %s</string>
     <string name="route_detail_action_previous">نقطة الطريق السابقة</string>
-    <string name="route_detail_action_previous_hint">اضغط مرتين لضبط الاشاره على النقطه السابقه</string>
+    <string name="route_detail_action_previous_hint">لضبط الاشاره على النقطه السابقه</string>
     <string name="route_detail_action_next">نقطة الطريق التالية</string>
-    <string name="route_detail_action_next_hint">اضغط مرتين لضبط الاشاره على النقطه التاليه</string>
+    <string name="route_detail_action_next_hint">لضبط الاشاره على النقطه التاليه</string>
     <string name="route_detail_edit_description">وصف</string>
     <string name="route_detail_edit_waypoints_button">أضف نقاط الطرق</string>
     <string name="route_detail_edit_delete">حذف الطريق</string>
