@@ -52,9 +52,9 @@
     <string name="route_detail_action_create_hint">"Dobbelttrykk for å opprette en ny rute"</string>
     <string name="route_end_completed_accessibility">"Ruten er fullført. %s"</string>
     <string name="route_detail_action_previous">"Forrige veipunkt"</string>
-    <string name="route_detail_action_previous_hint">Dobbelttrykk for å flytte lydsignalet til forrige veipunkt</string>
+    <string name="route_detail_action_previous_hint">flytte lydsignalet til forrige veipunkt</string>
     <string name="route_detail_action_next">"Neste veipunkt"</string>
-    <string name="route_detail_action_next_hint">Dobbelttrykk for å flytte lydsignalet til neste veipunkt</string>
+    <string name="route_detail_action_next_hint">flytte lydsignalet til neste veipunkt</string>
     <string name="route_detail_edit_description">"Beskrivelse"</string>
     <string name="route_detail_edit_waypoints_button">"Legg til veipunkter"</string>
     <string name="route_detail_edit_delete">"Slett rute"</string>
