@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
@@ -186,6 +187,7 @@ class EntranceMatching {
                                 entrance.featureSubClass = poi.featureSubClass
                                 entrance.featureType = poi.featureType
                                 entrance.featureValue = poi.featureValue
+                                entrance.superCategory = poi.superCategory
                                 entrance.properties?.set("entrance", entranceDetails.entranceType)
 
                                 // This is an entrance, so remove any marking that the POI has
@@ -217,6 +219,7 @@ class EntranceMatching {
                             entrance.featureSubClass = "subway"
                             entrance.featureType = "railway"
                             entrance.featureValue = "subway"
+                            entrance.superCategory = SuperCategoryId.MOBILITY
                             confected = true
                         }
                         else if((entranceDetails.properties?.get("railway") == "train_station_entrance") ||
@@ -226,11 +229,13 @@ class EntranceMatching {
                             entrance.featureSubClass = "station"
                             entrance.featureType = "railway"
                             entrance.featureValue = "station"
+                            entrance.superCategory = SuperCategoryId.MOBILITY
                             confected = true
                         }
                         if(confected)  {
                             entrance.properties?.set("entrance", entranceDetails.entranceType)
                             entrance.name = entranceDetails.name
+                            entrance.superCategory = SuperCategoryId.PLACE
                             collection.addFeature(entrance)
                             //println("Confected Entrance: ${entrance.name} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.featureClass} ${entrance.featureSubClass}")
                         }

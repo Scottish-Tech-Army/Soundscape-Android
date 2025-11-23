@@ -1196,7 +1196,8 @@ class MvtTileTest {
         gridState.start(
             null,
             offlineExtractPath,
-            true)
+            true
+        )
         val enabledCategories = emptySet<String>().toMutableSet()
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
         enabledCategories.add(MOBILITY_KEY)
@@ -1206,25 +1207,36 @@ class MvtTileTest {
         val locations: List<Pair<LngLatAlt, Boolean>> = listOf(
             Pair(sixtyAcresCloseTestLocation, true),
             Pair(longAshtonRoadTestLocation, true),
-            Pair(LngLatAlt(51.69046,32.66160), false),
+            Pair(LngLatAlt(51.69046, 32.66160), false),
             Pair(woodlandWayTestLocation, true),
             Pair(centralManchesterTestLocation, true),
-            Pair(LngLatAlt(51.69046,32.66160), false),
+            Pair(LngLatAlt(51.69046, 32.66160), false),
             Pair(failandTestLocation, true),
-            Pair(LngLatAlt(51.69046,32.66160), false),
+            Pair(LngLatAlt(51.69046, 32.66160), false),
             Pair(edinburghTestLocation, true),
             Pair(glasgowTestLocation, true),
         )
 
         runBlocking {
-            for(location in locations) {
+            for (location in locations) {
                 println("Test ${location.first}")
-                assertEquals(gridState.locationUpdate(
-                    location.first,
-                    enabledCategories,
-                    true
-                ), location.second)
+                assertEquals(
+                    gridState.locationUpdate(
+                        location.first,
+                        enabledCategories,
+                        true
+                    ), location.second
+                )
             }
         }
+    }
+
+    @Test
+    fun timeParsingPerformance() {
+        val duration = measureTime {
+            val gridState =
+                getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 2)
+        }
+        println("Processing time $duration")
     }
 }

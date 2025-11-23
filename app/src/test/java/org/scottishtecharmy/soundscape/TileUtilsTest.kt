@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -33,10 +34,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getGpsFromNormalizedMapCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
 
@@ -133,7 +134,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2625, testPoiCollection.features.size)
+        Assert.assertEquals(2630, testPoiCollection.features.size)
     }
 
     @Test
@@ -143,7 +144,7 @@ class TileUtilsTest {
 
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
         Assert.assertEquals(562, testSuperCategoryPoiCollection.features.size)
     }
 
@@ -154,7 +155,7 @@ class TileUtilsTest {
 
         // select "object" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.OBJECT, testPoiCollection)
         Assert.assertEquals(101, testSuperCategoryPoiCollection.features.size)
 
         for(feature in testSuperCategoryPoiCollection) {
@@ -170,7 +171,7 @@ class TileUtilsTest {
 
         // select "information" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("information", testPoiCollection)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.INFORMATION, testPoiCollection)
         Assert.assertEquals(7, testSuperCategoryPoiCollection.features.size)
 
     }
@@ -182,8 +183,8 @@ class TileUtilsTest {
 
         // select "place" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(1383, testSuperCategoryPoiCollection.features.size)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, testPoiCollection)
+        Assert.assertEquals(1314, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -193,7 +194,7 @@ class TileUtilsTest {
 
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, testPoiCollection)
         Assert.assertEquals(214, testSuperCategoryPoiCollection.features.size)
     }
 
@@ -204,7 +205,7 @@ class TileUtilsTest {
 
         // select "safety" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.SAFETY, testPoiCollection)
         Assert.assertEquals(256, testSuperCategoryPoiCollection.features.size)
     }
 
@@ -249,16 +250,15 @@ class TileUtilsTest {
         if (placesAndLandmarks) {
             if (mobility) {
                 val placeSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("place", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, poiCollection)
 
                 val tempFeatureCollection = FeatureCollection()
                 for (feature in placeSuperCategory.features) {
                     val mvtFeature = feature as MvtFeature
                     if (mvtFeature.featureValue != "house") {
                         if (mvtFeature.name != null) {
-                            val superCategorySet = getSuperCategoryElements("place")
                             for (property in feature.properties!!) {
-                                if (superCategorySet.contains(property.value)) {
+                                if (superCategoryMap[property.value] == SuperCategoryId.PLACE) {
                                     tempFeatureCollection.features.add(feature)
                                 }
                             }
@@ -274,12 +274,12 @@ class TileUtilsTest {
                 //println(cleanedPlaceString)
 
                 val landmarkSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("landmark", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, poiCollection)
                 for (feature in landmarkSuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
                 val mobilitySuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("mobility", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, poiCollection)
                 for (feature in mobilitySuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
@@ -309,7 +309,7 @@ class TileUtilsTest {
                 // and returns that as the nearest POI which isn't what original Soundscape does
                 // so I need to throw away houses
                 val placeSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("place", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, poiCollection)
                 for (feature in placeSuperCategory.features) {
                     val mvtFeature = feature as MvtFeature
                     if (mvtFeature.featureType != "building" && mvtFeature.featureValue != "house") {
@@ -317,7 +317,7 @@ class TileUtilsTest {
                     }
                 }
                 val landmarkSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("landmark", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, poiCollection)
                 for (feature in landmarkSuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
@@ -326,7 +326,7 @@ class TileUtilsTest {
             if (mobility) {
                 //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
                 val mobilitySuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("mobility", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, poiCollection)
                 for (feature in mobilitySuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }

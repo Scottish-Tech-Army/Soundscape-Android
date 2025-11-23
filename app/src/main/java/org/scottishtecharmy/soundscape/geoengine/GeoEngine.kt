@@ -41,6 +41,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
@@ -313,7 +314,7 @@ class GeoEngine {
                     val properties : HashMap<String, Any?> = hashMapOf()
                     geoFeature.name = marker.name
                     properties["description"] = marker.fullAddress
-                    properties["category"] ="marker"
+                    geoFeature.superCategory = SuperCategoryId.MARKER
                     geoFeature.properties = properties
                     featureCollection.addFeature(geoFeature)
                 }
@@ -1002,7 +1003,7 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
     val name = feature.name
     val entranceType = feature.properties?.get("entrance") as String?
     val featureValue = feature.featureValue
-    val isMarker = feature.properties?.get("category") == "marker"
+    val isMarker = feature.superCategory == SuperCategoryId.MARKER
 
     if(localizedContext == null) {
         if(name == null) {

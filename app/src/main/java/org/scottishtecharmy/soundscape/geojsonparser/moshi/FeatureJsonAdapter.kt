@@ -7,6 +7,7 @@ import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.ToJson
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter.Companion.OPTIONS
 
@@ -67,6 +68,23 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
             value.properties?.set("class", value.featureClass)
             value.properties?.set("subclass", value.featureSubClass)
             value.properties?.set("feature_type", value.featureType)
+
+            val category = when(value.superCategory) {
+                SuperCategoryId.UNCATEGORIZED -> ""
+                SuperCategoryId.SETTLEMENT_CITY -> "city"
+                SuperCategoryId.SETTLEMENT_TOWN -> "town"
+                SuperCategoryId.SETTLEMENT_VILLAGE -> "village"
+                SuperCategoryId.SETTLEMENT_HAMLET -> "hamlet"
+                SuperCategoryId.OBJECT -> "object"
+                SuperCategoryId.PLACE -> "place"
+                SuperCategoryId.INFORMATION -> "information"
+                SuperCategoryId.MOBILITY -> "mobility"
+                SuperCategoryId.SAFETY -> "safety"
+                SuperCategoryId.LANDMARK -> "landmark"
+                SuperCategoryId.MARKER -> "marker"
+            }
+
+            value.properties?.set("category", category)
             value.properties?.set("feature_value", value.featureValue)
         }
 

@@ -20,6 +20,7 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 
@@ -186,7 +187,7 @@ class VisuallyCheckOutput {
         // select super category
         //"information", "object", "place", "landmark", "mobility", "safety"
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
         val superCategory = moshi.adapter(FeatureCollection::class.java).toJson(testSuperCategoryPoiCollection)
         // copy and paste into GeoJSON.io
         println(superCategory)
