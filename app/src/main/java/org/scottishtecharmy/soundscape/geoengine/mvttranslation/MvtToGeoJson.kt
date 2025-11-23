@@ -4,6 +4,7 @@ import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.MIN_MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
@@ -12,7 +13,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
 import vector_tile.VectorTile
+import kotlin.collections.get
 
 fun pointIsOffTile(x: Int, y: Int) : Boolean {
     return (x < 0 || y < 0 || x >= 4096 || y >= 4096)
@@ -29,6 +32,7 @@ open class MvtFeature : Feature() {
     var featureSubClass : String? = null
     var featureType : String? = null
     var featureValue : String? = null
+    var superCategory : SuperCategoryId = SuperCategoryId.UNCATEGORIZED
 }
 
 
@@ -569,16 +573,24 @@ fun vectorTileToGeoJson(tileX: Int,
                 geoFeature.featureClass = featureClass
                 geoFeature.featureSubClass = featureSubClass
                 geoFeature.properties = properties
-                if(translateProperties(geoFeature)) {
+                if (translateProperties(geoFeature)) {
+                    // Categorise as we go, picking the highest ranking category
+                    val ft = superCategoryMap[geoFeature.featureType] ?: SuperCategoryId.UNCATEGORIZED
+                    val fv = superCategoryMap[geoFeature.featureValue] ?: SuperCategoryId.UNCATEGORIZED
+                    if(ft > fv)
+                        geoFeature.superCategory = ft
+                    else
+                        geoFeature.superCategory = fv
+
                     if ((layer.name == "poi") || (layer.name == "place")) {
                         // If this is an un-named garden, then we can discard it
-                        if(geoFeature.featureValue == "garden") {
-                            if(name == null)
+                        if (geoFeature.featureValue == "garden") {
+                            if (name == null)
                                 continue
                         }
                         if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
-                            if(!mapPolygonFeatures.contains(id)) {
-                                mapPolygonFeatures[id] = MutableList(1){ geoFeature }
+                            if (!mapPolygonFeatures.contains(id)) {
+                                mapPolygonFeatures[id] = MutableList(1) { geoFeature }
                             } else {
                                 mapPolygonFeatures[id]!!.add(geoFeature)
                             }
@@ -586,13 +598,19 @@ fun vectorTileToGeoJson(tileX: Int,
                             mapPointFeatures[id] = geoFeature
                         }
                     } else if (layer.name == "transportation") {
-                        if(geoFeature.geometry.type != "LineString") {
+                        if (geoFeature.geometry.type != "LineString") {
                             collection.addFeature(geoFeature)
                         } else {
-                            if((featureClass == "transit") || (featureClass == "rail"))
+                            if ((featureClass == "transit") || (featureClass == "rail"))
                                 transitGenerator.addFeature(geoFeature)
                             else
                                 wayGenerator.addFeature(geoFeature)
+
+                            if(geoFeature.superCategory != SuperCategoryId.UNCATEGORIZED) {
+                                // Features like Piers and steps are POIs as well as ways, so ensure
+                                // that we add them
+                                collection.addFeature(geoFeature)
+                            }
                         }
                     } else {
                         mapBuildingFeatures[id] = geoFeature
@@ -671,7 +689,7 @@ fun vectorTileToGeoJson(tileX: Int,
  * translateProperties takes the properties stored in the MVT and translates them into a set of
  * foreign properties that nearer matches those returned by the soundscape-backend.
  *
- * @param properties is a map of the tags from the MVT feature
+ * @param feature is the MvtFeature to have its properties translated
  *
  * @return a map of properties that can be used in the same way as those from soundscape-backend
  */

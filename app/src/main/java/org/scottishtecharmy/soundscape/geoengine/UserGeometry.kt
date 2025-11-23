@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.math.abs
@@ -146,18 +147,18 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
     /**
      * getTriggerRange returns the distance to use when detecting POIs to call out
      */
-    fun getTriggerRange(category: String) : Double {
+    fun getTriggerRange(category: SuperCategoryId) : Double {
         return when(category) {
-            "object",
-            "safety" -> transform(10.0)
+            SuperCategoryId.OBJECT,
+            SuperCategoryId.SAFETY -> transform(10.0)
 
-            "place",
-            "information",
-            "mobility" -> transform(20.0)
+            SuperCategoryId.PLACE,
+            SuperCategoryId.INFORMATION,
+            SuperCategoryId.MOBILITY -> transform(20.0)
 
-            "landmark" -> transform(50.0)
+            SuperCategoryId.LANDMARK -> transform(50.0)
 
-            "marker" -> transform(50.0)
+            SuperCategoryId.MARKER -> transform(50.0)
 
             else -> transform(0.0)
         }
@@ -166,16 +167,16 @@ class UserGeometry(val location: LngLatAlt = LngLatAlt(),
     /**
      * getTriggerRange returns the distance if a POI is still in proximity after a callout
      */
-    fun getProximityRange(category: String) : Double {
+    fun getProximityRange(category: SuperCategoryId) : Double {
         return when(category) {
-            "object",
-            "safety" -> transform(20.0)
+            SuperCategoryId.OBJECT,
+            SuperCategoryId.SAFETY -> transform(20.0)
 
-            "place",
-            "information",
-            "mobility" -> transform(30.0)
+            SuperCategoryId.PLACE,
+            SuperCategoryId.INFORMATION,
+            SuperCategoryId.MOBILITY -> transform(30.0)
 
-            "landmark" -> transform(100.0)
+            SuperCategoryId.LANDMARK -> transform(100.0)
 
             else -> transform(0.0)
         }

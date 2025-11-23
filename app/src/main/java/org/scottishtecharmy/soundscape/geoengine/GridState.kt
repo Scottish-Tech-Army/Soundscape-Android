@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
@@ -33,6 +34,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.TileClient
 import kotlin.time.TimeSource
+import kotlin.time.measureTime
 
 enum class TreeId(
     val id: Int,
@@ -152,12 +154,18 @@ open class GridState(
 
         fixupCollections(featureCollections)
 
-        classifyPois(featureCollections, enabledCategories)
-
-        // Create rtrees for each feature collection
-        for ((index, fc) in featureCollections.withIndex()) {
-            localTrees[index] = FeatureTree(fc)
+        val classifyTiming = measureTime {
+            classifyPois(featureCollections, enabledCategories)
         }
+        println("Classify took $classifyTiming")
+
+        val rtreeTiming = measureTime {
+            // Create rtrees for each feature collection
+            for ((index, fc) in featureCollections.withIndex()) {
+                localTrees[index] = FeatureTree(fc)
+            }
+        }
+        println("R-Trees took $rtreeTiming")
 
         if(featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
             // We want to join up Ways that cross tile boundaries
@@ -274,22 +282,22 @@ open class GridState(
                 // context.
                 runBlocking {
                     withContext(treeContext) {
-                        val timeSource = TimeSource.Monotonic
-                        val gridStartTime = timeSource.markNow()
 
-                        ruler = CheapRuler(location.latitude)
-                        clearTileConnectionsFromGrid()
+                        val duration = measureTime {
+                            ruler = CheapRuler(location.latitude)
+                            clearTileConnectionsFromGrid()
 
-                        processGridState(
-                            featureCollections,
-                            enabledCategories,
-                            newGridIntersections,
-                            featureTrees,
-                            gridIntersections,
-                            tileGrid
-                        )
+                            processGridState(
+                                featureCollections,
+                                enabledCategories,
+                                newGridIntersections,
+                                featureTrees,
+                                gridIntersections,
+                                tileGrid
+                            )
+                        }
 
-                        println("Time to process grid: ${timeSource.markNow() - gridStartTime}")
+                        println("Time to process grid: $duration")
                     }
                 }
                 return true
@@ -423,43 +431,43 @@ open class GridState(
         // for each of the super-categories along with one for the currently selected super-
         // categories.
         val superCategories = listOf(
-            "information",
-            "object",
-            "place",
-            "landmark",
-            "mobility",
-            "safety",
-            "settlementCity",
-            "settlementTown",
-            "settlementVillage",
-            "settlementHamlet"
+            SuperCategoryId.INFORMATION,
+            SuperCategoryId.OBJECT,
+            SuperCategoryId.PLACE,
+            SuperCategoryId.LANDMARK,
+            SuperCategoryId.MOBILITY,
+            SuperCategoryId.SAFETY,
+            SuperCategoryId.SETTLEMENT_CITY,
+            SuperCategoryId.SETTLEMENT_TOWN,
+            SuperCategoryId.SETTLEMENT_VILLAGE,
+            SuperCategoryId.SETTLEMENT_HAMLET
         )
         val superCategoryCollections = superCategories.associateWith { superCategory ->
             getPoiFeatureCollectionBySuperCategory(superCategory, featureCollections[TreeId.POIS.id])
         }
 
         // Create super category feature collections
-        var category = superCategoryCollections["information"]
+        var category = superCategoryCollections[SuperCategoryId.INFORMATION]
         featureCollections[TreeId.INFORMATION_POIS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["object"]
+        category = superCategoryCollections[SuperCategoryId.OBJECT]
         featureCollections[TreeId.OBJECT_POIS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["place"]
+        category = superCategoryCollections[SuperCategoryId.PLACE]
         featureCollections[TreeId.PLACE_POIS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["landmark"]
+        category = superCategoryCollections[SuperCategoryId.LANDMARK]
         featureCollections[TreeId.LANDMARK_POIS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["mobility"]
+        category = superCategoryCollections[SuperCategoryId.MOBILITY]
         featureCollections[TreeId.MOBILITY_POIS.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["safety"]
+        category = superCategoryCollections[SuperCategoryId.SAFETY]
         featureCollections[TreeId.SAFETY_POIS.id] = category ?: FeatureCollection()
 
         // Settlement amd their area names
-        category = superCategoryCollections["settlementCity"]
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_CITY]
         featureCollections[TreeId.SETTLEMENT_CITY.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["settlementTown"]
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_TOWN]
         featureCollections[TreeId.SETTLEMENT_TOWN.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["settlementVillage"]
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_VILLAGE]
         featureCollections[TreeId.SETTLEMENT_VILLAGE.id] = category ?: FeatureCollection()
-        category = superCategoryCollections["settlementHamlet"]
+        category = superCategoryCollections[SuperCategoryId.SETTLEMENT_HAMLET]
         featureCollections[TreeId.SETTLEMENT_HAMLET.id] = category ?: FeatureCollection()
 
         // Create a merged collection of places and landmarks, as used by whatsAroundMe and aheadOfMe

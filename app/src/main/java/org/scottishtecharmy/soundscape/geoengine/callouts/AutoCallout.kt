@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -202,11 +203,10 @@ class AutoCallout(
                 }
             }
 
-            val category = feature.properties?.get("category") as String?
-            if(category == null) {
+            if(feature.superCategory == SuperCategoryId.UNCATEGORIZED) {
                 true
             } else {
-                if (nearestPoint.distance > userGeometry.getTriggerRange(category)) {
+                if (nearestPoint.distance > userGeometry.getTriggerRange(feature.superCategory)) {
                     // The POI is farther away than the category allows
                     true
                 } else {
@@ -219,10 +219,10 @@ class AutoCallout(
                         if (!uniquelyNamedPOIs.containsKey(name.text)) {
                             // Don't filter out
                             uniquelyNamedPOIs[name.text] = feature
-                            val earcon = when(feature.properties?.get("category")) {
-                                "information" -> NativeAudioEngine.EARCON_INFORMATION_ALERT
-                                "safety" -> NativeAudioEngine.EARCON_SENSE_SAFETY
-                                "mobility" -> NativeAudioEngine.EARCON_SENSE_MOBILITY
+                            val earcon = when(feature.superCategory) {
+                                SuperCategoryId.INFORMATION -> NativeAudioEngine.EARCON_INFORMATION_ALERT
+                                SuperCategoryId.SAFETY -> NativeAudioEngine.EARCON_SENSE_SAFETY
+                                SuperCategoryId.MOBILITY -> NativeAudioEngine.EARCON_SENSE_MOBILITY
                                 else -> NativeAudioEngine.EARCON_SENSE_POI
                             }
                             if(nearestPoint.distance == 0.0) {
