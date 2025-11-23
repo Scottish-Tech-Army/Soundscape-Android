@@ -26,7 +26,7 @@ Other changes include:
 * Various small improvements to the UI to make it more accessible.
 * Added use of mapped Entrances within Places Nearby list. This means that for buildings and point of interest which have mapped entrances the entrances are used as the location to navigate to. If no entrance is mapped, then it's the nearest point on the building/POI to the user that will be used.
 * Added Russian and Icelandic translations - these were largely done by native speakers, but finished off by AI.
-* Updated all of the translations, largely using AI translations. These can be imperfect, but are likely better than no translation. All feedback on translations is welcome and can be done on a per-string basis at https://hosted.weblate.org/projects/soundscape-android/android-app/
+* Updated all of the translations, largely using AI translations. These can be imperfect, but are likely better than no translation. All feedback on translations is welcome and can be done on a per-string basis at <https://hosted.weblate.org/projects/soundscape-android/android-app/>
 
 
 ## Changes between 0.0.116 and 0.0.118
