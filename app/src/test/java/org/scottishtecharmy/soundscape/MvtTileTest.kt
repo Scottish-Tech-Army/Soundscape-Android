@@ -53,9 +53,8 @@ import kotlin.time.Duration
 import kotlin.time.measureTime
 
 /**
- * FileGridState overrides ProtomapsGridState updateTile to get tiles from test resources instead of
- * over the network. It also sets validateContext to false as it assumes that the tests are all
- * running in a single context.
+ * FileGridState overrides ProtomapsGridState updateTile to set validateContext to false as it
+ * assumes that the tests are all running in a single context.
  */
 
 const val offlineExtractPath = "src/test/res/org/scottishtecharmy/soundscape"
@@ -65,81 +64,6 @@ class FileGridState(
 
     init {
         validateContext = false
-    }
-
-    override fun start(applicationContext: Context?,
-                       offlineExtractPath: String,
-                       isUnitTesting: Boolean) {
-        super.start(applicationContext, offlineExtractPath, isUnitTesting)
-
-        // Set up the file readers as test code doesn't always use updateTileGrid
-        val extractsDir = File(extractPath)
-        if (extractsDir.exists() && extractsDir.isDirectory) {
-            val fileList = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList()
-            if(fileList != null) {
-                for (file in fileList) {
-                    fileTileReaders.add(Reader(File(file.path)))
-                }
-            }
-        }
-    }
-
-    var processingTime = Duration.ZERO
-    fun getTile(x: Int, y: Int, zoomLevel: Int): VectorTile.Tile? {
-        var result: VectorTile.Tile? = null
-        for(reader in fileTileReaders) {
-            val fileTile = reader.getTile(zoomLevel, x, y) ?: continue
-
-            // Turn the byte array into a VectorTile
-            when (reader.tileCompression.toInt()) {
-                1 -> {
-                    // No compression
-                    result = VectorTile.Tile.parseFrom(fileTile)
-                    break
-                }
-
-                2 -> {
-                    // Gzip compression
-                    val decompressedTile = decompressGzip(fileTile)
-                    result = VectorTile.Tile.parseFrom(decompressedTile)
-                    break
-                }
-
-                else -> assert(false)
-            }
-        }
-        return result
-    }
-
-    /**
-     * updateTile is overrider in FileGridState to get the tile data from the unit test resources
-     * directory.
-     */
-    override suspend fun updateTile(
-        x: Int,
-        y: Int,
-        featureCollections: Array<FeatureCollection>,
-        intersectionMap: HashMap<LngLatAlt, Intersection>
-    ): Boolean {
-
-        val tile = getTile(x, y, zoomLevel) ?: return false
-        // If the tile isn't included in offlineExtracts then this will assert
-        val duration = measureTime {
-            val collections = vectorTileToGeoJson(
-                tileX = x,
-                tileY = y,
-                mvt = tile,
-                intersectionMap = intersectionMap,
-                tileZoom = zoomLevel
-            )
-
-            for ((index, collection) in collections!!.withIndex()) {
-                featureCollections[index] += collection
-            }
-        }
-        processingTime += duration
-
-        return true
     }
 }
 
@@ -151,10 +75,16 @@ private fun vectorTileToGeoJsonFromFile(
 ): Array<FeatureCollection> {
 
     val gridState = FileGridState()
-    gridState.start(null, offlineExtractPath, true)
-    val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
+    val result: Array<FeatureCollection> = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
-    return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, MAX_ZOOM_LEVEL)
+    gridState.start(null, offlineExtractPath, true)
+    gridState.checkOfflineMaps()
+
+    runBlocking {
+        gridState.updateTile(tileX, tileY, 0, result, intersectionMap)
+    }
+
+    return result
 }
 
 private fun parseGpxFromFile(filename: String): FeatureCollection {
@@ -246,24 +176,6 @@ fun getGridStateForLocation(
 }
 
 class MvtTileTest {
-
-    @Test
-    fun simpleVectorTile() {
-
-        // This test does the simplest vector tile test:
-        //
-        //  1. It gets a vector tile from the protomaps server
-        //  2. Parses it with the code auto-generated from the vector_tile.proto specification
-        //  3. Prints it out
-        val gridState = FileGridState()
-        gridState.start(null, offlineExtractPath, true)
-        val tile = gridState.getTile(16093/2, 10211/2, 14)!!
-        assert(tile.layersList.isNotEmpty())
-
-        for (layer in tile.layersList) {
-            println("Layer ${layer.name}")
-        }
-    }
 
     @Test
     fun pixelToLocation() {
@@ -955,12 +867,11 @@ class MvtTileTest {
                         val featureCollections =
                             Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
                         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-                        gridState.updateTile(x, y, featureCollections, intersectionMap)
+                        gridState.updateTile(x, y, 0, featureCollections, intersectionMap)
                     }
                 }
             }
         }
-        println("Total processing time: ${gridState.processingTime}")
     }
 
     // Put this function inside the MvtTileTest class or at the top level of the file
@@ -1070,6 +981,7 @@ class MvtTileTest {
         override suspend fun updateTile(
             x: Int,
             y: Int,
+            workerIndex: Int,
             featureCollections: Array<FeatureCollection>,
             intersectionMap: HashMap<LngLatAlt, Intersection>
         ): Boolean {
@@ -1179,7 +1091,7 @@ class MvtTileTest {
             val featureCollections =
                 Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
             val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-            gridState.updateTile(0, 0, featureCollections, intersectionMap)
+            gridState.updateTile(0, 0, 0, featureCollections, intersectionMap)
 
             // The 3 entrances should appear as entrances and POIS and two of them as transit stops
             assertEquals(5, featureCollections[TreeId.ENTRANCES.id].features.size)

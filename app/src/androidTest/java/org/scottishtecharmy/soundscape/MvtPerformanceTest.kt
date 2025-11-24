@@ -84,7 +84,7 @@ class MvtPerformanceTest {
         runBlocking {
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
             val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
-            gridState.updateTile(x, y, featureCollections, intersectionMap)
+            gridState.updateTile(x, y, 0, featureCollections, intersectionMap)
         }
     }
     fun tileProviderAvailable(): Boolean {

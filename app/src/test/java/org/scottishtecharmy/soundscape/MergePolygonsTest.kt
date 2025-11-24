@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
@@ -237,7 +238,6 @@ class MergePolygonsTest {
             val geojson = vectorTileToGeoJsonFromFile(
                 tile.tileX,
                 tile.tileY,
-                "${tile.tileX}x${tile.tileY}x${MAX_ZOOM_LEVEL}.mvt",
                 intersectionMap
             )
             for(collection in geojson!!) {
@@ -257,15 +257,18 @@ class MergePolygonsTest {
     private fun vectorTileToGeoJsonFromFile(
         tileX: Int,
         tileY: Int,
-        filename: String,
         intersectionMap:  HashMap<LngLatAlt, Intersection>,
         cropPoints: Boolean = true
-    ): Array<FeatureCollection>? {
+    ): Array<FeatureCollection> {
 
         val gridState = FileGridState()
+        val result: Array<FeatureCollection> = emptyArray()
+
         gridState.start(null, offlineExtractPath, true)
-        val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
-        val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
+
+        runBlocking {
+            gridState.updateTile(tileX, tileY, 0, result, intersectionMap)
+        }
 
 //            // We want to check that all of the coordinates generated are within the buffered
 //            // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.
@@ -294,6 +297,6 @@ class MergePolygonsTest {
 //                assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
 //            }
 
-        return featureCollection
+        return result
     }
 }
