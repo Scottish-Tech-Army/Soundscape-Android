@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
+import java.time.Duration
 
 class MvtPerformanceTest {
 
@@ -195,6 +196,7 @@ class MvtPerformanceTest {
         val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), MAX_ZOOM_LEVEL)
         val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), MAX_ZOOM_LEVEL)
 
+        var longestDuration = measureTime {}
         for(i in 0 until count) {
             for (x in minX until maxX) {
                 for (y in minY until maxY) {
@@ -205,12 +207,20 @@ class MvtPerformanceTest {
                     println("Moving grid to $location")
 
                     runBlocking {
-                        // Update the grid state
-                        gridState.locationUpdate(
-                            LngLatAlt(location.longitude, location.latitude),
-                            emptySet(),
-                            true
-                        )
+                        val duration = measureTime {
+                            // Update the grid state
+                            gridState.locationUpdate(
+                                LngLatAlt(location.longitude, location.latitude),
+                                emptySet(),
+                                true
+                            )
+                        }
+                        if(duration > longestDuration) {
+                            longestDuration = duration
+                            println("Total time to move grid $duration LONGEST")
+                        }
+                        else
+                            println("Total time to move grid $duration")
                     }
                 }
             }
