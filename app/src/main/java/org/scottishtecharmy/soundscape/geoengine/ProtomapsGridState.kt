@@ -36,7 +36,8 @@ open class ProtomapsGridState(
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
-    var fileTileReaders: MutableList<Reader> = mutableListOf()
+    // We need an array of pmtile readers, one for each tile in the grid.
+    var fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
     var currentExtracts: MutableList<String> = mutableListOf()
     var extractPath: String = ""
     var startedUnitTesting: Boolean = false
@@ -55,10 +56,29 @@ open class ProtomapsGridState(
     override fun stop() {
         super.stop()
         for(reader in fileTileReaders)
-            reader.close()
-        fileTileReaders.clear()
+            reader?.close()
+        fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
     }
 
+    override fun checkOfflineMaps() {
+        // Check for change in offline map extracts and update our file readers if there's a change
+        val extracts = findExtractPaths(extractPath).toMutableList()
+        if (extracts != currentExtracts) {
+            println("Change in offline extracts")
+            currentExtracts = extracts
+            if (!startedUnitTesting) {
+                if (currentExtracts.isEmpty())
+                    Firebase.analytics.logEvent("GridNoOfflineMap", null)
+                else
+                    Firebase.analytics.logEvent("GridWithOfflineMap", null)
+            }
+
+            // Close old file readers
+            for (reader in fileTileReaders)
+                reader?.close()
+            fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+        }
+    }
 
     /**
      * updateTile is responsible for getting data from the protomaps server and translating it from
@@ -104,72 +124,62 @@ open class ProtomapsGridState(
     override suspend fun updateTile(
         x: Int,
         y: Int,
+        workerIndex: Int,
         featureCollections: Array<FeatureCollection>,
         intersectionMap: HashMap<LngLatAlt, Intersection>
     ): Boolean {
         var ret = false
 
-        // Check for change in offline map extracts and update our file readers if there's a change
-        val extracts = findExtractPaths(extractPath).toMutableList()
-        if(extracts != currentExtracts) {
-            println("Change in offline extracts")
-            currentExtracts = extracts
-            if (!startedUnitTesting) {
-                if (currentExtracts.isEmpty())
-                    Firebase.analytics.logEvent("GridNoOfflineMap", null)
-                else
-                    Firebase.analytics.logEvent("GridWithOfflineMap", null)
-            }
-
-            // Close old file readers
-            for(reader in fileTileReaders)
-                reader.close()
-            fileTileReaders.clear()
-
-            // Add new file readers
-            for (extract in currentExtracts)
-                fileTileReaders.add(Reader(File(extract)))
-        }
-
         withContext(Dispatchers.IO) {
             try {
                 val startTime = System.currentTimeMillis()
 
-                // Try getting the tile from each file in turn
                 var result : VectorTile.Tile? = null
-                for((index,reader) in fileTileReaders.withIndex()) {
-                    val fileTile: ByteArray? = reader.getTile(zoomLevel, x, y)
-                    if(fileTile != null) {
-                        // Turn the byte array into a VectorTile
-                        when (reader.tileCompression.toInt()) {
-                            1 -> {
-                                // No compression
-                                result = VectorTile.Tile.parseFrom(fileTile)
-                            }
 
-                            2 -> {
-                                // Gzip compression
-                                val decompressedTile = decompressGzip(fileTile)
-                                result = VectorTile.Tile.parseFrom(decompressedTile)
-                            }
+                // Try the reader that we are currently using first
+                var reader = fileTileReaders[workerIndex]
+                var fileTile: ByteArray? = reader?.getTile(zoomLevel, x, y)
 
-                            else -> assert(false)
+                if(fileTile == null)
+                {
+                    // We failed to get a tile from the current reader, so we need to find one that
+                    // does work. Reset it, and then see if we can find an extract that does work.
+                    fileTileReaders[workerIndex]?.close()
+                    fileTileReaders[workerIndex] = null
+                    for(extract in currentExtracts) {
+                        println("Try $extract for worker $workerIndex")
+                        reader = Reader(File(extract))
+                        fileTile = reader.getTile(zoomLevel, x, y)
+                        if(fileTile != null) {
+                            // We've found an extract that works, so use that
+                            fileTileReaders[workerIndex] = reader
+                            break
                         }
+                        reader.close()
                     }
-                    if(result != null) {
-                        if(index != 0) {
-                            // Move the file reader to the top of the queue for next time it it's
-                            // not there already. There will be some hysteresis as there is overlap
-                            // between all possible extracts.
-                            val workingReader = fileTileReaders.removeAt(index)
-                            fileTileReaders.add(0, workingReader)
+                }
+                if(fileTile != null) {
+                    // Turn the byte array into a VectorTile
+                    //println("File reader got a tile for worker $workerIndex")
+                    when (reader?.tileCompression?.toInt()) {
+                        1 -> {
+                            // No compression
+                            result = VectorTile.Tile.parseFrom(fileTile)
                         }
-                        break
+
+                        2 -> {
+                            // Gzip compression
+                            val decompressedTile = decompressGzip(fileTile)
+                            result = VectorTile.Tile.parseFrom(decompressedTile)
+                        }
+
+                        else -> assert(false)
                     }
                 }
 
                 // Fallback to network
                 if(result == null) {
+                    //println("Network tile request for worker $workerIndex")
                     val service =
                         tileClient?.retrofitInstance?.create(ITileDAO::class.java)
                     val tileReq =
@@ -181,7 +191,7 @@ open class ProtomapsGridState(
 
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
-                    Log.e(TAG, "Tile size ${result.serializedSize}")
+                    println("Tile size ${result.serializedSize}")
                     var collections: Array<FeatureCollection>?
                     val mvtParseTime = measureTimeMillis {
                         collections = vectorTileToGeoJson(
@@ -192,24 +202,26 @@ open class ProtomapsGridState(
                             tileZoom = zoomLevel)
                     }
                     val addTime = measureTimeMillis {
-                        for ((index, collection) in collections!!.withIndex()) {
-                            featureCollections[index] += collection
+                        if(collections != null) {
+                            for ((index, collection) in collections.withIndex()) {
+                                featureCollections[index] += collection
+                            }
                         }
                     }
 
-                    Log.e(TAG, "Request time $requestTime")
-                    Log.e(TAG, "MVT parse time $mvtParseTime")
-                    Log.e(TAG, "Add to FeatureCollection time $addTime")
+                    println("Request time $requestTime")
+                    println("MVT parse time $mvtParseTime")
+                    println("Add to FeatureCollection time $addTime")
 
                     ret = true
                 } else {
-                    Log.e(TAG, "No response for protomaps tile")
+                    println("No response for protomaps tile")
                 }
             } catch (ce: CancellationException) {
                 // We have to rethrow cancellation exceptions
                 throw ce
             } catch (e: Exception) {
-                Log.e(TAG, "Exception getting protomaps tile $e")
+                println("Exception getting protomaps tile $e")
             }
         }
         return ret

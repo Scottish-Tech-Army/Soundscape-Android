@@ -5,13 +5,17 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.dto.BoundingBox
+import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -33,7 +37,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.TileClient
-import kotlin.time.TimeSource
 import kotlin.time.measureTime
 
 enum class TreeId(
@@ -81,6 +84,7 @@ open class GridState(
     internal var gridIntersections: HashMap<LngLatAlt, Intersection> = HashMap()
 
     val treeContext = passedInTreeContext ?: newSingleThreadContext("TreeContext")
+
     var validateContext = true
 
     // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
@@ -99,6 +103,8 @@ open class GridState(
         centralBoundingBox = BoundingBox()
     }
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
+
+    open fun checkOfflineMaps() {}
 
     fun isLocationWithinGrid(location: LngLatAlt): Boolean {
         return pointIsWithinBoundingBox(location, totalBoundingBox)
@@ -352,73 +358,125 @@ open class GridState(
         tile.intersectionMap.clear()
     }
 
+    data class TileUpdateResult(
+        val success: Boolean,
+        val tile: Tile,
+        var collections: Array<FeatureCollection>?,
+        var intersections: HashMap<LngLatAlt, Intersection>?
+    )
+
     private suspend fun updateTileGrid(
         tileGrid: TileGrid,
         featureCollections: Array<FeatureCollection>,
         gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>,
         isUnitTesting: Boolean
-    ): Boolean {
-        for (tile in tileGrid.tiles) {
+    ): Boolean = withContext(Dispatchers.IO) {
 
-            var tileCollections: Array<FeatureCollection>?
-            var intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        // Check for an updated list of offline maps
+        checkOfflineMaps()
+
+        // Mark cachedTiles before launching workers to update tiles
+        var workerIndex = 0
+        for(tile in tileGrid.tiles) {
             val key = Pair(tile.tileX, tile.tileY)
-            if(cachedTiles.contains(key)) {
-                val cachedTile = cachedTiles[key]!!
-                tileCollections = cachedTile.tileCollections
-                intersectionMap = cachedTile.intersectionMap
-                cachedTile.lastUsed = System.currentTimeMillis()
-                //println("Using cached value for ${tile.tileX},${tile.tileY}")
-            } else {
-                var ret = false
-                tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-                if(!isUnitTesting)
-                    Firebase.analytics.logEvent("updateTile", null)
-                for (retry in 1..5) {
-                    ret = updateTile(tile.tileX, tile.tileY, tileCollections, intersectionMap)
-                    if (ret) {
-                        // Add new tile to the cache
-                        cachedTiles[key] = CachedTile(
-                            tileCollections,
-                            intersectionMap,
-                            System.currentTimeMillis()
-                        )
-                        //println("Adding ${tile.tileX},${tile.tileY} to cache")
-
-                        if(cachedTiles.size > maxCachedTiles) {
-                            // Remove the least recently used tile
-                            var leastRecentlyUsed = Long.MAX_VALUE
-                            var leastRecentlyUsedKey = Pair(0, 0)
-                            for (cachedTile in cachedTiles) {
-                                if (cachedTile.value.lastUsed < leastRecentlyUsed) {
-                                    leastRecentlyUsed = cachedTile.value.lastUsed
-                                    leastRecentlyUsedKey = cachedTile.key
-                                }
-                            }
-                            if (leastRecentlyUsedKey != Pair(0, 0)) {
-                                //println("Removing ${leastRecentlyUsedKey.first},${leastRecentlyUsedKey.second} from cache")
-                                clearCachedTile(leastRecentlyUsedKey)
-                            }
-                            assert(cachedTiles.size <= maxCachedTiles)
-                        }
-                        break
-                    }
-                }
-                if (!ret) {
-                    return false
-                }
+            tile.cached = cachedTiles.contains(key)
+            if(!tile.cached) {
+                // If the tile isn't cached, allocate it a worker to use
+                tile.workerIndex = workerIndex
+                ++workerIndex
             }
-            // Add the tile FeatureCollections into the grid
-            for ((index, collection) in tileCollections.withIndex()) {
-                featureCollections[index] += collection
-            }
-            gridIntersections.add(intersectionMap)
         }
-        return true
+
+        val deferredUpdates = tileGrid.tiles.map { tile ->
+            async {
+                if (!tile.cached) {
+                    var ret = false
+                    val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                    val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                    if (!isUnitTesting)
+                        Firebase.analytics.logEvent("updateTile", null)
+                    for (retry in 1..5) {
+                        ret = updateTile(tile.tileX, tile.tileY, tile.workerIndex, tileCollections, intersectionMap)
+                        if(ret)
+                            break
+                    }
+                    if (ret) {
+                        TileUpdateResult(true, tile, tileCollections, intersectionMap)
+                    } else {
+                        TileUpdateResult(false, tile, null, null)
+                    }
+                } else {
+                    // Mark cached results as successful
+                    TileUpdateResult(true, tile, null, null)
+                }
+            }
+        }
+
+        val results = deferredUpdates.awaitAll()
+        if (results.any { !it.success }) {
+            return@withContext false // If any tile failed, abort the whole grid update
+        }
+
+        // Get any tiles that were already cached out of the cache. Do these before caching our new
+        // data to avoid the tiles we want being expunged from the cache before we get to them.
+        for(result in results) {
+            if (result.tile.cached) {
+                // Fill in result from cache
+                val key = Pair(result.tile.tileX, result.tile.tileY)
+                val cachedTile = cachedTiles[key]!!
+                result.collections = cachedTile.tileCollections
+                result.intersections = cachedTile.intersectionMap
+                cachedTile.lastUsed = System.currentTimeMillis()
+            }
+        }
+
+        // Now loop around and cache our new tiles
+        for(result in results) {
+            if (!result.tile.cached) {
+                val key = Pair(result.tile.tileX, result.tile.tileY)
+                // Add new tile data to the cache
+                cachedTiles[key] = CachedTile(
+                    result.collections!!,
+                    result.intersections!!,
+                    System.currentTimeMillis()
+                )
+
+                if (cachedTiles.size > maxCachedTiles) {
+                    // Remove the least recently used tile
+                    var leastRecentlyUsed = Long.MAX_VALUE
+                    var leastRecentlyUsedKey = Pair(0, 0)
+                    for (cachedTile in cachedTiles) {
+                        if (cachedTile.value.lastUsed < leastRecentlyUsed) {
+                            leastRecentlyUsed = cachedTile.value.lastUsed
+                            leastRecentlyUsedKey = cachedTile.key
+                        }
+                    }
+                    if (leastRecentlyUsedKey != Pair(0, 0)) {
+                        clearCachedTile(leastRecentlyUsedKey)
+                    }
+                    assert(cachedTiles.size <= maxCachedTiles)
+                }
+            }
+        }
+
+        // All tiles were processed successfully, now aggregate the results
+        for (result in results) {
+            result.collections?.let { collections ->
+                for ((index, collection) in collections.withIndex()) {
+                    featureCollections[index] += collection
+                }
+            }
+            result.intersections?.let { intersections ->
+                gridIntersections.add(intersections)
+            }
+        }
+
+        return@withContext true
     }
 
     internal open suspend fun updateTile(x: Int,
                                          y: Int,
+                                         workerIndex: Int,
                                          featureCollections: Array<FeatureCollection>,
                                          intersectionMap: HashMap<LngLatAlt, Intersection>): Boolean {
         assert(false)
