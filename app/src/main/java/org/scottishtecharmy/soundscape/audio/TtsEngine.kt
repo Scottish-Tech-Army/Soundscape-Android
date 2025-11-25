@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.audio
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.media.AudioFormat
 import android.os.Build
 import android.os.Bundle
@@ -34,50 +33,24 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
     private var textToSpeechRate = 0.1f
 
     private var sharedPreferences : SharedPreferences? = null
-    private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
 
     fun getCurrentLabelAndName() : String? { return engineLabelAndName }
+    fun getCurrentVoice() : String { return textToSpeechVoiceType }
+    fun getCurrentRate() : Float { return textToSpeechRate }
 
     fun destroy() {
         Log.d(TAG, "Destroy $engineLabelAndName TTS engine")
-        sharedPreferences?.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
 
         stop()
         textToSpeech.setOnUtteranceProgressListener(null)
         textToSpeech.shutdown()
     }
 
-    fun initialize(context : Context, followPreferences : Boolean = true)
+    fun initialize(context : Context)
     {
-        val configLocale = getCurrentLocale()
-        val configuration = Configuration(context.resources.configuration)
-        configuration.setLocale(configLocale)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         audioEngine.ttsRunningStateChanged(false)
-
-        if(followPreferences) {
-            val configLocale = getCurrentLocale()
-            val configuration = Configuration(context.resources.configuration)
-            configuration.setLocale(configLocale)
-            val localizedContext = context.createConfigurationContext(configuration)
-
-            // Listen for changes to shared preference settings so that we can update the audio engine
-            // configuration.
-            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPreferencesListener =
-                SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
-                    if (sharedPreferences == preferences) {
-                        if ((key == MainActivity.VOICE_TYPE_KEY) ||
-                            (key == MainActivity.SPEECH_RATE_KEY)
-                        ) {
-                            if (updateSpeech(preferences)) {
-                                audioEngine.updateSpeech(localizedContext)
-                            }
-                        }
-                    }
-                }
-            sharedPreferences?.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
-        }
 
         Log.d(TAG, "Open TTS engine: $engineLabelAndName")
         textToSpeech = if (engineLabelAndName.isNullOrEmpty())
