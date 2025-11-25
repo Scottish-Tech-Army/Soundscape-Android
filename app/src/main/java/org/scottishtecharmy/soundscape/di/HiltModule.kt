@@ -21,7 +21,7 @@ class AppNativeAudioEngine {
         @ApplicationContext context: Context,
     ): NativeAudioEngine {
         val audioEngine = NativeAudioEngine()
-        audioEngine.initialize(context, false)
+        audioEngine.initialize(context)
         return audioEngine
     }
 }

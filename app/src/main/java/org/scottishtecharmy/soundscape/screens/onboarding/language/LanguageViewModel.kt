@@ -7,12 +7,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudioEngine): ViewModel() {
+class LanguageViewModel @Inject constructor(): ViewModel() {
 
     private val _state : MutableStateFlow<LanguageUiState> = MutableStateFlow(LanguageUiState())
     val state: StateFlow<LanguageUiState> = _state.asStateFlow()
@@ -29,22 +28,8 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         var selectedLanguageIndex: Int = -1
     )
 
-    override fun onCleared() {
-        super.onCleared()
-        audioEngine.destroy()
-    }
-
     private fun addIfSpeechSupports(allLanguages: MutableList<Language>, language: Language) {
-        // TODO: The idea here is to add the language only if it's supported by the text to speech
-        //  engine. However, the audioEngine appears to be struggling to initialize the TextToSpeech.
-        //  Not sure why - needs investigation.
-//        val locales = audioEngine.getAvailableSpeechLanguages()
-//        for (locale in locales) {
-//            if (locale.language == language.code) {
         allLanguages.add(language)
-//                return
-//            }
-//        }
     }
 
     private fun getAllLanguages(): List<Language> {
@@ -94,15 +79,12 @@ class LanguageViewModel @Inject constructor(private val audioEngine : NativeAudi
         return bestIndex
     }
 
-    fun updateLanguage(selectedLanguage: Language): Boolean {
+    fun updateLanguage(selectedLanguage: Language) {
         val indexOfSelectedLanguage = _state.value.supportedLanguages.indexOf(selectedLanguage)
         _state.value = _state.value.copy(selectedLanguageIndex = indexOfSelectedLanguage)
 
 
         val list = LocaleListCompat.forLanguageTags("${selectedLanguage.code}-${selectedLanguage.region}")
         AppCompatDelegate.setApplicationLocales(list)
-
-        // If we want to restart the service
-        return audioEngine.setSpeechLanguage(selectedLanguage.code)
     }
 }
