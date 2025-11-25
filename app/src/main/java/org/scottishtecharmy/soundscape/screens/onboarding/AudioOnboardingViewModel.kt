@@ -25,6 +25,7 @@ class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val
         val selectedBeacon: String? = null
     )
     private var beacon : Long = 0
+    private var currentType = ""
 
     override fun onCleared() {
         super.onCleared()
@@ -41,10 +42,13 @@ class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val
     val state: StateFlow<AudioBeaconsUiState> = _state.asStateFlow()
     @SuppressLint("ApplySharedPref")
     fun setAudioBeaconType(type: String) {
-        audioEngine.setBeaconType(type)
-        if(beacon != 0L)
-            audioEngine.destroyBeacon(beacon)
-        beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
+        if(type != currentType) {
+            audioEngine.setBeaconType(type)
+            if (beacon != 0L)
+                audioEngine.destroyBeacon(beacon)
+            beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
+            currentType = type
+        }
         _state.value = state.value.copy(selectedBeacon = type)
         // Store the preference for future use
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -55,6 +59,7 @@ class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val
         if(beacon != 0L) {
             audioEngine.destroyBeacon(beacon)
             beacon = 0
+            currentType = ""
         }
     }
 
