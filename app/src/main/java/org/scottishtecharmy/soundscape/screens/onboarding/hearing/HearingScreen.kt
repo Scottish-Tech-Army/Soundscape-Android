@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.hearing
 
 import android.content.res.Configuration
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,18 +33,19 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
+import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewModel
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 
 @Composable
 fun HearingScreen(
+    onBack: () -> Unit,
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel : HearingViewModel = hiltViewModel<HearingViewModel>()
+    viewModel : AudioOnboardingViewModel
 ){
     val speechText = buildString {
         append(stringResource(R.string.first_launch_callouts_example_1))
@@ -51,6 +53,11 @@ fun HearingScreen(
         append(stringResource(R.string.first_launch_callouts_example_3))
         append(". ")
         append(stringResource(R.string.first_launch_callouts_example_4))
+    }
+    BackHandler(enabled = true) {
+        // If the user presses the back button silence the speech
+        viewModel.silenceSpeech()
+        onBack()
     }
     Hearing(
         onContinue = {

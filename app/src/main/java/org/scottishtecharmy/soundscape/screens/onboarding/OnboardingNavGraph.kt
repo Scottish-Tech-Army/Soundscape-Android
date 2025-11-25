@@ -8,6 +8,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -27,6 +28,7 @@ fun SetUpOnboardingNavGraph(
     navController: NavHostController,
     onFinish: () -> Unit,
 ) {
+    val audioViewModel: AudioOnboardingViewModel = hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = OnboardingScreens.Welcome.route
@@ -57,10 +59,12 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.Hearing.route) {
             HearingScreen(
+                onBack = { navController.popBackStack() },
                 onNavigate = { navController.navigate( OnboardingScreens.AudioBeacons.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true }
+                    .semantics { testTagsAsResourceId = true },
+                audioViewModel
             )
         }
         composable(OnboardingScreens.Navigating.route) {
@@ -73,10 +77,12 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.AudioBeacons.route) {
             AudioBeaconsScreen(
+                onBack = { navController.popBackStack() },
                 onNavigate = { navController.navigate(OnboardingScreens.OfflineStorage.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true }
+                    .semantics { testTagsAsResourceId = true },
+                audioViewModel
             )
         }
         composable(OnboardingScreens.OfflineStorage.route) {
