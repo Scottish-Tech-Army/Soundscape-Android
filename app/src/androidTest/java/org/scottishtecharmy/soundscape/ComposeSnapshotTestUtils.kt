@@ -43,6 +43,9 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     return sb.toString()
 }
 
+private val regexForObjectIds = Regex("@[0-9a-f]+")
+private val regexForLambdas = Regex("ExternalSyntheticLambda[^@]+@")
+
 /**
  * Dumps the full layout and semantics tree as a deterministic string.
  * Includes modifiers, bounds, and semantics properties.
@@ -53,8 +56,12 @@ private fun SemanticsNode.layoutInfo(): String {
     val bounds = this.boundsInRoot
     // Simplified modifier info for testing (truncate long chains)
     val modifiers = this.layoutInfo.getModifierInfo().joinToString(", ") {
-        // Strip explicit object IDs, because they might appear as meaningless diffs.
-        it.toString().replace(Regex("@[0-9a-f]+"), "@<id>")
+        it.toString()
+            // Strip explicit object IDs, because they might appear as meaningless diffs.
+            .replace(regexForObjectIds, "@<id>")
+            // Lambdas appear as semantics properties, but the exact name could change under
+            // maintenance.
+            .replace(regexForLambdas, "ExternalSyntheticLambdaX@")
     }
     return "(bounds=${bounds.toShortString()}, modifiers=[$modifiers])"
 }

@@ -10,60 +10,58 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.media3.common.util.Util.escapeFileName
-import java.util.Locale
+import androidx.media3.common.util.Util.unescapeFileName
 import androidx.navigation.NavHostController
 import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Assert.fail
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
-import org.scottishtecharmy.soundscape.screens.home.home.SectionType
+import org.scottishtecharmy.soundscape.screens.home.home.Sections
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import java.util.Locale
 
 @RunWith(Parameterized::class)
-class HelpScreenRegressionTest(private val topic: String) {
+class HelpScreenRegressionTest(private val testTopic: String) {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-    /**
-     * Retrieves a string resource for the default locale (e.g., from `values/strings.xml`).
-     *
-     * @param id The ID of the string resource to retrieve (e.g., R.string.something).
-     * @return The string value from the default resource file.
-     */
-    fun getDefaultString(id: Int): String {
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val defaultConfig = targetContext.resources.configuration
-        // Use Locale.ROOT to be explicit about the base resource
-        defaultConfig.setLocale(Locale.ROOT)
-        val defaultContext = targetContext.createConfigurationContext(defaultConfig)
-        return defaultContext.getString(id)
-    }
-
-    @Test
-    fun dump_help_topics() {
-        val entryPage = helpPages.find { it.titleId == R.string.menu_help_and_tutorials }!!
-
-        println("Topics from entry page:")
-        val topicsFromEntryPage = entryPage.sections.filter { it.type == SectionType.Link }
-        for (section in topicsFromEntryPage) {
-            println("page_" + escapeFileName(getDefaultString(section.textId)))
-        }
-
-        println("Topics for individual FAQ pages:")
-        val faqPage = helpPages.find { it.titleId == R.string.faq_title }!!
-        val individualFaqTopics = faqPage.sections.filter { it.type == SectionType.Faq }
-        for (faq in individualFaqTopics) {
-            println("faq_" + escapeFileName(getDefaultString(faq.textId)))
-        }
-    }
+//    @Test
+//    fun dump_help_topics() {
+//        val entryPage = helpPages.find { it.titleId == R.string.menu_help_and_tutorials }!!
+//
+//        println("Topics from entry page:")
+//        val topicsFromEntryPage = entryPage.sections.filter { it.type == SectionType.Link }
+//        for (section in topicsFromEntryPage) {
+//            println("page_" + escapeFileName(getDefaultString(section.textId)))
+//        }
+//
+//        println("Topics for individual FAQ pages:")
+//        val faqPage = helpPages.find { it.titleId == R.string.faq_title }!!
+//        val individualFaqTopics = faqPage.sections.filter { it.type == SectionType.Faq }
+//        for (faq in individualFaqTopics) {
+//            println("faq_" + escapeFileName(getDefaultString(faq.textId)))
+//        }
+//    }
 
     @Test
     fun structure_regression() {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+
+        fun findTopicId(titleFromFilename: String): Int {
+            val title = unescapeFileName(titleFromFilename)
+            return helpPagesByTitleString[title]?.titleId
+                ?: (fail("Failed to find page with title '${title}'") as Nothing)
+        }
+
+        val topic = when {
+            testTopic.startsWith("page_") -> "page" + findTopicId(testTopic.substring(5))
+//            testTopic.startsWith("faq_") -> "faq" + findTopicId(testTopic.substring(4))
+            else -> testTopic
+        }
 
         composeTestRule.setContent {
             SoundscapeTheme {
@@ -79,11 +77,29 @@ class HelpScreenRegressionTest(private val topic: String) {
 
         // Compare against baseline file
         composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/${escapeFileName(topic)}.txt"
+            "help_screen_layouts/${testTopic}.txt"
         )
     }
 
     companion object {
+        val helpPagesByTitleString : Map<String, Sections> =
+            helpPages.associateBy { getDefaultString(it.titleId) }
+
+        /**
+         * Retrieves a string resource for the default locale (e.g., from `values/strings.xml`).
+         *
+         * @param id The ID of the string resource to retrieve (e.g., R.string.something).
+         * @return The string value from the default resource file.
+         */
+        fun getDefaultString(id: Int): String {
+            val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+            val defaultConfig = targetContext.resources.configuration
+            // Use Locale.ROOT to be explicit about the base resource
+            defaultConfig.setLocale(Locale.ROOT)
+            val defaultContext = targetContext.createConfigurationContext(defaultConfig)
+            return defaultContext.getString(id)
+        }
+
         /**
          * In these parameters, we start from the section title, rather than from the topic ID as it
          * would be used in the app, because (a) we want to make sure individual page titles haven't
@@ -100,54 +116,49 @@ class HelpScreenRegressionTest(private val topic: String) {
                 arrayOf("Help and Tutorials"),
 
                 // Other help pages.
-
-                /*
-page_Voices
-page_Using Media Controls
-page_Audio Beacon
-page_Automatic Callouts
-page_My Location
-page_Around Me
-page_Ahead of Me
-page_Nearby Markers
-page_Markers
-page_Routes
-page_Creating Markers
-page_Customizing Markers
-page_Frequently Asked Questions
-page_Tips
-page_Why is Soundscape working offline%3f
-                 */
+                arrayOf("page_Voices"),
+                arrayOf("page_Using Media Controls"),
+                arrayOf("page_Audio Beacon"),
+                arrayOf("page_Automatic Callouts"),
+                arrayOf("page_My Location"),
+                arrayOf("page_Around Me"),
+                arrayOf("page_Ahead of Me"),
+                arrayOf("page_Nearby Markers"),
+                arrayOf("page_Markers"),
+                arrayOf("page_Routes"),
+                arrayOf("page_Creating Markers"),
+                arrayOf("page_Customizing Markers"),
+                arrayOf("page_Frequently Asked Questions"),
+                arrayOf("page_Tips"),
+                arrayOf("page_Why is Soundscape working offline%3f"),
 
                 // FAQ items.
-                /*
-faq_When should I use Soundscape%3f
-faq_What are Markers and how do I get the most out of them%3f
-faq_What can I set as a beacon%3f
-faq_How do I use a beacon like a pro%3f
-faq_Why does the audible beacon disappear sometimes%3f
-faq_Can I set a beacon on an address%3f
-faq_How do I set a beacon on my home%3f
-faq_When I set a beacon on a destination, how close will Soundscape get me to the destination%3f
-faq_Can I turn the beacon back on when I am close to my destination%3f
-faq_Why does Soundscape call out road names twice when I approach an intersection%3f
-faq_Why doesn’t Soundscape announce every business that I pass%3f
-faq_Why do some callouts stop when I'm in a vehicle%3f
-faq_What if I don't understand a callout or miss it because of ambient noise%3f
-faq_What phone does Soundscape run on%3f
-faq_What headphones should I use with Soundscape%3f
-faq_How does Soundscape impact my phone’s battery%3f
-faq_How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery%3f
-faq_How do I use Snooze mode to minimize Soundscape’s impact on my phone battery%3f
-faq_How does my choice of headphones affect the battery life of my phone%3f
-faq_How does running Soundscape in the background impact battery life of my phone%3f
-faq_How much mobile data does Soundscape use%3f
-faq_How is Soundscape different from other map apps%3f
-faq_How do I use Soundscape with a wayfinding app%3f
-faq_How do I control what I hear and when I hear it in Soundscape%3f
-faq_Do I need to hold the phone in my hand all the time%3f
-faq_What is Open Street Map and why do we use it for Soundscape%3f
-                 */
+//                arrayOf("faq_When should I use Soundscape%3f"),
+//                arrayOf("faq_What are Markers and how do I get the most out of them%3f"),
+//                arrayOf("faq_What can I set as a beacon%3f"),
+//                arrayOf("faq_How do I use a beacon like a pro%3f"),
+//                arrayOf("faq_Why does the audible beacon disappear sometimes%3f"),
+//                arrayOf("faq_Can I set a beacon on an address%3f"),
+//                arrayOf("faq_How do I set a beacon on my home%3f"),
+//                arrayOf("faq_When I set a beacon on a destination, how close will Soundscape get me to the destination%3f"),
+//                arrayOf("faq_Can I turn the beacon back on when I am close to my destination%3f"),
+//                arrayOf("faq_Why does Soundscape call out road names twice when I approach an intersection%3f"),
+//                arrayOf("faq_Why doesn’t Soundscape announce every business that I pass%3f"),
+//                arrayOf("faq_Why do some callouts stop when I'm in a vehicle%3f"),
+//                arrayOf("faq_What if I don't understand a callout or miss it because of ambient noise%3f"),
+//                arrayOf("faq_What phone does Soundscape run on%3f"),
+//                arrayOf("faq_What headphones should I use with Soundscape%3f"),
+//                arrayOf("faq_How does Soundscape impact my phone’s battery%3f"),
+//                arrayOf("faq_How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery%3f"),
+//                arrayOf("faq_How do I use Snooze mode to minimize Soundscape’s impact on my phone battery%3f"),
+//                arrayOf("faq_How does my choice of headphones affect the battery life of my phone%3f"),
+//                arrayOf("faq_How does running Soundscape in the background impact battery life of my phone%3f"),
+//                arrayOf("faq_How much mobile data does Soundscape use%3f"),
+//                arrayOf("faq_How is Soundscape different from other map apps%3f"),
+//                arrayOf("faq_How do I use Soundscape with a wayfinding app%3f"),
+//                arrayOf("faq_How do I control what I hear and when I hear it in Soundscape%3f"),
+//                arrayOf("faq_Do I need to hold the phone in my hand all the time%3f"),
+//                arrayOf("faq_What is Open Street Map and why do we use it for Soundscape%3f"),
             ).toList()
         }
     }
