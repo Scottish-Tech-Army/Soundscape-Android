@@ -53,7 +53,7 @@ reorderable = "2.5.1"
 retrofit = "3.0.0"
 review = "2.0.2"
 reviewKtx = "2.0.2"
-media3Session = "1.8.0"
+media3 = "1.8.0"
 roomCompiler = "2.7.2"
 roomRuntime = "2.7.2"
 rtree2 = "0.9.3"
@@ -136,7 +136,9 @@ ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 maplibre = { module = "org.maplibre.gl:android-sdk", version.ref = "mapLibre" }
-androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
+androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }

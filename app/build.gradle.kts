@@ -287,6 +287,10 @@ dependencies {
     //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
     androidTestImplementation(libs.androidx.uiautomator)
 
+    // Regression file handling for tests
+    androidTestImplementation(libs.androidx.media3.common)
+//    androidTestImplementation(libs.androidx.media3.common.ktx)
+
     // Protobuf
     implementation(libs.protobuf.kotlin.lite)
 
