@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">設定をデフォルトに戻してアプリを再起動するにはダブルタップします。</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">よろしいですか?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">設定をリセットするとアプリの設定がすべて削除されます。続行しますか?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">マーカーおよびルートの詳細設定</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">この画面では、マーカーおよびルートをエクスポート／インポートしたり、既存のすべてのマーカーおよびルートを削除したりできます。</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">マーカーおよびルートのデータベースをエクスポートする</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">マーカーおよびルートのデータベースをインポートする</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">マーカーおよびルートのインポートが完了しました。</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">マーカーおよびルートのインポートに失敗しました。</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">すべてのマーカーおよびルートを削除する</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">すべてのマーカーおよびルートを削除すると元に戻せません。続行しますか?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
 </resources>
