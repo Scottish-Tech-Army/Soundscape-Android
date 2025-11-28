@@ -510,4 +510,8 @@
     <string name="offline_maps_caching" tools:ignore="MissingTranslation">Server is preparing %s for download. This can take a few minutes and then the download will start automatically.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Use WiFi only for map download</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Failed to download offline map data</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Reset settings to defaults</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">reset the settings to their defaults and then restart the app.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Are you sure?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Resetting the settings will delete all of the configured settings in the app, do you want to continue?</string>
 </resources>
