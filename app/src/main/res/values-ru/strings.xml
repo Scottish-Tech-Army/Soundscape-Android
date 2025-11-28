@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Сбросить настройки до значений по умолчанию, а затем перезапустить приложение.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Вы уверены?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Сброс настроек удалит все заданные в приложении параметры. Вы хотите продолжить?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Расширенные настройки отметок и путей</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">На этом экране вы можете экспортировать и импортировать отметки и пути, а также удалить все существующие отметки и пути.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Экспортировать базу данных отметок и путей</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Импортировать базу данных отметок и путей</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Импорт отметок и путей завершён.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Не удалось импортировать отметки и пути.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Удалить все отметки и пути</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Удаление всех отметок и путей нельзя отменить. Вы хотите продолжить?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Отметки и пути удалены</string>
 </resources>
