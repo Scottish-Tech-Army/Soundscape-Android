@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dubbelknacka om du vill återställa inställningarna till standardvärden och sedan starta om appen.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Är du säker?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Att återställa inställningarna kommer att ta bort alla inställningar du har gjort i appen. Vill du fortsätta?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Avancerade platsmarkörer och rutter</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Den här skärmen låter dig exportera och importera platsmarkörer och rutter, samt ta bort alla befintliga platsmarkörer och rutter.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Exportera databas för platsmarkörer och rutter</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importera databas för platsmarkörer och rutter</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Import av platsmarkörer och rutter slutförd.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Import av platsmarkörer och rutter misslyckades.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Ta bort alla platsmarkörer och rutter</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Att ta bort alla platsmarkörer och rutter kan inte ångras. Vill du fortsätta?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Platsmarkörer och rutter har tagits bort</string>
 </resources>
