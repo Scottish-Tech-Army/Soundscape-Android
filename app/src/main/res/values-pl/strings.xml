@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">przywróci ustawienia do wartości domyślnych, a następnie uruchomi aplikację ponownie.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Czy na pewno?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Przywrócenie ustawień spowoduje usunięcie wszystkich skonfigurowanych opcji w aplikacji. Czy chcesz kontynuować?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Zaawansowane znaczniki (pinezki) i trasy</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Na tym ekranie możesz eksportować i importować znaczniki (pinezki) oraz trasy, a także usuwać wszystkie istniejące znaczniki i trasy.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Eksportuj bazę danych znaczników (pinezek) i tras</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importuj bazę danych znaczników (pinezek) i tras</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Import znaczników i tras zakończony.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Import znaczników i tras nie powiódł się.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Usuń wszystkie znaczniki (pinezki) i trasy</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Usunięcie wszystkich znaczników (pinezek) i tras jest nieodwracalne. Czy chcesz kontynuować?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Znaczniki i trasy usunięte</string>
 </resources>
