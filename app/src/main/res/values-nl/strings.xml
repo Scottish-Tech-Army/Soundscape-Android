@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Zet de instellingen terug naar de standaardwaarden en start daarna de app opnieuw.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Weet u het zeker?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Het terugzetten van de instellingen verwijdert alle door u geconfigureerde instellingen in de app. Wilt u doorgaan?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Geavanceerde markeringen en routes</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Op dit scherm kunt u de database met markeringen en routes exporteren en importeren, en ook alle bestaande markeringen en routes verwijderen.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Database met markeringen en routes exporteren</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Database met markeringen en routes importeren</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Import van markeringen en routes voltooid.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Import van markeringen en routes mislukt.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Alle markeringen en routes verwijderen</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Het verwijderen van alle markeringen en routes kan niet ongedaan worden gemaakt. Wilt u doorgaan?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markeringen en routes verwijderd</string>
 </resources>
