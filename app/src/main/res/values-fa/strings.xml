@@ -981,4 +981,8 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">در مسیر %1$s، نقطه‌ی بین‌راهی %2$s از %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">صفحه‌ی اصلی ساند‌اسکیپ</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">دانلود داده‌های نقشه‌ی آفلاین با شکست مواجه شد</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">بازنشانی تنظیمات به حالت پیش‌فرض</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">تنظیمات را به حالت پیش‌فرض بازنشانی کرده و سپس اپلیکیشن را مجدداً راه‌اندازی کنید.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">آیا مطمئن هستید؟</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">بازنشانی تنظیمات، تمام تنظیمات پیکربندی‌شده در اپلیکیشن را حذف خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
 </resources>
