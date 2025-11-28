@@ -985,4 +985,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">تنظیمات را به حالت پیش‌فرض بازنشانی کرده و سپس اپلیکیشن را مجدداً راه‌اندازی کنید.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">آیا مطمئن هستید؟</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">بازنشانی تنظیمات، تمام تنظیمات پیکربندی‌شده در اپلیکیشن را حذف خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها (پیشرفته)</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">این صفحه به شما امکان می‌دهد نشانه‌ها و مسیرها را خروجی بگیرید و وارد کنید، و همچنین همه‌ی نشانه‌ها و مسیرهای موجود را حذف نمایید.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">خروجی‌گیری از پایگاه داده‌ی نشانه‌ها و مسیرها</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">وارد کردن پایگاه داده‌ی نشانه‌ها و مسیرها</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">وارد کردن نشانه‌ها و مسیرها انجام شد.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">وارد کردن نشانه‌ها و مسیرها با شکست مواجه شد.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">حذف همه‌ی نشانه‌ها و مسیرها</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">حذف همه‌ی نشانه‌ها و مسیرها قابل بازگرداندن نیست. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها حذف شدند</string>
 </resources>
