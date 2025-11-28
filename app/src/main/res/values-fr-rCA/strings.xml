@@ -510,4 +510,8 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Itinéraire %1$s au point de passage %2$s de %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Accueil Soundscape</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Échec du téléchargement des données de la carte hors ligne</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Réinitialiser les réglages par défaut</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Réinitialisez les réglages par défaut, puis redémarrez l’application.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Êtes-vous sûr?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">La réinitialisation des réglages supprimera tous les réglages configurés dans l’application. Voulez-vous continuer?</string>
 </resources>
