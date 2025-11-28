@@ -10,8 +10,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -38,6 +40,9 @@ class SettingsViewModel @Inject constructor(
         var currentStoragePath: String = "",
         var selectedStorageIndex: Int = -1
     )
+
+    private val _restartAppEvent = MutableSharedFlow<Unit>()
+    val restartAppEvent = _restartAppEvent.asSharedFlow()
 
     private val _state: MutableStateFlow<SettingsUiState> = MutableStateFlow(SettingsUiState())
     val state: StateFlow<SettingsUiState> = _state.asStateFlow()
@@ -161,6 +166,16 @@ class SettingsViewModel @Inject constructor(
             currentStoragePath = path,
             selectedStorageIndex = currentIndex
         )
+    }
+
+    fun resetToDefaults() {
+        viewModelScope.launch {
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
+            sharedPreferences.edit(commit = true) {
+                clear()
+            }
+            _restartAppEvent.emit(Unit)
+        }
     }
 
     companion object {

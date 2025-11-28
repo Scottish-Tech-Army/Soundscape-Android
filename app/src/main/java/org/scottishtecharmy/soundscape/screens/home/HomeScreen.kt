@@ -153,6 +153,13 @@ fun HomeScreen(
             val languageViewModel: LanguageViewModel = hiltViewModel()
             val languageUiState = languageViewModel.state.collectAsStateWithLifecycle()
             val localActivity = LocalActivity.current as MainActivity
+
+            LaunchedEffect(Unit) {
+                settingsViewModel.restartAppEvent.collect {
+                    localActivity.recreate()
+                }
+            }
+
             Settings(
                 onNavigateUp = { navController.navigateUp() },
                 uiState = uiState.value,
@@ -170,6 +177,7 @@ fun HomeScreen(
                     settingsViewModel.selectStorage(path)
                 },
                 selectedStorageIndex = uiState.value.selectedStorageIndex,
+                resetSettings = { settingsViewModel.resetToDefaults() }
             )
         }
 
