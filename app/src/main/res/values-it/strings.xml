@@ -510,4 +510,8 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Route %1$s al waypoint %2$s di %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Impossibile scaricare i dati della mappa offline</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Ripristina impostazioni predefinite</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Ripristina le impostazioni ai valori predefiniti e quindi riavvia l\'app.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Sei sicuro?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Il ripristino delle impostazioni eliminerà tutte le impostazioni configurate nell\'app. Vuoi continuare?</string>
 </resources>
