@@ -137,7 +137,7 @@ class RouteDetailsViewModel @Inject constructor(
         val outputFile = File(routeStorageDir, "route.json")
         generateRouteJson(route, outputFile)
 
-        return getUriForFile(context, "org.scottishtecharmy.fileprovider", outputFile)
+        return getUriForFile(context, "${context.packageName}.provider", outputFile)
     }
 
 

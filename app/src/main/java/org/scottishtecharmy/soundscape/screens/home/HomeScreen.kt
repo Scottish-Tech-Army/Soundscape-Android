@@ -32,6 +32,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
+import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
@@ -161,7 +162,7 @@ fun HomeScreen(
             }
 
             Settings(
-                onNavigateUp = { navController.navigateUp() },
+                navController = navController,
                 uiState = uiState.value,
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
@@ -313,6 +314,15 @@ fun HomeScreen(
         composable(HomeRoutes.PlacesNearby.route) {
             PlacesNearbyScreenVM(
                 homeNavController = navController,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) {
+            AdvancedMarkersAndRoutesSettingsScreenVM(
+                navController = navController,
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }

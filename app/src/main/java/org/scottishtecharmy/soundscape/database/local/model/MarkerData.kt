@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.jvm.javaClass
 
@@ -29,9 +30,8 @@ class MarkerEntity(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
         other as MarkerEntity
-        return (name == other.name) &&
-                (latitude == other.latitude) &&
-                (longitude == other.longitude)
+        val distance = distance(latitude, longitude, other.latitude, other.longitude)
+        return (name == other.name) && (fullAddress == other.fullAddress) && (distance < 1.0)
     }
 }
 

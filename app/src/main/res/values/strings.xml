@@ -426,6 +426,10 @@
 <string name="menu_help_and_tutorials">"Help and Tutorials"</string>
 <!-- Title for menu option to contact support by email -->
 <string name="menu_contact_support" tools:ignore="MissingTranslation">"Contact support"</string>
+<!-- Title for menu option to go to markers and routes advanced settings screen -->
+<string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">"Advanced Markers and Routes"</string>
+<!-- Text for main markers and routes advanced settings screen to explain what it's for -->
+<string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">"This screen allows you to export and import markers and routes, as well as to delete all existing markers and routes."</string>
 <!-- Screen Back button title -->
 <string name="ui_back_button_title">"Back"</string>
 <!-- Title of the screen that lists all of the details for a route -->
@@ -1027,6 +1031,20 @@
 <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Are you sure?</string>
 <!-- Message within confirmation dialog for resetting settings -->
 <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Resetting the settings will delete all of the configured settings in the app, do you want to continue?</string>
+<!-- Button text for backing up (saving a copy) of the markers and routes database -->
+<string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">"Export markers and routes database"</string>
+<!-- Button text for loading from a file the markers and routes database -->
+<string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">"Import markers and routes database"</string>
+<!-- Text for alert that shows after an import has been successfully complete  -->
+<string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">"Import of markers and routes completed."</string>
+<!-- Text for alert that shows after an import has failed -->
+<string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">"Import of markers and routes failed."</string>
+<!-- Text for button to clear the whole markers and routes database -->
+<string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">"Delete all markers and routes"</string>
+<!-- Text for dialog to check that the user really does want to delete all the markers and routes -->
+<string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">"Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
+<!-- Text for confirmation message after all markers and routes have been deleted -->
+<string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">"Markers and routes deleted</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->
