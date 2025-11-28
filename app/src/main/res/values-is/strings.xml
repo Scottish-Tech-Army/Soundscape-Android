@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">endurstilla stillingarnar í sjálfgefið ástand og endurræsa forritið.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Ertu viss?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Að endurstilla stillingarnar mun eyða öllum stillingum sem hafa verið stilltar í forritinu. Viltu halda áfram?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Ítarlegar stillingar merkja og leiða</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Á þessum skjá geturðu flutt merki og leiðir út og inn, auk þess að eyða öllum núverandi merkjum og leiðum.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Flytja út gagnagrunn merkja og leiða</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Flytja inn gagnagrunn merkja og leiða</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Innflutningur merkja og leiða lokið.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Mistókst að flytja inn merki og leiðir.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Eyða öllum merkjum og leiðum</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Að eyða öllum merkjum og leiðum er óafturkallanlegt. Viltu halda áfram?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
 </resources>
