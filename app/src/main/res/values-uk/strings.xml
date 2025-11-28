@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Скинути налаштування до значень за замовчуванням і потім перезапустити програму.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Ви впевнені?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Скидання налаштувань видалить усі налаштовані параметри програми. Хочете продовжити?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Розширені налаштування міток і маршрутів</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">На цьому екрані ви можете експортувати та імпортувати мітки й маршрути, а також видалити всі наявні мітки й маршрути.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Експортувати базу даних міток і маршрутів</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Імпортувати базу даних міток і маршрутів</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Імпорт міток і маршрутів завершено.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Не вдалося імпортувати мітки та маршрути.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Видалити всі мітки та маршрути</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Видалення всіх міток та маршрутів не може бути скасовано. Хочете продовжити?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Мітки та маршрути видалено</string>
 </resources>
