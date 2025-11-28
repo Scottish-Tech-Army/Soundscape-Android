@@ -510,4 +510,8 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Trasa %1$s, punkt trasy %2$s z %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape - Ekran główny</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Nie udało się pobrać danych map offline</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Przywróć ustawienia domyślne</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">przywróci ustawienia do wartości domyślnych, a następnie uruchomi aplikację ponownie.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Czy na pewno?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Przywrócenie ustawień spowoduje usunięcie wszystkich skonfigurowanych opcji w aplikacji. Czy chcesz kontynuować?</string>
 </resources>
