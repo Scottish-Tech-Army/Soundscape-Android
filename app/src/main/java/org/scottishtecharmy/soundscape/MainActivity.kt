@@ -8,7 +8,6 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -397,18 +396,20 @@ class MainActivity : AppCompatActivity() {
         val product = Build.PRODUCT
         val manufacturer = Build.MANUFACTURER
         val language = Locale.getDefault().language + "-" + Locale.getDefault().country
-        val speechEngine = sharedPreferences.getString(SPEECH_ENGINE_KEY, SPEECH_ENGINE_DEFAULT)
         val subjectText = "Soundscape Feedback (Android $androidVersion, $brand $model, $language, $appVersion)"
         val talkbackStatus = talkBackDescription(applicationContext)
+        val preferences = sharedPreferences.all
 
-        val bodyText =
+        fun tableRow(key: String, value: String) : String { return "$key:\t\t$value<br/>" }
+        var bodyText =
             "-----------------------------<br/>" +
-            "Product: $product<br/>" +
-            "Manufacturer: $manufacturer<br/>" +
-            "TTS engine: $speechEngine<br/>" +
-            "Talkback: $talkbackStatus" +
-            "-----------------------------<br/>" +
-            "<br/>"
+            tableRow("Product", product) +
+            tableRow("Manufacturer", manufacturer) +
+            tableRow("Talkback", talkbackStatus)
+
+        for(pref in preferences)
+            bodyText += tableRow(pref.key, pref.value.toString())
+        bodyText += "-----------------------------<br/><br/>"
 
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = "mailto:".toUri()
