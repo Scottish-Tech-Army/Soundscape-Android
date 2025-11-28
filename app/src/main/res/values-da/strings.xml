@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dobbelttryk for at gendanne standardindstillingerne og genstarte appen.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Er du sikker?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Ved at gendanne standardindstillingerne slettes alle de konfigurerede indstillinger i appen. Vil du fortsætte?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Avancerede mærker og ruter</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Denne skærm giver dig mulighed for at eksportere og importere mærker og ruter samt slette alle eksisterende mærker og ruter.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Eksporter database med mærker og ruter</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importer database med mærker og ruter</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Import af mærker og ruter fuldført.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Import af mærker og ruter mislykkedes.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Slet alle mærker og ruter</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Sletning af alle mærker og ruter kan ikke fortrydes. Vil du fortsætte?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Mærker og ruter er slettet</string>
 </resources>
