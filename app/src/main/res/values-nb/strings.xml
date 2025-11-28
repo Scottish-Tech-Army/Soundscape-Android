@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dobbelttrykk for å tilbakestille innstillingene til standard og starte appen på nytt.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Er du sikker?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Tilbakestilling av innstillingene vil slette alle innstillingene du har konfigurert i appen. Vil du fortsette?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Avanserte markører og ruter</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Denne skjermen lar deg eksportere og importere markører og ruter, samt slette alle eksisterende markører og ruter.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Eksporter database med markører og ruter</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importer database med markører og ruter</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Import av markører og ruter fullført.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Import av markører og ruter mislyktes.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Slett alle markører og ruter</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Sletting av alle markører og ruter kan ikke angres. Vil du fortsette?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markører og ruter er slettet</string>
 </resources>
