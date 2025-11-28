@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Πατήστε δύο φορές για να επαναφέρετε τις ρυθμίσεις στις προεπιλεγμένες τιμές και να επανεκκινήσετε την εφαρμογή.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Είστε βέβαιοι;</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Η επαναφορά των ρυθμίσεων θα διαγράψει όλες τις ρυθμίσεις που έχετε διαμορφώσει στην εφαρμογή. Θέλετε να συνεχίσετε;</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Προχωρημένες ρυθμίσεις Δεικτών και Διαδρομών</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Αυτή η οθόνη σάς επιτρέπει να εξάγετε και να εισάγετε δείκτες και διαδρομές, καθώς και να διαγράψετε όλους τους υπάρχοντες δείκτες και διαδρομές.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Εξαγωγή βάσης δεδομένων δεικτών και διαδρομών</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Εισαγωγή βάσης δεδομένων δεικτών και διαδρομών</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Η εισαγωγή των δεικτών και των διαδρομών ολοκληρώθηκε.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Η εισαγωγή των δεικτών και των διαδρομών απέτυχε.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Διαγραφή όλων των δεικτών και διαδρομών</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Η διαγραφή όλων των δεικτών και των διαδρομών δεν μπορεί να αναιρεθεί. Θέλετε να συνεχίσετε;</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Οι δείκτες και οι διαδρομές διαγράφηκαν</string>
 </resources>
