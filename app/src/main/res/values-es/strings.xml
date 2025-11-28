@@ -510,4 +510,8 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Ruta %1$s en el punto de ruta %2$s de %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Inicio de Soundscape</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Error al descargar los datos del mapa sin conexión</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Restablecer los ajustes a los valores predeterminados</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">restablecer los ajustes a sus valores predeterminados y, a continuación, reiniciar la aplicación.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">¿Está seguro?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Restablecer los ajustes eliminará todas las configuraciones realizadas en la aplicación. ¿Desea continuar?</string>
 </resources>
