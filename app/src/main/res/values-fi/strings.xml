@@ -510,4 +510,8 @@
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscapen aloitusnäyttö</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape tutkii innovatiivisen ääniperusteisen teknologian käyttöä, jotta ihmiset voivat rakentaa rikkaamman käsityksen ympäristöstään ja siten tulla itsevarmemmiksi sekä pystyvämmiksi liikkumaan.</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Offline-karttatietojen lataus epäonnistui</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Palauta oletusasetukset</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Kaksoisnapauta palauttaaksesi asetukset oletusarvoihin ja käynnistääksesi sovelluksen uudelleen.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Oletko varma?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Asetusten palauttaminen poistaa kaikki sovellukseen määritetyt asetukset. Haluatko jatkaa?</string>
 </resources>
