@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">restablecer los ajustes a sus valores predeterminados y, a continuación, reiniciar la aplicación.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">¿Está seguro?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Restablecer los ajustes eliminará todas las configuraciones realizadas en la aplicación. ¿Desea continuar?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Marcadores y rutas avanzados</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">En esta pantalla puede exportar e importar marcadores y rutas, así como eliminar todos los marcadores y rutas existentes.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Exportar la base de datos de marcadores y rutas</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importar la base de datos de marcadores y rutas</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Importación de marcadores y rutas completada.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Error al importar marcadores y rutas.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Eliminar todos los marcadores y rutas</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Eliminar todos los marcadores y rutas no se puede deshacer. ¿Desea continuar?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcadores y rutas eliminados</string>
 </resources>
