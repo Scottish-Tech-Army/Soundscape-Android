@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Doppeltippen, um die Einstellungen auf die Standardwerte zurückzusetzen und anschließend die App neu zu starten.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Sind Sie sicher?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Beim Zurücksetzen der Einstellungen werden alle in der App konfigurierten Einstellungen gelöscht. Möchten Sie fortfahren?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Erweiterte Markierungen und Routen</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Auf diesem Bildschirm können Sie Markierungen und Routen exportieren und importieren sowie alle vorhandenen Markierungen und Routen löschen.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Datenbank mit Markierungen und Routen exportieren</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Datenbank mit Markierungen und Routen importieren</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Import von Markierungen und Routen abgeschlossen.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Import von Markierungen und Routen fehlgeschlagen.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Alle Markierungen und Routen löschen</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Das Löschen aller Markierungen und Routen kann nicht rückgängig gemacht werden. Möchten Sie fortfahren?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markierungen und Routen gelöscht</string>
 </resources>
