@@ -510,4 +510,8 @@
     <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">تُعرف هذه الأماكن أيضًا باسم: %s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">تخزين خرائط دون اتصال</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">فشل تنزيل بيانات الخريطة غير المتصلة بالإنترنت</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">استعادة الإعدادات الافتراضية</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">سيتم إعادة الإعدادات إلى القيم الافتراضية ثم إعادة تشغيل التطبيق.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">هل أنت متأكد؟</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">ستؤدي استعادة الإعدادات إلى حذف جميع الإعدادات المخصصة في التطبيق. هل تريد المتابعة؟</string>
 </resources>
