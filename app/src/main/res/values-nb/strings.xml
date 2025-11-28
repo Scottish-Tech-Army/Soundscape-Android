@@ -510,4 +510,8 @@
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape-startskjerm</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape utforsker bruken av nyskapende lydbasert teknologi for å hjelpe folk med å få en rikere bevissthet om omgivelsene sine, slik at de blir mer selvsikre og i stand til å ta seg rundt.</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Kunne ikke laste ned data for offline-kart</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Tilbakestill innstillingene til standard</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dobbelttrykk for å tilbakestille innstillingene til standard og starte appen på nytt.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Er du sikker?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Tilbakestilling av innstillingene vil slette alle innstillingene du har konfigurert i appen. Vil du fortsette?</string>
 </resources>
