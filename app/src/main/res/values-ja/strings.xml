@@ -510,4 +510,8 @@
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape ホーム</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape は、革新的な音声ベースの技術の活用を通じて、人々が周囲の環境に対するより豊かな認識を築けるようにし、その結果、外出時の自信と自立を高めることを目指すアプリです。</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">オフライン地図データのダウンロードに失敗しました</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">設定をデフォルトに戻す</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">設定をデフォルトに戻してアプリを再起動するにはダブルタップします。</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">よろしいですか?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">設定をリセットするとアプリの設定がすべて削除されます。続行しますか?</string>
 </resources>
