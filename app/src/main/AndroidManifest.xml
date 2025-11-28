@@ -119,7 +119,7 @@
         </service>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="org.scottishtecharmy.fileprovider"
+            android:authorities="org.scottishtecharmy.soundscape.provider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

@@ -57,6 +57,7 @@ open class ProtomapsGridState(
 
     override fun stop() {
         super.stop()
+        tileClient?.quickClose()
         for(reader in fileTileReaders)
             reader.close()
         fileTileReaders.clear()

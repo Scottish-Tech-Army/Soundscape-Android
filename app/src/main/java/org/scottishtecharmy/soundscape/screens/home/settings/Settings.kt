@@ -29,12 +29,15 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
@@ -58,7 +61,7 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 @Composable
 fun SettingsPreview() {
     Settings(
-        {},
+        rememberNavController(),
         SettingsViewModel.SettingsUiState(),
         modifier = Modifier,
         MockLanguagePreviewData.languages,
@@ -141,7 +144,7 @@ fun ListPreferenceItem(description: String,
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Settings(
-    onNavigateUp: () -> Unit,
+    navController: NavHostController,
     uiState: SettingsViewModel.SettingsUiState,
     modifier: Modifier = Modifier,
     supportedLanguages: List<Language>,
@@ -240,7 +243,7 @@ fun Settings(
                 Surface {
                     CustomAppBar(
                         stringResource(R.string.settings_screen_title),
-                        onNavigateUp = onNavigateUp,
+                        onNavigateUp =  { navController.navigateUp() },
                         navigationButtonTitle = stringResource(R.string.ui_back_button_title)
                     )
                 }
@@ -535,6 +538,16 @@ fun Settings(
                 },
             )
             item {
+                CustomButton(
+                    onClick = { navController.navigate(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .mediumPadding(),
+                    shape = RoundedCornerShape(spacing.extraSmall),
+                    text = stringResource(R.string.menu_advanced_markers_and_routes),
+                    textStyle = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Bold,
+                )
                 CustomButton(
                     onClick = {
                         showConfirmationDialog.value = true

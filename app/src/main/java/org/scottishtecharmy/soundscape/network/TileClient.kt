@@ -59,6 +59,13 @@ abstract class TileClient(val applicationContext: Context) {
         })*/
         .build()
 
+    fun quickClose() {
+        println("Quick close of okHttpClient for TileClient")
+        okHttpClient.dispatcher.executorService.shutdown()
+        //okHttpClient.connectionPool.evictAll()
+        okHttpClient.cache?.close()
+    }
+
     /**
      * buildRetrofit is called in the sub-class and is responsible for creating the correct type
      * of Retrofit object. The SoundscapeBackendTiledClient returns a String type and the

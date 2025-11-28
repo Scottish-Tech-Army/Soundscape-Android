@@ -48,4 +48,8 @@ sealed class HomeRoutes(
         route = "offline_maps",
         title = "OfflineMaps",
     )
+    data object AdvancedMarkersAndRoutesSettings : HomeRoutes(
+        route = "advanced_markers_and_routes_settings",
+        title = "AdvancedMarkersAndRoutesSettings",
+    )
 }

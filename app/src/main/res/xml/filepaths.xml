@@ -2,4 +2,5 @@
 <paths>
     <files-path path="recordings/" name="recordings" />
     <files-path path="route/" name="route" />
+    <files-path path="export/" name="export" />
 </paths>

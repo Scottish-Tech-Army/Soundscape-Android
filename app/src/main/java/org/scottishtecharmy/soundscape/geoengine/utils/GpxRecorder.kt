@@ -29,7 +29,7 @@ class GpxRecorder() {
         runBlocking {
             generateGpxFile(outputFile)
         }
-        return getUriForFile(context, "org.scottishtecharmy.fileprovider", outputFile)
+        return getUriForFile(context, "${context.packageName}.provider", outputFile)
     }
 
     private suspend fun generateGpxFile(outputFile: File) {
