@@ -510,4 +510,8 @@
     <string name="home_screen_title" tools:ignore="MissingTranslation">Heimaskjár Soundscape</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape kannar notkun nýstárlegrar hljóðtækni til að gera fólki kleift að byggja upp ríkari meðvitund um umhverfi sitt og þannig auka sjálfstraust og sjálfstæði við ferðir.</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Mistókst að hlaða niður ónettengdum kortagögnum</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Endurstilla stillingar í sjálfgefið ástand</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">endurstilla stillingarnar í sjálfgefið ástand og endurræsa forritið.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Ertu viss?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Að endurstilla stillingarnar mun eyða öllum stillingum sem hafa verið stilltar í forritinu. Viltu halda áfram?</string>
 </resources>
