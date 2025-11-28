@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Faça duplo toque para repor as definições para os seus valores predefinidos e reiniciar a aplicação.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Tem a certeza?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Ao repor as definições, serão eliminadas todas as opções configuradas na aplicação. Pretende continuar?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Marcos e Rotas Avançados</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Este ecrã permite exportar e importar marcos e rotas, bem como eliminar todos os marcos e rotas existentes.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Exportar a base de dados de marcos e rotas</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importar a base de dados de marcos e rotas</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Importação de marcos e rotas concluída.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">A importação de marcos e rotas falhou.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Eliminar todos os marcos e rotas</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">A eliminação de todos os marcos e rotas não pode ser desfeita. Pretende continuar?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcos e rotas eliminados</string>
 </resources>
