@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dê um toque duplo para redefinir os ajustes para os padrões e reiniciar o aplicativo.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Tem certeza?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Redefinir os ajustes excluirá todas as configurações do aplicativo. Deseja continuar?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Favoritos e Rotas Avançados</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Esta tela permite exportar e importar favoritos e rotas, além de excluir todos os favoritos e rotas existentes.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Exportar banco de dados de favoritos e rotas</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importar banco de dados de favoritos e rotas</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Importação de favoritos e rotas concluída.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Falha ao importar favoritos e rotas.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Excluir todos os favoritos e rotas</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">A exclusão de todos os favoritos e rotas não pode ser desfeita. Deseja continuar?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Favoritos e rotas excluídos</string>
 </resources>
