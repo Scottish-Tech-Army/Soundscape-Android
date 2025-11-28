@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Ripristina le impostazioni ai valori predefiniti e quindi riavvia l\'app.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Sei sicuro?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Il ripristino delle impostazioni eliminerà tutte le impostazioni configurate nell\'app. Vuoi continuare?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Indicatori e Percorsi avanzati</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Questa schermata consente di esportare e importare indicatori e percorsi, oltre a eliminare tutti gli indicatori e percorsi esistenti.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Esporta il database degli indicatori e dei percorsi</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importa il database degli indicatori e dei percorsi</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Importazione di indicatori e percorsi completata.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Importazione di indicatori e percorsi non riuscita.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Elimina tutti gli indicatori e i percorsi</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">L\'eliminazione di tutti gli indicatori e percorsi non può essere annullata. Vuoi continuare?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Indicatori e percorsi eliminati</string>
 </resources>
