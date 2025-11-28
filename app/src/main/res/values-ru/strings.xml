@@ -510,4 +510,8 @@
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Маршрут %1$s: путевая точка %2$s из %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">Главный экран Soundscape</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Не удалось загрузить данные офлайн‑карт</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Сбросить настройки до значений по умолчанию</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Сбросить настройки до значений по умолчанию, а затем перезапустить приложение.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Вы уверены?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Сброс настроек удалит все заданные в приложении параметры. Вы хотите продолжить?</string>
 </resources>
