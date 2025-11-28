@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">سيتم إعادة الإعدادات إلى القيم الافتراضية ثم إعادة تشغيل التطبيق.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">هل أنت متأكد؟</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">ستؤدي استعادة الإعدادات إلى حذف جميع الإعدادات المخصصة في التطبيق. هل تريد المتابعة؟</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">العلامات والطرق المتقدمة</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">تتيح لك هذه الشاشة تصدير واستيراد العلامات والطرق، بالإضافة إلى حذف جميع العلامات والطرق الموجودة.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">تصدير قاعدة بيانات العلامات والطرق</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">استيراد قاعدة بيانات العلامات والطرق</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">اكتمل استيراد العلامات والطرق.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">فشل استيراد العلامات والطرق.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">حذف جميع العلامات والطرق</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">لا يمكن التراجع عن حذف جميع العلامات والطرق. هل تريد المتابعة؟</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
 </resources>
