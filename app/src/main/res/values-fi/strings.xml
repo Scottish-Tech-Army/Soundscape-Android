@@ -514,4 +514,13 @@
     <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Kaksoisnapauta palauttaaksesi asetukset oletusarvoihin ja käynnistääksesi sovelluksen uudelleen.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Oletko varma?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Asetusten palauttaminen poistaa kaikki sovellukseen määritetyt asetukset. Haluatko jatkaa?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Merkintöjen ja reittien lisäasetukset</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">Tällä näytöllä voit viedä ja tuoda merkinnät ja reitit sekä poistaa kaikki olemassa olevat merkinnät ja reitit.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Vie merkintöjen ja reittien tietokanta</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Tuo merkintöjen ja reittien tietokanta</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Merkintöjen ja reittien tuonti onnistui.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Merkintöjen ja reittien tuonti epäonnistui.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Poista kaikki merkinnät ja reitit</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Kaikkien merkintöjen ja reittien poistamista ei voi peruuttaa. Haluatko jatkaa?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merkinnät ja reitit poistettu</string>
 </resources>
