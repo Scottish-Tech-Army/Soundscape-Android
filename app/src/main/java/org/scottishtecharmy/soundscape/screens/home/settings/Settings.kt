@@ -5,22 +5,29 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckBox
 import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
@@ -29,12 +36,14 @@ import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.MockStoragePreviewData
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.StorageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
@@ -57,7 +66,8 @@ fun SettingsPreview() {
         4,
         MockStoragePreviewData.storages,
         {},
-        0
+        0,
+        resetSettings = {}
     )
 }
 
@@ -140,8 +150,11 @@ fun Settings(
     storages: List<StorageUtils.StorageSpace>,
     onStorageSelected: (String) -> Unit,
     selectedStorageIndex: Int,
+    resetSettings: () -> Unit,
 )
 {
+    val showConfirmationDialog = remember { mutableStateOf(false) }
+
     val beaconValues = uiState.beaconValues
     val beaconDescriptions = uiState.beaconDescriptions.map { stringResource(it) }
 
@@ -193,11 +206,40 @@ fun Settings(
         "de"
     )
 
+    if (showConfirmationDialog.value) {
+        AlertDialog(
+            onDismissRequest = { showConfirmationDialog.value = false },
+            title = { Text(stringResource(R.string.settings_reset_dialog_title)) },
+            text = { Text(stringResource(R.string.settings_reset_dialog_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        resetSettings()
+                        showConfirmationDialog.value = false
+                    }
+                ) {
+                    Text(
+                        text = stringResource(R.string.ui_continue),
+                        modifier = Modifier
+                            .talkbackHint(stringResource(R.string.settings_reset_button_hint))
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showConfirmationDialog.value = false }
+                ) {
+                    Text(stringResource(R.string.general_alert_cancel))
+                }
+            }
+        )
+    }
     ProvidePreferenceLocals {
-        LazyColumn (modifier = modifier.background(backgroundColor)){
+        LazyColumn(modifier = modifier.background(backgroundColor)) {
             stickyHeader {
                 Surface {
-                    CustomAppBar(stringResource(R.string.settings_screen_title),
+                    CustomAppBar(
+                        stringResource(R.string.settings_screen_title),
                         onNavigateUp = onNavigateUp,
                         navigationButtonTitle = stringResource(R.string.ui_back_button_title)
                     )
@@ -492,6 +534,23 @@ fun Settings(
                     )
                 },
             )
+            item {
+                CustomButton(
+                    onClick = {
+                        showConfirmationDialog.value = true
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .mediumPadding()
+                        .talkbackHint(stringResource(R.string.settings_reset_button_hint)),
+                    buttonColor = MaterialTheme.colorScheme.errorContainer,
+                    contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                    shape = RoundedCornerShape(spacing.small),
+                    text = stringResource(R.string.settings_reset_button),
+                    textStyle = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
         }
     }
 }
