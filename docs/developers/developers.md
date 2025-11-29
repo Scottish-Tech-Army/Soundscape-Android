@@ -11,7 +11,7 @@ The app is developed using [Android Studio](https://developer.android.com/studio
 ## Get started
 The quickest way to get started building the app is to run Android Studio and select `File/New/Project from version control` from the menu. Select `Git` as the version control and paste in the HTTPS code link for this project from above. Click on Clone and the project will download, open and initialize ready to build.
 
-The URL and API Key for the tile provider server (mapping tiles) are GitHub secrets, and developers have to define them locally. An example `local.properties` from the root directory should look something like this:
+The URL and API Key for the tile provider server (mapping tiles), search server and map extracts server are GitHub secrets, and developers have to define them locally. An example `local.properties` from the root directory should look something like this:
 
 ```
 ## This file must *NOT* be checked into Version Control Systems,
@@ -21,8 +21,16 @@ The URL and API Key for the tile provider server (mapping tiles) are GitHub secr
 sdk.dir=/home/userName/Android/Sdk
 
 # Tile provider URL and API key
-tileProviderUrl= https://protomaps_server_base_url
+tileProviderUrl= https://PROTOMAPS_SERVER_URL
 tileProviderApiKey=XXXXXXXXXXXXXXXXXXXX
+
+# Search provider URL and API key
+searchProviderUrl=https://PHOTON_SERVER_URL
+searchProviderApiKey=
+
+# Map extract provider URL and API key
+extractProviderUrl=https://EXTRACT_SERVER_URL
+extractProviderApiKey=
 ```
 
 If you would like access to the main Soundscape tile provider for development, get in touch.
@@ -33,6 +41,7 @@ If you would like access to the main Soundscape tile provider for development, g
 * [GeoEngine]({% link developers/geoengine.md %}) describes the code which parses mapping data and provides an API to the parts of the app that need it.
 * [Audio API]({% link developers/audio-API.md %}) describes the interface with the audio engine for beacon and text to speech play out.
 * [Dokka generated docs]({% link dokka/index.html %}) contains docs auto-generated from comments in the code.
+* [Language support]({% link developers/translations.md %}) explains how we handle translations for the app. This is an important read for anyone wishing to add new strings to the app.
 
 ## Mapping data
 See [here]({% link developers/mapping.md %}) for information about how we configure and use mapping data. There's also [this document](debugging-geojson.md) which describes a possible workflow for GeoJSON debugging.
