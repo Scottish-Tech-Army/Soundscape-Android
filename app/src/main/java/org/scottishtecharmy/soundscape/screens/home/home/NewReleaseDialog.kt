@@ -82,7 +82,7 @@ fun newReleaseDialog(
             ) {
                 // Remember that we've shown the dialog for this version
                 sharedPreferences.edit(commit = true) {
-                    putInt(LAST_NEW_RELEASE_KEY, BuildConfig.VERSION_CODE)
+                    putString(LAST_NEW_RELEASE_KEY, BuildConfig.VERSION_NAME.substringBeforeLast("."))
                 }
                 Text(text = stringResource(R.string.new_version_info_completed))
             }

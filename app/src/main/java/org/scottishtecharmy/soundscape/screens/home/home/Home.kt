@@ -99,7 +99,8 @@ fun Home(
     val routePlaying = (state.currentRouteData.routeData != null)
     val newReleaseDialog = remember {
         mutableStateOf(
-            sharedPreferences.getInt(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT) != BuildConfig.VERSION_CODE
+            sharedPreferences.getString(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT)
+                    != BuildConfig.VERSION_NAME.substringBeforeLast(".")
         )
     }
 
