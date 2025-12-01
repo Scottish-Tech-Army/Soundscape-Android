@@ -580,6 +580,8 @@ class MainActivity : AppCompatActivity() {
         const val SEARCH_LANGUAGE_KEY = "SearchLanguage"
         const val SELECTED_STORAGE_DEFAULT = ""
         const val SELECTED_STORAGE_KEY = "SelectedStorage"
+        const val LAST_NEW_RELEASE_DEFAULT = 0
+        const val LAST_NEW_RELEASE_KEY = "LastNewRelease"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }
