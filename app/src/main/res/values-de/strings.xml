@@ -511,7 +511,7 @@
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape erforscht den Einsatz innovativer, audio-basierter Technik, um Menschen zu ermöglichen, ein besseres Bewusstsein für ihre Umgebung zu entwickeln und dadurch selbstsicherer und unabhängiger unterwegs zu sein.</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Beim Herunterladen der Offline-Kartendaten ist ein Fehler aufgetreten</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">Einstellungen auf Standardwerte zurücksetzen</string>
-    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Doppeltippen, um die Einstellungen auf die Standardwerte zurückzusetzen und anschließend die App neu zu starten.</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Einstellungen auf die Standardwerte zurückzusetzen und anschließend die App neu zu starten.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Sind Sie sicher?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Beim Zurücksetzen der Einstellungen werden alle in der App konfigurierten Einstellungen gelöscht. Möchten Sie fortfahren?</string>
     <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Erweiterte Markierungen und Routen</string>
