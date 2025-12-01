@@ -511,7 +511,7 @@
     <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape startskärm</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Det gick inte att ladda ned offlinekartdata</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">Återställ inställningarna till standard</string>
-    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dubbelknacka om du vill återställa inställningarna till standardvärden och sedan starta om appen.</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">återställa inställningarna till standardvärden och sedan starta om appen.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Är du säker?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Att återställa inställningarna kommer att ta bort alla inställningar du har gjort i appen. Vill du fortsätta?</string>
     <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Avancerade platsmarkörer och rutter</string>
