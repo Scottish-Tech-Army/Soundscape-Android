@@ -36,7 +36,10 @@ import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
@@ -94,6 +97,11 @@ fun Home(
     val fullscreenMap = remember { mutableStateOf(false) }
     val keyboardOpen = keyboardAsState()
     val routePlaying = (state.currentRouteData.routeData != null)
+    val newReleaseDialog = remember {
+        mutableStateOf(
+            sharedPreferences.getInt(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT) != BuildConfig.VERSION_CODE
+        )
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -111,7 +119,8 @@ fun Home(
                     val ld = LocationDescription("", state.location ?: LngLatAlt())
                     onNavigate(generateOfflineMapScreenRoute(ld))
                 },
-                preferences = preferences
+                preferences = preferences,
+                newReleaseDialog = newReleaseDialog
             )
         },
         modifier = modifier,
@@ -143,6 +152,11 @@ fun Home(
             },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
+
+            if(newReleaseDialog.value) {
+                newReleaseDialog(innerPadding, sharedPreferences, newReleaseDialog)
+            }
+
             if (fullscreenMap.value) {
                 state.location?.let { location ->
                     MapContainerLibre(
@@ -239,9 +253,11 @@ fun HomeTopAppBar(
                     .talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
                     .testTag("topBarSleep")
             ) {
-                Icon(Icons.Rounded.Snooze,
+                Icon(
+                    Icons.Rounded.Snooze,
                     contentDescription = stringResource(R.string.sleep_sleep),
-                    tint = MaterialTheme.colorScheme.onSurface,)
+                    tint = MaterialTheme.colorScheme.onSurface,
+                )
             }
         },
     )

@@ -11,6 +11,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.Comment
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Markunread
 import androidx.compose.material.icons.rounded.Download
@@ -26,6 +27,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -47,7 +49,8 @@ fun DrawerContent(
     contactSupport: () -> Unit,
     shareRecording: () -> Unit,
     offlineMaps: () -> Unit,
-    preferences: SharedPreferences?
+    preferences: SharedPreferences?,
+    newReleaseDialog: MutableState<Boolean>?
 ) {
     val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
@@ -162,6 +165,15 @@ fun DrawerContent(
                     modifier = Modifier.testTag("menuAboutSoundscape")
                 )
 
+                DrawerMenuItem(
+                    onClick = {
+                        newReleaseDialog?.value = true
+                    },
+                    label = stringResource(R.string.new_version_info_text),
+                    Icons.AutoMirrored.Rounded.Comment,
+                    modifier = Modifier.testTag("newReleaseInfo")
+                )
+
                 if (recordingEnabled) {
                     DrawerMenuItem(
                         onClick = { shareRecording() },
@@ -184,6 +196,7 @@ fun PreviewDrawerContent() {
         contactSupport = { },
         shareRecording = { },
         offlineMaps = { },
-        preferences = null
+        preferences = null,
+        newReleaseDialog = null
     )
 }
