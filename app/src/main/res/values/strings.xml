@@ -1051,7 +1051,7 @@
 <string name="new_version_info_completed" tools:ignore="MissingTranslation">"Close new release dialog</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
-There are two major changes in release v0.0.135. Firstly, *Offline map* support has been added which allows Soundscape to run the majority of its features without any network access. In this initial release, *Search* still requires network support, but *Places Nearby*, the audio callouts and the graphical map will all use any downloaded offline maps.
+There are two major changes in this release. Firstly, *Offline map* support has been added which allows Soundscape to run the majority of its features without any network access. In this initial release, *Search* still requires network support, but *Places Nearby*, the audio callouts and the graphical map will all use any downloaded offline maps.
 
 There are a large number of pre-built map regions available which cover everywhere on the planet. Many locations will be within more than one offline map region and so the user can choose which one they would like to download and use. More than one offline map can be downloaded and Soundscape will switch between them automatically as the user moves around.
 
