@@ -511,7 +511,7 @@
     <string name="about_soundscape" tools:ignore="MissingTranslation">Το Soundscape εξερευνά τη χρήση καινοτόμου τεχνολογίας βασισμένης στον ήχο ώστε να επιτρέπει στους ανθρώπους να αποκτήσουν πληρέστερη αντίληψη του περιβάλλοντός τους και, έτσι, να γίνουν πιο αυτοπεποίθητοι και ανεξάρτητοι στην κίνηση.</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Αποτυχία λήψης των δεδομένων του χάρτη εκτός σύνδεσης</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">Επαναφορά ρυθμίσεων στις προεπιλεγμένες τιμές</string>
-    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Πατήστε δύο φορές για να επαναφέρετε τις ρυθμίσεις στις προεπιλεγμένες τιμές και να επανεκκινήσετε την εφαρμογή.</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">επαναφέρετε τις ρυθμίσεις στις προεπιλεγμένες τιμές και να επανεκκινήσετε την εφαρμογή.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Είστε βέβαιοι;</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Η επαναφορά των ρυθμίσεων θα διαγράψει όλες τις ρυθμίσεις που έχετε διαμορφώσει στην εφαρμογή. Θέλετε να συνεχίσετε;</string>
     <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Προχωρημένες ρυθμίσεις Δεικτών και Διαδρομών</string>
