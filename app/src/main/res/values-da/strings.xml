@@ -511,7 +511,7 @@
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape udforsker brugen af innovativ lydbaseret teknologi for at hjælpe folk med at opbygge en rigere bevidsthed om deres omgivelser, så de får mere selvtillid og bliver bedre i stand til at færdes.</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Download af offline-kortdata mislykkedes</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">Gendan standardindstillinger</string>
-    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Dobbelttryk for at gendanne standardindstillingerne og genstarte appen.</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">gendanne standardindstillingerne og genstarte appen.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Er du sikker?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Ved at gendanne standardindstillingerne slettes alle de konfigurerede indstillinger i appen. Vil du fortsætte?</string>
     <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Avancerede mærker og ruter</string>
