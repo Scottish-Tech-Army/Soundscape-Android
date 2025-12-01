@@ -511,7 +511,7 @@
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Utilisez le Wi-Fi uniquement pour télécharger les cartes</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Échec du téléchargement des données de la carte hors ligne</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">Réinitialiser les réglages par défaut</string>
-    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">Appuyez deux fois pour réinitialiser les réglages aux valeurs par défaut et redémarrer l’application.</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">réinitialiser les réglages aux valeurs par défaut et redémarrer l’application.</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">Êtes-vous sûr ?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">La réinitialisation des réglages supprimera tous les paramètres configurés dans l’application. Voulez-vous continuer ?</string>
     <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Marqueurs et itinéraires avancés</string>
