@@ -33,6 +33,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
+import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
@@ -322,6 +323,15 @@ fun HomeScreen(
 
         composable(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) {
             AdvancedMarkersAndRoutesSettingsScreenVM(
+                navController = navController,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(HomeRoutes.OpenSourceLicense.route) {
+            OpenSourceLicensesVM(
                 navController = navController,
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)

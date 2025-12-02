@@ -9,8 +9,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AccountBalance
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -18,6 +20,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
@@ -25,6 +29,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -35,10 +40,13 @@ import org.commonmark.node.Node
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 
@@ -314,20 +322,6 @@ val helpPages = listOf(
             Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
             Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
             Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.maplibre_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.junit_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-
-            Section(R.string.apache_notices, SectionType.Title, skipTalkback = true),
-            Section(R.string.rtree_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.realm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.moshi_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.retrofit_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.okhttp_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.otto_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.leak_canary_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.gpx_parser_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.preferences_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
         )
     )
 )
@@ -445,7 +439,7 @@ fun HelpScreen(
                                     modifier = Modifier
                                         .fillMaxWidth(),
                                     shape = RoundedCornerShape(spacing.extraSmall),
-                                    colors = currentAppButtonColors
+                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                 ) {
                                     Box(
                                         Modifier.weight(6f)
@@ -467,6 +461,20 @@ fun HelpScreen(
                                     }
                                 }
                             }
+                        }
+                    }
+                    item {
+                        if (sections.titleId == R.string.settings_about_app) {
+                            CustomButton(
+                                onClick = { navController.navigate(HomeRoutes.OpenSourceLicense.route) },
+                                text = stringResource(R.string.menu_open_source_licenses),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .smallPadding(),
+                                shape = RoundedCornerShape(spacing.extraSmall),
+                                textStyle = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Bold,
+                            )
                         }
                     }
                 }

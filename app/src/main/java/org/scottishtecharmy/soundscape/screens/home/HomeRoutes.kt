@@ -52,4 +52,8 @@ sealed class HomeRoutes(
         route = "advanced_markers_and_routes_settings",
         title = "AdvancedMarkersAndRoutesSettings",
     )
+    data object OpenSourceLicense : HomeRoutes(
+        route = "open_source_licenses",
+        title = "OpenSourceLicenses",
+    )
 }
