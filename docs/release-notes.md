@@ -7,8 +7,8 @@ has_toc: false
 
 # Release notes
 
-# 0.0.131
-We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
+# 0.1.x
+We've bumped the minor release number and aim to update release notes each time we do this instead of on each minor build.
 
 ## Changes since 0.0.118
 
@@ -27,7 +27,8 @@ Other changes include:
 * Added use of mapped Entrances within Places Nearby list. This means that for buildings and point of interest which have mapped entrances the entrances are used as the location to navigate to. If no entrance is mapped, then it's the nearest point on the building/POI to the user that will be used.
 * Added Russian and Icelandic translations - these were largely done by native speakers, but finished off by AI.
 * Updated all of the translations, largely using AI translations. These can be imperfect, but are likely better than no translation. All feedback on translations is welcome and can be done on a per-string basis at <https://hosted.weblate.org/projects/soundscape-android/android-app/>
-
+* Settings now contains "Reset to defaults" button at bottom. The current Settings are also now included in the Contact Support email, so if you think there's a problem with the settings then use Contact Support prior to resetting so that we can try and reproduce the issue.
+* Clearing, Exporting and Importing Markers and Routes has been added in "Advanced Markers and Routes" at the bottom of the Settings screen. Routes are exported (and imported) as GPX files within a Zip file. Markers not within a route are put in a separate GPX within the Zip. This allows for backup of the database along with sharing of sets of routes and markers.
 
 ## Changes between 0.0.116 and 0.0.118
 * Fixed race when announcing "Route completed".
