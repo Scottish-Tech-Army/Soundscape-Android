@@ -9,11 +9,17 @@
         <include domain="sharedpref" path="."/>
         <include domain="device_database" path="."/>
         <include domain="device_sharedpref" path="."/>
+        <exclude domain="external"/>
+        <exclude domain="file"/>
+        <exclude domain="root"/>
     </cloud-backup>
     <device-transfer>
         <include domain="database" path="."/>
         <include domain="sharedpref" path="."/>
         <include domain="device_database" path="."/>
         <include domain="device_sharedpref" path="."/>
+        <exclude domain="external"/>
+        <exclude domain="file"/>
+        <exclude domain="root"/>
     </device-transfer>
 </data-extraction-rules>
