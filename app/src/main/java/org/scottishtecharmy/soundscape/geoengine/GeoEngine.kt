@@ -65,7 +65,6 @@ import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
-import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import java.lang.String.format
 
 
@@ -278,10 +277,10 @@ class GeoEngine {
         }
 
         val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
-        val offlineExtractPaths =  findExtractPaths(extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS)
+        val offlineExtractPath = extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS
 
-        gridState.start(application, offlineExtractPaths)
-        settlementGrid.start(application, offlineExtractPaths)
+        gridState.start(application, offlineExtractPath)
+        settlementGrid.start(application, offlineExtractPath)
 
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)

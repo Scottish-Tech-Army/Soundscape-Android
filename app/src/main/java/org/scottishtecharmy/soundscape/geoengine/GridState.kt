@@ -85,7 +85,7 @@ open class GridState(
     internal var markerTree : FeatureTree? = null
 
     open fun start(applicationContext: Context? = null,
-                   offlineExtractPaths: List<String> = emptyList(),
+                   offlineExtractPath: String = "",
                    isUnitTesting: Boolean = false) {}
     open fun stop() {
         // Clean up tile cache and feature trees

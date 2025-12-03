@@ -185,10 +185,10 @@ class MvtPerformanceTest {
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
-        val offlineExtractPaths =  findExtractPaths(path + "/" + Environment.DIRECTORY_DOWNLOADS)
+        val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
         gridState.start(
             ApplicationProvider.getApplicationContext(),
-            offlineExtractPaths
+            offlineExtractPath
         )
 
         val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), MAX_ZOOM_LEVEL)
