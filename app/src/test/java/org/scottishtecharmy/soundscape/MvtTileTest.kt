@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape
 
+import android.content.Context
+import ch.poole.geo.pmtiles.Reader
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -51,11 +53,7 @@ import kotlin.io.path.nameWithoutExtension
  * running in a single context.
  */
 
-val offlineExtracts = listOf(
-    "src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles",
-    "src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles",
-    "src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles"
-)
+const val offlineExtractPath = "src/test/res/org/scottishtecharmy/soundscape"
 class FileGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
     gridSize: Int = GRID_SIZE) : ProtomapsGridState(zoomLevel, gridSize) {
@@ -64,24 +62,41 @@ class FileGridState(
         validateContext = false
     }
 
+    override fun start(applicationContext: Context?,
+                       offlineExtractPath: String,
+                       isUnitTesting: Boolean) {
+        super.start(applicationContext, offlineExtractPath, isUnitTesting)
+
+        // Set up the file readers as test code doesn't always use updateTileGrid
+        val extractsDir = File(extractPath)
+        if (extractsDir.exists() && extractsDir.isDirectory) {
+            val fileList = extractsDir.listFiles { file -> file.name.endsWith(".pmtiles") }?.toList()
+            if(fileList != null) {
+                for (file in fileList) {
+                    fileTileReaders.add(Reader(File(file.path)))
+                }
+            }
+        }
+    }
+
     fun getTile(x: Int, y: Int, zoomLevel: Int): VectorTile.Tile? {
         var result: VectorTile.Tile? = null
         for(reader in fileTileReaders) {
-            val fileTile = reader.getTile(zoomLevel, x, y)
-            if(fileTile == null)
-                continue
+            val fileTile = reader.getTile(zoomLevel, x, y) ?: continue
 
             // Turn the byte array into a VectorTile
             when (reader.tileCompression.toInt()) {
                 1 -> {
                     // No compression
                     result = VectorTile.Tile.parseFrom(fileTile)
+                    break
                 }
 
                 2 -> {
                     // Gzip compression
                     val decompressedTile = decompressGzip(fileTile)
                     result = VectorTile.Tile.parseFrom(decompressedTile)
+                    break
                 }
 
                 else -> assert(false)
@@ -101,13 +116,13 @@ class FileGridState(
         intersectionMap: HashMap<LngLatAlt, Intersection>
     ): Boolean {
 
-        val tile = getTile(x, y, zoomLevel)
+        val tile = getTile(x, y, zoomLevel) ?: return false
         // If the tile isn't included in offlineExtracts then this will assert
-        assert(tile != null)
+
         val tileFeatureCollection = vectorTileToGeoJson(
             tileX = x,
             tileY = y,
-            mvt = tile!!,
+            mvt = tile,
             intersectionMap = intersectionMap,
             tileZoom = zoomLevel
         )
@@ -129,7 +144,7 @@ private fun vectorTileToGeoJsonFromFile(
 ): FeatureCollection {
 
     val gridState = FileGridState()
-    gridState.start(null, offlineExtracts, true)
+    gridState.start(null, offlineExtractPath, true)
     val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
 
     return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, MAX_ZOOM_LEVEL)
@@ -205,7 +220,7 @@ fun getGridStateForLocation(
     val gridState = FileGridState(zoomLevel, gridSize)
     gridState.start(
         null,
-        offlineExtracts,
+        offlineExtractPath,
         true)
     runBlocking {
 
@@ -234,7 +249,7 @@ class MvtTileTest {
         //  2. Parses it with the code auto-generated from the vector_tile.proto specification
         //  3. Prints it out
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts, true)
+        gridState.start(null, offlineExtractPath, true)
         val tile = gridState.getTile(16093/2, 10211/2, 14)!!
         assert(tile.layersList.isNotEmpty())
 
@@ -684,9 +699,9 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts, true)
+        gridState.start(null, offlineExtractPath, true)
         val settlementGrid = FileGridState(12, 3)
-        settlementGrid.start(null, offlineExtracts, true)
+        settlementGrid.start(null, offlineExtractPath, true)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -823,7 +838,7 @@ class MvtTileTest {
         // 10209-10214 i.e. 30 tiles in total in 20 grids as each grid has 4 tiles in it.
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts, true)
+        gridState.start(null, offlineExtractPath, true)
 
         // The center of each grid
         for(x in 8046 until 8048) {
@@ -901,7 +916,7 @@ class MvtTileTest {
     fun testParsing() {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts, true)
+        gridState.start(null, offlineExtractPath, true)
 
         data class Region(val name: String, val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
         val regions = listOf (
@@ -1134,7 +1149,7 @@ class MvtTileTest {
     @Test
     fun entranceMatcherTest() {
         val gridState = DummyEntranceGridState()
-        gridState.start(null, emptyList(), true)
+        gridState.start(null, offlineExtractPath, true)
 
         runBlocking {
             val featureCollections =
@@ -1146,6 +1161,46 @@ class MvtTileTest {
             assertEquals(5, featureCollections[TreeId.ENTRANCES.id].features.size)
             assertEquals(5, featureCollections[TreeId.POIS.id].features.size)
             assertEquals(3, featureCollections[TreeId.TRANSIT_STOPS.id].features.size)
+        }
+    }
+
+    @Test
+    fun extractSwitchingTest() {
+        // This test ensures that the GridState code can successfully switch between offline
+        // extracts
+        val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)
+        gridState.start(
+            null,
+            offlineExtractPath,
+            true)
+        val enabledCategories = emptySet<String>().toMutableSet()
+        enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
+        enabledCategories.add(MOBILITY_KEY)
+
+        // Intersperse locations that are in each of the extracts (Glasgow, Liverpool, Bristol)
+        // with some that are outside and should fail
+        val locations: List<Pair<LngLatAlt, Boolean>> = listOf(
+            Pair(sixtyAcresCloseTestLocation, true),
+            Pair(longAshtonRoadTestLocation, true),
+            Pair(LngLatAlt(51.69046,32.66160), false),
+            Pair(woodlandWayTestLocation, true),
+            Pair(centralManchesterTestLocation, true),
+            Pair(LngLatAlt(51.69046,32.66160), false),
+            Pair(failandTestLocation, true),
+            Pair(LngLatAlt(51.69046,32.66160), false),
+            Pair(edinburghTestLocation, true),
+            Pair(glasgowTestLocation, true),
+        )
+
+        runBlocking {
+            for(location in locations) {
+                println("Test ${location.first}")
+                assertEquals(gridState.locationUpdate(
+                    location.first,
+                    enabledCategories,
+                    true
+                ), location.second)
+            }
         }
     }
 }

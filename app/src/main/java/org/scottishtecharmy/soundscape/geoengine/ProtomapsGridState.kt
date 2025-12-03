@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import retrofit2.awaitResponse
 import vector_tile.VectorTile
 import java.io.ByteArrayInputStream
@@ -35,24 +36,19 @@ open class ProtomapsGridState(
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
-    var fileTileReaders: MutableList<Reader> = mutableListOf<Reader>()
+    var fileTileReaders: MutableList<Reader> = mutableListOf()
+    var currentExtracts: MutableList<String> = mutableListOf()
+    var extractPath: String = ""
+    var startedUnitTesting: Boolean = false
 
     override fun start(applicationContext: Context?,
-                       offlineExtractPaths: List<String>,
+                       offlineExtractPath: String,
                        isUnitTesting: Boolean) {
         if((tileClient == null) && (applicationContext != null))
             tileClient = ProtomapsTileClient(applicationContext)
 
-        if(!isUnitTesting) {
-            if (offlineExtractPaths.isEmpty())
-                Firebase.analytics.logEvent("GridNoOfflineMap", null)
-            else
-                Firebase.analytics.logEvent("GridWithOfflineMap", null)
-        }
-
-        // Create a range reader for the local file
-        for(extract in offlineExtractPaths)
-            fileTileReaders.add(Reader(File(extract)))
+        extractPath = offlineExtractPath
+        startedUnitTesting = isUnitTesting
     }
 
     override fun stop() {
@@ -112,6 +108,29 @@ open class ProtomapsGridState(
         intersectionMap: HashMap<LngLatAlt, Intersection>
     ): Boolean {
         var ret = false
+
+        // Check for change in offline map extracts and update our file readers if there's a change
+        val extracts = findExtractPaths(extractPath).toMutableList()
+        if(extracts != currentExtracts) {
+            println("Change in offline extracts")
+            currentExtracts = extracts
+            if (!startedUnitTesting) {
+                if (currentExtracts.isEmpty())
+                    Firebase.analytics.logEvent("GridNoOfflineMap", null)
+                else
+                    Firebase.analytics.logEvent("GridWithOfflineMap", null)
+            }
+
+            // Close old file readers
+            for(reader in fileTileReaders)
+                reader.close()
+            fileTileReaders.clear()
+
+            // Add new file readers
+            for (extract in currentExtracts)
+                fileTileReaders.add(Reader(File(extract)))
+        }
+
         withContext(Dispatchers.IO) {
             try {
                 val startTime = System.currentTimeMillis()

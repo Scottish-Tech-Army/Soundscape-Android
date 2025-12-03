@@ -61,3 +61,5 @@ val longAshtonRoadTestLocation = LngLatAlt(-2.6573400576040456, 51.4304568172365
 val woodlandWayTestLocation = LngLatAlt(-2.695517313268283, 51.44082881061331)
 val centralManchesterTestLocation = LngLatAlt(-2.239529, 53.480408)
 val failandTestLocation = LngLatAlt(-2.69439697265625, 51.43860066718254)
+val edinburghTestLocation = LngLatAlt(-3.2024509, 55.9511984)
+val glasgowTestLocation = LngLatAlt(-4.2368873, 55.8553207)

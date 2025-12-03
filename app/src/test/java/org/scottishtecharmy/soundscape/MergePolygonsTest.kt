@@ -17,8 +17,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import vector_tile.VectorTile
-import java.io.FileInputStream
 import java.io.FileOutputStream
 
 class MergePolygonsTest {
@@ -263,7 +261,7 @@ class MergePolygonsTest {
     ): FeatureCollection {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts, true)
+        gridState.start(null, offlineExtractPath, true)
         val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
         val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
 
