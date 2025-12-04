@@ -1,14 +1,13 @@
 #!/bin/bash -eu
-: "${1?"Usage: $0 package name"}"
 
 # Initialize and create a backup
 adb shell bmgr enable true
 adb shell bmgr transport com.android.localtransport/.LocalTransport | grep -q "Selected transport" || (echo "Error: error selecting local transport"; exit 1)
 adb shell settings put secure backup_local_transport_parameters 'is_encrypted=true'
-adb shell bmgr backupnow "$1"
+adb shell bmgr backupnow org.scottishtecharmy.soundscape
 
 # Uninstall and reinstall the app to clear the data and trigger a restore
-apk_path_list=$(adb shell pm path "$1")
+apk_path_list=$(adb shell pm path "org.scottishtecharmy.soundscape")
 OIFS=$IFS
 IFS=$'\n'
 apk_number=0
@@ -19,11 +18,14 @@ do
     adb pull "$apk_path" "myapk${apk_number}.apk"
 done
 IFS=$OIFS
-adb shell pm uninstall --user 0 "$1"
+echo "Uninstall!"
+adb shell pm uninstall --user 0 "org.scottishtecharmy.soundscape"
 apks=$(seq -f 'myapk%.f.apk' 1 $apk_number)
+echo "Install $apks"
 adb install-multiple -t --user 0 $apks
 
 # Clean up
+echo "Clean up"
 adb shell bmgr transport com.google.android.gms/.backup.BackupTransportService
 rm $apks
 

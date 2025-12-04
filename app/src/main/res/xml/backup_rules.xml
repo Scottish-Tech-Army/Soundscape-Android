@@ -8,9 +8,8 @@
 <full-backup-content>
     <include domain="database" path="."/>
     <include domain="sharedpref" path="."/>
-    <include domain="device_database" path="."/>
-    <include domain="device_sharedpref" path="."/>
-    <exclude domain="external"/>
+    <exclude domain="device_database"/>
+    <exclude domain="device_sharedpref"/>
     <exclude domain="file"/>
-    <exclude domain="root"/>
+    <exclude domain="external"/>
 </full-backup-content>
