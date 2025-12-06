@@ -48,12 +48,12 @@ open class ProtomapsGridState(
             tileClient = ProtomapsTileClient(applicationContext)
 
         extractPath = offlineExtractPath
+        currentExtracts = mutableListOf()
         startedUnitTesting = isUnitTesting
     }
 
     override fun stop() {
         super.stop()
-        tileClient?.quickClose()
         for(reader in fileTileReaders)
             reader.close()
         fileTileReaders.clear()
