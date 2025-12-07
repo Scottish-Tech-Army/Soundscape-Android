@@ -76,9 +76,6 @@ fun CustomTextField(
             capitalization = KeyboardCapitalization.Sentences
         ),
         modifier = modifier
-            .talkbackDescription("$fieldName...$value")
-            .talkbackHint(fieldHint)
-            .clearAndSetSemantics {  } // The built in description is laborious
     )
 }
 
