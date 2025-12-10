@@ -35,7 +35,7 @@ jobs:
         run: test -z $(git rev-list  --after="24 hours" HEAD) && echo "should_run=false" >> $GITHUB_OUTPUT
 
   build:
-    name: Build debug package
+    name: Build package
     runs-on: ubuntu-latest
     environment: development
     needs: check_date
@@ -95,27 +95,47 @@ jobs:
       - name: Run gradle tests
         run: ./gradlew test
 
-      # Create APK Debug
-      - name: Build apk debug project (APK)
+      # Setup release build keys
+      - name: Decode Keystore
+        env:
+          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+
         run: |
-          ./gradlew assembleDebug
+          echo $ENCODED_STRING > keystore-b64.txt
+          base64 -d keystore-b64.txt > ${{ env.main_project_module }}/$SIGNING_KEY_STORE_PATH
+
+      # Create APK Release
+      - name: Build apk project (APK)
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: |
+          ./gradlew assemble
 
       # Upload Artifact Build
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload APK Debug
+      # Noted For Output [main_project_module]/build/outputs/apk/release/
+      - name: Upload APK Release
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk
-          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+          name: release-apk
+          path: ${{ env.main_project_module }}/build/outputs/apk/release/
 
       # Generate android instrumentation tests APK
       - name: Assemble Android Instrumentation Tests
-        run: ./gradlew assembleDebugAndroidTest
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: ./gradlew assembleAndroidTest
       - name: Upload Android Test APK
         uses: actions/upload-artifact@v4
         with:
-          name: debug-androidTest
-          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          name: release-androidTest
+          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/release/app-release-androidTest.apk
 
 #  instrumentation-tests:
 #    name: Run matrix of instrumentation tests
@@ -187,12 +207,12 @@ jobs:
       - name: Download app APK
         uses: actions/download-artifact@v4
         with:
-          name: debug-apk
+          name: release-apk
 
-      - name: Download Android test APK
-        uses: actions/download-artifact@v4
-        with:
-          name: debug-androidTest
+#      - name: Download Android test APK
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: release-androidTest
 
       - name: Auth
         uses: google-github-actions/auth@v2
@@ -207,7 +227,7 @@ jobs:
 
 # These tests now need the pmtiles file, skip for now as we already test locally
 #      - name: Run Instrumentation Tests in Firebase Test Lab
-#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
+#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-release.apk --test app-release-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
 
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-release.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
