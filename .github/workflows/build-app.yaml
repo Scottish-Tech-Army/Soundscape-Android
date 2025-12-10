@@ -180,11 +180,6 @@ jobs:
         run: |
           ./gradlew build
 
-      # Create APK Debug
-      - name: Build apk debug project (APK)
-        run: |
-          ./gradlew assembleDebug
-
       # Create APK Release
       - name: Build apk release project (APK)
         env:
@@ -205,13 +200,6 @@ jobs:
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
 
       # Upload Artifact Build
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload APK Debug
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-apk
-          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
-
       # Noted For Output [main_project_module]/build/outputs/apk/release/
       - name: Upload APK Release
         uses: actions/upload-artifact@v4
@@ -219,7 +207,6 @@ jobs:
           name: release-apk
           path: |
             ${{ env.main_project_module }}/build/outputs/apk/release/
-            ${{ env.main_project_module }}/build/outputs/mapping/release/
 
       # Noted For Output [main_project_module]/build/outputs/bundle/release/
       - name: Upload AAB (App Bundle) Release
@@ -229,15 +216,6 @@ jobs:
           path: |
             ${{ env.main_project_module }}/build/outputs/bundle/release/
             ${{ env.main_project_module }}/build/outputs/mapping/release/
-
-      # Generate android instrumentation tests APK
-      - name: Assemble Android Instrumentation Tests
-        run: ./gradlew assembleDebugAndroidTest
-      - name: Upload Android Test APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-androidTest
-          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 
   firebase:
     name: Run UI tests with Firebase Test Lab
@@ -249,12 +227,7 @@ jobs:
       - name: Download app APK
         uses: actions/download-artifact@v4
         with:
-          name: debug-apk
-
-      - name: Download Android test APK
-        uses: actions/download-artifact@v4
-        with:
-          name: debug-androidTest
+          name: release-apk
 
       - name: Auth
         uses: google-github-actions/auth@v2
@@ -267,9 +240,5 @@ jobs:
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
-# These tests now need the pmtiles file, skip for now as we already test locally
-#      - name: Run Instrumentation Tests in Firebase Test Lab
-#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
-
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-release.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
