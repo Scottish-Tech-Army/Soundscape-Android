@@ -4,7 +4,7 @@
 <string name="app_name" translatable="false">Soundscape</string>
 <!-- Text for button to cancel dialog -->
 <string name="general_alert_cancel">"Cancel"</string>
-<!-- Text for button to accept as done a dialog  -->
+<!-- Text for button to accept as done a dialog -->
 <string name="general_alert_done">"Done"</string>
 <!-- Text displayed whilst app is starting Street Preview mode -->
 <string name="general_loading_start">"Getting things ready…"</string>
@@ -25,7 +25,7 @@
 <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">"Speaking Rate"</string>
 <!-- Title for option to select the text-to-speech engine to use. -->
-<string name="voice_engine"  tools:ignore="MissingTranslation">"Text-to-Speech Engine"</string>
+<string name="voice_engine" tools:ignore="MissingTranslation">"Text-to-Speech Engine"</string>
 <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">"Voices"</string>
 <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
@@ -162,7 +162,7 @@
 <string name="routes_sort_by_name">"Sort by Name"</string>
 <!-- Text for a button that will cause the list of routes to be sorted by their distance from the user -->
 <string name="routes_sort_by_distance">"Sort by Distance"</string>
-<!-- Title of Markers page. Markers are locations that the user has selected and added a name for.  -->
+<!-- Title of Markers page. Markers are locations that the user has selected and added a name for. -->
 <string name="markers_title">"Markers"</string>
 <!-- Button text to delete a marker -->
 <string name="markers_action_delete">"Delete Marker"</string>
@@ -184,7 +184,7 @@
 <string name="markers_edit_screen_title_edit">"Edit Marker"</string>
 <!-- Text used when calling out makers -->
 <string name="markers_generic_name">"Marker"</string>
-<!-- Marker Information, %s is the name of the marker e.g.  "Marker. <Starbucks>" -->
+<!-- Marker Information, %s is the name of the marker e.g. "Marker. <Starbucks>" -->
 <string name="markers_marker_with_name">"Marker. %s"</string>
 <!-- Notification when a marker is created -->
 <string name="markers_marker_created">"Marker created"</string>
@@ -434,7 +434,7 @@
 <string name="ui_back_button_title">"Back"</string>
 <!-- Title of the screen that lists all of the details for a route -->
 <string name="behavior_experiences_route_nav_title">"Route Details"</string>
-<!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint, %3$s is the waypoint index, %4$s is the total number of waypoints.  "Beacon set on control 1. 450 feet away. 1 of 4." -->
+<!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint, %3$s is the waypoint index, %4$s is the total number of waypoints. "Beacon set on control 1. 450 feet away. 1 of 4." -->
 <string name="behavior_scavenger_hunt_callout_next_flag">"Beacon set on %1$s, %2$s away, %3$s of %4$s"</string>
 <!-- Help section title, Configuring Soundscape -->
 <string name="help_configuration_section_title">"Configuring Soundscape"</string>
@@ -798,7 +798,7 @@
 <string name="faq_how_close_to_destination_answer">"Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off."</string>
 <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_turn_beacon_back_on_question">"Can I turn the beacon back on when I am close to my destination?"</string>
-<!-- Preserve meter unit - Do not convert. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. "Location Services" refers to the feature of the same name in iOS. It should be translated in the same manner that it is in the Settings app under Settings > Privacy > Location Services.  Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
+<!-- Preserve meter unit - Do not convert. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. "Location Services" refers to the feature of the same name in iOS. It should be translated in the same manner that it is in the Settings app under Settings > Privacy > Location Services. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
 <string name="faq_turn_beacon_back_on_answer">"Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *\"unmute beacon button\"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination."</string>
 <!-- Intersection - A junction where two or more roads meet or cross. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_road_names_question">"Why does Soundscape call out road names twice when I approach an intersection?"</string>
@@ -822,7 +822,7 @@
 <string name="faq_supported_phones_question">"What phone does Soundscape run on?"</string>
 <!-- Android 11 phones and later -->
 <string name="faq_supported_phones_answer">"Soundscape for Android is currently available for Android phones running Android 11 or later."</string>
-<!-- Soundscape frequently asked questions  -->
+<!-- Soundscape frequently asked questions -->
 <string name="faq_supported_headsets_question">"What headphones should I use with Soundscape?"</string>
 <!-- Soundscape frequently asked questions-->
 <string name="faq_supported_headsets_answer">"Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts."</string>
@@ -868,7 +868,7 @@
 <string name="faq_holding_phone_flat_answer">"No! While walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume."</string>
 <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_what_is_osm_question">"What is Open Street Map and why do we use it for Soundscape?"</string>
-<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment.  -->
+<!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_what_is_osm_answer">"Soundscape draws on geographic map data to provide the information callouts in the app. The primary map source we use is Open Street Map (www.openstreetmap.org) which is a rich community generated mapping platform, that enables organizations and individuals to improve the quality and granularity of the information provided and the accessibility of their spaces using Open Street Map map authoring tools."</string>
 <!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_tip_beacon_quiet">"If you put your phone in your pocket and stop moving, the beacon sound will get quieter because Soundscape can’t tell which way you are facing. Solve this by starting to walk again, or pulling your phone out and holding it flat."</string>
@@ -926,7 +926,7 @@
 <string name="settings_theme_contrast" tools:ignore="MissingTranslation">"Theme contrast"</string>
 <!-- App theme options for contrast setting - regular is the lowest contrast -->
 <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">"Regular"</string>
-<!-- App theme options for contrast setting - medium is the middle contrast  -->
+<!-- App theme options for contrast setting - medium is the middle contrast -->
 <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">"Medium"</string>
 <!-- App theme options for contrast setting - high has the most contrast-->
 <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">"High"</string>
@@ -965,7 +965,7 @@
 <string name="confect_name_dead_end" tools:ignore="MissingTranslation">"dead end"</string>
 <!-- Offscreen maps screen title - offline maps are map files which can be downloaded by the app so that the app can work without Internet -->
 <string name="offline_maps_title" tools:ignore="MissingTranslation">"Offline maps"</string>
-<!-- Offscreen maps details title - this screen describes a single offline map extract that can be downloaded.  -->
+<!-- Offscreen maps details title - this screen describes a single offline map extract that can be downloaded. -->
 <string name="offline_map_details_title" tools:ignore="MissingTranslation">"Offline map details"</string>
 <!-- Offscreen maps still loading message -->
 <string name="offline_maps_loading" tools:ignore="MissingTranslation">"Loading…"</string>
@@ -1009,11 +1009,11 @@
 <string name="text_field_clear_text" tools:ignore="MissingTranslation">Clear Text</string>
 <!-- Content description for marker name - always preceded by "Double tap to " -->
 <string name="marker_name_description_hint" tools:ignore="MissingTranslation">edit the marker name</string>
-<!-- Content description for annotation edit text field  - always preceded by "Double tap to " -->
+<!-- Content description for annotation edit text field - always preceded by "Double tap to " -->
 <string name="annotation_description_hint" tools:ignore="MissingTranslation">add an optional note to help you recognize this marker later</string>
 <!-- Content description for route name - always preceded by "Double tap to " -->
 <string name="route_name_description_hint" tools:ignore="MissingTranslation">edit the route name</string>
-<!-- Content description for route description edit text field  - always preceded by "Double tap to " -->
+<!-- Content description for route description edit text field - always preceded by "Double tap to " -->
 <string name="route_description_description_hint" tools:ignore="MissingTranslation">add an optional description for this route</string>
 <!-- Content description for floating action button which adds an item -->
 <string name="fab_add_item" tools:ignore="MissingTranslation">Add Item</string>
@@ -1035,7 +1035,7 @@
 <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">"Export markers and routes database"</string>
 <!-- Button text for loading from a file the markers and routes database -->
 <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">"Import markers and routes database"</string>
-<!-- Text for alert that shows after an import has been successfully complete  -->
+<!-- Text for alert that shows after an import has been successfully complete -->
 <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">"Import of markers and routes completed."</string>
 <!-- Text for alert that shows after an import has failed -->
 <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">"Import of markers and routes failed."</string>
@@ -1074,4 +1074,1426 @@ As always please report any problems, however small they may be via the *Contact
 <string name="osm_copyright" translatable="false">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.</string>
 <string name="openmaptiles_copyright" translatable="false">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.</string>
 <string name="fmod_copyright" translatable="false">[Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.](https://www.fmod.com/legal) takes care of the audio playback.</string>
+
+<!-- Open Street Map term crossing. -->
+<string name="osm_crossing" tools:ignore="MissingTranslation">Crosswalk</string>
+<!-- Open Street Map term construction. -->
+<string name="osm_construction" tools:ignore="MissingTranslation">Construction</string>
+<!-- Open Street Map term dangerous_area. -->
+<string name="osm_dangerous_area" tools:ignore="MissingTranslation">Danger Area</string>
+<!-- Open Street Map term townhall. -->
+<string name="osm_townhall" tools:ignore="MissingTranslation">Town Hall</string>
+<!-- Open Street Map term steps. -->
+<string name="osm_steps" tools:ignore="MissingTranslation">Steps</string>
+<!-- Open Street Map term elevator. -->
+<string name="osm_elevator" tools:ignore="MissingTranslation">Elevator</string>
+<!-- Open Street Map term walking_path. -->
+<string name="osm_walking_path" tools:ignore="MissingTranslation">Walking Path</string>
+<!-- Open Street Map term pedestrian_street. -->
+<string name="osm_pedestrian_street" tools:ignore="MissingTranslation">Pedestrian Street</string>
+<!-- Open Street Map term bicycle_path. -->
+<string name="osm_bicycle_path" tools:ignore="MissingTranslation">Bicycle Path</string>
+<!-- Open Street Map term residential_street. -->
+<string name="osm_residential_street" tools:ignore="MissingTranslation">Residential Street</string>
+<!-- Open Street Map term service_road. -->
+<string name="osm_service_road" tools:ignore="MissingTranslation">Service Road</string>
+<!-- Open Street Map term road. -->
+<string name="osm_road" tools:ignore="MissingTranslation">Road</string>
+<!-- Open Street Map term highway. -->
+<string name="osm_highway" tools:ignore="MissingTranslation">Highway</string>
+<!-- Open Street Map term highway_named. -->
+<string name="osm_highway_named" tools:ignore="MissingTranslation">Named Highway</string>
+<!-- Open Street Map term highway_refed. -->
+<string name="osm_highway_refed" tools:ignore="MissingTranslation">Highway Ref</string>
+<!-- Open Street Map term intersection. -->
+<string name="osm_intersection" tools:ignore="MissingTranslation">Intersection</string>
+<!-- Open Street Map term roundabout. -->
+<string name="osm_roundabout" tools:ignore="MissingTranslation">Roundabout</string>
+<!-- Open Street Map term highway_ramp. -->
+<string name="osm_highway_ramp" tools:ignore="MissingTranslation">Highway Ramp</string>
+<!-- Open Street Map term merging_lane. -->
+<string name="osm_merging_lane" tools:ignore="MissingTranslation">Merging Lane</string>
+<!-- Open Street Map term office. -->
+<string name="osm_office" tools:ignore="MissingTranslation">Office</string>
+<!-- Open Street Map term school. -->
+<string name="osm_school" tools:ignore="MissingTranslation">School</string>
+<!-- Open Street Map term roof. -->
+<string name="osm_roof" tools:ignore="MissingTranslation">Roof</string>
+<!-- Open Street Map term convenience. -->
+<string name="osm_convenience" tools:ignore="MissingTranslation">Convenience Store</string>
+<!-- Open Street Map term entrance. -->
+<string name="osm_entrance" tools:ignore="MissingTranslation">Entrance</string>
+<!-- Open Street Map term assembly_point. -->
+<string name="osm_assembly_point" tools:ignore="MissingTranslation">Assembly Point</string>
+<!-- Open Street Map term cycle_barrier. -->
+<string name="osm_cycle_barrier" tools:ignore="MissingTranslation">Cycle Barrier</string>
+<!-- Open Street Map term turnstile. -->
+<string name="osm_turnstile" tools:ignore="MissingTranslation">Turnstile</string>
+<!-- Open Street Map term cattle_grid. -->
+<string name="osm_cattle_grid" tools:ignore="MissingTranslation">Cattle Grid</string>
+<!-- Open Street Map term gate. -->
+<string name="osm_gate" tools:ignore="MissingTranslation">Gate</string>
+<!-- Open Street Map term lift_gate. -->
+<string name="osm_lift_gate" tools:ignore="MissingTranslation">Lift Gate</string>
+<!-- Open Street Map term toilets. -->
+<string name="osm_toilets" tools:ignore="MissingTranslation">Toilets</string>
+<!-- Open Street Map term parking. -->
+<string name="osm_parking" tools:ignore="MissingTranslation">Parking</string>
+<!-- Open Street Map term parking_entrance. -->
+<string name="osm_parking_entrance" tools:ignore="MissingTranslation">Parking Entrance</string>
+<!-- Open Street Map term bench. -->
+<string name="osm_bench" tools:ignore="MissingTranslation">Bench</string>
+<!-- Open Street Map term taxi. -->
+<string name="osm_taxi" tools:ignore="MissingTranslation">Taxi Stand</string>
+<!-- Open Street Map term post_office. -->
+<string name="osm_post_office" tools:ignore="MissingTranslation">Post Office</string>
+<!-- Open Street Map term post_box. -->
+<string name="osm_post_box" tools:ignore="MissingTranslation">Post Box</string>
+<!-- Open Street Map term waste_basket. -->
+<string name="osm_waste_basket" tools:ignore="MissingTranslation">Trash Bin</string>
+<!-- Open Street Map term shower. -->
+<string name="osm_shower" tools:ignore="MissingTranslation">Shower</string>
+<!-- Open Street Map term bicycle_parking. -->
+<string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Bicycle Parking</string>
+<!-- Open Street Map term cafe. -->
+<string name="osm_cafe" tools:ignore="MissingTranslation">Cafe</string>
+<!-- Open Street Map term restaurant. -->
+<string name="osm_restaurant" tools:ignore="MissingTranslation">Restaurant</string>
+<!-- Open Street Map term telephone. -->
+<string name="osm_telephone" tools:ignore="MissingTranslation">Telephone</string>
+<!-- Open Street Map term fuel. -->
+<string name="osm_fuel" tools:ignore="MissingTranslation">Fuel</string>
+<!-- Open Street Map term bank. -->
+<string name="osm_bank" tools:ignore="MissingTranslation">Bank</string>
+<!-- Open Street Map term atm. -->
+<string name="osm_atm" tools:ignore="MissingTranslation">ATM</string>
+<!-- Open Street Map term atm_named. -->
+<string name="osm_atm_named" tools:ignore="MissingTranslation">Named ATM</string>
+<!-- Open Street Map term atm_refed. -->
+<string name="osm_atm_refed" tools:ignore="MissingTranslation">ATM Ref</string>
+<!-- Open Street Map term bus_stop. -->
+<string name="osm_bus_stop" tools:ignore="MissingTranslation">Bus Stop</string>
+<!-- Open Street Map term recycling. -->
+<string name="osm_recycling" tools:ignore="MissingTranslation">Recycling</string>
+<!-- Open Street Map term fountain. -->
+<string name="osm_fountain" tools:ignore="MissingTranslation">Fountain</string>
+<!-- Open Street Map term place_of_worship. -->
+<string name="osm_place_of_worship" tools:ignore="MissingTranslation">Place Of Worship</string>
+<!-- Open Street Map term drinking_water. -->
+<string name="osm_drinking_water" tools:ignore="MissingTranslation">Drinking Water</string>
+<!-- Open Street Map term car_wash. -->
+<string name="osm_car_wash" tools:ignore="MissingTranslation">Car Wash</string>
+<!-- Open Street Map term vending_machine. -->
+<string name="osm_vending_machine" tools:ignore="MissingTranslation">Vending Machine</string>
+<!-- Open Street Map term playground. -->
+<string name="osm_playground" tools:ignore="MissingTranslation">Playground</string>
+<!-- Open Street Map term pitch. -->
+<string name="osm_pitch" tools:ignore="MissingTranslation">Pitch</string>
+<!-- Open Street Map term swimming_pool. -->
+<string name="osm_swimming_pool" tools:ignore="MissingTranslation">Swimming Pool</string>
+<!-- Open Street Map term garden. -->
+<string name="osm_garden" tools:ignore="MissingTranslation">Garden</string>
+<!-- Open Street Map term park. -->
+<string name="osm_park" tools:ignore="MissingTranslation">Park</string>
+<!-- Open Street Map term picnic_table. -->
+<string name="osm_picnic_table" tools:ignore="MissingTranslation">Picnic Table</string>
+<!-- Open Street Map term picnic_site. -->
+<string name="osm_picnic_site" tools:ignore="MissingTranslation">Picnic Site</string>
+<!-- Open Street Map term information. -->
+<string name="osm_information" tools:ignore="MissingTranslation">Information</string>
+<!-- Open Street Map term fire_extinguisher. -->
+<string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Fire Extinguisher</string>
+<!-- Open Street Map term defibrillator. -->
+<string name="osm_defibrillator" tools:ignore="MissingTranslation">Defibrillator</string>
+<!-- Open Street Map term guide. -->
+<string name="osm_guide" tools:ignore="MissingTranslation">Guidepost</string>
+<!-- Open Street Map term water. -->
+<string name="osm_water" tools:ignore="MissingTranslation">Water</string>
+<!-- Open Street Map term fire_hose. -->
+<string name="osm_fire_hose" tools:ignore="MissingTranslation">Fire Hose</string>
+<!-- Open Street Map term fire_flapper. -->
+<string name="osm_fire_flapper" tools:ignore="MissingTranslation">Fire Flapper</string>
+<!-- Open Street Map term information_point. -->
+<string name="osm_information_point" tools:ignore="MissingTranslation">Information Point</string>
+<!-- Open Street Map term wetland. -->
+<string name="osm_wetland" tools:ignore="MissingTranslation">Wetland</string>
+<!-- Open Street Map term mud. -->
+<string name="osm_mud" tools:ignore="MissingTranslation">Mud</string>
+<!-- Open Street Map term access_point. -->
+<string name="osm_access_point" tools:ignore="MissingTranslation">Access Point</string>
+<!-- Open Street Map term life_ring. -->
+<string name="osm_life_ring" tools:ignore="MissingTranslation">Life Ring</string>
+<!-- Open Street Map term generic_info. -->
+<string name="osm_generic_info" tools:ignore="MissingTranslation">Info</string>
+<!-- Open Street Map term turntable. -->
+<string name="osm_turntable" tools:ignore="MissingTranslation">Turntable</string>
+<!-- Open Street Map term survey_point. -->
+<string name="osm_survey_point" tools:ignore="MissingTranslation">Survey Point</string>
+<!-- Open Street Map term snow_net. -->
+<string name="osm_snow_net" tools:ignore="MissingTranslation">Snow Net</string>
+<!-- Open Street Map term silo. -->
+<string name="osm_silo" tools:ignore="MissingTranslation">Silo</string>
+<!-- Open Street Map term mast. -->
+<string name="osm_mast" tools:ignore="MissingTranslation">Mast</string>
+<!-- Open Street Map term bird_hide. -->
+<string name="osm_bird_hide" tools:ignore="MissingTranslation">Bird Hide</string>
+<!-- Open Street Map term transformer_tower. -->
+<string name="osm_transformer_tower" tools:ignore="MissingTranslation">Transformer Tower</string>
+<!-- Open Street Map term generic_object. -->
+<string name="osm_generic_object" tools:ignore="MissingTranslation">Object</string>
+<!-- Open Street Map term signal. -->
+<string name="osm_signal" tools:ignore="MissingTranslation">Signal</string>
+<!-- Open Street Map term rock. -->
+<string name="osm_rock" tools:ignore="MissingTranslation">Rock</string>
+<!-- Open Street Map term kiln. -->
+<string name="osm_kiln" tools:ignore="MissingTranslation">Kiln</string>
+<!-- Open Street Map term crane. -->
+<string name="osm_crane" tools:ignore="MissingTranslation">Crane</string>
+<!-- Open Street Map term rune_stone. -->
+<string name="osm_rune_stone" tools:ignore="MissingTranslation">Rune Stone</string>
+<!-- Open Street Map term milestone. -->
+<string name="osm_milestone" tools:ignore="MissingTranslation">Milestone</string>
+<!-- Open Street Map term lifeguard_platform. -->
+<string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Lifeguard Platform</string>
+<!-- Open Street Map term water_tank. -->
+<string name="osm_water_tank" tools:ignore="MissingTranslation">Water Tank</string>
+<!-- Open Street Map term sty. -->
+<string name="osm_sty" tools:ignore="MissingTranslation">Pig Sty</string>
+<!-- Open Street Map term navigationaid. -->
+<string name="osm_navigationaid" tools:ignore="MissingTranslation">Navigation Aid</string>
+<!-- Open Street Map term terminal. -->
+<string name="osm_terminal" tools:ignore="MissingTranslation">Terminal</string>
+<!-- Open Street Map term water_tap. -->
+<string name="osm_water_tap" tools:ignore="MissingTranslation">Water Tap</string>
+<!-- Open Street Map term water_well. -->
+<string name="osm_water_well" tools:ignore="MissingTranslation">Water Well</string>
+<!-- Open Street Map term petroleum_well. -->
+<string name="osm_petroleum_well" tools:ignore="MissingTranslation">Petroleum Well</string>
+<!-- Open Street Map term cross. -->
+<string name="osm_cross" tools:ignore="MissingTranslation">Cross</string>
+<!-- Open Street Map term gallows. -->
+<string name="osm_gallows" tools:ignore="MissingTranslation">Gallows</string>
+<!-- Open Street Map term speed_camera. -->
+<string name="osm_speed_camera" tools:ignore="MissingTranslation">Speed Camera</string>
+<!-- Open Street Map term siren. -->
+<string name="osm_siren" tools:ignore="MissingTranslation">Siren</string>
+<!-- Open Street Map term pylon. -->
+<string name="osm_pylon" tools:ignore="MissingTranslation">Pylon</string>
+<!-- Open Street Map term mineshaft. -->
+<string name="osm_mineshaft" tools:ignore="MissingTranslation">Mineshaft</string>
+<!-- Open Street Map term flagpole. -->
+<string name="osm_flagpole" tools:ignore="MissingTranslation">Flagpole</string>
+<!-- Open Street Map term optical_telegraph. -->
+<string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Optical Telegraph</string>
+<!-- Open Street Map term cannon. -->
+<string name="osm_cannon" tools:ignore="MissingTranslation">Cannon</string>
+<!-- Open Street Map term boundary_stone. -->
+<string name="osm_boundary_stone" tools:ignore="MissingTranslation">Boundary Stone</string>
+<!-- Open Street Map term shed. -->
+<string name="osm_shed" tools:ignore="MissingTranslation">Shed</string>
+<!-- Open Street Map term traffic_cones. -->
+<string name="osm_traffic_cones" tools:ignore="MissingTranslation">Traffic Cones</string>
+<!-- Open Street Map term firepit. -->
+<string name="osm_firepit" tools:ignore="MissingTranslation">Fire Pit</string>
+<!-- Open Street Map term stone. -->
+<string name="osm_stone" tools:ignore="MissingTranslation">Stone</string>
+<!-- Open Street Map term surveillance. -->
+<string name="osm_surveillance" tools:ignore="MissingTranslation">Surveillance</string>
+<!-- Open Street Map term monitoring_station. -->
+<string name="osm_monitoring_station" tools:ignore="MissingTranslation">Monitoring Station</string>
+<!-- Open Street Map term wayside_shrine. -->
+<string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Wayside Shrine</string>
+<!-- Open Street Map term wayside_cross. -->
+<string name="osm_wayside_cross" tools:ignore="MissingTranslation">Wayside Cross</string>
+<!-- Open Street Map term tomb. -->
+<string name="osm_tomb" tools:ignore="MissingTranslation">Tomb</string>
+<!-- Open Street Map term traffic_signals. -->
+<string name="osm_traffic_signals" tools:ignore="MissingTranslation">Traffic Signals</string>
+<!-- Open Street Map term hut. -->
+<string name="osm_hut" tools:ignore="MissingTranslation">Hut</string>
+<!-- Open Street Map term static_caravan. -->
+<string name="osm_static_caravan" tools:ignore="MissingTranslation">Static Caravan</string>
+<!-- Open Street Map term bollard. -->
+<string name="osm_bollard" tools:ignore="MissingTranslation">Bollard</string>
+<!-- Open Street Map term block. -->
+<string name="osm_block" tools:ignore="MissingTranslation">Block</string>
+<!-- Open Street Map term waste_disposal. -->
+<string name="osm_waste_disposal" tools:ignore="MissingTranslation">Waste Disposal</string>
+<!-- Open Street Map term photo_booth. -->
+<string name="osm_photo_booth" tools:ignore="MissingTranslation">Photo Booth</string>
+<!-- Open Street Map term bbq. -->
+<string name="osm_bbq" tools:ignore="MissingTranslation">Barbecue</string>
+<!-- Open Street Map term shop. -->
+<string name="osm_shop" tools:ignore="MissingTranslation">Shop</string>
+<!-- Open Street Map term newsagent. -->
+<string name="osm_newsagent" tools:ignore="MissingTranslation">Newsagent</string>
+<!-- Open Street Map term anime. -->
+<string name="osm_anime" tools:ignore="MissingTranslation">Anime</string>
+<!-- Open Street Map term musical_instrument. -->
+<string name="osm_musical_instrument" tools:ignore="MissingTranslation">Musical Instruments</string>
+<!-- Open Street Map term vacuum_cleaner. -->
+<string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Vacuum Cleaner</string>
+<!-- Open Street Map term mobile_phone. -->
+<string name="osm_mobile_phone" tools:ignore="MissingTranslation">Mobile Phone</string>
+<!-- Open Street Map term carpet. -->
+<string name="osm_carpet" tools:ignore="MissingTranslation">Carpet</string>
+<!-- Open Street Map term trade. -->
+<string name="osm_trade" tools:ignore="MissingTranslation">Trade</string>
+<!-- Open Street Map term garden_centre. -->
+<string name="osm_garden_centre" tools:ignore="MissingTranslation">Garden Center</string>
+<!-- Open Street Map term florist. -->
+<string name="osm_florist" tools:ignore="MissingTranslation">Florist</string>
+<!-- Open Street Map term fireplace. -->
+<string name="osm_fireplace" tools:ignore="MissingTranslation">Fireplace</string>
+<!-- Open Street Map term massage. -->
+<string name="osm_massage" tools:ignore="MissingTranslation">Massage</string>
+<!-- Open Street Map term herbalist. -->
+<string name="osm_herbalist" tools:ignore="MissingTranslation">Herbalist</string>
+<!-- Open Street Map term bag. -->
+<string name="osm_bag" tools:ignore="MissingTranslation">Bag</string>
+<!-- Open Street Map term pastry. -->
+<string name="osm_pastry" tools:ignore="MissingTranslation">Pastry</string>
+<!-- Open Street Map term deli. -->
+<string name="osm_deli" tools:ignore="MissingTranslation">Deli</string>
+<!-- Open Street Map term beverages. -->
+<string name="osm_beverages" tools:ignore="MissingTranslation">Beverages</string>
+<!-- Open Street Map term alcohol. -->
+<string name="osm_alcohol" tools:ignore="MissingTranslation">Alcohol</string>
+<!-- Open Street Map term substation. -->
+<string name="osm_substation" tools:ignore="MissingTranslation">Substation</string>
+<!-- Open Street Map term travel_agent. -->
+<string name="osm_travel_agent" tools:ignore="MissingTranslation">Travel Agent</string>
+<!-- Open Street Map term research. -->
+<string name="osm_research" tools:ignore="MissingTranslation">Research</string>
+<!-- Open Street Map term newspaper. -->
+<string name="osm_newspaper" tools:ignore="MissingTranslation">Newspaper</string>
+<!-- Open Street Map term ammunition. -->
+<string name="osm_ammunition" tools:ignore="MissingTranslation">Ammunition</string>
+<!-- Open Street Map term wildlife_hide. -->
+<string name="osm_wildlife_hide" tools:ignore="MissingTranslation">Wildlife Hide</string>
+<!-- Open Street Map term watchmaker. -->
+<string name="osm_watchmaker" tools:ignore="MissingTranslation">Watchmaker</string>
+<!-- Open Street Map term tinsmith. -->
+<string name="osm_tinsmith" tools:ignore="MissingTranslation">Tinsmith</string>
+<!-- Open Street Map term sun_protection. -->
+<string name="osm_sun_protection" tools:ignore="MissingTranslation">Sun Protection</string>
+<!-- Open Street Map term sculptor. -->
+<string name="osm_sculptor" tools:ignore="MissingTranslation">Sculptor</string>
+<!-- Open Street Map term metal_construction. -->
+<string name="osm_metal_construction" tools:ignore="MissingTranslation">Metal Construction</string>
+<!-- Open Street Map term handicraft. -->
+<string name="osm_handicraft" tools:ignore="MissingTranslation">Handicraft</string>
+<!-- Open Street Map term cowshed. -->
+<string name="osm_cowshed" tools:ignore="MissingTranslation">Cowshed</string>
+<!-- Open Street Map term cabin. -->
+<string name="osm_cabin" tools:ignore="MissingTranslation">Cabin</string>
+<!-- Open Street Map term barn. -->
+<string name="osm_barn" tools:ignore="MissingTranslation">Barn</string>
+<!-- Open Street Map term warehouse. -->
+<string name="osm_warehouse" tools:ignore="MissingTranslation">Warehouse</string>
+<!-- Open Street Map term houseboat. -->
+<string name="osm_houseboat" tools:ignore="MissingTranslation">Houseboat</string>
+<!-- Open Street Map term book_store. -->
+<string name="osm_book_store" tools:ignore="MissingTranslation">Bookstore</string>
+<!-- Open Street Map term generic_place. -->
+<string name="osm_generic_place" tools:ignore="MissingTranslation">Place</string>
+<!-- Open Street Map term hunting_stand. -->
+<string name="osm_hunting_stand" tools:ignore="MissingTranslation">Hunting Stand</string>
+<!-- Open Street Map term game_feeding. -->
+<string name="osm_game_feeding" tools:ignore="MissingTranslation">Game Feeding</string>
+<!-- Open Street Map term crypt. -->
+<string name="osm_crypt" tools:ignore="MissingTranslation">Crypt</string>
+<!-- Open Street Map term animal_shelter. -->
+<string name="osm_animal_shelter" tools:ignore="MissingTranslation">Animal Shelter</string>
+<!-- Open Street Map term animal_boarding. -->
+<string name="osm_animal_boarding" tools:ignore="MissingTranslation">Animal Boarding</string>
+<!-- Open Street Map term blood_donation. -->
+<string name="osm_blood_donation" tools:ignore="MissingTranslation">Blood Donation</string>
+<!-- Open Street Map term nursing_home. -->
+<string name="osm_nursing_home" tools:ignore="MissingTranslation">Nursing Home</string>
+<!-- Open Street Map term dentist. -->
+<string name="osm_dentist" tools:ignore="MissingTranslation">Dentist</string>
+<!-- Open Street Map term baby_hatch. -->
+<string name="osm_baby_hatch" tools:ignore="MissingTranslation">Baby Hatch</string>
+<!-- Open Street Map term language_school. -->
+<string name="osm_language_school" tools:ignore="MissingTranslation">Language School</string>
+<!-- Open Street Map term public_bookcase. -->
+<string name="osm_public_bookcase" tools:ignore="MissingTranslation">Public Bookcase</string>
+<!-- Open Street Map term biergarten. -->
+<string name="osm_biergarten" tools:ignore="MissingTranslation">Beer Garden</string>
+<!-- Open Street Map term running. -->
+<string name="osm_running" tools:ignore="MissingTranslation">Running</string>
+<!-- Open Street Map term glaziery. -->
+<string name="osm_glaziery" tools:ignore="MissingTranslation">Glaziery</string>
+<!-- Open Street Map term garages. -->
+<string name="osm_garages" tools:ignore="MissingTranslation">Garages</string>
+<!-- Open Street Map term retail. -->
+<string name="osm_retail" tools:ignore="MissingTranslation">Retail</string>
+<!-- Open Street Map term hotel. -->
+<string name="osm_hotel" tools:ignore="MissingTranslation">Hotel</string>
+<!-- Open Street Map term camp_site. -->
+<string name="osm_camp_site" tools:ignore="MissingTranslation">Campsite</string>
+<!-- Open Street Map term rugby_league. -->
+<string name="osm_rugby_league" tools:ignore="MissingTranslation">Rugby League</string>
+<!-- Open Street Map term roller_skating. -->
+<string name="osm_roller_skating" tools:ignore="MissingTranslation">Roller Skating</string>
+<!-- Open Street Map term multi. -->
+<string name="osm_multi" tools:ignore="MissingTranslation">Multiple</string>
+<!-- Open Street Map term ice_hockey. -->
+<string name="osm_ice_hockey" tools:ignore="MissingTranslation">Ice Hockey</string>
+<!-- Open Street Map term hapkido. -->
+<string name="osm_hapkido" tools:ignore="MissingTranslation">Hapkido</string>
+<!-- Open Street Map term croquet. -->
+<string name="osm_croquet" tools:ignore="MissingTranslation">Croquet</string>
+<!-- Open Street Map term cricket. -->
+<string name="osm_cricket" tools:ignore="MissingTranslation">Cricket</string>
+<!-- Open Street Map term cockfighting. -->
+<string name="osm_cockfighting" tools:ignore="MissingTranslation">Cockfighting</string>
+<!-- Open Street Map term boxing. -->
+<string name="osm_boxing" tools:ignore="MissingTranslation">Boxing</string>
+<!-- Open Street Map term bmx. -->
+<string name="osm_bmx" tools:ignore="MissingTranslation">BMX</string>
+<!-- Open Street Map term billiards. -->
+<string name="osm_billiards" tools:ignore="MissingTranslation">Billiards</string>
+<!-- Open Street Map term toys. -->
+<string name="osm_toys" tools:ignore="MissingTranslation">Toys</string>
+<!-- Open Street Map term pyrotechnics. -->
+<string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Pyrotechnics</string>
+<!-- Open Street Map term laundry. -->
+<string name="osm_laundry" tools:ignore="MissingTranslation">Laundry</string>
+<!-- Open Street Map term funeral_directors. -->
+<string name="osm_funeral_directors" tools:ignore="MissingTranslation">Funeral Directors</string>
+<!-- Open Street Map term dry_cleaning. -->
+<string name="osm_dry_cleaning" tools:ignore="MissingTranslation">Dry Cleaning</string>
+<!-- Open Street Map term copyshop. -->
+<string name="osm_copyshop" tools:ignore="MissingTranslation">Copy Shop</string>
+<!-- Open Street Map term chalet. -->
+<string name="osm_chalet" tools:ignore="MissingTranslation">Chalet</string>
+<!-- Open Street Map term apartment. -->
+<string name="osm_apartment" tools:ignore="MissingTranslation">Apartment</string>
+<!-- Open Street Map term water_ski. -->
+<string name="osm_water_ski" tools:ignore="MissingTranslation">Water Skiing</string>
+<!-- Open Street Map term water_polo. -->
+<string name="osm_water_polo" tools:ignore="MissingTranslation">Water Polo</string>
+<!-- Open Street Map term table_soccer. -->
+<string name="osm_table_soccer" tools:ignore="MissingTranslation">Table Soccer</string>
+<!-- Open Street Map term table_tennis. -->
+<string name="osm_table_tennis" tools:ignore="MissingTranslation">Table Tennis</string>
+<!-- Open Street Map term skateboard. -->
+<string name="osm_skateboard" tools:ignore="MissingTranslation">Skateboard</string>
+<!-- Open Street Map term sailing. -->
+<string name="osm_sailing" tools:ignore="MissingTranslation">Sailing</string>
+<!-- Open Street Map term safety_training. -->
+<string name="osm_safety_training" tools:ignore="MissingTranslation">Safety Training</string>
+<!-- Open Street Map term rowing. -->
+<string name="osm_rowing" tools:ignore="MissingTranslation">Rowing</string>
+<!-- Open Street Map term model_aerodrome. -->
+<string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Model Aerodrome</string>
+<!-- Open Street Map term korfball. -->
+<string name="osm_korfball" tools:ignore="MissingTranslation">Korfball</string>
+<!-- Open Street Map term ice_stock. -->
+<string name="osm_ice_stock" tools:ignore="MissingTranslation">Ice Stock</string>
+<!-- Open Street Map term gymnastics. -->
+<string name="osm_gymnastics" tools:ignore="MissingTranslation">Gymnastics</string>
+<!-- Open Street Map term football. -->
+<string name="osm_football" tools:ignore="MissingTranslation">Football</string>
+<!-- Open Street Map term field_hockey. -->
+<string name="osm_field_hockey" tools:ignore="MissingTranslation">Field Hockey</string>
+<!-- Open Street Map term equestrian. -->
+<string name="osm_equestrian" tools:ignore="MissingTranslation">Equestrian</string>
+<!-- Open Street Map term cycling. -->
+<string name="osm_cycling" tools:ignore="MissingTranslation">Cycling</string>
+<!-- Open Street Map term curling. -->
+<string name="osm_curling" tools:ignore="MissingTranslation">Curling</string>
+<!-- Open Street Map term cricket_nets. -->
+<string name="osm_cricket_nets" tools:ignore="MissingTranslation">Cricket Nets</string>
+<!-- Open Street Map term cliff_diving. -->
+<string name="osm_cliff_diving" tools:ignore="MissingTranslation">Cliff Diving</string>
+<!-- Open Street Map term boules. -->
+<string name="osm_boules" tools:ignore="MissingTranslation">Boules</string>
+<!-- Open Street Map term bobsleigh. -->
+<string name="osm_bobsleigh" tools:ignore="MissingTranslation">Bobsleigh</string>
+<!-- Open Street Map term baseball. -->
+<string name="osm_baseball" tools:ignore="MissingTranslation">Baseball</string>
+<!-- Open Street Map term aikido. -->
+<string name="osm_aikido" tools:ignore="MissingTranslation">Aikido</string>
+<!-- Open Street Map term 10pin. -->
+<string name="osm_10pin" tools:ignore="MissingTranslation">Tenpin Bowling</string>
+<!-- Open Street Map term weapons. -->
+<string name="osm_weapons" tools:ignore="MissingTranslation">Weapons</string>
+<!-- Open Street Map term pet. -->
+<string name="osm_pet" tools:ignore="MissingTranslation">Pet</string>
+<!-- Open Street Map term money_lender. -->
+<string name="osm_money_lender" tools:ignore="MissingTranslation">Money Lender</string>
+<!-- Open Street Map term gift. -->
+<string name="osm_gift" tools:ignore="MissingTranslation">Gift Shop</string>
+<!-- Open Street Map term books. -->
+<string name="osm_books" tools:ignore="MissingTranslation">Books</string>
+<!-- Open Street Map term bookmaker. -->
+<string name="osm_bookmaker" tools:ignore="MissingTranslation">Bookmaker</string>
+<!-- Open Street Map term photo. -->
+<string name="osm_photo" tools:ignore="MissingTranslation">Photo</string>
+<!-- Open Street Map term craft. -->
+<string name="osm_craft" tools:ignore="MissingTranslation">Crafts</string>
+<!-- Open Street Map term motorcycle. -->
+<string name="osm_motorcycle" tools:ignore="MissingTranslation">Motorcycle</string>
+<!-- Open Street Map term hunting. -->
+<string name="osm_hunting" tools:ignore="MissingTranslation">Hunting</string>
+<!-- Open Street Map term window_blind. -->
+<string name="osm_window_blind" tools:ignore="MissingTranslation">Window Blinds</string>
+<!-- Open Street Map term curtain. -->
+<string name="osm_curtain" tools:ignore="MissingTranslation">Curtains</string>
+<!-- Open Street Map term antiques. -->
+<string name="osm_antiques" tools:ignore="MissingTranslation">Antiques</string>
+<!-- Open Street Map term paint. -->
+<string name="osm_paint" tools:ignore="MissingTranslation">Paint</string>
+<!-- Open Street Map term tattoo. -->
+<string name="osm_tattoo" tools:ignore="MissingTranslation">Tattoo</string>
+<!-- Open Street Map term nutrition_supplements. -->
+<string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Supplements</string>
+<!-- Open Street Map term hearing_aids. -->
+<string name="osm_hearing_aids" tools:ignore="MissingTranslation">Hearing Aids</string>
+<!-- Open Street Map term cosmetics. -->
+<string name="osm_cosmetics" tools:ignore="MissingTranslation">Cosmetics</string>
+<!-- Open Street Map term watches. -->
+<string name="osm_watches" tools:ignore="MissingTranslation">Watches</string>
+<!-- Open Street Map term jewelry. -->
+<string name="osm_jewelry" tools:ignore="MissingTranslation">Jewelry</string>
+<!-- Open Street Map term boutique. -->
+<string name="osm_boutique" tools:ignore="MissingTranslation">Boutique</string>
+<!-- Open Street Map term baby_goods. -->
+<string name="osm_baby_goods" tools:ignore="MissingTranslation">Baby Goods</string>
+<!-- Open Street Map term tea. -->
+<string name="osm_tea" tools:ignore="MissingTranslation">Tea</string>
+<!-- Open Street Map term pasta. -->
+<string name="osm_pasta" tools:ignore="MissingTranslation">Pasta</string>
+<!-- Open Street Map term coffee. -->
+<string name="osm_coffee" tools:ignore="MissingTranslation">Coffee</string>
+<!-- Open Street Map term quango. -->
+<string name="osm_quango" tools:ignore="MissingTranslation">Quango</string>
+<!-- Open Street Map term political_party. -->
+<string name="osm_political_party" tools:ignore="MissingTranslation">Political Party</string>
+<!-- Open Street Map term association. -->
+<string name="osm_association" tools:ignore="MissingTranslation">Association</string>
+<!-- Open Street Map term architect. -->
+<string name="osm_architect" tools:ignore="MissingTranslation">Architect</string>
+<!-- Open Street Map term advertising_agency. -->
+<string name="osm_advertising_agency" tools:ignore="MissingTranslation">Advertising Agency</string>
+<!-- Open Street Map term summer_camp. -->
+<string name="osm_summer_camp" tools:ignore="MissingTranslation">Summer Camp</string>
+<!-- Open Street Map term dance. -->
+<string name="osm_dance" tools:ignore="MissingTranslation">Dance</string>
+<!-- Open Street Map term amusement_arcade. -->
+<string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Amusement Arcade</string>
+<!-- Open Street Map term adult_gaming_centre. -->
+<string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Adult Gaming Center</string>
+<!-- Open Street Map term window_construction. -->
+<string name="osm_window_construction" tools:ignore="MissingTranslation">Window Construction</string>
+<!-- Open Street Map term upholsterer. -->
+<string name="osm_upholsterer" tools:ignore="MissingTranslation">Upholsterer</string>
+<!-- Open Street Map term shoemaker. -->
+<string name="osm_shoemaker" tools:ignore="MissingTranslation">Shoemaker</string>
+<!-- Open Street Map term sawmill. -->
+<string name="osm_sawmill" tools:ignore="MissingTranslation">Sawmill</string>
+<!-- Open Street Map term pottery. -->
+<string name="osm_pottery" tools:ignore="MissingTranslation">Pottery</string>
+<!-- Open Street Map term key_cutter. -->
+<string name="osm_key_cutter" tools:ignore="MissingTranslation">Key Cutter</string>
+<!-- Open Street Map term hvac. -->
+<string name="osm_hvac" tools:ignore="MissingTranslation">HVAC</string>
+<!-- Open Street Map term clockmaker. -->
+<string name="osm_clockmaker" tools:ignore="MissingTranslation">Clockmaker</string>
+<!-- Open Street Map term carpenter. -->
+<string name="osm_carpenter" tools:ignore="MissingTranslation">Carpenter</string>
+<!-- Open Street Map term builder. -->
+<string name="osm_builder" tools:ignore="MissingTranslation">Builder</string>
+<!-- Open Street Map term bookbinder. -->
+<string name="osm_bookbinder" tools:ignore="MissingTranslation">Bookbinder</string>
+<!-- Open Street Map term boatbuilder. -->
+<string name="osm_boatbuilder" tools:ignore="MissingTranslation">Boatbuilder</string>
+<!-- Open Street Map term brewery. -->
+<string name="osm_brewery" tools:ignore="MissingTranslation">Brewery</string>
+<!-- Open Street Map term blacksmith. -->
+<string name="osm_blacksmith" tools:ignore="MissingTranslation">Blacksmith</string>
+<!-- Open Street Map term basket_maker. -->
+<string name="osm_basket_maker" tools:ignore="MissingTranslation">Basket Maker</string>
+<!-- Open Street Map term greenhouse. -->
+<string name="osm_greenhouse" tools:ignore="MissingTranslation">Greenhouse</string>
+<!-- Open Street Map term farm_auxiliary. -->
+<string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Farm Auxiliary</string>
+<!-- Open Street Map term civic. -->
+<string name="osm_civic" tools:ignore="MissingTranslation">Civic</string>
+<!-- Open Street Map term bungalow. -->
+<string name="osm_bungalow" tools:ignore="MissingTranslation">Bungalow</string>
+<!-- Open Street Map term detached. -->
+<string name="osm_detached" tools:ignore="MissingTranslation">Detached House</string>
+<!-- Open Street Map term hair_dresser. -->
+<string name="osm_hair_dresser" tools:ignore="MissingTranslation">Hairdresser</string>
+<!-- Open Street Map term clothing_store. -->
+<string name="osm_clothing_store" tools:ignore="MissingTranslation">Clothing Store</string>
+<!-- Open Street Map term user. -->
+<string name="osm_user" tools:ignore="MissingTranslation">User</string>
+<!-- Open Street Map term dojo. -->
+<string name="osm_dojo" tools:ignore="MissingTranslation">Dojo</string>
+<!-- Open Street Map term nightclub. -->
+<string name="osm_nightclub" tools:ignore="MissingTranslation">Nightclub</string>
+<!-- Open Street Map term community_centre. -->
+<string name="osm_community_centre" tools:ignore="MissingTranslation">Community Center</string>
+<!-- Open Street Map term brothel. -->
+<string name="osm_brothel" tools:ignore="MissingTranslation">Brothel</string>
+<!-- Open Street Map term veterinary. -->
+<string name="osm_veterinary" tools:ignore="MissingTranslation">Veterinary</string>
+<!-- Open Street Map term social_facility. -->
+<string name="osm_social_facility" tools:ignore="MissingTranslation">Social Facility</string>
+<!-- Open Street Map term clinic. -->
+<string name="osm_clinic" tools:ignore="MissingTranslation">Clinic</string>
+<!-- Open Street Map term charging_station. -->
+<string name="osm_charging_station" tools:ignore="MissingTranslation">Charging Station</string>
+<!-- Open Street Map term kindergarten. -->
+<string name="osm_kindergarten" tools:ignore="MissingTranslation">Kindergarten</string>
+<!-- Open Street Map term ice_cream. -->
+<string name="osm_ice_cream" tools:ignore="MissingTranslation">Ice Cream</string>
+<!-- Open Street Map term fast_food. -->
+<string name="osm_fast_food" tools:ignore="MissingTranslation">Fast Food</string>
+<!-- Open Street Map term commercial. -->
+<string name="osm_commercial" tools:ignore="MissingTranslation">Commercial</string>
+<!-- Open Street Map term canoe. -->
+<string name="osm_canoe" tools:ignore="MissingTranslation">Canoe</string>
+<!-- Open Street Map term scuba_diving. -->
+<string name="osm_scuba_diving" tools:ignore="MissingTranslation">Scuba Diving</string>
+<!-- Open Street Map term fishing. -->
+<string name="osm_fishing" tools:ignore="MissingTranslation">Fishing</string>
+<!-- Open Street Map term optician. -->
+<string name="osm_optician" tools:ignore="MissingTranslation">Optician</string>
+<!-- Open Street Map term confectionery. -->
+<string name="osm_confectionery" tools:ignore="MissingTranslation">Confectionery</string>
+<!-- Open Street Map term bunker. -->
+<string name="osm_bunker" tools:ignore="MissingTranslation">Bunker</string>
+<!-- Open Street Map term sleeping_pods. -->
+<string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Sleeping Pods</string>
+<!-- Open Street Map term motel. -->
+<string name="osm_motel" tools:ignore="MissingTranslation">Motel</string>
+<!-- Open Street Map term guest_house. -->
+<string name="osm_guest_house" tools:ignore="MissingTranslation">Guest House</string>
+<!-- Open Street Map term wrestling. -->
+<string name="osm_wrestling" tools:ignore="MissingTranslation">Wrestling</string>
+<!-- Open Street Map term toboggan. -->
+<string name="osm_toboggan" tools:ignore="MissingTranslation">Toboggan</string>
+<!-- Open Street Map term skiing. -->
+<string name="osm_skiing" tools:ignore="MissingTranslation">Skiing</string>
+<!-- Open Street Map term rc_car. -->
+<string name="osm_rc_car" tools:ignore="MissingTranslation">RC Car</string>
+<!-- Open Street Map term paddle_tennis. -->
+<string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Paddle Tennis</string>
+<!-- Open Street Map term hockey. -->
+<string name="osm_hockey" tools:ignore="MissingTranslation">Hockey</string>
+<!-- Open Street Map term fencing. -->
+<string name="osm_fencing" tools:ignore="MissingTranslation">Fencing</string>
+<!-- Open Street Map term bowls. -->
+<string name="osm_bowls" tools:ignore="MissingTranslation">Bowls</string>
+<!-- Open Street Map term badminton. -->
+<string name="osm_badminton" tools:ignore="MissingTranslation">Badminton</string>
+<!-- Open Street Map term archery. -->
+<string name="osm_archery" tools:ignore="MissingTranslation">Archery</string>
+<!-- Open Street Map term american_football. -->
+<string name="osm_american_football" tools:ignore="MissingTranslation">American Football</string>
+<!-- Open Street Map term travel_agency. -->
+<string name="osm_travel_agency" tools:ignore="MissingTranslation">Travel Agency</string>
+<!-- Open Street Map term tobacco. -->
+<string name="osm_tobacco" tools:ignore="MissingTranslation">Tobacco</string>
+<!-- Open Street Map term e_cigarette. -->
+<string name="osm_e_cigarette" tools:ignore="MissingTranslation">E Cigarette</string>
+<!-- Open Street Map term video. -->
+<string name="osm_video" tools:ignore="MissingTranslation">Video</string>
+<!-- Open Street Map term car_repair. -->
+<string name="osm_car_repair" tools:ignore="MissingTranslation">Car Repair</string>
+<!-- Open Street Map term hifi. -->
+<string name="osm_hifi" tools:ignore="MissingTranslation">Hifi</string>
+<!-- Open Street Map term lamps. -->
+<string name="osm_lamps" tools:ignore="MissingTranslation">Lamps</string>
+<!-- Open Street Map term kitchen. -->
+<string name="osm_kitchen" tools:ignore="MissingTranslation">Kitchen</string>
+<!-- Open Street Map term interior_decoration. -->
+<string name="osm_interior_decoration" tools:ignore="MissingTranslation">Interior Decoration</string>
+<!-- Open Street Map term houseware. -->
+<string name="osm_houseware" tools:ignore="MissingTranslation">Houseware</string>
+<!-- Open Street Map term erotic. -->
+<string name="osm_erotic" tools:ignore="MissingTranslation">Erotic</string>
+<!-- Open Street Map term beauty. -->
+<string name="osm_beauty" tools:ignore="MissingTranslation">Beauty</string>
+<!-- Open Street Map term wine. -->
+<string name="osm_wine" tools:ignore="MissingTranslation">Wine</string>
+<!-- Open Street Map term dairy. -->
+<string name="osm_dairy" tools:ignore="MissingTranslation">Dairy</string>
+<!-- Open Street Map term cheese. -->
+<string name="osm_cheese" tools:ignore="MissingTranslation">Cheese</string>
+<!-- Open Street Map term bakery. -->
+<string name="osm_bakery" tools:ignore="MissingTranslation">Bakery</string>
+<!-- Open Street Map term telecommunication. -->
+<string name="osm_telecommunication" tools:ignore="MissingTranslation">Telecommunication</string>
+<!-- Open Street Map term tax. -->
+<string name="osm_tax" tools:ignore="MissingTranslation">Tax</string>
+<!-- Open Street Map term real_estate_agent. -->
+<string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Real Estate Agent</string>
+<!-- Open Street Map term notary. -->
+<string name="osm_notary" tools:ignore="MissingTranslation">Notary</string>
+<!-- Open Street Map term ngo. -->
+<string name="osm_ngo" tools:ignore="MissingTranslation">NGO</string>
+<!-- Open Street Map term lawyer. -->
+<string name="osm_lawyer" tools:ignore="MissingTranslation">Lawyer</string>
+<!-- Open Street Map term it. -->
+<string name="osm_it" tools:ignore="MissingTranslation">IT</string>
+<!-- Open Street Map term foundation. -->
+<string name="osm_foundation" tools:ignore="MissingTranslation">Foundation</string>
+<!-- Open Street Map term employment_agency. -->
+<string name="osm_employment_agency" tools:ignore="MissingTranslation">Employment Agency</string>
+<!-- Open Street Map term educational_institution. -->
+<string name="osm_educational_institution" tools:ignore="MissingTranslation">Educational Institution</string>
+<!-- Open Street Map term adoption_agency. -->
+<string name="osm_adoption_agency" tools:ignore="MissingTranslation">Adoption Agency</string>
+<!-- Open Street Map term miniature_golf. -->
+<string name="osm_miniature_golf" tools:ignore="MissingTranslation">Miniature Golf</string>
+<!-- Open Street Map term building. -->
+<string name="osm_building" tools:ignore="MissingTranslation">Building</string>
+<!-- Open Street Map term winery. -->
+<string name="osm_winery" tools:ignore="MissingTranslation">Winery</string>
+<!-- Open Street Map term tiler. -->
+<string name="osm_tiler" tools:ignore="MissingTranslation">Tiler</string>
+<!-- Open Street Map term chimney_sweeper. -->
+<string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Chimney Sweeper</string>
+<!-- Open Street Map term stand_builder. -->
+<string name="osm_stand_builder" tools:ignore="MissingTranslation">Stand Builder</string>
+<!-- Open Street Map term saddler. -->
+<string name="osm_saddler" tools:ignore="MissingTranslation">Saddler</string>
+<!-- Open Street Map term plumber. -->
+<string name="osm_plumber" tools:ignore="MissingTranslation">Plumber</string>
+<!-- Open Street Map term plasterer. -->
+<string name="osm_plasterer" tools:ignore="MissingTranslation">Plasterer</string>
+<!-- Open Street Map term painter. -->
+<string name="osm_painter" tools:ignore="MissingTranslation">Painter</string>
+<!-- Open Street Map term jeweller. -->
+<string name="osm_jeweller" tools:ignore="MissingTranslation">Jeweller</string>
+<!-- Open Street Map term floorer. -->
+<string name="osm_floorer" tools:ignore="MissingTranslation">Floorer</string>
+<!-- Open Street Map term distillery. -->
+<string name="osm_distillery" tools:ignore="MissingTranslation">Distillery</string>
+<!-- Open Street Map term carpet_layer. -->
+<string name="osm_carpet_layer" tools:ignore="MissingTranslation">Carpet Layer</string>
+<!-- Open Street Map term beekeeper. -->
+<string name="osm_beekeeper" tools:ignore="MissingTranslation">Beekeeper</string>
+<!-- Open Street Map term public. -->
+<string name="osm_public" tools:ignore="MissingTranslation">Public</string>
+<!-- Open Street Map term dormitory. -->
+<string name="osm_dormitory" tools:ignore="MissingTranslation">Dormitory</string>
+<!-- Open Street Map term apartments. -->
+<string name="osm_apartments" tools:ignore="MissingTranslation">Apartments</string>
+<!-- Open Street Map term internet_cafe. -->
+<string name="osm_internet_cafe" tools:ignore="MissingTranslation">Internet Cafe</string>
+<!-- Open Street Map term shoe_shop. -->
+<string name="osm_shoe_shop" tools:ignore="MissingTranslation">Shoe Shop</string>
+<!-- Open Street Map term generic_shop. -->
+<string name="osm_generic_shop" tools:ignore="MissingTranslation">Shop</string>
+<!-- Open Street Map term coffee_shop. -->
+<string name="osm_coffee_shop" tools:ignore="MissingTranslation">Coffee Shop</string>
+<!-- Open Street Map term coworking_space. -->
+<string name="osm_coworking_space" tools:ignore="MissingTranslation">Coworking Space</string>
+<!-- Open Street Map term stripclub. -->
+<string name="osm_stripclub" tools:ignore="MissingTranslation">Strip Club</string>
+<!-- Open Street Map term ev_charging. -->
+<string name="osm_ev_charging" tools:ignore="MissingTranslation">EV Charging</string>
+<!-- Open Street Map term pub. -->
+<string name="osm_pub" tools:ignore="MissingTranslation">Pub</string>
+<!-- Open Street Map term obstacle_course. -->
+<string name="osm_obstacle_course" tools:ignore="MissingTranslation">Obstacle Course</string>
+<!-- Open Street Map term volleyball. -->
+<string name="osm_volleyball" tools:ignore="MissingTranslation">Volleyball</string>
+<!-- Open Street Map term tennis. -->
+<string name="osm_tennis" tools:ignore="MissingTranslation">Tennis</string>
+<!-- Open Street Map term soccer. -->
+<string name="osm_soccer" tools:ignore="MissingTranslation">Soccer</string>
+<!-- Open Street Map term shooting. -->
+<string name="osm_shooting" tools:ignore="MissingTranslation">Shooting</string>
+<!-- Open Street Map term rugby_union. -->
+<string name="osm_rugby_union" tools:ignore="MissingTranslation">Rugby Union</string>
+<!-- Open Street Map term orienteering. -->
+<string name="osm_orienteering" tools:ignore="MissingTranslation">Orienteering</string>
+<!-- Open Street Map term netball. -->
+<string name="osm_netball" tools:ignore="MissingTranslation">Netball</string>
+<!-- Open Street Map term motor. -->
+<string name="osm_motor" tools:ignore="MissingTranslation">Motor</string>
+<!-- Open Street Map term kitesurfing. -->
+<string name="osm_kitesurfing" tools:ignore="MissingTranslation">Kitesurfing</string>
+<!-- Open Street Map term karting. -->
+<string name="osm_karting" tools:ignore="MissingTranslation">Karting</string>
+<!-- Open Street Map term judo. -->
+<string name="osm_judo" tools:ignore="MissingTranslation">Judo</string>
+<!-- Open Street Map term horseshoes. -->
+<string name="osm_horseshoes" tools:ignore="MissingTranslation">Horseshoes</string>
+<!-- Open Street Map term handball. -->
+<string name="osm_handball" tools:ignore="MissingTranslation">Handball</string>
+<!-- Open Street Map term golf. -->
+<string name="osm_golf" tools:ignore="MissingTranslation">Golf</string>
+<!-- Open Street Map term gaelic_games. -->
+<string name="osm_gaelic_games" tools:ignore="MissingTranslation">Gaelic Games</string>
+<!-- Open Street Map term diving. -->
+<string name="osm_diving" tools:ignore="MissingTranslation">Diving</string>
+<!-- Open Street Map term darts. -->
+<string name="osm_darts" tools:ignore="MissingTranslation">Darts</string>
+<!-- Open Street Map term climbing_adventure. -->
+<string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Climbing Adventure</string>
+<!-- Open Street Map term basketball. -->
+<string name="osm_basketball" tools:ignore="MissingTranslation">Basketball</string>
+<!-- Open Street Map term bandy. -->
+<string name="osm_bandy" tools:ignore="MissingTranslation">Bandy</string>
+<!-- Open Street Map term australian_football. -->
+<string name="osm_australian_football" tools:ignore="MissingTranslation">Australian Football</string>
+<!-- Open Street Map term 9pin. -->
+<string name="osm_9pin" tools:ignore="MissingTranslation">Ninepin</string>
+<!-- Open Street Map term vacant. -->
+<string name="osm_vacant" tools:ignore="MissingTranslation">Vacant</string>
+<!-- Open Street Map term lottery. -->
+<string name="osm_lottery" tools:ignore="MissingTranslation">Lottery</string>
+<!-- Open Street Map term trophy. -->
+<string name="osm_trophy" tools:ignore="MissingTranslation">Trophy</string>
+<!-- Open Street Map term music. -->
+<string name="osm_music" tools:ignore="MissingTranslation">Music</string>
+<!-- Open Street Map term games. -->
+<string name="osm_games" tools:ignore="MissingTranslation">Games</string>
+<!-- Open Street Map term tyres. -->
+<string name="osm_tyres" tools:ignore="MissingTranslation">Tyres</string>
+<!-- Open Street Map term sports. -->
+<string name="osm_sports" tools:ignore="MissingTranslation">Sports</string>
+<!-- Open Street Map term outdoor. -->
+<string name="osm_outdoor" tools:ignore="MissingTranslation">Outdoor</string>
+<!-- Open Street Map term car. -->
+<string name="osm_car" tools:ignore="MissingTranslation">Car</string>
+<!-- Open Street Map term electronics. -->
+<string name="osm_electronics" tools:ignore="MissingTranslation">Electronics</string>
+<!-- Open Street Map term computer. -->
+<string name="osm_computer" tools:ignore="MissingTranslation">Computer</string>
+<!-- Open Street Map term furniture. -->
+<string name="osm_furniture" tools:ignore="MissingTranslation">Furniture</string>
+<!-- Open Street Map term candles. -->
+<string name="osm_candles" tools:ignore="MissingTranslation">Candles</string>
+<!-- Open Street Map term hardware. -->
+<string name="osm_hardware" tools:ignore="MissingTranslation">Hardware</string>
+<!-- Open Street Map term gas. -->
+<string name="osm_gas" tools:ignore="MissingTranslation">Gas Station</string>
+<!-- Open Street Map term energy. -->
+<string name="osm_energy" tools:ignore="MissingTranslation">Energy</string>
+<!-- Open Street Map term doityourself. -->
+<string name="osm_doityourself" tools:ignore="MissingTranslation">DIY Store</string>
+<!-- Open Street Map term bathroom_furnishing. -->
+<string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Bathroom Fixtures</string>
+<!-- Open Street Map term medical_supply. -->
+<string name="osm_medical_supply" tools:ignore="MissingTranslation">Medical Supplies</string>
+<!-- Open Street Map term variety_store. -->
+<string name="osm_variety_store" tools:ignore="MissingTranslation">Variety Store</string>
+<!-- Open Street Map term second_hand. -->
+<string name="osm_second_hand" tools:ignore="MissingTranslation">Secondhand Shop</string>
+<!-- Open Street Map term charity. -->
+<string name="osm_charity" tools:ignore="MissingTranslation">Charity Shop</string>
+<!-- Open Street Map term fashion. -->
+<string name="osm_fashion" tools:ignore="MissingTranslation">Fashion</string>
+<!-- Open Street Map term fabric. -->
+<string name="osm_fabric" tools:ignore="MissingTranslation">Fabric Store</string>
+<!-- Open Street Map term clothes. -->
+<string name="osm_clothes" tools:ignore="MissingTranslation">Clothing Store</string>
+<!-- Open Street Map term butcher. -->
+<string name="osm_butcher" tools:ignore="MissingTranslation">Butcher</string>
+<!-- Open Street Map term water_utility. -->
+<string name="osm_water_utility" tools:ignore="MissingTranslation">Water Utility</string>
+<!-- Open Street Map term realtor. -->
+<string name="osm_realtor" tools:ignore="MissingTranslation">Realtor</string>
+<!-- Open Street Map term company. -->
+<string name="osm_company" tools:ignore="MissingTranslation">Company</string>
+<!-- Open Street Map term accountant. -->
+<string name="osm_accountant" tools:ignore="MissingTranslation">Accountant</string>
+<!-- Open Street Map term bunker_silo. -->
+<string name="osm_bunker_silo" tools:ignore="MissingTranslation">Bunker Silo</string>
+<!-- Open Street Map term hackerspace. -->
+<string name="osm_hackerspace" tools:ignore="MissingTranslation">Hackerspace</string>
+<!-- Open Street Map term lifeguard_base. -->
+<string name="osm_lifeguard_base" tools:ignore="MissingTranslation">Lifeguard Base</string>
+<!-- Open Street Map term roofer. -->
+<string name="osm_roofer" tools:ignore="MissingTranslation">Roofer</string>
+<!-- Open Street Map term rigger. -->
+<string name="osm_rigger" tools:ignore="MissingTranslation">Rigger</string>
+<!-- Open Street Map term parquet_layer. -->
+<string name="osm_parquet_layer" tools:ignore="MissingTranslation">Parquet Layer</string>
+<!-- Open Street Map term gardener. -->
+<string name="osm_gardener" tools:ignore="MissingTranslation">Gardener</string>
+<!-- Open Street Map term stable. -->
+<string name="osm_stable" tools:ignore="MissingTranslation">Stable</string>
+<!-- Open Street Map term garage. -->
+<string name="osm_garage" tools:ignore="MissingTranslation">Garage</string>
+<!-- Open Street Map term transportation. -->
+<string name="osm_transportation" tools:ignore="MissingTranslation">Transportation</string>
+<!-- Open Street Map term house. -->
+<string name="osm_house" tools:ignore="MissingTranslation">House</string>
+<!-- Open Street Map term helipad. -->
+<string name="osm_helipad" tools:ignore="MissingTranslation">Helipad</string>
+<!-- Open Street Map term apron. -->
+<string name="osm_apron" tools:ignore="MissingTranslation">Apron</string>
+<!-- Open Street Map term consumer_electronics_store. -->
+<string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Electronics Store</string>
+<!-- Open Street Map term speciality_store. -->
+<string name="osm_speciality_store" tools:ignore="MissingTranslation">Specialty Store</string>
+<!-- Open Street Map term defined. -->
+<string name="osm_defined" tools:ignore="MissingTranslation">Defined</string>
+<!-- Open Street Map term sauna. -->
+<string name="osm_sauna" tools:ignore="MissingTranslation">Sauna</string>
+<!-- Open Street Map term gym. -->
+<string name="osm_gym" tools:ignore="MissingTranslation">Gym</string>
+<!-- Open Street Map term crematorium. -->
+<string name="osm_crematorium" tools:ignore="MissingTranslation">Crematorium</string>
+<!-- Open Street Map term gambling. -->
+<string name="osm_gambling" tools:ignore="MissingTranslation">Gambling</string>
+<!-- Open Street Map term music_school. -->
+<string name="osm_music_school" tools:ignore="MissingTranslation">Music School</string>
+<!-- Open Street Map term bar. -->
+<string name="osm_bar" tools:ignore="MissingTranslation">Bar</string>
+<!-- Open Street Map term farm. -->
+<string name="osm_farm" tools:ignore="MissingTranslation">Farm</string>
+<!-- Open Street Map term bicycle. -->
+<string name="osm_bicycle" tools:ignore="MissingTranslation">Bicycle Shop</string>
+<!-- Open Street Map term tailor. -->
+<string name="osm_tailor" tools:ignore="MissingTranslation">Tailor</string>
+<!-- Open Street Map term locksmith. -->
+<string name="osm_locksmith" tools:ignore="MissingTranslation">Locksmith</string>
+<!-- Open Street Map term industrial. -->
+<string name="osm_industrial" tools:ignore="MissingTranslation">Industrial</string>
+<!-- Open Street Map term wilderness_hut. -->
+<string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Wilderness Hut</string>
+<!-- Open Street Map term hostel. -->
+<string name="osm_hostel" tools:ignore="MissingTranslation">Hostel</string>
+<!-- Open Street Map term caravan_site. -->
+<string name="osm_caravan_site" tools:ignore="MissingTranslation">Caravan Site</string>
+<!-- Open Street Map term weightlifting. -->
+<string name="osm_weightlifting" tools:ignore="MissingTranslation">Weightlifting</string>
+<!-- Open Street Map term taekwondo. -->
+<string name="osm_taekwondo" tools:ignore="MissingTranslation">Taekwondo</string>
+<!-- Open Street Map term swimming. -->
+<string name="osm_swimming" tools:ignore="MissingTranslation">Swimming</string>
+<!-- Open Street Map term surfing. -->
+<string name="osm_surfing" tools:ignore="MissingTranslation">Surfing</string>
+<!-- Open Street Map term skating. -->
+<string name="osm_skating" tools:ignore="MissingTranslation">Skating</string>
+<!-- Open Street Map term racquet. -->
+<string name="osm_racquet" tools:ignore="MissingTranslation">Racquet Sports</string>
+<!-- Open Street Map term pelota. -->
+<string name="osm_pelota" tools:ignore="MissingTranslation">Pelota</string>
+<!-- Open Street Map term paragliding. -->
+<string name="osm_paragliding" tools:ignore="MissingTranslation">Paragliding</string>
+<!-- Open Street Map term parachuting. -->
+<string name="osm_parachuting" tools:ignore="MissingTranslation">Parachuting</string>
+<!-- Open Street Map term motocross. -->
+<string name="osm_motocross" tools:ignore="MissingTranslation">Motocross</string>
+<!-- Open Street Map term ice_skating. -->
+<string name="osm_ice_skating" tools:ignore="MissingTranslation">Ice Skating</string>
+<!-- Open Street Map term horse_racing. -->
+<string name="osm_horse_racing" tools:ignore="MissingTranslation">Horse Racing</string>
+<!-- Open Street Map term dog_racing. -->
+<string name="osm_dog_racing" tools:ignore="MissingTranslation">Dog Racing</string>
+<!-- Open Street Map term climbing. -->
+<string name="osm_climbing" tools:ignore="MissingTranslation">Climbing</string>
+<!-- Open Street Map term chess. -->
+<string name="osm_chess" tools:ignore="MissingTranslation">Chess</string>
+<!-- Open Street Map term canadian_football. -->
+<string name="osm_canadian_football" tools:ignore="MissingTranslation">Canadian Football</string>
+<!-- Open Street Map term beachvolleyball. -->
+<string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Beach Volleyball</string>
+<!-- Open Street Map term base. -->
+<string name="osm_base" tools:ignore="MissingTranslation">Base</string>
+<!-- Open Street Map term athletics. -->
+<string name="osm_athletics" tools:ignore="MissingTranslation">Athletics</string>
+<!-- Open Street Map term pawnbroker. -->
+<string name="osm_pawnbroker" tools:ignore="MissingTranslation">Pawnbroker</string>
+<!-- Open Street Map term ticket. -->
+<string name="osm_ticket" tools:ignore="MissingTranslation">Ticket Office</string>
+<!-- Open Street Map term stationery. -->
+<string name="osm_stationery" tools:ignore="MissingTranslation">Stationery</string>
+<!-- Open Street Map term video_games. -->
+<string name="osm_video_games" tools:ignore="MissingTranslation">Video Games</string>
+<!-- Open Street Map term model. -->
+<string name="osm_model" tools:ignore="MissingTranslation">Model Shop</string>
+<!-- Open Street Map term frame. -->
+<string name="osm_frame" tools:ignore="MissingTranslation">Frame Shop</string>
+<!-- Open Street Map term art. -->
+<string name="osm_art" tools:ignore="MissingTranslation">Art</string>
+<!-- Open Street Map term car_parts. -->
+<string name="osm_car_parts" tools:ignore="MissingTranslation">Car Parts</string>
+<!-- Open Street Map term radiotechnics. -->
+<string name="osm_radiotechnics" tools:ignore="MissingTranslation">Radio Electronics</string>
+<!-- Open Street Map term bed. -->
+<string name="osm_bed" tools:ignore="MissingTranslation">Bed Store</string>
+<!-- Open Street Map term garden_furniture. -->
+<string name="osm_garden_furniture" tools:ignore="MissingTranslation">Garden Furniture</string>
+<!-- Open Street Map term electrical. -->
+<string name="osm_electrical" tools:ignore="MissingTranslation">Electrical</string>
+<!-- Open Street Map term perfumery. -->
+<string name="osm_perfumery" tools:ignore="MissingTranslation">Perfumery</string>
+<!-- Open Street Map term hairdresser. -->
+<string name="osm_hairdresser" tools:ignore="MissingTranslation">Hairdresser</string>
+<!-- Open Street Map term drugstore. -->
+<string name="osm_drugstore" tools:ignore="MissingTranslation">Drugstore</string>
+<!-- Open Street Map term shoes. -->
+<string name="osm_shoes" tools:ignore="MissingTranslation">Shoe Store</string>
+<!-- Open Street Map term leather. -->
+<string name="osm_leather" tools:ignore="MissingTranslation">Leather Goods</string>
+<!-- Open Street Map term general. -->
+<string name="osm_general" tools:ignore="MissingTranslation">General Store</string>
+<!-- Open Street Map term seafood. -->
+<string name="osm_seafood" tools:ignore="MissingTranslation">Seafood</string>
+<!-- Open Street Map term organic. -->
+<string name="osm_organic" tools:ignore="MissingTranslation">Organic Store</string>
+<!-- Open Street Map term greengrocer. -->
+<string name="osm_greengrocer" tools:ignore="MissingTranslation">Greengrocer</string>
+<!-- Open Street Map term chocolate. -->
+<string name="osm_chocolate" tools:ignore="MissingTranslation">Chocolate Shop</string>
+<!-- Open Street Map term brewing_supplies. -->
+<string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Brewing Supplies</string>
+<!-- Open Street Map term tax_advisor. -->
+<string name="osm_tax_advisor" tools:ignore="MissingTranslation">Tax Advisor</string>
+<!-- Open Street Map term private_investigator. -->
+<string name="osm_private_investigator" tools:ignore="MissingTranslation">Private Investigator</string>
+<!-- Open Street Map term government. -->
+<string name="osm_government" tools:ignore="MissingTranslation">Government Office</string>
+<!-- Open Street Map term forestry. -->
+<string name="osm_forestry" tools:ignore="MissingTranslation">Forestry</string>
+<!-- Open Street Map term estate_agent. -->
+<string name="osm_estate_agent" tools:ignore="MissingTranslation">Estate Agent</string>
+<!-- Open Street Map term spring. -->
+<string name="osm_spring" tools:ignore="MissingTranslation">Spring</string>
+<!-- Open Street Map term golf_course. -->
+<string name="osm_golf_course" tools:ignore="MissingTranslation">Golf Course</string>
+<!-- Open Street Map term ses_station. -->
+<string name="osm_ses_station" tools:ignore="MissingTranslation">SES Station</string>
+<!-- Open Street Map term lifeguard_place. -->
+<string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Lifeguard Station</string>
+<!-- Open Street Map term stonemason. -->
+<string name="osm_stonemason" tools:ignore="MissingTranslation">Stonemason</string>
+<!-- Open Street Map term scaffolder. -->
+<string name="osm_scaffolder" tools:ignore="MissingTranslation">Scaffolder</string>
+<!-- Open Street Map term sailmaker. -->
+<string name="osm_sailmaker" tools:ignore="MissingTranslation">Sailmaker</string>
+<!-- Open Street Map term photographic_laboratory. -->
+<string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Photo Lab</string>
+<!-- Open Street Map term photographer. -->
+<string name="osm_photographer" tools:ignore="MissingTranslation">Photographer</string>
+<!-- Open Street Map term insulation. -->
+<string name="osm_insulation" tools:ignore="MissingTranslation">Insulation</string>
+<!-- Open Street Map term electrician. -->
+<string name="osm_electrician" tools:ignore="MissingTranslation">Electrician</string>
+<!-- Open Street Map term dressmaker. -->
+<string name="osm_dressmaker" tools:ignore="MissingTranslation">Dressmaker</string>
+<!-- Open Street Map term caterer. -->
+<string name="osm_caterer" tools:ignore="MissingTranslation">Caterer</string>
+<!-- Open Street Map term terrace. -->
+<string name="osm_terrace" tools:ignore="MissingTranslation">Terrace</string>
+<!-- Open Street Map term toy_shop. -->
+<string name="osm_toy_shop" tools:ignore="MissingTranslation">Toy Store</string>
+<!-- Open Street Map term dive_centre. -->
+<string name="osm_dive_centre" tools:ignore="MissingTranslation">Dive Center</string>
+<!-- Open Street Map term swingerclub. -->
+<string name="osm_swingerclub" tools:ignore="MissingTranslation">Swinger Club</string>
+<!-- Open Street Map term doctors. -->
+<string name="osm_doctors" tools:ignore="MissingTranslation">Doctors</string>
+<!-- Open Street Map term driving_school. -->
+<string name="osm_driving_school" tools:ignore="MissingTranslation">Driving School</string>
+<!-- Open Street Map term free_flying. -->
+<string name="osm_free_flying" tools:ignore="MissingTranslation">Free Flying</string>
+<!-- Open Street Map term religion. -->
+<string name="osm_religion" tools:ignore="MissingTranslation">Religion</string>
+<!-- Open Street Map term kiosk. -->
+<string name="osm_kiosk" tools:ignore="MissingTranslation">Kiosk</string>
+<!-- Open Street Map term residential. -->
+<string name="osm_residential" tools:ignore="MissingTranslation">Residential Area</string>
+<!-- Open Street Map term food. -->
+<string name="osm_food" tools:ignore="MissingTranslation">Food</string>
+<!-- Open Street Map term waterfall. -->
+<string name="osm_waterfall" tools:ignore="MissingTranslation">Waterfall</string>
+<!-- Open Street Map term boatyard. -->
+<string name="osm_boatyard" tools:ignore="MissingTranslation">Boatyard</string>
+<!-- Open Street Map term theme_park. -->
+<string name="osm_theme_park" tools:ignore="MissingTranslation">Theme Park</string>
+<!-- Open Street Map term roundhouse. -->
+<string name="osm_roundhouse" tools:ignore="MissingTranslation">Roundhouse</string>
+<!-- Open Street Map term generator. -->
+<string name="osm_generator" tools:ignore="MissingTranslation">Generator</string>
+<!-- Open Street Map term beach. -->
+<string name="osm_beach" tools:ignore="MissingTranslation">Beach</string>
+<!-- Open Street Map term naval_base. -->
+<string name="osm_naval_base" tools:ignore="MissingTranslation">Naval Base</string>
+<!-- Open Street Map term works. -->
+<string name="osm_works" tools:ignore="MissingTranslation">Industrial Works</string>
+<!-- Open Street Map term water_works. -->
+<string name="osm_water_works" tools:ignore="MissingTranslation">Water Works</string>
+<!-- Open Street Map term telescope. -->
+<string name="osm_telescope" tools:ignore="MissingTranslation">Telescope</string>
+<!-- Open Street Map term pier. -->
+<string name="osm_pier" tools:ignore="MissingTranslation">Pier</string>
+<!-- Open Street Map term observatory. -->
+<string name="osm_observatory" tools:ignore="MissingTranslation">Observatory</string>
+<!-- Open Street Map term reservoir. -->
+<string name="osm_reservoir" tools:ignore="MissingTranslation">Reservoir</string>
+<!-- Open Street Map term monument. -->
+<string name="osm_monument" tools:ignore="MissingTranslation">Monument</string>
+<!-- Open Street Map term battlefield. -->
+<string name="osm_battlefield" tools:ignore="MissingTranslation">Battlefield</string>
+<!-- Open Street Map term planetarium. -->
+<string name="osm_planetarium" tools:ignore="MissingTranslation">Planetarium</string>
+<!-- Open Street Map term social_centre. -->
+<string name="osm_social_centre" tools:ignore="MissingTranslation">Social Center</string>
+<!-- Open Street Map term prison. -->
+<string name="osm_prison" tools:ignore="MissingTranslation">Prison</string>
+<!-- Open Street Map term courthouse. -->
+<string name="osm_courthouse" tools:ignore="MissingTranslation">Courthouse</string>
+<!-- Open Street Map term bridge. -->
+<string name="osm_bridge" tools:ignore="MissingTranslation">Bridge</string>
+<!-- Open Street Map term hangar. -->
+<string name="osm_hangar" tools:ignore="MissingTranslation">Hangar</string>
+<!-- Open Street Map term tower. -->
+<string name="osm_tower" tools:ignore="MissingTranslation">Tower</string>
+<!-- Open Street Map term attraction. -->
+<string name="osm_attraction" tools:ignore="MissingTranslation">Attraction</string>
+<!-- Open Street Map term zoo. -->
+<string name="osm_zoo" tools:ignore="MissingTranslation">Zoo</string>
+<!-- Open Street Map term gallery. -->
+<string name="osm_gallery" tools:ignore="MissingTranslation">Gallery</string>
+<!-- Open Street Map term artwork. -->
+<string name="osm_artwork" tools:ignore="MissingTranslation">Artwork</string>
+<!-- Open Street Map term alpine_hut. -->
+<string name="osm_alpine_hut" tools:ignore="MissingTranslation">Alpine Hut</string>
+<!-- Open Street Map term plant. -->
+<string name="osm_plant" tools:ignore="MissingTranslation">Plant</string>
+<!-- Open Street Map term insurance. -->
+<string name="osm_insurance" tools:ignore="MissingTranslation">Insurance</string>
+<!-- Open Street Map term airfield. -->
+<string name="osm_airfield" tools:ignore="MissingTranslation">Airfield</string>
+<!-- Open Street Map term water_tower. -->
+<string name="osm_water_tower" tools:ignore="MissingTranslation">Water Tower</string>
+<!-- Open Street Map term pumping_station. -->
+<string name="osm_pumping_station" tools:ignore="MissingTranslation">Pumping Station</string>
+<!-- Open Street Map term hot_water_tank. -->
+<string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Hot Water Tank</string>
+<!-- Open Street Map term campanile. -->
+<string name="osm_campanile" tools:ignore="MissingTranslation">Campanile</string>
+<!-- Open Street Map term sports_centre. -->
+<string name="osm_sports_centre" tools:ignore="MissingTranslation">Sports Center</string>
+<!-- Open Street Map term fitness_centre. -->
+<string name="osm_fitness_centre" tools:ignore="MissingTranslation">Fitness Center</string>
+<!-- Open Street Map term beach_resort. -->
+<string name="osm_beach_resort" tools:ignore="MissingTranslation">Beach Resort</string>
+<!-- Open Street Map term village_green. -->
+<string name="osm_village_green" tools:ignore="MissingTranslation">Village Green</string>
+<!-- Open Street Map term ship. -->
+<string name="osm_ship" tools:ignore="MissingTranslation">Ship</string>
+<!-- Open Street Map term memorial. -->
+<string name="osm_memorial" tools:ignore="MissingTranslation">Memorial</string>
+<!-- Open Street Map term synagogue. -->
+<string name="osm_synagogue" tools:ignore="MissingTranslation">Synagogue</string>
+<!-- Open Street Map term mosque. -->
+<string name="osm_mosque" tools:ignore="MissingTranslation">Mosque</string>
+<!-- Open Street Map term chapel. -->
+<string name="osm_chapel" tools:ignore="MissingTranslation">Chapel</string>
+<!-- Open Street Map term cathedral. -->
+<string name="osm_cathedral" tools:ignore="MissingTranslation">Cathedral</string>
+<!-- Open Street Map term train_terminal. -->
+<string name="osm_train_terminal" tools:ignore="MissingTranslation">Train Terminal</string>
+<!-- Open Street Map term college. -->
+<string name="osm_college" tools:ignore="MissingTranslation">College</string>
+<!-- Open Street Map term arts_centre. -->
+<string name="osm_arts_centre" tools:ignore="MissingTranslation">Arts Center</string>
+<!-- Open Street Map term ranger_station. -->
+<string name="osm_ranger_station" tools:ignore="MissingTranslation">Ranger Station</string>
+<!-- Open Street Map term hospital. -->
+<string name="osm_hospital" tools:ignore="MissingTranslation">Hospital</string>
+<!-- Open Street Map term track. -->
+<string name="osm_track" tools:ignore="MissingTranslation">Track</string>
+<!-- Open Street Map term conference_centre. -->
+<string name="osm_conference_centre" tools:ignore="MissingTranslation">Conference Center</string>
+<!-- Open Street Map term viewpoint. -->
+<string name="osm_viewpoint" tools:ignore="MissingTranslation">Viewpoint</string>
+<!-- Open Street Map term supermarket. -->
+<string name="osm_supermarket" tools:ignore="MissingTranslation">Supermarket</string>
+<!-- Open Street Map term peak. -->
+<string name="osm_peak" tools:ignore="MissingTranslation">Peak</string>
+<!-- Open Street Map term storage_tank. -->
+<string name="osm_storage_tank" tools:ignore="MissingTranslation">Storage Tank</string>
+<!-- Open Street Map term lighthouse. -->
+<string name="osm_lighthouse" tools:ignore="MissingTranslation">Lighthouse</string>
+<!-- Open Street Map term beacon. -->
+<string name="osm_beacon" tools:ignore="MissingTranslation">Beacon</string>
+<!-- Open Street Map term port. -->
+<string name="osm_port" tools:ignore="MissingTranslation">Port</string>
+<!-- Open Street Map term archaeological_site. -->
+<string name="osm_archaeological_site" tools:ignore="MissingTranslation">Archaeological Site</string>
+<!-- Open Street Map term train_station. -->
+<string name="osm_train_station" tools:ignore="MissingTranslation">Train Station</string>
+<!-- Open Street Map term shrine. -->
+<string name="osm_shrine" tools:ignore="MissingTranslation">Shrine</string>
+<!-- Open Street Map term church. -->
+<string name="osm_church" tools:ignore="MissingTranslation">Church</string>
+<!-- Open Street Map term historic_monument. -->
+<string name="osm_historic_monument" tools:ignore="MissingTranslation">Historic Monument</string>
+<!-- Open Street Map term generic_landmark. -->
+<string name="osm_generic_landmark" tools:ignore="MissingTranslation">Landmark</string>
+<!-- Open Street Map term tourism_museum. -->
+<string name="osm_tourism_museum" tools:ignore="MissingTranslation">Museum</string>
+<!-- Open Street Map term register_office. -->
+<string name="osm_register_office" tools:ignore="MissingTranslation">Register Office</string>
+<!-- Open Street Map term grave_yard. -->
+<string name="osm_grave_yard" tools:ignore="MissingTranslation">Graveyard</string>
+<!-- Open Street Map term marketplace. -->
+<string name="osm_marketplace" tools:ignore="MissingTranslation">Marketplace</string>
+<!-- Open Street Map term fire_station. -->
+<string name="osm_fire_station" tools:ignore="MissingTranslation">Fire Station</string>
+<!-- Open Street Map term ruins. -->
+<string name="osm_ruins" tools:ignore="MissingTranslation">Ruins</string>
+<!-- Open Street Map term weir. -->
+<string name="osm_weir" tools:ignore="MissingTranslation">Weir</string>
+<!-- Open Street Map term museum. -->
+<string name="osm_museum" tools:ignore="MissingTranslation">Museum</string>
+<!-- Open Street Map term mall. -->
+<string name="osm_mall" tools:ignore="MissingTranslation">Mall</string>
+<!-- Open Street Map term volcano. -->
+<string name="osm_volcano" tools:ignore="MissingTranslation">Volcano</string>
+<!-- Open Street Map term hot_spring. -->
+<string name="osm_hot_spring" tools:ignore="MissingTranslation">Hot Spring</string>
+<!-- Open Street Map term glacier. -->
+<string name="osm_glacier" tools:ignore="MissingTranslation">Glacier</string>
+<!-- Open Street Map term wastewater_plant. -->
+<string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Wastewater Plant</string>
+<!-- Open Street Map term offshore_platform. -->
+<string name="osm_offshore_platform" tools:ignore="MissingTranslation">Offshore Platform</string>
+<!-- Open Street Map term gasometer. -->
+<string name="osm_gasometer" tools:ignore="MissingTranslation">Gasometer</string>
+<!-- Open Street Map term water_park. -->
+<string name="osm_water_park" tools:ignore="MissingTranslation">Water Park</string>
+<!-- Open Street Map term bandstand. -->
+<string name="osm_bandstand" tools:ignore="MissingTranslation">Bandstand</string>
+<!-- Open Street Map term wreck. -->
+<string name="osm_wreck" tools:ignore="MissingTranslation">Wreck</string>
+<!-- Open Street Map term pillory. -->
+<string name="osm_pillory" tools:ignore="MissingTranslation">Pillory</string>
+<!-- Open Street Map term monastery. -->
+<string name="osm_monastery" tools:ignore="MissingTranslation">Monastery</string>
+<!-- Open Street Map term locomotive. -->
+<string name="osm_locomotive" tools:ignore="MissingTranslation">Locomotive</string>
+<!-- Open Street Map term fort. -->
+<string name="osm_fort" tools:ignore="MissingTranslation">Fort</string>
+<!-- Open Street Map term services. -->
+<string name="osm_services" tools:ignore="MissingTranslation">Services</string>
+<!-- Open Street Map term lifeguard_tower. -->
+<string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Lifeguard Tower</string>
+<!-- Open Street Map term temple. -->
+<string name="osm_temple" tools:ignore="MissingTranslation">Temple</string>
+<!-- Open Street Map term national_park. -->
+<string name="osm_national_park" tools:ignore="MissingTranslation">National Park</string>
+<!-- Open Street Map term heliport. -->
+<string name="osm_heliport" tools:ignore="MissingTranslation">Heliport</string>
+<!-- Open Street Map term public_park. -->
+<string name="osm_public_park" tools:ignore="MissingTranslation">Public Park</string>
+<!-- Open Street Map term department_store. -->
+<string name="osm_department_store" tools:ignore="MissingTranslation">Department Store</string>
+<!-- Open Street Map term studio. -->
+<string name="osm_studio" tools:ignore="MissingTranslation">Studio</string>
+<!-- Open Street Map term public_building. -->
+<string name="osm_public_building" tools:ignore="MissingTranslation">Public Building</string>
+<!-- Open Street Map term clock. -->
+<string name="osm_clock" tools:ignore="MissingTranslation">Clock</string>
+<!-- Open Street Map term casino. -->
+<string name="osm_casino" tools:ignore="MissingTranslation">Casino</string>
+<!-- Open Street Map term ferry_terminal. -->
+<string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Ferry Terminal</string>
+<!-- Open Street Map term stadium. -->
+<string name="osm_stadium" tools:ignore="MissingTranslation">Stadium</string>
+<!-- Open Street Map term dam. -->
+<string name="osm_dam" tools:ignore="MissingTranslation">Dam</string>
+<!-- Open Street Map term dock. -->
+<string name="osm_dock" tools:ignore="MissingTranslation">Dock</string>
+<!-- Open Street Map term geyser. -->
+<string name="osm_geyser" tools:ignore="MissingTranslation">Geyser</string>
+<!-- Open Street Map term bay. -->
+<string name="osm_bay" tools:ignore="MissingTranslation">Bay</string>
+<!-- Open Street Map term barracks. -->
+<string name="osm_barracks" tools:ignore="MissingTranslation">Barracks</string>
+<!-- Open Street Map term windmill. -->
+<string name="osm_windmill" tools:ignore="MissingTranslation">Windmill</string>
+<!-- Open Street Map term watermill. -->
+<string name="osm_watermill" tools:ignore="MissingTranslation">Watermill</string>
+<!-- Open Street Map term communications_tower. -->
+<string name="osm_communications_tower" tools:ignore="MissingTranslation">Communications Tower</string>
+<!-- Open Street Map term swimming_area. -->
+<string name="osm_swimming_area" tools:ignore="MissingTranslation">Swimming Area</string>
+<!-- Open Street Map term slipway. -->
+<string name="osm_slipway" tools:ignore="MissingTranslation">Slipway</string>
+<!-- Open Street Map term nature_reserve. -->
+<string name="osm_nature_reserve" tools:ignore="MissingTranslation">Nature Reserve</string>
+<!-- Open Street Map term marina. -->
+<string name="osm_marina" tools:ignore="MissingTranslation">Marina</string>
+<!-- Open Street Map term ice_rink. -->
+<string name="osm_ice_rink" tools:ignore="MissingTranslation">Ice Rink</string>
+<!-- Open Street Map term manor. -->
+<string name="osm_manor" tools:ignore="MissingTranslation">Manor</string>
+<!-- Open Street Map term city_gate. -->
+<string name="osm_city_gate" tools:ignore="MissingTranslation">City Gate</string>
+<!-- Open Street Map term castle. -->
+<string name="osm_castle" tools:ignore="MissingTranslation">Castle</string>
+<!-- Open Street Map term aircraft. -->
+<string name="osm_aircraft" tools:ignore="MissingTranslation">Aircraft</string>
+<!-- Open Street Map term digester. -->
+<string name="osm_digester" tools:ignore="MissingTranslation">Digester</string>
+<!-- Open Street Map term sally_port. -->
+<string name="osm_sally_port" tools:ignore="MissingTranslation">Sally Port</string>
+<!-- Open Street Map term aerodrome. -->
+<string name="osm_aerodrome" tools:ignore="MissingTranslation">Aerodrome</string>
+<!-- Open Street Map term shopping_mall. -->
+<string name="osm_shopping_mall" tools:ignore="MissingTranslation">Mall</string>
+<!-- Open Street Map term cinema. -->
+<string name="osm_cinema" tools:ignore="MissingTranslation">Cinema</string>
+<!-- Open Street Map term rescue_station. -->
+<string name="osm_rescue_station" tools:ignore="MissingTranslation">Rescue Station</string>
+<!-- Open Street Map term airport. -->
+<string name="osm_airport" tools:ignore="MissingTranslation">Airport</string>
+<!-- Open Street Map term theatre. -->
+<string name="osm_theatre" tools:ignore="MissingTranslation">Theater</string>
+<!-- Open Street Map term library. -->
+<string name="osm_library" tools:ignore="MissingTranslation">Library</string>
+<!-- Open Street Map term university. -->
+<string name="osm_university" tools:ignore="MissingTranslation">University</string>
+<!-- Open Street Map term police. -->
+<string name="osm_police" tools:ignore="MissingTranslation">Police</string>
+<!-- Open Street Map term embassy. -->
+<string name="osm_embassy" tools:ignore="MissingTranslation">Embassy</string>
+<!-- Open Street Map term bus_station. -->
+<string name="osm_bus_station" tools:ignore="MissingTranslation">Bus Station</string>
+<!-- Open Street Map term station. -->
+<string name="osm_station" tools:ignore="MissingTranslation">Station</string>
+<!-- Open Street Map term toll_booth. -->
+<string name="osm_toll_booth" tools:ignore="MissingTranslation">Toll Booth</string>
+<!-- Open Street Map term lift. -->
+<string name="osm_lift" tools:ignore="MissingTranslation">Elevator</string>
+<!-- Open Street Map term unmanaged_crossing. -->
+<string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Unmanaged Crossing</string>
+<!-- Open Street Map term pharmacy. -->
+<string name="osm_pharmacy" tools:ignore="MissingTranslation">Pharmacy</string>
+<!-- Open Street Map term kneipp_water_cure. -->
+<string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Kneipp Water Cure</string>
+<!-- Open Street Map term food_court. -->
+<string name="osm_food_court" tools:ignore="MissingTranslation">Food Court</string>
+<!-- Open Street Map term chemist. -->
+<string name="osm_chemist" tools:ignore="MissingTranslation">Drugstore</string>
+<!-- Open Street Map term checkpoint. -->
+<string name="osm_checkpoint" tools:ignore="MissingTranslation">Checkpoint</string>
+<!-- Open Street Map term dog_park. -->
+<string name="osm_dog_park" tools:ignore="MissingTranslation">Dog Park</string>
+<!-- Open Street Map term kissing_gate. -->
+<string name="osm_kissing_gate" tools:ignore="MissingTranslation">Kissing Gate</string>
+<!-- Open Street Map term car_rental. -->
+<string name="osm_car_rental" tools:ignore="MissingTranslation">Car Rental</string>
+<!-- Open Street Map term pedestrianised_area. -->
+<string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Pedestrian Area</string>
+<!-- Open Street Map term escalator. -->
+<string name="osm_escalator" tools:ignore="MissingTranslation">Escalator</string>
+<!-- Open Street Map term shelter. -->
+<string name="osm_shelter" tools:ignore="MissingTranslation">Shelter</string>
+<!-- Open Street Map term water_point. -->
+<string name="osm_water_point" tools:ignore="MissingTranslation">Water Point</string>
+<!-- Open Street Map term subway_entrance. -->
+<string name="osm_subway_entrance" tools:ignore="MissingTranslation">Subway Entrance</string>
+<!-- Open Street Map term cave_entrance. -->
+<string name="osm_cave_entrance" tools:ignore="MissingTranslation">Cave Entrance</string>
+<!-- Open Street Map term swing_gate. -->
+<string name="osm_swing_gate" tools:ignore="MissingTranslation">Swing Gate</string>
+<!-- Open Street Map term stile. -->
+<string name="osm_stile" tools:ignore="MissingTranslation">Stile</string>
+<!-- Open Street Map term car_sharing. -->
+<string name="osm_car_sharing" tools:ignore="MissingTranslation">Car Sharing</string>
+<!-- Open Street Map term customer_service. -->
+<string name="osm_customer_service" tools:ignore="MissingTranslation">Customer Service</string>
+<!-- Open Street Map term watering_place. -->
+<string name="osm_watering_place" tools:ignore="MissingTranslation">Watering Place</string>
+<!-- Open Street Map term platform. -->
+<string name="osm_platform" tools:ignore="MissingTranslation">Platform</string>
+<!-- Open Street Map term horse_stile. -->
+<string name="osm_horse_stile" tools:ignore="MissingTranslation">Horse Stile</string>
+<!-- Open Street Map term bureau_de_change. -->
+<string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Currency Exchange</string>
+<!-- Open Street Map term stairs. -->
+<string name="osm_stairs" tools:ignore="MissingTranslation">Stairs</string>
+<!-- Open Street Map term bicycle_rental. -->
+<string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Bicycle Rental</string>
+<!-- Open Street Map term tram_stop. -->
+<string name="osm_tram_stop" tools:ignore="MissingTranslation">Tram Stop</string>
+<!-- Open Street Map term subway. -->
+<string name="osm_subway" tools:ignore="MissingTranslation">Subway</string>
+<!-- Open Street Map term hampshire_gate. -->
+<string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Hampshire Gate</string>
+<!-- Open Street Map term full-height_turnstile. -->
+<string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Full-Height Turnstile</string>
+<!-- Open Street Map term boat_sharing. -->
+<string name="osm_boat_sharing" tools:ignore="MissingTranslation">Boat Sharing</string>
+<!-- Open Street Map term help_point. -->
+<string name="osm_help_point" tools:ignore="MissingTranslation">Help Point</string>
+<!-- Open Street Map term open_space. -->
+<string name="osm_open_space" tools:ignore="MissingTranslation">Open Space</string>
+<!-- Open Street Map term spending_area. -->
+<string name="osm_spending_area" tools:ignore="MissingTranslation">Spending Area</string>
+<!-- Open Street Map term bicycle_repair_station. -->
+<string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Bicycle Repair Station</string>
+<!-- Open Street Map term motorcycle_barrier. -->
+<string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Motorcycle Barrier</string>
+<!-- Open Street Map term kent_carriage_gap. -->
+<string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Kent Carriage Gap</string>
+<!-- Open Street Map term shared_space. -->
+<string name="osm_shared_space" tools:ignore="MissingTranslation">Shared Space</string>
+<!-- Open Street Map term cliff. -->
+<string name="osm_cliff" tools:ignore="MissingTranslation">Cliff</string>
+<!-- Open Street Map term training_area. -->
+<string name="osm_training_area" tools:ignore="MissingTranslation">Training Area</string>
+<!-- Open Street Map term log. -->
+<string name="osm_log" tools:ignore="MissingTranslation">Log</string>
+<!-- Open Street Map term jersey_barrier. -->
+<string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Jersey Barrier</string>
+<!-- Open Street Map term construction_site. -->
+<string name="osm_construction_site" tools:ignore="MissingTranslation">Construction Site</string>
+<!-- Open Street Map term ridge. -->
+<string name="osm_ridge" tools:ignore="MissingTranslation">Ridge</string>
+<!-- Open Street Map term nuclear_explosion_site. -->
+<string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Nuclear Explosion Site</string>
+<!-- Open Street Map term dyke. -->
+<string name="osm_dyke" tools:ignore="MissingTranslation">Dyke</string>
+<!-- Open Street Map term sump_buster. -->
+<string name="osm_sump_buster" tools:ignore="MissingTranslation">Sump Buster</string>
+<!-- Open Street Map term rope. -->
+<string name="osm_rope" tools:ignore="MissingTranslation">Rope</string>
+<!-- Open Street Map term debris. -->
+<string name="osm_debris" tools:ignore="MissingTranslation">Debris</string>
+<!-- Open Street Map term road_works. -->
+<string name="osm_road_works" tools:ignore="MissingTranslation">Road Works</string>
+<!-- Open Street Map term lock_gate. -->
+<string name="osm_lock_gate" tools:ignore="MissingTranslation">Lock Gate</string>
+<!-- Open Street Map term sinkhole. -->
+<string name="osm_sinkhole" tools:ignore="MissingTranslation">Sinkhole</string>
+<!-- Open Street Map term range. -->
+<string name="osm_range" tools:ignore="MissingTranslation">Range</string>
+<!-- Open Street Map term ambulance_station. -->
+<string name="osm_ambulance_station" tools:ignore="MissingTranslation">Ambulance Station</string>
+<!-- Open Street Map term spikes. -->
+<string name="osm_spikes" tools:ignore="MissingTranslation">Spikes</string>
+<!-- Open Street Map term generic_hazard. -->
+<string name="osm_generic_hazard" tools:ignore="MissingTranslation">Hazard</string>
+<!-- Open Street Map term contact_line. -->
+<string name="osm_contact_line" tools:ignore="MissingTranslation">Contact Line</string>
+<!-- Open Street Map term danger_area. -->
+<string name="osm_danger_area" tools:ignore="MissingTranslation">Danger Area</string>
+<!-- Open Street Map term chain. -->
+<string name="osm_chain" tools:ignore="MissingTranslation">Chain</string>
+<!-- Open Street Map term parking_space. -->
+<string name="osm_parking_space" tools:ignore="MissingTranslation">Parking Space</string>
+<!-- Open Street Map term motorcycle_parking. -->
+<string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">Motorcycle Parking</string>
+
 </resources>
