@@ -66,6 +66,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             FirebaseCrashlytics.getInstance().setCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
         }
+        Log.d(TAG, "initialize returning")
     }
 
     fun checkTextToSpeechInitialization(block: Boolean) : Boolean {
@@ -221,6 +222,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             audioEngine.ttsRunningStateChanged(true)
         }
         else {
+            Log.w(TAG, "onInit failed with status $status, $engineLabelAndName, $textToSpeechVoiceType")
             val bundle = Bundle().apply {
                 putInt("onInit status", status)
                 putString("engine", engineLabelAndName)

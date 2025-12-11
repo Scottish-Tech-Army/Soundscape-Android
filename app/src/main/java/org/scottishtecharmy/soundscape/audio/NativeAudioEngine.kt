@@ -152,7 +152,9 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
                                     VOICE_TYPE_DEFAULT
                                 )
                             }
+                            Log.d(TAG, "Create new TtsEngine for $engineLabelAndName")
                             ttsEngine = TtsEngine(this, engineLabelAndName)
+                            Log.d(TAG, "Initialize ttsEngine")
                             ttsEngine.initialize(context)
                             update = true
                         }
@@ -196,12 +198,14 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             }
             org.fmod.FMOD.init(context)
             engineHandle = this.create()
+            Log.d(TAG, "Create TTS engine from NativeAudioEngine initialize")
             ttsEngine = TtsEngine(
                 this,
                 sharedPreferences?.getString(
                     SPEECH_ENGINE_KEY,
                     SPEECH_ENGINE_DEFAULT)
             )
+            Log.d(TAG, "Call initialize on ttsEngine")
             ttsEngine.initialize(context)
 
             sharedPreferences?.let {
