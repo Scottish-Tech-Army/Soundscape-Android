@@ -22,7 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
+import androidx.core.content.FileProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -44,8 +44,10 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.LogcatHelper
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
+import java.io.File
 import java.util.Locale
 import javax.inject.Inject
 
@@ -244,6 +246,15 @@ class MainActivity : AppCompatActivity() {
         println("${Build.BRAND}")
         println("${Build.PRODUCT}")
 
+        // Delete contents of export directory. This is used for exporting routes and markers, and
+        // log data when using Contact Support. We don't want these accumulating over separate runs
+        // of the app. They do have to be left around at least until they have been used by the
+        // email client/WhatsApp etc.
+        val directory = File("$filesDir/export/")
+        if (directory.exists()) {
+            directory.deleteRecursively()
+        }
+
         // Debug - dump preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         for (pref in sharedPreferences.all) {
@@ -335,7 +346,10 @@ class MainActivity : AppCompatActivity() {
                         this.rateSoundscape()
                     },
                     contactSupport = {
-                        this.contactSupport()
+                        val thisActivity = this
+                        lifecycleScope.launch {
+                            thisActivity.contactSupport()
+                        }
                     },
                     permissionsRequired = remember { locationPermissionGranted != 1}
                 )
@@ -386,8 +400,7 @@ class MainActivity : AppCompatActivity() {
         return resultsString
     }
 
-    fun contactSupport() {
-
+    suspend fun contactSupport() {
         // Get information from the phone that we'd like to pass on to support
         val appVersion = BuildConfig.VERSION_NAME
         val androidVersion = Build.VERSION.RELEASE
@@ -396,26 +409,49 @@ class MainActivity : AppCompatActivity() {
         val product = Build.PRODUCT
         val manufacturer = Build.MANUFACTURER
         val language = Locale.getDefault().language + "-" + Locale.getDefault().country
-        val subjectText = "Soundscape Feedback (Android $androidVersion, $brand $model, $language, $appVersion)"
+        val subjectText =
+            "Soundscape Feedback (Android $androidVersion, $brand $model, $language, $appVersion)"
         val talkbackStatus = talkBackDescription(applicationContext)
         val preferences = sharedPreferences.all
 
-        fun tableRow(key: String, value: String) : String { return "$key:\t\t$value<br/>" }
+        fun tableRow(key: String, value: String): String {
+            return "$key:\t\t$value<br/>"
+        }
+
         var bodyText =
             "-----------------------------<br/>" +
-            tableRow("Product", product) +
-            tableRow("Manufacturer", manufacturer) +
-            tableRow("Talkback", talkbackStatus)
+                    tableRow("Product", product) +
+                    tableRow("Manufacturer", manufacturer) +
+                    tableRow("Talkback", talkbackStatus)
 
-        for(pref in preferences)
+        for (pref in preferences)
             bodyText += tableRow(pref.key, pref.value.toString())
         bodyText += "-----------------------------<br/><br/>"
 
-        val intent = Intent(Intent.ACTION_SENDTO).apply {
-            data = "mailto:".toUri()
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "message/rfc822"
             putExtra(Intent.EXTRA_EMAIL, arrayOf("soundscapeAndroid@scottishtecharmy.support"))
             putExtra(Intent.EXTRA_SUBJECT, subjectText)
             putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText, 0))
+        }
+
+        // Attach the log file if it was created successfully
+        val logPath = LogcatHelper.saveLogcatToFile(this)
+
+        if (logPath != null) {
+            val logFile = File(logPath)
+            if (logFile.exists()) {
+                Log.d(TAG, "Attach log file from $logPath with authority ${packageName}.provider")
+                // Get a content URI for the file using FileProvider
+                val logUri = FileProvider.getUriForFile(
+                    this@MainActivity,
+                    "${packageName}.provider",
+                    logFile
+                )
+                intent.putExtra(Intent.EXTRA_STREAM, logUri)
+                // Grant read permission to the receiving app
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
         }
 
         Log.e(TAG, Html.fromHtml(bodyText, 0).toString())
