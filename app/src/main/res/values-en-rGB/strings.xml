@@ -524,4 +524,667 @@
     <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markers and routes deleted</string>
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThere are two major changes in this release. Firstly, *Offline map* support has been added which allows Soundscape to run the majority of its features without any network access. In this initial release, *Search* still requires network support, but *Places Nearby*, the audio callouts and the graphical map will all use any downloaded offline maps.\n\nThere are a large number of pre-built map regions available which cover everywhere on the planet. Many locations will be within more than one offline map region and so the user can choose which one they would like to download and use. More than one offline map can be downloaded and Soundscape will switch between them automatically as the user moves around.\n\nMap regions can be whole countries, states or clusters of larger towns and cities. They vary in size depending on how well mapped a region is as well as the physical size of the region. If you are the first user to download a region, there will be a short delay before the download starts. This can be up to a few minutes during which the server processes the map to make it available for download.\n\nThe currently downloaded offline maps can be seen by going to *Menu*, *Offline maps*. That screen also shows the maps for the current location that are available to be downloaded.\n\nThe Location Details screen also has a link to offline maps so if you want to download maps for somewhere you are travelling to you can Search for that location and then tap on the *Nearby offline maps* button to see which maps are available at that location. Maps which are no longer required can be deleted by selecting one of the *Maps already downloaded* and then selecting *Delete offline map*.\n\nThe second major change is that the map tiles cover 4 times the area of the previous releases. This means there are points of interest from further away listed within *Places Nearby*.\n\nAs always please report any problems, however small they may be via the *Contact Support* option in the main menu.\n</string>
+    <string name="new_version_info_text" tools:ignore="MissingTranslation">Release Notes</string>
+    <string name="new_version_info_completed" tools:ignore="MissingTranslation">Close Release Notes</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-source Licences</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferry Terminal</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Ferry Terminal</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">Office</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">School</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">Roof</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">Convenience Shop</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">Lift Gate</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">Toilets</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">Parking</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">Taxi Rank</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Cycle Parking</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">Petrol Station</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">Recycling Point</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">Drinking Water</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">Pitch</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">Picnic Site</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">Information</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Fire Extinguisher</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">Defibrillator</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">Guidepost</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">Water</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">Fire Hose</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">Fire Flapper</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">Information Point</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">Wetland</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">Mud</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">Access Point</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">Lifebuoy</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">General Information</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">Turntable</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">Survey Point</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">Snow Net</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">Silo</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">Mast</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">Bird Hide</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">Transformer Tower</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">Generic Object</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">Signal</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">Rock</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">Kiln</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">Crane</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">Rune Stone</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">Milestone</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Lifeguard Platform</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">Water Tank</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">Pig Sty</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">Navigation Aid</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">Terminal</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">Drinking Water Tap</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">Water Well</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">Oil Well</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">Cross</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">Gallows</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">Speed Camera</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">Siren</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">Pylon</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">Mine Shaft</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">Flagpole</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Optical Telegraph</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">Cannon</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">Boundary Stone</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">Shed</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">Traffic Cones</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">Fire Pit</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">Standing Stone</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">Surveillance Area</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">Monitoring Station</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Wayside Shrine</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">Wayside Cross</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">Tomb</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">Traffic Lights</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">Hut</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">Static Caravan</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">Bollard</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">Block</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">Waste Disposal Point</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">Photo Booth</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">Barbecue</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">Shop</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">Newsagent</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">Anime Shop</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">Musical Instrument Shop</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Vacuum Cleaner Shop</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">Mobile Phone Shop</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">Carpet Shop</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">Trade Shop</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">Garden Centre</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">Florist</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">Fireplace</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">Massage</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">Herbalist</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">Bag Shop</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">Pastry Shop</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">Deli</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">Drinks Shop</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">Off-licence</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">Substation</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">Travel Agency</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">Research Facility</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">Newsagent</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">Ammunition Shop</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">Wildlife Hide</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">Watchmaker\'s</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">Tinsmith\'s</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">Sun Protection Shop</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">Sculptor\'s Studio</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">Metal Fabrication Workshop</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">Craft Shop</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">Cowshed</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">Cabin</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">Barn</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">Warehouse</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">Houseboat</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">Bookshop</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">Place</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">Hunting Stand</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">Game Feeding Area</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">Crypt</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">Animal Shelter</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">Pet Boarding</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">Blood Donation Centre</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">Nursing Home</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">Dentist</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">Baby Hatch</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">Language School</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">Public Bookcase</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">Beer Garden</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">Running Track</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">Glazier\'s Workshop</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">Garages</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">Retail Shop</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">Hotel</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">Campsite</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">Rugby League</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">Roller Skating</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">Multi-Use</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">Ice Hockey</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">Hapkido</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">Croquet</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">Cricket</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">Cockfighting</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">Boxing</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">BMX</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">Billiards</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">Toyshop</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Fireworks Shop</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">Launderette</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">Funeral directors</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">Dry cleaning</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">Copy shop</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">Chalet</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">Flat</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">Water skiing</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">Water polo</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">Table football</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">Table tennis</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">Skateboarding</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">Sailing</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">Safety Training</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">Rowing</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Model Aerodrome</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">Korfball</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">Ice Stock</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">Gymnastics</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">Football</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">Field Hockey</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">Equestrian</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">Cycling</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">Curling</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">Cricket Nets</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">Cliff Diving</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">Boules</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">Bobsleigh</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">Baseball</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">Aikido</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">Ten-pin Bowling</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">Weapons Shop</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">Pet Shop</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">Money Lender</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">Gift Shop</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">Bookshop</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">Bookmaker</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">Photo Shop</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">Craft Shop</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">Motorcycle Shop</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">Hunting Shop</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">Window Blind Shop</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">Curtain Shop</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">Antique Shop</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">Paint Shop</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">Tattoo Studio</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Nutritional Supplement Shop</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">Hearing Aid Shop</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">Cosmetics Shop</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">Watch Shop</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">Jewellery Shop</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">Boutique Shop</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">Baby Goods Shop</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">Tea Shop</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">Pasta Shop</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">Coffee Shop</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">Quango</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">Political Party</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">Association</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">Architect</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">Advertising Agency</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">Summer Camp</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">Dance Studio</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Amusement Arcade</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Adult Gaming Centre</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">Window manufacturer/installer</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">Upholsterer</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">Shoemaker</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">Sawmill</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">Pottery Studio</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">Key Cutter</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">HVAC Contractor</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">Clockmaker</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">Carpenter</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">Builder</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">Bookbinder</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">Boat Builder</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">Brewery</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">Blacksmith</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">Basket Maker</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">Greenhouse</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Farm Outbuilding</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">Civic Building</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">Bungalow</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">Detached House</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">Hairdresser</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">Clothing Shop</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">User</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">Dojo</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">Nightclub</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">Community Centre</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">Brothel</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">Veterinary Clinic</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">Social Care Facility</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">Clinic</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">EV Charging Point</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">Nursery</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">Ice Cream Parlour</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">Fast-food Restaurant</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">Commercial Building</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">Canoeing</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">Scuba Diving</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">Fishing</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">Optician</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">Confectionery Shop</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">Bunker</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Sleeping Pods</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">Motel</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">Guest House</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">Wrestling</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">Toboggan Run</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">Skiing</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">RC Car</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Paddle Tennis</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">Hockey</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">Fencing</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">Bowls</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">Badminton</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">Archery</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">American Football</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">Travel Agency</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">Tobacco Shop</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">E-Cigarette Shop</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">Video Shop</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">Car Repair</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">Hi-Fi Shop</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">Lamp Shop</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">Kitchen Shop</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">Interior Decoration Shop</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">Houseware Shop</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">Erotic Shop</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">Beauty Shop</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">Wine Shop</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">Dairy Shop</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">Cheese Shop</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">Bakery Shop</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">Telecommunications Shop</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">Tax Office</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Estate Agent</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">Notary</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">NGO Office</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">Lawyer</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">IT Services</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">Foundation</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">Employment Agency</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">Educational Institution</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">Adoption Agency</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">Mini Golf</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">Building</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">Winery</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">Tiler</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Chimney Sweep</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">Stand Builder</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">Saddler</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">Plumber</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">Plasterer</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">Painter</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">Jewellery Shop</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">Floorer</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">Distillery</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">Carpet Layer</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">Beekeeper</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">Public</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">Hall of Residence</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">Flats</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">Internet Café</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">Shoe Shop</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">Shop</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">Coffee Shop</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">Coworking Space</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">Strip Club</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">EV Charging Point</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">Pub</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">Obstacle Course</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">Volleyball</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">Tennis</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">Football</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">Shooting Range</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">Rugby Union</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">Orienteering</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">Netball</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">Motor Shop</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">Kitesurfing</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">Karting</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">Judo</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">Horseshoes</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">Handball</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">Golf</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">Gaelic Games</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">Diving</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">Darts</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Climbing Adventure</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">Basketball</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">Bandy</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">Australian Football</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">9-Pin</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">Vacant</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">Lottery Shop</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">Trophy Shop</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">Music Shop</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">Games Shop</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">Tyre Shop</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">Sports Shop</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">Outdoor Shop</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">Car Dealership</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">Electronics Shop</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">Computer Shop</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">Furniture Shop</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">Candle Shop</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">Hardware Shop</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">Petrol Station</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">Energy Company</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">DIY Shop</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Bathroom Shop</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">Medical Supplies Shop</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">Variety Shop</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">Second‑hand Shop</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">Charity Shop</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">Fashion Shop</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">Fabric Shop</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">Clothing Shop</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">Butcher\'s</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">Water Utility</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">Estate Agent</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">Company</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">Accountant</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">Bunker Silo</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">Hackerspace</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">Lifeguard Station</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">Roofer</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">Rigger</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">Parquet Fitter</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">Gardener</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">Stable</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">Garage</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">Transport Facility</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">House</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">Helipad</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">Aircraft Apron</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Electronics Shop</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">Speciality Shop</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">Defined</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">Sauna</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">Gym</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">Crematorium</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">Gambling Venue</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">Music School</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">Bar</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">Farm</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">Cycle Shop</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">Tailor</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">Locksmith</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">Industrial</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Wilderness Hut</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">Hostel</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">Caravan Site</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">Weightlifting Facility</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">Taekwondo Club</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">Swimming Pool</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">Surfing Area</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">Skating Rink</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">Racquet Sports Facility</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">Pelota Court</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">Paragliding Site</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">Parachuting Site</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">Motocross Track</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">Ice Rink</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">Horse Racing Track</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">Dog Racing Track</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">Climbing Area</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">Chess Club</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">Canadian Football Field</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Beach Volleyball Court</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">Base</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">Athletics Track</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">Pawnbroker</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">Ticket Office</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">Stationery Shop</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">Video Game Shop</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">Model Shop</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">Frame Shop</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">Art Shop</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">Car Parts Shop</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">Radio Equipment Shop</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">Bed Shop</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">Garden Furniture Shop</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">Electrical Shop</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">Perfumery</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">Hairdresser</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">Pharmacy</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">Shoe Shop</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">Leather Goods Shop</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">General Store</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">Fishmonger</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">Organic Shop</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">Greengrocer</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">Chocolate Shop</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Brewing Supplies Shop</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">Tax Adviser</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">Private Investigator</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">Government Office</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">Forestry</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">Estate Agent</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">Spring</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">Golf Course</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">SES Station</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Lifeguard Post</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">Stonemason</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">Scaffolder</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">Sailmaker</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Photographic Laboratory</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">Photographer</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">Insulation</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">Electrician</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">Dressmaker</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">Caterer</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">Terrace</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">Toy Shop</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">Dive Centre</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">Swingers\' Club</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">Doctors\' Surgery</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">Driving School</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">Free‑flying Area</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">Religion</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">Kiosk</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">Residential Area</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">Food Outlet</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">Waterfall</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">Boatyard</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">Theme Park</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">Roundhouse</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">Generator</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">Beach</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">Naval Base</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">Industrial Works</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">Waterworks</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">Telescope</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">Pier</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">Observatory</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">Reservoir</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">Monument</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">Battlefield</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">Planetarium</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">Social Centre</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">Prison</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">Court Building</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">Bridge</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">Hangar</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">Tower</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">Attraction</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">Zoo</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">Gallery</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">Artwork</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">Alpine Hut</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">Industrial Plant</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">Insurance Office</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">Airfield</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">Water Tower</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">Pumping Station</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Hot Water Tank</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">Bell Tower</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">Sports Centre</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">Fitness Centre</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">Seaside Resort</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">Village Green</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">Ship</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">Memorial</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">Synagogue</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">Mosque</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">Chapel</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">Cathedral</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">Train Terminus</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">College</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">Arts Centre</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">Ranger Station</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">Hospital</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">Track</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">Conference Centre</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">Viewpoint</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">Supermarket</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">Peak</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">Storage Tank</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">Lighthouse</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">Beacon</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">Port</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Archaeological Site</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">Shrine</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">Church</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">Historic Monument</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">Landmark</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">Museum</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">Register Office</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">Graveyard</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">Marketplace</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">Fire Station</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">Ruins</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">Weir</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">Museum</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">Shopping Centre</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">Volcano</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">Hot Spring</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">Glacier</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Wastewater Treatment Plant</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">Offshore Platform</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">Gas Holder</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">Water Park</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">Bandstand</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">Wreck</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">Pillory</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">Monastery</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">Locomotive</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">Fort</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">Service Area</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Lifeguard Tower</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">Temple</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">National Park</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">Heliport</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">Public Park</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">Department Store</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">Studio</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">Public Building</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">Public Clock</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">Casino</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">Stadium</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">Dam</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">Dock</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">Geyser</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">Bay</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">Barracks</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">Windmill</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">Watermill</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">Communications Tower</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">Swimming Area</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">Slipway</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">Nature Reserve</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">Marina</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">Ice Rink</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">Manor</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">City Gate</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">Castle</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">Aircraft</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">Digester</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">Sally Port</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">Aerodrome</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">Shopping Mall</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">Cinema</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">Rescue Station</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">Airport</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">Theatre</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">Library</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">University</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">Police Station</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">Embassy</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">Bus Station</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">Station</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">Toll Booth</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">Lift</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Uncontrolled Crossing</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">Pharmacy</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Kneipp Hydrotherapy</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">Food Court</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">Chemist</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">Checkpoint</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">Dog Park</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">Kissing Gate</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">Car Hire</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Pedestrianised Area</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">Escalator</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">Shelter</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">Water Point</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">Underground Entrance</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">Cave Entrance</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">Swing Gate</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">Stile</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">Car Sharing</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">Customer Service</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">Watering Place</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">Platform</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">Horse Stile</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Bureau de Change</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">Stairs</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Bicycle Hire</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Hampshire Gate</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Full-Height Turnstile</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Boat Sharing</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">Help Point</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">Open Space</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">Stopping Area</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Bicycle Repair Station</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Motorcycle Barrier</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Kent Carriage Gap</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">Shared Space</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">Cliff</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">Training Area</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">Log</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Jersey Barrier</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">Construction Site</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">Ridge</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Nuclear Test Site</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">Dyke</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">Sump Buster</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">Rope</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">Debris</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">Road Works</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">Lock Gate</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">Sinkhole</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">Firing Range</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">Ambulance Station</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">Tyre-Damaging Spikes</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">Generic Hazard</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">Overhead Contact Line</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">Danger Area</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">Chain Barrier</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">Parking Space</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">Motorcycle Parking</string>
 </resources>
