@@ -608,129 +608,129 @@
     <!-- Help content explaining how a user can share a route. "Share" should be translated in the same way as it is for the key `share.title`. Quotes written as \" -->
 <string name="help_text_routes_content_how_3">**اشتراک‌گذاری یک مسیر:**\n\nمسیر خود را در صفحه‌ی *«نشانه‌ها و مسیرها»* مشخص نموده و سپس گزینه‌ی *«اشتراک‌گذاری»* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمول که در اختیار شما قرار دارد انتخاب کنید.</string>
     <!-- Open Street Map term. Pedestrians can cross a street here; e.g., zebra crossing. Known as crosswalks in American English, and crossings in British English. -->
-<string name="osm_tag_crossing">خط عابر پیاده</string>
+<string name="osm_crossing">خط عابر پیاده</string>
     <!-- Open Street Map term. Used to describe the type of the feature which is currently under construction. -->
-<string name="osm_tag_construction">عملیات ساختمانی</string>
+<string name="osm_construction">عملیات ساختمانی</string>
     <!-- Open Street Map term. NOT DEFINED IN OSM -->
-<string name="osm_tag_dangerous_area">محدوده‌ی پرخطر</string>
+<string name="osm_dangerous_area">محدوده‌ی پرخطر</string>
     <!-- Open Street Map term. This refers to a village, town or city townhall, which is often the seat of the mayor, or may be merely a community meeting place. -->
-<string name="osm_tag_townhall">ساختمان شهرداری</string>
+<string name="osm_townhall">ساختمان شهرداری</string>
     <!-- Open Street Map term. For flights of steps on footways and paths.. -->
-<string name="osm_tag_steps">پله</string>
+<string name="osm_steps">پله</string>
     <!-- Open Street Map term. An elevator (or lift) is used to travel vertically, providing passenger and freight access between pathways at different floor levels. -->
-<string name="osm_tag_elevator">آسانسور</string>
+<string name="osm_elevator">آسانسور</string>
     <!-- Open Street Map term. A walking path is is a generic path, either multi-use or unspecified usage, open to all pedestrians and not intended for motorized vehicles. -->
-<string name="osm_tag_walking_path">مسیر پیاده</string>
+<string name="osm_walking_path">مسیر پیاده</string>
     <!-- Open Street Map term. Is a road or an area mainly or exclusively for pedestrians in which some vehicle traffic may be authorized (e.g. emergency, taxi, delivery, ...). Typically found in shopping areas, town centres, places with tourism attractions and recreation/civic areas, where wide expanses of hard surface are provided for pedestrians to walk. -->
-<string name="osm_tag_pedestrian_street">خیابان ویژه‌ی عابرین پیاده</string>
+<string name="osm_pedestrian_street">خیابان ویژه‌ی عابرین پیاده</string>
     <!-- Open Street Map term. A bicycle path is is a generic path, either multi-use or unspecified usage, open to all cyclists and not intended for motorized vehicles. May be shared with pedestrians. -->
-<string name="osm_tag_bicycle_path">مسیر ویژه‌ی دوچرخه</string>
+<string name="osm_bicycle_path">مسیر ویژه‌ی دوچرخه</string>
     <!-- Open Street Map term. Used for roads that are used for accessing residential areas and in residential areas but which are not normally used as through routes. -->
-<string name="osm_tag_residential_street">خیابان مسکونی</string>
+<string name="osm_residential_street">خیابان مسکونی</string>
     <!-- Open Street Map term. Used in two senses: 1. As a service way for access to buildings or places 2. Frontage road parallel to a major road. -->
-<string name="osm_tag_service_road">کنار‌گذر</string>
+<string name="osm_service_road">کنار‌گذر</string>
     <!-- Open Street Map term. Any highway, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
-<string name="osm_tag_road">جاده</string>
+<string name="osm_road">جاده</string>
     <!-- Open Street Map term. Any road, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
-<string name="osm_tag_highway">بزرگراه</string>
+<string name="osm_highway">بزرگراه</string>
     <!-- Open Street Map term. Any highway that has a given name. Used as a display name for place or a location. %s is an highway name, such as "London Highway". -->
-<string name="osm_tag_highway_named">بزرگراه %s</string>
+<string name="osm_highway_named">بزرگراه %s</string>
     <!-- Open Street Map term. Any highway that has a reference number or name. Used as a display name for place or a location. %s is an highway id, such as "Highway 520" or "Highway B". -->
-<string name="osm_tag_highway_refed">بزرگراه %s</string>
+<string name="osm_highway_refed">بزرگراه %s</string>
     <!-- Open Street Map term. An intersection is a junction where two or more roads meet or cross. -->
-<string name="osm_tag_intersection">تقاطع</string>
+<string name="osm_intersection">تقاطع</string>
     <!-- Open Street Map term. A roundabout is a type of circular intersection or junction in which road traffic is permitted to flow in one direction around a central island. -->
-<string name="osm_tag_roundabout">فلکه</string>
+<string name="osm_roundabout">فلکه</string>
     <!-- Open Street Map term. Used to describe a road or highway leading to and from a major highway e.g., a freeway or motorway. -->
-<string name="osm_tag_highway_ramp">رمپ بزرگراه</string>
+<string name="osm_highway_ramp">رمپ بزرگراه</string>
     <!-- Open Street Map term. Used as to describe the section of highway where two or more roads or highways merge with one another. -->
-<string name="osm_tag_merging_lane">لاین ادغام</string>
+<string name="osm_merging_lane">لاین ادغام</string>
     <!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
-<string name="osm_tag_office_building">ساختمان اداری</string>
+<string name="osm_office_building">ساختمان اداری</string>
     <!-- Open Street Map term. Used for any generic building that is used as a school. -->
-<string name="osm_tag_school_building">مدرسه</string>
+<string name="osm_school_building">مدرسه</string>
     <!-- Open Street Map term. Used as a display name for place or a location. -->
-<string name="osm_tag_covered_pavilion">آلاچیق سرپوشیده</string>
+<string name="osm_covered_pavilion">آلاچیق سرپوشیده</string>
     <!-- Open Street Map term. A small local shop carrying a variety of everyday products, mostly including single-serving food items such as milk, bread, snacks, groceries to over-the-counter medications, household items, stationery, and small auto supplies such as fuses. -->
-<string name="osm_tag_convenience_store">بقالی</string>
+<string name="osm_convenience_store">بقالی</string>
     <!-- Open Street Map term. A doorway through which people can enter or exit a building. -->
-<string name="osm_tag_building_entrance">ورودی ساختمان</string>
+<string name="osm_building_entrance">ورودی ساختمان</string>
     <!-- Open Street Map term. Used to designate a place or an area where all employees, passengers or a large crowd assemble in case of an emergency in an installation, building or a public place. -->
-<string name="osm_tag_assembly_point">نقطه‌ی تجمع</string>
+<string name="osm_assembly_point">نقطه‌ی تجمع</string>
     <!-- Open Street Map term. Used to describe fence-like barriers positioned along paths, footways, cycleways or tracks which serve to either slow cycle access or prevent it entirely depending on spacing and layout. -->
-<string name="osm_tag_cycle_barrier">مانع دوچرخه</string>
+<string name="osm_cycle_barrier">مانع دوچرخه</string>
     <!-- Open Street Map term. Used to describe a barrier to allow one person at a time to pass. Use this for small turnstiles like the ones in supermarkets or some subways. -->
-<string name="osm_tag_turnstile">گیت گردان</string>
+<string name="osm_turnstile">گیت گردان</string>
     <!-- Open Street Map term. Used to describe a hole in the road surface which is covered with a series of bars that allow wheeled vehicles but not animals to cross. -->
-<string name="osm_tag_cattle_grid">مانع عبور دام</string>
+<string name="osm_cattle_grid">مانع عبور دام</string>
     <!-- Open Street Map term. A gate is a section in a wall or fence which can be opened to allow or restrict access. They are usually made of wood or metal. -->
-<string name="osm_tag_gate">گیت</string>
+<string name="osm_gate">گیت</string>
     <!-- Open Street Map term. Used to refer to a public toilet. -->
-<string name="osm_tag_restroom">توالت عمومی</string>
+<string name="osm_restroom">توالت عمومی</string>
     <!-- Open Street Map term. Used to describe a facility used by the public, customers, or other authorised users for parking motor vehicles, such as cars and trucks, commonly known as a car park (British English) or parking lot (American English). -->
-<string name="osm_tag_parking_lot">پارکینگ</string>
+<string name="osm_parking_lot">پارکینگ</string>
     <!-- Open Street Map term. Used to describe the entry/exit point to a parking area. -->
-<string name="osm_tag_parking_entrance">ورودی پارکینگ</string>
+<string name="osm_parking_entrance">ورودی پارکینگ</string>
     <!-- Open Street Map term. A place for people to sit. -->
-<string name="osm_tag_bench">نیمکت</string>
+<string name="osm_bench">نیمکت</string>
     <!-- Open Street Map term. Used for the locating the point where taxis wait, not the point where passengers wait. -->
-<string name="osm_tag_taxi_waiting_area">ایستگاه تاکسی</string>
+<string name="osm_taxi_waiting_area">ایستگاه تاکسی</string>
     <!-- Open Street Map term. A place where letters and parcels may be sent or collected.. -->
-<string name="osm_tag_post_office">اداره‌ی پست</string>
+<string name="osm_post_office">اداره‌ی پست</string>
     <!-- Open Street Map term. A physical box used as a facility for the public to deposit outgoing postal items, such as letters and other small goods, intended for collection by the operator.. -->
-<string name="osm_tag_post_box">صندوق پست</string>
+<string name="osm_post_box">صندوق پست</string>
     <!-- Open Street Map term. A single small container for depositing garbage that is easily accessible for pedestrians. -->
-<string name="osm_tag_waste_basket">سطل زباله</string>
+<string name="osm_waste_basket">سطل زباله</string>
     <!-- Open Street Map term. A place where people can bathe under water sprays. May be run as a local amenity by the government, or part of commercial provisions. -->
-<string name="osm_tag_shower">دوش آب</string>
+<string name="osm_shower">دوش آب</string>
     <!-- Open Street Map term. Refers to any parking space designed for bicycles, where one can leave a pedal cycle unattended in reasonable security. -->
-<string name="osm_tag_bike_parking">پارکینگ دوچرخه</string>
+<string name="osm_bike_parking">پارکینگ دوچرخه</string>
     <!-- Open Street Map term. An informal place with sit-down facilities selling beverages and light meals and/or snacks. -->
-<string name="osm_tag_cafe">کافه</string>
+<string name="osm_cafe">کافه</string>
     <!-- Open Street Map term. Generally a formal eating places with sit-down facilities selling full meals served by waiters and often licensed (where allowed) to sell alcoholic drinks. -->
-<string name="osm_tag_restaurant">رستوران</string>
+<string name="osm_restaurant">رستوران</string>
     <!-- Open Street Map term. A public telephone, phone box, or telephone on a stand or wall. Usually you pay to use them, often only via a pre-pay card. -->
-<string name="osm_tag_telephone">تلفن</string>
+<string name="osm_telephone">تلفن</string>
     <!-- Open Street Map term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
-<string name="osm_tag_gas_station">پمپ بنزین</string>
+<string name="osm_gas_station">پمپ بنزین</string>
     <!-- Open Street Map term. A financial establishment where customers can, among other services, deposit and withdraw money, take loans, make investments and transfer funds. This definition encompasses banks, credit unions, building societies, and other similar establishments. It does not include money lenders or financial offices that are not banks -->
-<string name="osm_tag_bank">بانک</string>
+<string name="osm_bank">بانک</string>
     <!-- Open Street Map term. An automated teller machine (ATM), or automatic banking machine (ABM), or "cash machine", is a computerised telecommunications device that provides the clients of a financial institution with access to financial transactions in a public space without the need for a cashier, human clerk or bank teller. -->
-<string name="osm_tag_atm">دستگاه خودپرداز</string>
+<string name="osm_atm">دستگاه خودپرداز</string>
     <!-- Open Street Map term. Used as a display name for place or a location. %s is a bank name, such as "Chase ATM". -->
-<string name="osm_tag_atm_named">خودپرداز %s</string>
+<string name="osm_atm_named">خودپرداز %s</string>
     <!-- Open Street Map term. Used as a display name for place or a location. %s is an ATM id, such as "ATM 7" or "ATM B". -->
-<string name="osm_tag_atm_refed">خودپرداز %s</string>
+<string name="osm_atm_refed">خودپرداز %s</string>
     <!-- Open Street Map term. A bus stop is a place where passengers can board or alight from a bus. Its position may be marked by a shelter, pole, bus lay-by, or road markings. -->
-<string name="osm_tag_bus_stop">ایستگاه اتوبوس</string>
+<string name="osm_bus_stop">ایستگاه اتوبوس</string>
     <!-- Open Street Map term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
-<string name="osm_tag_bus_stop_named">ایستگاه اتوبوس %s</string>
+<string name="osm_bus_stop_named">ایستگاه اتوبوس %s</string>
     <!-- Open Street Map term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
-<string name="osm_tag_recycling_bin">سطل بازیافت</string>
+<string name="osm_recycling_bin">سطل بازیافت</string>
     <!-- Open Street Map term. A water feature with cultural, decorational or historical significance or which serves a recreational purpose. -->
-<string name="osm_tag_fountain">فواره</string>
+<string name="osm_fountain">فواره</string>
     <!-- Open Street Map term. This covers places such as mosques, churches, cathedrals, synagogues, temples, etc. -->
-<string name="osm_tag_place_of_worship">عبادتگاه</string>
+<string name="osm_place_of_worship">عبادتگاه</string>
     <!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
-<string name="osm_tag_water_fountain">آب‌خوری</string>
+<string name="osm_water_fountain">آب‌خوری</string>
     <!-- Open Street Map term. A facility used to clean the exterior and, in some cases, the interior of motor vehicles. -->
-<string name="osm_tag_car_wash">کارواش</string>
+<string name="osm_car_wash">کارواش</string>
     <!-- Open Street Map term. A machine which dispenses items such as snacks, beverages, alcohol, cigarettes, lottery tickets, cologne, consumer products and even gold and gems to customers automatically, after the customer inserts currency or credit into the machine. -->
-<string name="osm_tag_vending_machine">دستگاه فروش خودکار</string>
+<string name="osm_vending_machine">دستگاه فروش خودکار</string>
     <!-- Open Street Map term. Outdoor (sometimes indoor) areas specifically designed for children to play. -->
-<string name="osm_tag_playground">زمین بازی</string>
+<string name="osm_playground">زمین بازی</string>
     <!-- Open Street Map term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
-<string name="osm_tag_sports_field">زمین ورزش</string>
+<string name="osm_sports_field">زمین ورزش</string>
     <!-- Open Street Map term. A place built for swimming as a recreational activity or sport. -->
-<string name="osm_tag_swimming_pool">استخر شنا</string>
+<string name="osm_swimming_pool">استخر شنا</string>
     <!-- Open Street Map term. A distinguishable planned space, usually outdoors, set aside for the display, cultivation, and enjoyment of plants and other forms of nature. -->
-<string name="osm_tag_garden">باغ</string>
+<string name="osm_garden">باغ</string>
     <!-- Open Street Map term. An area of open space for recreational use, usually designed and in semi-natural state with grassy areas, trees and bushes. Parks are usually urban, but not always. -->
-<string name="osm_tag_park">پارک</string>
+<string name="osm_park">پارک</string>
     <!-- Open Street Map term. A table with benches, ideal for food and rest. -->
-<string name="osm_tag_picnic_table">میز پیکنیک</string>
+<string name="osm_picnic_table">میز پیکنیک</string>
     <!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
-<string name="osm_tag_picnic_area">محوطه‌ی پیکنیک</string>
+<string name="osm_picnic_area">محوطه‌ی پیکنیک</string>
     <!-- Title in menu of button to share the app with others -->
 <string name="share_title">اشتراک‌گذاری</string>
     <!-- Title of the Frequently Asked Questions page -->
@@ -872,21 +872,21 @@
     <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">لغو جستجو</string>
     <!-- OSM tag for train station -->
-<string name="osm_tag_train_station" tools:ignore="MissingTranslation">ایستگاه قطار</string>
+<string name="osm_train_station" tools:ignore="MissingTranslation">ایستگاه قطار</string>
     <!-- OSM tag for train station preceded by its name e.g. "Milngavie Train station" -->
-<string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">ایستگاه قطار %s</string>
+<string name="osm_train_station_named" tools:ignore="MissingTranslation">ایستگاه قطار %s</string>
     <!-- OSM tag for tram stop -->
-<string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">ایستگاه تراموا</string>
+<string name="osm_tram_stop" tools:ignore="MissingTranslation">ایستگاه تراموا</string>
     <!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
-<string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">ایستگاه تراموا %s</string>
+<string name="osm_tram_stop_named" tools:ignore="MissingTranslation">ایستگاه تراموا %s</string>
     <!-- OSM tag for subway station (underground trains) -->
-<string name="osm_tag_subway" tools:ignore="MissingTranslation">ایستگاه مترو</string>
+<string name="osm_subway" tools:ignore="MissingTranslation">ایستگاه مترو</string>
     <!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
-<string name="osm_tag_subway_named" tools:ignore="MissingTranslation">ایستگاه مترو %s</string>
+<string name="osm_subway_named" tools:ignore="MissingTranslation">ایستگاه مترو %s</string>
     <!-- OSM tag for ferry terminal -->
-<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">اسکله</string>
+<string name="osm_ferry_terminal" tools:ignore="MissingTranslation">اسکله</string>
     <!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
-<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">اسکله‌ی %s</string>
+<string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">اسکله‌ی %s</string>
     <!-- Title for settings page group of audio settings -->
 <string name="menu_manage_audio" tools:ignore="MissingTranslation">مدیریت صدا</string>
     <!-- Title for settings page group of audio settings -->
@@ -947,10 +947,10 @@
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">جستجوی زبان</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">غیرفعال است زیرا مسیر هم‌اکنون در ابتدا قرار دارد</string>
     <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">غیرفعال است زیرا مسیر هم‌اکنون در انتها قرار دارد</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">ورودی</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">ورودی اصلی</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%2$s %1$s از %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%2$s %1$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">ورودی</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">ورودی اصلی</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%2$s %1$s از %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%2$s %1$s</string>
     <string name="offline_maps_title" tools:ignore="MissingTranslation">نقشه‌های آفلاین</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">جزئیات نقشه‌ی آفلاین</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">در حال بارگذاری…</string>

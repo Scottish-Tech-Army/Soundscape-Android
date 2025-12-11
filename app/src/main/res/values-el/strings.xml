@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">**Δημιουργία διαδρομής**:\n\nΠρώτα, μεταβείτε στην επιλογή \"Δείκτες και Διαδρομές\", επιλέξτε την καρτέλα \"Διαδρομές\" και, στη συνέχεια, επιλέξτε το κουμπί \"Νέα διαδρομή\". Δώστε στη διαδρομή ένα όνομα και μια προαιρετική περιγραφή και, στη συνέχεια, προσθέστε σημεία καθώς προχωράτε. επιλέξτε τα από τη λίστα δεικτών. Μπορείτε να αναδιατάξετε τη σειρά των σημείων κατά μήκος της μιας διαδρομής ανά πάσα στιγμή, τροποποιώντας τη διαδρομή.</string>
     <string name="help_text_routes_content_how_2">**Επεξεργασία διαδρομής :**\n\n Επιλέξτε τη διαδρομή σας στην οθόνη *\"Δείκτες και Διαδρομές\"* και στη συνέχεια επιλέξτε *\"Επεξεργασία διαδρομής\"*. Από εδώ μπορείτε να προσθέσετε και να αφαιρέσετε σημεία πορείας, καθώς και να επεξεργαστείτε το όνομα και την περιγραφή της διαδρομής.</string>
     <string name="help_text_routes_content_how_3">**Κοινή χρήση διαδρομής :**\n\n Επιλέξτε τη διαδρομή σας στην οθόνη *\"Δείκτες και Διαδρομές\"* και στη συνέχεια επιλέξτε την επιλογή *\"Κοινή χρήση\"* χρησιμοποιώντας όλες τις συνηθισμένες επιλογές κοινοποίησης που έχετε στη διάθεσή σας.</string>
-    <string name="osm_tag_crossing">"Διάβαση πεζών"</string>
-    <string name="osm_tag_construction">"Κατασκευή"</string>
-    <string name="osm_tag_dangerous_area">"Επικίνδυνη περιοχή"</string>
-    <string name="osm_tag_townhall">"Δημαρχείο"</string>
-    <string name="osm_tag_steps">"Σκαλιά"</string>
-    <string name="osm_tag_elevator">"Ανελκυστήρας"</string>
-    <string name="osm_tag_walking_path">"Μονοπάτι πεζοπορίας"</string>
-    <string name="osm_tag_pedestrian_street">"Πεζόδρομος"</string>
-    <string name="osm_tag_bicycle_path">"Ποδηλατόδρομος"</string>
-    <string name="osm_tag_residential_street">"Οδός σε αστική περιοχή"</string>
-    <string name="osm_tag_service_road">"Βοηθητική οδός"</string>
-    <string name="osm_tag_road">"Δρόμος"</string>
-    <string name="osm_tag_highway">"Αυτοκινητόδρομος"</string>
-    <string name="osm_tag_highway_named">"Αυτοκινητόδρομος %s"</string>
-    <string name="osm_tag_highway_refed">"Αυτοκινητόδρομος %s"</string>
-    <string name="osm_tag_intersection">"Διασταύρωση"</string>
-    <string name="osm_tag_roundabout">"Κυκλικός κόμβος"</string>
-    <string name="osm_tag_highway_ramp">"Έξοδος αυτοκινητόδρομου"</string>
-    <string name="osm_tag_merging_lane">"Λωρίδα συγχώνευσης"</string>
-    <string name="osm_tag_office_building">"Κτίριο γραφείων"</string>
-    <string name="osm_tag_school_building">"Σχολικό κτίριο"</string>
-    <string name="osm_tag_covered_pavilion">"Σκεπαστό περίπτερο"</string>
-    <string name="osm_tag_convenience_store">"Ψιλικατζίδικο"</string>
-    <string name="osm_tag_building_entrance">"Είσοδος κτιρίου"</string>
-    <string name="osm_tag_assembly_point">"Σημείο συναρμολόγησης"</string>
-    <string name="osm_tag_cycle_barrier">"Εμπόδιο για δίκυκλα"</string>
-    <string name="osm_tag_turnstile">"Τουρνικέ"</string>
-    <string name="osm_tag_cattle_grid">"Σχάρα προστασίας"</string>
-    <string name="osm_tag_gate">"Πύλη"</string>
-    <string name="osm_tag_restroom">"Τουαλέτα"</string>
-    <string name="osm_tag_parking_lot">"Χώρος στάθμευσης"</string>
-    <string name="osm_tag_parking_entrance">"Είσοδος στάθμευσης"</string>
-    <string name="osm_tag_bench">"Παγκάκι"</string>
-    <string name="osm_tag_taxi_waiting_area">"Χώρος αναμονής ταξί"</string>
-    <string name="osm_tag_post_office">"Ταχυδρομείο"</string>
-    <string name="osm_tag_post_box">"Ταχυδρομική θυρίδα"</string>
-    <string name="osm_tag_waste_basket">"Καλάθι αχρήστων"</string>
-    <string name="osm_tag_shower">"Ντους"</string>
-    <string name="osm_tag_bike_parking">"Χώρος στάθμευσης ποδηλάτων"</string>
-    <string name="osm_tag_cafe">"Καφέ"</string>
-    <string name="osm_tag_restaurant">"Εστιατόριο"</string>
-    <string name="osm_tag_telephone">"Τηλέφωνο"</string>
-    <string name="osm_tag_gas_station">"Πρατήριο καυσίμων"</string>
-    <string name="osm_tag_bank">"Τράπεζα"</string>
-    <string name="osm_tag_atm">"ATM"</string>
-    <string name="osm_tag_atm_named">"%s ATM"</string>
-    <string name="osm_tag_atm_refed">"ATM %s"</string>
-    <string name="osm_tag_bus_stop">"Στάση"</string>
-    <string name="osm_tag_bus_stop_named">"%s Στάση"</string>
-    <string name="osm_tag_recycling_bin">"Κάδος ανακύκλωσης"</string>
-    <string name="osm_tag_fountain">"Σιντριβάνι"</string>
-    <string name="osm_tag_place_of_worship">"Τόπος Λατρείας"</string>
-    <string name="osm_tag_water_fountain">"Βρύση"</string>
-    <string name="osm_tag_car_wash">"Πλυντήριο αυτοκινήτων"</string>
-    <string name="osm_tag_vending_machine">"Αυτόματος πωλητής"</string>
-    <string name="osm_tag_playground">"Παιδική χαρά"</string>
-    <string name="osm_tag_sports_field">"Γήπεδο"</string>
-    <string name="osm_tag_swimming_pool">"Πισίνα"</string>
-    <string name="osm_tag_garden">"Κήπος"</string>
-    <string name="osm_tag_park">"Πάρκο"</string>
-    <string name="osm_tag_picnic_table">"Τραπέζι πικνίκ"</string>
-    <string name="osm_tag_picnic_area">"Περιοχή πικνίκ"</string>
+    <string name="osm_crossing">"Διάβαση πεζών"</string>
+    <string name="osm_construction">"Κατασκευή"</string>
+    <string name="osm_dangerous_area">"Επικίνδυνη περιοχή"</string>
+    <string name="osm_townhall">"Δημαρχείο"</string>
+    <string name="osm_steps">"Σκαλιά"</string>
+    <string name="osm_elevator">"Ανελκυστήρας"</string>
+    <string name="osm_walking_path">"Μονοπάτι πεζοπορίας"</string>
+    <string name="osm_pedestrian_street">"Πεζόδρομος"</string>
+    <string name="osm_bicycle_path">"Ποδηλατόδρομος"</string>
+    <string name="osm_residential_street">"Οδός σε αστική περιοχή"</string>
+    <string name="osm_service_road">"Βοηθητική οδός"</string>
+    <string name="osm_road">"Δρόμος"</string>
+    <string name="osm_highway">"Αυτοκινητόδρομος"</string>
+    <string name="osm_highway_named">"Αυτοκινητόδρομος %s"</string>
+    <string name="osm_highway_refed">"Αυτοκινητόδρομος %s"</string>
+    <string name="osm_intersection">"Διασταύρωση"</string>
+    <string name="osm_roundabout">"Κυκλικός κόμβος"</string>
+    <string name="osm_highway_ramp">"Έξοδος αυτοκινητόδρομου"</string>
+    <string name="osm_merging_lane">"Λωρίδα συγχώνευσης"</string>
+    <string name="osm_office_building">"Κτίριο γραφείων"</string>
+    <string name="osm_school_building">"Σχολικό κτίριο"</string>
+    <string name="osm_covered_pavilion">"Σκεπαστό περίπτερο"</string>
+    <string name="osm_convenience_store">"Ψιλικατζίδικο"</string>
+    <string name="osm_building_entrance">"Είσοδος κτιρίου"</string>
+    <string name="osm_assembly_point">"Σημείο συναρμολόγησης"</string>
+    <string name="osm_cycle_barrier">"Εμπόδιο για δίκυκλα"</string>
+    <string name="osm_turnstile">"Τουρνικέ"</string>
+    <string name="osm_cattle_grid">"Σχάρα προστασίας"</string>
+    <string name="osm_gate">"Πύλη"</string>
+    <string name="osm_restroom">"Τουαλέτα"</string>
+    <string name="osm_parking_lot">"Χώρος στάθμευσης"</string>
+    <string name="osm_parking_entrance">"Είσοδος στάθμευσης"</string>
+    <string name="osm_bench">"Παγκάκι"</string>
+    <string name="osm_taxi_waiting_area">"Χώρος αναμονής ταξί"</string>
+    <string name="osm_post_office">"Ταχυδρομείο"</string>
+    <string name="osm_post_box">"Ταχυδρομική θυρίδα"</string>
+    <string name="osm_waste_basket">"Καλάθι αχρήστων"</string>
+    <string name="osm_shower">"Ντους"</string>
+    <string name="osm_bike_parking">"Χώρος στάθμευσης ποδηλάτων"</string>
+    <string name="osm_cafe">"Καφέ"</string>
+    <string name="osm_restaurant">"Εστιατόριο"</string>
+    <string name="osm_telephone">"Τηλέφωνο"</string>
+    <string name="osm_gas_station">"Πρατήριο καυσίμων"</string>
+    <string name="osm_bank">"Τράπεζα"</string>
+    <string name="osm_atm">"ATM"</string>
+    <string name="osm_atm_named">"%s ATM"</string>
+    <string name="osm_atm_refed">"ATM %s"</string>
+    <string name="osm_bus_stop">"Στάση"</string>
+    <string name="osm_bus_stop_named">"%s Στάση"</string>
+    <string name="osm_recycling_bin">"Κάδος ανακύκλωσης"</string>
+    <string name="osm_fountain">"Σιντριβάνι"</string>
+    <string name="osm_place_of_worship">"Τόπος Λατρείας"</string>
+    <string name="osm_water_fountain">"Βρύση"</string>
+    <string name="osm_car_wash">"Πλυντήριο αυτοκινήτων"</string>
+    <string name="osm_vending_machine">"Αυτόματος πωλητής"</string>
+    <string name="osm_playground">"Παιδική χαρά"</string>
+    <string name="osm_sports_field">"Γήπεδο"</string>
+    <string name="osm_swimming_pool">"Πισίνα"</string>
+    <string name="osm_garden">"Κήπος"</string>
+    <string name="osm_park">"Πάρκο"</string>
+    <string name="osm_picnic_table">"Τραπέζι πικνίκ"</string>
+    <string name="osm_picnic_area">"Περιοχή πικνίκ"</string>
     <string name="share_title">"Κοινή χρήση"</string>
     <string name="faq_title">"Συνήθεις ερωτήσεις"</string>
     <string name="faq_title_abbreviated">"Συνήθεις ερωτήσεις"</string>
@@ -437,20 +437,20 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">Αλλάξτε τις άδειες στις ρυθμίσεις της εφαρμογής</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Αλλαγή γλώσσας</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">για να αλλάξετε τη γλώσσα που χρησιμοποιείται στην εφαρμογή</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">Είσοδος</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">Κύρια είσοδος</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s από %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">Είσοδος</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">Κύρια είσοδος</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s από %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Η υπηρεσία τοποθεσίας εκτελείται στο προσκήνιο</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Ακύρωση αναζήτησης</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Σιδηροδρομικός σταθμός</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s Σιδηροδρομικός σταθμός</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Στάση τραμ</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s Στάση τραμ</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Σταθμός μετρό</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s Σταθμός μετρό</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός σταθμός φέρι</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός σταθμός φέρι</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Σιδηροδρομικός σταθμός</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Σιδηροδρομικός σταθμός</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Στάση τραμ</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s Στάση τραμ</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Σταθμός μετρό</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s Σταθμός μετρό</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός σταθμός φέρι</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός σταθμός φέρι</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Διαχείριση ήχου</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Διαχείριση προσβασιμότητας</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Φωτεινό ή σκούρο θέμα</string>

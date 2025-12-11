@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">**Oprette en rute**:\n\nGå først til \"Mærker og Ruter\", vælg fanen \"Ruter\", og vælg derefter knappen \"Ny Rute\". Giv ruten et navn og en valgfri beskrivelse, og tilføj derefter vejpunkter, mens du går, eller vælg dem på listen over mærker. Du kan til enhver tid omarrangere rækkefølgen af vejpunkterne langs en rute ved at redigere ruten.</string>
     <string name="help_text_routes_content_how_2">**Redigering af en rute :**\n\n Vælg din rute på skærmen *\"Mærker og Ruter\"* og vælg derefter *\"Rediger rute\"*. Herfra kan du tilføje og fjerne vejpunkter samt redigere rutes navn og beskrivelse.</string>
     <string name="help_text_routes_content_how_3">**Deling af en rute :**\n\n Vælg din rute på skærmen *\"Mærker og Ruter\"* og vælg derefter muligheden *\"Del\"* ved hjælp af de sædvanlige delingsmuligheder, der er tilgængelige for dig.</string>
-    <string name="osm_tag_crossing">"Fodgængerovergang"</string>
-    <string name="osm_tag_construction">"Konstruktion"</string>
-    <string name="osm_tag_dangerous_area">"Farligt område"</string>
-    <string name="osm_tag_townhall">"Rådhus"</string>
-    <string name="osm_tag_steps">"Trin"</string>
-    <string name="osm_tag_elevator">"Elevator"</string>
-    <string name="osm_tag_walking_path">"Gangsti"</string>
-    <string name="osm_tag_pedestrian_street">"Gågade"</string>
-    <string name="osm_tag_bicycle_path">"Cykelsti"</string>
-    <string name="osm_tag_residential_street">"Boliggade"</string>
-    <string name="osm_tag_service_road">"Stikvej"</string>
-    <string name="osm_tag_road">"Vej"</string>
-    <string name="osm_tag_highway">"Motorvej"</string>
-    <string name="osm_tag_highway_named">"%s motorvej"</string>
-    <string name="osm_tag_highway_refed">"Motorvej %s"</string>
-    <string name="osm_tag_intersection">"Kryds"</string>
-    <string name="osm_tag_roundabout">"Rundkørsel"</string>
-    <string name="osm_tag_highway_ramp">"Motorvejsrampe"</string>
-    <string name="osm_tag_merging_lane">"Fletning af vognbane"</string>
-    <string name="osm_tag_office_building">"Kontorbygning"</string>
-    <string name="osm_tag_school_building">"Skolebygning"</string>
-    <string name="osm_tag_covered_pavilion">"Overdækket pavillon"</string>
-    <string name="osm_tag_convenience_store">"Dagligvarebutik"</string>
-    <string name="osm_tag_building_entrance">"Indgangen til bygningen"</string>
-    <string name="osm_tag_assembly_point">"Samlingspunkt"</string>
-    <string name="osm_tag_cycle_barrier">"Cykelbarriere"</string>
-    <string name="osm_tag_turnstile">"Billetbom"</string>
-    <string name="osm_tag_cattle_grid">"Færist"</string>
-    <string name="osm_tag_gate">"Port"</string>
-    <string name="osm_tag_restroom">"Toilet"</string>
-    <string name="osm_tag_parking_lot">"Parkeringsplads"</string>
-    <string name="osm_tag_parking_entrance">"Indgang til parking"</string>
-    <string name="osm_tag_bench">"Bænk"</string>
-    <string name="osm_tag_taxi_waiting_area">"Venteområde for taxi"</string>
-    <string name="osm_tag_post_office">"Posthus"</string>
-    <string name="osm_tag_post_box">"Postboks"</string>
-    <string name="osm_tag_waste_basket">"Affaldskurv"</string>
-    <string name="osm_tag_shower">"Bruser"</string>
-    <string name="osm_tag_bike_parking">"Cykelparkering"</string>
-    <string name="osm_tag_cafe">"Café"</string>
-    <string name="osm_tag_restaurant">"Restaurant"</string>
-    <string name="osm_tag_telephone">"Telefon"</string>
-    <string name="osm_tag_gas_station">"Tankstation"</string>
-    <string name="osm_tag_bank">"Bank"</string>
-    <string name="osm_tag_atm">"Hæveautomat"</string>
-    <string name="osm_tag_atm_named">"%s-hæveautomat"</string>
-    <string name="osm_tag_atm_refed">"Hæveautomat %s"</string>
-    <string name="osm_tag_bus_stop">"Busstoppested"</string>
-    <string name="osm_tag_bus_stop_named">"%s busstoppested"</string>
-    <string name="osm_tag_recycling_bin">"Skraldespand"</string>
-    <string name="osm_tag_fountain">"Springvand"</string>
-    <string name="osm_tag_place_of_worship">"Bedested"</string>
-    <string name="osm_tag_water_fountain">"Vandfontæne"</string>
-    <string name="osm_tag_car_wash">"Bilvask"</string>
-    <string name="osm_tag_vending_machine">"Selvbetjeningsautomat"</string>
-    <string name="osm_tag_playground">"Legeplads"</string>
-    <string name="osm_tag_sports_field">"Sportsplads"</string>
-    <string name="osm_tag_swimming_pool">"Swimmingpool"</string>
-    <string name="osm_tag_garden">"Have"</string>
-    <string name="osm_tag_park">"Park"</string>
-    <string name="osm_tag_picnic_table">"Picnicbord"</string>
-    <string name="osm_tag_picnic_area">"Picnicområde"</string>
+    <string name="osm_crossing">"Fodgængerovergang"</string>
+    <string name="osm_construction">"Konstruktion"</string>
+    <string name="osm_dangerous_area">"Farligt område"</string>
+    <string name="osm_townhall">"Rådhus"</string>
+    <string name="osm_steps">"Trin"</string>
+    <string name="osm_elevator">"Elevator"</string>
+    <string name="osm_walking_path">"Gangsti"</string>
+    <string name="osm_pedestrian_street">"Gågade"</string>
+    <string name="osm_bicycle_path">"Cykelsti"</string>
+    <string name="osm_residential_street">"Boliggade"</string>
+    <string name="osm_service_road">"Stikvej"</string>
+    <string name="osm_road">"Vej"</string>
+    <string name="osm_highway">"Motorvej"</string>
+    <string name="osm_highway_named">"%s motorvej"</string>
+    <string name="osm_highway_refed">"Motorvej %s"</string>
+    <string name="osm_intersection">"Kryds"</string>
+    <string name="osm_roundabout">"Rundkørsel"</string>
+    <string name="osm_highway_ramp">"Motorvejsrampe"</string>
+    <string name="osm_merging_lane">"Fletning af vognbane"</string>
+    <string name="osm_office_building">"Kontorbygning"</string>
+    <string name="osm_school_building">"Skolebygning"</string>
+    <string name="osm_covered_pavilion">"Overdækket pavillon"</string>
+    <string name="osm_convenience_store">"Dagligvarebutik"</string>
+    <string name="osm_building_entrance">"Indgangen til bygningen"</string>
+    <string name="osm_assembly_point">"Samlingspunkt"</string>
+    <string name="osm_cycle_barrier">"Cykelbarriere"</string>
+    <string name="osm_turnstile">"Billetbom"</string>
+    <string name="osm_cattle_grid">"Færist"</string>
+    <string name="osm_gate">"Port"</string>
+    <string name="osm_restroom">"Toilet"</string>
+    <string name="osm_parking_lot">"Parkeringsplads"</string>
+    <string name="osm_parking_entrance">"Indgang til parking"</string>
+    <string name="osm_bench">"Bænk"</string>
+    <string name="osm_taxi_waiting_area">"Venteområde for taxi"</string>
+    <string name="osm_post_office">"Posthus"</string>
+    <string name="osm_post_box">"Postboks"</string>
+    <string name="osm_waste_basket">"Affaldskurv"</string>
+    <string name="osm_shower">"Bruser"</string>
+    <string name="osm_bike_parking">"Cykelparkering"</string>
+    <string name="osm_cafe">"Café"</string>
+    <string name="osm_restaurant">"Restaurant"</string>
+    <string name="osm_telephone">"Telefon"</string>
+    <string name="osm_gas_station">"Tankstation"</string>
+    <string name="osm_bank">"Bank"</string>
+    <string name="osm_atm">"Hæveautomat"</string>
+    <string name="osm_atm_named">"%s-hæveautomat"</string>
+    <string name="osm_atm_refed">"Hæveautomat %s"</string>
+    <string name="osm_bus_stop">"Busstoppested"</string>
+    <string name="osm_bus_stop_named">"%s busstoppested"</string>
+    <string name="osm_recycling_bin">"Skraldespand"</string>
+    <string name="osm_fountain">"Springvand"</string>
+    <string name="osm_place_of_worship">"Bedested"</string>
+    <string name="osm_water_fountain">"Vandfontæne"</string>
+    <string name="osm_car_wash">"Bilvask"</string>
+    <string name="osm_vending_machine">"Selvbetjeningsautomat"</string>
+    <string name="osm_playground">"Legeplads"</string>
+    <string name="osm_sports_field">"Sportsplads"</string>
+    <string name="osm_swimming_pool">"Swimmingpool"</string>
+    <string name="osm_garden">"Have"</string>
+    <string name="osm_park">"Park"</string>
+    <string name="osm_picnic_table">"Picnicbord"</string>
+    <string name="osm_picnic_area">"Picnicområde"</string>
     <string name="share_title">"Del"</string>
     <string name="faq_title">"Ofte stillede spørgsmål"</string>
     <string name="faq_title_abbreviated">"Ofte stillede spørgsmål"</string>
@@ -405,12 +405,12 @@
     <string name="faq_tip_create_marker_at_bus_stop">Hvis der er en busrute, du tager regelmæssigt, kan du indstille dine påstignings- og udstigningspunkter som mærker. På denne måde vil de blive gemt, så du nemt kan finde dem igen, du skal bare gå til *\"Administrer mærker\"* fra menuen og finde dem på listen. Du kan indstille et lydfyr på dem, så vil du få periodiske opdateringer om, hvor tæt du er på dit udstigningspunkt. Bemærk: Du kan slå den rytmiske lyd fra, og du vil stadig få afstandsopdateringer undervejs.</string>
     <string name="first_launch_permissions_notification">Meddelelser</string>
     <string name="no_language_selected">Ingen sprog valgt</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s sporvogn stop</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s sporvogn stop</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Vi kører denne placering service i forgrunden</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Togstation</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s togstation</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Togstation</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s togstation</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annuller søgning</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Sporvogns stop</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Sporvogns stop</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Nord</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Nordøst</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Øst</string>
@@ -429,10 +429,10 @@
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NV</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Ændre Sprog</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">at ændre det sprog, der bruges til appen</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Metrostation</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s metrostation</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Færgeterminal</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s færge_terminal</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Metrostation</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s metrostation</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Færgeterminal</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s færge_terminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Administrer lyd</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">Måleenheder</string>
     <string name="settings_units_imperial" tools:ignore="MissingTranslation">Imperial (fod)</string>
@@ -448,10 +448,10 @@
     <string name="menu_contact_support" tools:ignore="MissingTranslation">Kontakt support</string>
     <string name="permissions_required" tools:ignore="MissingTranslation">Appen kræver tilladelse til at bruge lokalitetstjenester for at kunne køre.</string>
     <string name="permissions_button" tools:ignore="MissingTranslation">Ændr tilladelser i appens indstillinger</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">Indgang</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">Hovedindgang</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s fra %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">Indgang</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">Hovedindgang</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s fra %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Administrer tilgængelighed</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Lyst eller mørkt tema</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Automatisk</string>

@@ -299,68 +299,68 @@
     <string name="help_text_creating_markers_content_2">Тепер у вас буде можливість налаштувати цю мітку. Ви можете змінити її назву та додати анотацію, яка буде оголошуватися разом із міткою, щоб надати додаткову інформацію. Коли закінчите, натисніть кнопку *\"Готово\"*, щоб зберегти мітку.</string>
     <string name="help_text_customizing_markers_content_1">Якщо ви хочете перейменувати раніше створену мітку або додати до неї коментар, це можна зробити, вибравши мітку на вкладці \"Мітки\" екрана \"Мітки та маршрути\", а потім натиснувши кнопку \"Редагувати мітку\". Ви можете використовувати це, щоб дати міткам зрозумілі та інформативні назви, а також надати їм розгорнутий опис за допомогою поля коментаря.</string>
     <string name="help_text_routes_content_how_3">**Поширення маршруту :**\n\nВиберіть свій маршрут на екрані *\"Мітки та Маршрути\"*, а потім виберіть опцію *\"Поділитися\"* через звичні способи обміну, доступні на вашому пристрої.</string>
-    <string name="osm_tag_crossing">Пішохідний перехід</string>
-    <string name="osm_tag_construction">Будівництво</string>
-    <string name="osm_tag_dangerous_area">Небезпечна зона</string>
-    <string name="osm_tag_townhall">Адміністрація населеного пункту</string>
-    <string name="osm_tag_steps">Сходи</string>
-    <string name="osm_tag_elevator">Ліфт</string>
-    <string name="osm_tag_walking_path">Пішохідна доріжка</string>
-    <string name="osm_tag_pedestrian_street">Пішохідна вулиця</string>
-    <string name="osm_tag_bicycle_path">Велосипедна доріжка</string>
-    <string name="osm_tag_residential_street">Вулиця у житловій зоні</string>
-    <string name="osm_tag_service_road">Під\'їзна дорога</string>
-    <string name="osm_tag_road">Дорога</string>
-    <string name="osm_tag_highway">Шосе</string>
-    <string name="osm_tag_highway_named">%s шосе</string>
-    <string name="osm_tag_highway_refed">Шосе %s</string>
-    <string name="osm_tag_intersection">Перехрестя</string>
-    <string name="osm_tag_roundabout">Круговий рух</string>
-    <string name="osm_tag_highway_ramp">З’їзд із шосе</string>
-    <string name="osm_tag_merging_lane">Злиття смуг</string>
-    <string name="osm_tag_office_building">Офісна будівля</string>
-    <string name="osm_tag_school_building">Будівля школи</string>
-    <string name="osm_tag_covered_pavilion">Критий павільйон</string>
-    <string name="osm_tag_convenience_store">Мінімаркет</string>
-    <string name="osm_tag_building_entrance">Вхід до будівлі</string>
-    <string name="osm_tag_assembly_point">Пункт збору</string>
-    <string name="osm_tag_cycle_barrier">Велосипедний бар\'єр</string>
-    <string name="osm_tag_turnstile">Турнікет</string>
-    <string name="osm_tag_cattle_grid">Решітка-бар\'єр для худоби</string>
-    <string name="osm_tag_gate">Ворота</string>
-    <string name="osm_tag_restroom">Громадська вбиральня</string>
-    <string name="osm_tag_parking_lot">Парковка</string>
-    <string name="osm_tag_parking_entrance">В\'їзд на парковку</string>
-    <string name="osm_tag_bench">Лава</string>
-    <string name="osm_tag_taxi_waiting_area">Стоянка таксі</string>
-    <string name="osm_tag_post_office">Поштове відділення</string>
-    <string name="osm_tag_post_box">Поштова скринька</string>
-    <string name="osm_tag_waste_basket">Кошик для сміття</string>
-    <string name="osm_tag_shower">Душ</string>
-    <string name="osm_tag_bike_parking">Велопарковка</string>
-    <string name="osm_tag_cafe">Кафе</string>
-    <string name="osm_tag_restaurant">Ресторан</string>
-    <string name="osm_tag_telephone">Телефон</string>
-    <string name="osm_tag_gas_station">Автозаправна станція</string>
-    <string name="osm_tag_bank">Банк</string>
-    <string name="osm_tag_atm">Банкомат</string>
-    <string name="osm_tag_atm_named">%s Банкомат</string>
-    <string name="osm_tag_atm_refed">Банкомат %s</string>
-    <string name="osm_tag_bus_stop">Автобусна зупинка</string>
-    <string name="osm_tag_bus_stop_named">%s Автобусна зупинка</string>
-    <string name="osm_tag_recycling_bin">Кошик для вторсировини</string>
-    <string name="osm_tag_fountain">Фонтан</string>
-    <string name="osm_tag_place_of_worship">Культова споруда</string>
-    <string name="osm_tag_water_fountain">Фонтанчик з питною водою</string>
-    <string name="osm_tag_car_wash">Автомийка</string>
-    <string name="osm_tag_vending_machine">Торговий автомат</string>
-    <string name="osm_tag_playground">Дитячий майданчик</string>
-    <string name="osm_tag_sports_field">Спортивне поле</string>
-    <string name="osm_tag_swimming_pool">Басейн</string>
-    <string name="osm_tag_garden">Сад</string>
-    <string name="osm_tag_park">Парк</string>
-    <string name="osm_tag_picnic_table">Стіл для пікніка</string>
-    <string name="osm_tag_picnic_area">Місце для пікніка</string>
+    <string name="osm_crossing">Пішохідний перехід</string>
+    <string name="osm_construction">Будівництво</string>
+    <string name="osm_dangerous_area">Небезпечна зона</string>
+    <string name="osm_townhall">Адміністрація населеного пункту</string>
+    <string name="osm_steps">Сходи</string>
+    <string name="osm_elevator">Ліфт</string>
+    <string name="osm_walking_path">Пішохідна доріжка</string>
+    <string name="osm_pedestrian_street">Пішохідна вулиця</string>
+    <string name="osm_bicycle_path">Велосипедна доріжка</string>
+    <string name="osm_residential_street">Вулиця у житловій зоні</string>
+    <string name="osm_service_road">Під\'їзна дорога</string>
+    <string name="osm_road">Дорога</string>
+    <string name="osm_highway">Шосе</string>
+    <string name="osm_highway_named">%s шосе</string>
+    <string name="osm_highway_refed">Шосе %s</string>
+    <string name="osm_intersection">Перехрестя</string>
+    <string name="osm_roundabout">Круговий рух</string>
+    <string name="osm_highway_ramp">З’їзд із шосе</string>
+    <string name="osm_merging_lane">Злиття смуг</string>
+    <string name="osm_office_building">Офісна будівля</string>
+    <string name="osm_school_building">Будівля школи</string>
+    <string name="osm_covered_pavilion">Критий павільйон</string>
+    <string name="osm_convenience_store">Мінімаркет</string>
+    <string name="osm_building_entrance">Вхід до будівлі</string>
+    <string name="osm_assembly_point">Пункт збору</string>
+    <string name="osm_cycle_barrier">Велосипедний бар\'єр</string>
+    <string name="osm_turnstile">Турнікет</string>
+    <string name="osm_cattle_grid">Решітка-бар\'єр для худоби</string>
+    <string name="osm_gate">Ворота</string>
+    <string name="osm_restroom">Громадська вбиральня</string>
+    <string name="osm_parking_lot">Парковка</string>
+    <string name="osm_parking_entrance">В\'їзд на парковку</string>
+    <string name="osm_bench">Лава</string>
+    <string name="osm_taxi_waiting_area">Стоянка таксі</string>
+    <string name="osm_post_office">Поштове відділення</string>
+    <string name="osm_post_box">Поштова скринька</string>
+    <string name="osm_waste_basket">Кошик для сміття</string>
+    <string name="osm_shower">Душ</string>
+    <string name="osm_bike_parking">Велопарковка</string>
+    <string name="osm_cafe">Кафе</string>
+    <string name="osm_restaurant">Ресторан</string>
+    <string name="osm_telephone">Телефон</string>
+    <string name="osm_gas_station">Автозаправна станція</string>
+    <string name="osm_bank">Банк</string>
+    <string name="osm_atm">Банкомат</string>
+    <string name="osm_atm_named">%s Банкомат</string>
+    <string name="osm_atm_refed">Банкомат %s</string>
+    <string name="osm_bus_stop">Автобусна зупинка</string>
+    <string name="osm_bus_stop_named">%s Автобусна зупинка</string>
+    <string name="osm_recycling_bin">Кошик для вторсировини</string>
+    <string name="osm_fountain">Фонтан</string>
+    <string name="osm_place_of_worship">Культова споруда</string>
+    <string name="osm_water_fountain">Фонтанчик з питною водою</string>
+    <string name="osm_car_wash">Автомийка</string>
+    <string name="osm_vending_machine">Торговий автомат</string>
+    <string name="osm_playground">Дитячий майданчик</string>
+    <string name="osm_sports_field">Спортивне поле</string>
+    <string name="osm_swimming_pool">Басейн</string>
+    <string name="osm_garden">Сад</string>
+    <string name="osm_park">Парк</string>
+    <string name="osm_picnic_table">Стіл для пікніка</string>
+    <string name="osm_picnic_area">Місце для пікніка</string>
     <string name="share_title">Поділитися</string>
     <string name="faq_title">Поширені запитання</string>
     <string name="faq_title_abbreviated">ЧаПи</string>
@@ -431,14 +431,14 @@
     <string name="first_launch_permissions_notification">Сповіщення</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Служба визначення місцезнаходження працює у фоновому режимі</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Скасувати пошук</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Залізнична станція</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s Залізнична станція</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Трамвайна зупинка</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s трамвайна зупинка</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Станція метро</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s станція метро</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Залізнична станція</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Залізнична станція</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Трамвайна зупинка</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s трамвайна зупинка</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Станція метро</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s станція метро</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Керування аудіо</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Керування доступністю</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Світла чи Темна Тема</string>
@@ -476,10 +476,10 @@
     <string name="menu_contact_support" tools:ignore="MissingTranslation">Звернутися до служби підтримки</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Неактивно, оскільки маршрут уже на початку</string>
     <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Неактивно, оскільки маршрут уже в кінці</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">вхід</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">головний вхід</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s з %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">вхід</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">головний вхід</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s з %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Офлайн‑карти</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Деталі офлайн‑карти</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Завантаження…</string>

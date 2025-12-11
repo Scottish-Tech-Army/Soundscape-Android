@@ -273,68 +273,68 @@
     <string name="help_text_routes_content_how_1">**Að búa til leið:**\n\nFyrst skaltu fara í *\"Merki og leiðir\"*, velja flipann *\"Leiðir\"* og síðan hnappinn *\"Ný leið\"*. Gefðu leiðinni nafn og valfrjálsa lýsingu, bættu síðan við leiðarpunktum eftir því sem þú ferð eða veldu þá af listanum þínum yfir merki. Þú getur breytt röð leiðarpunktanna meðfram leið hvenær sem er með því að breyta leiðinni.</string>
     <string name="help_text_routes_content_how_2">**Uppfæra leið :**\n\nVeldu leiðina þína á skjánum *\"Merki og leiðir\"* og síðan *\"Uppfæra leið\"*. Héðan geturðu bætt við og fjarlægt leiðarpunkta, auk þess að breyta nafni og lýsingu leiðarinnar.</string>
     <string name="help_text_routes_content_how_3">**Deila leið :**\n\nVeldu leiðina þína á skjánum *\"Merki og leiðir\"* og veldu síðan valkostinn *\"Deila\"* með þeim hefðbundnu deilingarmöguleikum sem í boði eru.</string>
-    <string name="osm_tag_crossing">gangbraut</string>
-    <string name="osm_tag_construction">vinnusvæði</string>
-    <string name="osm_tag_dangerous_area">hættulegt svæði</string>
-    <string name="osm_tag_townhall">ráðhús</string>
-    <string name="osm_tag_steps">þrep</string>
-    <string name="osm_tag_elevator">lyfta</string>
-    <string name="osm_tag_walking_path">gangstígur</string>
-    <string name="osm_tag_pedestrian_street">göngugata</string>
-    <string name="osm_tag_bicycle_path">hjólastígur</string>
-    <string name="osm_tag_residential_street">gata í íbúðarhverfi</string>
-    <string name="osm_tag_service_road">ómerkt gata</string>
-    <string name="osm_tag_road">vegur</string>
-    <string name="osm_tag_highway">hraðbraut</string>
-    <string name="osm_tag_highway_named">%s hraðgata</string>
-    <string name="osm_tag_highway_refed">hraðgata %s</string>
-    <string name="osm_tag_intersection">gatnamot</string>
-    <string name="osm_tag_roundabout">hringtorg</string>
-    <string name="osm_tag_highway_ramp">aðrein-frárein</string>
-    <string name="osm_tag_merging_lane">akrein sameinast</string>
-    <string name="osm_tag_office_building">skrifstofubygging</string>
-    <string name="osm_tag_school_building">skólabygging</string>
-    <string name="osm_tag_covered_pavilion">yfirbyggt svæði</string>
-    <string name="osm_tag_convenience_store">matvörubúð</string>
-    <string name="osm_tag_building_entrance">Inngangur byggingarinnar</string>
-    <string name="osm_tag_assembly_point">samkomusvæði</string>
-    <string name="osm_tag_cycle_barrier">hjólreiða hindrun</string>
-    <string name="osm_tag_turnstile">krossgata</string>
-    <string name="osm_tag_cattle_grid">kindahlið</string>
-    <string name="osm_tag_gate">hlið</string>
-    <string name="osm_tag_restroom">salerni</string>
-    <string name="osm_tag_parking_lot">bílastæði</string>
-    <string name="osm_tag_parking_entrance">innkeyrsla að bílastæði</string>
-    <string name="osm_tag_bench">bekkur</string>
-    <string name="osm_tag_taxi_waiting_area">leigubílasvæði</string>
-    <string name="osm_tag_post_office">pósthús</string>
-    <string name="osm_tag_post_box">póstkassi</string>
-    <string name="osm_tag_waste_basket">ruslatunna</string>
-    <string name="osm_tag_shower">sturta</string>
-    <string name="osm_tag_bike_parking">svæði fyrir reiðhjól</string>
-    <string name="osm_tag_cafe">kaffihús</string>
-    <string name="osm_tag_restaurant">veitingastaður</string>
-    <string name="osm_tag_telephone">sími</string>
-    <string name="osm_tag_gas_station">bensínstöð</string>
-    <string name="osm_tag_bank">banki</string>
-    <string name="osm_tag_atm">hraðbanki</string>
-    <string name="osm_tag_atm_named">%s hraðbnki</string>
-    <string name="osm_tag_atm_refed">hraðbanki %s</string>
-    <string name="osm_tag_bus_stop">stoppistöð</string>
-    <string name="osm_tag_bus_stop_named">%s stoppistöð</string>
-    <string name="osm_tag_recycling_bin">endurvinnslutunna</string>
-    <string name="osm_tag_fountain">gosbrunnur</string>
-    <string name="osm_tag_place_of_worship">svæði tent trúarbrögðum</string>
-    <string name="osm_tag_water_fountain">vatnsbrunnur</string>
-    <string name="osm_tag_car_wash">bílaþvottastöð</string>
-    <string name="osm_tag_vending_machine">sjálfssali</string>
-    <string name="osm_tag_playground">leiksvæði</string>
-    <string name="osm_tag_sports_field">íþróttavöllur</string>
-    <string name="osm_tag_swimming_pool">sundlaug</string>
-    <string name="osm_tag_garden">garður</string>
-    <string name="osm_tag_park">grænt svæði</string>
-    <string name="osm_tag_picnic_table">Bekkur með borði</string>
-    <string name="osm_tag_picnic_area">Svæði fyrir lautarferðir</string>
+    <string name="osm_crossing">gangbraut</string>
+    <string name="osm_construction">vinnusvæði</string>
+    <string name="osm_dangerous_area">hættulegt svæði</string>
+    <string name="osm_townhall">ráðhús</string>
+    <string name="osm_steps">þrep</string>
+    <string name="osm_elevator">lyfta</string>
+    <string name="osm_walking_path">gangstígur</string>
+    <string name="osm_pedestrian_street">göngugata</string>
+    <string name="osm_bicycle_path">hjólastígur</string>
+    <string name="osm_residential_street">gata í íbúðarhverfi</string>
+    <string name="osm_service_road">ómerkt gata</string>
+    <string name="osm_road">vegur</string>
+    <string name="osm_highway">hraðbraut</string>
+    <string name="osm_highway_named">%s hraðgata</string>
+    <string name="osm_highway_refed">hraðgata %s</string>
+    <string name="osm_intersection">gatnamot</string>
+    <string name="osm_roundabout">hringtorg</string>
+    <string name="osm_highway_ramp">aðrein-frárein</string>
+    <string name="osm_merging_lane">akrein sameinast</string>
+    <string name="osm_office_building">skrifstofubygging</string>
+    <string name="osm_school_building">skólabygging</string>
+    <string name="osm_covered_pavilion">yfirbyggt svæði</string>
+    <string name="osm_convenience_store">matvörubúð</string>
+    <string name="osm_building_entrance">Inngangur byggingarinnar</string>
+    <string name="osm_assembly_point">samkomusvæði</string>
+    <string name="osm_cycle_barrier">hjólreiða hindrun</string>
+    <string name="osm_turnstile">krossgata</string>
+    <string name="osm_cattle_grid">kindahlið</string>
+    <string name="osm_gate">hlið</string>
+    <string name="osm_restroom">salerni</string>
+    <string name="osm_parking_lot">bílastæði</string>
+    <string name="osm_parking_entrance">innkeyrsla að bílastæði</string>
+    <string name="osm_bench">bekkur</string>
+    <string name="osm_taxi_waiting_area">leigubílasvæði</string>
+    <string name="osm_post_office">pósthús</string>
+    <string name="osm_post_box">póstkassi</string>
+    <string name="osm_waste_basket">ruslatunna</string>
+    <string name="osm_shower">sturta</string>
+    <string name="osm_bike_parking">svæði fyrir reiðhjól</string>
+    <string name="osm_cafe">kaffihús</string>
+    <string name="osm_restaurant">veitingastaður</string>
+    <string name="osm_telephone">sími</string>
+    <string name="osm_gas_station">bensínstöð</string>
+    <string name="osm_bank">banki</string>
+    <string name="osm_atm">hraðbanki</string>
+    <string name="osm_atm_named">%s hraðbnki</string>
+    <string name="osm_atm_refed">hraðbanki %s</string>
+    <string name="osm_bus_stop">stoppistöð</string>
+    <string name="osm_bus_stop_named">%s stoppistöð</string>
+    <string name="osm_recycling_bin">endurvinnslutunna</string>
+    <string name="osm_fountain">gosbrunnur</string>
+    <string name="osm_place_of_worship">svæði tent trúarbrögðum</string>
+    <string name="osm_water_fountain">vatnsbrunnur</string>
+    <string name="osm_car_wash">bílaþvottastöð</string>
+    <string name="osm_vending_machine">sjálfssali</string>
+    <string name="osm_playground">leiksvæði</string>
+    <string name="osm_sports_field">íþróttavöllur</string>
+    <string name="osm_swimming_pool">sundlaug</string>
+    <string name="osm_garden">garður</string>
+    <string name="osm_park">grænt svæði</string>
+    <string name="osm_picnic_table">Bekkur með borði</string>
+    <string name="osm_picnic_area">Svæði fyrir lautarferðir</string>
     <string name="share_title">deila</string>
     <string name="faq_title">algengar spurningar</string>
     <string name="faq_title_abbreviated">spurt og svarað</string>
@@ -427,10 +427,10 @@
     <string name="help_text_creating_markers_content_2">Nú færðu kost á að sérsníða þetta merki. Þú getur breytt nafni merkisins og bætt við athugasemd sem verður lesin upp ásamt merkinu til að gefa frekari upplýsingar. Þegar þú ert búinn skaltu velja *\"lokið\"* til að vista merkið.</string>
     <string name="help_text_customizing_markers_content_1">Ef þú vilt endurnefna merki sem þú bjóst til eða bæta við athugasemd geturðu valið merkið í flipanum *\"merki\"* á síðunni *\"merki og leiðir\"* og síðan valið hnappinn *\"uppfæra merki\"*. Með þessu geturðu gefið merkjum lýsandi eða gagnleg gælunöfn og bætt við lengri lýsingu í athugasemdarreitinn.</string>
     <string name="help_text_customizing_markers_content_2">Frá þessum *\"Uppfæra\"* skjá geturðu einnig eytt merki ef þú þarft það ekki lengur.</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">Inngangur</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">aðalinngangur</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s frá %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">Inngangur</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">aðalinngangur</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s frá %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="faq_what_is_osm_answer">Soundscape byggir á landfræðilegum kortagögnum til að veita raddtilkynningar í forritinu. Aðal kortagjafinn sem við notum er Open Street Map (www.openstreetmap.org), ríkt samfélagsritað kortakerfi sem gerir stofnunum og einstaklingum kleift að bæta gæði og nákvæmni upplýsinga og aðgengi rýma sinna með ritunarverkfærum Open Street Map.</string>
     <string name="faq_tip_beacon_quiet">Ef þú setur símann í vasann og hættir að hreyfa þig dofnar hljóðvitinn því Soundscape getur ekki greint hvaða átt þú snýrð. Leystu þetta með því að byrja aftur að ganga eða taka símann upp og halda honum flötum.</string>
     <string name="faq_tip_setting_beacon_on_address">Þú getur sett hljóðvita á hvaða heimilisfang sem er. Frá aðalskjá Soundscape skaltu leita að heimilisfanginu. Eftir að þú velur heimilisfangið úr leitarniðurstöðunum opnast skjárinn *\"upplýsingar um staðsetningu\"* sem hefur valkostinn *\"hljóð viti\"* á því heimilisfangi. Á þennan hátt geturðu stillt hljóðvita á fyrirtæki, staði, áhugaverða staði og íbúðarhúsnæði sem eru ekki í Open Street Map.</string>
@@ -443,14 +443,14 @@
     <string name="first_launch_permissions_notification">Tilkynningar</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Við erum að keyra þessa staðsetningarþjónustu í forgrunni</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">hætta við leit</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">lestastöð</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s lestastöð</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">sporvagnastopp</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s sporvagnastopp</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">neðanjarðarlestarstöð</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s neðanjarðarlestarstöð</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">ferjuhöfn</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">lestastöð</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s lestastöð</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">sporvagnastopp</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s sporvagnastopp</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">neðanjarðarlestarstöð</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s neðanjarðarlestarstöð</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">ferjuhöfn</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Hljóðstillingar</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Aðgengisstillingar</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Ljóst eða dökkt þema</string>

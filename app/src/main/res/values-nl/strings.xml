@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">"**Een route maken**:\n\n Ga eerst naar Markeringen en routes, selecteer het tabblad Routes en de knop Nieuwe route. Geef de route een naam en een optionele beschrijving, voeg vervolgens routepunten toe of selecteer ze uit uw lijst met Markeringen. U kunt de volgorde van de routepunten op een route altijd wijzigen door de route te bewerken."</string>
     <string name="help_text_routes_content_how_2">**Een route bewerken**:\n\n Selecteer uw route op het scherm *\"Markeringen en routes\"* en kies vervolgens *\"Route bewerken\"*. Vanaf hier kunt u routepunten toevoegen en verwijderen, en de naam en beschrijving van de route bewerken.</string>
     <string name="help_text_routes_content_how_3">**Een route delen**:\n\n Selecteer uw route op het scherm *\"Markeringen en routes\"* en kies vervolgens de optie *\"Delen\"* met de gebruikelijke deelopties die voor u beschikbaar zijn.</string>
-    <string name="osm_tag_crossing">"Zebrapad"</string>
-    <string name="osm_tag_construction">"Bouwplaats"</string>
-    <string name="osm_tag_dangerous_area">"Gevaarlijk gebied"</string>
-    <string name="osm_tag_townhall">"Gemeentehuis"</string>
-    <string name="osm_tag_steps">"Trap"</string>
-    <string name="osm_tag_elevator">"Lift"</string>
-    <string name="osm_tag_walking_path">"Voetpad"</string>
-    <string name="osm_tag_pedestrian_street">"Voetgangersgebied"</string>
-    <string name="osm_tag_bicycle_path">"Fietspad"</string>
-    <string name="osm_tag_residential_street">"Straat in woonwijk"</string>
-    <string name="osm_tag_service_road">"Vluchtstrook"</string>
-    <string name="osm_tag_road">"Weg"</string>
-    <string name="osm_tag_highway">"Snelweg"</string>
-    <string name="osm_tag_highway_named">"Snelweg van %s"</string>
-    <string name="osm_tag_highway_refed">"Snelweg %s"</string>
-    <string name="osm_tag_intersection">"Kruispunt"</string>
-    <string name="osm_tag_roundabout">"Rotonde"</string>
-    <string name="osm_tag_highway_ramp">"Oprit naar snelweg"</string>
-    <string name="osm_tag_merging_lane">"Invoegstrook"</string>
-    <string name="osm_tag_office_building">"Kantoorgebouw"</string>
-    <string name="osm_tag_school_building">"Schoolgebouw"</string>
-    <string name="osm_tag_covered_pavilion">"Overdekt paviljoen"</string>
-    <string name="osm_tag_convenience_store">"Supermarkt"</string>
-    <string name="osm_tag_building_entrance">"Ingang van gebouw"</string>
-    <string name="osm_tag_assembly_point">"Verzamelpunt"</string>
-    <string name="osm_tag_cycle_barrier">"Versmalde doorgang fietspad"</string>
-    <string name="osm_tag_turnstile">"Tourniquet"</string>
-    <string name="osm_tag_cattle_grid">"Veerooster"</string>
-    <string name="osm_tag_gate">"Hek"</string>
-    <string name="osm_tag_restroom">"Toilet"</string>
-    <string name="osm_tag_parking_lot">"Parkeerterrein"</string>
-    <string name="osm_tag_parking_entrance">"Ingang parkeerterrein"</string>
-    <string name="osm_tag_bench">"Bank"</string>
-    <string name="osm_tag_taxi_waiting_area">"Taxistandplaats"</string>
-    <string name="osm_tag_post_office">"Postkantoor"</string>
-    <string name="osm_tag_post_box">"Brievenbus"</string>
-    <string name="osm_tag_waste_basket">"Prullenbak"</string>
-    <string name="osm_tag_shower">"Douche"</string>
-    <string name="osm_tag_bike_parking">"Fietsenstalling"</string>
-    <string name="osm_tag_cafe">"Café"</string>
-    <string name="osm_tag_restaurant">"Restaurant"</string>
-    <string name="osm_tag_telephone">"Telefoon"</string>
-    <string name="osm_tag_gas_station">"Benzinepomp"</string>
-    <string name="osm_tag_bank">"Bank"</string>
-    <string name="osm_tag_atm">"Geldautomaat"</string>
-    <string name="osm_tag_atm_named">"Geldautomaat van %s"</string>
-    <string name="osm_tag_atm_refed">"Geldautomaat %s"</string>
-    <string name="osm_tag_bus_stop">"Bushalte"</string>
-    <string name="osm_tag_bus_stop_named">"Bushalte van %s"</string>
-    <string name="osm_tag_recycling_bin">"Vuilnisbak"</string>
-    <string name="osm_tag_fountain">"Fontein"</string>
-    <string name="osm_tag_place_of_worship">"Gebedshuis"</string>
-    <string name="osm_tag_water_fountain">"Waterfontein"</string>
-    <string name="osm_tag_car_wash">"Autowasstraat"</string>
-    <string name="osm_tag_vending_machine">"Automaat"</string>
-    <string name="osm_tag_playground">"Speeltuin"</string>
-    <string name="osm_tag_sports_field">"Sportveld"</string>
-    <string name="osm_tag_swimming_pool">"Zwembad"</string>
-    <string name="osm_tag_garden">"Tuin"</string>
-    <string name="osm_tag_park">"Park"</string>
-    <string name="osm_tag_picnic_table">"Picknicktafel"</string>
-    <string name="osm_tag_picnic_area">"Picknickgebied"</string>
+    <string name="osm_crossing">"Zebrapad"</string>
+    <string name="osm_construction">"Bouwplaats"</string>
+    <string name="osm_dangerous_area">"Gevaarlijk gebied"</string>
+    <string name="osm_townhall">"Gemeentehuis"</string>
+    <string name="osm_steps">"Trap"</string>
+    <string name="osm_elevator">"Lift"</string>
+    <string name="osm_walking_path">"Voetpad"</string>
+    <string name="osm_pedestrian_street">"Voetgangersgebied"</string>
+    <string name="osm_bicycle_path">"Fietspad"</string>
+    <string name="osm_residential_street">"Straat in woonwijk"</string>
+    <string name="osm_service_road">"Vluchtstrook"</string>
+    <string name="osm_road">"Weg"</string>
+    <string name="osm_highway">"Snelweg"</string>
+    <string name="osm_highway_named">"Snelweg van %s"</string>
+    <string name="osm_highway_refed">"Snelweg %s"</string>
+    <string name="osm_intersection">"Kruispunt"</string>
+    <string name="osm_roundabout">"Rotonde"</string>
+    <string name="osm_highway_ramp">"Oprit naar snelweg"</string>
+    <string name="osm_merging_lane">"Invoegstrook"</string>
+    <string name="osm_office_building">"Kantoorgebouw"</string>
+    <string name="osm_school_building">"Schoolgebouw"</string>
+    <string name="osm_covered_pavilion">"Overdekt paviljoen"</string>
+    <string name="osm_convenience_store">"Supermarkt"</string>
+    <string name="osm_building_entrance">"Ingang van gebouw"</string>
+    <string name="osm_assembly_point">"Verzamelpunt"</string>
+    <string name="osm_cycle_barrier">"Versmalde doorgang fietspad"</string>
+    <string name="osm_turnstile">"Tourniquet"</string>
+    <string name="osm_cattle_grid">"Veerooster"</string>
+    <string name="osm_gate">"Hek"</string>
+    <string name="osm_restroom">"Toilet"</string>
+    <string name="osm_parking_lot">"Parkeerterrein"</string>
+    <string name="osm_parking_entrance">"Ingang parkeerterrein"</string>
+    <string name="osm_bench">"Bank"</string>
+    <string name="osm_taxi_waiting_area">"Taxistandplaats"</string>
+    <string name="osm_post_office">"Postkantoor"</string>
+    <string name="osm_post_box">"Brievenbus"</string>
+    <string name="osm_waste_basket">"Prullenbak"</string>
+    <string name="osm_shower">"Douche"</string>
+    <string name="osm_bike_parking">"Fietsenstalling"</string>
+    <string name="osm_cafe">"Café"</string>
+    <string name="osm_restaurant">"Restaurant"</string>
+    <string name="osm_telephone">"Telefoon"</string>
+    <string name="osm_gas_station">"Benzinepomp"</string>
+    <string name="osm_bank">"Bank"</string>
+    <string name="osm_atm">"Geldautomaat"</string>
+    <string name="osm_atm_named">"Geldautomaat van %s"</string>
+    <string name="osm_atm_refed">"Geldautomaat %s"</string>
+    <string name="osm_bus_stop">"Bushalte"</string>
+    <string name="osm_bus_stop_named">"Bushalte van %s"</string>
+    <string name="osm_recycling_bin">"Vuilnisbak"</string>
+    <string name="osm_fountain">"Fontein"</string>
+    <string name="osm_place_of_worship">"Gebedshuis"</string>
+    <string name="osm_water_fountain">"Waterfontein"</string>
+    <string name="osm_car_wash">"Autowasstraat"</string>
+    <string name="osm_vending_machine">"Automaat"</string>
+    <string name="osm_playground">"Speeltuin"</string>
+    <string name="osm_sports_field">"Sportveld"</string>
+    <string name="osm_swimming_pool">"Zwembad"</string>
+    <string name="osm_garden">"Tuin"</string>
+    <string name="osm_park">"Park"</string>
+    <string name="osm_picnic_table">"Picknicktafel"</string>
+    <string name="osm_picnic_area">"Picknickgebied"</string>
     <string name="share_title">"Delen"</string>
     <string name="faq_title">"Veelgestelde vragen"</string>
     <string name="faq_title_abbreviated">"Veelgestelde vragen"</string>
@@ -437,20 +437,20 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">Wijzig de machtigingen in de app-instellingen</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Taal wijzigen</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">om de taal te wijzigen die in de app wordt gebruikt</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">Ingang</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">Hoofdingang</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s van %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">Ingang</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">Hoofdingang</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s van %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Deze locatievoorziening wordt op de voorgrond uitgevoerd</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Zoekopdracht annuleren</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Treinstation</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s treinstation</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Tramhalte</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s tramhalte</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Metrostation</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s metrostation</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s veerterminal</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Treinstation</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s treinstation</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Tramhalte</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s tramhalte</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Metrostation</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s metrostation</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s veerterminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio beheren</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Toegankelijkheid beheren</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Licht- of donker thema</string>

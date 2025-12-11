@@ -48,7 +48,7 @@ fun PlacesNearbyList(
         Folder(stringResource(R.string.filter_food_drink), Icons.Rounded.Fastfood, "food_and_drink"),
         Folder(stringResource(R.string.filter_groceries), Icons.Rounded.LocalGroceryStore, "groceries"),
         Folder(stringResource(R.string.filter_banks), Icons.Rounded.AttachMoney, "banks"),
-        Folder(stringResource(R.string.osm_tag_intersection), Icons.Rounded.ForkLeft, "intersections"),
+        Folder(stringResource(R.string.osm_intersection), Icons.Rounded.ForkLeft, "intersections"),
     )
     val context = LocalContext.current
     val locations = remember(uiState) {

@@ -1034,11 +1034,11 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
     var text = name
 
     val namedTransit = when (featureValue) {
-        "bus_stop" -> Pair(R.string.osm_tag_bus_stop_named, R.string.osm_tag_bus_stop)
-        "station" -> Pair(R.string.osm_tag_train_station_named, R.string.osm_tag_train_station)
-        "tram_stop" -> Pair(R.string.osm_tag_tram_stop_named, R.string.osm_tag_tram_stop)
-        "subway" -> Pair(R.string.osm_tag_subway_named, R.string.osm_tag_subway)
-        "ferry_terminal" -> Pair(R.string.osm_tag_ferry_terminal_named, R.string.osm_tag_ferry_terminal)
+        "bus_stop" -> Pair(R.string.osm_bus_stop_named, R.string.osm_bus_stop)
+        "station" -> Pair(R.string.osm_train_station_named, R.string.osm_train_station)
+        "tram_stop" -> Pair(R.string.osm_tram_stop_named, R.string.osm_tram_stop)
+        "subway" -> Pair(R.string.osm_subway_named, R.string.osm_subway)
+        "ferry_terminal" -> Pair(R.string.osm_ferry_terminal_named, R.string.osm_ferry_terminal)
         else -> null
     }
     if(namedTransit != null) {
@@ -1067,14 +1067,14 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
 
         val entranceText =
             if(entranceType == "main")
-                localizedContext.getString(R.string.osm_tag_main_entrance)
+                localizedContext.getString(R.string.osm_main_entrance)
             else
-                localizedContext.getString(R.string.osm_tag_entrance)
+                localizedContext.getString(R.string.osm_entrance)
 
 
         text = if(entranceName != null) {
             localizedContext.getString(
-                R.string.osm_tag_entrance_named_with_destination,
+                R.string.osm_entrance_named_with_destination,
                 destinationName,
                 entranceText,
                 entranceName,
@@ -1082,7 +1082,7 @@ fun getTextForFeature(localizedContext: Context?, feature: Feature) : TextForFea
             )
         }
         else
-            localizedContext.getString(R.string.osm_tag_entrance_with_destination, destinationName, entranceText)
+            localizedContext.getString(R.string.osm_entrance_with_destination, destinationName, entranceText)
     }
 
     if (text == null) {

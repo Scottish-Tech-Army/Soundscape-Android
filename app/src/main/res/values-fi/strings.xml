@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">"**Reitin luominen**:\n\n Siirry ensin kohtaan \"Merkinnät ja Reitit\", valitse \"reitit\" välilehti, ja valitse sitten \"Uusi reitti\" -painike. Anna reitille nimi ja valinnainen kuvaus ja lisää sitten reittipisteitä matkan varrella, tai valitse ne merkintäluettelosta. Voit järjestää reittipisteet uudelleen reitissä koska tahansa muokkaamalla reittiä."</string>
     <string name="help_text_routes_content_how_2">**Reitin muokkaaminen:**\n\n Valitse reittisi *\"Merkinnät ja reitit\"* -näytöltä ja valitse sitten *\"Muokkaa reittiä\"*. Täältä voit lisätä ja poistaa reittipisteitä sekä muokata reitin nimeä ja kuvausta.</string>
     <string name="help_text_routes_content_how_3">**Reitin jakaminen:**\n\n Valitse reittisi *\"Merkinnät ja reitit\"* -näytöltä ja valitse sitten *\"Jaa\"* -vaihtoehto käyttäen tavallisia jakamismahdollisuuksia.</string>
-    <string name="osm_tag_crossing">"Suojatie"</string>
-    <string name="osm_tag_construction">"Rakennustyömaa"</string>
-    <string name="osm_tag_dangerous_area">"Vaarallinen alue"</string>
-    <string name="osm_tag_townhall">"Kaupungintalo"</string>
-    <string name="osm_tag_steps">"Portaat"</string>
-    <string name="osm_tag_elevator">"Hissi"</string>
-    <string name="osm_tag_walking_path">"Kävelypolku"</string>
-    <string name="osm_tag_pedestrian_street">"Kävelykatu"</string>
-    <string name="osm_tag_bicycle_path">"Pyörätie"</string>
-    <string name="osm_tag_residential_street">"Asuinalueen katu"</string>
-    <string name="osm_tag_service_road">"Huoltotie"</string>
-    <string name="osm_tag_road">"Tie"</string>
-    <string name="osm_tag_highway">"Maantie"</string>
-    <string name="osm_tag_highway_named">"%s maantie"</string>
-    <string name="osm_tag_highway_refed">"Maantie %s"</string>
-    <string name="osm_tag_intersection">"Risteys"</string>
-    <string name="osm_tag_roundabout">"Liikenneympyrä"</string>
-    <string name="osm_tag_highway_ramp">"Maantien liittymä"</string>
-    <string name="osm_tag_merging_lane">"Yhdistyvä kaista"</string>
-    <string name="osm_tag_office_building">"Toimistorakennus"</string>
-    <string name="osm_tag_school_building">"Koulurakennus"</string>
-    <string name="osm_tag_covered_pavilion">"Katettu paviljonki"</string>
-    <string name="osm_tag_convenience_store">"Päivittäistavarakauppa"</string>
-    <string name="osm_tag_building_entrance">"Rakennuksen sisäänkäynti"</string>
-    <string name="osm_tag_assembly_point">"Kokoontumispiste"</string>
-    <string name="osm_tag_cycle_barrier">"Pyöräilyeste"</string>
-    <string name="osm_tag_turnstile">"Kääntyvä portti"</string>
-    <string name="osm_tag_cattle_grid">"Karjaverkko"</string>
-    <string name="osm_tag_gate">"Portti"</string>
-    <string name="osm_tag_restroom">"WC"</string>
-    <string name="osm_tag_parking_lot">"Pysäköintialue"</string>
-    <string name="osm_tag_parking_entrance">"Pysäköinnin sisäänkäynti"</string>
-    <string name="osm_tag_bench">"Penkki"</string>
-    <string name="osm_tag_taxi_waiting_area">"Taksin odotusalue"</string>
-    <string name="osm_tag_post_office">"Postitoimisto"</string>
-    <string name="osm_tag_post_box">"Postilaatikko"</string>
-    <string name="osm_tag_waste_basket">"Roskakori"</string>
-    <string name="osm_tag_shower">"Suihku"</string>
-    <string name="osm_tag_bike_parking">"Polkupyöräpysäköinti"</string>
-    <string name="osm_tag_cafe">"Kahvila"</string>
-    <string name="osm_tag_restaurant">"Ravintola"</string>
-    <string name="osm_tag_telephone">"Puhelin"</string>
-    <string name="osm_tag_gas_station">"Huoltoasema"</string>
-    <string name="osm_tag_bank">"Pankki"</string>
-    <string name="osm_tag_atm">"Pankkiautomaatti"</string>
-    <string name="osm_tag_atm_named">"%s Pankkiautomaatti"</string>
-    <string name="osm_tag_atm_refed">"Pankkiautomaatti %s"</string>
-    <string name="osm_tag_bus_stop">"Linja-autopysäkki"</string>
-    <string name="osm_tag_bus_stop_named">"%s Linja-autopysäkki"</string>
-    <string name="osm_tag_recycling_bin">"Kierrätysastia"</string>
-    <string name="osm_tag_fountain">"Suihkulähde"</string>
-    <string name="osm_tag_place_of_worship">"Uskonnollinen rakennus"</string>
-    <string name="osm_tag_water_fountain">"Suihkulähde"</string>
-    <string name="osm_tag_car_wash">"Autopesula"</string>
-    <string name="osm_tag_vending_machine">"Myyntiautomaatti"</string>
-    <string name="osm_tag_playground">"Leikkipuisto"</string>
-    <string name="osm_tag_sports_field">"Urheilukenttä"</string>
-    <string name="osm_tag_swimming_pool">"Uima-allas"</string>
-    <string name="osm_tag_garden">"Puutarha"</string>
-    <string name="osm_tag_park">"Puisto"</string>
-    <string name="osm_tag_picnic_table">"Retkipöytä"</string>
-    <string name="osm_tag_picnic_area">"Retkialue"</string>
+    <string name="osm_crossing">"Suojatie"</string>
+    <string name="osm_construction">"Rakennustyömaa"</string>
+    <string name="osm_dangerous_area">"Vaarallinen alue"</string>
+    <string name="osm_townhall">"Kaupungintalo"</string>
+    <string name="osm_steps">"Portaat"</string>
+    <string name="osm_elevator">"Hissi"</string>
+    <string name="osm_walking_path">"Kävelypolku"</string>
+    <string name="osm_pedestrian_street">"Kävelykatu"</string>
+    <string name="osm_bicycle_path">"Pyörätie"</string>
+    <string name="osm_residential_street">"Asuinalueen katu"</string>
+    <string name="osm_service_road">"Huoltotie"</string>
+    <string name="osm_road">"Tie"</string>
+    <string name="osm_highway">"Maantie"</string>
+    <string name="osm_highway_named">"%s maantie"</string>
+    <string name="osm_highway_refed">"Maantie %s"</string>
+    <string name="osm_intersection">"Risteys"</string>
+    <string name="osm_roundabout">"Liikenneympyrä"</string>
+    <string name="osm_highway_ramp">"Maantien liittymä"</string>
+    <string name="osm_merging_lane">"Yhdistyvä kaista"</string>
+    <string name="osm_office_building">"Toimistorakennus"</string>
+    <string name="osm_school_building">"Koulurakennus"</string>
+    <string name="osm_covered_pavilion">"Katettu paviljonki"</string>
+    <string name="osm_convenience_store">"Päivittäistavarakauppa"</string>
+    <string name="osm_building_entrance">"Rakennuksen sisäänkäynti"</string>
+    <string name="osm_assembly_point">"Kokoontumispiste"</string>
+    <string name="osm_cycle_barrier">"Pyöräilyeste"</string>
+    <string name="osm_turnstile">"Kääntyvä portti"</string>
+    <string name="osm_cattle_grid">"Karjaverkko"</string>
+    <string name="osm_gate">"Portti"</string>
+    <string name="osm_restroom">"WC"</string>
+    <string name="osm_parking_lot">"Pysäköintialue"</string>
+    <string name="osm_parking_entrance">"Pysäköinnin sisäänkäynti"</string>
+    <string name="osm_bench">"Penkki"</string>
+    <string name="osm_taxi_waiting_area">"Taksin odotusalue"</string>
+    <string name="osm_post_office">"Postitoimisto"</string>
+    <string name="osm_post_box">"Postilaatikko"</string>
+    <string name="osm_waste_basket">"Roskakori"</string>
+    <string name="osm_shower">"Suihku"</string>
+    <string name="osm_bike_parking">"Polkupyöräpysäköinti"</string>
+    <string name="osm_cafe">"Kahvila"</string>
+    <string name="osm_restaurant">"Ravintola"</string>
+    <string name="osm_telephone">"Puhelin"</string>
+    <string name="osm_gas_station">"Huoltoasema"</string>
+    <string name="osm_bank">"Pankki"</string>
+    <string name="osm_atm">"Pankkiautomaatti"</string>
+    <string name="osm_atm_named">"%s Pankkiautomaatti"</string>
+    <string name="osm_atm_refed">"Pankkiautomaatti %s"</string>
+    <string name="osm_bus_stop">"Linja-autopysäkki"</string>
+    <string name="osm_bus_stop_named">"%s Linja-autopysäkki"</string>
+    <string name="osm_recycling_bin">"Kierrätysastia"</string>
+    <string name="osm_fountain">"Suihkulähde"</string>
+    <string name="osm_place_of_worship">"Uskonnollinen rakennus"</string>
+    <string name="osm_water_fountain">"Suihkulähde"</string>
+    <string name="osm_car_wash">"Autopesula"</string>
+    <string name="osm_vending_machine">"Myyntiautomaatti"</string>
+    <string name="osm_playground">"Leikkipuisto"</string>
+    <string name="osm_sports_field">"Urheilukenttä"</string>
+    <string name="osm_swimming_pool">"Uima-allas"</string>
+    <string name="osm_garden">"Puutarha"</string>
+    <string name="osm_park">"Puisto"</string>
+    <string name="osm_picnic_table">"Retkipöytä"</string>
+    <string name="osm_picnic_area">"Retkialue"</string>
     <string name="share_title">"Jaa"</string>
     <string name="faq_title">"Usein kysytyt kysymykset"</string>
     <string name="faq_title_abbreviated">"UKK"</string>
@@ -437,20 +437,20 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">Muuta sovelluksen käyttöoikeuksia asetuksissa</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Vaihda kieltä</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">muuttaaksesi sovelluksen käyttämää kieltä</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">sisäänkäynti</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">pääsisäänkäynti</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s osoitteessa %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">sisäänkäynti</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">pääsisäänkäynti</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s osoitteessa %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Tämä sijaintipalvelu on käynnissä etualalla</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Peruuta haku</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Rautatieasema</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s Rautatieasema</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Raitiovaunupysäkki</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s Raitiovaunupysäkki</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Metroasema</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s Metroasema</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Lauttaterminaali</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Rautatieasema</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Rautatieasema</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Raitiovaunupysäkki</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s Raitiovaunupysäkki</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Metroasema</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s Metroasema</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s Lauttaterminaali</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Hallitse ääntä</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Hallitse saavutettavuutta</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Vaalea tai tumma teema</string>
