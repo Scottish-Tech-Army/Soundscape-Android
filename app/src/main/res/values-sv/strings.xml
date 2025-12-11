@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">"**Skapa en rutt**:\n\n Gå först till \"Platsmarkörer och rutter\", välj fliken \"Rutter\" och välj sedan knappen \"Ny rutt\". Ge rutten ett namn och en valfri beskrivning och lägg sedan till brytpunkter när du går eller välj dem från listan med platsmarkörer. Du kan när som helst ändra ordningen på brytpunkterna längs en rutt genom att redigera rutten."</string>
     <string name="help_text_routes_content_how_2">**Redigera en rutt :**\n\n Välj din rutt på skärmen *\"Platsmarkörer och rutter\"* och välj sedan *\"Redigera rutt\"*. Härifrån kan du lägga till och ta bort brytpunkter samt redigera ruttnamn och beskrivning.</string>
     <string name="help_text_routes_content_how_3">**Dela en rutt :**\n\n Välj din rutt på skärmen *\"Platsmarkörer och rutter\"* och välj sedan alternativet *\"Dela\"* med de vanliga delningsalternativ som finns tillgängliga.</string>
-    <string name="osm_tag_crossing">"Övergångsställe"</string>
-    <string name="osm_tag_construction">"Byggnad"</string>
-    <string name="osm_tag_dangerous_area">"Farligt område"</string>
-    <string name="osm_tag_townhall">"Stadshus"</string>
-    <string name="osm_tag_steps">"Trappa"</string>
-    <string name="osm_tag_elevator">"Hiss"</string>
-    <string name="osm_tag_walking_path">"Gångväg"</string>
-    <string name="osm_tag_pedestrian_street">"Gågata"</string>
-    <string name="osm_tag_bicycle_path">"Cykelbana"</string>
-    <string name="osm_tag_residential_street">"Bostadsområde"</string>
-    <string name="osm_tag_service_road">"Serviceväg"</string>
-    <string name="osm_tag_road">"Väg"</string>
-    <string name="osm_tag_highway">"Motorväg"</string>
-    <string name="osm_tag_highway_named">"Motorvägen %s"</string>
-    <string name="osm_tag_highway_refed">"Motorväg %s"</string>
-    <string name="osm_tag_intersection">"Vägkorsning"</string>
-    <string name="osm_tag_roundabout">"Rondell"</string>
-    <string name="osm_tag_highway_ramp">"Motorvägsramp"</string>
-    <string name="osm_tag_merging_lane">"Sammangående körfält"</string>
-    <string name="osm_tag_office_building">"Kontorsbyggnad"</string>
-    <string name="osm_tag_school_building">"Skolbyggnad"</string>
-    <string name="osm_tag_covered_pavilion">"Övertäckt paviljong"</string>
-    <string name="osm_tag_convenience_store">"Närbutik"</string>
-    <string name="osm_tag_building_entrance">"Ingång till byggnad"</string>
-    <string name="osm_tag_assembly_point">"Samlingsplats"</string>
-    <string name="osm_tag_cycle_barrier">"Cykelhinder"</string>
-    <string name="osm_tag_turnstile">"Vändkors"</string>
-    <string name="osm_tag_cattle_grid">"Boskapsgaller"</string>
-    <string name="osm_tag_gate">"Port"</string>
-    <string name="osm_tag_restroom">"Toalett"</string>
-    <string name="osm_tag_parking_lot">"Parkeringsplats"</string>
-    <string name="osm_tag_parking_entrance">"Infart till parkering"</string>
-    <string name="osm_tag_bench">"Bänk"</string>
-    <string name="osm_tag_taxi_waiting_area">"Väntplats för taxi"</string>
-    <string name="osm_tag_post_office">"Postkontor"</string>
-    <string name="osm_tag_post_box">"Brevlåda"</string>
-    <string name="osm_tag_waste_basket">"Papperskorg"</string>
-    <string name="osm_tag_shower">"Dusch"</string>
-    <string name="osm_tag_bike_parking">"Cykelparkering"</string>
-    <string name="osm_tag_cafe">"Kafé"</string>
-    <string name="osm_tag_restaurant">"Restaurang"</string>
-    <string name="osm_tag_telephone">"Telefon"</string>
-    <string name="osm_tag_gas_station">"Bensinstation"</string>
-    <string name="osm_tag_bank">"Bank"</string>
-    <string name="osm_tag_atm">"Bankomat"</string>
-    <string name="osm_tag_atm_named">"Bankomat vid %s"</string>
-    <string name="osm_tag_atm_refed">"Bankomat %s"</string>
-    <string name="osm_tag_bus_stop">"Busshållplats"</string>
-    <string name="osm_tag_bus_stop_named">"Busshållplatsen %s"</string>
-    <string name="osm_tag_recycling_bin">"Återvinningskärl"</string>
-    <string name="osm_tag_fountain">"Fontän"</string>
-    <string name="osm_tag_place_of_worship">"Helgedom"</string>
-    <string name="osm_tag_water_fountain">"Vattenfontän"</string>
-    <string name="osm_tag_car_wash">"Biltvätt"</string>
-    <string name="osm_tag_vending_machine">"Varuautomat"</string>
-    <string name="osm_tag_playground">"Lekplats"</string>
-    <string name="osm_tag_sports_field">"Idrottsplats"</string>
-    <string name="osm_tag_swimming_pool">"Simbassäng"</string>
-    <string name="osm_tag_garden">"Trädgård"</string>
-    <string name="osm_tag_park">"Park"</string>
-    <string name="osm_tag_picnic_table">"Picknickbord"</string>
-    <string name="osm_tag_picnic_area">"Picknickområde"</string>
+    <string name="osm_crossing">"Övergångsställe"</string>
+    <string name="osm_construction">"Byggnad"</string>
+    <string name="osm_dangerous_area">"Farligt område"</string>
+    <string name="osm_townhall">"Stadshus"</string>
+    <string name="osm_steps">"Trappa"</string>
+    <string name="osm_elevator">"Hiss"</string>
+    <string name="osm_walking_path">"Gångväg"</string>
+    <string name="osm_pedestrian_street">"Gågata"</string>
+    <string name="osm_bicycle_path">"Cykelbana"</string>
+    <string name="osm_residential_street">"Bostadsområde"</string>
+    <string name="osm_service_road">"Serviceväg"</string>
+    <string name="osm_road">"Väg"</string>
+    <string name="osm_highway">"Motorväg"</string>
+    <string name="osm_highway_named">"Motorvägen %s"</string>
+    <string name="osm_highway_refed">"Motorväg %s"</string>
+    <string name="osm_intersection">"Vägkorsning"</string>
+    <string name="osm_roundabout">"Rondell"</string>
+    <string name="osm_highway_ramp">"Motorvägsramp"</string>
+    <string name="osm_merging_lane">"Sammangående körfält"</string>
+    <string name="osm_office_building">"Kontorsbyggnad"</string>
+    <string name="osm_school_building">"Skolbyggnad"</string>
+    <string name="osm_covered_pavilion">"Övertäckt paviljong"</string>
+    <string name="osm_convenience_store">"Närbutik"</string>
+    <string name="osm_building_entrance">"Ingång till byggnad"</string>
+    <string name="osm_assembly_point">"Samlingsplats"</string>
+    <string name="osm_cycle_barrier">"Cykelhinder"</string>
+    <string name="osm_turnstile">"Vändkors"</string>
+    <string name="osm_cattle_grid">"Boskapsgaller"</string>
+    <string name="osm_gate">"Port"</string>
+    <string name="osm_restroom">"Toalett"</string>
+    <string name="osm_parking_lot">"Parkeringsplats"</string>
+    <string name="osm_parking_entrance">"Infart till parkering"</string>
+    <string name="osm_bench">"Bänk"</string>
+    <string name="osm_taxi_waiting_area">"Väntplats för taxi"</string>
+    <string name="osm_post_office">"Postkontor"</string>
+    <string name="osm_post_box">"Brevlåda"</string>
+    <string name="osm_waste_basket">"Papperskorg"</string>
+    <string name="osm_shower">"Dusch"</string>
+    <string name="osm_bike_parking">"Cykelparkering"</string>
+    <string name="osm_cafe">"Kafé"</string>
+    <string name="osm_restaurant">"Restaurang"</string>
+    <string name="osm_telephone">"Telefon"</string>
+    <string name="osm_gas_station">"Bensinstation"</string>
+    <string name="osm_bank">"Bank"</string>
+    <string name="osm_atm">"Bankomat"</string>
+    <string name="osm_atm_named">"Bankomat vid %s"</string>
+    <string name="osm_atm_refed">"Bankomat %s"</string>
+    <string name="osm_bus_stop">"Busshållplats"</string>
+    <string name="osm_bus_stop_named">"Busshållplatsen %s"</string>
+    <string name="osm_recycling_bin">"Återvinningskärl"</string>
+    <string name="osm_fountain">"Fontän"</string>
+    <string name="osm_place_of_worship">"Helgedom"</string>
+    <string name="osm_water_fountain">"Vattenfontän"</string>
+    <string name="osm_car_wash">"Biltvätt"</string>
+    <string name="osm_vending_machine">"Varuautomat"</string>
+    <string name="osm_playground">"Lekplats"</string>
+    <string name="osm_sports_field">"Idrottsplats"</string>
+    <string name="osm_swimming_pool">"Simbassäng"</string>
+    <string name="osm_garden">"Trädgård"</string>
+    <string name="osm_park">"Park"</string>
+    <string name="osm_picnic_table">"Picknickbord"</string>
+    <string name="osm_picnic_area">"Picknickområde"</string>
     <string name="share_title">"Dela"</string>
     <string name="faq_title">"Vanliga frågor"</string>
     <string name="faq_title_abbreviated">"Vanliga frågor"</string>
@@ -437,14 +437,14 @@
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">för att ändra språket som används för appen</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Vi kör den här platstjänsten i förgrunden</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Avbryt sökning</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Tågstation</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s Tågstation</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Spårvagnshållplats</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s spårvagnshållplats</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Tunnelbanestation</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s tunnelbanestation</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s färja_terminal</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Tågstation</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Tågstation</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Spårvagnshållplats</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s spårvagnshållplats</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Tunnelbanestation</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s tunnelbanestation</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s färja_terminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Hantera Audio</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Hantera tillgänglighet</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Ljus eller mörk Tema</string>
@@ -476,10 +476,10 @@
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape utforskar användningen av innovativ ljudbaserad teknik för att göra det möjligt för människor att bygga upp en djupare medvetenhet om sin omgivning, och därmed bli mer självsäkra och stärkta i att ta sig fram.</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inaktiv eftersom rutten redan är vid startpunkten</string>
     <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Inaktiv eftersom rutten redan är vid slutpunkten</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">Ingång</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">Huvudentré</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s från %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">Ingång</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">Huvudentré</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s från %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Offlinekartor</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Detaljer om offlinekarta</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Laddar…</string>

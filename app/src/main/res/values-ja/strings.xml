@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">"**ルートを作成する**:\n\n まず、\"マーカーおよびルート\" に移動して \"ルート\" タブを選択し、\"新しいルート\" ボタンを選択します。ルート名を指定して、オプションで説明を入力します。その後、ルートを進む中でウェイポイントを追加するか、マーカーのリストから選択します。ウェイポイントの順序は、ルートを進む間いつでもルートを編集することで変更できます。"</string>
     <string name="help_text_routes_content_how_2">**ルートを編集する**:\n\n[マーカーおよびルート] 画面でルートを選択し、[ルートを編集] を選択します。ここからウェイポイントの追加や削除、ルート名や説明の編集ができます。</string>
     <string name="help_text_routes_content_how_3">**ルートを共有する**:\n\n[マーカーおよびルート] 画面でルートを選択し、通常の共有オプションを使って [共有する] を選択します。</string>
-    <string name="osm_tag_crossing">"横断歩道"</string>
-    <string name="osm_tag_construction">"工事中"</string>
-    <string name="osm_tag_dangerous_area">"危険区域"</string>
-    <string name="osm_tag_townhall">"市庁舎"</string>
-    <string name="osm_tag_steps">"階段"</string>
-    <string name="osm_tag_elevator">"エレベーター"</string>
-    <string name="osm_tag_walking_path">"歩道"</string>
-    <string name="osm_tag_pedestrian_street">"歩行者専用道路"</string>
-    <string name="osm_tag_bicycle_path">"自転車道"</string>
-    <string name="osm_tag_residential_street">"住宅地内の道路"</string>
-    <string name="osm_tag_service_road">"連絡道路"</string>
-    <string name="osm_tag_road">"道路"</string>
-    <string name="osm_tag_highway">"車道"</string>
-    <string name="osm_tag_highway_named">"%s 車道"</string>
-    <string name="osm_tag_highway_refed">"車道 %s"</string>
-    <string name="osm_tag_intersection">"交差点"</string>
-    <string name="osm_tag_roundabout">"環状交差点"</string>
-    <string name="osm_tag_highway_ramp">"接続道路"</string>
-    <string name="osm_tag_merging_lane">"合流車線"</string>
-    <string name="osm_tag_office_building">"オフィス ビル"</string>
-    <string name="osm_tag_school_building">"校舎"</string>
-    <string name="osm_tag_covered_pavilion">"カバー パビリオン"</string>
-    <string name="osm_tag_convenience_store">"コンビニエンス ストア"</string>
-    <string name="osm_tag_building_entrance">"建造物入口"</string>
-    <string name="osm_tag_assembly_point">"集合場所"</string>
-    <string name="osm_tag_cycle_barrier">"歩行者自転車用柵"</string>
-    <string name="osm_tag_turnstile">"回転ドア"</string>
-    <string name="osm_tag_cattle_grid">"畜産用フェンス"</string>
-    <string name="osm_tag_gate">"ゲート"</string>
-    <string name="osm_tag_restroom">"トイレ"</string>
-    <string name="osm_tag_parking_lot">"駐車場"</string>
-    <string name="osm_tag_parking_entrance">"駐車場出入口"</string>
-    <string name="osm_tag_bench">"ベンチ"</string>
-    <string name="osm_tag_taxi_waiting_area">"タクシー乗り場"</string>
-    <string name="osm_tag_post_office">"郵便局"</string>
-    <string name="osm_tag_post_box">"郵便ポスト"</string>
-    <string name="osm_tag_waste_basket">"ごみ箱"</string>
-    <string name="osm_tag_shower">"シャワー"</string>
-    <string name="osm_tag_bike_parking">"駐輪場"</string>
-    <string name="osm_tag_cafe">"喫茶店"</string>
-    <string name="osm_tag_restaurant">"レストラン"</string>
-    <string name="osm_tag_telephone">"電話"</string>
-    <string name="osm_tag_gas_station">"ガソリン スタンド"</string>
-    <string name="osm_tag_bank">"銀行"</string>
-    <string name="osm_tag_atm">"ATM"</string>
-    <string name="osm_tag_atm_named">"%s ATM"</string>
-    <string name="osm_tag_atm_refed">"ATM %s"</string>
-    <string name="osm_tag_bus_stop">"バス停"</string>
-    <string name="osm_tag_bus_stop_named">"%s バス停"</string>
-    <string name="osm_tag_recycling_bin">"リサイクル用ごみ箱"</string>
-    <string name="osm_tag_fountain">"噴水"</string>
-    <string name="osm_tag_place_of_worship">"神社仏閣"</string>
-    <string name="osm_tag_water_fountain">"飲み水"</string>
-    <string name="osm_tag_car_wash">"洗車場"</string>
-    <string name="osm_tag_vending_machine">"自動販売機"</string>
-    <string name="osm_tag_playground">"遊び場"</string>
-    <string name="osm_tag_sports_field">"運動場"</string>
-    <string name="osm_tag_swimming_pool">"スイミング プール"</string>
-    <string name="osm_tag_garden">"庭園"</string>
-    <string name="osm_tag_park">"公園"</string>
-    <string name="osm_tag_picnic_table">"ピクニック テーブル"</string>
-    <string name="osm_tag_picnic_area">"ピクニック場"</string>
+    <string name="osm_crossing">"横断歩道"</string>
+    <string name="osm_construction">"工事中"</string>
+    <string name="osm_dangerous_area">"危険区域"</string>
+    <string name="osm_townhall">"市庁舎"</string>
+    <string name="osm_steps">"階段"</string>
+    <string name="osm_elevator">"エレベーター"</string>
+    <string name="osm_walking_path">"歩道"</string>
+    <string name="osm_pedestrian_street">"歩行者専用道路"</string>
+    <string name="osm_bicycle_path">"自転車道"</string>
+    <string name="osm_residential_street">"住宅地内の道路"</string>
+    <string name="osm_service_road">"連絡道路"</string>
+    <string name="osm_road">"道路"</string>
+    <string name="osm_highway">"車道"</string>
+    <string name="osm_highway_named">"%s 車道"</string>
+    <string name="osm_highway_refed">"車道 %s"</string>
+    <string name="osm_intersection">"交差点"</string>
+    <string name="osm_roundabout">"環状交差点"</string>
+    <string name="osm_highway_ramp">"接続道路"</string>
+    <string name="osm_merging_lane">"合流車線"</string>
+    <string name="osm_office_building">"オフィス ビル"</string>
+    <string name="osm_school_building">"校舎"</string>
+    <string name="osm_covered_pavilion">"カバー パビリオン"</string>
+    <string name="osm_convenience_store">"コンビニエンス ストア"</string>
+    <string name="osm_building_entrance">"建造物入口"</string>
+    <string name="osm_assembly_point">"集合場所"</string>
+    <string name="osm_cycle_barrier">"歩行者自転車用柵"</string>
+    <string name="osm_turnstile">"回転ドア"</string>
+    <string name="osm_cattle_grid">"畜産用フェンス"</string>
+    <string name="osm_gate">"ゲート"</string>
+    <string name="osm_restroom">"トイレ"</string>
+    <string name="osm_parking_lot">"駐車場"</string>
+    <string name="osm_parking_entrance">"駐車場出入口"</string>
+    <string name="osm_bench">"ベンチ"</string>
+    <string name="osm_taxi_waiting_area">"タクシー乗り場"</string>
+    <string name="osm_post_office">"郵便局"</string>
+    <string name="osm_post_box">"郵便ポスト"</string>
+    <string name="osm_waste_basket">"ごみ箱"</string>
+    <string name="osm_shower">"シャワー"</string>
+    <string name="osm_bike_parking">"駐輪場"</string>
+    <string name="osm_cafe">"喫茶店"</string>
+    <string name="osm_restaurant">"レストラン"</string>
+    <string name="osm_telephone">"電話"</string>
+    <string name="osm_gas_station">"ガソリン スタンド"</string>
+    <string name="osm_bank">"銀行"</string>
+    <string name="osm_atm">"ATM"</string>
+    <string name="osm_atm_named">"%s ATM"</string>
+    <string name="osm_atm_refed">"ATM %s"</string>
+    <string name="osm_bus_stop">"バス停"</string>
+    <string name="osm_bus_stop_named">"%s バス停"</string>
+    <string name="osm_recycling_bin">"リサイクル用ごみ箱"</string>
+    <string name="osm_fountain">"噴水"</string>
+    <string name="osm_place_of_worship">"神社仏閣"</string>
+    <string name="osm_water_fountain">"飲み水"</string>
+    <string name="osm_car_wash">"洗車場"</string>
+    <string name="osm_vending_machine">"自動販売機"</string>
+    <string name="osm_playground">"遊び場"</string>
+    <string name="osm_sports_field">"運動場"</string>
+    <string name="osm_swimming_pool">"スイミング プール"</string>
+    <string name="osm_garden">"庭園"</string>
+    <string name="osm_park">"公園"</string>
+    <string name="osm_picnic_table">"ピクニック テーブル"</string>
+    <string name="osm_picnic_area">"ピクニック場"</string>
     <string name="share_title">"共有する"</string>
     <string name="faq_title">"よくあるご質問 (FAQ)"</string>
     <string name="faq_title_abbreviated">"FAQ"</string>
@@ -437,20 +437,20 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">アプリの設定で権限を変更する</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">言語を変更</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">アプリで使用する言語を変更するには</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">入口</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">正面入口</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s の %2$s（%3$s から）</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s の %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">入口</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">正面入口</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s の %2$s（%3$s から）</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s の %2$s</string>
     <string name="notification_text" tools:ignore="MissingTranslation">位置情報サービスをフォアグラウンドで実行しています</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">検索をキャンセル</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">駅</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s 駅</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">トラム停留所</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s 路面電車停留所</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">地下鉄駅</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s 地下鉄駅</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">駅</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s 駅</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">トラム停留所</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s 路面電車停留所</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">地下鉄駅</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s 地下鉄駅</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">オーディオを管理</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">アクセシビリティを管理</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">ライトまたはダーク テーマ</string>

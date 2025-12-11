@@ -620,138 +620,6 @@
 <string name="help_text_routes_content_how_2">"**Editing a route :**\n\n Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as editing the name and description of the route."</string>
 <!-- Help content explaining how a user can share a route. "Share" should be translated in the same way as it is for the key `share.title`. Quotes written as \" -->
 <string name="help_text_routes_content_how_3">"**Sharing a route :**\n\n Select your route on the *\"Markers and Routes\"* screen and then select the option to *\"Share\"* using all of the usual share options available to you."</string>
-<!-- Open Street Map term. Pedestrians can cross a street here; e.g., zebra crossing. Known as crosswalks in American English, and crossings in British English. -->
-<string name="osm_tag_crossing">"Crosswalk"</string>
-<!-- Open Street Map term. Used to describe the type of the feature which is currently under construction. -->
-<string name="osm_tag_construction">"Construction"</string>
-<!-- Open Street Map term. NOT DEFINED IN OSM -->
-<string name="osm_tag_dangerous_area">"Dangerous Area"</string>
-<!-- Open Street Map term. This refers to a village, town or city townhall, which is often the seat of the mayor, or may be merely a community meeting place. -->
-<string name="osm_tag_townhall">"Townhall"</string>
-<!-- Open Street Map term. For flights of steps on footways and paths.. -->
-<string name="osm_tag_steps">"Steps"</string>
-<!-- Open Street Map term. An elevator (or lift) is used to travel vertically, providing passenger and freight access between pathways at different floor levels. -->
-<string name="osm_tag_elevator">"Elevator"</string>
-<!-- Open Street Map term. A walking path is is a generic path, either multi-use or unspecified usage, open to all pedestrians and not intended for motorized vehicles. -->
-<string name="osm_tag_walking_path">"Walking Path"</string>
-<!-- Open Street Map term. Is a road or an area mainly or exclusively for pedestrians in which some vehicle traffic may be authorized (e.g. emergency, taxi, delivery, ...). Typically found in shopping areas, town centres, places with tourism attractions and recreation/civic areas, where wide expanses of hard surface are provided for pedestrians to walk. -->
-<string name="osm_tag_pedestrian_street">"Pedestrian Street"</string>
-<!-- Open Street Map term. A bicycle path is is a generic path, either multi-use or unspecified usage, open to all cyclists and not intended for motorized vehicles. May be shared with pedestrians. -->
-<string name="osm_tag_bicycle_path">"Bicycle Path"</string>
-<!-- Open Street Map term. Used for roads that are used for accessing residential areas and in residential areas but which are not normally used as through routes. -->
-<string name="osm_tag_residential_street">"Residential Street"</string>
-<!-- Open Street Map term. Used in two senses: 1. As a service way for access to buildings or places 2. Frontage road parallel to a major road. -->
-<string name="osm_tag_service_road">"Service Road"</string>
-<!-- Open Street Map term. Any highway, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
-<string name="osm_tag_road">"Road"</string>
-<!-- Open Street Map term. Any road, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
-<string name="osm_tag_highway">"Highway"</string>
-<!-- Open Street Map term. Any highway that has a given name. Used as a display name for place or a location. %s is an highway name, such as "London Highway". -->
-<string name="osm_tag_highway_named">"%s Highway"</string>
-<!-- Open Street Map term. Any highway that has a reference number or name. Used as a display name for place or a location. %s is an highway id, such as "Highway 520" or "Highway B". -->
-<string name="osm_tag_highway_refed">"Highway %s"</string>
-<!-- Open Street Map term. An intersection is a junction where two or more roads meet or cross. -->
-<string name="osm_tag_intersection">"Intersection"</string>
-<!-- Open Street Map term. A roundabout is a type of circular intersection or junction in which road traffic is permitted to flow in one direction around a central island. -->
-<string name="osm_tag_roundabout">"Roundabout"</string>
-<!-- Open Street Map term. Used to describe a road or highway leading to and from a major highway e.g., a freeway or motorway. -->
-<string name="osm_tag_highway_ramp">"Highway Ramp"</string>
-<!-- Open Street Map term. Used as to describe the section of highway where two or more roads or highways merge with one another. -->
-<string name="osm_tag_merging_lane">"Merging Lane"</string>
-<!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
-<string name="osm_tag_office_building">"Office Building"</string>
-<!-- Open Street Map term. Used for any generic building that is used as a school. -->
-<string name="osm_tag_school_building">"School Building"</string>
-<!-- Open Street Map term. Used as a display name for place or a location. -->
-<string name="osm_tag_covered_pavilion">"Covered Pavilion"</string>
-<!-- Open Street Map term. A small local shop carrying a variety of everyday products, mostly including single-serving food items such as milk, bread, snacks, groceries to over-the-counter medications, household items, stationery, and small auto supplies such as fuses. -->
-<string name="osm_tag_convenience_store">"Convenience Store"</string>
-<!-- Open Street Map term. A doorway through which people can enter or exit a building. -->
-<string name="osm_tag_building_entrance">"Building Entrance"</string>
-<!-- Open Street Map term. Used to designate a place or an area where all employees, passengers or a large crowd assemble in case of an emergency in an installation, building or a public place. -->
-<string name="osm_tag_assembly_point">"Assembly Point"</string>
-<!-- Open Street Map term. Used to describe fence-like barriers positioned along paths, footways, cycleways or tracks which serve to either slow cycle access or prevent it entirely depending on spacing and layout. -->
-<string name="osm_tag_cycle_barrier">"Cycle Barrier"</string>
-<!-- Open Street Map term. Used to describe a barrier to allow one person at a time to pass. Use this for small turnstiles like the ones in supermarkets or some subways. -->
-<string name="osm_tag_turnstile">"Turnstile"</string>
-<!-- Open Street Map term. Used to describe a hole in the road surface which is covered with a series of bars that allow wheeled vehicles but not animals to cross. -->
-<string name="osm_tag_cattle_grid">"Cattle Grid"</string>
-<!-- Open Street Map term. A gate is a section in a wall or fence which can be opened to allow or restrict access. They are usually made of wood or metal. -->
-<string name="osm_tag_gate">"Gate"</string>
-<!-- Open Street Map term. Used to refer to a public toilet. -->
-<string name="osm_tag_restroom">"Restroom"</string>
-<!-- Open Street Map term. Used to describe a facility used by the public, customers, or other authorised users for parking motor vehicles, such as cars and trucks, commonly known as a car park (British English) or parking lot (American English). -->
-<string name="osm_tag_parking_lot">"Parking Lot"</string>
-<!-- Open Street Map term. Used to describe the entry/exit point to a parking area. -->
-<string name="osm_tag_parking_entrance">"Parking Entrance"</string>
-<!-- Open Street Map term. A place for people to sit. -->
-<string name="osm_tag_bench">"Bench"</string>
-<!-- Open Street Map term. Used for the locating the point where taxis wait, not the point where passengers wait. -->
-<string name="osm_tag_taxi_waiting_area">"Taxi Waiting Area"</string>
-<!-- Open Street Map term. A place where letters and parcels may be sent or collected.. -->
-<string name="osm_tag_post_office">"Post Office"</string>
-<!-- Open Street Map term. A physical box used as a facility for the public to deposit outgoing postal items, such as letters and other small goods, intended for collection by the operator.. -->
-<string name="osm_tag_post_box">"Post Box"</string>
-<!-- Open Street Map term. A single small container for depositing garbage that is easily accessible for pedestrians. -->
-<string name="osm_tag_waste_basket">"Waste Basket"</string>
-<!-- Open Street Map term. A place where people can bathe under water sprays. May be run as a local amenity by the government, or part of commercial provisions. -->
-<string name="osm_tag_shower">"Shower"</string>
-<!-- Open Street Map term. Refers to any parking space designed for bicycles, where one can leave a pedal cycle unattended in reasonable security. -->
-<string name="osm_tag_bike_parking">"Bike Parking"</string>
-<!-- Open Street Map term. An informal place with sit-down facilities selling beverages and light meals and/or snacks. -->
-<string name="osm_tag_cafe">"Cafe"</string>
-<!-- Open Street Map term. Generally a formal eating places with sit-down facilities selling full meals served by waiters and often licensed (where allowed) to sell alcoholic drinks. -->
-<string name="osm_tag_restaurant">"Restaurant"</string>
-<!-- Open Street Map term. A public telephone, phone box, or telephone on a stand or wall. Usually you pay to use them, often only via a pre-pay card. -->
-<string name="osm_tag_telephone">"Telephone"</string>
-<!-- Open Street Map term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
-<string name="osm_tag_gas_station">"Gas Station"</string>
-<!-- Open Street Map term. A financial establishment where customers can, among other services, deposit and withdraw money, take loans, make investments and transfer funds. This definition encompasses banks, credit unions, building societies, and other similar establishments. It does not include money lenders or financial offices that are not banks -->
-<string name="osm_tag_bank">"Bank"</string>
-<!-- Open Street Map term. An automated teller machine (ATM), or automatic banking machine (ABM), or "cash machine", is a computerised telecommunications device that provides the clients of a financial institution with access to financial transactions in a public space without the need for a cashier, human clerk or bank teller. -->
-<string name="osm_tag_atm">"ATM"</string>
-<!-- Open Street Map term. Used as a display name for place or a location. %s is a bank name, such as "Chase ATM". -->
-<string name="osm_tag_atm_named">"%s ATM"</string>
-<!-- Open Street Map term. Used as a display name for place or a location. %s is an ATM id, such as "ATM 7" or "ATM B". -->
-<string name="osm_tag_atm_refed">"ATM %s"</string>
-<!-- Open Street Map term. A bus stop is a place where passengers can board or alight from a bus. Its position may be marked by a shelter, pole, bus lay-by, or road markings. -->
-<string name="osm_tag_bus_stop">"Bus Stop"</string>
-<!-- Open Street Map term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
-<string name="osm_tag_bus_stop_named">"%s Bus Stop"</string>
-<!-- Open Street Map term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
-<string name="osm_tag_recycling_bin">"Recycling Bin"</string>
-<!-- Open Street Map term. A water feature with cultural, decorational or historical significance or which serves a recreational purpose. -->
-<string name="osm_tag_fountain">"Fountain"</string>
-<!-- Open Street Map term. This covers places such as mosques, churches, cathedrals, synagogues, temples, etc. -->
-<string name="osm_tag_place_of_worship">"Place of Worship"</string>
-<!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
-<string name="osm_tag_water_fountain">"Water Fountain"</string>
-<!-- Open Street Map term. A facility used to clean the exterior and, in some cases, the interior of motor vehicles. -->
-<string name="osm_tag_car_wash">"Car Wash"</string>
-<!-- Open Street Map term. A machine which dispenses items such as snacks, beverages, alcohol, cigarettes, lottery tickets, cologne, consumer products and even gold and gems to customers automatically, after the customer inserts currency or credit into the machine. -->
-<string name="osm_tag_vending_machine">"Vending Machine"</string>
-<!-- Open Street Map term. Outdoor (sometimes indoor) areas specifically designed for children to play. -->
-<string name="osm_tag_playground">"Playground"</string>
-<!-- Open Street Map term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
-<string name="osm_tag_sports_field">"Sports Field"</string>
-<!-- Open Street Map term. A place built for swimming as a recreational activity or sport. -->
-<string name="osm_tag_swimming_pool">"Swimming Pool"</string>
-<!-- Open Street Map term. A distinguishable planned space, usually outdoors, set aside for the display, cultivation, and enjoyment of plants and other forms of nature. -->
-<string name="osm_tag_garden">"Garden"</string>
-<!-- Open Street Map term. An area of open space for recreational use, usually designed and in semi-natural state with grassy areas, trees and bushes. Parks are usually urban, but not always. -->
-<string name="osm_tag_park">"Park"</string>
-<!-- Open Street Map term. A table with benches, ideal for food and rest. -->
-<string name="osm_tag_picnic_table">"Picnic Table"</string>
-<!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
-<string name="osm_tag_picnic_area">"Picnic Area"</string>
-<!-- Open Street Map term. An entrance is where there is access to a building. -->
-<string name="osm_tag_entrance" tools:ignore="MissingTranslation">"entrance"</string>
-<!-- Open Street Map term. The main entrance to a building. -->
-<string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">"main entrance"</string>
-<!-- Open Street Map term. An entrance which has a name as well as a destination e.g. (Supermarket) (main entrance) from (Hills Road). Arguments in order destination, entrance, entrance name-->
-<string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">"%1$s %2$s from %3$s"</string>
-<!-- Open Street Map term. An entrance which has only a destination e.g. (Supermarket) (main entrance) -->
-<string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">"%1$s %2$s"</string>
 <!-- Title in menu of button to share the app with others -->
 <string name="share_title">"Share"</string>
 <!-- Title of the Frequently Asked Questions page -->
@@ -892,22 +760,6 @@
 <string name="notification_text" tools:ignore="MissingTranslation">We are running this location service in the foreground</string>
 <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancel search</string>
-<!-- OSM tag for train station -->
-<string name="osm_tag_train_station" tools:ignore="MissingTranslation">"Train station"</string>
-<!-- OSM tag for train station preceded by its name e.g. "Milngavie Train station" -->
-<string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">"%s Train station"</string>
-<!-- OSM tag for tram stop -->
-<string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">"Tram stop"</string>
-<!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
-<string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">"%s tram stop"</string>
-<!-- OSM tag for subway station (underground trains) -->
-<string name="osm_tag_subway" tools:ignore="MissingTranslation">"Subway station"</string>
-<!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
-<string name="osm_tag_subway_named" tools:ignore="MissingTranslation">"%s subway station"</string>
-<!-- OSM tag for ferry terminal -->
-<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">"Ferry terminal"</string>
-<!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
-<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">"%s ferry_terminal"</string>
 <!-- Title for settings page group of audio settings -->
 <string name="menu_manage_audio" tools:ignore="MissingTranslation">"Manage Audio"</string>
 <!-- Title for settings page group of audio settings -->
@@ -1075,1425 +927,1473 @@ As always please report any problems, however small they may be via the *Contact
 <string name="openmaptiles_copyright" translatable="false">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.</string>
 <string name="fmod_copyright" translatable="false">[Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.](https://www.fmod.com/legal) takes care of the audio playback.</string>
 
-<!-- Open Street Map term crossing. -->
+<!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
+<string name="osm_office_building" tools:ignore="MissingTranslation">"Office Building"</string>
+<!-- Open Street Map term. Used for any generic building that is used as a school. -->
+<string name="osm_school_building" tools:ignore="MissingTranslation">"School Building"</string>
+<!-- Open Street Map term. Used as a display name for place or a location. -->
+<string name="osm_covered_pavilion" tools:ignore="MissingTranslation">"Covered Pavilion"</string>
+<!-- Open Street Map term. A small local shop carrying a variety of everyday products, mostly including single-serving food items such as milk, bread, snacks, groceries to over-the-counter medications, household items, stationery, and small auto supplies such as fuses. -->
+<string name="osm_convenience_store" tools:ignore="MissingTranslation">"Convenience Store"</string>
+<!-- Open Street Map term. A doorway through which people can enter or exit a building. -->
+<string name="osm_building_entrance" tools:ignore="MissingTranslation">"Building Entrance"</string>
+<!-- Open Street Map term. Used to refer to a public toilet. -->
+<string name="osm_restroom" tools:ignore="MissingTranslation">"Restroom"</string>
+<!-- Open Street Map term. Used to describe a facility used by the public, customers, or other authorised users for parking motor vehicles, such as cars and trucks, commonly known as a car park (British English) or parking lot (American English). -->
+<string name="osm_parking_lot" tools:ignore="MissingTranslation">"Parking Lot"</string>
+<!-- Open Street Map term. Used for the locating the point where taxis wait, not the point where passengers wait. -->
+<string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation">"Taxi Waiting Area"</string>
+<!-- Open Street Map term. Refers to any parking space designed for bicycles, where one can leave a pedal cycle unattended in reasonable security. -->
+<string name="osm_bike_parking" tools:ignore="MissingTranslation">"Bike Parking"</string>
+<!-- Open Street Map term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
+<string name="osm_gas_station" tools:ignore="MissingTranslation">"Gas Station"</string>
+<!-- Open Street Map term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
+<string name="osm_bus_stop_named" tools:ignore="MissingTranslation">"%s Bus Stop"</string>
+<!-- Open Street Map term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
+<string name="osm_recycling_bin" tools:ignore="MissingTranslation">"Recycling Bin"</string>
+<!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
+<string name="osm_water_fountain" tools:ignore="MissingTranslation">"Water Fountain"</string>
+<!-- Open Street Map term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
+<string name="osm_sports_field" tools:ignore="MissingTranslation">"Sports Field"</string>
+<!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
+<string name="osm_picnic_area" tools:ignore="MissingTranslation">"Picnic Area"</string>
+<!-- Open Street Map term. The main entrance to a building. -->
+<string name="osm_main_entrance" tools:ignore="MissingTranslation">"main entrance"</string>
+<!-- Open Street Map term. An entrance which has a name as well as a destination e.g. (Supermarket) (main entrance) from (Hills Road). Arguments in order destination, entrance, entrance name-->
+<string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">"%1$s %2$s from %3$s"</string>
+<!-- Open Street Map term. An entrance which has only a destination e.g. (Supermarket) (main entrance) -->
+<string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">"%1$s %2$s"</string>
+<!-- OSM tag for ferry terminal -->
+<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">"Ferry Terminal"</string>
+<!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
+<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">"%s Ferry Terminal"</string>
+<!-- Open Street Map term crossing. A marked place where pedestrians cross a road.-->
 <string name="osm_crossing" tools:ignore="MissingTranslation">Crosswalk</string>
-<!-- Open Street Map term construction. -->
+<!-- Open Street Map term construction. A temporary or permanent site of building works.-->
 <string name="osm_construction" tools:ignore="MissingTranslation">Construction</string>
-<!-- Open Street Map term dangerous_area. -->
-<string name="osm_dangerous_area" tools:ignore="MissingTranslation">Danger Area</string>
-<!-- Open Street Map term townhall. -->
+<!-- Open Street Map term dangerous_area. An area identified as hazardous or risky.-->
+<string name="osm_dangerous_area" tools:ignore="MissingTranslation">Dangerous Area</string>
+<!-- Open Street Map term townhall. A building used as the administrative center of a town.-->
 <string name="osm_townhall" tools:ignore="MissingTranslation">Town Hall</string>
-<!-- Open Street Map term steps. -->
+<!-- Open Street Map term steps. A set of steps or stairway for pedestrians.-->
 <string name="osm_steps" tools:ignore="MissingTranslation">Steps</string>
-<!-- Open Street Map term elevator. -->
+<!-- Open Street Map term elevator. A vertical transport lift for people or goods.-->
 <string name="osm_elevator" tools:ignore="MissingTranslation">Elevator</string>
-<!-- Open Street Map term walking_path. -->
+<!-- Open Street Map term walking_path. A path intended for walking or hiking.-->
 <string name="osm_walking_path" tools:ignore="MissingTranslation">Walking Path</string>
-<!-- Open Street Map term pedestrian_street. -->
+<!-- Open Street Map term pedestrian_street. A street designated for pedestrians only.-->
 <string name="osm_pedestrian_street" tools:ignore="MissingTranslation">Pedestrian Street</string>
-<!-- Open Street Map term bicycle_path. -->
+<!-- Open Street Map term bicycle_path. A dedicated route for bicycles.-->
 <string name="osm_bicycle_path" tools:ignore="MissingTranslation">Bicycle Path</string>
-<!-- Open Street Map term residential_street. -->
+<!-- Open Street Map term residential_street. A street within a residential area.-->
 <string name="osm_residential_street" tools:ignore="MissingTranslation">Residential Street</string>
-<!-- Open Street Map term service_road. -->
+<!-- Open Street Map term service_road. A road providing access to properties or services.-->
 <string name="osm_service_road" tools:ignore="MissingTranslation">Service Road</string>
-<!-- Open Street Map term road. -->
+<!-- Open Street Map term road. A generic road or street.-->
 <string name="osm_road" tools:ignore="MissingTranslation">Road</string>
-<!-- Open Street Map term highway. -->
+<!-- Open Street Map term highway. A major public road or motorway.-->
 <string name="osm_highway" tools:ignore="MissingTranslation">Highway</string>
-<!-- Open Street Map term highway_named. -->
-<string name="osm_highway_named" tools:ignore="MissingTranslation">Named Highway</string>
-<!-- Open Street Map term highway_refed. -->
-<string name="osm_highway_refed" tools:ignore="MissingTranslation">Highway Ref</string>
-<!-- Open Street Map term intersection. -->
+<!-- Open Street Map term highway_named. The name label for a highway.-->
+<string name="osm_highway_named" tools:ignore="MissingTranslation">Highway Name</string>
+<!-- Open Street Map term highway_refed. The reference code or number for a highway.-->
+<string name="osm_highway_refed" tools:ignore="MissingTranslation">Highway Reference</string>
+<!-- Open Street Map term intersection. A point where two or more ways meet.-->
 <string name="osm_intersection" tools:ignore="MissingTranslation">Intersection</string>
-<!-- Open Street Map term roundabout. -->
+<!-- Open Street Map term roundabout. A circular junction directing traffic around a central island.-->
 <string name="osm_roundabout" tools:ignore="MissingTranslation">Roundabout</string>
-<!-- Open Street Map term highway_ramp. -->
+<!-- Open Street Map term highway_ramp. A ramp connecting roads or motorway slip roads.-->
 <string name="osm_highway_ramp" tools:ignore="MissingTranslation">Highway Ramp</string>
-<!-- Open Street Map term merging_lane. -->
+<!-- Open Street Map term merging_lane. A lane where traffic merges into another flow.-->
 <string name="osm_merging_lane" tools:ignore="MissingTranslation">Merging Lane</string>
-<!-- Open Street Map term office. -->
+<!-- Open Street Map term office. A building or room used for administrative work.-->
 <string name="osm_office" tools:ignore="MissingTranslation">Office</string>
-<!-- Open Street Map term school. -->
+<!-- Open Street Map term school. An educational institution building.-->
 <string name="osm_school" tools:ignore="MissingTranslation">School</string>
-<!-- Open Street Map term roof. -->
+<!-- Open Street Map term roof. The top covering of a building.-->
 <string name="osm_roof" tools:ignore="MissingTranslation">Roof</string>
-<!-- Open Street Map term convenience. -->
-<string name="osm_convenience" tools:ignore="MissingTranslation">Convenience Store</string>
-<!-- Open Street Map term entrance. -->
+<!-- Open Street Map term convenience. A small store selling everyday items.-->
+<string name="osm_convenience" tools:ignore="MissingTranslation">Convenience Shop</string>
+<!-- Open Street Map term entrance. A point of entry to a building or area.-->
 <string name="osm_entrance" tools:ignore="MissingTranslation">Entrance</string>
-<!-- Open Street Map term assembly_point. -->
+<!-- Open Street Map term assembly_point. A designated meeting area for gatherings or emergencies.-->
 <string name="osm_assembly_point" tools:ignore="MissingTranslation">Assembly Point</string>
-<!-- Open Street Map term cycle_barrier. -->
+<!-- Open Street Map term cycle_barrier. A small barrier that restricts bicycle passage.-->
 <string name="osm_cycle_barrier" tools:ignore="MissingTranslation">Cycle Barrier</string>
-<!-- Open Street Map term turnstile. -->
+<!-- Open Street Map term turnstile. A gating device controlling pedestrian entry.-->
 <string name="osm_turnstile" tools:ignore="MissingTranslation">Turnstile</string>
-<!-- Open Street Map term cattle_grid. -->
+<!-- Open Street Map term cattle_grid. A grid of bars to prevent livestock crossing.-->
 <string name="osm_cattle_grid" tools:ignore="MissingTranslation">Cattle Grid</string>
-<!-- Open Street Map term gate. -->
+<!-- Open Street Map term gate. A moveable barrier for entry or exit.-->
 <string name="osm_gate" tools:ignore="MissingTranslation">Gate</string>
-<!-- Open Street Map term lift_gate. -->
+<!-- Open Street Map term lift_gate. A gate that lifts vertically to allow access.-->
 <string name="osm_lift_gate" tools:ignore="MissingTranslation">Lift Gate</string>
-<!-- Open Street Map term toilets. -->
+<!-- Open Street Map term toilets. Public or private restroom facilities.-->
 <string name="osm_toilets" tools:ignore="MissingTranslation">Toilets</string>
-<!-- Open Street Map term parking. -->
+<!-- Open Street Map term parking. An area designated for vehicle parking.-->
 <string name="osm_parking" tools:ignore="MissingTranslation">Parking</string>
-<!-- Open Street Map term parking_entrance. -->
+<!-- Open Street Map term parking_entrance. The entry point to a parking area.-->
 <string name="osm_parking_entrance" tools:ignore="MissingTranslation">Parking Entrance</string>
-<!-- Open Street Map term bench. -->
+<!-- Open Street Map term bench. A seat for public use.-->
 <string name="osm_bench" tools:ignore="MissingTranslation">Bench</string>
-<!-- Open Street Map term taxi. -->
+<!-- Open Street Map term taxi. A taxi stand or rank for hire vehicles.-->
 <string name="osm_taxi" tools:ignore="MissingTranslation">Taxi Stand</string>
-<!-- Open Street Map term post_office. -->
+<!-- Open Street Map term post_office. A facility offering postal services.-->
 <string name="osm_post_office" tools:ignore="MissingTranslation">Post Office</string>
-<!-- Open Street Map term post_box. -->
+<!-- Open Street Map term post_box. A public mailbox for outgoing mail.-->
 <string name="osm_post_box" tools:ignore="MissingTranslation">Post Box</string>
-<!-- Open Street Map term waste_basket. -->
-<string name="osm_waste_basket" tools:ignore="MissingTranslation">Trash Bin</string>
-<!-- Open Street Map term shower. -->
+<!-- Open Street Map term waste_basket. A bin for disposing of litter.-->
+<string name="osm_waste_basket" tools:ignore="MissingTranslation">Waste Basket</string>
+<!-- Open Street Map term shower. A facility for washing under running water.-->
 <string name="osm_shower" tools:ignore="MissingTranslation">Shower</string>
-<!-- Open Street Map term bicycle_parking. -->
+<!-- Open Street Map term bicycle_parking. A place to park or lock bicycles.-->
 <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Bicycle Parking</string>
-<!-- Open Street Map term cafe. -->
+<!-- Open Street Map term cafe. An establishment serving coffee and light meals.-->
 <string name="osm_cafe" tools:ignore="MissingTranslation">Cafe</string>
-<!-- Open Street Map term restaurant. -->
+<!-- Open Street Map term restaurant. A place where meals are served to customers.-->
 <string name="osm_restaurant" tools:ignore="MissingTranslation">Restaurant</string>
-<!-- Open Street Map term telephone. -->
+<!-- Open Street Map term telephone. A public phone or payphone.-->
 <string name="osm_telephone" tools:ignore="MissingTranslation">Telephone</string>
-<!-- Open Street Map term fuel. -->
-<string name="osm_fuel" tools:ignore="MissingTranslation">Fuel</string>
-<!-- Open Street Map term bank. -->
+<!-- Open Street Map term fuel. A station selling motor fuels.-->
+<string name="osm_fuel" tools:ignore="MissingTranslation">Fuel Station</string>
+<!-- Open Street Map term bank. A financial institution with teller services.-->
 <string name="osm_bank" tools:ignore="MissingTranslation">Bank</string>
-<!-- Open Street Map term atm. -->
+<!-- Open Street Map term atm. An automated teller machine for cash services.-->
 <string name="osm_atm" tools:ignore="MissingTranslation">ATM</string>
-<!-- Open Street Map term atm_named. -->
+<!-- Open Street Map term atm_named. An ATM with a specific name or operator.-->
 <string name="osm_atm_named" tools:ignore="MissingTranslation">Named ATM</string>
-<!-- Open Street Map term atm_refed. -->
-<string name="osm_atm_refed" tools:ignore="MissingTranslation">ATM Ref</string>
-<!-- Open Street Map term bus_stop. -->
+<!-- Open Street Map term atm_refed. An ATM identified by a reference code.-->
+<string name="osm_atm_refed" tools:ignore="MissingTranslation">ATM Reference</string>
+<!-- Open Street Map term bus_stop. A designated place where buses stop to pick up passengers.-->
 <string name="osm_bus_stop" tools:ignore="MissingTranslation">Bus Stop</string>
-<!-- Open Street Map term recycling. -->
+<!-- Open Street Map term recycling. A point for depositing recyclable materials.-->
 <string name="osm_recycling" tools:ignore="MissingTranslation">Recycling</string>
-<!-- Open Street Map term fountain. -->
+<!-- Open Street Map term fountain. A decorative or drinking water fountain.-->
 <string name="osm_fountain" tools:ignore="MissingTranslation">Fountain</string>
-<!-- Open Street Map term place_of_worship. -->
+<!-- Open Street Map term place_of_worship. A building used for religious activities.-->
 <string name="osm_place_of_worship" tools:ignore="MissingTranslation">Place Of Worship</string>
-<!-- Open Street Map term drinking_water. -->
+<!-- Open Street Map term drinking_water. A tap or point providing potable water.-->
 <string name="osm_drinking_water" tools:ignore="MissingTranslation">Drinking Water</string>
-<!-- Open Street Map term car_wash. -->
+<!-- Open Street Map term car_wash. A facility for washing vehicles.-->
 <string name="osm_car_wash" tools:ignore="MissingTranslation">Car Wash</string>
-<!-- Open Street Map term vending_machine. -->
+<!-- Open Street Map term vending_machine. A machine dispensing goods or tickets.-->
 <string name="osm_vending_machine" tools:ignore="MissingTranslation">Vending Machine</string>
-<!-- Open Street Map term playground. -->
+<!-- Open Street Map term playground. An outdoor play area for children.-->
 <string name="osm_playground" tools:ignore="MissingTranslation">Playground</string>
-<!-- Open Street Map term pitch. -->
+<!-- Open Street Map term pitch. A marked sports field or playing area.-->
 <string name="osm_pitch" tools:ignore="MissingTranslation">Pitch</string>
-<!-- Open Street Map term swimming_pool. -->
+<!-- Open Street Map term swimming_pool. A facility for swimming, indoor or outdoor.-->
 <string name="osm_swimming_pool" tools:ignore="MissingTranslation">Swimming Pool</string>
-<!-- Open Street Map term garden. -->
+<!-- Open Street Map term garden. A planted area for ornament or cultivation.-->
 <string name="osm_garden" tools:ignore="MissingTranslation">Garden</string>
-<!-- Open Street Map term park. -->
+<!-- Open Street Map term park. A public green space for recreation.-->
 <string name="osm_park" tools:ignore="MissingTranslation">Park</string>
-<!-- Open Street Map term picnic_table. -->
+<!-- Open Street Map term picnic_table. A table provided for outdoor dining.-->
 <string name="osm_picnic_table" tools:ignore="MissingTranslation">Picnic Table</string>
-<!-- Open Street Map term picnic_site. -->
+<!-- Open Street Map term picnic_site. A site designated for picnics and outdoor eating.-->
 <string name="osm_picnic_site" tools:ignore="MissingTranslation">Picnic Site</string>
-<!-- Open Street Map term information. -->
+<!-- Open Street Map term information. A general information point or sign.-->
 <string name="osm_information" tools:ignore="MissingTranslation">Information</string>
-<!-- Open Street Map term fire_extinguisher. -->
+<!-- Open Street Map term fire_extinguisher. A device to put out small fires.-->
 <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Fire Extinguisher</string>
-<!-- Open Street Map term defibrillator. -->
+<!-- Open Street Map term defibrillator. A device used for emergency cardiac resuscitation.-->
 <string name="osm_defibrillator" tools:ignore="MissingTranslation">Defibrillator</string>
-<!-- Open Street Map term guide. -->
+<!-- Open Street Map term guide. A marker or post giving directional information.-->
 <string name="osm_guide" tools:ignore="MissingTranslation">Guidepost</string>
-<!-- Open Street Map term water. -->
+<!-- Open Street Map term water. A general water feature or body of water.-->
 <string name="osm_water" tools:ignore="MissingTranslation">Water</string>
-<!-- Open Street Map term fire_hose. -->
+<!-- Open Street Map term fire_hose. A hose used by firefighters to deliver water.-->
 <string name="osm_fire_hose" tools:ignore="MissingTranslation">Fire Hose</string>
-<!-- Open Street Map term fire_flapper. -->
+<!-- Open Street Map term fire_flapper. A handheld tool for smothering small fires.-->
 <string name="osm_fire_flapper" tools:ignore="MissingTranslation">Fire Flapper</string>
-<!-- Open Street Map term information_point. -->
+<!-- Open Street Map term information_point. A staffed or dedicated information desk or kiosk.-->
 <string name="osm_information_point" tools:ignore="MissingTranslation">Information Point</string>
-<!-- Open Street Map term wetland. -->
+<!-- Open Street Map term wetland. An area of marsh, bog, or swamp.-->
 <string name="osm_wetland" tools:ignore="MissingTranslation">Wetland</string>
-<!-- Open Street Map term mud. -->
+<!-- Open Street Map term mud. A muddy area or surface, often wet and soft.-->
 <string name="osm_mud" tools:ignore="MissingTranslation">Mud</string>
-<!-- Open Street Map term access_point. -->
+<!-- Open Street Map term access_point. A location providing entry to a network or area.-->
 <string name="osm_access_point" tools:ignore="MissingTranslation">Access Point</string>
-<!-- Open Street Map term life_ring. -->
+<!-- Open Street Map term life_ring. A floating ring used for water rescue.-->
 <string name="osm_life_ring" tools:ignore="MissingTranslation">Life Ring</string>
-<!-- Open Street Map term generic_info. -->
-<string name="osm_generic_info" tools:ignore="MissingTranslation">Info</string>
-<!-- Open Street Map term turntable. -->
+<!-- Open Street Map term generic_info. A non-specific informational marker.-->
+<string name="osm_generic_info" tools:ignore="MissingTranslation">Generic Info</string>
+<!-- Open Street Map term turntable. A rotating platform for turning vehicles or machinery.-->
 <string name="osm_turntable" tools:ignore="MissingTranslation">Turntable</string>
-<!-- Open Street Map term survey_point. -->
+<!-- Open Street Map term survey_point. A geodetic reference marker for surveying.-->
 <string name="osm_survey_point" tools:ignore="MissingTranslation">Survey Point</string>
-<!-- Open Street Map term snow_net. -->
+<!-- Open Street Map term snow_net. A netting structure used to control snow movement.-->
 <string name="osm_snow_net" tools:ignore="MissingTranslation">Snow Net</string>
-<!-- Open Street Map term silo. -->
+<!-- Open Street Map term silo. A storage tower for bulk materials, often grain.-->
 <string name="osm_silo" tools:ignore="MissingTranslation">Silo</string>
-<!-- Open Street Map term mast. -->
+<!-- Open Street Map term mast. A tall vertical structure for antennas or flags.-->
 <string name="osm_mast" tools:ignore="MissingTranslation">Mast</string>
-<!-- Open Street Map term bird_hide. -->
+<!-- Open Street Map term bird_hide. A shelter for birdwatching, often camouflaged.-->
 <string name="osm_bird_hide" tools:ignore="MissingTranslation">Bird Hide</string>
-<!-- Open Street Map term transformer_tower. -->
+<!-- Open Street Map term transformer_tower. A tower supporting electrical transformers.-->
 <string name="osm_transformer_tower" tools:ignore="MissingTranslation">Transformer Tower</string>
-<!-- Open Street Map term generic_object. -->
-<string name="osm_generic_object" tools:ignore="MissingTranslation">Object</string>
-<!-- Open Street Map term signal. -->
+<!-- Open Street Map term generic_object. A non-specific physical object or marker.-->
+<string name="osm_generic_object" tools:ignore="MissingTranslation">Generic Object</string>
+<!-- Open Street Map term signal. A traffic or railway signal device.-->
 <string name="osm_signal" tools:ignore="MissingTranslation">Signal</string>
-<!-- Open Street Map term rock. -->
+<!-- Open Street Map term rock. A notable rock or boulder feature.-->
 <string name="osm_rock" tools:ignore="MissingTranslation">Rock</string>
-<!-- Open Street Map term kiln. -->
+<!-- Open Street Map term kiln. A furnace or oven for firing ceramics or bricks.-->
 <string name="osm_kiln" tools:ignore="MissingTranslation">Kiln</string>
-<!-- Open Street Map term crane. -->
+<!-- Open Street Map term crane. A large machine for lifting and moving heavy loads.-->
 <string name="osm_crane" tools:ignore="MissingTranslation">Crane</string>
-<!-- Open Street Map term rune_stone. -->
+<!-- Open Street Map term rune_stone. A historic carved stone with inscriptions.-->
 <string name="osm_rune_stone" tools:ignore="MissingTranslation">Rune Stone</string>
-<!-- Open Street Map term milestone. -->
+<!-- Open Street Map term milestone. A marker indicating distance along a route.-->
 <string name="osm_milestone" tools:ignore="MissingTranslation">Milestone</string>
-<!-- Open Street Map term lifeguard_platform. -->
+<!-- Open Street Map term lifeguard_platform. An elevated platform for lifeguard observation.-->
 <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Lifeguard Platform</string>
-<!-- Open Street Map term water_tank. -->
+<!-- Open Street Map term water_tank. A container for storing water.-->
 <string name="osm_water_tank" tools:ignore="MissingTranslation">Water Tank</string>
-<!-- Open Street Map term sty. -->
+<!-- Open Street Map term sty. A small enclosure for keeping pigs.-->
 <string name="osm_sty" tools:ignore="MissingTranslation">Pig Sty</string>
-<!-- Open Street Map term navigationaid. -->
+<!-- Open Street Map term navigationaid. A device or mark aiding maritime navigation.-->
 <string name="osm_navigationaid" tools:ignore="MissingTranslation">Navigation Aid</string>
-<!-- Open Street Map term terminal. -->
+<!-- Open Street Map term terminal. A transport terminal for passengers or freight.-->
 <string name="osm_terminal" tools:ignore="MissingTranslation">Terminal</string>
-<!-- Open Street Map term water_tap. -->
+<!-- Open Street Map term water_tap. A tap providing potable water supply.-->
 <string name="osm_water_tap" tools:ignore="MissingTranslation">Water Tap</string>
-<!-- Open Street Map term water_well. -->
+<!-- Open Street Map term water_well. A well providing groundwater access.-->
 <string name="osm_water_well" tools:ignore="MissingTranslation">Water Well</string>
-<!-- Open Street Map term petroleum_well. -->
+<!-- Open Street Map term petroleum_well. A well used for extracting petroleum or oil.-->
 <string name="osm_petroleum_well" tools:ignore="MissingTranslation">Petroleum Well</string>
-<!-- Open Street Map term cross. -->
+<!-- Open Street Map term cross. A monumental or religious cross feature.-->
 <string name="osm_cross" tools:ignore="MissingTranslation">Cross</string>
-<!-- Open Street Map term gallows. -->
+<!-- Open Street Map term gallows. A historic or symbolic gallows structure.-->
 <string name="osm_gallows" tools:ignore="MissingTranslation">Gallows</string>
-<!-- Open Street Map term speed_camera. -->
+<!-- Open Street Map term speed_camera. A camera monitoring vehicle speed enforcement.-->
 <string name="osm_speed_camera" tools:ignore="MissingTranslation">Speed Camera</string>
-<!-- Open Street Map term siren. -->
+<!-- Open Street Map term siren. Audible warning device used for alarms or alerts.-->
 <string name="osm_siren" tools:ignore="MissingTranslation">Siren</string>
-<!-- Open Street Map term pylon. -->
+<!-- Open Street Map term pylon. Tall support or marker structure such as for power lines or road markers.-->
 <string name="osm_pylon" tools:ignore="MissingTranslation">Pylon</string>
-<!-- Open Street Map term mineshaft. -->
-<string name="osm_mineshaft" tools:ignore="MissingTranslation">Mineshaft</string>
-<!-- Open Street Map term flagpole. -->
+<!-- Open Street Map term mineshaft. Vertical or inclined passage giving access to an underground mine.-->
+<string name="osm_mineshaft" tools:ignore="MissingTranslation">Mine Shaft</string>
+<!-- Open Street Map term flagpole. Pole for flying a flag.-->
 <string name="osm_flagpole" tools:ignore="MissingTranslation">Flagpole</string>
-<!-- Open Street Map term optical_telegraph. -->
+<!-- Open Street Map term optical_telegraph. Historical visual signaling tower using shutters or semaphore arms.-->
 <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Optical Telegraph</string>
-<!-- Open Street Map term cannon. -->
+<!-- Open Street Map term cannon. Historic artillery piece, often preserved as a monument.-->
 <string name="osm_cannon" tools:ignore="MissingTranslation">Cannon</string>
-<!-- Open Street Map term boundary_stone. -->
+<!-- Open Street Map term boundary_stone. Stone marker denoting property or administrative boundaries.-->
 <string name="osm_boundary_stone" tools:ignore="MissingTranslation">Boundary Stone</string>
-<!-- Open Street Map term shed. -->
+<!-- Open Street Map term shed. Small outbuilding used for storage or shelter.-->
 <string name="osm_shed" tools:ignore="MissingTranslation">Shed</string>
-<!-- Open Street Map term traffic_cones. -->
+<!-- Open Street Map term traffic_cones. Portable cone-shaped markers used to direct traffic.-->
 <string name="osm_traffic_cones" tools:ignore="MissingTranslation">Traffic Cones</string>
-<!-- Open Street Map term firepit. -->
+<!-- Open Street Map term firepit. Outdoor structure for contained fires.-->
 <string name="osm_firepit" tools:ignore="MissingTranslation">Fire Pit</string>
-<!-- Open Street Map term stone. -->
+<!-- Open Street Map term stone. A standing stone or notable rock feature.-->
 <string name="osm_stone" tools:ignore="MissingTranslation">Stone</string>
-<!-- Open Street Map term surveillance. -->
+<!-- Open Street Map term surveillance. Area or system for monitoring, such as cameras or sensors.-->
 <string name="osm_surveillance" tools:ignore="MissingTranslation">Surveillance</string>
-<!-- Open Street Map term monitoring_station. -->
+<!-- Open Street Map term monitoring_station. Facility or device for observing environmental or technical data.-->
 <string name="osm_monitoring_station" tools:ignore="MissingTranslation">Monitoring Station</string>
-<!-- Open Street Map term wayside_shrine. -->
+<!-- Open Street Map term wayside_shrine. Small religious shrine beside a path or road.-->
 <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Wayside Shrine</string>
-<!-- Open Street Map term wayside_cross. -->
+<!-- Open Street Map term wayside_cross. Cross monument located beside a road or path.-->
 <string name="osm_wayside_cross" tools:ignore="MissingTranslation">Wayside Cross</string>
-<!-- Open Street Map term tomb. -->
+<!-- Open Street Map term tomb. Burial monument or chamber.-->
 <string name="osm_tomb" tools:ignore="MissingTranslation">Tomb</string>
-<!-- Open Street Map term traffic_signals. -->
+<!-- Open Street Map term traffic_signals. Traffic light controls at intersections or crossings.-->
 <string name="osm_traffic_signals" tools:ignore="MissingTranslation">Traffic Signals</string>
-<!-- Open Street Map term hut. -->
+<!-- Open Street Map term hut. Simple small shelter or dwelling.-->
 <string name="osm_hut" tools:ignore="MissingTranslation">Hut</string>
-<!-- Open Street Map term static_caravan. -->
+<!-- Open Street Map term static_caravan. Parked leisure caravan or mobile home not intended for frequent moving.-->
 <string name="osm_static_caravan" tools:ignore="MissingTranslation">Static Caravan</string>
-<!-- Open Street Map term bollard. -->
+<!-- Open Street Map term bollard. Short post used to control vehicle access or protect areas.-->
 <string name="osm_bollard" tools:ignore="MissingTranslation">Bollard</string>
-<!-- Open Street Map term block. -->
+<!-- Open Street Map term block. Large block-shaped structure or obstacle.-->
 <string name="osm_block" tools:ignore="MissingTranslation">Block</string>
-<!-- Open Street Map term waste_disposal. -->
+<!-- Open Street Map term waste_disposal. Facility or point for disposing waste.-->
 <string name="osm_waste_disposal" tools:ignore="MissingTranslation">Waste Disposal</string>
-<!-- Open Street Map term photo_booth. -->
+<!-- Open Street Map term photo_booth. Enclosed booth for taking ID or passport photos.-->
 <string name="osm_photo_booth" tools:ignore="MissingTranslation">Photo Booth</string>
-<!-- Open Street Map term bbq. -->
-<string name="osm_bbq" tools:ignore="MissingTranslation">Barbecue</string>
-<!-- Open Street Map term shop. -->
+<!-- Open Street Map term bbq. Outdoor barbecue grill or designated grilling spot.-->
+<string name="osm_bbq" tools:ignore="MissingTranslation">BBQ</string>
+<!-- Open Street Map term shop. Retail store selling goods.-->
 <string name="osm_shop" tools:ignore="MissingTranslation">Shop</string>
-<!-- Open Street Map term newsagent. -->
-<string name="osm_newsagent" tools:ignore="MissingTranslation">Newsagent</string>
-<!-- Open Street Map term anime. -->
-<string name="osm_anime" tools:ignore="MissingTranslation">Anime</string>
-<!-- Open Street Map term musical_instrument. -->
-<string name="osm_musical_instrument" tools:ignore="MissingTranslation">Musical Instruments</string>
-<!-- Open Street Map term vacuum_cleaner. -->
-<string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Vacuum Cleaner</string>
-<!-- Open Street Map term mobile_phone. -->
-<string name="osm_mobile_phone" tools:ignore="MissingTranslation">Mobile Phone</string>
-<!-- Open Street Map term carpet. -->
-<string name="osm_carpet" tools:ignore="MissingTranslation">Carpet</string>
-<!-- Open Street Map term trade. -->
-<string name="osm_trade" tools:ignore="MissingTranslation">Trade</string>
-<!-- Open Street Map term garden_centre. -->
-<string name="osm_garden_centre" tools:ignore="MissingTranslation">Garden Center</string>
-<!-- Open Street Map term florist. -->
-<string name="osm_florist" tools:ignore="MissingTranslation">Florist</string>
-<!-- Open Street Map term fireplace. -->
+<!-- Open Street Map term newsagent. Shop selling newspapers, magazines, and small convenience items.-->
+<string name="osm_newsagent" tools:ignore="MissingTranslation">Newsagent Shop</string>
+<!-- Open Street Map term anime. Retail shop specializing in anime-related goods and media.-->
+<string name="osm_anime" tools:ignore="MissingTranslation">Anime Shop</string>
+<!-- Open Street Map term musical_instrument. Store selling instruments and musical equipment.-->
+<string name="osm_musical_instrument" tools:ignore="MissingTranslation">Musical Instrument Shop</string>
+<!-- Open Street Map term vacuum_cleaner. Shop selling vacuum cleaners and accessories.-->
+<string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Vacuum Cleaner Shop</string>
+<!-- Open Street Map term mobile_phone. Store selling mobile phones and accessories.-->
+<string name="osm_mobile_phone" tools:ignore="MissingTranslation">Mobile Phone Shop</string>
+<!-- Open Street Map term carpet. Shop selling carpets and floor coverings.-->
+<string name="osm_carpet" tools:ignore="MissingTranslation">Carpet Shop</string>
+<!-- Open Street Map term trade. General trade or commercial retail outlet.-->
+<string name="osm_trade" tools:ignore="MissingTranslation">Trade Shop</string>
+<!-- Open Street Map term garden_centre. Retail center selling plants, gardening supplies, and outdoor items.-->
+<string name="osm_garden_centre" tools:ignore="MissingTranslation">Garden Centre Shop</string>
+<!-- Open Street Map term florist. Shop selling flowers, bouquets, and related services.-->
+<string name="osm_florist" tools:ignore="MissingTranslation">Florist Shop</string>
+<!-- Open Street Map term fireplace. Indoor or outdoor hearth for fires.-->
 <string name="osm_fireplace" tools:ignore="MissingTranslation">Fireplace</string>
-<!-- Open Street Map term massage. -->
+<!-- Open Street Map term massage. Business offering massage and bodywork services.-->
 <string name="osm_massage" tools:ignore="MissingTranslation">Massage</string>
-<!-- Open Street Map term herbalist. -->
-<string name="osm_herbalist" tools:ignore="MissingTranslation">Herbalist</string>
-<!-- Open Street Map term bag. -->
-<string name="osm_bag" tools:ignore="MissingTranslation">Bag</string>
-<!-- Open Street Map term pastry. -->
-<string name="osm_pastry" tools:ignore="MissingTranslation">Pastry</string>
-<!-- Open Street Map term deli. -->
-<string name="osm_deli" tools:ignore="MissingTranslation">Deli</string>
-<!-- Open Street Map term beverages. -->
-<string name="osm_beverages" tools:ignore="MissingTranslation">Beverages</string>
-<!-- Open Street Map term alcohol. -->
-<string name="osm_alcohol" tools:ignore="MissingTranslation">Alcohol</string>
-<!-- Open Street Map term substation. -->
+<!-- Open Street Map term herbalist. Shop selling herbs, natural remedies, and alternative health products.-->
+<string name="osm_herbalist" tools:ignore="MissingTranslation">Herbalist Shop</string>
+<!-- Open Street Map term bag. Retail shop selling bags and luggage.-->
+<string name="osm_bag" tools:ignore="MissingTranslation">Bag Shop</string>
+<!-- Open Street Map term pastry. Bakery specializing in pastries and baked goods.-->
+<string name="osm_pastry" tools:ignore="MissingTranslation">Pastry Shop</string>
+<!-- Open Street Map term deli. Delicatessen selling meats, cheeses, and prepared foods.-->
+<string name="osm_deli" tools:ignore="MissingTranslation">Deli Shop</string>
+<!-- Open Street Map term beverages. Store primarily selling drinks and bottled beverages.-->
+<string name="osm_beverages" tools:ignore="MissingTranslation">Beverages Shop</string>
+<!-- Open Street Map term alcohol. Shop selling alcoholic drinks, such as a liquor store.-->
+<string name="osm_alcohol" tools:ignore="MissingTranslation">Alcohol Shop</string>
+<!-- Open Street Map term substation. Electrical substation for distribution and transformation of power.-->
 <string name="osm_substation" tools:ignore="MissingTranslation">Substation</string>
-<!-- Open Street Map term travel_agent. -->
+<!-- Open Street Map term travel_agent. Office arranging travel, bookings, and tour services.-->
 <string name="osm_travel_agent" tools:ignore="MissingTranslation">Travel Agent</string>
-<!-- Open Street Map term research. -->
-<string name="osm_research" tools:ignore="MissingTranslation">Research</string>
-<!-- Open Street Map term newspaper. -->
-<string name="osm_newspaper" tools:ignore="MissingTranslation">Newspaper</string>
-<!-- Open Street Map term ammunition. -->
-<string name="osm_ammunition" tools:ignore="MissingTranslation">Ammunition</string>
-<!-- Open Street Map term wildlife_hide. -->
+<!-- Open Street Map term research. Facility used for scientific or academic research.-->
+<string name="osm_research" tools:ignore="MissingTranslation">Research Facility</string>
+<!-- Open Street Map term newspaper. Outlet or stand selling newspapers and periodicals.-->
+<string name="osm_newspaper" tools:ignore="MissingTranslation">Newspaper Shop</string>
+<!-- Open Street Map term ammunition. Shop selling ammunition and related shooting supplies.-->
+<string name="osm_ammunition" tools:ignore="MissingTranslation">Ammunition Shop</string>
+<!-- Open Street Map term wildlife_hide. Shelter for wildlife observation or photography.-->
 <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">Wildlife Hide</string>
-<!-- Open Street Map term watchmaker. -->
-<string name="osm_watchmaker" tools:ignore="MissingTranslation">Watchmaker</string>
-<!-- Open Street Map term tinsmith. -->
-<string name="osm_tinsmith" tools:ignore="MissingTranslation">Tinsmith</string>
-<!-- Open Street Map term sun_protection. -->
-<string name="osm_sun_protection" tools:ignore="MissingTranslation">Sun Protection</string>
-<!-- Open Street Map term sculptor. -->
-<string name="osm_sculptor" tools:ignore="MissingTranslation">Sculptor</string>
-<!-- Open Street Map term metal_construction. -->
+<!-- Open Street Map term watchmaker. Shop offering watch sales and repair services.-->
+<string name="osm_watchmaker" tools:ignore="MissingTranslation">Watchmaker Shop</string>
+<!-- Open Street Map term tinsmith. Workshop or shop for tinware and metal household items.-->
+<string name="osm_tinsmith" tools:ignore="MissingTranslation">Tinsmith Shop</string>
+<!-- Open Street Map term sun_protection. Shop selling sun protection products like sunscreens and shades.-->
+<string name="osm_sun_protection" tools:ignore="MissingTranslation">Sun Protection Shop</string>
+<!-- Open Street Map term sculptor. Artist's studio or workshop for sculpting and related work.-->
+<string name="osm_sculptor" tools:ignore="MissingTranslation">Sculptor Studio</string>
+<!-- Open Street Map term metal_construction. Workshop specializing in metal fabrication and structural metalwork.-->
 <string name="osm_metal_construction" tools:ignore="MissingTranslation">Metal Construction</string>
-<!-- Open Street Map term handicraft. -->
-<string name="osm_handicraft" tools:ignore="MissingTranslation">Handicraft</string>
-<!-- Open Street Map term cowshed. -->
+<!-- Open Street Map term handicraft. Shop selling handmade crafts and artisanal goods.-->
+<string name="osm_handicraft" tools:ignore="MissingTranslation">Handicraft Shop</string>
+<!-- Open Street Map term cowshed. Shelter or barn for keeping cattle.-->
 <string name="osm_cowshed" tools:ignore="MissingTranslation">Cowshed</string>
-<!-- Open Street Map term cabin. -->
+<!-- Open Street Map term cabin. Small simple dwelling or shelter, often in rural areas.-->
 <string name="osm_cabin" tools:ignore="MissingTranslation">Cabin</string>
-<!-- Open Street Map term barn. -->
+<!-- Open Street Map term barn. Farm building for storing crops or housing livestock.-->
 <string name="osm_barn" tools:ignore="MissingTranslation">Barn</string>
-<!-- Open Street Map term warehouse. -->
+<!-- Open Street Map term warehouse. Large storage building for goods and materials.-->
 <string name="osm_warehouse" tools:ignore="MissingTranslation">Warehouse</string>
-<!-- Open Street Map term houseboat. -->
+<!-- Open Street Map term houseboat. Boat adapted for use as a dwelling.-->
 <string name="osm_houseboat" tools:ignore="MissingTranslation">Houseboat</string>
-<!-- Open Street Map term book_store. -->
-<string name="osm_book_store" tools:ignore="MissingTranslation">Bookstore</string>
-<!-- Open Street Map term generic_place. -->
+<!-- Open Street Map term book_store. Retail shop selling books and reading materials.-->
+<string name="osm_book_store" tools:ignore="MissingTranslation">Book Store</string>
+<!-- Open Street Map term generic_place. Generic named place or location with no specific type.-->
 <string name="osm_generic_place" tools:ignore="MissingTranslation">Place</string>
-<!-- Open Street Map term hunting_stand. -->
+<!-- Open Street Map term hunting_stand. Elevated platform used for hunting or wildlife observation.-->
 <string name="osm_hunting_stand" tools:ignore="MissingTranslation">Hunting Stand</string>
-<!-- Open Street Map term game_feeding. -->
+<!-- Open Street Map term game_feeding. Location where wild game is fed or baited.-->
 <string name="osm_game_feeding" tools:ignore="MissingTranslation">Game Feeding</string>
-<!-- Open Street Map term crypt. -->
+<!-- Open Street Map term crypt. Underground burial chamber beneath a church or monument.-->
 <string name="osm_crypt" tools:ignore="MissingTranslation">Crypt</string>
-<!-- Open Street Map term animal_shelter. -->
+<!-- Open Street Map term animal_shelter. Facility providing care and refuge for homeless animals.-->
 <string name="osm_animal_shelter" tools:ignore="MissingTranslation">Animal Shelter</string>
-<!-- Open Street Map term animal_boarding. -->
+<!-- Open Street Map term animal_boarding. Facility offering temporary accommodation for pets.-->
 <string name="osm_animal_boarding" tools:ignore="MissingTranslation">Animal Boarding</string>
-<!-- Open Street Map term blood_donation. -->
+<!-- Open Street Map term blood_donation. Center or event where people donate blood.-->
 <string name="osm_blood_donation" tools:ignore="MissingTranslation">Blood Donation</string>
-<!-- Open Street Map term nursing_home. -->
+<!-- Open Street Map term nursing_home. Residential care facility for elderly or disabled people.-->
 <string name="osm_nursing_home" tools:ignore="MissingTranslation">Nursing Home</string>
-<!-- Open Street Map term dentist. -->
+<!-- Open Street Map term dentist. Dental clinic providing oral health care and treatments.-->
 <string name="osm_dentist" tools:ignore="MissingTranslation">Dentist</string>
-<!-- Open Street Map term baby_hatch. -->
+<!-- Open Street Map term baby_hatch. Safe anonymous drop-off point for unwanted infants.-->
 <string name="osm_baby_hatch" tools:ignore="MissingTranslation">Baby Hatch</string>
-<!-- Open Street Map term language_school. -->
+<!-- Open Street Map term language_school. Educational institution teaching foreign languages.-->
 <string name="osm_language_school" tools:ignore="MissingTranslation">Language School</string>
-<!-- Open Street Map term public_bookcase. -->
+<!-- Open Street Map term public_bookcase. Community shelf for exchanging free books.-->
 <string name="osm_public_bookcase" tools:ignore="MissingTranslation">Public Bookcase</string>
-<!-- Open Street Map term biergarten. -->
-<string name="osm_biergarten" tools:ignore="MissingTranslation">Beer Garden</string>
-<!-- Open Street Map term running. -->
-<string name="osm_running" tools:ignore="MissingTranslation">Running</string>
-<!-- Open Street Map term glaziery. -->
-<string name="osm_glaziery" tools:ignore="MissingTranslation">Glaziery</string>
-<!-- Open Street Map term garages. -->
+<!-- Open Street Map term biergarten. Outdoor beer garden serving drinks and casual food.-->
+<string name="osm_biergarten" tools:ignore="MissingTranslation">Biergarten</string>
+<!-- Open Street Map term running. Facility or course for running and jogging.-->
+<string name="osm_running" tools:ignore="MissingTranslation">Running Track</string>
+<!-- Open Street Map term glaziery. Workshop or shop for glass installation and repair.-->
+<string name="osm_glaziery" tools:ignore="MissingTranslation">Glaziery Shop</string>
+<!-- Open Street Map term garages. Workshops for vehicle repair and storage of cars.-->
 <string name="osm_garages" tools:ignore="MissingTranslation">Garages</string>
-<!-- Open Street Map term retail. -->
-<string name="osm_retail" tools:ignore="MissingTranslation">Retail</string>
-<!-- Open Street Map term hotel. -->
+<!-- Open Street Map term retail. General retail outlet selling various goods.-->
+<string name="osm_retail" tools:ignore="MissingTranslation">Retail Shop</string>
+<!-- Open Street Map term hotel. Accommodation providing lodging and services for travelers.-->
 <string name="osm_hotel" tools:ignore="MissingTranslation">Hotel</string>
-<!-- Open Street Map term camp_site. -->
+<!-- Open Street Map term camp_site. Area designated for camping with or without facilities.-->
 <string name="osm_camp_site" tools:ignore="MissingTranslation">Campsite</string>
-<!-- Open Street Map term rugby_league. -->
+<!-- Open Street Map term rugby_league. Facility or field for rugby league matches.-->
 <string name="osm_rugby_league" tools:ignore="MissingTranslation">Rugby League</string>
-<!-- Open Street Map term roller_skating. -->
+<!-- Open Street Map term roller_skating. Area or rink for roller skating activities.-->
 <string name="osm_roller_skating" tools:ignore="MissingTranslation">Roller Skating</string>
-<!-- Open Street Map term multi. -->
-<string name="osm_multi" tools:ignore="MissingTranslation">Multiple</string>
-<!-- Open Street Map term ice_hockey. -->
+<!-- Open Street Map term multi. Facility used for multiple sports or purposes.-->
+<string name="osm_multi" tools:ignore="MissingTranslation">Multi-use</string>
+<!-- Open Street Map term ice_hockey. Rink or facility for ice hockey.-->
 <string name="osm_ice_hockey" tools:ignore="MissingTranslation">Ice Hockey</string>
-<!-- Open Street Map term hapkido. -->
+<!-- Open Street Map term hapkido. Martial arts class or facility teaching Hapkido.-->
 <string name="osm_hapkido" tools:ignore="MissingTranslation">Hapkido</string>
-<!-- Open Street Map term croquet. -->
+<!-- Open Street Map term croquet. Croquet lawn or club for croquet games.-->
 <string name="osm_croquet" tools:ignore="MissingTranslation">Croquet</string>
-<!-- Open Street Map term cricket. -->
+<!-- Open Street Map term cricket. Pitch or facility for playing cricket.-->
 <string name="osm_cricket" tools:ignore="MissingTranslation">Cricket</string>
-<!-- Open Street Map term cockfighting. -->
+<!-- Open Street Map term cockfighting. Venue associated with bird fighting (often illegal).-->
 <string name="osm_cockfighting" tools:ignore="MissingTranslation">Cockfighting</string>
-<!-- Open Street Map term boxing. -->
+<!-- Open Street Map term boxing. Facility or ring for boxing training and matches.-->
 <string name="osm_boxing" tools:ignore="MissingTranslation">Boxing</string>
-<!-- Open Street Map term bmx. -->
+<!-- Open Street Map term bmx. Track or area for BMX biking.-->
 <string name="osm_bmx" tools:ignore="MissingTranslation">BMX</string>
-<!-- Open Street Map term billiards. -->
+<!-- Open Street Map term billiards. Pool or billiards hall for cue sports.-->
 <string name="osm_billiards" tools:ignore="MissingTranslation">Billiards</string>
-<!-- Open Street Map term toys. -->
-<string name="osm_toys" tools:ignore="MissingTranslation">Toys</string>
-<!-- Open Street Map term pyrotechnics. -->
-<string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Pyrotechnics</string>
-<!-- Open Street Map term laundry. -->
+<!-- Open Street Map term toys. Shop selling toys and games for children.-->
+<string name="osm_toys" tools:ignore="MissingTranslation">Toy Shop</string>
+<!-- Open Street Map term pyrotechnics. Shop selling fireworks and pyrotechnic displays (may be regulated).-->
+<string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Pyrotechnics Shop</string>
+<!-- Open Street Map term laundry. Laundromat or laundry service for washing clothes.-->
 <string name="osm_laundry" tools:ignore="MissingTranslation">Laundry</string>
-<!-- Open Street Map term funeral_directors. -->
+<!-- Open Street Map term funeral_directors. Business providing funeral planning and services.-->
 <string name="osm_funeral_directors" tools:ignore="MissingTranslation">Funeral Directors</string>
-<!-- Open Street Map term dry_cleaning. -->
+<!-- Open Street Map term dry_cleaning. Dry-cleaning service for professional garment cleaning.-->
 <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">Dry Cleaning</string>
-<!-- Open Street Map term copyshop. -->
+<!-- Open Street Map term copyshop. Shop offering copying, printing, and document services.-->
 <string name="osm_copyshop" tools:ignore="MissingTranslation">Copy Shop</string>
-<!-- Open Street Map term chalet. -->
+<!-- Open Street Map term chalet. Wooden vacation house or mountain lodge.-->
 <string name="osm_chalet" tools:ignore="MissingTranslation">Chalet</string>
-<!-- Open Street Map term apartment. -->
+<!-- Open Street Map term apartment. Individual residential unit within a building.-->
 <string name="osm_apartment" tools:ignore="MissingTranslation">Apartment</string>
-<!-- Open Street Map term water_ski. -->
-<string name="osm_water_ski" tools:ignore="MissingTranslation">Water Skiing</string>
-<!-- Open Street Map term water_polo. -->
+<!-- Open Street Map term water_ski. Facility or area for water skiing activities.-->
+<string name="osm_water_ski" tools:ignore="MissingTranslation">Water Ski</string>
+<!-- Open Street Map term water_polo. Pool or facility for water polo matches.-->
 <string name="osm_water_polo" tools:ignore="MissingTranslation">Water Polo</string>
-<!-- Open Street Map term table_soccer. -->
+<!-- Open Street Map term table_soccer. Tabletop foosball game area or equipment.-->
 <string name="osm_table_soccer" tools:ignore="MissingTranslation">Table Soccer</string>
-<!-- Open Street Map term table_tennis. -->
+<!-- Open Street Map term table_tennis. Table tennis (ping-pong) table or facility.-->
 <string name="osm_table_tennis" tools:ignore="MissingTranslation">Table Tennis</string>
-<!-- Open Street Map term skateboard. -->
-<string name="osm_skateboard" tools:ignore="MissingTranslation">Skateboard</string>
-<!-- Open Street Map term sailing. -->
+<!-- Open Street Map term skateboard. Area or facility for skateboarding.-->
+<string name="osm_skateboard" tools:ignore="MissingTranslation">Skateboarding</string>
+<!-- Open Street Map term sailing. Sailing activity, club, or launch site.-->
 <string name="osm_sailing" tools:ignore="MissingTranslation">Sailing</string>
-<!-- Open Street Map term safety_training. -->
+<!-- Open Street Map term safety_training. Facility for safety instruction and drills.-->
 <string name="osm_safety_training" tools:ignore="MissingTranslation">Safety Training</string>
-<!-- Open Street Map term rowing. -->
+<!-- Open Street Map term rowing. Rowing club, boathouse, or activity.-->
 <string name="osm_rowing" tools:ignore="MissingTranslation">Rowing</string>
-<!-- Open Street Map term model_aerodrome. -->
+<!-- Open Street Map term model_aerodrome. Site for flying model aircraft.-->
 <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Model Aerodrome</string>
-<!-- Open Street Map term korfball. -->
+<!-- Open Street Map term korfball. Korfball court or club.-->
 <string name="osm_korfball" tools:ignore="MissingTranslation">Korfball</string>
-<!-- Open Street Map term ice_stock. -->
+<!-- Open Street Map term ice_stock. Ice stock sport rink (Eisstock).-->
 <string name="osm_ice_stock" tools:ignore="MissingTranslation">Ice Stock</string>
-<!-- Open Street Map term gymnastics. -->
+<!-- Open Street Map term gymnastics. Gymnastics hall or training facility.-->
 <string name="osm_gymnastics" tools:ignore="MissingTranslation">Gymnastics</string>
-<!-- Open Street Map term football. -->
+<!-- Open Street Map term football. Soccer/football pitch or facility.-->
 <string name="osm_football" tools:ignore="MissingTranslation">Football</string>
-<!-- Open Street Map term field_hockey. -->
+<!-- Open Street Map term field_hockey. Field hockey pitch or facility.-->
 <string name="osm_field_hockey" tools:ignore="MissingTranslation">Field Hockey</string>
-<!-- Open Street Map term equestrian. -->
+<!-- Open Street Map term equestrian. Horse riding area, stables, or club.-->
 <string name="osm_equestrian" tools:ignore="MissingTranslation">Equestrian</string>
-<!-- Open Street Map term cycling. -->
+<!-- Open Street Map term cycling. Cycling route, club, or facility.-->
 <string name="osm_cycling" tools:ignore="MissingTranslation">Cycling</string>
-<!-- Open Street Map term curling. -->
+<!-- Open Street Map term curling. Curling rink or club.-->
 <string name="osm_curling" tools:ignore="MissingTranslation">Curling</string>
-<!-- Open Street Map term cricket_nets. -->
+<!-- Open Street Map term cricket_nets. Practice nets for cricket.-->
 <string name="osm_cricket_nets" tools:ignore="MissingTranslation">Cricket Nets</string>
-<!-- Open Street Map term cliff_diving. -->
+<!-- Open Street Map term cliff_diving. Natural spot used for cliff diving.-->
 <string name="osm_cliff_diving" tools:ignore="MissingTranslation">Cliff Diving</string>
-<!-- Open Street Map term boules. -->
+<!-- Open Street Map term boules. Boules or pétanque court.-->
 <string name="osm_boules" tools:ignore="MissingTranslation">Boules</string>
-<!-- Open Street Map term bobsleigh. -->
+<!-- Open Street Map term bobsleigh. Bobsleigh track facility.-->
 <string name="osm_bobsleigh" tools:ignore="MissingTranslation">Bobsleigh</string>
-<!-- Open Street Map term baseball. -->
+<!-- Open Street Map term baseball. Baseball field or diamond.-->
 <string name="osm_baseball" tools:ignore="MissingTranslation">Baseball</string>
-<!-- Open Street Map term aikido. -->
+<!-- Open Street Map term aikido. Aikido dojo or class.-->
 <string name="osm_aikido" tools:ignore="MissingTranslation">Aikido</string>
-<!-- Open Street Map term 10pin. -->
+<!-- Open Street Map term 10pin. Tenpin bowling alley.-->
 <string name="osm_10pin" tools:ignore="MissingTranslation">Tenpin Bowling</string>
-<!-- Open Street Map term weapons. -->
-<string name="osm_weapons" tools:ignore="MissingTranslation">Weapons</string>
-<!-- Open Street Map term pet. -->
-<string name="osm_pet" tools:ignore="MissingTranslation">Pet</string>
-<!-- Open Street Map term money_lender. -->
+<!-- Open Street Map term weapons. Retailer selling weapons and ammunition.-->
+<string name="osm_weapons" tools:ignore="MissingTranslation">Weapons Shop</string>
+<!-- Open Street Map term pet. Shop selling animals and pet supplies.-->
+<string name="osm_pet" tools:ignore="MissingTranslation">Pet Shop</string>
+<!-- Open Street Map term money_lender. Business offering loans and cash services.-->
 <string name="osm_money_lender" tools:ignore="MissingTranslation">Money Lender</string>
-<!-- Open Street Map term gift. -->
+<!-- Open Street Map term gift. Retailer of gifts and souvenirs.-->
 <string name="osm_gift" tools:ignore="MissingTranslation">Gift Shop</string>
-<!-- Open Street Map term books. -->
-<string name="osm_books" tools:ignore="MissingTranslation">Books</string>
-<!-- Open Street Map term bookmaker. -->
+<!-- Open Street Map term books. Retailer selling books.-->
+<string name="osm_books" tools:ignore="MissingTranslation">Book Shop</string>
+<!-- Open Street Map term bookmaker. Betting shop or odds provider.-->
 <string name="osm_bookmaker" tools:ignore="MissingTranslation">Bookmaker</string>
-<!-- Open Street Map term photo. -->
-<string name="osm_photo" tools:ignore="MissingTranslation">Photo</string>
-<!-- Open Street Map term craft. -->
-<string name="osm_craft" tools:ignore="MissingTranslation">Crafts</string>
-<!-- Open Street Map term motorcycle. -->
-<string name="osm_motorcycle" tools:ignore="MissingTranslation">Motorcycle</string>
-<!-- Open Street Map term hunting. -->
-<string name="osm_hunting" tools:ignore="MissingTranslation">Hunting</string>
-<!-- Open Street Map term window_blind. -->
-<string name="osm_window_blind" tools:ignore="MissingTranslation">Window Blinds</string>
-<!-- Open Street Map term curtain. -->
-<string name="osm_curtain" tools:ignore="MissingTranslation">Curtains</string>
-<!-- Open Street Map term antiques. -->
-<string name="osm_antiques" tools:ignore="MissingTranslation">Antiques</string>
-<!-- Open Street Map term paint. -->
-<string name="osm_paint" tools:ignore="MissingTranslation">Paint</string>
-<!-- Open Street Map term tattoo. -->
-<string name="osm_tattoo" tools:ignore="MissingTranslation">Tattoo</string>
-<!-- Open Street Map term nutrition_supplements. -->
-<string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Supplements</string>
-<!-- Open Street Map term hearing_aids. -->
-<string name="osm_hearing_aids" tools:ignore="MissingTranslation">Hearing Aids</string>
-<!-- Open Street Map term cosmetics. -->
-<string name="osm_cosmetics" tools:ignore="MissingTranslation">Cosmetics</string>
-<!-- Open Street Map term watches. -->
-<string name="osm_watches" tools:ignore="MissingTranslation">Watches</string>
-<!-- Open Street Map term jewelry. -->
-<string name="osm_jewelry" tools:ignore="MissingTranslation">Jewelry</string>
-<!-- Open Street Map term boutique. -->
-<string name="osm_boutique" tools:ignore="MissingTranslation">Boutique</string>
-<!-- Open Street Map term baby_goods. -->
-<string name="osm_baby_goods" tools:ignore="MissingTranslation">Baby Goods</string>
-<!-- Open Street Map term tea. -->
-<string name="osm_tea" tools:ignore="MissingTranslation">Tea</string>
-<!-- Open Street Map term pasta. -->
-<string name="osm_pasta" tools:ignore="MissingTranslation">Pasta</string>
-<!-- Open Street Map term coffee. -->
-<string name="osm_coffee" tools:ignore="MissingTranslation">Coffee</string>
-<!-- Open Street Map term quango. -->
+<!-- Open Street Map term photo. Photography services or photo shop.-->
+<string name="osm_photo" tools:ignore="MissingTranslation">Photo Shop</string>
+<!-- Open Street Map term craft. Retailer of handmade goods and craft supplies.-->
+<string name="osm_craft" tools:ignore="MissingTranslation">Craft Shop</string>
+<!-- Open Street Map term motorcycle. Motorcycle sales and service shop.-->
+<string name="osm_motorcycle" tools:ignore="MissingTranslation">Motorcycle Shop</string>
+<!-- Open Street Map term hunting. Retailer selling hunting equipment.-->
+<string name="osm_hunting" tools:ignore="MissingTranslation">Hunting Shop</string>
+<!-- Open Street Map term window_blind. Shop selling window blinds and shades.-->
+<string name="osm_window_blind" tools:ignore="MissingTranslation">Window Blind Shop</string>
+<!-- Open Street Map term curtain. Retailer of curtains and drapery.-->
+<string name="osm_curtain" tools:ignore="MissingTranslation">Curtain Shop</string>
+<!-- Open Street Map term antiques. Dealer selling antiques and collectibles.-->
+<string name="osm_antiques" tools:ignore="MissingTranslation">Antique Shop</string>
+<!-- Open Street Map term paint. Retailer of paint and decorating supplies.-->
+<string name="osm_paint" tools:ignore="MissingTranslation">Paint Shop</string>
+<!-- Open Street Map term tattoo. Tattoo parlor offering body art.-->
+<string name="osm_tattoo" tools:ignore="MissingTranslation">Tattoo Studio</string>
+<!-- Open Street Map term nutrition_supplements. Store selling dietary supplements.-->
+<string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Nutrition Supplements Shop</string>
+<!-- Open Street Map term hearing_aids. Clinic or retailer for hearing aids.-->
+<string name="osm_hearing_aids" tools:ignore="MissingTranslation">Hearing Aid Shop</string>
+<!-- Open Street Map term cosmetics. Retailer selling beauty and cosmetic products.-->
+<string name="osm_cosmetics" tools:ignore="MissingTranslation">Cosmetic Shop</string>
+<!-- Open Street Map term watches. Retailer selling watches and repairs.-->
+<string name="osm_watches" tools:ignore="MissingTranslation">Watch Shop</string>
+<!-- Open Street Map term jewelry. Jewelry store or retailer.-->
+<string name="osm_jewelry" tools:ignore="MissingTranslation">Jewelry Shop</string>
+<!-- Open Street Map term boutique. Small specialty clothing or accessory shop.-->
+<string name="osm_boutique" tools:ignore="MissingTranslation">Boutique Shop</string>
+<!-- Open Street Map term baby_goods. Retailer of baby products and equipment.-->
+<string name="osm_baby_goods" tools:ignore="MissingTranslation">Baby Goods Shop</string>
+<!-- Open Street Map term tea. Shop specializing in tea.-->
+<string name="osm_tea" tools:ignore="MissingTranslation">Tea Shop</string>
+<!-- Open Street Map term pasta. Retailer specializing in pasta and related foods.-->
+<string name="osm_pasta" tools:ignore="MissingTranslation">Pasta Shop</string>
+<!-- Open Street Map term coffee. Cafe or coffee shop.-->
+<string name="osm_coffee" tools:ignore="MissingTranslation">Coffee Shop</string>
+<!-- Open Street Map term quango. Quasi‑autonomous government organization or public body.-->
 <string name="osm_quango" tools:ignore="MissingTranslation">Quango</string>
-<!-- Open Street Map term political_party. -->
+<!-- Open Street Map term political_party. Office or headquarters of a political party.-->
 <string name="osm_political_party" tools:ignore="MissingTranslation">Political Party</string>
-<!-- Open Street Map term association. -->
+<!-- Open Street Map term association. Non‑profit association or club.-->
 <string name="osm_association" tools:ignore="MissingTranslation">Association</string>
-<!-- Open Street Map term architect. -->
+<!-- Open Street Map term architect. Architect office or firm.-->
 <string name="osm_architect" tools:ignore="MissingTranslation">Architect</string>
-<!-- Open Street Map term advertising_agency. -->
+<!-- Open Street Map term advertising_agency. Advertising or marketing agency.-->
 <string name="osm_advertising_agency" tools:ignore="MissingTranslation">Advertising Agency</string>
-<!-- Open Street Map term summer_camp. -->
+<!-- Open Street Map term summer_camp. Seasonal camp for youth activities.-->
 <string name="osm_summer_camp" tools:ignore="MissingTranslation">Summer Camp</string>
-<!-- Open Street Map term dance. -->
-<string name="osm_dance" tools:ignore="MissingTranslation">Dance</string>
-<!-- Open Street Map term amusement_arcade. -->
+<!-- Open Street Map term dance. Dance school, studio, or hall.-->
+<string name="osm_dance" tools:ignore="MissingTranslation">Dance Studio</string>
+<!-- Open Street Map term amusement_arcade. Arcade with electronic games and machines.-->
 <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Amusement Arcade</string>
-<!-- Open Street Map term adult_gaming_centre. -->
-<string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Adult Gaming Center</string>
-<!-- Open Street Map term window_construction. -->
+<!-- Open Street Map term adult_gaming_centre. Gaming centre restricted to adults.-->
+<string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Adult Gaming Centre</string>
+<!-- Open Street Map term window_construction. Business making or fitting windows.-->
 <string name="osm_window_construction" tools:ignore="MissingTranslation">Window Construction</string>
-<!-- Open Street Map term upholsterer. -->
+<!-- Open Street Map term upholsterer. Furniture upholstery service or workshop.-->
 <string name="osm_upholsterer" tools:ignore="MissingTranslation">Upholsterer</string>
-<!-- Open Street Map term shoemaker. -->
+<!-- Open Street Map term shoemaker. Shoemaker or shoe repair service.-->
 <string name="osm_shoemaker" tools:ignore="MissingTranslation">Shoemaker</string>
-<!-- Open Street Map term sawmill. -->
+<!-- Open Street Map term sawmill. Lumber mill or timber processing facility.-->
 <string name="osm_sawmill" tools:ignore="MissingTranslation">Sawmill</string>
-<!-- Open Street Map term pottery. -->
-<string name="osm_pottery" tools:ignore="MissingTranslation">Pottery</string>
-<!-- Open Street Map term key_cutter. -->
+<!-- Open Street Map term pottery. Pottery workshop, studio, or shop.-->
+<string name="osm_pottery" tools:ignore="MissingTranslation">Pottery Studio</string>
+<!-- Open Street Map term key_cutter. Key cutting service.-->
 <string name="osm_key_cutter" tools:ignore="MissingTranslation">Key Cutter</string>
-<!-- Open Street Map term hvac. -->
-<string name="osm_hvac" tools:ignore="MissingTranslation">HVAC</string>
-<!-- Open Street Map term clockmaker. -->
+<!-- Open Street Map term hvac. Heating, ventilation and air conditioning contractor.-->
+<string name="osm_hvac" tools:ignore="MissingTranslation">HVAC Contractor</string>
+<!-- Open Street Map term clockmaker. Clock and watch maker or repairer.-->
 <string name="osm_clockmaker" tools:ignore="MissingTranslation">Clockmaker</string>
-<!-- Open Street Map term carpenter. -->
+<!-- Open Street Map term carpenter. Carpentry service or workshop.-->
 <string name="osm_carpenter" tools:ignore="MissingTranslation">Carpenter</string>
-<!-- Open Street Map term builder. -->
+<!-- Open Street Map term builder. Building contractor or construction firm.-->
 <string name="osm_builder" tools:ignore="MissingTranslation">Builder</string>
-<!-- Open Street Map term bookbinder. -->
+<!-- Open Street Map term bookbinder. Bookbinding workshop or service.-->
 <string name="osm_bookbinder" tools:ignore="MissingTranslation">Bookbinder</string>
-<!-- Open Street Map term boatbuilder. -->
-<string name="osm_boatbuilder" tools:ignore="MissingTranslation">Boatbuilder</string>
-<!-- Open Street Map term brewery. -->
+<!-- Open Street Map term boatbuilder. Manufacturer or builder of boats.-->
+<string name="osm_boatbuilder" tools:ignore="MissingTranslation">Boat Builder</string>
+<!-- Open Street Map term brewery. Beer brewery or microbrewery.-->
 <string name="osm_brewery" tools:ignore="MissingTranslation">Brewery</string>
-<!-- Open Street Map term blacksmith. -->
+<!-- Open Street Map term blacksmith. Metalworking and forging workshop.-->
 <string name="osm_blacksmith" tools:ignore="MissingTranslation">Blacksmith</string>
-<!-- Open Street Map term basket_maker. -->
+<!-- Open Street Map term basket_maker. Handmade basket craft workshop.-->
 <string name="osm_basket_maker" tools:ignore="MissingTranslation">Basket Maker</string>
-<!-- Open Street Map term greenhouse. -->
+<!-- Open Street Map term greenhouse. Plant nursery greenhouse.-->
 <string name="osm_greenhouse" tools:ignore="MissingTranslation">Greenhouse</string>
-<!-- Open Street Map term farm_auxiliary. -->
+<!-- Open Street Map term farm_auxiliary. Auxiliary farm building or service.-->
 <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Farm Auxiliary</string>
-<!-- Open Street Map term civic. -->
-<string name="osm_civic" tools:ignore="MissingTranslation">Civic</string>
-<!-- Open Street Map term bungalow. -->
+<!-- Open Street Map term civic. Public civic building or facility.-->
+<string name="osm_civic" tools:ignore="MissingTranslation">Civic Building</string>
+<!-- Open Street Map term bungalow. Single‑storey residential house.-->
 <string name="osm_bungalow" tools:ignore="MissingTranslation">Bungalow</string>
-<!-- Open Street Map term detached. -->
+<!-- Open Street Map term detached. Detached residential house.-->
 <string name="osm_detached" tools:ignore="MissingTranslation">Detached House</string>
-<!-- Open Street Map term hair_dresser. -->
-<string name="osm_hair_dresser" tools:ignore="MissingTranslation">Hairdresser</string>
-<!-- Open Street Map term clothing_store. -->
-<string name="osm_clothing_store" tools:ignore="MissingTranslation">Clothing Store</string>
-<!-- Open Street Map term user. -->
+<!-- Open Street Map term hair_dresser. Hair salon or barber.-->
+<string name="osm_hair_dresser" tools:ignore="MissingTranslation">Hair Dresser</string>
+<!-- Open Street Map term clothing_store. Retail clothing shop.-->
+<string name="osm_clothing_store" tools:ignore="MissingTranslation">Clothing Shop</string>
+<!-- Open Street Map term user. Tag related to a user or account (context dependent).-->
 <string name="osm_user" tools:ignore="MissingTranslation">User</string>
-<!-- Open Street Map term dojo. -->
+<!-- Open Street Map term dojo. Martial arts training hall.-->
 <string name="osm_dojo" tools:ignore="MissingTranslation">Dojo</string>
-<!-- Open Street Map term nightclub. -->
+<!-- Open Street Map term nightclub. Late‑night entertainment venue.-->
 <string name="osm_nightclub" tools:ignore="MissingTranslation">Nightclub</string>
-<!-- Open Street Map term community_centre. -->
-<string name="osm_community_centre" tools:ignore="MissingTranslation">Community Center</string>
-<!-- Open Street Map term brothel. -->
+<!-- Open Street Map term community_centre. Local community centre or hub.-->
+<string name="osm_community_centre" tools:ignore="MissingTranslation">Community Centre</string>
+<!-- Open Street Map term brothel. Licensed prostitution establishment.-->
 <string name="osm_brothel" tools:ignore="MissingTranslation">Brothel</string>
-<!-- Open Street Map term veterinary. -->
-<string name="osm_veterinary" tools:ignore="MissingTranslation">Veterinary</string>
-<!-- Open Street Map term social_facility. -->
+<!-- Open Street Map term veterinary. Veterinary clinic or animal hospital.-->
+<string name="osm_veterinary" tools:ignore="MissingTranslation">Veterinary Clinic</string>
+<!-- Open Street Map term social_facility. Facility offering social care services.-->
 <string name="osm_social_facility" tools:ignore="MissingTranslation">Social Facility</string>
-<!-- Open Street Map term clinic. -->
+<!-- Open Street Map term clinic. Health clinic or medical practice.-->
 <string name="osm_clinic" tools:ignore="MissingTranslation">Clinic</string>
-<!-- Open Street Map term charging_station. -->
+<!-- Open Street Map term charging_station. Electric vehicle charging point.-->
 <string name="osm_charging_station" tools:ignore="MissingTranslation">Charging Station</string>
-<!-- Open Street Map term kindergarten. -->
+<!-- Open Street Map term kindergarten. Preschool or kindergarten.-->
 <string name="osm_kindergarten" tools:ignore="MissingTranslation">Kindergarten</string>
-<!-- Open Street Map term ice_cream. -->
-<string name="osm_ice_cream" tools:ignore="MissingTranslation">Ice Cream</string>
-<!-- Open Street Map term fast_food. -->
-<string name="osm_fast_food" tools:ignore="MissingTranslation">Fast Food</string>
-<!-- Open Street Map term commercial. -->
-<string name="osm_commercial" tools:ignore="MissingTranslation">Commercial</string>
-<!-- Open Street Map term canoe. -->
-<string name="osm_canoe" tools:ignore="MissingTranslation">Canoe</string>
-<!-- Open Street Map term scuba_diving. -->
+<!-- Open Street Map term ice_cream. Ice cream parlor or vendor.-->
+<string name="osm_ice_cream" tools:ignore="MissingTranslation">Ice Cream Shop</string>
+<!-- Open Street Map term fast_food. Fast food outlet or take‑away.-->
+<string name="osm_fast_food" tools:ignore="MissingTranslation">Fast Food Restaurant</string>
+<!-- Open Street Map term commercial. Commercial business building.-->
+<string name="osm_commercial" tools:ignore="MissingTranslation">Commercial Building</string>
+<!-- Open Street Map term canoe. Canoeing launch, rental, or activity.-->
+<string name="osm_canoe" tools:ignore="MissingTranslation">Canoeing</string>
+<!-- Open Street Map term scuba_diving. Scuba diving site, school, or center.-->
 <string name="osm_scuba_diving" tools:ignore="MissingTranslation">Scuba Diving</string>
-<!-- Open Street Map term fishing. -->
+<!-- Open Street Map term fishing. Fishing spot, pier, or club.-->
 <string name="osm_fishing" tools:ignore="MissingTranslation">Fishing</string>
-<!-- Open Street Map term optician. -->
+<!-- Open Street Map term optician. Optician shop and eye care services.-->
 <string name="osm_optician" tools:ignore="MissingTranslation">Optician</string>
-<!-- Open Street Map term confectionery. -->
-<string name="osm_confectionery" tools:ignore="MissingTranslation">Confectionery</string>
-<!-- Open Street Map term bunker. -->
+<!-- Open Street Map term confectionery. Shop selling sweets, chocolate, and candy.-->
+<string name="osm_confectionery" tools:ignore="MissingTranslation">Confectionery Shop</string>
+<!-- Open Street Map term bunker. Underground bunker or wartime shelter.-->
 <string name="osm_bunker" tools:ignore="MissingTranslation">Bunker</string>
-<!-- Open Street Map term sleeping_pods. -->
+<!-- Open Street Map term sleeping_pods. Capsule accommodation pods.-->
 <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Sleeping Pods</string>
-<!-- Open Street Map term motel. -->
+<!-- Open Street Map term motel. Roadside motel offering rooms.-->
 <string name="osm_motel" tools:ignore="MissingTranslation">Motel</string>
-<!-- Open Street Map term guest_house. -->
+<!-- Open Street Map term guest_house. Guest house or small hotel.-->
 <string name="osm_guest_house" tools:ignore="MissingTranslation">Guest House</string>
-<!-- Open Street Map term wrestling. -->
+<!-- Open Street Map term wrestling. Indoor or outdoor area for wrestling matches or training.-->
 <string name="osm_wrestling" tools:ignore="MissingTranslation">Wrestling</string>
-<!-- Open Street Map term toboggan. -->
+<!-- Open Street Map term toboggan. Track or slope used for tobogganing or sled rides.-->
 <string name="osm_toboggan" tools:ignore="MissingTranslation">Toboggan</string>
-<!-- Open Street Map term skiing. -->
+<!-- Open Street Map term skiing. Ski slope, lift, or area for alpine skiing.-->
 <string name="osm_skiing" tools:ignore="MissingTranslation">Skiing</string>
-<!-- Open Street Map term rc_car. -->
+<!-- Open Street Map term rc_car. Track or area for remote-controlled car racing.-->
 <string name="osm_rc_car" tools:ignore="MissingTranslation">RC Car</string>
-<!-- Open Street Map term paddle_tennis. -->
+<!-- Open Street Map term paddle_tennis. Court for paddle tennis (padel) play.-->
 <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Paddle Tennis</string>
-<!-- Open Street Map term hockey. -->
+<!-- Open Street Map term hockey. Field or rink used for hockey games.-->
 <string name="osm_hockey" tools:ignore="MissingTranslation">Hockey</string>
-<!-- Open Street Map term fencing. -->
+<!-- Open Street Map term fencing. Venue or club for sport fencing and training.-->
 <string name="osm_fencing" tools:ignore="MissingTranslation">Fencing</string>
-<!-- Open Street Map term bowls. -->
+<!-- Open Street Map term bowls. Green or facility for lawn bowls.-->
 <string name="osm_bowls" tools:ignore="MissingTranslation">Bowls</string>
-<!-- Open Street Map term badminton. -->
+<!-- Open Street Map term badminton. Court used for badminton matches.-->
 <string name="osm_badminton" tools:ignore="MissingTranslation">Badminton</string>
-<!-- Open Street Map term archery. -->
+<!-- Open Street Map term archery. Range or club for archery practice and events.-->
 <string name="osm_archery" tools:ignore="MissingTranslation">Archery</string>
-<!-- Open Street Map term american_football. -->
+<!-- Open Street Map term american_football. Pitch for American football games.-->
 <string name="osm_american_football" tools:ignore="MissingTranslation">American Football</string>
-<!-- Open Street Map term travel_agency. -->
+<!-- Open Street Map term travel_agency. Business offering travel booking and related services.-->
 <string name="osm_travel_agency" tools:ignore="MissingTranslation">Travel Agency</string>
-<!-- Open Street Map term tobacco. -->
-<string name="osm_tobacco" tools:ignore="MissingTranslation">Tobacco</string>
-<!-- Open Street Map term e_cigarette. -->
-<string name="osm_e_cigarette" tools:ignore="MissingTranslation">E Cigarette</string>
-<!-- Open Street Map term video. -->
-<string name="osm_video" tools:ignore="MissingTranslation">Video</string>
-<!-- Open Street Map term car_repair. -->
+<!-- Open Street Map term tobacco. Retail shop selling tobacco products.-->
+<string name="osm_tobacco" tools:ignore="MissingTranslation">Tobacco Shop</string>
+<!-- Open Street Map term e_cigarette. Retail shop selling electronic cigarettes and vaping supplies.-->
+<string name="osm_e_cigarette" tools:ignore="MissingTranslation">E-Cigarette Shop</string>
+<!-- Open Street Map term video. Retail store renting or selling videos and DVDs.-->
+<string name="osm_video" tools:ignore="MissingTranslation">Video Shop</string>
+<!-- Open Street Map term car_repair. Garage offering vehicle repair and maintenance services.-->
 <string name="osm_car_repair" tools:ignore="MissingTranslation">Car Repair</string>
-<!-- Open Street Map term hifi. -->
-<string name="osm_hifi" tools:ignore="MissingTranslation">Hifi</string>
-<!-- Open Street Map term lamps. -->
-<string name="osm_lamps" tools:ignore="MissingTranslation">Lamps</string>
-<!-- Open Street Map term kitchen. -->
-<string name="osm_kitchen" tools:ignore="MissingTranslation">Kitchen</string>
-<!-- Open Street Map term interior_decoration. -->
-<string name="osm_interior_decoration" tools:ignore="MissingTranslation">Interior Decoration</string>
-<!-- Open Street Map term houseware. -->
-<string name="osm_houseware" tools:ignore="MissingTranslation">Houseware</string>
-<!-- Open Street Map term erotic. -->
-<string name="osm_erotic" tools:ignore="MissingTranslation">Erotic</string>
-<!-- Open Street Map term beauty. -->
-<string name="osm_beauty" tools:ignore="MissingTranslation">Beauty</string>
-<!-- Open Street Map term wine. -->
-<string name="osm_wine" tools:ignore="MissingTranslation">Wine</string>
-<!-- Open Street Map term dairy. -->
-<string name="osm_dairy" tools:ignore="MissingTranslation">Dairy</string>
-<!-- Open Street Map term cheese. -->
-<string name="osm_cheese" tools:ignore="MissingTranslation">Cheese</string>
-<!-- Open Street Map term bakery. -->
-<string name="osm_bakery" tools:ignore="MissingTranslation">Bakery</string>
-<!-- Open Street Map term telecommunication. -->
-<string name="osm_telecommunication" tools:ignore="MissingTranslation">Telecommunication</string>
-<!-- Open Street Map term tax. -->
-<string name="osm_tax" tools:ignore="MissingTranslation">Tax</string>
-<!-- Open Street Map term real_estate_agent. -->
+<!-- Open Street Map term hifi. Retail shop selling hi-fi and audio equipment.-->
+<string name="osm_hifi" tools:ignore="MissingTranslation">Hi-Fi Shop</string>
+<!-- Open Street Map term lamps. Retail shop selling lighting, lamps, and fixtures.-->
+<string name="osm_lamps" tools:ignore="MissingTranslation">Lamp Shop</string>
+<!-- Open Street Map term kitchen. Retail shop selling kitchen furniture and fittings.-->
+<string name="osm_kitchen" tools:ignore="MissingTranslation">Kitchen Shop</string>
+<!-- Open Street Map term interior_decoration. Store selling home decor and interior items.-->
+<string name="osm_interior_decoration" tools:ignore="MissingTranslation">Interior Decoration Shop</string>
+<!-- Open Street Map term houseware. Retail shop for household goods and utensils.-->
+<string name="osm_houseware" tools:ignore="MissingTranslation">Houseware Shop</string>
+<!-- Open Street Map term erotic. Retail shop selling adult and erotic products.-->
+<string name="osm_erotic" tools:ignore="MissingTranslation">Erotic Shop</string>
+<!-- Open Street Map term beauty. Shop or salon selling beauty products or services.-->
+<string name="osm_beauty" tools:ignore="MissingTranslation">Beauty Shop</string>
+<!-- Open Street Map term wine. Retail store specializing in wine and related products.-->
+<string name="osm_wine" tools:ignore="MissingTranslation">Wine Shop</string>
+<!-- Open Street Map term dairy. Retail shop selling milk and dairy products.-->
+<string name="osm_dairy" tools:ignore="MissingTranslation">Dairy Shop</string>
+<!-- Open Street Map term cheese. Retail shop specializing in cheese products.-->
+<string name="osm_cheese" tools:ignore="MissingTranslation">Cheese Shop</string>
+<!-- Open Street Map term bakery. Shop baking and selling bread, pastries, and baked goods.-->
+<string name="osm_bakery" tools:ignore="MissingTranslation">Bakery Shop</string>
+<!-- Open Street Map term telecommunication. Store offering phone sales and telecommunication services.-->
+<string name="osm_telecommunication" tools:ignore="MissingTranslation">Telecommunication Shop</string>
+<!-- Open Street Map term tax. Office providing tax advice and related services.-->
+<string name="osm_tax" tools:ignore="MissingTranslation">Tax Office</string>
+<!-- Open Street Map term real_estate_agent. Agency handling property sales, rentals, and listings.-->
 <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Real Estate Agent</string>
-<!-- Open Street Map term notary. -->
+<!-- Open Street Map term notary. Office of a notary public for legal notarization services.-->
 <string name="osm_notary" tools:ignore="MissingTranslation">Notary</string>
-<!-- Open Street Map term ngo. -->
-<string name="osm_ngo" tools:ignore="MissingTranslation">NGO</string>
-<!-- Open Street Map term lawyer. -->
+<!-- Open Street Map term ngo. Office of a non-governmental organization.-->
+<string name="osm_ngo" tools:ignore="MissingTranslation">NGO Office</string>
+<!-- Open Street Map term lawyer. Legal office providing attorney and legal services.-->
 <string name="osm_lawyer" tools:ignore="MissingTranslation">Lawyer</string>
-<!-- Open Street Map term it. -->
-<string name="osm_it" tools:ignore="MissingTranslation">IT</string>
-<!-- Open Street Map term foundation. -->
+<!-- Open Street Map term it. Business providing information technology services.-->
+<string name="osm_it" tools:ignore="MissingTranslation">IT Services</string>
+<!-- Open Street Map term foundation. Office or premises of a charitable or grant-making foundation.-->
 <string name="osm_foundation" tools:ignore="MissingTranslation">Foundation</string>
-<!-- Open Street Map term employment_agency. -->
+<!-- Open Street Map term employment_agency. Agency assisting with job placement and recruitment.-->
 <string name="osm_employment_agency" tools:ignore="MissingTranslation">Employment Agency</string>
-<!-- Open Street Map term educational_institution. -->
+<!-- Open Street Map term educational_institution. School, college, or other educational facility.-->
 <string name="osm_educational_institution" tools:ignore="MissingTranslation">Educational Institution</string>
-<!-- Open Street Map term adoption_agency. -->
+<!-- Open Street Map term adoption_agency. Agency arranging and advising on adoptions.-->
 <string name="osm_adoption_agency" tools:ignore="MissingTranslation">Adoption Agency</string>
-<!-- Open Street Map term miniature_golf. -->
+<!-- Open Street Map term miniature_golf. Mini golf course for leisure and family play.-->
 <string name="osm_miniature_golf" tools:ignore="MissingTranslation">Miniature Golf</string>
-<!-- Open Street Map term building. -->
+<!-- Open Street Map term building. A constructed structure or building.-->
 <string name="osm_building" tools:ignore="MissingTranslation">Building</string>
-<!-- Open Street Map term winery. -->
+<!-- Open Street Map term winery. Facility where wine is produced and often sold.-->
 <string name="osm_winery" tools:ignore="MissingTranslation">Winery</string>
-<!-- Open Street Map term tiler. -->
+<!-- Open Street Map term tiler. Trade business installing tiles and tiling surfaces.-->
 <string name="osm_tiler" tools:ignore="MissingTranslation">Tiler</string>
-<!-- Open Street Map term chimney_sweeper. -->
+<!-- Open Street Map term chimney_sweeper. Service provider for chimney cleaning and maintenance.-->
 <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Chimney Sweeper</string>
-<!-- Open Street Map term stand_builder. -->
+<!-- Open Street Map term stand_builder. Company that builds exhibition stands and display booths.-->
 <string name="osm_stand_builder" tools:ignore="MissingTranslation">Stand Builder</string>
-<!-- Open Street Map term saddler. -->
+<!-- Open Street Map term saddler. Workshop or shop making and repairing saddles and leather goods.-->
 <string name="osm_saddler" tools:ignore="MissingTranslation">Saddler</string>
-<!-- Open Street Map term plumber. -->
+<!-- Open Street Map term plumber. Service provider for plumbing installation and repair.-->
 <string name="osm_plumber" tools:ignore="MissingTranslation">Plumber</string>
-<!-- Open Street Map term plasterer. -->
+<!-- Open Street Map term plasterer. Tradesperson performing wall and ceiling plastering.-->
 <string name="osm_plasterer" tools:ignore="MissingTranslation">Plasterer</string>
-<!-- Open Street Map term painter. -->
+<!-- Open Street Map term painter. Professional offering painting services for buildings and interiors.-->
 <string name="osm_painter" tools:ignore="MissingTranslation">Painter</string>
-<!-- Open Street Map term jeweller. -->
-<string name="osm_jeweller" tools:ignore="MissingTranslation">Jeweller</string>
-<!-- Open Street Map term floorer. -->
+<!-- Open Street Map term jeweller. Shop or workshop selling and repairing jewelry.-->
+<string name="osm_jeweller" tools:ignore="MissingTranslation">Jewellery Shop</string>
+<!-- Open Street Map term floorer. Business fitting floors and floor coverings.-->
 <string name="osm_floorer" tools:ignore="MissingTranslation">Floorer</string>
-<!-- Open Street Map term distillery. -->
+<!-- Open Street Map term distillery. Facility producing distilled spirits, often with tours and sales.-->
 <string name="osm_distillery" tools:ignore="MissingTranslation">Distillery</string>
-<!-- Open Street Map term carpet_layer. -->
+<!-- Open Street Map term carpet_layer. Service installing carpets and related floor coverings.-->
 <string name="osm_carpet_layer" tools:ignore="MissingTranslation">Carpet Layer</string>
-<!-- Open Street Map term beekeeper. -->
+<!-- Open Street Map term beekeeper. Person or business keeping bees and producing honey.-->
 <string name="osm_beekeeper" tools:ignore="MissingTranslation">Beekeeper</string>
-<!-- Open Street Map term public. -->
+<!-- Open Street Map term public. Public facility or publicly accessible place.-->
 <string name="osm_public" tools:ignore="MissingTranslation">Public</string>
-<!-- Open Street Map term dormitory. -->
+<!-- Open Street Map term dormitory. Residential building for students or group accommodation.-->
 <string name="osm_dormitory" tools:ignore="MissingTranslation">Dormitory</string>
-<!-- Open Street Map term apartments. -->
+<!-- Open Street Map term apartments. Residential building containing multiple flats or apartments.-->
 <string name="osm_apartments" tools:ignore="MissingTranslation">Apartments</string>
-<!-- Open Street Map term internet_cafe. -->
+<!-- Open Street Map term internet_cafe. Cafe offering public internet access and computers.-->
 <string name="osm_internet_cafe" tools:ignore="MissingTranslation">Internet Cafe</string>
-<!-- Open Street Map term shoe_shop. -->
+<!-- Open Street Map term shoe_shop. Retail store selling shoes.-->
 <string name="osm_shoe_shop" tools:ignore="MissingTranslation">Shoe Shop</string>
-<!-- Open Street Map term generic_shop. -->
+<!-- Open Street Map term generic_shop. General retail shop of unspecified type.-->
 <string name="osm_generic_shop" tools:ignore="MissingTranslation">Shop</string>
-<!-- Open Street Map term coffee_shop. -->
+<!-- Open Street Map term coffee_shop. Place serving coffee and light refreshments; cafe.-->
 <string name="osm_coffee_shop" tools:ignore="MissingTranslation">Coffee Shop</string>
-<!-- Open Street Map term coworking_space. -->
+<!-- Open Street Map term coworking_space. Shared workspace for freelancers, startups, and teams.-->
 <string name="osm_coworking_space" tools:ignore="MissingTranslation">Coworking Space</string>
-<!-- Open Street Map term stripclub. -->
+<!-- Open Street Map term stripclub. Adult entertainment venue with striptease performances.-->
 <string name="osm_stripclub" tools:ignore="MissingTranslation">Strip Club</string>
-<!-- Open Street Map term ev_charging. -->
+<!-- Open Street Map term ev_charging. Electric vehicle charging station or point.-->
 <string name="osm_ev_charging" tools:ignore="MissingTranslation">EV Charging</string>
-<!-- Open Street Map term pub. -->
+<!-- Open Street Map term pub. Public house serving drinks and often food.-->
 <string name="osm_pub" tools:ignore="MissingTranslation">Pub</string>
-<!-- Open Street Map term obstacle_course. -->
+<!-- Open Street Map term obstacle_course. Course with physical obstacles for training or fun.-->
 <string name="osm_obstacle_course" tools:ignore="MissingTranslation">Obstacle Course</string>
-<!-- Open Street Map term volleyball. -->
+<!-- Open Street Map term volleyball. Court used for volleyball matches.-->
 <string name="osm_volleyball" tools:ignore="MissingTranslation">Volleyball</string>
-<!-- Open Street Map term tennis. -->
+<!-- Open Street Map term tennis. Court used for tennis play and matches.-->
 <string name="osm_tennis" tools:ignore="MissingTranslation">Tennis</string>
-<!-- Open Street Map term soccer. -->
+<!-- Open Street Map term soccer. Pitch for association football, also called soccer.-->
 <string name="osm_soccer" tools:ignore="MissingTranslation">Soccer</string>
-<!-- Open Street Map term shooting. -->
+<!-- Open Street Map term shooting. Shooting range for firearms or archery practice.-->
 <string name="osm_shooting" tools:ignore="MissingTranslation">Shooting</string>
-<!-- Open Street Map term rugby_union. -->
+<!-- Open Street Map term rugby_union. Pitch for rugby union matches.-->
 <string name="osm_rugby_union" tools:ignore="MissingTranslation">Rugby Union</string>
-<!-- Open Street Map term orienteering. -->
+<!-- Open Street Map term orienteering. Area used for orienteering navigation sport.-->
 <string name="osm_orienteering" tools:ignore="MissingTranslation">Orienteering</string>
-<!-- Open Street Map term netball. -->
+<!-- Open Street Map term netball. Court used for netball games.-->
 <string name="osm_netball" tools:ignore="MissingTranslation">Netball</string>
-<!-- Open Street Map term motor. -->
-<string name="osm_motor" tools:ignore="MissingTranslation">Motor</string>
-<!-- Open Street Map term kitesurfing. -->
+<!-- Open Street Map term motor. Business selling motor vehicles or motor-related products.-->
+<string name="osm_motor" tools:ignore="MissingTranslation">Motor Shop</string>
+<!-- Open Street Map term kitesurfing. Area or school for kitesurfing activities.-->
 <string name="osm_kitesurfing" tools:ignore="MissingTranslation">Kitesurfing</string>
-<!-- Open Street Map term karting. -->
+<!-- Open Street Map term karting. Track for go-kart racing and events.-->
 <string name="osm_karting" tools:ignore="MissingTranslation">Karting</string>
-<!-- Open Street Map term judo. -->
+<!-- Open Street Map term judo. Dojo or facility for judo practice and competitions.-->
 <string name="osm_judo" tools:ignore="MissingTranslation">Judo</string>
-<!-- Open Street Map term horseshoes. -->
+<!-- Open Street Map term horseshoes. Area for playing the horseshoes throwing game.-->
 <string name="osm_horseshoes" tools:ignore="MissingTranslation">Horseshoes</string>
-<!-- Open Street Map term handball. -->
+<!-- Open Street Map term handball. Court used for handball matches.-->
 <string name="osm_handball" tools:ignore="MissingTranslation">Handball</string>
-<!-- Open Street Map term golf. -->
+<!-- Open Street Map term golf. Golf course, driving range, or related golf facility.-->
 <string name="osm_golf" tools:ignore="MissingTranslation">Golf</string>
-<!-- Open Street Map term gaelic_games. -->
+<!-- Open Street Map term gaelic_games. Pitch for Gaelic sports such as hurling and Gaelic football.-->
 <string name="osm_gaelic_games" tools:ignore="MissingTranslation">Gaelic Games</string>
-<!-- Open Street Map term diving. -->
+<!-- Open Street Map term diving. Site or facility for scuba diving or platform diving.-->
 <string name="osm_diving" tools:ignore="MissingTranslation">Diving</string>
-<!-- Open Street Map term darts. -->
+<!-- Open Street Map term darts. Venue or area for playing darts.-->
 <string name="osm_darts" tools:ignore="MissingTranslation">Darts</string>
-<!-- Open Street Map term climbing_adventure. -->
+<!-- Open Street Map term climbing_adventure. Adventure climbing facility, indoor or outdoor.-->
 <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Climbing Adventure</string>
-<!-- Open Street Map term basketball. -->
+<!-- Open Street Map term basketball. Court used for basketball games and practice.-->
 <string name="osm_basketball" tools:ignore="MissingTranslation">Basketball</string>
-<!-- Open Street Map term bandy. -->
+<!-- Open Street Map term bandy. Ice field used for bandy matches.-->
 <string name="osm_bandy" tools:ignore="MissingTranslation">Bandy</string>
-<!-- Open Street Map term australian_football. -->
+<!-- Open Street Map term australian_football. Field for Australian rules football matches.-->
 <string name="osm_australian_football" tools:ignore="MissingTranslation">Australian Football</string>
-<!-- Open Street Map term 9pin. -->
-<string name="osm_9pin" tools:ignore="MissingTranslation">Ninepin</string>
-<!-- Open Street Map term vacant. -->
+<!-- Open Street Map term 9pin. Alley or facility for nine-pin bowling.-->
+<string name="osm_9pin" tools:ignore="MissingTranslation">9-Pin</string>
+<!-- Open Street Map term vacant. Property or premises that are vacant or unused.-->
 <string name="osm_vacant" tools:ignore="MissingTranslation">Vacant</string>
-<!-- Open Street Map term lottery. -->
-<string name="osm_lottery" tools:ignore="MissingTranslation">Lottery</string>
-<!-- Open Street Map term trophy. -->
-<string name="osm_trophy" tools:ignore="MissingTranslation">Trophy</string>
-<!-- Open Street Map term music. -->
-<string name="osm_music" tools:ignore="MissingTranslation">Music</string>
-<!-- Open Street Map term games. -->
-<string name="osm_games" tools:ignore="MissingTranslation">Games</string>
-<!-- Open Street Map term tyres. -->
-<string name="osm_tyres" tools:ignore="MissingTranslation">Tyres</string>
-<!-- Open Street Map term sports. -->
-<string name="osm_sports" tools:ignore="MissingTranslation">Sports</string>
-<!-- Open Street Map term outdoor. -->
-<string name="osm_outdoor" tools:ignore="MissingTranslation">Outdoor</string>
-<!-- Open Street Map term car. -->
-<string name="osm_car" tools:ignore="MissingTranslation">Car</string>
-<!-- Open Street Map term electronics. -->
-<string name="osm_electronics" tools:ignore="MissingTranslation">Electronics</string>
-<!-- Open Street Map term computer. -->
-<string name="osm_computer" tools:ignore="MissingTranslation">Computer</string>
-<!-- Open Street Map term furniture. -->
-<string name="osm_furniture" tools:ignore="MissingTranslation">Furniture</string>
-<!-- Open Street Map term candles. -->
-<string name="osm_candles" tools:ignore="MissingTranslation">Candles</string>
-<!-- Open Street Map term hardware. -->
-<string name="osm_hardware" tools:ignore="MissingTranslation">Hardware</string>
-<!-- Open Street Map term gas. -->
+<!-- Open Street Map term lottery. Retail outlet selling lottery tickets and services.-->
+<string name="osm_lottery" tools:ignore="MissingTranslation">Lottery Shop</string>
+<!-- Open Street Map term trophy. Shop selling trophies, medals, and awards.-->
+<string name="osm_trophy" tools:ignore="MissingTranslation">Trophy Shop</string>
+<!-- Open Street Map term music. Retail shop selling musical instruments or music media.-->
+<string name="osm_music" tools:ignore="MissingTranslation">Music Shop</string>
+<!-- Open Street Map term games. Retail shop selling board games, cards, and video games.-->
+<string name="osm_games" tools:ignore="MissingTranslation">Games Shop</string>
+<!-- Open Street Map term tyres. Retail and service shop for tires and wheel services.-->
+<string name="osm_tyres" tools:ignore="MissingTranslation">Tyre Shop</string>
+<!-- Open Street Map term sports. Retail shop selling sports equipment and apparel.-->
+<string name="osm_sports" tools:ignore="MissingTranslation">Sports Shop</string>
+<!-- Open Street Map term outdoor. Retail shop specializing in outdoor equipment and clothing.-->
+<string name="osm_outdoor" tools:ignore="MissingTranslation">Outdoor Shop</string>
+<!-- Open Street Map term car. Business selling cars; car dealership.-->
+<string name="osm_car" tools:ignore="MissingTranslation">Car Dealer</string>
+<!-- Open Street Map term electronics. Retail shop selling electronic devices and gadgets.-->
+<string name="osm_electronics" tools:ignore="MissingTranslation">Electronics Shop</string>
+<!-- Open Street Map term computer. Retail shop selling computers, laptops, and accessories.-->
+<string name="osm_computer" tools:ignore="MissingTranslation">Computer Shop</string>
+<!-- Open Street Map term furniture. Retail shop selling furniture and home furnishings.-->
+<string name="osm_furniture" tools:ignore="MissingTranslation">Furniture Shop</string>
+<!-- Open Street Map term candles. Retail shop selling candles and related gifts.-->
+<string name="osm_candles" tools:ignore="MissingTranslation">Candle Shop</string>
+<!-- Open Street Map term hardware. Retail store selling tools, building and repair supplies.-->
+<string name="osm_hardware" tools:ignore="MissingTranslation">Hardware Shop</string>
+<!-- Open Street Map term gas. Fuel station selling petrol, diesel and sometimes goods.-->
 <string name="osm_gas" tools:ignore="MissingTranslation">Gas Station</string>
-<!-- Open Street Map term energy. -->
-<string name="osm_energy" tools:ignore="MissingTranslation">Energy</string>
-<!-- Open Street Map term doityourself. -->
-<string name="osm_doityourself" tools:ignore="MissingTranslation">DIY Store</string>
-<!-- Open Street Map term bathroom_furnishing. -->
-<string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Bathroom Fixtures</string>
-<!-- Open Street Map term medical_supply. -->
-<string name="osm_medical_supply" tools:ignore="MissingTranslation">Medical Supplies</string>
-<!-- Open Street Map term variety_store. -->
+<!-- Open Street Map term energy. Business or facility supplying electricity, gas or other energy.-->
+<string name="osm_energy" tools:ignore="MissingTranslation">Energy Company</string>
+<!-- Open Street Map term doityourself. Retailer for home improvement and DIY supplies.-->
+<string name="osm_doityourself" tools:ignore="MissingTranslation">DIY Shop</string>
+<!-- Open Street Map term bathroom_furnishing. Store selling bathroom fixtures and fittings.-->
+<string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Bathroom Shop</string>
+<!-- Open Street Map term medical_supply. Shop providing medical equipment and supplies.-->
+<string name="osm_medical_supply" tools:ignore="MissingTranslation">Medical Supply Shop</string>
+<!-- Open Street Map term variety_store. General retailer selling a range of low-cost household items.-->
 <string name="osm_variety_store" tools:ignore="MissingTranslation">Variety Store</string>
-<!-- Open Street Map term second_hand. -->
-<string name="osm_second_hand" tools:ignore="MissingTranslation">Secondhand Shop</string>
-<!-- Open Street Map term charity. -->
+<!-- Open Street Map term second_hand. Shop selling used goods and pre-owned items.-->
+<string name="osm_second_hand" tools:ignore="MissingTranslation">Second Hand Shop</string>
+<!-- Open Street Map term charity. Nonprofit store selling donated goods to fund charitable work.-->
 <string name="osm_charity" tools:ignore="MissingTranslation">Charity Shop</string>
-<!-- Open Street Map term fashion. -->
-<string name="osm_fashion" tools:ignore="MissingTranslation">Fashion</string>
-<!-- Open Street Map term fabric. -->
-<string name="osm_fabric" tools:ignore="MissingTranslation">Fabric Store</string>
-<!-- Open Street Map term clothes. -->
-<string name="osm_clothes" tools:ignore="MissingTranslation">Clothing Store</string>
-<!-- Open Street Map term butcher. -->
-<string name="osm_butcher" tools:ignore="MissingTranslation">Butcher</string>
-<!-- Open Street Map term water_utility. -->
+<!-- Open Street Map term fashion. Clothing and accessory retailer.-->
+<string name="osm_fashion" tools:ignore="MissingTranslation">Fashion Shop</string>
+<!-- Open Street Map term fabric. Store selling textiles and sewing materials.-->
+<string name="osm_fabric" tools:ignore="MissingTranslation">Fabric Shop</string>
+<!-- Open Street Map term clothes. Retailer selling garments and apparel.-->
+<string name="osm_clothes" tools:ignore="MissingTranslation">Clothing Shop</string>
+<!-- Open Street Map term butcher. Shop selling fresh meat and related products.-->
+<string name="osm_butcher" tools:ignore="MissingTranslation">Butcher Shop</string>
+<!-- Open Street Map term water_utility. Organization supplying water services and infrastructure.-->
 <string name="osm_water_utility" tools:ignore="MissingTranslation">Water Utility</string>
-<!-- Open Street Map term realtor. -->
-<string name="osm_realtor" tools:ignore="MissingTranslation">Realtor</string>
-<!-- Open Street Map term company. -->
+<!-- Open Street Map term realtor. Person or agency selling, renting or managing property.-->
+<string name="osm_realtor" tools:ignore="MissingTranslation">Real Estate Agent</string>
+<!-- Open Street Map term company. Business or commercial organization.-->
 <string name="osm_company" tools:ignore="MissingTranslation">Company</string>
-<!-- Open Street Map term accountant. -->
+<!-- Open Street Map term accountant. Professional providing accounting and tax services.-->
 <string name="osm_accountant" tools:ignore="MissingTranslation">Accountant</string>
-<!-- Open Street Map term bunker_silo. -->
+<!-- Open Street Map term bunker_silo. Large storage silo, often for silage or bulk materials.-->
 <string name="osm_bunker_silo" tools:ignore="MissingTranslation">Bunker Silo</string>
-<!-- Open Street Map term hackerspace. -->
+<!-- Open Street Map term hackerspace. Community-operated workspace for technology and creativity.-->
 <string name="osm_hackerspace" tools:ignore="MissingTranslation">Hackerspace</string>
-<!-- Open Street Map term lifeguard_base. -->
+<!-- Open Street Map term lifeguard_base. Station for lifeguards monitoring beaches or pools.-->
 <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">Lifeguard Base</string>
-<!-- Open Street Map term roofer. -->
+<!-- Open Street Map term roofer. Professional specialized in roof construction and repair.-->
 <string name="osm_roofer" tools:ignore="MissingTranslation">Roofer</string>
-<!-- Open Street Map term rigger. -->
+<!-- Open Street Map term rigger. Worker who sets up rigging for lifts, stages, or equipment.-->
 <string name="osm_rigger" tools:ignore="MissingTranslation">Rigger</string>
-<!-- Open Street Map term parquet_layer. -->
+<!-- Open Street Map term parquet_layer. Tradesperson installing wooden parquet flooring.-->
 <string name="osm_parquet_layer" tools:ignore="MissingTranslation">Parquet Layer</string>
-<!-- Open Street Map term gardener. -->
+<!-- Open Street Map term gardener. Person or service maintaining gardens and green spaces.-->
 <string name="osm_gardener" tools:ignore="MissingTranslation">Gardener</string>
-<!-- Open Street Map term stable. -->
+<!-- Open Street Map term stable. Building where horses are housed.-->
 <string name="osm_stable" tools:ignore="MissingTranslation">Stable</string>
-<!-- Open Street Map term garage. -->
+<!-- Open Street Map term garage. Building for vehicle storage or repair.-->
 <string name="osm_garage" tools:ignore="MissingTranslation">Garage</string>
-<!-- Open Street Map term transportation. -->
-<string name="osm_transportation" tools:ignore="MissingTranslation">Transportation</string>
-<!-- Open Street Map term house. -->
+<!-- Open Street Map term transportation. Place related to transport services or infrastructure.-->
+<string name="osm_transportation" tools:ignore="MissingTranslation">Transportation Facility</string>
+<!-- Open Street Map term house. Residential building for living.-->
 <string name="osm_house" tools:ignore="MissingTranslation">House</string>
-<!-- Open Street Map term helipad. -->
+<!-- Open Street Map term helipad. Designated landing area for helicopters.-->
 <string name="osm_helipad" tools:ignore="MissingTranslation">Helipad</string>
-<!-- Open Street Map term apron. -->
+<!-- Open Street Map term apron. Area where aircraft are parked, loaded and refueled.-->
 <string name="osm_apron" tools:ignore="MissingTranslation">Apron</string>
-<!-- Open Street Map term consumer_electronics_store. -->
-<string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Electronics Store</string>
-<!-- Open Street Map term speciality_store. -->
-<string name="osm_speciality_store" tools:ignore="MissingTranslation">Specialty Store</string>
-<!-- Open Street Map term defined. -->
+<!-- Open Street Map term consumer_electronics_store. Retailer selling consumer electronic devices.-->
+<string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Electronics Shop</string>
+<!-- Open Street Map term speciality_store. Retailer focusing on a specific product category.-->
+<string name="osm_speciality_store" tools:ignore="MissingTranslation">Specialty Shop</string>
+<!-- Open Street Map term defined. Placeholder tag indicating a value is explicitly defined.-->
 <string name="osm_defined" tools:ignore="MissingTranslation">Defined</string>
-<!-- Open Street Map term sauna. -->
+<!-- Open Street Map term sauna. Facility for steam or dry heat bathing.-->
 <string name="osm_sauna" tools:ignore="MissingTranslation">Sauna</string>
-<!-- Open Street Map term gym. -->
+<!-- Open Street Map term gym. Fitness center with exercise equipment and classes.-->
 <string name="osm_gym" tools:ignore="MissingTranslation">Gym</string>
-<!-- Open Street Map term crematorium. -->
+<!-- Open Street Map term crematorium. Facility for cremating human remains.-->
 <string name="osm_crematorium" tools:ignore="MissingTranslation">Crematorium</string>
-<!-- Open Street Map term gambling. -->
-<string name="osm_gambling" tools:ignore="MissingTranslation">Gambling</string>
-<!-- Open Street Map term music_school. -->
+<!-- Open Street Map term gambling. Place offering betting, casinos or gaming machines.-->
+<string name="osm_gambling" tools:ignore="MissingTranslation">Gambling Venue</string>
+<!-- Open Street Map term music_school. Institution offering music lessons and training.-->
 <string name="osm_music_school" tools:ignore="MissingTranslation">Music School</string>
-<!-- Open Street Map term bar. -->
+<!-- Open Street Map term bar. Place serving alcoholic drinks.-->
 <string name="osm_bar" tools:ignore="MissingTranslation">Bar</string>
-<!-- Open Street Map term farm. -->
+<!-- Open Street Map term farm. Land used for agriculture and livestock.-->
 <string name="osm_farm" tools:ignore="MissingTranslation">Farm</string>
-<!-- Open Street Map term bicycle. -->
+<!-- Open Street Map term bicycle. Retailer selling and repairing bicycles.-->
 <string name="osm_bicycle" tools:ignore="MissingTranslation">Bicycle Shop</string>
-<!-- Open Street Map term tailor. -->
+<!-- Open Street Map term tailor. Professional making and altering clothing.-->
 <string name="osm_tailor" tools:ignore="MissingTranslation">Tailor</string>
-<!-- Open Street Map term locksmith. -->
+<!-- Open Street Map term locksmith. Service for locks, keys and security hardware.-->
 <string name="osm_locksmith" tools:ignore="MissingTranslation">Locksmith</string>
-<!-- Open Street Map term industrial. -->
+<!-- Open Street Map term industrial. Area or facility used for manufacturing or industry.-->
 <string name="osm_industrial" tools:ignore="MissingTranslation">Industrial</string>
-<!-- Open Street Map term wilderness_hut. -->
+<!-- Open Street Map term wilderness_hut. Shelter in remote areas for hikers or campers.-->
 <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Wilderness Hut</string>
-<!-- Open Street Map term hostel. -->
+<!-- Open Street Map term hostel. Budget accommodation, dormitory-style lodging.-->
 <string name="osm_hostel" tools:ignore="MissingTranslation">Hostel</string>
-<!-- Open Street Map term caravan_site. -->
+<!-- Open Street Map term caravan_site. Site for parking caravans and recreational vehicles.-->
 <string name="osm_caravan_site" tools:ignore="MissingTranslation">Caravan Site</string>
-<!-- Open Street Map term weightlifting. -->
-<string name="osm_weightlifting" tools:ignore="MissingTranslation">Weightlifting</string>
-<!-- Open Street Map term taekwondo. -->
-<string name="osm_taekwondo" tools:ignore="MissingTranslation">Taekwondo</string>
-<!-- Open Street Map term swimming. -->
-<string name="osm_swimming" tools:ignore="MissingTranslation">Swimming</string>
-<!-- Open Street Map term surfing. -->
-<string name="osm_surfing" tools:ignore="MissingTranslation">Surfing</string>
-<!-- Open Street Map term skating. -->
-<string name="osm_skating" tools:ignore="MissingTranslation">Skating</string>
-<!-- Open Street Map term racquet. -->
-<string name="osm_racquet" tools:ignore="MissingTranslation">Racquet Sports</string>
-<!-- Open Street Map term pelota. -->
-<string name="osm_pelota" tools:ignore="MissingTranslation">Pelota</string>
-<!-- Open Street Map term paragliding. -->
-<string name="osm_paragliding" tools:ignore="MissingTranslation">Paragliding</string>
-<!-- Open Street Map term parachuting. -->
-<string name="osm_parachuting" tools:ignore="MissingTranslation">Parachuting</string>
-<!-- Open Street Map term motocross. -->
-<string name="osm_motocross" tools:ignore="MissingTranslation">Motocross</string>
-<!-- Open Street Map term ice_skating. -->
-<string name="osm_ice_skating" tools:ignore="MissingTranslation">Ice Skating</string>
-<!-- Open Street Map term horse_racing. -->
-<string name="osm_horse_racing" tools:ignore="MissingTranslation">Horse Racing</string>
-<!-- Open Street Map term dog_racing. -->
-<string name="osm_dog_racing" tools:ignore="MissingTranslation">Dog Racing</string>
-<!-- Open Street Map term climbing. -->
-<string name="osm_climbing" tools:ignore="MissingTranslation">Climbing</string>
-<!-- Open Street Map term chess. -->
-<string name="osm_chess" tools:ignore="MissingTranslation">Chess</string>
-<!-- Open Street Map term canadian_football. -->
-<string name="osm_canadian_football" tools:ignore="MissingTranslation">Canadian Football</string>
-<!-- Open Street Map term beachvolleyball. -->
-<string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Beach Volleyball</string>
-<!-- Open Street Map term base. -->
+<!-- Open Street Map term weightlifting. Place for Olympic weightlifting training or competitions.-->
+<string name="osm_weightlifting" tools:ignore="MissingTranslation">Weightlifting Facility</string>
+<!-- Open Street Map term taekwondo. Venue for practicing taekwondo martial art.-->
+<string name="osm_taekwondo" tools:ignore="MissingTranslation">Taekwondo Club</string>
+<!-- Open Street Map term swimming. Indoor or outdoor pool for swimming activities.-->
+<string name="osm_swimming" tools:ignore="MissingTranslation">Swimming Pool</string>
+<!-- Open Street Map term surfing. Location suitable for surfing.-->
+<string name="osm_surfing" tools:ignore="MissingTranslation">Surfing Area</string>
+<!-- Open Street Map term skating. Designated area for ice or roller skating.-->
+<string name="osm_skating" tools:ignore="MissingTranslation">Skating Rink</string>
+<!-- Open Street Map term racquet. Venue for racquet sports like tennis or squash.-->
+<string name="osm_racquet" tools:ignore="MissingTranslation">Racquet Sports Facility</string>
+<!-- Open Street Map term pelota. Court for playing Basque pelota.-->
+<string name="osm_pelota" tools:ignore="MissingTranslation">Pelota Court</string>
+<!-- Open Street Map term paragliding. Launch or landing area for paragliding.-->
+<string name="osm_paragliding" tools:ignore="MissingTranslation">Paragliding Site</string>
+<!-- Open Street Map term parachuting. Drop zone for skydiving and parachuting activities.-->
+<string name="osm_parachuting" tools:ignore="MissingTranslation">Parachuting Site</string>
+<!-- Open Street Map term motocross. Off-road motorcycle racing circuit.-->
+<string name="osm_motocross" tools:ignore="MissingTranslation">Motocross Track</string>
+<!-- Open Street Map term ice_skating. Indoor or outdoor ice rink for skating.-->
+<string name="osm_ice_skating" tools:ignore="MissingTranslation">Ice Skating Rink</string>
+<!-- Open Street Map term horse_racing. Track for organized horse races.-->
+<string name="osm_horse_racing" tools:ignore="MissingTranslation">Horse Racing Track</string>
+<!-- Open Street Map term dog_racing. Track for greyhound or dog racing events.-->
+<string name="osm_dog_racing" tools:ignore="MissingTranslation">Dog Racing Track</string>
+<!-- Open Street Map term climbing. Indoor or outdoor location for rock or wall climbing.-->
+<string name="osm_climbing" tools:ignore="MissingTranslation">Climbing Area</string>
+<!-- Open Street Map term chess. Venue for playing and teaching chess.-->
+<string name="osm_chess" tools:ignore="MissingTranslation">Chess Club</string>
+<!-- Open Street Map term canadian_football. Field configured for Canadian football games.-->
+<string name="osm_canadian_football" tools:ignore="MissingTranslation">Canadian Football Field</string>
+<!-- Open Street Map term beachvolleyball. Sand court for beach volleyball.-->
+<string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Beach Volleyball Court</string>
+<!-- Open Street Map term base. Primary location or headquarters for operations.-->
 <string name="osm_base" tools:ignore="MissingTranslation">Base</string>
-<!-- Open Street Map term athletics. -->
-<string name="osm_athletics" tools:ignore="MissingTranslation">Athletics</string>
-<!-- Open Street Map term pawnbroker. -->
-<string name="osm_pawnbroker" tools:ignore="MissingTranslation">Pawnbroker</string>
-<!-- Open Street Map term ticket. -->
+<!-- Open Street Map term athletics. Track and field facility for athletics events.-->
+<string name="osm_athletics" tools:ignore="MissingTranslation">Athletics Track</string>
+<!-- Open Street Map term pawnbroker. Shop offering pawnbroking and short-term loans.-->
+<string name="osm_pawnbroker" tools:ignore="MissingTranslation">Pawnbroker Shop</string>
+<!-- Open Street Map term ticket. Place where tickets for events or transport are sold.-->
 <string name="osm_ticket" tools:ignore="MissingTranslation">Ticket Office</string>
-<!-- Open Street Map term stationery. -->
-<string name="osm_stationery" tools:ignore="MissingTranslation">Stationery</string>
-<!-- Open Street Map term video_games. -->
-<string name="osm_video_games" tools:ignore="MissingTranslation">Video Games</string>
-<!-- Open Street Map term model. -->
+<!-- Open Street Map term stationery. Retailer selling paper, office and school supplies.-->
+<string name="osm_stationery" tools:ignore="MissingTranslation">Stationery Shop</string>
+<!-- Open Street Map term video_games. Store selling video games and gaming consoles.-->
+<string name="osm_video_games" tools:ignore="MissingTranslation">Video Game Shop</string>
+<!-- Open Street Map term model. Shop selling scale models and hobby kits.-->
 <string name="osm_model" tools:ignore="MissingTranslation">Model Shop</string>
-<!-- Open Street Map term frame. -->
+<!-- Open Street Map term frame. Shop providing picture frames and framing services.-->
 <string name="osm_frame" tools:ignore="MissingTranslation">Frame Shop</string>
-<!-- Open Street Map term art. -->
-<string name="osm_art" tools:ignore="MissingTranslation">Art</string>
-<!-- Open Street Map term car_parts. -->
-<string name="osm_car_parts" tools:ignore="MissingTranslation">Car Parts</string>
-<!-- Open Street Map term radiotechnics. -->
-<string name="osm_radiotechnics" tools:ignore="MissingTranslation">Radio Electronics</string>
-<!-- Open Street Map term bed. -->
-<string name="osm_bed" tools:ignore="MissingTranslation">Bed Store</string>
-<!-- Open Street Map term garden_furniture. -->
-<string name="osm_garden_furniture" tools:ignore="MissingTranslation">Garden Furniture</string>
-<!-- Open Street Map term electrical. -->
-<string name="osm_electrical" tools:ignore="MissingTranslation">Electrical</string>
-<!-- Open Street Map term perfumery. -->
+<!-- Open Street Map term art. Gallery or shop for artworks and art supplies.-->
+<string name="osm_art" tools:ignore="MissingTranslation">Art Shop</string>
+<!-- Open Street Map term car_parts. Retailer of automotive spare parts and accessories.-->
+<string name="osm_car_parts" tools:ignore="MissingTranslation">Car Parts Shop</string>
+<!-- Open Street Map term radiotechnics. Shop specializing in radio and telecommunications equipment.-->
+<string name="osm_radiotechnics" tools:ignore="MissingTranslation">Radio Equipment Shop</string>
+<!-- Open Street Map term bed. Retailer selling beds and bedroom furniture.-->
+<string name="osm_bed" tools:ignore="MissingTranslation">Bed Shop</string>
+<!-- Open Street Map term garden_furniture. Store selling outdoor and garden furniture.-->
+<string name="osm_garden_furniture" tools:ignore="MissingTranslation">Garden Furniture Shop</string>
+<!-- Open Street Map term electrical. Retailer for electrical supplies and components.-->
+<string name="osm_electrical" tools:ignore="MissingTranslation">Electrical Shop</string>
+<!-- Open Street Map term perfumery. Shop selling perfumes and fragrances.-->
 <string name="osm_perfumery" tools:ignore="MissingTranslation">Perfumery</string>
-<!-- Open Street Map term hairdresser. -->
+<!-- Open Street Map term hairdresser. Salon offering hair cutting and styling services.-->
 <string name="osm_hairdresser" tools:ignore="MissingTranslation">Hairdresser</string>
-<!-- Open Street Map term drugstore. -->
+<!-- Open Street Map term drugstore. Store selling medicines, toiletries and convenience items.-->
 <string name="osm_drugstore" tools:ignore="MissingTranslation">Drugstore</string>
-<!-- Open Street Map term shoes. -->
-<string name="osm_shoes" tools:ignore="MissingTranslation">Shoe Store</string>
-<!-- Open Street Map term leather. -->
-<string name="osm_leather" tools:ignore="MissingTranslation">Leather Goods</string>
-<!-- Open Street Map term general. -->
+<!-- Open Street Map term shoes. Retailer selling footwear.-->
+<string name="osm_shoes" tools:ignore="MissingTranslation">Shoe Shop</string>
+<!-- Open Street Map term leather. Shop selling leather products and hides.-->
+<string name="osm_leather" tools:ignore="MissingTranslation">Leather Goods Shop</string>
+<!-- Open Street Map term general. Store offering a wide range of everyday items.-->
 <string name="osm_general" tools:ignore="MissingTranslation">General Store</string>
-<!-- Open Street Map term seafood. -->
-<string name="osm_seafood" tools:ignore="MissingTranslation">Seafood</string>
-<!-- Open Street Map term organic. -->
-<string name="osm_organic" tools:ignore="MissingTranslation">Organic Store</string>
-<!-- Open Street Map term greengrocer. -->
+<!-- Open Street Map term seafood. Fishmonger selling fresh seafood and fish.-->
+<string name="osm_seafood" tools:ignore="MissingTranslation">Seafood Shop</string>
+<!-- Open Street Map term organic. Store specializing in organic food and products.-->
+<string name="osm_organic" tools:ignore="MissingTranslation">Organic Shop</string>
+<!-- Open Street Map term greengrocer. Shop selling fresh fruits and vegetables.-->
 <string name="osm_greengrocer" tools:ignore="MissingTranslation">Greengrocer</string>
-<!-- Open Street Map term chocolate. -->
+<!-- Open Street Map term chocolate. Shop selling chocolates and confections.-->
 <string name="osm_chocolate" tools:ignore="MissingTranslation">Chocolate Shop</string>
-<!-- Open Street Map term brewing_supplies. -->
-<string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Brewing Supplies</string>
-<!-- Open Street Map term tax_advisor. -->
+<!-- Open Street Map term brewing_supplies. Store supplying homebrewing ingredients and equipment.-->
+<string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Brewing Supplies Shop</string>
+<!-- Open Street Map term tax_advisor. Professional providing tax advice and preparation.-->
 <string name="osm_tax_advisor" tools:ignore="MissingTranslation">Tax Advisor</string>
-<!-- Open Street Map term private_investigator. -->
+<!-- Open Street Map term private_investigator. Professional conducting private investigations.-->
 <string name="osm_private_investigator" tools:ignore="MissingTranslation">Private Investigator</string>
-<!-- Open Street Map term government. -->
+<!-- Open Street Map term government. Public administration or government facility.-->
 <string name="osm_government" tools:ignore="MissingTranslation">Government Office</string>
-<!-- Open Street Map term forestry. -->
+<!-- Open Street Map term forestry. Area or organization managing forests and timber.-->
 <string name="osm_forestry" tools:ignore="MissingTranslation">Forestry</string>
-<!-- Open Street Map term estate_agent. -->
+<!-- Open Street Map term estate_agent. Agent handling property sales and rentals.-->
 <string name="osm_estate_agent" tools:ignore="MissingTranslation">Estate Agent</string>
-<!-- Open Street Map term spring. -->
+<!-- Open Street Map term spring. Natural water source emerging from the ground.-->
 <string name="osm_spring" tools:ignore="MissingTranslation">Spring</string>
-<!-- Open Street Map term golf_course. -->
+<!-- Open Street Map term golf_course. Facility with holes for playing golf.-->
 <string name="osm_golf_course" tools:ignore="MissingTranslation">Golf Course</string>
-<!-- Open Street Map term ses_station. -->
+<!-- Open Street Map term ses_station. State Emergency Service facility for rescue and emergency response.-->
 <string name="osm_ses_station" tools:ignore="MissingTranslation">SES Station</string>
-<!-- Open Street Map term lifeguard_place. -->
-<string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Lifeguard Station</string>
-<!-- Open Street Map term stonemason. -->
+<!-- Open Street Map term lifeguard_place. Location where lifeguards are posted.-->
+<string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Lifeguard Post</string>
+<!-- Open Street Map term stonemason. Craftsperson working with stone construction and carving.-->
 <string name="osm_stonemason" tools:ignore="MissingTranslation">Stonemason</string>
-<!-- Open Street Map term scaffolder. -->
+<!-- Open Street Map term scaffolder. Worker who erects scaffolding for construction and maintenance.-->
 <string name="osm_scaffolder" tools:ignore="MissingTranslation">Scaffolder</string>
-<!-- Open Street Map term sailmaker. -->
+<!-- Open Street Map term sailmaker. Business or workshop that makes and repairs sails-->
 <string name="osm_sailmaker" tools:ignore="MissingTranslation">Sailmaker</string>
-<!-- Open Street Map term photographic_laboratory. -->
-<string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Photo Lab</string>
-<!-- Open Street Map term photographer. -->
+<!-- Open Street Map term photographic_laboratory. Facility for developing and processing photographic film or prints-->
+<string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Photographic Laboratory</string>
+<!-- Open Street Map term photographer. Professional who takes photographs or runs a photo service-->
 <string name="osm_photographer" tools:ignore="MissingTranslation">Photographer</string>
-<!-- Open Street Map term insulation. -->
+<!-- Open Street Map term insulation. Material or installation for thermal or acoustic insulation-->
 <string name="osm_insulation" tools:ignore="MissingTranslation">Insulation</string>
-<!-- Open Street Map term electrician. -->
+<!-- Open Street Map term electrician. Tradesperson who installs or repairs electrical systems-->
 <string name="osm_electrician" tools:ignore="MissingTranslation">Electrician</string>
-<!-- Open Street Map term dressmaker. -->
+<!-- Open Street Map term dressmaker. Business or person who makes or alters clothing-->
 <string name="osm_dressmaker" tools:ignore="MissingTranslation">Dressmaker</string>
-<!-- Open Street Map term caterer. -->
+<!-- Open Street Map term caterer. Service providing food for events or functions-->
 <string name="osm_caterer" tools:ignore="MissingTranslation">Caterer</string>
-<!-- Open Street Map term terrace. -->
+<!-- Open Street Map term terrace. Raised, paved, or landscaped flat area often attached to a building-->
 <string name="osm_terrace" tools:ignore="MissingTranslation">Terrace</string>
-<!-- Open Street Map term toy_shop. -->
-<string name="osm_toy_shop" tools:ignore="MissingTranslation">Toy Store</string>
-<!-- Open Street Map term dive_centre. -->
-<string name="osm_dive_centre" tools:ignore="MissingTranslation">Dive Center</string>
-<!-- Open Street Map term swingerclub. -->
+<!-- Open Street Map term toy_shop. Retail shop selling toys and games-->
+<string name="osm_toy_shop" tools:ignore="MissingTranslation">Toy Shop</string>
+<!-- Open Street Map term dive_centre. Facility offering diving training and services-->
+<string name="osm_dive_centre" tools:ignore="MissingTranslation">Dive Centre</string>
+<!-- Open Street Map term swingerclub. Private club for consensual adult social and sexual activity-->
 <string name="osm_swingerclub" tools:ignore="MissingTranslation">Swinger Club</string>
-<!-- Open Street Map term doctors. -->
+<!-- Open Street Map term doctors. Medical practice where general practitioners see patients-->
 <string name="osm_doctors" tools:ignore="MissingTranslation">Doctors</string>
-<!-- Open Street Map term driving_school. -->
+<!-- Open Street Map term driving_school. Institution providing driver instruction and training-->
 <string name="osm_driving_school" tools:ignore="MissingTranslation">Driving School</string>
-<!-- Open Street Map term free_flying. -->
+<!-- Open Street Map term free_flying. Area or facility for unpowered flight sports like paragliding-->
 <string name="osm_free_flying" tools:ignore="MissingTranslation">Free Flying</string>
-<!-- Open Street Map term religion. -->
+<!-- Open Street Map term religion. General tag for religious affiliation or places of worship-->
 <string name="osm_religion" tools:ignore="MissingTranslation">Religion</string>
-<!-- Open Street Map term kiosk. -->
+<!-- Open Street Map term kiosk. Small stand or booth selling snacks, newspapers, or tickets-->
 <string name="osm_kiosk" tools:ignore="MissingTranslation">Kiosk</string>
-<!-- Open Street Map term residential. -->
+<!-- Open Street Map term residential. Area designated primarily for housing-->
 <string name="osm_residential" tools:ignore="MissingTranslation">Residential Area</string>
-<!-- Open Street Map term food. -->
-<string name="osm_food" tools:ignore="MissingTranslation">Food</string>
-<!-- Open Street Map term waterfall. -->
+<!-- Open Street Map term food. Place offering prepared food or groceries-->
+<string name="osm_food" tools:ignore="MissingTranslation">Food Outlet</string>
+<!-- Open Street Map term waterfall. Natural vertical or near-vertical water drop in a stream-->
 <string name="osm_waterfall" tools:ignore="MissingTranslation">Waterfall</string>
-<!-- Open Street Map term boatyard. -->
+<!-- Open Street Map term boatyard. Site where boats are built, repaired, or stored-->
 <string name="osm_boatyard" tools:ignore="MissingTranslation">Boatyard</string>
-<!-- Open Street Map term theme_park. -->
+<!-- Open Street Map term theme_park. Amusement park with rides and attractions-->
 <string name="osm_theme_park" tools:ignore="MissingTranslation">Theme Park</string>
-<!-- Open Street Map term roundhouse. -->
+<!-- Open Street Map term roundhouse. Circular railway building for servicing locomotives-->
 <string name="osm_roundhouse" tools:ignore="MissingTranslation">Roundhouse</string>
-<!-- Open Street Map term generator. -->
+<!-- Open Street Map term generator. Equipment that produces electrical power-->
 <string name="osm_generator" tools:ignore="MissingTranslation">Generator</string>
-<!-- Open Street Map term beach. -->
+<!-- Open Street Map term beach. Sandy or pebbly shoreline beside a body of water-->
 <string name="osm_beach" tools:ignore="MissingTranslation">Beach</string>
-<!-- Open Street Map term naval_base. -->
+<!-- Open Street Map term naval_base. Military facility for naval operations and ships-->
 <string name="osm_naval_base" tools:ignore="MissingTranslation">Naval Base</string>
-<!-- Open Street Map term works. -->
+<!-- Open Street Map term works. Industrial site or manufacturing works-->
 <string name="osm_works" tools:ignore="MissingTranslation">Industrial Works</string>
-<!-- Open Street Map term water_works. -->
+<!-- Open Street Map term water_works. Facility for water treatment or distribution-->
 <string name="osm_water_works" tools:ignore="MissingTranslation">Water Works</string>
-<!-- Open Street Map term telescope. -->
+<!-- Open Street Map term telescope. Public telescope installation or instrument-->
 <string name="osm_telescope" tools:ignore="MissingTranslation">Telescope</string>
-<!-- Open Street Map term pier. -->
+<!-- Open Street Map term pier. Platform extending over water for docking or recreation-->
 <string name="osm_pier" tools:ignore="MissingTranslation">Pier</string>
-<!-- Open Street Map term observatory. -->
+<!-- Open Street Map term observatory. Facility for astronomical observations-->
 <string name="osm_observatory" tools:ignore="MissingTranslation">Observatory</string>
-<!-- Open Street Map term reservoir. -->
+<!-- Open Street Map term reservoir. Artificial or natural water storage area-->
 <string name="osm_reservoir" tools:ignore="MissingTranslation">Reservoir</string>
-<!-- Open Street Map term monument. -->
+<!-- Open Street Map term monument. Structure erected to commemorate a person or event-->
 <string name="osm_monument" tools:ignore="MissingTranslation">Monument</string>
-<!-- Open Street Map term battlefield. -->
+<!-- Open Street Map term battlefield. Site of a historic military engagement-->
 <string name="osm_battlefield" tools:ignore="MissingTranslation">Battlefield</string>
-<!-- Open Street Map term planetarium. -->
+<!-- Open Street Map term planetarium. Theater projecting astronomy shows and sky simulations-->
 <string name="osm_planetarium" tools:ignore="MissingTranslation">Planetarium</string>
-<!-- Open Street Map term social_centre. -->
-<string name="osm_social_centre" tools:ignore="MissingTranslation">Social Center</string>
-<!-- Open Street Map term prison. -->
+<!-- Open Street Map term social_centre. Community space for events and local activities-->
+<string name="osm_social_centre" tools:ignore="MissingTranslation">Social Centre</string>
+<!-- Open Street Map term prison. Secure facility for detaining convicted or accused persons-->
 <string name="osm_prison" tools:ignore="MissingTranslation">Prison</string>
-<!-- Open Street Map term courthouse. -->
+<!-- Open Street Map term courthouse. Building housing legal and court services-->
 <string name="osm_courthouse" tools:ignore="MissingTranslation">Courthouse</string>
-<!-- Open Street Map term bridge. -->
+<!-- Open Street Map term bridge. Structure carrying a route over an obstacle like water or road-->
 <string name="osm_bridge" tools:ignore="MissingTranslation">Bridge</string>
-<!-- Open Street Map term hangar. -->
+<!-- Open Street Map term hangar. Large building for storing and servicing aircraft-->
 <string name="osm_hangar" tools:ignore="MissingTranslation">Hangar</string>
-<!-- Open Street Map term tower. -->
+<!-- Open Street Map term tower. Tall vertical structure used for observation or support-->
 <string name="osm_tower" tools:ignore="MissingTranslation">Tower</string>
-<!-- Open Street Map term attraction. -->
+<!-- Open Street Map term attraction. Place of interest for visitors-->
 <string name="osm_attraction" tools:ignore="MissingTranslation">Attraction</string>
-<!-- Open Street Map term zoo. -->
+<!-- Open Street Map term zoo. Facility where animals are kept for public viewing and conservation-->
 <string name="osm_zoo" tools:ignore="MissingTranslation">Zoo</string>
-<!-- Open Street Map term gallery. -->
+<!-- Open Street Map term gallery. Exhibition space for visual art-->
 <string name="osm_gallery" tools:ignore="MissingTranslation">Gallery</string>
-<!-- Open Street Map term artwork. -->
+<!-- Open Street Map term artwork. Individual piece of public or museum-displayed art-->
 <string name="osm_artwork" tools:ignore="MissingTranslation">Artwork</string>
-<!-- Open Street Map term alpine_hut. -->
+<!-- Open Street Map term alpine_hut. Mountain shelter for hikers and climbers-->
 <string name="osm_alpine_hut" tools:ignore="MissingTranslation">Alpine Hut</string>
-<!-- Open Street Map term plant. -->
-<string name="osm_plant" tools:ignore="MissingTranslation">Plant</string>
-<!-- Open Street Map term insurance. -->
-<string name="osm_insurance" tools:ignore="MissingTranslation">Insurance</string>
-<!-- Open Street Map term airfield. -->
+<!-- Open Street Map term plant. Industrial plant or production facility-->
+<string name="osm_plant" tools:ignore="MissingTranslation">Industrial Plant</string>
+<!-- Open Street Map term insurance. Office providing insurance services-->
+<string name="osm_insurance" tools:ignore="MissingTranslation">Insurance Office</string>
+<!-- Open Street Map term airfield. Small airport or landing area for aircraft-->
 <string name="osm_airfield" tools:ignore="MissingTranslation">Airfield</string>
-<!-- Open Street Map term water_tower. -->
+<!-- Open Street Map term water_tower. Elevated tank for storing and pressurizing water-->
 <string name="osm_water_tower" tools:ignore="MissingTranslation">Water Tower</string>
-<!-- Open Street Map term pumping_station. -->
+<!-- Open Street Map term pumping_station. Facility that pumps water or sewage-->
 <string name="osm_pumping_station" tools:ignore="MissingTranslation">Pumping Station</string>
-<!-- Open Street Map term hot_water_tank. -->
+<!-- Open Street Map term hot_water_tank. Large tank storing heated water, typically industrial-->
 <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Hot Water Tank</string>
-<!-- Open Street Map term campanile. -->
-<string name="osm_campanile" tools:ignore="MissingTranslation">Campanile</string>
-<!-- Open Street Map term sports_centre. -->
-<string name="osm_sports_centre" tools:ignore="MissingTranslation">Sports Center</string>
-<!-- Open Street Map term fitness_centre. -->
-<string name="osm_fitness_centre" tools:ignore="MissingTranslation">Fitness Center</string>
-<!-- Open Street Map term beach_resort. -->
+<!-- Open Street Map term campanile. Freestanding bell tower, often adjacent to a church-->
+<string name="osm_campanile" tools:ignore="MissingTranslation">Bell Tower</string>
+<!-- Open Street Map term sports_centre. Complex offering indoor or outdoor sports facilities-->
+<string name="osm_sports_centre" tools:ignore="MissingTranslation">Sports Centre</string>
+<!-- Open Street Map term fitness_centre. Gym or facility for physical fitness and training-->
+<string name="osm_fitness_centre" tools:ignore="MissingTranslation">Fitness Centre</string>
+<!-- Open Street Map term beach_resort. Holiday resort located on or near a beach-->
 <string name="osm_beach_resort" tools:ignore="MissingTranslation">Beach Resort</string>
-<!-- Open Street Map term village_green. -->
+<!-- Open Street Map term village_green. Common open grassy area in a village-->
 <string name="osm_village_green" tools:ignore="MissingTranslation">Village Green</string>
-<!-- Open Street Map term ship. -->
+<!-- Open Street Map term ship. Vessel or boat, often tagged as a mapped object-->
 <string name="osm_ship" tools:ignore="MissingTranslation">Ship</string>
-<!-- Open Street Map term memorial. -->
+<!-- Open Street Map term memorial. Structure commemorating people or events-->
 <string name="osm_memorial" tools:ignore="MissingTranslation">Memorial</string>
-<!-- Open Street Map term synagogue. -->
+<!-- Open Street Map term synagogue. Jewish house of worship-->
 <string name="osm_synagogue" tools:ignore="MissingTranslation">Synagogue</string>
-<!-- Open Street Map term mosque. -->
+<!-- Open Street Map term mosque. Muslim place of worship-->
 <string name="osm_mosque" tools:ignore="MissingTranslation">Mosque</string>
-<!-- Open Street Map term chapel. -->
+<!-- Open Street Map term chapel. Small Christian place of worship or private worship room-->
 <string name="osm_chapel" tools:ignore="MissingTranslation">Chapel</string>
-<!-- Open Street Map term cathedral. -->
+<!-- Open Street Map term cathedral. Principal church of a diocese, often large and historic-->
 <string name="osm_cathedral" tools:ignore="MissingTranslation">Cathedral</string>
-<!-- Open Street Map term train_terminal. -->
+<!-- Open Street Map term train_terminal. End point station for train services or major hub-->
 <string name="osm_train_terminal" tools:ignore="MissingTranslation">Train Terminal</string>
-<!-- Open Street Map term college. -->
+<!-- Open Street Map term college. Educational institution offering higher or further education-->
 <string name="osm_college" tools:ignore="MissingTranslation">College</string>
-<!-- Open Street Map term arts_centre. -->
-<string name="osm_arts_centre" tools:ignore="MissingTranslation">Arts Center</string>
-<!-- Open Street Map term ranger_station. -->
+<!-- Open Street Map term arts_centre. Venue for performing and visual arts events-->
+<string name="osm_arts_centre" tools:ignore="MissingTranslation">Arts Centre</string>
+<!-- Open Street Map term ranger_station. Base for park rangers and conservation staff-->
 <string name="osm_ranger_station" tools:ignore="MissingTranslation">Ranger Station</string>
-<!-- Open Street Map term hospital. -->
+<!-- Open Street Map term hospital. Medical facility providing inpatient and outpatient care-->
 <string name="osm_hospital" tools:ignore="MissingTranslation">Hospital</string>
-<!-- Open Street Map term track. -->
+<!-- Open Street Map term track. Linear route for racing, athletics, or transport-->
 <string name="osm_track" tools:ignore="MissingTranslation">Track</string>
-<!-- Open Street Map term conference_centre. -->
-<string name="osm_conference_centre" tools:ignore="MissingTranslation">Conference Center</string>
-<!-- Open Street Map term viewpoint. -->
+<!-- Open Street Map term conference_centre. Venue for conferences, meetings, and events-->
+<string name="osm_conference_centre" tools:ignore="MissingTranslation">Conference Centre</string>
+<!-- Open Street Map term viewpoint. Location offering a notable view or panorama-->
 <string name="osm_viewpoint" tools:ignore="MissingTranslation">Viewpoint</string>
-<!-- Open Street Map term supermarket. -->
-<string name="osm_supermarket" tools:ignore="MissingTranslation">Supermarket</string>
-<!-- Open Street Map term peak. -->
+<!-- Open Street Map term supermarket. Large retail store selling groceries and household goods-->
+<string name="osm_supermarket" tools:ignore="MissingTranslation">Supermarket Shop</string>
+<!-- Open Street Map term peak. Mountain or hill summit-->
 <string name="osm_peak" tools:ignore="MissingTranslation">Peak</string>
-<!-- Open Street Map term storage_tank. -->
+<!-- Open Street Map term storage_tank. Large container for storing liquids or gases-->
 <string name="osm_storage_tank" tools:ignore="MissingTranslation">Storage Tank</string>
-<!-- Open Street Map term lighthouse. -->
+<!-- Open Street Map term lighthouse. Tower with a light to aid maritime navigation-->
 <string name="osm_lighthouse" tools:ignore="MissingTranslation">Lighthouse</string>
-<!-- Open Street Map term beacon. -->
+<!-- Open Street Map term beacon. Navigational or warning signal marker-->
 <string name="osm_beacon" tools:ignore="MissingTranslation">Beacon</string>
-<!-- Open Street Map term port. -->
+<!-- Open Street Map term port. Harbor area where ships load, unload, or anchor-->
 <string name="osm_port" tools:ignore="MissingTranslation">Port</string>
-<!-- Open Street Map term archaeological_site. -->
+<!-- Open Street Map term archaeological_site. Area of archaeological interest or ruins-->
 <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Archaeological Site</string>
-<!-- Open Street Map term train_station. -->
-<string name="osm_train_station" tools:ignore="MissingTranslation">Train Station</string>
-<!-- Open Street Map term shrine. -->
+<!-- Open Street Map term train_station. Railway station where trains stop for passengers-->
+<string name="osm_train_station" tools:ignore="MissingTranslation">"Train Station"</string>
+<!-- OSM tag for train station preceded by its name e.g. "Milngavie Train station" -->
+<string name="osm_train_station_named" tools:ignore="MissingTranslation">"%s Train Station"</string>
+<!-- Open Street Map term shrine. Sacred place associated with a deity, saint, or relic-->
 <string name="osm_shrine" tools:ignore="MissingTranslation">Shrine</string>
-<!-- Open Street Map term church. -->
+<!-- Open Street Map term church. Christian place of worship-->
 <string name="osm_church" tools:ignore="MissingTranslation">Church</string>
-<!-- Open Street Map term historic_monument. -->
+<!-- Open Street Map term historic_monument. Protected or notable historic structure or site-->
 <string name="osm_historic_monument" tools:ignore="MissingTranslation">Historic Monument</string>
-<!-- Open Street Map term generic_landmark. -->
+<!-- Open Street Map term generic_landmark. General point of interest used as a landmark-->
 <string name="osm_generic_landmark" tools:ignore="MissingTranslation">Landmark</string>
-<!-- Open Street Map term tourism_museum. -->
+<!-- Open Street Map term tourism_museum. Museum or cultural attraction for tourists-->
 <string name="osm_tourism_museum" tools:ignore="MissingTranslation">Museum</string>
-<!-- Open Street Map term register_office. -->
-<string name="osm_register_office" tools:ignore="MissingTranslation">Register Office</string>
-<!-- Open Street Map term grave_yard. -->
+<!-- Open Street Map term register_office. Office for civil registration like births, deaths, marriages-->
+<string name="osm_register_office" tools:ignore="MissingTranslation">Registry Office</string>
+<!-- Open Street Map term grave_yard. Burial ground or cemetery-->
 <string name="osm_grave_yard" tools:ignore="MissingTranslation">Graveyard</string>
-<!-- Open Street Map term marketplace. -->
+<!-- Open Street Map term marketplace. Open area where markets or stalls operate-->
 <string name="osm_marketplace" tools:ignore="MissingTranslation">Marketplace</string>
-<!-- Open Street Map term fire_station. -->
+<!-- Open Street Map term fire_station. Facility housing fire engines and firefighters-->
 <string name="osm_fire_station" tools:ignore="MissingTranslation">Fire Station</string>
-<!-- Open Street Map term ruins. -->
+<!-- Open Street Map term ruins. Remains of buildings or structures, often historic-->
 <string name="osm_ruins" tools:ignore="MissingTranslation">Ruins</string>
-<!-- Open Street Map term weir. -->
+<!-- Open Street Map term weir. Low barrier across a river to control flow or water level-->
 <string name="osm_weir" tools:ignore="MissingTranslation">Weir</string>
-<!-- Open Street Map term museum. -->
+<!-- Open Street Map term museum. Institution preserving and exhibiting artifacts and history-->
 <string name="osm_museum" tools:ignore="MissingTranslation">Museum</string>
-<!-- Open Street Map term mall. -->
+<!-- Open Street Map term mall. Large indoor shopping center with multiple stores-->
 <string name="osm_mall" tools:ignore="MissingTranslation">Mall</string>
-<!-- Open Street Map term volcano. -->
+<!-- Open Street Map term volcano. Volcanic mountain or vent-->
 <string name="osm_volcano" tools:ignore="MissingTranslation">Volcano</string>
-<!-- Open Street Map term hot_spring. -->
+<!-- Open Street Map term hot_spring. Natural spring producing hot water, often recreational-->
 <string name="osm_hot_spring" tools:ignore="MissingTranslation">Hot Spring</string>
-<!-- Open Street Map term glacier. -->
+<!-- Open Street Map term glacier. Large persistent body of dense ice moving slowly over land-->
 <string name="osm_glacier" tools:ignore="MissingTranslation">Glacier</string>
-<!-- Open Street Map term wastewater_plant. -->
+<!-- Open Street Map term wastewater_plant. Facility treating sewage and wastewater-->
 <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Wastewater Plant</string>
-<!-- Open Street Map term offshore_platform. -->
+<!-- Open Street Map term offshore_platform. Industrial platform located offshore, e.g., oil rig-->
 <string name="osm_offshore_platform" tools:ignore="MissingTranslation">Offshore Platform</string>
-<!-- Open Street Map term gasometer. -->
-<string name="osm_gasometer" tools:ignore="MissingTranslation">Gasometer</string>
-<!-- Open Street Map term water_park. -->
+<!-- Open Street Map term gasometer. Large tank or holder for storing gas-->
+<string name="osm_gasometer" tools:ignore="MissingTranslation">Gas Holder</string>
+<!-- Open Street Map term water_park. Recreational park with water-based attractions and pools-->
 <string name="osm_water_park" tools:ignore="MissingTranslation">Water Park</string>
-<!-- Open Street Map term bandstand. -->
+<!-- Open Street Map term bandstand. Raised performance platform often used for bands in parks-->
 <string name="osm_bandstand" tools:ignore="MissingTranslation">Bandstand</string>
-<!-- Open Street Map term wreck. -->
+<!-- Open Street Map term wreck. Wreckage of a vehicle, ship, or structure, often submerged or stranded-->
 <string name="osm_wreck" tools:ignore="MissingTranslation">Wreck</string>
-<!-- Open Street Map term pillory. -->
+<!-- Open Street Map term pillory. A historic device used for public punishment.-->
 <string name="osm_pillory" tools:ignore="MissingTranslation">Pillory</string>
-<!-- Open Street Map term monastery. -->
+<!-- Open Street Map term monastery. A building or complex where monks or nuns live and worship.-->
 <string name="osm_monastery" tools:ignore="MissingTranslation">Monastery</string>
-<!-- Open Street Map term locomotive. -->
+<!-- Open Street Map term locomotive. A rail vehicle providing motive power for trains.-->
 <string name="osm_locomotive" tools:ignore="MissingTranslation">Locomotive</string>
-<!-- Open Street Map term fort. -->
+<!-- Open Street Map term fort. A defensive military structure or stronghold.-->
 <string name="osm_fort" tools:ignore="MissingTranslation">Fort</string>
-<!-- Open Street Map term services. -->
-<string name="osm_services" tools:ignore="MissingTranslation">Services</string>
-<!-- Open Street Map term lifeguard_tower. -->
+<!-- Open Street Map term services. Roadside service area providing fuel, food, and rest facilities.-->
+<string name="osm_services" tools:ignore="MissingTranslation">Service Area</string>
+<!-- Open Street Map term lifeguard_tower. Raised post used by lifeguards to observe swimmers.-->
 <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Lifeguard Tower</string>
-<!-- Open Street Map term temple. -->
+<!-- Open Street Map term temple. Place of worship used for religious services.-->
 <string name="osm_temple" tools:ignore="MissingTranslation">Temple</string>
-<!-- Open Street Map term national_park. -->
+<!-- Open Street Map term national_park. Protected natural area managed at the national level.-->
 <string name="osm_national_park" tools:ignore="MissingTranslation">National Park</string>
-<!-- Open Street Map term heliport. -->
+<!-- Open Street Map term heliport. Facility for helicopter takeoffs and landings.-->
 <string name="osm_heliport" tools:ignore="MissingTranslation">Heliport</string>
-<!-- Open Street Map term public_park. -->
+<!-- Open Street Map term public_park. Open green space for public recreation.-->
 <string name="osm_public_park" tools:ignore="MissingTranslation">Public Park</string>
-<!-- Open Street Map term department_store. -->
-<string name="osm_department_store" tools:ignore="MissingTranslation">Department Store</string>
-<!-- Open Street Map term studio. -->
+<!-- Open Street Map term department_store. Large retail outlet selling a wide range of goods.-->
+<string name="osm_department_store" tools:ignore="MissingTranslation">Department Store Shop</string>
+<!-- Open Street Map term studio. Space used for creative work, art, photography, or recording.-->
 <string name="osm_studio" tools:ignore="MissingTranslation">Studio</string>
-<!-- Open Street Map term public_building. -->
+<!-- Open Street Map term public_building. Government or civic building open to the public.-->
 <string name="osm_public_building" tools:ignore="MissingTranslation">Public Building</string>
-<!-- Open Street Map term clock. -->
+<!-- Open Street Map term clock. Public clock or clock tower fixture.-->
 <string name="osm_clock" tools:ignore="MissingTranslation">Clock</string>
-<!-- Open Street Map term casino. -->
+<!-- Open Street Map term casino. Venue for gambling and gaming activities.-->
 <string name="osm_casino" tools:ignore="MissingTranslation">Casino</string>
-<!-- Open Street Map term ferry_terminal. -->
+<!-- Open Street Map term ferry_terminal. Docking and boarding point for ferry services.-->
 <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Ferry Terminal</string>
-<!-- Open Street Map term stadium. -->
+<!-- Open Street Map term ferry_terminal. Named ferry terminal.-->
+<string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s Ferry Terminal</string>
+<!-- Open Street Map term stadium. Large sporting venue with spectator seating.-->
 <string name="osm_stadium" tools:ignore="MissingTranslation">Stadium</string>
-<!-- Open Street Map term dam. -->
+<!-- Open Street Map term dam. Barrier constructed to hold back or control water.-->
 <string name="osm_dam" tools:ignore="MissingTranslation">Dam</string>
-<!-- Open Street Map term dock. -->
+<!-- Open Street Map term dock. Structure for mooring, loading, or unloading boats.-->
 <string name="osm_dock" tools:ignore="MissingTranslation">Dock</string>
-<!-- Open Street Map term geyser. -->
+<!-- Open Street Map term geyser. Hot spring that intermittently ejects water and steam.-->
 <string name="osm_geyser" tools:ignore="MissingTranslation">Geyser</string>
-<!-- Open Street Map term bay. -->
+<!-- Open Street Map term bay. Coastal indentation of water partially enclosed by land.-->
 <string name="osm_bay" tools:ignore="MissingTranslation">Bay</string>
-<!-- Open Street Map term barracks. -->
+<!-- Open Street Map term barracks. Buildings used to house military personnel.-->
 <string name="osm_barracks" tools:ignore="MissingTranslation">Barracks</string>
-<!-- Open Street Map term windmill. -->
+<!-- Open Street Map term windmill. Structure using wind power to mill grain or generate energy.-->
 <string name="osm_windmill" tools:ignore="MissingTranslation">Windmill</string>
-<!-- Open Street Map term watermill. -->
+<!-- Open Street Map term watermill. Mill powered by flowing water for grinding or mechanical work.-->
 <string name="osm_watermill" tools:ignore="MissingTranslation">Watermill</string>
-<!-- Open Street Map term communications_tower. -->
+<!-- Open Street Map term communications_tower. Tower supporting radio, cellular, or broadcast antennas.-->
 <string name="osm_communications_tower" tools:ignore="MissingTranslation">Communications Tower</string>
-<!-- Open Street Map term swimming_area. -->
+<!-- Open Street Map term swimming_area. Designated zone in water bodies intended for swimming.-->
 <string name="osm_swimming_area" tools:ignore="MissingTranslation">Swimming Area</string>
-<!-- Open Street Map term slipway. -->
+<!-- Open Street Map term slipway. Ramp for launching or retrieving boats from the water.-->
 <string name="osm_slipway" tools:ignore="MissingTranslation">Slipway</string>
-<!-- Open Street Map term nature_reserve. -->
+<!-- Open Street Map term nature_reserve. Protected area for conservation of wildlife and habitat.-->
 <string name="osm_nature_reserve" tools:ignore="MissingTranslation">Nature Reserve</string>
-<!-- Open Street Map term marina. -->
+<!-- Open Street Map term marina. Harbor with berths and services for small boats and yachts.-->
 <string name="osm_marina" tools:ignore="MissingTranslation">Marina</string>
-<!-- Open Street Map term ice_rink. -->
+<!-- Open Street Map term ice_rink. Surface area used for ice skating or ice sports.-->
 <string name="osm_ice_rink" tools:ignore="MissingTranslation">Ice Rink</string>
-<!-- Open Street Map term manor. -->
+<!-- Open Street Map term manor. Large historic country house or estate.-->
 <string name="osm_manor" tools:ignore="MissingTranslation">Manor</string>
-<!-- Open Street Map term city_gate. -->
+<!-- Open Street Map term city_gate. Historic gateway marking an entrance to a town or city.-->
 <string name="osm_city_gate" tools:ignore="MissingTranslation">City Gate</string>
-<!-- Open Street Map term castle. -->
+<!-- Open Street Map term castle. Fortified historic residence or defensive fortress.-->
 <string name="osm_castle" tools:ignore="MissingTranslation">Castle</string>
-<!-- Open Street Map term aircraft. -->
+<!-- Open Street Map term aircraft. Fixed-wing flying vehicle such as an airplane.-->
 <string name="osm_aircraft" tools:ignore="MissingTranslation">Aircraft</string>
-<!-- Open Street Map term digester. -->
+<!-- Open Street Map term digester. Tank or vessel for biological decomposition (e.g., sewage).-->
 <string name="osm_digester" tools:ignore="MissingTranslation">Digester</string>
-<!-- Open Street Map term sally_port. -->
+<!-- Open Street Map term sally_port. Secured controlled entryway in fortifications or prisons.-->
 <string name="osm_sally_port" tools:ignore="MissingTranslation">Sally Port</string>
-<!-- Open Street Map term aerodrome. -->
+<!-- Open Street Map term aerodrome. Airfield for aircraft operations, often smaller than an airport.-->
 <string name="osm_aerodrome" tools:ignore="MissingTranslation">Aerodrome</string>
-<!-- Open Street Map term shopping_mall. -->
-<string name="osm_shopping_mall" tools:ignore="MissingTranslation">Mall</string>
-<!-- Open Street Map term cinema. -->
+<!-- Open Street Map term shopping_mall. Large indoor complex containing multiple retail outlets.-->
+<string name="osm_shopping_mall" tools:ignore="MissingTranslation">Shopping Mall</string>
+<!-- Open Street Map term cinema. Movie theater where films are shown to the public.-->
 <string name="osm_cinema" tools:ignore="MissingTranslation">Cinema</string>
-<!-- Open Street Map term rescue_station. -->
+<!-- Open Street Map term rescue_station. Facility for emergency rescue services and equipment.-->
 <string name="osm_rescue_station" tools:ignore="MissingTranslation">Rescue Station</string>
-<!-- Open Street Map term airport. -->
+<!-- Open Street Map term airport. Facility for aircraft operations and passenger services.-->
 <string name="osm_airport" tools:ignore="MissingTranslation">Airport</string>
-<!-- Open Street Map term theatre. -->
-<string name="osm_theatre" tools:ignore="MissingTranslation">Theater</string>
-<!-- Open Street Map term library. -->
+<!-- Open Street Map term theatre. Venue for live stage performances and shows.-->
+<string name="osm_theatre" tools:ignore="MissingTranslation">Theatre</string>
+<!-- Open Street Map term library. Public place lending books and offering information services.-->
 <string name="osm_library" tools:ignore="MissingTranslation">Library</string>
-<!-- Open Street Map term university. -->
+<!-- Open Street Map term university. Institution of higher education or campus.-->
 <string name="osm_university" tools:ignore="MissingTranslation">University</string>
-<!-- Open Street Map term police. -->
-<string name="osm_police" tools:ignore="MissingTranslation">Police</string>
-<!-- Open Street Map term embassy. -->
+<!-- Open Street Map term police. Local law enforcement office or station.-->
+<string name="osm_police" tools:ignore="MissingTranslation">Police Station</string>
+<!-- Open Street Map term embassy. Diplomatic mission representing a foreign country.-->
 <string name="osm_embassy" tools:ignore="MissingTranslation">Embassy</string>
-<!-- Open Street Map term bus_station. -->
+<!-- Open Street Map term bus_station. Terminal for intercity or local bus services.-->
 <string name="osm_bus_station" tools:ignore="MissingTranslation">Bus Station</string>
-<!-- Open Street Map term station. -->
+<!-- Open Street Map term station. General station for transport or services (rail, bus, etc.).-->
 <string name="osm_station" tools:ignore="MissingTranslation">Station</string>
-<!-- Open Street Map term toll_booth. -->
+<!-- Open Street Map term toll_booth. Point on a road where tolls are collected.-->
 <string name="osm_toll_booth" tools:ignore="MissingTranslation">Toll Booth</string>
-<!-- Open Street Map term lift. -->
-<string name="osm_lift" tools:ignore="MissingTranslation">Elevator</string>
-<!-- Open Street Map term unmanaged_crossing. -->
-<string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Unmanaged Crossing</string>
-<!-- Open Street Map term pharmacy. -->
-<string name="osm_pharmacy" tools:ignore="MissingTranslation">Pharmacy</string>
-<!-- Open Street Map term kneipp_water_cure. -->
+<!-- Open Street Map term lift. Elevator used for vertical transport between floors.-->
+<string name="osm_lift" tools:ignore="MissingTranslation">Lift</string>
+<!-- Open Street Map term unmanaged_crossing. Crossing without active control like gates or lights.-->
+<string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Unmanaged Crosswalk</string>
+<!-- Open Street Map term pharmacy. Retail outlet dispensing medicines and health products.-->
+<string name="osm_pharmacy" tools:ignore="MissingTranslation">Pharmacy Shop</string>
+<!-- Open Street Map term kneipp_water_cure. Facility offering Kneipp-style therapeutic water treatments.-->
 <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Kneipp Water Cure</string>
-<!-- Open Street Map term food_court. -->
+<!-- Open Street Map term food_court. Shared dining area with multiple food vendors.-->
 <string name="osm_food_court" tools:ignore="MissingTranslation">Food Court</string>
-<!-- Open Street Map term chemist. -->
-<string name="osm_chemist" tools:ignore="MissingTranslation">Drugstore</string>
-<!-- Open Street Map term checkpoint. -->
+<!-- Open Street Map term chemist. Retail outlet selling medicines and health products (chemist).-->
+<string name="osm_chemist" tools:ignore="MissingTranslation">Chemist Shop</string>
+<!-- Open Street Map term checkpoint. Controlled point for security, customs, or border checks.-->
 <string name="osm_checkpoint" tools:ignore="MissingTranslation">Checkpoint</string>
-<!-- Open Street Map term dog_park. -->
+<!-- Open Street Map term dog_park. Fenced area where dogs can exercise off-leash.-->
 <string name="osm_dog_park" tools:ignore="MissingTranslation">Dog Park</string>
-<!-- Open Street Map term kissing_gate. -->
+<!-- Open Street Map term kissing_gate. Small gate allowing people but not livestock to pass.-->
 <string name="osm_kissing_gate" tools:ignore="MissingTranslation">Kissing Gate</string>
-<!-- Open Street Map term car_rental. -->
+<!-- Open Street Map term car_rental. Business renting cars to customers.-->
 <string name="osm_car_rental" tools:ignore="MissingTranslation">Car Rental</string>
-<!-- Open Street Map term pedestrianised_area. -->
+<!-- Open Street Map term pedestrianised_area. Street or zone reserved for pedestrians only.-->
 <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Pedestrian Area</string>
-<!-- Open Street Map term escalator. -->
+<!-- Open Street Map term escalator. Moving staircase for transporting people between levels.-->
 <string name="osm_escalator" tools:ignore="MissingTranslation">Escalator</string>
-<!-- Open Street Map term shelter. -->
+<!-- Open Street Map term shelter. Covered structure providing protection from the elements.-->
 <string name="osm_shelter" tools:ignore="MissingTranslation">Shelter</string>
-<!-- Open Street Map term water_point. -->
+<!-- Open Street Map term water_point. Public tap or standpipe providing water.-->
 <string name="osm_water_point" tools:ignore="MissingTranslation">Water Point</string>
-<!-- Open Street Map term subway_entrance. -->
+<!-- Open Street Map term subway_entrance. Access point to an underground metro or subway station.-->
 <string name="osm_subway_entrance" tools:ignore="MissingTranslation">Subway Entrance</string>
-<!-- Open Street Map term cave_entrance. -->
+<!-- Open Street Map term cave_entrance. Natural opening leading into a cave system.-->
 <string name="osm_cave_entrance" tools:ignore="MissingTranslation">Cave Entrance</string>
-<!-- Open Street Map term swing_gate. -->
+<!-- Open Street Map term swing_gate. Gate that swings open on hinges.-->
 <string name="osm_swing_gate" tools:ignore="MissingTranslation">Swing Gate</string>
-<!-- Open Street Map term stile. -->
+<!-- Open Street Map term stile. Structure allowing pedestrians to pass over a fence or wall.-->
 <string name="osm_stile" tools:ignore="MissingTranslation">Stile</string>
-<!-- Open Street Map term car_sharing. -->
+<!-- Open Street Map term car_sharing. Designated spot for shared-use vehicles.-->
 <string name="osm_car_sharing" tools:ignore="MissingTranslation">Car Sharing</string>
-<!-- Open Street Map term customer_service. -->
+<!-- Open Street Map term customer_service. Desk or office providing help and information to customers.-->
 <string name="osm_customer_service" tools:ignore="MissingTranslation">Customer Service</string>
-<!-- Open Street Map term watering_place. -->
+<!-- Open Street Map term watering_place. Location where animals or livestock are given water.-->
 <string name="osm_watering_place" tools:ignore="MissingTranslation">Watering Place</string>
-<!-- Open Street Map term platform. -->
+<!-- Open Street Map term platform. Raised area beside tracks for passenger boarding.-->
 <string name="osm_platform" tools:ignore="MissingTranslation">Platform</string>
-<!-- Open Street Map term horse_stile. -->
+<!-- Open Street Map term horse_stile. Passage designed to allow horses to cross barriers.-->
 <string name="osm_horse_stile" tools:ignore="MissingTranslation">Horse Stile</string>
-<!-- Open Street Map term bureau_de_change. -->
-<string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Currency Exchange</string>
-<!-- Open Street Map term stairs. -->
+<!-- Open Street Map term bureau_de_change. Office where currency exchange services are provided.-->
+<string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Bureau de Change</string>
+<!-- Open Street Map term stairs. Fixed stairway connecting different levels or floors.-->
 <string name="osm_stairs" tools:ignore="MissingTranslation">Stairs</string>
-<!-- Open Street Map term bicycle_rental. -->
+<!-- Open Street Map term bicycle_rental. Service location for renting bicycles.-->
 <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Bicycle Rental</string>
-<!-- Open Street Map term tram_stop. -->
+<!-- Open Street Map term tram_stop. Designated stop for trams or light rail vehicles.-->
 <string name="osm_tram_stop" tools:ignore="MissingTranslation">Tram Stop</string>
-<!-- Open Street Map term subway. -->
-<string name="osm_subway" tools:ignore="MissingTranslation">Subway</string>
-<!-- Open Street Map term hampshire_gate. -->
+<!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
+<string name="osm_tram_stop_named" tools:ignore="MissingTranslation">"%s Tram Stop"</string>
+<!-- Open Street Map term subway. Underground railway system or metro network.-->
+<string name="osm_subway" tools:ignore="MissingTranslation">Subway Station</string>
+<!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
+<string name="osm_subway_named" tools:ignore="MissingTranslation">"%s Subway Station"</string>
+<!-- Open Street Map term hampshire_gate. A UK-style gate design used on footpaths.-->
 <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Hampshire Gate</string>
-<!-- Open Street Map term full-height_turnstile. -->
+<!-- Open Street Map term full-height_turnstile. Tall turnstile controlling pedestrian access.-->
 <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Full-Height Turnstile</string>
-<!-- Open Street Map term boat_sharing. -->
+<!-- Open Street Map term boat_sharing. Shared boat docking point for communal vessels.-->
 <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Boat Sharing</string>
-<!-- Open Street Map term help_point. -->
+<!-- Open Street Map term help_point. Emergency or information call station for assistance.-->
 <string name="osm_help_point" tools:ignore="MissingTranslation">Help Point</string>
-<!-- Open Street Map term open_space. -->
+<!-- Open Street Map term open_space. Unbuilt land area available for public use.-->
 <string name="osm_open_space" tools:ignore="MissingTranslation">Open Space</string>
-<!-- Open Street Map term spending_area. -->
+<!-- Open Street Map term spending_area. Area designated for short stops or local activity (context-specific).-->
 <string name="osm_spending_area" tools:ignore="MissingTranslation">Spending Area</string>
-<!-- Open Street Map term bicycle_repair_station. -->
+<!-- Open Street Map term bicycle_repair_station. Facility providing tools and pumps for bike repairs.-->
 <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Bicycle Repair Station</string>
-<!-- Open Street Map term motorcycle_barrier. -->
+<!-- Open Street Map term motorcycle_barrier. Barrier intended to restrict motorcycle access.-->
 <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Motorcycle Barrier</string>
-<!-- Open Street Map term kent_carriage_gap. -->
+<!-- Open Street Map term kent_carriage_gap. Small gap in a barrier allowing carriage passage (UK).-->
 <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Kent Carriage Gap</string>
-<!-- Open Street Map term shared_space. -->
+<!-- Open Street Map term shared_space. Road layout designed for mixed use by vehicles and pedestrians.-->
 <string name="osm_shared_space" tools:ignore="MissingTranslation">Shared Space</string>
-<!-- Open Street Map term cliff. -->
+<!-- Open Street Map term cliff. Steep rock face or escarpment.-->
 <string name="osm_cliff" tools:ignore="MissingTranslation">Cliff</string>
-<!-- Open Street Map term training_area. -->
+<!-- Open Street Map term training_area. Area designated for military or other training exercises.-->
 <string name="osm_training_area" tools:ignore="MissingTranslation">Training Area</string>
-<!-- Open Street Map term log. -->
+<!-- Open Street Map term log. Felled tree trunk or log used as an obstacle or feature.-->
 <string name="osm_log" tools:ignore="MissingTranslation">Log</string>
-<!-- Open Street Map term jersey_barrier. -->
+<!-- Open Street Map term jersey_barrier. Concrete or plastic road divider commonly used for traffic control.-->
 <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Jersey Barrier</string>
-<!-- Open Street Map term construction_site. -->
+<!-- Open Street Map term construction_site. Area where building or engineering work is in progress.-->
 <string name="osm_construction_site" tools:ignore="MissingTranslation">Construction Site</string>
-<!-- Open Street Map term ridge. -->
+<!-- Open Street Map term ridge. Long narrow elevated landform or crest.-->
 <string name="osm_ridge" tools:ignore="MissingTranslation">Ridge</string>
-<!-- Open Street Map term nuclear_explosion_site. -->
+<!-- Open Street Map term nuclear_explosion_site. Location of a historical nuclear test or detonation.-->
 <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Nuclear Explosion Site</string>
-<!-- Open Street Map term dyke. -->
+<!-- Open Street Map term dyke. Embankment built to prevent flooding; also spelled dike.-->
 <string name="osm_dyke" tools:ignore="MissingTranslation">Dyke</string>
-<!-- Open Street Map term sump_buster. -->
+<!-- Open Street Map term sump_buster. Obstacle preventing low-clearance vehicles from passing.-->
 <string name="osm_sump_buster" tools:ignore="MissingTranslation">Sump Buster</string>
-<!-- Open Street Map term rope. -->
+<!-- Open Street Map term rope. Stretched rope used as a barrier, guide, or safety line.-->
 <string name="osm_rope" tools:ignore="MissingTranslation">Rope</string>
-<!-- Open Street Map term debris. -->
+<!-- Open Street Map term debris. Loose material, rubble, or obstacles on the ground.-->
 <string name="osm_debris" tools:ignore="MissingTranslation">Debris</string>
-<!-- Open Street Map term road_works. -->
+<!-- Open Street Map term road_works. Temporary construction or maintenance works affecting a road.-->
 <string name="osm_road_works" tools:ignore="MissingTranslation">Road Works</string>
-<!-- Open Street Map term lock_gate. -->
+<!-- Open Street Map term lock_gate. Movable gate used in canal locks to hold or release water.-->
 <string name="osm_lock_gate" tools:ignore="MissingTranslation">Lock Gate</string>
-<!-- Open Street Map term sinkhole. -->
+<!-- Open Street Map term sinkhole. A ground collapse or depression where the surface has fallen into an underground void.-->
 <string name="osm_sinkhole" tools:ignore="MissingTranslation">Sinkhole</string>
-<!-- Open Street Map term range. -->
-<string name="osm_range" tools:ignore="MissingTranslation">Range</string>
-<!-- Open Street Map term ambulance_station. -->
+<!-- Open Street Map term range. An outdoor area used for shooting or weapons practice.-->
+<string name="osm_range" tools:ignore="MissingTranslation">Firing Range</string>
+<!-- Open Street Map term ambulance_station. A facility where ambulances and emergency medical crews are based.-->
 <string name="osm_ambulance_station" tools:ignore="MissingTranslation">Ambulance Station</string>
-<!-- Open Street Map term spikes. -->
+<!-- Open Street Map term spikes. Tyre‑damaging devices or spike strips placed to stop or control vehicles.-->
 <string name="osm_spikes" tools:ignore="MissingTranslation">Spikes</string>
-<!-- Open Street Map term generic_hazard. -->
-<string name="osm_generic_hazard" tools:ignore="MissingTranslation">Hazard</string>
-<!-- Open Street Map term contact_line. -->
+<!-- Open Street Map term generic_hazard. An unspecified danger or risk area not covered by more specific hazard tags.-->
+<string name="osm_generic_hazard" tools:ignore="MissingTranslation">Generic Hazard</string>
+<!-- Open Street Map term contact_line. An overhead electrical line that supplies power to trams or similar vehicles.-->
 <string name="osm_contact_line" tools:ignore="MissingTranslation">Contact Line</string>
-<!-- Open Street Map term danger_area. -->
+<!-- Open Street Map term danger_area. A defined zone where activities pose safety risks, like military or industrial areas.-->
 <string name="osm_danger_area" tools:ignore="MissingTranslation">Danger Area</string>
-<!-- Open Street Map term chain. -->
-<string name="osm_chain" tools:ignore="MissingTranslation">Chain</string>
-<!-- Open Street Map term parking_space. -->
+<!-- Open Street Map term chain. A chain used as a barrier to restrict vehicle or pedestrian access.-->
+<string name="osm_chain" tools:ignore="MissingTranslation">Chain Barrier</string>
+<!-- Open Street Map term parking_space. A marked spot intended for a single vehicle to park.-->
 <string name="osm_parking_space" tools:ignore="MissingTranslation">Parking Space</string>
-<!-- Open Street Map term motorcycle_parking. -->
+<!-- Open Street Map term motorcycle_parking. Area or designated spaces reserved for parking motorcycles.-->
 <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">Motorcycle Parking</string>
 
 </resources>

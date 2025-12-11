@@ -275,68 +275,68 @@
     <string name="help_text_routes_content_how_1">"**Creazione di un percorso**:\n\n Vai a \"Indicatori e Percorsi\", seleziona la scheda \"Percorsi\", quindi il pulsante \"Nuovo Percorso\". Assegna un nome al percorso e immetti una descrizione facoltativa, quindi aggiungi waypoint durante il tuo tragitto o sceglili dall'elenco di Indicatori. Puoi modificare in qualsiasi momento l'ordine dei waypoint lungo un percorso modificando quest'ultimo."</string>
     <string name="help_text_routes_content_how_2">**Modifica di un percorso**:\n\n Seleziona il percorso nella pagina \"Indicatori e Percorsi\", quindi scegli \"Modifica Percorso\". Potrai aggiungere e rimuovere waypoint, nonché modificare il nome e la descrizione del percorso.</string>
     <string name="help_text_routes_content_how_3">**Condivisione di un percorso**:\n\n seleziona il percorso nella pagina \"Indicatori e Percorsi\", quindi scegli l\'opzione \"Condividi\" e usa le solite opzioni di condivisione disponibili.</string>
-    <string name="osm_tag_crossing">"Attraversamento pedonale"</string>
-    <string name="osm_tag_construction">"Costruzione"</string>
-    <string name="osm_tag_dangerous_area">"Area pericolosa"</string>
-    <string name="osm_tag_townhall">"Municipio"</string>
-    <string name="osm_tag_steps">"Scalini"</string>
-    <string name="osm_tag_elevator">"Ascensore"</string>
-    <string name="osm_tag_walking_path">"Percorso a piedi"</string>
-    <string name="osm_tag_pedestrian_street">"Isola pedonale"</string>
-    <string name="osm_tag_bicycle_path">"Pista ciclabile"</string>
-    <string name="osm_tag_residential_street">"Strada residenziale"</string>
-    <string name="osm_tag_service_road">"Strada d’accesso"</string>
-    <string name="osm_tag_road">"Strada"</string>
-    <string name="osm_tag_highway">"Autostrada"</string>
-    <string name="osm_tag_highway_named">"Autostrada %s"</string>
-    <string name="osm_tag_highway_refed">"Autostrada %s"</string>
-    <string name="osm_tag_intersection">"Incrocio"</string>
-    <string name="osm_tag_roundabout">"Rotonda"</string>
-    <string name="osm_tag_highway_ramp">"Svincolo dell'autostrada"</string>
-    <string name="osm_tag_merging_lane">"Corsia di accelerazione"</string>
-    <string name="osm_tag_office_building">"Edificio per uffici"</string>
-    <string name="osm_tag_school_building">"Edificio scolastico"</string>
-    <string name="osm_tag_covered_pavilion">"Struttura coperta"</string>
-    <string name="osm_tag_convenience_store">"Minimarket"</string>
-    <string name="osm_tag_building_entrance">"Ingresso dell'edificio"</string>
-    <string name="osm_tag_assembly_point">"Punto di raccolta"</string>
-    <string name="osm_tag_cycle_barrier">"Barriera di accesso al transito di biciclette"</string>
-    <string name="osm_tag_turnstile">"Tornello"</string>
-    <string name="osm_tag_cattle_grid">"Fondo stradale a griglia larga"</string>
-    <string name="osm_tag_gate">"Casello"</string>
-    <string name="osm_tag_restroom">"Toilette"</string>
-    <string name="osm_tag_parking_lot">"Area di parcheggio"</string>
-    <string name="osm_tag_parking_entrance">"Ingresso del parcheggio"</string>
-    <string name="osm_tag_bench">"Panchina"</string>
-    <string name="osm_tag_taxi_waiting_area">"Stazione taxi"</string>
-    <string name="osm_tag_post_office">"Ufficio postale"</string>
-    <string name="osm_tag_post_box">"Buca delle lettere"</string>
-    <string name="osm_tag_waste_basket">"Contenitore per rifiuti"</string>
-    <string name="osm_tag_shower">"Doccia"</string>
-    <string name="osm_tag_bike_parking">"Parcheggio per biciclette"</string>
-    <string name="osm_tag_cafe">"Bar"</string>
-    <string name="osm_tag_restaurant">"Ristorante"</string>
-    <string name="osm_tag_telephone">"Telefono"</string>
-    <string name="osm_tag_gas_station">"Stazione di servizio"</string>
-    <string name="osm_tag_bank">"Banca"</string>
-    <string name="osm_tag_atm">"Sportello bancomat"</string>
-    <string name="osm_tag_atm_named">"Sportello bancomat %s"</string>
-    <string name="osm_tag_atm_refed">"Sportello bancomat %s"</string>
-    <string name="osm_tag_bus_stop">"Fermata dell'autobus"</string>
-    <string name="osm_tag_bus_stop_named">"Fermata dell'autobus %s"</string>
-    <string name="osm_tag_recycling_bin">"Contenitore per la raccolta differenziata"</string>
-    <string name="osm_tag_fountain">"Fontana"</string>
-    <string name="osm_tag_place_of_worship">"Luogo di culto"</string>
-    <string name="osm_tag_water_fountain">"Fontanella di acqua potabile"</string>
-    <string name="osm_tag_car_wash">"Autolavaggio"</string>
-    <string name="osm_tag_vending_machine">"Distributore automatico"</string>
-    <string name="osm_tag_playground">"Parco giochi"</string>
-    <string name="osm_tag_sports_field">"Campo sportivo"</string>
-    <string name="osm_tag_swimming_pool">"Piscina"</string>
-    <string name="osm_tag_garden">"Giardino"</string>
-    <string name="osm_tag_park">"Parco"</string>
-    <string name="osm_tag_picnic_table">"Tavolo per picnic"</string>
-    <string name="osm_tag_picnic_area">"Area picnic"</string>
+    <string name="osm_crossing">"Attraversamento pedonale"</string>
+    <string name="osm_construction">"Costruzione"</string>
+    <string name="osm_dangerous_area">"Area pericolosa"</string>
+    <string name="osm_townhall">"Municipio"</string>
+    <string name="osm_steps">"Scalini"</string>
+    <string name="osm_elevator">"Ascensore"</string>
+    <string name="osm_walking_path">"Percorso a piedi"</string>
+    <string name="osm_pedestrian_street">"Isola pedonale"</string>
+    <string name="osm_bicycle_path">"Pista ciclabile"</string>
+    <string name="osm_residential_street">"Strada residenziale"</string>
+    <string name="osm_service_road">"Strada d’accesso"</string>
+    <string name="osm_road">"Strada"</string>
+    <string name="osm_highway">"Autostrada"</string>
+    <string name="osm_highway_named">"Autostrada %s"</string>
+    <string name="osm_highway_refed">"Autostrada %s"</string>
+    <string name="osm_intersection">"Incrocio"</string>
+    <string name="osm_roundabout">"Rotonda"</string>
+    <string name="osm_highway_ramp">"Svincolo dell'autostrada"</string>
+    <string name="osm_merging_lane">"Corsia di accelerazione"</string>
+    <string name="osm_office_building">"Edificio per uffici"</string>
+    <string name="osm_school_building">"Edificio scolastico"</string>
+    <string name="osm_covered_pavilion">"Struttura coperta"</string>
+    <string name="osm_convenience_store">"Minimarket"</string>
+    <string name="osm_building_entrance">"Ingresso dell'edificio"</string>
+    <string name="osm_assembly_point">"Punto di raccolta"</string>
+    <string name="osm_cycle_barrier">"Barriera di accesso al transito di biciclette"</string>
+    <string name="osm_turnstile">"Tornello"</string>
+    <string name="osm_cattle_grid">"Fondo stradale a griglia larga"</string>
+    <string name="osm_gate">"Casello"</string>
+    <string name="osm_restroom">"Toilette"</string>
+    <string name="osm_parking_lot">"Area di parcheggio"</string>
+    <string name="osm_parking_entrance">"Ingresso del parcheggio"</string>
+    <string name="osm_bench">"Panchina"</string>
+    <string name="osm_taxi_waiting_area">"Stazione taxi"</string>
+    <string name="osm_post_office">"Ufficio postale"</string>
+    <string name="osm_post_box">"Buca delle lettere"</string>
+    <string name="osm_waste_basket">"Contenitore per rifiuti"</string>
+    <string name="osm_shower">"Doccia"</string>
+    <string name="osm_bike_parking">"Parcheggio per biciclette"</string>
+    <string name="osm_cafe">"Bar"</string>
+    <string name="osm_restaurant">"Ristorante"</string>
+    <string name="osm_telephone">"Telefono"</string>
+    <string name="osm_gas_station">"Stazione di servizio"</string>
+    <string name="osm_bank">"Banca"</string>
+    <string name="osm_atm">"Sportello bancomat"</string>
+    <string name="osm_atm_named">"Sportello bancomat %s"</string>
+    <string name="osm_atm_refed">"Sportello bancomat %s"</string>
+    <string name="osm_bus_stop">"Fermata dell'autobus"</string>
+    <string name="osm_bus_stop_named">"Fermata dell'autobus %s"</string>
+    <string name="osm_recycling_bin">"Contenitore per la raccolta differenziata"</string>
+    <string name="osm_fountain">"Fontana"</string>
+    <string name="osm_place_of_worship">"Luogo di culto"</string>
+    <string name="osm_water_fountain">"Fontanella di acqua potabile"</string>
+    <string name="osm_car_wash">"Autolavaggio"</string>
+    <string name="osm_vending_machine">"Distributore automatico"</string>
+    <string name="osm_playground">"Parco giochi"</string>
+    <string name="osm_sports_field">"Campo sportivo"</string>
+    <string name="osm_swimming_pool">"Piscina"</string>
+    <string name="osm_garden">"Giardino"</string>
+    <string name="osm_park">"Parco"</string>
+    <string name="osm_picnic_table">"Tavolo per picnic"</string>
+    <string name="osm_picnic_area">"Area picnic"</string>
     <string name="share_title">"Condividi"</string>
     <string name="faq_title">"Domande frequenti"</string>
     <string name="faq_title_abbreviated">"Domande frequenti"</string>
@@ -428,14 +428,14 @@
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NO</string>
     <string name="notification_text" tools:ignore="MissingTranslation">Stiamo eseguendo questo servizio di localizzazione in primo piano</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annulla ricerca</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">Stazione ferroviaria</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s Stazione ferroviaria</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">Fermata tram</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s fermata del tram</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">Stazione della metropolitana</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s stazione della metropolitana</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal traghetti</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s traghetto terminal</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Stazione ferroviaria</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Stazione ferroviaria</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Fermata tram</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s fermata del tram</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Stazione della metropolitana</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s stazione della metropolitana</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Terminal traghetti</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s traghetto terminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Gestione audio</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Gestione dell\'accessibilità</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Utilizzare il tema della luce</string>
@@ -476,10 +476,10 @@
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Lingua di ricerca</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inattivo poiché il percorso è già all\'inizio</string>
     <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Inattivo poiché il percorso è già alla fine</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">ingresso</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">ingresso principale</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s da %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%2$s del %1$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">ingresso</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">ingresso principale</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s da %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%2$s del %1$s</string>
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Mappe offline</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Dettagli della mappa offline</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Caricamento…</string>

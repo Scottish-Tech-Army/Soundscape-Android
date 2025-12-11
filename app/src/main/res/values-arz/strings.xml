@@ -303,66 +303,66 @@
     <string name="help_text_routes_content_how_1">أولاً ، انتقل إلى *\"علامات وطرق\" *، حدد علامة التبويب *\"Routes\" *، ثم حدد زر *\"Route\" *. امنح المسار اسمًا ووصفًا اختياريًا ، ثم أضف نقاط الطريق أثناء ذهابك أو اختيارها من قائمة العلامات الخاصة بك. يمكنك إعادة ترتيب ترتيب نقاط الطريق على طول الطريق في أي وقت عن طريق تحرير المسار.</string>
     <string name="help_text_routes_content_how_2">**تحرير الطريق :**\n\n اختر مسارك في شاشة *\"العلامات والطرق\"* ثم اختر *\"تحرير الطريق\"*. من هنا يمكنك إضافة وإزالة نقاط الطريق، وكذلك تعديل اسم ووصف الطريق.</string>
     <string name="help_text_routes_content_how_3">**مشاركة مسار :**\n\n حدد مسارك في شاشة *\"العلامات والطرق\"* ثم اختر خيار *\"مشاركه\"* باستخدام كل خيارات المشاركة المعتادة المتاحة لك.</string>
-    <string name="osm_tag_crossing">الممر</string>
-    <string name="osm_tag_construction">بناء</string>
-    <string name="osm_tag_dangerous_area">منطقة خطرة</string>
-    <string name="osm_tag_townhall">مبنى البلدية</string>
-    <string name="osm_tag_steps">خطوات</string>
-    <string name="osm_tag_elevator">مصعد</string>
-    <string name="osm_tag_walking_path">مسار المشي</string>
-    <string name="osm_tag_pedestrian_street">شارع المشاة</string>
-    <string name="osm_tag_bicycle_path">مسار الدراجة</string>
-    <string name="osm_tag_service_road">طريق الخدمة</string>
-    <string name="osm_tag_road">طريق</string>
-    <string name="osm_tag_highway">الطريق السريع</string>
-    <string name="osm_tag_highway_named">%s الطريق السريع</string>
-    <string name="osm_tag_highway_refed">الطريق السريع %s</string>
-    <string name="osm_tag_intersection">التقاطع</string>
-    <string name="osm_tag_roundabout">دوار</string>
-    <string name="osm_tag_highway_ramp">الطريق السريع الطريق المنحدر</string>
-    <string name="osm_tag_merging_lane">طرق مدموجه</string>
-    <string name="osm_tag_office_building">مبنى المكاتب</string>
-    <string name="osm_tag_school_building">بناء المدرسة</string>
-    <string name="osm_tag_covered_pavilion">Covered Pavilionجناح مغطى</string>
-    <string name="osm_tag_convenience_store">متجر</string>
-    <string name="osm_tag_building_entrance">مدخل بناء</string>
-    <string name="osm_tag_assembly_point">مخرج طوارئ</string>
-    <string name="osm_tag_cycle_barrier">حاجز دورة</string>
-    <string name="osm_tag_turnstile">الدوار</string>
-    <string name="osm_tag_cattle_grid">شبكه العبور</string>
-    <string name="osm_tag_gate">‌بوابة</string>
-    <string name="osm_tag_restroom">مرحاض</string>
-    <string name="osm_tag_parking_lot">موقف السيارات</string>
-    <string name="osm_tag_parking_entrance">مدخل وقوف السيارات</string>
-    <string name="osm_tag_bench">مقعد</string>
-    <string name="osm_tag_taxi_waiting_area">منطقة انتظار التاكسي</string>
-    <string name="osm_tag_post_office">مكتب البريد</string>
-    <string name="osm_tag_post_box">صندوق بريد</string>
-    <string name="osm_tag_waste_basket">سلة النفايات</string>
-    <string name="osm_tag_shower">دش</string>
-    <string name="osm_tag_bike_parking">مواقف للدراجة</string>
-    <string name="osm_tag_cafe">مقهى</string>
-    <string name="osm_tag_restaurant">مطعم</string>
-    <string name="osm_tag_telephone">الهاتف</string>
-    <string name="osm_tag_gas_station">محطة بنزين</string>
-    <string name="osm_tag_bank">بنك</string>
-    <string name="osm_tag_atm">أجهزة الصراف الآلي</string>
-    <string name="osm_tag_atm_named">%s أجهزة الصراف الآلي</string>
-    <string name="osm_tag_atm_refed">أجهزة الصراف الآلي\n\n%s</string>
-    <string name="osm_tag_bus_stop_named">محطة الحافلات\n\n%s</string>
-    <string name="osm_tag_recycling_bin">سلة المهملات</string>
-    <string name="osm_tag_fountain">نافورة</string>
-    <string name="osm_tag_place_of_worship">مكان العبادة</string>
-    <string name="osm_tag_water_fountain">نافورة المياه</string>
-    <string name="osm_tag_car_wash">غسيل السيارات</string>
-    <string name="osm_tag_vending_machine">آلة البيع</string>
-    <string name="osm_tag_playground">ملعب</string>
-    <string name="osm_tag_sports_field">المجال الرياضي</string>
-    <string name="osm_tag_swimming_pool">حمام السباحة</string>
-    <string name="osm_tag_garden">حديقة</string>
-    <string name="osm_tag_park">حديقة</string>
-    <string name="osm_tag_picnic_table">جدول نزهة</string>
-    <string name="osm_tag_picnic_area">منطقة النزهة</string>
+    <string name="osm_crossing">الممر</string>
+    <string name="osm_construction">بناء</string>
+    <string name="osm_dangerous_area">منطقة خطرة</string>
+    <string name="osm_townhall">مبنى البلدية</string>
+    <string name="osm_steps">خطوات</string>
+    <string name="osm_elevator">مصعد</string>
+    <string name="osm_walking_path">مسار المشي</string>
+    <string name="osm_pedestrian_street">شارع المشاة</string>
+    <string name="osm_bicycle_path">مسار الدراجة</string>
+    <string name="osm_service_road">طريق الخدمة</string>
+    <string name="osm_road">طريق</string>
+    <string name="osm_highway">الطريق السريع</string>
+    <string name="osm_highway_named">%s الطريق السريع</string>
+    <string name="osm_highway_refed">الطريق السريع %s</string>
+    <string name="osm_intersection">التقاطع</string>
+    <string name="osm_roundabout">دوار</string>
+    <string name="osm_highway_ramp">الطريق السريع الطريق المنحدر</string>
+    <string name="osm_merging_lane">طرق مدموجه</string>
+    <string name="osm_office_building">مبنى المكاتب</string>
+    <string name="osm_school_building">بناء المدرسة</string>
+    <string name="osm_covered_pavilion">Covered Pavilionجناح مغطى</string>
+    <string name="osm_convenience_store">متجر</string>
+    <string name="osm_building_entrance">مدخل بناء</string>
+    <string name="osm_assembly_point">مخرج طوارئ</string>
+    <string name="osm_cycle_barrier">حاجز دورة</string>
+    <string name="osm_turnstile">الدوار</string>
+    <string name="osm_cattle_grid">شبكه العبور</string>
+    <string name="osm_gate">‌بوابة</string>
+    <string name="osm_restroom">مرحاض</string>
+    <string name="osm_parking_lot">موقف السيارات</string>
+    <string name="osm_parking_entrance">مدخل وقوف السيارات</string>
+    <string name="osm_bench">مقعد</string>
+    <string name="osm_taxi_waiting_area">منطقة انتظار التاكسي</string>
+    <string name="osm_post_office">مكتب البريد</string>
+    <string name="osm_post_box">صندوق بريد</string>
+    <string name="osm_waste_basket">سلة النفايات</string>
+    <string name="osm_shower">دش</string>
+    <string name="osm_bike_parking">مواقف للدراجة</string>
+    <string name="osm_cafe">مقهى</string>
+    <string name="osm_restaurant">مطعم</string>
+    <string name="osm_telephone">الهاتف</string>
+    <string name="osm_gas_station">محطة بنزين</string>
+    <string name="osm_bank">بنك</string>
+    <string name="osm_atm">أجهزة الصراف الآلي</string>
+    <string name="osm_atm_named">%s أجهزة الصراف الآلي</string>
+    <string name="osm_atm_refed">أجهزة الصراف الآلي\n\n%s</string>
+    <string name="osm_bus_stop_named">محطة الحافلات\n\n%s</string>
+    <string name="osm_recycling_bin">سلة المهملات</string>
+    <string name="osm_fountain">نافورة</string>
+    <string name="osm_place_of_worship">مكان العبادة</string>
+    <string name="osm_water_fountain">نافورة المياه</string>
+    <string name="osm_car_wash">غسيل السيارات</string>
+    <string name="osm_vending_machine">آلة البيع</string>
+    <string name="osm_playground">ملعب</string>
+    <string name="osm_sports_field">المجال الرياضي</string>
+    <string name="osm_swimming_pool">حمام السباحة</string>
+    <string name="osm_garden">حديقة</string>
+    <string name="osm_park">حديقة</string>
+    <string name="osm_picnic_table">جدول نزهة</string>
+    <string name="osm_picnic_area">منطقة النزهة</string>
     <string name="share_title">مشاركه</string>
     <string name="faq_title">الأسئلة المتداولة</string>
     <string name="faq_title_abbreviated">التعليمات</string>
@@ -380,8 +380,8 @@
     <string name="faq_why_does_beacon_disappear_answer">يعد منارة Soundscape المسموعة في الأساس إشارة اتجاهية ، وتخبرك أين تكون وجهتك بالنسبة للاتجاه الذي تواجهه. عندما يكون Soundscape غير متأكد من الاتجاه الذي تواجهه ، فإنه يقلل من حجم المنارة. غالبًا ما يحدث هذا إذا كنت تمشي مع الهاتف المخزن في جيب أو حقيبة ، وتتوقف عن الحركة ، مثل عبور الشارع. سوف يزداد صوت المنارة بمجرد البدء في التحرك مرة أخرى ، أو إذا كنت تمسك بالهاتف مسطحًا وتوجهه في الاتجاه الذي تواجهه.</string>
     <string name="faq_beacon_on_address_question">هل يمكنني تعيين منارة على عنوان؟</string>
     <string name="help_text_customizing_markers_content_2">من شاشة *\"تحرير\"* هذه يمكنك أيضًا حذف العلامة إذا لم تعد بحاجة إليها.</string>
-    <string name="osm_tag_residential_street">الشارع السكني</string>
-    <string name="osm_tag_bus_stop">محطة الحافلات</string>
+    <string name="osm_residential_street">الشارع السكني</string>
+    <string name="osm_bus_stop">محطة الحافلات</string>
     <string name="faq_tips_title">نصائح</string>
     <string name="faq_beacon_on_address_answer">نعم يمكنك. لا يتم سرد العناوين افتراضيًا ولكن يمكن العثور عليها باستخدام حقل البحث. لحفظ هذا العنوان حتى لا تحتاج إلى البحث عنه مرة أخرى ، يمكنك إضافته كعلامة من الشاشة الرئيسية عن طريق تحديد زر * \"حفظ كعلامة\" *.</string>
     <string name="faq_beacon_on_home_question">كيف يمكنني تعيين منارة على منزلي؟</string>
@@ -436,14 +436,14 @@
     <string name="first_launch_permissions_notification">إشعارات</string>
     <string name="notification_text" tools:ignore="MissingTranslation">نحن ندير خدمة الموقع هذه في المقدمة</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">إلغاء البحث</string>
-    <string name="osm_tag_train_station" tools:ignore="MissingTranslation">محطة القطار\n\n ،</string>
-    <string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">%s\nمحطة قطار</string>
-    <string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">توقف الترام</string>
-    <string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">%s\nمحطة الترام</string>
-    <string name="osm_tag_subway" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
-    <string name="osm_tag_subway_named" tools:ignore="MissingTranslation">%s محطة مترو الأنفاق</string>
-    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s\nالعبارة</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">محطة القطار\n\n ،</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s\nمحطة قطار</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">توقف الترام</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s\nمحطة الترام</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s محطة مترو الأنفاق</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s\nالعبارة</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">إدارة الصوت</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">إدارة إمكانية الوصول</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">موضوع خفيف أو مظلم</string>
@@ -476,10 +476,10 @@
     <string name="menu_contact_support" tools:ignore="MissingTranslation">الاتصال للدعم</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">غير نشط لأن المسار موجود بالفعل في البداية</string>
     <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">غير نشط لأن المسار موجود بالفعل في النهاية</string>
-    <string name="osm_tag_entrance" tools:ignore="MissingTranslation">مدخل</string>
-    <string name="osm_tag_main_entrance" tools:ignore="MissingTranslation">المدخل الرئيسي</string>
-    <string name="osm_tag_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s fمن %3$s</string>
-    <string name="osm_tag_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">مدخل</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">المدخل الرئيسي</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s fمن %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="offline_maps_title" tools:ignore="MissingTranslation">خرائط دون اتصال</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">تفاصيل الخريطة الغير متصلة</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">تحميل…</string>
