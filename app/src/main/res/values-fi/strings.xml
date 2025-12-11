@@ -526,4 +526,665 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Sulje uuden julkaisun valintaikkuna</string>
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTässä julkaisussa on kaksi merkittävää muutosta. Ensinnäkin Soundscape tukee nyt *offline-karttoja*, joiden ansiosta sovellus pystyy käyttämään suurinta osaa toiminnoistaan ilman verkkoyhteyttä. Tässä alkujulkaisussa *Haku* vaatii edelleen verkkoyhteyden, mutta *Lähiympäristön paikat*, ääni-ilmoitukset ja karttanäkymä käyttävät ladattuja offline-karttoja.\n\nSaatavilla on suuri määrä valmiiksi rakennettuja kartta-alueita, jotka kattavat koko maapallon. Monet paikat kuuluvat useampaan kuin yhteen offline-kartta-alueeseen, joten käyttäjä voi valita, minkä alueen haluaa ladata ja käyttää. Useampia offline-karttoja voi ladata, ja Soundscape vaihtaa niiden välillä automaattisesti käyttäjän liikkuessa.\n\nKartta-alueet voivat kattaa kokonaisia maita, osavaltioita tai suurempien kaupunkien ja taajamien alueita. Alueiden koko vaihtelee sen mukaan, kuinka hyvin alue on kartoitettu ja alueen fyysisen koon mukaan. Jos olet ensimmäinen käyttäjä, joka lataa tietyn alueen, latauksen alkamiseen voi mennä hetki. Tämä voi kestää jopa muutaman minuutin, jonka aikana palvelin käsittelee karttaa tehdäkseen sen saataville ladattavaksi.\n\nTällä hetkellä ladatut offline-kartat näet valitsemalla *Valikko*, *Offline-kartat*. Näyttö näyttää myös ne kartat, jotka ovat ladattavissa nykyisen sijaintisi alueella.\n\nSijainnin tiedot -näytöllä on myös linkki offline-karttoihin. Jos haluat ladata karttoja paikkaan, jonne olet matkalla, etsi kyseinen sijainti ja napauta sitten *Lähellä olevat offline-kartat* -painiketta nähdäksesi, mitä karttoja kyseisellä paikalla on saatavilla. Tarpeettomat kartat voi poistaa valitsemalla *Jo ladatut kartat* ja sitten *Poista offline-kartta*.\n\nToinen merkittävä muutos on, että karttalaatat kattavat nelinkertaisen alueen verrattuna aiempiin julkaisuihin. Tämä tarkoittaa, että *Lähiympäristön paikat* -luettelossa näkyy kiinnostavia kohteita myös kauempaa.\n\nKuten aina, ilmoitathan mahdollisista ongelmista — vaikka ne tuntuisivatkin pieniltä — käyttämällä päävalikon *Ota yhteyttä tukeen* -vaihtoehtoa.\n</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s lauttaterminaali</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">Toimisto</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">Koulu</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">Katto</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">Lähikauppa</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">Nostoportti</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">WC-tilat</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">Pysäköinti</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">Taksipysäkki</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Pyöräpysäköinti</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">Bensa-asema</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">Kierrätyspiste</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">Juomavesi</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">Urheilukenttä</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">Piknikpaikka</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">Tietopiste</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Sammutin</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">Defibrillaattori</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">Opaste</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">Vesi</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">Palosammutusletku</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">Palon tukahduttaja (lätkä)</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">Tietopiste</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">Kosteikko</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">Muta</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">Sisäänpääsykohta</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">Pelastusrengas</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">Yleinen tieto</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">Kääntöpöytä</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">Maanmittauspiste</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">Lumiverkko</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">Silo</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">Masto</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">Lintuhavaintokoju</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">Muuntajatorni</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">Yleinen kohde</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">Signaali</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">Kivi</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">Polttouuni</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">Nosturi</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">Riimukivi</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">Matkanmerkki</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Uimavalvojan torni</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">Vesisäiliö</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">Sikala</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">Navigointimerkki</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">Terminaali</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">Vesihana</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">Kaivo</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">Öljykaivo</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">Risti</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">Hirsipuu</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">Nopeusvalvontakamera</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">Sireeni</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">Pyloni</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">Kaivoskuilu</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">Lipputanko</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Optinen lennätin</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">Tykki</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">Rajakivi</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">Vaja</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">Liikennekartiot</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">Nuotiopaikka</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">Kivi</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">Valvonta</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">Valvontasema</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Tienvarsipyhäkkö</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">Tienvarsiristi</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">Hautamuistomerkki</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">Liikennevalot</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">Maja</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">Kiinteä asuntovaunu</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">Pollari</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">Lohkare</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">Jätehuolto</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">Valokuva-automaatti</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">Grillipaikka</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">Kauppa</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">Lehtikauppa</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">Anime-kauppa</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">Soitinliike</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Imurikauppa</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">Matkapuhelinliike</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">Mattokauppa</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">Kauppa</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">Puutarhakauppa</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">Kukkakauppa</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">Takka</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">Hieronta</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">Yrttikauppa</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">Laukkukauppa</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">Leipomo</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">Delikauppa</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">Juomakauppa</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">Alkoholikauppa</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">Muuntoasema</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">Matkatoimisto</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">Tutkimuslaitos</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">Lehtikioski</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">Ammusliike</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">Tarkkailukoppi</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">Kellosepänliike</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">Peltisepänliike</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">Aurinkosuojatuotteiden kauppa</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">Kuvanveistäjän ateljee</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">Metalliverstas</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">Käsityökauppa</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">Navetta</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">Mökki</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">Lato</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">Varasto</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">Asuntovene</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">Kirjakauppa</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">Paikka</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">Metsästystorni</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">Riistan ruokinta</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">Krypta</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">Eläinten turvakoti</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">Lemmikkihotelli</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">Verenluovutus</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">Hoivakoti</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">Hammaslääkäri</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">Vauvan luovutusluukku</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">Kielikoulu</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">Julkinen kirjahylly</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">Olutpuutarha</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">Juoksurata</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">Lasiliike</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">Autokorjaamot</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">Vähittäiskauppa</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">Hotelli</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">Leirintäalue</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">Rugbyn kenttä</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">Rullaluistelu</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">Monikäyttöinen</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">Jääkiekko</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">Hapkido</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">Kroketti</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">Kriketti</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">Kukko-ottelu</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">Nyrkkeily</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">BMX</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">Biljardi</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">Lelukauppa</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Ilotulitekauppa</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">Pesula</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">Hautaustoimisto</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">Kuivapesula</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">Kopiopalvelu</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">Huvila</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">Asunto</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">Vesihiihto</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">Vesipallo</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">Pöytäjalkapallo</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">Pöytätennis</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">Skeittaus</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">Purjehdus</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">Turvallisuuskoulutus</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">Soutu</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Mallilentokenttä</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">Korfball</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">Eisstock</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">Voimistelu</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">Jalkapallo</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">Kenttähoki</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">Ratsastus</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">Pyöräily</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">Curling</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">Kriketin harjoitusverkot</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">Kalliohyppy</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">Petankki</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">Bobsleigh</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">Baseball</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">Aikido</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">Keilahalli</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">Asekauppa</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">Lemmikkikauppa</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">Lainapalvelu</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">Lahjatavarakauppa</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">Kirjakauppa</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">Vedonlyöntitoimisto</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">Valokuvaamo</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">Käsityökauppa</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">Moottoripyöräliike</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">Metsästystarvikekauppa</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">Kaihdinliike</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">Verhokauppa</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">Antiikkikauppa</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">Maalikauppa</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">Tatuointistudio</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Ravintolisäkauppa</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">Kuulolaitepalvelu</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">Kosmetiikkakauppa</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">Kellokauppa</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">Koruliike</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">Boutique-liike</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">Lastentarvikekauppa</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">Teekauppa</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">Pastakauppa</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">Kahvila</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">Itsenäinen julkinen toimielin</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">Puolue</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">Yhdistys</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">Arkkitehtitoimisto</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">Mainostoimisto</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">Kesäleiri</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">Tanssistudio</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Pelihalli</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Aikuisten pelihalli</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">Ikkunoiden valmistus</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">Verhoilija</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">Kengänseppä</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">Saha</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">Keramiikkastudio</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">Avainten kopiointi</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">LVI-urakoitsija</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">Kelloseppä</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">Puuseppä</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">Rakennusurakoitsija</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">Kirjansitoja</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">Veneenrakentaja</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">Panimo</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">Seppä</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">Korinvalmistaja</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">Kasvihuone</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Maatilan sivurakennus</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">Julkinen rakennus</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">Yksikerroksinen talo</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">Erillistalo</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">Parturi-kampaamo</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">Vaateliike</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">Käyttäjä</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">Dojo</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">Yökerho</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">Yhteisökeskus</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">Bordelli</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">Eläinlääkäriasema</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">Sosiaalipalvelu</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">Klinikka</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">Sähköauton latauspiste</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">Päiväkoti</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">Jäätelökioski</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">Pikaruokaravintola</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">Liikerakennus</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">Melonta</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">Sukellus</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">Kalastus</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">Optikko</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">Karkkikauppa</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">Bunkkeri</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Nukkumakapselit</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">Motelli</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">Vierastalo</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">Paini</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">Kelkkarata</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">Laskettelu</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">Radio‑ohjattavat autot</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Padel</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">Jääkiekko</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">Miekkailu</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">Bowls (ruohopeli)</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">Sulkapallo</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">Jousiammunta</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">Amerikkalainen jalkapallo</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">Matkatoimisto</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">Tupakkakauppa</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">Sähkötupakkakauppa</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">Video- ja DVD-kauppa</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">Autokorjaamo</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">Hifi-kauppa</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">Valaistusliike</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">Keittiöliike</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">Sisustuskauppa</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">Kodintarvikekauppa</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">Aikuisten kauppa</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">Kosmetiikkaliike</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">Viinikauppa</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">Meijerituotekauppa</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">Juustokauppa</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">Leipomo</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">Teleliike</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">Verotoimisto</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Kiinteistönvälittäjä</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">Notaarin toimisto</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">Kansalaisjärjestön toimisto</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">Asianajaja</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">IT-palvelut</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">Säätiö</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">Rekrytointitoimisto</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">Oppilaitos</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">Adoptiotoimisto</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">Minigolf</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">Rakennus</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">Viinitila</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">Laatoittaja</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Horminpuhdistaja</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">Messurakentaja</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">Satulaseppä</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">Putkimies</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">Tasoittaja</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">Maalari</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">Koruliike</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">Lattia-asentaja</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">Tislaamo</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">Mattoasentaja</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">Mehiläistarhaaja</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">Julkinen</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">Asuntola</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">Asunnot</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">Internet-kahvila</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">Kenkäkauppa</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">Kauppa</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">Kahvila</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">Coworking-tila</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">Strippiklubi</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">Sähköauton latauspiste</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">Pubi</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">Esterata</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">Lentopallo</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">Tennis</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">Jalkapallo</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">Ampumarata</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">Rugby</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">Suunnistus</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">Netball</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">Autoliike</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">Kitesurffaus</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">Karting</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">Judo</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">Hevosenkengänheitto</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">Käsipallo</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">Golf</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">Gaelilajit</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">Sukellus</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">Tikanheitto</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Kiipeilyseikkailu</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">Koripallo</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">Jääpallo</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">Australialainen jalkapallo</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">9-pin-keilaus</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">Tyhjä</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">Lottokauppa</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">Palkintokauppa</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">Musiikkikauppa</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">Pelikauppa</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">Rengasliike</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">Urheiluliike</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">Ulkoilukauppa</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">Autoliike</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">Elektroniikkakauppa</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">Tietokonekauppa</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">Huonekalukauppa</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">Kynttiläkauppa</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">Rautakauppa</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">Huoltoasema</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">Energiayhtiö</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">Tee-se-itse-kauppa</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Kylpyhuonetarvikekauppa</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">Lääketarvikekauppa</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">Sekatavarakauppa</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">Kirpputori</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">Hyväntekeväisyysmyymälä</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">Muotiliike</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">Kangaskauppa</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">Vaateliike</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">Lihakauppa</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">Vesilaitos</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">Kiinteistönvälittäjä</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">Yritys</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">Kirjanpitäjä</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">Bunkkerisiilo</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">Hakkeritila</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">Uimavalvojien tukikohta</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">Kattoasentaja</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">Riggaaja</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">Parkettiasentaja</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">Puutarhuri</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">Talli</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">Autotalli / korjaamo</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">Liikennepaikka</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">Talo</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">Helikopterin laskeutumisalue</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">Lentokoneiden seisonta-alue</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Elektroniikkakauppa</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">Erikoisliike</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">Määritelty</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">Sauna</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">Kuntosali</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">Krematorio</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">Uhkapelipaikka</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">Musiikkikoulu</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">Baari</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">Maatila</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">Pyöräliike</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">Räätäli</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">Lukkoseppä</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">Teollisuusalue</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Autiotupa</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">Hostelli</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">Asuntovaunualue</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">Painonnostohalli</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">Taekwondoseura</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">Uima-allas</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">Surffialue</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">Luistelurata</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">Mailapelipaikka</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">Pelota-kenttä</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">Varjoliitopaikka</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">Laskuvarjohyppyalue</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">Motocross-rata</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">Jääluistelurata</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">Hevoskilparata</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">Vinttikoirarata</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">Kiipeilyalue</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">Shakkikerho</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">Kanadalaisen jalkapallon kenttä</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Rantalentopallokenttä</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">Tukikohta</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">Yleisurheilurata</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">Panttilainaamo</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">Lipunmyyntipiste</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">Paperi- ja toimistotarvikekauppa</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">Peliliike</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">Mallikauppa</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">Kehystysliike</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">Taidekauppa</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">Autonosakauppa</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">Radiotekniikkaliike</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">Sänkäkauppa</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">Puutarhakalustekauppa</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">Sähköliike</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">Parfyymikauppa</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">Kampaamo</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">Drogeria</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">Kenkäkauppa</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">Nahkatuotekauppa</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">Sekatavarakauppa</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">Kalakauppa</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">Luomukauppa</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">Hedelmä- ja vihannesliike</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">Suklaakauppa</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Kotipanimoiden tarvikeliike</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">Veroneuvoja</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">Yksityisetsivä</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">Julkinen virasto</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">Metsätalous</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">Kiinteistönvälittäjä</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">Lähde</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">Golfkenttä</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">Pelastusasema</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Uimavalvojan piste</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">Kiviveistäjä</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">Telineasentaja</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">Purjeenvalmistaja</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Valokuvalaboratorio</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">Valokuvaaja</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">Eristys</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">Sähköasentaja</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">Ompelija</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">Pitopalvelu</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">Terassi</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">Lelukauppa</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">Sukelluskeskus</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">Swinger-klubi</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">Lääkärivastaanotto</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">Ajokoulu</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">Vapaalentoalue</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">Uskonto</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">Kioski</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">Asuinalue</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">Ruokapaikka</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">Vesiputous</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">Venetelakka</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">Huvipuisto</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">Pyöröhalli</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">Generaattori</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">Ranta</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">Laivastotukikohta</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">Teollisuuslaitos</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">Vesilaitos</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">Teleskooppi</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">Laituri</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">Observatorio</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">Vesivarasto</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">Muistomerkki</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">Taistelukenttä</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">Planetaario</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">Yhteisökeskus</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">Vankila</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">Oikeustalo</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">Silta</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">Hangaari</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">Torni</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">Nähtävyys</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">Eläintarha</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">Galleria</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">Taideteos</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">Vuorimaja</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">Teollisuuslaitos</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">Vakuutustoimisto</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">Lentokenttä</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">Vesitorni</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">Pumppaamo</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Lämminvesisäiliö</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">Kellotorni</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">Urheilukeskus</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">Kuntosali</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">Rantalomakeskus</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">Kylän viheralue</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">Laiva</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">Muistomerkki</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">Synagoga</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">Moskeija</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">Kappeli</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">Katedraali</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">Rautatieasema</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">Oppilaitos</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">Taidekeskus</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">Metsänvartijan asema</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">Sairaala</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">Rata</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">Konferenssikeskus</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">Näköalapaikka</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">Supermarketti</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">Huippu</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">Varastosäiliö</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">Majakka</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">Merimerkki</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">Satama</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Arkeologinen kohde</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">Pyhäkkö</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">Kirkko</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">Historiallinen muistomerkki</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">Maamerkki</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">Museo</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">Väestörekisteritoimisto</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">Hautausmaa</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">Tori</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">Paloasema</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">Rauniot</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">Pato</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">Museo</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">Ostoskeskus</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">Tulivuori</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">Kuuma lähde</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">Jäätikkö</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Jätevedenpuhdistamo</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">Merialusta</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">Kaasukello</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">Vesipuisto</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">Orkesterikatos</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">Hylky</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">Häpeäpenkki</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">Luostari</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">Veturi</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">Linnoitus</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">Palvelualue</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Pelastusvartijan torni</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">Temppeli</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">Kansallispuisto</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">Heliportti</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">Julkinen puisto</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">Tavaratalo</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">Studio</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">Julkinen rakennus</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">Julkinen kello</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">Kasino</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">Stadion</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">Pato</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">Laituri</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">Geysir</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">Lahti</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">Kasarmi</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">Tuulimylly</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">Vesimylly</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">Viestintätorni</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">Uimapaikka</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">Veneluiska</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">Luonnonsuojelualue</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">Venesatama</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">Luistelualue</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">Kartano</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">Kaupunginportti</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">Linna</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">Lentokone</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">Mädätyssäiliö</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">Suojattu portti</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">Lentopaikka</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">Ostoskeskus</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">Elokuvateatteri</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">Pelastusasema</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">Lentokenttä</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">Teatteri</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">Kirjasto</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">Yliopisto</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">Poliisiasema</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">Suurlähetystö</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">Linja-autoasema</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">Asema</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">Maksupiste</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">Hissi</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Ohjaamaton suojatie</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">Apteekki</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Kneipp-vesihoitola</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">Ruokailualue</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">Apteekki</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">Tarkastuspiste</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">Koirapuisto</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">Pieni jalankulkijaportti</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">Autonvuokraamo</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Jalankulkualue</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">Liukuporras</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">Suojakatos</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">Vesipiste</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">Metron sisäänkäynti</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">Luolan suu</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">Heiluriportti</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">Aitaportaat</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">Auton yhteiskäyttö</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">Asiakaspalvelu</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">Eläinten juottopaikka</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">Laituri</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">Hevosportti</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Valuutanvaihtopiste</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">Portaat</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Pyörävuokraamo</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Hampshire-portti</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Täyskorkeinen kääntöportti</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Veneen yhteiskäyttö</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">Apu- ja neuvontapiste</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">Avoin alue</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">Pysähdysalue</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Pyöränkorjauspiste</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Moottoripyöräeste</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Kent-tyylinen vaunuaukko</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">Jaettu liikennealue</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">Jyrkänne</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">Harjoitusalue</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">Tukki</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Jersey-kaide</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">Rakennustyömaa</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">Harjanne</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Ydinkoepaikka</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">Penger</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">Matala-autoeste</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">Köysi</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">Romu</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">Tietyöt</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">sulkuportti</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">maan vajoama</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">ampumarata</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">ambulanssiasema</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">piikkimatto</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">yleinen vaara</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">kontaktijohto</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">vaara-alue</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">ketjueste</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">pysäköintipaikka</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">moottoripyörien pysäköinti</string>
 </resources>
