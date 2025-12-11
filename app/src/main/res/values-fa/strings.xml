@@ -997,4 +997,665 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nدو تغییر مهم در این نسخه وجود دارد. نخست، پشتیبانی از *نقشه‌ی آفلاین* افزوده شده است که به ساند‌اسکیپ اجازه می‌دهد اکثر قابلیت‌هایش را بدون دسترسی به شبکه اجرا کند. در این نسخه‌ی اولیه، *جستجو* هنوز به اتصال شبکه نیاز دارد، اما *مکان‌های نزدیک*، اطلاع‌رسانی‌های صوتی و نقشه‌ی گرافیکی همگی از نقشه‌های آفلاین دانلودشده استفاده خواهند کرد.\n\nتعداد زیادی منطقه‌ی نقشه‌ی ازپیش‌ساخته در دسترس است که سراسر کره‌ی زمین را پوشش می‌دهند. بسیاری از مکان‌ها ممکن است در بیش از یک منطقه‌ی نقشه‌ی آفلاین قرار داشته باشند، بنابراین کاربر می‌تواند مشخص کند کدام منطقه را می‌خواهد دانلود و استفاده کند. امکان دانلود بیش از یک نقشه‌ی آفلاین وجود دارد و ساند‌اسکیپ هنگام حرکت کاربر به‌طور خودکار بین آن‌ها جابجا خواهد شد.\n\nمنطقه‌های نقشه می‌توانند شامل کشورها، ایالت‌ها یا خوشه‌هایی از شهرها و شهرک‌های بزرگ‌تر باشند. اندازه‌ی آن‌ها بسته به میزان پوشش و تفصیل داده‌های نقشه در هر ناحیه و همچنین وسعت فیزیکی ناحیه متفاوت است. اگر شما اولین کاربری باشید که یک ناحیه را دانلود می‌کنید، پیش از آغاز دانلود تأخیر کوتاهی رخ می‌دهد. این مرحله ممکن است تا چند دقیقه طول بکشد که در آن سرور نقشه را پردازش می‌کند تا آماده‌ی دانلود شود.\n\nنقشه‌های آفلاین حال حاضر را می‌توانید با رفتن به *منو*، *نقشه‌های آفلاین* مشاهده کنید. آن صفحه همچنین نقشه‌هایی را که برای موقعیت فعلی شما قابل دانلود هستند نمایش می‌دهد.\n\nصفحه‌ی *جزئیات موقعیت مکانی* نیز پیوندی به نقشه‌های آفلاین دارد؛ بنابراین اگر می‌خواهید نقشه‌های جایی را که قرار است به آن سفر کنید دانلود کنید، آن مکان را جستجو نموده و سپس دکمه‌ی *نقشه‌های آفلاین نزدیک* را لمس کنید تا ببینید در آن مکان کدام نقشه‌ها در دسترس هستند. نقشه‌هایی که دیگر لازم نیستند را می‌توانید با انتخاب یکی از موارد *«نقشه‌های دانلودشده»* و سپس انتخاب *«حذف نقشه‌ی آفلاین»* پاک کنید.\n\nتغییر مهم دوم این است که کاشی‌های نقشه اکنون مساحت چهار برابر نسخه‌های قبلی را پوشش می‌دهند. این بدان معناست که نقاط شاخص واقع در فواصل دورتر هم در *مکان‌های نزدیک* فهرست خواهند شد.\n\nهمان‌طور که همیشه، لطفاً هر گونه مشکل، هرچند کوچک، را از طریق گزینه‌ی *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">مجوزهای متن‌باز</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s پایانه کشتی</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">دفتر</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">مدرسه</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">بام</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">فروشگاه محلی</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">دروازه بالابر</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">توالت</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">پارکینگ</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">ایستگاه تاکسی</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">پارکینگ دوچرخه</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">پمپ بنزین</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">محل بازیافت</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">آب آشامیدنی</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">زمین ورزشی</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">محل پیک‌نیک</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">اطلاعات</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">کپسول آتش‌نشانی</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">دفیبریلاتور</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">راهنمای مسیر</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">آب</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">شلنگ آتش‌نشانی</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">ابزار دستی برای خفه کردن آتش</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">پایگاه اطلاعات</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">تالاب</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">گل‌ولای</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">نقطه دسترسی</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">حلقه نجات</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">اطلاعات عمومی</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">صفحه گردان</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">نقطه نقشه‌برداری</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">تور مهار برف</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">سیلو</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">دکل</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">پناهگاه پرنده‌نگری</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">برج ترانسفورماتور</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">شیء عمومی</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">علائم راهنمایی</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">سنگ</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">کوره</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">جرثقیل</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">سنگ تاریخی با نوشته‌های رونی</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">نشانگر فاصله</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">سکوی غریق‌نجات</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">مخزن آب</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">محل نگهداری خوک</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">وسیله کمک ناوبری</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">پایانه</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">شیر آب</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">چاه آب</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">چاه نفت</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">صلیب</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">چوبهٔ دار</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">دوربین کنترل سرعت</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">آژیر</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">پایلون</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">شفت معدن</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">میلهٔ پرچم</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">تلگراف نوری</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">توپ تاریخی</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">سنگ مرزی</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">آلونک</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">مخروط‌های ترافیکی</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">آتشدان</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">سنگ ایستاده</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">سیستم نظارتی</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">ایستگاه پایش</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">زیارتگاه کنار راه</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">صلیب کنار راه</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">مقبره</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">چراغ راهنمایی و رانندگی</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">کلبه</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">کاروان ثابت</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">ستونک</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">بلوک</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">محل دفع زباله</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">غرفهٔ عکاسی</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">باربیکیو</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">فروشگاه</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">روزنامه‌فروشی</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">فروشگاه انیمه</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">فروشگاه آلات موسیقی</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">فروشگاه جاروبرقی</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">فروشگاه موبایل</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">فروشگاه فرش</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">فروشگاه تجاری</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">مرکز باغبانی</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">گل‌فروشی</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">شومینه</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">ماساژ</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">عطاری</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">کیف‌فروشی</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">قنادی</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">فروشگاه غذاهای آماده</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">نوشیدنی‌فروشی</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">فروشگاه مشروبات الکلی</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">پست برق</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">آژانس مسافرتی</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">مرکز پژوهشی</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">روزنامه‌فروشی</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">فروشگاه مهمات</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">پناهگاه مشاهده حیات‌وحش</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">ساعت‌فروشی و تعمیرات</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">کارگاه ساخت ظروف فلزی</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">فروشگاه محصولات ضدآفتاب</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">آتلیه مجسمه‌سازی</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">کارگاه ساخت سازه‌های فلزی</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">فروشگاه صنایع دستی</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">طویله</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">کلبه</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">انبار مزرعه</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">انبار</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">قایق مسکونی</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">کتابفروشی</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">محل</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">سکوی شکار</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">محل تغذیه حیات‌وحش</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">آرامگاه زیرزمینی</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">پناهگاه حیوانات</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">پانسیون حیوانات</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">مرکز اهدای خون</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">خانه سالمندان</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">دندان‌پزشک</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">محفظه تحویل ایمن نوزاد</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">موسسه آموزش زبان</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">قفسه کتاب عمومی</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">بیرگارتن (باغ آبجو)</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">مسیر دویدن</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">کارگاه شیشه‌گری</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">گاراژها</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">فروشگاه خرده‌فروشی</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">هتل</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">محل کمپ</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">زمین راگبی</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">پیست رولر اسکیت</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">چندمنظوره</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">هاکی روی یخ</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">هاپکیدو</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">کروکه</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">کریکت</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">مبارزه خروس‌ها</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">بوکس</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">پیست بی‌ام‌ایکس</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">بیلیارد</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">فروشگاه اسباب‌بازی</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">فروشگاه آتش‌بازی</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">لاندری</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">دفتر خدمات تشییع جنازه</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">خشکشویی</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">مرکز تکثیر و چاپ</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">کلبهٔ کوهستانی</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">آپارتمان</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">اسکی روی آب</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">واترپلو</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">فوتبال دستی</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">تنیس روی میز</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">اسکیت‌برد</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">قایق‌رانی بادبانی</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">آموزش ایمنی</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">قایق‌رانی پارویی</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">محل پرواز هواپیماهای مدل</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">کورف‌بال</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">آیس‌استاک</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">ژیمناستیک</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">فوتبال</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">هاکی روی چمن</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">سوارکاری</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">دوچرخه‌سواری</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">کرلینگ</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">تورهای تمرینی کریکت</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">پرش از صخره</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">پتانک (بُولز)</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">بوبسلی (سرسرهٔ یخی)</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">بیسبال</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">آیکیدو</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">بولینگ ده‌پین</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">فروشگاه اسلحه و مهمات</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">فروشگاه حیوانات خانگی</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">موسسه وام‌دهی</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">فروشگاه هدایا و سوغات</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">کتاب‌فروشی</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">دفتر شرط‌بندی</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">آتلیه عکاسی</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">فروشگاه صنایع‌دستی</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">فروشگاه موتورسیکلت</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">فروشگاه تجهیزات شکار</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">فروشگاه کرکره‌های پنجره</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">فروشگاه پرده</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">فروشگاه عتیقه‌جات</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">فروشگاه رنگ</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">استودیو تتو</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">فروشگاه مکمل‌های تغذیه‌ای</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">فروشگاه سمعک</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">فروشگاه لوازم آرایشی</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">فروشگاه ساعت</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">فروشگاه جواهرات</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">بوتیک</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">فروشگاه لوازم نوزاد و کودک</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">چای‌فروشی</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">فروشگاه پاستا</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">کافه</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">نهاد شبه‌دولتی</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">حزب سیاسی</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">انجمن</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">دفتر معماری</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">آژانس تبلیغاتی</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">اردوگاه تابستانی</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">استودیو رقص</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">سالن بازی (آرکید)</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">مرکز بازی مخصوص بزرگسالان</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">کارگاه ساخت و نصب پنجره</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">روکش‌کار مبلمان</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">کفاش</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">کارگاه چوب‌بری</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">کارگاه سفالگری</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">کلیدسازی</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">پیمانکار تهویه مطبوع (HVAC)</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">ساعت‌ساز</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">نجار</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">پیمانکار ساختمان</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">صحاف</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">قایق‌ساز</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">کارخانه آبجوسازی</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">آهنگر</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">سازنده سبد</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">گلخانه</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">ساختمان جانبی مزرعه</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">ساختمان عمومی</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">بنگالو</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">خانه مستقل</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">آرایشگاه</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">فروشگاه لباس</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">کاربر</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">دوجو (باشگاه رزمی)</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">کلوپ شبانه</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">مرکز اجتماعی محلی</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">خانه فحشا</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">کلینیک دامپزشکی</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">مرکز خدمات اجتماعی</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">کلینیک</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">ایستگاه شارژ خودروهای برقی</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">مهدکودک</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">بستنی‌فروشی</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">فست‌فود</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">ساختمان تجاری</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">قایقرانی با کانو</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">غواصی اسکوبا</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">ماهیگیری</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">فروشگاه عینک</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">فروشگاه شیرینی و شکلات</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">پناهگاه زیرزمینی</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">کپسول خواب</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">موتل (مسافرخانه کنار جاده)</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">مهمان‌خانه</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">کشتی</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">مسیر سورتمه‌سواری</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">پیست اسکی</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">مسیر ماشین‌های کنترلی (RC)</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">پدل (تنیس پدل)</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">هاکی</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">شمشیربازی</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">بولز (بازی چمن)</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">بدمینتون</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">تیراندازی با کمان</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">فوتبال آمریکایی</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">آژانس مسافرتی</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">فروشگاه دخانیات</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">فروشگاه سیگار الکترونیکی (ویپ)</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">فروشگاه ویدئو و فیلم</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">تعمیرگاه خودرو</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">فروشگاه های‌فای</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">فروشگاه لوازم روشنایی</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">فروشگاه لوازم آشپزخانه</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">فروشگاه دکوراسیون داخلی</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">فروشگاه لوازم خانه</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">فروشگاه محصولات بزرگسالان (اروتیک)</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">فروشگاه زیبایی و آرایشی</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">فروشگاه شراب</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">فروشگاه لبنیات</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">فروشگاه پنیر</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">نانوایی و قنادی</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">فروشگاه مخابرات و تلفن</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">اداره مالیات</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">مشاور املاک</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">دفتر اسناد رسمی</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">دفتر سازمان غیردولتی (NGO)</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">دفتر وکالت</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">خدمات فناوری اطلاعات</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">بنیاد</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">دفتر کاریابی</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">مؤسسه آموزشی</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">آژانس فرزندخواندگی</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">مینی‌گلف</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">ساختمان</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">شراب‌سازی (کارگاه تولید شراب)</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">کاشی‌کار</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">پاک‌کننده دودکش</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">غرفه‌ساز</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">زین‌دوز</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">لوله‌کش</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">گچ‌کار</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">نقاش ساختمان</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">جواهرفروشی</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">نصاب کف</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">کارخانه تقطیر</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">نصاب فرش</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">زنبوردار</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">عمومی</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">خوابگاه</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">آپارتمان‌ها</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">کافه اینترنت</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">کفش‌فروشی</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">فروشگاه</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">کافه</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">فضای کار اشتراکی</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">باشگاه رقص برهنه (نمایش بزرگسالان)</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">ایستگاه شارژ خودرو برقی</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">پاب</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">مسیر موانع</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">زمین والیبال</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">زمین تنیس</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">زمین فوتبال</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">محل تیراندازی</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">زمین راگبی</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">اورینتیرینگ (جهت‌یابی ورزشی)</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">زمین نت‌بال</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">فروشگاه خودرو</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">کایت‌سواری</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">پیست کارتینگ</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">جودو</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">محل بازی نعل‌اسب</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">زمین هندبال</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">زمین گلف</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">بازی‌های گِلیک</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">غواصی</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">دارت</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">سالن صعود ماجراجویانه</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">زمین بسکتبال</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">زمین بَندی (ورزش روی یخ)</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">زمین فوتبال استرالیایی</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">بولینگ ۹ میخی</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">خالی</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">فروشگاه بخت‌آزمایی</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">فروشگاه کاپ و مدال</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">فروشگاه موسیقی</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">فروشگاه بازی</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">فروشگاه لاستیک</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">فروشگاه لوازم ورزشی</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">فروشگاه تجهیزات فضای باز</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">نمایندگی خودرو</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">فروشگاه لوازم الکترونیکی</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">فروشگاه کامپیوتر</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">فروشگاه مبلمان</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">فروشگاه شمع</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">فروشگاه ابزارآلات</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">ایستگاه سوخت</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">شرکت انرژی</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">فروشگاه ابزار و لوازم تعمیرات خانگی</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">فروشگاه لوازم سرویس بهداشتی</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">فروشگاه تجهیزات پزشکی</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">فروشگاه همه‌چیزفروش</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">فروشگاه کالای دست‌دوم</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">فروشگاه خیریه</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">فروشگاه مد</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">فروشگاه پارچه</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">فروشگاه پوشاک</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">قصابی</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">شرکت تأمین آب</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">مشاور املاک</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">شرکت</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">حسابدار</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">سیلوی انباری</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">فضای کار اشتراکی فناوری</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">پایگاه غریق‌نجات</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">سقف‌کار</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">ریگر (نصاب تجهیزات بالابری)</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">نصاب پارکت</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">باغبان</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">اصطبل</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">گاراژ</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">تأسیسات حمل‌و‌نقل</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">خانه</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">هلی‌پد</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">اپرون (محوطه پارک و بارگیری هواپیما)</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">فروشگاه لوازم الکترونیکی</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">فروشگاه تخصصی</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">تعریف‌شده</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">سونا</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">باشگاه ورزشی</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">کرماتوریوم</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">قمارخانه</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">مدرسه موسیقی</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">بار</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">مزرعه</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">فروشگاه دوچرخه</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">خیاط</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">کلیدساز</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">صنعتی</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">پناهگاه دورافتاده</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">هاستل</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">محل توقف کاروان</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">سالن وزنه‌برداری</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">باشگاه تکواندو</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">استخر شنا</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">محل موج‌سواری</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">پیست اسکیت</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">تسهیلات ورزش‌های راکتی</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">زمین پِلوتا (بسک پِلوتا)</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">محل پاراگلایدر</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">محل چتربازی</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">پیست موتوکراس</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">پیست اسکیت روی یخ</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">پیست اسب‌دوانی</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">پیست مسابقه سگ‌ها</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">محل صخره‌نوردی</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">باشگاه شطرنج</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">زمین فوتبال کانادایی</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">زمین والیبال ساحلی</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">پایگاه</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">پیست دو و میدانی</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">مغازه رهن‌کالا</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">گیشه بلیت</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">فروشگاه لوازم‌التحریر</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">فروشگاه بازی‌های ویدیویی</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">فروشگاه ماکت و مدل</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">فروشگاه قاب</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">گالری و فروشگاه آثار هنری</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">فروشگاه قطعات خودرو</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">فروشگاه تجهیزات رادیویی</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">فروشگاه تخت و سرویس خواب</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">فروشگاه مبلمان باغی</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">فروشگاه تجهیزات برقی</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">عطرفروشی</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">آرایشگاه</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">فروشگاه دارویی و بهداشتی</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">فروشگاه کفش</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">فروشگاه محصولات چرمی</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">فروشگاه عمومی</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">ماهی‌فروشی</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">فروشگاه ارگانیک</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">میوه و سبزی‌فروشی</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">شکلات‌فروشی</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">فروشگاه لوازم آبجوسازی</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">مشاور مالیاتی</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">کارآگاه خصوصی</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">اداره دولتی</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">جنگلداری</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">مشاور املاک</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">چشمه</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">زمین گلف</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">ایستگاه خدمات اضطراری</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">پست نجات‌غریق</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">سنگ‌تراش</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">نصاب داربست</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">سازنده بادبان</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">آزمایشگاه عکاسی</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">عکاس</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">عایق</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">برق‌کار</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">خیاط</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">خدمات پذیرایی (کترینگ)</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">تراس</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">فروشگاه اسباب‌بازی</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">مرکز غواصی</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">باشگاه روابط جنسی (ویژهٔ بزرگسالان)</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">مطب پزشکان</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">آموزشگاه رانندگی</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">منطقه پرواز آزاد (پرواز بدون موتور)</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">دین / مذهب</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">دکه</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">منطقه مسکونی</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">محل عرضه غذا</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">آبشار</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">کارگاه کشتی‌سازی و تعمیر قایق</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">پارک موضوعی</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">آشیانهٔ گردان لوکوموتیو</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">مولد برق</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">ساحل</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">پایگاه نیروی دریایی</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">کارگاه صنعتی</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">تأسیسات آب</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">تلسکوپ</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">اسکله</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">رصدخانه</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">مخزن آب</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">بنای یادبود</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">محل نبرد (تاریخی)</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">پلنتاریوم</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">مرکز اجتماعی</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">زندان</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">ساختمان دادگاه</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">پل</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">هَنگَر (آشیانهٔ هواپیما)</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">برج</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">جاذبه</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">باغ‌وحش</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">نگارخانه</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">اثر هنری</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">پناهگاه کوهستانی</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">کارخانهٔ صنعتی</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">دفتر بیمه</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">فرودگاه کوچک</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">برج آب</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">ایستگاه پمپاژ</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">مخزن آب گرم</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">برج ناقوس</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">مرکز ورزشی</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">باشگاه ورزشی</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">استراحتگاه ساحلی</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">فضای سبز روستا</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">کشتی</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">یادمان</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">کنیسه</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">مسجد</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">کلیسای کوچک</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">کلیسای جامع</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">ترمینال قطار</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">کالج</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">مرکز هنری</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">ایستگاه محیط‌بانی</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">بیمارستان</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">پیست</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">مرکز کنفرانس</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">منظره‌گاه</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">سوپرمارکت</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">قله</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">مخزن ذخیره</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">فانوس دریایی</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">چراغ نشانگر</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">بندر</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">محوطهٔ باستانی</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">زیارتگاه</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">کلیسا</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">اثر تاریخی</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">نقطهٔ شاخص</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">موزه</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">ادارهٔ ثبت احوال</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">گورستان</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">بازار</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">ایستگاه آتش‌نشانی</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">ویرانه‌ها</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">بند (سد کوچک)</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">موزه</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">مرکز خرید</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">آتشفشان</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">چشمهٔ آب گرم</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">یخچال طبیعی</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">تصفیه‌خانهٔ فاضلاب</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">سکوی فراساحلی</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">مخزن گاز</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">پارک آبی</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">سکوی اجرای موسیقی</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">لاشه</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">ستون رسوایی (دستگاه تنبیه عمومی تاریخی)</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">صومعه</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">لوکوموتیو</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">دژ</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">ایستگاه خدمات بین‌راهی</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">برج نجات‌غریق</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">معبد</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">پارک ملی</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">هلی‌پورت</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">پارک عمومی</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">فروشگاه بزرگ</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">استودیو</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">ساختمان عمومی</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">ساعت عمومی</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">کازینو</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">ورزشگاه</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">سد</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">اسکله</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">آبفشان</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">خلیج</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">پادگان</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">آسیاب بادی</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">آسیاب آبی</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">برج مخابراتی</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">منطقهٔ شنا</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">سلیپ‌وی (رامپ راه‌اندازی قایق)</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">ذخیره‌گاه طبیعی</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">بندرگاه تفریحی</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">پیست یخ</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">عمارت</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">دروازهٔ شهر</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">قلعهٔ تاریخی</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">هواپیما</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">تانک هاضم</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">ورودی محافظت‌شده</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">هواپیماگاه</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">مرکز خرید</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">سینما</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">ایستگاه نجات</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">فرودگاه</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">تئاتر</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">کتابخانه</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">دانشگاه</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">ایستگاه پلیس</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">سفارت</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">پایانهٔ اتوبوس</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">ایستگاه</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">گیشه عوارض</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">آسانسور</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">عبورگاه بدون کنترل</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">داروخانه</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">آب‌درمانی کنایپ</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">سالن غذاخوری</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">داروخانه</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">ایست بازرسی</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">پارک مخصوص سگ‌ها</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">دروازهٔ کیسینگ (گذرگاه پیاده؛ مانع عبور دام)</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">اجاره خودرو</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">منطقهٔ عابران پیاده</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">پله برقی</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">سرپناه</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">نقطهٔ آب (شیر آب عمومی)</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">ورودی مترو</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">ورودی غار</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">درب لولایی</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">پله‌گذر (برای عبور از حصار)</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">خودروی اشتراکی</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">خدمات مشتریان</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">محل آب‌خوری دام</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">سکو</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">گذرگاه مخصوص اسب</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">صرافی</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">پله‌ها</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">اجاره دوچرخه</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">دروازهٔ همپشر (نوعی دروازهٔ پیاده‌رو بریتانیا)</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">گیت گردان تمام‌قد</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">قایق اشتراکی</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">نقطهٔ کمک</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">فضای باز</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">منطقهٔ توقف کوتاه‌مدت</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">ایستگاه تعمیر دوچرخه</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">مانع ورود موتورسیکلت</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">شکاف عبور کالسکه (کِنت)</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">فضای مشترک</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">پرتگاه</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">منطقهٔ تمرین</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">کندهٔ درخت</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">جداساز بتنی (جِرسی)</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">محل ساخت‌وساز</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">خط‌الراس</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">محل انفجار هسته‌ای</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">سد خاکی (دایک)</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">مانع عبور خودروهای کم‌ارتفاع</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">طناب</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">آوار</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">کارهای جاده‌ای</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">دریچهٔ قفل کانال</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">گودال فرونشست</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">میدان تیراندازی</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">ایستگاه آمبولانس</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">نوار میخ‌دار</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">خطر عمومی</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">سیم بالاسری</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">منطقهٔ خطر</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">مانع زنجیری</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">جای پارک</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">پارکینگ موتورسیکلت</string>
 </resources>
