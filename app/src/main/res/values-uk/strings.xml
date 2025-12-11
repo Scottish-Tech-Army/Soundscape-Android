@@ -526,4 +526,665 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Інформація про нове оновлення</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Закрити вікно про нове оновлення</string>
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nУ цьому випуску є дві основні зміни. По-перше, додано підтримку *Офлайн‑карт*, що дозволяє Soundscape виконувати більшість своїх функцій без підключення до мережі. У цьому початковому релізі *Пошук* все ще потребує доступу до мережі, але *Навколишні місця*, голосові оголошення та відображення карти використовуватимуть будь‑які завантажені офлайн‑карти.\n\nДоступна велика кількість заздалегідь підготовлених регіонів карт, які охоплюють усю планету. Багато місць можуть входити до кількох регіонів офлайн‑карт, тому користувач може обрати, яку саме карту завантажити та використовувати. Можна завантажити більше однієї офлайн‑карти, і Soundscape автоматично переключатиметься між ними в міру переміщення користувача.\n\nРегіони карт можуть охоплювати цілі країни, штати або кластери більших міст і селищ. Їхній розмір варіюється залежно від того, наскільки детально промаплено регіон, а також від фізичного розміру території. Якщо ви перший користувач, який завантажує певний регіон, перед початком завантаження може виникнути коротка затримка. Це може зайняти кілька хвилин, під час яких сервер обробляє карту, щоб зробити її доступною для завантаження.\n\nПоточні завантажені офлайн‑карти можна переглянути в *Меню* → *Офлайн‑карти*. На цьому екрані також показано карти для поточного місця, які доступні для завантаження.\n\nЕкран «Деталі місця» також містить посилання на офлайн‑карти, тому якщо ви хочете завантажити карти для місця, куди збираєтесь їхати, знайдіть його через *Пошук* і натисніть кнопку *Офлайн‑карти поблизу*, щоб побачити, які карти доступні для цього місця. Карти, які більше не потрібні, можна видалити, вибравши елемент зі списку *Завантажені карти* і натиснувши *Видалити офлайн‑карту*.\n\nДругою важливою зміною є те, що тайли карти тепер покривають у 4 рази більшу площу, ніж у попередніх версіях. Це означає, що у *Навколишніх місцях* будуть відображатися точки інтересу з більшої відстані.\n\nЯк і завжди, будь ласка, повідомляйте про будь‑які проблеми, навіть якщо вони здаються незначними, через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Ліцензії з відкритим кодом</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">Офіс</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">Школа</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">Дах</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">Магазин товарів першої необхідності</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">Підйомні ворота</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">Туалети</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">Паркування</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">Стоянка таксі</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Парковка для велосипедів</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">Автозаправна станція</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">Пункт прийому вторсировини</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">Питна вода</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">Спортивне поле</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">Місце для пікніка</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">Інформація</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Вогнегасник</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">Дефібрилятор</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">Вказівник</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">Вода</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">Пожежний шланг</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">Засіб для задушення вогню</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">Інформаційний пункт</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">Водно-болотне угіддя</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">Бруд</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">Точка доступу</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">Рятувальне кільце</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">Загальна інформація</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">Поворотна платформа</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">Геодезичний пункт</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">Снігозахисна сітка</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">Силос</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">Щогла</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">Схованка для спостереження за птахами</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">Трансформаторна вежа</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">Загальний об\'єкт</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">Сигнал</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">Валун</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">Піч для випалу</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">Кран</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">Рунічний камінь</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">Кілометровий знак</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Платформа рятувальника</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">Резервуар для води</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">Свинарник</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">Навігаційний засіб</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">Термінал</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">Кран з питною водою</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">Криниця</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">Нафтова свердловина</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">Хрест</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">Шибениця</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">Камера контролю швидкості</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">Сирена</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">Пілон</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">Шахтний ствол</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">Флагшток</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Оптичний телеграф</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">Гармата</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">Межовий камінь</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">Сарай</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">Дорожні конуси</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">Вогнище</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">Стоячий камінь</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">Спостереження</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">Станція моніторингу</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Придорожня капличка</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">Придорожній хрест</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">Гробниця</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">Світлофори</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">Хатина</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">Стаціонарний караван</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">Стовпчик</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">Блок</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">Пункт викидання відходів</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">Фотокабіна</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">Барбекю</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">Магазин</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">Магазин преси</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">Магазин аніме</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">Магазин музичних інструментів</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Магазин пилососів</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">Магазин мобільних телефонів</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">Магазин килимів</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">Торговий магазин</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">Садовий центр</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">Квітковий магазин</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">Камін</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">Масаж</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">Магазин трав</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">Магазин сумок</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">Кондитерська</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">Делікатесний магазин</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">Магазин напоїв</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">Магазин алкогольних напоїв</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">Підстанція</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">Туристичне агентство</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">Дослідницький центр</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">кіоск із газетами та періодикою</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">магазин боєприпасів</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">укриття для спостереження за дикою природою</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">годинникова майстерня</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">бляхарська майстерня</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">магазин засобів сонцезахисту</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">студія скульптора</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">виробництво металоконструкцій</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">магазин виробів ручної роботи</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">коровник</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">хатина</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">амбар</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">склад</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">плавучий будинок</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">книжковий магазин</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">місце</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">мисливська вишка</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">місце підгодовування дичини</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">крипта</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">притулок для тварин</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">пансіон для тварин</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">пункт здачі крові</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">будинок для людей похилого віку</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">стоматологічна клініка</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">вікно життя</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">школа іноземних мов</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">громадська книжкова шафа</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">пивний сад</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">бігова доріжка</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">склярна майстерня</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">гаражі (автомайстерні)</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">роздрібний магазин</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">готель</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">кемпінг</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">поле для регбі-ліги</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">майданчик для катання на роликах</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">багатоцільовий</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">хокей на льоду</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">хапкідо</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">крокет</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">крикет</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">бої півнів</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">бокс</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">трек для BMX</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">більярд</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">магазин іграшок</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">магазин піротехніки (феєрверків)</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">пральня</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">похоронне бюро</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">хімчистка</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">Копіювальний центр</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">Шале</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">Квартира</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">Водні лижі</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">Водне поло</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">Настільний футбол</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">Настільний теніс</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">Скейтбординг</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">Вітрильний спорт</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">Тренування з безпеки</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">Веслування</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Модельний аеродром</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">Корфбол</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">Ейсшток</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">Гімнастика</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">Футбол</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">Хокей на траві</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">Кінний спорт</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">Велоспорт</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">Керлінг</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">Сітки для крикету</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">Стрибки зі скелі</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">Петанк</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">Бобслей</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">Бейсбол</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">Айкідо</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">Тенпін-боулінг</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">Магазин зброї</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">Зоомагазин</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">Позиковий пункт</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">Магазин подарунків</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">Книжковий магазин</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">Букмейкер</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">Фотосалон</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">Магазин рукоділля</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">Магазин мотоциклів</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">Мисливський магазин</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">Магазин жалюзі</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">Магазин штор</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">Антикварний магазин</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">Магазин фарб</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">Татуювальна студія</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Магазин харчових добавок</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">Магазин слухових апаратів</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">Косметичний магазин</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">Магазин годинників</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">Ювелірний магазин</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">Бутик</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">Магазин товарів для дітей</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">Чайний магазин</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">Магазин макаронних виробів</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">Кав\'ярня</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">Квазіурядова організація</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">Політична партія</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">Асоціація</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">Архітектурне бюро</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">Рекламне агентство</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">Літній табір</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">Танцювальна студія</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Ігрова аркада</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Гральний центр для дорослих</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">Віконна майстерня</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">Майстер з оббивки меблів</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">Майстер з ремонту взуття</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">Лісопилка</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">Гончарна майстерня</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">Майстер з виготовлення ключів</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">Підрядник з опалення, вентиляції та кондиціонування</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">Годинникар</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">Столяр</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">Будівельна компанія</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">Переплітник</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">Виробник човнів</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">Пивоварня</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">Коваль</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">Майстер з плетіння кошиків</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">Теплиця</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Допоміжна фермерська будівля</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">Громадська будівля</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">Бунгало</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">Окремий будинок</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">Перукарня</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">Магазин одягу</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">Користувач</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">Додзьо</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">Нічний клуб</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">Громадський центр</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">Бордель</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">Ветеринарна клініка</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">Соціальний заклад</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">Клініка</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">Зарядна станція</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">Дитячий садок</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">Магазин морозива</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">Заклад швидкого харчування</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">Комерційна будівля</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">Катання на каное</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">Дайвінг</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">Риболовля</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">Оптик</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">Кондитерський магазин</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">Бункер</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Спальні капсули</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">Мотель</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">Гостьовий будинок</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">Реслінг</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">Траса для тобогану</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">Гірськолижна зона</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">Траса для радіокерованих авто</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Корт для падл‑тенісу</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">Хокей</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">Фехтування</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">Поле для боулз</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">Бадмінтон</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">Стрільба з лука</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">Американський футбол</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">Турагентство</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">Тютюновий магазин</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">Магазин електронних сигарет</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">Відеомагазин</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">Автосервіс</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">Магазин аудіотехніки</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">Магазин освітлення</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">Магазин кухонних меблів</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">Магазин декору</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">Магазин господарських товарів</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">Магазин для дорослих</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">Косметичний магазин</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">Винний магазин</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">Молочний магазин</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">Магазин сирів</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">Пекарня</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">Магазин зв\'язку</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">Податкова служба</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Агентство нерухомості</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">Нотаріус</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">Офіс неурядової організації</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">Адвокат</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">ІТ‑послуги</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">Фонд</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">Агентство з працевлаштування</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">Освітній заклад</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">Агентство з усиновлення</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">Міні‑гольф</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">Будівля</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">Виноробня</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">Плиточник</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Чистильник димоходів</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">Виробник виставкових стендів</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">Майстер із виготовлення та ремонту сідел</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">Сантехнік</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">Штукатур</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">Маляр</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">Ювелірний магазин</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">Монтажник підлогових покриттів</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">Дистилерія</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">Укладач килимових покриттів</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">Пасічник</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">Громадський</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">Гуртожиток</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">Квартири</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">Інтернет-кафе</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">Магазин взуття</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">Магазин</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">Кав\'ярня</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">Коворкінг</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">Стрип-клуб</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">Зарядка для електромобілів</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">Паб</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">Полоса перешкод</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">Майданчик для волейболу</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">Корт для тенісу</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">Футбольне поле</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">Стрільбище</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">Поле для регбі</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">Траса для орієнтування</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">Поле для нетболу</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">Магазин автотоварів</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">Місце для кайтсерфінгу</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">Картинг</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">Дзюдо</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">Майданчик для метання підков</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">Поле для гандболу</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">Гольф</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">Поле для гельських ігор</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">Місце для дайвінгу</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">Місце для дартсу</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Парк пригодницького скелелазіння</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">Майданчик для баскетболу</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">Поле для бенді</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">Поле для австралійського футболу</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">9-кегельний боулінг</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">Порожнє приміщення</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">Пункт продажу лотерей</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">Магазин трофеїв</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">Музичний магазин</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">Магазин ігор</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">Магазин шин</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">Спортивний магазин</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">Магазин туристичного спорядження</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">Автосалон</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">Магазин електроніки</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">Магазин комп\'ютерів</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">Магазин меблів</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">Магазин свічок</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">Магазин будівельних товарів</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">Автозаправна станція</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">Енергетична компанія</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">Магазин товарів для дому та ремонту</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Магазин сантехніки</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">Магазин медичних товарів</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">Універсальний магазин</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">Магазин уживаних речей</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">Благодійний магазин</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">Магазин моди</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">Магазин тканин</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">Магазин одягу</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">М\'ясний магазин</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">Підприємство водопостачання</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">Агент з нерухомості (рієлтор)</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">Компанія</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">Бухгалтер</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">Бункерний силос</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">Хакерспейс (технічний простір)</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">База рятувальників</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">Покрівельник</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">Такелажник</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">Майстер з укладання паркету</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">Садівник</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">Стайня</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">Гараж</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">Транспортний об\'єкт</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">Будинок</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">Вертолітний майданчик</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">Апрон (зона стоянки літаків)</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Магазин електроніки</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">Спеціалізований магазин</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">Задано</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">Сауна</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">Фітнес-клуб</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">Крематорій</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">Заклад азартних ігор</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">Музична школа</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">Бар</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">Ферма</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">Магазин велосипедів</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">Портний</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">Майстер з замків і ключів</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">Промисловий об\'єкт</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Притулок у дикій місцевості</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">Хостел</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">Стоянка для караванів та автодомів</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">Зал важкої атлетики</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">Клуб тхеквондо</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">Басейн</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">Місце для серфінгу</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">Каток (льодовий або роликовий)</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">Корт для ракеткових видів спорту</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">Корт для пелоти (баскська гра)</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">Місце для парапланеризму</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">Місце для стрибків із парашутом (дропзона)</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">Траса для мотокросу</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">Льодовий каток</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">Траса для кінних перегонів</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">Траса для перегонів собак</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">Місце для скелелазіння</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">Шаховий клуб</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">Поле для канадського футболу</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Пляжний волейбольний корт</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">База</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">Легкоатлетична доріжка</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">Ломбард</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">Каса квитків</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">Магазин канцтоварів</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">Магазин відеоігор</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">Магазин моделей</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">Магазин рам</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">Магазин мистецтва та художніх матеріалів</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">Магазин автозапчастин</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">Магазин радіотехніки</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">Магазин ліжок</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">Магазин садових меблів</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">Магазин електротоварів</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">Парфумерний магазин</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">Перукарня</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">Аптека / магазин товарів особистої гігієни</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">Магазин взуття</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">Магазин шкіряних виробів</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">Універсальний магазин</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">Магазин морепродуктів</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">Магазин органічних продуктів</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">Магазин овочів та фруктів</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">Магазин шоколаду</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Магазин для домашнього пивоваріння</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">Податковий консультант</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">Приватний детектив</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">Державна установа</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">Лісове господарство</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">Ріелтор</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">Джерело</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">гольф-поле</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">станція служби порятунку</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">пост рятувальника</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">каменяр</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">монтажник риштувань</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">майстер з виготовлення вітрил</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">фотолабораторія</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">фотограф</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">ізоляція</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">електрик</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">кравець</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">кейтерер</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">тераса</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">магазин іграшок</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">дайв-центр</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">свінгер-клуб</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">лікарська практика</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">автошкола</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">місце для безмоторного польоту</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">релігія</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">кіоск</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">житлова зона</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">заклад харчування</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">водоспад</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">лодоремонтна база</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">парк розваг</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">кругле локомотивне депо</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">генератор</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">пляж</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">військово-морська база</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">промислове підприємство</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">водопровідні споруди</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">телескоп</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">пірс</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">обсерваторія</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">водосховище</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">пам\'ятник</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">поле бою</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">планетарій</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">громадський центр</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">в\'язниця</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">будівля суду</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">міст</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">ангар</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">вежа</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">пам\'ятка</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">зоопарк</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">галерея</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">твір мистецтва</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">гірська хижа</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">Промислове підприємство</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">Страхова компанія</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">Аеродром</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">Водонапірна вежа</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">Насосна станція</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Резервуар гарячої води</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">Дзвіниця</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">Спортивний центр</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">Фітнес-центр</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">Пляжний курорт</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">Сільська зелена площа</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">Судно</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">Меморіал</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">Синагога</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">Мечеть</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">Каплиця</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">Кафедральний собор</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">Залізничний термінал</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">Коледж</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">Мистецький центр</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">Пункт паркового рейнджера</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">Лікарня</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">Траса</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">Конференц-центр</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">Оглядовий майданчик</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">Супермаркет</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">Вершина</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">Резервуар</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">Маяк</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">Навігаційний маяк</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">Порт</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Археологічна пам\'ятка</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">Святиня</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">Церква</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">Історичний пам\'ятник</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">Орієнтир</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">Музей</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">Реєстраційний офіс</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">Кладовище</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">Ринок</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">Пожежна станція</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">Руїни</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">Плотина</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">Музей</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">Торговий центр</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">Вулкан</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">Гаряче джерело</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">Льодовик</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Станція очищення стічних вод</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">Морська платформа</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">Газгольдер</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">Аквапарк</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">Музична альтанка</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">Обломки</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">Стовп ганьби</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">Монастир</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">Локомотив</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">Форт</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">Зона сервісу та відпочинку</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Рятувальна вежа</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">Храм</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">Національний парк</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">Геліпорт</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">Громадський парк</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">Універмаг</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">Студія</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">Громадська будівля</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">Годинник</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">Казино</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">Стадіон</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">Гребля</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">Причал</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">Гейзер</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">Затока</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">Казарми</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">Вітряк</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">Водяний млин</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">Телекомунікаційна вежа</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">Місце для купання</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">Рампа для спуску човнів</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">Природний заповідник</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">Марина</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">Каток</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">Маєток</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">Міські ворота</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">Замок</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">Літак</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">Дайджестер (переробний резервуар)</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">Охоронний шлюз</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">Аеродром</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">Торговий центр</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">Кінотеатр</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">Рятувальна станція</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">Аеропорт</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">Театр</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">Бібліотека</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">Університет</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">Поліцейська дільниця</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">Посольство</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">Автовокзал</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">Станція</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">Пункт оплати</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">Ліфт</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Нерегульований пішохідний перехід</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">Аптека</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Кнайпова водна терапія</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">Фудкорт</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">Аптека</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">Контрольний пункт</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">Парк для собак</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">Калитка (пішохідна)</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">Прокат автомобілів</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Пішохідна зона</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">Ескалатор</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">Навіс</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">Питний кран</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">Вхід у метро</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">Вхід у печеру</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">Розпашні ворота</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">Сходи через паркан</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">Каршеринг</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">Служба обслуговування клієнтів</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">Місце напування тварин</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">Платформа</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">Прохід для коней</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Пункт обміну валют</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">Сходи</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Прокат велосипедів</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Гемпширські ворота</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Турнікет повної висоти</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Спільне користування човнами</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">Пункт допомоги</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">Відкрита територія</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">Зона короткочасних зупинок</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Станція ремонту велосипедів</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Бар\'єр для мотоциклів</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Кентський прохід для возів</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">Зона спільного користування</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">Урвище</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">Тренувальна зона</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">Колода</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Бар\'єр типу «Джерсі»</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">Будівельний майданчик</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">Хребет</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Місце ядерного вибуху</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">Дамба</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">Бар\'єр для низьких авто</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">Мотузка</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">Завали</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">Дорожні роботи</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">ворота шлюзу</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">провал ґрунту</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">стрілецький полігон</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">станція швидкої допомоги</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">смуга шипів</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">невизначена небезпека</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">контактна лінія</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">зона небезпеки</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">ланцюговий бар\'єр</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">паркувальне місце</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">паркування для мотоциклів</string>
 </resources>
