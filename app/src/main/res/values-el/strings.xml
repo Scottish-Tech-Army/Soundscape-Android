@@ -526,4 +526,665 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Πληροφορίες νέας έκδοσης</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Κλείσιμο διαλόγου νέας έκδοσης</string>
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΥπάρχουν δύο σημαντικές αλλαγές σε αυτή την έκδοση. Πρώτον, έχει προστεθεί υποστήριξη για *Χάρτες εκτός σύνδεσης* που επιτρέπει στο Soundscape να εκτελεί τις περισσότερες λειτουργίες του χωρίς πρόσβαση στο δίκτυο. Σε αυτή την αρχική έκδοση, η *Αναζήτηση* εξακολουθεί να απαιτεί σύνδεση δικτύου, αλλά οι *Κοντινές τοποθεσίες*, οι ηχητικές επεξηγήσεις και ο γραφικός χάρτης θα χρησιμοποιούν τους χάρτες εκτός σύνδεσης που έχουν ληφθεί.\n\nΥπάρχει μεγάλος αριθμός προ-κατασκευασμένων περιοχών χαρτών που καλύπτουν ολόκληρο τον πλανήτη. Πολλές τοποθεσίες εμπίπτουν σε περισσότερες από μία περιοχές χαρτών εκτός σύνδεσης, οπότε ο χρήστης μπορεί να επιλέξει ποια θέλει να κατεβάσει και να χρησιμοποιήσει. Μπορεί να γίνει λήψη περισσοτέρων από ενός χάρτη εκτός σύνδεσης και το Soundscape θα εναλλάσσεται αυτόματα μεταξύ τους καθώς ο χρήστης μετακινείται.\n\nΟι περιοχές χαρτών μπορεί να είναι ολόκληρες χώρες, πολιτείες ή ομάδες μεγαλύτερων κωμοπόλεων και πόλεων. Διαφέρουν σε μέγεθος ανάλογα με το πόσο καλά είναι χαρτογραφημένη μια περιοχή καθώς και με τη φυσική έκτασή της. Εάν είστε ο πρώτος χρήστης που κατεβάζει μια περιοχή, θα υπάρξει μικρή καθυστέρηση πριν ξεκινήσει η λήψη. Αυτό μπορεί να διαρκέσει έως μερικά λεπτά, κατά τη διάρκεια των οποίων ο διακομιστής επεξεργάζεται τον χάρτη για να τον καταστήσει διαθέσιμο για λήψη.\n\nΟι χάρτες εκτός σύνδεσης που έχουν ήδη ληφθεί εμφανίζονται πηγαίνοντας στο *Μενού*, *Χάρτες εκτός σύνδεσης*. Αυτή η οθόνη δείχνει επίσης τους χάρτες για την τρέχουσα τοποθεσία που είναι διαθέσιμοι για λήψη.\n\nΗ οθόνη *Λεπτομέρειες τοποθεσίας* περιέχει επίσης σύνδεσμο προς τους χάρτες εκτός σύνδεσης, οπότε αν θέλετε να κατεβάσετε χάρτες για έναν προορισμό που πρόκειται να επισκεφθείτε, μπορείτε να κάνετε *Αναζήτηση* για αυτή την τοποθεσία και στη συνέχεια να πατήσετε το κουμπί *Κοντινοί χάρτες εκτός σύνδεσης* για να δείτε ποιες εκδόσεις είναι διαθέσιμες για εκείνη την τοποθεσία. Οι χάρτες που δεν απαιτούνται πλέον μπορούν να διαγραφούν επιλέγοντας ένα από τα *Χάρτες που έχουν ήδη ληφθεί* και στη συνέχεια επιλέγοντας *Διαγραφή χάρτη εκτός σύνδεσης*.\n\nΗ δεύτερη σημαντική αλλαγή είναι ότι τα πλακίδια χάρτη καλύπτουν τέσσερις φορές μεγαλύτερη περιοχή σε σχέση με τις προηγούμενες εκδόσεις. Αυτό σημαίνει ότι στη λίστα *Κοντινές τοποθεσίες* εμφανίζονται σημεία ενδιαφέροντος από μεγαλύτερες αποστάσεις.\n\nΌπως πάντα, παρακαλούμε αναφέρετε τυχόν προβλήματα, όσο μικρά κι αν είναι, μέσω της επιλογής *Επικοινωνία με την υποστήριξη* στο κύριο μενού.\n</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Άδειες ανοιχτού κώδικα</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός Σταθμός Φεριμπότ</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός Σταθμός Φεριμπότ</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">Γραφείο</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">Σχολείο</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">Στέγη</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">Παντοπωλείο</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">Ανασηκούμενη πύλη</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">Τουαλέτες</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">Χώρος στάθμευσης</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">Στάση ταξί</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Χώρος στάθμευσης ποδηλάτων</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">Πρατήριο καυσίμων</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">Σημείο ανακύκλωσης</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">Πόσιμο νερό</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">Γήπεδο</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">Χώρος πικνίκ</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">Πληροφορίες</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Πυροσβεστήρας</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">Απινιδωτής</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">Πινακίδα κατεύθυνσης</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">Νερό</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">Σωλήνας πυρόσβεσης</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">Χειροκίνητο εργαλείο κατάσβεσης</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">Πληροφοριακό σημείο</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">Υγρότοπος</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">Λάσπη</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">Σημείο πρόσβασης</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">Σωσίβιο</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">Γενική πληροφορία</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">Περιστρεφόμενη πλατφόρμα</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">Γεωδαιτικό σημείο</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">Δίχτυ χιονιού</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">Σιλό</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">Ιστός</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">Καταφύγιο παρατήρησης πουλιών</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">Πύργος μετασχηματιστή</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">Γενικό αντικείμενο</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">Σήμα</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">Βράχος</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">Κλίβανος</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">Γερανός</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">Ρουνική πέτρα</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">Χιλιομετρική στήλη</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Πλατφόρμα ναυαγοσώστη</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">Δεξαμενή νερού</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">Χοιροστάσιο</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">Βοήθημα ναυσιπλοΐας</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">Τερματικός σταθμός</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">Βρύση νερού</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">Πηγάδι</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">Γεώτρηση πετρελαίου</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">Μνημειακός σταυρός</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">Κρεμάλα</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">Κάμερα ταχύτητας</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">Σειρήνα</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">Πυλώνας</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">Φρέαρ ορυχείου</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">Ιστός σημαίας</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Οπτικός τηλέγραφος</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">Κανόνι</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">Οριοθετικός λίθος</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">Αποθήκη</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">Κώνοι κυκλοφορίας</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">Υπαίθρια εστία</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">Λίθος</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">Σύστημα επιτήρησης</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">Σταθμός παρακολούθησης</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Εικονοστάσι</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">Σταυρός δίπλα στο δρόμο</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">Τάφος</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">Φανάρια κυκλοφορίας</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">Οικίσκος</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">Σταθερό τροχόσπιτο</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">Κολωνάκι</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">Μπλοκ</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">Σημείο απόθεσης απορριμμάτων</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">Θάλαμος φωτογραφιών</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">Μπάρμπεκιου</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">Κατάστημα</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">Κατάστημα εφημερίδων</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">Κατάστημα anime</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">Κατάστημα μουσικών οργάνων</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Κατάστημα ηλεκτρικών σκουπών</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">Κατάστημα κινητών τηλεφώνων</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">Κατάστημα χαλιών</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">Εμπορικό κατάστημα</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">Κέντρο κηπουρικών ειδών</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">Ανθοπωλείο</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">Τζάκι</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">Κέντρο μασάζ</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">Βοτανοπωλείο</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">Κατάστημα τσαντών</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">Ζαχαροπλαστείο</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">Ντελικατέσεν</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">Κατάστημα ποτών</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">Κατάστημα αλκοολούχων ποτών</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">Υποσταθμός</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">Γραφείο ταξιδιών</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">Ερευνητικό κέντρο</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">Περίπτερο εφημερίδων</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">Κατάστημα πυρομαχικών</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">Παρατηρητήριο άγριας ζωής</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">Κατάστημα ωρολογοποιού</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">Εργαστήριο τενεκτζή</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">Κατάστημα αντηλιακών</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">Εργαστήριο γλύπτη</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">Εργαστήριο μεταλλικών κατασκευών</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">Κατάστημα χειροτεχνίας</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">Στάβλος αγελάδων</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">Καλύβα</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">Αχυρώνας</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">Αποθήκη</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">Σπίτι-σκάφος</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">Βιβλιοπωλείο</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">Τοποθεσία</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">Κυνηγετική εξέδρα</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">Ταΐσμα άγριων ζώων</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">Κρύπτη (υπόγειος τάφος)</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">Καταφύγιο ζώων</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">Πανσιόν κατοικιδίων</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">Δωρεά αίματος</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">Οίκος ευγηρίας</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">Οδοντιατρείο</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">Θύρα ασφαλούς εγκατάλειψης βρεφών</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">Σχολή γλωσσών</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">Δημόσιο ράφι ανταλλαγής βιβλίων</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">Κήπος μπύρας</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">Πίστα τρεξίματος</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">Εργαστήριο υαλοπλαίσων</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">Συνεργεία αυτοκινήτων</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">Κατάστημα λιανικής</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">Ξενοδοχείο</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">Χώρος κατασκήνωσης</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">Γήπεδο ράγκμπι</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">Πίστα ρολερ</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">Πολυχρηστικός</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">Χόκεϊ επί πάγου</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">Χαπκίντο</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">Κρόκετ</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">Κρίκετ</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">Κοκορομαχία</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">Πυγμαχία</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">Πίστα BMX</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">Μπιλιάρδο</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">Κατάστημα παιχνιδιών</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Κατάστημα πυροτεχνημάτων</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">Πλυντήριο ρούχων</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">Γραφείο τελετών</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">Καθαριστήριο</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">Φωτοτυπείο</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">Σαλέ</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">Διαμέρισμα</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">Θαλάσσιο σκι</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">Υδατοσφαίριση</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">Ποδοσφαιράκι</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">Πινγκ-πονγκ</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">Σκέιτμπορντ</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">Ιστιοπλοΐα</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">Εκπαίδευση ασφάλειας</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">Κωπηλασία</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Πίστα μοντέλων αεροπλάνων</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">Κόρφμπολ</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">Eisstock (άθλημα στον πάγο)</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">Γυμναστική</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">Ποδόσφαιρο</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">Χόκεϊ επί χόρτου</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">Ιππασία</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">Ποδηλασία</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">Κέρλινγκ</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">Δίχτυα προπόνησης κρίκετ</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">Κατάδυση από γκρεμό</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">Πετάνκ</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">Μπόμπσλεϊ</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">Μπέιζμπολ</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">Αϊκίντο</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">Μπόουλινγκ (Tenpin)</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">Κατάστημα όπλων</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">Κατάστημα κατοικίδιων</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">Δανειστής</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">Δωροπωλείο</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">Βιβλιοπωλείο</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">Πρακτορείο στοιχημάτων</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">Φωτογραφείο</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">Κατάστημα χειροτεχνίας</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">Κατάστημα μοτοσικλετών</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">Κατάστημα ειδών κυνηγιού</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">Κατάστημα περσίδων</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">Κατάστημα κουρτινών</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">Κατάστημα αντίκες</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">Κατάστημα χρωμάτων</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">Στούντιο τατουάζ</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Κατάστημα συμπληρωμάτων διατροφής</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">Κατάστημα ακουστικών βαρηκοΐας</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">Κατάστημα καλλυντικών</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">Κατάστημα ρολογιών</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">Κοσμηματοπωλείο</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">Μπουτίκ</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">Κατάστημα βρεφικών ειδών</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">Κατάστημα τσαγιού</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">Κατάστημα ζυμαρικών</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">Καφετέρια</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">Ημιδημόσιος οργανισμός</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">Πολιτικό κόμμα</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">Σύλλογος</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">Αρχιτέκτονας</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">Διαφημιστική εταιρεία</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">Κατασκήνωση</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">Σχολή χορού</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Αίθουσα παιχνιδιών</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Κέντρο παιχνιδιών για ενήλικες</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">Κατασκευή και τοποθέτηση παραθύρων</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">Ταπετσέρης</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">Τσαγκάρης</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">Πριονιστήριο</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">Εργαστήριο κεραμικής</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">Κοπή κλειδιών</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">Εργολάβος θέρμανσης, αερισμού και κλιματισμού</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">Ωρολογοποιός</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">Ξυλουργός</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">Κατασκευαστής</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">Βιβλιοδέτης</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">Κατασκευαστής σκαφών</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">Ζυθοποιείο</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">Σιδεράς</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">Καλαθοπλέκτης</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">Θερμοκήπιο</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Βοηθητικό κτίριο φάρμας</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">Δημόσιο κτίριο</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">Μονώροφη κατοικία</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">Μονοκατοικία</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">Κομμωτήριο</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">Κατάστημα ρούχων</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">Χρήστης</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">Ντότζο</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">Νυχτερινό κέντρο</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">Κοινοτικό κέντρο</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">Οίκος ανοχής</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">Κτηνιατρείο</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">Κοινωνική δομή</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">Κλινική</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">Σταθμός φόρτισης ηλεκτρικών οχημάτων</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">Νηπιαγωγείο</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">Παγωτατζίδικο</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">Εστιατόριο γρήγορου φαγητού</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">Εμπορικό κτίριο</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">Κανό</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">Κατάδυση</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">Ψάρεμα</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">Οπτικός</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">Κατάστημα γλυκισμάτων</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">Καταφύγιο</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Κάψουλες ύπνου</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">Μοτέλ</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">Ξενώνας</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">Χώρος πάλης</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">Πίστα τομπογκάν</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">Σκι</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">Πίστα τηλεκατευθυνόμενων αυτοκινήτων</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Γήπεδο padel</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">Χόκεϊ</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">Ξιφασκία</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">Γήπεδο lawn bowls</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">Μπάντμιντον</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">Τοξοβολία</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">Αμερικανικό ποδόσφαιρο</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">Ταξιδιωτικό γραφείο</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">Κατάστημα καπνικών ειδών</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">Κατάστημα ηλεκτρονικών τσιγάρων</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">Κατάστημα βίντεο</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">Συνεργείο αυτοκινήτων</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">Κατάστημα Hi‑Fi</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">Κατάστημα φωτιστικών</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">Κατάστημα κουζίνας</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">Κατάστημα διακόσμησης</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">Κατάστημα οικιακών ειδών</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">Κατάστημα ερωτικών ειδών</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">Κατάστημα καλλυντικών</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">Κατάστημα κρασιού</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">Γαλακτοπωλείο</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">Τυροπωλείο</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">Αρτοποιείο</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">Κατάστημα τηλεπικοινωνιών</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">Γραφείο φορολογίας</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Μεσιτικό γραφείο</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">Συμβολαιογράφος</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">Γραφείο ΜΚΟ</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">Δικηγόρος</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">Υπηρεσίες πληροφορικής</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">Ίδρυμα</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">Γραφείο ευρέσεως εργασίας</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">Εκπαιδευτικό ίδρυμα</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">Υπηρεσία υιοθεσιών</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">Μίνι γκολφ</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">Κτίριο</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">Οινοποιείο</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">Τεχνίτης πλακιδίων</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Καθαριστής καμινάδων</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">Κατασκευαστής εκθεσιακών περιπτέρων</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">Σαγματοποιός</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">Υδραυλικός</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">Σοβατζής</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">Ελαιοχρωματιστής</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">Κοσμηματοπωλείο</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">Ειδικός δαπέδων</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">Αποστακτήριο</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">Τοποθετητής χαλιών</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">Μελισσοκόμος</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">Δημόσιο</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">Εστία</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">Διαμερίσματα</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">Ιντερνετ καφέ</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">Κατάστημα υποδημάτων</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">Κατάστημα</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">Καφετέρια</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">Συνεργατικός χώρος (coworking)</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">Κλαμπ στριπτίζ</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">Σταθμός φόρτισης ηλεκτρικών οχημάτων</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">Παμπ</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">Πίστα εμποδίων</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">Βόλεϊ</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">Τένις</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">Ποδόσφαιρο</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">Σκοποβολή</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">Ράγκμπι</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">Προσανατολισμός</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">Νετμπολ</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">Κατάστημα αυτοκινήτων</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">Κάιτσέρφινγκ</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">Πίστα καρτ</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">Τζούντο</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">Παιχνίδι ρίψης πετάλων (horseshoes)</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">Χάντμπολ</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">Γκολφ</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">Γαελικά παιχνίδια</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">Καταδύσεις</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">Βελάκια</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Περιπετειώδη αναρρίχηση</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">Μπάσκετ</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">Μπάντι</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">Αυστραλιανό ποδόσφαιρο</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">Μπόουλινγκ (9-pin)</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">Κενό</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">Πρακτορείο λαχείων</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">Κατάστημα βραβείων</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">Μουσικό κατάστημα</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">Κατάστημα παιχνιδιών</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">Κατάστημα ελαστικών</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">Κατάστημα αθλητικών ειδών</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">Κατάστημα υπαίθριου εξοπλισμού</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">Αντιπροσωπεία αυτοκινήτων</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">Κατάστημα ηλεκτρονικών</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">Κατάστημα υπολογιστών</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">Κατάστημα επίπλων</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">Κατάστημα κεριών</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">Κατάστημα εργαλείων και υλικών</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">Πρατήριο καυσίμων</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">Εταιρεία ενέργειας</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">Κατάστημα ειδών για το σπίτι (DIY)</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Κατάστημα ειδών μπάνιου</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">Κατάστημα ιατρικών ειδών</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">Κατάστημα ποικιλίας</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">Κατάστημα μεταχειρισμένων</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">Φιλανθρωπικό κατάστημα</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">Κατάστημα μόδας</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">Κατάστημα υφασμάτων</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">Κατάστημα ρούχων</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">Κρεοπωλείο</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">Υπηρεσία ύδρευσης</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">Μεσίτης ακινήτων</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">Εταιρεία</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">Λογιστής</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">Σιλό αποθήκευσης (bunker)</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">Hackerspace (κοινόχρηστος τεχνολογικός χώρος)</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">Σταθμός ναυαγοσωστών</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">Τεχνίτης στέγης</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">Τεχνικός ανάρτησης εξοπλισμού</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">Τεχνίτης τοποθέτησης παρκέ</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">Κηπουρός</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">Στάβλος</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">Γκαράζ</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">Εγκατάσταση μεταφορών</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">Κατοικία</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">Ελικοδρόμιο</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">Περιοχή στάθμευσης αεροσκαφών (apron)</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Κατάστημα ηλεκτρονικών</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">Εξειδικευμένο κατάστημα</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">Καθορισμένο</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">Σάουνα</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">Γυμναστήριο</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">Κρεματόριο</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">Χώρος τζόγου</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">Μουσική σχολή</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">Μπαρ</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">Φάρμα</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">Κατάστημα ποδηλάτων</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">Ράφτης</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">Κλειδαράς</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">Βιομηχανική εγκατάσταση</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Καταφύγιο για πεζοπόρους</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">Χόστελ</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">Χώρος τροχόσπιτων</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">Κέντρο άρσης βαρών</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">Όμιλος ταεκβοντό</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">Κολυμβητήριο</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">Περιοχή για σερφ</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">Πίστα πατινάζ</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">Εγκατάσταση ρακέτας</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">Γήπεδο πελότα</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">Χώρος παραπέντε</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">Ζώνη αλεξιπτωτισμού</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">Πίστα μοτοκρός</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">Παγοδρόμιο</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">Ιππόδρομος</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">Πίστα αγώνων σκύλων</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">Χώρος αναρρίχησης</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">Σκακιστικός όμιλος</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">Γήπεδο καναδικού ποδοσφαίρου</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Παραλιακό γήπεδο βόλεϊ</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">Βάση</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">Στίβος</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">Ενεχυροδανειστήριο</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">Γραφείο εισιτηρίων</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">Κατάστημα γραφικής ύλης</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">Κατάστημα βιντεοπαιχνιδιών</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">Κατάστημα μοντελισμού</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">Κατάστημα κορνιζών</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">Κατάστημα τέχνης</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">Κατάστημα ανταλλακτικών αυτοκινήτων</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">Κατάστημα ραδιοεξοπλισμού</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">Κατάστημα κρεβατιών</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">Κατάστημα επίπλων κήπου</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">Κατάστημα ηλεκτρολογικού υλικού</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">Αρωματοπωλείο</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">Κομμωτήριο</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">Κατάστημα φαρμακευτικών και καλλυντικών</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">Κατάστημα υποδημάτων</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">Κατάστημα δερμάτινων ειδών</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">Κατάστημα γενικών ειδών</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">Ιχθυοπωλείο</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">Κατάστημα βιολογικών προϊόντων</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">Μανάβικο</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">Κατάστημα σοκολάτας</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Κατάστημα προμηθειών ζυθοποίησης</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">Σύμβουλος φορολογίας</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">Ιδιωτικός ντετέκτιβ</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">Δημόσια υπηρεσία</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">Δασοπονία</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">Μεσιτικό γραφείο</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">Πηγή</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">Γήπεδο Γκολφ</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">Σταθμός Υπηρεσιών Έκτακτης Ανάγκης</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Φυλάκιο Ναυαγοσωστών</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">Λιθοξόος</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">Εργάτης σκαλωσιάς</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">Κατασκευαστής ιστίων</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Φωτογραφικό Εργαστήριο</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">Φωτογράφος</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">Μόνωση</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">Ηλεκτρολόγος</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">Ράφτης</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">Υπηρεσία τροφοδοσίας</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">Βεράντα</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">Κατάστημα παιχνιδιών</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">Κέντρο Καταδύσεων</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">Κλαμπ ανταλλαγής συντρόφων</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">Ιατρείο</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">Σχολή Οδηγών</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">Χώρος ελεύθερης πτήσης</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">Θρησκεία</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">Περίπτερο</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">Κατοικημένη περιοχή</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">Κατάστημα τροφίμων</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">Καταρράκτης</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">Ναυπηγείο</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">Θεματικό Πάρκο</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">Στρογγυλό αμαξοστάσιο</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">Γεννήτρια</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">Παραλία</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">Ναυτική Βάση</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">Βιομηχανικές εγκαταστάσεις</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">Εγκαταστάσεις ύδρευσης</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">Τηλεσκόπιο</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">Αποβάθρα</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">Αστεροσκοπείο</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">Δεξαμενή νερού</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">Μνημείο</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">Πεδίο μάχης</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">Πλανητάριο</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">Κοινωνικό κέντρο</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">Φυλακή</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">Δικαστήριο</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">Γέφυρα</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">Υπόστεγο αεροσκαφών</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">Πύργος</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">Αξιοθέατο</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">Ζωολογικός κήπος</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">Γκαλερί</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">Έργο τέχνης</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">Ορεικό καταφύγιο</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">Βιομηχανική μονάδα</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">Γραφείο ασφάλισης</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">Αεροδρόμιο</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">Υδατόπυργος</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">Αντλιοστάσιο</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Δεξαμενή ζεστού νερού</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">Καμπαναριό</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">Αθλητικό κέντρο</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">Γυμναστήριο</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">Παραθαλάσσιο θέρετρο</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">Χωριακό πράσινο</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">Πλοίο</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">Μνημείο</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">Συναγωγή</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">Τζαμί</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">Παρεκκλήσι</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">Καθεδρικός ναός</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">Τερματικός σταθμός τρένων</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">Κολλέγιο</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">Πολιτιστικό κέντρο</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">Σταθμός δασοφυλάκων</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">Νοσοκομείο</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">Πίστα</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">Κέντρο συνεδρίων</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">Σημείο θέας</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">Σούπερ μάρκετ</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">Κορυφή</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">Δεξαμενή αποθήκευσης</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">Φάρος</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">Σημαντήρας</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">Λιμάνι</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Αρχαιολογικός χώρος</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">Ιερό</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">Εκκλησία</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">Ιστορικό μνημείο</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">Ορόσημο</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">Μουσείο</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">Ληξιαρχείο</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">Νεκροταφείο</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">Αγορά</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">Πυροσβεστικός σταθμός</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">Ερείπια</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">Υδατοφράγμα</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">Μουσείο</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">Εμπορικό κέντρο</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">Ηφαίστειο</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">Θερμή πηγή</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">Παγετώνας</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Εγκατάσταση επεξεργασίας λυμάτων</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">Υπεράκτια πλατφόρμα</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">Δοχείο αερίου</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">Υδάτινο πάρκο</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">Μουσική εξέδρα</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">Ερείπιο</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">Συσκευή δημόσιας τιμωρίας</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">Μοναστήρι</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">Μηχανή τρένου</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">Φρούριο</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">Σταθμός εξυπηρέτησης</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Πύργος ναυαγοσώστη</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">Ναός</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">Εθνικό πάρκο</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">Ελικοδρόμιο</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">Δημόσιο πάρκο</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">Πολυκατάστημα</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">Στούντιο</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">Δημόσιο κτίριο</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">Ρολόι</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">Καζίνο</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">Στάδιο</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">Φράγμα</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">Αποβάθρα</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">Γκέιζερ</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">Κόλπος</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">Στρατώνες</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">Ανεμόμυλος</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">Υδρόμυλος</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">Πύργος επικοινωνιών</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">Περιοχή κολύμβησης</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">Ράμπα για σκάφη</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">Καταφύγιο φύσης</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">Μαρίνα</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">Παγοδρόμιο</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">Έπαυλη</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">Πύλη πόλης</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">Κάστρο</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">Αεροσκάφος</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">Χωνευτήρας</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">Ελεγχόμενη πύλη</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">Αεροδρόμιο</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">Εμπορικό κέντρο</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">Κινηματογράφος</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">Σταθμός διάσωσης</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">Αεροδρόμιο</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">Θέατρο</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">Βιβλιοθήκη</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">Πανεπιστήμιο</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">Αστυνομικό τμήμα</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">Πρεσβεία</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">Σταθμός λεωφορείων</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">Σταθμός</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">Θάλαμος διοδίων</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">Ανελκυστήρας</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Διάβαση πεζών χωρίς έλεγχο</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">Φαρμακείο</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Θεραπεία Kneipp με νερό</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">Χώρος εστίασης</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">Φαρμακείο</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">Σημείο ελέγχου</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">Πάρκο σκύλων</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">Μικρή πύλη (μόνο πεζοί)</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">Ενοικίαση αυτοκινήτων</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Περιοχή μόνο για πεζούς</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">Κινητή σκάλα</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">Στέγαστρο</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">Σημείο παροχής νερού</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">Είσοδος μετρό</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">Είσοδος σπηλαίου</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">Ανοιγόμενη πύλη</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">Σκάλα σε φράχτη (stile)</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">Κοινή χρήση αυτοκινήτου</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">Εξυπηρέτηση πελατών</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">Σημείο ποτίσματος</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">Αποβάθρα</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">Διάβαση για άλογα</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Γραφείο συναλλάγματος</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">Σκάλες</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Ενοικίαση ποδηλάτων</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Πύλη τύπου Hampshire</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Περιστρεφόμενη πύλη πλήρους ύψους</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Κοινή χρήση σκαφών</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">Σημείο βοήθειας</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">Ανοικτός χώρος</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">Ζώνη σύντομης στάσης</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Σταθμός επισκευής ποδηλάτων</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Εμπόδιο για μοτοσικλέτες</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Άνοιγμα Kent για άμαξες</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">Κοινός χώρος οδικής κυκλοφορίας</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">Γκρεμός</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">Περιοχή εκπαίδευσης</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">Κορμός δέντρου</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Διαχωριστικό τύπου Jersey</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">Εργοτάξιο</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">Ράχη</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Τοποθεσία πυρηνικής έκρηξης</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">Αναχώμα</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">Εμπόδιο για οχήματα χαμηλού ύψους</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">Σχοινί</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">Συντρίμμια</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">Εργασίες στο δρόμο</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">πύλη κλειδώματος διώρυγας</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">καταβόθρα (κατάπτωση εδάφους)</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">πεδίο βολής</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">σταθμός ασθενοφόρων</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">ταινία ακίδων (εμπόδιο ελαστικών)</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">γενικός κίνδυνος</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">γραμμή επαφής</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">επικίνδυνη περιοχή</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">αλυσίδα (εμπόδιο πρόσβασης)</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">θέση στάθμευσης</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">χώρος στάθμευσης μοτοσικλετών</string>
 </resources>
