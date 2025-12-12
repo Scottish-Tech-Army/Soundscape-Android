@@ -1,9 +1,12 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.R
+import java.util.Collections
 
 class ResourceMapper {
     companion object {
+        private val unfoundKeys = Collections.synchronizedSet(mutableSetOf<String>())
+
         private val resourceMap: HashMap<String, Int> by
         lazy {
             HashMap<String, Int>().apply {
@@ -720,8 +723,18 @@ class ResourceMapper {
            }
         }
         fun getResourceId(key: String?): Int? {
-            if(key == null) return null
-            return resourceMap[key]
+            if(key == null)
+                return null
+
+            val result = resourceMap.get(key)
+            if (result == null) {
+                unfoundKeys.add(key)
+            }
+            return result
+        }
+
+        fun getUnfoundKeys(): Set<String> {
+            return unfoundKeys
         }
     }
 }
