@@ -39,6 +39,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -420,12 +421,16 @@ class MainActivity : AppCompatActivity() {
 
         var bodyText =
             "-----------------------------<br/>" +
-                    tableRow("Product", product) +
-                    tableRow("Manufacturer", manufacturer) +
-                    tableRow("Talkback", talkbackStatus)
+            tableRow("Product", product) +
+            tableRow("Manufacturer", manufacturer) +
+            tableRow("Talkback", talkbackStatus)
 
-        for (pref in preferences)
-            bodyText += tableRow(pref.key, pref.value.toString())
+        preferences.forEach { pref -> bodyText += tableRow(pref.key, pref.value.toString()) }
+        bodyText += "-----------------------------<br/><br/>"
+
+        bodyText += "Untranslated OSM keys:<br/>"
+        val unknownOsmKeys = ResourceMapper.getUnfoundKeys()
+        unknownOsmKeys.forEach { bodyText += "\t$it<br/>" }
         bodyText += "-----------------------------<br/><br/>"
 
         val intent = Intent(Intent.ACTION_SEND).apply {
