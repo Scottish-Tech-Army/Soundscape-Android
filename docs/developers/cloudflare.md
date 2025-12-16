@@ -1,3 +1,9 @@
+---
+title: Cloudflare setup
+layout: page
+parent: Information for developers
+has_toc: false
+---
 # Cloudflare configuration for serving up maps
 We support two types of maps access:
 1. Individual tiles
