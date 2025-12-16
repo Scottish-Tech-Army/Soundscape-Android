@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape.network
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -12,6 +10,7 @@ import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.MANIFEST_NAME
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
+import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -24,8 +23,7 @@ interface IManifestDAO {
 
 class ManifestClient(val applicationContext: Context) {
 
-    private val connectivityManager: ConnectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
+    val networkUtils = NetworkUtils(applicationContext)
     private var retrofit : Retrofit? = null
 
     private val okHttpClient = OkHttpClient.Builder()
@@ -77,17 +75,4 @@ class ManifestClient(val applicationContext: Context) {
             }
             return retrofit
         }
-
-    private fun hasNetwork(): Boolean {
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val activeNetworkCapabilities =
-            connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-        return when {
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
-            else -> false
-        }
-    }
 }

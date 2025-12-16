@@ -182,7 +182,7 @@ class EntranceMatching {
                                 val entrance = MvtFeature()
                                 entrance.copyProperties(poi as MvtFeature)
                                 entrance.geometry =
-                                    Point(coordinates[0].longitude, coordinates[0].latitude)
+                                    Point(coordinates[0])
                                 entrance.properties = (cloneHashMap(poi.properties) ?: HashMap()).apply {
                                     set("entrance", entranceDetails.entranceType)
 
@@ -205,7 +205,7 @@ class EntranceMatching {
                         // Try and figure out how to name the entrance from its properties.
                         val entrance = MvtFeature()
                         entrance.geometry =
-                            Point(coordinates[0].longitude, coordinates[0].latitude)
+                            Point(coordinates[0])
                         entrance.properties = HashMap()
 
                         var confected = (entranceDetails.name != null)

@@ -1,10 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
-import android.util.Log
 import ch.poole.geo.pmtiles.Reader
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -14,18 +11,16 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import retrofit2.awaitResponse
 import vector_tile.VectorTile
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.IOException
-import java.util.zip.GZIPInputStream
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 
@@ -40,17 +35,14 @@ open class ProtomapsGridState(
     var fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
     var currentExtracts: MutableList<String> = mutableListOf()
     var extractPath: String = ""
-    var startedUnitTesting: Boolean = false
 
     override fun start(applicationContext: Context?,
-                       offlineExtractPath: String,
-                       isUnitTesting: Boolean) {
+                       offlineExtractPath: String) {
         if((tileClient == null) && (applicationContext != null))
             tileClient = ProtomapsTileClient(applicationContext)
 
         extractPath = offlineExtractPath
         currentExtracts = mutableListOf()
-        startedUnitTesting = isUnitTesting
     }
 
     override fun stop() {
@@ -66,12 +58,10 @@ open class ProtomapsGridState(
         if (extracts != currentExtracts) {
             println("Change in offline extracts")
             currentExtracts = extracts
-            if (!startedUnitTesting) {
-                if (currentExtracts.isEmpty())
-                    Firebase.analytics.logEvent("GridNoOfflineMap", null)
-                else
-                    Firebase.analytics.logEvent("GridWithOfflineMap", null)
-            }
+            if (currentExtracts.isEmpty())
+                Analytics.getInstance().logEvent("GridNoOfflineMap", null)
+            else
+                Analytics.getInstance().logEvent("GridWithOfflineMap", null)
 
             // Close old file readers
             for (reader in fileTileReaders)
@@ -84,49 +74,13 @@ open class ProtomapsGridState(
      * updateTile is responsible for getting data from the protomaps server and translating it from
      * MVT format into a set of FeatureCollections.
      */
-    fun decompressGzip(compressedData: ByteArray): ByteArray? {
-        // Create a ByteArrayInputStream from the compressed data
-        val byteArrayInputStream = ByteArrayInputStream(compressedData)
-        var gzipInputStream: GZIPInputStream? = null
-        val outputStream = ByteArrayOutputStream()
-
-        try {
-            // Wrap the ByteArrayInputStream with GZIPInputStream
-            gzipInputStream = GZIPInputStream(byteArrayInputStream)
-
-            // Buffer for reading decompressed data
-            val buffer = ByteArray(1024) // Adjust buffer size as needed
-            var len: Int
-
-            // Read from GZIPInputStream and write to ByteArrayOutputStream
-            while (gzipInputStream.read(buffer).also { len = it } > 0) {
-                outputStream.write(buffer, 0, len)
-            }
-
-            return outputStream.toByteArray()
-
-        } catch (e: IOException) {
-            // Handle potential IOExceptions during decompression
-            e.printStackTrace() // Log the error or handle it appropriately
-            return null
-        } finally {
-            // Ensure streams are closed
-            try {
-                gzipInputStream?.close()
-                outputStream.close()
-                byteArrayInputStream.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-    }
-
     override suspend fun updateTile(
         x: Int,
         y: Int,
         workerIndex: Int,
         featureCollections: Array<FeatureCollection>,
-        intersectionMap: HashMap<LngLatAlt, Intersection>
+        intersectionMap: HashMap<LngLatAlt, Intersection>,
+        streetNumberMap: HashMap<String, FeatureCollection>
     ): Boolean {
         var ret = false
 
@@ -160,21 +114,7 @@ open class ProtomapsGridState(
                 }
                 if(fileTile != null) {
                     // Turn the byte array into a VectorTile
-                    //println("File reader got a tile for worker $workerIndex")
-                    when (reader?.tileCompression?.toInt()) {
-                        1 -> {
-                            // No compression
-                            result = VectorTile.Tile.parseFrom(fileTile)
-                        }
-
-                        2 -> {
-                            // Gzip compression
-                            val decompressedTile = decompressGzip(fileTile)
-                            result = VectorTile.Tile.parseFrom(decompressedTile)
-                        }
-
-                        else -> assert(false)
-                    }
+                    result = decompressTile(reader?.tileCompression, fileTile)
                 }
 
                 // Fallback to network
@@ -199,6 +139,7 @@ open class ProtomapsGridState(
                             tileY = y,
                             mvt = result,
                             intersectionMap = intersectionMap,
+                            streetNumberMap = streetNumberMap,
                             tileZoom = zoomLevel)
                     }
                     val addTime = measureTimeMillis {

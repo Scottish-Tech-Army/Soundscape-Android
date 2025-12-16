@@ -323,7 +323,7 @@ fun traceLineString(
                 val ars3: HashMap<String, Any?> = HashMap()
                 ars3 += Pair("id", pointId++)
                 it.properties = ars3
-                it.geometry =Point(coordinates[0].longitude, coordinates[0].latitude)
+                it.geometry =Point(coordinates[0])
             }
             pointFeatures.addFeature(firstPointFeature)
 
@@ -346,7 +346,7 @@ fun traceLineString(
                         val ars3: HashMap<String, Any?> = HashMap()
                         ars3 += Pair("id", pointId++)
                         it.properties = ars3
-                        it.geometry = Point(interpolatedPoint.longitude, interpolatedPoint.latitude)
+                        it.geometry = Point(interpolatedPoint)
                     }
                     pointFeatures.addFeature(pointFeature)
 
@@ -370,7 +370,7 @@ fun traceLineString(
                                 val ars3: HashMap<String, Any?> = HashMap()
                                 ars3 += Pair("id", pointId++)
                                 it.properties = ars3
-                                it.geometry = Point(innerInterpolatedPoint.longitude, innerInterpolatedPoint.latitude)
+                                it.geometry = Point(innerInterpolatedPoint)
                             }
                             pointFeatures.addFeature(innerPointFeature)
                         }
@@ -389,7 +389,7 @@ fun traceLineString(
                 val ars3: HashMap<String, Any?> = HashMap()
                 ars3 += Pair("id", pointId++)
                 it.properties = ars3
-                it.geometry = Point(previousPoint.longitude, previousPoint.latitude)
+                it.geometry = Point(previousPoint)
             }
             pointFeatures.addFeature(lastPointFeature)
         }

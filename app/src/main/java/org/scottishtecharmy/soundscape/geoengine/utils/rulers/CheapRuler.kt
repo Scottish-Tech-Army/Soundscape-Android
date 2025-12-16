@@ -170,13 +170,18 @@ class CheapRuler(val lat: Double) : Ruler() {
      * ]);
      * //=length
      */
-//    fun lineDistance(points) {
-//        let total = 0;
-//        for (let i = 0; i < points.length - 1; i++) {
-//            total += this.distance(points[i], points[i + 1]);
-//        }
-//        return total;
-//    }
+    override fun lineLength(line: LineString) : Double {
+        var total = 0.0
+
+        for (i in 0 until line.coordinates.size - 1) {
+            val p0 = line.coordinates[i]
+            val p1 = line.coordinates[i + 1]
+            val d = distance(p0, p1)
+            total += d
+        }
+
+        return total
+    }
 
     /**
      * Given a polygon (an array of rings, where each ring is an array of points), returns the area.

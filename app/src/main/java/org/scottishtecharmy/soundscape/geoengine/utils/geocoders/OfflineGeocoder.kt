@@ -1,40 +1,136 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import android.content.Context
+import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.toLocationDescription
 
 /**
- * The LocalGeocoder class abstracts away the use of map tile data on the phone for geocoding and
+ * The OfflineGeocoder class abstracts away the use of map tile data on the phone for geocoding and
  * reverse geocoding. If the map tiles are present on the device already, this can be used without
  * any Internet connection.
  */
-class LocalGeocoder(
+class OfflineGeocoder(
     val gridState: GridState,
     val settlementGrid: GridState,
+    val tileSearch: TileSearch? = null
 ) : SoundscapeGeocoder() {
+
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,
-    ) : LocationDescription? {
-        return null
+        localizedContext: Context?    ) : List<LocationDescription>? {
+        Analytics.getInstance().logEvent("offlineGeocode", null)
+        return tileSearch?.search(nearbyLocation, locationName, localizedContext)
     }
 
-    private fun getNearestPointOnFeature(feature: Feature, location: LngLatAlt) : LngLatAlt {
+    private fun getNearestPointOnFeature(feature: Feature,
+                                         location: LngLatAlt) : LngLatAlt {
         return getDistanceToFeature(location, feature, gridState.ruler).point
     }
 
-    override suspend fun getAddressFromLngLat(location: LngLatAlt) : LocationDescription? {
+    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
+                                              localizedContext: Context?) : LocationDescription? {
 
+        val location = userGeometry.location
         // We can only use the local geocoder for local locations
         if(!gridState.isLocationWithinGrid(location))
             return null
+
+        Analytics.getInstance().logEvent("offlineReverseGeocode", null)
+
+        var nearbyWay = userGeometry.mapMatchedWay
+        if(nearbyWay == null) {
+            // We're not map matched, so find the nearest way by searching
+            val ways = gridState.getFeatureTree(TreeId.ROADS)
+                .getNearestCollection(
+                    location,
+                    50.0,
+                    5,
+                    userGeometry.ruler
+                )
+            for(way in ways) {
+                if((way as Way).name != null) {
+                    nearbyWay = way
+                    break
+                }
+            }
+        }
+        if(nearbyWay != null) {
+            val nearbyName = nearbyWay.properties?.get("pavement") as String? ?: nearbyWay.name
+            if(nearbyName != null) {
+                val description = StreetDescription(nearbyName, gridState)
+                description.createDescription(nearbyWay, localizedContext)
+                val nearestWay = description.nearestWayOnStreet(userGeometry.location)
+                if (nearestWay != null) {
+                    val houseNumber =
+                        description.getStreetNumber(nearestWay.first, userGeometry.location)
+                    if(houseNumber.first.isNotEmpty()) {
+                        // We've got a street number
+                        val houseFeature = MvtFeature()
+                        houseFeature.properties = hashMapOf()
+                        houseFeature.properties?.let { props ->
+                            props["housenumber"] = houseNumber.first
+                            props["street"] = nearbyName
+                            props["opposite"] = houseNumber.second
+                        }
+                        houseFeature.geometry = Point(userGeometry.location)
+                        return houseFeature.toLocationDescription(LocationSource.OfflineGeocoder)
+                    }
+                }
+                // We couldn't get a street address, so try a descriptive address instead
+                val heading = userGeometry.heading()
+                val result = description.describeLocation(
+                    userGeometry.location,
+                    heading,
+                    nearestWay?.first,
+                    localizedContext
+                )
+                var text = ""
+                val formattedBehindDistance = formatDistanceAndDirection(result.behind.distance, null, localizedContext)
+                val formattedAheadDistance = formatDistanceAndDirection(result.ahead.distance, null, localizedContext)
+                if (
+                    (result.ahead.distance < 10.0) &&
+                    ((result.ahead.distance < result.behind.distance) || result.behind.name.isEmpty()))
+                {
+                    text = result.ahead.name
+                }
+                else if (result.behind.distance < 10.0) {
+                    text = result.behind.name
+                }
+                else {
+                    if(result.ahead.name.isNotEmpty()) {
+                        // We want to default to describing how far to the next point
+                        text = "$formattedAheadDistance until ${result.ahead.name}"
+                    }
+                    else if(result.behind.name.isNotEmpty()) {
+                        // But describe how far we've come as a back up
+                        text = "$formattedBehindDistance since ${result.behind.name}"
+                    }
+                }
+                if(text.isNotEmpty()) {
+                    val houseFeature = MvtFeature()
+                    houseFeature.properties = hashMapOf()
+                    houseFeature.properties?.let { props ->
+                        props["housenumber"] = text
+                    }
+                    houseFeature.geometry = Point(userGeometry.location)
+                    return houseFeature.toLocationDescription(LocationSource.OfflineGeocoder)
+                }
+            }
+        }
 
         // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
         val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
@@ -105,13 +201,13 @@ class LocalGeocoder(
             // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
             val roadName = nearestRoad.getName(null, gridState, null, true)
             if(roadName.isNotEmpty()) {
-                if(nearestSettlementName != null) {
-                    return LocationDescription(
+                return if(nearestSettlementName != null) {
+                    LocationDescription(
                         name = roadName,
                         location = location
                     )
                 } else {
-                    return LocationDescription(
+                    LocationDescription(
                         name = roadName,
                         location = location,
                     )
@@ -131,6 +227,6 @@ class LocalGeocoder(
     }
 
     companion object {
-        const val TAG = "LocalGeocoder"
+        const val TAG = "OfflineGeocoder"
     }
 }

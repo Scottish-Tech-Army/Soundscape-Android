@@ -11,10 +11,9 @@ import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Collections
 import java.util.Locale
@@ -61,7 +60,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
                 putString("voice", textToSpeechVoiceType)
             }
             // Log an event so that we can get statistics
-            Firebase.analytics.logEvent("TTSEngine", bundle)
+            Analytics.getInstance().logEvent("TTSEngine", bundle)
             // And set a custom key so that any crashes we get we know which TTS engine is in use
             FirebaseCrashlytics.getInstance().setCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
@@ -228,7 +227,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
                 putString("engine", engineLabelAndName)
                 putString("voice", textToSpeechVoiceType)
             }
-            Firebase.analytics.logEvent("TTSonInit_error", bundle)
+            Analytics.getInstance().logEvent("TTSonInit_error", bundle)
         }
     }
 
@@ -237,7 +236,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             if (textToSpeechInitialized)
                 return textToSpeech.engines
         } catch (e: Exception) {
-            Firebase.analytics.logEvent("getAvailableEngines_error", null)
+            Analytics.getInstance().logEvent("getAvailableEngines_error", null)
             Log.e(TAG, "getAvailableEngines: $e")
         }
         return emptyList()
@@ -248,7 +247,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             if (textToSpeechInitialized)
                 return textToSpeech.availableLanguages
         } catch (e: Exception) {
-            Firebase.analytics.logEvent("getAvailableSpeechLanguages_error", null)
+            Analytics.getInstance().logEvent("getAvailableSpeechLanguages_error", null)
             Log.e(TAG, "getAvailableSpeechVoices: $e")
         }
         return emptySet()
@@ -259,7 +258,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             if (textToSpeechInitialized)
                 return textToSpeech.voices
         } catch (e: Exception) {
-            Firebase.analytics.logEvent("getAvailableSpeechVoices_error", null)
+            Analytics.getInstance().logEvent("getAvailableSpeechVoices_error", null)
             Log.e(TAG, "getAvailableSpeechVoices: $e")
         }
         return emptySet()

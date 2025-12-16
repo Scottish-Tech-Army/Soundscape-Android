@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -10,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.Analytics
 
 data class StreetPreviewChoice(
     val heading: Double,
@@ -48,7 +47,7 @@ class StreetPreview {
 
     fun go(userGeometry: UserGeometry, engine: GeoEngine) : LngLatAlt? {
 
-        Firebase.analytics.logEvent("streetPreviewGo", null)
+        Analytics.getInstance().logEvent("streetPreviewGo", null)
         when (previewState) {
 
             PreviewState.INITIAL -> {

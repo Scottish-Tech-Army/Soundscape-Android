@@ -19,8 +19,8 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
-import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -71,8 +71,7 @@ class AutoCallout(
     }
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
-                                         gridState: GridState,
-                                         settlementGrid: GridState): TrackedCallout? {
+                                         geocoder: SoundscapeGeocoder): TrackedCallout? {
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -91,13 +90,23 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val geocode = reverseGeocode(userGeometry, gridState, settlementGrid, localizedContext)
-        if(geocode != null) {
+        val result = runBlocking {
+            val geocode = geocoder.getAddressFromLngLat (userGeometry, localizedContext)
+            if(geocode == null)
+                null
+            else
+                PositionedString(
+                    text = geocode.name,
+                    location = userGeometry.location,
+                    type = AudioType.LOCALIZED
+                )
+        }
+        if(result != null) {
             val callout = TrackedCallout(
                 userGeometry,
-                trackedText = geocode.text,
-                location =geocode.location!!,
-                positionedStrings = listOf(geocode),
+                trackedText = result.text,
+                location =result.location!!,
+                positionedStrings = listOf(result),
                 isPoint = false,
                 isGeneric = false,
                 calloutHistory = roadSenseCalloutHistory
@@ -267,9 +276,12 @@ class AutoCallout(
      * @return A list of PositionedString callouts to be spoken
      */
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun updateLocation(userGeometry: UserGeometry,
-                       gridState: GridState,
-                       settlementGrid: GridState) : TrackedCallout? {
+    fun updateLocation(
+        userGeometry: UserGeometry,
+        gridState: GridState,
+        settlementGrid: GridState,
+        geocoder: SoundscapeGeocoder
+    ) : TrackedCallout? {
 
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
@@ -286,7 +298,7 @@ class AutoCallout(
                     // buildCalloutForRoadSense builds a callout for travel that's faster than
                     // walking
                     val roadSenseCallout =
-                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
+                        buildCalloutForRoadSense(userGeometry, geocoder)
                     if (roadSenseCallout != null) {
                         trackedCallout = roadSenseCallout
                     } else {

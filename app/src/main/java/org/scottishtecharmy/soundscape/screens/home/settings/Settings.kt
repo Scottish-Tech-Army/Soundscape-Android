@@ -209,6 +209,21 @@ fun Settings(
         "de"
     )
 
+    val geocoderDescriptions = listOf(
+        stringResource(R.string.settings_search_auto),
+        stringResource(R.string.settings_search_android),
+        stringResource(R.string.settings_search_photon),
+        stringResource(R.string.settings_search_offline),
+    )
+    val geocoderValues = listOf(
+        "Auto",
+        "Android",
+        "Photon",
+        "Offline"
+    )
+
+
+
     if (showConfirmationDialog.value) {
         AlertDialog(
             onDismissRequest = { showConfirmationDialog.value = false },
@@ -321,6 +336,46 @@ fun Settings(
                     ListPreferenceItem(unitsDescriptions[unitsValues.indexOf(value)], value, currentValue, onClick, unitsValues.indexOf(value), unitsValues.size)
                 },
                 summary = { Text(text = unitsDescriptions[unitsValues.indexOf(it)], color = textColor) },
+            )
+
+            item {
+                Text(
+                    text = stringResource(R.string.menu_manage_search),
+                    color = textColor,
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.semantics { heading() },
+                )
+            }
+            listPreference(
+                key = MainActivity.GEOCODER_MODE_KEY,
+                defaultValue = MainActivity.GEOCODER_MODE_DEFAULT,
+                values = geocoderValues,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_section_search),
+                        color = textColor
+                    )
+                },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(geocoderDescriptions[geocoderValues.indexOf(value)], value, currentValue, onClick, geocoderValues.indexOf(value), geocoderValues.size)
+                },
+                summary = { Text(text = geocoderDescriptions[geocoderValues.indexOf(it)], color = textColor) },
+            )
+
+            listPreference(
+                key = MainActivity.SEARCH_LANGUAGE_KEY,
+                defaultValue = MainActivity.SEARCH_LANGUAGE_DEFAULT,
+                values = searchLanguageValues,
+                title = {
+                    Text(
+                        text = stringResource(R.string.settings_search_results_language),
+                        color = textColor
+                    )
+                },
+                item = { value, currentValue, onClick ->
+                    ListPreferenceItem(searchLanguageDescriptions[searchLanguageValues.indexOf(value)], value, currentValue, onClick, searchLanguageValues.indexOf(value), searchLanguageValues.size)
+                },
+                summary = { Text(text = searchLanguageDescriptions[searchLanguageValues.indexOf(it)], color = textColor) },
             )
 
             item {
@@ -493,22 +548,6 @@ fun Settings(
                     modifier = Modifier.smallPadding()
                 )
             }
-            listPreference(
-                key = MainActivity.SEARCH_LANGUAGE_KEY,
-                defaultValue = MainActivity.SEARCH_LANGUAGE_DEFAULT,
-                values = searchLanguageValues,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_search_results_language),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(searchLanguageDescriptions[searchLanguageValues.indexOf(value)], value, currentValue, onClick, searchLanguageValues.indexOf(value), searchLanguageValues.size)
-                },
-                summary = { Text(text = searchLanguageDescriptions[searchLanguageValues.indexOf(it)], color = textColor) },
-            )
-
             item {
                 Text(
                     text = stringResource(R.string.settings_debug_heading),

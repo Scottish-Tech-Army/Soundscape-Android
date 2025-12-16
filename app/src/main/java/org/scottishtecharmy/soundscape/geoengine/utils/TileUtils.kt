@@ -14,7 +14,6 @@ import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.Polygon as JtsPolygon
 import org.locationtech.jts.geom.GeometryFactory
 import org.locationtech.jts.geom.LinearRing
-import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -24,7 +23,12 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
+import vector_tile.VectorTile
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.lang.Math.toDegrees
+import java.util.zip.GZIPInputStream
 import kotlin.collections.iterator
 import kotlin.collections.toTypedArray
 import kotlin.math.PI
@@ -46,7 +50,7 @@ import kotlin.math.tan
  */
 fun getXYTile(
     location: LngLatAlt,
-    zoom: Int = 16
+    zoom: Int
 ): Pair<Int, Int> {
     val latRad = toRadians(location.latitude)
     var xTile = floor((location.longitude + 180) / 360 * (1 shl zoom)).toInt()
@@ -764,7 +768,8 @@ enum class SuperCategoryId(
     MOBILITY,
     SAFETY,
     LANDMARK,
-    MARKER
+    MARKER,
+    HOUSENUMBER
 }
 
 val superCategoryMap: Map<String, SuperCategoryId> = buildMap {
@@ -1231,4 +1236,60 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
             }
         }
     }
+}
+
+fun decompressGzip(compressedData: ByteArray): ByteArray? {
+    // Create a ByteArrayInputStream from the compressed data
+    val byteArrayInputStream = ByteArrayInputStream(compressedData)
+    var gzipInputStream: GZIPInputStream? = null
+    val outputStream = ByteArrayOutputStream()
+
+    try {
+        // Wrap the ByteArrayInputStream with GZIPInputStream
+        gzipInputStream = GZIPInputStream(byteArrayInputStream)
+
+        // Buffer for reading decompressed data
+        val buffer = ByteArray(1024) // Adjust buffer size as needed
+        var len: Int
+
+        // Read from GZIPInputStream and write to ByteArrayOutputStream
+        while (gzipInputStream.read(buffer).also { len = it } > 0) {
+            outputStream.write(buffer, 0, len)
+        }
+
+        return outputStream.toByteArray()
+
+    } catch (e: IOException) {
+        // Handle potential IOExceptions during decompression
+        e.printStackTrace() // Log the error or handle it appropriately
+        return null
+    } finally {
+        // Ensure streams are closed
+        try {
+            gzipInputStream?.close()
+            outputStream.close()
+            byteArrayInputStream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+}
+
+fun decompressTile(compressionType: Byte?, rawTileData: ByteArray) : VectorTile.Tile? {
+    //println("File reader got a tile for worker $workerIndex")
+    when (compressionType) {
+        1.toByte() -> {
+            // No compression
+            return VectorTile.Tile.parseFrom(rawTileData)
+        }
+
+        2.toByte() -> {
+            // Gzip compression
+            val decompressedTile = decompressGzip(rawTileData)
+            return VectorTile.Tile.parseFrom(decompressedTile)
+        }
+
+        else -> assert(false)
+    }
+    return null
 }

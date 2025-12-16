@@ -22,6 +22,16 @@
 <string name="settings_units_imperial" tools:ignore="MissingTranslation">"Imperial (Feet)"</string>
 <!-- The option for setting the units of measurement to kilometers and meters -->
 <string name="settings_units_metric" tools:ignore="MissingTranslation">"Metric (Meters)"</string>
+<!-- In the Settings page the title of the section for selecting which search system to use -->
+<string name="settings_section_search" tools:ignore="MissingTranslation">"Search"</string>
+<!-- The option for setting the search to use the Android System Geocoder -->
+<string name="settings_search_android" tools:ignore="MissingTranslation">"Android system"</string>
+<!-- The option for setting the search to use the Photon search engine -->
+<string name="settings_search_photon" tools:ignore="MissingTranslation">"Photon"</string>
+<!-- The option for setting the search to use the offline search engine -->
+<string name="settings_search_offline" tools:ignore="MissingTranslation">"Offline"</string>
+<!-- The option for setting the search to automatically pick the best engine based on network and device capabilities -->
+<string name="settings_search_auto" tools:ignore="MissingTranslation">"Auto"</string>
 <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">"Speaking Rate"</string>
 <!-- Title for option to select the text-to-speech engine to use. -->
@@ -420,6 +430,8 @@
 <string name="ui_continue">"Continue"</string>
 <!-- Title in settings to Manage Callouts preferences-->
 <string name="menu_manage_callouts">"Manage Callouts"</string>
+<!-- Title in settings to Manage Callouts preferences-->
+<string name="menu_manage_search" tools:ignore="MissingTranslation">"Manage search"</string>
 <!-- Title for Help and Tutorials screen-->
 <!-- Title, Rate the app in App Store -->
 <string name="menu_rate">"Rate"</string>

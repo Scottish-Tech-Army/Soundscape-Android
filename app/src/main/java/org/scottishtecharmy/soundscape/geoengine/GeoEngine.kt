@@ -10,8 +10,6 @@ import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.google.android.gms.location.DeviceOrientation
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -36,12 +34,14 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
@@ -60,13 +60,14 @@ import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
-import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
 import java.io.File
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import java.lang.String.format
 
 
@@ -119,6 +120,10 @@ class GeoEngine {
     private lateinit var configLocale: Locale
     private lateinit var configuration: Configuration
     lateinit var localizedContext: Context
+
+    lateinit var geocoder: SoundscapeGeocoder
+    lateinit var tileSearch: TileSearch
+    lateinit var networkUtils: NetworkUtils
 
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
@@ -283,6 +288,8 @@ class GeoEngine {
 
         gridState.start(application, offlineExtractPath)
         settlementGrid.start(application, offlineExtractPath)
+        tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
+        networkUtils = NetworkUtils(application)
 
         configLocale = getCurrentLocale()
         configuration = Configuration(application.applicationContext.resources.configuration)
@@ -290,7 +297,15 @@ class GeoEngine {
         localizedContext = application.applicationContext.createConfigurationContext(configuration)
         autoCallout = AutoCallout(localizedContext, sharedPreferences)
 
-
+        // The MultiGeocoder dynamically switches between Android, Photon and Local Geocoders
+        // depending on the user settings and network availability
+        geocoder = MultiGeocoder(
+                application,
+                gridState,
+                settlementGrid,
+                tileSearch,
+                networkUtils
+            )
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
 
@@ -419,7 +434,7 @@ class GeoEngine {
                     }
 
                     if(updated) {
-                        Firebase.analytics.logEvent("gridUpdated", null)
+                        Analytics.getInstance().logEvent("gridUpdated", null)
 
                         // The grid updated, if we're in StreetPreview and were initializing, the
                         // service needs to update the state to ON.
@@ -434,7 +449,8 @@ class GeoEngine {
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
                                 gridState,
-                                settlementGrid)
+                                settlementGrid,
+                                geocoder)
                         if (callouts != null) {
                             // Tell the service that we've got some callouts to tell the user about
                             soundscapeService.speakCallout(callouts, false)
@@ -491,7 +507,7 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     fun myLocation() : TrackedCallout? {
 
-        Firebase.analytics.logEvent("myLocation", null)
+        Analytics.getInstance().logEvent("myLocation", null)
 
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
@@ -515,21 +531,9 @@ class GeoEngine {
 
                         val list: MutableList<PositionedString> = mutableListOf()
 
-                        val nearestRoad = userGeometry.mapMatchedWay
-                        if (nearestRoad != null) {
-                            val roadName = nearestRoad.getName(null, gridState, localizedContext)
-                            val facingDirectionAlongRoad =
-                                getCompassLabelFacingDirectionAlong(
-                                    localizedContext,
-                                    heading.toInt(),
-                                    roadName,
-                                    userGeometry.inMotion(),
-                                    userGeometry.inVehicle()
-                                )
-                            list.add(PositionedString(
-                                text = facingDirectionAlongRoad,
-                                type = AudioType.STANDARD))
-                        } else {
+                        val ld = geocoder.getAddressFromLngLat(userGeometry, localizedContext)
+                        if (ld != null) {
+                            // We've got an address to call out
                             val facingDirection =
                                 getCompassLabelFacingDirection(
                                     localizedContext,
@@ -537,12 +541,55 @@ class GeoEngine {
                                     userGeometry.inMotion(),
                                     userGeometry.inVehicle()
                                 )
-                            list.add(PositionedString(
-                                text = facingDirection,
-                                type = AudioType.STANDARD)
+                            list.add(
+                                PositionedString(
+                                    text = facingDirection,
+                                    type = AudioType.STANDARD
+                                )
                             )
+                            list.add(
+                                PositionedString(
+                                    text = ld.name,
+                                    type = AudioType.STANDARD
+                                )
+                            )
+                            list
+                        } else {
+                            val nearestRoad = userGeometry.mapMatchedWay
+                            if (nearestRoad != null) {
+                                val roadName =
+                                    nearestRoad.getName(null, gridState, localizedContext)
+                                val facingDirectionAlongRoad =
+                                    getCompassLabelFacingDirectionAlong(
+                                        localizedContext,
+                                        heading.toInt(),
+                                        roadName,
+                                        userGeometry.inMotion(),
+                                        userGeometry.inVehicle()
+                                    )
+                                list.add(
+                                    PositionedString(
+                                        text = facingDirectionAlongRoad,
+                                        type = AudioType.STANDARD
+                                    )
+                                )
+                            } else {
+                                val facingDirection =
+                                    getCompassLabelFacingDirection(
+                                        localizedContext,
+                                        heading.toInt(),
+                                        userGeometry.inMotion(),
+                                        userGeometry.inVehicle()
+                                    )
+                                list.add(
+                                    PositionedString(
+                                        text = facingDirection,
+                                        type = AudioType.STANDARD
+                                    )
+                                )
+                            }
+                            list
                         }
-                        list
                     }
                 }
             }
@@ -557,26 +604,14 @@ class GeoEngine {
         )
     }
 
-    suspend fun searchResult(searchString: String) =
-        withContext(Dispatchers.IO) {
-            val location = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location
-            try {
-                Firebase.analytics.logEvent("geoSearch", null)
-                return@withContext PhotonSearchProvider
-                    .getInstance()
-                    .getSearchResults(
-                        searchString = searchString,
-                        latitude = location.latitude,
-                        longitude = location.longitude,
-                        language = getPhotonLanguage(sharedPreferences)
-                    ).execute()
-                    .body()
-            } catch (e: Exception) {
-                Log.e(TAG, "Error getting search results:", e)
-                Firebase.analytics.logEvent("geoSearchError", null)
-                return@withContext null
-            }
+    suspend fun searchResult(searchString: String) : List<LocationDescription>? {
+        return withContext(Dispatchers.IO) {
+            return@withContext geocoder.getAddressFromLocationName(
+                searchString,
+                getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location,
+                localizedContext)
         }
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun whatsAroundMe() : TrackedCallout? {
@@ -589,7 +624,7 @@ class GeoEngine {
         val gridStartTime = timeSource.markNow()
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
 
-        Firebase.analytics.logEvent("whatsAroundMe", null)
+        Analytics.getInstance().logEvent("whatsAroundMe", null)
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
@@ -692,7 +727,7 @@ class GeoEngine {
         var results : MutableList<PositionedString> = mutableListOf()
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto)
 
-        Firebase.analytics.logEvent("aheadOfMe", null)
+        Analytics.getInstance().logEvent("aheadOfMe", null)
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
@@ -751,7 +786,7 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     fun nearbyMarkers() : TrackedCallout? {
 
-        Firebase.analytics.logEvent("nearbyMarkers", null)
+        Analytics.getInstance().logEvent("nearbyMarkers", null)
 
         // Search database for nearby markers and call them out
         var results : MutableList<PositionedString> = mutableListOf()
@@ -917,65 +952,12 @@ class GeoEngine {
     fun getLocationDescription(location: LngLatAlt,
                                preserveLocation: Boolean = true) : LocationDescription? {
 
-        var geocode: LocationDescription?
-        // If the location is within our current TileGrid, then we can make our own description of
-        // the location.
-        geocode = runBlocking {
+        val geocode = runBlocking {
             withContext(gridState.treeContext) {
-                localReverseGeocode(location, gridState, settlementGrid, localizedContext)
+                geocoder.getAddressFromLngLat(UserGeometry(location), localizedContext)
             }
         }
         if(geocode != null) return geocode
-
-        // If we have network, then we should be able to do a reverse geocode via the photon server
-        // TODO: Check for network first
-        // TODO: The geocode result takes too long to have it done inline like this. We need to
-        //  move it into the user of the LocationDescription so that it can update dynamically if
-        //  and when the request succeeds. Disable for now.
-        if(false) {
-            geocode = runBlocking {
-                withContext(Dispatchers.IO) {
-                    val result = reverseGeocodeResult(location)
-
-                    // The geocode result includes the location for the POI. In the case of something
-                    // like a park this could be a long way from the point that was passed in.
-                    val ld = result?.features?.toLocationDescriptions()
-                    if (!ld.isNullOrEmpty()) {
-                        if(preserveLocation) {
-                            val overwritten = ld.first()
-                            overwritten.location = location
-                            if(overwritten.name.isNotEmpty()) {
-                                overwritten.name = localizedContext.getString(R.string.directions_near_name).format(overwritten.name)
-                                overwritten
-                            }
-                            else {
-                                null
-                            }
-                        } else {
-                            ld.first()
-                        }
-                    } else
-                        null
-                }
-            }
-            if (geocode != null)
-                return geocode
-        }
-
-// TODO: If we don't have network, and the location is outside of our current TileGrid, then we could see
-//  if the tiles are cached and we can create a temporary TileGrid, but this needs some debugging
-//
-//        // Rustle up a TileGrid for this location
-//        val tempGrid = if(SOUNDSCAPE_TILE_BACKEND) SoundscapeBackendGridState() else ProtomapsGridState()
-//        geocode = runBlocking {
-//            withContext(tempGrid.treeContext) {
-//                // TODO: Should we create our own tileClient - we'll need an application context
-//                tempGrid.tileClient = gridState.tileClient
-//                tempGrid.locationUpdate(location, createSuperCategoriesSet())
-//                localReverseGeocode(location, tempGrid, localizedContext)
-//            }
-//        }
-//        if(geocode != null) return geocode
 
         return LocationDescription(
             name = "New location",
@@ -1004,6 +986,10 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
     val entranceType = feature.properties?.get("entrance") as String?
     val featureValue = feature.featureValue
     val isMarker = feature.superCategory == SuperCategoryId.MARKER
+
+    if(feature.superCategory == SuperCategoryId.HOUSENUMBER) {
+        return TextForFeature(name ?: feature.housenumber ?: "", false)
+    }
 
     if(localizedContext == null) {
         if(name == null) {
@@ -1151,13 +1137,13 @@ fun formatDistanceAndDirection(distance: Double, heading: Double?, localizedCont
         distanceText = localizedContext?.getString(
             if(metric) R.string.distance_format_meters else R.string.distance_format_feet,
             roundedDistance.toInt().toString()
-        ) ?: format("%f metres", roundedDistance)
+        ) ?: format("%d metres", roundedDistance.toInt())
     } else {
         val bigUnits = (roundedDistance.toInt() / 10).toFloat() / bigUnitDivisor
         distanceText = localizedContext?.getString(
             if(metric) R.string.distance_format_km else R.string.distance_format_miles,
             "%.2f".format(bigUnits)
-        )  ?: format("%f km", bigUnits)
+        )  ?: format("%.2f km", bigUnits)
     }
 
     var headingText = ""
@@ -1165,120 +1151,4 @@ fun formatDistanceAndDirection(distance: Double, heading: Double?, localizedCont
         headingText = ", " + localizedContext.getString(getCompassLabel(heading.toInt()))
     }
     return format("$distanceText$headingText")
-}
-
-fun localReverseGeocode(location: LngLatAlt,
-                        gridState: GridState,
-                        settlementGrid: GridState,
-                        localizedContext: Context?): LocationDescription? {
-
-    if(!gridState.isLocationWithinGrid(location)) return null
-
-    // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
-    val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-    val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
-    if(nearestBusStop != null) {
-        val busStopText = getTextForFeature(localizedContext, nearestBusStop as MvtFeature)
-        if(!busStopText.generic) {
-            return LocationDescription(
-                name = localizedContext?.getString(R.string.directions_near_name)
-                    ?.format(busStopText.text) ?: "Near ${busStopText.text}",
-                location = location,
-            )
-        }
-    }
-
-    // Check if we're inside a POI
-    val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
-    val insidePois = gridPoiTree.getContainingPolygons(location)
-    for(poi in insidePois) {
-        val mvtPoi = poi as MvtFeature
-        if(mvtPoi.name != null) {
-            return LocationDescription(
-                name = localizedContext?.getString(R.string.directions_at_poi)?.format(mvtPoi.name) ?: "At ${mvtPoi.name}",
-                location = location,
-            )
-        }
-    }
-
-    // Get the nearest settlements. Nominatim uses the following proximities, so we do the same:
-    //
-    // cities, municipalities, islands | 15 km
-    // towns, boroughs                 | 4 km
-    // villages, suburbs               | 2 km
-    // hamlets, farms, neighbourhoods  |  1 km
-    //
-    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
-        .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
-    var nearestSettlementName = nearestSettlement?.name
-    if(nearestSettlementName == null) {
-        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
-        nearestSettlementName = nearestSettlement?.name
-        if(nearestSettlementName == null) {
-            nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-                .getNearestFeature(location, settlementGrid.ruler, 4000.0) as MvtFeature?
-            nearestSettlementName = nearestSettlement?.name
-            if (nearestSettlementName == null) {
-                nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-                    .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
-                nearestSettlementName = nearestSettlement?.name
-            }
-        }
-    }
-
-    // Check if the location is alongside a road/path
-    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
-    if(nearestRoad != null) {
-        // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
-        val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
-        if(roadName.isNotEmpty()) {
-            if(nearestSettlementName != null) {
-                return LocationDescription(
-                    name = localizedContext?.getString(R.string.directions_near_road_and_settlement)
-                    ?.format(roadName, nearestSettlementName) ?: "Near $roadName and close to $nearestSettlementName",
-                    location = location,
-                )
-            } else {
-                return LocationDescription(
-                    name = localizedContext?.getString(R.string.directions_near_name)
-                        ?.format(roadName) ?: "Near $roadName",
-                    location = location,
-                )
-            }
-        }
-    }
-
-    if(nearestSettlementName != null) {
-        //val distanceToSettlement = settlementGrid.ruler.distance(location, (nearestSettlement?.geometry as Point).coordinates)
-        return LocationDescription(
-            name = localizedContext?.getString(R.string.directions_near_name)
-                ?.format(nearestSettlementName) ?: "Near $nearestSettlementName",
-            location = location,
-        )
-    }
-
-
-    return null
-}
-
-/** Reverse geocodes a location into 1 of 4 possible states
- * - within a POI
- * - alongside a road
- * - general location
- * - unknown location.
- */
-fun reverseGeocode(userGeometry: UserGeometry,
-                   gridState: GridState,
-                   settlementGrid: GridState,
-                   localizedContext: Context?): PositionedString? {
-
-    val location = localReverseGeocode(userGeometry.location, gridState, settlementGrid, localizedContext)
-    location?.let { l ->
-        return PositionedString(
-            text = l.name,
-            location = userGeometry.location,
-            type = AudioType.LOCALIZED)
-    }
-    // We don't want to call out "Unknown place", so return null and skip this callout
-    return null
 }

@@ -6,6 +6,7 @@ import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.SearchBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -76,6 +77,12 @@ data class RouteFunctions(val viewModel: HomeViewModel?) {
     val stop =  { viewModel?.routeStop() }
 }
 
+data class SearchFunctions(val viewModel: HomeViewModel?) {
+    val onSearchTextChange: (String) -> Unit = { viewModel?.onSearchTextChange(it) }
+    val onToggleSearch = { viewModel?.onToggleSearch() }
+    val onTriggerSearch = { viewModel?.onTriggerSearch() }
+}
+
 data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {
     val go = { viewModel?.streetPreviewGo() }
     val exit = { viewModel?.streetPreviewExit() }
@@ -107,6 +114,7 @@ fun HomeScreen(
     val state = viewModel.state.collectAsStateWithLifecycle()
     val searchText = viewModel.searchText.collectAsStateWithLifecycle()
     val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
+    val searchFunctions = remember(viewModel) { SearchFunctions(viewModel) }
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
     val bottomButtonFunctions = remember(viewModel) { BottomButtonFunctions(viewModel) }
     val onMapLongClickListener = remember(viewModel) {
@@ -133,8 +141,7 @@ fun HomeScreen(
                 bottomButtonFunctions = bottomButtonFunctions,
                 getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
                 searchText = searchText.value,
-                onToggleSearch = viewModel::onToggleSearch,
-                onSearchTextChange = viewModel::onSearchTextChange,
+                searchFunctions = searchFunctions,
                 rateSoundscape = rateSoundscape,
                 contactSupport = contactSupport,
                 routeFunctions = routeFunctions,
