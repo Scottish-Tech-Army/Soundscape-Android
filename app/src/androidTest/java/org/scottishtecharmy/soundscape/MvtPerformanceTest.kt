@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.time.Duration
@@ -43,8 +44,9 @@ class MvtPerformanceTest {
         val remoteTile = context.assets.open(filename)
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
         val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val streetNumberMap:  HashMap<String, FeatureCollection> = hashMapOf()
 
-        return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
+        return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, streetNumberMap, cropPoints, 15)
     }
 
     @Test
@@ -84,7 +86,8 @@ class MvtPerformanceTest {
         runBlocking {
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
             val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
-            gridState.updateTile(x, y, 0, featureCollections, intersectionMap)
+            val streetNumberMap:  HashMap<String, FeatureCollection> = hashMapOf()
+            gridState.updateTile(x, y, 0, featureCollections, intersectionMap, streetNumberMap)
         }
     }
     fun tileProviderAvailable(): Boolean {
@@ -122,6 +125,7 @@ class MvtPerformanceTest {
     @Test
     fun testRouting() {
 
+        Analytics.getInstance(true)
         if(!tileProviderAvailable())
             return
 
@@ -135,8 +139,7 @@ class MvtPerformanceTest {
         runBlocking {
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet(),
-                true
+                emptySet()
             )
         }
 
@@ -173,6 +176,7 @@ class MvtPerformanceTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun testGridCache(boundingBox: BoundingBox, count: Int = 1 ) {
 
+        Analytics.getInstance(true)
         if(!tileProviderAvailable())
             return
 
@@ -211,8 +215,7 @@ class MvtPerformanceTest {
                             // Update the grid state
                             gridState.locationUpdate(
                                 LngLatAlt(location.longitude, location.latitude),
-                                emptySet(),
-                                true
+                                emptySet()
                             )
                         }
                         if(duration > longestDuration) {
@@ -231,6 +234,7 @@ class MvtPerformanceTest {
     @Test
     fun testSingleGridCache() {
 
+        Analytics.getInstance(true)
         if(!tileProviderAvailable())
             return
 
@@ -254,8 +258,7 @@ class MvtPerformanceTest {
             // Update the grid state
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet(),
-                true
+                emptySet()
             )
         }
 

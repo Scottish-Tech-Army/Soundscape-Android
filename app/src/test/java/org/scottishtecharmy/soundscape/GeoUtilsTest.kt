@@ -539,12 +539,12 @@ class GeoUtilsTest {
     fun cheapTestPoint(ruler: CheapRuler, point: LngLatAlt, line: LineString, fc: FeatureCollection) {
         val pdh = ruler.distanceToLineString(point, line)
         val pointFeature1 = Feature()
-        pointFeature1.geometry = Point(point.longitude, point.latitude)
+        pointFeature1.geometry = Point(point)
         pointFeature1.properties = hashMapOf()
         fc.addFeature(pointFeature1)
 
         val pointFeature2 = Feature()
-        pointFeature2.geometry = Point(pdh.point.longitude, pdh.point.latitude)
+        pointFeature2.geometry = Point(pdh.point)
         pointFeature2.properties = hashMapOf()
         fc.addFeature(pointFeature2)
     }

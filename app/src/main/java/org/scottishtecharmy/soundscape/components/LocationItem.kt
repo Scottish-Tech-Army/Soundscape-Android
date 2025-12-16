@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -47,8 +48,16 @@ data class EnabledFunction(
     var hintWhenOn: String = "",
     var hintWhenOff: String = ""
 )
+enum class LocationSource {
+    AndroidGeocoder,
+    PhotonGeocoder,
+    OfflineGeocoder,
+    UnknownSource
+}
+
 data class LocationItemDecoration(
     val location: Boolean = false,
+    val source: LocationSource = LocationSource.UnknownSource,
     val index: Int = -1,
     val editRoute: EnabledFunction = EnabledFunction(),
     val details: EnabledFunction = EnabledFunction(),
@@ -126,8 +135,12 @@ fun LocationItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         if(decoration.location) {
+            val icon = when(decoration.source) {
+                LocationSource.OfflineGeocoder -> Icons.Rounded.LocationOff
+                else -> Icons.Rounded.LocationOn
+            }
             Icon(
-                Icons.Rounded.LocationOn,
+                icon,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.width(spacing.icon)
@@ -289,6 +302,27 @@ fun PreviewCompactSearchItemButton() {
                 location = true,
                 editRoute = EnabledFunction(false),
                 details = EnabledFunction(true),
+                source = LocationSource.OfflineGeocoder
+            ),
+            userLocation = LngLatAlt(8.00, 10.55)
+        )
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                location = true,
+                editRoute = EnabledFunction(false),
+                details = EnabledFunction(true),
+                source = LocationSource.AndroidGeocoder
+            ),
+            userLocation = LngLatAlt(8.00, 10.55)
+        )
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                location = true,
+                editRoute = EnabledFunction(false),
+                details = EnabledFunction(true),
+                source = LocationSource.PhotonGeocoder
             ),
             userLocation = LngLatAlt(8.00, 10.55)
         )

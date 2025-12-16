@@ -3,8 +3,6 @@ package org.scottishtecharmy.soundscape.services
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +18,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val currentWaypoint: Int = 0, val beaconOnly: Boolean = false)
@@ -52,7 +51,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         Log.e(TAG, "startBeacon")
         currentMarker = 0
 
-        Firebase.analytics.logEvent("startBeacon", null)
+        Analytics.getInstance().logEvent("startBeacon", null)
 
         val marker = MarkerEntity(
             name = beaconName,
@@ -84,7 +83,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
         val routeDao = realm.routeDao()
 
-        Firebase.analytics.logEvent("startRoute", null)
+        Analytics.getInstance().logEvent("startRoute", null)
 
         Log.e(TAG, "startRoute")
         coroutineScope.launch {

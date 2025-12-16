@@ -48,7 +48,7 @@ class Intersection : MvtFeature() {
     // them be declared to be the same as then we can't tell the direction of the JOINER.
 
     fun toFeature() {
-        geometry = Point(location.longitude, location.latitude)
+        geometry = Point(location)
         properties = HashMap<String,Any?>().apply {
             set("name", name)
             set("members", members.size)
@@ -715,7 +715,7 @@ class WayGenerator(val transit: Boolean = false) {
             // Naming the intersection is now done as a separate pass after the name confection has
             // taken place
             //intersection.value.updateName()
-            intersection.value.geometry = Point(intersection.value.location.longitude, intersection.value.location.latitude)
+            intersection.value.geometry = Point(intersection.value.location)
             intersection.value.properties = hashMapOf()
             if(transit) {
                 intersection.value.featureType = "transit"

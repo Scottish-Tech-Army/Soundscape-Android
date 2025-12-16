@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils.rulers
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import kotlin.math.sqrt
 
 abstract class Ruler() {
 
@@ -12,4 +13,5 @@ abstract class Ruler() {
     abstract fun along(line: LineString, dist: Double) : LngLatAlt
     abstract fun pointToSegmentDistance(p: LngLatAlt, a: LngLatAlt, b: LngLatAlt) : Double
     abstract fun distanceToLineString(p: LngLatAlt, line: LineString) : PointAndDistanceAndHeading
+    abstract fun lineLength(line: LineString) : Double
 }

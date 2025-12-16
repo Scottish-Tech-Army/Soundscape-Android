@@ -12,7 +12,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**

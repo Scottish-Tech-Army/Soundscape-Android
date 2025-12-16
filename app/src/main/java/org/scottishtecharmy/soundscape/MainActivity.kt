@@ -41,11 +41,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
@@ -218,6 +220,7 @@ class MainActivity : AppCompatActivity() {
 //                     }
 //                     .build()
 //        )
+        Analytics.getInstance(false)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
@@ -383,20 +386,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun talkBackDescription(context: Context): String {
+    fun tableRow(key: String, value: String): String {
+        return "$key:\t\t$value<br/>"
+    }
+
+    fun talkBackDescription(builder: StringBuilder, context: Context) {
         val am = context.getSystemService(ACCESSIBILITY_SERVICE) as AccessibilityManager
         if (!am.isEnabled) {
-            return "Off<br/>"
+            builder.append(tableRow("Talkback", "Off"))
+            return
         }
 
-        var resultsString = "TouchExploration Enabled: ${am.isTouchExplorationEnabled}<br/>"
+        builder.append(tableRow("TouchExploration Enabled", am.isTouchExplorationEnabled.toString()))
 
         val enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_SPOKEN)
         for (serviceInfo in enabledServices) {
-            resultsString += "AccessibilityService: ${serviceInfo.id}<br/>"
+            builder.append(tableRow("AccessibilityService:", serviceInfo.id))
         }
-
-        return resultsString
     }
 
     suspend fun contactSupport() {
@@ -410,32 +416,31 @@ class MainActivity : AppCompatActivity() {
         val language = Locale.getDefault().language + "-" + Locale.getDefault().country
         val subjectText =
             "Soundscape Feedback (Android $androidVersion, $brand $model, $language, $appVersion)"
-        val talkbackStatus = talkBackDescription(applicationContext)
         val preferences = sharedPreferences.all
 
-        fun tableRow(key: String, value: String): String {
-            return "$key:\t\t$value<br/>"
-        }
+        val bodyText = StringBuilder()
 
-        var bodyText =
-            "-----------------------------<br/>" +
-            tableRow("Product", product) +
-            tableRow("Manufacturer", manufacturer) +
-            tableRow("Talkback", talkbackStatus)
+        bodyText.append("-----------------------------<br/>")
+        bodyText.append(tableRow("Product", product))
+        bodyText.append(tableRow("Manufacturer", manufacturer))
+        talkBackDescription(bodyText, applicationContext)
 
-        preferences.forEach { pref -> bodyText += tableRow(pref.key, pref.value.toString()) }
-        bodyText += "-----------------------------<br/><br/>"
 
-        bodyText += "Untranslated OSM keys:<br/>"
+        bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
+
+        preferences.forEach { pref -> bodyText.append(tableRow(pref.key, pref.value.toString())) }
+        bodyText.append("-----------------------------<br/><br/>")
+
+        bodyText.append("Untranslated OSM keys:<br/>")
         val unknownOsmKeys = ResourceMapper.getUnfoundKeys()
-        unknownOsmKeys.forEach { bodyText += "\t$it<br/>" }
-        bodyText += "-----------------------------<br/><br/>"
+        unknownOsmKeys.forEach { bodyText.append("\t$it<br/>") }
+        bodyText.append("-----------------------------<br/><br/>")
 
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
             putExtra(Intent.EXTRA_EMAIL, arrayOf("soundscapeAndroid@scottishtecharmy.support"))
             putExtra(Intent.EXTRA_SUBJECT, subjectText)
-            putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText, 0))
+            putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText.toString(), 0))
         }
 
         // Attach the log file if it was created successfully
@@ -457,7 +462,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        Log.e(TAG, Html.fromHtml(bodyText, 0).toString())
+        Log.e(TAG, Html.fromHtml(bodyText.toString(), 0).toString())
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
@@ -621,6 +626,8 @@ class MainActivity : AppCompatActivity() {
         const val SELECTED_STORAGE_KEY = "SelectedStorage"
         const val LAST_NEW_RELEASE_DEFAULT = ""
         const val LAST_NEW_RELEASE_KEY = "LastNewRelease"
+        const val GEOCODER_MODE_DEFAULT = "Auto"
+        const val GEOCODER_MODE_KEY = "GeocoderMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
     }

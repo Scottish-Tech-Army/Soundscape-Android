@@ -56,6 +56,7 @@ import org.scottishtecharmy.soundscape.screens.home.DrawerContent
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
+import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -85,8 +86,7 @@ fun Home(
     streetPreviewFunctions : StreetPreviewFunctions,
     modifier: Modifier = Modifier,
     searchText: String,
-    onSearchTextChange: (String) -> Unit,
-    onToggleSearch: () -> Unit,
+    searchFunctions: SearchFunctions,
     goToAppSettings: (Context) -> Unit,
     permissionsRequired: Boolean
 ) {
@@ -188,8 +188,7 @@ fun Home(
                             searchText = searchText,
                             isSearching = state.isSearching,
                             itemList = state.searchItems.orEmpty(),
-                            onSearchTextChange = onSearchTextChange,
-                            onToggleSearch = onToggleSearch,
+                            searchFunctions = searchFunctions,
                             onItemClick = { item ->
                                 onNavigate(
                                     generateLocationDetailsRoute(item),
@@ -305,8 +304,7 @@ fun HomePreview() {
             rateSoundscape = {},
             contactSupport = {},
             searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
+            searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
             goToAppSettings = {},
@@ -335,8 +333,7 @@ fun HomeSearchPreview() {
             rateSoundscape = {},
             contactSupport = {},
             searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
+            searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
             goToAppSettings = {},
@@ -379,8 +376,7 @@ fun HomeRoutePreview() {
             rateSoundscape = {},
             contactSupport = {},
             searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
+            searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
             goToAppSettings = {},
@@ -417,8 +413,7 @@ fun StreetPreview() {
             rateSoundscape = {},
             contactSupport = {},
             searchText = "Lille",
-            onSearchTextChange = {},
-            onToggleSearch = {},
+            searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
             goToAppSettings = {},

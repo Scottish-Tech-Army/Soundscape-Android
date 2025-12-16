@@ -5,10 +5,14 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.util.Log
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.suspendCancellableCoroutine
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.analytics
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.fuzzyCompare
+import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -19,96 +23,95 @@ import kotlin.coroutines.suspendCoroutine
 class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
     private var geocoder: Geocoder = Geocoder(applicationContext)
 
-    // Not all Android platforms have Geocoder capability
-    val enabled = Geocoder.isPresent()
-
-    override suspend fun getAddressFromLocationName(locationName: String, nearbyLocation: LngLatAlt) : LocationDescription? {
+    /**
+     * The main weakness of the AndroidGeocoder is that it doesn't include the names of Points of
+     * Interest in the search results. It will include the address, but it won't have the associated
+     * business name for that address. All we can do is pass through the "locationName" that was
+     * searched for, typos and all.
+     */
+    override suspend fun getAddressFromLocationName(locationName: String,
+                                                    nearbyLocation: LngLatAlt,
+                                                    localizedContext: Context?) : List<LocationDescription>? {
         if(!enabled)
             return null
 
+        Analytics.getInstance().logEvent("androidGeocode", null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return suspendCoroutine { continuation ->
-                val geocodeListener =
-                    Geocoder.GeocodeListener { addresses ->
-                        Log.d(
-                            TAG,
-                            "getAddressFromLocationName results count " + addresses.size.toString()
-                        )
-                        for (address in addresses) {
-                            Log.d(TAG, "$address")
-                        }
+                val geocodeListener = object : Geocoder.GeocodeListener {
+                    override fun onGeocode(addresses: MutableList<Address>) {
+                        Log.d(TAG, "getFromLocationName results count " + addresses.size.toString())
                         if (addresses.isNotEmpty()) {
-                            continuation.resume(
-                                LocationDescription(
-                                    locationName,
-                                    LngLatAlt(addresses[0].longitude, addresses[0].latitude)
-                                )
-                            )
+                            continuation.resume(addresses)
+                        } else {
+                            continuation.resume(null)
                         }
                     }
+                    override fun onError(errorMessage: String?) {
+                        Log.d(TAG,"AndroidGeocoder error: $errorMessage")
+                        continuation.resume(null)
+                    }
+                }
                 geocoder.getFromLocationName(
                     locationName,
                     5,
-                    nearbyLocation.latitude - 0.1,
-                    nearbyLocation.longitude - 0.1,
-                    nearbyLocation.latitude + 0.1,
-                    nearbyLocation.longitude + 0.1,
                     geocodeListener
                 )
-            }
+            }?.mapNotNull{feature -> feature.toLocationDescription(locationName) }
         } else {
             @Suppress("DEPRECATION")
             val addresses = geocoder.getFromLocationName(locationName, 5)
             if(addresses != null) {
-                for (address in addresses) {
-                    Log.d(TAG, "Address: $address")
-                }
+                return addresses.mapNotNull{feature -> feature.toLocationDescription(locationName) }
             }
         }
         return null
     }
 
-    override suspend fun getAddressFromLngLat(location: LngLatAlt) : LocationDescription? {
+    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry, localizedContext: Context?) : LocationDescription? {
         if(!enabled)
             return null
 
+        Analytics.getInstance().logEvent("androidReverseGeocode", null)
+
+        val location = userGeometry.location
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return suspendCoroutine { continuation ->
-                val geocodeListener =
-                    Geocoder.GeocodeListener { addresses ->
-                        Log.d(
-                            TAG,
-                            "getAddressFromLocationName results count " + addresses.size.toString()
-                        )
-                        for (address in addresses) {
-                            Log.d(TAG, "$address")
+                geocoder.getFromLocation(
+                    location.latitude, location.longitude, 5,
+                    object : Geocoder.GeocodeListener {
+                        override fun onGeocode(addresses: MutableList<Address>) {
+                            Log.d(TAG,"getAddressFromLocationName results count " + addresses.size.toString())
+                            val name = userGeometry.mapMatchedWay?.name
+                            if(name != null) {
+                                for (address in addresses) {
+                                    Log.d(TAG, "$address")
+                                    if (address.thoroughfare.fuzzyCompare(name, false) < 0.3) {
+                                        continuation.resume(address)
+                                        return
+                                    }
+                                }
+                            }
+                            continuation.resume(addresses.firstOrNull())
                         }
-                        continuation.resume(
-                            LocationDescription(
-                                addresses[0].getAddressLine(0),
-                                LngLatAlt(addresses[0].longitude, addresses[0].latitude)
-                            )
-                        )
+                        override fun onError(errorMessage: String?) {
+                            Log.d(TAG,"AndroidGeocoder error: $errorMessage")
+                            continuation.resume(null)
+                        }
                     }
-                geocoder.getFromLocation(location.latitude, location.longitude, 5, geocodeListener)
-            }
+                )
+            }?.toLocationDescription(null)
         } else {
             @Suppress("DEPRECATION")
             val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 5)
-            if(addresses != null) {
-                for (address in addresses) {
-                    Log.d(TAG, "Address: $address")
-                }
-                return LocationDescription(
-                    addresses[0].getAddressLine(0),
-                    LngLatAlt(addresses[0].longitude, addresses[0].latitude)
-                )
-            }
+            return addresses?.firstOrNull()?.toLocationDescription(null)
         }
-        return null
     }
 
     companion object {
         const val TAG = "AndroidGeocoder"
+
+        // Not all Android platforms have Geocoder capability
+        val enabled = Geocoder.isPresent()
     }
 }

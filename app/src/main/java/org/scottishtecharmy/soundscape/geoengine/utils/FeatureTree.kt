@@ -9,6 +9,7 @@ import com.github.davidmoten.rtree2.geometry.Line
 import com.github.davidmoten.rtree2.geometry.Point
 import com.github.davidmoten.rtree2.geometry.Rectangle
 import com.github.davidmoten.rtree2.internal.EntryDefault
+import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -18,6 +19,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import kotlin.math.PI
 import kotlin.math.cos
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * FeatureTree is a class which stores FeatureCollections within an rtree which gives us faster
@@ -614,5 +617,139 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             result.addFeature(feature.value())
         }
         return result
+    }
+
+
+
+    private fun entryNearLine(entry: Entry<Feature, Geometry?>,
+                              p1: LngLatAlt,
+                              p2: LngLatAlt,
+                              distance: Double,
+                              ruler: Ruler): Boolean {
+
+        when (val p = entry.geometry()) {
+            is Point -> {
+                val testPoint = LngLatAlt(p.x(), p.y())
+                return ruler.pointToSegmentDistance(testPoint, p1, p2) < distance
+            }
+
+            is Line,
+            is Rectangle -> {
+                val feature = entry.value()
+                when(feature.geometry.type) {
+                    "Polygon" -> {
+                        val polygon = feature.geometry as Polygon
+                        for (geometry in polygon.coordinates) {
+                            for (point in geometry) {
+                                if (ruler.pointToSegmentDistance(point, p1, p2) < distance)
+                                    return true
+                            }
+                        }
+                        return false
+                    }
+
+                    "MultiPolygon" -> {
+                        val multiPolygon = feature.geometry as MultiPolygon
+                        for (polygon in multiPolygon.coordinates) {
+                            for (point in polygon[0]) {
+                                if (ruler.pointToSegmentDistance(point, p1, p2) < distance)
+                                    return true
+                            }
+                        }
+                        return false
+                    }
+                    else -> return false
+                }
+            }
+            else -> {
+                println("Unknown geometry type: $p")
+            }
+        }
+        return false
+    }
+
+    private fun createBoundingSquareContainingLine(p1: LngLatAlt,
+                                                   p2: LngLatAlt,
+                                                   distance: Double
+    ): Rectangle {
+
+        // Create a bounding square for our search
+        val latOffset = (distance) / EARTH_RADIUS_METERS * (180 / PI)
+        val lngOffset = (distance) / (EARTH_RADIUS_METERS * cos(Math.toRadians(p1.latitude))) * (180 / PI)
+
+        val minLat = minOf(p1.latitude, p2.latitude)
+        val maxLat = maxOf(p1.latitude, p2.latitude)
+        val minLng = minOf(p1.longitude, p2.longitude)
+        val maxLng = maxOf(p1.longitude, p2.longitude)
+
+
+        val rect = Geometries.rectangle(
+            minLng - lngOffset,
+            minLat - latOffset,
+            maxLng + lngOffset,
+            maxLat + latOffset
+        )
+        return rect
+    }
+
+    private fun searchNearLine(
+        p1: LngLatAlt,
+        p2: LngLatAlt,
+        distance: Double,
+        deduplicationSet: MutableSet<Feature>,
+        ruler: Ruler
+    ): MutableIterable<Entry<Feature, Geometry?>>? {
+
+        // This should not be called if the tree is null
+        assert(tree != null)
+
+        // First we need to calculate an enclosing lat long rectangle for this triangle
+        // then we refine on the exact contents
+        val bounds: Rectangle = createBoundingSquareContainingLine(p1, p2, distance)
+
+        return Iterables.filter(tree!!.search(bounds))
+        { entry ->
+            if(!deduplicationSet.contains(entry.value()))
+                entryNearLine(entry, p1, p2, distance, ruler)
+            else
+                false
+        }
+    }
+
+    /**
+     * getNearbyLine returns a FeatureCollection containing all of the features near the line
+     * @param line LineString to search near to
+     * @param distance How far from LineString to search
+     * @result FeatureCollection containing all of the features within distance of line
+     */
+    fun getNearbyLine(line: LineString, distance: Double, ruler: Ruler): FeatureCollection {
+        val featureCollection = FeatureCollection()
+        if(tree != null) {
+
+            val deduplicationSet = mutableSetOf<Feature>()
+
+            // We search segment by segment and accumulate the results in a Set to deduplicate
+            var lastPoint = LngLatAlt()
+            for ((index, point) in line.coordinates.withIndex()) {
+                if(index > 0) {
+                    val results = Iterables.toList(
+                        searchNearLine(
+                            lastPoint,
+                            point,
+                            distance,
+                            deduplicationSet,
+                            ruler
+                        )
+                    )
+                    deduplicationSet += results.map { it.value() }
+                }
+                lastPoint = point
+            }
+
+            for (feature in deduplicationSet) {
+                featureCollection.addFeature(feature)
+            }
+        }
+        return featureCollection
     }
 }

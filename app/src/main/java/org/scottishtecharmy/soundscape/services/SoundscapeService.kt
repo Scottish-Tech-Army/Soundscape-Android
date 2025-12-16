@@ -465,8 +465,8 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    suspend fun searchResult(searchString: String): ArrayList<Feature>? {
-        return geoEngine.searchResult(searchString)?.features
+    suspend fun searchResult(searchString: String): List<LocationDescription>? {
+        return geoEngine.searchResult(searchString)
     }
 
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {

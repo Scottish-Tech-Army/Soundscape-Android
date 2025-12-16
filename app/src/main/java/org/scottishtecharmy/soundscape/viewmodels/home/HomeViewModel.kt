@@ -22,7 +22,7 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.blankOrEmpty
-import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
+import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,7 +42,6 @@ class HomeViewModel
 
     init {
         handleMonitoring()
-        fetchSearchResult()
     }
 
     private fun handleMonitoring() {
@@ -235,25 +234,15 @@ class HomeViewModel
         _searchText.value = text
     }
 
-    private fun fetchSearchResult() {
+    fun onTriggerSearch() {
         viewModelScope.launch {
-            _searchText
-                .debounce(500)
-                .distinctUntilChanged()
-                .collectLatest { searchText ->
-                    if (searchText.blankOrEmpty()) {
-                        _state.update { it.copy(searchItems = emptyList()) }
-                    } else {
-                        val result =
-                            soundscapeServiceConnection.soundscapeService?.searchResult(searchText)
-
-                        _state.update {
-                            it.copy(
-                                searchItems = result?.toLocationDescriptions(),
-                            )
-                        }
-                    }
-                }
+            val result =
+                soundscapeServiceConnection.soundscapeService?.searchResult(searchText.value)
+            _state.update {
+                it.copy(
+                    searchItems = result
+                )
+            }
         }
     }
 

@@ -5,8 +5,6 @@ import android.content.Intent
 import android.location.Geocoder
 import android.os.Build
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +17,7 @@ import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.generateRouteDetailsRoute
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 import java.io.BufferedReader
 import java.io.IOException
@@ -183,7 +182,7 @@ class SoundscapeIntents
                         intent.getStringExtra(Intent.EXTRA_TEXT)?.let { plainText ->
                             Log.d(TAG, "Intent text: $plainText")
                             if (plainText.contains("maps.app.goo.gl")) {
-                                Firebase.analytics.logEvent("intentGoogleMapShare", null)
+                                Analytics.getInstance().logEvent("intentGoogleMapShare", null)
                                 try {
                                     getRedirectUrl(plainText, mainActivity)
                                 } catch (e: Exception) {
@@ -210,14 +209,14 @@ class SoundscapeIntents
 
                         if (matchResult.groupValues[1] == "soundscape") {
                             // Switch to Street Preview mode
-                            Firebase.analytics.logEvent("intentSoundscapeSchemaUrl", null)
+                            Analytics.getInstance().logEvent("intentSoundscapeSchemaUrl", null)
                             mainActivity.soundscapeServiceConnection.setStreetPreviewMode(
                                 true,
                                 LngLatAlt(longitude.toDouble(), latitude.toDouble())
                             )
                         } else {
                             try {
-                                Firebase.analytics.logEvent("intentGeoSchemaUrl", null)
+                                Analytics.getInstance().logEvent("intentGeoSchemaUrl", null)
                                 check(Geocoder.isPresent())
                                 useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
                             } catch (e: Exception) {
@@ -287,7 +286,7 @@ class SoundscapeIntents
                                                             )
                                                         }
                                                     }
-                                                    Firebase.analytics.logEvent("intentJsonImport", null)
+                                                    Analytics.getInstance().logEvent("intentJsonImport", null)
                                                     routeData = RouteWithMarkers(
                                                         RouteEntity(
                                                             0,

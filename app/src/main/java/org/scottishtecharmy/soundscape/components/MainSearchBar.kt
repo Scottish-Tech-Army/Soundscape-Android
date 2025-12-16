@@ -36,6 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
@@ -47,8 +48,7 @@ fun MainSearchBar(
     searchText: String,
     isSearching: Boolean,
     itemList: List<LocationDescription>,
-    onSearchTextChange: (String) -> Unit,
-    onToggleSearch: () -> Unit,
+    searchFunctions: SearchFunctions,
     onItemClick: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?
 ) {
@@ -67,10 +67,10 @@ fun MainSearchBar(
         inputField = {
             SearchBarDefaults.InputField(
                 query = searchText,
-                onQueryChange = onSearchTextChange,
-                onSearch = onSearchTextChange,
+                onQueryChange = { searchFunctions.onSearchTextChange(it) },
+                onSearch = { searchFunctions.onTriggerSearch() },
                 expanded = isSearching,
-                onExpandedChange = { onToggleSearch() },
+                onExpandedChange = { searchFunctions.onToggleSearch() },
                 placeholder = { Text(stringResource(id = R.string.search_choose_destination)) },
                 leadingIcon = {
                     when {
@@ -83,7 +83,7 @@ fun MainSearchBar(
 
                         else -> {
                             IconButton(
-                                onClick = { onToggleSearch() },
+                                onClick = { searchFunctions.onToggleSearch() },
                             ) {
                                 Icon(
                                     Icons.AutoMirrored.Rounded.ArrowBack,
@@ -97,7 +97,7 @@ fun MainSearchBar(
             )
         },
         expanded = isSearching,
-        onExpandedChange = { onToggleSearch() },
+        onExpandedChange = { searchFunctions.onToggleSearch() },
     ) {
         Column(
             modifier =
@@ -117,11 +117,12 @@ fun MainSearchBar(
                             item = item,
                             decoration = LocationItemDecoration(
                                 location = true,
+                                source = item.source,
                                 details = EnabledFunction(
                                     true,
                                     {
                                         onItemClick(item)
-                                        onToggleSearch()
+                                        searchFunctions.onToggleSearch()
                                     }
                                 )
                             ),
@@ -153,8 +154,7 @@ fun MainSearchPreview() {
         searchText = "",
         isSearching = false,
         emptyList(),
-        { },
-        {},
+        SearchFunctions(null),
         {},
         LngLatAlt()
     )
@@ -166,8 +166,7 @@ fun MainSearchPreviewSearching() {
         searchText = "Monaco",
         isSearching =  true,
         emptyList(),
-        { },
-        {},
+        SearchFunctions(null),
         {},
         LngLatAlt()
     )

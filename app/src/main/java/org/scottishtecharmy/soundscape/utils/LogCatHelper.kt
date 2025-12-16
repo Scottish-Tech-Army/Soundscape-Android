@@ -152,7 +152,7 @@ object LogcatHelper {
         val startTimeSeconds = calendar.timeInMillis / 1000
 
         val process = Runtime.getRuntime().exec("logcat -d -v threadtime")
-        process.waitFor(10, java.util.concurrent.TimeUnit.SECONDS)
+        process.waitFor(1, java.util.concurrent.TimeUnit.SECONDS)
 
         val reader = BufferedReader(InputStreamReader(process.inputStream))
 

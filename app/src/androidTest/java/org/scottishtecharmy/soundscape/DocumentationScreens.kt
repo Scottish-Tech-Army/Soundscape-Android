@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
+import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.Home
@@ -146,8 +147,7 @@ class DocumentationScreens {
                     )
                 },
                 searchText = "",
-                onToggleSearch = { },
-                onSearchTextChange = { },
+                searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = { },
                 routeFunctions = RouteFunctions(viewModel = null),
@@ -190,8 +190,7 @@ class DocumentationScreens {
                     )
                 },
                 searchText = "",
-                onToggleSearch = { },
-                onSearchTextChange = { },
+                searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = {},
                 routeFunctions = RouteFunctions(viewModel = null),

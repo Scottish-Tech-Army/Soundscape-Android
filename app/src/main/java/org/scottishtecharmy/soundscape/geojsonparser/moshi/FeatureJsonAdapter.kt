@@ -82,6 +82,7 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
                     SuperCategoryId.SAFETY -> "safety"
                     SuperCategoryId.LANDMARK -> "landmark"
                     SuperCategoryId.MARKER -> "marker"
+                    SuperCategoryId.HOUSENUMBER -> "housenumber"
                 }
                 properties["feature_value"] = value.featureValue
 
