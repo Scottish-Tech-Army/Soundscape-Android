@@ -69,6 +69,7 @@ object LogcatHelper {
         }
 
         if(timestampPair.first < startTime) {
+            println("Reject - ${timestampPair.first} vs $startTime")
             return null
         }
 
@@ -150,16 +151,9 @@ object LogcatHelper {
         calendar.add(Calendar.MINUTE, -30)
         val startTimeSeconds = calendar.timeInMillis / 1000
 
-// TODO: Ideally we want to output the last 30 minutes of logs, but logcat fails to return anything!
-//  Gemini claims that logcat can be quite broken on some devices?! Instead,we limit to the last
-//  5000 lines of log.
-//        val startTime = calendar.time
-//        val argumentDateTime = SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.US)
-//        val startTimeArg = argumentDateTime.format(startTime)
-//        val logcatCommand = "logcat -d -v threadtime -t \"$startTimeArg\""
-//        println("logcatCommand: $logcatCommand")
+        val process = Runtime.getRuntime().exec("logcat -d -v threadtime")
+        process.waitFor(10, java.util.concurrent.TimeUnit.SECONDS)
 
-        val process = Runtime.getRuntime().exec("logcat -d -v threadtime -t 5000")
         val reader = BufferedReader(InputStreamReader(process.inputStream))
 
         // Create timestamp parser
