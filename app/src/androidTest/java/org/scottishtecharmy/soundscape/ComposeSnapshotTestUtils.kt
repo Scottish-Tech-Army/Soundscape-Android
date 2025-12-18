@@ -79,7 +79,7 @@ private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
  * - If mismatched, prints a diff
  */
 fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String, structureLog: String) {
-    assertHybridBaseline(filename, dumpLayoutTree(), "Layout")
+    assertHybridBaseline("${filename}.txt", dumpLayoutTree(), "Layout")
     assertHybridBaseline("${filename}.structure.txt", structureLog, "Structure")
 }
 

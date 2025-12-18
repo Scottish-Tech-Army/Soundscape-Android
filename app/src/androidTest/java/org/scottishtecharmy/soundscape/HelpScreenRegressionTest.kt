@@ -82,7 +82,7 @@ class HelpScreenRegressionTest(private val testTopic: String) {
 
         // Compare against baseline file
         composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/${testTopic}.txt",
+            "help_screen_layouts/${testTopic}",
             structureLog.toString()
         )
     }

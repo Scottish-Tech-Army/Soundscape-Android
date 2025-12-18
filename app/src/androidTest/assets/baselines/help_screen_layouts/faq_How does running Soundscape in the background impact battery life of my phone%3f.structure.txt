@@ -1,0 +1,16 @@
+HelpScreen start
+HelpScreen end
+Scaffold topBar start
+Scaffold topBar end
+Scaffold content start
+Box start
+Box end
+Scaffold content end
+LazyColumn start
+LazyColumn end
+LazyColumn item start
+Text for Title: 'How does running Soundscape in the background impact battery life of my phone?'
+LazyColumn item end
+LazyColumn item start
+Text for HTML section: 'Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage: 1. Turn the screen display off as much as possible when you are not interacting with the app. 2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey. 3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.'
+LazyColumn item end

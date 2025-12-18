@@ -1,0 +1,16 @@
+HelpScreen start
+HelpScreen end
+Scaffold topBar start
+Scaffold topBar end
+Scaffold content start
+Box start
+Box end
+Scaffold content end
+LazyColumn start
+LazyColumn end
+LazyColumn item start
+Text for Title: 'What can I set as a beacon?'
+LazyColumn item end
+LazyColumn item start
+Text for HTML section: 'You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *"Places Nearby"*, *"Saved Markers"*, or *"Current Location"* buttons and selecting a location. From the *"Location Details"* screen you can select the *"Start Audio Beacon"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.'
+LazyColumn item end

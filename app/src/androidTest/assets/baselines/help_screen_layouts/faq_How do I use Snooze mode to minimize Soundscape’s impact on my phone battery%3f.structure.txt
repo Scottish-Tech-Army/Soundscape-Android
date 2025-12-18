@@ -1,0 +1,16 @@
+HelpScreen start
+HelpScreen end
+Scaffold topBar start
+Scaffold topBar end
+Scaffold content start
+Box start
+Box end
+Scaffold content end
+LazyColumn start
+LazyColumn end
+LazyColumn item start
+Text for Title: 'How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?'
+LazyColumn item end
+LazyColumn item start
+Text for HTML section: 'To put Soundscape in to Snooze Mode select the *"Sleep"* button in the top right hand corner of the screen. Once Soundscape’s in Sleep mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.'
+LazyColumn item end

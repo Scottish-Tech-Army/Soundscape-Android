@@ -1,0 +1,16 @@
+HelpScreen start
+HelpScreen end
+Scaffold topBar start
+Scaffold topBar end
+Scaffold content start
+Box start
+Box end
+Scaffold content end
+LazyColumn start
+LazyColumn end
+LazyColumn item start
+Text for Title: 'What are Markers and how do I get the most out of them?'
+LazyColumn item end
+LazyColumn item start
+Text for HTML section: 'Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *"Use Current Location"* button on the home screen and then selecting *"Save as Marker"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *"Places Nearby"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *"Location Details"* screen. On this screen, select the button called *"Save as Marker"*.'
+LazyColumn item end

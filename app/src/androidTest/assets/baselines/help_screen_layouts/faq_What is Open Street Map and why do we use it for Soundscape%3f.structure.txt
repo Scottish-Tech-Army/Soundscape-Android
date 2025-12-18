@@ -1,0 +1,16 @@
+HelpScreen start
+HelpScreen end
+Scaffold topBar start
+Scaffold topBar end
+Scaffold content start
+Box start
+Box end
+Scaffold content end
+LazyColumn start
+LazyColumn end
+LazyColumn item start
+Text for Title: 'What is Open Street Map and why do we use it for Soundscape?'
+LazyColumn item end
+LazyColumn item start
+Text for HTML section: 'Soundscape draws on geographic map data to provide the information callouts in the app. The primary map source we use is Open Street Map (www.openstreetmap.org) which is a rich community generated mapping platform, that enables organizations and individuals to improve the quality and granularity of the information provided and the accessibility of their spaces using Open Street Map map authoring tools.'
+LazyColumn item end

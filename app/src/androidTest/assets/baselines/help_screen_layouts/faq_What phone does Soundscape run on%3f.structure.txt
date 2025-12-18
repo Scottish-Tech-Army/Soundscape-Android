@@ -1,0 +1,16 @@
+HelpScreen start
+HelpScreen end
+Scaffold topBar start
+Scaffold topBar end
+Scaffold content start
+Box start
+Box end
+Scaffold content end
+LazyColumn start
+LazyColumn end
+LazyColumn item start
+Text for Title: 'What phone does Soundscape run on?'
+LazyColumn item end
+LazyColumn item start
+Text for HTML section: 'Soundscape for Android is currently available for Android phones running Android 11 or later.'
+LazyColumn item end

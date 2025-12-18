@@ -400,8 +400,10 @@ fun HelpScreen(
                         structureLog("LazyColumn item start")
                         when (section.type) {
                             SectionType.Title -> {
+                                val text = stringResource(section.textId)
+                                structureLog("Text for Title: '${text}'")
                                 Text(
-                                    text = stringResource(section.textId),
+                                    text = text,
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier
                                         .padding(top = spacing.medium)
@@ -422,15 +424,17 @@ fun HelpScreen(
                                     val renderer = HtmlRenderer.builder().build()
                                     htmlText = renderer.render(document)
                                 }
-                                Text(
-                                    text = AnnotatedString.fromHtml(
-                                        htmlString = htmlText,
-                                        linkStyles = TextLinkStyles(
-                                            style = SpanStyle(
-                                                textDecoration = TextDecoration.Underline,
-                                            )
+                                val text = AnnotatedString.fromHtml(
+                                    htmlString = htmlText,
+                                    linkStyles = TextLinkStyles(
+                                        style = SpanStyle(
+                                            textDecoration = TextDecoration.Underline,
                                         )
-                                    ),
+                                    )
+                                )
+                                structureLog("Text for HTML section: '${text}'")
+                                Text(
+                                    text = text,
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurface,
                                     modifier = Modifier
@@ -460,8 +464,10 @@ fun HelpScreen(
                                         Modifier.weight(6f)
                                     ) {
                                         structureLog("Box for text start")
+                                        val text = stringResource(section.textId)
+                                        structureLog("Text for Button: '${text}'")
                                         Text(
-                                            text = stringResource(section.textId),
+                                            text = text,
                                             textAlign = TextAlign.Start,
                                             style = MaterialTheme.typography.titleMedium,
                                         )
