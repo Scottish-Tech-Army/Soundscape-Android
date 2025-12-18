@@ -44,7 +44,7 @@ open class MvtFeature : Feature() {
         }
     }
 
-    // Copy all of the 'local' properties
+    // Copy all of the 'local;
     fun copyProperties(other: MvtFeature) {
         osmId = other.osmId
         name = other.name
@@ -494,25 +494,27 @@ fun vectorTileToGeoJson(tileX: Int,
                     for (point in points) {
                         if (point.isNotEmpty()) {
                             val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
-                            listOfGeometries.add(
-                                Point(coordinates[0].longitude, coordinates[0].latitude)
-                            )
+                            for(coordinate in coordinates) {
+                                listOfGeometries.add(
+                                    Point(coordinate.longitude, coordinate.latitude)
+                                )
 
-                            if(featureClass == "entrance") {
-                                // If the access is set to no, then don't add the entrance
-                                if((properties?.get("access") != "no")) {
+                                if (featureClass == "entrance") {
+                                    // If the access is set to no, then don't add the entrance
+                                    if ((properties?.get("access") != "no")) {
 
-                                    // Add the entrance
-                                    val entranceDetails = EntranceDetails(
-                                        name,
-                                        featureSubClass,
-                                        properties?.get("layer")?.toString(),
-                                        properties,
-                                        false,
-                                        id
-                                    )
-                                    entranceMatching.addGeometry(point, entranceDetails)
-                                    entrance = true
+                                        // Add the entrance
+                                        val entranceDetails = EntranceDetails(
+                                            name,
+                                            featureSubClass,
+                                            properties?.get("layer")?.toString(),
+                                            properties,
+                                            false,
+                                            id
+                                        )
+                                        entranceMatching.addGeometry(point, entranceDetails)
+                                        entrance = true
+                                    }
                                 }
                             }
                         }
