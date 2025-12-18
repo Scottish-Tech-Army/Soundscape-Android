@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'How do I set a beacon on my home?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'How do I set a beacon on my home?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.'
+'LazyColumn item' end

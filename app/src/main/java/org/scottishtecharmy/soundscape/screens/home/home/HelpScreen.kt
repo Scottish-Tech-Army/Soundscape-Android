@@ -41,6 +41,25 @@ import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
+class StructureLog(private val log: (String) -> Unit) {
+    private var depth = 0
+
+    fun start(label: String) {
+        log("${indent()}'${label}' start")
+        depth++
+    }
+
+    fun end(label: String) {
+        depth--
+        log("${indent()}'${label}' end")
+    }
+
+    fun unstructured(message: String) {
+        log("${indent()}${message}")
+    }
+
+    private fun indent() = "  ".repeat(depth)
+}
 
 enum class SectionType{
     Title,          // A non-clickable title of a group of other text
@@ -337,9 +356,9 @@ fun HelpScreen(
     topic: String,
     navController: NavHostController,
     modifier: Modifier,
-    structureLog: (String) -> Unit = {}
+    structureLog: StructureLog = StructureLog {}
 ) {
-    structureLog("HelpScreen start")
+    structureLog.start("HelpScreen")
     // Find our page
     var sections = Sections(0, emptyList())
     if (topic.startsWith("page")) {
@@ -372,21 +391,21 @@ fun HelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            structureLog("Scaffold topBar start")
+            structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = stringResource(sections.titleId),
                 navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                 onNavigateUp = { navController.popBackStack() },
             )
-            structureLog("Scaffold topBar end")
+            structureLog.end("Scaffold topBar")
         },
         content = { padding ->
-            structureLog("Scaffold content start")
+            structureLog.start("Scaffold content")
             Box(
                 modifier = Modifier
                     .padding(padding)
             ) {
-                structureLog("Box start")
+                structureLog.start("Box")
                 // Help topic page
                 LazyColumn(
                     modifier = modifier
@@ -395,13 +414,13 @@ fun HelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
-                    structureLog("LazyColumn start")
+                    structureLog.start("LazyColumn")
                     items(sections.sections) { section ->
-                        structureLog("LazyColumn item start")
+                        structureLog.start("LazyColumn item")
                         when (section.type) {
                             SectionType.Title -> {
                                 val text = stringResource(section.textId)
-                                structureLog("Text for Title: '${text}'")
+                                structureLog.unstructured("Text for Title: '${text}'")
                                 Text(
                                     text = text,
                                     style = MaterialTheme.typography.titleMedium,
@@ -432,7 +451,7 @@ fun HelpScreen(
                                         )
                                     )
                                 )
-                                structureLog("Text for HTML section: '${text}'")
+                                structureLog.unstructured("Text for HTML section: '${text}'")
                                 Text(
                                     text = text,
                                     style = MaterialTheme.typography.bodyMedium,
@@ -459,45 +478,45 @@ fun HelpScreen(
                                     shape = RoundedCornerShape(spacing.extraSmall),
                                     colors = currentAppButtonColors
                                 ) {
-                                    structureLog("Button start")
+                                    structureLog.start("Button")
                                     Box(
                                         Modifier.weight(6f)
                                     ) {
-                                        structureLog("Box for text start")
+                                        structureLog.start("Box for text")
                                         val text = stringResource(section.textId)
-                                        structureLog("Text for Button: '${text}'")
+                                        structureLog.unstructured("Text for Button: '${text}'")
                                         Text(
                                             text = text,
                                             textAlign = TextAlign.Start,
                                             style = MaterialTheme.typography.titleMedium,
                                         )
-                                        structureLog("Box for text end")
+                                        structureLog.end("Box for text")
                                     }
                                     Box(
                                         Modifier.weight(1f)
                                     ) {
-                                        structureLog("Box for icon start")
+                                        structureLog.start("Box for icon")
                                         Icon(
                                             Icons.Rounded.ChevronRight,
                                             null,
                                             modifier = Modifier.align(Alignment.CenterEnd)
                                         )
-                                        structureLog("Box for icon end")
+                                        structureLog.end("Box for icon")
                                     }
-                                    structureLog("Button end")
+                                    structureLog.end("Button")
                                 }
                             }
                         }
-                        structureLog("LazyColumn item end")
+                        structureLog.end("LazyColumn item")
                     }
-                    structureLog("LazyColumn end")
+                    structureLog.end("LazyColumn")
                 }
-                structureLog("Box end")
+                structureLog.end("Box")
             }
-            structureLog("Scaffold content end")
+            structureLog.end("Scaffold content")
         }
     )
-    structureLog("HelpScreen end")
+    structureLog.end("HelpScreen")
 }
 
 @Preview(showBackground = true)
@@ -506,7 +525,8 @@ fun HomeHelpPreview() {
     HelpScreen(
         topic = "page${R.string.menu_help_and_tutorials}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -516,7 +536,8 @@ fun BeaconHelpPreview() {
     HelpScreen(
         topic = "page${R.string.beacon_audio_beacon}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -526,7 +547,8 @@ fun VoicesHelpPreview() {
     HelpScreen(
         topic = "page${R.string.voice_voices}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -536,7 +558,8 @@ fun RemoteHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_remote_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -546,7 +569,8 @@ fun AheadOfMeHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_explore_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -556,7 +580,8 @@ fun AroundMeHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_orient_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -566,7 +591,8 @@ fun AutomaticCalloutsHelpPreview() {
     HelpScreen(
         topic = "page${R.string.callouts_automatic_callouts}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -576,7 +602,8 @@ fun MyLocationHelpPreview() {
     HelpScreen(
         topic = "page${R.string.directions_my_location}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -586,7 +613,8 @@ fun RoutesContentHelpPreview() {
     HelpScreen(
         topic = "page${R.string.routes_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -596,7 +624,8 @@ fun MarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.markers_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -606,7 +635,8 @@ fun CreatingMarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_creating_markers_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -616,7 +646,8 @@ fun NearbyMarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.callouts_nearby_markers}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -626,7 +657,8 @@ fun EditingMarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_edit_markers_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -636,7 +668,8 @@ fun FaqHelpPreview() {
     HelpScreen(
         topic = "page${R.string.faq_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -646,7 +679,8 @@ fun FaqAnswerHelpPreview() {
     HelpScreen(
         topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -656,7 +690,8 @@ fun TipsHelpPreview() {
     HelpScreen(
         topic = "page${R.string.faq_tips_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -666,7 +701,8 @@ fun OfflineHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_offline_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -676,6 +712,7 @@ fun AboutHelpPreview() {
     HelpScreen(
         topic = "page${R.string.settings_about_app}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }

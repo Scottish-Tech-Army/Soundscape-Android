@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'Why doesn’t Soundscape announce every business that I pass?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'Soundscape is designed not to be too chatty. In addition, it uses Open Street Map as its back-end data source. Open Street Map (OSM, https://www.openstreetmap.org/) is a community-developed and edited map of the world, relying on individuals, to enter and curate the data. If a business or point of interest is not announced by Soundscape, the most probable reason is that the business has not been added, or in some cases updated, by a member of the OSM community yet.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'Why doesn’t Soundscape announce every business that I pass?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Soundscape is designed not to be too chatty. In addition, it uses Open Street Map as its back-end data source. Open Street Map (OSM, https://www.openstreetmap.org/) is a community-developed and edited map of the world, relying on individuals, to enter and curate the data. If a business or point of interest is not announced by Soundscape, the most probable reason is that the business has not been added, or in some cases updated, by a member of the OSM community yet.'
+'LazyColumn item' end

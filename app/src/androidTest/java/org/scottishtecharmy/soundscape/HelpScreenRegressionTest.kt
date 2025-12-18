@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.Sections
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import java.util.Locale
+import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
 
 @RunWith(Parameterized::class)
 class HelpScreenRegressionTest(private val testTopic: String) {
@@ -74,7 +75,7 @@ class HelpScreenRegressionTest(private val testTopic: String) {
                         modifier = Modifier
                             .windowInsetsPadding(WindowInsets.safeDrawing)
                             .semantics { testTagsAsResourceId = true },
-                        structureLog = { structureLog.append(it).append("\n") }
+                        structureLog = StructureLog { structureLog.append(it).append("\n") }
                     )
 //                }
             }

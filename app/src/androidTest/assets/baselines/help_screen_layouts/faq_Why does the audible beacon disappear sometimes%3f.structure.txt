@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'Why does the audible beacon disappear sometimes?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'Why does the audible beacon disappear sometimes?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.'
+'LazyColumn item' end

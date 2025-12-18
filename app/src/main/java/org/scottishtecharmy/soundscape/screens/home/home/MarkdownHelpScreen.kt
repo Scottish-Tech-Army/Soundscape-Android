@@ -65,9 +65,9 @@ fun MarkdownHelpScreen(
     topic: String,
     navController: NavHostController,
     modifier: Modifier,
-    structureLog: (String) -> Unit = {}
+    structureLog: StructureLog = StructureLog {}
 ) {
-    structureLog("MarkdownHelpScreen start")
+    structureLog.start("MarkdownHelpScreen")
     // NOTE 2025-12-12 Hugh Greene: Annoyingly, we can't use the org.commonmark.node.Visitor
     // approach because its method aren't @Composable.  We could make an entirely @Composable copy
     // of that, but I'm going to just do the minimum necessary to get things working here, and hope
@@ -155,21 +155,21 @@ fun MarkdownHelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            structureLog("Scaffold topBar start")
+            structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = page.title,
                 navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                 onNavigateUp = { navController.popBackStack() },
             )
-            structureLog("Scaffold topBar end")
+            structureLog.end("Scaffold topBar")
         },
         content = { padding ->
-            structureLog("Scaffold content start")
+            structureLog.start("Scaffold content")
             Box(
                 modifier = Modifier
                     .padding(padding)
             ) {
-                structureLog("Box start")
+                structureLog.start("Box")
                 // Help topic page
                 LazyColumn(
                     modifier = modifier
@@ -178,21 +178,21 @@ fun MarkdownHelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
-                    structureLog("LazyColumn start")
+                    structureLog.start("LazyColumn")
                     // TODO 2025-12-12 Hugh Greene: Check whether this is a "headings and links
                     // only" page and, if so, render the structure bit-by-bit; otherwise just render
                     // as HTML???
                     val rootChildren = page.root.collectChildren()
 
                     items(rootChildren) { node ->
-                        structureLog("LazyColumn item start")
+                        structureLog.start("LazyColumn item")
                         if (node is Heading) {
                             if (node.level != 2) {
                                 // TODO 2025-12-1 Hugh Greene: Handle other levels better!
                                 return@items
                             }
                             val text = textContentRenderer.render(node)
-                            structureLog("Text for Heading: '${text}'")
+                            structureLog.unstructured("Text for Heading: '${text}'")
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.titleMedium,
@@ -216,30 +216,30 @@ fun MarkdownHelpScreen(
                                 shape = RoundedCornerShape(spacing.extraSmall),
                                 colors = currentAppButtonColors
                             ) {
-                                structureLog("Button start")
+                                structureLog.start("Button")
                                 Box(
                                     Modifier.weight(6f)
                                 ) {
-                                    structureLog("Box for text start")
+                                    structureLog.start("Box for text")
                                     Text(
                                         text = node.title,
                                         textAlign = TextAlign.Start,
                                         style = MaterialTheme.typography.titleMedium,
                                     )
-                                    structureLog("Box for text end")
+                                    structureLog.end("Box for text")
                                 }
                                 Box(
                                     Modifier.weight(1f)
                                 ) {
-                                    structureLog("Box for icon start")
+                                    structureLog.start("Box for icon")
                                     Icon(
                                         Icons.Rounded.ChevronRight,
                                         null,
                                         modifier = Modifier.align(Alignment.CenterEnd)
                                     )
-                                    structureLog("Box for icon end")
+                                    structureLog.end("Box for icon")
                                 }
-                                structureLog("Button end")
+                                structureLog.end("Button")
                             }
                         }
                         else {
@@ -252,7 +252,7 @@ fun MarkdownHelpScreen(
                                 )
                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
                             )
-                            structureLog("Text for HTML section: '${text}'")
+                            structureLog.unstructured("Text for HTML section: '${text}'")
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.bodyMedium,
@@ -264,14 +264,14 @@ fun MarkdownHelpScreen(
                                     }
                             )
                         }
-                        structureLog("LazyColumn item end")
+                        structureLog.end("LazyColumn item")
                     }
-                    structureLog("LazyColumn end")
+                    structureLog.end("LazyColumn")
                 }
-                structureLog("Box end")
+                structureLog.end("Box")
             }
-            structureLog("Scaffold content end")
+            structureLog.end("Scaffold content")
         }
     )
-    structureLog("MarkdownHelpScreen end")
+    structureLog.end("MarkdownHelpScreen")
 }

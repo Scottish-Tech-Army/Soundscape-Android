@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'Why does Soundscape call out road names twice when I approach an intersection?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also supports the case when a road changes name at an intersection.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'Why does Soundscape call out road names twice when I approach an intersection?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also supports the case when a road changes name at an intersection.'
+'LazyColumn item' end

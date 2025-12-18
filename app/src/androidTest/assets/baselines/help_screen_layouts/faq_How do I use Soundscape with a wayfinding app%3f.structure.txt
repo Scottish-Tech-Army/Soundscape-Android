@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'How do I use Soundscape with a wayfinding app?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'How do I use Soundscape with a wayfinding app?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.'
+'LazyColumn item' end

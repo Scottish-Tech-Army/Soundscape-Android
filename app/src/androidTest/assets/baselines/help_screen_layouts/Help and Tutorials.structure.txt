@@ -1,130 +1,130 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'Configuring Soundscape'
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Voices'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Using Media Controls'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Text for Title: 'Beacons and Callouts'
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Audio Beacon'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Automatic Callouts'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Text for Title: 'Home Screen Buttons'
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'My Location'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Around Me'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Ahead of Me'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Nearby Markers'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Text for Title: 'Markers and Routes'
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Markers'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Routes'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Creating Markers'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Customizing Markers'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'Configuring Soundscape'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Voices'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Using Media Controls'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'Beacons and Callouts'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Audio Beacon'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Automatic Callouts'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'Home Screen Buttons'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'My Location'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Around Me'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Ahead of Me'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Nearby Markers'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'Markers and Routes'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Markers'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Routes'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Creating Markers'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Customizing Markers'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end

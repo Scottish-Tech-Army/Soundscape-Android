@@ -1,106 +1,106 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'What is Soundscape and how should I use it?'
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'When should I use Soundscape?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'What are Markers and how do I get the most out of them?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Text for Title: 'How do I get the best out of Soundscape?'
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'What can I set as a beacon?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'How do I use a beacon like a pro?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Why does the audible beacon disappear sometimes?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Can I set a beacon on an address?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'How do I set a beacon on my home?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'When I set a beacon on a destination, how close will Soundscape get me to the destination?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Can I turn the beacon back on when I am close to my destination?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
-LazyColumn item start
-Button start
-Box for text start
-Text for Button: 'Why does Soundscape call out road names twice when I approach an intersection?'
-Box for text end
-Box for icon start
-Box for icon end
-Button end
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'What is Soundscape and how should I use it?'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'When should I use Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What are Markers and how do I get the most out of them?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'How do I get the best out of Soundscape?'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What can I set as a beacon?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use a beacon like a pro?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why does the audible beacon disappear sometimes?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Can I set a beacon on an address?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I set a beacon on my home?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'When I set a beacon on a destination, how close will Soundscape get me to the destination?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Can I turn the beacon back on when I am close to my destination?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why does Soundscape call out road names twice when I approach an intersection?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end

@@ -1,18 +1,18 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for HTML section: 'You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the "Places Nearby" button, or using the "Use Current Location" button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the "Location Details" screen. On this screen, select the "Save Marker" button.
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for HTML section: 'You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the "Places Nearby" button, or using the "Use Current Location" button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the "Location Details" screen. On this screen, select the "Save Marker" button.
 '
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the "Done" button to save your Marker.
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the "Done" button to save your Marker.
 '
-LazyColumn item end
+'LazyColumn item' end

@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'Do I need to hold the phone in my hand all the time?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'No! While walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *"flat"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'Do I need to hold the phone in my hand all the time?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'No! While walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *"flat"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.'
+'LazyColumn item' end

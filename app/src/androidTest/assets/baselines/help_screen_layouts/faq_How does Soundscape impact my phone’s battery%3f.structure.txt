@@ -1,16 +1,16 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'How does Soundscape impact my phone’s battery?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone you should keep the screen locked whenever possible. To help minimize the impact on your phone battery Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.'
-LazyColumn item end
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'How does Soundscape impact my phone’s battery?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone you should keep the screen locked whenever possible. To help minimize the impact on your phone battery Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.'
+'LazyColumn item' end

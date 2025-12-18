@@ -78,9 +78,9 @@ private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
  * - If missing, writes a temporary new file to context.filesDir
  * - If mismatched, prints a diff
  */
-fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String, structureLog: String) {
-    assertHybridBaseline("${filename}.txt", dumpLayoutTree(), "Layout")
-    assertHybridBaseline("${filename}.structure.txt", structureLog, "Structure")
+fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filenameBase: String, structureLog: String) {
+    assertHybridBaseline("${filenameBase}.txt", dumpLayoutTree(), "Layout")
+    assertHybridBaseline("${filenameBase}.structure.txt", structureLog, "Structure")
 }
 
 fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: String) {

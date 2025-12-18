@@ -1,31 +1,31 @@
-HelpScreen start
-HelpScreen end
-Scaffold topBar start
-Scaffold topBar end
-Scaffold content start
-Box start
-Box end
-Scaffold content end
-LazyColumn start
-LazyColumn end
-LazyColumn item start
-Text for Title: 'What is it?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'The "Nearby Markers" button tells you about up to four markers that are closest to you. "Nearby Markers" is intended to help you orient yourself using places you already know about.
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'What is it?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'The "Nearby Markers" button tells you about up to four markers that are closest to you. "Nearby Markers" is intended to help you orient yourself using places you already know about.
 '
-LazyColumn item end
-LazyColumn item start
-Text for Title: 'When would I use it?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'When you are trying to get your bearings and orient yourself to your surroundings, use "Nearby Markers" to hear about the locations of places you know of.
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'When would I use it?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'When you are trying to get your bearings and orient yourself to your surroundings, use "Nearby Markers" to hear about the locations of places you know of.
 '
-LazyColumn item end
-LazyColumn item start
-Text for Title: 'How does it work?'
-LazyColumn item end
-LazyColumn item start
-Text for HTML section: 'As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the "Nearby Markers" button. This acts like a compass telling the app which direction you are facing. Simply, tap the "Nearby Markers" button and you will hear up to four markers near you.
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'How does it work?'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the "Nearby Markers" button. This acts like a compass telling the app which direction you are facing. Simply, tap the "Nearby Markers" button and you will hear up to four markers near you.
 '
-LazyColumn item end
+'LazyColumn item' end
