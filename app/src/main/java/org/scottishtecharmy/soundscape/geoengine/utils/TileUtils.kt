@@ -1196,7 +1196,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
                 road.followWays(intersection.value, ways) { way, _ ->
                     // Break out when the next way has a name and note if it passes a bridge,
                     // steps or a tunnel
-                    if(way.properties?.get("subclass") == "steps") {
+                    if(way.featureSubClass == "steps") {
                         brunnelOrStepsValue = "steps"
                     } else if(way.properties?.get("brunnel") != null) {
                         brunnelOrStepsValue = way.properties?.get("brunnel").toString()
