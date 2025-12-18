@@ -180,29 +180,25 @@ class EntranceMatching {
                                 // We're going to duplicate the POI, but change it to being a point
                                 // instead of a polygon, and add the entrance name if it has one
                                 val entrance = MvtFeature()
+                                entrance.copyProperties(poi as MvtFeature)
                                 entrance.geometry =
                                     Point(coordinates[0].longitude, coordinates[0].latitude)
-                                entrance.properties = cloneHashMap(poi.properties)
-                                entrance.featureClass = (poi as MvtFeature).featureClass
-                                entrance.featureSubClass = poi.featureSubClass
-                                entrance.featureType = poi.featureType
-                                entrance.featureValue = poi.featureValue
-                                entrance.superCategory = poi.superCategory
-                                entrance.properties?.set("entrance", entranceDetails.entranceType)
+                                entrance.properties = (cloneHashMap(poi.properties) ?: HashMap()).apply {
+                                    set("entrance", entranceDetails.entranceType)
 
-                                // This is an entrance, so remove any marking that the POI has
-                                entrance.properties?.remove("has_entrances")
+                                    // This is an entrance, so remove any marking that the POI has
+                                    remove("has_entrances")
 
-                                if(entranceDetails.name != null)
-                                    entrance.properties?.set("entrance_name", entranceDetails.name)
-
+                                    if (entranceDetails.name != null)
+                                        set( "entrance_name", entranceDetails.name)
+                                }
                                 collection.addFeature(entrance)
                                 //println("POI entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
 
                                 // We're also going to mark the POI to indicate that it has entrances.
                                 // This will be used by PlacesNearby so that it will only display
                                 // the entrances and not the POI itself.
-                                poi.properties?.set("has_entrances", "yes")
+                                poi.setProperty("has_entrances", "yes")
                                 continue
                             }
                         }
@@ -233,7 +229,7 @@ class EntranceMatching {
                             confected = true
                         }
                         if(confected)  {
-                            entrance.properties?.set("entrance", entranceDetails.entranceType)
+                            entrance.setProperty("entrance", entranceDetails.entranceType)
                             entrance.name = entranceDetails.name
                             entrance.superCategory = SuperCategoryId.PLACE
                             collection.addFeature(entrance)

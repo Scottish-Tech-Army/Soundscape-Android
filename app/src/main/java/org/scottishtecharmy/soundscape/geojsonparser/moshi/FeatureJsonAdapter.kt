@@ -63,29 +63,30 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
 
         if(value is MvtFeature) {
             // We're going to populate the properties with the values that we have stored.
-            value.properties?.set("name", value.name)
-            value.properties?.set("osm_id", value.osmId)
-            value.properties?.set("class", value.featureClass)
-            value.properties?.set("subclass", value.featureSubClass)
-            value.properties?.set("feature_type", value.featureType)
+            (value.properties ?: HashMap()).also { properties ->
+                properties["name"] = value.name
+                properties["osm_id"] = value.osmId
+                properties["class"] = value.featureClass
+                properties["subclass"] = value.featureSubClass
+                properties["feature_type"] = value.featureType
+                properties["category"] = when(value.superCategory) {
+                    SuperCategoryId.UNCATEGORIZED -> ""
+                    SuperCategoryId.SETTLEMENT_CITY -> "city"
+                    SuperCategoryId.SETTLEMENT_TOWN -> "town"
+                    SuperCategoryId.SETTLEMENT_VILLAGE -> "village"
+                    SuperCategoryId.SETTLEMENT_HAMLET -> "hamlet"
+                    SuperCategoryId.OBJECT -> "object"
+                    SuperCategoryId.PLACE -> "place"
+                    SuperCategoryId.INFORMATION -> "information"
+                    SuperCategoryId.MOBILITY -> "mobility"
+                    SuperCategoryId.SAFETY -> "safety"
+                    SuperCategoryId.LANDMARK -> "landmark"
+                    SuperCategoryId.MARKER -> "marker"
+                }
+                properties["feature_value"] = value.featureValue
 
-            val category = when(value.superCategory) {
-                SuperCategoryId.UNCATEGORIZED -> ""
-                SuperCategoryId.SETTLEMENT_CITY -> "city"
-                SuperCategoryId.SETTLEMENT_TOWN -> "town"
-                SuperCategoryId.SETTLEMENT_VILLAGE -> "village"
-                SuperCategoryId.SETTLEMENT_HAMLET -> "hamlet"
-                SuperCategoryId.OBJECT -> "object"
-                SuperCategoryId.PLACE -> "place"
-                SuperCategoryId.INFORMATION -> "information"
-                SuperCategoryId.MOBILITY -> "mobility"
-                SuperCategoryId.SAFETY -> "safety"
-                SuperCategoryId.LANDMARK -> "landmark"
-                SuperCategoryId.MARKER -> "marker"
+                value.properties = properties
             }
-
-            value.properties?.set("category", category)
-            value.properties?.set("feature_value", value.featureValue)
         }
 
         writer.beginObject()

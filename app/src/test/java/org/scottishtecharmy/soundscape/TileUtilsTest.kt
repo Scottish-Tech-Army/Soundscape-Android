@@ -195,7 +195,7 @@ class TileUtilsTest {
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, testPoiCollection)
-        Assert.assertEquals(214, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(219, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test

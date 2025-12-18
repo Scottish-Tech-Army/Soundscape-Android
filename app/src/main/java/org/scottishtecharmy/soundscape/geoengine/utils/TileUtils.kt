@@ -721,13 +721,7 @@ fun mergePolygons(
     val mergedPolygon = MvtFeature().also { feature ->
         feature.properties = polygon1.properties
         feature.type = "Feature"
-        feature.osmId = (polygon1 as MvtFeature).osmId
-        feature.name = polygon1.name
-        feature.featureType = polygon1.featureType
-        feature.featureSubClass = polygon1.featureSubClass
-        feature.featureClass = polygon1.featureClass
-        feature.featureValue = polygon1.featureValue
-        feature.superCategory = polygon1.superCategory
+        feature.copyProperties(polygon1 as MvtFeature)
         feature.geometry = Polygon().also { polygon ->
             //Convert JTS to GeoJSON coordinates
             // Start with exterior ring
@@ -942,6 +936,7 @@ fun addSidewalk(currentRoad: Way,
                 localizedContext: Context? = null,
 ) : Boolean {
 
+    var found = false
     if(currentRoad.isSidewalkOrCrossing()){
         if(currentRoad.properties?.containsKey("pavement") == true)
             return true
@@ -964,7 +959,6 @@ fun addSidewalk(currentRoad: Way,
         )
         // Find common road that's near the start and the end of our road - ignoring any sidewalks
         var name: Any? = null
-        var found = false
         for(road in startRoads) {
             if((road as Way).isSidewalkOrCrossing()) continue
             name = road.name
@@ -998,15 +992,19 @@ fun addSidewalk(currentRoad: Way,
                     ?.format(name) ?: "Pavement"
                 currentRoad.name = text
             }
-            // Store the name of the associated road
-            currentRoad.properties?.set("pavement", name.toString())
-            return true
-        } else {
-            // No road found - inhibit future search?
-            currentRoad.properties?.set("pavement", "")
+        }
+        (currentRoad.properties ?: HashMap()).also { properties ->
+            // Set the property on the map (either the existing one or the new one)
+            if(found)
+                properties["pavement"] = name.toString()
+            else
+                properties["pavement"] = ""
+
+            // Assign the map back to poi.properties, which is crucial if it was initially null
+            currentRoad.properties = properties
         }
     }
-    return false
+    return found
 }
 fun checkNearbyPoi(tree: FeatureTree,
                    location: LngLatAlt,
@@ -1121,14 +1119,14 @@ fun addPoiDestinations(way: Way,
         if(!startDestinationAdded) {
             val startName = (startPoi as MvtFeature?)?.name
             if (startName != null) {
-                way.properties?.set("destination:backward", startName)
+                way.setProperty("destination:backward", startName)
                 addedDestinations = true
             }
         }
         if(!endDestinationAdded) {
             val endName = (endPoi as MvtFeature?)?.name
             if (endName != null) {
-                way.properties?.set("destination:forward", endName)
+                way.setProperty("destination:forward", endName)
                 addedDestinations = true
             }
         }
@@ -1153,16 +1151,16 @@ fun confectNamesForRoad(road: Way,
 }
 
 fun setDestinationTag(
-    properties: HashMap<String, Any?>?,
+    way: Way,
     forwards: Boolean,
     tagValue: String,
     deadEnd: Boolean = false,
     brunnelOrStepsValue: String) {
 
     if(tagValue.isNotEmpty())
-        properties?.set("${if (deadEnd) "dead-end" else "destination"}:${if (forwards) "backward" else "forward"}", tagValue)
+        way.setProperty("${if (deadEnd) "dead-end" else "destination"}:${if (forwards) "backward" else "forward"}", tagValue)
     if(brunnelOrStepsValue.isNotEmpty())
-        properties?.set("passes:${if (forwards) "backward" else "forward"}", brunnelOrStepsValue)
+        way.setProperty("passes:${if (forwards) "backward" else "forward"}", brunnelOrStepsValue)
 }
 
 fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, Intersection>,
@@ -1209,7 +1207,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
 
                 for(way in ways) {
                     setDestinationTag(
-                        way.second.properties,
+                        way.second,
                         way.first,
                         namedRoadToUse ?: "",
                         false,
@@ -1228,7 +1226,7 @@ fun traverseIntersectionsConfectingNames(gridIntersections: HashMap<LngLatAlt, I
             ) {
                 for (eachWay in ways) {
                     // We currently label all roads, even named ones, with Dead End
-                    setDestinationTag(eachWay.second.properties, !eachWay.first, "dead-end", true, "")
+                    setDestinationTag(eachWay.second, !eachWay.first, "dead-end", true, "")
                 }
             }
         }

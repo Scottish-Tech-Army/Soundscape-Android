@@ -111,10 +111,10 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
 
                 currentFeature = Feature()
                 currentFeature.geometry = Point(longitude, latitude)
-                currentFeature.properties = hashMapOf()
-                currentFeature.properties?.set("marker-size", "small")
-                currentFeature.properties?.set("marker-color", "#004000")
-
+                currentFeature.properties = HashMap<String, Any?>().apply {
+                    set("marker-size", "small")
+                    set("marker-color", "#004000")
+                }
             } else {
                 val regex2 = Regex("/*<bearing>(.*)</bearing>.*")
                 val matchResult2 = regex2.find(line)
@@ -695,10 +695,11 @@ class MvtTileTest {
                 if(mapMatchedResult.first != null) {
                     val newFeature = Feature()
                     newFeature.geometry = Point(mapMatchedResult.first!!.longitude, mapMatchedResult.first!!.latitude)
-                    newFeature.properties = hashMapOf()
-                    newFeature.properties?.set("marker-color", mapMatchedResult.third)
-                    newFeature.properties?.set("color", mapMatchedResult.third)
-                    newFeature.properties?.set("index", index + startIndex)
+                    newFeature.properties = HashMap<String,Any?>().apply {
+                        set("marker-color", mapMatchedResult.third)
+                        set("color", mapMatchedResult.third)
+                        set("index", index + startIndex)
+                    }
                     collection.addFeature(newFeature)
                 }
                 // Add raw GPS too
@@ -718,17 +719,15 @@ class MvtTileTest {
                 if(callout != null) {
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
                     // FOV that was used to create it, along with the text from the callouts.
+                    callOutText.write("\nCallout\n".toByteArray())
                     val polygon = createPolygonFromTriangle(getFovTriangle(userGeometry, true))
                     val fovFeature = Feature()
                     fovFeature.geometry = polygon
-                    fovFeature.properties = hashMapOf()
-                    callOutText.write("\nCallout\n".toByteArray())
-                    for (positionedString in callout.positionedStrings.withIndex()) {
-                        callOutText.write("\t${positionedString.value.text}\n".toByteArray())
-                        fovFeature.properties?.set(
-                            "Callout ${positionedString.index}",
-                            positionedString.value.text
-                        )
+                    fovFeature.properties = HashMap<String,Any?>().apply {
+                        for (positionedString in callout.positionedStrings.withIndex()) {
+                            callOutText.write("\t${positionedString.value.text}\n".toByteArray())
+                            set("Callout ${positionedString.index}", positionedString.value.text)
+                        }
                     }
                     collection.addFeature(fovFeature)
 
@@ -820,23 +819,31 @@ class MvtTileTest {
         val adapter = GeoJsonObjectMoshiAdapter()
         val cityCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_CITY).getAllCollection()
         for(feature in cityCollection) {
-            feature.properties?.set("marker-size", "large")
-            feature.properties?.set("marker-color", "#ff0000")
+            (feature as? MvtFeature)?.let { mvtFeature ->
+                mvtFeature.setProperty("marker-size", "large")
+                mvtFeature.setProperty("marker-color", "#ff0000")
+            }
         }
         val townCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_TOWN).getAllCollection()
         for(feature in townCollection) {
-            feature.properties?.set("marker-size", "medium")
-            feature.properties?.set("marker-color", "#ffff00")
+            (feature as? MvtFeature)?.let { mvtFeature ->
+                mvtFeature.setProperty("marker-size", "medium")
+                mvtFeature.setProperty("marker-color", "#ffff00")
+            }
         }
         val villageCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getAllCollection()
         for(feature in villageCollection) {
-            feature.properties?.set("marker-size", "small")
-            feature.properties?.set("marker-color", "#00ff00")
+            (feature as? MvtFeature)?.let { mvtFeature ->
+                mvtFeature.setProperty("marker-size", "small")
+                mvtFeature.setProperty("marker-color", "#00ff00")
+            }
         }
         val hamletCollection = gridState.getFeatureTree(TreeId.SETTLEMENT_HAMLET).getAllCollection()
         for(feature in hamletCollection) {
-            feature.properties?.set("marker-size", "small")
-            feature.properties?.set("marker-color", "#0000ff")
+            (feature as? MvtFeature)?.let { mvtFeature ->
+                mvtFeature.setProperty("marker-size", "small")
+                mvtFeature.setProperty("marker-color", "#0000ff")
+            }
         }
         val outputCollection = cityCollection
         outputCollection += townCollection
@@ -1052,11 +1059,12 @@ class MvtTileTest {
 
             val poiMap = hashMapOf<Long, MutableList<Feature>>()
             val poiFeature = MvtFeature()
-            poiFeature.properties = HashMap()
-            poiFeature.properties?.set("name", "St Enoch Shopping Centre")
             poiFeature.featureClass = "shop"
             poiFeature.featureSubClass = "mall"
-            poiFeature.properties?.set("osm_id", "52992372")
+            poiFeature.properties = HashMap<String,Any?>().apply {
+                set("name", "St Enoch Shopping Centre")
+                set("osm_id", "52992372")
+            }
             poiMap[52992372] = listOf(poiFeature).toMutableList()
 
             matcher.addGeometry(arrayListOf(Pair(100,100)), namedSubwayEntranceDetails)

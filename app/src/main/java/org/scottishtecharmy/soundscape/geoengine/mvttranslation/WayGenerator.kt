@@ -49,10 +49,14 @@ class Intersection : MvtFeature() {
 
     fun toFeature() {
         geometry = Point(location.longitude, location.latitude)
-        properties = hashMapOf()
-        properties?.set("name", name)
-        properties?.set("members", members.size)
-        properties?.set("type", if(intersectionType == IntersectionType.TILE_EDGE) "tile_edge" else "intersection")
+        properties = HashMap<String,Any?>().apply {
+            set("name", name)
+            set("members", members.size)
+            set(
+                "type",
+                if (intersectionType == IntersectionType.TILE_EDGE) "tile_edge" else "intersection"
+            )
+        }
     }
 
     fun updateName(gridState: GridState? = null,
@@ -102,16 +106,17 @@ class Way : MvtFeature() {
 
         var destinationModifier: Any? = null
         var passesModifier: Any?
-        val genericName = (name == null)
+        var result = name
+        val genericName = (result == null)
         var passesString = ""
 
-        if(name == null) {
+        if(result == null) {
             // Un-named way, so use "class" property
-            name = featureClass.toString()
+            result = featureClass.toString()
             var locale = Locale.getDefault()
             if(localizedContext != null)
                 locale = localizedContext.resources.configuration.getLocales().get(0)
-            name = name!!.replaceFirstChar {
+            result = result.replaceFirstChar {
                 if (it.isLowerCase())
                     it.titlecase(locale)
                 else
@@ -145,10 +150,10 @@ class Way : MvtFeature() {
                 if (destinationModifier != null) {
                     return if(passesString.isNotEmpty()) {
                         localizedContext?.getString(R.string.confect_name_to_via)
-                            ?.format(name,destinationModifier, passesString) ?: "$name to $destinationModifier via $passesString"
+                            ?.format(result,destinationModifier, passesString) ?: "$result to $destinationModifier via $passesString"
                     } else {
                         localizedContext?.getString(R.string.confect_name_to)
-                            ?.format(name,destinationModifier) ?: "$name to $destinationModifier"
+                            ?.format(result,destinationModifier) ?: "$result to $destinationModifier"
                     }
                 }
             } else {
@@ -157,7 +162,7 @@ class Way : MvtFeature() {
 
                 if ((end != null) and (start != null)) {
                     return localizedContext?.getString(R.string.confect_name_joins)
-                        ?.format(name, start, end) ?: "$name that joins $start and $end"
+                        ?.format(result, start, end) ?: "$result that joins $start and $end"
                 }
             }
         }
@@ -173,23 +178,23 @@ class Way : MvtFeature() {
             }
             return if(passesString.isNotEmpty()) {
                 localizedContext?.getString(R.string.confect_name_to_via)
-                    ?.format(name,destinationModifier, passesString) ?: "$name to $destinationModifier via $passesString"
+                    ?.format(result,destinationModifier, passesString) ?: "$result to $destinationModifier via $passesString"
             } else {
                 localizedContext?.getString(R.string.confect_name_to)
-                    ?.format(name,destinationModifier) ?: "$name to $destinationModifier"
+                    ?.format(result,destinationModifier) ?: "$result to $destinationModifier"
             }
         }
         else {
             return if (passesString.isNotEmpty()) {
                 localizedContext?.getString(R.string.confect_name_via)
-                    ?.format(name, passesString) ?: "$name via $passesString"
+                    ?.format(result, passesString) ?: "$result via $passesString"
             } else {
                 // This is a path/service/track with no other qualifiers, so just return the name
                 // unless we're looking for a non-generic name.
                 if(nonGenericOnly && genericName) {
                     return ""
                 }
-                return name!!
+                return result
             }
         }
     }
@@ -537,12 +542,8 @@ class WayGenerator(val transit: Boolean = false) {
             }
             newProperties["segmentIndex"] = segmentIndex.toString()
         }
+        way.copyProperties(feature)
         way.properties = newProperties
-        way.name = feature.name
-        way.featureClass = feature.featureClass
-        way.featureSubClass = feature.featureSubClass
-        way.featureType = feature.featureType
-        way.featureValue = feature.featureValue
         way.geometry = currentSegment
         way.length = currentSegmentLength
     }

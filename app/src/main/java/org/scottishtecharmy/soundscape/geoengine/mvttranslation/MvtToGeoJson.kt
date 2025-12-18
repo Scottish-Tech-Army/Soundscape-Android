@@ -33,6 +33,27 @@ open class MvtFeature : Feature() {
     var featureType : String? = null
     var featureValue : String? = null
     var superCategory : SuperCategoryId = SuperCategoryId.UNCATEGORIZED
+
+    // Set a property, ensuring that the hash map has been created first
+    fun setProperty(key: String, value: Any) {
+        (properties ?: HashMap()).also {
+            // Set the property on the map (either the existing one or the new one)
+            it[key] = value
+            // Assign the map back to poi.properties in case it was initially null
+            properties = it
+        }
+    }
+
+    // Copy all of the 'local' properties
+    fun copyProperties(other: MvtFeature) {
+        osmId = other.osmId
+        name = other.name
+        featureClass = other.featureClass
+        featureSubClass = other.featureSubClass
+        featureType = other.featureType
+        featureValue = other.featureValue
+        superCategory = other.superCategory
+    }
 }
 
 
