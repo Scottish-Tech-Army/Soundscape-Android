@@ -43,6 +43,7 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     return sb.toString()
 }
 
+private val regexForAnonymousLambdaNames = Regex("\\$[0-9]+")
 private val regexForObjectIds = Regex("@[0-9a-f]+")
 private val regexForLambdas = Regex("ExternalSyntheticLambda[^@]+@")
 
@@ -57,6 +58,8 @@ private fun SemanticsNode.layoutInfo(): String {
     // Simplified modifier info for testing (truncate long chains)
     val modifiers = this.layoutInfo.getModifierInfo().joinToString(", ") {
         it.toString()
+            // Strip anonymous lambda names, because they might appear as meaningless diffs.
+            .replace(regexForAnonymousLambdaNames, "\\$<N>")
             // Strip explicit object IDs, because they might appear as meaningless diffs.
             .replace(regexForObjectIds, "@<id>")
             // Lambdas appear as semantics properties, but the exact name could change under
@@ -75,21 +78,24 @@ private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
  * - If missing, writes a temporary new file to context.filesDir
  * - If mismatched, prints a diff
  */
-fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
+fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String, structureLog: String) {
+    assertHybridBaseline(filename, dumpLayoutTree(), "Layout")
+    assertHybridBaseline("${filename}.structure.txt", structureLog, "Structure")
+}
+
+fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: String) {
     val context = InstrumentationRegistry.getInstrumentation().context
-    val baselineSubpathString = "baselines/$filename"
+    val baselineSubpathString = "baselines/${filename}"
     val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
 
     val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
     val filesDir = targetContext.filesDir.toPath()
 
-    val snapshot = dumpLayoutTree()
-
     if (baselineText == null) {
         // If no baseline in assets, create a new one on the Android device for review.
         val androidSideBaselineFile =
             generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
-        fail("No baseline found in 'assets/$baselineSubpathString'. " +
+        fail("No $snapshotType baseline found in 'assets/$baselineSubpathString'. " +
                 "A new one will be written to '${androidSideBaselineFile}' under " +
                 "'src/androidTest/assets/baselines/'; review then commit it.")
     }
@@ -99,17 +105,17 @@ fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filename: String) {
         val diff = generateDiff(baselineText, snapshot)
         if (diff.isNotEmpty()) {
             // If baseline exists but differs, print diff and fail.
-            println("\nLayout structure changed! Diff:\n")
+            println("\n$snapshotType structure changed! Diff:\n")
             println(diff)
             val androidSideBaselineFile =
                 generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
-            println("New snapshot written to: ${androidSideBaselineFile}")
-            fail("Layout structure does not match baseline. See diff above. " +
+            println("New $snapshotType snapshot written to: ${androidSideBaselineFile}")
+            fail("$snapshotType structure does not match baseline. See diff above. " +
                     "An updated version will be copied into ${androidSideBaselineFile} under " +
                     "'src/androidTest/assets/baselines/'; review the changes before committing.")
         }
         else {
-            println("Layout matches baseline.")
+            println("$snapshotType matches baseline.")
         }
     }
 }

@@ -19,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
+import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Section
 import org.scottishtecharmy.soundscape.screens.home.home.SectionType
 import org.scottishtecharmy.soundscape.screens.home.home.Sections
@@ -51,21 +52,38 @@ class HelpScreenRegressionTest(private val testTopic: String) {
             else -> testTopic
         }
 
+        val structureLog = StringBuilder()
         composeTestRule.setContent {
             SoundscapeTheme {
-                HelpScreen(
-                    topic = topic,
-                    navController = NavHostController(targetContext),
-                    modifier = Modifier
-                        .windowInsetsPadding(WindowInsets.safeDrawing)
-                        .semantics { testTagsAsResourceId = true }
-                )
+                // TODO 2025-12-12 Hugh Greene: This is just a special case for the root page,
+                // for now.
+//                if (topic == "Help and Tutorials") {
+//                    MarkdownHelpScreen(
+//                        topic = topic,
+//                        navController = NavHostController(targetContext),
+//                        modifier = Modifier
+//                            .windowInsetsPadding(WindowInsets.safeDrawing)
+//                            .semantics { testTagsAsResourceId = true },
+//                        structureLog = { structureLog.append(it).append("\n") }
+//                    )
+//                }
+//                else {
+                    HelpScreen(
+                        topic = topic,
+                        navController = NavHostController(targetContext),
+                        modifier = Modifier
+                            .windowInsetsPadding(WindowInsets.safeDrawing)
+                            .semantics { testTagsAsResourceId = true },
+                        structureLog = { structureLog.append(it).append("\n") }
+                    )
+//                }
             }
         }
 
         // Compare against baseline file
         composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/${testTopic}.txt"
+            "help_screen_layouts/${testTopic}.txt",
+            structureLog.toString()
         )
     }
 

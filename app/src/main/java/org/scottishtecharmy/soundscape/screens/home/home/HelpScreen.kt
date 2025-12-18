@@ -336,8 +336,10 @@ val helpPages = listOf(
 fun HelpScreen(
     topic: String,
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
+    structureLog: (String) -> Unit = {}
 ) {
+    structureLog("HelpScreen start")
     // Find our page
     var sections = Sections(0, emptyList())
     if (topic.startsWith("page")) {
@@ -370,17 +372,21 @@ fun HelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
+            structureLog("Scaffold topBar start")
             CustomAppBar(
                 title = stringResource(sections.titleId),
                 navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                 onNavigateUp = { navController.popBackStack() },
             )
+            structureLog("Scaffold topBar end")
         },
         content = { padding ->
+            structureLog("Scaffold content start")
             Box(
                 modifier = Modifier
                     .padding(padding)
             ) {
+                structureLog("Box start")
                 // Help topic page
                 LazyColumn(
                     modifier = modifier
@@ -389,7 +395,9 @@ fun HelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
+                    structureLog("LazyColumn start")
                     items(sections.sections) { section ->
+                        structureLog("LazyColumn item start")
                         when (section.type) {
                             SectionType.Title -> {
                                 Text(
@@ -447,32 +455,43 @@ fun HelpScreen(
                                     shape = RoundedCornerShape(spacing.extraSmall),
                                     colors = currentAppButtonColors
                                 ) {
+                                    structureLog("Button start")
                                     Box(
                                         Modifier.weight(6f)
                                     ) {
+                                        structureLog("Box for text start")
                                         Text(
                                             text = stringResource(section.textId),
                                             textAlign = TextAlign.Start,
                                             style = MaterialTheme.typography.titleMedium,
                                         )
+                                        structureLog("Box for text end")
                                     }
                                     Box(
                                         Modifier.weight(1f)
                                     ) {
+                                        structureLog("Box for icon start")
                                         Icon(
                                             Icons.Rounded.ChevronRight,
                                             null,
                                             modifier = Modifier.align(Alignment.CenterEnd)
                                         )
+                                        structureLog("Box for icon end")
                                     }
+                                    structureLog("Button end")
                                 }
                             }
                         }
+                        structureLog("LazyColumn item end")
                     }
+                    structureLog("LazyColumn end")
                 }
+                structureLog("Box end")
             }
+            structureLog("Scaffold content end")
         }
     )
+    structureLog("HelpScreen end")
 }
 
 @Preview(showBackground = true)
