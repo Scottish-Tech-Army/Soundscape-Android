@@ -502,10 +502,11 @@ class RoadFollower(val parent: MapMatchFilter,
                     val circle = Feature()
                     circle.geometry =
                         circleToPolygon(32, lastCenter.latitude, lastCenter.longitude, radius)
-                    circle.properties = hashMapOf()
-                    circle.properties?.set("fill-opacity", 0.0)
-                    circle.properties?.set("stroke", color)
-                    circle.properties?.set("radius", radius)
+                    circle.properties = HashMap<String,Any?>().apply {
+                        set("fill-opacity", 0.0)
+                        set("stroke", color)
+                        set("radius", radius)
+                    }
                     collection.addFeature(circle)
                 }
 
@@ -813,11 +814,12 @@ class MapMatchFilter {
                             matchedLocation!!.point.longitude,
                             matchedLocation!!.point.latitude
                         )
-                    choiceFeature.properties = hashMapOf()
-                    choiceFeature.properties?.set("marker-size", "large")
-                    choiceFeature.properties?.set("marker-color", "#000000")
-                    for (choices in freshetList) {
-                        choiceFeature.properties?.set(choices.second, choices.first.toString())
+                    choiceFeature.properties = HashMap<String,Any?>().apply {
+                        set("marker-size", "large")
+                        set("marker-color", "#000000")
+                        for (choices in freshetList) {
+                            set(choices.second, choices.first.toString())
+                        }
                     }
                     collection.addFeature(choiceFeature)
                 }

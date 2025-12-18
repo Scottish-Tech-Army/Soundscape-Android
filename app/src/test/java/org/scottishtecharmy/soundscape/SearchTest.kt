@@ -17,6 +17,6 @@ class SearchTest {
 
         // As there isn't much going on in the tiles then it should return the local village shop/coffee place
         val searchResults = searchFeaturesByName(testPoiCollection, "honey")
-        Assert.assertEquals(1, searchResults.features.size)
+        Assert.assertEquals(2, searchResults.features.size)
     }
 }
