@@ -192,9 +192,10 @@ class Way : MvtFeature() {
                 // This is a path/service/track with no other qualifiers, so just return the name
                 // unless we're looking for a non-generic name.
                 if(nonGenericOnly && genericName) {
-                    return ""
+                    ""
+                } else {
+                    result
                 }
-                return result
             }
         }
     }

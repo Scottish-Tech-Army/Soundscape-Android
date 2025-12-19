@@ -1,0 +1,845 @@
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Approaching intersection
+		Path to Tower Place goes left
+		Campsie Drive continues ahead
+		Path to Strathblane Road via steps goes right
+
+Callout
+	playground
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	playground
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Approaching intersection
+		Campsie Drive continues ahead
+		Path via steps goes right
+
+Callout
+	Approaching intersection
+		Middleton Drive goes left
+		Campsie Drive continues ahead
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Approaching intersection
+		Lynn Drive goes left
+		Balfleurs Street goes right
+
+Callout
+	Ahead Balfleurs Street
+
+Callout
+	Ahead Balfleurs Street
+
+Callout
+	Ahead Balfleurs Street
+
+Callout
+	Approaching intersection
+		Baldernock Road goes left
+		Baldernock Road goes right
+
+Callout
+	Ahead Baldernock Road
+
+Callout
+	Approaching intersection
+		Briarwell Road goes left
+		Baldernock Road continues ahead
+
+Callout
+	Approaching intersection
+		Baldernock Road continues ahead
+		Barloch Road to dead end goes right
+
+Callout
+	Ahead Baldernock Road
+
+Callout
+	Approaching intersection
+		Baldernock Road continues ahead
+		Garwhitter Drive to dead end goes right
+
+Callout
+	Approaching intersection
+		South Glassford Street goes left
+		Baldernock Road continues ahead
+		Glassford Street to dead end goes right
+
+Callout
+	post
+
+Callout
+	Ahead Baldernock Road
+
+Callout
+	St Pauls Milngavie
+
+Callout
+	Andiamo
+
+Callout
+	Ahead Baldernock Road
+
+Callout
+	Approaching intersection
+		Glasgow Road continues ahead
+		Path goes right
+
+Callout
+	Approaching intersection
+		Glasgow Road goes left
+		Station Road continues ahead
+		Strathblane Road goes right
+
+Callout
+	crossing
+
+Callout
+	crossing
+
+Callout
+	Approaching intersection
+		Glasgow Road continues ahead
+		Path goes right
+
+Callout
+	St Pauls Milngavie
+
+Callout
+	Approaching intersection
+		Glasgow Road continues ahead
+		Victoria Place goes right
+
+Callout
+	Milngavie Bowling Club
+
+Callout
+	Ahead Glasgow Road
+
+Callout
+	Ahead Glasgow Road
+
+Callout
+	Approaching intersection
+		Glasgow Road continues ahead
+		Service to Milngavie Bowling Club goes right
+
+Callout
+	Milngavie Bowling Club
+
+Callout
+	Ahead Glasgow Road
+
+Callout
+	Approaching intersection
+		Glasgow Road continues ahead
+		Crossveggate goes right
+
+Callout
+	Approaching intersection
+		Dougalston Avenue goes left
+		Glasgow Road continues ahead
+
+Callout
+	Approaching intersection
+		Crossveggate continues ahead
+		Service to Milngavie Bowling Club goes right
+
+Callout
+	Ahead Crossveggate
+
+Callout
+	Milngavie Bowling Club
+
+Callout
+	Approaching intersection
+		Killermont Road to dead end goes left
+		Crossveggate continues ahead
+
+Callout
+	Approaching intersection
+		Service to Lennox Park via bridge goes left
+		Service to Jaw Brew continues ahead
+		Crossveggate goes right
+
+Callout
+	Lennox Park
+
+Callout
+	Ahead Service to Lennox Park via bridge
+
+Callout
+	Ahead Service to Lennox Park via bridge
+
+Callout
+	Lennox Park
+
+Callout
+	Ahead Service to Lennox Park via bridge
+
+Callout
+	Approaching intersection
+		Path via steps goes left
+		Path goes right
+
+Callout
+	pitch
+
+Callout
+	Ahead Path via steps
+
+Callout
+	pitch
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path via steps
+
+Callout
+	Approaching intersection
+		Path via bridge continues ahead
+		Path goes right
+
+Callout
+	Ahead Path via steps
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path via bridge
+
+Callout
+	Approaching intersection
+		Path to Keystone Avenue continues ahead
+		Path goes right
+
+Callout
+	Approaching intersection
+		Keystone Road goes left
+		Keystone Avenue continues ahead
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path
+
+Callout
+	Ahead Path
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path
+
+Callout
+	Ahead Path
+
+Callout
+	At Lennox Park
+
+Callout
+	pitch
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Path to Main Street goes left
+		Path to Christine's on the Green goes right
+		Path goes right
+
+Callout
+	pitch
+
+Callout
+	YogaJo's
+
+Callout
+	Ahead Path to Christine's on the Green
+
+Callout
+	playground
+
+Callout
+	Approaching intersection
+		Path to YogaJo's continues ahead
+		Path goes right
+
+Callout
+	Christine's on the Green
+
+Callout
+	At Lennox Park
+
+Callout
+	Approaching intersection
+		Path to Pavement next to Park Road goes left
+		Path to Main Street continues ahead
+
+Callout
+	Approaching intersection
+		Park Road goes left
+		Main Street continues ahead
+
+Callout
+	crossing
+
+Callout
+	Approaching intersection
+		Main Street continues ahead
+		Main Street goes right
+
+Callout
+	YogaJo's
+
+Callout
+	Approaching intersection
+		Park Road goes left
+		Main Street continues ahead
+		Park Road goes right
+
+Callout
+	Ahead Park Road
+
+Callout
+	Lennox Park
+
+Callout
+	Approaching intersection
+		Park Road continues ahead
+		Southgate goes right
+
+Callout
+	crossing
+
+Callout
+	Ahead Park Road
+
+Callout
+	Approaching intersection
+		Park Road continues ahead
+		Service to Pavement next to Park Road goes right
+
+Callout
+	Approaching intersection
+		Park Avenue goes left
+		Park Road continues ahead
+
+Callout
+	Ahead Park Road
+
+Callout
+	Approaching intersection
+		Park Road continues ahead
+		Ashfield Road goes right
+
+Callout
+	Approaching intersection
+		Park Road continues ahead
+		Path to Pavement next to Park Road goes right
+
+Callout
+	Ahead Park Road
+
+Callout
+	Milngavie, Ashfield Road (before)
+
+Callout
+	St Andrew's Church
+
+Callout
+	Approaching intersection
+		Park Road continues ahead
+		Stewart Street goes right
+
+Callout
+	Approaching intersection
+		Path goes left
+		Park Road continues ahead
+
+Callout
+	Milngavie, Stewart Street (opp)
+
+Callout
+	Friendship House and Café
+
+Callout
+	Ahead Park Road
+
+Callout
+	Ahead Path to Pavement next to Park Road
+
+Callout
+	Milngavie's Local Mart
+
+Callout
+	Approaching intersection
+		Craigdhu Road goes left
+		Clober Road continues ahead
+		Douglas Street goes right
+
+Callout
+	crossing
+
+Callout
+	St Andrew's Church
+
+Callout
+	Ahead Park Road
+
+Callout
+	Ahead Clober Road
+
+Callout
+	Allander Evangelical
+
+Callout
+	Approaching intersection
+		Clober Road continues ahead
+		South Claremont Lane goes right
+
+Callout
+	Approaching intersection
+		Clober Road continues ahead
+		Claremont Gardens goes right
+
+Callout
+	Approaching intersection
+		Clober Road goes left
+		Clober Road continues ahead
+		North Claremont Lane goes right
+
+Callout
+	Ahead Clober Road
+
+Callout
+	Ahead Clober Road
+
+Callout
+	Ahead Clober Road
+
+Callout
+	Approaching intersection
+		Path to Clober Road goes left
+		Clober Road continues ahead
+		Path via bridge goes right
+
+Callout
+	Approaching intersection
+		Balvie Road goes left
+		Clober Road continues ahead
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path to Allander Road goes left
+		Path continues ahead
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes left
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path continues ahead
+
+Callout
+	Ahead Path
+
+Callout
+	memorial
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path to West Highland Way continues ahead
+
+Callout
+	Approaching intersection
+		West Highland Way goes left
+		Path to Milngavie Youth Centre continues ahead
+		West Highland Way goes right
+
+Callout
+	Approaching intersection
+		Path to Milngavie Youth Centre goes left
+		West Highland Way continues ahead
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	memorial
+
+Callout
+	Approaching intersection
+		Ellangowan Road goes left
+		Ellangowan Road goes right
+
+Callout
+	Approaching intersection
+		Riverside goes left
+		Riverside goes right
+
+Callout
+	Approaching intersection
+		West Highland Way goes left
+		Riverside continues ahead
+
+Callout
+	bridge
+
+Callout
+	Approaching intersection
+		Douglas Street goes left
+		Douglas Street goes right
+
+Callout
+	Approaching intersection
+		Douglas Street continues ahead
+		Path to Ellangowan Car Park goes right
+
+Callout
+	Greggs
+
+Callout
+	Timpson
+
+Callout
+	Costa
+
+Callout
+	Approaching intersection
+		Path to The Fraser Centre goes left
+		Douglas Street continues ahead
+
+Callout
+	Lodge Ellangowan No. 716
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	Subway
+
+Callout
+	John Amabile Design
+
+Callout
+	bridge
+
+Callout
+	Approaching intersection
+		Mugdock Road goes left
+		Station Road continues ahead
+
+Callout
+	bridge
+
+Callout
+	At bridge
+
+Callout
+	Bank of Scotland
+
+Callout
+	Ahead Douglas Street
+
+Callout
+	R & G Financial
+
+Callout
+	Ahead Station Road
+
+Callout
+	Approaching intersection
+		Path to Kirk Wynd goes left
+		Station Road continues ahead
+
+Callout
+	Approaching intersection
+		Hillhead Street goes left
+		Station Road continues ahead
+
+Callout
+	Graeme Pharmacy
+
+Callout
+	Approaching intersection
+		Station Road continues ahead
+		Path via steps goes right
+		Path to Woodburn Way Car Park goes right
+		Path goes right
+
+Callout
+	Approaching intersection
+		Service to Woodburn Way continues ahead
+		Service goes right
+
+Callout
+	The Honeybee Bakery
+
+Callout
+	Approaching intersection
+		Path via tunnel continues ahead
+		Path to Station Road goes right
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Ahead Station Road
+
+Callout
+	Milngavie Station
+
+Callout
+	St Joseph's RC Church
+
+Callout
+	Ahead Station Road
+
+Callout
+	Approaching intersection
+		Station Road goes left
+		Woodburn Way goes right
+
+Callout
+	crossing
+
+Callout
+	Milngavie Town Hall
+
+Callout
+	Approaching intersection
+		Buchanan Street goes left
+		Station Road continues ahead
+		Path goes right
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	The Lillie Art Gallery
+
+Callout
+	St Joseph's RC Church
+
+Callout
+	Approaching intersection
+		Buchanan Street continues ahead
+		Kersland Drive goes right
+
+Callout
+	Approaching intersection
+		Grange Avenue goes left
+		Buchanan Street continues ahead
+
+Callout
+	Milngavie Town Hall
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Approaching intersection
+		Cairns Drive goes left
+		Buchanan Street continues ahead
+
+Callout
+	Cairns Church
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Cairns Church
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Approaching intersection
+		Buchanan Street continues ahead
+		Moor Road goes right
+
+Callout
+	Ahead Moor Road
+
+Callout
+	Approaching intersection
+		Craigmillar Avenue goes left
+		Moor Road continues ahead
+
+Callout
+	Ahead Craigmillar Avenue
+
+Callout
+	Ahead Craigmillar Avenue
+
+Callout
+	Ahead Craigmillar Avenue
+
+Callout
+	Approaching intersection
+		Tannoch Drive goes left
+		Craigmillar Avenue continues ahead
+		Tannoch Drive goes right
+
+Callout
+	Ahead Craigmillar Avenue
+
+Callout
+	Ahead Tannoch Drive
+
+Callout
+	Approaching intersection
+		Path goes left
+		Tannoch Drive goes right
+
+Callout
+	Approaching intersection
+		Service to Marker 1 goes left
+		Service to Moor Road goes right
+
+Callout
+	Ahead Tannoch Drive
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Ahead Service to Marker 1
+
+Callout
+	Approaching intersection
+		Path to Old Water Works goes left
+		Service continues ahead
+		Path to dead-end goes right
+		Service goes right
+
+Callout
+	lift_gate
+
+Callout
+	Approaching intersection
+		Service to James Gale Memorial continues ahead
+		Path goes right
+
+Callout
+	Ahead Service
+
+Callout
+	toilets
+
+Callout
+	Ahead Service
+
+Callout
+	Ahead Service
+
+Callout
+	Ahead Service to Roselea Drive
+
+Callout
+	Approaching intersection
+		Roselea Drive goes left
+		Roselea Drive goes right
+
+Callout
+	Ahead Service to Roselea Drive
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Service

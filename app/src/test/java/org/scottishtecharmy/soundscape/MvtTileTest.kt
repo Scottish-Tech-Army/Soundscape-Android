@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape
 
-import android.content.Context
-import ch.poole.geo.pmtiles.Reader
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -20,7 +18,6 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -30,7 +27,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConf
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import vector_tile.VectorTile
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.abs
@@ -49,7 +45,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.io.path.Path
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.nameWithoutExtension
-import kotlin.time.Duration
 import kotlin.time.measureTime
 
 /**
@@ -70,8 +65,7 @@ class FileGridState(
 private fun vectorTileToGeoJsonFromFile(
     tileX: Int,
     tileY: Int,
-    intersectionMap:  HashMap<LngLatAlt, Intersection>,
-    cropPoints: Boolean = true
+    intersectionMap:  HashMap<LngLatAlt, Intersection>
 ): Array<FeatureCollection> {
 
     val gridState = FileGridState()
@@ -750,7 +744,6 @@ class MvtTileTest {
 
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
 
-
         val resultsStoragePath =  "gpxFiles/"
         val resultsStorageDir = File(resultsStoragePath)
         if (!resultsStorageDir.exists()) {
@@ -760,6 +753,23 @@ class MvtTileTest {
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for(file in directoryEntries) {
             testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
+            val referenceFile = File("$directoryPath/${file.nameWithoutExtension}.txt")
+            if(referenceFile.exists()) {
+                // Compare our new callout file with the reference one.
+                val generatedFile = File("gpxFiles/${file.nameWithoutExtension}.txt")
+
+                // Read all lines from both files
+                val generatedLines = generatedFile.readLines()
+                val referenceLines = referenceFile.readLines()
+
+                // Assert that the contents are identical.
+                println("Compare ${file.nameWithoutExtension} results to reference")
+                assertEquals(
+                    "File content for ${file.nameWithoutExtension} does not match the reference file.",
+                    referenceLines,
+                    generatedLines
+                )
+            }
         }
     }
 
@@ -774,7 +784,6 @@ class MvtTileTest {
         gridState.start(null, offlineExtractPath, true)
 
         // The center of each grid
-        var count = 0
         for(x in 7990 until 8010) {
             for (y in 5100 until 5120) {
 
@@ -793,7 +802,6 @@ class MvtTileTest {
                 }
             }
         }
-        println("Total updates $count")
 //        val adapter = GeoJsonObjectMoshiAdapter()
 //        val mapMatchingOutput = FileOutputStream("total-output.geojson")
 //

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gpx xmlns="http://www.topografix.com/GPX/1/0" version="1.0" creator="Soundscape">
+<trk>
+<name>Track 0</name>
+<number>0</number>
+<trkseg>
+<trkpt lat="55.9271305" lon="-3.2507631">
+<ele>108.80000305175781></ele>
+<accuracy>4.188</accuracy>
+<speed>0.13058941</speed>
+<bearing>31.015146</bearing>
+<bearingAccuracyDegrees>10.126945</bearingAccuracyDegrees>
+<time>1752835596850</time>
+</trkpt>
+<trkpt lat="55.9271398" lon="-3.2507773">
+<ele>108.80000305175781></ele>
+<accuracy>3.336</accuracy>
+<speed>5.5624126E-4</speed>
+<bearing>0.0</bearing>
+<bearingAccuracyDegrees>0.0</bearingAccuracyDegrees>
+<time>1752835598411</time>
+</trkpt>
+<trkpt lat="55.9271544" lon="-3.2507543">
+<ele>106.69999694824219></ele>
+<accuracy>7.205</accuracy>
+<speed>0.0</speed>
+<bearing>36.78899</bearing>
+<bearingAccuracyDegrees>44.377354</bearingAccuracyDegrees>
+<time>1752835599416</time>
+</trkpt>
+<trkpt lat="55.9271644" lon="-3.250758">
+<ele>109.30000305175781></ele>
+<accuracy>4.792</accuracy>
+<speed>0.9117906</speed>
+<bearing>12.742157</bearing>
+<bearingAccuracyDegrees>19.03365</bearingAccuracyDegrees>
+<time>1752835604412</time>
+</trkpt>
+<trkpt lat="55.9271734" lon="-3.2507553">
+<ele>109.30000305175781></ele>
+<accuracy>4.236</accuracy>
+<speed>0.8406123</speed>
+<bearing>3.898407</bearing>
+<bearingAccuracyDegrees>25.621355</bearingAccuracyDegrees>
+<time>1752835605411</time>
+</trkpt>
+<trkpt lat="55.927191" lon="-3.2507449">
+<ele>106.69999694824219></ele>
+<accuracy>3.77</accuracy>
+<speed>1.0366961</speed>
+<bearing>15.671353</bearing>
+<bearingAccuracyDegrees>24.539833</bearingAccuracyDegrees>
+<time>1752835607525</time>
+</trkpt>
+<trkpt lat="55.9272039" lon="-3.2507244">
+<ele>106.69999694824219></ele>
+<accuracy>3.926</accuracy>
+<speed>1.4416723</speed>
+<bearing>25.052248</bearing>
+<bearingAccuracyDegrees>21.231167</bearingAccuracyDegrees>
+<time>1752835608569</time>
+</trkpt>
+<trkpt lat="55.9272697" lon="-3.2506214">
+<ele>106.69999694824219></ele>
+<accuracy>4.424</accuracy>
+<speed>1.4348415</speed>
+<bearing>30.069683</bearing>
+<bearingAccuracyDegrees>9.585785</bearingAccuracyDegrees>
+<time>1752835614106</time>
+</trkpt>
+<trkpt lat="55.9272812" lon="-3.2506039">
+<ele>106.69999694824219></ele>
+<accuracy>4.407</accuracy>
+<speed>1.4598262</speed>
+<bearing>44.732643</bearing>
+<bearingAccuracyDegrees>10.021889</bearingAccuracyDegrees>
+<time>1752835615204</time>
+</trkpt>
+<trkpt lat="55.927293" lon="-3.250575">
+<ele>106.69999694824219></ele>
+<accuracy>4.303</accuracy>
+<speed>1.6021124</speed>
+<bearing>48.69822</bearing>
+<bearingAccuracyDegrees>7.272259</bearingAccuracyDegrees>
+<time>1752835616464</time>
+</trkpt>
+<trkpt lat="55.9273018" lon="-3.25055">
+<ele>106.69999694824219></ele>
+<accuracy>4.193</accuracy>
+<speed>1.6493373</speed>
+<bearing>58.99624</bearing>
+<bearingAccuracyDegrees>6.9383826</bearingAccuracyDegrees>
+<time>1752835617408</time>
+</trkpt>
+<trkpt lat="55.927306" lon="-3.2505313">
+<ele>106.69999694824219></ele>
+<accuracy>3.831</accuracy>
+<speed>1.5564222</speed>
+<bearing>57.37313</bearing>
+<bearingAccuracyDegrees>14.43942</bearingAccuracyDegrees>
+<time>1752835618431</time>
+</trkpt>
+<trkpt lat="55.9273122" lon="-3.2505159">
+<ele>108.80000305175781></ele>
+<accuracy>3.731</accuracy>
+<speed>1.4238008</speed>
+<bearing>55.18415</bearing>
+<bearingAccuracyDegrees>10.31291</bearingAccuracyDegrees>
+<time>1752835619453</time>
+</trkpt>
+<trkpt lat="55.92732" lon="-3.2505059">
+<ele>107.08325292194527></ele>
+<accuracy>3.313</accuracy>
+<speed>1.0171543</speed>
+<bearing>71.719505</bearing>
+<bearingAccuracyDegrees>8.596529</bearingAccuracyDegrees>
+<time>1752835621395</time>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>
