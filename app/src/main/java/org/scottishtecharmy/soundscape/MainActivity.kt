@@ -210,14 +210,14 @@ class MainActivity : AppCompatActivity() {
 //      Enable the following code to generate stack traces when tracking down "A resource failed to
 //      call close messages in the log.
 //
-        StrictMode.setVmPolicy(
-            StrictMode.VmPolicy.Builder()
-                     .detectLeakedClosableObjects()
-                     .penaltyListener(ContextCompat.getMainExecutor(this)) { violation ->
-                         Log.e("MainActivity", "StrictMode VmPolicy violation", violation)
-                     }
-                     .build()
-        )
+//        StrictMode.setVmPolicy(
+//            StrictMode.VmPolicy.Builder()
+//                     .detectLeakedClosableObjects()
+//                     .penaltyListener(ContextCompat.getMainExecutor(this)) { violation ->
+//                         Log.e("MainActivity", "StrictMode VmPolicy violation", violation)
+//                     }
+//                     .build()
+//        )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
