@@ -104,7 +104,7 @@ class AutoCallout(
             )
 
             if (roadSenseCalloutHistory.find(callout)) {
-                println("Discard ${callout.trackedText}")
+                //println("Discard ${callout.trackedText}")
                 // Filter out
                 return null
             }
@@ -212,7 +212,7 @@ class AutoCallout(
                 } else {
                     // Check the history and if the POI has been called out recently then we skip it
                     if (poiCalloutHistory.find(callout)) {
-                        println("Discard ${callout.trackedText}")
+                        //println("Discard ${callout.trackedText}")
                         // Filter out
                         true
                     } else {
