@@ -189,10 +189,12 @@ fun MarkdownHelpScreen(
                         if (node is Heading) {
                             if (node.level != 2) {
                                 // TODO 2025-12-1 Hugh Greene: Handle other levels better!
+                                structureLog.unstructured("Skipping Heading level ${node.level}")
+                                structureLog.end("LazyColumn item")
                                 return@items
                             }
                             val text = textContentRenderer.render(node)
-                            structureLog.unstructured("Text for Heading: '${text}'")
+                            structureLog.unstructured("Text for Title: '${text}'")
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.titleMedium,

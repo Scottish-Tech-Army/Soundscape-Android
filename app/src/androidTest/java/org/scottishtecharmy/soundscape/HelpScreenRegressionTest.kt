@@ -58,17 +58,17 @@ class HelpScreenRegressionTest(private val testTopic: String) {
             SoundscapeTheme {
                 // TODO 2025-12-12 Hugh Greene: This is just a special case for the root page,
                 // for now.
-//                if (topic == "Help and Tutorials") {
-//                    MarkdownHelpScreen(
-//                        topic = topic,
-//                        navController = NavHostController(targetContext),
-//                        modifier = Modifier
-//                            .windowInsetsPadding(WindowInsets.safeDrawing)
-//                            .semantics { testTagsAsResourceId = true },
-//                        structureLog = { structureLog.append(it).append("\n") }
-//                    )
-//                }
-//                else {
+                if (topic == "Help and Tutorials") {
+                    MarkdownHelpScreen(
+                        topic = topic,
+                        navController = NavHostController(targetContext),
+                        modifier = Modifier
+                            .windowInsetsPadding(WindowInsets.safeDrawing)
+                            .semantics { testTagsAsResourceId = true },
+                        structureLog = StructureLog { structureLog.append(it).append("\n") }
+                    )
+                }
+                else {
                     HelpScreen(
                         topic = topic,
                         navController = NavHostController(targetContext),
@@ -77,7 +77,7 @@ class HelpScreenRegressionTest(private val testTopic: String) {
                             .semantics { testTagsAsResourceId = true },
                         structureLog = StructureLog { structureLog.append(it).append("\n") }
                     )
-//                }
+                }
             }
         }
 

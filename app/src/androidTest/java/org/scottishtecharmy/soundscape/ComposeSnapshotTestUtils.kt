@@ -72,6 +72,11 @@ private fun SemanticsNode.layoutInfo(): String {
 private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
     "(${left.toInt()},${top.toInt()} - ${right.toInt()},${bottom.toInt()})"
 
+private sealed class AssertResult {
+    object Passed : AssertResult()
+    data class Failed(val message: String) : AssertResult()
+}
+
 /**
  * Hybrid baseline assertion:
  * - Reads committed baseline from assets/
@@ -79,11 +84,17 @@ private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
  * - If mismatched, prints a diff
  */
 fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filenameBase: String, structureLog: String) {
-    assertHybridBaseline("${filenameBase}.txt", dumpLayoutTree(), "Layout")
-    assertHybridBaseline("${filenameBase}.structure.txt", structureLog, "Structure")
+    val results = listOf(
+        assertHybridBaseline("${filenameBase}.txt", dumpLayoutTree(), "Layout"),
+        assertHybridBaseline("${filenameBase}.structure.txt", structureLog, "Structure")
+    )
+    val failedResults = results.filterIsInstance<AssertResult.Failed>()
+    if (failedResults.isNotEmpty()) {
+        fail(failedResults.joinToString("\n") { it.message })
+    }
 }
 
-fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: String) {
+private fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: String): AssertResult {
     val context = InstrumentationRegistry.getInstrumentation().context
     val baselineSubpathString = "baselines/${filename}"
     val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
@@ -95,9 +106,10 @@ fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: Strin
         // If no baseline in assets, create a new one on the Android device for review.
         val androidSideBaselineFile =
             generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
-        fail("No $snapshotType baseline found in 'assets/$baselineSubpathString'. " +
-                "A new one will be written to '${androidSideBaselineFile}' under " +
-                "'src/androidTest/assets/baselines/'; review then commit it.")
+        return AssertResult.Failed(
+            "No $snapshotType baseline found in 'assets/$baselineSubpathString'. " +
+            "A new one will be written to '${androidSideBaselineFile}' under " +
+            "'src/androidTest/assets/baselines/'; review then commit it.")
     }
     else {
         // We check the result of the diff, rather than comparing the baseline and snapshot
@@ -105,17 +117,19 @@ fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: Strin
         val diff = generateDiff(baselineText, snapshot)
         if (diff.isNotEmpty()) {
             // If baseline exists but differs, print diff and fail.
-            println("\n$snapshotType structure changed! Diff:\n")
+            println("\n$snapshotType changed! Diff:\n")
             println(diff)
             val androidSideBaselineFile =
                 generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
             println("New $snapshotType snapshot written to: ${androidSideBaselineFile}")
-            fail("$snapshotType structure does not match baseline. See diff above. " +
-                    "An updated version will be copied into ${androidSideBaselineFile} under " +
-                    "'src/androidTest/assets/baselines/'; review the changes before committing.")
+            return AssertResult.Failed(
+                "$snapshotType does not match baseline. See diff above. " +
+                "An updated version will be copied into ${androidSideBaselineFile} under " +
+                "'src/androidTest/assets/baselines/'; review the changes before committing.")
         }
         else {
             println("$snapshotType matches baseline.")
+            return AssertResult.Passed
         }
     }
 }
