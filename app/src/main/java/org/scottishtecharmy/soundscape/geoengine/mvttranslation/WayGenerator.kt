@@ -232,7 +232,9 @@ class Way : MvtFeature() {
 
     fun isSidewalkOrCrossing() : Boolean {
         val footway = properties?.get("footway")
-        return ((footway == "sidewalk") || (footway == "crossing"))
+        return ((footway == "sidewalk") ||
+                (footway == "crossing") ||
+                ((featureType == "highway") && (featureValue == "cycleway")))
     }
 
     fun endsAtTileEdge() : Boolean {
@@ -683,7 +685,7 @@ class WayGenerator(val transit: Boolean = false) {
                         if (way.featureType == "highway") {
                             when (way.featureValue) {
                                 "bus_stop", "crossing" -> {} // Don't add
-                                "footway", "path", "cycleway", "bridleway" -> {
+                                "footway", "path", "bridleway", "cycleway" -> {
                                     // These are paths
                                     mainWaysCollection.addFeature(way)
                                 }

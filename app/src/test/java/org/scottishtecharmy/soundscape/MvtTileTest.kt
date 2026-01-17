@@ -211,7 +211,7 @@ class MvtTileTest {
 
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
-        val geojson = vectorTileToGeoJsonFromFile(15991/2, 10212/2, intersectionMap, streetNumberMap)
+        val geojson = vectorTileToGeoJsonFromFile(15991/2, 10214/2, intersectionMap, streetNumberMap)
         val adapter = GeoJsonObjectMoshiAdapter()
 
         val outputCollection = FeatureCollection()
@@ -683,10 +683,19 @@ class MvtTileTest {
         markers.addFeature(marker)
         gridState.markerTree = FeatureTree(markers)
 
+        var time = 0L
+        var lastLocation: LngLatAlt? = null
         gps.features.filterIndexed {
                 index, _ -> (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
             val location = (position.geometry as Point).coordinates
+
+            // Calculate direction of travel in case GPX doesn't contain it
+            var travelHeading = 0.0
+            if(lastLocation != null)
+                travelHeading = gridState.ruler.bearing(lastLocation, location)
+            lastLocation = location
+
             runBlocking {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
@@ -729,14 +738,18 @@ class MvtTileTest {
                 position.properties?.set("index", index + startIndex)
                 collection.addFeature(position)
 
+                // We can replay GPX files exported from apps like RideWithGPS. This is useful for
+                // mocking up GPX where we don't have a live recording, however some information will
+                // be missing so we need to mock it up.
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
-                    travelHeading = position.properties?.get("heading") as Double?,
-                    speed = position.properties?.get("speed") as Double,
+                    travelHeading = position.properties?.get("heading") as? Double? ?: travelHeading,
+                    speed = position.properties?.get("speed") as? Double? ?: 1.0,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
-                    timestampMilliseconds = (position.properties?.get("time") as Double).toLong()
+                    timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong() ?: time
                 )
+                time += 1000L
 
                 val geocoder = OfflineGeocoder(gridState, settlementGrid)
                 val callout = autoCallout.updateLocation(
@@ -788,9 +801,13 @@ class MvtTileTest {
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for(file in directoryEntries) {
-            testMovingGrid(file.toString(), "gpxFiles/${file.nameWithoutExtension}.txt", "gpxFiles/${file.nameWithoutExtension}.geojson")
+            testMovingGrid(
+                file.toString(),
+                "gpxFiles/${file.nameWithoutExtension}.txt",
+                "gpxFiles/${file.nameWithoutExtension}.geojson"
+            )
             val referenceFile = File("$directoryPath/${file.nameWithoutExtension}.txt")
-            if(referenceFile.exists()) {
+            if (referenceFile.exists()) {
                 // Compare our new callout file with the reference one.
                 val generatedFile = File("gpxFiles/${file.nameWithoutExtension}.txt")
 

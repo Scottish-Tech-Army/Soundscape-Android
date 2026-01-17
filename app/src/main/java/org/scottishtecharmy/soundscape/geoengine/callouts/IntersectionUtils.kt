@@ -123,7 +123,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
     val fovIntersections = intersectionTree.getAllWithinTriangle(triangle)
     if(fovIntersections.features.isEmpty()) return IntersectionDescription(nearestRoad, userGeometry)
 
-    // Remove intersections which are:
+    // Remove intersections which are only:
     //  1. Short paths leading to sidewalks of the road, or
     //  2. Direct intersections with sidewalks.
     //  3. Within a 5m radius of the current location
@@ -134,11 +134,19 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         if(!userGeometry.inStreetPreview && userGeometry.ruler.distance(intersection.location, userGeometry.mapMatchedLocation?.point ?: userGeometry.location) < 5.0)
             add = false
         else {
+            var disposalCount = 0
             for (way in i.members) {
                 if (way.isSidewalkOrCrossing())
-                    add = false
+                    ++disposalCount
                 else if (way.isSidewalkConnector(intersection, nearestRoad, gridState))
-                    add = false
+                    ++disposalCount
+            }
+            if((i.members.size - disposalCount) < 3) {
+                // We're disposing of pavement intersections, if we've only got 2 or fewer non-
+                // pavement Ways then we're not interested in this intersection. Intersections
+                // worth describing have the Way we're coming in on as well as at least two other
+                // Ways leaving the intersection.
+                add = false
             }
         }
         if(add)
@@ -324,7 +332,11 @@ fun addIntersectionCalloutFromDescription(
 
     // It's possible to get here and the nearestRoad is NOT a member of the intersection. This is
     // particularly likely where there are sidewalks breaking up the road segments. So we need to
-    // follow our nearestRoad to the intersection
+    // follow our nearestRoad to the intersection. However, we need to be careful with the heading
+    // as the incoming Way to the intersection could be 90 degrees (or more?) away from the current
+    // heading.
+
+    val heading = description.nearestRoad?.heading(description.intersection) ?: return null
     if(description.nearestRoad?.containsIntersection(description.intersection) != true) {
         if(description.nearestRoad == null)
             return null
@@ -342,9 +354,6 @@ fun addIntersectionCalloutFromDescription(
         shortestDistanceResults.tidy()
     }
 
-    val heading = description.nearestRoad?.heading(description.intersection)
-    if(heading == null)
-        return null
     if(description.intersection.members.size <= 2)
         return null
 
@@ -379,6 +388,9 @@ fun addIntersectionCalloutFromDescription(
     val directions = getCombinedDirectionSegments(incomingHeading)
     val intersectionResults = trackedCallout.positionedStrings.toMutableList()
     for (way in description.intersection.members) {
+
+        if(way.properties?.get("pavement") != null)
+            continue
 
         val wayHeading = way.heading(description.intersection)
         val direction = directions.indexOfFirst { segment ->
