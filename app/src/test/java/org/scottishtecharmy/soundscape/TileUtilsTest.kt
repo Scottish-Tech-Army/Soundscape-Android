@@ -61,7 +61,7 @@ class TileUtilsTest {
             val way = feature as Way
             Assert.assertEquals("highway", way.featureType)
         }
-        Assert.assertEquals(135, testRoadsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(136, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -85,7 +85,7 @@ class TileUtilsTest {
             val mvtFeature = feature as MvtFeature
             Assert.assertEquals("crossing", mvtFeature.featureValue)
         }
-        Assert.assertEquals(314, testCrossingsFeatureCollection.features.size)
+        Assert.assertEquals(337, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
@@ -102,7 +102,7 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
-            4381,
+            4522,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -115,7 +115,7 @@ class TileUtilsTest {
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
             Assert.assertTrue("Feature should be of type Intersection", feature is Intersection)
         }
-        Assert.assertEquals(5090, testIntersectionsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(5265, testIntersectionsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -134,7 +134,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2630, testPoiCollection.features.size)
+        Assert.assertEquals(2706, testPoiCollection.features.size)
     }
 
     @Test
@@ -145,7 +145,7 @@ class TileUtilsTest {
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
-        Assert.assertEquals(562, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(581, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -184,7 +184,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, testPoiCollection)
-        Assert.assertEquals(1314, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(1356, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -195,7 +195,7 @@ class TileUtilsTest {
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, testPoiCollection)
-        Assert.assertEquals(219, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(220, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test

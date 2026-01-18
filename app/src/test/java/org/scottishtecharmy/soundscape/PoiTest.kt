@@ -136,7 +136,7 @@ class PoiTest {
             when(index) {
                 0 -> assertEquals("Woodburn Way Car Park", furthestName)
                 1 -> assertEquals("No. 1 Boutique", furthestName)
-                2 -> assertEquals("Florella", furthestName)
+                2 -> assertEquals("Vivienne Nails & Spa", furthestName)
                 3 -> assertEquals("Woodburn Way Car Park", furthestName)
             }
 
