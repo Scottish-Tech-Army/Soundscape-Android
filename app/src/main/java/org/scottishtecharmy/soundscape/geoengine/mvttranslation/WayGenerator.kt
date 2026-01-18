@@ -232,8 +232,10 @@ class Way : MvtFeature() {
 
     fun isSidewalkOrCrossing() : Boolean {
         val footway = properties?.get("footway")
+        val bicycle = properties?.get("bicycle")
         return ((footway == "sidewalk") ||
                 (footway == "crossing") ||
+                (bicycle == "designated") ||
                 ((featureType == "highway") && (featureValue == "cycleway")))
     }
 

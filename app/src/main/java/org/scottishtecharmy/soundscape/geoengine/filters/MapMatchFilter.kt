@@ -631,7 +631,7 @@ class MapMatchFilter {
      * combination.
      */
     fun extendFollowerList(location: LngLatAlt, gridState: GridState) {
-        val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
 
         val roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
 
@@ -757,7 +757,7 @@ class MapMatchFilter {
                         if(matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
-                            val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+                            val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
                             addSidewalk(matched, roadTree, gridState.ruler)
                             addSidewalk(way, roadTree, gridState.ruler)
 

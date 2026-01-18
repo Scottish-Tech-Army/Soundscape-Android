@@ -52,7 +52,7 @@ class StreetPreview {
 
             PreviewState.INITIAL -> {
                 // Jump to an intersection on the nearest road or path
-                val road : Way? = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.ruler, userGeometry.location, Double.POSITIVE_INFINITY) as Way?
+                val road : Way? = engine.gridState.getNearestFeature(TreeId.WAYS_SELECTION, userGeometry.ruler, userGeometry.location, Double.POSITIVE_INFINITY) as Way?
                 if(road == null)
                     return null
                 var nearestDistance = Double.POSITIVE_INFINITY

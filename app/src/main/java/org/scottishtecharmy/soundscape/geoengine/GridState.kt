@@ -65,7 +65,16 @@ enum class TreeId(
     TRANSIT(20, "Transit"),
     HOUSENUMBER(21, "House numbers"),
     MAX_COLLECTION_ID(22, ""),
+    WAYS_SELECTION(id =22, "Either Roads OR Roads and Paths")
 }
+
+fun treeIdToIndex(id: TreeId) : TreeId {
+    return if (id == TreeId.WAYS_SELECTION)
+        TreeId.ROADS_AND_PATHS
+    else
+        id
+}
+
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 open class GridState(
@@ -592,7 +601,8 @@ open class GridState(
 
     fun getFeatureTree(id: TreeId): FeatureTree {
         checkContext()
-        return featureTrees[id.id]
+
+        return featureTrees[treeIdToIndex(id).id]
     }
 
     internal fun getFeatureCollection(id: TreeId,
@@ -600,14 +610,15 @@ open class GridState(
                                       distance : Double = Double.POSITIVE_INFINITY,
                                       maxCount : Int = 0): FeatureCollection {
         checkContext()
+        val id = treeIdToIndex(id).id
         val result = if(distance == Double.POSITIVE_INFINITY) {
-            featureTrees[id.id].getAllCollection()
+            featureTrees[id].getAllCollection()
         } else {
             val ruler = CheapRuler(location.latitude)
             if(maxCount == 0) {
-                featureTrees[id.id].getNearbyCollection(location, distance, ruler)
+                featureTrees[id].getNearbyCollection(location, distance, ruler)
             } else {
-                featureTrees[id.id].getNearestCollection(location, distance, maxCount, ruler)
+                featureTrees[id].getNearestCollection(location, distance, maxCount, ruler)
             }
         }
         return result
@@ -619,7 +630,7 @@ open class GridState(
                                    distance : Double = Double.POSITIVE_INFINITY
     ): Feature? {
         checkContext()
-        return featureTrees[id.id].getNearestFeature(location, ruler, distance)
+        return featureTrees[treeIdToIndex(id).id].getNearestFeature(location, ruler, distance)
     }
 
     companion object {

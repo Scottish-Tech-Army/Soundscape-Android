@@ -160,7 +160,7 @@ class VisuallyCheckOutput {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
 
-        val testPathCollection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        val testPathCollection = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
 
         val paths = moshi.adapter(FeatureCollection::class.java).toJson(testPathCollection)
         // copy and paste into GeoJSON.io

@@ -240,7 +240,7 @@ class SearchTest {
             gridState.locationUpdate(location,emptySet())
         }
 
-        val nearbyWays = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val nearbyWays = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
             .getNearbyCollection(
                 location,
                 100.0,
