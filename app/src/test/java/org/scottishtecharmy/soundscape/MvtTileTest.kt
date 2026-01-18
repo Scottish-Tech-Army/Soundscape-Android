@@ -355,7 +355,7 @@ class MvtTileTest {
         val fc3 = tree.getContainingPolygons(LngLatAlt(-4.316641241312027,55.94160200415631))
         assertEquals(1, fc3.features.size)
 
-        val outputCollection = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
+        val outputCollection = gridState.getFeatureTree(TreeId.WAYS_SELECTION).getAllCollection()
         outputCollection += gridState.getFeatureTree(TreeId.POIS).getAllCollection()
         for(intersection in gridState.gridIntersections) {
             intersection.value.toFeature()
@@ -384,7 +384,7 @@ class MvtTileTest {
             val featureCollection14 = gridState14.getFeatureTree(treeId).getAllCollection()
             val featureCollection15 = gridState15.getFeatureTree(treeId).getAllCollection()
 
-            if(treeId == TreeId.ROADS_AND_PATHS) {
+            if(treeId == TreeId.WAYS_SELECTION) {
                 val adapter = GeoJsonObjectMoshiAdapter()
                 val outputFile14 = FileOutputStream("2x2-14.geojson")
                 outputFile14.write(adapter.toJson(featureCollection14).toByteArray())
@@ -396,7 +396,7 @@ class MvtTileTest {
 
             if((featureCollection14.features.size) != featureCollection15.features.size) {
                 println("$treeId - ${featureCollection14.features.size} ${featureCollection15.features.size}")
-                if((treeId != TreeId.INTERPOLATIONS) && (treeId != TreeId.ROADS) && (treeId != TreeId.ROADS_AND_PATHS))
+                if((treeId != TreeId.INTERPOLATIONS) && (treeId != TreeId.ROADS) && (treeId != TreeId.WAYS_SELECTION))
                     assert(false)
             }
         }
@@ -426,7 +426,7 @@ class MvtTileTest {
             traverseIntersectionsConfectingNames(gridState.gridIntersections)
         }
 
-        var roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        var roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
         val confectionTime2 = measureTimeMillis {
             for (road in roads) {
                 confectNamesForRoad(road as Way, gridState)
@@ -435,7 +435,7 @@ class MvtTileTest {
         println("Confection time: $confectionTime ms")
         println("Confection time2: $confectionTime2 ms")
 
-        roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+        roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
         val adapter = GeoJsonObjectMoshiAdapter()
         val outputFile = FileOutputStream("confected-names.geojson")
         outputFile.write(adapter.toJson(roads).toByteArray())
@@ -584,7 +584,7 @@ class MvtTileTest {
             while(longitude < -4.31029) {
 
                 val location = LngLatAlt(longitude, latitude)
-                val sensedNearestRoads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+                val sensedNearestRoads = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
                     .getNearestCollection(location, 20.0, 10, gridState.ruler)
 
                 var bestIndex = -1
@@ -710,7 +710,7 @@ class MvtTileTest {
                 if(gridChanged) {
                     // As we're here, test the name confection for the grids. This is relatively
                     // expensive and is only done on individual Ways as needed when running the app.
-                    val roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+                    val roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
                     for (road in roads) {
                         confectNamesForRoad(road as Way, gridState)
                     }
@@ -857,7 +857,7 @@ class MvtTileTest {
                 if(gridChanged) {
                     // As we're here, test the name confection for the grids. This is relatively
                     // expensive and is only done on individual Ways as needed when running the app.
-                    val roads = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+                    val roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
                     for (road in roads) {
                         confectNamesForRoad(road as Way, gridState)
                     }
@@ -973,7 +973,7 @@ class MvtTileTest {
 //        val mapMatchingOutput = FileOutputStream("total-output.geojson")
 //
 //        // Output the GeoJson and check that there's no data left from other tiles.
-//        val collection = gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+//        val collection = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
 //        collection += gridState.getFeatureCollection(TreeId.INTERSECTIONS)
 //        collection += gridState.getFeatureCollection(TreeId.POIS)
 //        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())

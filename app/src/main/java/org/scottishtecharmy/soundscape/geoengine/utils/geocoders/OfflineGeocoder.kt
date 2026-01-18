@@ -196,7 +196,7 @@ class OfflineGeocoder(
         }
 
         // Check if the location is alongside a road/path
-        val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
+        val nearestRoad = gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 100.0) as Way?
         if(nearestRoad != null) {
             // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
             val roadName = nearestRoad.getName(null, gridState, null, true)

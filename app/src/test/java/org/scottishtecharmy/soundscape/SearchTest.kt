@@ -131,7 +131,7 @@ class SearchTest {
                           streetName: String,
                           describeLocations: List<LngLatAlt>) {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE)
-        val nearbyWays = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val nearbyWays = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
             .getNearestCollection(
                 location,
                 100.0,
@@ -258,7 +258,7 @@ class SearchTest {
         // address in the OSM data.
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE)
 
-        val nearbyWays = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val nearbyWays = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
             .getNearestCollection(
                 location,
                 100.0,

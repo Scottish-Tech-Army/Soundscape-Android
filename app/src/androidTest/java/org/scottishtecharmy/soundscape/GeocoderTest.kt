@@ -106,7 +106,7 @@ class GeocoderTest {
         val dictionary = mutableListOf<String>()
         var timed = measureTime {
             val pois = gridState.getFeatureTree(TreeId.POIS).getAllCollection()
-            val roads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
+            val roads = gridState.getFeatureTree(TreeId.WAYS_SELECTION).getAllCollection()
             pois.forEach { poi ->
                 if (!(poi as MvtFeature).name.isNullOrEmpty()) {
                     dictionary.add(normalizeForSearch(poi.name!!))
@@ -147,7 +147,7 @@ class GeocoderTest {
             estimateNumberOfPlacenames(gridState)
 
             // Find the nearby road so as we can pretend that we are map matched
-            val roadTree = gridState.getFeatureTree(TreeId.ROADS)
+            val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
             val roads = roadTree.getNearestCollection(location, 500.0, 10, gridState.ruler)
             var mapMatchedWay : Way? = null
             if(nameForMatchedRoad.isNotEmpty()) {
