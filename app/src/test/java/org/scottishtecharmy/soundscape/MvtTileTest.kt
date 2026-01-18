@@ -54,8 +54,7 @@ import kotlin.time.measureTime
  * FileGridState overrides ProtomapsGridState updateTile to set validateContext to false as it
  * assumes that the tests are all running in a single context.
  */
-//const val offlineExtractPath = "src/test/res/org/scottishtecharmy/soundscape"
-const val offlineExtractPath = "/home/dave/STA/planetiler-openmaptiles/soundscape-maps/map-to-serve"
+const val offlineExtractPath = "src/test/res/org/scottishtecharmy/soundscape"
 class FileGridState(
     zoomLevel: Int = MAX_ZOOM_LEVEL,
     gridSize: Int = GRID_SIZE) : ProtomapsGridState(zoomLevel, gridSize) {
