@@ -8,6 +8,7 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.Analytics
 
 class AudioEngineTest {
 
@@ -52,6 +53,8 @@ class AudioEngineTest {
     }
 
     private fun initializeAudioEngine() : NativeAudioEngine {
+        Analytics.getInstance(true)
+
         // Use the instrumentation targetContext for the assets etc.
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val audioEngine = NativeAudioEngine()

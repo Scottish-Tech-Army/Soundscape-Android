@@ -36,7 +36,9 @@ fun Feature.toLocationDescription(source: LocationSource): LocationDescription? 
         }
         var json = jsonObject.toString()
         json = json.replace("\\/", "/")
-        val formattedAddress = formatter.format(json, getCurrentLocale().country)
+        var fallbackCountryCode = getCurrentLocale().country
+        if(fallbackCountryCode.isEmpty()) fallbackCountryCode = "GB"
+        val formattedAddress = formatter.format(json, fallbackCountryCode)
         var name : String? = properties["name"] as String?
         val mvt = (this as? MvtFeature)
         if(mvt != null)
@@ -68,7 +70,9 @@ fun Address.toLocationDescription(name: String?): LocationDescription {
     var json = jsonObject.toString()
     json = json.replace("\\/", "/")
 
-    val formattedAddress = formatter.format(json)
+    var fallbackCountryCode = getCurrentLocale().country
+    if(fallbackCountryCode.isEmpty()) fallbackCountryCode = "GB"
+    val formattedAddress = formatter.format(json, fallbackCountryCode)
     return LocationDescription(
         name = name ?: formattedAddress.substringBefore('\n'),
         description = formattedAddress,

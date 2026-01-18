@@ -51,9 +51,9 @@ jobs:
       - name: Setup offline maps for tests
         run: |
           pwd
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
           wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
 
       - name: Setup tile and search providers

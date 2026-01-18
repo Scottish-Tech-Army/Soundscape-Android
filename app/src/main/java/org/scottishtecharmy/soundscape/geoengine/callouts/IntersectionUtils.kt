@@ -141,8 +141,8 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                 else if (way.isSidewalkConnector(intersection, nearestRoad, gridState))
                     ++disposalCount
             }
-            if((i.members.size - disposalCount) < 3) {
-                // We're disposing of pavement intersections, if we've only got 2 or fewer non-
+            if((i.members.size - disposalCount) < 2) {
+                // We're disposing of pavement intersections, if we've got fewer then 2 non-
                 // pavement Ways then we're not interested in this intersection. Intersections
                 // worth describing have the Way we're coming in on as well as at least two other
                 // Ways leaving the intersection.
