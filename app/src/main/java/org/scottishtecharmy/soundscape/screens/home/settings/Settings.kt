@@ -211,14 +211,12 @@ fun Settings(
 
     val geocoderDescriptions = listOf(
         stringResource(R.string.settings_search_auto),
-        stringResource(R.string.settings_search_android),
-        stringResource(R.string.settings_search_photon),
+        stringResource(R.string.settings_search_online),
         stringResource(R.string.settings_search_offline),
     )
     val geocoderValues = listOf(
         "Auto",
-        "Android",
-        "Photon",
+        "Online",
         "Offline"
     )
 
