@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
@@ -71,7 +72,9 @@ class AutoCallout(
     }
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
-                                         geocoder: SoundscapeGeocoder): TrackedCallout? {
+                                         gridState: GridState,
+                                         settlementState: GridState,
+                                         localizedContext: Context?): TrackedCallout? {
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -90,17 +93,7 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val result = runBlocking {
-            val geocode = geocoder.getAddressFromLngLat (userGeometry, localizedContext)
-            if(geocode == null)
-                null
-            else
-                PositionedString(
-                    text = geocode.name,
-                    location = userGeometry.location,
-                    type = AudioType.LOCALIZED
-                )
-        }
+        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localizedContext)
         if(result != null) {
             val callout = TrackedCallout(
                 userGeometry,
@@ -298,7 +291,7 @@ class AutoCallout(
                     // buildCalloutForRoadSense builds a callout for travel that's faster than
                     // walking
                     val roadSenseCallout =
-                        buildCalloutForRoadSense(userGeometry, geocoder)
+                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid, localizedContext)
                     if (roadSenseCallout != null) {
                         trackedCallout = roadSenseCallout
                     } else {
