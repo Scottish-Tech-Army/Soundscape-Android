@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
@@ -1151,4 +1152,120 @@ fun formatDistanceAndDirection(distance: Double, heading: Double?, localizedCont
         headingText = ", " + localizedContext.getString(getCompassLabel(heading.toInt()))
     }
     return format("$distanceText$headingText")
+}
+
+fun travellingReverseGeocode(location: LngLatAlt,
+                             gridState: GridState,
+                             settlementGrid: GridState,
+                             localizedContext: Context?): LocationDescription? {
+
+    if(!gridState.isLocationWithinGrid(location)) return null
+
+    // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
+    val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+    val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
+    if(nearestBusStop != null) {
+        val busStopText = getTextForFeature(localizedContext, nearestBusStop as MvtFeature)
+        if(!busStopText.generic) {
+            return LocationDescription(
+                name = localizedContext?.getString(R.string.directions_near_name)
+                    ?.format(busStopText.text) ?: "Near ${busStopText.text}",
+                location = location,
+            )
+        }
+    }
+
+    // Check if we're inside a POI
+    val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
+    val insidePois = gridPoiTree.getContainingPolygons(location)
+    for(poi in insidePois) {
+        val mvtPoi = poi as MvtFeature
+        if(mvtPoi.name != null) {
+            return LocationDescription(
+                name = localizedContext?.getString(R.string.directions_at_poi)?.format(mvtPoi.name) ?: "At ${mvtPoi.name}",
+                location = location,
+            )
+        }
+    }
+
+    // Get the nearest settlements. Nominatim uses the following proximities, so we do the same:
+    //
+    // cities, municipalities, islands | 15 km
+    // towns, boroughs                 | 4 km
+    // villages, suburbs               | 2 km
+    // hamlets, farms, neighbourhoods  |  1 km
+    //
+    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
+        .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
+    var nearestSettlementName = nearestSettlement?.name
+    if(nearestSettlementName == null) {
+        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
+        nearestSettlementName = nearestSettlement?.name
+        if(nearestSettlementName == null) {
+            nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
+                .getNearestFeature(location, settlementGrid.ruler, 4000.0) as MvtFeature?
+            nearestSettlementName = nearestSettlement?.name
+            if (nearestSettlementName == null) {
+                nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
+                    .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
+                nearestSettlementName = nearestSettlement?.name
+            }
+        }
+    }
+
+    // Check if the location is alongside a road/path
+    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
+    if(nearestRoad != null) {
+        // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
+        val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
+        if(roadName.isNotEmpty()) {
+            if(nearestSettlementName != null) {
+                return LocationDescription(
+                    name = localizedContext?.getString(R.string.directions_near_road_and_settlement)
+                        ?.format(roadName, nearestSettlementName) ?: "Near $roadName and close to $nearestSettlementName",
+                    location = location,
+                )
+            } else {
+                return LocationDescription(
+                    name = localizedContext?.getString(R.string.directions_near_name)
+                        ?.format(roadName) ?: "Near $roadName",
+                    location = location,
+                )
+            }
+        }
+    }
+
+    if(nearestSettlementName != null) {
+        //val distanceToSettlement = settlementGrid.ruler.distance(location, (nearestSettlement?.geometry as Point).coordinates)
+        return LocationDescription(
+            name = localizedContext?.getString(R.string.directions_near_name)
+                ?.format(nearestSettlementName) ?: "Near $nearestSettlementName",
+            location = location,
+        )
+    }
+
+
+    return null
+}
+
+/** Reverse geocodes a location into 1 of 4 possible states
+ * - within a POI
+ * - alongside a road
+ * - general location
+ * - unknown location.
+ */
+fun describeReverseGeocode(userGeometry: UserGeometry,
+                           gridState: GridState,
+                           settlementGrid: GridState,
+                           localizedContext: Context?): PositionedString? {
+
+    val location = travellingReverseGeocode(userGeometry.location, gridState, settlementGrid, localizedContext)
+    location?.let { l ->
+        return PositionedString(
+            text = l.name,
+            location = userGeometry.location,
+            type = AudioType.LOCALIZED)
+    }
+    // We don't want to call out "Unknown place", so return null and skip this callout
+    return null
 }
