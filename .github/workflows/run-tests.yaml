@@ -85,6 +85,9 @@ jobs:
           target: default
           arch: x86_64
           script: |
+            adb root
+            adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+            adb push ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
             adb logcat -c                             # clear logs
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
