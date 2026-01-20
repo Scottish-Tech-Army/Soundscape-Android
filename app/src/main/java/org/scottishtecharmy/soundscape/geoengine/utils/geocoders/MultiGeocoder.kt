@@ -32,8 +32,7 @@ class MultiGeocoder(applicationContext: Context,
 
     private fun pickGeocoder() : SoundscapeGeocoder? {
         val settingsChoice = sharedPreferences?.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT)
-        val networkGeocoder = (settingsChoice != "Offline")
-        return if(networkGeocoder && networkUtils.hasNetwork())
+        return if(networkUtils.hasNetwork() && (settingsChoice != "Offline"))
             fusedGeocoder
         else
             localGeocoder
