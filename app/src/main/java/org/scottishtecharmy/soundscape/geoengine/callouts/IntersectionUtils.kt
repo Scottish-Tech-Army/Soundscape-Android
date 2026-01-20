@@ -335,8 +335,6 @@ fun addIntersectionCalloutFromDescription(
     // follow our nearestRoad to the intersection. However, we need to be careful with the heading
     // as the incoming Way to the intersection could be 90 degrees (or more?) away from the current
     // heading.
-
-    val heading = description.nearestRoad?.heading(description.intersection) ?: return null
     if(description.nearestRoad?.containsIntersection(description.intersection) != true) {
         if(description.nearestRoad == null)
             return null
@@ -353,6 +351,7 @@ fun addIntersectionCalloutFromDescription(
 
         shortestDistanceResults.tidy()
     }
+    val heading = description.nearestRoad?.heading(description.intersection) ?: return null
 
     if(description.intersection.members.size <= 2)
         return null
