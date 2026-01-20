@@ -816,11 +816,14 @@ class MvtTileTest {
 
                 // Assert that the contents are identical.
                 println("Compare ${file.nameWithoutExtension} results to reference")
-                assertEquals(
-                    "File content for ${file.nameWithoutExtension} does not match the reference file.",
-                    referenceLines,
-                    generatedLines
-                )
+
+                for((index,line) in referenceLines.withIndex()) {
+                    assertEquals(
+                        "File content for ${file.nameWithoutExtension} does not match the reference file.",
+                        line,
+                        generatedLines[index]
+                    )
+                }
             }
         }
     }

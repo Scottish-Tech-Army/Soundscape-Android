@@ -3,6 +3,18 @@ package org.scottishtecharmy.soundscape.utils
 fun String.blankOrEmpty() = this.isBlank() || this.isEmpty()
 fun String.nullIfEmpty(): String? = ifEmpty { null }
 
+fun String.containsNumber() : Boolean {
+    val words = split(" ")
+    for(word in words) {
+        if(word.isEmpty()) continue
+        if(word.first().isDigit()) {
+            // If any word starts with a number return true
+            return true
+        }
+    }
+    return false
+}
+
 /**
  * fuzzyCompare is based on Damerau-Levenshtein distance. It return a score which is the ratio of
  * the distance to the length of the strings. However, it also allows for the search string to be

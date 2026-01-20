@@ -39,45 +39,6 @@ class TileSearch(val offlineExtractPath: String,
 
     val stringCache = mutableMapOf<Long, List<String>>()
 
-    private val apostrophes = setOf('\'', '’', '‘', '‛', 'ʻ', 'ʼ', 'ʹ', 'ꞌ', '＇')
-
-    private fun normalizeForSearch(input: String): String {
-        // Unicode normalize (decompose accents etc.)
-        val normalizedString = Normalizer.normalize(input, Normalizer.Form.NFKD)
-
-        val sb = StringBuilder(normalizedString.length)
-        var lastWasSpace = false
-
-        for (ch in normalizedString) {
-            // Remove combining marks (diacritics)
-            val type = Character.getType(ch)
-            if (type == Character.NON_SPACING_MARK.toInt()) continue
-
-            // Make apostrophes disappear completely (missing/extra apostrophes become irrelevant)
-            if (ch in apostrophes) continue
-
-            // Turn most punctuation into spaces (keeps token boundaries stable)
-            val isLetterOrDigit = Character.isLetterOrDigit(ch)
-            val outCh = when {
-                isLetterOrDigit -> ch.lowercaseChar()
-                Character.isWhitespace(ch) -> ' '
-                else -> ' ' // punctuation -> space
-            }
-
-            if (outCh == ' ') {
-                if (!lastWasSpace) {
-                    sb.append(' ')
-                    lastWasSpace = true
-                }
-            } else {
-                sb.append(outCh)
-                lastWasSpace = false
-            }
-        }
-
-        return sb.toString().trim().lowercase(Locale.ROOT)
-    }
-
     fun findNearestNamedWay(location: LngLatAlt, name: String?) : Way? {
         val nearestWays =
             gridState.getFeatureTree(TreeId.ROADS).getNearestCollection(
@@ -607,4 +568,42 @@ class TileSearch(val offlineExtractPath: String,
             )
         }
     }
+}
+
+private val apostrophes = setOf('\'', '’', '‘', '‛', 'ʻ', 'ʼ', 'ʹ', 'ꞌ', '＇')
+fun normalizeForSearch(input: String): String {
+    // Unicode normalize (decompose accents etc.)
+    val normalizedString = Normalizer.normalize(input, Normalizer.Form.NFKD)
+
+    val sb = StringBuilder(normalizedString.length)
+    var lastWasSpace = false
+
+    for (ch in normalizedString) {
+        // Remove combining marks (diacritics)
+        val type = Character.getType(ch)
+        if (type == Character.NON_SPACING_MARK.toInt()) continue
+
+        // Make apostrophes disappear completely (missing/extra apostrophes become irrelevant)
+        if (ch in apostrophes) continue
+
+        // Turn most punctuation into spaces (keeps token boundaries stable)
+        val isLetterOrDigit = Character.isLetterOrDigit(ch)
+        val outCh = when {
+            isLetterOrDigit -> ch.lowercaseChar()
+            Character.isWhitespace(ch) -> ' '
+            else -> ' ' // punctuation -> space
+        }
+
+        if (outCh == ' ') {
+            if (!lastWasSpace) {
+                sb.append(' ')
+                lastWasSpace = true
+            }
+        } else {
+            sb.append(outCh)
+            lastWasSpace = false
+        }
+    }
+
+    return sb.toString().trim().lowercase(Locale.ROOT)
 }
