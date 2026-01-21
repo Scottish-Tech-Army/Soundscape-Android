@@ -33,6 +33,10 @@ class SearchTest {
             assertEquals("5 Buchanan Street", results[0].name)
             assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
 
+            results = tileSearch.search(currentLocation, "post office", null)
+            assertEquals("Craigash Road Post Office", results[0].name)
+            assertEquals("34 Craigash Road\nMilngavie\n", results[0].description)
+
             results = tileSearch.search(currentLocation, "roselea dr 8", null)
             assertEquals("8 Roselea Drive", results[0].name)
             assertEquals("8 Roselea Drive\nMilngavie\n", results[0].description)
