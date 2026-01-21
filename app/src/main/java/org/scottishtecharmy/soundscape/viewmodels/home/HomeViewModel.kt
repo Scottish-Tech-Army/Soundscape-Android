@@ -248,10 +248,6 @@ class HomeViewModel
 
     fun onToggleSearch() {
         _state.update { it.copy(isSearching = !it.isSearching) }
-
-        if (!state.value.isSearching) {
-            onSearchTextChange("")
-        }
     }
 
     fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
