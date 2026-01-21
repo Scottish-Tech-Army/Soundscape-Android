@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import android.content.Context
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -28,12 +30,38 @@ class OfflineGeocoder(
     val tileSearch: TileSearch? = null
 ) : SoundscapeGeocoder() {
 
+    fun addNamesFromGrid(treeId: TreeId, names: MutableSet<String>) {
+        val features = settlementGrid.getFeatureTree(treeId).getAllCollection()
+        for (feature in features) {
+            val name = (feature as MvtFeature).name
+            if(name != null) {
+                names.add(normalizeForSearch(name))
+            }
+        }
+    }
+
+    fun getSettlementNames() : Set<String> {
+        val names = mutableSetOf<String>()
+
+        addNamesFromGrid(TreeId.SETTLEMENT_CITY, names)
+        addNamesFromGrid(TreeId.SETTLEMENT_TOWN, names)
+        addNamesFromGrid(TreeId.SETTLEMENT_VILLAGE, names)
+        addNamesFromGrid(TreeId.SETTLEMENT_HAMLET, names)
+
+        return names
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,
         localizedContext: Context?    ) : List<LocationDescription>? {
         Analytics.getInstance().logEvent("offlineGeocode", null)
-        return tileSearch?.search(nearbyLocation, locationName, localizedContext)
+
+        val settlementNames = withContext(gridState.treeContext) {
+            getSettlementNames()
+        }
+        return tileSearch?.search(nearbyLocation, locationName, localizedContext, settlementNames)
     }
 
     private fun getNearestPointOnFeature(feature: Feature,

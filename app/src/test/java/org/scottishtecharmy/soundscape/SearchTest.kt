@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
@@ -28,48 +29,65 @@ class SearchTest {
             val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
             val settlementState = getGridStateForLocation(currentLocation, 12, 3)
             val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
 
-            var results = tileSearch.search(currentLocation, "5 buchanan street", null)
+            var results = offlineGeocoder.getAddressFromLocationName("5 buchanan street milngavie", currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
             assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "post office", null)
+            results = offlineGeocoder.getAddressFromLocationName("5 buchanan street mulngaviy", currentLocation, null)!!
+            assertEquals("5 Buchanan Street", results[0].name)
+            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+
+            results = offlineGeocoder.getAddressFromLocationName("5 buchanan street north woodside",currentLocation, null)!!
+            assertEquals("5 Buchanan Street", results[0].name)
+            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+
+            results = offlineGeocoder.getAddressFromLocationName("5 buchanan street clachan of campsie",currentLocation, null)!!
+            assertEquals("5 Buchanan Street", results[0].name)
+            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+
+            results = offlineGeocoder.getAddressFromLocationName("5 buchanan street",currentLocation, null)!!
+            assertEquals("5 Buchanan Street", results[0].name)
+            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+
+            results = offlineGeocoder.getAddressFromLocationName("post office", currentLocation, null)!!
             assertEquals("Craigash Road Post Office", results[0].name)
             assertEquals("34 Craigash Road\nMilngavie\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "roselea dr 8", null)
+            results = offlineGeocoder.getAddressFromLocationName( "roselea dr 8", currentLocation, null)!!
             assertEquals("8 Roselea Drive", results[0].name)
             assertEquals("8 Roselea Drive\nMilngavie\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "greggs     ", null)
+            results = offlineGeocoder.getAddressFromLocationName( "greggs     ", currentLocation, null)!!
             assertEquals("Greggs", results[0].name)
             assertEquals("6 Douglas Street\nMilngavie\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "milverton avenue", null)
+            results = offlineGeocoder.getAddressFromLocationName( "milverton avenue", currentLocation, null)!!
             assertEquals("Milverton Avenue", results[0].name)
             assertEquals("Milverton Avenue\nBearsden\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "milverto avenue", null)
+            results = offlineGeocoder.getAddressFromLocationName( "milverto avenue", currentLocation, null)!!
             assertEquals("Milverton Avenue", results[0].name)
             assertEquals("Milverton Avenue\nBearsden\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "roselea dr", null)
+            results = offlineGeocoder.getAddressFromLocationName( "roselea dr", currentLocation, null)!!
             assertEquals("Roselea Drive", results[0].name)
             assertEquals("Roselea Drive\nMilngavie\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "dirleton gate", null)
+            results = offlineGeocoder.getAddressFromLocationName( "dirleton gate", currentLocation, null)!!
             assertEquals("Dirleton Gate", results[0].name)
             assertEquals("Dirleton Gate\nNetherton\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "dirleton gate", null)
+            results = offlineGeocoder.getAddressFromLocationName( "dirleton gate", currentLocation, null)!!
             assertEquals("Dirleton Gate", results[0].name)
             assertEquals("Dirleton Gate\nNetherton\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "dirleton gate 20", null)
+            results = offlineGeocoder.getAddressFromLocationName( "dirleton gate 20", currentLocation, null)!!
             assertEquals("Dirleton Gate", results[0].name)
             assertEquals("Dirleton Gate\nNetherton\n", results[0].description)
 
-            results = tileSearch.search(currentLocation, "craigton road", null)
+            results = offlineGeocoder.getAddressFromLocationName( "craigton road", currentLocation, null)!!
             assertEquals("Craigton Road", results[0].name)
             assertEquals("Craigton Road\nMilngavie\n", results[0].description)
         }

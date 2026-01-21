@@ -91,13 +91,59 @@ class TileSearch(val offlineExtractPath: String,
         return false
     }
 
+    fun addLastWords(wordCount: Int, words: List<String>) : String {
+        val result = StringBuilder()
+        var count = wordCount
+        for(word in words.reversed()) {
+            result.insert(0, word)
+            if(--count == 0)
+                break
+            result.insert(0, " ")
+        }
+        return result.toString()
+    }
+
+    fun generateWithoutSettlement(string: String, settlementNames: Set<String>) : String? {
+        val hayStackWords = string.trim().split(" ")
+
+        // Try and match the last words with settlements - non fuzzy!
+        var wordTarget = hayStackWords.size
+        for(settlementName in settlementNames) {
+            if (settlementName.fuzzyCompare(hayStackWords.last(), true) < 0.25) {
+                // We have a one word match
+                wordTarget = hayStackWords.size - 1
+                break
+            } else {
+                // Search for settlements with up to 5 words in name
+                for(count in 1 .. 5) {
+                    if ((hayStackWords.size > count) && (settlementName.fuzzyCompare(
+                            addLastWords(count, hayStackWords), true
+                        ) < 0.25)
+                    ) {
+                        wordTarget = hayStackWords.size - count
+                        break
+                    }
+                }
+            }
+            if(wordTarget != hayStackWords.size) break
+        }
+        // No matches found, so only search on full string
+        if(wordTarget == hayStackWords.size) return null
+
+        val finalWordsBuilder = StringBuilder()
+        for (word in hayStackWords) {
+            finalWordsBuilder.append(word)
+            finalWordsBuilder.append(" ")
+            --wordTarget
+            if(wordTarget == 0)
+                break
+        }
+        return finalWordsBuilder.toString().trim()
+    }
+
     fun generateEndOfString(string: String, maxLength: Int) : String {
         val normalizedString = normalizeForSearch(string)
 
-        // Search a bit harder. We already match from the front but how about from the
-        // back? In this case we want to try and match the final words of the haystack.
-        // The example here is matching "Craigash Road Post Office" with "Post Office".
-        // We don't try and match in the middle of the string, just try from the end.
         val hayStackWords = normalizedString.split(" ")
         val finalWordsBuilder = StringBuilder()
         for (word in hayStackWords.reversed()) {
@@ -113,7 +159,8 @@ class TileSearch(val offlineExtractPath: String,
     fun search(
         location: LngLatAlt,
         searchString: String,
-        localizedContext: Context?
+        localizedContext: Context?,
+        settlementNames: Set<String>
     ) : List<LocationDescription> {
         val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
@@ -166,7 +213,10 @@ class TileSearch(val offlineExtractPath: String,
 
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
-
+        val needleWithoutSettlement = if(housenumber.isNotEmpty())
+                generateWithoutSettlement(normalizedNeedle, settlementNames)
+            else
+                null
         while (turnCount < maxTurns) {
             val tileIndex = x.toLong() + (y.toLong().shl(32))
             var cache = stringCache[tileIndex]
@@ -199,16 +249,27 @@ class TileSearch(val offlineExtractPath: String,
                         x, y
                     )
                 ) {
-                    if(string.length <= normalizedNeedle.length)
-                        continue
-
-                    compareAndAddToResults(
-                        normalizedNeedle,
-                        generateEndOfString(string, normalizedNeedle.length),
-                        searchResults,
-                        searchResultLimit,
-                        x, y
-                    )
+                    if(string.length > normalizedNeedle.length) {
+                        if (compareAndAddToResults
+                                (
+                                normalizedNeedle,
+                                generateEndOfString(string, normalizedNeedle.length),
+                                searchResults,
+                                searchResultLimit,
+                                x, y
+                            )
+                        )
+                            continue
+                    }
+                    if(needleWithoutSettlement != null) {
+                        compareAndAddToResults(
+                            needleWithoutSettlement,
+                            string,
+                            searchResults,
+                            searchResultLimit,
+                            x, y
+                        )
+                    }
                 }
             }
             // --- 2. Move to the next position in the spiral ---
@@ -263,9 +324,6 @@ class TileSearch(val offlineExtractPath: String,
                                     } else {
                                         if(value.stringValue.length <= result.string.length)
                                             continue
-                                        if(value.stringValue == "Craigash Road Post Office") {
-                                            println("!")
-                                        }
                                         if(
                                             generateEndOfString(
                                                 value.stringValue, result.string.length
