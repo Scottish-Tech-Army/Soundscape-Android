@@ -5,8 +5,6 @@ import android.location.Address
 import android.location.Geocoder
 import android.os.Build
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -55,12 +53,23 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 geocoder.getFromLocationName(
                     locationName,
                     5,
+                    nearbyLocation.latitude - 10.0,
+                    nearbyLocation.longitude - 10.0,
+                    nearbyLocation.latitude + 10.0,
+                    nearbyLocation.longitude + 10.0,
                     geocodeListener
                 )
             }?.mapNotNull{feature -> feature.toLocationDescription(locationName) }
         } else {
             @Suppress("DEPRECATION")
-            val addresses = geocoder.getFromLocationName(locationName, 5)
+            val addresses = geocoder.getFromLocationName(
+                locationName,
+                5,
+                nearbyLocation.latitude - 10.0,
+                nearbyLocation.longitude - 10.0,
+                nearbyLocation.latitude + 10.0,
+                nearbyLocation.longitude + 10.0,
+            )
             if(addresses != null) {
                 return addresses.mapNotNull{feature -> feature.toLocationDescription(locationName) }
             }
