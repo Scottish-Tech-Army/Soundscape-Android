@@ -14,4 +14,20 @@
     <string name="voice_engine" tools:ignore="MissingTranslation">Kõnesünteesimootor</string>
     <string name="voice_voices">Hääled</string>
     <string name="beacon_settings_style">Helistiilid</string>
+    <string name="beacon_styles_current">Praegune</string>
+    <string name="beacon_styles_original">Algne</string>
+    <string name="beacon_styles_flare">Erk lamp</string>
+    <string name="beacon_styles_shimmer">Mahe lamp</string>
+    <string name="beacon_styles_tactile">Kombatav</string>
+    <string name="beacon_styles_ping">Kõll</string>
+    <string name="beacon_styles_drop">Kolks</string>
+    <string name="beacon_styles_signal">Signaal</string>
+    <string name="beacon_styles_signal_slow">Signaal (aeglane)</string>
+    <string name="beacon_styles_signal_very_slow">Signaal (väga aeglane)</string>
+    <string name="beacon_styles_mallet">Vasarake</string>
+    <string name="beacon_styles_mallet_slow">Vasarake (aeglane)</string>
+    <string name="beacon_styles_mallet_very_slow">Vasarake (väga aeglane)</string>
+    <string name="beacon_audio_beacon">Helimajakas</string>
+    <string name="beacon_action_mute_beacon">Summuta helimajakas</string>
+    <string name="beacon_action_mute_beacon_acc_hint">summuta helimajakas topeltpuudutusega.</string>
 </resources>
