@@ -147,6 +147,12 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                 // worth describing have the Way we're coming in on as well as at least two other
                 // Ways leaving the intersection.
                 add = false
+            } else {
+                if((i.members.size - disposalCount) == 2) {
+                    // If the way names are the same then also skip it
+                    if(i.members[0].name == i.members[1].name)
+                        add = false
+                }
             }
         }
         if(add)
