@@ -6,7 +6,6 @@ import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.SearchBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -46,6 +45,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
@@ -122,6 +122,8 @@ fun HomeScreen(
             val location = LngLatAlt(latLong.longitude, latLong.latitude)
             val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
             navController.navigate(generateLocationDetailsRoute(ld))
+
+            Analytics.getInstance().logEvent("longPressOnMap", null)
             true
         }
     }
