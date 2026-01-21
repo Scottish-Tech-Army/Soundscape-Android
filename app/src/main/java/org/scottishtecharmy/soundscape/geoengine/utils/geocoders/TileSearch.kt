@@ -63,6 +63,52 @@ class TileSearch(val offlineExtractPath: String,
         return null
     }
 
+    data class TileSearchResult(
+        var score: Double,
+        var string: String,
+        val tileX: Int,
+        val tileY: Int,
+    )
+    fun compareAndAddToResults(normalizedNeedle: String,
+                               haystackString: String,
+                               searchResults: MutableList<TileSearchResult>,
+                               searchResultLimit: Int,
+                               tileX: Int, tileY: Int) : Boolean {
+        val score = normalizedNeedle.fuzzyCompare(haystackString, true)
+        if (score < 0.25) {
+            // If we already have better search results, discard this one
+            val countOfBetter = searchResults.count { it.score < score }
+            if (countOfBetter < searchResultLimit) {
+                println("Found $normalizedNeedle as $haystackString (score $score) in tile ($tileX, $tileY)")
+                searchResults += TileSearchResult(score, haystackString, tileX, tileY)
+                searchResults.sortBy { it.score }
+                if (searchResults.size > searchResultLimit)
+                    searchResults.removeAt(searchResults.lastIndex)
+
+                return true
+            }
+        }
+        return false
+    }
+
+    fun generateEndOfString(string: String, maxLength: Int) : String {
+        val normalizedString = normalizeForSearch(string)
+
+        // Search a bit harder. We already match from the front but how about from the
+        // back? In this case we want to try and match the final words of the haystack.
+        // The example here is matching "Craigash Road Post Office" with "Post Office".
+        // We don't try and match in the middle of the string, just try from the end.
+        val hayStackWords = normalizedString.split(" ")
+        val finalWordsBuilder = StringBuilder()
+        for (word in hayStackWords.reversed()) {
+            finalWordsBuilder.insert(0, " ")
+            finalWordsBuilder.insert(0, word)
+            if (finalWordsBuilder.length >= maxLength)
+                break
+        }
+        return finalWordsBuilder.toString().trim()
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     fun search(
         location: LngLatAlt,
@@ -71,10 +117,10 @@ class TileSearch(val offlineExtractPath: String,
     ) : List<LocationDescription> {
         val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
-        var reader : Reader? = null
-        for(extract in extracts) {
+        var reader: Reader? = null
+        for (extract in extracts) {
             reader = Reader(File(extract))
-            if(reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
+            if (reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
                 break
         }
 
@@ -97,9 +143,9 @@ class TileSearch(val offlineExtractPath: String,
         var housenumber = ""
         val needleBuilder = StringBuilder()
         val words = searchString.split(" ")
-        for(word in words) {
-            if(word.isEmpty()) continue
-            if(word.first().isDigit()) {
+        for (word in words) {
+            if (word.isEmpty()) continue
+            if (word.first().isDigit()) {
                 // If any word starts with a number we're going to assume is a house number...big if.
                 housenumber = word
             } else {
@@ -110,12 +156,6 @@ class TileSearch(val offlineExtractPath: String,
         }
         val normalizedNeedle = normalizeForSearch(needleBuilder.toString())
 
-        data class TileSearchResult(
-            var score: Double,
-            var string: String,
-            val tileX: Int,
-            val tileY: Int,
-        )
         data class DetailedSearchResult(
             var score: Double,
             var string: String,
@@ -123,21 +163,22 @@ class TileSearch(val offlineExtractPath: String,
             var properties: HashMap<String, Any?> = hashMapOf(),
             val layer: String
         )
+
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
 
         while (turnCount < maxTurns) {
             val tileIndex = x.toLong() + (y.toLong().shl(32))
             var cache = stringCache[tileIndex]
-            if(cache == null) {
+            if (cache == null) {
                 // Load the tile and add all of its String to a cache
                 cache = mutableListOf()
                 val tileData = reader?.getTile(MAX_ZOOM_LEVEL, x, y)
                 if (tileData != null) {
                     val tile = decompressTile(reader.tileCompression, tileData)
-                    if(tile != null) {
-                        for(layer in tile.layersList) {
-                            if((layer.name == "transportation") || (layer.name == "poi")){
+                    if (tile != null) {
+                        for (layer in tile.layersList) {
+                            if ((layer.name == "transportation") || (layer.name == "poi")) {
                                 for (value in layer.valuesList) {
                                     if (value.hasStringValue()) {
                                         cache.add(normalizeForSearch(value.stringValue))
@@ -149,18 +190,25 @@ class TileSearch(val offlineExtractPath: String,
                     }
                 }
             }
-            for(string in cache) {
-                val score = normalizedNeedle.fuzzyCompare(string, true)
-                if(score < 0.25) {
-                    // If we already have better search results, discard this one
-                    val countOfBetter = searchResults.count { it.score < score }
-                    if(countOfBetter < searchResultLimit) {
-                        println("Found $searchString as $string (score $score) in tile ($x, $y)")
-                        searchResults += TileSearchResult(score, string, x, y)
-                        searchResults.sortBy { it.score }
-                        if(searchResults.size > searchResultLimit)
-                            searchResults.removeAt(searchResults.lastIndex)
-                    }
+            for (string in cache) {
+                if (!compareAndAddToResults(
+                        normalizedNeedle,
+                        string,
+                        searchResults,
+                        searchResultLimit,
+                        x, y
+                    )
+                ) {
+                    if(string.length <= normalizedNeedle.length)
+                        continue
+
+                    compareAndAddToResults(
+                        normalizedNeedle,
+                        generateEndOfString(string, normalizedNeedle.length),
+                        searchResults,
+                        searchResultLimit,
+                        x, y
+                    )
                 }
             }
             // --- 2. Move to the next position in the spiral ---
@@ -212,6 +260,21 @@ class TileSearch(val offlineExtractPath: String,
                                         stringKey = index
                                         stringValue = value.stringValue
                                         break
+                                    } else {
+                                        if(value.stringValue.length <= result.string.length)
+                                            continue
+                                        if(value.stringValue == "Craigash Road Post Office") {
+                                            println("!")
+                                        }
+                                        if(
+                                            generateEndOfString(
+                                                value.stringValue, result.string.length
+                                            ) == result.string
+                                        ) {
+                                            stringKey = index
+                                            stringValue = value.stringValue
+                                            break
+                                        }
                                     }
                                 }
                             }
