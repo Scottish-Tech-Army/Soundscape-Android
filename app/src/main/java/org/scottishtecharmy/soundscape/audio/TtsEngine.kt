@@ -103,6 +103,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         val voiceType = sharedPreferences.getString(MainActivity.VOICE_TYPE_KEY, MainActivity.VOICE_TYPE_DEFAULT)!!
         if(textToSpeech.voices != null) {
             for (voice in textToSpeech.voices) {
+                if(voice == null) continue
                 if (voice.name == voiceType) {
                     if (textToSpeechVoiceType != voice.name) {
                         Log.d(
