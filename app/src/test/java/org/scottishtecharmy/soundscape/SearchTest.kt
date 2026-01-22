@@ -31,7 +31,10 @@ class SearchTest {
             val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
             val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
 
-            var results = offlineGeocoder.getAddressFromLocationName("5 buchanan street milngavie", currentLocation, null)!!
+            var results = offlineGeocoder.getAddressFromLocationName( "12 roselea drive", currentLocation, null)!!
+            assertEquals(1, results.size)
+
+            results = offlineGeocoder.getAddressFromLocationName("5 buchanan street milngavie", currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
             assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
 
@@ -58,6 +61,10 @@ class SearchTest {
             results = offlineGeocoder.getAddressFromLocationName( "roselea dr 8", currentLocation, null)!!
             assertEquals("8 Roselea Drive", results[0].name)
             assertEquals("8 Roselea Drive\nMilngavie\n", results[0].description)
+
+            results = offlineGeocoder.getAddressFromLocationName( "20 roselea drive milngavie", currentLocation, null)!!
+            assertEquals("20 Roselea Drive", results[0].name)
+            assertEquals("20 Roselea Drive\nMilngavie\n", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "greggs     ", currentLocation, null)!!
             assertEquals("Greggs", results[0].name)

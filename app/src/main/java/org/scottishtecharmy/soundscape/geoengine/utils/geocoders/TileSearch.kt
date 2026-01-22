@@ -213,10 +213,7 @@ class TileSearch(val offlineExtractPath: String,
 
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
-        val needleWithoutSettlement = if(housenumber.isNotEmpty())
-                generateWithoutSettlement(normalizedNeedle, settlementNames)
-            else
-                null
+        val needleWithoutSettlement = generateWithoutSettlement(normalizedNeedle, settlementNames)
         while (turnCount < maxTurns) {
             val tileIndex = x.toLong() + (y.toLong().shl(32))
             var cache = stringCache[tileIndex]
@@ -513,23 +510,20 @@ class TileSearch(val offlineExtractPath: String,
                     a.score.compareTo(b.score)
             }
             .fold(mutableListOf<DetailedSearchResult>()) { accumulator, result ->
-                if(accumulator.size < 5) {
-                    // Check if we already have this exact name at approximately the same location
-                    val isDuplicate = accumulator.any {
-                        it.string == result.string && ruler.distance(
-                            it.location,
-                            result.location
-                        ) < 100.0
-                    }
-                    if (!isDuplicate) {
-                        accumulator.add(result)
-                    }
+                // Check if we already have this exact name at approximately the same location
+                val isDuplicate = accumulator.any {
+                    it.string == result.string && ruler.distance(
+                        it.location,
+                        result.location
+                    ) < 100.0
+                }
+                if (!isDuplicate) {
+                    accumulator.add(result)
                 }
                 accumulator
             }
 
-        return whittledResults.map { result ->
-
+        val streetResults = whittledResults.map { result ->
             val mvt = MvtFeature()
             mvt.name = result.properties.get("name") as? String?
             mvt.properties = result.properties
@@ -615,73 +609,21 @@ class TileSearch(val offlineExtractPath: String,
                     }
                 }
             }
-
-//        // We could decode just the housenumbers layer in the tile, but that only works for
-//        // direct matches and not interpolation. We could try and interpolate from known values,
-//        // but that's more special code which seems like a bad idea.
-//        for(result in searchResults) {
-//            val tileData = reader?.getTile(MAX_ZOOM_LEVEL, result.tileX, result.tileY)
-//            if (tileData != null) {
-//                val tile = decompressTile(reader.tileCompression, tileData)
-//                if(tile != null) {
-//                    for(layer in tile.layersList) {
-//                        // Was the string found in transportation or POI? TODO: Or both?
-//                        if(layer.name == "housenumber"){
-//                            // We need to look for the feature. First search by street.
-//                            for (feature in layer.featuresList) {
-//                                var firstInPair = true
-//                                var key = ""
-//                                var street = ""
-//                                var housenumber = ""
-//                                for (tag in feature.tagsList) {
-//                                    if (firstInPair) {
-//                                        key = layer.getKeys(tag)
-//                                    } else {
-//                                        val raw = layer.getValues(tag)
-//                                        if (raw.hasStringValue()) {
-//                                            if(key == "street") {
-//                                                street = raw.stringValue.toString()
-//                                            } else if(key == "housenumber") {
-//                                                housenumber = raw.stringValue.toString()
-//                                            }
-//                                        }
-//                                    }
-//                                    firstInPair = !firstInPair
-//                                }
-//                                if((normalizeForSearch(street) == result.string) && housenumber == "12") {
-//                                    if (feature.type == VectorTile.Tile.GeomType.POINT) {
-//                                        val points = parseGeometry(true, feature.geometryList)
-//                                        for (point in points) {
-//                                            if (point.isNotEmpty()) {
-//                                                val coordinates = convertGeometry(
-//                                                    result.tileX,
-//                                                    result.tileY,
-//                                                    MAX_ZOOM_LEVEL,
-//                                                    point
-//                                                )
-//                                                for (coordinate in coordinates) {
-//                                                    detailedResults.add(
-//                                                        DetailedSearchResult(
-//                                                            result.score,
-//                                                            "$housenumber $street",
-//                                                            coordinate
-//                                                        )
-//                                                    )
-//                                                    break
-//                                                }
-//                                            }
-//                                        }
-//                                        break
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-////                    result.string = stringValue
-//                }
-//            }
-//        }
-
+            Pair(mvt, result)
+        }.fold(mutableListOf<Pair<MvtFeature, DetailedSearchResult>>()) { accumulator, result ->
+                // Check if we already have this exact name at approximately the same location
+                val isDuplicate = accumulator.any {
+                    it.second.string == result.second.string && ruler.distance(
+                        it.second.location,
+                        result.second.location
+                    ) < 100.0
+                }
+                if (!isDuplicate) {
+                    accumulator.add(result)
+                }
+                accumulator
+            }
+        return streetResults.map { (mvt, result) ->
             val ld = mvt.toLocationDescription(LocationSource.OfflineGeocoder)
             ld ?: LocationDescription(
                 name = result.string,

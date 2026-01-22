@@ -187,6 +187,7 @@ fun Home(
                         MainSearchBar(
                             searchText = searchText,
                             isSearching = state.isSearching,
+                            searchInProgress = state.searchInProgress,
                             itemList = state.searchItems.orEmpty(),
                             searchFunctions = searchFunctions,
                             onItemClick = { item ->

@@ -30,6 +30,10 @@
 <string name="settings_search_offline" tools:ignore="MissingTranslation">"Offline"</string>
 <!-- The option for setting the search to automatically pick the best engine based on network and device capabilities -->
 <string name="settings_search_auto" tools:ignore="MissingTranslation">"Auto"</string>
+<!-- Text shown when no search results were found -->
+<string name="search_no_results" tools:ignore="MissingTranslation">"No search results found"</string>
+<!-- Text shown when no search in progress -->
+<string name="search_searching" tools:ignore="MissingTranslation">"Searching..."</string>
 <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">"Speaking Rate"</string>
 <!-- Title for option to select the text-to-speech engine to use. -->
@@ -919,13 +923,13 @@ The main changes in this release are for *Search* and describing the current add
 
 Tips for searching
 
+In previous versions, search would be triggered whilst entering the search text. The user now needs to hit enter/search on the keyboard in order to start the search. This simplifies the Talkback experience whilst also reducing server load.
+
 Searching can be forced to be offline only in the settings. The default Auto setting means that it uses online search when there's network available and offline search when there's none.
 
 When searching for a street address, including the town name is important for online search, though it can be omitted in offline search.
 
 Mapping of street numbers in the OpenStreetMap data that we use varies depending on location. Offline search will use street numbers when they are available, though an offline map downloaded in the app after January 19th 2026 is required.
-
-As always please report any problems, however small they may be via the *Contact Support* option in the main menu.
 
 As always please report any problems, however small they may be via the *Contact Support* option in the main menu.
 "</string>

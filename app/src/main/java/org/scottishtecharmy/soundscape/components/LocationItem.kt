@@ -116,7 +116,11 @@ fun LocationItem(
                     contentDescription = if(decoration.index != -1) {
                         "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
                     } else {
-                        item.name
+                        val description = item.description
+                        if((description != null) && description.startsWith(item.name))
+                            description
+                        else
+                            item.name + ", " + item.description
                     }
                 }
                 if(decoration.reorderable) {

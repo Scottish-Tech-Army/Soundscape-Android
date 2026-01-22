@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.components
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,10 +36,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.delay
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.talkbackLive
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,15 +49,24 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun MainSearchBar(
     searchText: String,
     isSearching: Boolean,
+    searchInProgress: Boolean,
     itemList: List<LocationDescription>,
     searchFunctions: SearchFunctions,
     onItemClick: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?
 ) {
-    val focusRequester = remember { FocusRequester() }
+    val searchLocation = remember { userLocation }
+    val firstItemFocusRequester = remember { FocusRequester() }
+    val searchTriggered = remember { mutableStateOf(false) }
+
     var textFieldValue by remember {
         mutableStateOf(TextFieldValue(searchText, TextRange(searchText.length)))
     }
+
+    // Track the last search query for which we moved focus to results
+    var lastFocusedQuery by remember { mutableStateOf<String?>(null) }
+
+
     LaunchedEffect(searchText) {
         if (searchText != textFieldValue.text) {
             textFieldValue = textFieldValue.copy(
@@ -65,9 +77,22 @@ fun MainSearchBar(
     }
     LaunchedEffect(isSearching) {
         if (isSearching) {
-            focusRequester.requestFocus()
             // Force cursor to the end when returning/expanding
             textFieldValue = textFieldValue.copy(selection = TextRange(searchText.length))
+        } else {
+            // Reset the last focused query when search is closed
+            lastFocusedQuery = null
+        }
+    }
+
+    LaunchedEffect(itemList, searchInProgress) {
+        // Move focus to the first result when search finishes and there are results,
+        // but only if we haven't already moved focus for this specific query.
+        if (!searchInProgress && itemList.isNotEmpty() && searchText != lastFocusedQuery) {
+            // A small delay ensures the UI has composed the results before we try to focus
+            delay(1000)
+            firstItemFocusRequester.requestFocus()
+            lastFocusedQuery = searchText
         }
     }
 
@@ -90,11 +115,13 @@ fun MainSearchBar(
                 //  bar we'll await this being fixed in Material3.
                 query = textFieldValue.text,
                 onQueryChange = { newText ->
-                    println("onQueryChange $newText ${newText.length} ${textFieldValue.selection}")
                     textFieldValue = textFieldValue.copy(text = newText, selection = TextRange(newText.length))
                     searchFunctions.onSearchTextChange(newText)
                 },
-                onSearch = { searchFunctions.onTriggerSearch() },
+                onSearch = {
+                    searchTriggered.value = true
+                    searchFunctions.onTriggerSearch()
+                },
                 expanded = isSearching,
                 onExpandedChange = { expanded ->
                     if (expanded != isSearching) {
@@ -102,7 +129,6 @@ fun MainSearchBar(
                     }
                 },
                 placeholder = { Text(stringResource(id = R.string.search_choose_destination)) },
-                modifier = Modifier.focusRequester(focusRequester),
                 leadingIcon = {
                     when {
                         !isSearching -> {
@@ -137,46 +163,70 @@ fun MainSearchBar(
             }
         }
     ) {
-        Column(
-            modifier =
-                Modifier
-                    .semantics {
-                        this.collectionInfo =
-                            CollectionInfo(
-                                rowCount = itemList.size, // Total number of items
-                                columnCount = 1, // Single-column list
-                            )
-                    }
-                    .fillMaxSize()
-        ) {
-            LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {
-                itemsIndexed(itemList) { index, item ->
-                    Column {
-                        LocationItem(
-                            item = item,
-                            decoration = LocationItemDecoration(
-                                location = true,
-                                source = item.source,
-                                details = EnabledFunction(
-                                    true,
-                                    {
-                                        onItemClick(item)
-                                    }
+        if(searchInProgress) {
+            Text(
+                text = stringResource(R.string.search_searching),
+                modifier = Modifier.talkbackLive()
+            )
+        }
+        else if(itemList.isEmpty()) {
+            if(searchTriggered.value) {
+                Text(
+                    text = stringResource(R.string.search_no_results),
+                    modifier = Modifier.talkbackLive()
+                )
+            }
+        } else {
+            Column(
+                modifier =
+                    Modifier
+                        .semantics {
+                            this.collectionInfo =
+                                CollectionInfo(
+                                    rowCount = itemList.size, // Total number of items
+                                    columnCount = 1, // Single-column list
                                 )
-                            ),
-                            modifier =
-                                Modifier.semantics {
-                                    this.collectionItemInfo =
-                                        CollectionItemInfo(
-                                            rowSpan = 1,
-                                            columnSpan = 1,
-                                            rowIndex = index,
-                                            columnIndex = 0,
-                                        )
-                                },
-                            userLocation = userLocation
-                        )
-                        HorizontalDivider()
+                        }
+                        .fillMaxSize()
+            ) {
+                LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {
+                    itemsIndexed(itemList) { index, item ->
+                        var modifier =
+                            Modifier.semantics {
+                                this.collectionItemInfo =
+                                    CollectionItemInfo(
+                                        rowSpan = 1,
+                                        columnSpan = 1,
+                                        rowIndex = index,
+                                        columnIndex = 0,
+                                    )
+                            }
+                        
+                        if(index == 0) {
+                            println("Set up focusRequester")
+                            modifier = modifier
+                                .focusRequester(firstItemFocusRequester)
+                                .focusable()
+                        }
+
+                        Column {
+                            LocationItem(
+                                item = item,
+                                decoration = LocationItemDecoration(
+                                    location = true,
+                                    source = item.source,
+                                    details = EnabledFunction(
+                                        true,
+                                        {
+                                            onItemClick(item)
+                                        }
+                                    )
+                                ),
+                                modifier = modifier,
+                                userLocation = searchLocation
+                            )
+                            HorizontalDivider()
+                        }
                     }
                 }
             }
@@ -191,6 +241,7 @@ fun MainSearchPreview() {
     MainSearchBar(
         searchText = "",
         isSearching = false,
+        searchInProgress = false,
         emptyList(),
         SearchFunctions(null),
         {},
@@ -203,6 +254,7 @@ fun MainSearchPreviewSearching() {
     MainSearchBar(
         searchText = "Monaco",
         isSearching =  true,
+        searchInProgress = false,
         emptyList(),
         SearchFunctions(null),
         {},
@@ -210,5 +262,16 @@ fun MainSearchPreviewSearching() {
     )
 }
 
-
-
+@Preview(showBackground = true)
+@Composable
+fun MainSearchPreviewSearchInProgress() {
+    MainSearchBar(
+        searchText = "Monaco",
+        isSearching =  true,
+        searchInProgress = true,
+        emptyList(),
+        SearchFunctions(null),
+        {},
+        LngLatAlt()
+    )
+}

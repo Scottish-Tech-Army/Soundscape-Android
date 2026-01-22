@@ -309,6 +309,7 @@ class GeocoderTest {
             settlementGrid.start(ApplicationProvider.getApplicationContext())
 
             val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
+            geocodeLocation(geocoderList, milngavie, "Greggs Milngavi", gridState, settlementGrid)
             geocodeLocation(geocoderList, milngavie, "Honeybee Bakery, Milngavie", gridState, settlementGrid)
 
             val lisbon = LngLatAlt(-9.145010116796168, 38.707989573367804)
@@ -378,6 +379,7 @@ class GeocoderTest {
 
             val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
             val milngavieResults = geocoder.getAddressFromLocationName("Honeybee Bakery, Milngavie", milngavie, appContext)
+            val greggsResults = geocoder.getAddressFromLocationName("Greggs Milngavi", milngavie, appContext)
 
             val lisbon = LngLatAlt(-9.145010116796168, 38.707989573367804)
             val lisbonResults = geocoder.getAddressFromLocationName("Taberna Tosca, Lisbon", lisbon, appContext)
