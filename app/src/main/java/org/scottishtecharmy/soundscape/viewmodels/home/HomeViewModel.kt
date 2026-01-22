@@ -236,13 +236,10 @@ class HomeViewModel
 
     fun onTriggerSearch() {
         viewModelScope.launch {
+            _state.update { it.copy(searchInProgress = true) }
             val result =
                 soundscapeServiceConnection.soundscapeService?.searchResult(searchText.value)
-            _state.update {
-                it.copy(
-                    searchItems = result
-                )
-            }
+            _state.update { it.copy(searchItems = result,searchInProgress = false) }
         }
     }
 

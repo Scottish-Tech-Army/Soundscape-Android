@@ -13,6 +13,7 @@ data class HomeState(
     var beaconState: BeaconState? = null,
     var streetPreviewState: StreetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
     var isSearching: Boolean = false,
+    var searchInProgress: Boolean = false,
     var searchItems: List<LocationDescription>? = null,
     var routesTabSelected: Boolean = true,
     var currentRouteData: RoutePlayerState = RoutePlayerState(),
