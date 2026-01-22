@@ -921,9 +921,9 @@
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
 The main changes in this release are for *Search* and describing the current address. When there is network available, *Search* will use Android as well as our own Photon server to find places. The main improvements here are firstly that searching by street number should work much better in many parts of the world. Secondly, we have also added offline search which uses any downloaded maps to search for addresses and points of interest. Offline search works up to around 5 miles around the user.
 
-Tips for searching
+Tips for searching:
 
-In previous versions, search would be triggered whilst entering the search text. The user now needs to hit enter/search on the keyboard in order to start the search. This simplifies the Talkback experience whilst also reducing server load.
+Offline search requires offline maps to be downloaded. Download them from the Settings/Offline maps screen.
 
 Searching can be forced to be offline only in the settings. The default Auto setting means that it uses online search when there's network available and offline search when there's none.
 

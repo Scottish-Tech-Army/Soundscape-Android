@@ -39,6 +39,14 @@ class TileSearch(val offlineExtractPath: String,
 
     val stringCache = mutableMapOf<Long, List<String>>()
 
+    private fun cacheIndex(x: Int, y: Int) : Long{
+        return x.toLong() + (y.toLong().shl(32))
+    }
+    private fun trimCache(keepSet: MutableSet<Long>) {
+        // Remove all tiles which aren't in the keepSet
+        stringCache.keys.removeAll { !keepSet.contains(it) }
+    }
+
     fun findNearestNamedWay(location: LngLatAlt, name: String?) : Way? {
         val nearestWays =
             gridState.getFeatureTree(TreeId.ROADS).getNearestCollection(
@@ -214,9 +222,11 @@ class TileSearch(val offlineExtractPath: String,
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
         val needleWithoutSettlement = generateWithoutSettlement(normalizedNeedle, settlementNames)
+        val tilesUsed = mutableSetOf<Long>()
         while (turnCount < maxTurns) {
-            val tileIndex = x.toLong() + (y.toLong().shl(32))
+            val tileIndex = cacheIndex(x, y)
             var cache = stringCache[tileIndex]
+            tilesUsed.add(tileIndex)
             if (cache == null) {
                 // Load the tile and add all of its String to a cache
                 cache = mutableListOf()
@@ -290,6 +300,9 @@ class TileSearch(val offlineExtractPath: String,
                 }
             }
         }
+        // Free up any tiles that we no longer use
+        trimCache(tilesUsed)
+
         // We have some rough results, but we need to get precise locations for each and remove any
         // duplicates due to tile boundary overlap and roads crossing tiles
         val ruler = CheapRuler(location.latitude)
