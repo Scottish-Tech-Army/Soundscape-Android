@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースには大きな変更点が2点あります。まず、*オフライン地図* のサポートが追加され、Soundscape は多くの機能をネットワーク接続なしで利用できるようになりました。本初期リリースでは *検索* は引き続きネットワークを必要としますが、*近くの場所*、音声コールアウト、および地図表示は、ダウンロード済みのオフライン地図を使用します。\n\n世界中をカバーする多くのあらかじめ用意された地図領域（リージョン）が利用可能です。多くの場所は複数のオフライン地図リージョンに含まれることがあるため、ユーザーはどの地図をダウンロードして使うかを選べます。複数のオフライン地図をダウンロードすることもでき、ユーザーが移動すると Soundscape は自動的にそれらの間を切り替えます。\n\n地図リージョンは国全体、州、または大きな町や都市の集合などさまざまです。リージョンのサイズは、その地域の地図データの充実度や物理的な大きさによって変わります。あなたがそのリージョンを最初にダウンロードするユーザーである場合、ダウンロード開始までに短い遅延が発生することがあります。サーバー側で地図をダウンロード可能な形式に処理するため、数分程度かかることがあります。\n\n現在ダウンロードされているオフライン地図は、*メニュー* の *オフライン地図* で確認できます。その画面では、現在地でダウンロード可能な地図も表示されます。\n\nまた、*場所の詳細* 画面からもオフライン地図にアクセスできます。旅行先の地図をダウンロードしたい場合は、その場所を *検索* してから *近くのオフラインマップ* ボタンをタップすると、その場所で利用可能な地図が表示されます。不要になった地図は *ダウンロード済みのマップ* の一覧から該当する地図を選び、*オフラインマップを削除する* を選択して削除できます。\n\n第2の大きな変更点は、地図タイルのカバー範囲が以前のリリースに比べて4倍になったことです。これにより、より遠方の特定地点（POI）が *近くの場所* に表示されるようになります。\n\nいつもどおり、どんなに小さな問題でも構いませんので、メインメニューの *サポートに連絡* からご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースの主な変更点は、*検索* 機能と現在の住所表示に関するものです。ネットワークが利用可能な場合、*検索* は Android の検索機能と当社の Photon サーバーの両方を用いて場所を探します。主な改善点は、まず多くの地域で番地（ストリート番号）による検索が大幅に改善されることです。次に、ダウンロード済みの地図を使って住所や特定地点を検索するオフライン検索を追加しました。オフライン検索はユーザーの周囲おおよそ5マイル以内で機能します。\n\n検索のヒント:\n\nオフライン検索を利用するにはオフライン地図をダウンロードしておく必要があります。設定 &gt; オフライン地図 の画面からダウンロードしてください。\n\n検索をオフライン専用に強制する設定があります。既定の「自動」設定では、ネットワークが利用可能なときはオンライン検索を、利用できないときはオフライン検索を使用します。\n\n番地で検索する際、オンライン検索では市区町村名を含めることが重要です。オフライン検索では市区町村名を省略しても構いません。\n\n当社が利用している OpenStreetMap データにおける番地の登録状況は地域によって異なります。オフライン検索は番地情報が利用可能な場合にそれを使用しますが、2026年1月19日以降にアプリでダウンロードされたオフライン地図が必要です。\n\nいつもどおり、どんなに小さな問題でも、メインメニューの *サポートに連絡* からご報告ください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1187,4 +1187,11 @@
     <string name="osm_chain" tools:ignore="MissingTranslation">チェーン柵</string>
     <string name="osm_parking_space" tools:ignore="MissingTranslation">駐車スペース</string>
     <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">二輪車駐車場</string>
+    <string name="settings_section_search" tools:ignore="MissingTranslation">検索</string>
+    <string name="settings_search_online" tools:ignore="MissingTranslation">オンライン</string>
+    <string name="settings_search_offline" tools:ignore="MissingTranslation">オフライン</string>
+    <string name="settings_search_auto" tools:ignore="MissingTranslation">自動</string>
+    <string name="search_no_results" tools:ignore="MissingTranslation">検索結果が見つかりませんでした</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">検索中…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">検索を管理</string>
 </resources>
