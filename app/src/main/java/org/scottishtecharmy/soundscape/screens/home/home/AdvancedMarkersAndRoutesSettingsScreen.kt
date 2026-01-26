@@ -73,10 +73,10 @@ fun AdvancedMarkersAndRoutesSettingsScreenVM(
             filePickerLauncher.launch("application/zip")
         }
     }
-
+    val chooserText = stringResource(R.string.advanced_markers_and_routes_export)
     AdvancedMarkersAndRoutesSettingsScreen(
         navController,
-        { viewModel.exportMarkersAndRoutes(context, "Export") },
+        { viewModel.exportMarkersAndRoutes(context, chooserText) },
         { viewModel.triggerImport(context) },
         { viewModel.deleteAllMarkersAndRoutes(context, clearAllSuccessString) },
         userFeedback.value,
