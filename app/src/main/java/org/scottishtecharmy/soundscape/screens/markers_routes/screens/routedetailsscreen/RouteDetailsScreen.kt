@@ -296,7 +296,7 @@ fun RouteDetailsScreen(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("Route not found")
+                            Text(stringResource(R.string.route_not_found))
                         }
                     }
                 }

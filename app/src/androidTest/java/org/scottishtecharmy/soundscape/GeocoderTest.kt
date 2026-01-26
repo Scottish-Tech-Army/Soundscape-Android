@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.process
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 
 @RunWith(AndroidJUnit4::class)
@@ -374,6 +375,8 @@ class GeocoderTest {
 
             val wellKnownLocation = LngLatAlt(-4.3215166, 55.9404307)
             val halfordsResults = geocoder.getAddressFromLocationName("halfords crow road", wellKnownLocation, appContext)
+            halfordsResults?.get(1)?.process()
+            halfordsResults?.get(1)?.process()
 
             val wellKnownResults = geocoder.getAddressFromLocationName("20 braeside avenue milngavie", wellKnownLocation, appContext)
 

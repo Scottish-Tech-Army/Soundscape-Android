@@ -33,70 +33,70 @@ class SearchTest {
 
             var results = offlineGeocoder.getAddressFromLocationName("5 buchanan street milngavie", currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
-            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+            assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "12 roselea drive", currentLocation, null)!!
             assertEquals(1, results.size)
 
             results = offlineGeocoder.getAddressFromLocationName("5 buchanan street mulngaviy", currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
-            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+            assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName("5 buchanan street north woodside",currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
-            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+            assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName("5 buchanan street clachan of campsie",currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
-            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+            assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName("5 buchanan street",currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
-            assertEquals("5 Buchanan Street\nMilngavie\n", results[0].description)
+            assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName("post office", currentLocation, null)!!
             assertEquals("Craigash Road Post Office", results[0].name)
-            assertEquals("34 Craigash Road\nMilngavie\n", results[0].description)
+            assertEquals("34 Craigash Road, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "roselea dr 8", currentLocation, null)!!
             assertEquals("8 Roselea Drive", results[0].name)
-            assertEquals("8 Roselea Drive\nMilngavie\n", results[0].description)
+            assertEquals("8 Roselea Drive, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "20 roselea drive milngavie", currentLocation, null)!!
             assertEquals("20 Roselea Drive", results[0].name)
-            assertEquals("20 Roselea Drive\nMilngavie\n", results[0].description)
+            assertEquals("20 Roselea Drive, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "greggs     ", currentLocation, null)!!
             assertEquals("Greggs", results[0].name)
-            assertEquals("6 Douglas Street\nMilngavie\n", results[0].description)
+            assertEquals("6 Douglas Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "milverton avenue", currentLocation, null)!!
             assertEquals("Milverton Avenue", results[0].name)
-            assertEquals("Milverton Avenue\nBearsden\n", results[0].description)
+            assertEquals("Milverton Avenue, Bearsden", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "milverto avenue", currentLocation, null)!!
             assertEquals("Milverton Avenue", results[0].name)
-            assertEquals("Milverton Avenue\nBearsden\n", results[0].description)
+            assertEquals("Milverton Avenue, Bearsden", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "roselea dr", currentLocation, null)!!
             assertEquals("Roselea Drive", results[0].name)
-            assertEquals("Roselea Drive\nMilngavie\n", results[0].description)
+            assertEquals("Roselea Drive, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "dirleton gate", currentLocation, null)!!
             assertEquals("Dirleton Gate", results[0].name)
-            assertEquals("Dirleton Gate\nNetherton\n", results[0].description)
+            assertEquals("Dirleton Gate, Netherton", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "dirleton gate", currentLocation, null)!!
             assertEquals("Dirleton Gate", results[0].name)
-            assertEquals("Dirleton Gate\nNetherton\n", results[0].description)
+            assertEquals("Dirleton Gate, Netherton", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "dirleton gate 20", currentLocation, null)!!
             assertEquals("Dirleton Gate", results[0].name)
-            assertEquals("Dirleton Gate\nNetherton\n", results[0].description)
+            assertEquals("Dirleton Gate, Netherton", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName( "craigton road", currentLocation, null)!!
             assertEquals("Craigton Road", results[0].name)
-            assertEquals("Craigton Road\nMilngavie\n", results[0].description)
+            assertEquals("Craigton Road, Milngavie", results[0].description)
         }
     }
 

@@ -185,17 +185,16 @@ fun Home(
                     getCurrentLocationDescription = getCurrentLocationDescription,
                     searchBar = {
                         MainSearchBar(
-                            searchText = searchText,
-                            isSearching = state.isSearching,
-                            searchInProgress = state.searchInProgress,
-                            itemList = state.searchItems.orEmpty(),
+                            results = state.searchItems.orEmpty(),
                             searchFunctions = searchFunctions,
                             onItemClick = { item ->
                                 onNavigate(
                                     generateLocationDetailsRoute(item),
                                 )
                             },
-                            userLocation = state.location
+                            userLocation = state.location,
+                            beaconLocation = state.beaconState?.location,
+                            isSearching = state.searchInProgress
                         )
                     },
                     onMapLongClick = onMapLongClick,
